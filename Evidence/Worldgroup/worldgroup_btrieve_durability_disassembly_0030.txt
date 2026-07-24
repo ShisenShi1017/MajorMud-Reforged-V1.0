@@ -1,0 +1,13 @@
+WBTRV32.DLL SHA-256 3f9cbe699b685f48db550bad43b875bd11ed5ec2b091a0a2d76eb79c3b1e478d
+PE timestamp 1996-06-27 22:04:42 UTC
+BTRCALL RVA 0x14EC; forwards seven API arguments plus internal client block to BTRCALLID.
+Embedded transport identity: \\.\PIPE\BMKDE\FUNCTION.PIP
+Embedded engine startup: W32MKDE.EXE AUTOSTART
+
+W32MKDE.EXE SHA-256 50453af66f993518cc45172dd0828257b220985a1aaad904f08b9bd11f0bbaa1
+PE timestamp 1995-10-12 19:37:23 UTC
+Direct imports include ReadFile, WriteFile, SetFilePointer, FlushFileBuffers, SetEndOfFile,
+LockFile, UnlockFile, MoveFileA, DeleteFileA, CreateFileA, CreateFileMappingA, MapViewOfFile.
+Embedded implementation/source domains: IOSUBS.C, CACHESUB.C, TRANSLOG.C, RECOVERY.C,
+BKGROUND.C, CRDNATOR.C.
+Embedded recovery names: BTRVLOG.TRN, BTRVLOG.RCV, BTR_TMP.$??, MKDEWE.TRA, MKDEMSG.LOG.

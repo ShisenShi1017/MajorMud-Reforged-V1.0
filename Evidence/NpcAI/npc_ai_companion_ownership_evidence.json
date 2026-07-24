@@ -1,0 +1,38 @@
+{
+  "schema_version": "npc-ai-companion-ownership-evidence.v1",
+  "update_id": "CodeUpdate0193",
+  "classification": "strongly_correlated",
+  "runtime_boundary": "exact companion ownership assignment, inspection and release",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcCompanionOwnership.cs"
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "supporting_evidence": [
+    "Runtime NPC instances already persist arbitrary world-owned metadata.",
+    "Summoned NPC instances already record a source but lacked a typed owner lifecycle.",
+    "Exact ownership can be admitted without deriving follow, charm, combat, teleport or duration policy."
+  ],
+  "confidence": 0.93,
+  "assumptions": [
+    "The caller has already resolved the relationship and owner identity."
+  ],
+  "tests": [
+    "assignment requires a living NPC and explicit authority",
+    "duplicate ownership rejects",
+    "release requires exact owner match",
+    "inspection reconstructs persisted ownership"
+  ],
+  "safe_fallback": "No companion owner exists unless explicitly assigned.",
+  "runtime_impact": "Adds typed, save-safe ownership metadata only.",
+  "character_save_impact": "None; owner identity is world NPC state.",
+  "world_state_impact": "World save persists assignment and release audit metadata.",
+  "native_dependencies": [
+    "follow cadence",
+    "teleport-follow rules",
+    "combat assistance",
+    "logout/disconnect cleanup",
+    "duration and charm-break rules"
+  ]
+}

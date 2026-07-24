@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "events",
+  "updatedByPass": "RemainingSystems-0010-WorldEvents",
+  "promotions": [
+    {
+      "behavior": "Central world-event lifecycle with deterministic typed owner dispatch",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldEvents.cs",
+        "Apps/Source/Reforged.Server/RuntimeWorldEventSmokeReport.cs",
+        "Librarium/RemainingSystems/world_event_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": ["Reforged coordination semantics only"],
+      "tests": ["--smoke-world-events"],
+      "safeFallback": "reject unknown events and invalid lifecycle transitions",
+      "runtimeImpact": "coordinates event activation, completion, cancellation, and cleanup without duplicating owner behavior",
+      "characterSaveImpact": "participant identity is world-event state, not character-owned state",
+      "worldStateImpact": "persistent event status, schedule boundaries, participants, and revisions may be restored"
+    },
+    {
+      "behavior": "Event actions route to Trigger, Script, NPC AI, Economy, Communications, and Global World State owners",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldEvents.cs",
+        "Reports/RemainingSystems/world_event_exhaustion_0010.md"
+      ],
+      "confidence": 0.86,
+      "assumptions": ["exact native event-to-owner mappings remain unresolved"],
+      "tests": ["ordered-start-dispatch", "end-and-cleanup-dispatch"],
+      "safeFallback": "emit only explicit typed requests and fail required actions",
+      "runtimeImpact": "preserves subsystem ownership while enabling executable event coordination",
+      "characterSaveImpact": "none directly",
+      "worldStateImpact": "owner subsystems commit requested changes"
+    },
+    {
+      "behavior": "Persistent event lifecycle supports restart restoration and bounded participant capacity",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldEvents.cs",
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "confidence": 0.8,
+      "assumptions": ["native participant persistence and missed-event recovery remain unresolved"],
+      "tests": ["participant-capacity", "state-invariants"],
+      "safeFallback": "restore only schema-compatible known event definitions",
+      "runtimeImpact": "prevents over-capacity participation and invalid restored events",
+      "characterSaveImpact": "none directly",
+      "worldStateImpact": "schema-versioned event state may persist"
+    }
+  ]
+}

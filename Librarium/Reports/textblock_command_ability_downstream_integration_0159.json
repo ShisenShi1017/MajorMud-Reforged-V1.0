@@ -1,0 +1,211 @@
+{
+  "schema": "textblock_command_ability_downstream_integration_report_v1",
+  "code_update": "0159",
+  "status": "integration_contract_emitted",
+  "domain_count": 7,
+  "command_count": 77,
+  "opcode_count": 25,
+  "domains": [
+    {
+      "domain": "character",
+      "commands": [
+        "score",
+        "inventory",
+        "equipment",
+        "get",
+        "drop",
+        "put",
+        "give",
+        "wear",
+        "wield",
+        "remove",
+        "abilities",
+        "skills",
+        "train",
+        "tat",
+        "respawn",
+        "recover",
+        "save"
+      ],
+      "opcodes": [
+        "addability",
+        "addevil",
+        "addexp",
+        "check",
+        "checkability",
+        "checkitem",
+        "class",
+        "evilaligned",
+        "failability",
+        "failitem",
+        "giveability",
+        "giveitem",
+        "goodaligned",
+        "maxlevel",
+        "minlevel",
+        "takeitem",
+        "testability"
+      ],
+      "persistent_command_count": 11,
+      "runtime_mutation_command_count": 14,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "npc",
+      "commands": [
+        "talk",
+        "quest",
+        "accept",
+        "abandon",
+        "complete",
+        "journal"
+      ],
+      "opcodes": [],
+      "persistent_command_count": 3,
+      "runtime_mutation_command_count": 6,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "combat",
+      "commands": [
+        "attack",
+        "kill",
+        "flee",
+        "combat",
+        "round",
+        "assist"
+      ],
+      "opcodes": [],
+      "persistent_command_count": 0,
+      "runtime_mutation_command_count": 6,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "spells",
+      "commands": [
+        "cast",
+        "prepare",
+        "dispel"
+      ],
+      "opcodes": [
+        "cast"
+      ],
+      "persistent_command_count": 0,
+      "runtime_mutation_command_count": 3,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "economy",
+      "commands": [
+        "buy",
+        "sell",
+        "repair",
+        "services",
+        "list",
+        "bank",
+        "deposit",
+        "withdraw",
+        "trade"
+      ],
+      "opcodes": [
+        "price"
+      ],
+      "persistent_command_count": 7,
+      "runtime_mutation_command_count": 9,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "world",
+      "commands": [
+        "look",
+        "examine",
+        "use",
+        "bash",
+        "open",
+        "close",
+        "lock",
+        "unlock",
+        "pull",
+        "push",
+        "activate",
+        "worldstate",
+        "where",
+        "world",
+        "worlds",
+        "state",
+        "events",
+        "north",
+        "south",
+        "east",
+        "west",
+        "northeast",
+        "northwest",
+        "southeast",
+        "southwest",
+        "up",
+        "down"
+      ],
+      "opcodes": [
+        "message",
+        "random",
+        "remoteaction",
+        "summon",
+        "teleport",
+        "text"
+      ],
+      "persistent_command_count": 0,
+      "runtime_mutation_command_count": 19,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    },
+    {
+      "domain": "session",
+      "commands": [
+        "say",
+        "tell",
+        "messages",
+        "ready",
+        "audit",
+        "who",
+        "sessions",
+        "help",
+        "quit"
+      ],
+      "opcodes": [],
+      "persistent_command_count": 0,
+      "runtime_mutation_command_count": 0,
+      "integration_policy": "consume typed intent/outcome contracts; domain handler owns validation, transaction, rollback, persistence, and world mutation"
+    }
+  ],
+  "ability_exports": {
+    "numeric_ability_owner": "character_persisted_integer_map",
+    "learned_skill_owner": "character_skill_catalog_and_cooldown_state",
+    "cross_domain_rule": "numeric abilities and learned skills remain disjoint unless an independently evidenced adapter explicitly bridges them"
+  },
+  "transaction_boundary": "textblock clause owns preflight and rollback of captured character state; downstream domain handlers own their own transactions and must surface failure before textblock output commit",
+  "remaining_native_dependencies": [
+    {
+      "id": "native.message_payload_catalog",
+      "scope": "130 message references",
+      "required_for": "exact player-visible message payloads and substitutions",
+      "runtime_policy": "buffer and fail closed"
+    },
+    {
+      "id": "native.textblock_payload_catalog",
+      "scope": "389 invocations / 156 unique targets",
+      "required_for": "payload body, native branches, return semantics, formatting and dynamic substitutions",
+      "runtime_policy": "typed unresolved invocation; fail closed"
+    },
+    {
+      "id": "native.remoteaction_dispatcher",
+      "scope": "remoteaction 1423 66 0 3",
+      "required_for": "exact world side effects and dispatcher ordering",
+      "runtime_policy": "validated opaque world intent only"
+    },
+    {
+      "id": "native.player_command_table",
+      "scope": "commands outside the 77 managed registrations",
+      "required_for": "proof of original native command completeness and aliases",
+      "runtime_policy": "unknown commands reject without gameplay side effects"
+    }
+  ]
+}

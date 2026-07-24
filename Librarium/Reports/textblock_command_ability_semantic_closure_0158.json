@@ -1,0 +1,50 @@
+{
+  "schema": "textblock_command_ability_semantic_closure_report_v1",
+  "code_update": "0158",
+  "status": "closed_for_current_decoded_corpus",
+  "counts": {
+    "textblock_scripts": 182,
+    "textblock_operations": 2616,
+    "textblock_opcodes": 25,
+    "runtime_commands": 77,
+    "numeric_abilities": 188,
+    "learned_skills": 13,
+    "output_references": 519,
+    "unresolved_text_invocations": 389
+  },
+  "closure_assertions": [
+    "all decoded textblock opcodes have typed phase and parameter contracts",
+    "all managed runtime command registrations have parser, dispatch, outcome, and ownership contracts",
+    "numeric ability flags and learned active skills have disjoint ownership and lifecycle contracts",
+    "unknown command, opcode, ability, skill, output payload, and invocation targets fail closed",
+    "output and nested invocation mutations preserve transactional clause boundaries"
+  ],
+  "native_dependencies": [
+    {
+      "id": "native.message_payload_catalog",
+      "scope": "130 message references",
+      "required_for": "exact player-visible message payloads and substitutions",
+      "runtime_policy": "buffer and fail closed"
+    },
+    {
+      "id": "native.textblock_payload_catalog",
+      "scope": "389 invocations / 156 unique targets",
+      "required_for": "payload body, native branches, return semantics, formatting and dynamic substitutions",
+      "runtime_policy": "typed unresolved invocation; fail closed"
+    },
+    {
+      "id": "native.remoteaction_dispatcher",
+      "scope": "remoteaction 1423 66 0 3",
+      "required_for": "exact world side effects and dispatcher ordering",
+      "runtime_policy": "validated opaque world intent only"
+    },
+    {
+      "id": "native.player_command_table",
+      "scope": "commands outside the 77 managed registrations",
+      "required_for": "proof of original native command completeness and aliases",
+      "runtime_policy": "unknown commands reject without gameplay side effects"
+    }
+  ],
+  "remaining_managed_unknown_count": 0,
+  "remaining_native_dependency_count": 4
+}

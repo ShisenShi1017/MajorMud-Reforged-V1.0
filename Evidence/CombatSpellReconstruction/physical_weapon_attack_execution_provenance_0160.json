@@ -1,0 +1,49 @@
+{
+  "update": "0160",
+  "artifact": "physical_weapon_attack_execution_provenance",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimePhysicalWeaponAttackExecution.cs",
+  "sources": [
+    {
+      "path": "Librarium/CombatSpellReconstruction/combat_spell_definition_bindings_0151.json",
+      "records": [
+        "item.1622"
+      ],
+      "role": "canonical weapon definition binding"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimePhysicalAttackExecution.cs",
+      "records": [
+        "RuntimePhysicalAttackProfile",
+        "RuntimePhysicalAttackRequest",
+        "IRuntimePhysicalDamageSink"
+      ],
+      "role": "phase-one attack and atomic sink contract"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeCombatInstanceLifecycle.cs",
+      "records": [
+        "RuntimeCombatScheduledTurn",
+        "RuntimeCombatParticipantState"
+      ],
+      "role": "turn ownership and defeat lifecycle"
+    }
+  ],
+  "activation_rule": "Only fully populated proven or strongly correlated binding and mitigation profiles execute. Any unresolved field fails closed.",
+  "persistence": {
+    "temporary": [
+      "scheduled turn consumption",
+      "defensive result",
+      "formula intermediates"
+    ],
+    "mutated": [
+      "target HP through sink",
+      "combat participant defeat state"
+    ],
+    "not_persisted_without_evidence": [
+      "weapon readiness",
+      "ammunition",
+      "durability",
+      "mitigation trace"
+    ]
+  }
+}

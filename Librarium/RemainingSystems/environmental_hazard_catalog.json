@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "environmental-hazards",
+  "runtimeOwner": "RuntimeEnvironmentalHazardService",
+  "persistenceOwner": "world hazard activation and periodic schedule; downstream mutations remain owner-subsystem responsibilities",
+  "kinds": [
+    "darkness",
+    "light",
+    "fire",
+    "water",
+    "drowning",
+    "falling",
+    "lava",
+    "poison",
+    "disease",
+    "cold",
+    "heat",
+    "air-restriction",
+    "terrain",
+    "slippery",
+    "forced-movement",
+    "regeneration-penalty",
+    "spell-restriction"
+  ],
+  "phases": [
+    "enter",
+    "exit",
+    "periodic"
+  ],
+  "requestTypes": [
+    "damage",
+    "status",
+    "movement",
+    "regeneration-modifier",
+    "spell-restriction",
+    "visibility-modifier"
+  ],
+  "protectionSources": [
+    "equipment",
+    "spells",
+    "abilities",
+    "resistance identifiers"
+  ],
+  "ownershipBoundaries": {
+    "rooms": "resolve room entry/exit and occupancy",
+    "combatAndSpells": "resolve damage, status, resistance, and spell restrictions",
+    "characterAndNpc": "own resource changes and protection values",
+    "environmentalHazards": "eligibility, phase scheduling, protection routing, activation state, and typed requests"
+  },
+  "safeFallbacks": [
+    "unknown hazard IDs are rejected",
+    "unknown protections are not inferred",
+    "missing request IDs are presentation-only",
+    "unsupported formulas remain evidence-only",
+    "corrupt persistent state falls back to catalog defaults"
+  ],
+  "nativeDependencies": [
+    "exact Classic environmental record families and room-field mappings",
+    "tick frequency and round conversion",
+    "resistance and protection precedence",
+    "entry/exit/periodic ordering",
+    "NPC eligibility",
+    "exact messages and damage/status formulas",
+    "save/reset behavior",
+    "whether weather and day/night alter hazards"
+  ]
+}

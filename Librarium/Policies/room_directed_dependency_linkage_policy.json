@@ -1,0 +1,16 @@
+{
+  "policy_id": "room-directed-dependency-linkage-0196",
+  "scope": "classic_rooms",
+  "rule": "A room effect may be closed through script, trigger, quest, NPC, item, spell, or message evidence only when the owning source record is linked to a canonical room_id or exit_id, directly or through a documented deterministic relationship.",
+  "promotion": {
+    "proven": "activate",
+    "strongly_correlated": "activate with provenance, assumptions, fallback, tests, and save/world-state impact",
+    "weak_hypothesis": "research only",
+    "unknown": "preserve raw evidence and fail safely"
+  },
+  "anti_false_completion": [
+    "Syntactic parsing does not establish room ownership.",
+    "A numeric page or record value matching a room number is not a canonical relationship by itself.",
+    "Missing generated links must be classified as a decoder-linkage gap rather than absence of native behavior."
+  ]
+}

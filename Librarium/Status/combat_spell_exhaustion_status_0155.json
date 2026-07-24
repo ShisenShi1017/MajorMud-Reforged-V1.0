@@ -1,0 +1,27 @@
+{
+  "update": "0155",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "ready-cast to target-decision execution integration",
+    "cast/request actor, spell, and cast identity consistency gates",
+    "per-selected-target resistance and saving-throw input requirements",
+    "stable per-target resolution IDs and deterministic derived seeds",
+    "multi-target atomic mutation boundary",
+    "reverse-order restoration after target mutation failure",
+    "target-validation failure transition",
+    "effect-execution failure transition",
+    "resource lifecycle finalization through cast Completed, FailedValidation, and FailedExecution terminals",
+    "completion only after every selected target mutation succeeds"
+  ],
+  "not_claimed_complete": [
+    "native multi-target partial commit versus rollback semantics",
+    "native per-target random stream derivation",
+    "native resource finalization ordering",
+    "spell.1304 target and effect semantics",
+    "status-effect creation and duration processing",
+    "damage-over-time and healing-over-time scheduling",
+    "dispel and removal execution"
+  ],
+  "next_pass": "Implement evidence-gated active spell-effect instances and deterministic duration/tick lifecycle, integrated with cast execution while leaving unresolved status meanings fail-closed."
+}

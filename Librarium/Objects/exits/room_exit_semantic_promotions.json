@@ -1,0 +1,143 @@
+{
+  "update": "0193",
+  "object_type": "room_exit_semantic_promotion",
+  "record_count": 6,
+  "records": [
+    {
+      "id": "promotion.exit.map9.1050.w.0193",
+      "exit_id": "exit.map9.1050.w",
+      "status": "strongly_correlated_active",
+      "interpretation": "reciprocal side shares the explicit action-bound latch on exit.map9.1049.e",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "source_record_identifiers": [
+        "exit.map9.1050.w",
+        "exit.map9.1049.e",
+        "interaction.map9.1049.d.105"
+      ],
+      "confidence": "strongly_correlated",
+      "assumptions": [
+        "reciprocal directions mutate one shared world-edge state"
+      ],
+      "fallback": "disable only west traversal until reopened by verified east-side action",
+      "tests": [
+        "reciprocal destinations and reverse directions match",
+        "both exits use one-action hidden qualifier",
+        "source side has exactly one explicit bound action"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    },
+    {
+      "id": "promotion.shared-native-latch.map17.2946.s.0193",
+      "exit_ids": [
+        "exit.map17.2946.s",
+        "exit.map17.2947.n"
+      ],
+      "status": "strongly_correlated_structure_research_effect_pending",
+      "interpretation": "two reciprocal exit rows represent one unresolved native/passive latch effect",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "confidence": "strongly_correlated_structure",
+      "assumptions": [
+        "reciprocal directions share one edge-state owner"
+      ],
+      "fallback": "keep shared state closed until exact effect is recovered",
+      "tests": [
+        "reciprocal topology and qualifier equality"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    },
+    {
+      "id": "promotion.shared-native-latch.map17.2949.e.0193",
+      "exit_ids": [
+        "exit.map17.2949.e",
+        "exit.map17.2950.w"
+      ],
+      "status": "strongly_correlated_structure_research_effect_pending",
+      "interpretation": "two reciprocal exit rows represent one unresolved native/passive latch effect",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "confidence": "strongly_correlated_structure",
+      "assumptions": [
+        "reciprocal directions share one edge-state owner"
+      ],
+      "fallback": "keep shared state closed until exact effect is recovered",
+      "tests": [
+        "reciprocal topology and qualifier equality"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    },
+    {
+      "id": "promotion.shared-native-latch.map17.2956.n.0193",
+      "exit_ids": [
+        "exit.map17.2956.n",
+        "exit.map17.2957.s"
+      ],
+      "status": "strongly_correlated_structure_research_effect_pending",
+      "interpretation": "two reciprocal exit rows represent one unresolved native/passive latch effect",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "confidence": "strongly_correlated_structure",
+      "assumptions": [
+        "reciprocal directions share one edge-state owner"
+      ],
+      "fallback": "keep shared state closed until exact effect is recovered",
+      "tests": [
+        "reciprocal topology and qualifier equality"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    },
+    {
+      "id": "promotion.shared-native-latch.map17.2958.n.0193",
+      "exit_ids": [
+        "exit.map17.2958.n",
+        "exit.map17.2972.s"
+      ],
+      "status": "strongly_correlated_structure_research_effect_pending",
+      "interpretation": "two reciprocal exit rows represent one unresolved native/passive latch effect",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "confidence": "strongly_correlated_structure",
+      "assumptions": [
+        "reciprocal directions share one edge-state owner"
+      ],
+      "fallback": "keep shared state closed until exact effect is recovered",
+      "tests": [
+        "reciprocal topology and qualifier equality"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    },
+    {
+      "id": "promotion.shared-native-latch.map17.2970.s.0193",
+      "exit_ids": [
+        "exit.map17.2970.s",
+        "exit.map17.2971.n"
+      ],
+      "status": "strongly_correlated_structure_research_effect_pending",
+      "interpretation": "two reciprocal exit rows represent one unresolved native/passive latch effect",
+      "source_files": [
+        "Data/Classic/exits.json",
+        "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json"
+      ],
+      "confidence": "strongly_correlated_structure",
+      "assumptions": [
+        "reciprocal directions share one edge-state owner"
+      ],
+      "fallback": "keep shared state closed until exact effect is recovered",
+      "tests": [
+        "reciprocal topology and qualifier equality"
+      ],
+      "save_world_state_impact": "transient shared latch only"
+    }
+  ]
+}

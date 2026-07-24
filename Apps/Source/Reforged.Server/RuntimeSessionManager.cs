@@ -48,7 +48,7 @@ public sealed class RuntimeSessionManager
             ?? (character.RoomNumber > 0 ? world.FindRoomByNumber(character.RoomNumber) : null)
             ?? world.ResolveGeneratedCharacterStartRoom()
             ?? throw new InvalidOperationException($"Character '{character.DisplayName}' has no resolvable saved room and the world has no generated character start.");
-        var actor = new RuntimeCharacterActor(character.CharacterId, character.DisplayName, character.RaceName, character.ClassName, character.Level);
+        var actor = new RuntimeCharacterActor(character.CharacterId, character.DisplayName, character.RaceName, character.ClassName, character.Level, character.Sex);
         var source = string.Equals(room.Id, character.RoomId, StringComparison.OrdinalIgnoreCase)
             ? "saved-character-room"
             : "generated-character-start-recovery";

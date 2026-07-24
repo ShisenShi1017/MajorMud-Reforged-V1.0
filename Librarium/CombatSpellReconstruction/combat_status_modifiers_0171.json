@@ -1,0 +1,35 @@
+{
+  "update": "0171",
+  "runtime": "RuntimeCombatStatusModifierEvaluator",
+  "ownership": {
+    "active_effect_instances": "RuntimeSpellEffectLifecycle",
+    "combat_modifier_semantics": "RuntimeCombatStatusModifierPolicy",
+    "action_restriction_decision": "RuntimeCombatStatusModifierEvaluator",
+    "physical_attack_execution": "physical combat runtime",
+    "spell_cast_execution": "spell cast runtime",
+    "movement_execution": "combat movement runtime"
+  },
+  "ordering": [
+    "select active effects owned by actor",
+    "order by application tick then canonical effect id",
+    "resolve promoted spell policy",
+    "scale policy values by magnitude and stack count",
+    "accumulate numeric modifiers with checked arithmetic",
+    "resolve requested-action restriction",
+    "emit hidden-break signal",
+    "return auditable trace"
+  ],
+  "supported": [
+    "attack modifier",
+    "defense modifier",
+    "initiative modifier",
+    "speed modifier",
+    "resistance modifier",
+    "visibility modifier",
+    "physical attack restriction",
+    "spell cast restriction",
+    "movement restriction",
+    "hidden break on attack or cast"
+  ],
+  "safe_fallback": "reject missing, weak, or unresolved status-family policy"
+}

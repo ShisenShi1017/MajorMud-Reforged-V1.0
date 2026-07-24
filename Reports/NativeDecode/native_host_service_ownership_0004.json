@@ -1,0 +1,2980 @@
+{
+  "schema": "majorMud.native-host-service-ownership.v1",
+  "update": "FinalNativeClosure0004",
+  "generated_utc": "2026-07-16T01:14:00.735999+00:00",
+  "evidence_class": "PROVEN",
+  "source_evidence": "Librarium/Evidence/native_host_callsite_map_0003.json",
+  "classification_method": "Deterministic symbol-name taxonomy over proven WGSERVER.EXE imports; classification establishes ownership domain only, not implementation semantics.",
+  "domains": [
+    {
+      "domain": "host_message_rendering_transport",
+      "symbol_count": 10,
+      "direct_callsite_count": 8092,
+      "symbols": [
+        "_clrprf",
+        "_clsmsg",
+        "_opnmsg",
+        "_outprf",
+        "_prf",
+        "_prfbuf",
+        "_prfmsg",
+        "_prfptr",
+        "_rsp2write",
+        "_shocst"
+      ]
+    },
+    {
+      "domain": "host_persistence_dfa",
+      "symbol_count": 18,
+      "direct_callsite_count": 1596,
+      "symbols": [
+        "_dfaAbs",
+        "_dfaAcqAbsLock",
+        "_dfaAcqLock",
+        "_dfaClose",
+        "_dfaCountRec",
+        "_dfaDelete",
+        "_dfaGetAbsLock",
+        "_dfaInsertDup",
+        "_dfaInsertV",
+        "_dfaMode",
+        "_dfaOpen",
+        "_dfaQuery",
+        "_dfaQueryNP",
+        "_dfaRstBlk",
+        "_dfaSetBlk",
+        "_dfaStepLock",
+        "_dfaUpdateDup",
+        "_dfaUpdateV"
+      ]
+    },
+    {
+      "domain": "host_identity_access",
+      "symbol_count": 5,
+      "direct_callsite_count": 1254,
+      "symbols": [
+        "_haskey",
+        "_hasmkey",
+        "_sameas",
+        "_samein",
+        "_sameto"
+      ]
+    },
+    {
+      "domain": "host_general_runtime",
+      "symbol_count": 90,
+      "direct_callsite_count": 862,
+      "symbols": [
+        "_accbb",
+        "_b2ccpy",
+        "_bgnedt",
+        "_byenow",
+        "_c2bcpy",
+        "_catastro",
+        "_channel",
+        "_chropt",
+        "_clsbb",
+        "_cntdir",
+        "_cnvs2d",
+        "_curcurx",
+        "_curcury",
+        "_dfsthn",
+        "_echon",
+        "_echonu",
+        "_echsec",
+        "_findtvar",
+        "_fsdapr",
+        "_fsdbkg",
+        "_fsdego",
+        "_fsdemg",
+        "_fsdnan",
+        "_fsdord",
+        "_fsdrft",
+        "_fsdroom",
+        "_fsdscb",
+        "_fsdxan",
+        "_genbb",
+        "_getFileTm",
+        "_globalcmd",
+        "_globs",
+        "_gmdnam",
+        "_hdlinp",
+        "_injacr",
+        "_inplen",
+        "_input",
+        "_l2as",
+        "_listing",
+        "_locate",
+        "_margc",
+        "_margv",
+        "_msgscan",
+        "_msysid",
+        "_namtmp",
+        "_ncedat",
+        "_nglobs",
+        "_nterms",
+        "_numbyts",
+        "_odedcrd",
+        "_othusn",
+        "_otstcrd",
+        "_paccit",
+        "_prat",
+        "_profan",
+        "_register_agent",
+        "_register_module",
+        "_register_textvar",
+        "_rejectreq",
+        "_rsp2read",
+        "_rstrxf",
+        "_samepatu",
+        "_senddpk",
+        "_sortstgs",
+        "_spr",
+        "_status",
+        "_stdmchk",
+        "_stp4cs",
+        "_stzcpy",
+        "_syscyc",
+        "_tfsabt",
+        "_tfsbuf",
+        "_tfsopn",
+        "_tfspfx",
+        "_tfspst",
+        "_tfsrdl",
+        "_tfstate",
+        "_tokopt",
+        "_txtvars",
+        "_uidarr",
+        "_usaptr",
+        "_usrnum",
+        "_usrptr",
+        "_vdaptr",
+        "_vdasiz",
+        "_vdatmp",
+        "_version",
+        "_vfyadn",
+        "_vtmsend",
+        "_vtmsndok"
+      ]
+    },
+    {
+      "domain": "host_buffer_state",
+      "symbol_count": 3,
+      "direct_callsite_count": 526,
+      "symbols": [
+        "_rstmbk",
+        "_rstrin",
+        "_setmbk"
+      ]
+    },
+    {
+      "domain": "host_input_parser",
+      "symbol_count": 9,
+      "direct_callsite_count": 508,
+      "symbols": [
+        "_lastwd",
+        "_lngopt",
+        "_numopt",
+        "_parsin",
+        "_rmvwht",
+        "_skpwht",
+        "_skpwrd",
+        "_stgopt",
+        "_ynopt"
+      ]
+    },
+    {
+      "domain": "host_randomness",
+      "symbol_count": 2,
+      "direct_callsite_count": 376,
+      "symbols": [
+        "_genrdn",
+        "_lngrnd"
+      ]
+    },
+    {
+      "domain": "host_memory",
+      "symbol_count": 5,
+      "direct_callsite_count": 374,
+      "symbols": [
+        "_alcblok",
+        "_alcmem",
+        "_alczer",
+        "_galfree",
+        "_ptrblok"
+      ]
+    },
+    {
+      "domain": "host_session_user_state",
+      "symbol_count": 6,
+      "direct_callsite_count": 246,
+      "symbols": [
+        "_curusr",
+        "_dclvda",
+        "_depad",
+        "_uacoff",
+        "_usroff",
+        "_vdaoff"
+      ]
+    },
+    {
+      "domain": "host_clock_calendar",
+      "symbol_count": 5,
+      "direct_callsite_count": 130,
+      "symbols": [
+        "_cofdat",
+        "_ncdate",
+        "_nctime",
+        "_now",
+        "_today"
+      ]
+    },
+    {
+      "domain": "host_polling_scheduler",
+      "symbol_count": 3,
+      "direct_callsite_count": 92,
+      "symbols": [
+        "_begin_polling",
+        "_rtkick",
+        "_stop_polling"
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "symbol": "_rstmbk",
+      "domain": "host_buffer_state",
+      "total_direct_callsites": 270,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 117,
+          "thunk_va": "0x00478b62"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404cfe"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 117,
+          "thunk_va": "0x00478b62"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404cfe"
+        }
+      }
+    },
+    {
+      "symbol": "_rstrin",
+      "domain": "host_buffer_state",
+      "total_direct_callsites": 168,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 77,
+          "thunk_va": "0x00478ba4"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00404d04"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 77,
+          "thunk_va": "0x00478ba4"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00404d04"
+        }
+      }
+    },
+    {
+      "symbol": "_setmbk",
+      "domain": "host_buffer_state",
+      "total_direct_callsites": 88,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 27,
+          "thunk_va": "0x00478bd4"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 17,
+          "thunk_va": "0x00404cb6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 27,
+          "thunk_va": "0x00478bd4"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 17,
+          "thunk_va": "0x00404cb6"
+        }
+      }
+    },
+    {
+      "symbol": "_cofdat",
+      "domain": "host_clock_calendar",
+      "total_direct_callsites": 24,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478952"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478952"
+        }
+      }
+    },
+    {
+      "symbol": "_ncdate",
+      "domain": "host_clock_calendar",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478af6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478af6"
+        }
+      }
+    },
+    {
+      "symbol": "_nctime",
+      "domain": "host_clock_calendar",
+      "total_direct_callsites": 16,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478b02"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478b02"
+        }
+      }
+    },
+    {
+      "symbol": "_now",
+      "domain": "host_clock_calendar",
+      "total_direct_callsites": 30,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 15,
+          "thunk_va": "0x004789a0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 15,
+          "thunk_va": "0x004789a0"
+        }
+      }
+    },
+    {
+      "symbol": "_today",
+      "domain": "host_clock_calendar",
+      "total_direct_callsites": 50,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 25,
+          "thunk_va": "0x00478c4c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 25,
+          "thunk_va": "0x00478c4c"
+        }
+      }
+    },
+    {
+      "symbol": "_accbb",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a18"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a18"
+        }
+      }
+    },
+    {
+      "symbol": "_b2ccpy",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x004789e8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x004789e8"
+        }
+      }
+    },
+    {
+      "symbol": "_bgnedt",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aa2"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404d28"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aa2"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404d28"
+        }
+      }
+    },
+    {
+      "symbol": "_byenow",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x004789c4"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x004789c4"
+        }
+      }
+    },
+    {
+      "symbol": "_c2bcpy",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478988"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478988"
+        }
+      }
+    },
+    {
+      "symbol": "_catastro",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478982"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cf8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478982"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cf8"
+        }
+      }
+    },
+    {
+      "symbol": "_channel",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047897c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047897c"
+        }
+      }
+    },
+    {
+      "symbol": "_chropt",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478970"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478970"
+        }
+      }
+    },
+    {
+      "symbol": "_clsbb",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404ce6"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404ce6"
+        }
+      }
+    },
+    {
+      "symbol": "_cntdir",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478958"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478958"
+        }
+      }
+    },
+    {
+      "symbol": "_cnvs2d",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x0047899a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x0047899a"
+        }
+      }
+    },
+    {
+      "symbol": "_curcurx",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x004789a6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x004789a6"
+        }
+      }
+    },
+    {
+      "symbol": "_curcury",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478946"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478946"
+        }
+      }
+    },
+    {
+      "symbol": "_dfsthn",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a78"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c4a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a78"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c4a"
+        }
+      }
+    },
+    {
+      "symbol": "_echon",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 12,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x00478a36"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x00478a36"
+        }
+      }
+    },
+    {
+      "symbol": "_echonu",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 16,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478a24"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478a24"
+        }
+      }
+    },
+    {
+      "symbol": "_echsec",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a1e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a1e"
+        }
+      }
+    },
+    {
+      "symbol": "_findtvar",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a42"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a42"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdapr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a12"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a12"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdbkg",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a4e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a4e"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdego",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a54"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a54"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdemg",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a5a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a5a"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdnan",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 16,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x004789fa"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x004789fa"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdord",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a66"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a66"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdrft",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a6c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a6c"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdroom",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478a72"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478a72"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdscb",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x004789dc"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x004789dc"
+        }
+      }
+    },
+    {
+      "symbol": "_fsdxan",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 12,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x004789d6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x004789d6"
+        }
+      }
+    },
+    {
+      "symbol": "_genbb",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a8a"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c44"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a8a"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c44"
+        }
+      }
+    },
+    {
+      "symbol": "_getFileTm",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a90"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a90"
+        }
+      }
+    },
+    {
+      "symbol": "_globalcmd",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c3e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c3e"
+        }
+      }
+    },
+    {
+      "symbol": "_globs",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x004789be"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x004789be"
+        }
+      }
+    },
+    {
+      "symbol": "_gmdnam",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a96"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c38"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a96"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c38"
+        }
+      }
+    },
+    {
+      "symbol": "_hdlinp",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x004789b8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x004789b8"
+        }
+      }
+    },
+    {
+      "symbol": "_injacr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x004789ca"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x004789ca"
+        }
+      }
+    },
+    {
+      "symbol": "_inplen",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478ab4"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478ab4"
+        }
+      }
+    },
+    {
+      "symbol": "_input",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aba"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c2c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aba"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c2c"
+        }
+      }
+    },
+    {
+      "symbol": "_l2as",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 28,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 14,
+          "thunk_va": "0x00478976"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 14,
+          "thunk_va": "0x00478976"
+        }
+      }
+    },
+    {
+      "symbol": "_listing",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478acc"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478acc"
+        }
+      }
+    },
+    {
+      "symbol": "_locate",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ad2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ad2"
+        }
+      }
+    },
+    {
+      "symbol": "_margc",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478964"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c20"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478964"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c20"
+        }
+      }
+    },
+    {
+      "symbol": "_margv",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047895e"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404caa"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047895e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404caa"
+        }
+      }
+    },
+    {
+      "symbol": "_msgscan",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ae4"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c02"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ae4"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c02"
+        }
+      }
+    },
+    {
+      "symbol": "_msysid",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aea"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478aea"
+        }
+      }
+    },
+    {
+      "symbol": "_namtmp",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478994"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478994"
+        }
+      }
+    },
+    {
+      "symbol": "_ncedat",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 16,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478afc"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404bfc"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478afc"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404bfc"
+        }
+      }
+    },
+    {
+      "symbol": "_nglobs",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047894c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x0047894c"
+        }
+      }
+    },
+    {
+      "symbol": "_nterms",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b14"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c0e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b14"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c0e"
+        }
+      }
+    },
+    {
+      "symbol": "_numbyts",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b1a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b1a"
+        }
+      }
+    },
+    {
+      "symbol": "_odedcrd",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478b26"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404bf6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478b26"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404bf6"
+        }
+      }
+    },
+    {
+      "symbol": "_othusn",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b32"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404cd4"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b32"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404cd4"
+        }
+      }
+    },
+    {
+      "symbol": "_otstcrd",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478cb8"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cda"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478cb8"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cda"
+        }
+      }
+    },
+    {
+      "symbol": "_paccit",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478c88"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478c88"
+        }
+      }
+    },
+    {
+      "symbol": "_prat",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 14,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478c40"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478c40"
+        }
+      }
+    },
+    {
+      "symbol": "_profan",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478bce"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478bce"
+        }
+      }
+    },
+    {
+      "symbol": "_register_agent",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b9e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478b9e"
+        }
+      }
+    },
+    {
+      "symbol": "_register_module",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b98"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404ce0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b98"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404ce0"
+        }
+      }
+    },
+    {
+      "symbol": "_register_textvar",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b8c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b8c"
+        }
+      }
+    },
+    {
+      "symbol": "_rejectreq",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b86"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b86"
+        }
+      }
+    },
+    {
+      "symbol": "_rsp2read",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b74"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b74"
+        }
+      }
+    },
+    {
+      "symbol": "_rstrxf",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478baa"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478baa"
+        }
+      }
+    },
+    {
+      "symbol": "_samepatu",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478bc2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478bc2"
+        }
+      }
+    },
+    {
+      "symbol": "_senddpk",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b38"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b38"
+        }
+      }
+    },
+    {
+      "symbol": "_sortstgs",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478bec"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478bec"
+        }
+      }
+    },
+    {
+      "symbol": "_spr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 536,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 260,
+          "thunk_va": "0x00478bf2"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00404d22"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 260,
+          "thunk_va": "0x00478bf2"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00404d22"
+        }
+      }
+    },
+    {
+      "symbol": "_status",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478ad8"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c9e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478ad8"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c9e"
+        }
+      }
+    },
+    {
+      "symbol": "_stdmchk",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478ac0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478ac0"
+        }
+      }
+    },
+    {
+      "symbol": "_stp4cs",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a7e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478a7e"
+        }
+      }
+    },
+    {
+      "symbol": "_stzcpy",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 12,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478c16"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404d34"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478c16"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404d34"
+        }
+      }
+    },
+    {
+      "symbol": "_syscyc",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c1c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c1c"
+        }
+      }
+    },
+    {
+      "symbol": "_tfsabt",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478c22"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478c22"
+        }
+      }
+    },
+    {
+      "symbol": "_tfsbuf",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a30"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a30"
+        }
+      }
+    },
+    {
+      "symbol": "_tfsopn",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a2a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a2a"
+        }
+      }
+    },
+    {
+      "symbol": "_tfspfx",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478c34"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478c34"
+        }
+      }
+    },
+    {
+      "symbol": "_tfspst",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c3a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c3a"
+        }
+      }
+    },
+    {
+      "symbol": "_tfsrdl",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a3c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478a3c"
+        }
+      }
+    },
+    {
+      "symbol": "_tfstate",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c46"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c46"
+        }
+      }
+    },
+    {
+      "symbol": "_tokopt",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478c52"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478c52"
+        }
+      }
+    },
+    {
+      "symbol": "_txtvars",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a0c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a0c"
+        }
+      }
+    },
+    {
+      "symbol": "_uidarr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c64"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c64"
+        }
+      }
+    },
+    {
+      "symbol": "_usaptr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c6a"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c8c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c6a"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c8c"
+        }
+      }
+    },
+    {
+      "symbol": "_usrnum",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c70"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c86"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c70"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c86"
+        }
+      }
+    },
+    {
+      "symbol": "_usrptr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c7c"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c50"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c7c"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404c50"
+        }
+      }
+    },
+    {
+      "symbol": "_vdaptr",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c82"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c82"
+        }
+      }
+    },
+    {
+      "symbol": "_vdasiz",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a60"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478a60"
+        }
+      }
+    },
+    {
+      "symbol": "_vdatmp",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c8e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c8e"
+        }
+      }
+    },
+    {
+      "symbol": "_version",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c94"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c94"
+        }
+      }
+    },
+    {
+      "symbol": "_vfyadn",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478c9a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478c9a"
+        }
+      }
+    },
+    {
+      "symbol": "_vtmsend",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ca0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ca0"
+        }
+      }
+    },
+    {
+      "symbol": "_vtmsndok",
+      "domain": "host_general_runtime",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ca6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478ca6"
+        }
+      }
+    },
+    {
+      "symbol": "_haskey",
+      "domain": "host_identity_access",
+      "total_direct_callsites": 122,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 61,
+          "thunk_va": "0x004789ee"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 61,
+          "thunk_va": "0x004789ee"
+        }
+      }
+    },
+    {
+      "symbol": "_hasmkey",
+      "domain": "host_identity_access",
+      "total_direct_callsites": 36,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404c32"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404c32"
+        }
+      }
+    },
+    {
+      "symbol": "_sameas",
+      "domain": "host_identity_access",
+      "total_direct_callsites": 394,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 190,
+          "thunk_va": "0x00478bb6"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00404d0a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 190,
+          "thunk_va": "0x00478bb6"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00404d0a"
+        }
+      }
+    },
+    {
+      "symbol": "_samein",
+      "domain": "host_identity_access",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478bbc"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478bbc"
+        }
+      }
+    },
+    {
+      "symbol": "_sameto",
+      "domain": "host_identity_access",
+      "total_direct_callsites": 694,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 345,
+          "thunk_va": "0x00478b3e"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cbc"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 345,
+          "thunk_va": "0x00478b3e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cbc"
+        }
+      }
+    },
+    {
+      "symbol": "_lastwd",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478ac6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00478ac6"
+        }
+      }
+    },
+    {
+      "symbol": "_lngopt",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404c26"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404c26"
+        }
+      }
+    },
+    {
+      "symbol": "_numopt",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 78,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 34,
+          "thunk_va": "0x004789ac"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00404cc2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 34,
+          "thunk_va": "0x004789ac"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00404cc2"
+        }
+      }
+    },
+    {
+      "symbol": "_parsin",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 24,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478c58"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478c58"
+        }
+      }
+    },
+    {
+      "symbol": "_rmvwht",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 20,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 10,
+          "thunk_va": "0x00478b7a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 10,
+          "thunk_va": "0x00478b7a"
+        }
+      }
+    },
+    {
+      "symbol": "_skpwht",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 146,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 73,
+          "thunk_va": "0x00478b08"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 73,
+          "thunk_va": "0x00478b08"
+        }
+      }
+    },
+    {
+      "symbol": "_skpwrd",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 146,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 73,
+          "thunk_va": "0x00478be6"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 73,
+          "thunk_va": "0x00478be6"
+        }
+      }
+    },
+    {
+      "symbol": "_stgopt",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 62,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 27,
+          "thunk_va": "0x00478aa8"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404d2e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 27,
+          "thunk_va": "0x00478aa8"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404d2e"
+        }
+      }
+    },
+    {
+      "symbol": "_ynopt",
+      "domain": "host_input_parser",
+      "total_direct_callsites": 14,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x00478cac"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c08"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 6,
+          "thunk_va": "0x00478cac"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c08"
+        }
+      }
+    },
+    {
+      "symbol": "_alcblok",
+      "domain": "host_memory",
+      "total_direct_callsites": 24,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478a06"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478a06"
+        }
+      }
+    },
+    {
+      "symbol": "_alcmem",
+      "domain": "host_memory",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a00"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478a00"
+        }
+      }
+    },
+    {
+      "symbol": "_alczer",
+      "domain": "host_memory",
+      "total_direct_callsites": 106,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 51,
+          "thunk_va": "0x004789f4"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c1a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 51,
+          "thunk_va": "0x004789f4"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c1a"
+        }
+      }
+    },
+    {
+      "symbol": "_galfree",
+      "domain": "host_memory",
+      "total_direct_callsites": 214,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 102,
+          "thunk_va": "0x004789d0"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00404c7a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 102,
+          "thunk_va": "0x004789d0"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 5,
+          "thunk_va": "0x00404c7a"
+        }
+      }
+    },
+    {
+      "symbol": "_ptrblok",
+      "domain": "host_memory",
+      "total_direct_callsites": 24,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478bc8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478bc8"
+        }
+      }
+    },
+    {
+      "symbol": "_clrprf",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 116,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 58,
+          "thunk_va": "0x0047896a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 58,
+          "thunk_va": "0x0047896a"
+        }
+      }
+    },
+    {
+      "symbol": "_clsmsg",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 6,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x0047898e"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cce"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x0047898e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cce"
+        }
+      }
+    },
+    {
+      "symbol": "_opnmsg",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478b2c"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c14"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478b2c"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c14"
+        }
+      }
+    },
+    {
+      "symbol": "_outprf",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 164,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 82,
+          "thunk_va": "0x00404d16"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 82,
+          "thunk_va": "0x00404d16"
+        }
+      }
+    },
+    {
+      "symbol": "_prf",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 7356,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3619,
+          "thunk_va": "0x00478c28"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 59,
+          "thunk_va": "0x00404d10"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3619,
+          "thunk_va": "0x00478c28"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 59,
+          "thunk_va": "0x00404d10"
+        }
+      }
+    },
+    {
+      "symbol": "_prfbuf",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c10"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404cf2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478c10"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00404cf2"
+        }
+      }
+    },
+    {
+      "symbol": "_prfmsg",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 294,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 16,
+          "thunk_va": "0x00478bfe"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 131,
+          "thunk_va": "0x00404cec"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 16,
+          "thunk_va": "0x00478bfe"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 131,
+          "thunk_va": "0x00404cec"
+        }
+      }
+    },
+    {
+      "symbol": "_prfptr",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 0,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478bf8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 0,
+          "thunk_va": "0x00478bf8"
+        }
+      }
+    },
+    {
+      "symbol": "_rsp2write",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 8,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478b68"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478b68"
+        }
+      }
+    },
+    {
+      "symbol": "_shocst",
+      "domain": "host_message_rendering_transport",
+      "total_direct_callsites": 140,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 69,
+          "thunk_va": "0x00478bda"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404d1c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 69,
+          "thunk_va": "0x00478bda"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404d1c"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaAbs",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 104,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 48,
+          "thunk_va": "0x00478c2e"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404ca4"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 48,
+          "thunk_va": "0x00478c2e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00404ca4"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaAcqAbsLock",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 20,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478c04"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c98"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 8,
+          "thunk_va": "0x00478c04"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c98"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaAcqLock",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 266,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 119,
+          "thunk_va": "0x00478be0"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 14,
+          "thunk_va": "0x00404c92"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 119,
+          "thunk_va": "0x00478be0"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 14,
+          "thunk_va": "0x00404c92"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaClose",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 40,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 20,
+          "thunk_va": "0x00478bb0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 20,
+          "thunk_va": "0x00478bb0"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaCountRec",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b92"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00478b92"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaDelete",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 36,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 15,
+          "thunk_va": "0x00478b80"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00404c80"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 15,
+          "thunk_va": "0x00478b80"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00404c80"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaGetAbsLock",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 68,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 34,
+          "thunk_va": "0x00478b6e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 34,
+          "thunk_va": "0x00478b6e"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaInsertDup",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 72,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 36,
+          "thunk_va": "0x00478b5c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 36,
+          "thunk_va": "0x00478b5c"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaInsertV",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 12,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478b56"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c74"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 4,
+          "thunk_va": "0x00478b56"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c74"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaMode",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 2,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b4a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00478b4a"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaOpen",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 36,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00478b44"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00478b44"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaQuery",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 48,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 24,
+          "thunk_va": "0x00478b20"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 24,
+          "thunk_va": "0x00478b20"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaQueryNP",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 14,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478b0e"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478b0e"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaRstBlk",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 408,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 186,
+          "thunk_va": "0x00478af0"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404c5c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 186,
+          "thunk_va": "0x00478af0"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 18,
+          "thunk_va": "0x00404c5c"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaSetBlk",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 322,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 148,
+          "thunk_va": "0x00478ade"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 13,
+          "thunk_va": "0x00404c68"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 148,
+          "thunk_va": "0x00478ade"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 13,
+          "thunk_va": "0x00404c68"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaStepLock",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 94,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 47,
+          "thunk_va": "0x00478aae"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 47,
+          "thunk_va": "0x00478aae"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaUpdateDup",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 46,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 23,
+          "thunk_va": "0x00478a9c"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 23,
+          "thunk_va": "0x00478a9c"
+        }
+      }
+    },
+    {
+      "symbol": "_dfaUpdateV",
+      "domain": "host_persistence_dfa",
+      "total_direct_callsites": 4,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c6e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404c6e"
+        }
+      }
+    },
+    {
+      "symbol": "_begin_polling",
+      "domain": "host_polling_scheduler",
+      "total_direct_callsites": 24,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478a84"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 12,
+          "thunk_va": "0x00478a84"
+        }
+      }
+    },
+    {
+      "symbol": "_rtkick",
+      "domain": "host_polling_scheduler",
+      "total_direct_callsites": 18,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 9,
+          "thunk_va": "0x00478b50"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 9,
+          "thunk_va": "0x00478b50"
+        }
+      }
+    },
+    {
+      "symbol": "_stop_polling",
+      "domain": "host_polling_scheduler",
+      "total_direct_callsites": 50,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 25,
+          "thunk_va": "0x00478c0a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 25,
+          "thunk_va": "0x00478c0a"
+        }
+      }
+    },
+    {
+      "symbol": "_genrdn",
+      "domain": "host_randomness",
+      "total_direct_callsites": 292,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 146,
+          "thunk_va": "0x00478cb2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 146,
+          "thunk_va": "0x00478cb2"
+        }
+      }
+    },
+    {
+      "symbol": "_lngrnd",
+      "domain": "host_randomness",
+      "total_direct_callsites": 84,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 42,
+          "thunk_va": "0x004789e2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 42,
+          "thunk_va": "0x004789e2"
+        }
+      }
+    },
+    {
+      "symbol": "_curusr",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 44,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 22,
+          "thunk_va": "0x004789b2"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 22,
+          "thunk_va": "0x004789b2"
+        }
+      }
+    },
+    {
+      "symbol": "_dclvda",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 10,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478cbe"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cc8"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00478cbe"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 2,
+          "thunk_va": "0x00404cc8"
+        }
+      }
+    },
+    {
+      "symbol": "_depad",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 48,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 23,
+          "thunk_va": "0x00478c5e"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cb0"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 23,
+          "thunk_va": "0x00478c5e"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404cb0"
+        }
+      }
+    },
+    {
+      "symbol": "_uacoff",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 20,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478a48"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00404d3a"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 7,
+          "thunk_va": "0x00478a48"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 3,
+          "thunk_va": "0x00404d3a"
+        }
+      }
+    },
+    {
+      "symbol": "_usroff",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 62,
+      "modules": {
+        "wccmmud.dll": {
+          "direct_callsite_count": 30,
+          "thunk_va": "0x00478c76"
+        },
+        "wccmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c56"
+        },
+        "wbbmmud.dll": {
+          "direct_callsite_count": 30,
+          "thunk_va": "0x00478c76"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 1,
+          "thunk_va": "0x00404c56"
+        }
+      }
+    },
+    {
+      "symbol": "_vdaoff",
+      "domain": "host_session_user_state",
+      "total_direct_callsites": 62,
+      "modules": {
+        "wccmmpls.dll": {
+          "direct_callsite_count": 31,
+          "thunk_va": "0x00404c62"
+        },
+        "wbbmmpls.dll": {
+          "direct_callsite_count": 31,
+          "thunk_va": "0x00404c62"
+        }
+      }
+    }
+  ],
+  "closed_boundaries": [
+    "Native message formatting/output calls are owned by WGSERVER host services, not MMUD-local implementations.",
+    "DFA record locking/query/update calls are owned by WGSERVER host services.",
+    "Clock/calendar and polling entry points are owned by WGSERVER host services.",
+    "Random generation entry points _lngrnd and _genrdn are owned by WGSERVER host services.",
+    "User/session and input parsing primitives are owned by WGSERVER host services."
+  ],
+  "limitations": [
+    "Ownership classification does not recover host algorithms, ordering, seeding, lock durability, or crash recovery.",
+    "Indirect calls remain outside the direct-callsite counts inherited from Update0003."
+  ]
+}

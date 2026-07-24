@@ -1,0 +1,11 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update_id": "CodeUpdate0180",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Data/Classic/items.json"
+  ],
+  "confidence": "high for explicit admission contract; unknown for native loadout semantics",
+  "safe_fallback": "reject missing authority, invalid NPC, noncanonical item, invalid quantity, or malformed manifest"
+}

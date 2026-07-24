@@ -1,0 +1,27 @@
+{
+  "code_update": "0147",
+  "subsystem": "Character abilities phase 2",
+  "status": "promoted",
+  "proven": [
+    "quest/script giveability set semantics",
+    "quest/script addability additive semantics",
+    "checkability equality",
+    "testability threshold",
+    "failability zero test",
+    "atomic rollback",
+    "condition-store persistence"
+  ],
+  "counts": {
+    "script_fields": 364,
+    "operations": 2500,
+    "distinct_abilities": 9
+  },
+  "blocked": [
+    "ability-specific behavioral meaning",
+    "trainer acquisition",
+    "automatic level-based grants",
+    "temporary grants and expiration",
+    "cooldown and activated execution semantics"
+  ],
+  "next": "Character flags ownership and lifetime"
+}

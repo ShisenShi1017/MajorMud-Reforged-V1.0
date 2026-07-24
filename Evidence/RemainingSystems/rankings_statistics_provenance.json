@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "rankings-statistics",
+  "promotions": [
+    {
+      "behavior": "Central rankings service accepts metric updates only from the catalog-defined owner and produces deterministic permission-filtered snapshots.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeRankingsStatistics.cs",
+        "Apps/Source/Reforged.Server/RuntimeRankingsStatisticsSmokeReport.cs",
+        "Librarium/RemainingSystems/rankings_statistics_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "This proves Reforged coordination behavior, not the existence or exact behavior of Classic MajorMUD rankings."
+      ],
+      "tests": [
+        "--smoke-rankings-statistics"
+      ],
+      "safeFallback": "Reject unknown rankings, owner mismatches, unauthenticated queries, and hidden subjects.",
+      "runtimeImpact": "Provides a single read-model boundary for scoreboards without duplicating source metric formulas.",
+      "characterSaveImpact": "None directly; Character and other metric owners retain authoritative values.",
+      "worldStateImpact": "Optional ranking snapshots and reset metadata are coordinated through world persistence."
+    },
+    {
+      "behavior": "Ranking ties and ordering are deterministic and privacy restrictions are applied before projection.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeRankingsStatistics.cs",
+        "Apps/Source/Reforged.Server/RuntimeRankingsStatisticsSmokeReport.cs"
+      ],
+      "confidence": 0.96,
+      "assumptions": [
+        "Competition ranking is a Reforged-safe policy until native tie behavior is recovered."
+      ],
+      "tests": [
+        "deterministic-ties",
+        "hide-private-subject",
+        "participant-visibility-denied"
+      ],
+      "safeFallback": "Use canonical subject IDs for stable ordering and omit unauthorized entries.",
+      "runtimeImpact": "Prevents unstable or privacy-leaking leaderboard output.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "Ranking revisions change only when accepted metric mutations occur."
+    },
+    {
+      "behavior": "Scheduled or manual ranking resets are explicit policy and require administrative authorization for direct reset.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeRankingsStatistics.cs",
+        "Librarium/RemainingSystems/clock_scheduling_catalog.json",
+        "Librarium/RemainingSystems/security_permission_catalog.json"
+      ],
+      "confidence": 0.94,
+      "assumptions": [
+        "Clock scheduling dispatches reset requests but does not own ranking state."
+      ],
+      "tests": [
+        "reset-admin-required",
+        "authorized-reset"
+      ],
+      "safeFallback": "Disable resets for Never policy and reject unauthorized manual reset.",
+      "runtimeImpact": "Establishes reset ownership without inventing native schedules.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "Clears projected ranking entries and records reset time and revision."
+    }
+  ]
+}

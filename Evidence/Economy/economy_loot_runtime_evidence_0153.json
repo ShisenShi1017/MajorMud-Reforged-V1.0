@@ -1,0 +1,64 @@
+{
+  "evidenceId": "economy-loot-runtime-evidence-0153",
+  "scope": "loot generation, corpse ownership, claim ordering, rollback, replay protection, cleanup and persistence",
+  "findings": [
+    {
+      "id": "loot.server-authority",
+      "classification": "PROVEN",
+      "source": "repository architecture authority boundary",
+      "byteOffsets": [],
+      "confidence": 1.0,
+      "assumptions": [],
+      "fallback": "reject client-authored loot mutation",
+      "runtimeImpact": "loot resolution and ownership transfer execute only in the server runtime",
+      "saveImpact": "corpse loot state is server-owned",
+      "worldImpact": "prevents client-created drops and wealth"
+    },
+    {
+      "id": "loot.atomic-claim",
+      "classification": "STRONGLY CORRELATED",
+      "source": "currency, commerce and banking transaction invariants in CodeUpdates 0150-0152",
+      "byteOffsets": [],
+      "confidence": 0.97,
+      "assumptions": ["loot claims use the same no-partial-economic-mutation invariant"],
+      "fallback": "restore corpse, wallet and inventory snapshots",
+      "runtimeImpact": "capacity or currency overflow cannot partially consume a corpse",
+      "saveImpact": "failed claims leave no persistable partial state",
+      "worldImpact": "prevents item or currency duplication and destruction"
+    },
+    {
+      "id": "loot.deterministic-policy-resolution",
+      "classification": "STRONGLY CORRELATED",
+      "source": "deterministic authoritative runtime requirement",
+      "byteOffsets": [],
+      "confidence": 0.92,
+      "assumptions": ["decoded tables will supply exact grants, weights, roll counts and seeds"],
+      "fallback": "execute only explicitly supplied evidence-backed loot policies",
+      "runtimeImpact": "guaranteed and weighted grants are reproducible",
+      "saveImpact": "only resolved corpse contents persist",
+      "worldImpact": "supports replayable validation without claiming native probabilities"
+    },
+    {
+      "id": "loot.native-tables-rights-timers",
+      "classification": "UNKNOWN",
+      "source": "not present in cumulative changed-files-only evidence baseline",
+      "byteOffsets": [],
+      "confidence": 0.0,
+      "assumptions": [],
+      "fallback": "do not create native drops, public transitions, party rights or timers without decoded policy",
+      "runtimeImpact": "native MajorMUD loot constants are not auto-activated",
+      "saveImpact": "none until evidence-backed definitions are loaded",
+      "worldImpact": "reserved for final WCC/WBB/native DLL exhaustion"
+    }
+  ],
+  "canonicalReferences": {
+    "lootTableId": "required external canonical loot-table identifier",
+    "entryId": "required unique identifier within a loot table",
+    "itemId": "must resolve through RuntimeEconomyItemDefinition",
+    "currencyId": "must match RuntimeCurrencyDefinition and destination wallet",
+    "corpseId": "required unique runtime and persistence identifier",
+    "sourceEntityId": "required canonical NPC or source identifier",
+    "ownerIds": "required for non-public corpses",
+    "claimId": "required corpse-local replay-protection identifier"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "evidence_id": "native_wcc_knows_gate_0032",
+  "classification": "PROVEN",
+  "summary": "The WCC/WBB knows sentinel is a single existence-gated branch inside one native validation path; existence inverts that branch to false and absence permits true.",
+  "modules": [
+    {
+      "distribution": "WCC",
+      "module": "wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "sentinel": "wccknows.sys"
+    },
+    {
+      "distribution": "WBB",
+      "module": "wbbmmud.dll",
+      "sha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+      "sentinel": "wbbknows.sys"
+    }
+  ],
+  "native_contract": {
+    "existence_helper_va": "0x0040AAC5",
+    "sentinel_string_va": "0x0047D03B",
+    "access_call_va": "0x0040AACC",
+    "mode_argument": 0,
+    "helper_result": {
+      "access_returns_zero": "true",
+      "access_returns_nonzero": "false"
+    },
+    "only_static_caller_va": "0x0040D661",
+    "caller_branch": {
+      "helper_true": "validation branch returns false",
+      "helper_false": "validation branch returns true"
+    },
+    "static_callsite_count_per_module": 1,
+    "distribution_parity": "instruction-identical at recovered addresses apart from embedded WCC/WBB sentinel text"
+  },
+  "limits": [
+    "No file contents are read by this path.",
+    "No token is generated or compared by this path.",
+    "The broader purpose of the surrounding validation routine is not renamed without additional evidence."
+  ]
+}

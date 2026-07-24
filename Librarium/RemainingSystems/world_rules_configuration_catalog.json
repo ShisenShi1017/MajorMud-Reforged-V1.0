@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "world-rules-configuration",
+  "runtimeOwner": "RuntimeWorldRulesConfigurationService",
+  "worldModes": [
+    "Classic",
+    "Custom",
+    "AI World"
+  ],
+  "ruleContract": {
+    "fields": [
+      "canonical id",
+      "value type",
+      "default",
+      "minimum",
+      "maximum",
+      "mutability",
+      "allowed world modes",
+      "persistence",
+      "administrator requirement"
+    ],
+    "mutability": [
+      "startup-only",
+      "runtime-mutable",
+      "runtime-mutable-with-world-reset"
+    ]
+  },
+  "classicSafeBehavior": [
+    "unknown rules rejected",
+    "invalid values rejected",
+    "administrative mutation required",
+    "Classic cannot activate Custom or AI-only rules",
+    "startup-only rules require restart",
+    "world-reset-sensitive changes are marked explicitly"
+  ],
+  "ownership": {
+    "configuration": "World rules service",
+    "subsystem effects": "owning runtime subsystem",
+    "character values": "Character",
+    "economy formulas": "Economy",
+    "host accounts": "Worldgroup/Reforged Host boundary"
+  },
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "exact MajorMUD 1.11p configuration record sources",
+    "defaults and allowed ranges",
+    "which settings are runtime mutable",
+    "restart requirements",
+    "world-state and save impact",
+    "maximum users and module capacity ownership",
+    "starting room, gold, and level semantics",
+    "experience, loot, and respawn rate semantics",
+    "PvP and death-penalty settings",
+    "reset intervals",
+    "Evil Point settings",
+    "communications settings",
+    "merchant and trainer settings",
+    "limited-item settings",
+    "quest and event settings",
+    "administrative permission levels",
+    "Worldgroup versus MajorMUD configuration boundary"
+  ]
+}

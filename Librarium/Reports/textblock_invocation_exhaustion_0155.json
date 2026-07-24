@@ -1,0 +1,27 @@
+{
+  "schema": "textblock_invocation_exhaustion_report_v1",
+  "code_update": "0155",
+  "status": "PASS_WITH_NATIVE_DEPENDENCIES",
+  "counts": {
+    "contextual_stage_scripts": 182,
+    "unique_source_textblocks": 95,
+    "duplicate_contextual_sources": 87,
+    "text_invocations": 389,
+    "unique_targets": 156,
+    "resolved_executable_targets": 0,
+    "unresolved_payload_targets": 389
+  },
+  "validation": {
+    "violations": [],
+    "source_positions_preserved": true,
+    "synchronous_call_order_captured": true,
+    "rollback_boundary_captured": true,
+    "command_embedding_not_invented": true,
+    "cycle_policy_defined": true
+  },
+  "native_dependencies": [
+    "textblock-id payload catalog for all 389 targets",
+    "payload parser and substitution grammar",
+    "native branch/return behavior if payloads contain control opcodes"
+  ]
+}

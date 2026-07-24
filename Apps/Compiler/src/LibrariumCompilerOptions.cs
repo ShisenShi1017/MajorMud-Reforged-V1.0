@@ -4,11 +4,14 @@ public sealed record LibrariumCompilerOptions(
     string RepositoryRoot,
     string WorldId = "classic",
     bool Clean = false,
-    bool ClientProjection = true)
+    bool ClientProjection = true,
+    string? OutputRootOverride = null)
 {
     public string LibrariumRoot => Path.Combine(RepositoryRoot, "Librarium");
     public string DataRoot => Path.Combine(RepositoryRoot, "Data");
-    public string OutputRoot => Path.Combine(DataRoot, NormalizeWorld(WorldId));
+    public string OutputRoot => string.IsNullOrWhiteSpace(OutputRootOverride)
+        ? Path.Combine(DataRoot, NormalizeWorld(WorldId))
+        : Path.GetFullPath(OutputRootOverride);
 
     public static string NormalizeWorld(string worldId)
     {

@@ -1,0 +1,31 @@
+{
+  "update": "0178",
+  "artifact": "RuntimeCombatSpellMovement.cs",
+  "promotions": [
+    {
+      "id": "movement-policy.promoted.0178",
+      "confidence": "strongly_correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeCombatMovement.cs",
+        "Apps/Source/Reforged.Server/RuntimeCombatPursuitOpportunity.cs",
+        "Apps/Source/Reforged.Server/RuntimeCombatSpellSummoning.cs",
+        "Librarium/Status/combat_spell_exhaustion_status_0177.json"
+      ],
+      "assumptions": [
+        "exact native destination-selection formulas are unresolved",
+        "policy inputs must be promoted before execution"
+      ],
+      "fallback": "reject movement before any sink commit when any policy, destination, consent, room, combat or ownership input is unresolved"
+    }
+  ],
+  "unknown_native_dependencies": [
+    "exact recall destination",
+    "portal lifetime and ownership",
+    "forced-movement distance",
+    "knockback collision behavior",
+    "target-consent exceptions",
+    "combat cleanup exceptions",
+    "cross-world restrictions",
+    "spell.1304 movement opcode meaning"
+  ]
+}

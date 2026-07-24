@@ -1,0 +1,75 @@
+{
+  "schema_version": "combined-decode-audit.v4",
+  "combined_archives": [
+    "MajorMUD-Reforged-Combined-Character-TCA-Economy-RemainingSystems-CombatSpells-Cumulative.zip",
+    "NPCandAI DONE.zip"
+  ],
+  "merge": {
+    "base_file_count": 1196,
+    "added_archive_file_count": 237,
+    "source_path_collisions": 4,
+    "collision_paths": [
+      "Apps/Source/Reforged.Server/Program.cs",
+      "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+      "CHANGELOG.md"
+    ],
+    "resolution": "semantic integration; no source variant discarded"
+  },
+  "subsystem_status": {
+    "character": "non-native exhaustion complete; native boundary retained",
+    "textblocks_commands_abilities": "non-native exhaustion complete; native boundary retained",
+    "economy": "non-native exhaustion complete; native boundary retained",
+    "remaining_systems": "repository-visible inventory closed; native boundary retained",
+    "combat_spells": "non-native exhaustion complete; native closure retained",
+    "npc_ai": {
+      "reported_latest_update": "CodeUpdate0204",
+      "exit_criteria_met": false,
+      "remaining_executable_work": [
+        "merchant restock cadence, pricing modifiers, merchant gold, and native restriction derivation",
+        "NPC equipment ranking, switching timing, and comparison policy",
+        "spawn chance, native population maxima and dynamic group selection",
+        "native perception rule decoding and hostility classification",
+        "native threat formulas, taunt, hate transfer and chase decisions",
+        "patrol, wandering, chase, leash-trigger decisions, multi-step return-home routing and pathing",
+        "merchant stock/restock persistence and trainer offering-state persistence beyond exact request ownership",
+        "remaining administrative inventory, service-state and ownership mutation controls",
+        "companion command handling, automatic lifecycle event detection, despawn integration and owner-session policy"
+      ],
+      "native_dependencies": [
+        "native spawn population algorithm",
+        "failed-respawn retry cadence",
+        "hard reset exceptions",
+        "perception masks",
+        "threat and path selection branches",
+        "sight/hearing ranges and stealth detection rolls",
+        "hostility classification and target memory duration",
+        "damage/healing/spell threat formulas",
+        "threat decay and taunt semantics",
+        "assist propagation and target memory",
+        "damage, healing and spell threat formulas",
+        "native threat decay cadence and percentage",
+        "native threat memory duration and lost-target timeout",
+        "taunt strength, duration, resistance, cooldown and break conditions",
+        "hate-transfer semantics",
+        "native chase and leash decisions"
+      ]
+    },
+    "items": "dedicated subsystem archive not yet merged; full semantic exhaustion still required",
+    "rooms": "carry forward unresolved room-native closure list supplied by project owner, including seven latch effects unless superseded by verified native evidence"
+  },
+  "recommended_next_order": [
+    "Items semantic exhaustion",
+    "NPC/AI remaining non-native executable work",
+    "Combine Items and any NPC/AI completion overlay",
+    "Final WCC/WBB/native DLL/file exhaustion"
+  ],
+  "final_native_scope": [
+    "all subsystem native-dependency reports",
+    "room latch effects",
+    "unknown flags/masks/enums/record layouts",
+    "dispatcher and remoteaction paths",
+    "save formats and compatibility",
+    "exact timing, RNG, restart and Worldgroup ownership boundaries"
+  ]
+}

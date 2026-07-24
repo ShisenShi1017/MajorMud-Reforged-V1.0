@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "economy.commerce.runtime.0151",
+  "runtimeOwner": "Reforged.Server.Runtime",
+  "entities": [
+    "RuntimeEconomyItemDefinition",
+    "RuntimeMerchantDefinition",
+    "RuntimeMerchantStockDefinition",
+    "RuntimeMerchantStock",
+    "RuntimeEconomyInventory",
+    "RuntimeMerchantPricePolicy",
+    "RuntimeCommerceQuote",
+    "RuntimeCommerceEngine"
+  ],
+  "capabilities": [
+    "data-driven merchant buy and sell basis-point pricing",
+    "explicit floor, ceiling, or nearest-away-from-zero rounding",
+    "limited and unlimited merchant stock",
+    "merchant acceptance and sale restrictions",
+    "quantity and stack validation",
+    "character inventory capacity validation",
+    "merchant wallet ownership validation",
+    "atomic buy execution with rollback",
+    "atomic sell execution with rollback",
+    "checked currency and quantity arithmetic"
+  ],
+  "executionOrder": {
+    "buy": [
+      "resolve canonical item",
+      "quote deterministic total",
+      "validate merchant ownership and stock",
+      "reserve merchant stock",
+      "add item to buyer inventory and validate capacity",
+      "debit buyer wallet",
+      "credit merchant wallet",
+      "commit versions or restore every snapshot"
+    ],
+    "sell": [
+      "resolve canonical item",
+      "reject non-sellable or quest item",
+      "quote deterministic total",
+      "validate merchant acceptance, stock limit, character quantity, and merchant funds",
+      "add item to merchant stock",
+      "remove item from seller inventory",
+      "debit merchant wallet",
+      "credit seller wallet",
+      "commit versions or restore every snapshot"
+    ]
+  },
+  "relationships": [
+    {"from": "RuntimeMerchantDefinition", "to": "RuntimeMerchantStock", "type": "owns stock policy and state"},
+    {"from": "RuntimeMerchantDefinition", "to": "RuntimeCurrencyWallet", "type": "binds merchant wallet id"},
+    {"from": "RuntimeEconomyItemDefinition", "to": "RuntimeCommercePricing", "type": "supplies base value"},
+    {"from": "RuntimeMerchantPricePolicy", "to": "RuntimeCommercePricing", "type": "supplies modifier and rounding"},
+    {"from": "RuntimeCommerceEngine", "to": "RuntimeEconomyInventory", "type": "transfers merchandise"},
+    {"from": "RuntimeCommerceEngine", "to": "RuntimeCurrencyWallet", "type": "transfers payment atomically"}
+  ],
+  "nativeDependencies": [
+    "Exact MajorMUD merchant buy and sell modifiers are not assigned by this pass.",
+    "Exact shop restock clocks, shop hours, charisma, reputation, race, class, skill, condition, and random pricing modifiers remain unpromoted until independently evidenced.",
+    "Exact item base values and merchant stock records remain data-driven inputs."
+  ]
+}

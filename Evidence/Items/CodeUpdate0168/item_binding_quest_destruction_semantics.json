@@ -1,0 +1,35 @@
+{
+  "update": "CodeUpdate0168",
+  "subsystem": "Items",
+  "authority": "Librarium",
+  "finding": "Projected binding, quest ownership, trade, and destruction restrictions are enforced atomically at item lifecycle boundaries.",
+  "classification": "strongly_correlated",
+  "confidence": 0.94,
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "existing single-owner and atomic rollback invariants",
+    "CodeUpdate0167 projected restriction infrastructure"
+  ],
+  "record_ids": [
+    "runtime.item.binding.owner",
+    "runtime.item.quest.owner",
+    "runtime.item.trade.restriction",
+    "runtime.item.destruction.restriction"
+  ],
+  "byte_offsets": [],
+  "assumptions": [
+    "Metadata keys are inactive unless explicitly projected.",
+    "Administrative removal is Reforged compatibility infrastructure and is not evidence of unrestricted Classic behavior."
+  ],
+  "safe_fallback": "Reject prohibited ownership changes or destruction without mutating the item; preserve unknown Classic semantics for the native pass.",
+  "runtime_impact": "Prevents projected bound or quest items from changing owners, prevents no-trade staging, and prevents ordinary destruction of protected instances.",
+  "character_save_impact": "Persists binding and quest ownership metadata with validation against authoritative owned locations.",
+  "world_state_impact": "Administrative removal explicitly releases the instance only after non-empty-container safety checks.",
+  "tests": [
+    "bound give rollback",
+    "no-trade rollback",
+    "quest-protected destroy rollback",
+    "administrative override removal",
+    "ordinary destruction"
+  ]
+}

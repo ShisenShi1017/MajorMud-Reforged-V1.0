@@ -1,0 +1,170 @@
+
+/mnt/data/wgserver8/wccmmud.dll:     file format pei-i386
+
+
+Disassembly of section CODE:
+
+00461200 <CODE+0x60200>:
+  461200:	b4 05                	mov    ah,0x5
+  461202:	00 00                	add    BYTE PTR [eax],al
+  461204:	8b 15 a4 d6 49 00    	mov    edx,DWORD PTR ds:0x49d6a4
+  46120a:	ff 32                	push   DWORD PTR [edx]
+  46120c:	e8 1f 08 01 00       	call   0x471a30
+  461211:	83 c4 08             	add    esp,0x8
+  461214:	84 c0                	test   al,al
+  461216:	74 22                	je     0x46123a
+  461218:	8b 0d a4 d6 49 00    	mov    ecx,DWORD PTR ds:0x49d6a4
+  46121e:	ff 31                	push   DWORD PTR [ecx]
+  461220:	e8 cf 21 01 00       	call   0x4733f4
+  461225:	59                   	pop    ecx
+  461226:	a1 a4 d6 49 00       	mov    eax,ds:0x49d6a4
+  46122b:	ff 30                	push   DWORD PTR [eax]
+  46122d:	e8 3e 9f 00 00       	call   0x46b170
+  461232:	59                   	pop    ecx
+  461233:	b8 01 00 00 00       	mov    eax,0x1
+  461238:	eb 32                	jmp    0x46126c
+  46123a:	68 f3 c3 48 00       	push   0x48c3f3
+  46123f:	e8 e4 79 01 00       	call   0x478c28
+  461244:	59                   	pop    ecx
+  461245:	8b 15 98 d4 49 00    	mov    edx,DWORD PTR ds:0x49d498
+  46124b:	ff 72 04             	push   DWORD PTR [edx+0x4]
+  46124e:	68 e3 c4 48 00       	push   0x48c4e3
+  461253:	e8 d0 79 01 00       	call   0x478c28
+  461258:	83 c4 08             	add    esp,0x8
+  46125b:	8b 0d a4 d6 49 00    	mov    ecx,DWORD PTR ds:0x49d6a4
+  461261:	ff 31                	push   DWORD PTR [ecx]
+  461263:	e8 08 9f 00 00       	call   0x46b170
+  461268:	59                   	pop    ecx
+  461269:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  46126c:	5f                   	pop    edi
+  46126d:	5e                   	pop    esi
+  46126e:	5b                   	pop    ebx
+  46126f:	8b e5                	mov    esp,ebp
+  461271:	5d                   	pop    ebp
+  461272:	c3                   	ret
+  461273:	55                   	push   ebp
+  461274:	8b ec                	mov    ebp,esp
+  461276:	83 c4 dc             	add    esp,0xffffffdc
+  461279:	53                   	push   ebx
+  46127a:	56                   	push   esi
+  46127b:	57                   	push   edi
+  46127c:	8b 75 10             	mov    esi,DWORD PTR [ebp+0x10]
+  46127f:	8b 5d 08             	mov    ebx,DWORD PTR [ebp+0x8]
+  461282:	bf a4 d6 49 00       	mov    edi,0x49d6a4
+  461287:	c7 45 fc 01 00 00 00 	mov    DWORD PTR [ebp-0x4],0x1
+  46128e:	c6 45 e7 01          	mov    BYTE PTR [ebp-0x19],0x1
+  461292:	85 db                	test   ebx,ebx
+  461294:	75 07                	jne    0x46129d
+  461296:	33 c0                	xor    eax,eax
+  461298:	e9 c8 06 00 00       	jmp    0x461965
+  46129d:	f6 83 c8 07 00 00 80 	test   BYTE PTR [ebx+0x7c8],0x80
+  4612a4:	74 1d                	je     0x4612c3
+  4612a6:	68 f7 c4 48 00       	push   0x48c4f7
+  4612ab:	e8 78 79 01 00       	call   0x478c28
+  4612b0:	59                   	pop    ecx
+  4612b1:	8b 17                	mov    edx,DWORD PTR [edi]
+  4612b3:	ff 32                	push   DWORD PTR [edx]
+  4612b5:	e8 b6 9e 00 00       	call   0x46b170
+  4612ba:	59                   	pop    ecx
+  4612bb:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  4612be:	e9 a2 06 00 00       	jmp    0x461965
+  4612c3:	66 83 a3 f4 06 00 00 	and    WORD PTR [ebx+0x6f4],0xffbf
+  4612ca:	bf
+  4612cb:	66 81 a3 f4 06 00 00 	and    WORD PTR [ebx+0x6f4],0xfbff
+  4612d2:	ff fb
+  4612d4:	66 81 a3 c8 07 00 00 	and    WORD PTR [ebx+0x7c8],0xfeff
+  4612db:	ff fe
+  4612dd:	0f b7 93 92 00 00 00 	movzx  edx,WORD PTR [ebx+0x92]
+  4612e4:	52                   	push   edx
+  4612e5:	e8 e9 18 fd ff       	call   0x432bd3
+  4612ea:	59                   	pop    ecx
+  4612eb:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+  4612ee:	83 7d f8 00          	cmp    DWORD PTR [ebp-0x8],0x0
+  4612f2:	75 07                	jne    0x4612fb
+  4612f4:	33 c0                	xor    eax,eax
+  4612f6:	e9 6a 06 00 00       	jmp    0x461965
+  4612fb:	8b 55 0c             	mov    edx,DWORD PTR [ebp+0xc]
+  4612fe:	83 ea 1f             	sub    edx,0x1f
+  461301:	0f 84 ce 00 00 00    	je     0x4613d5
+  461307:	83 ea 4d             	sub    edx,0x4d
+  46130a:	0f 85 d6 01 00 00    	jne    0x4614e6
+  461310:	8b 4d f8             	mov    ecx,DWORD PTR [ebp-0x8]
+  461313:	66 83 79 40 05       	cmp    WORD PTR [ecx+0x40],0x5
+  461318:	74 3f                	je     0x461359
+  46131a:	68 0c c5 48 00       	push   0x48c50c
+  46131f:	e8 04 79 01 00       	call   0x478c28
+  461324:	59                   	pop    ecx
+  461325:	8b 45 f8             	mov    eax,DWORD PTR [ebp-0x8]
+  461328:	66 83 78 40 00       	cmp    WORD PTR [eax+0x40],0x0
+  46132d:	74 0d                	je     0x46133c
+  46132f:	68 22 c5 48 00       	push   0x48c522
+  461334:	e8 ef 78 01 00       	call   0x478c28
+  461339:	59                   	pop    ecx
+  46133a:	eb 0b                	jmp    0x461347
+  46133c:	68 66 c5 48 00       	push   0x48c566
+  461341:	e8 e2 78 01 00       	call   0x478c28
+  461346:	59                   	pop    ecx
+  461347:	8b 17                	mov    edx,DWORD PTR [edi]
+  461349:	ff 32                	push   DWORD PTR [edx]
+  46134b:	e8 20 9e 00 00       	call   0x46b170
+  461350:	59                   	pop    ecx
+  461351:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  461354:	e9 0c 06 00 00       	jmp    0x461965
+  461359:	53                   	push   ebx
+  46135a:	6a ff                	push   0xffffffff
+  46135c:	68 9f 00 00 00       	push   0x9f
+  461361:	e8 0a c2 fd ff       	call   0x43d570
+  461366:	83 c4 0c             	add    esp,0xc
+  461369:	84 c0                	test   al,al
+  46136b:	74 28                	je     0x461395
+  46136d:	68 f3 c3 48 00       	push   0x48c3f3
+  461372:	e8 b1 78 01 00       	call   0x478c28
+  461377:	59                   	pop    ecx
+  461378:	68 85 c5 48 00       	push   0x48c585
+  46137d:	e8 a6 78 01 00       	call   0x478c28
+  461382:	59                   	pop    ecx
+  461383:	8b 17                	mov    edx,DWORD PTR [edi]
+  461385:	ff 32                	push   DWORD PTR [edx]
+  461387:	e8 e4 9d 00 00       	call   0x46b170
+  46138c:	59                   	pop    ecx
+  46138d:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  461390:	e9 d0 05 00 00       	jmp    0x461965
+  461395:	8b 15 9c d4 49 00    	mov    edx,DWORD PTR ds:0x49d49c
+  46139b:	83 3a 01             	cmp    DWORD PTR [edx],0x1
+  46139e:	0f 8f 49 01 00 00    	jg     0x4614ed
+  4613a4:	83 fe 01             	cmp    esi,0x1
+  4613a7:	0f 85 40 01 00 00    	jne    0x4614ed
+  4613ad:	68 f3 c3 48 00       	push   0x48c3f3
+  4613b2:	e8 71 78 01 00       	call   0x478c28
+  4613b7:	59                   	pop    ecx
+  4613b8:	68 98 c5 48 00       	push   0x48c598
+  4613bd:	e8 66 78 01 00       	call   0x478c28
+  4613c2:	59                   	pop    ecx
+  4613c3:	8b 0f                	mov    ecx,DWORD PTR [edi]
+  4613c5:	ff 31                	push   DWORD PTR [ecx]
+  4613c7:	e8 a4 9d 00 00       	call   0x46b170
+  4613cc:	59                   	pop    ecx
+  4613cd:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  4613d0:	e9 90 05 00 00       	jmp    0x461965
+  4613d5:	8b 55 f8             	mov    edx,DWORD PTR [ebp-0x8]
+  4613d8:	66 83 7a 40 05       	cmp    WORD PTR [edx+0x40],0x5
+  4613dd:	75 28                	jne    0x461407
+  4613df:	68 0c c5 48 00       	push   0x48c50c
+  4613e4:	e8 3f 78 01 00       	call   0x478c28
+  4613e9:	59                   	pop    ecx
+  4613ea:	68 bb c5 48 00       	push   0x48c5bb
+  4613ef:	e8 34 78 01 00       	call   0x478c28
+  4613f4:	59                   	pop    ecx
+  4613f5:	8b 0f                	mov    ecx,DWORD PTR [edi]
+  4613f7:	ff 31                	push   DWORD PTR [ecx]
+  4613f9:	e8 72 9d 00 00       	call   0x46b170
+  4613fe:	59                   	pop    ecx
+  4613ff:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+  461402:	e9 5e 05 00 00       	jmp    0x461965
+  461407:	8b 55 f8             	mov    edx,DWORD PTR [ebp-0x8]
+  46140a:	66 83 7a 40 00       	cmp    WORD PTR [edx+0x40],0x0
+  46140f:	75 28                	jne    0x461439
+  461411:	68 0c c5 48 00       	push   0x48c50c
+  461416:	e8 0d 78 01 00       	call   0x478c28
+  46141b:	59                   	pop    ecx
+  46141c:	68 fb c5 48        	push   0x48c5fb

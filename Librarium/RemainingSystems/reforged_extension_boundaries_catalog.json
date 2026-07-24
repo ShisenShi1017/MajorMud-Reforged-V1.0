@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "updatedByPass": "RemainingSystems-0036-ReforgedExtensionBoundaries",
+  "subsystem": "reforged-extension-boundaries",
+  "runtimeOwner": "RuntimeExtensionBoundaryService",
+  "classifications": [
+    "Classic MajorMUD behavior",
+    "strongly correlated Classic behavior",
+    "Reforged compatibility infrastructure",
+    "Reforged Custom-world extension",
+    "Reforged AI-world extension",
+    "client-only behavior",
+    "Librarium-only behavior",
+    "editor-only behavior"
+  ],
+  "enforcement": [
+    "explicit enablement",
+    "world-mode minimum",
+    "surface allowlist",
+    "host authorization for mutation",
+    "version compatibility",
+    "save migration requirement",
+    "Classic isolation scan"
+  ],
+  "ownership": {
+    "runtimeBoundary": "RuntimeExtensionBoundaryService",
+    "worldMode": "WorldRulesConfiguration",
+    "saveVersion": "SaveCoordination",
+    "catalogVersion": "ImportExportCompatibility",
+    "builderMutation": "BuilderContentPolicy",
+    "clientBehavior": "client only",
+    "librariumProjection": "Librarium only"
+  },
+  "safeFallback": "reject unknown, disabled, version-incompatible, unauthorized, or cross-mode extension access",
+  "nativeDependencies": [
+    "exact native Classic extension boundary and version markers",
+    "native save and catalog version compatibility",
+    "host module feature flags and Worldgroup policy"
+  ]
+}

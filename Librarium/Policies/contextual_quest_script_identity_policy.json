@@ -1,0 +1,19 @@
+{
+  "id": "policy.contextual_quest_script_identity.0199",
+  "status": "active_verified_projection_fix",
+  "rule": "A decoded MMExplorer textblock is reusable source content, not a globally unique executable quest-stage instance. Runtime script identity must include quest, NPC, root textblock, stage textblock, and stage index.",
+  "provenance": [
+    "Data/Classic/quests.json quest-to-stage relationships",
+    "Data/Classic/scripts.json MMExplorer textblock projections",
+    "Data/Classic/triggers.json NPC-scoped quest entry relationships"
+  ],
+  "confidence": "verified_generated_data_integrity",
+  "assumptions": ["The source textblock body remains immutable when reused; execution context supplies quest and NPC ownership."],
+  "fallback": "Reject ambiguous legacy context-free script IDs rather than dispatching an arbitrary matching stage.",
+  "tests": [
+    "all script IDs are unique",
+    "all quest and trigger script references resolve",
+    "no runtime relationship retains script.quest_textblock.* IDs"
+  ],
+  "save_or_world_state_impact": "none; generated identity and dispatch-link correction only"
+}

@@ -1,0 +1,113 @@
+{
+  "subsystem": "Items",
+  "code_update": "0204",
+  "status": "native_only_boundary_reached",
+  "pre_native_semantic_exhaustion_complete": true,
+  "classic_semantic_exhaustion_complete": false,
+  "canonical_item_count": 1950,
+  "next_required_phase": "final_wcc_wbb_native_dll_and_leftover_file_exhaustion",
+  "reopen_triggers": [
+    "new native DLL or executable evidence",
+    "new WCC/WBB item records or headers",
+    "native character/world save samples",
+    "decompiled item-use, loot, reset, merchant, persistence or command paths"
+  ],
+  "unresolved_native_dependency_groups": [
+    {
+      "group": "record_layout_and_flags",
+      "dependencies": [
+        "WCC/WBB item record layouts",
+        "native item category/type codes",
+        "unknown item flag and restriction bits",
+        "native equipment-slot codes and edge-case ordering"
+      ],
+      "blocked_outcomes": [
+        "Classic stackability mapping",
+        "maximum stack sizes",
+        "binding/quest/limited/no-drop/no-sell/no-bank/no-remove native flag mapping",
+        "exact category inheritance and legal actions"
+      ]
+    },
+    {
+      "group": "charges_durability_and_use",
+      "dependencies": [
+        "native executable item-use paths",
+        "native save fields",
+        "native repair and wear formulas"
+      ],
+      "blocked_outcomes": [
+        "charge-bearing item mapping",
+        "charges per use",
+        "zero-charge behavior",
+        "recharge rules and timers",
+        "durability eligibility",
+        "wear formulas",
+        "breakage effects",
+        "repair caps and pricing",
+        "breakage destruction or transformation"
+      ]
+    },
+    {
+      "group": "loot_reset_and_scheduling",
+      "dependencies": [
+        "native NPC loot tables",
+        "native RNG and seed behavior",
+        "native reset scheduler",
+        "WCC/WBB spawn and restock records"
+      ],
+      "blocked_outcomes": [
+        "guaranteed/random/rare loot mappings",
+        "native quantity and chance formulas",
+        "NPC gold scaling",
+        "room/container/NPC/merchant reset timing",
+        "hard versus soft reset behavior",
+        "player-presence suppression and retries"
+      ]
+    },
+    {
+      "group": "persistence_and_recovery",
+      "dependencies": [
+        "native character/world save layouts",
+        "native instance identifier fields",
+        "native journaling/checkpoint implementation",
+        "native checksum/backup behavior"
+      ],
+      "blocked_outcomes": [
+        "exact serialization offsets and widths",
+        "cross-file commit ordering",
+        "native crash recovery",
+        "native corruption repair",
+        "version migration behavior"
+      ]
+    },
+    {
+      "group": "commands_messages_and_permissions",
+      "dependencies": [
+        "native command dispatcher",
+        "native text/message tables",
+        "native sysop permissions"
+      ],
+      "blocked_outcomes": [
+        "exact success/failure messages",
+        "native command consumption ordering",
+        "native administrative syntax and exceptions",
+        "native corpse/merchant/quest restriction messages"
+      ]
+    },
+    {
+      "group": "native_edge_cases",
+      "dependencies": [
+        "DLL/executable control flow",
+        "leftover WCC/WBB files",
+        "decompiled native routines"
+      ],
+      "blocked_outcomes": [
+        "stack split/merge edge ordering",
+        "limited/unique count scope and release edge cases",
+        "resurrection equipment ordering",
+        "corpse permission timing",
+        "native container depth/weight behavior"
+      ]
+    }
+  ]
+}

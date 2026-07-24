@@ -1,0 +1,26 @@
+{
+  "code_update": "0153",
+  "subsystem": "character",
+  "completed": [
+    "status effects phases 1-2",
+    "progression ownership and atomic XP/promotion",
+    "proven HP/mana growth",
+    "evidence-gated XP/CP schedule ownership",
+    "conflict, monotonicity, cap, and provenance validation"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth semantics",
+    "skill/spell/ability gain schedules",
+    "native multiclass switching",
+    "global caps and post-cap overflow",
+    "statistics",
+    "equipment completion",
+    "inventory",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [],
+  "next": "Character statistics phase 2: AC, attack, defense, initiative, speed, resistances, saving throws, and regeneration"
+}

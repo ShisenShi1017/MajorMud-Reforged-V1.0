@@ -1,0 +1,136 @@
+{
+  "schema": "majorMud.worldgroup.module_command_dispatch.v1",
+  "update": "0007",
+  "generated_utc": "2026-07-16T07:23:21.390914+00:00",
+  "evidence_class": "proven",
+  "modules": {
+    "WGSERVER.EXE": {
+      "sha256": "4da28d718cf99701aa63c1889770f293bb3ec828aea5e8bea500473d2698c73f",
+      "image_base": "0x00400000"
+    },
+    "WCCMMUD.DLL": {
+      "registration_callsite_va": "0x00401D83",
+      "descriptor_va": "0x0047915C",
+      "returned_module_index_global": "0x004913F4"
+    },
+    "WCCMMPLS.DLL": {
+      "registration_callsite_va": "0x00401AF1",
+      "descriptor_va": "0x00405124",
+      "returned_module_index_global": "0x00405F7C"
+    }
+  },
+  "register_module": {
+    "va": "0x0041FC6A",
+    "ordinal": 1087,
+    "calling_convention": "cdecl",
+    "argument": "pointer to module descriptor",
+    "return": "zero-based module index",
+    "module_count_global": "0x00451560",
+    "descriptor_pointer_array_global": "0x0045D3BC",
+    "statistics_array_global": "0x0045D3F0",
+    "statistics_stride_bytes": 36,
+    "name_length": "3..24 bytes",
+    "default_callback": {
+      "descriptor_offset": "0x24",
+      "va": "0x0042545D",
+      "installed_only_when_null": true
+    },
+    "growth": "both arrays are reallocated by one element per registration after the first allocation",
+    "descriptor_offsets_proven": {
+      "0x00": "module name begins here; descriptor pointer is also passed to string comparison and registration metadata paths",
+      "0x1C": "session-state-4 input handler",
+      "0x20": "default session input handler",
+      "0x24": "host-required callback; WGSERVER installs 0x0042545D when absent",
+      "0x2C": "session-state-5 input handler",
+      "0x38": "one-argument module callback invoked with current session/user identifier in host path 0x004035E1"
+    }
+  },
+  "global_command_registry": {
+    "register_export": "_globalcmd",
+    "register_va": "0x0041F929",
+    "ordinal": 714,
+    "capacity": 50,
+    "count_global": "0x0045DAEC",
+    "callback_array": "0x0045DAF0",
+    "registration_semantics": "append raw callback pointer at count and increment count; fatal/error path when count is already 50",
+    "callback_abi": "no explicit stack arguments; callback reads host globals and returns a signed control code in EAX/AX",
+    "dispatch_sites": [
+      {
+        "va": "0x0042242E",
+        "context": "normal input handling before module-local session handler",
+        "iteration": "FIFO index 0..count-1",
+        "return_semantics": {
+          "-2": "invoke host action using _tfstate then terminate chain",
+          "-3": "terminate chain as handled",
+          "-4": "continue to next global callback",
+          "other": "invoke host fallback 0x00422109 then terminate chain"
+        }
+      },
+      {
+        "va": "0x00426124",
+        "context": "parsed-input validation/secondary command path",
+        "iteration": "FIFO until first nonzero result",
+        "return_semantics": {
+          "0": "continue",
+          "-2": "invoke host action using _tfstate then terminate",
+          "other_nonzero": "terminate chain"
+        }
+      }
+    ]
+  },
+  "module_local_dispatch": {
+    "va": "0x0042246C",
+    "module_index_source": "current session structure +0x18",
+    "descriptor_array": "0x0045D3BC",
+    "selection": [
+      {
+        "session_state_at_plus_0x10": 4,
+        "callback_offset": "0x1C"
+      },
+      {
+        "session_state_at_plus_0x10": 5,
+        "callback_offset": "0x2C"
+      },
+      {
+        "session_state_at_plus_0x10": "all other values",
+        "callback_offset": "0x20"
+      }
+    ],
+    "invocation": "indirect call with no explicit stack arguments; signed AX result controls subsequent host state handling"
+  },
+  "majorMud_binding": {
+    "WCCMMUD.DLL": {
+      "descriptor_callbacks": {
+        "0x1C": "0x004031D4",
+        "0x20": "0x00405104",
+        "0x24": "0x00408BAC",
+        "0x28": "0x00408C56",
+        "0x2C": "0x00408D3C",
+        "0x30": "0x00408D9A",
+        "0x34": "0x004091FD",
+        "0x38": "0x0040A990",
+        "0x3C": "0x004027FE"
+      }
+    },
+    "WCCMMPLS.DLL": {
+      "descriptor_callbacks": {
+        "0x1C": "0x00401C0B",
+        "0x20": "0x00402B7A",
+        "0x24": "0x00403B8D",
+        "0x28": "0x0040405A",
+        "0x2C": "0x00404098",
+        "0x30": "0x0040409B",
+        "0x34": "0x0040409C",
+        "0x38": "0x0040409D",
+        "0x3C": "0x004040E4"
+      }
+    }
+  },
+  "conclusions": [
+    "Worldgroup global command callbacks execute before module-local input handlers in the normal input path.",
+    "Global command registration and dispatch preserve FIFO order and use explicit negative control values.",
+    "MajorMUD registers a concrete module descriptor and stores the returned Worldgroup module index for later host-facing operations.",
+    "Worldgroup selects one of three module input callbacks by session state; this closes the host-side player-command dispatch boundary to the MajorMUD callback entry points.",
+    "The internal MajorMUD semantics of the callback bodies remain a separate native-module trace and are not invented here."
+  ]
+}

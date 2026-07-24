@@ -13,7 +13,8 @@ public sealed record RuntimeCharacterActor(
     string DisplayName,
     string Race,
     string CharacterClass,
-    int Level) : IRuntimeSessionActor
+    int Level,
+    string Sex = "Unspecified") : IRuntimeSessionActor
 {
     public string Kind => "character";
     public bool IsPersistentCharacter => true;

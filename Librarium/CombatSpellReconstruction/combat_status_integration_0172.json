@@ -1,0 +1,24 @@
+{
+  "update": "0172",
+  "runtime": "RuntimeCombatStatusIntegrationCoordinator",
+  "ownership": {
+    "status_semantics": "RuntimeCombatStatusModifierEvaluator",
+    "physical_attack_execution": "RuntimePhysicalAttackExecutor and RuntimePhysicalWeaponAttackExecutor",
+    "spell_cast_state": "RuntimeSpellCastLifecycle",
+    "combat_turn_creation": "RuntimeCombatInstanceLifecycle",
+    "combat_movement": "RuntimeCombatMovementCoordinator",
+    "integration_boundary": "RuntimeCombatStatusIntegrationCoordinator"
+  },
+  "execution_order": {
+    "physical_attack": ["evaluate attacker status", "reject blocked action", "evaluate defender status", "replace attack and defense inputs", "execute physical attack"],
+    "spell_cast": ["evaluate caster status", "reject blocked cast", "start cast and reserve resources", "emit hidden-break requirement"],
+    "initiative": ["receive due turns", "evaluate each actor snapshot", "apply initiative and speed deltas", "order by adjusted initiative, adjusted speed, sequence, actor id"],
+    "movement": ["evaluate mover status", "reject blocked movement", "execute movement invalidation and threat cleanup", "emit room handoff"]
+  },
+  "atomicity": [
+    "blocked attacks do not consume scheduled turns",
+    "blocked casts do not reserve resources or create cast instances",
+    "blocked movement does not invalidate actions, clear threat, or transition participants"
+  ],
+  "safe_fallback": "reject missing effect snapshots, unresolved status policies, and blocked actions"
+}

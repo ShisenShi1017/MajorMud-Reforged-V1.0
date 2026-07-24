@@ -1,0 +1,45 @@
+{
+  "update": "0158",
+  "evidence_model": "established",
+  "promotions": [
+    {
+      "finding": "combat instance and participant lifecycle architecture",
+      "confidence": "strongly_correlated",
+      "sources": [
+        "existing Reforged combat/spell deterministic runtime requirements",
+        "CodeUpdate0153 cast monotonic scheduler",
+        "CodeUpdate0156 effect monotonic scheduler"
+      ],
+      "assumptions": [
+        "opposition is represented by distinct promoted actor kinds only in fixture coverage"
+      ],
+      "fallback": "reject unresolved scheduling policy",
+      "tests": [
+        "stable ordering",
+        "round batching",
+        "terminal cleanup",
+        "tick regression rejection"
+      ],
+      "runtime_impact": "enables executable combat instance ownership and scheduling",
+      "character_save_impact": "none; persistence not activated",
+      "world_state_impact": "temporary per-room combat state only"
+    },
+    {
+      "finding": "fixture initiative and action delay values",
+      "confidence": "proven_fixture_only",
+      "sources": [
+        "RuntimeCombatInstanceLifecycleSmokeReport.cs"
+      ],
+      "runtime_impact": "test-only",
+      "character_save_impact": "none",
+      "world_state_impact": "none"
+    }
+  ],
+  "unknowns": [
+    {
+      "finding": "production initiative and action delay formulas",
+      "classification": "unknown_native_or_unpromoted",
+      "behavior": "fail_closed"
+    }
+  ]
+}

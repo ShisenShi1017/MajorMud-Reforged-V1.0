@@ -1,0 +1,46 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+Bundle F Phase F12 Random Table Runtime Audit
+{
+  "Passed": true,
+  "ReferenceCount": 631,
+  "TableCount": 136,
+  "BranchCount": 1220,
+  "EmptyResultTableCount": 1,
+  "SourceOrderAnomalyCount": 2,
+  "RecursiveTableCount": 4,
+  "DisconnectCount": 0,
+  "Checks": [
+    "all-decoded-random-references-owned",
+    "all-decoded-random-tables-owned",
+    "all-decoded-random-branches-owned",
+    "decoded-empty-result-sentinel-preserved",
+    "decoded-source-order-anomalies-preserved-not-normalized",
+    "decoded-ordering-authoritative",
+    "zero-phase-f12-disconnects"
+  ],
+  "Failures": []
+}

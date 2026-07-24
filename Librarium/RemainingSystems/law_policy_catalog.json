@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "law-bounty-guards",
+  "runtimeOwner": "RuntimeLawPolicyService",
+  "status": "runtime-active-partially-exhausted",
+  "ownedState": [
+    "crime records",
+    "wanted state",
+    "bounty amount",
+    "crime decay deadlines",
+    "law-zone policy"
+  ],
+  "operations": [
+    "record crime",
+    "request guard alert",
+    "request fine",
+    "request jail",
+    "process crime decay",
+    "pardon"
+  ],
+  "integrations": {
+    "character": "owns Evil Point and alignment arithmetic",
+    "npc-ai": "owns guard targeting and movement",
+    "economy": "owns fine payment and confiscated value transfer",
+    "pvp-policy": "requests law evaluation",
+    "rooms": "supplies law-zone identity",
+    "communications": "owns reports and announcements"
+  },
+  "safeFallback": "reject unknown zones, invalid crimes, arithmetic overflow, and unauthorized pardon requests; emit typed owner requests only",
+  "persistence": "world law-state persistence remains native-dependent",
+  "nativeDependencies": [
+    "exact crime families and witness rules",
+    "Evil Point and criminal-flag coupling",
+    "bounty arithmetic and limits",
+    "guard alert/summon/hostility behavior",
+    "arrest, jail, fines, confiscation, reputation, and reporting",
+    "crime decay and pardon authority",
+    "exact messages and persistence"
+  ]
+}

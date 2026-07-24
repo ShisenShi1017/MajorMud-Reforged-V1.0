@@ -1,0 +1,77 @@
+{
+  "audit": "combined_decode_audit_after_items",
+  "generated_utc": "2026-07-15T23:55:09.513257+00:00",
+  "baseline_archive": "MajorMUD-Reforged-Combined-Character-TCA-Economy-RemainingSystems-CombatSpells-NPCAI-Cumulative.zip",
+  "merged_archive": "Items DONE.zip",
+  "merge": {
+    "base_files": 1433,
+    "items_unique_files": 197,
+    "new_paths_added": 195,
+    "shared_paths_reconciled": [
+      "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "CHANGELOG.md"
+    ],
+    "duplicate_findings_policy": "Distinct subsystem evidence preserved; consolidated audit lists each remaining native dependency family once."
+  },
+  "subsystem_status": [
+    {
+      "subsystem": "Rooms",
+      "status": "pre-native complete",
+      "remaining": "7 native latch effects; 266 unknown-qualified exits retained for native qualification"
+    },
+    {
+      "subsystem": "Triggers/Scripts/Quests",
+      "status": "pre-native complete",
+      "remaining": "native dispatcher and exact native-only execution details"
+    },
+    {
+      "subsystem": "Character",
+      "status": "pre-native complete",
+      "remaining": "native lifecycle, reconnect, save-layout, formula and ordering edge cases"
+    },
+    {
+      "subsystem": "Textblocks/Commands/Abilities",
+      "status": "pre-native complete",
+      "remaining": "native text bodies/messages, command table/parser details, remoteaction dispatcher"
+    },
+    {
+      "subsystem": "NPC/AI",
+      "status": "project-tracked complete to native boundary",
+      "remaining": "native AI masks, perception, threat, spawn, pathing and timing algorithms"
+    },
+    {
+      "subsystem": "Combat/Spells",
+      "status": "pre-native complete",
+      "remaining": "native enums, formulas, flags, masks, timing, RNG and save/restart semantics"
+    },
+    {
+      "subsystem": "Economy",
+      "status": "pre-native complete",
+      "remaining": "native calculation stage ordering and executable/offset binding"
+    },
+    {
+      "subsystem": "Remaining Systems",
+      "status": "pre-native complete",
+      "remaining": "native Classic behavior and Worldgroup ownership boundaries"
+    },
+    {
+      "subsystem": "Items",
+      "status": "pre-native complete at CodeUpdate0204",
+      "remaining": "native record layouts, flags, stack limits, charges, durability, loot/reset RNG, persistence and command/message details"
+    }
+  ],
+  "major_subsystems_left_to_decode": [],
+  "remaining_phase": {
+    "name": "Final WCC/WBB/native DLL and leftover-file semantic exhaustion",
+    "objectives": [
+      "Resolve the 7 room latch effects and qualify remaining unknown exits.",
+      "Decode remaining WCC/WBB record layouts, field widths, enums, flags, masks and restrictions.",
+      "Recover native dispatcher behavior including remoteaction and player command parsing/aliases.",
+      "Recover exact native formulas, execution ordering, timing, scheduling and RNG behavior.",
+      "Recover native character/world save layouts, checksums, journaling, backup, migration and crash recovery.",
+      "Resolve remaining native-only Character, NPC/AI, Combat/Spells, Economy, Items and Remaining Systems dependencies.",
+      "Confirm MajorMUD versus Worldgroup ownership boundaries.",
+      "Promote conclusively recovered behavior and produce final provenance and closure validators."
+    ]
+  }
+}

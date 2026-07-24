@@ -1,0 +1,55 @@
+{
+  "update": "0166",
+  "catalog": "direct_spell_formula_execution",
+  "runtime_owner": "CombatSpells",
+  "policies": [
+    {
+      "policy_id": "spellformula.test.1",
+      "spell_id": "spell.1",
+      "confidence": "strongly_correlated",
+      "formula_kind": "drain",
+      "disposition": "damage",
+      "target_resource": "hit_points",
+      "formula": {
+        "minimum_roll": 10,
+        "maximum_roll": 10,
+        "level_scale": "1/1",
+        "attribute_scale": "0/1",
+        "target_maximum_percent": 0,
+        "rounding": "toward_zero"
+      },
+      "resistance": {
+        "basis_points": 1000,
+        "applies_to_magnitude": true
+      },
+      "saving_throw": {
+        "success_reduction_basis_points": 10000,
+        "partial_reduction_basis_points": 5000
+      },
+      "final_clamp": {
+        "minimum": 0,
+        "maximum": 999
+      },
+      "drain": {
+        "restores_caster": true,
+        "resource": "hit_points",
+        "overflow": false
+      },
+      "evidence": [
+        "evidence.test"
+      ],
+      "safe_fallback": "Reject unresolved production coefficients."
+    }
+  ],
+  "unresolved_production_spell_ids": [
+    "spell.1304"
+  ],
+  "fail_closed": [
+    "missing formula policy",
+    "unknown coefficient",
+    "unknown rounding",
+    "unknown resistance family",
+    "unknown save semantics",
+    "unknown critical spell behavior"
+  ]
+}

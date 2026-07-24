@@ -1,0 +1,38 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0170",
+  "boundary": "explicit threat-memory removal",
+  "classification": "strongly_correlated",
+  "runtime_activation": "active",
+  "owner": "RuntimeNpcThreatMemoryService",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcThreatMemory.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcThreatGeneration.cs"
+  ],
+  "supporting_evidence": [
+    "Persisted per-NPC threat ledger established in CodeUpdate0168",
+    "Explicit host-policy threat reductions established in CodeUpdate0169",
+    "Target removal must be exact, replay-safe, and rerank remaining ledger entries deterministically"
+  ],
+  "confidence": 0.91,
+  "assumptions": [
+    "The host supplies conclusive authorization to forget an exact target",
+    "No native memory duration or lost-target timeout is assigned"
+  ],
+  "tests": [
+    "explicit-threat-forgetting-applies",
+    "unauthorized-forget-rejected",
+    "duplicate-memory-tick-suppressed",
+    "deterministic-threat-memory-replay"
+  ],
+  "safe_fallback": "retain the target and ledger entry unless forgetting is explicitly authorized",
+  "runtime_impact": "removes exact threat-ledger entries and reranks the current target",
+  "character_save_impact": "none",
+  "world_state_impact": "persists reduced threat ledger and compact memory audit metadata",
+  "native_dependencies": [
+    "native threat-memory duration",
+    "lost-target timeout",
+    "visibility-driven forgetting",
+    "native combat disengagement rules"
+  ]
+}

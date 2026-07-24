@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "evidence_id": "native_support_static_reference_matrix_0033",
+  "classification": "PROVEN",
+  "summary": "Exact case-insensitive filename-literal scanning of the supplied WCC/WBB MMUD, MMPLS, and MMUTL images proves which shipped support assets are statically named by those modules and which are not.",
+  "modules": [
+    {
+      "distribution": "WCC",
+      "module": "wccmmud.dll",
+      "referenced_assets": [
+        "WCCADDON.SYS",
+        "WCCDMA.SYS",
+        "WCCMMHLP.mcv",
+        "WCCMMSYS.NOT",
+        "WCCMMSYS.REL",
+        "WCCMMUD.NOT",
+        "WCCMMUD.RLN",
+        "WCCMMUD.mcv",
+        "WCCTEXT.mcv",
+        "wccmmud.mdf"
+      ]
+    },
+    {
+      "distribution": "WCC",
+      "module": "wccmmpls.dll",
+      "referenced_assets": [
+        "WCCMMPLS.mcv",
+        "wccmmpls.MDF"
+      ]
+    },
+    {
+      "distribution": "WCC",
+      "module": "wccmmutl.exe",
+      "referenced_assets": [
+        "WCCAEDIT.BIN",
+        "WCCBOX.BIN",
+        "WCCMAP01.ANS",
+        "WCCMMPLS.mcv",
+        "WCCMMUD.mcv",
+        "WCCMMUTL.BIN"
+      ]
+    },
+    {
+      "distribution": "WBB",
+      "module": "wbbmmud.dll",
+      "referenced_assets": [
+        "wbbDMA.SYS",
+        "wbbMMHLP.mcv",
+        "wbbMMSYS.NOT",
+        "wbbMMSYS.REL",
+        "wbbMMUD.NOT",
+        "wbbMMUD.RLN",
+        "wbbMMUD.mcv",
+        "wbbTEXT.mcv",
+        "wbbaddon.sys",
+        "wbbmmud.mdf"
+      ]
+    },
+    {
+      "distribution": "WBB",
+      "module": "wbbmmpls.dll",
+      "referenced_assets": [
+        "wbbMMPLS.mcv",
+        "wbbmmpls.mdf"
+      ]
+    },
+    {
+      "distribution": "WBB",
+      "module": "wbbmmutl.exe",
+      "referenced_assets": [
+        "wbbAEDIT.BIN",
+        "wbbBOX.BIN",
+        "wbbMAP01.ANS",
+        "wbbMMPLS.mcv",
+        "wbbMMUD.mcv",
+        "wbbMMUTL.BIN"
+      ]
+    }
+  ],
+  "negative_findings": {
+    "hse_exact_filename_literals_in_supplied_native_modules": 0,
+    "sto_exact_filename_literals_in_supplied_native_modules": 0,
+    "scope": "all supplied WCC/WBB MMUD.DLL, MMPLS.DLL, and MMUTL.EXE images"
+  },
+  "closure": [
+    "HSE and STO payload grammar and distribution coverage remain proven from the files themselves.",
+    "No direct filename-literal consumer or fallback branch for HSE/STO exists in the supplied native images.",
+    "Exact HSE/STO open/fallback behavior cannot be promoted beyond the existing data contract from these binaries alone.",
+    "Reforged must keep HSE/STO loading distribution-scoped and fail closed rather than inventing a native fallback."
+  ],
+  "limits": [
+    "This scan does not exclude dynamically constructed filenames, host-side loading, database-side expansion, or consumers in binaries not supplied.",
+    "Absence of a literal is not evidence that the asset is unused; it is evidence that direct static literal tracing is unavailable in this module set."
+  ]
+}

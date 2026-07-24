@@ -29,7 +29,7 @@ public static class RuntimeCharacterFoundationSmoke
         {
             try
             {
-                service.CreateCharacter(account, world, "Smoke" + LetterSuffix(suffix), race.Id, characterClass.Id);
+                service.CreateCharacter(account, world, "Smoke" + LetterSuffix(suffix), "Male", race.Id, characterClass.Id);
             }
             catch (InvalidOperationException exception) when (
                 exception.Message.Contains("Character Foundation Phase003 creation gate is blocked", StringComparison.OrdinalIgnoreCase) ||
@@ -40,7 +40,7 @@ public static class RuntimeCharacterFoundationSmoke
             }
         }
 
-        var character = service.CreateCharacter(account, world, "Smoke" + LetterSuffix(suffix), race.Id, characterClass.Id);
+        var character = service.CreateCharacter(account, world, "Smoke" + LetterSuffix(suffix), "Male", race.Id, characterClass.Id);
         var loaded = service.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Created character could not be restored.");
         checks.Add("generated-start-room-used");
         checks.Add("character-atomically-saved");

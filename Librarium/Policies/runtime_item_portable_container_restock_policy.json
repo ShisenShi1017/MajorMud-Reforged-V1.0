@@ -1,0 +1,25 @@
+{
+  "id": "policy.runtime.items.portable-container-restock.v1",
+  "title": "Portable Container Restock Identity Policy",
+  "status": "active_evidence_gated",
+  "classification": "Reforged compatibility infrastructure",
+  "rules": [
+    "A portable container restock requires an authoritative container instance, owner, restock key, canonical item, and target quantity.",
+    "Existing matching contents retain their runtime identities.",
+    "Only the deficit is created and repeated reconciliation at target is idempotent.",
+    "Projected stack maxima and portable-container capacity are enforced.",
+    "Existing quantities above target are never silently removed.",
+    "Scheduling remains owned by World Runtime, scripts, quests, or events."
+  ],
+  "bidirectional_relationships": {
+    "container_to_contents": "container instance -> restock key -> canonical item target",
+    "content_to_container": "runtime item instance -> container location -> restock provenance"
+  },
+  "unknowns": [
+    "Classic record binding",
+    "timer ownership",
+    "closed or locked container behavior",
+    "limited-item suppression",
+    "native messages"
+  ]
+}

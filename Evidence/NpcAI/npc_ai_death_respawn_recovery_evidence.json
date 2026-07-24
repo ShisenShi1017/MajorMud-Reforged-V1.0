@@ -1,0 +1,45 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0159",
+  "boundary": "atomic-death-and-blocked-respawn-recovery",
+  "classification": "strongly-correlated-active-runtime",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcSpawnLifecycle.cs",
+    "Generated NPC spawn records"
+  ],
+  "findings": [
+    {
+      "id": "npc-death-single-owner",
+      "result": "ApplyNpcDamage delegates terminal damage to the same locked lifecycle transition used by explicit despawn admission.",
+      "confidence": 0.98
+    },
+    {
+      "id": "blocked-respawn-persisted",
+      "result": "An unresolved home room converts a due timer into one persisted blocked state and emits one transition instead of repeating every tick.",
+      "confidence": 0.97
+    },
+    {
+      "id": "blocked-respawn-exact-retry",
+      "result": "Retry requires exact instance identity and a now-resolved canonical home room; no native retry interval is assumed.",
+      "confidence": 0.96
+    }
+  ],
+  "assumptions": [
+    "Generated home-room identity remains authoritative for materialized spawn slots."
+  ],
+  "safe_fallback": "Keep the NPC dead and blocked until an exact retry is requested after room resolution.",
+  "tests": [
+    "static symbol validation",
+    "JSON/schema validation",
+    "blocked state ownership catalog",
+    "duplicate blocked-event suppression contract"
+  ],
+  "runtime_impact": "Terminal damage atomically clears transient AI state and enters respawn wait; blocked retries are explicit and auditable.",
+  "character_save_impact": "none",
+  "world_state_impact": "persists death timestamp, blocked reason/time/tick, and retry request time.",
+  "native_dependencies": [
+    "automatic failed-respawn retry cadence",
+    "hard-reset exception behavior"
+  ]
+}

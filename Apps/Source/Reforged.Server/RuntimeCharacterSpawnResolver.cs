@@ -36,7 +36,8 @@ public static class RuntimeSessionSpawnResolver
                     savedCharacter.DisplayName,
                     savedCharacter.Race,
                     savedCharacter.CharacterClass,
-                    savedCharacter.Level);
+                    savedCharacter.Level,
+                    "Unspecified");
                 return new RuntimeSessionSpawnResolution(savedRoom, character, "saved-character-room");
             }
         }

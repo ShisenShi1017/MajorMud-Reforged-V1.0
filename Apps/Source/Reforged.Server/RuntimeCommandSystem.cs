@@ -27,25 +27,40 @@ public sealed class RuntimeCommandDispatcher
         _gameplay = gameplay;
     }
 
+    private static readonly IReadOnlySet<string> PolicyCommands = new HashSet<string>(new[]
+    {
+        "attack", "kill", "bash", "smash", "backstab", "hide", "sneak", "flee", "combat", "round", "assist", "cast", "prepare", "use", "dispel", "abilities", "skills", "talk", "buy", "sell", "repair", "train", "tat", "bank", "deposit", "withdraw", "quest", "accept", "abandon", "complete", "journal", "respawn", "recover"
+    }, StringComparer.OrdinalIgnoreCase);
+
+    internal static bool RoutesToPolicy(string commandName) => PolicyCommands.Contains(commandName);
+
     public string Dispatch(RuntimeSession session, string input)
     {
-        var command = RuntimeCommand.Parse(input);
+        var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
         session.Touch();
         if (command.Name.Length == 0)
         {
-            return string.Empty;
+            return _gameplay?.RenderRoom(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
+        }
+
+        if (!string.IsNullOrWhiteSpace(command.ResolutionError))
+        {
+            return command.ResolutionError;
         }
 
         if (command.IsMovement)
         {
             var previousRoom = session.CurrentRoom;
+            if (_gameplay is not null && !_gameplay.CanMove(session, out var movementGuardFailure)) return movementGuardFailure;
             if (_gameplay is not null && !_gameplay.CanTraverseLivingWorld(session, command.Name, out var livingFailure)) return livingFailure;
             var moved = session.TryMove(command.Name, out var movementResult);
             if (moved)
             {
                 _gameplay?.BroadcastDeparture(session, previousRoom.Id, command.Name);
                 _gameplay?.BroadcastArrival(session);
+                var trapResult = _gameplay?.ApplyExitTrap(session, previousRoom, command.Name) ?? string.Empty;
                 movementResult = _gameplay?.RenderRoom(session) ?? movementResult;
+                if (!string.IsNullOrWhiteSpace(trapResult)) movementResult = trapResult + Environment.NewLine + movementResult;
                 _state?.UpdateSessionLocation(session);
                 _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.Actor.Id, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
             }
@@ -58,24 +73,31 @@ public sealed class RuntimeCommandDispatcher
         }
 
         _events?.Publish("command", "received", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
-        return command.Name switch
+        try
         {
-            "look" => _gameplay?.RenderRoom(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom),
+            var result = command.Name switch
+            {
+            "search" => _gameplay?.ExecuteClassicSearch(session) ?? "Live gameplay facade is not attached.",
+            "look" => string.IsNullOrWhiteSpace(command.ArgumentText)
+                ? (_gameplay?.RenderRoom(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom))
+                : (_gameplay?.LookDirection(session, command.ArgumentText) ?? "Live gameplay facade is not attached."),
             "examine" => _gameplay?.Examine(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "say" => _gameplay?.Say(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "tell" => _gameplay?.Tell(session, command.Arguments) ?? "Live gameplay facade is not attached.",
             "messages" => _gameplay?.DrainMessages(session) ?? string.Empty,
             "score" => _gameplay?.RenderScore(session) ?? "Live gameplay facade is not attached.",
+            "experience" => _gameplay?.RenderExperience(session) ?? "Live gameplay facade is not attached.",
             "inventory" => _gameplay?.RenderInventory(session) ?? "Live gameplay facade is not attached.",
             "equipment" => _gameplay?.RenderEquipment(session) ?? "Live gameplay facade is not attached.",
             "save" => _gameplay?.Save(session) ?? "Live gameplay facade is not attached.",
             "ready" => _gameplay?.RenderIntegrationStatus(session) ?? "Live gameplay facade is not attached.",
+            "audit" => _gameplay?.ExecuteAuditCommand(session, command) ?? "Live gameplay facade is not attached.",
             "get" or "drop" or "put" or "give" or "wear" or "wield" or "remove" => ExecuteItem(session, command),
             "open" or "close" or "lock" or "unlock" or "pull" or "push" or "activate" => _gameplay?.ExecuteLivingWorldCommand(session, command) ?? "Live gameplay facade is not attached.",
             "worldstate" => _gameplay?.RenderLivingWorldState(session) ?? "Live gameplay facade is not attached.",
             "services" or "list" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",
             "trade" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "attack" or "kill" or "flee" or "combat" or "round" or "assist" or "cast" or "prepare" or "use" or "dispel" or "abilities" or "skills" or "talk" or "buy" or "sell" or "repair" or "train" or "tat" or "stats" or "bank" or "deposit" or "withdraw" or "quest" or "accept" or "abandon" or "complete" or "journal" or "respawn" or "recover" => _gameplay?.ExecutePolicyCommand(session, command) ?? "Live gameplay facade is not attached.",
+            var policyCommand when RoutesToPolicy(policyCommand) => _gameplay?.ExecutePolicyCommand(session, command) ?? "Live gameplay facade is not attached.",
             "who" => _gameplay?.RenderWho() ?? (_sessions?.RenderStatus() ?? "Session manager is not attached."),
             "where" => $"World={session.World.Definition.Id}; Room={session.CurrentRoom.Id}; Map={session.CurrentRoom.MapId}; Number={session.CurrentRoom.RoomNumber}",
             "world" => RenderWorld(session.World),
@@ -83,16 +105,32 @@ public sealed class RuntimeCommandDispatcher
             "sessions" => _sessions?.RenderStatus() ?? "Session manager is not attached.",
             "state" => _state?.RenderStatus() ?? "Runtime state store is not attached.",
             "events" => _events?.RenderStatus() ?? "Runtime event dispatcher is not attached.",
-            "help" => "Commands: look, examine, say, tell, messages, score, inventory, equipment, get, drop, put, give, wear, wield, remove, attack, combat, round, flee, cast, use, abilities, skills, talk, services, list, buy, sell, repair, train, bank, deposit, withdraw, trade, quest, accept, abandon, complete, journal, respawn, recover, ready, save, who, movement, quit",
-            _ => $"Unknown command '{command.Name}'. Type 'help' for available runtime commands."
-        };
+            "help" => "Commands: look, search, examine, stat, status, score, exp, inventory, equipment, get, drop, put, give, wear, wield, remove, open, close, lock, unlock, hide, sneak, bash, smash, backstab, attack, kill, combat, round, flee, cast, use, abilities, skills, talk, say, tell, messages, services, list, buy, sell, repair, train, bank, deposit, withdraw, trade, quest, accept, abandon, complete, journal, respawn, recover, ready, audit room <room>, save, who, where, quit",
+                _ => ExecuteDataDrivenCommand(session, command)
+            };
+            _events?.Publish("command", "completed", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _events?.Publish("command", "failed", session.World.Definition.Id, session.Id, session.Actor.Id, $"{command.Name}: {ex.GetType().Name}: {ex.Message}");
+            return $"Command '{command.Name}' failed: {ex.Message}";
+        }
     }
 
-    private string ExecuteItem(RuntimeSession session, RuntimeCommand command)
+    private string ExecuteDataDrivenCommand(RuntimeSession session, RuntimeCommand command)
     {
-        try { return _gameplay?.ExecuteItemCommand(session, command) ?? "Live gameplay facade is not attached."; }
-        catch (Exception ex) { return ex.Message; }
+        if (_gameplay is not null && _gameplay.TryExecuteTeleporterCommand(session, command, out var result))
+        {
+            _state?.UpdateSessionLocation(session);
+            _events?.Publish("movement", "teleporter-completed", session.World.Definition.Id, session.Id, session.Actor.Id, session.CurrentRoom.Id);
+            return result;
+        }
+        return $"Unknown command '{command.Name}'. Type 'help' for available runtime commands.";
     }
+
+    private string ExecuteItem(RuntimeSession session, RuntimeCommand command) =>
+        _gameplay?.ExecuteItemCommand(session, command) ?? "Live gameplay facade is not attached.";
 
     private string RenderWorlds()
     {
@@ -115,44 +153,167 @@ public sealed class RuntimeCommandDispatcher
 
 public sealed class RuntimeCommand
 {
-    private static readonly HashSet<string> MovementCommands = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "n", "s", "e", "w", "ne", "nw", "se", "sw", "u", "d",
-        "north", "south", "east", "west", "northeast", "northwest", "southeast", "southwest", "up", "down"
-    };
+    internal static readonly IReadOnlyList<RuntimeCommandRegistration> DefaultRegistrations =
+    [
+        new("look", ["l"], 2),
+        new("search", ["sea"], 3),
+        new("examine", ["x"], 2),
+        new("score", ["sc", "stat", "stats", "status"], 3),
+        new("experience", ["exp"], 3),
+        new("inventory", ["i", "inv"], 3),
+        new("equipment", ["eq", "wearing"], 3),
+        new("get", [], 3),
+        new("drop", [], 3),
+        new("put", [], 3),
+        new("give", [], 3),
+        new("wear", [], 3),
+        new("wield", [], 3),
+        new("remove", [], 3),
+        new("attack", ["a", "att"], 3),
+        new("kill", ["k"], 3),
+        new("flee", [], 3),
+        new("combat", [], 3),
+        new("round", [], 3),
+        new("assist", [], 3),
+        new("cast", [], 3),
+        new("prepare", [], 3),
+        new("use", [], 3),
+        new("dispel", [], 3),
+        new("abilities", [], 3),
+        new("skills", [], 3),
+        new("talk", [], 3),
+        new("buy", [], 3),
+        new("sell", [], 4),
+        new("repair", [], 3),
+        new("train", [], 3),
+        new("tat", [], 3),
+        new("bash", ["ba"], 2),
+        new("smash", [], 2),
+        new("backstab", ["bs"], 2),
+        new("hide", ["hid"], 2),
+        new("sneak", ["sn"], 2),
+        new("open", [], 2),
+        new("close", [], 3),
+        new("lock", [], 3),
+        new("unlock", [], 3),
+        new("pull", [], 3),
+        new("push", [], 3),
+        new("activate", [], 3),
+        new("worldstate", [], 5),
+        new("services", [], 4),
+        new("list", [], 3),
+        new("bank", [], 3),
+        new("deposit", [], 3),
+        new("withdraw", [], 3),
+        new("trade", [], 3),
+        new("quest", [], 3),
+        new("accept", [], 3),
+        new("abandon", [], 3),
+        new("complete", [], 3),
+        new("journal", ["qlog"], 3),
+        new("say", [], 3),
+        new("tell", [], 3),
+        new("messages", [], 3),
+        new("respawn", [], 3),
+        new("recover", [], 3),
+        new("ready", [], 3),
+        new("audit", [], 3),
+        new("save", [], 4),
+        new("who", [], 3),
+        new("where", [], 3),
+        new("world", [], 5),
+        new("worlds", [], 5),
+        new("sessions", [], 4),
+        new("state", [], 4),
+        new("events", [], 3),
+        new("help", [], 1),
+        new("quit", ["logout", "exit"], 3),
+        new("north", ["n"], 5, true),
+        new("south", ["s"], 5, true),
+        new("east", ["e"], 4, true),
+        new("west", ["w"], 4, true),
+        new("northeast", ["ne"], 9, true),
+        new("northwest", ["nw"], 9, true),
+        new("southeast", ["se"], 9, true),
+        new("southwest", ["sw"], 9, true),
+        new("up", ["u"], 2, true),
+        new("down", ["d"], 2, true)
+    ];
 
-    private static readonly Dictionary<string, string> Aliases = new(StringComparer.OrdinalIgnoreCase)
-    {
-        ["l"] = "look", ["x"] = "examine", ["sc"] = "score", ["i"] = "inventory", ["inv"] = "inventory",
-        ["eq"] = "equipment", ["wearing"] = "equipment", ["who"] = "who", ["k"] = "kill", ["att"] = "attack", ["qlog"] = "journal",
-        ["logout"] = "quit", ["exit"] = "quit"
-    };
+    private static readonly Dictionary<string, RuntimeCommandRegistration> ExactTokens =
+        DefaultRegistrations.SelectMany(registration => registration.Tokens.Select(token => (token, registration)))
+            .ToDictionary(entry => entry.token, entry => entry.registration, StringComparer.OrdinalIgnoreCase);
 
     public static readonly IReadOnlySet<string> SupportedCommands = new HashSet<string>(new[]
     {
-        "look", "examine", "score", "inventory", "equipment", "get", "drop", "put", "give", "wear", "wield", "remove",
+        "look", "search", "examine", "score", "experience", "inventory", "equipment", "get", "drop", "put", "give", "wear", "wield", "remove",
         "attack", "kill", "flee", "combat", "round", "assist", "cast", "prepare", "use", "dispel", "abilities", "skills", "talk", "buy", "sell",
-        "repair", "train", "tat", "stats", "open", "close", "lock", "unlock", "pull", "push", "activate", "worldstate", "services", "list", "bank", "deposit", "withdraw", "trade", "quest", "accept", "abandon", "complete", "journal",
-        "say", "tell", "messages", "respawn", "recover", "ready", "save", "who", "where", "world", "worlds", "sessions", "state", "events", "help", "quit"
+        "repair", "train", "tat", "stats", "bash", "smash", "backstab", "open", "close", "lock", "unlock", "pull", "push", "activate", "worldstate", "services", "list", "bank", "deposit", "withdraw", "trade", "quest", "accept", "abandon", "complete", "journal",
+        "say", "tell", "messages", "respawn", "recover", "ready", "audit", "save", "who", "where", "world", "worlds", "sessions", "state", "events", "help", "quit"
     }, StringComparer.OrdinalIgnoreCase);
 
-    private RuntimeCommand(string name, IReadOnlyList<string> arguments)
+    private RuntimeCommand(string name, IReadOnlyList<string> arguments, string resolutionError = "")
     {
         Name = name;
         Arguments = arguments;
+        ResolutionError = resolutionError;
     }
 
     public string Name { get; }
     public IReadOnlyList<string> Arguments { get; }
+    public string ResolutionError { get; }
     public string ArgumentText => string.Join(" ", Arguments);
-    public bool IsMovement => MovementCommands.Contains(Name);
+    public bool IsMovement => ExactTokens.TryGetValue(Name, out var registration) && registration.IsMovement;
 
-    public static RuntimeCommand Parse(string input)
+    public static RuntimeCommand Parse(string input, RuntimeClassicCommandCatalog? catalog = null)
     {
         var tokens = (input ?? string.Empty).Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (tokens.Length == 0) return new RuntimeCommand(string.Empty, Array.Empty<string>());
         var name = tokens[0].ToLowerInvariant();
-        if (Aliases.TryGetValue(name, out var canonical)) name = canonical;
-        return new RuntimeCommand(name, tokens.Skip(1).ToArray());
+        var resolved = catalog is null ? Resolve(name) : catalog.Resolve(name);
+        if (resolved.Error.Length > 0) return new RuntimeCommand(name, tokens.Skip(1).ToArray(), resolved.Error);
+        return new RuntimeCommand(resolved.Name, tokens.Skip(1).ToArray());
     }
+
+    private static RuntimeCommandResolution Resolve(string token)
+    {
+        if (ExactTokens.TryGetValue(token, out var exact)) return new RuntimeCommandResolution(exact.Canonical, string.Empty);
+
+        var possibleMatches = DefaultRegistrations
+            .Where(registration => registration.Tokens.Any(candidate => candidate.StartsWith(token, StringComparison.OrdinalIgnoreCase)))
+            .ToList();
+
+        var eligibleMatches = possibleMatches
+            .Where(registration => token.Length >= registration.MinimumAbbreviationLength &&
+                                   registration.Canonical.StartsWith(token, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        var canonicalMatches = eligibleMatches
+            .Select(registration => registration.Canonical)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (canonicalMatches.Count == 0 && possibleMatches
+                .Select(registration => registration.Canonical)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .Skip(1)
+                .Any())
+        {
+            canonicalMatches = possibleMatches
+                .Select(registration => registration.Canonical)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+        }
+
+        return canonicalMatches.Count switch
+        {
+            0 => new RuntimeCommandResolution(token, string.Empty),
+            1 => new RuntimeCommandResolution(canonicalMatches[0], string.Empty),
+            _ => new RuntimeCommandResolution(token, $"Ambiguous command '{token}': {string.Join(", ", canonicalMatches)}.")
+        };
+    }
+
+
 }

@@ -15,7 +15,7 @@ public sealed record RuntimeMultiplayerCompletionSave(
     IReadOnlyList<RuntimeDisconnectSnapshot> Disconnects,
     IReadOnlyDictionary<string,long> Experience);
 
-public sealed record RuntimeLootClaimResult(bool Succeeded, string? FailureCode, int QuantityRemaining);
+public sealed record RuntimeMultiplayerLootClaimResult(bool Succeeded, string? FailureCode, int QuantityRemaining);
 public sealed record RuntimeDamageResult(int DamageApplied, int CurrentHealth, bool Died, string? CorpseId, string? TargetActorId);
 
 public sealed class RuntimeMultiplayerCompletionState
@@ -156,7 +156,7 @@ public sealed class RuntimeMultiplayerCompletionState
         }
     }
 
-    public RuntimeLootClaimResult ClaimLoot(string corpseId, string actorId, string itemId, int quantity)
+    public RuntimeMultiplayerLootClaimResult ClaimLoot(string corpseId, string actorId, string itemId, int quantity)
     {
         if (quantity <= 0) throw new ArgumentOutOfRangeException(nameof(quantity));
         lock (Gate(corpseId))

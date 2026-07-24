@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "world-containers",
+  "updatedByPass": "RemainingSystems-0007-WorldContainers",
+  "runtimeOwner": "RuntimeWorldContainerService",
+  "persistenceOwner": "world container coordination; Character inventory and Economy retain transfer/value ownership",
+  "containerKinds": [
+    "chest",
+    "locker",
+    "cabinet",
+    "room-container",
+    "guild-storage",
+    "bank-storage",
+    "quest-container",
+    "corpse",
+    "event-container",
+    "hidden-cache"
+  ],
+  "scopes": [
+    "world-shared",
+    "per-character",
+    "organization"
+  ],
+  "lifecycle": [
+    "inspect",
+    "unlock",
+    "lock",
+    "request-deposit",
+    "request-withdrawal",
+    "commit-transfer",
+    "decay",
+    "reset",
+    "restore"
+  ],
+  "relationships": {
+    "doors": "key and lock policy only; door state remains door-owned",
+    "traps": "container actions emit trap trigger requests",
+    "character": "inventory ownership and transfer-side commit",
+    "economy": "currency/value arithmetic remains Economy-owned",
+    "organizations": "organization identity gates shared storage"
+  },
+  "safeFallbacks": [
+    "unknown container IDs fail closed",
+    "scope mismatches fail closed",
+    "revision conflicts reject commit",
+    "unsupported item kinds are rejected",
+    "corrupt persistence restores catalog defaults"
+  ],
+  "nativeDependencies": [
+    "exact Classic container record families",
+    "exact capacity and weight rules",
+    "native lock and trap ordering",
+    "restock and reset semantics",
+    "corpse ownership and decay",
+    "bank and guild storage ownership",
+    "concurrent access behavior",
+    "exact messages"
+  ]
+}

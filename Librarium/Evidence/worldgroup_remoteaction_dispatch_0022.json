@@ -1,0 +1,100 @@
+{
+  "update": "0022",
+  "confidence": "PROVEN",
+  "module": "wccmmud.dll",
+  "entry": "0x0046C573",
+  "end": "0x0046CC0B",
+  "callingConvention": "cdecl",
+  "arguments": [
+    "roomActionRecord",
+    "actionIndex",
+    "selector",
+    "mode"
+  ],
+  "prelude": {
+    "playerResolution": "current Worldgroup session index is resolved to the active MajorMUD player record",
+    "optionalOutput": "action metadata may emit local and room-scoped output before mutation",
+    "actionType": "word at record + 0x360 + actionIndex*2",
+    "directDomain": [
+      6,
+      24
+    ]
+  },
+  "typeDispatch": {
+    "selectorBytesByType6Through24": [
+      3,
+      2,
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "classes": [
+      {
+        "types": [
+          7,
+          11
+        ],
+        "entry": "0x0046C6BB",
+        "behavior": "toggle current action state at +0x374 between 0 and 2; mark +0x5F8 dirty; run room/action refresh helper; resolve linked record through +0x338 and per-slot mapping; require paired type 7 or 11; mirror the same toggle and refresh on the linked record"
+      },
+      {
+        "types": [
+          9,
+          24
+        ],
+        "entry": "0x0046C7DD",
+        "guard": "word at +0x39C must equal 2",
+        "behavior": "iterate all active sessions in the same room and dispatch local helper 0x00417692(session, actionIndex, 7); then process up to 15 nonzero room object identifiers at +0x400 through 0x004252F3(id, actionIndex, -1, 1), re-resolving the room record after possible movement"
+      },
+      {
+        "types": [
+          6
+        ],
+        "entry": "0x0046C8DE",
+        "behavior": "mode-indexed action-state mask clearing over bits 0x10 through 0x2000; mode 0 clears all ten bits; modes 1..10 clear one preceding bit, with duplicate-state suppression when +0x39C is nonnegative; when no controlled bit remains, force fallback state 8 and emit the configured room message"
+      },
+      {
+        "types": [
+          8,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
+        ],
+        "entry": "0x0046CBC0",
+        "behavior": "no type-specific branch in this routine; proceed directly to common finalization"
+      }
+    ]
+  },
+  "commonFinalization": [
+    "mark room/action record dirty at +0x5F8 when state is written",
+    "store resulting action state at +0x374 + actionIndex*4",
+    "optionally invoke 0x0043BBA3 with the resulting state when the active host slot is enabled",
+    "run session/action cleanup 0x004733F4 and output flush 0x0046B170",
+    "run host output finalization 0x00478B62 and optional status refresh 0x00431184"
+  ],
+  "semanticPolicy": "Numeric action-type names remain unassigned unless independently correlated with source records or UI text."
+}

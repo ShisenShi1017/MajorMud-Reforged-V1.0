@@ -1,0 +1,34 @@
+{
+  "update": "0177",
+  "confidence": "strongly_correlated",
+  "promotions": [
+    {
+      "id": "evidence.combat-summon-order.0177",
+      "behavior": "summoning is an ordered transactional request across definition, limits, spawn, ownership, duration, follow, combat, threat, persistence, and cleanup owners",
+      "sources": [
+        "existing Reforged runtime ownership boundaries",
+        "CodeUpdate0175 death fan-out transaction pattern",
+        "CodeUpdate0176 revival transaction pattern"
+      ],
+      "assumptions": [
+        "exact MajorMUD numeric limits and durations remain unproven"
+      ],
+      "safe_fallback": "reject unresolved policies",
+      "tests": [
+        "ordered sink preparation and commit",
+        "duplicate rejection",
+        "population-limit rejection",
+        "duration expiration calculation"
+      ],
+      "runtime_impact": "creates deterministic summon request fan-out",
+      "character_save_impact": "policy explicitly gates logout persistence",
+      "world_state_impact": "spawn and cleanup requests mutate world only after every owner prepares"
+    }
+  ],
+  "native_dependencies": [
+    "exact summon definition bindings",
+    "population coefficients",
+    "duplicate rules",
+    "duration and persistence behavior"
+  ]
+}

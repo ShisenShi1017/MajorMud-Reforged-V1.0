@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "help-reference",
+  "runtimeOwner": "RuntimeHelpReferenceService",
+  "topicKinds": [
+    "general",
+    "command",
+    "ability",
+    "spell",
+    "item",
+    "quest",
+    "administrative"
+  ],
+  "operations": [
+    "resolve exact topic or alias",
+    "permission-filtered search",
+    "render canonical topic body",
+    "return related topic identifiers"
+  ],
+  "contentOwnership": {
+    "staticModuleContent": "MajorMUD/module catalog when proven",
+    "generatedContent": "owning command, ability, spell, item, and quest catalogs",
+    "hostContent": "Worldgroup or host-provided topics",
+    "librariumContent": "reference-only unless explicitly projected into runtime"
+  },
+  "accessLevels": [
+    "player",
+    "builder",
+    "administrator",
+    "host"
+  ],
+  "relationships": [
+    "topic-to-alias",
+    "topic-to-related-topic",
+    "topic-to-source-textblock",
+    "topic-to-owning catalog"
+  ],
+  "safeFallback": "Reject malformed queries, hide unauthorized topics, reject duplicate aliases and missing related topics, and return not-found without inventing content.",
+  "nativeDependencies": [
+    "exact Classic help topic record families",
+    "native HELP command syntax and aliases",
+    "exact formatting and pagination",
+    "textblock linkage",
+    "permission filtering",
+    "Worldgroup versus MajorMUD help ownership",
+    "search matching and ambiguity behavior"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "update": "0175",
+  "artifact": "combat_death_fanout",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeCombatActionInvalidation.cs",
+      "role": "pending action cancellation ownership"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeCombatThreatLedger.cs",
+      "role": "temporary threat cleanup ownership"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeCombatInstanceLifecycle.cs",
+      "role": "participant defeat and combat termination ownership"
+    },
+    {
+      "path": "Combat & Spells Runtime Semantic Exhaustion Master Handoff",
+      "role": "required lethal-resolution and event fan-out ordering"
+    }
+  ],
+  "byte_offsets": [],
+  "native_dependency": "exact production reward, corpse, gold, respawn, and resurrection ordering remains native/data dependent"
+}

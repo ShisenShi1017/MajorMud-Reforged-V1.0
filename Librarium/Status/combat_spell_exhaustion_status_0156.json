@@ -1,0 +1,26 @@
+{
+  "update": "0156",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated active spell-effect policies",
+    "canonical effect, cast, actor, target, and spell reference validation",
+    "monotonic effect-lifecycle world tick ownership",
+    "reject, refresh, replace, and bounded independent stacking paths",
+    "stable active-effect identity during refresh",
+    "deterministic periodic tick ordering",
+    "strict tick-before-expiration boundary",
+    "terminal expiration and explicit removal states",
+    "death-event removal for effects whose promoted policy owns remove-on-death",
+    "safe rejection of unresolved duration, interval, stacking, and persistence semantics"
+  ],
+  "not_claimed_complete": [
+    "production spell status meanings",
+    "spell.1304 duration, tick, stack, and removal semantics",
+    "native same-tick effect ordering against death and regeneration",
+    "effect persistence across logout, restart, crash recovery, and world reset",
+    "dispel selection and removal ordering",
+    "atomic integration of periodic mutations with target HP/resource state"
+  ],
+  "next_pass": "Integrate deterministic periodic effect ticks with the atomic combat mutation boundary and implement evidence-gated dispel/removal selection without assigning unresolved spell meanings."
+}

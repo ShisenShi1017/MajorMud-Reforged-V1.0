@@ -1,0 +1,16 @@
+{
+  "schema": "ability_domain_boundary_exhaustion_report_v1",
+  "code_update": "0157",
+  "counts": {
+    "ability_modifiers": 188,
+    "learned_skills": 13,
+    "runtime_references": 30
+  },
+  "validation": {
+    "catalogs_disjoint": true,
+    "all_ability_legacy_ids_unique": true,
+    "quest_flag_catalog_complete": true,
+    "learned_skill_catalog_complete": true
+  },
+  "contract": "Data/Classic/textblock_command_ability_contracts.json"
+}

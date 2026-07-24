@@ -1,0 +1,25 @@
+Update0027 callback registration proof (wccmmud.dll)
+
+0x004031AF push 0x00402AAA ; 0x004031BB call _begin_polling
+0x004047FC push 0x00402D12 ; 0x00404808 call _begin_polling
+0x0040485C push 0x00402AAA ; 0x00404869 call _begin_polling
+0x004051CC push 0x00402AAA ; 0x004051D5 call _begin_polling
+0x00405C69 push 0x00402D12 ; 0x00405C72 call _begin_polling
+0x00406EB7 push 0x00402AAA ; 0x00406EC0 call _begin_polling
+0x0044EEFE push 0x0044ED0A ; 0x0044EF0B call _begin_polling
+0x0045E895 push 0x0045E4E4 ; 0x0045E8A2 call _begin_polling
+0x0045F7BC push 0x0045F63B ; 0x0045F7C8 call _begin_polling
+0x0046012E push 0x0045F7D3 ; 0x0046013A call _begin_polling
+0x004601D6 push 0x0045FB56 ; 0x004601E3 call _begin_polling
+0x004727F5 push 0x0047261D ; 0x00472802 call _begin_polling
+
+Selected callback boundaries
+
+0x00402AAA: active gameplay heartbeat. Reads per-session flags, increments global heartbeat counter, dispatches maintenance and session-flag handlers.
+0x00402D12: resolves active player, polls retained host operation state at player +0x7CC, and contains explicit _stop_polling terminal paths.
+0x0044ED0A: retained host record/name lookup using globals 0x004881C4/0x004881C8.
+0x0045E4E4: retained global record iterator using 0x0048BE10/0x0048BE14.
+0x0045F63B: threshold completion workflow using counters 0x0048BE28/0x0048BE2C.
+0x0045F7D3: modal workflow gated by session state 0x10.
+0x0045FB56: modal cleanup workflow gated by session state 0x13; bounded 100-entry and 20-entry cleanup loops.
+0x0047261D: secondary retained host lookup registered at 0x00472802.

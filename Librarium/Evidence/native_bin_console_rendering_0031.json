@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "evidence_id": "native_bin_console_rendering_0031",
+  "classification": "PROVEN",
+  "source": {
+    "module": "wccmmutl.exe",
+    "sha256": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+    "image_base": "0x00400000",
+    "attribute_mapper_va": "0x0040E9B5",
+    "screen_writer_va": "0x0040FABA",
+    "coordinate_mapper_va": "0x0040F9F7",
+    "attribute_widen_va": "0x0040FA57"
+  },
+  "attribute_mapper": {
+    "mode_flag_address": "0x0041703C",
+    "mode_zero": {
+      "special_case": "if (attribute & 0x70) == 0x70, return 0x70",
+      "otherwise": "return (attribute & 0x88) | 0x07"
+    },
+    "mode_nonzero": "return attribute & 0x7F",
+    "claims": [
+      "exact byte transform",
+      "mode-selected branch"
+    ],
+    "not_claimed": [
+      "human palette names",
+      "display-hardware interpretation of mode flag"
+    ]
+  },
+  "write_contract": {
+    "console_enabled_flag_address": "0x00417070",
+    "console_handle_address": "0x0041706C",
+    "byte_offset_alignment": "offset is rounded down to an even byte boundary",
+    "cell_count": "byte_count >> 1",
+    "coordinate": "cell_index = aligned_byte_offset / 2; x = cell_index % 80; y = cell_index / 80",
+    "staging": {
+      "characters": "copied in ascending cell order to 0x0041D4C2",
+      "attributes": "each 8-bit attribute is zero-extended to WORD and copied in ascending cell order to 0x0041DC92"
+    },
+    "api_order": [
+      "WriteConsoleOutputCharacterA",
+      "WriteConsoleOutputAttribute"
+    ],
+    "api_iat": [
+      "0x004314C4",
+      "0x004314C8"
+    ],
+    "failure_behavior": "native return values are not tested in the recovered writer",
+    "disabled_behavior": "when console-enabled flag is zero, writer returns without issuing either API call"
+  },
+  "constraints": {
+    "screen_width": 80,
+    "cell_stride_bytes": 2,
+    "preserves_cell_order": true,
+    "character_write_precedes_attribute_write": true,
+    "physical_atomicity_claimed": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "policy_id": "runtime.item.world_persistence.integrity_recovery",
+  "version": "0193",
+  "scope": "Reforged world item repository",
+  "rules": [
+    "Validate the new state before persistence",
+    "Rotate a primary into backup only after its data, integrity record, and structural state validate independently",
+    "Maintain a separate integrity record for the backup generation",
+    "Verify primary integrity before deserialization",
+    "Recover only from a backup whose integrity and structural state validate independently",
+    "Restore both authoritative data and its integrity record",
+    "Reject recovery without mutating either generation when both fail validation"
+  ],
+  "classic_native_status": "unknown; final native pass required"
+}

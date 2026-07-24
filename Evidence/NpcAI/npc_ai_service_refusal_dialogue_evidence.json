@@ -1,0 +1,25 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0202",
+  "boundary": "exact-npc-service-refusal-dialogue",
+  "classification": "strongly-correlated",
+  "runtime_status": "active",
+  "supporting_evidence": [
+    "The existing NPC dialogue admission boundary owns exact living same-room dialogue requests.",
+    "Merchant and trainer admission boundaries already preserve policy-owned rejection reasons without mutating service state.",
+    "Textblock identity is supplied by the owning policy and must be explicitly marked canonical before admission."
+  ],
+  "assumptions": [
+    "The merchant or trainer policy owner resolves the refusal reason and exact canonical textblock before calling this boundary."
+  ],
+  "safe_fallback": "Reject without dialogue or service-state mutation when authority, actor, service kind, refusal reason, canonical textblock identity, NPC life state, or room ownership fails.",
+  "runtime_impact": "Admits and completes exact merchant/trainer refusal dialogue through the established NPC dialogue owner.",
+  "character_save_impact": "None.",
+  "world_state_impact": "Persists the active dialogue request and compact refusal audit metadata on the NPC instance.",
+  "native_dependencies_preserved": [
+    "refusal-reason selection",
+    "refusal textblock selection",
+    "shop and trainer policy rules",
+    "dialogue cooldown and trigger cadence"
+  ]
+}

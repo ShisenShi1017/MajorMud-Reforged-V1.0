@@ -1,0 +1,27 @@
+{
+  "update": "0161",
+  "subsystem": "combat_spells",
+  "runtime": "attack_resource_equipment_transaction",
+  "semantics": {
+    "validation_before_mutation": true,
+    "atomic_rollback": true,
+    "supported_resources": [
+      "ammunition",
+      "charge",
+      "durability"
+    ],
+    "timings": [
+      "at_start",
+      "on_hit",
+      "at_completion"
+    ],
+    "breakage": "policy-controlled at zero",
+    "unknown_timing": "reject"
+  },
+  "promoted_fixture": {
+    "weapon_id": "item.1622",
+    "confidence": "strongly_correlated",
+    "safe_fallback": "reject unresolved production timing"
+  },
+  "next": "same-tick attack spell effect ordering and combat action queue"
+}

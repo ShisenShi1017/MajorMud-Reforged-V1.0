@@ -1,0 +1,63 @@
+{
+  "update": "0178",
+  "subsystem": "combat_spells",
+  "topic": "teleportation_and_movement_spells",
+  "status": "in_progress",
+  "runtime": "RuntimeCombatSpellMovementCoordinator",
+  "supported_kinds": [
+    "SelfTeleport",
+    "TargetTeleport",
+    "PartyTeleport",
+    "Recall",
+    "PortalCreate",
+    "SummonTarget",
+    "ForcedMove",
+    "Knockback",
+    "Pull",
+    "Swap"
+  ],
+  "validation": [
+    "canonical source/target/room/exit/combat references",
+    "destination availability",
+    "source and destination restrictions",
+    "combat restriction",
+    "consent",
+    "same-room",
+    "cross-world policy"
+  ],
+  "atomic_order": [
+    "validate source",
+    "validate targets",
+    "validate destination",
+    "validate room restrictions",
+    "validate combat restrictions",
+    "validate consent when required",
+    "interrupt pending actions",
+    "cleanup threat",
+    "cleanup combat",
+    "remove movement statuses",
+    "create portal when applicable",
+    "move primary",
+    "move secondary for swap",
+    "emit movement event",
+    "persist only when proven"
+  ],
+  "ownership": "Combat/Spell execution constructs and commits movement requests; Room/World owners validate destinations and perform movement; Combat owns action/threat/combat cleanup; Character/NPC persistence owners save only promoted state.",
+  "fail_closed": [
+    "unresolved destination selection",
+    "unresolved target consent",
+    "unresolved combat restrictions",
+    "unresolved cross-world behavior",
+    "unresolved portal duration",
+    "unresolved knockback distance",
+    "unresolved quest-state interaction",
+    "spell.1304 movement semantics"
+  ],
+  "bidirectional_relationships": {
+    "spell_to_targets": "source spell identifies actor and one or two movement targets",
+    "spell_to_rooms": "source and destination rooms retained",
+    "movement_to_combat": "optional combat cleanup and action interruption",
+    "movement_to_status": "root and hidden removal are explicit promoted policy",
+    "movement_to_persistence": "persistence request is optional and evidence-gated"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "update": "0158",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "physical combat instance ownership",
+    "canonical participant insertion",
+    "evidence-gated initiative and action delay policies",
+    "deterministic turn ordering",
+    "monotonic round advancement",
+    "participant terminal transitions",
+    "automatic terminal cleanup when opposition ends",
+    "safe rejection of unresolved scheduling semantics"
+  ],
+  "not_claimed_complete": [
+    "production initiative formula",
+    "attack selection and physical hit resolution",
+    "weapon speed and status modifiers",
+    "same-tick ordering with casts effects movement and death",
+    "combat persistence across disconnect restart and crash recovery"
+  ],
+  "next_pass": "Implement evidence-gated physical attack request validation, scheduled-turn consumption, hit/miss resolution inputs, and atomic damage mutation."
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "startup-shutdown",
+  "runtimeOwner": "RuntimeStartupShutdownService",
+  "phaseModel": [
+    "stopped",
+    "starting",
+    "running",
+    "quiescing",
+    "stopping",
+    "failed"
+  ],
+  "startupOrder": [
+    "configuration load",
+    "catalog/native data load",
+    "validation",
+    "world-state load",
+    "timer/event/spawn restoration",
+    "communication startup",
+    "admissions open"
+  ],
+  "shutdownOrder": [
+    "admissions close",
+    "action quiesce",
+    "save coordination",
+    "service shutdown",
+    "logs close"
+  ],
+  "ownership": {
+    "configuration": "world-rules",
+    "saves": "save-coordination",
+    "timers": "clock-scheduling",
+    "events": "events",
+    "admissions": "session ownership"
+  },
+  "safeFallback": "Fail closed on required lifecycle-step failure and keep admissions closed.",
+  "nativeDependencies": [
+    "exact Classic startup ordering",
+    "native DLL initialization and teardown",
+    "Worldgroup admission and shutdown hooks",
+    "crash recovery versus clean shutdown",
+    "pending native action disposition"
+  ]
+}

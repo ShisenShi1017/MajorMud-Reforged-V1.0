@@ -1,0 +1,60 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+{
+  "Passed": true,
+  "Checks": [
+    "search-success-discovers-for-actor",
+    "discovery-is-persisted-in-authority",
+    "discovery-is-player-specific",
+    "previous-discovery-is-rerolled",
+    "latest-search-result-replaces-prior-result",
+    "cleanup-hidden-item-recognized",
+    "look-examine-ground-loader-blocks-undiscovered-item",
+    "single-classic-hidden-search-authority-file",
+    "single-live-search-consumer-file",
+    "search-command-registered"
+  ],
+  "Failures": [],
+  "Verified": [
+    "Hidden target discovery is character-specific and never globally unhides the target.",
+    "Every SEARCH rerolls eligible room targets and replaces the character\u0027s prior transient result set.",
+    "A found cleanup-hidden item remains hidden on the ground; pickup removes hidden state and re-drop is visible.",
+    "Hidden and visible ground stacks remain separate because hidden metadata is removed only on pickup.",
+    "Look, examine, and item targeting share the discovery-aware ground-item loader.",
+    "Decoded See Hidden rank remains owned by character/NPC concealment detection and is not reused as automatic room-object discovery."
+  ],
+  "StronglyCorroborated": [
+    "classic.search.perception_vs_concealment.strongly_correlated.0167"
+  ],
+  "DecodedButNotMapped": [
+    "Hidden currency requires cleanup-state ownership from Phase D6 before a denomination balance can be player-specifically discovered.",
+    "Decoded hidden room objects without an authoritative generated instance identity remain quarantined.",
+    "Exact hidden-NPC and hidden-exit concealment values remain metadata-driven when supplied."
+  ],
+  "TrueUnknown": [
+    "Exact native primary-stat weighting for Classic Search where generated concealment difficulty is absent."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "code_update": "0143",
+  "subsystem": "character",
+  "pass": "alignment_evil_points",
+  "status": "partial_semantic_exhaustion",
+  "completed": [
+    "Evil Points ownership and persistence",
+    "neutral zero-EP creation state",
+    "target-reputation attack penalties",
+    "daily cleanup calculation and negative-EP exception",
+    "300-EP attack initiation lockout",
+    "save-version-3 alignment state compatibility"
+  ],
+  "remaining": [
+    "exact lawful-target attack penalty",
+    "Evil-Point reputation classification thresholds",
+    "SP ownership/formula",
+    "AC, attack, defense, initiative, and speed",
+    "resistances and saving throws",
+    "equipment-derived statistic evaluation order"
+  ],
+  "native_pass_dependencies": ["lawful-target penalty and reputation threshold routines"]
+}

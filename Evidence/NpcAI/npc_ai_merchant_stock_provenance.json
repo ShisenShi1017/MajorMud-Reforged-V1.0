@@ -1,0 +1,14 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "pass": "CodeUpdate0187",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeGameplayCompletionState.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcMerchantStockOwnership.cs"
+  ],
+  "confidence": 1.0,
+  "assumptions": ["the caller supplies the exact shop definition and explicit stock policy"],
+  "safe_fallback": "reject without mutation",
+  "world_state_impact": "persistent shop stock only",
+  "character_save_impact": "none"
+}

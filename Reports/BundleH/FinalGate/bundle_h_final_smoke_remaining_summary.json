@@ -1,0 +1,27 @@
+[
+    {
+        "command":  "--smoke-items",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_items.log"
+    },
+    {
+        "command":  "--smoke-law-policy",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_law_policy.log"
+    },
+    {
+        "command":  "--smoke-live-combat-admission",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_live_combat_admission.log"
+    },
+    {
+        "command":  "--smoke-live-combat-round",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_live_combat_round.log"
+    },
+    {
+        "command":  "--smoke-live-gameplay",
+        "exitCode":  16,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_live_gameplay.log"
+    }
+]

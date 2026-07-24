@@ -1,0 +1,29 @@
+{
+  "code_update": "0180",
+  "artifact": "item_resurrection_equipment_conflict_displacement",
+  "classification": "reforged_compatibility_infrastructure",
+  "status": "active_evidence_gated",
+  "runtime_behavior": [
+    "The default resurrection equipment path rejects occupied-slot and handedness conflicts without displacement.",
+    "An explicit displaceEquipmentConflicts decision may unequip conflicting equipment before restoring a prior corpse slot.",
+    "Conflict discovery is deterministic by equipment slot and runtime instance ID.",
+    "Displacement uses the ordinary Unequip transition and therefore honors no_remove and cursed_no_remove restrictions.",
+    "Any failed displacement or equip operation rolls back corpse restoration, displacement, ownership, gold, and corpse-finalization changes.",
+    "The restoration result reports every displaced runtime item instance ID."
+  ],
+  "confidence": "proven_reforged_infrastructure",
+  "assumptions": [
+    "The caller has separately established that displacement is permitted for the resurrection operation.",
+    "Classic MajorMUD automatic displacement behavior remains unknown."
+  ],
+  "safe_fallback": "Use the existing restoration overload without displacement; occupied or hand-conflicting equipment causes atomic failure.",
+  "runtime_impact": "Adds an opt-in conflict-resolution transition to resurrection equipment restoration.",
+  "character_save_impact": "Displaced equipment remains owned by and carried by the character; restored equipment occupies its prior projected slot.",
+  "world_state_impact": "Corpse state changes only if the entire restoration succeeds.",
+  "native_dependencies": [
+    "Classic resurrection slot-conflict policy",
+    "Classic automatic displacement ordering",
+    "Classic cursed/no-remove exception behavior",
+    "Exact Classic messages"
+  ]
+}

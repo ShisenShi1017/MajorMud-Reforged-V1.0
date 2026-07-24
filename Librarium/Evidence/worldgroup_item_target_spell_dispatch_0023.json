@@ -1,0 +1,65 @@
+{
+  "update": "0023",
+  "confidence": "PROVEN",
+  "module": "wccmmud.dll",
+  "entry": "0x00447110",
+  "end": "0x00449232",
+  "sizeBytes": 8482,
+  "callingConvention": "cdecl",
+  "arguments": [
+    "spellOrPowerDefinition",
+    "casterSessionIndex",
+    "inventoryOrItemHandle",
+    "invocationMode"
+  ],
+  "entryResolution": {
+    "casterResolver": "0x004320D9(casterSessionIndex)",
+    "itemResolver": "0x0043248A(inventoryOrItemHandle)",
+    "nullPolicy": "null definition or unresolved caster returns 0; missing item/instance is rejected before execution"
+  },
+  "definitionAndPlayerFields": {
+    "definitionTypeOffset": "0xCC",
+    "allowedTypeByMode": "mode 0 accepts types 6 or 8; nonzero mode accepts types 6 or 7",
+    "resourceCostOffset": "0xBC",
+    "secondaryRequirementOffset": "0xF0",
+    "effectValueOffset": "0xCE",
+    "casterResourceOffset": "0xBA",
+    "casterSecondaryResourceOffset": "0x602",
+    "casterClassReferenceOffset": "0x92",
+    "casterRoomCoordinates": [
+      "0xC4",
+      "0xC8"
+    ],
+    "casterFearOrStateOffset": "0x7C8"
+  },
+  "targetValidation": [
+    "resolved item/instance record must belong to the caster current room coordinates",
+    "caster level at +0x94 must meet definition requirement at +0xBE",
+    "current room record is resolved before effect execution",
+    "room/configuration restrictions and item-definition compatibility helper 0x00429D40 can reject execution"
+  ],
+  "effectExecution": {
+    "effectSlotBound": 10,
+    "outerAttemptBound": 20,
+    "effectProcessing": "effect-specific branches converge on shared completion state and can mark success, failure, chained dispatch, or stop conditions",
+    "recursiveDispatch": "a chained spell/power can be resolved through 0x00476F7D and recursively dispatched back to 0x00447110, then released through 0x00476F22"
+  },
+  "resourceAndOutputOrdering": [
+    "on finalized execution, definition cost +0xBC is subtracted from caster resource +0xBA",
+    "half of signed definition requirement +0xF0 is subtracted from caster secondary resource +0x602 where applicable",
+    "caster and room output are prepared before flush through 0x0046B170",
+    "room-scoped output uses 0x0046B010",
+    "final host/action notification can run through 0x0044C85F"
+  ],
+  "returnContract": "returns a byte-like handled/success flag; hard validation failures return 0",
+  "roomAreaBoundary": {
+    "entry": "0x00449232",
+    "status": "entry and preflight independently bounded for the next pass",
+    "provenDefinitionTypes": [
+      6,
+      7
+    ],
+    "notes": "room/area dispatcher begins by resolving the caster, rejecting nulls and invalid definition types, enforcing caster state gates, and resolving class/archetype context"
+  },
+  "semanticPolicy": "Field and effect names are retained as structural contracts unless separately proven by existing MajorMUD evidence."
+}

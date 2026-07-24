@@ -1,0 +1,2737 @@
+{
+  "schemaVersion": 1,
+  "codeUpdate": "0162",
+  "worldId": "classic",
+  "bindings": [
+    {
+      "providerId": "shop.65",
+      "legacyShopNumber": 65,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:65",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:65",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:65",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.135",
+      "legacyShopNumber": 135,
+      "serviceType": 8,
+      "rawMarkupPercent": 9999,
+      "multiplierBasisPoints": 999900,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:135",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:135",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:135",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.126",
+      "legacyShopNumber": 126,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:126",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:126",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:126",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.153",
+      "legacyShopNumber": 153,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:153",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:153",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:153",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.154",
+      "legacyShopNumber": 154,
+      "serviceType": 3,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:154",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:154",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:154",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.156",
+      "legacyShopNumber": 156,
+      "serviceType": 7,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:156",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:156",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:156",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.152",
+      "legacyShopNumber": 152,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:152",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:152",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:152",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.157",
+      "legacyShopNumber": 157,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:157",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:157",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:157",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.155",
+      "legacyShopNumber": 155,
+      "serviceType": 1,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:155",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:155",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:155",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.151",
+      "legacyShopNumber": 151,
+      "serviceType": 2,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:151",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:151",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:151",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.158",
+      "legacyShopNumber": 158,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:158",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:158",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:158",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.150",
+      "legacyShopNumber": 150,
+      "serviceType": 1,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:150",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:150",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:150",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.43",
+      "legacyShopNumber": 43,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:43",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:43",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:43",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.6",
+      "legacyShopNumber": 6,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:6",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:6",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:6",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.10",
+      "legacyShopNumber": 10,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:10",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:10",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:10",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.8",
+      "legacyShopNumber": 8,
+      "serviceType": 7,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:8",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:8",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:8",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.37",
+      "legacyShopNumber": 37,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:37",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:37",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:37",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.27",
+      "legacyShopNumber": 27,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:27",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:27",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:27",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.142",
+      "legacyShopNumber": 142,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:142",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:142",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:142",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.140",
+      "legacyShopNumber": 140,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:140",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:140",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:140",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.18",
+      "legacyShopNumber": 18,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:18",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:18",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:18",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.86",
+      "legacyShopNumber": 86,
+      "serviceType": 0,
+      "rawMarkupPercent": 400,
+      "multiplierBasisPoints": 40000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:86",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:86",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:86",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.30",
+      "legacyShopNumber": 30,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:30",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:30",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:30",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.35",
+      "legacyShopNumber": 35,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:35",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:35",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:35",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.13",
+      "legacyShopNumber": 13,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:13",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:13",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:13",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.134",
+      "legacyShopNumber": 134,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:134",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:134",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:134",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.42",
+      "legacyShopNumber": 42,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:42",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:42",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:42",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.125",
+      "legacyShopNumber": 125,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:125",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:125",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:125",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.69",
+      "legacyShopNumber": 69,
+      "serviceType": 10,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:69",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:69",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:69",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.36",
+      "legacyShopNumber": 36,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:36",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:36",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:36",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.23",
+      "legacyShopNumber": 23,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:23",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:23",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:23",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.149",
+      "legacyShopNumber": 149,
+      "serviceType": 0,
+      "rawMarkupPercent": 450,
+      "multiplierBasisPoints": 45000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:149",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:149",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:149",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.99",
+      "legacyShopNumber": 99,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:99",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:99",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:99",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.100",
+      "legacyShopNumber": 100,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:100",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:100",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:100",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.102",
+      "legacyShopNumber": 102,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:102",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:102",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:102",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.98",
+      "legacyShopNumber": 98,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:98",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:98",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:98",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.105",
+      "legacyShopNumber": 105,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:105",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:105",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:105",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.104",
+      "legacyShopNumber": 104,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:104",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:104",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:104",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.103",
+      "legacyShopNumber": 103,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:103",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:103",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:103",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.163",
+      "legacyShopNumber": 163,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:163",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:163",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:163",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.106",
+      "legacyShopNumber": 106,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:106",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:106",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:106",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.107",
+      "legacyShopNumber": 107,
+      "serviceType": 8,
+      "rawMarkupPercent": 4000,
+      "multiplierBasisPoints": 400000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:107",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:107",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:107",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.101",
+      "legacyShopNumber": 101,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:101",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:101",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:101",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.87",
+      "legacyShopNumber": 87,
+      "serviceType": 0,
+      "rawMarkupPercent": 150,
+      "multiplierBasisPoints": 15000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:87",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:87",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:87",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.90",
+      "legacyShopNumber": 90,
+      "serviceType": 8,
+      "rawMarkupPercent": 9999,
+      "multiplierBasisPoints": 999900,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:90",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:90",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:90",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.122",
+      "legacyShopNumber": 122,
+      "serviceType": 0,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:122",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:122",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:122",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.110",
+      "legacyShopNumber": 110,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:110",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:110",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:110",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.123",
+      "legacyShopNumber": 123,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:123",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:123",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:123",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.128",
+      "legacyShopNumber": 128,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:128",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:128",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:128",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.3",
+      "legacyShopNumber": 3,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:3",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:3",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:3",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.95",
+      "legacyShopNumber": 95,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:95",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:95",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:95",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.96",
+      "legacyShopNumber": 96,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:96",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:96",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:96",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.97",
+      "legacyShopNumber": 97,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:97",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:97",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:97",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.94",
+      "legacyShopNumber": 94,
+      "serviceType": 0,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:94",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:94",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:94",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.21",
+      "legacyShopNumber": 21,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:21",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:21",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:21",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.161",
+      "legacyShopNumber": 161,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:161",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:161",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:161",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.64",
+      "legacyShopNumber": 64,
+      "serviceType": 8,
+      "rawMarkupPercent": 2500,
+      "multiplierBasisPoints": 250000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:64",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:64",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:64",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.68",
+      "legacyShopNumber": 68,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:68",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:68",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:68",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.32",
+      "legacyShopNumber": 32,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:32",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:32",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:32",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.113",
+      "legacyShopNumber": 113,
+      "serviceType": 8,
+      "rawMarkupPercent": 9999,
+      "multiplierBasisPoints": 999900,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:113",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:113",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:113",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.7",
+      "legacyShopNumber": 7,
+      "serviceType": 9,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:7",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:7",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:7",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.139",
+      "legacyShopNumber": 139,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:139",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:139",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:139",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.133",
+      "legacyShopNumber": 133,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:133",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:133",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:133",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.76",
+      "legacyShopNumber": 76,
+      "serviceType": 1,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:76",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:76",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:76",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.33",
+      "legacyShopNumber": 33,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:33",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:33",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:33",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.167",
+      "legacyShopNumber": 167,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:167",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:167",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:167",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.168",
+      "legacyShopNumber": 168,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:168",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:168",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:168",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.172",
+      "legacyShopNumber": 172,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:172",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:172",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:172",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.174",
+      "legacyShopNumber": 174,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:174",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:174",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:174",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.170",
+      "legacyShopNumber": 170,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:170",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:170",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:170",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.173",
+      "legacyShopNumber": 173,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:173",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:173",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:173",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.169",
+      "legacyShopNumber": 169,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:169",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:169",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:169",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.72",
+      "legacyShopNumber": 72,
+      "serviceType": 10,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:72",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:72",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:72",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.73",
+      "legacyShopNumber": 73,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:73",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:73",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:73",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.70",
+      "legacyShopNumber": 70,
+      "serviceType": 10,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:70",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:70",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:70",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.71",
+      "legacyShopNumber": 71,
+      "serviceType": 10,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:71",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:71",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:71",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.171",
+      "legacyShopNumber": 171,
+      "serviceType": 0,
+      "rawMarkupPercent": 275,
+      "multiplierBasisPoints": 27500,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:171",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:171",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:171",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.92",
+      "legacyShopNumber": 92,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:92",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:92",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:92",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.127",
+      "legacyShopNumber": 127,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:127",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:127",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:127",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.16",
+      "legacyShopNumber": 16,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:16",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:16",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:16",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.12",
+      "legacyShopNumber": 12,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:12",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:12",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:12",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.108",
+      "legacyShopNumber": 108,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:108",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:108",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:108",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.2",
+      "legacyShopNumber": 2,
+      "serviceType": 6,
+      "rawMarkupPercent": 250,
+      "multiplierBasisPoints": 25000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:2",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:2",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:2",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.115",
+      "legacyShopNumber": 115,
+      "serviceType": 2,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:115",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:115",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:115",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.114",
+      "legacyShopNumber": 114,
+      "serviceType": 2,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:114",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:114",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:114",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.116",
+      "legacyShopNumber": 116,
+      "serviceType": 7,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:116",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:116",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:116",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.121",
+      "legacyShopNumber": 121,
+      "serviceType": 0,
+      "rawMarkupPercent": 150,
+      "multiplierBasisPoints": 15000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:121",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:121",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:121",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.119",
+      "legacyShopNumber": 119,
+      "serviceType": 2,
+      "rawMarkupPercent": 400,
+      "multiplierBasisPoints": 40000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:119",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:119",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:119",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.120",
+      "legacyShopNumber": 120,
+      "serviceType": 2,
+      "rawMarkupPercent": 400,
+      "multiplierBasisPoints": 40000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:120",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:120",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:120",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.118",
+      "legacyShopNumber": 118,
+      "serviceType": 1,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:118",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:118",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:118",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.117",
+      "legacyShopNumber": 117,
+      "serviceType": 1,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:117",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:117",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:117",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.9",
+      "legacyShopNumber": 9,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:9",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:9",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:9",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.28",
+      "legacyShopNumber": 28,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:28",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:28",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:28",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.20",
+      "legacyShopNumber": 20,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:20",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:20",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:20",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.31",
+      "legacyShopNumber": 31,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:31",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:31",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:31",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.112",
+      "legacyShopNumber": 112,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:112",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:112",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:112",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.111",
+      "legacyShopNumber": 111,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:111",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:111",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:111",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.46",
+      "legacyShopNumber": 46,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:46",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:46",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:46",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.47",
+      "legacyShopNumber": 47,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:47",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:47",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:47",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.48",
+      "legacyShopNumber": 48,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:48",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:48",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:48",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.45",
+      "legacyShopNumber": 45,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:45",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:45",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:45",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.66",
+      "legacyShopNumber": 66,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:66",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:66",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:66",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.26",
+      "legacyShopNumber": 26,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:26",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:26",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:26",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.159",
+      "legacyShopNumber": 159,
+      "serviceType": 0,
+      "rawMarkupPercent": 1000,
+      "multiplierBasisPoints": 100000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:159",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:159",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:159",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.93",
+      "legacyShopNumber": 93,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:93",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:93",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:93",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.15",
+      "legacyShopNumber": 15,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:15",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:15",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:15",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.29",
+      "legacyShopNumber": 29,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:29",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:29",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:29",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.24",
+      "legacyShopNumber": 24,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:24",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:24",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:24",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.124",
+      "legacyShopNumber": 124,
+      "serviceType": 12,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:124",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:124",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:124",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.179",
+      "legacyShopNumber": 179,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:179",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:179",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:179",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.180",
+      "legacyShopNumber": 180,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:180",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:180",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:180",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.146",
+      "legacyShopNumber": 146,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:146",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:146",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:146",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.147",
+      "legacyShopNumber": 147,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:147",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:147",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:147",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.148",
+      "legacyShopNumber": 148,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:148",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:148",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:148",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.175",
+      "legacyShopNumber": 175,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:175",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:175",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:175",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.176",
+      "legacyShopNumber": 176,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:176",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:176",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:176",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.177",
+      "legacyShopNumber": 177,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:177",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:177",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:177",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.178",
+      "legacyShopNumber": 178,
+      "serviceType": 0,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:178",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:178",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:178",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.88",
+      "legacyShopNumber": 88,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:88",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:88",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:88",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.89",
+      "legacyShopNumber": 89,
+      "serviceType": 0,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:89",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:89",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:89",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.132",
+      "legacyShopNumber": 132,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:132",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:132",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:132",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.136",
+      "legacyShopNumber": 136,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:136",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:136",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:136",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.78",
+      "legacyShopNumber": 78,
+      "serviceType": 2,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:78",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:78",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:78",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.83",
+      "legacyShopNumber": 83,
+      "serviceType": 7,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:83",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:83",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:83",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.79",
+      "legacyShopNumber": 79,
+      "serviceType": 1,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:79",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:79",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:79",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.80",
+      "legacyShopNumber": 80,
+      "serviceType": 4,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:80",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:80",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:80",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.81",
+      "legacyShopNumber": 81,
+      "serviceType": 1,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:81",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:81",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:81",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.82",
+      "legacyShopNumber": 82,
+      "serviceType": 0,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:82",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:82",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:82",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.84",
+      "legacyShopNumber": 84,
+      "serviceType": 8,
+      "rawMarkupPercent": 6000,
+      "multiplierBasisPoints": 600000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:84",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:84",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:84",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.77",
+      "legacyShopNumber": 77,
+      "serviceType": 1,
+      "rawMarkupPercent": 200,
+      "multiplierBasisPoints": 20000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:77",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:77",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:77",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.40",
+      "legacyShopNumber": 40,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:40",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:40",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:40",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.130",
+      "legacyShopNumber": 130,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:130",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:130",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:130",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.41",
+      "legacyShopNumber": 41,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:41",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:41",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:41",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.143",
+      "legacyShopNumber": 143,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:143",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:143",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:143",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.129",
+      "legacyShopNumber": 129,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:129",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:129",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:129",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.166",
+      "legacyShopNumber": 166,
+      "serviceType": 8,
+      "rawMarkupPercent": 1200,
+      "multiplierBasisPoints": 120000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:166",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:166",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:166",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.165",
+      "legacyShopNumber": 165,
+      "serviceType": 8,
+      "rawMarkupPercent": 1200,
+      "multiplierBasisPoints": 120000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:165",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:165",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:165",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.162",
+      "legacyShopNumber": 162,
+      "serviceType": 8,
+      "rawMarkupPercent": 9000,
+      "multiplierBasisPoints": 900000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:162",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:162",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:162",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.91",
+      "legacyShopNumber": 91,
+      "serviceType": 0,
+      "rawMarkupPercent": 5000,
+      "multiplierBasisPoints": 500000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:91",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:91",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:91",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.67",
+      "legacyShopNumber": 67,
+      "serviceType": 10,
+      "rawMarkupPercent": 175,
+      "multiplierBasisPoints": 17500,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:67",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:67",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:67",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.181",
+      "legacyShopNumber": 181,
+      "serviceType": 8,
+      "rawMarkupPercent": 32760,
+      "multiplierBasisPoints": 3276000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:181",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:181",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:181",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.59",
+      "legacyShopNumber": 59,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:59",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:59",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:59",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.54",
+      "legacyShopNumber": 54,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:54",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:54",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:54",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.63",
+      "legacyShopNumber": 63,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:63",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:63",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:63",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.60",
+      "legacyShopNumber": 60,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:60",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:60",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:60",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.62",
+      "legacyShopNumber": 62,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:62",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:62",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:62",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.56",
+      "legacyShopNumber": 56,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:56",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:56",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:56",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.51",
+      "legacyShopNumber": 51,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:51",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:51",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:51",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.55",
+      "legacyShopNumber": 55,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:55",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:55",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:55",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.53",
+      "legacyShopNumber": 53,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:53",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:53",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:53",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.52",
+      "legacyShopNumber": 52,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:52",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:52",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:52",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.57",
+      "legacyShopNumber": 57,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:57",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:57",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:57",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.58",
+      "legacyShopNumber": 58,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:58",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:58",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:58",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.61",
+      "legacyShopNumber": 61,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:61",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:61",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:61",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.49",
+      "legacyShopNumber": 49,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:49",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:49",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:49",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.50",
+      "legacyShopNumber": 50,
+      "serviceType": 8,
+      "rawMarkupPercent": 500,
+      "multiplierBasisPoints": 50000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:50",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:50",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:50",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.5",
+      "legacyShopNumber": 5,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:5",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:5",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:5",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.131",
+      "legacyShopNumber": 131,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:131",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:131",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:131",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.85",
+      "legacyShopNumber": 85,
+      "serviceType": 2,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:85",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:85",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:85",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.39",
+      "legacyShopNumber": 39,
+      "serviceType": 8,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:39",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:39",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:39",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.164",
+      "legacyShopNumber": 164,
+      "serviceType": 6,
+      "rawMarkupPercent": 250,
+      "multiplierBasisPoints": 25000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:164",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:164",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:164",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.4",
+      "legacyShopNumber": 4,
+      "serviceType": 5,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Merchandise",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:4",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:4",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:4",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.137",
+      "legacyShopNumber": 137,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:137",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:137",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:137",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.144",
+      "legacyShopNumber": 144,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:144",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:144",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:144",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.145",
+      "legacyShopNumber": 145,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:145",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:145",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:145",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.25",
+      "legacyShopNumber": 25,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:25",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:25",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:25",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.74",
+      "legacyShopNumber": 74,
+      "serviceType": 8,
+      "rawMarkupPercent": 6000,
+      "multiplierBasisPoints": 600000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:74",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:74",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:74",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.182",
+      "legacyShopNumber": 182,
+      "serviceType": 10,
+      "rawMarkupPercent": 1900,
+      "multiplierBasisPoints": 190000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:182",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:182",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:182",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.38",
+      "legacyShopNumber": 38,
+      "serviceType": 8,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:38",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:38",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:38",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.109",
+      "legacyShopNumber": 109,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:109",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:109",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:109",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.160",
+      "legacyShopNumber": 160,
+      "serviceType": 8,
+      "rawMarkupPercent": 12000,
+      "multiplierBasisPoints": 1200000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:160",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:160",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:160",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.44",
+      "legacyShopNumber": 44,
+      "serviceType": 10,
+      "rawMarkupPercent": 150,
+      "multiplierBasisPoints": 15000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:44",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:44",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:44",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.75",
+      "legacyShopNumber": 75,
+      "serviceType": 10,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "SpellService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:75",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:75",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:75",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.141",
+      "legacyShopNumber": 141,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:141",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:141",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:141",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.22",
+      "legacyShopNumber": 22,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:22",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:22",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:22",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.14",
+      "legacyShopNumber": 14,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:14",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:14",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:14",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.19",
+      "legacyShopNumber": 19,
+      "serviceType": 8,
+      "rawMarkupPercent": 300,
+      "multiplierBasisPoints": 30000,
+      "domain": "Trainer",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:19",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:19",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:19",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    },
+    {
+      "providerId": "shop.138",
+      "legacyShopNumber": 138,
+      "serviceType": 11,
+      "rawMarkupPercent": 100,
+      "multiplierBasisPoints": 10000,
+      "domain": "OtherService",
+      "confidence": "StronglyCorrelatedMultiplierSemantics",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv:138",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv:138",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json:138",
+        "markup-neutral-100-cross-record-pattern"
+      ]
+    }
+  ],
+  "neutralRule": "raw value 100 equals a 1.00x multiplier",
+  "arithmeticRule": "multiplierBasisPoints = checked(rawMarkupPercent * 100); apply once using deterministic integer rounding",
+  "orderingState": "UNKNOWN_FAIL_CLOSED for relative position against level/rank, discounts, surcharges, minimums and final rounding",
+  "statistics": {
+    "bindingCount": 178,
+    "neutralCount": 94,
+    "serviceTypeCounts": {
+      "10": 36,
+      "8": 44,
+      "11": 21,
+      "0": 51,
+      "3": 1,
+      "7": 4,
+      "1": 8,
+      "2": 7,
+      "9": 1,
+      "6": 2,
+      "12": 1,
+      "4": 1,
+      "5": 1
+    },
+    "distinctRawValues": [
+      100,
+      150,
+      175,
+      200,
+      250,
+      275,
+      300,
+      400,
+      450,
+      500,
+      1000,
+      1200,
+      1900,
+      2500,
+      4000,
+      5000,
+      6000,
+      9000,
+      9999,
+      12000,
+      32760
+    ]
+  },
+  "runtimeGraph": {
+    "source": "WCCSHOPS.markup",
+    "decoder": "RuntimeEconomyNativeMarkup.ToMultiplierBasisPoints",
+    "consumers": [
+      "RuntimeEconomyCommerce",
+      "RuntimeEconomyServiceCostTrace"
+    ],
+    "orderingDependency": "native.service-cost-order"
+  },
+  "saveImpact": "none; markup is immutable provider definition data",
+  "worldImpact": "changes deterministic quotes only when a verified formula selects the markup stage",
+  "nativeDependencyReport": [
+    "relative modifier order remains unresolved",
+    "native minimum-price and rounding placement remain unresolved"
+  ]
+}

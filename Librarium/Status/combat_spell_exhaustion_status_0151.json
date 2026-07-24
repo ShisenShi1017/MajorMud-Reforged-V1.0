@@ -1,0 +1,24 @@
+{
+  "update": "0151",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "canonical weapon and spell definition binding model",
+    "canonical item./spell. ID enforcement",
+    "profile-to-binding range and damage-type consistency checks",
+    "unbound and mismatched definitions fail closed",
+    "atomic mutation executor with snapshot rollback",
+    "weapon item.1622 promoted damage-range binding",
+    "spell spell.1304 opaque-enum-preserving binding",
+    "deterministic commit and rollback smoke vectors"
+  ],
+  "not_claimed_complete": [
+    "native hit and critical formulas",
+    "native armor and resistance formulas",
+    "spell attack_type and resist_type enum semantics",
+    "resource consumption timing",
+    "target-mode execution",
+    "status lifecycle and persistence"
+  ],
+  "next_pass": "Implement evidence-gated spell resource reservation/commit/refund lifecycle and interruption-safe rollback without assigning unknown native consumption timing globally."
+}

@@ -39,6 +39,21 @@ public sealed class ServerRuntimeHost
             {
                 var startRoom = world.ResolveGeneratedCharacterStartRoom() ?? world.ResolveDiagnosticRoom();
                 var diagnostics = world.DataCatalog.Diagnostics.ToList();
+                diagnostics.AddRange(world.CommandCatalog.Diagnostics);
+                if (world.CommandCatalog.QuarantinedGeneratedCommandCount > 0)
+                {
+                    diagnostics.Add($"{world.CommandCatalog.QuarantinedGeneratedCommandCount} generated command records remain evidence-only or lack an executable dispatch owner.");
+                }
+                diagnostics.AddRange(world.StatusEffectCatalog.Diagnostics.Select(x => $"status-effect:{x.Code}:{x.Message}"));
+                if (world.StatusEffectCatalog.QuarantinedCount > 0)
+                {
+                    diagnostics.Add($"{world.StatusEffectCatalog.QuarantinedCount} generated status-effect records remain relationship-only pending native effect semantics.");
+                }
+                diagnostics.AddRange(world.LootRuleCatalog.Diagnostics.Select(x => $"loot-rule:{x.Code}:{x.Message}"));
+                if (world.LootRuleCatalog.QuarantinedCount > 0)
+                {
+                    diagnostics.Add($"{world.LootRuleCatalog.QuarantinedCount} generated loot-rule records remain catalog-only pending executable native drop semantics.");
+                }
                 if (startRoom is null)
                 {
                     diagnostics.Add("No explicit generated character-start room is available and no diagnostic room is configured.");
@@ -177,6 +192,11 @@ public sealed class ServerRuntimeHost
         _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), token => _gameplay.TickLivingWorldsAsync(token));
         _scheduler.Register("combat-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.CombatTickMilliseconds)), token => _gameplay.TickLiveCombatsAsync(token));
         _scheduler.Register("session-heartbeat", TimeSpan.FromSeconds(30), _ => Task.CompletedTask);
+        _scheduler.Register("character-autosave", TimeSpan.FromMinutes(5), _ =>
+        {
+            _characters.AutosaveSessions(_sessions.ActiveSessions, DateTimeOffset.UtcNow, TimeSpan.FromMinutes(5));
+            return Task.CompletedTask;
+        });
     }
 
     public async Task RunLocalConsoleAsync(CancellationToken cancellationToken)

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "rankings-statistics",
+  "runtimeOwner": "RuntimeRankingsStatisticsService",
+  "supportedMetrics": [
+    "level",
+    "wealth",
+    "kills",
+    "quests",
+    "PvP kills",
+    "playtime minutes",
+    "deaths",
+    "completion count"
+  ],
+  "operations": [
+    "owner-authorized set",
+    "checked increment",
+    "subject removal",
+    "permission-filtered query",
+    "administrator reset",
+    "snapshot save and restore"
+  ],
+  "visibility": [
+    "public",
+    "participants only",
+    "administrator only"
+  ],
+  "resetPolicies": [
+    "never",
+    "daily",
+    "weekly",
+    "monthly",
+    "manual"
+  ],
+  "ownership": {
+    "metricTruth": "Character, Economy, Combat, Quest, PvP, and other source subsystems",
+    "rankingProjection": "RuntimeRankingsStatisticsService",
+    "persistence": "RuntimeSaveCoordinationService"
+  },
+  "ordering": [
+    "metric direction",
+    "stable subject identifier",
+    "competition ranking with deterministic ties"
+  ],
+  "safeFallback": "Reject unknown rankings, unauthorized metric writers, hidden subjects, invalid limits, overflow, and unproven Classic features.",
+  "nativeDependencies": [
+    "whether Classic exposes rankings or scoreboards",
+    "exact ranking metric families",
+    "update timing and tie-breaking",
+    "privacy and hidden-character behavior",
+    "reset schedules",
+    "administrator exclusion",
+    "native persistence and messages"
+  ]
+}

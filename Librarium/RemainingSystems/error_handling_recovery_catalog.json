@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "updatedByPass": "RemainingSystems-0034-ErrorRecovery",
+  "subsystem": "error-handling-recovery",
+  "runtimeOwner": "RuntimeErrorRecoveryService",
+  "failureKinds": [
+    "invalid-record",
+    "missing-reference",
+    "corrupt-save",
+    "duplicate-runtime-id",
+    "timer-overflow",
+    "arithmetic-overflow",
+    "persistence-failure",
+    "partial-world-load",
+    "script-failure",
+    "event-failure",
+    "reset-failure",
+    "unknown"
+  ],
+  "recoveryActions": [
+    "reject",
+    "skip-record",
+    "use-validated-default",
+    "rollback",
+    "disconnect-character",
+    "disable-subsystem",
+    "stop-world-load",
+    "log-and-continue"
+  ],
+  "policies": [
+    "world-load-critical failures stop admission/load",
+    "duplicate runtime IDs stop world load",
+    "rollback only when explicitly available",
+    "validated defaults only when declared",
+    "unknown failures fail closed",
+    "all decisions require audit"
+  ],
+  "ownership": {
+    "decision": "RuntimeErrorRecoveryService",
+    "rollbackExecution": "owning subsystem or SaveCoordination",
+    "logging": "RuntimeLoggingDiagnosticsService",
+    "payload": "owning subsystem"
+  },
+  "nativeDependencies": [
+    "exact Classic failure behavior",
+    "exact native messages",
+    "save corruption recovery",
+    "partial-load tolerance",
+    "script/event/reset recovery",
+    "native subsystem disable behavior"
+  ]
+}

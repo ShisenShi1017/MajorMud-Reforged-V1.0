@@ -1,0 +1,16 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime.item.equipment-transfer-restrictions.v1",
+  "update": "CodeUpdate0167",
+  "rules": {
+    "equip_source": "character-carried and unequipped",
+    "drop_source": "character-carried and unequipped",
+    "give_source": "character-carried and unequipped",
+    "portable_container_source": "character-carried and unequipped",
+    "broken_equip": "fail_closed",
+    "restriction_activation": "explicit boolean instance metadata only",
+    "supported_restrictions": ["no_drop", "no_give", "no_container", "no_remove", "cursed_no_remove"],
+    "mutation": "atomic_with_rollback"
+  },
+  "classic_status": "compatibility infrastructure pending native flag mapping"
+}

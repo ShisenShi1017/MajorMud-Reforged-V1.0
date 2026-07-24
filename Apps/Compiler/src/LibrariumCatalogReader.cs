@@ -8,6 +8,7 @@ public sealed class LibrariumCatalogReader
     private static readonly string[] PreferredRecordNames =
     [
         "*_records_*.json",
+        "*_records.json",
         "*_catalog_*.json",
         "catalog.json"
     ];
@@ -25,8 +26,13 @@ public sealed class LibrariumCatalogReader
         foreach (var familyDirectory in Directory.GetDirectories(objectsRoot).OrderBy(Path.GetFileName))
         {
             var familyName = Path.GetFileName(familyDirectory);
-            var selected = SelectSourceFile(familyDirectory, familyName);
-            if (selected is null)
+            if (familyName.Equals("room_descriptions", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            var selectedFiles = SelectSourceFiles(familyDirectory, familyName);
+            if (selectedFiles.Count == 0)
             {
                 diagnostics.Add(new(DiagnosticSeverity.Warning, "LIB002", $"No catalog file found for family '{familyName}'.", familyDirectory));
                 continue;
@@ -34,21 +40,153 @@ public sealed class LibrariumCatalogReader
 
             try
             {
-                var json = JsonNode.Parse(File.ReadAllText(selected));
-                var records = ExtractRecords(json).ToList();
+                var records = new List<JsonObject>();
+                var recordsById = new Dictionary<string, JsonObject>(StringComparer.OrdinalIgnoreCase);
+                foreach (var selected in selectedFiles)
+                {
+                    foreach (var json in ReadJsonCatalogParts(selected))
+                    {
+                        MergeRecords(records, recordsById, ExtractRecords(json));
+                    }
+                }
+
                 if (familyName.Equals("quests", StringComparison.OrdinalIgnoreCase))
                 {
                     AppendDecodedQuestFlows(librariumRoot, records, diagnostics);
                 }
-                families.Add(new LibrariumFamily(familyName, selected, records));
+                if (familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase))
+                {
+                    AppendImportedClassicRoomAnchors(librariumRoot, records, recordsById, diagnostics);
+                }
+                families.Add(new LibrariumFamily(familyName, selectedFiles[0], records, selectedFiles));
             }
             catch (Exception ex)
             {
-                diagnostics.Add(new(DiagnosticSeverity.Error, "LIB003", $"Could not read family '{familyName}': {ex.Message}", selected));
+                diagnostics.Add(new(DiagnosticSeverity.Error, "LIB003", $"Could not read family '{familyName}': {ex.Message}", selectedFiles[0]));
             }
         }
 
         return families;
+    }
+
+    private static void MergeRecords(
+        List<JsonObject> records,
+        Dictionary<string, JsonObject> recordsById,
+        IEnumerable<JsonObject> incoming)
+    {
+        foreach (var record in incoming)
+        {
+            var id = record["id"]?.GetValue<string>() ??
+                     record["mechanic_id"]?.GetValue<string>() ??
+                     record["legacy_id"]?.GetValue<string>();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                records.Add(record);
+                continue;
+            }
+
+            if (!recordsById.TryGetValue(id, out var existing))
+            {
+                records.Add(record);
+                recordsById[id] = record;
+                continue;
+            }
+
+            var index = records.IndexOf(existing);
+            if (index >= 0) records[index] = record;
+            recordsById[id] = record;
+        }
+    }
+
+    private static void AppendImportedClassicRoomAnchors(
+        string librariumRoot,
+        List<JsonObject> records,
+        Dictionary<string, JsonObject> recordsById,
+        List<CompilerDiagnostic> diagnostics)
+    {
+        // Two WCC rooms are present in the uploaded imported database and spawn evidence,
+        // but were omitted from the MMExplorer room projection. Promote only those exact
+        // map-qualified source records so the Classic spawn graph closes without guessing.
+        foreach (var roomNumber in new[] { 288, 2306 })
+        {
+            var id = $"room.map1.{roomNumber}";
+            if (recordsById.ContainsKey(id)) continue;
+
+            var sourcePath = Path.Combine(
+                Directory.GetParent(librariumRoot)!.FullName,
+                "ImportedDatabases", "OmniVerseReference", "CodeUpdate0046",
+                "OmniVerseCodexApi", "wcc", "rooms", $"room-wcc-map1-room{roomNumber}.json");
+            if (!File.Exists(sourcePath))
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Error, "LIBROOMANCHOR",
+                    $"Required imported Classic room anchor was not found for {id}.", sourcePath));
+                continue;
+            }
+
+            var raw = JsonNode.Parse(File.ReadAllText(sourcePath)) as JsonObject
+                ?? throw new InvalidDataException($"Imported Classic room anchor is not an object: {sourcePath}");
+            var name = raw["name"]?.GetValue<string>() ?? id;
+            var exits = new JsonArray();
+            if (raw["exits"] is JsonArray rawExits)
+            {
+                foreach (var exit in rawExits.OfType<JsonObject>())
+                {
+                    var direction = exit["dir"]?.GetValue<string>()?.Trim().ToLowerInvariant();
+                    if (!string.IsNullOrWhiteSpace(direction)) exits.Add($"exit.map1.{roomNumber}.{direction}");
+                }
+            }
+
+            var record = new JsonObject
+            {
+                ["id"] = id,
+                ["legacy_id"] = roomNumber.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["name"] = name,
+                ["object_type"] = "room",
+                ["world_scope"] = new JsonArray("classic"),
+                ["map_number"] = 1,
+                ["room_number"] = roomNumber,
+                ["relationships"] = new JsonObject { ["exits"] = exits },
+                ["source_fields"] = new JsonObject
+                {
+                    ["npc_definition"] = string.Empty,
+                    ["command_definition"] = string.Empty,
+                    ["imported_room_type"] = raw["room_type"]?.DeepClone(),
+                    ["imported_shop_number"] = raw["shop_number"]?.DeepClone(),
+                    ["imported_light_level"] = raw["light_level"]?.DeepClone()
+                },
+                ["description"] = string.Join(" ", Enumerable.Range(1, 7)
+                    .Select(index => raw[$"desc{index}"]?.GetValue<string>())
+                    .Where(value => !string.IsNullOrWhiteSpace(value))),
+                ["evidence_refs"] = new JsonArray(new JsonObject
+                {
+                    ["source"] = "Uploaded ImportedDatabases WCC room record",
+                    ["path"] = Path.GetRelativePath(Directory.GetParent(librariumRoot)!.FullName, sourcePath).Replace('\\', '/'),
+                    ["classification"] = "direct_imported_database_anchor"
+                }),
+                ["confidence"] = "verified_imported_room_record",
+                ["classic_lock"] = "evidence_backed_immutable",
+                ["runtime_mapping"] = new JsonObject
+                {
+                    ["source"] = "Librarium compiler imported-room closure",
+                    ["generated_only"] = true,
+                    ["runtime_reads_generated_data"] = true,
+                    ["status"] = "canonical_map_qualified_record",
+                    ["exports_to"] = "/Data/<world>/rooms.json"
+                },
+                ["generator_mapping"] = new JsonObject
+                {
+                    ["compiler_stage"] = "librarium_to_data",
+                    ["target_worlds"] = new JsonArray("classic"),
+                    ["output_collection"] = "rooms",
+                    ["requires_validation"] = true
+                },
+                ["validation"] = new JsonArray(
+                    "unique_map_qualified_id", "map_number_required", "room_number_required",
+                    "evidence_required_for_classic", "imported_spawn_room_anchor")
+            };
+            records.Add(record);
+            recordsById[id] = record;
+        }
     }
 
     private static void AppendDecodedQuestFlows(string librariumRoot, List<JsonObject> records, List<CompilerDiagnostic> diagnostics)
@@ -114,7 +252,7 @@ public sealed class LibrariumCatalogReader
         }
     }
 
-    private static string? SelectSourceFile(string familyDirectory, string familyName)
+    private static IReadOnlyList<string> SelectSourceFiles(string familyDirectory, string familyName)
     {
         // Shops have both raw SQL/MDB imports and the executable Librarium projection.
         // The raw import is newer on disk, but it is evidence input rather than runtime authority.
@@ -123,7 +261,7 @@ public sealed class LibrariumCatalogReader
             var executable = Directory.GetFiles(familyDirectory, "shop_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
-            if (executable is not null) return executable;
+            if (executable is not null) return [executable];
         }
 
         // MMExplorer movement evidence is promoted through Librarium/Objects before generation.
@@ -138,36 +276,77 @@ public sealed class LibrariumCatalogReader
             var promoted = Directory.GetFiles(familyDirectory, promotedPattern)
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
-            if (promoted is not null) return promoted;
+            if (promoted is not null) return [promoted];
+
+            var promotedParts = Directory.GetDirectories(familyDirectory, promotedPattern.Replace("*.json", "*.parts"))
+                .SelectMany(directory => Directory.GetFiles(directory, "*.json"))
+                .OrderBy(path => path, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+            if (promotedParts.Length > 0) return promotedParts;
 
             var librariumRoot = Directory.GetParent(Directory.GetParent(familyDirectory)!.FullName)!.FullName;
             var decodedRoot = Path.Combine(librariumRoot, "SourceImports", "MMExplorerSQLData", "DecodedRooms0138");
             var decoded = Path.Combine(decodedRoot,
                 familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase) ? "rooms_decoded.json" : "exits_decoded.json");
-            if (File.Exists(decoded)) return decoded;
+            if (File.Exists(decoded)) return [decoded];
+        }
+
+        if (familyName.Equals("room_interactions", StringComparison.OrdinalIgnoreCase))
+        {
+            var selected = new List<string>();
+            var primary = Directory.GetFiles(familyDirectory, "room_interaction_records_*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (primary is not null) selected.Add(primary);
+
+            selected.AddRange(Directory.GetFiles(familyDirectory, "strongly_correlated_*_records.json")
+                .OrderBy(Path.GetFileName));
+
+            if (selected.Count > 0) return selected.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         }
 
         // Room interactions are the executable MMExplorer-backed trigger slice. Prefer them over
         // older broad trigger catalogs when present so movement gates stay map-qualified.
         if (familyName.Equals("triggers", StringComparison.OrdinalIgnoreCase))
         {
+            var currentInteractions = Path.Combine(familyDirectory, "mmexplorer_room_interaction_records.json");
+            if (File.Exists(currentInteractions)) return [currentInteractions];
+
             var interactions = Directory.GetFiles(familyDirectory, "mmexplorer_room_interaction_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
-            if (interactions is not null) return interactions;
+            if (interactions is not null) return [interactions];
 
             var executable = Directory.GetFiles(familyDirectory, "trigger_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
-            if (executable is not null) return executable;
+            if (executable is not null) return [executable];
         }
 
         foreach (var pattern in PreferredRecordNames)
         {
             var match = Directory.GetFiles(familyDirectory, pattern).OrderByDescending(File.GetLastWriteTimeUtc).FirstOrDefault();
-            if (match is not null) return match;
+            if (match is not null) return [match];
         }
-        return null;
+        return [];
+    }
+
+    private static IEnumerable<JsonNode?> ReadJsonCatalogParts(string path)
+    {
+        var json = JsonNode.Parse(File.ReadAllText(path));
+        if (json is JsonObject obj && obj["record_parts"] is JsonArray parts)
+        {
+            foreach (var part in parts)
+            {
+                var relative = part?.GetValue<string>();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, relative.Replace('/', Path.DirectorySeparatorChar)));
+                yield return JsonNode.Parse(File.ReadAllText(partPath));
+            }
+            yield break;
+        }
+
+        yield return json;
     }
 
     private static IEnumerable<JsonObject> ExtractRecords(JsonNode? node)
@@ -196,4 +375,8 @@ public sealed class LibrariumCatalogReader
         => obj.ContainsKey("id") || obj.ContainsKey("name") || obj.ContainsKey("object_type") || obj.ContainsKey("mechanic_id");
 }
 
-public sealed record LibrariumFamily(string Name, string SourceFile, IReadOnlyList<JsonObject> Records);
+public sealed record LibrariumFamily(
+    string Name,
+    string SourceFile,
+    IReadOnlyList<JsonObject> Records,
+    IReadOnlyList<string>? SourceFiles = null);

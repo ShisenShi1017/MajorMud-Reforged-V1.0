@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "update": "0154",
+  "subsystem": "combat_spells",
+  "runtime_owner": "Combat/Spells",
+  "target_snapshot_ownership": {
+    "combat_spells": ["target-mode policy", "candidate filtering", "deterministic ordering", "duplicate suppression", "maximum-target enforcement", "target decision trace"],
+    "character_npc_world": ["entity existence", "room membership", "alive state", "visibility state", "party membership", "friend-or-hostile relationship"]
+  },
+  "supported_runtime_modes": ["self", "explicit_single", "party", "room_creatures", "no_explicit_target"],
+  "selection_order": [
+    "validate canonical cast/caster/spell/room identifiers",
+    "resolve evidence-bearing spell target policy",
+    "reject unresolved native target mode",
+    "normalize candidates by canonical target ID",
+    "reject duplicate candidate IDs",
+    "apply target-kind, room, alive, visibility, friendly, and hostile gates",
+    "sort accepted candidates by canonical target ID",
+    "apply maximum-target cap",
+    "reject empty required target set",
+    "emit deterministic target decision"
+  ],
+  "canonical_policies": [
+    {
+      "policy_id": "spell.1304.targeting.unresolved",
+      "spell_id": "spell.1304",
+      "target_mode": null,
+      "allowed_kinds": [],
+      "maximum_targets": null,
+      "include_caster": false,
+      "require_same_room": null,
+      "require_alive": null,
+      "require_visible": null,
+      "allow_friendly": null,
+      "allow_hostile": null,
+      "confidence": "strongly_correlated",
+      "evidence": [
+        "Librarium canonical spell record spell.1304 exposes an opaque target field",
+        "CodeUpdate0151 preserves the field without assigning a target-mode enum"
+      ],
+      "assumptions": ["field presence proves target metadata exists but does not prove native enum meaning"],
+      "safe_fallback": "fail_closed_with_SPELL_TARGET_MODE_UNRESOLVED",
+      "runtime_impact": "spell.1304 cannot construct a target set until target semantics are promoted",
+      "character_save_impact": "none",
+      "world_state_impact": "none"
+    }
+  ],
+  "canonical_id_prefixes": {
+    "spell": "spell.",
+    "character": "character.",
+    "npc": "npc.",
+    "item": "item.",
+    "corpse": "corpse.",
+    "room": "room.",
+    "exit": "exit."
+  },
+  "determinism": {
+    "candidate_sort": "ordinal-ignore-case target ID",
+    "duplicate_policy": "reject",
+    "cap_application": "after filtering and sorting",
+    "random_selection": "not promoted"
+  },
+  "native_dependencies": [
+    "native target-mode numeric constants",
+    "range and cross-room rules",
+    "line-of-sight semantics",
+    "hidden and invisible target distinctions",
+    "dead-target and corpse-target distinctions",
+    "friendly-fire defaults",
+    "party and area inclusion rules",
+    "random target selection",
+    "directional, adjacent-room, world, item, door, exit, and remote target modes"
+  ],
+  "smoke_vectors": [
+    "self_target",
+    "deterministic_party_order_and_cap",
+    "duplicate_suppression",
+    "canonical_room_validation",
+    "unresolved_target_mode_fails_closed"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "code_update": "0164",
+  "subsystem": "items",
+  "pass": "runtime instance identity and stack lifecycle phase 1",
+  "authority": "Librarium",
+  "classification": "reforged_compatibility_infrastructure",
+  "runtime_behavior": [
+    "stack split preserves canonical definition, owner, location, charges, durability, and metadata while assigning a new runtime instance id",
+    "stack merge requires identical canonical id, owner, location, equipment state, charges, durability, and metadata",
+    "partial transfer is atomic and operates by split followed by owner/location transition",
+    "container hierarchy validation rejects cycles, non-container parents, and owner divergence"
+  ],
+  "classic_activation": {
+    "status": "fail_closed_until_item_definition_stackability_is_evidence_promoted",
+    "reason": "Current generated Classic item projection contains no stackable=true records; infrastructure is executable but cannot infer Classic stackability from names or categories."
+  },
+  "provenance": [
+    {
+      "source": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "existing authoritative Reforged runtime instance and ownership engine"
+    },
+    {
+      "source": "Data/Classic/items.json",
+      "role": "Librarium-generated item definitions and current stackable projection"
+    }
+  ],
+  "confidence": "proven for Reforged infrastructure; unknown for Classic item-specific stack eligibility and maximum quantities",
+  "safe_fallback": "Reject split or merge when the generated item definition is not stackable; reject non-identical merge identity; use checked arithmetic; roll back all mutations on failure.",
+  "character_save_impact": "New split instances persist as independent RuntimeItemInstance records; merged source instance ids are removed.",
+  "world_state_impact": "Partial transfers preserve one authoritative owner and location for each resulting instance.",
+  "native_dependencies": [
+    "Classic stackable item flag or type mapping",
+    "Classic maximum stack quantities",
+    "Classic charge-sensitive and durability-sensitive edge cases",
+    "Classic partial transfer command messages and rounding"
+  ]
+}

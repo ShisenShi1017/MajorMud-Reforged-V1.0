@@ -1,0 +1,44 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0167",
+  "boundary": "explicit-return-home-admission-and-exact-completion",
+  "classification": "strongly-correlated-active-runtime",
+  "sources": [
+    "existing RuntimeLivingNpcState persisted HomeRoomId ownership",
+    "CodeUpdate0166 exact movement completion pattern",
+    "generated canonical room catalog"
+  ],
+  "runtime_behavior": [
+    "explicit host request required",
+    "current-room ownership required",
+    "persisted canonical home room is the only admitted destination",
+    "explicit reachability required",
+    "target cleared only after admission",
+    "room mutation requires exact admitted destination and traversal completion",
+    "rejected completion preserves admitted state"
+  ],
+  "assumptions": [
+    "host coordinator has already decided that return-home is required and destination is reachable"
+  ],
+  "safe_fallback": [
+    "reject admission or completion without mutating room state when evidence is incomplete or contradictory"
+  ],
+  "tests": [
+    "explicit-return-home-admitted",
+    "exact-return-home-movement-completes",
+    "wrong-home-destination-rejected",
+    "deterministic-return-home-replay"
+  ],
+  "runtime_impact": "adds auditable return-home admission and exact room commit boundary",
+  "character_save_impact": "none",
+  "world_state_impact": "NPC room and compact metadata persist after successful completion",
+  "native_dependencies": [
+    "leash distance",
+    "chase termination",
+    "route selection",
+    "exit restrictions",
+    "movement cost",
+    "interruption",
+    "retry cadence"
+  ]
+}

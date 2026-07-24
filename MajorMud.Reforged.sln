@@ -6,5 +6,43 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajorMud.Reforged.Compiler"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajorMud.Reforged.Compiler.Tests", "Apps\Compiler.Tests\MajorMud.Reforged.Compiler.Tests.csproj", "{A1260000-0000-0000-0000-000000000127}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reforged.Core", "Core\Source\Reforged.Core\Reforged.Core.csproj", "{A1260000-0000-0000-0000-000000000128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reforged.Server.Runtime", "Apps\Source\Reforged.Server.Runtime\Reforged.Server.Runtime.csproj", "{A1260000-0000-0000-0000-000000000138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reforged.Server", "Apps\Source\Reforged.Server\Reforged.Server.csproj", "{A1260000-0000-0000-0000-000000000129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajorMudReforged", "Apps\Source\Reforged.App\Reforged.App.csproj", "{A1260000-0000-0000-0000-000000000139}"
+EndProject
 Global
+  GlobalSection(SolutionConfigurationPlatforms) = preSolution
+    Debug|Any CPU = Debug|Any CPU
+    Release|Any CPU = Release|Any CPU
+  EndGlobalSection
+  GlobalSection(ProjectConfigurationPlatforms) = postSolution
+    {A1260000-0000-0000-0000-000000000126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000126}.Release|Any CPU.Build.0 = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000127}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000127}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000127}.Release|Any CPU.Build.0 = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000128}.Release|Any CPU.Build.0 = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000138}.Release|Any CPU.Build.0 = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000129}.Release|Any CPU.Build.0 = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000139}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000139}.Debug|Any CPU.Build.0 = Debug|Any CPU
+    {A1260000-0000-0000-0000-000000000139}.Release|Any CPU.ActiveCfg = Release|Any CPU
+    {A1260000-0000-0000-0000-000000000139}.Release|Any CPU.Build.0 = Release|Any CPU
+  EndGlobalSection
 EndGlobal

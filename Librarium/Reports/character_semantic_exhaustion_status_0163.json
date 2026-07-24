@@ -1,0 +1,8 @@
+{
+  "code_update": "0163",
+  "subsystem": "character",
+  "completed_pass": "save_load_phase_2",
+  "implemented": ["startup recovery sweep", "deterministic active-session autosave", "autosave lifecycle markers", "compatibility boundary marker"],
+  "remaining_character_work": ["lifecycle transitions", "equipment layering and dual wield", "native-only formulas and persistence details"],
+  "unknown_final_native": ["native save binary layout", "native autosave cadence", "native crash journal format"]
+}

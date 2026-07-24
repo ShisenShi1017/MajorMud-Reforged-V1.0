@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "character-identity-policy",
+  "promotions": [
+    {
+      "behavior": "Central identity policy validates canonical names and rejects malformed, reserved, prefixed, or duplicate names through an external uniqueness boundary.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeCharacterIdentityPolicy.cs",
+        "Apps/Source/Reforged.Server/RuntimeCharacterIdentityPolicySmokeReport.cs",
+        "Librarium/RemainingSystems/character_identity_policy_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "This proves Reforged policy behavior, not exact Classic naming rules."
+      ],
+      "tests": [
+        "--smoke-character-identity-policy"
+      ],
+      "safeFallback": "Reject invalid or unverifiable names.",
+      "runtimeImpact": "Provides one validation boundary before Character identity creation or rename commits.",
+      "characterSaveImpact": "Character remains owner of the accepted canonical name.",
+      "worldStateImpact": "Global uniqueness indexes remain host/world-owned."
+    },
+    {
+      "behavior": "Titles are owner-scoped, permission-gated, deterministically ordered, and filtered by viewer visibility.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeCharacterIdentityPolicy.cs",
+        "Librarium/RemainingSystems/security_permission_catalog.json",
+        "Librarium/RemainingSystems/organization_catalog.json"
+      ],
+      "confidence": 0.96,
+      "assumptions": [
+        "Exact Classic title precedence remains native-dependent."
+      ],
+      "tests": [
+        "grant-owner-enforced",
+        "admin-sees-canonical"
+      ],
+      "safeFallback": "Ignore unknown titles and deny unauthorized grants.",
+      "runtimeImpact": "Prevents arbitrary title injection while preserving subsystem ownership.",
+      "characterSaveImpact": "Only title identifiers accepted by the owning subsystem may be stored.",
+      "worldStateImpact": "None directly."
+    },
+    {
+      "behavior": "Hidden identity and disguise presentation are viewer-relative and do not overwrite canonical Character identity.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeCharacterIdentityPolicy.cs",
+        "Apps/Source/Reforged.Server/RuntimeCharacterIdentityPolicySmokeReport.cs",
+        "Librarium/RemainingSystems/communication_catalog.json"
+      ],
+      "confidence": 0.94,
+      "assumptions": [
+        "The literal anonymous label and native reveal rules remain unresolved."
+      ],
+      "tests": [
+        "disguise-presentation",
+        "hidden-identity"
+      ],
+      "safeFallback": "Conceal from unprivileged viewers while retaining canonical identity for self and administrators.",
+      "runtimeImpact": "Separates identity truth from presentation safely.",
+      "characterSaveImpact": "Canonical name remains unchanged; disguise state belongs to its originating subsystem.",
+      "worldStateImpact": "None directly."
+    }
+  ]
+}

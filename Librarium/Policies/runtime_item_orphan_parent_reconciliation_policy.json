@@ -1,0 +1,24 @@
+{
+  "policy_id": "runtime.item.orphan_parent_reconciliation",
+  "subsystem": "Items",
+  "classification": "strongly_correlated",
+  "mode": "explicit_recovery_only",
+  "rules": {
+    "detect_missing_container_parent": true,
+    "detect_missing_corpse_parent": true,
+    "recover_only_with_authoritative_owner": true,
+    "recovery_location": "character",
+    "clear_equipment_slot": true,
+    "preserve_instance_identity": true,
+    "persist_missing_parent_provenance": true,
+    "ownerless_orphan_behavior": "fail_closed",
+    "missing_corpse_behavior": "fail_closed",
+    "automatic_native_activation": false
+  },
+  "native_dependency": [
+    "native orphan cleanup behavior",
+    "native lost-and-found or drop fallback",
+    "native missing corpse recovery",
+    "native corruption messages"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "account-session-ownership",
+  "runtimeOwner": "RuntimeSessionOwnershipService",
+  "boundaries": {
+    "Worldgroup": "account authentication, billing/access, terminal ownership",
+    "MajorMUD": "character ownership, selection policy, world entry/exit orchestration",
+    "ReforgedHost": "connection identity, duplicate-session prevention, reconnect and timeout policy",
+    "Client": "presentation and transport only"
+  },
+  "lifecycle": [
+    "register account character slots",
+    "connect",
+    "select character",
+    "world entry",
+    "activity",
+    "linkdead",
+    "reconnect",
+    "logout",
+    "forced timeout"
+  ],
+  "safeFallback": "Reject unknown accounts, unowned/deleted/banned characters, duplicate active character sessions, unsafe logout, and ambiguous host-owned behavior.",
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "Worldgroup account and authentication structures",
+    "native character slot limit",
+    "duplicate login behavior",
+    "session takeover behavior",
+    "linkdead grace period",
+    "idle timeout",
+    "combat logout restrictions",
+    "safe-room restrictions",
+    "character deletion and restoration",
+    "account and character bans",
+    "module access restrictions",
+    "last-login persistence",
+    "exact login/logout messages",
+    "save ordering on disconnect",
+    "party and follower cleanup ordering"
+  ]
+}

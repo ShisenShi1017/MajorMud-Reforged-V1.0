@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>Reforged.App.Program</StartupObject>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>MajorMudReforged</AssemblyName>
+    <RootNamespace>Reforged.App</RootNamespace>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>false</PublishSingleFile>
+    <PublishTrimmed>false</PublishTrimmed>
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
+    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\MajorMudReforged\</PublishDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Reforged.Server.Runtime/Reforged.Server.Runtime.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Borin\BorinIronbeard.png" />
+    <Resource Include="Assets\Borin\BorinLivingForgeHeader.png" />
+  </ItemGroup>
+</Project>

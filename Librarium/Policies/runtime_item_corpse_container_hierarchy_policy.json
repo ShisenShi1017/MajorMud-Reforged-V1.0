@@ -1,0 +1,29 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime-item-corpse-container-hierarchy-v1",
+  "code_update": "0173",
+  "classification": "strongly_correlated",
+  "activation": "runtime_container_graph_invariant",
+  "rules": [
+    "Death moves only top-level character-owned item instances to the corpse root.",
+    "Contained descendants retain their container location and instance identity.",
+    "All descendants of a corpse-root container use null owner while the subtree remains in the corpse.",
+    "Looting a corpse-root container assigns the looter as owner of every reachable contained descendant.",
+    "Corpse decay recursively removes every reachable descendant before marking the corpse cleaned up.",
+    "Recursive transitions execute inside the item engine atomic rollback boundary.",
+    "Circular or invalid container hierarchies fail safely and remain visible to validation."
+  ],
+  "ownership": {
+    "corpse_root": "unowned item located at corpse",
+    "corpse_descendant": "unowned item located in parent container",
+    "looted_root": "looter-owned carried item",
+    "looted_descendant": "looter-owned item retaining parent-container location"
+  },
+  "unknowns": [
+    "native death-protection flags",
+    "corpse loot permissions",
+    "corpse decay timing",
+    "bound and quest-item death exceptions",
+    "limited-item reservation behavior while in corpses"
+  ]
+}

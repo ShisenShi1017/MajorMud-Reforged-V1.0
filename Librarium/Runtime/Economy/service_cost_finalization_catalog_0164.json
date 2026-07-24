@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "pass": "CodeUpdate0164",
+  "classification": "STRONGLY_CORRELATED",
+  "runtimeOwner": "Economy",
+  "catalogId": "economy.service-cost-finalization.0164",
+  "policies": [
+    "additive-before-multipliers",
+    "additive-after-multipliers",
+    "minimum-before-final-rounding",
+    "minimum-after-final-rounding",
+    "native-exact-fail-closed"
+  ],
+  "determinism": "checked integer arithmetic; one configured multiplier rounding; explicit minimum placement",
+  "nativeDependency": "UNKNOWN: native additive stage, minimum-price placement, and intermediate rounding require original executable observations",
+  "fallback": "use configured policy for custom/Reforged worlds; reject native-exact execution when ordering is unconfirmed",
+  "saveImpact": "none; calculated transaction cost only",
+  "worldImpact": "service charges are deterministic and cannot silently adopt an invented native order"
+}

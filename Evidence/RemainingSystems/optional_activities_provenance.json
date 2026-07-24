@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "updatedByPass": "RemainingSystems-0035-OptionalActivities",
+  "promotions": [
+    {
+      "behavior": "optional activities require explicit evidence before Classic activation",
+      "classification": "PROVEN",
+      "sources": ["Apps/Source/Reforged.Server/RuntimeOptionalActivities.cs", "Apps/Source/Reforged.Server/RuntimeOptionalActivitiesSmokeReport.cs"],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": ["--smoke-optional-activities"],
+      "safeFallback": "leave the activity disabled and reject participation",
+      "runtimeImpact": "prevents unsupported games from entering Classic runtime",
+      "characterSaveImpact": "none until an owner-backed activity is enabled",
+      "worldStateImpact": "disabled definitions remain inert"
+    },
+    {
+      "behavior": "enabled activity lifecycle emits typed owner requests for entry cost, combat rules, announcements, rewards, and rankings",
+      "classification": "PROVEN",
+      "sources": ["Apps/Source/Reforged.Server/RuntimeOptionalActivities.cs"],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": ["--smoke-optional-activities"],
+      "safeFallback": "reject the operation rather than directly mutating another subsystem",
+      "runtimeImpact": "deterministic optional-activity orchestration",
+      "characterSaveImpact": "Economy and Character owners retain payload ownership",
+      "worldStateImpact": "activity state only"
+    },
+    {
+      "behavior": "Classic optional-activity existence and exact semantics remain native-dependent",
+      "classification": "STRONGLY CORRELATED",
+      "sources": ["Librarium/RemainingSystems/optional_activities_catalog.json", "Reports/RemainingSystems/optional_activities_exhaustion_0035.md"],
+      "confidence": 0.82,
+      "assumptions": ["repository-visible evidence does not prove a native Classic optional-activity implementation"],
+      "tests": ["--smoke-optional-activities"],
+      "safeFallback": "keep every optional activity disabled in Classic mode",
+      "runtimeImpact": "safe compatibility boundary",
+      "characterSaveImpact": "no invented counters or rewards",
+      "worldStateImpact": "no invented arena or gambling state"
+    }
+  ]
+}

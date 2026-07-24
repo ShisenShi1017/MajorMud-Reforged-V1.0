@@ -1,0 +1,22 @@
+{
+  "policy_id": "runtime.item.binding_quest_destruction",
+  "authority": "Librarium",
+  "classification": "strongly_correlated",
+  "status": "active_with_explicit_projection_only",
+  "rules": {
+    "bound_owner_id": "Ownership-changing transfers are rejected unless the destination owner matches the projected bound owner.",
+    "quest_owner_id": "Quest ownership-changing transfers are rejected unless the destination owner matches the projected quest owner.",
+    "no_trade": "Trade staging is rejected when explicitly true.",
+    "no_destroy": "Ordinary destruction is rejected when explicitly true.",
+    "quest_protected": "Ordinary destruction is rejected when explicitly true.",
+    "administrative_remove": "Permission-gated administrative infrastructure may bypass projected destruction restrictions while retaining an explicit result marker."
+  },
+  "fallback": "Unknown or unmapped Classic flags remain inactive; malformed projected metadata fails validation.",
+  "native_dependencies": [
+    "Classic flag-bit mapping",
+    "exact native messages",
+    "quest cleanup exceptions",
+    "death/corpse exceptions",
+    "merchant sell versus trade distinction"
+  ]
+}

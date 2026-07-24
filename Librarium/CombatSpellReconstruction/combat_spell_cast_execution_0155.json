@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "update": "0155",
+  "subsystem": "combat_spells",
+  "runtime_boundary": "ready_cast_target_resolution_atomic_effect_commit",
+  "execution_order": [
+    "require_ready_cast",
+    "verify_cast_target_request_identity",
+    "resolve_evidence_gated_targets",
+    "require_resolution_inputs_for_every_selected_target",
+    "capture_all_mutated_target_snapshots",
+    "resolve_each_target_in_stable_target_order",
+    "apply_each_target_mutation",
+    "complete_cast_and_finalize_resources",
+    "rollback_all_captured_targets_on_any_failure",
+    "mark_cast_failed_and finalize resource failure policy"
+  ],
+  "atomicity": {
+    "scope": "all targets selected for one cast completion",
+    "rollback_order": "reverse capture order",
+    "cast_completion": "only after every target mutation succeeds",
+    "target_validation_failure": "no mutation; cast FailedValidation resource terminal",
+    "effect_execution_failure": "all target mutations restored; cast FailedExecution resource terminal"
+  },
+  "determinism": {
+    "target_order": "RuntimeSpellTargetDecision canonical order",
+    "resolution_id": "{cast_id}:target:{zero_based_ordinal}",
+    "random_seed": "cast seed XOR golden-ratio-derived ordinal seed",
+    "random_seed_semantics": "runtime deterministic mechanism only; native per-target seed derivation remains unresolved"
+  },
+  "canonical_fixture": {
+    "spell_id": "spell.9003",
+    "caster_id": "character.1",
+    "target_ids": ["character.1", "character.2"],
+    "room_id": "room.1",
+    "combat_instance_id": "combat.1"
+  },
+  "evidence": [
+    "RuntimeCombatSpellCastLifecycle.cs:ReadyToComplete gate",
+    "RuntimeCombatSpellTargeting.cs:deterministic target decision",
+    "RuntimeCombatSpellAtomicCommit.cs:snapshot/apply/restore contract",
+    "RuntimeCombatSpellResourceLifecycle.cs:failed validation and failed execution terminals"
+  ],
+  "confidence": "strongly_correlated",
+  "assumptions": [
+    "one cast completion is an atomic Reforged mutation boundary",
+    "selected target order is the execution order",
+    "resource terminal state follows target-validation versus effect-execution failure category"
+  ],
+  "safe_fallback": "reject execution before mutation when cast identity, target policy, target input, binding, or profile is unresolved",
+  "native_dependencies": [
+    "exact native multi-target partial-commit or rollback behavior",
+    "exact native per-target random stream derivation",
+    "exact native resource finalization ordering relative to final effect mutation",
+    "spell.1304 target mode and executable effect profile"
+  ],
+  "smoke_vectors": [
+    "multi_target_atomic_commit",
+    "stable_per_target_resolution_ids",
+    "cast_completed_after_commit",
+    "sink_failure_rolls_back_all_targets",
+    "sink_failure_marks_cast_failed"
+  ]
+}

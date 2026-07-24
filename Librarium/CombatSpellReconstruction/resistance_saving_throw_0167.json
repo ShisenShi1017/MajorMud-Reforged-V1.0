@@ -1,0 +1,34 @@
+{
+  "update": "0167",
+  "subsystem": "combat_spells",
+  "catalog": "resistance_and_saving_throw",
+  "runtime_owner": "temporary combat/spell resolution state",
+  "policies": [
+    {
+      "spell_id": "spell.test.1",
+      "resistance_type_id": "resistance.magic",
+      "save_type_id": "save.magic",
+      "confidence": "strongly_correlated",
+      "activation": "test_fixture_only"
+    }
+  ],
+  "result_semantics": [
+    "vulnerable",
+    "normal",
+    "partial",
+    "full",
+    "immune",
+    "absorbed",
+    "negate",
+    "reduce_magnitude",
+    "reduce_duration",
+    "prevent_secondary_effect",
+    "partial_effect"
+  ],
+  "production_policy": "No production resistance or saving-throw formula is activated unless proven or strongly correlated; spell.1304 remains fail-closed.",
+  "relationships": {
+    "spell_to_resistance": "bidirectional",
+    "spell_to_save": "bidirectional",
+    "outcome_to_effect": "explicit"
+  }
+}

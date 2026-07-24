@@ -1,0 +1,32 @@
+{
+  "update": "0177",
+  "subsystem": "combat_spells",
+  "runtime": "summoning",
+  "status": "in_progress",
+  "ownership": "spell execution constructs requests; NPC lifecycle owns spawned runtime entity",
+  "implemented": [
+    "canonical summon/spell/NPC/owner/room/combat validation",
+    "owner, room, world, and duplicate-definition limits",
+    "duration registration",
+    "follow registration",
+    "combat insertion request",
+    "threat inheritance request",
+    "logout/restart persistence policy gates",
+    "cleanup registration for duration, death, dismissal, dispel, disconnect, logout, world reset, removal",
+    "prepare-before-commit and reverse rollback"
+  ],
+  "fail_closed": [
+    "production summon definitions and limits",
+    "native duration coefficients",
+    "restart persistence",
+    "unproven combat insertion",
+    "spell.1304"
+  ],
+  "relationships": {
+    "spell_to_summon": "spell -> NPC definition",
+    "summon_to_owner": "summon -> character/NPC/party",
+    "summon_to_room": "summon -> spawn room",
+    "summon_to_combat": "optional summon -> combat instance",
+    "summon_to_cleanup": "summon -> cleanup reasons"
+  }
+}

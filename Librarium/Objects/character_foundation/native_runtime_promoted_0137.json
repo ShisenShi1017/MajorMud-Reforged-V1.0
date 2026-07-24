@@ -32,7 +32,39 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 1,
+          "name": "Human",
+          "min_stats": {
+            "agl": 40,
+            "cha": 40,
+            "hea": 40,
+            "int": 40,
+            "str": 40,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 100,
+            "cha": 100,
+            "hea": 100,
+            "int": 100,
+            "str": 100,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 0,
+          "abilities": null
+        }
+      }
     },
     {
       "number": 2,
@@ -71,7 +103,55 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 2,
+          "name": "Dwarf",
+          "min_stats": {
+            "agl": 30,
+            "cha": 30,
+            "hea": 50,
+            "int": 30,
+            "str": 50,
+            "wil": 50
+          },
+          "max_stats": {
+            "agl": 90,
+            "cha": 85,
+            "hea": 120,
+            "int": 90,
+            "str": 110,
+            "wil": 120
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 30,
+          "abilities": [
+            {
+              "bonus": 10,
+              "value": 36,
+              "ability_id": 0
+            },
+            {
+              "bonus": 75,
+              "value": 13,
+              "ability_id": 1
+            },
+            {
+              "bonus": 20,
+              "value": 96,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 3,
@@ -110,7 +190,55 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 3,
+          "name": "Gnome",
+          "min_stats": {
+            "agl": 45,
+            "cha": 35,
+            "hea": 40,
+            "int": 45,
+            "str": 35,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 110,
+            "cha": 90,
+            "hea": 100,
+            "int": 110,
+            "str": 90,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 20,
+          "abilities": [
+            {
+              "bonus": 5,
+              "value": 36,
+              "ability_id": 0
+            },
+            {
+              "bonus": 65,
+              "value": 13,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 4,
@@ -145,7 +273,50 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": -1
+      "hp_per_level_adjustment": -1,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 4,
+          "name": "Halfling",
+          "min_stats": {
+            "agl": 60,
+            "cha": 40,
+            "hea": 40,
+            "int": 30,
+            "str": 20,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 150,
+            "cha": 100,
+            "hea": 100,
+            "int": 90,
+            "str": 60,
+            "wil": 100
+          },
+          "hp_bonus": -1,
+          "cp_cost": 100,
+          "exp_modifier": 25,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 102,
+              "ability_id": 0
+            },
+            {
+              "bonus": 10,
+              "value": 34,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     },
     {
       "number": 5,
@@ -175,7 +346,55 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 5,
+          "name": "Elf",
+          "min_stats": {
+            "agl": 50,
+            "cha": 50,
+            "hea": 30,
+            "int": 50,
+            "str": 35,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 120,
+            "cha": 120,
+            "hea": 80,
+            "int": 120,
+            "str": 90,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 45,
+          "abilities": [
+            {
+              "bonus": 50,
+              "value": 13,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 102,
+              "ability_id": 1
+            },
+            {
+              "bonus": 10,
+              "value": 69,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 6,
@@ -210,7 +429,50 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 6,
+          "name": "Half-Elf",
+          "min_stats": {
+            "agl": 45,
+            "cha": 50,
+            "hea": 30,
+            "int": 45,
+            "str": 40,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 110,
+            "cha": 110,
+            "hea": 100,
+            "int": 110,
+            "str": 90,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 15,
+          "abilities": [
+            {
+              "bonus": 10,
+              "value": 69,
+              "ability_id": 0
+            },
+            {
+              "bonus": 25,
+              "value": 13,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     },
     {
       "number": 7,
@@ -245,7 +507,60 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 7,
+          "name": "Dark-Elf",
+          "min_stats": {
+            "agl": 50,
+            "cha": 40,
+            "hea": 30,
+            "int": 50,
+            "str": 40,
+            "wil": 30
+          },
+          "max_stats": {
+            "agl": 120,
+            "cha": 110,
+            "hea": 90,
+            "int": 120,
+            "str": 90,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 45,
+          "abilities": [
+            {
+              "bonus": 80,
+              "value": 13,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 102,
+              "ability_id": 1
+            },
+            {
+              "bonus": 1,
+              "value": 58,
+              "ability_id": 2
+            },
+            {
+              "bonus": 3,
+              "value": 106,
+              "ability_id": 3
+            }
+          ]
+        }
+      }
     },
     {
       "number": 8,
@@ -275,7 +590,39 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 8,
+          "name": "Half-Orc",
+          "min_stats": {
+            "agl": 40,
+            "cha": 30,
+            "hea": 50,
+            "int": 30,
+            "str": 45,
+            "wil": 30
+          },
+          "max_stats": {
+            "agl": 100,
+            "cha": 80,
+            "hea": 120,
+            "int": 90,
+            "str": 110,
+            "wil": 95
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 0,
+          "abilities": null
+        }
+      }
     },
     {
       "number": 9,
@@ -305,7 +652,50 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 9,
+          "name": "Goblin",
+          "min_stats": {
+            "agl": 55,
+            "cha": 40,
+            "hea": 40,
+            "int": 45,
+            "str": 30,
+            "wil": 40
+          },
+          "max_stats": {
+            "agl": 125,
+            "cha": 100,
+            "hea": 100,
+            "int": 115,
+            "str": 70,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 35,
+          "abilities": [
+            {
+              "bonus": 65,
+              "value": 13,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 102,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     },
     {
       "number": 10,
@@ -344,7 +734,50 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 1
+      "hp_per_level_adjustment": 1,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 10,
+          "name": "Half-Ogre",
+          "min_stats": {
+            "agl": 20,
+            "cha": 25,
+            "hea": 60,
+            "int": 20,
+            "str": 70,
+            "wil": 25
+          },
+          "max_stats": {
+            "agl": 60,
+            "cha": 60,
+            "hea": 150,
+            "int": 60,
+            "str": 150,
+            "wil": 70
+          },
+          "hp_bonus": 1,
+          "cp_cost": 100,
+          "exp_modifier": 30,
+          "abilities": [
+            {
+              "bonus": 15,
+              "value": 36,
+              "ability_id": 0
+            },
+            {
+              "bonus": 20,
+              "value": 7,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     },
     {
       "number": 11,
@@ -379,7 +812,55 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 11,
+          "name": "Kang",
+          "min_stats": {
+            "agl": 30,
+            "cha": 30,
+            "hea": 50,
+            "int": 30,
+            "str": 55,
+            "wil": 45
+          },
+          "max_stats": {
+            "agl": 90,
+            "cha": 85,
+            "hea": 110,
+            "int": 90,
+            "str": 120,
+            "wil": 110
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 35,
+          "abilities": [
+            {
+              "bonus": 100,
+              "value": 21,
+              "ability_id": 0
+            },
+            {
+              "bonus": 10,
+              "value": 7,
+              "ability_id": 1
+            },
+            {
+              "bonus": 5,
+              "value": 2,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 12,
@@ -418,7 +899,65 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 12,
+          "name": "Nekojin",
+          "min_stats": {
+            "agl": 60,
+            "cha": 50,
+            "hea": 30,
+            "int": 40,
+            "str": 40,
+            "wil": 30
+          },
+          "max_stats": {
+            "agl": 130,
+            "cha": 110,
+            "hea": 80,
+            "int": 100,
+            "str": 100,
+            "wil": 90
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 50,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 102,
+              "ability_id": 0
+            },
+            {
+              "bonus": 50,
+              "value": 13,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 38,
+              "ability_id": 2
+            },
+            {
+              "bonus": 10,
+              "value": 5,
+              "ability_id": 3
+            },
+            {
+              "bonus": -10,
+              "value": 3,
+              "ability_id": 4
+            }
+          ]
+        }
+      }
     },
     {
       "number": 13,
@@ -453,7 +992,50 @@
         "schema": "races.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "hp_per_level_adjustment": 0
+      "hp_per_level_adjustment": 0,
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-race-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "race_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 13,
+          "name": "Gaunt One",
+          "min_stats": {
+            "agl": 50,
+            "cha": 30,
+            "hea": 30,
+            "int": 60,
+            "str": 40,
+            "wil": 50
+          },
+          "max_stats": {
+            "agl": 110,
+            "cha": 80,
+            "hea": 70,
+            "int": 140,
+            "str": 100,
+            "wil": 100
+          },
+          "hp_bonus": 0,
+          "cp_cost": 100,
+          "exp_modifier": 50,
+          "abilities": [
+            {
+              "bonus": 200,
+              "value": 13,
+              "ability_id": 0
+            },
+            {
+              "bonus": 10,
+              "value": 77,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     }
   ],
   "classes": [
@@ -485,7 +1067,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "None"
+      "magery_name": "None",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 1,
+          "name": "Warrior",
+          "min_hp": 6,
+          "max_hp": 4,
+          "exp_modifier": 0,
+          "magic_type": 0,
+          "magic_level": 0,
+          "weapon_bonus": 8,
+          "armor_bonus": 9,
+          "combat_bonus": 6,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 2,
@@ -523,7 +1132,44 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "None"
+      "magery_name": "None",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 2,
+          "name": "Witchunter",
+          "min_hp": 6,
+          "max_hp": 4,
+          "exp_modifier": 30,
+          "magic_type": 0,
+          "magic_level": 0,
+          "weapon_bonus": 8,
+          "armor_bonus": 8,
+          "combat_bonus": 7,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 51,
+              "ability_id": 1
+            },
+            {
+              "bonus": 10,
+              "value": 142,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 3,
@@ -557,7 +1203,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Priest"
+      "magery_name": "Priest",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 3,
+          "name": "Paladin",
+          "min_hp": 5,
+          "max_hp": 4,
+          "exp_modifier": 120,
+          "magic_type": 2,
+          "magic_level": 1,
+          "weapon_bonus": 8,
+          "armor_bonus": 9,
+          "combat_bonus": 6,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 4,
@@ -591,7 +1264,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Priest"
+      "magery_name": "Priest",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 4,
+          "name": "Cleric",
+          "min_hp": 4,
+          "max_hp": 4,
+          "exp_modifier": 120,
+          "magic_type": 2,
+          "magic_level": 2,
+          "weapon_bonus": 7,
+          "armor_bonus": 9,
+          "combat_bonus": 5,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 5,
@@ -625,7 +1325,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Priest"
+      "magery_name": "Priest",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 5,
+          "name": "Priest",
+          "min_hp": 3,
+          "max_hp": 3,
+          "exp_modifier": 40,
+          "magic_type": 2,
+          "magic_level": 3,
+          "weapon_bonus": 7,
+          "armor_bonus": 1,
+          "combat_bonus": 3,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 6,
@@ -663,7 +1390,49 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Priest"
+      "magery_name": "Priest",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 6,
+          "name": "Missionary",
+          "min_hp": 4,
+          "max_hp": 3,
+          "exp_modifier": 120,
+          "magic_type": 2,
+          "magic_level": 2,
+          "weapon_bonus": 4,
+          "armor_bonus": 6,
+          "combat_bonus": 4,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 40,
+              "ability_id": 2
+            },
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 3
+            }
+          ]
+        }
+      }
     },
     {
       "number": 7,
@@ -709,7 +1478,64 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "None"
+      "magery_name": "None",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 7,
+          "name": "Ninja",
+          "min_hp": 4,
+          "max_hp": 4,
+          "exp_modifier": 85,
+          "magic_type": 0,
+          "magic_level": 0,
+          "weapon_bonus": 8,
+          "armor_bonus": 2,
+          "combat_bonus": 5,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 40,
+              "ability_id": 2
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 3
+            },
+            {
+              "bonus": 0,
+              "value": 38,
+              "ability_id": 4
+            },
+            {
+              "bonus": 25,
+              "value": 34,
+              "ability_id": 5
+            },
+            {
+              "bonus": 10,
+              "value": 58,
+              "ability_id": 6
+            }
+          ]
+        }
+      }
     },
     {
       "number": 8,
@@ -747,7 +1573,54 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "None"
+      "magery_name": "None",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 8,
+          "name": "Thief",
+          "min_hp": 4,
+          "max_hp": 3,
+          "exp_modifier": -20,
+          "magic_type": 0,
+          "magic_level": 0,
+          "weapon_bonus": 4,
+          "armor_bonus": 6,
+          "combat_bonus": 4,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 0
+            },
+            {
+              "bonus": 10,
+              "value": 39,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 40,
+              "ability_id": 2
+            },
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 3
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 4
+            }
+          ]
+        }
+      }
     },
     {
       "number": 9,
@@ -789,7 +1662,54 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Bard"
+      "magery_name": "Bard",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 9,
+          "name": "Bard",
+          "min_hp": 4,
+          "max_hp": 3,
+          "exp_modifier": 110,
+          "magic_type": 4,
+          "magic_level": 2,
+          "weapon_bonus": 4,
+          "armor_bonus": 6,
+          "combat_bonus": 5,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 40,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 39,
+              "ability_id": 2
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 3
+            },
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 4
+            }
+          ]
+        }
+      }
     },
     {
       "number": 10,
@@ -831,7 +1751,54 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Mage"
+      "magery_name": "Mage",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 10,
+          "name": "Gypsy",
+          "min_hp": 4,
+          "max_hp": 3,
+          "exp_modifier": 120,
+          "magic_type": 1,
+          "magic_level": 2,
+          "weapon_bonus": 4,
+          "armor_bonus": 6,
+          "combat_bonus": 4,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 37,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 39,
+              "ability_id": 2
+            },
+            {
+              "bonus": 0,
+              "value": 40,
+              "ability_id": 3
+            },
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 4
+            }
+          ]
+        }
+      }
     },
     {
       "number": 11,
@@ -865,7 +1832,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Mage"
+      "magery_name": "Mage",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 11,
+          "name": "Warlock",
+          "min_hp": 4,
+          "max_hp": 4,
+          "exp_modifier": 85,
+          "magic_type": 1,
+          "magic_level": 2,
+          "weapon_bonus": 4,
+          "armor_bonus": 7,
+          "combat_bonus": 5,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 12,
@@ -899,7 +1893,34 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Mage"
+      "magery_name": "Mage",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 12,
+          "name": "Mage",
+          "min_hp": 3,
+          "max_hp": 3,
+          "exp_modifier": 40,
+          "magic_type": 1,
+          "magic_level": 3,
+          "weapon_bonus": 9,
+          "armor_bonus": 1,
+          "combat_bonus": 3,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            }
+          ]
+        }
+      }
     },
     {
       "number": 13,
@@ -937,7 +1958,39 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Druid"
+      "magery_name": "Druid",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 13,
+          "name": "Druid",
+          "min_hp": 4,
+          "max_hp": 3,
+          "exp_modifier": 90,
+          "magic_type": 3,
+          "magic_level": 3,
+          "weapon_bonus": 7,
+          "armor_bonus": 6,
+          "combat_bonus": 4,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            },
+            {
+              "bonus": 74,
+              "value": 59,
+              "ability_id": 1
+            }
+          ]
+        }
+      }
     },
     {
       "number": 14,
@@ -975,7 +2028,44 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Druid"
+      "magery_name": "Druid",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 14,
+          "name": "Ranger",
+          "min_hp": 5,
+          "max_hp": 4,
+          "exp_modifier": 150,
+          "magic_type": 3,
+          "magic_level": 1,
+          "weapon_bonus": 8,
+          "armor_bonus": 6,
+          "combat_bonus": 6,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 0
+            },
+            {
+              "bonus": 0,
+              "value": 38,
+              "ability_id": 1
+            },
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 2
+            }
+          ]
+        }
+      }
     },
     {
       "number": 15,
@@ -1033,7 +2123,69 @@
         "schema": "classes.TXT alignment",
         "classification": "byte_decoded_and_promoted"
       },
-      "magery_name": "Kai"
+      "magery_name": "Kai",
+      "public_reference_0139": {
+        "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json",
+        "source_kind": "OmniVerse public codex snapshot",
+        "classification": "class_public_reference",
+        "promotion_code_update": "0139",
+        "confidence": "reference_fill_public_snapshot",
+        "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
+        "fields": {
+          "legacy_number": 15,
+          "name": "Mystic",
+          "min_hp": 4,
+          "max_hp": 4,
+          "exp_modifier": 150,
+          "magic_type": 5,
+          "magic_level": 1,
+          "weapon_bonus": 9,
+          "armor_bonus": 1,
+          "combat_bonus": 5,
+          "abilities": [
+            {
+              "bonus": 0,
+              "value": 103,
+              "ability_id": 0
+            },
+            {
+              "bonus": 25,
+              "value": 34,
+              "ability_id": 1
+            },
+            {
+              "bonus": 1,
+              "value": 29,
+              "ability_id": 2
+            },
+            {
+              "bonus": 1,
+              "value": 30,
+              "ability_id": 3
+            },
+            {
+              "bonus": 1,
+              "value": 35,
+              "ability_id": 4
+            },
+            {
+              "bonus": 5,
+              "value": 142,
+              "ability_id": 5
+            },
+            {
+              "bonus": 10,
+              "value": 58,
+              "ability_id": 6
+            },
+            {
+              "bonus": 0,
+              "value": 31,
+              "ability_id": 7
+            }
+          ]
+        }
+      }
     }
   ],
   "xp_rule": {

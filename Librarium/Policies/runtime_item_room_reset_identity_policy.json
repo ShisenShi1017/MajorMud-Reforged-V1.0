@@ -1,0 +1,33 @@
+{
+  "id": "runtime.item.room-reset-identity",
+  "authority": "Librarium",
+  "update": "CodeUpdate0182",
+  "classification": "Reforged compatibility infrastructure / strongly correlated Classic primitive",
+  "owner": "Items",
+  "scheduler_owner": "World Runtime",
+  "inputs": [
+    "canonical_item_id",
+    "room_id",
+    "reset_key",
+    "target_quantity"
+  ],
+  "guarantees": [
+    "deficit-only creation",
+    "identity preservation",
+    "idempotency",
+    "atomic rollback",
+    "no silent excess deletion"
+  ],
+  "fail_closed": [
+    "missing room identity",
+    "missing reset key",
+    "negative target",
+    "existing quantity above target"
+  ],
+  "native_dependencies": [
+    "native room reset timers",
+    "player-presence suppression",
+    "hard/soft reset rules",
+    "exact reset target sources"
+  ]
+}

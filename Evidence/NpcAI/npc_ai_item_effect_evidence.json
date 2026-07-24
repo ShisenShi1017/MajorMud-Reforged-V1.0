@@ -1,0 +1,30 @@
+{
+  "schema_version": "npc-ai-item-effect-evidence.v1",
+  "update_id": "CodeUpdate0184",
+  "status": "PROVEN",
+  "runtime_boundary": "exact two-phase NPC item-effect admission and completion ownership",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcItemEffectInvocation.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcItemUse.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs"
+  ],
+  "behavior": [
+    "living NPC and exact NPC-owned carried/equipped item required",
+    "nonblank target and explicit authority required",
+    "one active item-effect request per NPC instance",
+    "exact request-id completion required",
+    "failed effect completion preserves item",
+    "successful effect completion consumes item through RuntimeItemEngine.UseNpc"
+  ],
+  "safe_fallback": "Reject admission or completion without mutating item state when ownership, authority, target, or request identity does not match.",
+  "tests": [
+    "authority-enforced",
+    "exact-item-effect-admitted",
+    "stale-completion-rejected",
+    "failed-effect-preserves-item",
+    "successful-effect-consumes-item"
+  ],
+  "runtime_impact": "Adds persisted world-owned handoff metadata and exact item consumption after successful effect completion.",
+  "character_save_impact": "none",
+  "world_state_impact": "NPC metadata and NPC-owned item state are persisted by their established owners."
+}

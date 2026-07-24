@@ -1,0 +1,18 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime-item-owner-quantity-limit-v1",
+  "code_update": "0172",
+  "classification": "strongly_correlated",
+  "activation": "explicit_instance_metadata_only",
+  "metadata": {"maximum_owned_quantity": "positive integer"},
+  "counted_locations": ["character", "equipment", "container", "bank", "trade"],
+  "excluded_locations": ["room", "corpse", "npc", "merchant"],
+  "rules": [
+    "Creation into an owned counted location must not exceed the projected limit.",
+    "Ownership-changing transfers must validate the destination before mutation.",
+    "Dropping, destruction, or ownership loss releases the owner reservation.",
+    "Malformed projected limits fail closed.",
+    "No limit is inferred when metadata is absent."
+  ],
+  "unknowns": ["native flag mapping", "account and world scopes", "logout reservation behavior", "exact Classic messages"]
+}

@@ -1,0 +1,25 @@
+{
+  "code_update": "0192",
+  "finding": "Reforged world-item persistence can bind a validated authoritative save to an atomic SHA-256 integrity sidecar and reject any later byte-level tampering before deserialization is accepted.",
+  "confidence": "strongly_correlated",
+  "runtime_impact": "active Reforged persistence integrity infrastructure",
+  "character_save_impact": "none",
+  "world_state_impact": "tampered, truncated, or externally modified item-state bytes are rejected before runtime restoration",
+  "assumptions": [
+    "The sidecar protects the Reforged JSON item repository only",
+    "Native MajorMUD checksums and journal records remain unresolved",
+    "Integrity verification supplements rather than replaces structural runtime validation"
+  ],
+  "fallback": "throw InvalidDataException and preserve the authoritative save and integrity sidecar unchanged",
+  "tests": [
+    "validated integrity save and load",
+    "byte-level tamper rejection",
+    "missing integrity record rejection",
+    "structural validation after hash verification"
+  ],
+  "unknown_native_dependencies": [
+    "native save checksum format",
+    "native journal sequencing",
+    "cross-subsystem integrity coordination"
+  ]
+}

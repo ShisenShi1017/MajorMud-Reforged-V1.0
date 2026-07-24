@@ -1,0 +1,344 @@
+<UserControl x:Class="Reforged.App.Views.ForgeGuardianView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:sys="clr-namespace:System;assembly=mscorlib">
+ <UserControl.Resources>
+  <SolidColorBrush x:Key="ForgePanel" Color="#E60E1214"/>
+  <SolidColorBrush x:Key="ForgePanel2" Color="#E6171C1F"/>
+  <SolidColorBrush x:Key="ForgeBorder" Color="#76552F"/>
+  <SolidColorBrush x:Key="ForgeGold" Color="#D5A75D"/>
+  <SolidColorBrush x:Key="ForgeText" Color="#F1E5D0"/>
+  <Style x:Key="ForgeButton" TargetType="Button">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+   <Setter Property="Background" Value="#242A2E"/>
+   <Setter Property="BorderBrush" Value="{StaticResource ForgeBorder}"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="11,8"/>
+   <Setter Property="Margin" Value="3"/>
+   <Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="Cursor" Value="Hand"/>
+   <Setter Property="Template">
+    <Setter.Value>
+     <ControlTemplate TargetType="Button">
+      <Border x:Name="Outer" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
+       <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Border>
+      <ControlTemplate.Triggers>
+       <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Outer" Property="Background" Value="#49311D"/></Trigger>
+       <Trigger Property="IsPressed" Value="True"><Setter TargetName="Outer" Property="Background" Value="#6B3E1D"/></Trigger>
+       <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Outer" Property="Opacity" Value="0.45"/></Trigger>
+      </ControlTemplate.Triggers>
+     </ControlTemplate>
+    </Setter.Value>
+   </Setter>
+  </Style>
+  <Style x:Key="ForgeTextBox" TargetType="TextBox">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+   <Setter Property="Background" Value="#111619"/>
+   <Setter Property="BorderBrush" Value="#5A6870"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="9"/>
+   <Setter Property="CaretBrush" Value="#F2B24D"/>
+  </Style>
+  <Style TargetType="TextBlock">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+  </Style>
+  <Style TargetType="Expander">
+   <Setter Property="Foreground" Value="#E4A84E"/>
+   <Setter Property="Background" Value="#151B1E"/>
+   <Setter Property="BorderBrush" Value="#4F4030"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="7"/>
+   <Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="Template">
+    <Setter.Value>
+     <ControlTemplate TargetType="Expander">
+      <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,2">
+       <DockPanel>
+        <ToggleButton DockPanel.Dock="Top" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                      Background="#211A14" BorderThickness="0" Foreground="#E4A84E" Padding="9,7"
+                      HorizontalContentAlignment="Left" Content="{TemplateBinding Header}" FontWeight="SemiBold"/>
+        <ContentPresenter x:Name="ExpandSite" Visibility="Collapsed" Margin="{TemplateBinding Padding}"/>
+       </DockPanel>
+      </Border>
+      <ControlTemplate.Triggers>
+       <Trigger Property="IsExpanded" Value="True"><Setter TargetName="ExpandSite" Property="Visibility" Value="Visible"/></Trigger>
+      </ControlTemplate.Triggers>
+     </ControlTemplate>
+    </Setter.Value>
+   </Setter>
+  </Style>
+ </UserControl.Resources>
+
+ <Grid Background="#090C0E">
+  <Grid.RowDefinitions>
+   <RowDefinition Height="285"/>
+   <RowDefinition Height="*"/>
+   <RowDefinition Height="76"/>
+  </Grid.RowDefinitions>
+
+  <!-- Living Forge header -->
+  <Border Grid.Row="0" Margin="8,8,8,6" BorderBrush="#8C6239" BorderThickness="1" CornerRadius="9" ClipToBounds="True">
+   <Grid>
+    <Image Source="pack://application:,,,/Assets/Borin/BorinLivingForgeHeader.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+    <Rectangle>
+     <Rectangle.Fill>
+      <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+       <GradientStop Color="#DD090B0D" Offset="0"/>
+       <GradientStop Color="#55090B0D" Offset="0.35"/>
+       <GradientStop Color="#22090B0D" Offset="0.65"/>
+       <GradientStop Color="#CC090B0D" Offset="1"/>
+      </LinearGradientBrush>
+     </Rectangle.Fill>
+    </Rectangle>
+
+    <Grid Margin="24,18">
+     <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="330"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="330"/>
+     </Grid.ColumnDefinitions>
+
+     <StackPanel Grid.Column="0">
+      <TextBlock Text="THE FORGE" FontSize="15" FontWeight="Bold" Foreground="#E4A84E"/>
+      <TextBlock Text="{Binding Configuration.CharacterName}" FontSize="34" FontWeight="Bold" Foreground="#F6D89A"/>
+      <TextBlock Text="{Binding Configuration.CharacterTitle}" FontSize="16" FontStyle="Italic" Foreground="#D2B079"/>
+      <Border Background="#B3151110" BorderBrush="#77552F" BorderThickness="1" CornerRadius="6" Padding="12" Margin="0,15,0,0">
+       <StackPanel>
+        <TextBlock Text="“By fire, by code, an' by patient craft — we build what legends do.”"
+                   TextWrapping="Wrap" FontStyle="Italic" FontSize="14"/>
+        <TextBlock Text="{Binding Status}" Margin="0,10,0,0" Foreground="#F3B34F" FontWeight="SemiBold" TextWrapping="Wrap"/>
+       </StackPanel>
+      </Border>
+     </StackPanel>
+
+     <StackPanel Grid.Column="2" HorizontalAlignment="Stretch">
+      <Border Background="#D7141110" BorderBrush="#A66E32" BorderThickness="1" CornerRadius="7" Padding="13">
+       <StackPanel>
+        <TextBlock Text="BORIN STATUS" FontWeight="Bold" Foreground="#E4A84E"/>
+        <TextBlock Text="{Binding ModeSummary}" FontSize="13" TextWrapping="Wrap" Margin="0,6,0,0"/>
+        <Separator Margin="0,9" Background="#5B4A36"/>
+        <TextBlock Text="{Binding RepositorySummary}" TextWrapping="Wrap"/>
+        <TextBlock Text="{Binding KnowledgeSummary}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+       </StackPanel>
+      </Border>
+      <Border Background="#D7141110" BorderBrush="#76552F" BorderThickness="1" CornerRadius="7" Padding="13" Margin="0,10,0,0">
+       <StackPanel>
+        <TextBlock Text="CURRENT COMMISSION" FontWeight="Bold" Foreground="#E4A84E"/>
+        <TextBlock Text="{Binding CurrentTask}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+        <ProgressBar Height="8" Minimum="0" Maximum="100" Value="{Binding TaskProgress, Mode=OneWay}" Margin="0,10,0,0"
+                     Foreground="#62A84D" Background="#242A2E"/>
+        <TextBlock Text="{Binding TaskStage}" HorizontalAlignment="Right" FontSize="11" Margin="0,4,0,0" Foreground="#C7B28E"/>
+       </StackPanel>
+      </Border>
+     </StackPanel>
+    </Grid>
+   </Grid>
+  </Border>
+
+  <!-- Main workshop -->
+  <Grid Grid.Row="1" Margin="8,0,8,6">
+   <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="210"/>
+    <ColumnDefinition Width="8"/>
+    <ColumnDefinition Width="*"/>
+    <ColumnDefinition Width="8"/>
+    <ColumnDefinition Width="390"/>
+   </Grid.ColumnDefinitions>
+
+   <!-- Library / project rail: compact dropdown sections -->
+   <Border Grid.Column="0" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7" Padding="9">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+     <StackPanel>
+      <TextBlock Text="LIBRARY &amp; PROJECT" FontSize="14" FontWeight="Bold" Foreground="#E4A84E" Margin="3,2,3,8"/>
+      <Border Background="#151B1E" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="5" Padding="8" Margin="0,0,0,8">
+       <StackPanel>
+        <TextBlock Text="ACTIVE REPOSITORY" FontWeight="Bold" Foreground="#BDA57F" FontSize="11"/>
+        <TextBlock Text="{Binding Configuration.RepositoryPath}" TextWrapping="Wrap" FontSize="11.5" Margin="0,4,0,0"/>
+       </StackPanel>
+      </Border>
+
+      <Expander Header="📚  Repository" IsExpanded="True" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <Button Content="Scan Repository" Command="{Binding ScanCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Open Solution" Command="{Binding OpenSolutionCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Inspect Tools" Command="{Binding ToolStatusCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="🕯  Study &amp; Research" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <Button Content="Study Host / Server" Command="{Binding StudyHostCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Study Entire Repository" Command="{Binding StudyRepositoryCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="📜  Attached Scrolls" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <ItemsControl ItemsSource="{Binding Attachments}" Margin="0,2,0,5">
+         <ItemsControl.ItemTemplate>
+          <DataTemplate>
+           <Border Background="#1B2226" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="0,2">
+            <TextBlock Text="{Binding DisplayLabel}" TextWrapping="Wrap" FontSize="11"/>
+           </Border>
+          </DataTemplate>
+         </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="Attach File" Command="{Binding AttachFileCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Clear Attachments" Command="{Binding ClearAttachmentsCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+     </StackPanel>
+    </ScrollViewer>
+   </Border>
+
+   <!-- Conversation -->
+   <Border Grid.Column="2" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7">
+    <Grid>
+     <Grid.RowDefinitions>
+      <RowDefinition Height="46"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+     </Grid.RowDefinitions>
+     <Grid Grid.Row="0" Background="#171D20">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <TextBlock Text="CONVERSATION WITH BORIN" Margin="13,0" VerticalAlignment="Center" FontWeight="Bold" Foreground="#E4A84E"/>
+      <Button Grid.Column="1" Content="Clear" Command="{Binding ClearCommand}" Style="{StaticResource ForgeButton}" Padding="14,5" Margin="3,4,6,4"/>
+     </Grid>
+
+     <ListBox x:Name="ChatList" Grid.Row="1" ItemsSource="{Binding Messages}" Background="#0B0F12" Foreground="#FFFFFFFF" BorderThickness="0"
+              ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              VirtualizingPanel.IsVirtualizing="True" Padding="8" HorizontalContentAlignment="Stretch"
+              TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType">
+      <ListBox.ItemContainerStyle>
+       <Style TargetType="ListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="TextElement.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Margin" Value="0,0,0,7"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Background" Value="Transparent"/>
+       </Style>
+      </ListBox.ItemContainerStyle>
+      <ListBox.ItemTemplate>
+       <DataTemplate>
+        <Border Background="#10161A" BorderBrush="#69767C" BorderThickness="1" CornerRadius="6" Padding="12"
+                HorizontalAlignment="Stretch">
+         <Grid>
+          <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+          <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <TextBlock Text="{Binding Role}" FontWeight="Bold" Foreground="#E4A84E"/>
+          <TextBlock Grid.Column="1" Text="{Binding TimeLabel}" Foreground="#8D9A9F" FontSize="11"/>
+          <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Text}" TextWrapping="Wrap" Margin="0,7,0,0"
+                     Foreground="#FFFFFFFF" FontSize="15" FontWeight="SemiBold" LineHeight="22"
+                     HorizontalAlignment="Stretch"
+                     TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType"/>
+         </Grid>
+        </Border>
+       </DataTemplate>
+      </ListBox.ItemTemplate>
+     </ListBox>
+
+     <Border Grid.Row="2" Background="#111619" BorderBrush="#39454A" BorderThickness="1,1,1,0" Padding="8">
+      <Grid>
+       <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+       </Grid.ColumnDefinitions>
+       <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" MinHeight="70" MaxHeight="145"
+                VerticalScrollBarVisibility="Auto" Style="{StaticResource ForgeTextBox}" FontSize="14"/>
+       <Button Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource ForgeButton}" Padding="16,12"/>
+       <Button Grid.Column="2" Content="SEND TO FORGE" Command="{Binding SendCommand}" Style="{StaticResource ForgeButton}"
+               Background="#184E74" BorderBrush="#408FBD" Padding="18,12"/>
+      </Grid>
+     </Border>
+    </Grid>
+   </Border>
+
+   <!-- Workbench: dropdown action groups -->
+   <Border Grid.Column="4" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7" Padding="10">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+     <StackPanel>
+      <TextBlock Text="BORIN'S WORKBENCH" FontSize="14" FontWeight="Bold" Foreground="#E4A84E"/>
+      <Border Background="#151B1E" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="5" Padding="9" Margin="0,7,0,8">
+       <StackPanel>
+        <TextBlock Text="CURRENT STATUS" FontWeight="Bold" Foreground="#BDA57F" FontSize="11"/>
+        <TextBlock Text="{Binding Status}" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="#D6C3A6"/>
+       </StackPanel>
+      </Border>
+
+      <Expander Header="⚒  Safe Workspace" IsExpanded="True" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <UniformGrid Columns="2">
+         <Button Content="Create" Command="{Binding CreateWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Status" Command="{Binding WorkspaceStatusCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Apply Diff" Command="{Binding ApplyProposedDiffCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Show Diff" Command="{Binding ShowDiffCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Build" Command="{Binding BuildWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test" Command="{Binding TestWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Approve" Command="{Binding ApplyWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Rollback" Command="{Binding RollbackCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <Button Content="IMPLEMENT ATTACHED COMMISSION" Command="{Binding ImplementAttachedCommand}"
+                Style="{StaticResource ForgeButton}" Background="#5D3516" BorderBrush="#D59B47" Margin="3,8,3,0" Padding="12"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="🔥  Build &amp; Test" Margin="0,2">
+       <UniformGrid Columns="2" Margin="5,4,0,8">
+        <Button Content="Build App" Command="{Binding BuildCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Run Tests" Command="{Binding TestCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Read Logs" Command="{Binding ReadLogsCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Inspect Tools" Command="{Binding ToolStatusCommand}" Style="{StaticResource ForgeButton}"/>
+       </UniformGrid>
+      </Expander>
+
+      <Expander Header="🧠  Master Brain" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding BrainStatus}" TextWrapping="Wrap" Margin="3,2,3,5"/>
+        <UniformGrid Columns="3">
+         <Button Content="Detect" Command="{Binding DetectLmStudioCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Model" Command="{Binding LoadModelsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test" Command="{Binding TestBrainCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <Expander Header="Advanced connection settings" Margin="3,6,3,0">
+         <StackPanel Margin="4,4,0,4">
+          <TextBlock Text="Model" Foreground="#BDA57F"/>
+          <TextBox Text="{Binding Configuration.ModelName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ForgeTextBox}"/>
+          <TextBlock Text="Chat endpoint" Margin="0,6,0,0" Foreground="#BDA57F"/>
+          <TextBox Text="{Binding Configuration.ApiEndpoint, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ForgeTextBox}"/>
+          <CheckBox Content="Auto reconnect" IsChecked="{Binding Configuration.AutoReconnectMasterBrain}" Foreground="{StaticResource ForgeText}" Margin="0,7,0,0"/>
+          <CheckBox Content="Use for normal conversation" IsChecked="{Binding Configuration.UseMasterBrainForGeneralConversation}" Foreground="{StaticResource ForgeText}" Margin="0,4,0,0"/>
+         </StackPanel>
+        </Expander>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="⚙  Borin &amp; Forge" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <Button Content="Choose Alternate Portrait" Command="{Binding ChoosePortraitCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Save Forge Settings" Command="{Binding SaveSettingsCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+     </StackPanel>
+    </ScrollViewer>
+   </Border>
+  </Grid>
+
+  <!-- Workstation dock -->
+  <Border Grid.Row="2" Margin="8,0,8,8" Background="#17110D" BorderBrush="#8C6239" BorderThickness="1" CornerRadius="7">
+   <UniformGrid Columns="6" Margin="7">
+    <Button Content="📚  LIBRARY&#x0a;Study &amp; Research" Command="{Binding StudyRepositoryCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="⚒  FORGE&#x0a;Build &amp; Compile" Command="{Binding BuildWorkspaceCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5" Background="#4B2A12"/>
+    <Button Content="🧠  MASTER BRAIN&#x0a;AI Engineering" Command="{Binding TestBrainCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="📦  SHIPPING TABLE&#x0a;Package &amp; Release" Command="{Binding BuildCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="📜  JOURNAL&#x0a;Notes &amp; Plans" Command="{Binding WorkspaceStatusCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="⚙  SETTINGS&#x0a;Borin &amp; System" Command="{Binding SaveSettingsCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+   </UniformGrid>
+  </Border>
+ </Grid>
+</UserControl>

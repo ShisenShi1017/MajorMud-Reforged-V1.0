@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "administrative-policy",
+  "promotions": [
+    {
+      "behavior": "Central fail-closed administrative authorization and typed subsystem dispatch",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeAdministrativePolicy.cs",
+        "Apps/Source/Reforged.Server/RuntimeAdministrativePolicySmokeReport.cs"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-administrative-policy"
+      ],
+      "safeFallback": "Reject and audit the request.",
+      "runtimeImpact": "Prevents normal-player access and routes approved actions to the owning subsystem.",
+      "characterSaveImpact": "Declared per action; mutation remains with the owning subsystem.",
+      "worldStateImpact": "Declared per action; mutation remains with the owning subsystem."
+    },
+    {
+      "behavior": "Administrative confirmation, audit, and rollback metadata",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeAdministrativePolicy.cs",
+        "Librarium/RemainingSystems/administrative_policy_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "confirmation-required",
+        "audit-history",
+        "rollback-impact"
+      ],
+      "safeFallback": "Require confirmation where declared and never imply rollback where unsupported.",
+      "runtimeImpact": "Provides deterministic policy and traceability.",
+      "characterSaveImpact": "Audit metadata records declared impact.",
+      "worldStateImpact": "Audit metadata records declared impact."
+    },
+    {
+      "behavior": "Exact Classic and Worldgroup administrator command policy remains native-dependent",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Librarium/RemainingSystems/remaining_systems_registry.json",
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "confidence": 0.9,
+      "assumptions": [
+        "Native administrator tables and host policy are not yet exhausted."
+      ],
+      "tests": [
+        "fail-closed unknown action and host boundary"
+      ],
+      "safeFallback": "Expose only explicitly registered Reforged actions to authenticated host operators.",
+      "runtimeImpact": "Avoids inventing native permissions.",
+      "characterSaveImpact": "No unproven administrative mutation is committed.",
+      "worldStateImpact": "No unproven administrative mutation is committed."
+    }
+  ]
+}

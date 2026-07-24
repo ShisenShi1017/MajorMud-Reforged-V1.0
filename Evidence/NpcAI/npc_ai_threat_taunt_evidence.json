@@ -1,0 +1,36 @@
+{
+  "schema_version": "npc-ai-threat-taunt-evidence.v1",
+  "update_id": "CodeUpdate0171",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimeNpcThreatTaunt.cs",
+  "classification": "strongly-correlated-active-runtime-boundary",
+  "confidence": 0.96,
+  "behavior": "The host explicitly authorizes an exact taunt target and nonnegative threat floor; runtime validates same-room alive detectable hostility evidence, floors the persisted ledger, overrides current target to the admitted event, and suppresses duplicate/regressive ticks.",
+  "sources": [
+    "existing world-owned threat ledger from CodeUpdate0168",
+    "explicit host observation/hostility authority boundary from CodeUpdate0162",
+    "deterministic target ownership from CodeUpdate0163"
+  ],
+  "assumptions": [
+    "host supplies already-resolved taunt authorization and target validity",
+    "event IDs are stable within one snapshot",
+    "multiple admitted events resolve in stable event-ID order, with the last admitted event owning the override"
+  ],
+  "safe_fallback": "Unauthorized or invalid taunts do not mutate ledger or target; if no taunt is admitted, existing positive ledger ranking is retained.",
+  "tests": [
+    "explicit-taunt-target-override-applies",
+    "unauthorized-taunt-rejected",
+    "duplicate-taunt-tick-suppressed",
+    "deterministic-threat-taunt-replay"
+  ],
+  "runtime_impact": "Adds exact taunt admission and persistent target override without defining native taunt formulas.",
+  "character_save_impact": "none",
+  "world_state_impact": "NPC metadata threat ledger, target, monotonic taunt tick and compact audit counters.",
+  "native_dependencies": [
+    "taunt strength formula",
+    "taunt duration",
+    "resistance and immunity checks",
+    "cooldown",
+    "hate-transfer relationship",
+    "forced-target break conditions"
+  ]
+}

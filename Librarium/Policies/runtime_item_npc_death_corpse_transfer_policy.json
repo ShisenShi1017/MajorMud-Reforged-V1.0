@@ -1,0 +1,24 @@
+{
+  "id": "policy.runtime.items.npc-death-corpse-transfer.v1",
+  "title": "NPC Death Corpse Transfer Policy",
+  "status": "active_evidence_gated",
+  "classification": "Reforged compatibility infrastructure",
+  "rules": [
+    "NPC corpse creation requires authoritative NPC and room identities.",
+    "Eligible top-level NPC-owned items transfer to the corpse while preserving runtime identities and nested portable-container relationships.",
+    "Explicit npc_no_drop or no_loot instance metadata retains an item with the NPC; unknown native drop flags are not inferred.",
+    "Transferred corpse items clear NPC ownership recursively.",
+    "NPC Runtime owns death sequencing, loot-table selection, corpse timers, and messages."
+  ],
+  "bidirectional_relationships": {
+    "npc_to_corpse_items": "NPC identity -> owned item roots -> corpse-held runtime instances",
+    "item_to_npc_death": "runtime item instance -> NPC owner -> explicit retention or corpse transfer provenance"
+  },
+  "unknowns": [
+    "Classic NPC drop flags",
+    "equipped-drop rules",
+    "random and rare loot selection",
+    "corpse timers",
+    "native messages"
+  ]
+}

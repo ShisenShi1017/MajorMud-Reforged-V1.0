@@ -1,0 +1,33 @@
+{
+  "id": "policy.classic.room-area-reset-runtime.0195",
+  "object_type": "runtime_policy",
+  "world_scope": ["classic"],
+  "status": "strongly_correlated_active",
+  "confidence": "strongly_correlated",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeWorldMultiplayer.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Data/Classic/exits.json",
+    "Librarium/Policies/classic_room_edge_reset_policy_0194.json"
+  ],
+  "behavior": {
+    "event_kind": "room-area-reset",
+    "owner": "RuntimeLivingWorldService",
+    "scope": "explicit canonical room id set",
+    "state_restored": ["Open", "Locked", "Activated"],
+    "initial_values_source": "generated RuntimeLivingWorldObjectDefinition",
+    "character_save_impact": "none",
+    "world_snapshot_impact": "persist changed room-object state",
+    "fallback": "reject malformed reset event and leave current world state unchanged"
+  },
+  "assumptions": [
+    "native area cadence is not inferred by this policy",
+    "placed-item instances require a separate item-service reset hook"
+  ],
+  "validation": [
+    "explicit area_id required",
+    "one or more canonical room_ids required",
+    "no reset outside supplied room set",
+    "state restoration is idempotent"
+  ]
+}

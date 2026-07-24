@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "code_update": "0140",
+  "subsystem": "character",
+  "status": "in_progress",
+  "completed_passes": [
+    {
+      "id": "character.record_structure.source_inventory",
+      "classification": "proven",
+      "runtime_impact": "versioned fail-safe character semantic save contract"
+    }
+  ],
+  "active_runtime_promotions": [
+    {
+      "id": "character.persistence.semantic_state_v2",
+      "classification": "proven",
+      "source": "existing Reforged JSON persistence contract",
+      "fallback": "version-1 saves deserialize with an empty optional semantic extension",
+      "save_impact": "new saves use version 2; versions 1 and 2 accepted",
+      "world_state_impact": "none beyond validation of character-owned state"
+    }
+  ],
+  "remaining_order": [
+    "native record segmentation",
+    "character creation",
+    "statistics",
+    "equipment interaction",
+    "abilities",
+    "flags",
+    "status effects",
+    "level progression",
+    "inventory interaction",
+    "death and resurrection",
+    "native save/load reconstruction",
+    "runtime lifecycle"
+  ],
+  "native_pass_dependencies": [],
+  "unknown_policy": "preserve evidence and fail safely"
+}

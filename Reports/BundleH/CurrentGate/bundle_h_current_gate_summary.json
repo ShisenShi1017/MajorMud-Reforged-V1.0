@@ -1,0 +1,50 @@
+﻿[
+    {
+        "Audit":  "--audit-character-bundle",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-character-bundle.log"
+    },
+    {
+        "Audit":  "--audit-bundle-d-search",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-d-search.log"
+    },
+    {
+        "Audit":  "--audit-bundle-d-doors",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-d-doors.log"
+    },
+    {
+        "Audit":  "--audit-bundle-d-corrective",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-d-corrective.log"
+    },
+    {
+        "Audit":  "--audit-bundle-d-environment",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-d-environment.log"
+    },
+    {
+        "Audit":  "--audit-bundle-d-final",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-d-final.log"
+    },
+    {
+        "Audit":  "--audit-bundle-e-zero-disconnects",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-e-zero-disconnects.log"
+    },
+    {
+        "Audit":  "--audit-bundle-h-gang-houses",
+        "ExitCode":  0,
+        "Status":  "PASS_RUNTIME_SERVICE_LOCATIONS",
+        "Log":  "Reports\\BundleH\\CurrentGate\\audit-bundle-h-gang-houses.log"
+    }
+]

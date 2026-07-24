@@ -1,0 +1,22 @@
+{
+  "update": "0163",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "death and terminal entity invalidation coordinator",
+    "deterministic dependent action cancellation",
+    "actor and target dependency ownership",
+    "queued and claimed action cancellation",
+    "exactly-once invalidation protection",
+    "canonical entity and action validation",
+    "fail-closed unresolved dependency semantics"
+  ],
+  "not_claimed_complete": [
+    "exact native death insertion priority",
+    "simultaneous lethal exchange semantics",
+    "cross-combat invalidation propagation",
+    "queued cancellation persistence",
+    "death event fan-out to quest loot corpse and experience owners"
+  ],
+  "next_pass": "Implement threat mutation and cleanup for physical damage, spell damage, healing, debuffs, death, flee, and room exit using evidence-gated policies."
+}

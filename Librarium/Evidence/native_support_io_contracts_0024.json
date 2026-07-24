@@ -1,0 +1,89 @@
+{
+  "schema": "majorMud.nativeSupportIoContracts.v1",
+  "evidence_id": "native-support-io-contracts-0024",
+  "update": "0023->0024",
+  "evidence_class": "PROVEN",
+  "module_hashes": {
+    "wccmmud.dll": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wccmmutl.exe": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+    "wbbmmud.dll": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+    "wbbmmutl.exe": "c9f558b23f35b61ca85c5e799014294fda75b561e77d6d2963c3823337320790"
+  },
+  "contracts": [
+    {
+      "asset": "wccknows.sys",
+      "module": "wccmmud.dll",
+      "string_va": "0x0047D03B",
+      "caller_va": "0x0040AAC5",
+      "callee": "cw3220mt.DLL!_access",
+      "callee_thunk_va": "0x00478850",
+      "arguments": [
+        "path",
+        "mode=0"
+      ],
+      "return_contract": "_access return 0 maps to wrapper byte true (1); nonzero maps to false (0)",
+      "evidence_class": "PROVEN",
+      "purpose": "existence probe"
+    },
+    {
+      "asset": "WCCDMA.SYS",
+      "module": "wccmmud.dll",
+      "string_va": "0x0048F525",
+      "caller_va": "0x0046BDF6",
+      "callee": "WGSERVER.EXE!_tfsopn",
+      "callee_thunk_va": "0x00478A2A",
+      "arguments": [
+        "path"
+      ],
+      "return_contract": "zero continues the read path; nonzero exits the wrapper with failure (0)",
+      "follow_on": [
+        "WGSERVER.EXE!_tfsrdl is reached later in the same routine after state checks"
+      ],
+      "evidence_class": "PROVEN",
+      "purpose": "host text-file open/read path"
+    },
+    {
+      "asset": "WCCBOX.BIN",
+      "module": "wccmmutl.exe",
+      "string_va": "0x00415247",
+      "caller_va": "0x00406A12",
+      "callee": "utility loader 0x0040C650 -> cw3220mt.DLL!_fopen/_fread/_fclose",
+      "arguments": [
+        "path",
+        "destination buffer or null"
+      ],
+      "open_mode": "rb",
+      "read_contract": "fread(destination, 4000, 1, stream); exactly one 4000-byte item is required",
+      "failure_contract": "emits INISCN open/read error path",
+      "evidence_class": "PROVEN",
+      "purpose": "80x25 character/attribute screen load"
+    },
+    {
+      "asset": "wccaedit.bin",
+      "module": "wccmmutl.exe",
+      "string_va": "0x00415BF0",
+      "caller_va": "0x004089BE",
+      "callee": "utility loader 0x0040C650 -> cw3220mt.DLL!_fopen/_fread/_fclose",
+      "arguments": [
+        "path",
+        "destination buffer or null"
+      ],
+      "open_mode": "rb",
+      "read_contract": "fread(destination, 4000, 1, stream); exactly one 4000-byte item is required",
+      "failure_contract": "emits INISCN open/read error path",
+      "evidence_class": "PROVEN",
+      "purpose": "80x25 character/attribute screen load"
+    }
+  ],
+  "closures": [
+    "wccknows.sys is an exact existence predicate implemented through _access(path,0).",
+    "WCCDMA.SYS enters the Worldgroup text-file service through _tfsopn and continues only on zero status.",
+    "The utility BIN loader opens assets in binary-read mode and requires one complete 4000-byte read item before rendering.",
+    "The supplied BIN geometry therefore has a proven native load-size contract matching the recovered 80x25x2 layout."
+  ],
+  "limitations": [
+    "WCCADDON.SYS remains proven as an embedded native filename but its exact dynamic path construction and consumer callsite are not yet closed.",
+    "STO/HSE filename grammars and payload identities are proven, but exact native open/read/fallback callsites were not recovered in this pass.",
+    "Worldgroup terminal palette conversion after BIN load remains host/console owned."
+  ]
+}

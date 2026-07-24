@@ -1,0 +1,21 @@
+{
+  "id": "policy.runtime.items.corpse_limited_reservation.v1",
+  "authority": "Librarium",
+  "mode": "compatibility_infrastructure",
+  "activation": "explicit_projection_only",
+  "rules": [
+    "Only items with a projected positive maximum_owned_quantity participate.",
+    "Active corpse-held items and nested contents reserve quantity for the corpse reservation owner.",
+    "New corpse records persist the dead character as reservation owner unless a later proven subsystem supplies another scope.",
+    "Legacy corpse records without the new field fall back to CharacterId for save compatibility.",
+    "Loot excludes the transferred source quantity from its prior reservation before enforcing the destination owner limit.",
+    "Recursive corpse cleanup releases all reservations atomically.",
+    "No account, party, guild, world, event, or merchant scope is inferred."
+  ],
+  "ownership": {
+    "items": "reservation counting, validation, transfer exclusion, and release",
+    "character_npc": "death and resurrection sequencing",
+    "world_runtime": "corpse decay scheduling and crash recovery",
+    "librarium": "evidence, confidence, and native dependency tracking"
+  }
+}

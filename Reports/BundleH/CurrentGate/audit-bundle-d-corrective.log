@@ -1,0 +1,122 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=292; importedReferenceFiles=3654; exactNameMatches=1
+{
+  "Passed": true,
+  "WorldId": "classic",
+  "Checks": [
+    "all-source-present:Data/Classic/rooms.json",
+    "all-source-present:Data/Classic/exits.json",
+    "all-source-present:Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/rooms_decoded.json",
+    "all-source-present:Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
+    "all-source-present:Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",
+    "all-source-present:Librarium/Objects/rooms/mmexplorer_room_records_0140.json",
+    "all-source-present:Librarium/Objects/exits/mmexplorer_exit_records_0140.json",
+    "all-source-present:Librarium/RemainingSystems/door_lock_access_catalog.json",
+    "all-source-present:Librarium/RemainingSystems/world_reset_cleanup_catalog.json",
+    "all-source-present:Evidence/DataSimVer0017-SearchCleanupEvidence.json",
+    "all-source-present:Evidence/ExternalSources/Validation0008/search_hidden_exit_trace.csv",
+    "all-source-present:Evidence/ExternalSources/Validation0012/cleanup_hidden_snippets.json",
+    "all-source-present:ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json",
+    "decoded-del-maint-ability-present",
+    "librarium-del-maint-119-provenance",
+    "native-delete-at-cleanup-display-evidence",
+    "d1-world-authority-audit",
+    "d2-room-runtime-audit",
+    "d3-exit-runtime-audit",
+    "d4-door-runtime-audit",
+    "d5-search-runtime-audit",
+    "d6-cleanup-runtime-audit",
+    "single-world-loader",
+    "single-cleanup-consumer",
+    "single-hidden-search-consumer",
+    "single-live-door-state-owner",
+    "see-hidden-does-not-auto-persist-object-discovery",
+    "world-authority-recurses-all-nested-generated-fields"
+  ],
+  "Failures": [],
+  "Evidence": [
+    {
+      "Phase": "D1",
+      "Source": "decoded \u002B generated \u002B runtime",
+      "Classification": "Verified",
+      "Finding": "Canonical map-qualified room identity and one RuntimeWorld graph are live."
+    },
+    {
+      "Phase": "D2",
+      "Source": "MMExplorer rooms decoded 0138/0140",
+      "Classification": "Strongly Corroborated",
+      "Finding": "Room light, shop, spell, lair, delay, command, NPC, and placed fields exist in decoded sources; only proven generated fields execute."
+    },
+    {
+      "Phase": "D3",
+      "Source": "MMExplorer exits semantic 0183",
+      "Classification": "Strongly Corroborated",
+      "Finding": "Prerequisites, effects, hidden mode, tolls, edge state, and reciprocal semantics are retained as decoded evidence and require specialized consumers."
+    },
+    {
+      "Phase": "D4",
+      "Source": "door_lock_access_catalog \u002B live world",
+      "Classification": "Verified",
+      "Finding": "RuntimeLivingWorldService is the live door state owner; the richer door service is non-live validation evidence."
+    },
+    {
+      "Phase": "D5",
+      "Source": "DataSimVer0017 \u002B Validation0008",
+      "Classification": "Verified",
+      "Finding": "Discovery is per character; See Hidden is not reused as automatic room-object discovery."
+    },
+    {
+      "Phase": "D6",
+      "Source": "ability 119 \u002B native text \u002B cleanup snippets",
+      "Classification": "Verified",
+      "Finding": "Decoded Del@Maint maps to runtime DeleteAtCleanup behavior; ordinary room ground becomes hidden."
+    }
+  ],
+  "Verified": [
+    "D1-D6 now have one combined audit gate that requires decoded, imported, Librarium, native, generated, and live-runtime evidence sources.",
+    "The decoded source name is Del@Maint (ability 119); DeleteAtCleanup is only the runtime semantic behavior name.",
+    "Newhaven Arena remains canonical room.map1.2150.",
+    "Room-object discovery remains player-specific and is not globally revealed by Search or See Hidden.",
+    "RuntimeLivingWorldService is the sole live door command/movement/persistence owner."
+  ],
+  "StronglyCorroborated": [
+    "The bounded percentile Search comparison remains strongly corroborated; exact primary-stat weighting is not promoted.",
+    "Advanced exit and door semantics remain attached to decoded records and are executed only when explicit generated evidence supplies the prerequisite/effect."
+  ],
+  "DecodedButNotMapped": [
+    "Exit hidden mode, toll, damage, action ordering, class/alignment/level restrictions, reciprocal state linkage, and automatic routing where no live specialized consumer is proven.",
+    "Hidden room currency and non-item object discovery persistence where no target identity model is generated."
+  ],
+  "Conflicts": [
+    "Prior reports renamed the decoded Del@Maint flag as del@cleanup; Revision 0007/0008 supersede that provenance wording.",
+    "RuntimeDoorAccessService models richer semantics but is deliberately not a second live door state authority."
+  ],
+  "TrueUnknown": [
+    "Exact native Search stat formula and target-specific concealment derivation.",
+    "Universal maintenance/cleanup cadence and exact ordering relative to every reset cohort.",
+    "Unclassified native room latch and exit qualifier effects awaiting the final native pass."
+  ]
+}

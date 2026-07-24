@@ -1,0 +1,15 @@
+{
+  "id": "runtime-item-resurrection-gold-restoration",
+  "version": "0178",
+  "scope": "items.runtime.corpse.resurrection",
+  "classification": "reforged_compatibility_infrastructure",
+  "rules": [
+    "RestoreCorpseItems remains item-only and never consumes corpse gold.",
+    "RestoreCorpseForResurrection requires the corpse character identity.",
+    "Gold restoration occurs only when restoreGold is explicitly true.",
+    "The result reports restored gold; Character or Economy owns crediting character currency.",
+    "A corpse finalizes only when no corpse-root items and no gold remain.",
+    "All item and corpse mutations roll back together on failure."
+  ],
+  "classic_activation": "fail_closed_pending_native_evidence"
+}

@@ -1,0 +1,36 @@
+{
+  "update": "0176",
+  "catalog": "combat_resurrection_revival",
+  "ownership": "Combat owns resurrection/revival validation, deterministic restoration ordering, and event emission. Character/NPC, inventory, corpse, room, status, persistence, and messaging owners commit requested mutations through sinks.",
+  "validated_requirements": [
+    "dead state",
+    "eligibility flag and optional expiration tick",
+    "canonical target, source definition, room, and corpse references",
+    "policy-controlled corpse and same-room requirements",
+    "bounded HP, mana, and energy restoration"
+  ],
+  "ordered_events": [
+    "validate_eligibility",
+    "consume_resource",
+    "clear_death_state",
+    "restore_hit_points",
+    "restore_mana",
+    "restore_energy",
+    "apply_effect_disposition",
+    "move_to_destination",
+    "apply_resurrection_sickness",
+    "persist_character_state",
+    "emit_revival_event"
+  ],
+  "combat_state": "not restored; reentry remains a separate validated action",
+  "atomicity": "all sinks prepare before any commit; committed sinks rollback in reverse order",
+  "unknowns": [
+    "production resurrection eligibility windows",
+    "exact corpse and room requirements per spell or ability",
+    "experience recovery",
+    "resurrection sickness definition and duration",
+    "native restoration percentages and rounding",
+    "production resource consumption timing"
+  ],
+  "safe_fallback": "reject weak, missing, expired, or internally inconsistent resurrection policies before mutation"
+}

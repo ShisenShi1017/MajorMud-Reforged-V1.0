@@ -1,0 +1,264 @@
+{
+  "id": "policy.runtime_quest_dialogue_execution",
+  "object_type": "runtime_policy",
+  "world_scope": [
+    "classic"
+  ],
+  "status": "active_strongly_correlated",
+  "source_package": "MajorMUD_Reforged_Cumulative_Update_0206.zip",
+  "policy_summary": [
+    "Bind NPC quest-entry triggers to linked decoded textblock stage scripts.",
+    "Evaluate every clause condition before mutation.",
+    "Execute the first matching clause in decoded source-line order.",
+    "Fail closed for unsupported opcodes or unresolved references.",
+    "Rollback local character quest state, inventory, currency, experience, and flags when execution fails.",
+    "Expose world-affecting operations as host intents unless the host has a verified immediate handler."
+  ],
+  "source_policies": [
+    {
+      "source_file": "atomic_quest_clause_policy_0200.json",
+      "document": {
+        "id": "policy.atomic_quest_clause_execution.0200",
+        "scope": "MMExplorer textblock-derived quest scripts",
+        "status": "active_strongly_correlated",
+        "rule": "Evaluate every condition on a source line before executing any state-changing, presentation, or branch operation from that line.",
+        "condition_combiner": "all",
+        "condition_order": "source sequence among conditions with short-circuit on first failure",
+        "execution_order": "source sequence among non-condition operations after successful preflight",
+        "reason": [
+          "Four source lines encode prerequisites after item, message, or reward operations.",
+          "Literal token-by-token execution could consume or grant state before a later prerequisite fails.",
+          "Atomic preflight preserves every directive and prevents partial quest-state corruption."
+        ],
+        "fallback": "Abort the entire clause without mutation when a condition, reference, or target cannot be evaluated.",
+        "provenance": [
+          "Data/Classic/scripts.json MMExplorer textblock operations",
+          "Evidence/QuestScriptTrigger0200/atomic_clause_compile_report.json"
+        ],
+        "save_world_state_impact": "Prevents partial inventory, ability, experience, alignment, summon, teleport, and quest-flag mutations.",
+        "tests": [
+          "All 182 quest-stage scripts compile into source-line clauses.",
+          "All 490 clauses preserve non-condition source order.",
+          "Every source-line condition appears in preflight, including four late-position condition clauses."
+        ]
+      }
+    },
+    {
+      "source_file": "runtime_builtin_quest_operations_policy_0203.json",
+      "document": {
+        "id": "policy.runtime_builtin_quest_operations.0203",
+        "status": "active_strongly_correlated",
+        "scope": [
+          "addexp",
+          "addevil",
+          "message",
+          "text"
+        ],
+        "runtime_behavior": {
+          "addexp": "Add the decoded signed amount to character experience.",
+          "addevil": "Move alignment toward evil by subtracting the decoded amount.",
+          "message": "Emit a canonical message reference without mutating quest state.",
+          "text": "Return the canonical target textblock as the next dialogue branch."
+        },
+        "evidence": [
+          "MMExplorer operation names and numeric arguments are syntactically decoded with zero unknown opcodes.",
+          "All four operations have deterministic local representations and require no room/NPC/world-object lookup.",
+          "Source-order clause execution and rollback semantics were established in Updates 0200-0202."
+        ],
+        "confidence": "strongly_correlated",
+        "assumptions": [
+          "addevil uses the repository alignment convention where lower values are more evil.",
+          "text selects the decoded target textblock and does not itself execute that target recursively.",
+          "message resolves through the native message catalog at presentation time."
+        ],
+        "fallback": "Fail the entire atomic clause and roll back local state when arguments are missing or a later external handler fails.",
+        "tests": [
+          "43 addexp, 3 addevil, 130 message, and 389 text operations are recognized.",
+          "Experience and alignment roll back when a later operation fails.",
+          "Message and text emit canonical IDs without hidden mutation."
+        ],
+        "save_or_world_state_impact": {
+          "addexp": "character save",
+          "addevil": "character save",
+          "message": "none",
+          "text": "dialogue session only"
+        }
+      }
+    },
+    {
+      "source_file": "runtime_npc_quest_dispatch_policy_0206.json",
+      "document": {
+        "policy_id": "runtime_npc_quest_dispatch_policy_0206",
+        "status": "active_strongly_correlated",
+        "scope": "MMExplorer-derived NPC quest dialogue entry",
+        "rules": [
+          "Group stage scripts only when quest, NPC, and root textblock relationships all match.",
+          "Evaluate linked scripts in ascending decoded stage order.",
+          "Within each script execute only the first atomic clause whose complete prerequisite set passes.",
+          "A missing or ambiguous trigger/script relationship fails safely without character or world mutation.",
+          "Preserve canonical script, quest, NPC, and textblock identifiers in runtime and Librarium records."
+        ],
+        "provenance": [
+          "Data/Classic/scripts.json relationships generated from MMExplorer textblocks",
+          "Data/Classic/triggers.json canonical projection generated in pass 0206"
+        ],
+        "assumptions": [
+          "Decoded stage_index represents dialogue-stage evaluation order.",
+          "NPC interaction is the entry event for records grouped under that NPC relationship."
+        ],
+        "fallback": "No dialogue clause is selected and no state changes are committed.",
+        "tests": [
+          "Tools/QuestScriptTriggerAudit/validate_npc_quest_dispatch_0206.py"
+        ],
+        "save_or_world_state_impact": "No mutation occurs until an atomic quest clause passes and all required handlers are ready."
+      }
+    },
+    {
+      "source_file": "runtime_quest_clause_atomicity_policy_0202.json",
+      "document": {
+        "id": "policy.runtime.quest_clause_atomicity.0202",
+        "status": "active",
+        "confidence": "strongly_correlated",
+        "runtime_behavior": {
+          "execution_readiness_preflight": "Every executable operation must have a deterministic local implementation or a registered runtime handler before the clause mutates state.",
+          "rollback": "If a runtime handler fails, all locally represented quest state is restored to its pre-clause snapshot.",
+          "external_side_effect_contract": "Registered external handlers must be transactional or idempotent because external systems cannot be automatically rolled back by the local executor."
+        },
+        "provenance": [
+          "Data/Classic/scripts.json compiled_clauses_0200",
+          "Runtime/quests/textblock_executor.py",
+          "Tools/QuestScriptTriggerAudit/validate_runtime_clause_atomicity_0202.py"
+        ],
+        "fallback": "Fail the clause without mutation when any executable operation lacks a handler.",
+        "save_world_state_impact": "Prevents partially applied inventory, ability, quest-state, teleport, summon, experience, alignment, presentation, or branch effects."
+      }
+    },
+    {
+      "source_file": "runtime_quest_clause_executor_policy_0201.json",
+      "document": {
+        "update": "0201",
+        "status": "active_strongly_correlated",
+        "scope": "MMExplorer quest textblock runtime clause execution",
+        "rules": [
+          "Select clauses in source-line order.",
+          "Preflight every condition before any state mutation.",
+          "Execute effects, messages, and branches in original non-condition source order.",
+          "Unsupported or unresolved operations fail closed and produce no mutation.",
+          "External effects such as teleport, summon, cast, experience, alignment, messages, and branches require explicit runtime handlers."
+        ],
+        "provenance": [
+          "Data/Classic/scripts.json compiled_clauses_0200",
+          "MMExplorer decoded textblock operation order",
+          "Evidence/QuestScriptTrigger0200/atomic_clause_compile_report.json"
+        ],
+        "assumptions": [
+          "Each source line is an independent candidate clause until native DLL evidence proves continuation semantics.",
+          "First passing source-line clause is selected."
+        ],
+        "fallback": "Abort before mutation when a condition or executable operation cannot be handled safely.",
+        "save_world_state_impact": "Prevents partial inventory, quest flag, reward, teleport, summon, and message side effects.",
+        "tests": [
+          "Blocked Dao Lord clause does not consume its item or advance its ability flag.",
+          "Passing Dao Lord clause executes item removal, ability transition, and branch in source order.",
+          "Every compiled operation reference resolves to the original decoded operation."
+        ]
+      }
+    },
+    {
+      "source_file": "runtime_random_textblock_policy_0205.json",
+      "document": {
+        "id": "runtime_random_textblock_policy_0205",
+        "status": "active_strongly_correlated",
+        "scope": "MMExplorer random textblock directives",
+        "rules": {
+          "roll_range": "inclusive integer 1..100",
+          "threshold_interpretation": "cumulative upper bounds in ascending numeric-selection order",
+          "selection": "first threshold greater than or equal to roll",
+          "multiple_random_directives": "independent rolls executed in parent source order",
+          "atomicity": "selected child clause and parent clause are one transaction",
+          "fallback": "fail closed when table missing, malformed, or incomplete"
+        },
+        "sources": [
+          {
+            "textblock_id": 9382,
+            "owner_raw": "Textblock(rndm) #9292",
+            "thresholds": [
+              25,
+              50,
+              75,
+              100
+            ]
+          },
+          {
+            "textblock_id": 9572,
+            "owner_raw": "Textblock(rndm) #9292",
+            "thresholds": [
+              100
+            ]
+          }
+        ],
+        "assumptions": [
+          "Numeric selection values are cumulative percentage thresholds, supported by Textblock(rndm) ownership and complete 100 coverage."
+        ],
+        "save_world_state_impact": "May grant or consume quest items; requires transactional commit.",
+        "tests": [
+          "boundary rolls select expected clauses",
+          "100-percent table always selects",
+          "malformed table rolls back"
+        ]
+      }
+    },
+    {
+      "source_file": "runtime_world_intent_policy_0204.json",
+      "document": {
+        "id": "policy.runtime_world_intent.0204",
+        "subsystem": "triggers_scripts_quests",
+        "status": "strongly_correlated_active_runtime",
+        "summary": "Decoded cast, summon, teleport, and remoteaction operations emit typed deferred world intents. The Host must validate and atomically commit the complete clause result with local quest-state changes.",
+        "active_opcodes": {
+          "cast": {
+            "count": 11,
+            "intent": "cast_spell",
+            "target": "spell_id"
+          },
+          "summon": {
+            "count": 3,
+            "intent": "summon_npc",
+            "target": "npc_id"
+          },
+          "teleport": {
+            "count": 2,
+            "intent": "teleport_character",
+            "target": "map_number_and_room_number"
+          },
+          "remoteaction": {
+            "count": 1,
+            "intent": "remote_action",
+            "target": "four_preserved_numeric_arguments",
+            "native_effect": "pending"
+          }
+        },
+        "inactive_opcodes": {
+          "random": {
+            "count": 2,
+            "reason": "selection probability and continuation semantics are not decoded"
+          }
+        },
+        "assumptions": [
+          "Decoded numeric identifiers are the intended native targets.",
+          "Emitting an intent is not equivalent to applying the native world mutation.",
+          "The Host commits all intents and local quest-state changes atomically or commits none."
+        ],
+        "fallback": "Reject the clause without mutation when the Host cannot validate every emitted world intent.",
+        "save_world_state_impact": "Cast, summon, teleport, and remote actions may change character or world state only after Host atomic commit.",
+        "tests": [
+          "Tools/QuestScriptTriggerAudit/validate_world_intents_0204.py"
+        ],
+        "evidence": [
+          "Data/Classic/scripts.json",
+          "Evidence/QuestScriptTrigger0204/world_intent_validation.json"
+        ]
+      }
+    }
+  ]
+}

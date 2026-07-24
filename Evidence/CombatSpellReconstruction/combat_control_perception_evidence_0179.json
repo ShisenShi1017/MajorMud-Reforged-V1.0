@@ -1,0 +1,10 @@
+{
+  "update":"0179","confidence":"strongly_correlated","behavior":"fear/charm ownership and visibility resolution",
+  "source_files":["Apps/Source/Reforged.Server/RuntimeCombatStatusModifiers.cs","Apps/Source/Reforged.Server/RuntimeCombatMovement.cs","Librarium/Status/combat_spell_exhaustion_status_0178.json"],
+  "record_ids":["control-policy.promoted.0179","visibility-policy.promoted.0179","test-vector.control-perception.0179"],"byte_offsets":[],
+  "supporting_evidence":["status runtime already exposes action restriction and visibility modifiers","movement runtime owns forced-movement handoff","0178 status names fear/charm and visibility semantics as next boundary"],
+  "assumptions":["control ownership is temporary runtime state","destination selection remains owned by movement/AI","production spell mappings require promotion"],
+  "tests":["fear movement request","charm controller ownership","control replacement rejection","detection defeats concealment","same-room/living gates"],
+  "safe_fallback":"reject control or targeting when ownership or perception policy is unresolved",
+  "runtime_impact":"adds deterministic control-ownership and perception decision boundary","character_save_impact":"none until persistence is promoted","world_state_impact":"none; movement and AI owners receive requests only"
+}

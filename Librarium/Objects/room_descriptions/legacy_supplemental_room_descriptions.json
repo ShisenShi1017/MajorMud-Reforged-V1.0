@@ -1,0 +1,168 @@
+{
+  "schema": "librarium_room_description_records_v1",
+  "update": "0180",
+  "source_of_truth": "WCCMP001 legacy supplemental corroborated by MMExplorer and OmniVerse",
+  "record_count": 4,
+  "records": [
+    {
+      "id": "room_description.room.map1.503",
+      "room_id": "room.map1.503",
+      "legacy_id": "503",
+      "map_number": 1,
+      "room_number": 503,
+      "name": "Adventurer's Guild, Halls of Training",
+      "object_type": "room_description",
+      "world_scope": [
+        "classic"
+      ],
+      "description": "",
+      "evidence_status": "strongly_correlated",
+      "evidence_refs": [
+        {
+          "source": "WCCMP001.DAT",
+          "source_file": "ImportedDatabases/NativeRuntime/WCCMP001.DAT",
+          "classification": "legacy_description_exact_binary_match"
+        },
+        {
+          "source": "OmniVerse",
+          "source_file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room503.json",
+          "classification": "independent_room_identity_and_text_corroboration"
+        },
+        {
+          "source": "MMExplorer",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "classification": "authoritative_structured_room_identity"
+        }
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects/room_descriptions",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "strongly_correlated_legacy_supplement",
+        "fallback": "retain_current_room_graph_and use supplemental description only",
+        "exports_to": "/Data/<world>/rooms.json"
+      }
+    },
+    {
+      "id": "room_description.room.map1.504",
+      "room_id": "room.map1.504",
+      "legacy_id": "504",
+      "map_number": 1,
+      "room_number": 504,
+      "name": "Druid's Training Room",
+      "object_type": "room_description",
+      "world_scope": [
+        "classic"
+      ],
+      "description": "",
+      "evidence_status": "strongly_correlated",
+      "evidence_refs": [
+        {
+          "source": "WCCMP001.DAT",
+          "source_file": "ImportedDatabases/NativeRuntime/WCCMP001.DAT",
+          "classification": "legacy_description_exact_binary_match"
+        },
+        {
+          "source": "OmniVerse",
+          "source_file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room504.json",
+          "classification": "independent_room_identity_and_text_corroboration"
+        },
+        {
+          "source": "MMExplorer",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "classification": "authoritative_structured_room_identity"
+        }
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects/room_descriptions",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "strongly_correlated_legacy_supplement",
+        "fallback": "retain_current_room_graph_and use supplemental description only",
+        "exports_to": "/Data/<world>/rooms.json"
+      }
+    },
+    {
+      "id": "room_description.room.map1.505",
+      "room_id": "room.map1.505",
+      "legacy_id": "505",
+      "map_number": 1,
+      "room_number": 505,
+      "name": "Ranger's Training Room",
+      "object_type": "room_description",
+      "world_scope": [
+        "classic"
+      ],
+      "description": "",
+      "evidence_status": "strongly_correlated",
+      "evidence_refs": [
+        {
+          "source": "WCCMP001.DAT",
+          "source_file": "ImportedDatabases/NativeRuntime/WCCMP001.DAT",
+          "classification": "legacy_description_exact_binary_match"
+        },
+        {
+          "source": "OmniVerse",
+          "source_file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room505.json",
+          "classification": "independent_room_identity_and_text_corroboration"
+        },
+        {
+          "source": "MMExplorer",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "classification": "authoritative_structured_room_identity"
+        }
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects/room_descriptions",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "strongly_correlated_legacy_supplement",
+        "fallback": "retain_current_room_graph_and use supplemental description only",
+        "exports_to": "/Data/<world>/rooms.json"
+      }
+    },
+    {
+      "id": "room_description.room.map4.1",
+      "room_id": "room.map4.1",
+      "legacy_id": "1",
+      "map_number": 4,
+      "room_number": 1,
+      "name": "Silvermere Property Office",
+      "object_type": "room_description",
+      "world_scope": [
+        "classic"
+      ],
+      "description": "",
+      "evidence_status": "strongly_correlated",
+      "evidence_refs": [
+        {
+          "source": "WCCMP001.DAT",
+          "source_file": "ImportedDatabases/NativeRuntime/WCCMP001.DAT",
+          "classification": "legacy_description_exact_binary_match"
+        },
+        {
+          "source": "OmniVerse",
+          "source_file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map4-room1.json",
+          "classification": "independent_room_identity_and_text_corroboration"
+        },
+        {
+          "source": "MMExplorer",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "classification": "authoritative_structured_room_identity"
+        }
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects/room_descriptions",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "strongly_correlated_legacy_supplement",
+        "fallback": "retain_current_room_graph_and use supplemental description only",
+        "exports_to": "/Data/<world>/rooms.json"
+      }
+    }
+  ]
+}

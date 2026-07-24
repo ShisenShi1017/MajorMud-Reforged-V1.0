@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "updatedByPass": "RemainingSystems-0033-CapacityLimits",
+  "subsystem": "capacity-resource-limits",
+  "runtimeOwner": "RuntimeCapacityLimitsService",
+  "supportedResources": [
+    "users",
+    "characters",
+    "npc-instances",
+    "objects",
+    "corpses",
+    "timers",
+    "parties",
+    "guilds",
+    "messages",
+    "active-events",
+    "world-state-entries"
+  ],
+  "operations": [
+    "inspect",
+    "set usage",
+    "reserve",
+    "commit",
+    "release",
+    "host-authorized limit change"
+  ],
+  "policies": [
+    "owner-scoped mutation",
+    "checked arithmetic",
+    "hard-limit admission rejection",
+    "fail-closed unknown resource",
+    "host-only configuration mutation"
+  ],
+  "ownership": {
+    "usageTruth": "owning subsystem",
+    "coordination": "RuntimeCapacityLimitsService",
+    "configuration": "WorldRules/Host"
+  },
+  "nativeDependencies": [
+    "exact Classic limits",
+    "configurable versus static limits",
+    "native integer widths",
+    "allocation failure behavior",
+    "cleanup and admission rejection messages"
+  ]
+}

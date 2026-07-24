@@ -1,0 +1,3891 @@
+{
+  "schema": "mmexplorer_unmatched_reference_supplement_v1",
+  "code_update": "0139",
+  "family": "spells",
+  "source": "Librarium/Objects/spells/sql_mdb_records_0128.json",
+  "record_count": 108,
+  "records": [
+    {
+      "id": "mmexplorer_unmatched_spells.1272",
+      "type": "spell",
+      "name": "spell row 2719:11",
+      "sourceNumbers": {
+        "number": 1272
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2719,
+        "rowIndexOnPage": 11,
+        "offset": 1024,
+        "length": 194,
+        "hexPrefix": "2e00f80400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "aa00a800a800a6000500ffffffffff3f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1273",
+      "type": "spell",
+      "name": "spell row 2719:12",
+      "sourceNumbers": {
+        "number": 1273
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2719,
+        "rowIndexOnPage": 12,
+        "offset": 828,
+        "length": 196,
+        "hexPrefix": "2e00f90400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ac00aa00aa00a6000500ffffffffff3f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1274",
+      "type": "spell",
+      "name": "123",
+      "sourceNumbers": {
+        "number": 1274
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2719,
+        "rowIndexOnPage": 13,
+        "offset": 631,
+        "length": 197,
+        "hexPrefix": "2e00fa0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ad00ab00ab00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1275",
+      "type": "spell",
+      "name": "1234",
+      "sourceNumbers": {
+        "number": 1275
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2719,
+        "rowIndexOnPage": 14,
+        "offset": 433,
+        "length": 198,
+        "hexPrefix": "2e00fb0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ae00ac00ac00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1276",
+      "type": "spell",
+      "name": "12345",
+      "sourceNumbers": {
+        "number": 1276
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2719,
+        "rowIndexOnPage": 15,
+        "offset": 234,
+        "length": 199,
+        "hexPrefix": "2e00fc0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "af00ad00ad00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1277",
+      "type": "spell",
+      "name": "123456",
+      "sourceNumbers": {
+        "number": 1277
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 0,
+        "offset": 3896,
+        "length": 200,
+        "hexPrefix": "2e00fd0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b000ae00ae00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1278",
+      "type": "spell",
+      "name": "1234567",
+      "sourceNumbers": {
+        "number": 1278
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 1,
+        "offset": 3695,
+        "length": 201,
+        "hexPrefix": "2e00fe0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b100af00af00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1279",
+      "type": "spell",
+      "name": "12345678",
+      "sourceNumbers": {
+        "number": 1279
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 2,
+        "offset": 3493,
+        "length": 202,
+        "hexPrefix": "2e00ff0400000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b200b000b000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1280",
+      "type": "spell",
+      "name": "123456789",
+      "sourceNumbers": {
+        "number": 1280
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 3,
+        "offset": 3290,
+        "length": 203,
+        "hexPrefix": "2e00000500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b300b100b100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1281",
+      "type": "spell",
+      "name": "1234567890",
+      "sourceNumbers": {
+        "number": 1281
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 4,
+        "offset": 3086,
+        "length": 204,
+        "hexPrefix": "2e00010500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1282",
+      "type": "spell",
+      "name": "12345678901",
+      "sourceNumbers": {
+        "number": 1282
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 5,
+        "offset": 2881,
+        "length": 205,
+        "hexPrefix": "2e00020500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1283",
+      "type": "spell",
+      "name": "123456789012",
+      "sourceNumbers": {
+        "number": 1283
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 6,
+        "offset": 2675,
+        "length": 206,
+        "hexPrefix": "2e00030500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1284",
+      "type": "spell",
+      "name": "1234567890123",
+      "sourceNumbers": {
+        "number": 1284
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 7,
+        "offset": 2468,
+        "length": 207,
+        "hexPrefix": "2e00040500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1285",
+      "type": "spell",
+      "name": "12345678901234",
+      "sourceNumbers": {
+        "number": 1285
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 8,
+        "offset": 2260,
+        "length": 208,
+        "hexPrefix": "2e00050500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1286",
+      "type": "spell",
+      "name": "123456789012345",
+      "sourceNumbers": {
+        "number": 1286
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 9,
+        "offset": 2051,
+        "length": 209,
+        "hexPrefix": "2e00060500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b900b700b700a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012345"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1287",
+      "type": "spell",
+      "name": "1234567890123456",
+      "sourceNumbers": {
+        "number": 1287
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 10,
+        "offset": 1841,
+        "length": 210,
+        "hexPrefix": "2e00070500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ba00b800b800a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123456"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1288",
+      "type": "spell",
+      "name": "12345678901234567",
+      "sourceNumbers": {
+        "number": 1288
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 11,
+        "offset": 1630,
+        "length": 211,
+        "hexPrefix": "2e00080500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "bb00b900b900a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234567"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1289",
+      "type": "spell",
+      "name": "123456789012345678",
+      "sourceNumbers": {
+        "number": 1289
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 12,
+        "offset": 1418,
+        "length": 212,
+        "hexPrefix": "2e00090500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "bc00ba00ba00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012345678"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1290",
+      "type": "spell",
+      "name": "1234567890123456789",
+      "sourceNumbers": {
+        "number": 1290
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 13,
+        "offset": 1205,
+        "length": 213,
+        "hexPrefix": "2e000a0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "bd00bb00bb00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123456789"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1291",
+      "type": "spell",
+      "name": "12345678901234567890",
+      "sourceNumbers": {
+        "number": 1291
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 14,
+        "offset": 991,
+        "length": 214,
+        "hexPrefix": "2e000b0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "be00bc00bc00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234567890"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1292",
+      "type": "spell",
+      "name": "123456789012345678901",
+      "sourceNumbers": {
+        "number": 1292
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 15,
+        "offset": 776,
+        "length": 215,
+        "hexPrefix": "2e000c0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "bf00bd00bd00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012345678901"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1293",
+      "type": "spell",
+      "name": "1234567890123456789012",
+      "sourceNumbers": {
+        "number": 1293
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 16,
+        "offset": 560,
+        "length": 216,
+        "hexPrefix": "2e000d0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c000be00be00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123456789012"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1294",
+      "type": "spell",
+      "name": "12345678901234567890123",
+      "sourceNumbers": {
+        "number": 1294
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 17,
+        "offset": 343,
+        "length": 217,
+        "hexPrefix": "2e000e0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c100bf00bf00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234567890123"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1295",
+      "type": "spell",
+      "name": "123456789012345678901234",
+      "sourceNumbers": {
+        "number": 1295
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2720,
+        "rowIndexOnPage": 18,
+        "offset": 125,
+        "length": 218,
+        "hexPrefix": "2e000f0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c200c000c000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012345678901234"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1296",
+      "type": "spell",
+      "name": "1234567890123456789012345",
+      "sourceNumbers": {
+        "number": 1296
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2721,
+        "rowIndexOnPage": 0,
+        "offset": 3877,
+        "length": 219,
+        "hexPrefix": "2e00100500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c300c100c100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123456789012345"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1297",
+      "type": "spell",
+      "name": "12345678901234567890123456",
+      "sourceNumbers": {
+        "number": 1297
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2721,
+        "rowIndexOnPage": 1,
+        "offset": 3657,
+        "length": 220,
+        "hexPrefix": "2e00110500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c400c200c200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234567890123456"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1298",
+      "type": "spell",
+      "name": "123456789012345678901234567",
+      "sourceNumbers": {
+        "number": 1298
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2721,
+        "rowIndexOnPage": 2,
+        "offset": 3436,
+        "length": 221,
+        "hexPrefix": "2e00120500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c500c300c300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "123456789012345678901234567"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1299",
+      "type": "spell",
+      "name": "1234567890123456789012345678",
+      "sourceNumbers": {
+        "number": 1299
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2721,
+        "rowIndexOnPage": 3,
+        "offset": 3214,
+        "length": 222,
+        "hexPrefix": "2e00130500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c600c400c400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "1234567890123456789012345678"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1300",
+      "type": "spell",
+      "name": "12345678901234567890123456789",
+      "sourceNumbers": {
+        "number": 1300
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2721,
+        "rowIndexOnPage": 4,
+        "offset": 2991,
+        "length": 223,
+        "hexPrefix": "2e00140500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "c700c500c500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "12345678901234567890123456789"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1399",
+      "type": "spell",
+      "name": "sdfsdfs",
+      "sourceNumbers": {
+        "number": 1399
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2727,
+        "rowIndexOnPage": 16,
+        "offset": 234,
+        "length": 201,
+        "hexPrefix": "2e00770500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b100af00af00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1400",
+      "type": "spell",
+      "name": "sdfsdfs",
+      "sourceNumbers": {
+        "number": 1400
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 0,
+        "offset": 3895,
+        "length": 201,
+        "hexPrefix": "2e00780500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b100af00af00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1401",
+      "type": "spell",
+      "name": "sdfsdfds",
+      "sourceNumbers": {
+        "number": 1401
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 1,
+        "offset": 3693,
+        "length": 202,
+        "hexPrefix": "2e00790500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b200b000b000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1402",
+      "type": "spell",
+      "name": "sdfsdf",
+      "sourceNumbers": {
+        "number": 1402
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 2,
+        "offset": 3493,
+        "length": 200,
+        "hexPrefix": "2e007a0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b000ae00ae00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1403",
+      "type": "spell",
+      "name": "sdfsdfs",
+      "sourceNumbers": {
+        "number": 1403
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 3,
+        "offset": 3292,
+        "length": 201,
+        "hexPrefix": "2e007b0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b100af00af00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1404",
+      "type": "spell",
+      "name": "sdfsdfsdf",
+      "sourceNumbers": {
+        "number": 1404
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 4,
+        "offset": 3089,
+        "length": 203,
+        "hexPrefix": "2e007c0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b300b100b100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1405",
+      "type": "spell",
+      "name": "sdfsdfsd",
+      "sourceNumbers": {
+        "number": 1405
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 5,
+        "offset": 2887,
+        "length": 202,
+        "hexPrefix": "2e007d0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b200b000b000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1406",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1406
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 6,
+        "offset": 2682,
+        "length": 205,
+        "hexPrefix": "2e007e0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1407",
+      "type": "spell",
+      "name": "sdfsdfsd",
+      "sourceNumbers": {
+        "number": 1407
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 7,
+        "offset": 2480,
+        "length": 202,
+        "hexPrefix": "2e007f0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b200b000b000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1408",
+      "type": "spell",
+      "name": "sdfsdfsdf",
+      "sourceNumbers": {
+        "number": 1408
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 8,
+        "offset": 2277,
+        "length": 203,
+        "hexPrefix": "2e00800500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b300b100b100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1409",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1409
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 9,
+        "offset": 2069,
+        "length": 208,
+        "hexPrefix": "2e00810500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1410",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1410
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 10,
+        "offset": 1862,
+        "length": 207,
+        "hexPrefix": "2e00820500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1411",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1411
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 11,
+        "offset": 1655,
+        "length": 207,
+        "hexPrefix": "2e00830500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1412",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1412
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 12,
+        "offset": 1448,
+        "length": 207,
+        "hexPrefix": "2e00840500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1413",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1413
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 13,
+        "offset": 1241,
+        "length": 207,
+        "hexPrefix": "2e00850500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1414",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1414
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 14,
+        "offset": 1034,
+        "length": 207,
+        "hexPrefix": "2e00860500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1415",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1415
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 15,
+        "offset": 827,
+        "length": 207,
+        "hexPrefix": "2e00870500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1416",
+      "type": "spell",
+      "name": "ssdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1416
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 16,
+        "offset": 619,
+        "length": 208,
+        "hexPrefix": "2e00880500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "ssdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1417",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1417
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 17,
+        "offset": 412,
+        "length": 207,
+        "hexPrefix": "2e00890500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1418",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1418
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2728,
+        "rowIndexOnPage": 18,
+        "offset": 205,
+        "length": 207,
+        "hexPrefix": "2e008a0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1419",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1419
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 0,
+        "offset": 3889,
+        "length": 207,
+        "hexPrefix": "2e008b0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1420",
+      "type": "spell",
+      "name": "spell row 2729:1",
+      "sourceNumbers": {
+        "number": 1420
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 1,
+        "offset": 3697,
+        "length": 192,
+        "hexPrefix": "2e008c0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "a800a600a600a6000500ffffffffff3f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1421",
+      "type": "spell",
+      "name": "sdfsfdsfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1421
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 2,
+        "offset": 3488,
+        "length": 209,
+        "hexPrefix": "2e008d0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b900b700b700a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfdsfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1422",
+      "type": "spell",
+      "name": "sdfsfsdfsfsfsdfsdfsp",
+      "sourceNumbers": {
+        "number": 1422
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 3,
+        "offset": 3273,
+        "length": 215,
+        "hexPrefix": "2e008e0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "bf00bd00bb00a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsfsfsdfsdfsp"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1423",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1423
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 4,
+        "offset": 3066,
+        "length": 207,
+        "hexPrefix": "2e008f0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1424",
+      "type": "spell",
+      "name": "sdfsdfsfsdfs",
+      "sourceNumbers": {
+        "number": 1424
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 5,
+        "offset": 2860,
+        "length": 206,
+        "hexPrefix": "2e00900500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1425",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1425
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 6,
+        "offset": 2652,
+        "length": 208,
+        "hexPrefix": "2e00910500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1426",
+      "type": "spell",
+      "name": "sdfsdfsfsdfs",
+      "sourceNumbers": {
+        "number": 1426
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 7,
+        "offset": 2446,
+        "length": 206,
+        "hexPrefix": "2e00920500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1427",
+      "type": "spell",
+      "name": "sdfsfdsfsfsd",
+      "sourceNumbers": {
+        "number": 1427
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 8,
+        "offset": 2240,
+        "length": 206,
+        "hexPrefix": "2e00930500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfdsfsfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1428",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1428
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 9,
+        "offset": 2032,
+        "length": 208,
+        "hexPrefix": "2e00940500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1429",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1429
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 10,
+        "offset": 1824,
+        "length": 208,
+        "hexPrefix": "2e00950500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1430",
+      "type": "spell",
+      "name": "sdfsfsdfsfs",
+      "sourceNumbers": {
+        "number": 1430
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 11,
+        "offset": 1619,
+        "length": 205,
+        "hexPrefix": "2e00960500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1431",
+      "type": "spell",
+      "name": "sdfsdfsdfdfs",
+      "sourceNumbers": {
+        "number": 1431
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 12,
+        "offset": 1413,
+        "length": 206,
+        "hexPrefix": "2e00970500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1432",
+      "type": "spell",
+      "name": "sdfsdfsdfsfs",
+      "sourceNumbers": {
+        "number": 1432
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 13,
+        "offset": 1207,
+        "length": 206,
+        "hexPrefix": "2e00980500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1433",
+      "type": "spell",
+      "name": "sdfsdfsfsdfs",
+      "sourceNumbers": {
+        "number": 1433
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 14,
+        "offset": 1001,
+        "length": 206,
+        "hexPrefix": "2e00990500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1434",
+      "type": "spell",
+      "name": "sdfsfdsdfsdfs",
+      "sourceNumbers": {
+        "number": 1434
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 15,
+        "offset": 794,
+        "length": 207,
+        "hexPrefix": "2e009a0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfdsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1435",
+      "type": "spell",
+      "name": "sdfsdfsdfsfds",
+      "sourceNumbers": {
+        "number": 1435
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 16,
+        "offset": 587,
+        "length": 207,
+        "hexPrefix": "2e009b0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1436",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1436
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 17,
+        "offset": 379,
+        "length": 208,
+        "hexPrefix": "2e009c0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1437",
+      "type": "spell",
+      "name": "sdfsdfsfsdfds",
+      "sourceNumbers": {
+        "number": 1437
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2729,
+        "rowIndexOnPage": 18,
+        "offset": 172,
+        "length": 207,
+        "hexPrefix": "2e009d0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1438",
+      "type": "spell",
+      "name": "sdfsdfsfsfsd",
+      "sourceNumbers": {
+        "number": 1438
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 0,
+        "offset": 3890,
+        "length": 206,
+        "hexPrefix": "2e009e0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1439",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1439
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 1,
+        "offset": 3683,
+        "length": 207,
+        "hexPrefix": "2e009f0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1440",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1440
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 2,
+        "offset": 3475,
+        "length": 208,
+        "hexPrefix": "2e00a00500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1441",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1441
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 3,
+        "offset": 3265,
+        "length": 210,
+        "hexPrefix": "2e00a10500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ba00b800b800a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1442",
+      "type": "spell",
+      "name": "sdfsfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1442
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 4,
+        "offset": 3058,
+        "length": 207,
+        "hexPrefix": "2e00a20500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1443",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1443
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 5,
+        "offset": 2851,
+        "length": 207,
+        "hexPrefix": "2e00a30500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1444",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1444
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 6,
+        "offset": 2644,
+        "length": 207,
+        "hexPrefix": "2e00a40500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1445",
+      "type": "spell",
+      "name": "sdfsdfsdfdsf",
+      "sourceNumbers": {
+        "number": 1445
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 7,
+        "offset": 2438,
+        "length": 206,
+        "hexPrefix": "2e00a50500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdsf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1446",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1446
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 8,
+        "offset": 2231,
+        "length": 207,
+        "hexPrefix": "2e00a60500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1447",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1447
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 9,
+        "offset": 2024,
+        "length": 207,
+        "hexPrefix": "2e00a70500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1448",
+      "type": "spell",
+      "name": "sdfsdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1448
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 10,
+        "offset": 1816,
+        "length": 208,
+        "hexPrefix": "2e00a80500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1449",
+      "type": "spell",
+      "name": "sdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1449
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 11,
+        "offset": 1611,
+        "length": 205,
+        "hexPrefix": "2e00a90500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1450",
+      "type": "spell",
+      "name": "sdfsdfsdfdsfds",
+      "sourceNumbers": {
+        "number": 1450
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 12,
+        "offset": 1403,
+        "length": 208,
+        "hexPrefix": "2e00aa0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b800b600b600a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdsfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1451",
+      "type": "spell",
+      "name": "sdfsdfsdfdsp",
+      "sourceNumbers": {
+        "number": 1451
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 13,
+        "offset": 1196,
+        "length": 207,
+        "hexPrefix": "2e00ab0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdsp"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1452",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1452
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 14,
+        "offset": 991,
+        "length": 205,
+        "hexPrefix": "2e00ac0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1453",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1453
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 15,
+        "offset": 786,
+        "length": 205,
+        "hexPrefix": "2e00ad0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1454",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1454
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 16,
+        "offset": 581,
+        "length": 205,
+        "hexPrefix": "2e00ae0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1455",
+      "type": "spell",
+      "name": "sdfsdfsdfdsfs",
+      "sourceNumbers": {
+        "number": 1455
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 17,
+        "offset": 374,
+        "length": 207,
+        "hexPrefix": "2e00af0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdsfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1456",
+      "type": "spell",
+      "name": "sdfsfdsdfdfs",
+      "sourceNumbers": {
+        "number": 1456
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2730,
+        "rowIndexOnPage": 18,
+        "offset": 168,
+        "length": 206,
+        "hexPrefix": "2e00b00500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfdsdfdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1457",
+      "type": "spell",
+      "name": "sdfsfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1457
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 0,
+        "offset": 3889,
+        "length": 207,
+        "hexPrefix": "2e00b10500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1458",
+      "type": "spell",
+      "name": "sdfsdfdsfsd",
+      "sourceNumbers": {
+        "number": 1458
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 1,
+        "offset": 3684,
+        "length": 205,
+        "hexPrefix": "2e00b20500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfdsfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1459",
+      "type": "spell",
+      "name": "sdfsdfsdfdf",
+      "sourceNumbers": {
+        "number": 1459
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 2,
+        "offset": 3479,
+        "length": 205,
+        "hexPrefix": "2e00b30500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfdf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1460",
+      "type": "spell",
+      "name": "sdfsdfsfsdfs",
+      "sourceNumbers": {
+        "number": 1460
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 3,
+        "offset": 3273,
+        "length": 206,
+        "hexPrefix": "2e00b40500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1461",
+      "type": "spell",
+      "name": "sdfsdfsdfd",
+      "sourceNumbers": {
+        "number": 1461
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 4,
+        "offset": 3069,
+        "length": 204,
+        "hexPrefix": "2e00b50500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1462",
+      "type": "spell",
+      "name": "sdfsdfsd",
+      "sourceNumbers": {
+        "number": 1462
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 5,
+        "offset": 2867,
+        "length": 202,
+        "hexPrefix": "2e00b60500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b200b000b000a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1463",
+      "type": "spell",
+      "name": "sdfsdfdsfds",
+      "sourceNumbers": {
+        "number": 1463
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 6,
+        "offset": 2662,
+        "length": 205,
+        "hexPrefix": "2e00b70500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfdsfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1464",
+      "type": "spell",
+      "name": "sdfdsfsdfsd",
+      "sourceNumbers": {
+        "number": 1464
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 7,
+        "offset": 2457,
+        "length": 205,
+        "hexPrefix": "2e00b80500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfdsfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1465",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1465
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 8,
+        "offset": 2252,
+        "length": 205,
+        "hexPrefix": "2e00b90500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1466",
+      "type": "spell",
+      "name": "sdfsdfsdfds",
+      "sourceNumbers": {
+        "number": 1466
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 9,
+        "offset": 2047,
+        "length": 205,
+        "hexPrefix": "2e00ba0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1467",
+      "type": "spell",
+      "name": "sdfsfsdfsddfs",
+      "sourceNumbers": {
+        "number": 1467
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 10,
+        "offset": 1840,
+        "length": 207,
+        "hexPrefix": "2e00bb0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b700b500b500a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsddfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1468",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1468
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 11,
+        "offset": 1635,
+        "length": 205,
+        "hexPrefix": "2e00bc0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1469",
+      "type": "spell",
+      "name": "sfsdfdsfsdfs",
+      "sourceNumbers": {
+        "number": 1469
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 12,
+        "offset": 1429,
+        "length": 206,
+        "hexPrefix": "2e00bd0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sfsdfdsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1470",
+      "type": "spell",
+      "name": "sdfsdfsdfs",
+      "sourceNumbers": {
+        "number": 1470
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 13,
+        "offset": 1225,
+        "length": 204,
+        "hexPrefix": "2e00be0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1471",
+      "type": "spell",
+      "name": "sdsdfdsfs",
+      "sourceNumbers": {
+        "number": 1471
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 14,
+        "offset": 1022,
+        "length": 203,
+        "hexPrefix": "2e00bf0500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b300b100b100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdsdfdsfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1472",
+      "type": "spell",
+      "name": "sdfsdfsdfsd",
+      "sourceNumbers": {
+        "number": 1472
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 15,
+        "offset": 817,
+        "length": 205,
+        "hexPrefix": "2e00c00500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b500b300b300a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1473",
+      "type": "spell",
+      "name": "sdfsfsdfsd",
+      "sourceNumbers": {
+        "number": 1473
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 16,
+        "offset": 613,
+        "length": 204,
+        "hexPrefix": "2e00c10500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1474",
+      "type": "spell",
+      "name": "sdfsfsdfsd",
+      "sourceNumbers": {
+        "number": 1474
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 17,
+        "offset": 409,
+        "length": 204,
+        "hexPrefix": "2e00c20500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfsd"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1475",
+      "type": "spell",
+      "name": "sdfsfsdfs",
+      "sourceNumbers": {
+        "number": 1475
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2731,
+        "rowIndexOnPage": 18,
+        "offset": 206,
+        "length": 203,
+        "hexPrefix": "2e00c30500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b300b100b100a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfs"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1476",
+      "type": "spell",
+      "name": "sdfsfsdfds",
+      "sourceNumbers": {
+        "number": 1476
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2732,
+        "rowIndexOnPage": 0,
+        "offset": 3892,
+        "length": 204,
+        "hexPrefix": "2e00c40500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b400b200b200a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsfsdfds"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_spells.1477",
+      "type": "spell",
+      "name": "sdfsdfsdfsdf",
+      "sourceNumbers": {
+        "number": 1477
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB spell row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 2650,
+        "page": 2732,
+        "rowIndexOnPage": 1,
+        "offset": 3686,
+        "length": 206,
+        "hexPrefix": "2e00c50500000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "b600b400b400a6000500ffffffffff3f"
+      },
+      "printableSegments": [
+        "sdfsdfsdfsdf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "spells",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "spell",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    }
+  ]
+}

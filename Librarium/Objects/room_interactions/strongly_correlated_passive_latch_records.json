@@ -1,0 +1,238 @@
+{
+  "authority": "strongly_correlated_active",
+  "update": "0192",
+  "records": [
+    {
+      "interaction_kind": "action",
+      "action_number": 1,
+      "direction": "N",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 1188,
+      "commands": [
+        "say gazmuldduhaz"
+      ],
+      "raw_value": "Strongly correlated passive-latch action for exit.map12.1188.n: say gazmuldduhaz",
+      "status": "strongly_correlated_active",
+      "runtime_disposition": "active_bound_action_latch_step",
+      "id": "interaction.inferred.map12.1188.n.0192",
+      "object_type": "room_interaction",
+      "from_map_number": 12,
+      "from_room_number": 1188,
+      "from_room_id": "room.map12.1188",
+      "source": {
+        "classification": "cross_source_semantic_reconstruction",
+        "primary_gap": "MMExplorer has Needs 1 Actions exit but no room Action row",
+        "evidence": {
+          "source_files": [
+            {
+              "path": "ImportedDatabases/MegaMudMP/SPWMLOO2.mp",
+              "record_identifier": "line 22: n[say gazmuldduhaz]",
+              "evidence": "command embedded on north traversal from decoded room 12/1188 to 12/1189"
+            },
+            {
+              "path": "Data/Classic/exits.json",
+              "record_identifier": "exit.map12.1188.n",
+              "evidence": "decoded destination and one-action hidden latch"
+            }
+          ]
+        }
+      },
+      "accepted_commands": [
+        "say gazmuldduhaz"
+      ],
+      "command_semantics": {
+        "aliases": "single_exact_command",
+        "verb_phrase": "say gazmuldduhaz",
+        "effect": "complete_action_latch_step_1"
+      },
+      "semantic_status": "strongly_correlated_active",
+      "semantic_confidence": "strongly_correlated",
+      "semantic_provenance": [
+        {
+          "path": "ImportedDatabases/MegaMudMP/SPWMLOO2.mp",
+          "record_identifier": "line 22: n[say gazmuldduhaz]",
+          "evidence": "command embedded on north traversal from decoded room 12/1188 to 12/1189"
+        },
+        {
+          "path": "Data/Classic/exits.json",
+          "record_identifier": "exit.map12.1188.n",
+          "evidence": "source, destination, direction, and one-action latch"
+        }
+      ],
+      "assumptions": [
+        "MegaMUD route preparation command is the action counted by the immediately following hidden exit"
+      ],
+      "fallback_behavior": "disable only this inferred interaction and keep the latch closed if contradicted",
+      "validation_tests": [
+        "route replay resolves every direction through decoded topology",
+        "command is adjacent to bound traversal",
+        "required action count equals one"
+      ],
+      "state_impact": {
+        "save_impact": "none",
+        "world_state_impact": "transient shared edge-latch progress",
+        "migration_required": false
+      },
+      "bound_exit_id": "exit.map12.1188.n",
+      "bound_edge_state_id": "edge-state.map12.1188.n"
+    },
+    {
+      "interaction_kind": "action",
+      "action_number": 1,
+      "direction": "U",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 2085,
+      "commands": [
+        "ask sphinx e"
+      ],
+      "raw_value": "Strongly correlated passive-latch action for exit.map12.2085.u: ask sphinx e",
+      "status": "strongly_correlated_active",
+      "runtime_disposition": "active_bound_action_latch_step",
+      "id": "interaction.inferred.map12.2085.u.0192",
+      "object_type": "room_interaction",
+      "from_map_number": 12,
+      "from_room_number": 2085,
+      "from_room_id": "room.map12.2085",
+      "source": {
+        "classification": "cross_source_semantic_reconstruction",
+        "primary_gap": "MMExplorer has Needs 1 Actions exit but no room Action row",
+        "evidence": {
+          "source_files": [
+            {
+              "path": "ImportedDatabases/MegaMudMP/Gplvsdtp.mp",
+              "record_identifier": "line 10 ask sphinx e; line 11 u",
+              "evidence": "standalone command immediately precedes upward traversal from decoded room 12/2085 to 12/2250"
+            },
+            {
+              "path": "Data/Classic/exits.json",
+              "record_identifier": "exit.map12.2085.u",
+              "evidence": "decoded destination and one-action hidden latch"
+            }
+          ]
+        }
+      },
+      "accepted_commands": [
+        "ask sphinx e"
+      ],
+      "command_semantics": {
+        "aliases": "single_exact_command",
+        "verb_phrase": "ask sphinx e",
+        "effect": "complete_action_latch_step_1"
+      },
+      "semantic_status": "strongly_correlated_active",
+      "semantic_confidence": "strongly_correlated",
+      "semantic_provenance": [
+        {
+          "path": "ImportedDatabases/MegaMudMP/Gplvsdtp.mp",
+          "record_identifier": "line 10 ask sphinx e; line 11 u",
+          "evidence": "standalone command immediately precedes upward traversal from decoded room 12/2085 to 12/2250"
+        },
+        {
+          "path": "Data/Classic/exits.json",
+          "record_identifier": "exit.map12.2085.u",
+          "evidence": "source, destination, direction, and one-action latch"
+        }
+      ],
+      "assumptions": [
+        "MegaMUD route preparation command is the action counted by the immediately following hidden exit"
+      ],
+      "fallback_behavior": "disable only this inferred interaction and keep the latch closed if contradicted",
+      "validation_tests": [
+        "route replay resolves every direction through decoded topology",
+        "command is adjacent to bound traversal",
+        "required action count equals one"
+      ],
+      "state_impact": {
+        "save_impact": "none",
+        "world_state_impact": "transient shared edge-latch progress",
+        "migration_required": false
+      },
+      "bound_exit_id": "exit.map12.2085.u",
+      "bound_edge_state_id": "edge-state.map12.2085.u"
+    },
+    {
+      "interaction_kind": "action",
+      "action_number": 1,
+      "direction": "W",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 2123,
+      "commands": [
+        "pull winch"
+      ],
+      "raw_value": "Strongly correlated passive-latch action for exit.map12.2123.w: pull winch",
+      "status": "strongly_correlated_active",
+      "runtime_disposition": "active_bound_action_latch_step",
+      "id": "interaction.inferred.map12.2123.w.0192",
+      "object_type": "room_interaction",
+      "from_map_number": 12,
+      "from_room_number": 2123,
+      "from_room_id": "room.map12.2123",
+      "source": {
+        "classification": "cross_source_semantic_reconstruction",
+        "primary_gap": "MMExplorer has Needs 1 Actions exit but no room Action row",
+        "evidence": {
+          "source_files": [
+            {
+              "path": "ImportedDatabases/MegaMudMP/Shnpshgf.mp",
+              "record_identifier": "line 5: w[pull winch]",
+              "evidence": "command embedded on west traversal from decoded room 12/2123 to 12/2122"
+            },
+            {
+              "path": "Data/Classic/exits.json",
+              "record_identifier": "exit.map12.2123.w",
+              "evidence": "decoded destination and one-action hidden latch"
+            }
+          ]
+        }
+      },
+      "accepted_commands": [
+        "pull winch"
+      ],
+      "command_semantics": {
+        "aliases": "single_exact_command",
+        "verb_phrase": "pull winch",
+        "effect": "complete_action_latch_step_1"
+      },
+      "semantic_status": "strongly_correlated_active",
+      "semantic_confidence": "strongly_correlated",
+      "semantic_provenance": [
+        {
+          "path": "ImportedDatabases/MegaMudMP/Shnpshgf.mp",
+          "record_identifier": "line 5: w[pull winch]",
+          "evidence": "command embedded on west traversal from decoded room 12/2123 to 12/2122"
+        },
+        {
+          "path": "Data/Classic/exits.json",
+          "record_identifier": "exit.map12.2123.w",
+          "evidence": "source, destination, direction, and one-action latch"
+        }
+      ],
+      "assumptions": [
+        "MegaMUD route preparation command is the action counted by the immediately following hidden exit"
+      ],
+      "fallback_behavior": "disable only this inferred interaction and keep the latch closed if contradicted",
+      "validation_tests": [
+        "route replay resolves every direction through decoded topology",
+        "command is adjacent to bound traversal",
+        "required action count equals one"
+      ],
+      "state_impact": {
+        "save_impact": "none",
+        "world_state_impact": "transient shared edge-latch progress",
+        "migration_required": false
+      },
+      "bound_exit_id": "exit.map12.2123.w",
+      "bound_edge_state_id": "edge-state.map12.2122.e"
+    }
+  ],
+  "reciprocal_binding": {
+    "exit_id": "exit.map12.2122.e",
+    "shared_with": "exit.map12.2123.w",
+    "local_command_required": false,
+    "evidence": [
+      "Shnpshgf.mp uses pull winch on west traversal",
+      "Shgfshnp.mp traverses east with no local command",
+      "decoded exits are reciprocal"
+    ]
+  }
+}

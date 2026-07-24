@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "save-coordination",
+  "runtimeOwner": "RuntimeSaveCoordinationService",
+  "participants": [
+    "character",
+    "world",
+    "party",
+    "organizations",
+    "mail",
+    "doors",
+    "traps",
+    "containers",
+    "events",
+    "timers",
+    "law",
+    "transport",
+    "administrative-state"
+  ],
+  "lifecycle": [
+    "dirty participant selection",
+    "prepare",
+    "ordered commit",
+    "reverse rollback",
+    "snapshot generation",
+    "restart restoration"
+  ],
+  "ordering": "ascending configured order then canonical participant id",
+  "transactionPolicy": [
+    "unknown participant fails closed",
+    "required prepare failure aborts",
+    "commit failure rolls back committed rollback-capable participants",
+    "unsupported rollback is reported",
+    "atomic snapshot replacement"
+  ],
+  "safeFallback": "Reject unknown participants and stop on required prepare or commit failure without inventing replacement state.",
+  "nativeDependencies": [
+    "exact MajorMUD save ordering",
+    "Worldgroup transaction boundary",
+    "autosave interval",
+    "shutdown-save behavior",
+    "crash journal format",
+    "native migration/version compatibility",
+    "partial-save recovery"
+  ]
+}

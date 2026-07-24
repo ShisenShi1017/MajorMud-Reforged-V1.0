@@ -1,0 +1,1391 @@
+{
+  "schemaVersion": 1,
+  "worldId": "classic",
+  "trainers": [
+    {
+      "serviceId": "shop.135",
+      "legacyShopNumber": 135,
+      "name": "Amazon trainer",
+      "serviceType": 8,
+      "minimumLevel": 31,
+      "maximumLevel": 52,
+      "classLimit": 0,
+      "markupPercent": 9999,
+      "roomId": "room.384",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#135",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#135",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#135"
+      ]
+    },
+    {
+      "serviceId": "shop.27",
+      "legacyShopNumber": 27,
+      "name": "Bard Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 9,
+      "markupPercent": 300,
+      "roomId": "room.852",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#27",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#27",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#27"
+      ]
+    },
+    {
+      "serviceId": "shop.30",
+      "legacyShopNumber": 30,
+      "name": "Cleric Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 4,
+      "markupPercent": 300,
+      "roomId": "room.523",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#30",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#30",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#30"
+      ]
+    },
+    {
+      "serviceId": "shop.23",
+      "legacyShopNumber": 23,
+      "name": "Druid Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 13,
+      "markupPercent": 300,
+      "roomId": "room.504",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#23",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#23",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#23"
+      ]
+    },
+    {
+      "serviceId": "shop.107",
+      "legacyShopNumber": 107,
+      "name": "Dwarven Trainer",
+      "serviceType": 8,
+      "minimumLevel": 12,
+      "maximumLevel": 30,
+      "classLimit": 0,
+      "markupPercent": 4000,
+      "roomId": "room.1352",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#107",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#107",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#107"
+      ]
+    },
+    {
+      "serviceId": "shop.90",
+      "legacyShopNumber": 90,
+      "name": "Etheral Trainer",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 54,
+      "classLimit": 0,
+      "markupPercent": 9999,
+      "roomId": "room.1041",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#90",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#90",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#90"
+      ]
+    },
+    {
+      "serviceId": "shop.21",
+      "legacyShopNumber": 21,
+      "name": "Gypsy Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 10,
+      "markupPercent": 300,
+      "roomId": "room.384",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#21",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#21",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#21"
+      ]
+    },
+    {
+      "serviceId": "shop.64",
+      "legacyShopNumber": 64,
+      "name": "High Level Trainer",
+      "serviceType": 8,
+      "minimumLevel": 12,
+      "maximumLevel": 20,
+      "classLimit": 0,
+      "markupPercent": 2500,
+      "roomId": "room.2305",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#64",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#64",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#64"
+      ]
+    },
+    {
+      "serviceId": "shop.113",
+      "legacyShopNumber": 113,
+      "name": "Hydra Trainer",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 65,
+      "classLimit": 0,
+      "markupPercent": 9999,
+      "roomId": "room.2249",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#113",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#113",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#113"
+      ]
+    },
+    {
+      "serviceId": "shop.28",
+      "legacyShopNumber": 28,
+      "name": "Mage Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 12,
+      "markupPercent": 300,
+      "roomId": "room.399",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#28",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#28",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#28"
+      ]
+    },
+    {
+      "serviceId": "shop.20",
+      "legacyShopNumber": 20,
+      "name": "Missionary Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 6,
+      "markupPercent": 300,
+      "roomId": "room.500",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#20",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#20",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#20"
+      ]
+    },
+    {
+      "serviceId": "shop.31",
+      "legacyShopNumber": 31,
+      "name": "Mystic Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 15,
+      "markupPercent": 300,
+      "roomId": "room.333",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#31",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#31",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#31"
+      ]
+    },
+    {
+      "serviceId": "shop.26",
+      "legacyShopNumber": 26,
+      "name": "Ninja Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 7,
+      "markupPercent": 300,
+      "roomId": "room.200",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#26",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#26",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#26"
+      ]
+    },
+    {
+      "serviceId": "shop.15",
+      "legacyShopNumber": 15,
+      "name": "Paladin Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 3,
+      "markupPercent": 300,
+      "roomId": "room.499",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#15",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#15",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#15"
+      ]
+    },
+    {
+      "serviceId": "shop.29",
+      "legacyShopNumber": 29,
+      "name": "Priest Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 5,
+      "markupPercent": 300,
+      "roomId": "room.526",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#29",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#29",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#29"
+      ]
+    },
+    {
+      "serviceId": "shop.24",
+      "legacyShopNumber": 24,
+      "name": "Ranger Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 14,
+      "markupPercent": 300,
+      "roomId": "room.502",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#24",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#24",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#24"
+      ]
+    },
+    {
+      "serviceId": "shop.84",
+      "legacyShopNumber": 84,
+      "name": "Rhudaur Trainer",
+      "serviceType": 8,
+      "minimumLevel": 12,
+      "maximumLevel": 30,
+      "classLimit": 0,
+      "markupPercent": 6000,
+      "roomId": "room.2570",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#84",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#84",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#84"
+      ]
+    },
+    {
+      "serviceId": "shop.166",
+      "legacyShopNumber": 166,
+      "name": "Sixty Eight",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 68,
+      "classLimit": 0,
+      "markupPercent": 1200,
+      "roomId": "room.unknown",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#166",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#166",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#166"
+      ]
+    },
+    {
+      "serviceId": "shop.165",
+      "legacyShopNumber": 165,
+      "name": "Sixty Seven",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 67,
+      "classLimit": 0,
+      "markupPercent": 1200,
+      "roomId": "room.unknown",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#165",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#165",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#165"
+      ]
+    },
+    {
+      "serviceId": "shop.162",
+      "legacyShopNumber": 162,
+      "name": "SixtySix",
+      "serviceType": 8,
+      "minimumLevel": 66,
+      "maximumLevel": 66,
+      "classLimit": 0,
+      "markupPercent": 9000,
+      "roomId": "room.2940",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#162",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#162",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#162"
+      ]
+    },
+    {
+      "serviceId": "shop.181",
+      "legacyShopNumber": 181,
+      "name": "Solo Trainer",
+      "serviceType": 8,
+      "minimumLevel": 66,
+      "maximumLevel": 75,
+      "classLimit": 0,
+      "markupPercent": 32760,
+      "roomId": "room.1",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#181",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#181",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#181"
+      ]
+    },
+    {
+      "serviceId": "shop.59",
+      "legacyShopNumber": 59,
+      "name": "Super Bard Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 9,
+      "markupPercent": 500,
+      "roomId": "room.2278",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#59",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#59",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#59"
+      ]
+    },
+    {
+      "serviceId": "shop.54",
+      "legacyShopNumber": 54,
+      "name": "Super Cleric Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 4,
+      "markupPercent": 500,
+      "roomId": "room.2258",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#54",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#54",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#54"
+      ]
+    },
+    {
+      "serviceId": "shop.63",
+      "legacyShopNumber": 63,
+      "name": "Super Druid Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 13,
+      "markupPercent": 500,
+      "roomId": "room.2303",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#63",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#63",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#63"
+      ]
+    },
+    {
+      "serviceId": "shop.60",
+      "legacyShopNumber": 60,
+      "name": "Super Gypsy Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 10,
+      "markupPercent": 500,
+      "roomId": "room.2300",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#60",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#60",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#60"
+      ]
+    },
+    {
+      "serviceId": "shop.62",
+      "legacyShopNumber": 62,
+      "name": "Super Mage Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 12,
+      "markupPercent": 500,
+      "roomId": "room.2302",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#62",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#62",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#62"
+      ]
+    },
+    {
+      "serviceId": "shop.56",
+      "legacyShopNumber": 56,
+      "name": "Super Missionary Traniner",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 6,
+      "markupPercent": 500,
+      "roomId": "room.2262",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#56",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#56",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#56"
+      ]
+    },
+    {
+      "serviceId": "shop.51",
+      "legacyShopNumber": 51,
+      "name": "Super Mystic Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 15,
+      "markupPercent": 500,
+      "roomId": "room.2240",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#51",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#51",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#51"
+      ]
+    },
+    {
+      "serviceId": "shop.55",
+      "legacyShopNumber": 55,
+      "name": "Super Paladin Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 3,
+      "markupPercent": 500,
+      "roomId": "room.2260",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#55",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#55",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#55"
+      ]
+    },
+    {
+      "serviceId": "shop.53",
+      "legacyShopNumber": 53,
+      "name": "Super Priest Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 5,
+      "markupPercent": 500,
+      "roomId": "room.2256",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#53",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#53",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#53"
+      ]
+    },
+    {
+      "serviceId": "shop.52",
+      "legacyShopNumber": 52,
+      "name": "Super Ranger Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 14,
+      "markupPercent": 500,
+      "roomId": "room.2241",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#52",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#52",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#52"
+      ]
+    },
+    {
+      "serviceId": "shop.57",
+      "legacyShopNumber": 57,
+      "name": "Super Rogue Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 7,
+      "markupPercent": 500,
+      "roomId": "room.2273",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#57",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#57",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#57"
+      ]
+    },
+    {
+      "serviceId": "shop.58",
+      "legacyShopNumber": 58,
+      "name": "Super Thief Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 8,
+      "markupPercent": 500,
+      "roomId": "room.2275",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#58",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#58",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#58"
+      ]
+    },
+    {
+      "serviceId": "shop.61",
+      "legacyShopNumber": 61,
+      "name": "Super Warlock Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 11,
+      "markupPercent": 500,
+      "roomId": "room.2301",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#61",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#61",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#61"
+      ]
+    },
+    {
+      "serviceId": "shop.49",
+      "legacyShopNumber": 49,
+      "name": "Super Warrior Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 1,
+      "markupPercent": 500,
+      "roomId": "room.2231",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#49",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#49",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#49"
+      ]
+    },
+    {
+      "serviceId": "shop.50",
+      "legacyShopNumber": 50,
+      "name": "Super Witchunter Trainer",
+      "serviceType": 8,
+      "minimumLevel": 11,
+      "maximumLevel": 11,
+      "classLimit": 2,
+      "markupPercent": 500,
+      "roomId": "room.2236",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#50",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#50",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#50"
+      ]
+    },
+    {
+      "serviceId": "shop.39",
+      "legacyShopNumber": 39,
+      "name": "Sysop Trainer",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 999,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.289",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#39",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#39",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#39"
+      ]
+    },
+    {
+      "serviceId": "shop.25",
+      "legacyShopNumber": 25,
+      "name": "Thief Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 8,
+      "markupPercent": 300,
+      "roomId": "room.201",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#25",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#25",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#25"
+      ]
+    },
+    {
+      "serviceId": "shop.74",
+      "legacyShopNumber": 74,
+      "name": "Titan Trainer",
+      "serviceType": 8,
+      "minimumLevel": 21,
+      "maximumLevel": 50,
+      "classLimit": 0,
+      "markupPercent": 6000,
+      "roomId": "room.542",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#74",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#74",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#74"
+      ]
+    },
+    {
+      "serviceId": "shop.38",
+      "legacyShopNumber": 38,
+      "name": "Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.2325",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#38",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#38",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#38"
+      ]
+    },
+    {
+      "serviceId": "shop.160",
+      "legacyShopNumber": 160,
+      "name": "Uber Super Big Jumbo Trainer",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 75,
+      "classLimit": 0,
+      "markupPercent": 12000,
+      "roomId": "room.2381",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#160",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#160",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#160"
+      ]
+    },
+    {
+      "serviceId": "shop.22",
+      "legacyShopNumber": 22,
+      "name": "Warlock Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 11,
+      "markupPercent": 300,
+      "roomId": "room.274",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#22",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#22",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#22"
+      ]
+    },
+    {
+      "serviceId": "shop.14",
+      "legacyShopNumber": 14,
+      "name": "Warrior Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 1,
+      "markupPercent": 300,
+      "roomId": "room.497",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#14",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#14",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#14"
+      ]
+    },
+    {
+      "serviceId": "shop.19",
+      "legacyShopNumber": 19,
+      "name": "Witchunter Training Room",
+      "serviceType": 8,
+      "minimumLevel": 1,
+      "maximumLevel": 10,
+      "classLimit": 2,
+      "markupPercent": 300,
+      "roomId": "room.498",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#19",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#19",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#19"
+      ]
+    }
+  ],
+  "spellServices": [
+    {
+      "serviceId": "shop.65",
+      "legacyShopNumber": 65,
+      "name": "Aldreth's Spells",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.2306",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#65",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#65",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#65"
+      ]
+    },
+    {
+      "serviceId": "shop.43",
+      "legacyShopNumber": 43,
+      "name": "Armour Shop, Head/Hands/Feet",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.305",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#43",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#43",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#43"
+      ]
+    },
+    {
+      "serviceId": "shop.6",
+      "legacyShopNumber": 6,
+      "name": "Armour Shop, Torso/Legs",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.306",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#6",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#6",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#6"
+      ]
+    },
+    {
+      "serviceId": "shop.10",
+      "legacyShopNumber": 10,
+      "name": "Axes",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.307",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#10",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#10",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#10"
+      ]
+    },
+    {
+      "serviceId": "shop.37",
+      "legacyShopNumber": 37,
+      "name": "Bard Song Store",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.851",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#37",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#37",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#37"
+      ]
+    },
+    {
+      "serviceId": "shop.18",
+      "legacyShopNumber": 18,
+      "name": "Blunt Weapons",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.354",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#18",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#18",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#18"
+      ]
+    },
+    {
+      "serviceId": "shop.35",
+      "legacyShopNumber": 35,
+      "name": "Cloakroom",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.312",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#35",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#35",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#35"
+      ]
+    },
+    {
+      "serviceId": "shop.42",
+      "legacyShopNumber": 42,
+      "name": "Curio Store",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.332",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#42",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#42",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#42"
+      ]
+    },
+    {
+      "serviceId": "shop.69",
+      "legacyShopNumber": 69,
+      "name": "Dreary Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 200,
+      "roomId": "room.1136",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#69",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#69",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#69"
+      ]
+    },
+    {
+      "serviceId": "shop.36",
+      "legacyShopNumber": 36,
+      "name": "Druid Spell Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.1314",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#36",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#36",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#36"
+      ]
+    },
+    {
+      "serviceId": "shop.110",
+      "legacyShopNumber": 110,
+      "name": "Furniture Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.unknown",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#110",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#110",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#110"
+      ]
+    },
+    {
+      "serviceId": "shop.3",
+      "legacyShopNumber": 3,
+      "name": "General Store",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.334",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#3",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#3",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#3"
+      ]
+    },
+    {
+      "serviceId": "shop.68",
+      "legacyShopNumber": 68,
+      "name": "Holy Item Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.525",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#68",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#68",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#68"
+      ]
+    },
+    {
+      "serviceId": "shop.32",
+      "legacyShopNumber": 32,
+      "name": "Holy Spell Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.522",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#32",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#32",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#32"
+      ]
+    },
+    {
+      "serviceId": "shop.33",
+      "legacyShopNumber": 33,
+      "name": "Jewellry Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.290",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#33",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#33",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#33"
+      ]
+    },
+    {
+      "serviceId": "shop.72",
+      "legacyShopNumber": 72,
+      "name": "Jorah's Tower, 1h Blunt Weapons",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 275,
+      "roomId": "room.2329",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#72",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#72",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#72"
+      ]
+    },
+    {
+      "serviceId": "shop.73",
+      "legacyShopNumber": 73,
+      "name": "Jorah's Tower, Druid Spells",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.2334",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#73",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#73",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#73"
+      ]
+    },
+    {
+      "serviceId": "shop.70",
+      "legacyShopNumber": 70,
+      "name": "Jorah's Tower, Leather/Chain",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 275,
+      "roomId": "room.2328",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#70",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#70",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#70"
+      ]
+    },
+    {
+      "serviceId": "shop.71",
+      "legacyShopNumber": 71,
+      "name": "Jorah's Tower, Misc.",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 275,
+      "roomId": "room.2330",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#71",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#71",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#71"
+      ]
+    },
+    {
+      "serviceId": "shop.92",
+      "legacyShopNumber": 92,
+      "name": "Key Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.unknown",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#92",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#92",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#92"
+      ]
+    },
+    {
+      "serviceId": "shop.16",
+      "legacyShopNumber": 16,
+      "name": "Leatherworks, Head/Feet",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.2154",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#16",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#16",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#16"
+      ]
+    },
+    {
+      "serviceId": "shop.12",
+      "legacyShopNumber": 12,
+      "name": "Leatherworks, Torso/Legs/Hands",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.310",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#12",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#12",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#12"
+      ]
+    },
+    {
+      "serviceId": "shop.9",
+      "legacyShopNumber": 9,
+      "name": "Mage Spell Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.398",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#9",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#9",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#9"
+      ]
+    },
+    {
+      "serviceId": "shop.46",
+      "legacyShopNumber": 46,
+      "name": "Newhaven Armour Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.2142",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#46",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#46",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#46"
+      ]
+    },
+    {
+      "serviceId": "shop.47",
+      "legacyShopNumber": 47,
+      "name": "Newhaven General Store",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.2145",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#47",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#47",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#47"
+      ]
+    },
+    {
+      "serviceId": "shop.48",
+      "legacyShopNumber": 48,
+      "name": "Newhaven Spell Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.2144",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#48",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#48",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#48"
+      ]
+    },
+    {
+      "serviceId": "shop.45",
+      "legacyShopNumber": 45,
+      "name": "Newhaven Weapon Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.2141",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#45",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#45",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#45"
+      ]
+    },
+    {
+      "serviceId": "shop.66",
+      "legacyShopNumber": 66,
+      "name": "Ninja supply shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.2308",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#66",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#66",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#66"
+      ]
+    },
+    {
+      "serviceId": "shop.40",
+      "legacyShopNumber": 40,
+      "name": "Robes Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.349",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#40",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#40",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#40"
+      ]
+    },
+    {
+      "serviceId": "shop.41",
+      "legacyShopNumber": 41,
+      "name": "Shield Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.2153",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#41",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#41",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#41"
+      ]
+    },
+    {
+      "serviceId": "shop.67",
+      "legacyShopNumber": 67,
+      "name": "Slum Store",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 175,
+      "roomId": "room.2324",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#67",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#67",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#67"
+      ]
+    },
+    {
+      "serviceId": "shop.5",
+      "legacyShopNumber": 5,
+      "name": "Sword Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.355",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#5",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#5",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#5"
+      ]
+    },
+    {
+      "serviceId": "shop.182",
+      "legacyShopNumber": 182,
+      "name": "Training Keys",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 1900,
+      "roomId": "room.3247",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#182",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#182",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#182"
+      ]
+    },
+    {
+      "serviceId": "shop.109",
+      "legacyShopNumber": 109,
+      "name": "Trap Shop",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 0,
+      "roomId": "room.unknown",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#109",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#109",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#109"
+      ]
+    },
+    {
+      "serviceId": "shop.44",
+      "legacyShopNumber": 44,
+      "name": "Unholy Spells",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 150,
+      "roomId": "room.2307",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#44",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#44",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#44"
+      ]
+    },
+    {
+      "serviceId": "shop.75",
+      "legacyShopNumber": 75,
+      "name": "Very Powerful Spells",
+      "serviceType": 10,
+      "minimumLevel": 1,
+      "maximumLevel": 99,
+      "classLimit": 0,
+      "markupPercent": 100,
+      "roomId": "room.273",
+      "evidenceRefs": [
+        "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv#75",
+        "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv#75",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json#75"
+      ]
+    }
+  ],
+  "executionOrder": [
+    {
+      "sequence": 1,
+      "stage": "ResolveService",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "unknown service rejects before charging"
+    },
+    {
+      "sequence": 2,
+      "stage": "ValidateProvider",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "provider mismatch rejects before charging"
+    },
+    {
+      "sequence": 3,
+      "stage": "ValidateEligibility",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "shops.json service_type/level_range/class_limit",
+      "failureBehavior": "eligibility failure rejects before cost commitment"
+    },
+    {
+      "sequence": 4,
+      "stage": "ResolveBaseCost",
+      "state": "NATIVE_BINARY_REQUIRED",
+      "evidenceRef": "trainer/service executable call path",
+      "failureBehavior": "no native exact base-cost formula is invented"
+    },
+    {
+      "sequence": 5,
+      "stage": "ApplyLevelOrRankPolicy",
+      "state": "NATIVE_BINARY_REQUIRED",
+      "evidenceRef": "trainer/service executable call path",
+      "failureBehavior": "configured policy only"
+    },
+    {
+      "sequence": 6,
+      "stage": "ApplyProviderMarkup",
+      "state": "STRONGLY_CORRELATED_NATIVE_FIELD",
+      "evidenceRef": "WCCSHOPS.DAT markup_percent",
+      "failureBehavior": "field retained but native ordering unconfirmed"
+    },
+    {
+      "sequence": 7,
+      "stage": "ApplyDiscountOrSurcharge",
+      "state": "NATIVE_BINARY_REQUIRED",
+      "evidenceRef": "trainer/service executable call path",
+      "failureBehavior": "configured policy only"
+    },
+    {
+      "sequence": 8,
+      "stage": "Round",
+      "state": "NATIVE_BINARY_REQUIRED",
+      "evidenceRef": "trainer/service executable call path",
+      "failureBehavior": "explicit configured rounding only"
+    },
+    {
+      "sequence": 9,
+      "stage": "ValidateFunds",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "insufficient funds rejects before effect"
+    },
+    {
+      "sequence": 10,
+      "stage": "Debit",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "atomic debit reservation"
+    },
+    {
+      "sequence": 11,
+      "stage": "ApplyEffect",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "external owner callback after debit"
+    },
+    {
+      "sequence": 12,
+      "stage": "Persist",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "failure restores currency and state"
+    },
+    {
+      "sequence": 13,
+      "stage": "CommitReplay",
+      "state": "PROVEN_RUNTIME_ORDER",
+      "evidenceRef": "RuntimeEconomyValuationServices.cs",
+      "failureBehavior": "replay key recorded after persistence"
+    }
+  ],
+  "classification": {
+    "providerBindings": "STRONGLY_CORRELATED",
+    "reforgedTransactionOrder": "PROVEN",
+    "nativeFormulaOrder": "UNKNOWN_FAIL_CLOSED"
+  },
+  "nativeDependency": {
+    "dependencyId": "native.service-cost-order",
+    "status": "PARTIALLY_TRACED",
+    "remaining": "original MajorMUD executable or DLL call trace confirming base cost, level/rank modifier, markup, discount and rounding order"
+  }
+}

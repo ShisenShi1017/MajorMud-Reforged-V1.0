@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "weather-day-night",
+  "pass": "Update0027",
+  "runtimeOwner": "RuntimeWeatherDayNightService",
+  "classification": "Reforged compatibility infrastructure; Classic simulation disabled pending native evidence",
+  "modes": [
+    "disabled",
+    "presentation-only",
+    "simulated"
+  ],
+  "capabilities": [
+    "typed day-phase and weather state",
+    "explicit Classic-safe disablement",
+    "typed owner requests",
+    "schema-versioned persistent snapshots",
+    "atomic replacement"
+  ],
+  "ownership": {
+    "state": "RuntimeWeatherDayNightService",
+    "visibilityAndHazards": "environmental-hazards",
+    "roomDescriptions": "rooms",
+    "spawnAndNpcBehavior": "npc-ai",
+    "spellRules": "spells",
+    "scheduling": "clock-scheduling"
+  },
+  "safeFallback": [
+    "Classic mode remains disabled without proof",
+    "presentation-only definitions cannot mutate simulated state",
+    "unknown conditions fail closed",
+    "corrupt snapshots preserve catalog defaults"
+  ],
+  "nativeDependencies": [
+    "whether MajorMUD 1.11p has native day/night simulation",
+    "weather record families and state transitions",
+    "sunrise and sunset schedule",
+    "weather effects on visibility spawns NPCs spells and hazards",
+    "room-description rendering",
+    "Worldgroup versus MajorMUD ownership"
+  ]
+}

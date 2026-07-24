@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "update": "0164",
+  "subsystem": "combat_spells",
+  "catalog": "combat_threat_ledger",
+  "runtime_owner": "RuntimeCombatThreatLedger",
+  "ownership_boundary": "Combat owns threat generation and mutation; NPC AI owns target selection.",
+  "promoted_behaviors": [
+    {
+      "id": "threat.atomic_mutation",
+      "confidence": "strongly_correlated",
+      "behavior": "A promoted combat event applies one deterministic threat delta to each canonical observing NPC, with full rollback if any mutation fails.",
+      "ordering": ["canonical_observer_npc_id"],
+      "safe_fallback": "Reject event kinds without promoted policies."
+    },
+    {
+      "id": "threat.cleanup",
+      "confidence": "strongly_correlated",
+      "behavior": "Death, defeat, flee, room exit, disconnect, removal, and combat end remove matching observer/source entries exactly once.",
+      "safe_fallback": "Retain unresolved native decay and transfer behavior as inactive."
+    },
+    {
+      "id": "threat.inspect_not_select",
+      "confidence": "proven",
+      "behavior": "The ledger exposes deterministic descending threat inspection but does not choose an NPC target."
+    }
+  ],
+  "event_kinds": ["physical_damage", "spell_damage", "healing", "buff", "debuff", "taunt", "summon", "crowd_control", "dispel", "resurrection"],
+  "cleanup_reasons": ["death", "defeat", "fled", "room_exit", "disconnected", "removed", "combat_ended"],
+  "unresolved": [
+    "production multipliers and caps for every event kind",
+    "native threat decay",
+    "threat transfer and inheritance",
+    "group and cross-room aggro propagation",
+    "persistence across disconnect or restart"
+  ]
+}

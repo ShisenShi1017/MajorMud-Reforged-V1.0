@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "world-containers",
+  "pass": "RemainingSystems-0007-WorldContainers",
+  "promotions": [
+    {
+      "behavior": "Central world-container lifecycle and revisioned atomic transfer orchestration",
+      "classification": "proven",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldContainers.cs",
+        "Apps/Source/Reforged.Server/RuntimeWorldContainerSmokeReport.cs",
+        "Librarium/RemainingSystems/world_container_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "inventory-side removal/addition is committed by the owning subsystem before or after container commit under an orchestration transaction"
+      ],
+      "tests": [
+        "--smoke-world-containers",
+        "Tools/Validation/validate_remaining_systems.py"
+      ],
+      "safeFallback": "reject missing IDs, invalid ownership, capacity, weight, or revision conflicts",
+      "runtimeImpact": "enables deterministic shared-container state and transfer requests",
+      "characterSaveImpact": "none directly; Character retains inventory persistence",
+      "worldStateImpact": "container contents, lock state, decay/reset deadlines, and revision may persist"
+    },
+    {
+      "behavior": "Container lock and trap integration through typed requests",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldContainers.cs",
+        "Librarium/RemainingSystems/world_container_catalog.json"
+      ],
+      "confidence": 0.78,
+      "assumptions": [
+        "container unlock/open interactions may invoke trap processing before item transfer"
+      ],
+      "tests": [
+        "unlock-and-trap-route smoke check"
+      ],
+      "safeFallback": "return trap request without applying effects and fail closed when key proof is absent",
+      "runtimeImpact": "routes trap handling without duplicating Trap ownership",
+      "characterSaveImpact": "none",
+      "worldStateImpact": "lock state may change"
+    },
+    {
+      "behavior": "Scope-gated world, character, and organization storage",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldContainers.cs",
+        "Librarium/RemainingSystems/world_container_catalog.json"
+      ],
+      "confidence": 0.8,
+      "assumptions": [
+        "original storage families may differ and require native confirmation"
+      ],
+      "tests": [
+        "state invariant validation",
+        "scope validation paths"
+      ],
+      "safeFallback": "deny access when actor ownership or organization identity does not match",
+      "runtimeImpact": "prevents unauthorized shared-state access",
+      "characterSaveImpact": "none directly",
+      "worldStateImpact": "controls access to persisted container state"
+    }
+  ]
+}

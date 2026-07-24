@@ -1,0 +1,26 @@
+{
+  "update": "0161",
+  "claims": [
+    {
+      "id": "attack_resource.atomic_transaction",
+      "confidence": "proven",
+      "support": [
+        "runtime implementation",
+        "deterministic smoke vectors"
+      ],
+      "runtime_impact": "resource consumption and equipment wear are atomic with attack effect commit",
+      "character_save_impact": "resource balances and durability mutate only after successful transaction",
+      "world_state_impact": "none beyond committed attack state",
+      "safe_fallback": "rollback and reject"
+    },
+    {
+      "id": "attack_resource.production_timing",
+      "confidence": "unknown",
+      "support": [
+        "native timing not yet recovered"
+      ],
+      "runtime_impact": "not activated",
+      "safe_fallback": "reject"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "npc-ai-administrative-service-control-evidence.v1",
+  "update_id": "CodeUpdate0203",
+  "classification": "PROVEN",
+  "runtime_boundary": "exact authority-gated cancellation of active transient NPC service/dialogue/item-effect/equipment-selection ownership",
+  "supports": [
+    "exact instance ownership",
+    "explicit authority and reason",
+    "supported operation allowlist",
+    "transient-only cleanup",
+    "audit persistence",
+    "safe no-op rejection"
+  ],
+  "does_not_infer": [
+    "native cancellation policy",
+    "refund policy",
+    "cooldown policy",
+    "service rollback",
+    "dialogue retry cadence"
+  ]
+}

@@ -5,9 +5,17 @@ namespace Reforged.Server;
 
 public sealed class GeneratedWorldDataCatalog
 {
-    private static readonly string[] RequiredFamilies =
+    private static readonly string[] BaselineRequiredFamilies =
     {
         "rooms", "exits", "triggers", "spawns", "npcs", "items", "spells", "formulas", "shops", "quests", "world_manifest", "compile_manifest"
+    };
+
+    private static readonly string[] ClassicParityRequiredFamilies =
+    {
+        "commands", "abilities", "character_foundation", "classes", "races", "skills",
+        "equipment", "equipment_rules", "equipment_slots", "status_effects",
+        "npc_ai_runtime", "loot_rules", "economy_rules", "room_interactions", "room_messages", "scripts",
+        "gang_houses"
     };
 
     public string WorldId { get; init; } = string.Empty;
@@ -30,7 +38,10 @@ public sealed class GeneratedWorldDataCatalog
         }
 
         var families = new Dictionary<string, GeneratedWorldFamilyStatus>(StringComparer.OrdinalIgnoreCase);
-        foreach (var family in RequiredFamilies)
+        var requiredFamilies = definition.ClassicProtected
+            ? BaselineRequiredFamilies.Concat(ClassicParityRequiredFamilies).Distinct(StringComparer.OrdinalIgnoreCase)
+            : BaselineRequiredFamilies;
+        foreach (var family in requiredFamilies)
         {
             var fileName = family.EndsWith("_manifest", StringComparison.OrdinalIgnoreCase) ? $"{family}.json" : $"{family}.json";
             var path = Path.Combine(dataRoot, fileName);
@@ -85,6 +96,18 @@ public sealed class GeneratedWorldDataCatalog
                 if (root.TryGetProperty("record_count", out var recordCount) && recordCount.ValueKind == JsonValueKind.Number && recordCount.TryGetInt32(out var count))
                 {
                     return count;
+                }
+
+                if (root.TryGetProperty("record_parts", out var parts) && parts.ValueKind == JsonValueKind.Array)
+                {
+                    var total = 0;
+                    foreach (var part in parts.EnumerateArray())
+                    {
+                        if (part.ValueKind != JsonValueKind.String) continue;
+                        var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, part.GetString()!.Replace('/', Path.DirectorySeparatorChar)));
+                        total += CountRecords(partPath, diagnostics);
+                    }
+                    return total;
                 }
 
                 if (root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)

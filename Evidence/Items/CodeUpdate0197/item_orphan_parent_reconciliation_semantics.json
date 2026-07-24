@@ -1,0 +1,30 @@
+{
+  "code_update": "0197",
+  "subsystem": "Items",
+  "finding": "missing portable-container parent detection and owner-inventory recovery",
+  "classification": "strongly_correlated",
+  "runtime_status": "active compatibility infrastructure",
+  "behavior": [
+    "contained item records that reference a missing parent instance are reported as MISSING_CONTAINER_PARENT",
+    "corpse-held item records that reference a missing or cleaned-up corpse are reported as MISSING_CORPSE_PARENT",
+    "an explicitly invoked reconciliation may recover an orphaned contained item to its authoritative owner's carried inventory",
+    "the recovered instance identity, quantity, charges, durability, and canonical definition remain unchanged",
+    "recovery provenance records the missing container identity and owner_inventory policy",
+    "ownerless orphaned contained items and missing-corpse items fail closed"
+  ],
+  "assumptions": [
+    "an existing nonempty OwnerId is authoritative enough to identify the only safe recovery destination",
+    "equipment restoration is not inferred during orphan recovery"
+  ],
+  "safe_fallback": "throw InvalidDataException and preserve the authoritative file whenever no authoritative owner exists or the repaired state fails validation",
+  "runtime_impact": "enables deterministic opt-in repair of missing portable-container parent references without discarding item state",
+  "character_save_impact": "recovered items become carried and unequipped by the already-recorded owner",
+  "world_state_impact": "removes only the broken parent reference and records recovery provenance; missing corpse references are never auto-repaired",
+  "tests": [
+    "missing container parent validation",
+    "owner-known orphan recovery",
+    "recovery provenance persistence",
+    "ownerless orphan rejection",
+    "missing corpse parent validation"
+  ]
+}

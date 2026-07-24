@@ -1,0 +1,17 @@
+{
+  "update": "0185",
+  "subsystem": "combat_spells",
+  "status": "non_native_exhausted",
+  "implemented_this_pass": [
+    "final non-native exhaustion matrix for all canonical records",
+    "central fail-closed execution binding gate",
+    "explicit fixture-only execution classification",
+    "explicit definition-only and native-blocked classifications"
+  ],
+  "not_claimed_complete": [
+    "native enum semantics",
+    "native timing, flags, masks, formulas, random ranges, save formats, and restart behavior",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Begin final WCC/WBB/native DLL and file exhaustion for remaining Combat & Spells dependencies."
+}

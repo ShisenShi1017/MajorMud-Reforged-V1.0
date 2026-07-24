@@ -1,0 +1,19 @@
+{
+  "update": "0024",
+  "status": "PASS",
+  "sourceModule": "wccmmud.dll",
+  "sourceSha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+  "validatedEntry": "0x00449232",
+  "validatedEnd": "0x00449BF0",
+  "validatedSizeBytes": 2494,
+  "effectSlots": 10,
+  "jsonFilesParsedBeforeValidationArtifact": 966,
+  "checks": [
+    "registry constants match evidence",
+    "four-argument cdecl boundary is consistent with stack accesses",
+    "definition type domain 6/7 is present in disassembly",
+    "resource, secondary-resource, and level gates are present",
+    "ten-slot effect loop is present",
+    "room mutation, output flush, and room broadcast helpers are referenced"
+  ]
+}

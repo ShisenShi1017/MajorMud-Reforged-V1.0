@@ -1,0 +1,16 @@
+{
+  "id": "runtime_item_coordinated_save_generation",
+  "code_update": "0201",
+  "owner": "Items",
+  "policy": "Reject mixed subsystem save generations; stamp Items with the supplied coordinated generation and use integrity-backed backup rotation.",
+  "required_subsystems": [
+    "character",
+    "economy",
+    "quests",
+    "events",
+    "npc",
+    "world"
+  ],
+  "fallback": "fail_closed",
+  "classic_status": "compatibility_infrastructure_not_claimed_native"
+}

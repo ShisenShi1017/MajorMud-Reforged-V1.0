@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "rest-inn-recovery-policy",
+  "runtimeOwner": "RuntimeRestRecoveryPolicyService",
+  "persistenceOwner": "Character owns resources and identity; Economy owns charges; session lifecycle owns logout commit",
+  "roomPolicies": [
+    "allow rest",
+    "allow sleep",
+    "inn",
+    "safe logout",
+    "inn cost",
+    "login room",
+    "recovery multiplier"
+  ],
+  "operations": [
+    "rest",
+    "sleep",
+    "wake",
+    "safe logout request"
+  ],
+  "typedRequests": [
+    "recovery modifier",
+    "status cleanup",
+    "service charge",
+    "spawn/login room change",
+    "logout"
+  ],
+  "safeFallback": "Unknown room policy, disconnected/dead actors, and combat-sensitive actions fail closed.",
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "exact Classic rest/sleep commands and messages",
+    "native recovery formulas and tick timing",
+    "inn rental persistence",
+    "safe logout room rules",
+    "status cleanup behavior",
+    "login-room behavior",
+    "Worldgroup versus MajorMUD ownership"
+  ]
+}

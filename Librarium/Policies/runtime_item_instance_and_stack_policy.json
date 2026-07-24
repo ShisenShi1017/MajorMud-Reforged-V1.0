@@ -1,0 +1,29 @@
+{
+  "id": "runtime-item-instance-and-stack-policy-0164",
+  "authority": "Librarium",
+  "subsystem": "items",
+  "version": 1,
+  "identity": {
+    "definition_id": "CanonicalItemId",
+    "runtime_instance_id": "InstanceId",
+    "split_identity": "new_instance_id",
+    "merge_identity": "target_instance_survives_source_instance_removed"
+  },
+  "merge_equivalence_fields": [
+    "CanonicalItemId",
+    "OwnerId",
+    "LocationKind",
+    "LocationId",
+    "EquippedSlot",
+    "Charges",
+    "Durability",
+    "Metadata"
+  ],
+  "atomicity": "RuntimeItemEngine snapshots item and corpse dictionaries before mutation and restores both on validation or execution failure.",
+  "classic_status": "infrastructure_active_definition_semantics_fail_closed",
+  "unknowns": [
+    "native stack eligibility",
+    "native maximum stack size",
+    "native stack split command behavior"
+  ]
+}

@@ -1,0 +1,2560 @@
+{
+  "generatedUtc": "2026-07-14T14:00:19+00:00",
+  "codeUpdate": "0139",
+  "databaseVersion": "0010",
+  "canonicalRoomRecords": 26666,
+  "knownDescriptionsBeforeRecovery": 3217,
+  "canonicalRoomNames": 1862,
+  "sourceTitleOccurrences": 26883,
+  "sourceCanonicalNamesWithOccurrences": 1722,
+  "uniqueCanonicalRoomNames": 1037,
+  "acceptedGroups": 1551,
+  "rejectedGroups": 311,
+  "validationChecks": 1647,
+  "validationPasses": 1591,
+  "recordsPromoted": 23309,
+  "recordsFromUniqueTitleGroups": 555,
+  "recordsFromValidatedDuplicateTitleGroups": 17417,
+  "recordsFromIdenticalDuplicateTitleGroups": 693,
+  "recordsFromUserRuleDuplicateTitleGroups": 4644,
+  "totalDescriptionsAfterRecovery": 26526,
+  "unresolvedAfterRecovery": 140,
+  "unresolvedRooms": [
+    {
+      "room_id": "room.map1.2431",
+      "map_number": 1,
+      "room_number": 2431,
+      "name": "Room 1/2431",
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map1.2432",
+      "map_number": 1,
+      "room_number": 2432,
+      "name": "Room 1/2432",
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map1.2433",
+      "map_number": 1,
+      "room_number": 2433,
+      "name": "Room 1/2433",
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map1.2434",
+      "map_number": 1,
+      "room_number": 2434,
+      "name": "Room 1/2434",
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map1.2435",
+      "map_number": 1,
+      "room_number": 2435,
+      "name": "Room 1/2435",
+      "relationships": {
+        "exits": [
+          "exit.map1.2435.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map1.2603",
+      "map_number": 1,
+      "room_number": 2603,
+      "name": "Room 1/2603",
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.850",
+      "map_number": 15,
+      "room_number": 850,
+      "name": "Room 15/850",
+      "relationships": {
+        "exits": [
+          "exit.map15.850.n",
+          "exit.map15.850.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1058,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.851",
+      "map_number": 15,
+      "room_number": 851,
+      "name": "Room 15/851",
+      "relationships": {
+        "exits": [
+          "exit.map15.851.n",
+          "exit.map15.851.e",
+          "exit.map15.851.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.852",
+      "map_number": 15,
+      "room_number": 852,
+      "name": "Room 15/852",
+      "relationships": {
+        "exits": [
+          "exit.map15.852.s",
+          "exit.map15.852.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.853",
+      "map_number": 15,
+      "room_number": 853,
+      "name": "Room 15/853",
+      "relationships": {
+        "exits": [
+          "exit.map15.853.n",
+          "exit.map15.853.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.854",
+      "map_number": 15,
+      "room_number": 854,
+      "name": "Room 15/854",
+      "relationships": {
+        "exits": [
+          "exit.map15.854.n",
+          "exit.map15.854.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.855",
+      "map_number": 15,
+      "room_number": 855,
+      "name": "Room 15/855",
+      "relationships": {
+        "exits": [
+          "exit.map15.855.n",
+          "exit.map15.855.s",
+          "exit.map15.855.e",
+          "exit.map15.855.w",
+          "exit.map15.855.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.856",
+      "map_number": 15,
+      "room_number": 856,
+      "name": "Room 15/856",
+      "relationships": {
+        "exits": [
+          "exit.map15.856.s",
+          "exit.map15.856.u"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.857",
+      "map_number": 15,
+      "room_number": 857,
+      "name": "Room 15/857",
+      "relationships": {
+        "exits": [
+          "exit.map15.857.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.858",
+      "map_number": 15,
+      "room_number": 858,
+      "name": "Room 15/858",
+      "relationships": {
+        "exits": [
+          "exit.map15.858.n",
+          "exit.map15.858.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.859",
+      "map_number": 15,
+      "room_number": 859,
+      "name": "Room 15/859",
+      "relationships": {
+        "exits": [
+          "exit.map15.859.n",
+          "exit.map15.859.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.860",
+      "map_number": 15,
+      "room_number": 860,
+      "name": "Room 15/860",
+      "relationships": {
+        "exits": [
+          "exit.map15.860.n",
+          "exit.map15.860.s",
+          "exit.map15.860.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 537,[32-109-109-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.861",
+      "map_number": 15,
+      "room_number": 861,
+      "name": "Room 15/861",
+      "relationships": {
+        "exits": [
+          "exit.map15.861.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.862",
+      "map_number": 15,
+      "room_number": 862,
+      "name": "Room 15/862",
+      "relationships": {
+        "exits": [
+          "exit.map15.862.n",
+          "exit.map15.862.s",
+          "exit.map15.862.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1060,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.863",
+      "map_number": 15,
+      "room_number": 863,
+      "name": "Room 15/863",
+      "relationships": {
+        "exits": [
+          "exit.map15.863.s",
+          "exit.map15.863.ne",
+          "exit.map15.863.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.864",
+      "map_number": 15,
+      "room_number": 864,
+      "name": "Room 15/864",
+      "relationships": {
+        "exits": [
+          "exit.map15.864.n",
+          "exit.map15.864.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.865",
+      "map_number": 15,
+      "room_number": 865,
+      "name": "Room 15/865",
+      "relationships": {
+        "exits": [
+          "exit.map15.865.n",
+          "exit.map15.865.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.866",
+      "map_number": 15,
+      "room_number": 866,
+      "name": "Room 15/866",
+      "relationships": {
+        "exits": [
+          "exit.map15.866.s",
+          "exit.map15.866.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.867",
+      "map_number": 15,
+      "room_number": 867,
+      "name": "Room 15/867",
+      "relationships": {
+        "exits": [
+          "exit.map15.867.n",
+          "exit.map15.867.s",
+          "exit.map15.867.e",
+          "exit.map15.867.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.868",
+      "map_number": 15,
+      "room_number": 868,
+      "name": "Room 15/868",
+      "relationships": {
+        "exits": [
+          "exit.map15.868.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.869",
+      "map_number": 15,
+      "room_number": 869,
+      "name": "Room 15/869",
+      "relationships": {
+        "exits": [
+          "exit.map15.869.n",
+          "exit.map15.869.u"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.870",
+      "map_number": 15,
+      "room_number": 870,
+      "name": "Room 15/870",
+      "relationships": {
+        "exits": [
+          "exit.map15.870.s",
+          "exit.map15.870.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.871",
+      "map_number": 15,
+      "room_number": 871,
+      "name": "Room 15/871",
+      "relationships": {
+        "exits": [
+          "exit.map15.871.n",
+          "exit.map15.871.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.872",
+      "map_number": 15,
+      "room_number": 872,
+      "name": "Room 15/872",
+      "relationships": {
+        "exits": [
+          "exit.map15.872.n",
+          "exit.map15.872.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.873",
+      "map_number": 15,
+      "room_number": 873,
+      "name": "Room 15/873",
+      "relationships": {
+        "exits": [
+          "exit.map15.873.s",
+          "exit.map15.873.ne",
+          "exit.map15.873.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.874",
+      "map_number": 15,
+      "room_number": 874,
+      "name": "Room 15/874",
+      "relationships": {
+        "exits": [
+          "exit.map15.874.n",
+          "exit.map15.874.s",
+          "exit.map15.874.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1064,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.875",
+      "map_number": 15,
+      "room_number": 875,
+      "name": "Room 15/875",
+      "relationships": {
+        "exits": [
+          "exit.map15.875.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.876",
+      "map_number": 15,
+      "room_number": 876,
+      "name": "Room 15/876",
+      "relationships": {
+        "exits": [
+          "exit.map15.876.n",
+          "exit.map15.876.s",
+          "exit.map15.876.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 513,[32-101-101-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.877",
+      "map_number": 15,
+      "room_number": 877,
+      "name": "Room 15/877",
+      "relationships": {
+        "exits": [
+          "exit.map15.877.n",
+          "exit.map15.877.s",
+          "exit.map15.877.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 513,[32-101-101-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.878",
+      "map_number": 15,
+      "room_number": 878,
+      "name": "Room 15/878",
+      "relationships": {
+        "exits": [
+          "exit.map15.878.s",
+          "exit.map15.878.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 513,[32-101-101-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.879",
+      "map_number": 15,
+      "room_number": 879,
+      "name": "Room 15/879",
+      "relationships": {
+        "exits": [
+          "exit.map15.879.n",
+          "exit.map15.879.s",
+          "exit.map15.879.e",
+          "exit.map15.879.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.880",
+      "map_number": 15,
+      "room_number": 880,
+      "name": "Room 15/880",
+      "relationships": {
+        "exits": [
+          "exit.map15.880.s",
+          "exit.map15.880.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 5): 513,[32-101-101-5]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.881",
+      "map_number": 15,
+      "room_number": 881,
+      "name": "Room 15/881",
+      "relationships": {
+        "exits": [
+          "exit.map15.881.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.882",
+      "map_number": 15,
+      "room_number": 882,
+      "name": "Room 15/882",
+      "relationships": {
+        "exits": [
+          "exit.map15.882.s",
+          "exit.map15.882.ne"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1065,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.883",
+      "map_number": 15,
+      "room_number": 883,
+      "name": "Room 15/883",
+      "relationships": {
+        "exits": [
+          "exit.map15.883.ne",
+          "exit.map15.883.nw",
+          "exit.map15.883.se",
+          "exit.map15.883.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 516,[32-102-102-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.884",
+      "map_number": 15,
+      "room_number": 884,
+      "name": "Room 15/884",
+      "relationships": {
+        "exits": [
+          "exit.map15.884.n",
+          "exit.map15.884.nw",
+          "exit.map15.884.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 516,[32-102-102-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.885",
+      "map_number": 15,
+      "room_number": 885,
+      "name": "Room 15/885",
+      "relationships": {
+        "exits": [
+          "exit.map15.885.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.886",
+      "map_number": 15,
+      "room_number": 886,
+      "name": "Room 15/886",
+      "relationships": {
+        "exits": [
+          "exit.map15.886.n",
+          "exit.map15.886.s",
+          "exit.map15.886.se",
+          "exit.map15.886.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 516,[32-102-102-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.887",
+      "map_number": 15,
+      "room_number": 887,
+      "name": "Room 15/887",
+      "relationships": {
+        "exits": [
+          "exit.map15.887.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.888",
+      "map_number": 15,
+      "room_number": 888,
+      "name": "Room 15/888",
+      "relationships": {
+        "exits": [
+          "exit.map15.888.n",
+          "exit.map15.888.ne",
+          "exit.map15.888.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 516,[32-102-102-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.889",
+      "map_number": 15,
+      "room_number": 889,
+      "name": "Room 15/889",
+      "relationships": {
+        "exits": [
+          "exit.map15.889.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.890",
+      "map_number": 15,
+      "room_number": 890,
+      "name": "Room 15/890",
+      "relationships": {
+        "exits": [
+          "exit.map15.890.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.891",
+      "map_number": 15,
+      "room_number": 891,
+      "name": "Room 15/891",
+      "relationships": {
+        "exits": [
+          "exit.map15.891.n",
+          "exit.map15.891.s",
+          "exit.map15.891.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1063,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.892",
+      "map_number": 15,
+      "room_number": 892,
+      "name": "Room 15/892",
+      "relationships": {
+        "exits": [
+          "exit.map15.892.n",
+          "exit.map15.892.s",
+          "exit.map15.892.ne"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.893",
+      "map_number": 15,
+      "room_number": 893,
+      "name": "Room 15/893",
+      "relationships": {
+        "exits": [
+          "exit.map15.893.s",
+          "exit.map15.893.e",
+          "exit.map15.893.w",
+          "exit.map15.893.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.894",
+      "map_number": 15,
+      "room_number": 894,
+      "name": "Room 15/894",
+      "relationships": {
+        "exits": [
+          "exit.map15.894.n",
+          "exit.map15.894.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.895",
+      "map_number": 15,
+      "room_number": 895,
+      "name": "Room 15/895",
+      "relationships": {
+        "exits": [
+          "exit.map15.895.s",
+          "exit.map15.895.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.896",
+      "map_number": 15,
+      "room_number": 896,
+      "name": "Room 15/896",
+      "relationships": {
+        "exits": [
+          "exit.map15.896.e",
+          "exit.map15.896.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.897",
+      "map_number": 15,
+      "room_number": 897,
+      "name": "Room 15/897",
+      "relationships": {
+        "exits": [
+          "exit.map15.897.e",
+          "exit.map15.897.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.898",
+      "map_number": 15,
+      "room_number": 898,
+      "name": "Room 15/898",
+      "relationships": {
+        "exits": [
+          "exit.map15.898.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.899",
+      "map_number": 15,
+      "room_number": 899,
+      "name": "Room 15/899",
+      "relationships": {
+        "exits": [
+          "exit.map15.899.n",
+          "exit.map15.899.s",
+          "exit.map15.899.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.900",
+      "map_number": 15,
+      "room_number": 900,
+      "name": "Room 15/900",
+      "relationships": {
+        "exits": [
+          "exit.map15.900.s",
+          "exit.map15.900.e",
+          "exit.map15.900.w",
+          "exit.map15.900.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.901",
+      "map_number": 15,
+      "room_number": 901,
+      "name": "Room 15/901",
+      "relationships": {
+        "exits": [
+          "exit.map15.901.n",
+          "exit.map15.901.s",
+          "exit.map15.901.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 525,[32-105-105-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.902",
+      "map_number": 15,
+      "room_number": 902,
+      "name": "Room 15/902",
+      "relationships": {
+        "exits": [
+          "exit.map15.902.s",
+          "exit.map15.902.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.903",
+      "map_number": 15,
+      "room_number": 903,
+      "name": "Room 15/903",
+      "relationships": {
+        "exits": [
+          "exit.map15.903.s",
+          "exit.map15.903.ne",
+          "exit.map15.903.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1059,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.904",
+      "map_number": 15,
+      "room_number": 904,
+      "name": "Room 15/904",
+      "relationships": {
+        "exits": [
+          "exit.map15.904.w",
+          "exit.map15.904.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 1): 510,[32-100-100-1]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.905",
+      "map_number": 15,
+      "room_number": 905,
+      "name": "Room 15/905",
+      "relationships": {
+        "exits": [
+          "exit.map15.905.n",
+          "exit.map15.905.e",
+          "exit.map15.905.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 1): 510,[32-100-100-1]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.906",
+      "map_number": 15,
+      "room_number": 906,
+      "name": "Room 15/906",
+      "relationships": {
+        "exits": [
+          "exit.map15.906.e",
+          "exit.map15.906.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 1): 510,[32-100-100-1]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.907",
+      "map_number": 15,
+      "room_number": 907,
+      "name": "Room 15/907",
+      "relationships": {
+        "exits": [
+          "exit.map15.907.n",
+          "exit.map15.907.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 1): 510,[32-100-100-1]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.908",
+      "map_number": 15,
+      "room_number": 908,
+      "name": "Room 15/908",
+      "relationships": {
+        "exits": [
+          "exit.map15.908.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.909",
+      "map_number": 15,
+      "room_number": 909,
+      "name": "Room 15/909",
+      "relationships": {
+        "exits": [
+          "exit.map15.909.n",
+          "exit.map15.909.s",
+          "exit.map15.909.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1056,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.910",
+      "map_number": 15,
+      "room_number": 910,
+      "name": "Room 15/910",
+      "relationships": {
+        "exits": [
+          "exit.map15.910.n",
+          "exit.map15.910.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.911",
+      "map_number": 15,
+      "room_number": 911,
+      "name": "Room 15/911",
+      "relationships": {
+        "exits": [
+          "exit.map15.911.n",
+          "exit.map15.911.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.912",
+      "map_number": 15,
+      "room_number": 912,
+      "name": "Room 15/912",
+      "relationships": {
+        "exits": [
+          "exit.map15.912.n",
+          "exit.map15.912.s",
+          "exit.map15.912.nw",
+          "exit.map15.912.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.913",
+      "map_number": 15,
+      "room_number": 913,
+      "name": "Room 15/913",
+      "relationships": {
+        "exits": [
+          "exit.map15.913.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.914",
+      "map_number": 15,
+      "room_number": 914,
+      "name": "Room 15/914",
+      "relationships": {
+        "exits": [
+          "exit.map15.914.s",
+          "exit.map15.914.ne",
+          "exit.map15.914.nw",
+          "exit.map15.914.se",
+          "exit.map15.914.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.915",
+      "map_number": 15,
+      "room_number": 915,
+      "name": "Room 15/915",
+      "relationships": {
+        "exits": [
+          "exit.map15.915.n",
+          "exit.map15.915.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.916",
+      "map_number": 15,
+      "room_number": 916,
+      "name": "Room 15/916",
+      "relationships": {
+        "exits": [
+          "exit.map15.916.n",
+          "exit.map15.916.s",
+          "exit.map15.916.ne",
+          "exit.map15.916.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.917",
+      "map_number": 15,
+      "room_number": 917,
+      "name": "Room 15/917",
+      "relationships": {
+        "exits": [
+          "exit.map15.917.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.918",
+      "map_number": 15,
+      "room_number": 918,
+      "name": "Room 15/918",
+      "relationships": {
+        "exits": [
+          "exit.map15.918.n",
+          "exit.map15.918.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.919",
+      "map_number": 15,
+      "room_number": 919,
+      "name": "Room 15/919",
+      "relationships": {
+        "exits": [
+          "exit.map15.919.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.920",
+      "map_number": 15,
+      "room_number": 920,
+      "name": "Room 15/920",
+      "relationships": {
+        "exits": [
+          "exit.map15.920.e",
+          "exit.map15.920.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 531,[32-107-107-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.921",
+      "map_number": 15,
+      "room_number": 921,
+      "name": "Room 15/921",
+      "relationships": {
+        "exits": [
+          "exit.map15.921.n",
+          "exit.map15.921.e",
+          "exit.map15.921.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.922",
+      "map_number": 15,
+      "room_number": 922,
+      "name": "Room 15/922",
+      "relationships": {
+        "exits": [
+          "exit.map15.922.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.923",
+      "map_number": 15,
+      "room_number": 923,
+      "name": "Room 15/923",
+      "relationships": {
+        "exits": [
+          "exit.map15.923.n",
+          "exit.map15.923.w",
+          "exit.map15.923.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1062,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.924",
+      "map_number": 15,
+      "room_number": 924,
+      "name": "Room 15/924",
+      "relationships": {
+        "exits": [
+          "exit.map15.924.n",
+          "exit.map15.924.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.925",
+      "map_number": 15,
+      "room_number": 925,
+      "name": "Room 15/925",
+      "relationships": {
+        "exits": [
+          "exit.map15.925.s",
+          "exit.map15.925.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.926",
+      "map_number": 15,
+      "room_number": 926,
+      "name": "Room 15/926",
+      "relationships": {
+        "exits": [
+          "exit.map15.926.e",
+          "exit.map15.926.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.927",
+      "map_number": 15,
+      "room_number": 927,
+      "name": "Room 15/927",
+      "relationships": {
+        "exits": [
+          "exit.map15.927.n",
+          "exit.map15.927.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.928",
+      "map_number": 15,
+      "room_number": 928,
+      "name": "Room 15/928",
+      "relationships": {
+        "exits": [
+          "exit.map15.928.n",
+          "exit.map15.928.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.929",
+      "map_number": 15,
+      "room_number": 929,
+      "name": "Room 15/929",
+      "relationships": {
+        "exits": [
+          "exit.map15.929.s",
+          "exit.map15.929.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.930",
+      "map_number": 15,
+      "room_number": 930,
+      "name": "Room 15/930",
+      "relationships": {
+        "exits": [
+          "exit.map15.930.s",
+          "exit.map15.930.w",
+          "exit.map15.930.se",
+          "exit.map15.930.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 2): 519,[32-103-103-2]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.931",
+      "map_number": 15,
+      "room_number": 931,
+      "name": "Room 15/931",
+      "relationships": {
+        "exits": [
+          "exit.map15.931.n",
+          "exit.map15.931.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.932",
+      "map_number": 15,
+      "room_number": 932,
+      "name": "Room 15/932",
+      "relationships": {
+        "exits": [
+          "exit.map15.932.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.933",
+      "map_number": 15,
+      "room_number": 933,
+      "name": "Room 15/933",
+      "relationships": {
+        "exits": [
+          "exit.map15.933.s",
+          "exit.map15.933.e",
+          "exit.map15.933.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1057,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.934",
+      "map_number": 15,
+      "room_number": 934,
+      "name": "Room 15/934",
+      "relationships": {
+        "exits": [
+          "exit.map15.934.nw",
+          "exit.map15.934.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.935",
+      "map_number": 15,
+      "room_number": 935,
+      "name": "Room 15/935",
+      "relationships": {
+        "exits": [
+          "exit.map15.935.e",
+          "exit.map15.935.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.936",
+      "map_number": 15,
+      "room_number": 936,
+      "name": "Room 15/936",
+      "relationships": {
+        "exits": [
+          "exit.map15.936.e",
+          "exit.map15.936.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.937",
+      "map_number": 15,
+      "room_number": 937,
+      "name": "Room 15/937",
+      "relationships": {
+        "exits": [
+          "exit.map15.937.n",
+          "exit.map15.937.e",
+          "exit.map15.937.w",
+          "exit.map15.937.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.938",
+      "map_number": 15,
+      "room_number": 938,
+      "name": "Room 15/938",
+      "relationships": {
+        "exits": [
+          "exit.map15.938.s",
+          "exit.map15.938.e",
+          "exit.map15.938.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.939",
+      "map_number": 15,
+      "room_number": 939,
+      "name": "Room 15/939",
+      "relationships": {
+        "exits": [
+          "exit.map15.939.n",
+          "exit.map15.939.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.940",
+      "map_number": 15,
+      "room_number": 940,
+      "name": "Room 15/940",
+      "relationships": {
+        "exits": [
+          "exit.map15.940.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.941",
+      "map_number": 15,
+      "room_number": 941,
+      "name": "Room 15/941",
+      "relationships": {
+        "exits": [
+          "exit.map15.941.s",
+          "exit.map15.941.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.942",
+      "map_number": 15,
+      "room_number": 942,
+      "name": "Room 15/942",
+      "relationships": {
+        "exits": [
+          "exit.map15.942.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.943",
+      "map_number": 15,
+      "room_number": 943,
+      "name": "Room 15/943",
+      "relationships": {
+        "exits": [
+          "exit.map15.943.e",
+          "exit.map15.943.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.944",
+      "map_number": 15,
+      "room_number": 944,
+      "name": "Room 15/944",
+      "relationships": {
+        "exits": [
+          "exit.map15.944.w",
+          "exit.map15.944.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.945",
+      "map_number": 15,
+      "room_number": 945,
+      "name": "Room 15/945",
+      "relationships": {
+        "exits": [
+          "exit.map15.945.ne",
+          "exit.map15.945.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 528,[32-106-106-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.946",
+      "map_number": 15,
+      "room_number": 946,
+      "name": "Room 15/946",
+      "relationships": {
+        "exits": [
+          "exit.map15.946.s",
+          "exit.map15.946.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.947",
+      "map_number": 15,
+      "room_number": 947,
+      "name": "Room 15/947",
+      "relationships": {
+        "exits": [
+          "exit.map15.947.n",
+          "exit.map15.947.e",
+          "exit.map15.947.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "1061,"
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.948",
+      "map_number": 15,
+      "room_number": 948,
+      "name": "Room 15/948",
+      "relationships": {
+        "exits": [
+          "exit.map15.948.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.949",
+      "map_number": 15,
+      "room_number": 949,
+      "name": "Room 15/949",
+      "relationships": {
+        "exits": [
+          "exit.map15.949.n",
+          "exit.map15.949.e",
+          "exit.map15.949.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.950",
+      "map_number": 15,
+      "room_number": 950,
+      "name": "Room 15/950",
+      "relationships": {
+        "exits": [
+          "exit.map15.950.n",
+          "exit.map15.950.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.951",
+      "map_number": 15,
+      "room_number": 951,
+      "name": "Room 15/951",
+      "relationships": {
+        "exits": [
+          "exit.map15.951.n",
+          "exit.map15.951.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.952",
+      "map_number": 15,
+      "room_number": 952,
+      "name": "Room 15/952",
+      "relationships": {
+        "exits": [
+          "exit.map15.952.s",
+          "exit.map15.952.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.953",
+      "map_number": 15,
+      "room_number": 953,
+      "name": "Room 15/953",
+      "relationships": {
+        "exits": [
+          "exit.map15.953.se",
+          "exit.map15.953.sw",
+          "exit.map15.953.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.954",
+      "map_number": 15,
+      "room_number": 954,
+      "name": "Room 15/954",
+      "relationships": {
+        "exits": [
+          "exit.map15.954.s",
+          "exit.map15.954.ne"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.955",
+      "map_number": 15,
+      "room_number": 955,
+      "name": "Room 15/955",
+      "relationships": {
+        "exits": [
+          "exit.map15.955.n",
+          "exit.map15.955.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.956",
+      "map_number": 15,
+      "room_number": 956,
+      "name": "Room 15/956",
+      "relationships": {
+        "exits": [
+          "exit.map15.956.n",
+          "exit.map15.956.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.957",
+      "map_number": 15,
+      "room_number": 957,
+      "name": "Room 15/957",
+      "relationships": {
+        "exits": [
+          "exit.map15.957.n",
+          "exit.map15.957.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.958",
+      "map_number": 15,
+      "room_number": 958,
+      "name": "Room 15/958",
+      "relationships": {
+        "exits": [
+          "exit.map15.958.n",
+          "exit.map15.958.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.959",
+      "map_number": 15,
+      "room_number": 959,
+      "name": "Room 15/959",
+      "relationships": {
+        "exits": [
+          "exit.map15.959.n",
+          "exit.map15.959.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 522,[32-104-104-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.960",
+      "map_number": 15,
+      "room_number": 960,
+      "name": "Room 15/960",
+      "relationships": {
+        "exits": [
+          "exit.map15.960.n",
+          "exit.map15.960.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.961",
+      "map_number": 15,
+      "room_number": 961,
+      "name": "Room 15/961",
+      "relationships": {
+        "exits": [
+          "exit.map15.961.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.962",
+      "map_number": 15,
+      "room_number": 962,
+      "name": "Room 15/962",
+      "relationships": {
+        "exits": [
+          "exit.map15.962.s",
+          "exit.map15.962.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.963",
+      "map_number": 15,
+      "room_number": 963,
+      "name": "Room 15/963",
+      "relationships": {
+        "exits": [
+          "exit.map15.963.n",
+          "exit.map15.963.e",
+          "exit.map15.963.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.964",
+      "map_number": 15,
+      "room_number": 964,
+      "name": "Room 15/964",
+      "relationships": {
+        "exits": [
+          "exit.map15.964.n",
+          "exit.map15.964.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.965",
+      "map_number": 15,
+      "room_number": 965,
+      "name": "Room 15/965",
+      "relationships": {
+        "exits": [
+          "exit.map15.965.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.966",
+      "map_number": 15,
+      "room_number": 966,
+      "name": "Room 15/966",
+      "relationships": {
+        "exits": [
+          "exit.map15.966.n",
+          "exit.map15.966.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.967",
+      "map_number": 15,
+      "room_number": 967,
+      "name": "Room 15/967",
+      "relationships": {
+        "exits": [
+          "exit.map15.967.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.968",
+      "map_number": 15,
+      "room_number": 968,
+      "name": "Room 15/968",
+      "relationships": {
+        "exits": [
+          "exit.map15.968.e"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.969",
+      "map_number": 15,
+      "room_number": 969,
+      "name": "Room 15/969",
+      "relationships": {
+        "exits": [
+          "exit.map15.969.s",
+          "exit.map15.969.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.970",
+      "map_number": 15,
+      "room_number": 970,
+      "name": "Room 15/970",
+      "relationships": {
+        "exits": [
+          "exit.map15.970.n",
+          "exit.map15.970.ne",
+          "exit.map15.970.nw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "(Max 3): 534,[32-108-108-3]",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.971",
+      "map_number": 15,
+      "room_number": 971,
+      "name": "Room 15/971",
+      "relationships": {
+        "exits": [
+          "exit.map15.971.sw"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.972",
+      "map_number": 15,
+      "room_number": 972,
+      "name": "Room 15/972",
+      "relationships": {
+        "exits": [
+          "exit.map15.972.se"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.973",
+      "map_number": 15,
+      "room_number": 973,
+      "name": "Room 15/973",
+      "relationships": {
+        "exits": [
+          "exit.map15.973.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.974",
+      "map_number": 15,
+      "room_number": 974,
+      "name": "Room 15/974",
+      "relationships": {
+        "exits": [
+          "exit.map15.974.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.975",
+      "map_number": 15,
+      "room_number": 975,
+      "name": "Room 15/975",
+      "relationships": {
+        "exits": [
+          "exit.map15.975.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.976",
+      "map_number": 15,
+      "room_number": 976,
+      "name": "Room 15/976",
+      "relationships": {
+        "exits": [
+          "exit.map15.976.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.977",
+      "map_number": 15,
+      "room_number": 977,
+      "name": "Room 15/977",
+      "relationships": {
+        "exits": [
+          "exit.map15.977.n"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.978",
+      "map_number": 15,
+      "room_number": 978,
+      "name": "Room 15/978",
+      "relationships": {
+        "exits": [
+          "exit.map15.978.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.979",
+      "map_number": 15,
+      "room_number": 979,
+      "name": "Room 15/979",
+      "relationships": {
+        "exits": [
+          "exit.map15.979.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.980",
+      "map_number": 15,
+      "room_number": 980,
+      "name": "Room 15/980",
+      "relationships": {
+        "exits": [
+          "exit.map15.980.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.981",
+      "map_number": 15,
+      "room_number": 981,
+      "name": "Room 15/981",
+      "relationships": {
+        "exits": [
+          "exit.map15.981.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.982",
+      "map_number": 15,
+      "room_number": 982,
+      "name": "Room 15/982",
+      "relationships": {
+        "exits": [
+          "exit.map15.982.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    },
+    {
+      "room_id": "room.map15.2320",
+      "map_number": 15,
+      "room_number": 2320,
+      "name": "Room 15/2320",
+      "relationships": {
+        "exits": [
+          "exit.map15.2320.s"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": ""
+      },
+      "classification": "placeholder_named_room_without_local_wcc_description_evidence"
+    }
+  ],
+  "skippedExistingDescriptions": 1396,
+  "skippedEmptyOrTooShortDescriptions": 0,
+  "output": "Librarium/Objects/room_descriptions/wccmp002_room_description_records_0139.json",
+  "source": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+  "firstRejectedGroups": [
+    {
+      "name": "Town Gates",
+      "canonical_room_count": 8,
+      "source_title_occurrence_count": 8,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Lucky Strike Casino",
+      "canonical_room_count": 3,
+      "source_title_occurrence_count": 3,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Jail Cell",
+      "canonical_room_count": 13,
+      "source_title_occurrence_count": 13,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Oak Street",
+      "canonical_room_count": 16,
+      "source_title_occurrence_count": 16,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Park Plaza",
+      "canonical_room_count": 10,
+      "source_title_occurrence_count": 10,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Park Street",
+      "canonical_room_count": 8,
+      "source_title_occurrence_count": 8,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Darkwood Forest",
+      "canonical_room_count": 750,
+      "source_title_occurrence_count": 791,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Park",
+      "canonical_room_count": 16,
+      "source_title_occurrence_count": 16,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Alley",
+      "canonical_room_count": 14,
+      "source_title_occurrence_count": 14,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Arena Practice Room",
+      "canonical_room_count": 11,
+      "source_title_occurrence_count": 12,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Brass Street",
+      "canonical_room_count": 10,
+      "source_title_occurrence_count": 10,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Town Square",
+      "canonical_room_count": 2,
+      "source_title_occurrence_count": 2,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Intersection of Stone St. and Crown St.",
+      "canonical_room_count": 2,
+      "source_title_occurrence_count": 3,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Library",
+      "canonical_room_count": 216,
+      "source_title_occurrence_count": 238,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Cloakroom",
+      "canonical_room_count": 3,
+      "source_title_occurrence_count": 3,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Kitchen",
+      "canonical_room_count": 8,
+      "source_title_occurrence_count": 8,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Storage Room",
+      "canonical_room_count": 18,
+      "source_title_occurrence_count": 18,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "General Store",
+      "canonical_room_count": 3,
+      "source_title_occurrence_count": 3,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Dark Alley",
+      "canonical_room_count": 49,
+      "source_title_occurrence_count": 49,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Darkwood Forest, Lair",
+      "canonical_room_count": 47,
+      "source_title_occurrence_count": 54,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Dark Cave, Barracks",
+      "canonical_room_count": 2,
+      "source_title_occurrence_count": 3,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Secret Passage",
+      "canonical_room_count": 30,
+      "source_title_occurrence_count": 30,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Temple Hall",
+      "canonical_room_count": 4,
+      "source_title_occurrence_count": 4,
+      "reason": "duplicate-name group failed known-description validation"
+    },
+    {
+      "name": "Marble Passage",
+      "canonical_room_count": 60,
+      "source_title_occurrence_count": 71,
+      "reason": "title occurrence count did not match canonical room count"
+    },
+    {
+      "name": "Dungeon Corridor",
+      "canonical_room_count": 5,
+      "source_title_occurrence_count": 6,
+      "reason": "title occurrence count did not match canonical room count"
+    }
+  ]
+}

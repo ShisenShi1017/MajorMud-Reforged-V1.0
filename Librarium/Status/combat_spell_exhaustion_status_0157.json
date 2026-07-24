@@ -1,0 +1,24 @@
+{
+  "update": "0157",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "atomic periodic spell-effect tick mutation boundary",
+    "joint rollback of target mutations and effect lifecycle clock/state",
+    "promoted per-spell tick disposition polarity category and dispel priority policies",
+    "checked stack-count periodic magnitude calculation",
+    "deterministic dispel filtering by target category and polarity",
+    "deterministic dispel ordering by priority age and canonical effect ID",
+    "maximum-effect removal enforcement",
+    "canonical dispel actor target and identifier validation",
+    "safe rejection of unresolved production execution and dispel semantics"
+  ],
+  "not_claimed_complete": [
+    "production spell periodic formulas",
+    "spell.1304 effect and dispel semantics",
+    "native dispel power resistance and partial failure",
+    "same-tick ordering against death regeneration movement and cast completion",
+    "persistence of active effects across logout restart and crash recovery"
+  ],
+  "next_pass": "Implement evidence-gated physical combat instance ownership, participant insertion, deterministic initiative scheduling, round advancement, and terminal cleanup."
+}

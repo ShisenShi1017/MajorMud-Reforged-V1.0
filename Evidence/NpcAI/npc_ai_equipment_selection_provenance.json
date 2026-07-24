@@ -1,0 +1,20 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "code_update": "0185",
+  "records": [
+    "all living runtime NPC instances"
+  ],
+  "byte_offsets": [],
+  "supporting_evidence": [
+    "Existing exact NPC equipment ownership boundary",
+    "Generated legal equipment-slot relationships",
+    "Persisted exact request metadata"
+  ],
+  "confidence": "high for ownership and completion semantics; no claim about native selection priority",
+  "native_dependencies": [
+    "equipment ranking",
+    "switch timing",
+    "stat comparison",
+    "combat priority"
+  ]
+}

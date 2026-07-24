@@ -1,0 +1,24 @@
+{
+  "code_update": "0199",
+  "subsystem": "Items",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "validation, reconciliation, and repository recovery entry point"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+      "role": "deterministic smoke coverage"
+    },
+    {
+      "path": "Data/Classic/items.json",
+      "role": "canonical item catalog validation"
+    }
+  ],
+  "confidence": "strongly_correlated",
+  "byte_offsets": [],
+  "notes": [
+    "No native corruption-repair behavior is claimed.",
+    "Only a valid parent container with an explicit owner is treated as authoritative; ambiguous ownership remains fail-closed."
+  ]
+}

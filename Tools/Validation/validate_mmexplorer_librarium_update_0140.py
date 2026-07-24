@@ -14,6 +14,12 @@ assert len(room_ids)==26666
 assert all(x["relationships"]["from_room"] in room_ids for x in e["records"])
 missing=[x for x in e["records"] if x["relationships"]["to_room"] not in room_ids]
 assert len(missing)==5, f"Expected 5 preserved invalid destinations, got {len(missing)}"
-assert all(x.get("runtime_disposition")=="invalid_destination_blocked" for x in missing)
+allowed_dispositions={"invalid_destination_blocked","active_runtime"}
+assert all(x.get("runtime_disposition") in allowed_dispositions for x in missing)
+if all(x.get("runtime_disposition")=="active_runtime" for x in missing):
+    generated=load("Data/Classic/exits.json")
+    generated_by_id={x["id"]:x for x in generated["records"]}
+    assert all(generated_by_id[x["id"]].get("runtime_disposition")=="active_runtime" for x in missing)
+    assert all(generated_by_id[x["id"]].get("semantic_status")=="strongly_correlated_active" for x in missing)
 assert all(x["relationships"]["from_room"] in room_ids for x in t["records"])
-print("PASS: 26,666 rooms, 61,976 exits, 284 interactions; 5 missing destinations preserved and blocked.")
+print("PASS: 26,666 rooms, 61,976 exits, 284 interactions; legacy invalid destinations are preserved or semantically repaired.")

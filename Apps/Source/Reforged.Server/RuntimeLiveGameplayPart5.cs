@@ -5,63 +5,36 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    private const string BankedGoldStateKey = "economy.banked-gold";
-
     private string ExecuteBankCommand(RuntimeSession session, RuntimeCommand command)
     {
-        if (session.Actor is not RuntimeCharacterActor actor)
-            return "A persistent character is required.";
-
-        var character = _characters.LoadCharacter(actor.Id)
-            ?? throw new InvalidOperationException("Character save was not found.");
-        var itemState = character.ItemState
-            ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
         var serviceCatalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
-        var bank = ResolveBankAtRoom(serviceCatalog, session.CurrentRoom.RoomNumber)
+        var bankService = ResolveBankAtRoom(serviceCatalog, session.CurrentRoom.RoomNumber)
             ?? throw new InvalidOperationException("There is no generated bank service in this room.");
 
-        var activeState = new Dictionary<string, string>(itemState.ActiveItemState, StringComparer.OrdinalIgnoreCase);
-        var bankedGold = ReadBankedGold(activeState);
-        var account = new RuntimeCurrencyAccount(actor.Id, itemState.Gold, bankedGold);
-
-        switch (command.Name)
+        if (command.Name == "bank")
         {
-            case "bank":
-                return $"{ReadServiceName(bank)}\nCarried gold: {account.Carried}\nBanked gold: {account.Banked}";
-            case "deposit":
-                account.Deposit(ParsePositiveAmount(command.ArgumentText));
-                break;
-            case "withdraw":
-                account.Withdraw(ParsePositiveAmount(command.ArgumentText));
-                break;
-            default:
-                throw new InvalidOperationException("Unsupported bank command.");
+            var carried = RuntimeBundleCInventoryAuthority.ReadCurrency(state);
+            var banked = RuntimeBundleCEconomyAuthority.ReadBank(state.ActiveItemState);
+            return $"{ReadServiceName(bankService)}\nCarried: {RuntimeBundleCInventoryAuthority.FormatCurrency(carried)}\nBanked: {RuntimeBundleCInventoryAuthority.FormatCurrency(banked.AsInventoryCurrency())}";
         }
 
-        var accountSnapshot = account.Capture();
-        activeState[BankedGoldStateKey] = accountSnapshot.Banked.ToString(CultureInfo.InvariantCulture);
-        var updatedState = itemState with
-        {
-            Gold = accountSnapshot.Carried,
-            ActiveItemState = activeState
-        };
-        _characters.SaveCharacter(character with
-        {
-            ItemState = updatedState,
-            UpdatedAtUtc = DateTimeOffset.UtcNow
-        });
-
-        return command.Name == "deposit"
-            ? $"You deposit gold. Carried: {accountSnapshot.Carried}; Banked: {accountSnapshot.Banked}."
-            : $"You withdraw gold. Carried: {accountSnapshot.Carried}; Banked: {accountSnapshot.Banked}.";
+        RuntimeClassicInventoryCurrency moved;
+        RuntimeItemState updatedState;
+        if (command.Name == "deposit") updatedState = RuntimeBundleCEconomyAuthority.Deposit(state, command.ArgumentText, out moved);
+        else if (command.Name == "withdraw") updatedState = RuntimeBundleCEconomyAuthority.Withdraw(state, command.ArgumentText, out moved);
+        else throw new InvalidOperationException("Unsupported bank command.");
+        _characters.SaveCharacter(character with { ItemState = updatedState, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        var carriedAfter = RuntimeBundleCInventoryAuthority.ReadCurrency(updatedState);
+        var bankedAfter = RuntimeBundleCEconomyAuthority.ReadBank(updatedState.ActiveItemState);
+        return $"You {command.Name} {RuntimeBundleCInventoryAuthority.FormatCurrency(moved)}. Carried: {RuntimeBundleCInventoryAuthority.FormatCurrency(carriedAfter)}; Banked: {RuntimeBundleCInventoryAuthority.FormatCurrency(bankedAfter.AsInventoryCurrency())}.";
     }
 
     private static RuntimeServiceDefinition? ResolveBankAtRoom(RuntimeServiceCatalog catalog, int roomNumber) =>
-        catalog.Services
-            .Where(service => service.ServiceKind.Equals("bank", StringComparison.OrdinalIgnoreCase))
-            .FirstOrDefault(service => TryReadRoomNumber(service.GeneratedRecord, out var generatedRoom)
-                && generatedRoom == roomNumber);
+        catalog.Services.Where(service => service.ServiceKind.Equals("bank", StringComparison.OrdinalIgnoreCase))
+            .FirstOrDefault(service => TryReadRoomNumber(service.GeneratedRecord, out var generatedRoom) && generatedRoom == roomNumber);
 
     private static bool TryReadRoomNumber(JsonElement record, out int roomNumber)
     {
@@ -76,24 +49,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     private static string ReadServiceName(RuntimeServiceDefinition service) =>
-        service.GeneratedRecord.TryGetProperty("name", out var value) && !string.IsNullOrWhiteSpace(value.GetString())
-            ? value.GetString()!
-            : service.Id;
-
-    private static long ReadBankedGold(IReadOnlyDictionary<string, string> state)
-    {
-        if (!state.TryGetValue(BankedGoldStateKey, out var raw)) return 0;
-        if (!long.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) || value < 0)
-            throw new InvalidOperationException("The saved bank balance is invalid.");
-        return value;
-    }
-
-    private static long ParsePositiveAmount(string value)
-    {
-        if (!long.TryParse(value.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var amount) || amount <= 0)
-            throw new InvalidOperationException("Enter a positive whole-number gold amount.");
-        return amount;
-    }
+        service.GeneratedRecord.TryGetProperty("name", out var value) && !string.IsNullOrWhiteSpace(value.GetString()) ? value.GetString()! : service.Id;
 }
 
 public sealed class RuntimeLiveGameplayPart5SmokeReport
@@ -111,13 +67,13 @@ public sealed class RuntimeLiveGameplayPart5SmokeReport
             Require(catalog.Services.Any(x => x.ServiceKind.Equals("bank", StringComparison.OrdinalIgnoreCase)), "generated-bank-catalog");
             report.Checks.Add("generated-bank-catalog");
 
-            var account = new RuntimeCurrencyAccount("smoke.actor", carried: 100, banked: 25);
-            account.Deposit(40);
-            Require(account.Carried == 60 && account.Banked == 65, "deposit");
-            report.Checks.Add("deposit");
-            account.Withdraw(15);
-            Require(account.Carried == 75 && account.Banked == 50, "withdraw");
-            report.Checks.Add("withdraw");
+            var state = RuntimeBundleCInventoryAuthority.WriteCurrency(new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>()), new RuntimeClassicInventoryCurrency(1,2,3,4,5));
+            state = RuntimeBundleCEconomyAuthority.Deposit(state, "2 gold", out var deposited);
+            Require(deposited.Gold == 2 && RuntimeBundleCEconomyAuthority.ReadBank(state.ActiveItemState).Gold == 2, "deposit-preserves-denomination");
+            report.Checks.Add("deposit-preserves-denomination");
+            state = RuntimeBundleCEconomyAuthority.Withdraw(state, "1 gold", out var withdrawn);
+            Require(withdrawn.Gold == 1 && RuntimeBundleCInventoryAuthority.ReadCurrency(state).Gold == 2, "withdraw-preserves-denomination");
+            report.Checks.Add("withdraw-preserves-denomination");
 
             Require(RuntimeCommand.Parse("bank").Name == "bank", "bank-route");
             Require(RuntimeCommand.Parse("deposit 10").ArgumentText == "10", "deposit-route");

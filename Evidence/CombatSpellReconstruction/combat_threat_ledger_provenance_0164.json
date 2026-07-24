@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "update": "0164",
+  "records": [
+    {
+      "runtime_behavior": "threat mutation and cleanup ledger",
+      "confidence": "strongly_correlated",
+      "source_files": [
+        "RuntimePhysicalAttackExecution.cs",
+        "RuntimeCombatSpellCastExecution.cs",
+        "RuntimeCombatActionInvalidation.cs",
+        "Librarium/Status/combat_spell_exhaustion_status_0163.json"
+      ],
+      "record_ids": ["evidence.0164.threat_fixture"],
+      "byte_offsets": [],
+      "assumptions": ["observer sets are execution-owner supplied", "production coefficients remain evidence gated"],
+      "safe_fallback": "fail closed for missing policies and do not persist threat",
+      "runtime_impact": "temporary combat threat mutation",
+      "character_save_impact": "none",
+      "world_state_impact": "temporary combat-instance state only"
+    }
+  ]
+}

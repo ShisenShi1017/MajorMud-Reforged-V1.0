@@ -1,0 +1,18 @@
+{
+  "update": "0184",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "complete canonical spell identity catalog",
+    "complete canonical ability identity catalog",
+    "evidence-visible weapon candidate catalog",
+    "runtime canonical record loader and fail-closed lookup"
+  ],
+  "not_claimed_complete": [
+    "production execution binding for every record",
+    "raw enum semantics",
+    "native timing, flags, masks, formulas, and random ranges",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Produce final non-native exhaustion matrix and promote only already-proven record execution bindings."
+}

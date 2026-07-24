@@ -60,7 +60,7 @@ using (var triggersDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(r
 
     if (rooms.Length != 26666) throw new Exception($"MMExplorer room projection expected 26666 rooms but found {rooms.Length}.");
     if (exits.Length != 61976) throw new Exception($"MMExplorer exit projection expected 61976 exits but found {exits.Length}.");
-    if (triggers.Length != 284) throw new Exception($"MMExplorer interaction projection expected 284 triggers but found {triggers.Length}.");
+    if (triggers.Length != 367) throw new Exception($"MMExplorer interaction projection expected 367 triggers but found {triggers.Length}.");
 
     var roomIds = rooms.Select(record => ReadString(record, "id")).Where(value => value.Length > 0).ToHashSet(StringComparer.OrdinalIgnoreCase);
     if (!roomIds.Contains("room.map1.1") || !roomIds.Contains("room.map2.1"))
@@ -94,6 +94,14 @@ using (var triggersDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(r
         var targetRoomId = $"room.map{ReadInt(exit, "to_map_number", 0)}.{ReadInt(exit, "to_room_number", 0)}";
         if (roomIds.Contains(targetRoomId)) throw new Exception($"Dangling exit '{exitId}' target unexpectedly exists as '{targetRoomId}'.");
     }
+}
+
+using (var roomInteractionsDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "room_interactions.json"))))
+{
+    var interactions = roomInteractionsDocument.RootElement.GetProperty("records").EnumerateArray().ToArray();
+    if (interactions.Length < 288) throw new Exception($"Room interaction projection expected strong sidecar records but found only {interactions.Length} records.");
+    if (!interactions.Any(record => ReadString(record, "semantic_status").Equals("strongly_correlated_active", StringComparison.OrdinalIgnoreCase)))
+        throw new Exception("Room interaction projection did not include strongly correlated active sidecar records.");
 }
 
 

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "worldgroup-integration",
+  "promotions": [
+    {
+      "behavior": "Explicit MajorMUD, Worldgroup, shared, external and unknown-native ownership classification",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldgroupIntegration.cs",
+        "Librarium/RemainingSystems/worldgroup_integration_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-worldgroup-integration"
+      ],
+      "safeFallback": "Unknown or disabled integration boundaries reject dispatch.",
+      "runtimeImpact": "Prevents module code from mutating host-owned state without authorization.",
+      "characterSaveImpact": "No direct character-save mutation.",
+      "worldStateImpact": "Only typed dispatch is emitted."
+    },
+    {
+      "behavior": "Worldgroup-owned operations require authenticated host identity plus account/session context",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldgroupIntegration.cs",
+        "Apps/Source/Reforged.Server/RuntimeWorldgroupIntegrationSmokeReport.cs"
+      ],
+      "confidence": 0.85,
+      "assumptions": [
+        "Worldgroup remains account and terminal-session owner"
+      ],
+      "tests": [
+        "host-auth",
+        "worldgroup-dispatch"
+      ],
+      "safeFallback": "Reject missing host authorization or context.",
+      "runtimeImpact": "Fail-closed host boundary.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "No mutation before owner dispatch."
+    },
+    {
+      "behavior": "Shared host/module operations carry correlation and audit requirements",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldgroupIntegration.cs",
+        "Librarium/RemainingSystems/worldgroup_integration_catalog.json"
+      ],
+      "confidence": 0.8,
+      "assumptions": [
+        "Shared operations require traceability"
+      ],
+      "tests": [
+        "--smoke-worldgroup-integration"
+      ],
+      "safeFallback": "Reject malformed or unregistered operations.",
+      "runtimeImpact": "Produces typed auditable dispatch.",
+      "characterSaveImpact": "None directly.",
+      "worldStateImpact": "Delegated to declared owner."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "npc-ai-equipment-ownership-evidence.v1",
+  "update": "CodeUpdate0181",
+  "status": "proven",
+  "runtime_boundary": "exact NPC equipment ownership and generated-slot admission",
+  "evidence": [
+    "RuntimeItemEngine already persists generic equipped-slot state and validates generated equipment relationships.",
+    "NPC item ownership is already keyed by the runtime NPC instance ID.",
+    "The new boundary only moves an already NPC-owned item between NPC inventory and equipment using an exact caller-supplied generated slot."
+  ],
+  "activated_behavior": [
+    "living NPC validation",
+    "explicit authority requirement",
+    "exact NPC item ownership validation",
+    "exact generated equipment-slot validation",
+    "slot occupancy and existing two-handed conflict enforcement",
+    "stable NPC equipment inspection",
+    "exact equip and unequip"
+  ],
+  "safe_fallback": "Reject without mutation when authority, NPC life state, item ownership, slot legality, generated relationship, or occupancy checks fail.",
+  "not_inferred": [
+    "equipment selection AI",
+    "class or race eligibility for NPCs",
+    "minimum-level or strength interpretation for NPCs",
+    "spawn equipment manifests",
+    "equipment switching priorities",
+    "consumable or ammunition use"
+  ],
+  "tests": ["authority-enforced", "exact-npc-equip", "exact-npc-unequip"],
+  "character_save_impact": "none",
+  "world_state_impact": "NPC-owned item location and exact equipped slot persist through the item runtime snapshot."
+}

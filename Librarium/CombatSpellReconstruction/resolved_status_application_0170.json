@@ -1,0 +1,27 @@
+{
+  "update": "0170",
+  "runtime": "RuntimeResolvedStatusApplication",
+  "ownership": {
+    "base_duration_and_stacking": "RuntimeSpellEffectPolicy",
+    "duration_adjustment_rounding": "RuntimeStatusDurationPolicy",
+    "active_effect_state": "RuntimeSpellEffectLifecycle",
+    "resistance_and_save_result": "RuntimeResistanceSavingThrowTrace"
+  },
+  "ordering": [
+    "reject immunity, negation, or secondary prevention",
+    "resolve magnitude",
+    "resolve save-adjusted duration",
+    "inspect matching active effects",
+    "apply reject, refresh, replace, or independent stacking",
+    "return trace"
+  ],
+  "supported": [
+    "save duration reduction",
+    "minimum duration clamp",
+    "promoted rounding",
+    "refresh with adjusted expiration",
+    "replacement with adjusted expiration",
+    "independent stacks with adjusted expiration"
+  ],
+  "safe_fallback": "reject missing, weak, or unresolved duration policy"
+}

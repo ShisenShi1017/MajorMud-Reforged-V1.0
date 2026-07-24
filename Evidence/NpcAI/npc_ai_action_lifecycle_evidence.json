@@ -1,0 +1,50 @@
+{
+  "schema_version": "npc-ai-action-lifecycle-evidence.v1",
+  "update": "CodeUpdate0154",
+  "status": "strongly-correlated-active-runtime-infrastructure",
+  "runtime_behavior": [
+    {
+      "behavior": "pending action blocks later NPC decisions",
+      "authority": [
+        "persisted pending_ai_action_id",
+        "world-owned RuntimeLivingNpcState metadata"
+      ],
+      "fallback": "return AwaitingActionCompletion and emit no new intent",
+      "save_impact": "preserves pending action across save/load",
+      "world_impact": "prevents duplicate or overwritten side effects"
+    },
+    {
+      "behavior": "pending action enumeration is stable by NPC instance ID",
+      "authority": [
+        "deterministic scheduler ordering",
+        "persisted action payload"
+      ],
+      "fallback": "invalid persisted action records are not emitted",
+      "save_impact": "read-only",
+      "world_impact": "owning subsystems receive stable work ordering"
+    },
+    {
+      "behavior": "exact completion records outcome then clears pending payload",
+      "authority": [
+        "exact action ID ownership boundary",
+        "existing acknowledgement semantics"
+      ],
+      "fallback": "mismatched action IDs fail without mutation",
+      "save_impact": "persists last_ai_action_id and last_ai_action_outcome",
+      "world_impact": "releases NPC for a later admitted decision"
+    }
+  ],
+  "native_dependencies_unchanged": [
+    "combat formula result",
+    "merchant transaction result",
+    "trainer progression result",
+    "native retry cadence",
+    "native failure priority"
+  ],
+  "tests": [
+    "pending-action-blocks-new-decision",
+    "pending-action-prevents-overwrite",
+    "stable pending action enumeration structural validation",
+    "exact completion outcome structural validation"
+  ]
+}

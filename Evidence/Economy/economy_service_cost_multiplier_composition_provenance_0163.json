@@ -1,0 +1,24 @@
+{
+  "codeUpdate":"0163",
+  "records":[
+    {
+      "behaviorId":"economy.service-cost.multiplier-commutativity",
+      "sourceFiles":[
+        "Apps/Source/Reforged.Server/RuntimeEconomyServiceCostTrace.cs",
+        "Apps/Source/Reforged.Server/RuntimeEconomyNativeMarkup.cs",
+        "Librarium/Runtime/Economy/service_cost_trace_catalog_0161.json",
+        "Librarium/Runtime/Economy/native_markup_catalog_0162.json"
+      ],
+      "recordIds":["native.service-cost-order","native.provider-markup"],
+      "byteOffsets":[],
+      "decoderSource":"CodeUpdate0161 trainer/service trace and CodeUpdate0162 markup binding",
+      "nativeDependency":"Intermediate rounding points and hidden additive stages",
+      "assumptions":["all three represented stages are multiplicative"],
+      "fallback":"native-exact requests remain rejected unless separately promoted",
+      "confidence":0.93,
+      "runtimeOwnership":"Economy",
+      "saveImpact":"charged amount and replay record only",
+      "worldImpact":"deterministic service charge projection"
+    }
+  ]
+}

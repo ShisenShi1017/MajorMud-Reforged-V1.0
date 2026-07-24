@@ -1,0 +1,56 @@
+{
+  "schema": "majorMud.nativeDialogueMessagePayloadMapping.v1",
+  "code_update": "0139",
+  "bundle": "G",
+  "revision": "0002",
+  "authority": "Librarium evidence; generated/runtime data remains non-authoritative",
+  "source": {
+    "file": "ImportedDatabases/NativeRuntime/WCCMSG.DAT",
+    "size": 870912,
+    "sha256": "37546e9bdc91ffb006c761cdd557d3114f776c152e10b3ef53303b4826bc0f0c",
+    "record_size": 256,
+    "record_count": 3402
+  },
+  "summary": {
+    "mapped_message_count": 2,
+    "remaining_unresolved_count": 0,
+    "mapped_ids": [
+      2044,
+      3290
+    ]
+  },
+  "records": [
+    {
+      "message_id": 2044,
+      "namespace": "WCCMSG.DAT logical dialogue message",
+      "record_index": 2657,
+      "record_offset": 680192,
+      "record_size": 256,
+      "payload_offset": 7,
+      "absolute_payload_offset": 680199,
+      "payload": "The nekojin elder takes your money and hands you a heavy copper amulet.",
+      "record_sha256": "60b34f796204a185051d224c35f8acc4da76f4653ce31284be16196aca4a4f5e",
+      "source_file": "ImportedDatabases/NativeRuntime/WCCMSG.DAT",
+      "source_file_sha256": "37546e9bdc91ffb006c761cdd557d3114f776c152e10b3ef53303b4826bc0f0c",
+      "mapping_evidence": "logical message id 2044 encoded little-endian at record bytes 3-4; payload context matches textblock.2565 purchase of item.1148",
+      "evidence_state": "verified_native_runtime",
+      "runtime_state": "executable"
+    },
+    {
+      "message_id": 3290,
+      "namespace": "WCCMSG.DAT logical dialogue message",
+      "record_index": 3290,
+      "record_offset": 842240,
+      "record_size": 256,
+      "payload_offset": 10,
+      "absolute_payload_offset": 842250,
+      "payload": "Dhelvanen conjures a great portal, and you step through.",
+      "record_sha256": "84c91a5c524aff12dcc78f3dc52db5fb1e5f91f644841bd68be767e4586b2b2c",
+      "source_file": "ImportedDatabases/NativeRuntime/WCCMSG.DAT",
+      "source_file_sha256": "37546e9bdc91ffb006c761cdd557d3114f776c152e10b3ef53303b4826bc0f0c",
+      "mapping_evidence": "record index 3290; payload context matches textblock.4223 portal sequence between message 3289 bright flash and message 3291 scroll",
+      "evidence_state": "verified_native_runtime",
+      "runtime_state": "executable"
+    }
+  ]
+}

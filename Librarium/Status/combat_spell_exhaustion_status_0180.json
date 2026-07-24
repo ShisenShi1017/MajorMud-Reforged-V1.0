@@ -1,0 +1,6 @@
+{
+  "update":"0180","subsystem":"combat_spells","status":"in_progress",
+  "implemented_this_pass":["activated combat ability validation","resource and cooldown gates","required attack-path and item gates","deterministic item proc ordering","seeded proc rolls","atomic sink commit and rollback"],
+  "not_claimed_complete":["production ability bindings","passive modifier catalog","native proc precedence","exact messages","persistence and crash recovery","exhaustive canonical record binding","spell.1304 semantics"],
+  "next_pass":"Implement exact combat and spell message rendering boundaries."
+}

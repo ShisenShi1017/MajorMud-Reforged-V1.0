@@ -1,0 +1,35 @@
+{
+  "code_update": "0178",
+  "subsystem": "items",
+  "finding": "Explicit resurrection gold restoration shares the corpse item restoration atomic boundary without changing the existing item-only path.",
+  "classification": "reforged_compatibility_infrastructure",
+  "confidence": "proven_for_reforged_runtime",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs"
+  ],
+  "supporting_evidence": [
+    "Runtime corpse state already owns persisted gold.",
+    "Corpse item restoration is owner-restricted and atomic.",
+    "The new restoreGold argument is explicit, so unknown Classic gold restoration remains inactive by default."
+  ],
+  "assumptions": [
+    "Character lifecycle orchestration decides whether a resurrection restores corpse gold."
+  ],
+  "safe_fallback": "RestoreCorpseItems keeps corpse gold untouched and does not finalize a gold-bearing corpse.",
+  "runtime_impact": "Adds optional owner-only corpse gold extraction during resurrection restoration.",
+  "character_save_impact": "The returned gold amount must be applied by Character/Economy orchestration; Items does not mutate character currency directly.",
+  "world_state_impact": "When explicitly restored, corpse gold becomes zero and an otherwise empty corpse is finalized.",
+  "tests": [
+    "item-only restoration retains corpse gold",
+    "explicit restoration returns all corpse gold",
+    "empty corpse finalizes",
+    "non-owner restoration is rejected atomically"
+  ],
+  "native_dependencies": [
+    "Exact Classic resurrection gold policy",
+    "partial gold restoration",
+    "resurrection fees or penalties",
+    "exact messages"
+  ]
+}

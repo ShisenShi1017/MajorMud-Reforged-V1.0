@@ -1,0 +1,18 @@
+{
+  "catalogId": "economy-limited-items-0156",
+  "limitedItemCatalog": [{"itemId":"policy-supplied","worldLimit":"policy","uniquePerOwner":"policy","classification":"STRONGLY CORRELATED"}],
+  "worldLimitCatalog": [{"rule":"reserved+active+respawnPending <= worldLimit","overflow":"fail-closed"}],
+  "reservationCatalog": [{"states":["Reserved","Active","Released","Destroyed","Recycled","RespawnPending"],"atomic":true}],
+  "ownershipCatalog": [{"ownerTypes":["Character","Merchant","LootCorpse","Quest","Script","WorldEvent","System"]}],
+  "releaseCatalog": [{"reasons":["Transfer","Sale","LootClaim","Consumption","Destruction","Expiry","Reset","Administrative"]}],
+  "destructionCatalog": [{"policies":["destroy","recycle","respawn-pending"]}],
+  "recyclingCatalog": [{"behavior":"policy-driven; no native constants invented"}],
+  "respawnCatalog": [{"delay":"policy input","processing":"deterministic due-time scan"}],
+  "merchantIntegrationCatalog": [{"relationship":"merchant stock creation requires limited-item reservation"}],
+  "lootIntegrationCatalog": [{"relationship":"loot creation requires limited-item reservation"}],
+  "ownershipGraph": {"edges":["item<->policy","item<->allocation","allocation<->owner","merchant<->limited-item","loot-table<->limited-item","allocation<->replay-key"]},
+  "runtimeGraph": {"order":["resolve policy","validate source","validate owner uniqueness","validate world limit","reserve","persist","activate or release","commit replay"]},
+  "saveImpact": ["ledger version","allocations","state","owner","reservation","respawn due time","replay keys"],
+  "worldImpact": ["global item population","unique ownership","merchant availability","loot availability","respawn pool"],
+  "nativeDependencyReport": [{"dependency":"WCC/WBB/DLL limited-item counts, recycle rules, respawn timing and execution order","status":"UNKNOWN","fallback":"explicit configured policy; fail closed when absent"}]
+}

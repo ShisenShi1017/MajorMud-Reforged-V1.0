@@ -1,0 +1,42 @@
+{
+  "update": "CodeUpdate0182",
+  "subsystem": "Items",
+  "behavior": "room_item_reset_identity_and_target_reconciliation",
+  "status": "strongly_correlated_active",
+  "runtime_owner": "Items",
+  "scheduler_owner": "World Runtime",
+  "summary": "Room reset callers may reconcile an evidence-projected canonical item/reset key to an explicit target quantity without deleting excess instances.",
+  "rules": [
+    "room identity, reset key, canonical item id, and target quantity are mandatory authoritative inputs",
+    "existing matching room instances retain identity",
+    "only target deficits create new runtime identities",
+    "repeated reconciliation at target is idempotent",
+    "existing quantity above target fails atomically rather than silently deleting world state",
+    "stack creation obeys projected maximum_stack and destination reconciliation"
+  ],
+  "confidence": 0.94,
+  "assumptions": [
+    "World Runtime supplies the native reset schedule and target quantity.",
+    "Classic reset keys remain inactive until projected from authoritative data."
+  ],
+  "safe_fallback": "Reject missing/invalid reset identity and reject excess-state removal.",
+  "runtime_impact": "Adds deterministic room item reset reconciliation primitive.",
+  "character_save_impact": "none",
+  "world_state_impact": "Room item instances and reset metadata persist through the existing item world repository.",
+  "tests": [
+    "target creation",
+    "idempotency",
+    "identity preservation",
+    "excess target rollback"
+  ],
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs"
+  ],
+  "native_dependencies": [
+    "native room reset timers",
+    "player-presence suppression",
+    "hard/soft reset rules",
+    "exact reset target sources"
+  ]
+}

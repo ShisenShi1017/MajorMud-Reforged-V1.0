@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "clock-scheduling",
+  "updatedByPass": "RemainingSystems-0008-ClockScheduling",
+  "runtimeOwner": "RuntimeClockSchedulingService",
+  "persistenceOwner": "world scheduling state; action effects remain owner-subsystem responsibilities",
+  "scheduleKinds": [
+    "one-shot",
+    "fixed-interval",
+    "daily-utc"
+  ],
+  "missedTimerPolicies": [
+    "fire-once",
+    "skip-to-next",
+    "fire-all-bounded"
+  ],
+  "lifecycle": [
+    "definition-validation",
+    "schedule-enable-disable",
+    "reschedule",
+    "advance",
+    "deterministic-dispatch",
+    "persist",
+    "restore"
+  ],
+  "ordering": [
+    "due-time ascending",
+    "schedule-id ordinal-ignore-case",
+    "monotonic dispatch sequence"
+  ],
+  "relationships": {
+    "world-reset-cleanup": "consumes reset dispatches",
+    "events": "consumes event dispatches",
+    "merchants-trainers-spawns": "consume owner-routed dispatches",
+    "save-coordination": "persists world-state schedules"
+  },
+  "safeFallbacks": [
+    "invalid definitions are rejected",
+    "clock rollback throws and stops dispatch",
+    "catch-up execution is bounded",
+    "unknown schedule IDs are rejected",
+    "corrupt persistence retains catalog defaults"
+  ],
+  "nativeDependencies": [
+    "exact Classic round/tick/minute conversion",
+    "native seed clock and host-time boundary",
+    "restart and missed-timer behavior",
+    "simultaneous timer ordering",
+    "overflow and drift behavior",
+    "day rollover and daylight-saving dependence",
+    "exact schedules for merchants/trainers/spawns/quests/status/events"
+  ]
+}

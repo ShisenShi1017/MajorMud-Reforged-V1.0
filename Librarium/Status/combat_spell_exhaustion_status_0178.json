@@ -1,0 +1,20 @@
+{
+  "update": "0178",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "teleportation and movement-spell request construction",
+    "destination, room, combat, consent and range-ownership validation",
+    "action interruption, threat cleanup, combat cleanup and status disposition",
+    "portal/swap event gates and prepare/commit/reverse rollback"
+  ],
+  "not_claimed_complete": [
+    "production movement-spell bindings",
+    "native destination selection and distances",
+    "portal duration and persistence",
+    "fear/charm ownership",
+    "visibility semantics",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Implement fear/charm ownership plus visibility, hiding, invisibility, and detection semantics."
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "textblock_command_ability_semantic_exhaustion_report_v1",
+  "code_update": "0150",
+  "status": "PASS_WITH_NATIVE_DEPENDENCIES",
+  "counts": {
+    "stage_scripts": 182,
+    "operations": 2616,
+    "opcodes": 25,
+    "runtime_commands": 77,
+    "abilities": 188,
+    "abilities_referenced_by_textblocks": 9,
+    "branch_edges": 389
+  },
+  "validated": {
+    "all_operations_decoded": true,
+    "all_ability_refs_resolve": true,
+    "runtime_command_registry_captured": true,
+    "source_order_preserved": true
+  },
+  "native_dependencies": [
+    {
+      "area": "text payload rendering",
+      "reason": "text/message records resolve to external native message/text resources; exact formatting, substitutions, color, pagination, and timing are not encoded in the promoted quest-stage corpus."
+    },
+    {
+      "area": "remoteaction",
+      "reason": "native dispatcher ownership remains required for exact side effects."
+    },
+    {
+      "area": "player command table",
+      "reason": "the complete original MajorMUD command parser/handler table is not present in MMExplorer quest-stage textblocks and requires executable/native reconstruction."
+    }
+  ],
+  "evidence": {
+    "scripts": "Librarium/Objects/scripts/mmexplorer_textblock_stage_records.json",
+    "commands": "Librarium/Objects/commands/command_records_0123.json",
+    "abilities": "Librarium/Objects/abilities/ability_records.json",
+    "runtime_registry": "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs"
+  }
+}

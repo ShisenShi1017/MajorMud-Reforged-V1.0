@@ -1,0 +1,1350 @@
+{
+  "schemaVersion": 1,
+  "phase": "remaining-systems",
+  "updatedByPass": "RemainingSystems-0037-RepositoryInventoryClosure",
+  "systems": [
+    {
+      "id": "party-coordination",
+      "classification": "runtime-active-partially-exhausted",
+      "runtimeOwner": "RuntimePartyCoordinationService",
+      "persistenceOwner": "world-session coordination; Classic persistence remains native-dependent",
+      "recordFamilies": [
+        "runtime party state",
+        "party invitations",
+        "party member connection state"
+      ],
+      "commands": [
+        "party create",
+        "party invite",
+        "party accept",
+        "party decline",
+        "party leave",
+        "party kick",
+        "party leader transfer",
+        "party follow",
+        "party chat"
+      ],
+      "timers": [
+        "party invitation expiration"
+      ],
+      "flags": [
+        "connected",
+        "followingLeader"
+      ],
+      "status": "implemented-safe-policy-shell",
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic maximum party size",
+        "exact invitation timeout",
+        "exact logout and restart persistence",
+        "exact shared experience and loot formulas",
+        "exact command text and failure messages"
+      ]
+    },
+    {
+      "id": "guild-faction-organization",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeOrganizationService",
+      "persistenceOwner": "world organization coordination; Classic persistence remains native-dependent",
+      "recordFamilies": [
+        "runtime organization state",
+        "organization ranks",
+        "organization memberships",
+        "organization invitations"
+      ],
+      "commands": [
+        "organization create (policy gated)",
+        "invite",
+        "accept",
+        "decline",
+        "promote",
+        "demote",
+        "remove",
+        "leave",
+        "transfer leadership",
+        "disband",
+        "guild chat route"
+      ],
+      "timers": [
+        "organization invitation expiration"
+      ],
+      "flags": [
+        "organization kind",
+        "rank permissions",
+        "player creation enabled",
+        "member may leave"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "which organization kinds exist in MajorMUD 1.11p",
+        "whether player-created guilds exist",
+        "exact ranks and permissions",
+        "dues/storage/halls/trainers/merchants/quests",
+        "reputation/hostility/alliance arithmetic",
+        "logout/deletion/reset/restart persistence",
+        "exact commands and messages"
+      ]
+    },
+    {
+      "id": "communications",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeCommunicationService",
+      "persistenceOwner": "session communication policy; ignore persistence and native logs remain native-dependent",
+      "recordFamilies": [
+        "runtime actor communication state",
+        "ignore relationships",
+        "flood-window state",
+        "channel delivery requests"
+      ],
+      "commands": [
+        "say",
+        "whisper",
+        "tell",
+        "shout",
+        "yell",
+        "emote",
+        "pose",
+        "party chat",
+        "guild chat",
+        "global chat",
+        "system message",
+        "administrative broadcast"
+      ],
+      "timers": [
+        "per-sender flood-control window"
+      ],
+      "flags": [
+        "connected",
+        "deafened",
+        "silenced",
+        "hidden",
+        "administrator"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic channel availability",
+        "exact shout/yell range",
+        "exact command aliases and failure strings",
+        "exact hidden/invisible presentation",
+        "language/profanity/color formatting",
+        "native logging and moderation persistence"
+      ]
+    },
+    {
+      "id": "mail-offline-messaging",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-host-boundary-shell",
+      "runtimeOwner": "RuntimeOfflineMessagingService",
+      "persistenceOwner": "offline messaging world-state snapshot; asset owners retain attachments",
+      "recordFamilies": [
+        "offline message envelopes",
+        "message state",
+        "attachment metadata"
+      ],
+      "commands": [
+        "mail",
+        "read",
+        "delete",
+        "offline tell",
+        "note",
+        "bulletin"
+      ],
+      "timers": [
+        "message expiration"
+      ],
+      "flags": [
+        "queued",
+        "delivered",
+        "read",
+        "deleted",
+        "expired"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "MajorMUD versus Worldgroup ownership of player mail, notes, bulletin boards, and announcements",
+        "exact offline tell behavior",
+        "native subject/body limits",
+        "attachment support",
+        "currency and item escrow semantics",
+        "read/delete persistence",
+        "expiration rules",
+        "character deletion behavior",
+        "delivery timing",
+        "exact commands and messages",
+        "host message queue and moderation integration"
+      ]
+    },
+    {
+      "id": "doors-locks-access",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeDoorAccessService",
+      "persistenceOwner": "world door state; character inventory remains Character-owned",
+      "recordFamilies": [
+        "door definitions",
+        "door runtime state",
+        "linked door relationships",
+        "key requirements",
+        "access restrictions",
+        "door reset timers"
+      ],
+      "commands": [
+        "open",
+        "close",
+        "lock",
+        "unlock",
+        "pick request",
+        "bash request",
+        "traverse validation",
+        "reset"
+      ],
+      "timers": [
+        "per-door reset deadline"
+      ],
+      "flags": [
+        "open",
+        "locked",
+        "broken",
+        "pickable",
+        "bashable",
+        "consumable key",
+        "persistence mode"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic open/close/lock/unlock messages",
+        "native key-consumption semantics",
+        "lockpick and bash success formulas",
+        "door durability and break recovery",
+        "one-way and remote lock encodings",
+        "exact reset persistence",
+        "seven unresolved room latch effects"
+      ]
+    },
+    {
+      "id": "traps",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeTrapService",
+      "persistenceOwner": "world trap state; downstream effects remain owned by target subsystems",
+      "recordFamilies": [
+        "trap definitions",
+        "trap runtime state",
+        "trap trigger relationships",
+        "trap effect requests",
+        "trap reset and rearm timers"
+      ],
+      "commands": [
+        "search trap",
+        "disarm trap",
+        "trigger trap",
+        "reset trap"
+      ],
+      "timers": [
+        "per-trap rearm deadline",
+        "per-trap reset deadline"
+      ],
+      "flags": [
+        "armed",
+        "revealed",
+        "charges remaining",
+        "persistence mode"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact trap record families and encodings",
+        "detection and disarm formulas",
+        "failed-disarm trigger behavior",
+        "exact messages",
+        "charge/reset/rearm semantics",
+        "persistence",
+        "protection precedence",
+        "exact cross-subsystem ordering"
+      ]
+    },
+    {
+      "id": "environmental-hazards",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeEnvironmentalHazardService",
+      "persistenceOwner": "world hazard activation and timer state; downstream effects remain owner-subsystem responsibilities",
+      "recordFamilies": [
+        "hazard definitions",
+        "hazard runtime state",
+        "room occupancy relationships",
+        "environmental effect requests",
+        "periodic hazard timers"
+      ],
+      "commands": [
+        "enter hazard evaluation",
+        "exit hazard evaluation",
+        "periodic hazard tick",
+        "enable hazard",
+        "disable hazard"
+      ],
+      "timers": [
+        "per-hazard periodic tick deadline"
+      ],
+      "flags": [
+        "enabled",
+        "affects characters",
+        "affects NPCs",
+        "persistence mode"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic environmental record families and room-field mappings",
+        "tick frequency and round conversion",
+        "resistance/protection precedence",
+        "entry/exit/periodic ordering",
+        "NPC eligibility",
+        "exact messages and formulas",
+        "save/reset behavior",
+        "weather/day-night coupling"
+      ]
+    },
+    {
+      "id": "world-containers",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeWorldContainerService",
+      "persistenceOwner": "world container state; Character inventory and Economy retain owned transfer payloads",
+      "recordFamilies": [
+        "container definitions",
+        "container runtime state",
+        "container item entries",
+        "transfer requests",
+        "reset and decay timers"
+      ],
+      "commands": [
+        "inspect",
+        "unlock",
+        "lock",
+        "deposit request",
+        "withdraw request",
+        "commit transfer",
+        "reset"
+      ],
+      "timers": [
+        "container decay deadline",
+        "container reset deadline"
+      ],
+      "flags": [
+        "locked",
+        "scope",
+        "persistence",
+        "revision"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic container record families",
+        "exact capacity and weight rules",
+        "native lock and trap ordering",
+        "restock and reset semantics",
+        "corpse ownership and decay",
+        "bank and guild storage ownership",
+        "concurrent access behavior",
+        "exact messages"
+      ]
+    },
+    {
+      "id": "clock-scheduling",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeClockSchedulingService",
+      "persistenceOwner": "world scheduling state; action mutation remains owner-subsystem responsibility",
+      "recordFamilies": [
+        "schedule definitions",
+        "runtime schedule state",
+        "scheduled dispatch requests",
+        "timer persistence snapshots"
+      ],
+      "commands": [
+        "advance clock",
+        "enable schedule",
+        "disable schedule",
+        "reschedule",
+        "inspect schedule state"
+      ],
+      "timers": [
+        "one-shot deadlines",
+        "fixed intervals",
+        "daily UTC schedules"
+      ],
+      "flags": [
+        "enabled",
+        "persistence mode",
+        "missed-timer policy",
+        "revision"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic round/tick/minute conversion",
+        "native seed clock and host-time boundary",
+        "restart and missed-timer behavior",
+        "simultaneous timer ordering",
+        "overflow and drift behavior",
+        "day rollover and daylight-saving dependence",
+        "exact schedules for merchants/trainers/spawns/quests/status/events"
+      ]
+    },
+    {
+      "id": "weather-day-night",
+      "classification": "Reforged compatibility infrastructure; Classic native behavior unresolved",
+      "status": "implemented-safe-disabled-classic-shell",
+      "runtimeOwner": "RuntimeWeatherDayNightService",
+      "persistenceOwner": "save-coordination",
+      "timerOwner": "clock-scheduling",
+      "commands": [],
+      "state": [
+        "day-phase",
+        "weather-kind",
+        "custom-weather-id",
+        "revision"
+      ],
+      "nativeDependencies": [
+        "native existence and record families",
+        "sunrise/sunset and weather schedules",
+        "cross-system effects",
+        "exact rendering and ownership boundary"
+      ]
+    },
+    {
+      "id": "world-reset-cleanup",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeWorldResetCleanupService",
+      "persistenceOwner": "world reset execution history; subsystem-owned state remains with each owner",
+      "recordFamilies": [
+        "reset plans",
+        "reset actions",
+        "reset execution history",
+        "orphan cleanup requests"
+      ],
+      "commands": [
+        "reset room",
+        "reset area",
+        "reset zone",
+        "reset world"
+      ],
+      "timers": [
+        "scheduled reset dispatches owned by clock-scheduling"
+      ],
+      "flags": [
+        "hardReset",
+        "requiredAction",
+        "hardResetExcluded",
+        "rolledBack"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact native reset categories and ordering",
+        "active-player and combat behavior",
+        "corpse and limited-item survival",
+        "merchant, quest, NPC, event, door, trap, and container reset semantics",
+        "hard-reset exception encodings",
+        "exact failure and rollback behavior"
+      ]
+    },
+    {
+      "id": "events",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeWorldEventService",
+      "persistenceOwner": "world event coordination; owner subsystems persist their own mutations",
+      "recordFamilies": [
+        "world event definitions",
+        "world event lifecycle state",
+        "event participants",
+        "typed event action requests"
+      ],
+      "commands": [
+        "schedule event",
+        "start event",
+        "stop event",
+        "cancel event",
+        "join event",
+        "leave event",
+        "inspect event"
+      ],
+      "timers": [
+        "scheduled event start",
+        "scheduled event end"
+      ],
+      "flags": [
+        "scheduled",
+        "active",
+        "completed",
+        "cancelled",
+        "failed",
+        "repeatable"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic event records",
+        "start/end and repeatability rules",
+        "participant and reward policy",
+        "restart recovery",
+        "cleanup ordering",
+        "remote-action event behavior",
+        "exact commands and messages"
+      ]
+    },
+    {
+      "id": "pvp-policy",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimePvpPolicyService",
+      "persistenceOwner": "session/world PvP policy; Character and Combat retain owned state",
+      "recordFamilies": [
+        "PvP zone rules",
+        "runtime actor PvP projections",
+        "attack cooldown state",
+        "logout restriction state",
+        "PvP consequence requests"
+      ],
+      "commands": [
+        "attack policy evaluation",
+        "register PvP attack",
+        "logout policy evaluation",
+        "create kill consequence request"
+      ],
+      "timers": [
+        "per-attacker-target cooldown",
+        "per-character logout restriction"
+      ],
+      "flags": [
+        "PvP enabled",
+        "criminal",
+        "safe zone",
+        "consent-only zone",
+        "open zone"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic PvP and consent model",
+        "zone encodings",
+        "level/alignment restrictions",
+        "criminal/Evil Point interactions",
+        "party/guild restrictions",
+        "kill credit/death penalties",
+        "loot/corpse access",
+        "guard/bounty routing",
+        "cooldowns/logout restrictions",
+        "exact commands/messages"
+      ]
+    },
+    {
+      "id": "law-bounty-guards",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeLawPolicyService",
+      "persistenceOwner": "world law coordination; native persistence remains unresolved",
+      "recordFamilies": [
+        "crime records",
+        "wanted and bounty state",
+        "law-zone policy",
+        "crime decay deadlines"
+      ],
+      "commands": [
+        "report crime",
+        "inspect wanted state",
+        "request fine",
+        "request jail",
+        "pardon"
+      ],
+      "timers": [
+        "crime decay deadline"
+      ],
+      "flags": [
+        "wanted",
+        "crime active",
+        "law enforced"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact crime families and witness rules",
+        "Evil Point and criminal-flag coupling",
+        "bounty arithmetic and limits",
+        "guard alert/summon/hostility behavior",
+        "arrest, jail, fines, confiscation, reputation, and reporting",
+        "crime decay and pardon authority",
+        "exact messages and persistence"
+      ]
+    },
+    {
+      "id": "rest-inn-recovery-policy",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeRestRecoveryPolicyService",
+      "persistenceOwner": "Character/session owners; Classic persistence remains native-dependent",
+      "recordFamilies": [
+        "room recovery policy",
+        "runtime rest state",
+        "inn service requests"
+      ],
+      "commands": [
+        "rest",
+        "sleep",
+        "wake",
+        "safe logout request"
+      ],
+      "timers": [
+        "native recovery tick remains external/native-dependent"
+      ],
+      "flags": [
+        "allow rest",
+        "allow sleep",
+        "inn",
+        "safe logout"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic rest/sleep commands and messages",
+        "native recovery formulas and tick timing",
+        "inn rental persistence",
+        "safe logout room rules",
+        "status cleanup behavior",
+        "login-room behavior",
+        "Worldgroup versus MajorMUD ownership"
+      ]
+    },
+    {
+      "id": "transport-services",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeTransportService",
+      "persistenceOwner": "world transport state; Economy/Rooms/session owners commit typed requests",
+      "commands": [
+        "board",
+        "depart",
+        "travel",
+        "disembark"
+      ],
+      "timers": [
+        "departure",
+        "arrival"
+      ],
+      "nativeDependencies": [
+        "exact Classic transport record families",
+        "native schedules and boarding windows",
+        "fare ownership and refund behavior",
+        "disconnect/linkdead behavior",
+        "capacity and party boarding",
+        "combat interruption",
+        "exact messages",
+        "persistence and restart recovery"
+      ]
+    },
+    {
+      "id": "player-transactions",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimePlayerTransactionService",
+      "persistenceOwner": "transaction coordinator; Character inventory and Economy own mutations",
+      "commands": [
+        "give",
+        "trade offer",
+        "trade accept",
+        "trade cancel",
+        "auction",
+        "bid",
+        "buyout"
+      ],
+      "timers": [
+        "offer expiration"
+      ],
+      "nativeDependencies": [
+        "exact Classic give/trade/auction command families",
+        "native escrow and atomicity",
+        "capacity and weight validation ordering",
+        "limited and quest item restrictions",
+        "disconnect rollback",
+        "auction/bid/buyout persistence",
+        "exact messages and logging"
+      ]
+    },
+    {
+      "id": "account-session-ownership",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-session-shell",
+      "runtimeOwner": "RuntimeSessionOwnershipService",
+      "persistenceOwner": "Reforged host session state; Character owns character save; Worldgroup owns account authentication",
+      "recordFamilies": [
+        "account-character relationships",
+        "session state",
+        "linkdead state",
+        "module restrictions"
+      ],
+      "commands": [
+        "character select",
+        "logout",
+        "reconnect"
+      ],
+      "timers": [
+        "idle timeout",
+        "linkdead grace period"
+      ],
+      "flags": [
+        "active",
+        "linkdead",
+        "logged-out",
+        "banned",
+        "deleted"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "Worldgroup account and authentication structures",
+        "native character slot limit",
+        "duplicate login behavior",
+        "session takeover behavior",
+        "linkdead grace period",
+        "idle timeout",
+        "combat logout restrictions",
+        "safe-room restrictions",
+        "character deletion and restoration",
+        "account and character bans",
+        "module access restrictions",
+        "last-login persistence",
+        "exact login/logout messages",
+        "save ordering on disconnect",
+        "party and follower cleanup ordering"
+      ]
+    },
+    {
+      "id": "world-rules-configuration",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-classic-safe-typed-contract",
+      "runtimeOwner": "RuntimeWorldRulesConfigurationService",
+      "persistenceOwner": "world configuration snapshot",
+      "recordFamilies": [
+        "world rule definitions",
+        "world rule values",
+        "configuration revisions"
+      ],
+      "commands": [
+        "inspect world rules",
+        "set world rule",
+        "reload startup rules"
+      ],
+      "timers": [],
+      "flags": [
+        "world mode",
+        "restart required",
+        "world reset required"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact MajorMUD 1.11p configuration record sources",
+        "defaults and allowed ranges",
+        "which settings are runtime mutable",
+        "restart requirements",
+        "world-state and save impact",
+        "maximum users and module capacity ownership",
+        "starting room, gold, and level semantics",
+        "experience, loot, and respawn rate semantics",
+        "PvP and death-penalty settings",
+        "reset intervals",
+        "Evil Point settings",
+        "communications settings",
+        "merchant and trainer settings",
+        "limited-item settings",
+        "quest and event settings",
+        "administrative permission levels",
+        "Worldgroup versus MajorMUD configuration boundary"
+      ]
+    },
+    {
+      "id": "administrative-policy",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeAdministrativePolicyService",
+      "persistenceOwner": "administrative audit coordinator",
+      "recordFamilies": [
+        "administrative action definitions",
+        "permission requirements",
+        "audit entries"
+      ],
+      "commands": [
+        "inspection",
+        "teleport/summon",
+        "spawn/despawn",
+        "kill/heal",
+        "grant item/currency/experience",
+        "set level/flags",
+        "reset",
+        "event control",
+        "broadcast/moderation",
+        "kick/ban/freeze",
+        "save/reload",
+        "runtime inspection/tracing"
+      ],
+      "timers": [],
+      "flags": [
+        "host operator",
+        "authority level",
+        "confirmation required",
+        "rollback supported"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact MajorMUD and Worldgroup administrator levels",
+        "exact command names and aliases",
+        "exact confirmation behavior",
+        "visibility to targets and normal players",
+        "native audit logging",
+        "rollback support",
+        "save timing",
+        "world-state mutation ordering",
+        "ban, kick, mute, freeze and module-lock ownership",
+        "builder versus sysop permissions",
+        "native remote-action authority"
+      ]
+    },
+    {
+      "id": "security-permissions",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeSecurityPolicyService",
+      "persistenceOwner": "security audit coordinator",
+      "recordFamilies": [
+        "trust-boundary definitions",
+        "resource policies",
+        "capability grants",
+        "authorization decisions"
+      ],
+      "commands": [
+        "authorize runtime call",
+        "validate resource policy",
+        "sanitize boundary input"
+      ],
+      "timers": [],
+      "flags": [
+        "authenticated",
+        "minimum trust boundary",
+        "audit required"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact MajorMUD player, sysop and builder privilege levels",
+        "Worldgroup authentication and authorization interfaces",
+        "native script and textblock execution privilege",
+        "remote-action authorization and caller identity",
+        "native save and file access boundary",
+        "cross-character and cross-world access rules",
+        "native command sanitization and rendering rules",
+        "audit log destination and retention",
+        "host/module trust handoff",
+        "exact unauthorized-action messages"
+      ]
+    },
+    {
+      "id": "logging-diagnostics",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeLoggingDiagnosticsService",
+      "persistenceOwner": "diagnostic sinks and host logging; exact native persistence remains native-dependent",
+      "recordFamilies": [
+        "structured runtime log events",
+        "correlation context",
+        "diagnostic fields"
+      ],
+      "commands": [
+        "inspect diagnostics",
+        "export diagnostics",
+        "enable tracing"
+      ],
+      "timers": [
+        "retention and rotation remain sink-owned"
+      ],
+      "flags": [
+        "administrative",
+        "security-sensitive"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact MajorMUD and Worldgroup log destinations",
+        "native retention and rotation",
+        "original log formats",
+        "crash log ownership",
+        "player-visible combat log behavior",
+        "native audit visibility and redaction"
+      ]
+    },
+    {
+      "id": "save-coordination",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeSaveCoordinationService",
+      "persistenceOwner": "cross-system transaction metadata; payload ownership remains with each subsystem",
+      "recordFamilies": [
+        "save participant registry",
+        "save transaction operations",
+        "save generation snapshot"
+      ],
+      "commands": [
+        "autosave coordination",
+        "shutdown save coordination",
+        "manual save coordination"
+      ],
+      "timers": [
+        "autosave trigger remains clock-scheduling-owned"
+      ],
+      "flags": [
+        "required",
+        "supports rollback",
+        "dirty",
+        "generation"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact MajorMUD save ordering",
+        "Worldgroup transaction boundary",
+        "autosave interval",
+        "shutdown-save behavior",
+        "crash journal format",
+        "native migration/version compatibility",
+        "partial-save recovery"
+      ]
+    },
+    {
+      "id": "startup-shutdown",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeStartupShutdownService",
+      "persistenceOwner": "save coordination and subsystem owners",
+      "recordFamilies": [
+        "lifecycle step definitions",
+        "runtime lifecycle phase",
+        "admission state"
+      ],
+      "commands": [
+        "startup",
+        "shutdown",
+        "quiesce"
+      ],
+      "timers": [],
+      "flags": [
+        "phase",
+        "admissions open"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic startup ordering",
+        "native DLL initialization and teardown",
+        "Worldgroup admission and shutdown hooks",
+        "crash recovery versus clean shutdown",
+        "pending native action disposition"
+      ]
+    },
+    {
+      "id": "worldgroup-integration",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-host-boundary-shell",
+      "runtimeOwner": "RuntimeWorldgroupIntegrationService",
+      "persistenceOwner": "Worldgroup for accounts/sessions; MajorMUD for module state; shared operations delegated",
+      "recordFamilies": [
+        "terminal sessions",
+        "host accounts",
+        "host messages",
+        "module admission",
+        "WCC/WBB library boundaries"
+      ],
+      "commands": [
+        "attach session",
+        "detach session",
+        "select module character",
+        "deliver host message"
+      ],
+      "timers": [
+        "host scheduler callbacks remain native-dependent"
+      ],
+      "flags": [
+        "host authenticated",
+        "boundary enabled",
+        "audit required"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Worldgroup terminal-session APIs",
+        "account and billing/access interfaces",
+        "host scheduler and shutdown hooks",
+        "message-system ownership",
+        "WCC/WBB library call boundaries",
+        "native error messages and return codes"
+      ]
+    },
+    {
+      "id": "global-rng",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeGlobalRandomService",
+      "persistenceOwner": "Save coordination for explicitly registered stream snapshots",
+      "recordFamilies": [
+        "runtime random stream definitions and states"
+      ],
+      "commands": [
+        "--smoke-global-random"
+      ],
+      "timers": [],
+      "flags": [
+        "stream scope",
+        "sequence",
+        "seeded state"
+      ],
+      "nativeDependencies": [
+        "exact native RNG algorithm",
+        "seed source",
+        "stream ownership",
+        "range semantics",
+        "restart persistence"
+      ]
+    },
+    {
+      "id": "global-world-state",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeGlobalWorldStateService",
+      "persistenceOwner": "RuntimeSaveCoordinationService for registered persistent state",
+      "recordFamilies": [
+        "catalog-defined global area zone event and module state"
+      ],
+      "commands": [
+        "--smoke-global-world-state"
+      ],
+      "timers": [],
+      "flags": [
+        "scope",
+        "value kind",
+        "reset policy",
+        "visibility",
+        "persistence",
+        "revision"
+      ],
+      "nativeDependencies": [
+        "exact native record families",
+        "unknown bits masks counters and latches",
+        "default values",
+        "mutation call sites",
+        "reset and restart semantics",
+        "replication and visibility"
+      ]
+    },
+    {
+      "id": "builder-content-editing",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-reforged-host-boundary-shell",
+      "runtimeOwner": "RuntimeBuilderContentPolicyService",
+      "persistenceOwner": "Reforged editor/version store; owning subsystems retain runtime and save payloads",
+      "recordFamilies": [
+        "builder change requests",
+        "staged change state",
+        "revision and publication metadata"
+      ],
+      "commands": [
+        "inspect",
+        "validate",
+        "preview",
+        "stage",
+        "publish",
+        "rollback",
+        "live reload"
+      ],
+      "timers": [],
+      "flags": [
+        "staged",
+        "published",
+        "rolled back",
+        "Classic compatible",
+        "validation evidence"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "whether original MajorMUD exposes builder commands",
+        "exact native builder permissions",
+        "native live-edit and reload support",
+        "original record validation and publish workflow",
+        "Worldgroup editor/module boundaries"
+      ]
+    },
+    {
+      "id": "import-export-compatibility",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-compatibility-shell",
+      "runtimeOwner": "RuntimeImportExportCompatibilityService",
+      "persistenceOwner": "Owning subsystem; coordinator stores no imported runtime payload",
+      "recordFamilies": [
+        "compatibility requests",
+        "version envelopes",
+        "payload fingerprints",
+        "migration requests"
+      ],
+      "commands": [
+        "inspect",
+        "validate",
+        "import",
+        "export",
+        "migrate"
+      ],
+      "timers": [],
+      "flags": [
+        "host authorized",
+        "Classic IDs preserved",
+        "dry run",
+        "owner commit required"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact WCC/WBB record versioning",
+        "native import/export commands",
+        "legacy save migrations",
+        "duplicate and missing-reference behavior",
+        "rollback semantics",
+        "binary checksums and packing"
+      ]
+    },
+    {
+      "id": "help-reference",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeHelpReferenceService",
+      "persistenceOwner": "source catalog owners; help coordinator stores no mutable player/world state",
+      "recordFamilies": [
+        "help topic definitions",
+        "aliases",
+        "related-topic edges",
+        "source-textblock references"
+      ],
+      "commands": [
+        "help",
+        "help search",
+        "--smoke-help-reference"
+      ],
+      "timers": [],
+      "flags": [
+        "enabled",
+        "minimum access",
+        "content owner"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic help topic record families",
+        "native HELP command syntax and aliases",
+        "exact formatting and pagination",
+        "textblock linkage",
+        "permission filtering",
+        "Worldgroup versus MajorMUD help ownership",
+        "search matching and ambiguity behavior"
+      ]
+    },
+    {
+      "id": "rankings-statistics",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeRankingsStatisticsService",
+      "persistenceOwner": "RuntimeSaveCoordinationService for ranking snapshots; source subsystems own metric truth",
+      "recordFamilies": [
+        "ranking definitions",
+        "metric snapshots",
+        "subject score entries",
+        "reset metadata"
+      ],
+      "commands": [
+        "rankings",
+        "statistics",
+        "--smoke-rankings-statistics"
+      ],
+      "timers": [
+        "optional daily weekly monthly reset requests delegated to clock scheduling"
+      ],
+      "flags": [
+        "visibility",
+        "reset policy",
+        "sort direction",
+        "administrator exclusion",
+        "persistence"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "whether Classic exposes rankings or scoreboards",
+        "exact ranking metric families",
+        "update timing and tie-breaking",
+        "privacy and hidden-character behavior",
+        "reset schedules",
+        "administrator exclusion",
+        "native persistence and messages"
+      ]
+    },
+    {
+      "id": "character-identity-policy",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeCharacterIdentityPolicyService",
+      "persistenceOwner": "Character subsystem for canonical identity and granted title identifiers; policy service stores no character save payload",
+      "recordFamilies": [
+        "name policy definitions",
+        "reserved name and prefix sets",
+        "title definitions",
+        "identity presentation requests"
+      ],
+      "commands": [
+        "character creation name validation",
+        "rename validation",
+        "title grant authorization",
+        "identity presentation",
+        "--smoke-character-identity-policy"
+      ],
+      "timers": [],
+      "flags": [
+        "hidden identity",
+        "disguised",
+        "title visibility",
+        "title enabled"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic name length and allowed characters",
+        "reserved-name list and duplicate comparison",
+        "title sources and precedence",
+        "alignment, class, level, guild, and administrative title tables",
+        "hidden and invisible identity rendering",
+        "disguise behavior",
+        "exact validation and failure messages",
+        "Worldgroup versus MajorMUD name ownership"
+      ]
+    },
+    {
+      "id": "capacity-resource-limits",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeCapacityLimitsService",
+      "persistenceOwner": "WorldRules/Host for configured limits; owning subsystems retain resource truth",
+      "recordFamilies": [
+        "capacity definitions",
+        "usage counters",
+        "reservation counters"
+      ],
+      "commands": [
+        "inspect capacity",
+        "reserve",
+        "commit",
+        "release",
+        "host-authorized limit change",
+        "--smoke-capacity-limits"
+      ],
+      "timers": [],
+      "flags": [
+        "configurable",
+        "hard limit",
+        "native width"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact Classic limits",
+        "configurable versus static limits",
+        "native integer widths",
+        "allocation failure behavior",
+        "cleanup and admission rejection messages"
+      ]
+    },
+    {
+      "id": "error-handling-recovery",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-safe-policy-shell",
+      "runtimeOwner": "RuntimeErrorRecoveryService",
+      "persistenceOwner": "owning subsystem retains payload; recovery service owns decisions and disabled-subsystem runtime state",
+      "recordFamilies": [
+        "runtime failure context",
+        "recovery decisions",
+        "disabled subsystem state"
+      ],
+      "commands": [
+        "internal recovery decision",
+        "administrative recovery inspection"
+      ],
+      "timers": [],
+      "flags": [
+        "rollback available",
+        "validated default available",
+        "world-load critical",
+        "character scoped",
+        "subsystem disabled"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact native failure classifications",
+        "record skip/default behavior",
+        "corrupt save handling",
+        "partial world load policy",
+        "script/event/reset failure behavior",
+        "disconnect messages",
+        "subsystem disable semantics"
+      ]
+    },
+    {
+      "id": "games-arenas-optional-activities",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-evidence-gated-policy-shell",
+      "runtimeOwner": "RuntimeOptionalActivitiesService",
+      "persistenceOwner": "activity lifecycle only; exact Classic persistence remains native-dependent",
+      "recordFamilies": [
+        "optional activity definitions",
+        "activity participants",
+        "activity lifecycle state"
+      ],
+      "commands": [
+        "join activity",
+        "leave activity",
+        "start activity",
+        "complete activity"
+      ],
+      "timers": [],
+      "flags": [
+        "enabled",
+        "Classic evidence confirmed",
+        "activity state"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "Classic feature existence",
+        "exact commands and messages",
+        "entry costs and rewards",
+        "matchmaking and rules",
+        "death and item-loss behavior",
+        "persistence and Worldgroup ownership"
+      ]
+    },
+    {
+      "id": "reforged-extension-boundaries",
+      "classification": "runtime-active-partially-exhausted",
+      "status": "implemented-mode-isolation-shell",
+      "runtimeOwner": "RuntimeExtensionBoundaryService",
+      "persistenceOwner": "WorldRulesConfiguration and SaveCoordination retain mode/version state",
+      "recordFamilies": [
+        "extension definitions",
+        "surface permissions",
+        "mode/version compatibility"
+      ],
+      "commands": [
+        "extension authorization",
+        "Classic isolation validation",
+        "--smoke-extension-boundaries"
+      ],
+      "timers": [],
+      "flags": [
+        "enabled",
+        "Classic compatible",
+        "minimum world mode",
+        "version"
+      ],
+      "evidenceClassification": "strongly-correlated",
+      "nativeDependencies": [
+        "exact native Classic extension boundary and version markers",
+        "native save and catalog version compatibility",
+        "host module feature flags and Worldgroup policy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "update": "0173",
+  "runtime": "RuntimePhysicalAttackPathExecutor",
+  "supported_paths": [
+    "one_handed",
+    "two_handed",
+    "dual_wield",
+    "ranged",
+    "thrown",
+    "natural",
+    "shield",
+    "special"
+  ],
+  "execution_order": [
+    "validate canonical sequence and promoted path policy",
+    "validate equipment and resource readiness",
+    "derive deterministic child strike definitions",
+    "scale strike damage using promoted basis points",
+    "execute each strike through RuntimePhysicalWeaponAttackExecutor",
+    "stop remaining strikes after defender defeat",
+    "emit combined evidence trace"
+  ],
+  "ownership": {
+    "path_policy": "combat runtime",
+    "weapon and ammunition inventory": "character or NPC inventory owners",
+    "damage and defeat": "existing physical weapon executor and combat lifecycle",
+    "resource mutation": "RuntimeAttackResourceTransaction"
+  },
+  "atomicity": [
+    "path validation occurs before first strike",
+    "duplicate sequence IDs reject",
+    "failed child execution releases sequence claim for explicit retry",
+    "completed earlier strikes are not silently reversed because native multi-strike rollback is unresolved"
+  ],
+  "safe_fallback": "reject missing strike counts, damage scales, readiness, evidence, or unsupported path combinations"
+}

@@ -1,0 +1,17 @@
+{
+  "update": "CodeUpdate0182",
+  "records": [
+    {
+      "behavior": "room_item_reset_identity_and_target_reconciliation",
+      "evidence_class": "strongly_correlated",
+      "sources": [
+        "existing RuntimeItemEngine room ownership model",
+        "CodeUpdate0181 merchant target reconciliation primitive",
+        "established World Runtime ownership boundary"
+      ],
+      "byte_offsets": [],
+      "confidence": 0.94,
+      "activation": "runtime primitive active only when caller supplies authoritative reset inputs"
+    }
+  ]
+}

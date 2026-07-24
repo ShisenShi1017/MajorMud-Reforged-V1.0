@@ -1,0 +1,16 @@
+{
+  "code_update": "0188",
+  "files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+    "Librarium/Policies/runtime_item_quest_lifecycle_cleanup_policy.json"
+  ],
+  "classification": "strongly_correlated",
+  "source_records": ["runtime quest-item metadata introduced in CodeUpdate0187"],
+  "byte_offsets": [],
+  "native_dependencies": [
+    "quest completion, abandon, failure, and reset cleanup dispatch",
+    "native item removal priority",
+    "native quest cleanup messages"
+  ]
+}

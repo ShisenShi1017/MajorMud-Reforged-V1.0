@@ -1,0 +1,31 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update": "CodeUpdate0189",
+  "finding": "exact NPC trainer offering availability admission and cooldown commit",
+  "classification": "strongly-correlated-active",
+  "runtime_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcTrainerOfferingAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcTrainerOfferingOwnership.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeGameplayCompletionState.cs"
+  ],
+  "supporting_evidence": [
+    "Persistent trainer offering state already records enabled state and exact next-availability timestamps.",
+    "Existing NPC service admission owns living same-room trainer interaction requests and exact completion IDs.",
+    "The new boundary composes those established owners without deriving trainer policy."
+  ],
+  "assumptions": [
+    "The caller owns eligibility, cost, progression, cooldown duration, and refusal dialogue.",
+    "RequestedAtUtc and NextAvailableUtc are authoritative timestamps supplied by the owning host policy."
+  ],
+  "fallback": "Missing, disabled, unavailable, mismatched, or stale requests reject without progression or cooldown mutation.",
+  "tests": [
+    "trainer-offering-admission-exposed",
+    "trainer-offering-completion-exposed",
+    "trainer-service-admission-integrated",
+    "trainer-service-completion-integrated"
+  ],
+  "runtime_impact": "Adds exact trainer offering availability admission and successful completion cooldown persistence.",
+  "character_save_impact": "none directly; progression remains owned by Character and Economy runtimes.",
+  "world_state_impact": "updates persistent trainer offering next-availability only after exact successful completion."
+}

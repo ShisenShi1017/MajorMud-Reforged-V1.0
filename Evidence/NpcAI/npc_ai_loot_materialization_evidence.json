@@ -1,0 +1,26 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update": "CodeUpdate0186",
+  "behavior": "exact NPC corpse loot materialization",
+  "classification": "strongly_correlated",
+  "runtime_active": true,
+  "sources": [
+    "existing RuntimeItemEngine corpse ownership",
+    "existing RuntimeNpcCorpseOwnershipService",
+    "canonical Librarium item catalog"
+  ],
+  "semantics": [
+    "caller supplies exact corpse, item IDs, quantities, authority, and replay ID",
+    "service validates dead NPC and exact corpse ownership",
+    "canonical items are atomically created in corpse ownership",
+    "duplicate request returns already-applied without duplication"
+  ],
+  "unknowns": [
+    "loot table selection",
+    "drop probability",
+    "guaranteed drop rules",
+    "quest/no-drop filtering",
+    "native ordering"
+  ],
+  "fallback": "reject without mutation; rollback partial materialization"
+}

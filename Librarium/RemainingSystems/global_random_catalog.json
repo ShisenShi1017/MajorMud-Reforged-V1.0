@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "global-rng",
+  "pass": "Update0025",
+  "runtimeOwner": "RuntimeGlobalRandomService",
+  "classification": "Reforged compatibility infrastructure; native algorithm unresolved",
+  "capabilities": [
+    "world/session/action streams",
+    "inclusive integer ranges",
+    "percent rolls",
+    "snapshot/restore deterministic replay",
+    "rejection sampling to avoid modulo bias",
+    "checked range arithmetic"
+  ],
+  "ownership": {
+    "seedPolicy": "world configuration or owning subsystem",
+    "streamState": "RuntimeGlobalRandomService",
+    "domainOutcome": "calling subsystem"
+  },
+  "safeFallback": [
+    "unknown streams fail closed",
+    "invalid ranges reject",
+    "zero seed normalized deterministically",
+    "native Classic algorithm not claimed"
+  ],
+  "nativeDependencies": [
+    "exact MajorMUD generator algorithm",
+    "native seed source",
+    "shared versus subsystem-local streams",
+    "restart/save behavior",
+    "range endpoint and overflow semantics"
+  ]
+}

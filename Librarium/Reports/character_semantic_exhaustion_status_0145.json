@@ -1,0 +1,23 @@
+{
+  "code_update": "0145",
+  "subsystem": "character",
+  "pass": "equipment_interaction_phase2_direct_modifiers",
+  "completed": [
+    "direct AC modifier ingestion",
+    "direct damage-resistance modifier ingestion",
+    "direct accuracy modifier ingestion",
+    "direct speed modifier ingestion",
+    "deterministic checked additive aggregation",
+    "on-demand recalculation from authoritative equipped state"
+  ],
+  "remaining": [
+    "named ability semantics",
+    "curse/no-remove",
+    "layering",
+    "dual wield penalties",
+    "durability",
+    "hidden modifier ordering",
+    "application into final derived-stat formulas"
+  ],
+  "native_dependencies_only": false
+}

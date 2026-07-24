@@ -1,0 +1,54 @@
+{
+  "schema": "majormud.native.bin_screen_normalization.v1",
+  "update": "0030",
+  "evidence_class": "PROVEN",
+  "source": {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmutl.exe",
+    "function_va": "0x0040C650",
+    "normalizer_va": "0x00409F0C",
+    "source_strings": {
+      "mode_va": "0x004163BC",
+      "mode": "rb",
+      "open_error_va": "0x004163BF",
+      "read_error_va": "0x004163E4"
+    }
+  },
+  "load_contract": {
+    "open_mode": "rb",
+    "cell_buffer_bytes": 4000,
+    "read_element_size": 4000,
+    "read_element_count": 1,
+    "success_condition": "fread return == 1",
+    "close_always_after_open": true,
+    "default_buffer_va": "0x0041A744",
+    "caller_buffer_allowed": true,
+    "failure_behavior": "native error path invoked for open failure or short read"
+  },
+  "screen_geometry": {
+    "columns": 80,
+    "rows": 25,
+    "cell_count": 2000,
+    "bytes_per_cell": 2,
+    "cell_order": [
+      "character",
+      "attribute"
+    ]
+  },
+  "normalization": {
+    "iteration_count": 2000,
+    "cell_stride": 2,
+    "attribute_mapping": "each attribute byte is passed through native mapper at 0x0040E9B5",
+    "character_rule": {
+      "condition": "attribute bit 0x08 is clear and character is 0xDC or 0xDF",
+      "replacement": "0x20 space",
+      "otherwise": "character preserved"
+    },
+    "in_place_for_caller_buffer": true,
+    "default_buffer_writeback": "normalized attribute and applicable character are written to internal 4000-byte screen buffer"
+  },
+  "distribution_scope": "WCC utility path; shared WCC/WBB BIN assets were previously proven byte-identical",
+  "limits": [
+    "The internal attribute mapper implementation is not renamed as a Worldgroup palette algorithm without additional proof.",
+    "Final physical console-write ordering remains outside this closure."
+  ]
+}

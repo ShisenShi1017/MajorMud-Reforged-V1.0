@@ -1,0 +1,39 @@
+{
+  "update": "WorldgroupNativeClosureUpdate0034",
+  "engine": {"module":"W32MKDE.EXE","sha256":"50453af66f993518cc45172dd0828257b220985a1aaad904f08b9bd11f0bbaa1"},
+  "file_operation_wrappers": [
+    {
+      "entry":"0x00404820",
+      "operation":"DeleteFileA",
+      "arguments":["path","engine context"],
+      "fallback":"GetFullPathNameA then retry DeleteFileA",
+      "success_result":0,
+      "failure":"GetLastError is translated through a Btrieve-status dispatch table",
+      "confidence":"PROVEN"
+    },
+    {
+      "entry":"0x004049A0",
+      "operation":"MoveFileA",
+      "arguments":["source path","destination path","engine context"],
+      "fallback":"GetFullPathNameA on both paths then retry MoveFileA",
+      "success_result":0,
+      "failure":"GetLastError is translated through a Btrieve-status dispatch table",
+      "confidence":"PROVEN"
+    }
+  ],
+  "artifact_sample_inventory": {
+    "BTRVLOG.TRN":0,
+    "BTRVLOG.RCV":0,
+    "hex_transaction_LOG":0,
+    "BTR_TMP":0
+  },
+  "proven_boundary":"Generic move/delete lifecycle support exists in W32MKDE, but no supplied static callsite conclusively binds these wrappers to BTRVLOG.TRN or BTRVLOG.RCV cleanup/promotion.",
+  "bounded_unknowns":[
+    "exact TRN record format",
+    "exact RCV record format",
+    "undo-preimage versus redo-image payload semantics",
+    "artifact-specific move/delete sequence",
+    "replay completion marker and checksum format"
+  ],
+  "required_for_exact_format_closure":["representative BTRVLOG.TRN or BTRVLOG.RCV artifact","controlled transaction/crash before-and-after capture","or equivalent engine symbols/source"]
+}

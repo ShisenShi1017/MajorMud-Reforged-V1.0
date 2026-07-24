@@ -1,0 +1,15 @@
+{
+  "schema": "librarium.runtime-item-durability-policy.v1",
+  "authority": "Librarium",
+  "code_update": "0166",
+  "rules": {
+    "damage": "Owner validated, positive amount, atomic, zero floor.",
+    "broken_state": "durability=0 may set instance metadata broken=true; final combat and equipment effects remain owned by their subsystems.",
+    "repair": "Requires projected maximum_durability, positive amount, atomic, capped at maximum.",
+    "repair_cleanup": "A successful positive repair removes broken metadata.",
+    "missing_projection": "Fail closed; do not create durability or maximum values.",
+    "destruction": "Durability reaching zero does not destroy the item unless separately proven."
+  },
+  "persistence": ["current durability", "maximum_durability metadata when projected", "broken metadata"],
+  "native_dependencies": ["Classic durability mappings", "wear sources", "repair amount and cost formulas", "broken modifier behavior", "breakage destruction"]
+}

@@ -1,0 +1,1783 @@
+
+/tmp/wccmmud.dll:	file format coff-i386
+
+Disassembly of section CODE:
+
+00444712 <_cast_user_target>:
+  4458f0: 44                           	inc	esp
+  4458f1: 00 84 62 44 00 71 62         	add	byte ptr [edx + 2*eiz + 0x62710044], al
+  4458f8: 44                           	inc	esp
+  4458f9: 00 a5 5e 44 00 0f            	add	byte ptr [ebp + 0xf00445e], ah
+  4458ff: bf 8b cc 00 00               	mov	edi, 0xcc8b
+  445904: 00 83 e9 01 72 12            	add	byte ptr [ebx + 0x127201e9], al
+  44590a: 49                           	dec	ecx
+  44590b: 74 0f                        	je	0x44591c <_cast_user_target+0x120a>
+  44590d: 83 e9 04                     	sub	ecx, 0x4
+  445910: 74 0a                        	je	0x44591c <_cast_user_target+0x120a>
+  445912: 83 e9 02                     	sub	ecx, 0x2
+  445915: 74 05                        	je	0x44591c <_cast_user_target+0x120a>
+  445917: e9 85 15 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44591c: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445924: 75 13                        	jne	0x445939 <_cast_user_target+0x1227>
+  445926: 6a 01                        	push	0x1
+  445928: 53                           	push	ebx
+  445929: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44592c: e8 e2 a2 ff ff               	call	0x43fc13 <_silly_spell>
+  445931: 83 c4 0c                     	add	esp, 0xc
+  445934: e9 68 15 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445939: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44593d: 75 23                        	jne	0x445962 <_cast_user_target+0x1250>
+  44593f: 6a 01                        	push	0x1
+  445941: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445944: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445947: 53                           	push	ebx
+  445948: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44594b: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  445952: 50                           	push	eax
+  445953: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  445956: 52                           	push	edx
+  445957: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44595a: e8 f4 91 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  44595f: 83 c4 20                     	add	esp, 0x20
+  445962: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445966: e9 36 15 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44596b: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44596e: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445971: e8 df c3 02 00               	call	0x471d55 <_perform_text_block_as_special_command>
+  445976: 83 c4 08                     	add	esp, 0x8
+  445979: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44597d: 75 19                        	jne	0x445998 <_cast_user_target+0x1286>
+  44597f: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445982: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  445985: 51                           	push	ecx
+  445986: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445989: 53                           	push	ebx
+  44598a: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44598d: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445990: e8 9e 8a ff ff               	call	0x43e433 <_display_spell_success>
+  445995: 83 c4 18                     	add	esp, 0x18
+  445998: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  44599c: e9 00 15 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4459a1: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4459a4: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  4459a7: ff b0 c4 00 00 00            	push	dword ptr [eax + 0xc4]
+  4459ad: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  4459b0: ff b2 c8 00 00 00            	push	dword ptr [edx + 0xc8]
+  4459b6: e8 86 68 02 00               	call	0x46c241 <_can_sneak+0x4b0>
+  4459bb: 83 c4 0c                     	add	esp, 0xc
+  4459be: e9 de 14 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4459c3: 8b 4d e0                     	mov	ecx, dword ptr [ebp - 0x20]
+  4459c6: 89 0d 5c 59 48 00            	mov	dword ptr [0x48595c], ecx
+  4459cc: e9 d0 14 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4459d1: 8b 45 e0                     	mov	eax, dword ptr [ebp - 0x20]
+  4459d4: a3 60 59 48 00               	mov	dword ptr [0x485960], eax
+  4459d9: e9 c3 14 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4459de: 83 be 24 06 00 00 00         	cmp	dword ptr [esi + 0x624], 0x0
+  4459e5: 0f 84 b6 14 00 00            	je	0x446ea1 <_cast_user_target+0x278f>
+  4459eb: ff b6 24 06 00 00            	push	dword ptr [esi + 0x624]
+  4459f1: e8 9f c8 fe ff               	call	0x432295 <_get_item_data>
+  4459f6: 59                           	pop	ecx
+  4459f7: 89 45 9c                     	mov	dword ptr [ebp - 0x64], eax
+  4459fa: 83 7d 9c 00                  	cmp	dword ptr [ebp - 0x64], 0x0
+  4459fe: 0f 84 9d 14 00 00            	je	0x446ea1 <_cast_user_target+0x278f>
+  445a04: ff 75 9c                     	push	dword ptr [ebp - 0x64]
+  445a07: 6a 00                        	push	0x0
+  445a09: 6a 56                        	push	0x56
+  445a0b: e8 7e 80 ff ff               	call	0x43da8e <_get_item_ability_value>
+  445a10: 83 c4 0c                     	add	esp, 0xc
+  445a13: 89 45 98                     	mov	dword ptr [ebp - 0x68], eax
+  445a16: 8b 55 e0                     	mov	edx, dword ptr [ebp - 0x20]
+  445a19: 3b 55 98                     	cmp	edx, dword ptr [ebp - 0x68]
+  445a1c: 0f 8e 7f 14 00 00            	jle	0x446ea1 <_cast_user_target+0x278f>
+  445a22: ff 75 9c                     	push	dword ptr [ebp - 0x64]
+  445a25: 56                           	push	esi
+  445a26: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445a29: e8 77 58 00 00               	call	0x44b2a5 <_unequip_apply_item_abilities>
+  445a2e: 83 c4 0c                     	add	esp, 0xc
+  445a31: 33 c9                        	xor	ecx, ecx
+  445a33: 89 8e 24 06 00 00            	mov	dword ptr [esi + 0x624], ecx
+  445a39: 8b 45 f8                     	mov	eax, dword ptr [ebp - 0x8]
+  445a3c: 66 83 b8 3c 04 00 00 05      	cmp	word ptr [eax + 0x43c], 0x5
+  445a44: 75 09                        	jne	0x445a4f <_cast_user_target+0x133d>
+  445a46: 80 3d e8 90 47 00 00         	cmp	byte ptr [0x4790e8], 0x0
+  445a4d: 75 6c                        	jne	0x445abb <_cast_user_target+0x13a9>
+  445a4f: 6a 00                        	push	0x0
+  445a51: 8d 55 94                     	lea	edx, [ebp - 0x6c]
+  445a54: 52                           	push	edx
+  445a55: 8b 4d 9c                     	mov	ecx, dword ptr [ebp - 0x64]
+  445a58: ff 31                        	push	dword ptr [ecx]
+  445a5a: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445a5d: e8 66 58 fd ff               	call	0x41b2c8 <_remove_item_from_inventory>
+  445a62: 83 c4 10                     	add	esp, 0x10
+  445a65: 84 c0                        	test	al, al
+  445a67: 0f 84 9a 00 00 00            	je	0x445b07 <_cast_user_target+0x13f5>
+  445a6d: 8b 45 9c                     	mov	eax, dword ptr [ebp - 0x64]
+  445a70: 05 ad 00 00 00               	add	eax, 0xad
+  445a75: 50                           	push	eax
+  445a76: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  445a79: 52                           	push	edx
+  445a7a: 68 01 61 48 00               	push	0x486101
+  445a7f: e8 a4 31 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  445a84: 83 c4 0c                     	add	esp, 0xc
+  445a87: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445a8a: e8 e1 56 02 00               	call	0x46b170 <_tell_user>
+  445a8f: 59                           	pop	ecx
+  445a90: 8b 4d 9c                     	mov	ecx, dword ptr [ebp - 0x64]
+  445a93: 81 c1 ad 00 00 00            	add	ecx, 0xad
+  445a99: 51                           	push	ecx
+  445a9a: 68 1d 61 48 00               	push	0x48611d
+  445a9f: e8 84 31 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  445aa4: 83 c4 08                     	add	esp, 0x8
+  445aa7: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445aaa: e8 45 d9 02 00               	call	0x4733f4 <_prf_prompt>
+  445aaf: 59                           	pop	ecx
+  445ab0: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445ab3: e8 b8 56 02 00               	call	0x46b170 <_tell_user>
+  445ab8: 59                           	pop	ecx
+  445ab9: eb 4c                        	jmp	0x445b07 <_cast_user_target+0x13f5>
+  445abb: 8b 45 9c                     	mov	eax, dword ptr [ebp - 0x64]
+  445abe: 05 ad 00 00 00               	add	eax, 0xad
+  445ac3: 50                           	push	eax
+  445ac4: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  445ac7: 52                           	push	edx
+  445ac8: 68 3a 61 48 00               	push	0x48613a
+  445acd: e8 56 31 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  445ad2: 83 c4 0c                     	add	esp, 0xc
+  445ad5: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445ad8: e8 93 56 02 00               	call	0x46b170 <_tell_user>
+  445add: 59                           	pop	ecx
+  445ade: 8b 4d 9c                     	mov	ecx, dword ptr [ebp - 0x64]
+  445ae1: 81 c1 ad 00 00 00            	add	ecx, 0xad
+  445ae7: 51                           	push	ecx
+  445ae8: 68 7f 61 48 00               	push	0x48617f
+  445aed: e8 36 31 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  445af2: 83 c4 08                     	add	esp, 0x8
+  445af5: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445af8: e8 f7 d8 02 00               	call	0x4733f4 <_prf_prompt>
+  445afd: 59                           	pop	ecx
+  445afe: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445b01: e8 6a 56 02 00               	call	0x46b170 <_tell_user>
+  445b06: 59                           	pop	ecx
+  445b07: 6a 02                        	push	0x2
+  445b09: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445b0c: e8 13 49 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  445b11: 83 c4 08                     	add	esp, 0x8
+  445b14: e9 88 13 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445b19: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  445b20: 83 f8 0d                     	cmp	eax, 0xd
+  445b23: 0f 87 78 13 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  445b29: 8a 80 36 5b 44 00            	mov	al, byte ptr [eax + 0x445b36]
+  445b2f: ff 24 85 44 5b 44 00         	jmp	dword ptr [4*eax + 0x445b44]
+  445b36: 00 02                        	add	byte ptr [edx], al
+  445b38: 02 01                        	add	al, byte ptr [ecx]
+  445b3a: 00 01                        	add	byte ptr [ecx], al
+  445b3c: 02 00                        	add	al, byte ptr [eax]
+  445b3e: 00 01                        	add	byte ptr [ecx], al
+  445b40: 01 01                        	add	dword ptr [ecx], eax
+  445b42: 01 01                        	add	dword ptr [ecx], eax
+  445b44: a1 6e 44 00 50               	mov	eax, dword ptr [0x5000446e]
+  445b49: 5b                           	pop	ebx
+  445b4a: 44                           	inc	esp
+  445b4b: 00 63 5b                     	add	byte ptr [ebx + 0x5b], ah
+  445b4e: 44                           	inc	esp
+  445b4f: 00 6a 00                     	add	byte ptr [edx], ch
+  445b52: 53                           	push	ebx
+  445b53: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445b56: e8 b8 a0 ff ff               	call	0x43fc13 <_silly_spell>
+  445b5b: 83 c4 0c                     	add	esp, 0xc
+  445b5e: e9 3e 13 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445b63: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445b6b: 0f 85 ad 00 00 00            	jne	0x445c1e <_cast_user_target+0x150c>
+  445b71: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  445b75: 75 19                        	jne	0x445b90 <_cast_user_target+0x147e>
+  445b77: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445b7a: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  445b7d: 52                           	push	edx
+  445b7e: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445b81: 53                           	push	ebx
+  445b82: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445b85: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445b88: e8 a6 88 ff ff               	call	0x43e433 <_display_spell_success>
+  445b8d: 83 c4 18                     	add	esp, 0x18
+  445b90: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445b94: 33 c9                        	xor	ecx, ecx
+  445b96: 89 4d 90                     	mov	dword ptr [ebp - 0x70], ecx
+  445b99: 8b 45 90                     	mov	eax, dword ptr [ebp - 0x70]
+  445b9c: 83 bc 86 2c 06 00 00 00      	cmp	dword ptr [esi + 4*eax + 0x62c], 0x0
+  445ba4: 74 6a                        	je	0x445c10 <_cast_user_target+0x14fe>
+  445ba6: 8b 55 90                     	mov	edx, dword ptr [ebp - 0x70]
+  445ba9: ff b4 96 2c 06 00 00         	push	dword ptr [esi + 4*edx + 0x62c]
+  445bb0: e8 e0 c6 fe ff               	call	0x432295 <_get_item_data>
+  445bb5: 59                           	pop	ecx
+  445bb6: 89 45 8c                     	mov	dword ptr [ebp - 0x74], eax
+  445bb9: 83 7d 8c 00                  	cmp	dword ptr [ebp - 0x74], 0x0
+  445bbd: 74 51                        	je	0x445c10 <_cast_user_target+0x14fe>
+  445bbf: ff 75 8c                     	push	dword ptr [ebp - 0x74]
+  445bc2: 6a 00                        	push	0x0
+  445bc4: 6a 53                        	push	0x53
+  445bc6: e8 c3 7e ff ff               	call	0x43da8e <_get_item_ability_value>
+  445bcb: 83 c4 0c                     	add	esp, 0xc
+  445bce: 89 45 88                     	mov	dword ptr [ebp - 0x78], eax
+  445bd1: ff 75 8c                     	push	dword ptr [ebp - 0x74]
+  445bd4: 6a 00                        	push	0x0
+  445bd6: 6a 52                        	push	0x52
+  445bd8: e8 00 7f ff ff               	call	0x43dadd <_item_has_ability>
+  445bdd: 83 c4 0c                     	add	esp, 0xc
+  445be0: 84 c0                        	test	al, al
+  445be2: 75 15                        	jne	0x445bf9 <_cast_user_target+0x14e7>
+  445be4: 83 7d 88 00                  	cmp	dword ptr [ebp - 0x78], 0x0
+  445be8: 7e 26                        	jle	0x445c10 <_cast_user_target+0x14fe>
+  445bea: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  445bed: 0f b7 81 94 00 00 00         	movzx	eax, word ptr [ecx + 0x94]
+  445bf4: 3b 45 88                     	cmp	eax, dword ptr [ebp - 0x78]
+  445bf7: 7e 17                        	jle	0x445c10 <_cast_user_target+0x14fe>
+  445bf9: 6a 01                        	push	0x1
+  445bfb: 8b 55 8c                     	mov	edx, dword ptr [ebp - 0x74]
+  445bfe: 81 c2 ad 00 00 00            	add	edx, 0xad
+  445c04: 52                           	push	edx
+  445c05: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445c08: e8 0b 72 fd ff               	call	0x41ce18 <_remove_armour>
+  445c0d: 83 c4 0c                     	add	esp, 0xc
+  445c10: ff 45 90                     	inc	dword ptr [ebp - 0x70]
+  445c13: 83 7d 90 14                  	cmp	dword ptr [ebp - 0x70], 0x14
+  445c17: 7c 80                        	jl	0x445b99 <_cast_user_target+0x1487>
+  445c19: e9 83 12 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445c1e: 6a 00                        	push	0x0
+  445c20: 53                           	push	ebx
+  445c21: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445c24: e8 ea 9f ff ff               	call	0x43fc13 <_silly_spell>
+  445c29: 83 c4 0c                     	add	esp, 0xc
+  445c2c: e9 70 12 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445c31: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  445c38: 83 e9 01                     	sub	ecx, 0x1
+  445c3b: 72 12                        	jb	0x445c4f <_cast_user_target+0x153d>
+  445c3d: 49                           	dec	ecx
+  445c3e: 74 0f                        	je	0x445c4f <_cast_user_target+0x153d>
+  445c40: 83 e9 04                     	sub	ecx, 0x4
+  445c43: 74 0a                        	je	0x445c4f <_cast_user_target+0x153d>
+  445c45: 83 e9 02                     	sub	ecx, 0x2
+  445c48: 74 05                        	je	0x445c4f <_cast_user_target+0x153d>
+  445c4a: e9 52 12 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445c4f: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445c57: 0f 85 fc 00 00 00            	jne	0x445d59 <_cast_user_target+0x1647>
+  445c5d: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  445c61: 75 19                        	jne	0x445c7c <_cast_user_target+0x156a>
+  445c63: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445c66: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  445c69: 50                           	push	eax
+  445c6a: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445c6d: 53                           	push	ebx
+  445c6e: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445c71: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445c74: e8 ba 87 ff ff               	call	0x43e433 <_display_spell_success>
+  445c79: 83 c4 18                     	add	esp, 0x18
+  445c7c: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445c80: 33 d2                        	xor	edx, edx
+  445c82: 89 55 84                     	mov	dword ptr [ebp - 0x7c], edx
+  445c85: 8b 4d 84                     	mov	ecx, dword ptr [ebp - 0x7c]
+  445c88: 66 83 7c 4e 40 00            	cmp	word ptr [esi + 2*ecx + 0x40], 0x0
+  445c8e: 0f 84 b3 00 00 00            	je	0x445d47 <_cast_user_target+0x1635>
+  445c94: 8b 45 84                     	mov	eax, dword ptr [ebp - 0x7c]
+  445c97: 0f b7 54 46 40               	movzx	edx, word ptr [esi + 2*eax + 0x40]
+  445c9c: 52                           	push	edx
+  445c9d: e8 6f cd fe ff               	call	0x432a11 <_get_spell_data>
+  445ca2: 59                           	pop	ecx
+  445ca3: 89 45 bc                     	mov	dword ptr [ebp - 0x44], eax
+  445ca6: 83 7d bc 00                  	cmp	dword ptr [ebp - 0x44], 0x0
+  445caa: 74 7d                        	je	0x445d29 <_cast_user_target+0x1617>
+  445cac: c6 85 7f ff ff ff 00         	mov	byte ptr [ebp - 0x81], 0x0
+  445cb3: 33 c9                        	xor	ecx, ecx
+  445cb5: 89 4d 80                     	mov	dword ptr [ebp - 0x80], ecx
+  445cb8: eb 5e                        	jmp	0x445d18 <_cast_user_target+0x1606>
+  445cba: 8b 45 bc                     	mov	eax, dword ptr [ebp - 0x44]
+  445cbd: 8b 55 80                     	mov	edx, dword ptr [ebp - 0x80]
+  445cc0: 66 8b 8c 50 d8 00 00 00      	mov	cx, word ptr [eax + 2*edx + 0xd8]
+  445cc8: 83 c1 b6                     	add	ecx, -0x4a
+  445ccb: 66 83 e9 02                  	sub	cx, 0x2
+  445ccf: 72 02                        	jb	0x445cd3 <_cast_user_target+0x15c1>
+  445cd1: eb 42                        	jmp	0x445d15 <_cast_user_target+0x1603>
+  445cd3: 8b 45 84                     	mov	eax, dword ptr [ebp - 0x7c]
+  445cd6: 66 8b 44 46 54               	mov	ax, word ptr [esi + 2*eax + 0x54]
+  445cdb: 8b 55 84                     	mov	edx, dword ptr [ebp - 0x7c]
+  445cde: 66 c7 44 56 40 00 00         	mov	word ptr [esi + 2*edx + 0x40], 0x0
+  445ce5: 8b 4d 84                     	mov	ecx, dword ptr [ebp - 0x7c]
+  445ce8: 66 c7 44 4e 54 00 00         	mov	word ptr [esi + 2*ecx + 0x54], 0x0
+  445cef: 8b 55 84                     	mov	edx, dword ptr [ebp - 0x7c]
+  445cf2: 66 c7 44 56 68 00 00         	mov	word ptr [esi + 2*edx + 0x68], 0x0
+  445cf9: 6a 01                        	push	0x1
+  445cfb: 0f bf c0                     	movsx	eax, ax
+  445cfe: 50                           	push	eax
+  445cff: ff 75 bc                     	push	dword ptr [ebp - 0x44]
+  445d02: 56                           	push	esi
+  445d03: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445d06: e8 42 42 00 00               	call	0x449f4d <_perform_spell_termination_player_upkeep>
+  445d0b: 83 c4 14                     	add	esp, 0x14
+  445d0e: c6 85 7f ff ff ff 01         	mov	byte ptr [ebp - 0x81], 0x1
+  445d15: ff 45 80                     	inc	dword ptr [ebp - 0x80]
+  445d18: 80 bd 7f ff ff ff 00         	cmp	byte ptr [ebp - 0x81], 0x0
+  445d1f: 75 26                        	jne	0x445d47 <_cast_user_target+0x1635>
+  445d21: 83 7d 80 0a                  	cmp	dword ptr [ebp - 0x80], 0xa
+  445d25: 7c 93                        	jl	0x445cba <_cast_user_target+0x15a8>
+  445d27: eb 1e                        	jmp	0x445d47 <_cast_user_target+0x1635>
+  445d29: 8b 4d 84                     	mov	ecx, dword ptr [ebp - 0x7c]
+  445d2c: 66 c7 44 4e 40 00 00         	mov	word ptr [esi + 2*ecx + 0x40], 0x0
+  445d33: 8b 45 84                     	mov	eax, dword ptr [ebp - 0x7c]
+  445d36: 66 c7 44 46 54 00 00         	mov	word ptr [esi + 2*eax + 0x54], 0x0
+  445d3d: 8b 55 84                     	mov	edx, dword ptr [ebp - 0x7c]
+  445d40: 66 c7 44 56 68 00 00         	mov	word ptr [esi + 2*edx + 0x68], 0x0
+  445d47: ff 45 84                     	inc	dword ptr [ebp - 0x7c]
+  445d4a: 83 7d 84 0a                  	cmp	dword ptr [ebp - 0x7c], 0xa
+  445d4e: 0f 8c 31 ff ff ff            	jl	0x445c85 <_cast_user_target+0x1573>
+  445d54: e9 48 11 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445d59: 6a 01                        	push	0x1
+  445d5b: 53                           	push	ebx
+  445d5c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445d5f: e8 af 9e ff ff               	call	0x43fc13 <_silly_spell>
+  445d64: 83 c4 0c                     	add	esp, 0xc
+  445d67: e9 35 11 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445d6c: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  445d73: 83 e9 01                     	sub	ecx, 0x1
+  445d76: 72 12                        	jb	0x445d8a <_cast_user_target+0x1678>
+  445d78: 49                           	dec	ecx
+  445d79: 74 0f                        	je	0x445d8a <_cast_user_target+0x1678>
+  445d7b: 83 e9 04                     	sub	ecx, 0x4
+  445d7e: 74 0a                        	je	0x445d8a <_cast_user_target+0x1678>
+  445d80: 83 e9 02                     	sub	ecx, 0x2
+  445d83: 74 05                        	je	0x445d8a <_cast_user_target+0x1678>
+  445d85: e9 17 11 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445d8a: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445d92: 0f 85 fa 00 00 00            	jne	0x445e92 <_cast_user_target+0x1780>
+  445d98: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  445d9c: 75 19                        	jne	0x445db7 <_cast_user_target+0x16a5>
+  445d9e: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445da1: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  445da4: 50                           	push	eax
+  445da5: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445da8: 53                           	push	ebx
+  445da9: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445dac: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445daf: e8 7f 86 ff ff               	call	0x43e433 <_display_spell_success>
+  445db4: 83 c4 18                     	add	esp, 0x18
+  445db7: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445dbb: 33 d2                        	xor	edx, edx
+  445dbd: 89 95 78 ff ff ff            	mov	dword ptr [ebp - 0x88], edx
+  445dc3: 8b 8d 78 ff ff ff            	mov	ecx, dword ptr [ebp - 0x88]
+  445dc9: 66 83 7c 4e 40 00            	cmp	word ptr [esi + 2*ecx + 0x40], 0x0
+  445dcf: 0f 84 a5 00 00 00            	je	0x445e7a <_cast_user_target+0x1768>
+  445dd5: 8b 85 78 ff ff ff            	mov	eax, dword ptr [ebp - 0x88]
+  445ddb: 0f b7 54 46 40               	movzx	edx, word ptr [esi + 2*eax + 0x40]
+  445de0: 52                           	push	edx
+  445de1: e8 2b cc fe ff               	call	0x432a11 <_get_spell_data>
+  445de6: 59                           	pop	ecx
+  445de7: 89 45 bc                     	mov	dword ptr [ebp - 0x44], eax
+  445dea: 83 7d bc 00                  	cmp	dword ptr [ebp - 0x44], 0x0
+  445dee: 74 63                        	je	0x445e53 <_cast_user_target+0x1741>
+  445df0: 83 7d e0 ff                  	cmp	dword ptr [ebp - 0x20], -0x1
+  445df4: 74 14                        	je	0x445e0a <_cast_user_target+0x16f8>
+  445df6: ff 75 bc                     	push	dword ptr [ebp - 0x44]
+  445df9: 6a 00                        	push	0x0
+  445dfb: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445dfe: e8 5f 7d ff ff               	call	0x43db62 <_spell_has_ability>
+  445e03: 83 c4 0c                     	add	esp, 0xc
+  445e06: 85 c0                        	test	eax, eax
+  445e08: 74 70                        	je	0x445e7a <_cast_user_target+0x1768>
+  445e0a: 8b 8d 78 ff ff ff            	mov	ecx, dword ptr [ebp - 0x88]
+  445e10: 66 8b 44 4e 54               	mov	ax, word ptr [esi + 2*ecx + 0x54]
+  445e15: 8b 95 78 ff ff ff            	mov	edx, dword ptr [ebp - 0x88]
+  445e1b: 66 c7 44 56 40 00 00         	mov	word ptr [esi + 2*edx + 0x40], 0x0
+  445e22: 8b 8d 78 ff ff ff            	mov	ecx, dword ptr [ebp - 0x88]
+  445e28: 66 c7 44 4e 54 00 00         	mov	word ptr [esi + 2*ecx + 0x54], 0x0
+  445e2f: 8b 95 78 ff ff ff            	mov	edx, dword ptr [ebp - 0x88]
+  445e35: 66 c7 44 56 68 00 00         	mov	word ptr [esi + 2*edx + 0x68], 0x0
+  445e3c: 6a 01                        	push	0x1
+  445e3e: 0f bf c0                     	movsx	eax, ax
+  445e41: 50                           	push	eax
+  445e42: ff 75 bc                     	push	dword ptr [ebp - 0x44]
+  445e45: 56                           	push	esi
+  445e46: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445e49: e8 ff 40 00 00               	call	0x449f4d <_perform_spell_termination_player_upkeep>
+  445e4e: 83 c4 14                     	add	esp, 0x14
+  445e51: eb 27                        	jmp	0x445e7a <_cast_user_target+0x1768>
+  445e53: 8b 8d 78 ff ff ff            	mov	ecx, dword ptr [ebp - 0x88]
+  445e59: 66 c7 44 4e 40 00 00         	mov	word ptr [esi + 2*ecx + 0x40], 0x0
+  445e60: 8b 85 78 ff ff ff            	mov	eax, dword ptr [ebp - 0x88]
+  445e66: 66 c7 44 46 54 00 00         	mov	word ptr [esi + 2*eax + 0x54], 0x0
+  445e6d: 8b 95 78 ff ff ff            	mov	edx, dword ptr [ebp - 0x88]
+  445e73: 66 c7 44 56 68 00 00         	mov	word ptr [esi + 2*edx + 0x68], 0x0
+  445e7a: ff 85 78 ff ff ff            	inc	dword ptr [ebp - 0x88]
+  445e80: 83 bd 78 ff ff ff 0a         	cmp	dword ptr [ebp - 0x88], 0xa
+  445e87: 0f 8c 36 ff ff ff            	jl	0x445dc3 <_cast_user_target+0x16b1>
+  445e8d: e9 0f 10 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445e92: 6a 01                        	push	0x1
+  445e94: 53                           	push	ebx
+  445e95: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445e98: e8 76 9d ff ff               	call	0x43fc13 <_silly_spell>
+  445e9d: 83 c4 0c                     	add	esp, 0xc
+  445ea0: e9 fc 0f 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445ea5: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  445eac: 83 e9 01                     	sub	ecx, 0x1
+  445eaf: 72 12                        	jb	0x445ec3 <_cast_user_target+0x17b1>
+  445eb1: 49                           	dec	ecx
+  445eb2: 74 0f                        	je	0x445ec3 <_cast_user_target+0x17b1>
+  445eb4: 83 e9 04                     	sub	ecx, 0x4
+  445eb7: 74 0a                        	je	0x445ec3 <_cast_user_target+0x17b1>
+  445eb9: 83 e9 02                     	sub	ecx, 0x2
+  445ebc: 74 05                        	je	0x445ec3 <_cast_user_target+0x17b1>
+  445ebe: e9 de 0f 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445ec3: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445ecb: 0f 85 b5 00 00 00            	jne	0x445f86 <_cast_user_target+0x1874>
+  445ed1: 33 c0                        	xor	eax, eax
+  445ed3: 89 45 a4                     	mov	dword ptr [ebp - 0x5c], eax
+  445ed6: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445ed9: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445edc: e8 13 a0 ff ff               	call	0x43fef4 <_silly_spell+0x2e1>
+  445ee1: 83 c4 08                     	add	esp, 0x8
+  445ee4: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  445ee7: 66 8b 55 a0                  	mov	dx, word ptr [ebp - 0x60]
+  445eeb: 66 29 96 b0 00 00 00         	sub	word ptr [esi + 0xb0], dx
+  445ef2: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  445ef6: 75 19                        	jne	0x445f11 <_cast_user_target+0x17ff>
+  445ef8: ff 75 a0                     	push	dword ptr [ebp - 0x60]
+  445efb: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  445efe: 51                           	push	ecx
+  445eff: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445f02: 53                           	push	ebx
+  445f03: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445f06: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445f09: e8 25 85 ff ff               	call	0x43e433 <_display_spell_success>
+  445f0e: 83 c4 18                     	add	esp, 0x18
+  445f11: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445f15: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445f18: 56                           	push	esi
+  445f19: e8 15 3b fd ff               	call	0x419a33 <_check_kill_user>
+  445f1e: 83 c4 08                     	add	esp, 0x8
+  445f21: 85 c0                        	test	eax, eax
+  445f23: 74 31                        	je	0x445f56 <_cast_user_target+0x1844>
+  445f25: c6 45 c3 01                  	mov	byte ptr [ebp - 0x3d], 0x1
+  445f29: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  445f2c: ff b0 c4 00 00 00            	push	dword ptr [eax + 0xc4]
+  445f32: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  445f35: ff b2 c8 00 00 00            	push	dword ptr [edx + 0xc8]
+  445f3b: 68 ff ff 00 00               	push	0xffff
+  445f40: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445f43: ff 75 a4                     	push	dword ptr [ebp - 0x5c]
+  445f46: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445f49: e8 42 6a 00 00               	call	0x44c990 <_distribute_experience>
+  445f4e: 83 c4 18                     	add	esp, 0x18
+  445f51: e9 4b 0f 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445f56: 66 83 be b0 00 00 00 00      	cmp	word ptr [esi + 0xb0], 0x0
+  445f5e: 0f 8f 3d 0f 00 00            	jg	0x446ea1 <_cast_user_target+0x278f>
+  445f64: 0f bf 8e b0 00 00 00         	movsx	ecx, word ptr [esi + 0xb0]
+  445f6b: 03 4d a0                     	add	ecx, dword ptr [ebp - 0x60]
+  445f6e: 85 c9                        	test	ecx, ecx
+  445f70: 0f 8e 2b 0f 00 00            	jle	0x446ea1 <_cast_user_target+0x278f>
+  445f76: 56                           	push	esi
+  445f77: 6a ff                        	push	-0x1
+  445f79: e8 9f 69 ff ff               	call	0x43c91d <_display_debug_room_stats+0x3f9>
+  445f7e: 83 c4 08                     	add	esp, 0x8
+  445f81: e9 1b 0f 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445f86: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  445f8a: 75 23                        	jne	0x445faf <_cast_user_target+0x189d>
+  445f8c: 6a 01                        	push	0x1
+  445f8e: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  445f91: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  445f94: 53                           	push	ebx
+  445f95: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  445f98: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  445f9f: 50                           	push	eax
+  445fa0: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  445fa3: 52                           	push	edx
+  445fa4: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  445fa7: e8 a7 8b ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  445fac: 83 c4 20                     	add	esp, 0x20
+  445faf: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  445fb3: e9 e9 0e 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445fb8: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  445fbf: 83 e9 01                     	sub	ecx, 0x1
+  445fc2: 72 12                        	jb	0x445fd6 <_cast_user_target+0x18c4>
+  445fc4: 49                           	dec	ecx
+  445fc5: 74 0f                        	je	0x445fd6 <_cast_user_target+0x18c4>
+  445fc7: 83 e9 04                     	sub	ecx, 0x4
+  445fca: 74 0a                        	je	0x445fd6 <_cast_user_target+0x18c4>
+  445fcc: 83 e9 02                     	sub	ecx, 0x2
+  445fcf: 74 05                        	je	0x445fd6 <_cast_user_target+0x18c4>
+  445fd1: e9 cb 0e 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  445fd6: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  445fde: 0f 85 cc 00 00 00            	jne	0x4460b0 <_cast_user_target+0x199e>
+  445fe4: 33 c0                        	xor	eax, eax
+  445fe6: 89 45 a4                     	mov	dword ptr [ebp - 0x5c], eax
+  445fe9: 66 83 be b0 00 00 00 00      	cmp	word ptr [esi + 0xb0], 0x0
+  445ff1: 7c 13                        	jl	0x446006 <_cast_user_target+0x18f4>
+  445ff3: 0f bf 96 b0 00 00 00         	movsx	edx, word ptr [esi + 0xb0]
+  445ffa: 2b 15 f0 2c 48 00            	sub	edx, dword ptr [0x482cf0]
+  446000: 42                           	inc	edx
+  446001: 89 55 e0                     	mov	dword ptr [ebp - 0x20], edx
+  446004: eb 0b                        	jmp	0x446011 <_cast_user_target+0x18ff>
+  446006: 33 c9                        	xor	ecx, ecx
+  446008: 2b 0d f0 2c 48 00            	sub	ecx, dword ptr [0x482cf0]
+  44600e: 89 4d e0                     	mov	dword ptr [ebp - 0x20], ecx
+  446011: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  446015: 66 29 86 b0 00 00 00         	sub	word ptr [esi + 0xb0], ax
+  44601c: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446020: 75 19                        	jne	0x44603b <_cast_user_target+0x1929>
+  446022: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446025: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  446028: 52                           	push	edx
+  446029: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  44602c: 53                           	push	ebx
+  44602d: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446030: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446033: e8 fb 83 ff ff               	call	0x43e433 <_display_spell_success>
+  446038: 83 c4 18                     	add	esp, 0x18
+  44603b: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  44603f: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446042: 56                           	push	esi
+  446043: e8 eb 39 fd ff               	call	0x419a33 <_check_kill_user>
+  446048: 83 c4 08                     	add	esp, 0x8
+  44604b: 85 c0                        	test	eax, eax
+  44604d: 74 31                        	je	0x446080 <_cast_user_target+0x196e>
+  44604f: c6 45 c3 01                  	mov	byte ptr [ebp - 0x3d], 0x1
+  446053: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  446056: ff b1 c4 00 00 00            	push	dword ptr [ecx + 0xc4]
+  44605c: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  44605f: ff b0 c8 00 00 00            	push	dword ptr [eax + 0xc8]
+  446065: 68 ff ff 00 00               	push	0xffff
+  44606a: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44606d: ff 75 a4                     	push	dword ptr [ebp - 0x5c]
+  446070: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446073: e8 18 69 00 00               	call	0x44c990 <_distribute_experience>
+  446078: 83 c4 18                     	add	esp, 0x18
+  44607b: e9 21 0e 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446080: 66 83 be b0 00 00 00 00      	cmp	word ptr [esi + 0xb0], 0x0
+  446088: 0f 8f 13 0e 00 00            	jg	0x446ea1 <_cast_user_target+0x278f>
+  44608e: 0f bf 96 b0 00 00 00         	movsx	edx, word ptr [esi + 0xb0]
+  446095: 03 55 e0                     	add	edx, dword ptr [ebp - 0x20]
+  446098: 85 d2                        	test	edx, edx
+  44609a: 0f 8e 01 0e 00 00            	jle	0x446ea1 <_cast_user_target+0x278f>
+  4460a0: 56                           	push	esi
+  4460a1: 6a ff                        	push	-0x1
+  4460a3: e8 75 68 ff ff               	call	0x43c91d <_display_debug_room_stats+0x3f9>
+  4460a8: 83 c4 08                     	add	esp, 0x8
+  4460ab: e9 f1 0d 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4460b0: 6a 01                        	push	0x1
+  4460b2: 53                           	push	ebx
+  4460b3: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4460b6: e8 58 9b ff ff               	call	0x43fc13 <_silly_spell>
+  4460bb: 83 c4 0c                     	add	esp, 0xc
+  4460be: e9 de 0d 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4460c3: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  4460ca: 83 e9 01                     	sub	ecx, 0x1
+  4460cd: 72 12                        	jb	0x4460e1 <_cast_user_target+0x19cf>
+  4460cf: 49                           	dec	ecx
+  4460d0: 74 0f                        	je	0x4460e1 <_cast_user_target+0x19cf>
+  4460d2: 83 e9 04                     	sub	ecx, 0x4
+  4460d5: 74 0a                        	je	0x4460e1 <_cast_user_target+0x19cf>
+  4460d7: 83 e9 02                     	sub	ecx, 0x2
+  4460da: 74 05                        	je	0x4460e1 <_cast_user_target+0x19cf>
+  4460dc: e9 c0 0d 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4460e1: 6a 00                        	push	0x0
+  4460e3: 6a 00                        	push	0x0
+  4460e5: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4460e8: 6a ff                        	push	-0x1
+  4460ea: 68 a5 00 00 00               	push	0xa5
+  4460ef: e8 44 6f ff ff               	call	0x43d038 <_get_user_ability_value>
+  4460f4: 83 c4 14                     	add	esp, 0x14
+  4460f7: f7 6d e0                     	imul	dword ptr [ebp - 0x20]
+  4460fa: b9 64 00 00 00               	mov	ecx, 0x64
+  4460ff: 99                           	cdq
+  446100: f7 f9                        	idiv	ecx
+  446102: 01 45 e0                     	add	dword ptr [ebp - 0x20], eax
+  446105: 33 c0                        	xor	eax, eax
+  446107: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  44610a: 56                           	push	esi
+  44610b: 6a ff                        	push	-0x1
+  44610d: 6a 33                        	push	0x33
+  44610f: e8 5c 74 ff ff               	call	0x43d570 <_user_has_ability>
+  446114: 83 c4 0c                     	add	esp, 0xc
+  446117: 84 c0                        	test	al, al
+  446119: 74 2d                        	je	0x446148 <_cast_user_target+0x1a36>
+  44611b: 0f b7 86 c2 00 00 00         	movzx	eax, word ptr [esi + 0xc2]
+  446122: d1 f8                        	sar	eax
+  446124: 79 03                        	jns	0x446129 <_cast_user_target+0x1a17>
+  446126: 83 d0 00                     	adc	eax, 0x0
+  446129: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  44612c: 83 7d a0 4b                  	cmp	dword ptr [ebp - 0x60], 0x4b
+  446130: 7e 09                        	jle	0x44613b <_cast_user_target+0x1a29>
+  446132: c7 45 a0 4b 00 00 00         	mov	dword ptr [ebp - 0x60], 0x4b
+  446139: eb 3c                        	jmp	0x446177 <_cast_user_target+0x1a65>
+  44613b: 83 7d a0 00                  	cmp	dword ptr [ebp - 0x60], 0x0
+  44613f: 7d 36                        	jge	0x446177 <_cast_user_target+0x1a65>
+  446141: 33 d2                        	xor	edx, edx
+  446143: 89 55 a0                     	mov	dword ptr [ebp - 0x60], edx
+  446146: eb 2f                        	jmp	0x446177 <_cast_user_target+0x1a65>
+  446148: 0f b7 8e c2 00 00 00         	movzx	ecx, word ptr [esi + 0xc2]
+  44614f: 83 c1 ce                     	add	ecx, -0x32
+  446152: 85 c9                        	test	ecx, ecx
+  446154: 7e 14                        	jle	0x44616a <_cast_user_target+0x1a58>
+  446156: 0f b7 86 c2 00 00 00         	movzx	eax, word ptr [esi + 0xc2]
+  44615d: 83 c0 ce                     	add	eax, -0x32
+  446160: d1 f8                        	sar	eax
+  446162: 79 03                        	jns	0x446167 <_cast_user_target+0x1a55>
+  446164: 83 d0 00                     	adc	eax, 0x0
+  446167: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  44616a: 83 7d a0 32                  	cmp	dword ptr [ebp - 0x60], 0x32
+  44616e: 7e 07                        	jle	0x446177 <_cast_user_target+0x1a65>
+  446170: c7 45 a0 32 00 00 00         	mov	dword ptr [ebp - 0x60], 0x32
+  446177: 83 7d a0 00                  	cmp	dword ptr [ebp - 0x60], 0x0
+  44617b: 75 40                        	jne	0x4461bd <_cast_user_target+0x1aab>
+  44617d: 56                           	push	esi
+  44617e: 6a ff                        	push	-0x1
+  446180: 6a 33                        	push	0x33
+  446182: e8 e9 73 ff ff               	call	0x43d570 <_user_has_ability>
+  446187: 83 c4 0c                     	add	esp, 0xc
+  44618a: 84 c0                        	test	al, al
+  44618c: 74 08                        	je	0x446196 <_cast_user_target+0x1a84>
+  44618e: 8b 55 e0                     	mov	edx, dword ptr [ebp - 0x20]
+  446191: 89 55 a0                     	mov	dword ptr [ebp - 0x60], edx
+  446194: eb 3d                        	jmp	0x4461d3 <_cast_user_target+0x1ac1>
+  446196: 0f b7 8e c2 00 00 00         	movzx	ecx, word ptr [esi + 0xc2]
+  44619d: b8 32 00 00 00               	mov	eax, 0x32
+  4461a2: 2b c1                        	sub	eax, ecx
+  4461a4: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  4461a7: 8b 45 e0                     	mov	eax, dword ptr [ebp - 0x20]
+  4461aa: f7 6d a0                     	imul	dword ptr [ebp - 0x60]
+  4461ad: b9 64 00 00 00               	mov	ecx, 0x64
+  4461b2: 99                           	cdq
+  4461b3: f7 f9                        	idiv	ecx
+  4461b5: 03 45 e0                     	add	eax, dword ptr [ebp - 0x20]
+  4461b8: 89 45 a0                     	mov	dword ptr [ebp - 0x60], eax
+  4461bb: eb 16                        	jmp	0x4461d3 <_cast_user_target+0x1ac1>
+  4461bd: 8b 45 e0                     	mov	eax, dword ptr [ebp - 0x20]
+  4461c0: f7 6d a0                     	imul	dword ptr [ebp - 0x60]
+  4461c3: b9 64 00 00 00               	mov	ecx, 0x64
+  4461c8: 99                           	cdq
+  4461c9: f7 f9                        	idiv	ecx
+  4461cb: 8b 55 e0                     	mov	edx, dword ptr [ebp - 0x20]
+  4461ce: 2b d0                        	sub	edx, eax
+  4461d0: 89 55 a0                     	mov	dword ptr [ebp - 0x60], edx
+  4461d3: 66 8b 45 a0                  	mov	ax, word ptr [ebp - 0x60]
+  4461d7: 66 29 86 b0 00 00 00         	sub	word ptr [esi + 0xb0], ax
+  4461de: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4461e2: 75 19                        	jne	0x4461fd <_cast_user_target+0x1aeb>
+  4461e4: ff 75 a0                     	push	dword ptr [ebp - 0x60]
+  4461e7: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  4461ea: 51                           	push	ecx
+  4461eb: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4461ee: 53                           	push	ebx
+  4461ef: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4461f2: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4461f5: e8 39 82 ff ff               	call	0x43e433 <_display_spell_success>
+  4461fa: 83 c4 18                     	add	esp, 0x18
+  4461fd: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446201: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446204: 56                           	push	esi
+  446205: e8 29 38 fd ff               	call	0x419a33 <_check_kill_user>
+  44620a: 83 c4 08                     	add	esp, 0x8
+  44620d: 85 c0                        	test	eax, eax
+  44620f: 74 30                        	je	0x446241 <_cast_user_target+0x1b2f>
+  446211: c6 45 c3 01                  	mov	byte ptr [ebp - 0x3d], 0x1
+  446215: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  446218: ff b0 c4 00 00 00            	push	dword ptr [eax + 0xc4]
+  44621e: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  446221: ff b2 c8 00 00 00            	push	dword ptr [edx + 0xc8]
+  446227: 68 ff ff 00 00               	push	0xffff
+  44622c: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44622f: 6a 00                        	push	0x0
+  446231: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446234: e8 57 67 00 00               	call	0x44c990 <_distribute_experience>
+  446239: 83 c4 18                     	add	esp, 0x18
+  44623c: e9 60 0c 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446241: 66 83 be b0 00 00 00 00      	cmp	word ptr [esi + 0xb0], 0x0
+  446249: 0f 8f 52 0c 00 00            	jg	0x446ea1 <_cast_user_target+0x278f>
+  44624f: 0f bf 8e b0 00 00 00         	movsx	ecx, word ptr [esi + 0xb0]
+  446256: 03 4d a0                     	add	ecx, dword ptr [ebp - 0x60]
+  446259: 85 c9                        	test	ecx, ecx
+  44625b: 0f 8e 40 0c 00 00            	jle	0x446ea1 <_cast_user_target+0x278f>
+  446261: 56                           	push	esi
+  446262: 6a ff                        	push	-0x1
+  446264: e8 b4 66 ff ff               	call	0x43c91d <_display_debug_room_stats+0x3f9>
+  446269: 83 c4 08                     	add	esp, 0x8
+  44626c: e9 30 0c 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446271: 6a 01                        	push	0x1
+  446273: 53                           	push	ebx
+  446274: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446277: e8 97 99 ff ff               	call	0x43fc13 <_silly_spell>
+  44627c: 83 c4 0c                     	add	esp, 0xc
+  44627f: e9 1d 0c 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446284: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  44628b: 83 e8 01                     	sub	eax, 0x1
+  44628e: 72 12                        	jb	0x4462a2 <_cast_user_target+0x1b90>
+  446290: 48                           	dec	eax
+  446291: 74 0f                        	je	0x4462a2 <_cast_user_target+0x1b90>
+  446293: 83 e8 04                     	sub	eax, 0x4
+  446296: 74 0a                        	je	0x4462a2 <_cast_user_target+0x1b90>
+  446298: 83 e8 02                     	sub	eax, 0x2
+  44629b: 74 05                        	je	0x4462a2 <_cast_user_target+0x1b90>
+  44629d: e9 ff 0b 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4462a2: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  4462aa: 0f 85 dc 00 00 00            	jne	0x44638c <_cast_user_target+0x1c7a>
+  4462b0: 33 d2                        	xor	edx, edx
+  4462b2: 89 55 a4                     	mov	dword ptr [ebp - 0x5c], edx
+  4462b5: 66 8b 4d e0                  	mov	cx, word ptr [ebp - 0x20]
+  4462b9: 66 29 8e b0 00 00 00         	sub	word ptr [esi + 0xb0], cx
+  4462c0: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  4462c3: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  4462c7: 66 01 90 b0 00 00 00         	add	word ptr [eax + 0xb0], dx
+  4462ce: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  4462d1: 66 8b 81 b0 00 00 00         	mov	ax, word ptr [ecx + 0xb0]
+  4462d8: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  4462db: 66 3b 82 ae 00 00 00         	cmp	ax, word ptr [edx + 0xae]
+  4462e2: 7e 14                        	jle	0x4462f8 <_cast_user_target+0x1be6>
+  4462e4: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  4462e7: 66 8b 81 ae 00 00 00         	mov	ax, word ptr [ecx + 0xae]
+  4462ee: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  4462f1: 66 89 82 b0 00 00 00         	mov	word ptr [edx + 0xb0], ax
+  4462f8: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4462fc: 75 19                        	jne	0x446317 <_cast_user_target+0x1c05>
+  4462fe: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446301: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  446304: 51                           	push	ecx
+  446305: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446308: 53                           	push	ebx
+  446309: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44630c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44630f: e8 1f 81 ff ff               	call	0x43e433 <_display_spell_success>
+  446314: 83 c4 18                     	add	esp, 0x18
+  446317: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  44631b: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44631e: 56                           	push	esi
+  44631f: e8 0f 37 fd ff               	call	0x419a33 <_check_kill_user>
+  446324: 83 c4 08                     	add	esp, 0x8
+  446327: 85 c0                        	test	eax, eax
+  446329: 74 31                        	je	0x44635c <_cast_user_target+0x1c4a>
+  44632b: c6 45 c3 01                  	mov	byte ptr [ebp - 0x3d], 0x1
+  44632f: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  446332: ff b0 c4 00 00 00            	push	dword ptr [eax + 0xc4]
+  446338: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  44633b: ff b2 c8 00 00 00            	push	dword ptr [edx + 0xc8]
+  446341: 68 ff ff 00 00               	push	0xffff
+  446346: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446349: ff 75 a4                     	push	dword ptr [ebp - 0x5c]
+  44634c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44634f: e8 3c 66 00 00               	call	0x44c990 <_distribute_experience>
+  446354: 83 c4 18                     	add	esp, 0x18
+  446357: e9 45 0b 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44635c: 66 83 be b0 00 00 00 00      	cmp	word ptr [esi + 0xb0], 0x0
+  446364: 0f 8f 37 0b 00 00            	jg	0x446ea1 <_cast_user_target+0x278f>
+  44636a: 0f bf 8e b0 00 00 00         	movsx	ecx, word ptr [esi + 0xb0]
+  446371: 03 4d e0                     	add	ecx, dword ptr [ebp - 0x20]
+  446374: 85 c9                        	test	ecx, ecx
+  446376: 0f 8e 25 0b 00 00            	jle	0x446ea1 <_cast_user_target+0x278f>
+  44637c: 56                           	push	esi
+  44637d: 6a ff                        	push	-0x1
+  44637f: e8 99 65 ff ff               	call	0x43c91d <_display_debug_room_stats+0x3f9>
+  446384: 83 c4 08                     	add	esp, 0x8
+  446387: e9 15 0b 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44638c: 6a 01                        	push	0x1
+  44638e: 53                           	push	ebx
+  44638f: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446392: e8 7c 98 ff ff               	call	0x43fc13 <_silly_spell>
+  446397: 83 c4 0c                     	add	esp, 0xc
+  44639a: e9 02 0b 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44639f: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  4463a6: 83 e8 01                     	sub	eax, 0x1
+  4463a9: 72 12                        	jb	0x4463bd <_cast_user_target+0x1cab>
+  4463ab: 48                           	dec	eax
+  4463ac: 74 0f                        	je	0x4463bd <_cast_user_target+0x1cab>
+  4463ae: 83 e8 04                     	sub	eax, 0x4
+  4463b1: 74 0a                        	je	0x4463bd <_cast_user_target+0x1cab>
+  4463b3: 83 e8 02                     	sub	eax, 0x2
+  4463b6: 74 05                        	je	0x4463bd <_cast_user_target+0x1cab>
+  4463b8: e9 e4 0a 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4463bd: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  4463c5: 75 33                        	jne	0x4463fa <_cast_user_target+0x1ce8>
+  4463c7: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  4463cb: 66 01 96 ba 00 00 00         	add	word ptr [esi + 0xba], dx
+  4463d2: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4463d6: 75 19                        	jne	0x4463f1 <_cast_user_target+0x1cdf>
+  4463d8: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4463db: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  4463de: 51                           	push	ecx
+  4463df: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4463e2: 53                           	push	ebx
+  4463e3: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4463e6: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4463e9: e8 45 80 ff ff               	call	0x43e433 <_display_spell_success>
+  4463ee: 83 c4 18                     	add	esp, 0x18
+  4463f1: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  4463f5: e9 a7 0a 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4463fa: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4463fe: 75 23                        	jne	0x446423 <_cast_user_target+0x1d11>
+  446400: 6a 01                        	push	0x1
+  446402: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446405: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446408: 53                           	push	ebx
+  446409: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44640c: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  446413: 50                           	push	eax
+  446414: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  446417: 52                           	push	edx
+  446418: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44641b: e8 33 87 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446420: 83 c4 20                     	add	esp, 0x20
+  446423: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446427: e9 75 0a 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44642c: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  446433: 83 e9 01                     	sub	ecx, 0x1
+  446436: 72 12                        	jb	0x44644a <_cast_user_target+0x1d38>
+  446438: 49                           	dec	ecx
+  446439: 74 0f                        	je	0x44644a <_cast_user_target+0x1d38>
+  44643b: 83 e9 04                     	sub	ecx, 0x4
+  44643e: 74 0a                        	je	0x44644a <_cast_user_target+0x1d38>
+  446440: 83 e9 02                     	sub	ecx, 0x2
+  446443: 74 05                        	je	0x44644a <_cast_user_target+0x1d38>
+  446445: e9 57 0a 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44644a: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  446452: 0f 85 90 00 00 00            	jne	0x4464e8 <_cast_user_target+0x1dd6>
+  446458: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44645c: 75 19                        	jne	0x446477 <_cast_user_target+0x1d65>
+  44645e: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446461: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  446464: 50                           	push	eax
+  446465: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446468: 53                           	push	ebx
+  446469: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44646c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44646f: e8 bf 7f ff ff               	call	0x43e433 <_display_spell_success>
+  446474: 83 c4 18                     	add	esp, 0x18
+  446477: 6a 01                        	push	0x1
+  446479: 6a 00                        	push	0x0
+  44647b: 6a ff                        	push	-0x1
+  44647d: 68 e8 fd 00 00               	push	0xfde8
+  446482: 6a 00                        	push	0x0
+  446484: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446487: 6a ff                        	push	-0x1
+  446489: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  44648c: ff b2 c4 00 00 00            	push	dword ptr [edx + 0xc4]
+  446492: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  446495: ff b1 c8 00 00 00            	push	dword ptr [ecx + 0xc8]
+  44649b: e8 c1 de fd ff               	call	0x424361 <_generate_monster>
+  4464a0: 83 c4 24                     	add	esp, 0x24
+  4464a3: 89 45 e4                     	mov	dword ptr [ebp - 0x1c], eax
+  4464a6: 83 7d e4 00                  	cmp	dword ptr [ebp - 0x1c], 0x0
+  4464aa: 0f 86 f1 09 00 00            	jbe	0x446ea1 <_cast_user_target+0x278f>
+  4464b0: ff 75 e4                     	push	dword ptr [ebp - 0x1c]
+  4464b3: e8 d2 bf fe ff               	call	0x43248a <_get_monster_data>
+  4464b8: 59                           	pop	ecx
+  4464b9: 89 45 f0                     	mov	dword ptr [ebp - 0x10], eax
+  4464bc: 83 7d f0 00                  	cmp	dword ptr [ebp - 0x10], 0x0
+  4464c0: 0f 84 db 09 00 00            	je	0x446ea1 <_cast_user_target+0x278f>
+  4464c6: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  4464c9: 50                           	push	eax
+  4464ca: 8b 55 f0                     	mov	edx, dword ptr [ebp - 0x10]
+  4464cd: 83 c2 1a                     	add	edx, 0x1a
+  4464d0: 52                           	push	edx
+  4464d1: e8 28 24 03 00               	call	0x4788fe <_update_top_list+0xc85>
+  4464d6: 83 c4 08                     	add	esp, 0x8
+  4464d9: 8b 4d f0                     	mov	ecx, dword ptr [ebp - 0x10]
+  4464dc: c6 81 16 01 00 00 00         	mov	byte ptr [ecx + 0x116], 0x0
+  4464e3: e9 b9 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4464e8: 6a 01                        	push	0x1
+  4464ea: 53                           	push	ebx
+  4464eb: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4464ee: e8 20 97 ff ff               	call	0x43fc13 <_silly_spell>
+  4464f3: 83 c4 0c                     	add	esp, 0xc
+  4464f6: e9 a6 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4464fb: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  446502: 83 e8 01                     	sub	eax, 0x1
+  446505: 72 12                        	jb	0x446519 <_cast_user_target+0x1e07>
+  446507: 48                           	dec	eax
+  446508: 74 0f                        	je	0x446519 <_cast_user_target+0x1e07>
+  44650a: 83 e8 04                     	sub	eax, 0x4
+  44650d: 74 0a                        	je	0x446519 <_cast_user_target+0x1e07>
+  44650f: 83 e8 02                     	sub	eax, 0x2
+  446512: 74 05                        	je	0x446519 <_cast_user_target+0x1e07>
+  446514: e9 88 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446519: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  446521: 75 10                        	jne	0x446533 <_cast_user_target+0x1e21>
+  446523: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  446527: 66 01 96 ce 00 00 00         	add	word ptr [esi + 0xce], dx
+  44652e: e9 6e 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446533: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446537: 75 23                        	jne	0x44655c <_cast_user_target+0x1e4a>
+  446539: 6a 01                        	push	0x1
+  44653b: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  44653e: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446541: 53                           	push	ebx
+  446542: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446545: 0f bf 8b ce 00 00 00         	movsx	ecx, word ptr [ebx + 0xce]
+  44654c: 51                           	push	ecx
+  44654d: 0f b7 03                     	movzx	eax, word ptr [ebx]
+  446550: 50                           	push	eax
+  446551: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446554: e8 fa 85 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446559: 83 c4 20                     	add	esp, 0x20
+  44655c: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446560: e9 3c 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446565: 0f bf 93 cc 00 00 00         	movsx	edx, word ptr [ebx + 0xcc]
+  44656c: 83 ea 01                     	sub	edx, 0x1
+  44656f: 72 12                        	jb	0x446583 <_cast_user_target+0x1e71>
+  446571: 4a                           	dec	edx
+  446572: 74 0f                        	je	0x446583 <_cast_user_target+0x1e71>
+  446574: 83 ea 04                     	sub	edx, 0x4
+  446577: 74 0a                        	je	0x446583 <_cast_user_target+0x1e71>
+  446579: 83 ea 02                     	sub	edx, 0x2
+  44657c: 74 05                        	je	0x446583 <_cast_user_target+0x1e71>
+  44657e: e9 1e 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446583: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  44658b: 75 10                        	jne	0x44659d <_cast_user_target+0x1e8b>
+  44658d: 66 8b 4d e0                  	mov	cx, word ptr [ebp - 0x20]
+  446591: 66 01 8e d0 00 00 00         	add	word ptr [esi + 0xd0], cx
+  446598: e9 04 09 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44659d: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4465a1: 75 23                        	jne	0x4465c6 <_cast_user_target+0x1eb4>
+  4465a3: 6a 01                        	push	0x1
+  4465a5: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4465a8: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4465ab: 53                           	push	ebx
+  4465ac: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4465af: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  4465b6: 50                           	push	eax
+  4465b7: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  4465ba: 52                           	push	edx
+  4465bb: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4465be: e8 90 85 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  4465c3: 83 c4 20                     	add	esp, 0x20
+  4465c6: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  4465ca: e9 d2 08 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4465cf: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  4465d6: 83 e9 01                     	sub	ecx, 0x1
+  4465d9: 72 12                        	jb	0x4465ed <_cast_user_target+0x1edb>
+  4465db: 49                           	dec	ecx
+  4465dc: 74 0f                        	je	0x4465ed <_cast_user_target+0x1edb>
+  4465de: 83 e9 04                     	sub	ecx, 0x4
+  4465e1: 74 0a                        	je	0x4465ed <_cast_user_target+0x1edb>
+  4465e3: 83 e9 02                     	sub	ecx, 0x2
+  4465e6: 74 05                        	je	0x4465ed <_cast_user_target+0x1edb>
+  4465e8: e9 b4 08 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4465ed: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  4465f5: 75 63                        	jne	0x44665a <_cast_user_target+0x1f48>
+  4465f7: 0f bf 86 b0 00 00 00         	movsx	eax, word ptr [esi + 0xb0]
+  4465fe: 03 45 e0                     	add	eax, dword ptr [ebp - 0x20]
+  446601: 0f bf 96 ae 00 00 00         	movsx	edx, word ptr [esi + 0xae]
+  446608: 3b c2                        	cmp	eax, edx
+  44660a: 7e 15                        	jle	0x446621 <_cast_user_target+0x1f0f>
+  44660c: 0f bf 8e ae 00 00 00         	movsx	ecx, word ptr [esi + 0xae]
+  446613: 0f bf 86 b0 00 00 00         	movsx	eax, word ptr [esi + 0xb0]
+  44661a: 2b c8                        	sub	ecx, eax
+  44661c: 89 4d dc                     	mov	dword ptr [ebp - 0x24], ecx
+  44661f: eb 06                        	jmp	0x446627 <_cast_user_target+0x1f15>
+  446621: 8b 55 e0                     	mov	edx, dword ptr [ebp - 0x20]
+  446624: 89 55 dc                     	mov	dword ptr [ebp - 0x24], edx
+  446627: 66 8b 4d dc                  	mov	cx, word ptr [ebp - 0x24]
+  44662b: 66 01 8e b0 00 00 00         	add	word ptr [esi + 0xb0], cx
+  446632: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446636: 75 19                        	jne	0x446651 <_cast_user_target+0x1f3f>
+  446638: ff 75 d8                     	push	dword ptr [ebp - 0x28]
+  44663b: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  44663e: 50                           	push	eax
+  44663f: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446642: 53                           	push	ebx
+  446643: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446646: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446649: e8 e5 7d ff ff               	call	0x43e433 <_display_spell_success>
+  44664e: 83 c4 18                     	add	esp, 0x18
+  446651: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446655: e9 47 08 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44665a: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44665e: 75 23                        	jne	0x446683 <_cast_user_target+0x1f71>
+  446660: 6a 01                        	push	0x1
+  446662: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446665: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446668: 53                           	push	ebx
+  446669: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44666c: 0f bf 93 ce 00 00 00         	movsx	edx, word ptr [ebx + 0xce]
+  446673: 52                           	push	edx
+  446674: 0f b7 0b                     	movzx	ecx, word ptr [ebx]
+  446677: 51                           	push	ecx
+  446678: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44667b: e8 d3 84 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446680: 83 c4 20                     	add	esp, 0x20
+  446683: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446687: e9 15 08 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44668c: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  446693: 83 e8 01                     	sub	eax, 0x1
+  446696: 72 12                        	jb	0x4466aa <_cast_user_target+0x1f98>
+  446698: 48                           	dec	eax
+  446699: 74 0f                        	je	0x4466aa <_cast_user_target+0x1f98>
+  44669b: 83 e8 04                     	sub	eax, 0x4
+  44669e: 74 0a                        	je	0x4466aa <_cast_user_target+0x1f98>
+  4466a0: 83 e8 02                     	sub	eax, 0x2
+  4466a3: 74 05                        	je	0x4466aa <_cast_user_target+0x1f98>
+  4466a5: e9 f7 07 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4466aa: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  4466b2: 75 76                        	jne	0x44672a <_cast_user_target+0x2018>
+  4466b4: 0f bf 96 02 06 00 00         	movsx	edx, word ptr [esi + 0x602]
+  4466bb: 03 55 e0                     	add	edx, dword ptr [ebp - 0x20]
+  4466be: 0f b7 8e 00 06 00 00         	movzx	ecx, word ptr [esi + 0x600]
+  4466c5: 3b d1                        	cmp	edx, ecx
+  4466c7: 7e 15                        	jle	0x4466de <_cast_user_target+0x1fcc>
+  4466c9: 0f b7 86 00 06 00 00         	movzx	eax, word ptr [esi + 0x600]
+  4466d0: 0f bf 96 02 06 00 00         	movsx	edx, word ptr [esi + 0x602]
+  4466d7: 2b c2                        	sub	eax, edx
+  4466d9: 89 45 dc                     	mov	dword ptr [ebp - 0x24], eax
+  4466dc: eb 06                        	jmp	0x4466e4 <_cast_user_target+0x1fd2>
+  4466de: 8b 4d e0                     	mov	ecx, dword ptr [ebp - 0x20]
+  4466e1: 89 4d dc                     	mov	dword ptr [ebp - 0x24], ecx
+  4466e4: 66 8b 45 dc                  	mov	ax, word ptr [ebp - 0x24]
+  4466e8: 66 01 86 02 06 00 00         	add	word ptr [esi + 0x602], ax
+  4466ef: 66 83 be 02 06 00 00 00      	cmp	word ptr [esi + 0x602], 0x0
+  4466f7: 7d 09                        	jge	0x446702 <_cast_user_target+0x1ff0>
+  4466f9: 66 c7 86 02 06 00 00 00 00   	mov	word ptr [esi + 0x602], 0x0
+  446702: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446706: 75 19                        	jne	0x446721 <_cast_user_target+0x200f>
+  446708: ff 75 dc                     	push	dword ptr [ebp - 0x24]
+  44670b: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  44670e: 52                           	push	edx
+  44670f: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446712: 53                           	push	ebx
+  446713: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446716: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446719: e8 15 7d ff ff               	call	0x43e433 <_display_spell_success>
+  44671e: 83 c4 18                     	add	esp, 0x18
+  446721: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446725: e9 77 07 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44672a: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44672e: 75 23                        	jne	0x446753 <_cast_user_target+0x2041>
+  446730: 6a 01                        	push	0x1
+  446732: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446735: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446738: 53                           	push	ebx
+  446739: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44673c: 0f bf 8b ce 00 00 00         	movsx	ecx, word ptr [ebx + 0xce]
+  446743: 51                           	push	ecx
+  446744: 0f b7 03                     	movzx	eax, word ptr [ebx]
+  446747: 50                           	push	eax
+  446748: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44674b: e8 03 84 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446750: 83 c4 20                     	add	esp, 0x20
+  446753: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446757: e9 45 07 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44675c: 0f bf 93 cc 00 00 00         	movsx	edx, word ptr [ebx + 0xcc]
+  446763: 83 ea 01                     	sub	edx, 0x1
+  446766: 72 12                        	jb	0x44677a <_cast_user_target+0x2068>
+  446768: 4a                           	dec	edx
+  446769: 74 0f                        	je	0x44677a <_cast_user_target+0x2068>
+  44676b: 83 ea 04                     	sub	edx, 0x4
+  44676e: 74 0a                        	je	0x44677a <_cast_user_target+0x2068>
+  446770: 83 ea 02                     	sub	edx, 0x2
+  446773: 74 05                        	je	0x44677a <_cast_user_target+0x2068>
+  446775: e9 27 07 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44677a: 56                           	push	esi
+  44677b: 6a ff                        	push	-0x1
+  44677d: 6a 15                        	push	0x15
+  44677f: e8 ec 6d ff ff               	call	0x43d570 <_user_has_ability>
+  446784: 83 c4 0c                     	add	esp, 0xc
+  446787: 84 c0                        	test	al, al
+  446789: 0f 85 12 07 00 00            	jne	0x446ea1 <_cast_user_target+0x278f>
+  44678f: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  446797: 75 3f                        	jne	0x4467d8 <_cast_user_target+0x20c6>
+  446799: 0f bf 8e be 00 00 00         	movsx	ecx, word ptr [esi + 0xbe]
+  4467a0: 3b 4d e0                     	cmp	ecx, dword ptr [ebp - 0x20]
+  4467a3: 7d 0b                        	jge	0x4467b0 <_cast_user_target+0x209e>
+  4467a5: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  4467a9: 66 89 86 be 00 00 00         	mov	word ptr [esi + 0xbe], ax
+  4467b0: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4467b4: 75 19                        	jne	0x4467cf <_cast_user_target+0x20bd>
+  4467b6: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4467b9: 8d 56 1e                     	lea	edx, [esi + 0x1e]
+  4467bc: 52                           	push	edx
+  4467bd: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4467c0: 53                           	push	ebx
+  4467c1: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4467c4: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4467c7: e8 67 7c ff ff               	call	0x43e433 <_display_spell_success>
+  4467cc: 83 c4 18                     	add	esp, 0x18
+  4467cf: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  4467d3: e9 c9 06 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4467d8: 0f bf 8e be 00 00 00         	movsx	ecx, word ptr [esi + 0xbe]
+  4467df: 3b 4d e0                     	cmp	ecx, dword ptr [ebp - 0x20]
+  4467e2: 7d 0b                        	jge	0x4467ef <_cast_user_target+0x20dd>
+  4467e4: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  4467e8: 66 89 86 be 00 00 00         	mov	word ptr [esi + 0xbe], ax
+  4467ef: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4467f3: 75 23                        	jne	0x446818 <_cast_user_target+0x2106>
+  4467f5: 6a 01                        	push	0x1
+  4467f7: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4467fa: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4467fd: 53                           	push	ebx
+  4467fe: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446801: 0f bf 93 ce 00 00 00         	movsx	edx, word ptr [ebx + 0xce]
+  446808: 52                           	push	edx
+  446809: 0f b7 0b                     	movzx	ecx, word ptr [ebx]
+  44680c: 51                           	push	ecx
+  44680d: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446810: e8 3e 83 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446815: 83 c4 20                     	add	esp, 0x20
+  446818: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  44681c: e9 80 06 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446821: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  446828: 83 e8 01                     	sub	eax, 0x1
+  44682b: 72 12                        	jb	0x44683f <_cast_user_target+0x212d>
+  44682d: 48                           	dec	eax
+  44682e: 74 0f                        	je	0x44683f <_cast_user_target+0x212d>
+  446830: 83 e8 04                     	sub	eax, 0x4
+  446833: 74 0a                        	je	0x44683f <_cast_user_target+0x212d>
+  446835: 83 e8 02                     	sub	eax, 0x2
+  446838: 74 05                        	je	0x44683f <_cast_user_target+0x212d>
+  44683a: e9 62 06 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44683f: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  446847: 75 52                        	jne	0x44689b <_cast_user_target+0x2189>
+  446849: 56                           	push	esi
+  44684a: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44684d: e8 55 94 ff ff               	call	0x43fca7 <_silly_spell+0x94>
+  446852: 83 c4 08                     	add	esp, 0x8
+  446855: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  446859: 66 29 96 be 00 00 00         	sub	word ptr [esi + 0xbe], dx
+  446860: 66 83 be be 00 00 00 00      	cmp	word ptr [esi + 0xbe], 0x0
+  446868: 7d 09                        	jge	0x446873 <_cast_user_target+0x2161>
+  44686a: 66 c7 86 be 00 00 00 00 00   	mov	word ptr [esi + 0xbe], 0x0
+  446873: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446877: 75 19                        	jne	0x446892 <_cast_user_target+0x2180>
+  446879: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  44687c: 8d 4e 1e                     	lea	ecx, [esi + 0x1e]
+  44687f: 51                           	push	ecx
+  446880: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446883: 53                           	push	ebx
+  446884: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446887: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44688a: e8 a4 7b ff ff               	call	0x43e433 <_display_spell_success>
+  44688f: 83 c4 18                     	add	esp, 0x18
+  446892: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446896: e9 06 06 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44689b: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  44689f: 75 23                        	jne	0x4468c4 <_cast_user_target+0x21b2>
+  4468a1: 6a 01                        	push	0x1
+  4468a3: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4468a6: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4468a9: 53                           	push	ebx
+  4468aa: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4468ad: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  4468b4: 50                           	push	eax
+  4468b5: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  4468b8: 52                           	push	edx
+  4468b9: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4468bc: e8 92 82 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  4468c1: 83 c4 20                     	add	esp, 0x20
+  4468c4: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  4468c8: e9 d4 05 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4468cd: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  4468d4: 83 f9 0d                     	cmp	ecx, 0xd
+  4468d7: 0f 87 c4 05 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  4468dd: 8a 89 ea 68 44 00            	mov	cl, byte ptr [ecx + 0x4468ea]
+  4468e3: ff 24 8d f8 68 44 00         	jmp	dword ptr [4*ecx + 0x4468f8]
+  4468ea: 02 02                        	add	al, byte ptr [edx]
+  4468ec: 02 01                        	add	al, byte ptr [ecx]
+  4468ee: 00 01                        	add	byte ptr [ecx], al
+  4468f0: 02 00                        	add	al, byte ptr [eax]
+  4468f2: 02 01                        	add	al, byte ptr [ecx]
+  4468f4: 01 01                        	add	dword ptr [ecx], eax
+  4468f6: 01 01                        	add	dword ptr [ecx], eax
+  4468f8: a1 6e 44 00 69               	mov	eax, dword ptr [0x6900446e]
+  4468fd: 69 44 00 04 69 44 00 66      	imul	eax, dword ptr [eax + eax + 0x4], 0x66004469
+  446905: 83 bb ce 00 00 00 00         	cmp	dword ptr [ebx + 0xce], 0x0
+  44690c: 75 13                        	jne	0x446921 <_cast_user_target+0x220f>
+  44690e: 6a 01                        	push	0x1
+  446910: 53                           	push	ebx
+  446911: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446914: e8 fa 92 ff ff               	call	0x43fc13 <_silly_spell>
+  446919: 83 c4 0c                     	add	esp, 0xc
+  44691c: e9 80 05 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446921: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446925: 75 2b                        	jne	0x446952 <_cast_user_target+0x2240>
+  446927: 6a 00                        	push	0x0
+  446929: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  44692c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44692f: 53                           	push	ebx
+  446930: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446933: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  44693a: 50                           	push	eax
+  44693b: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  44693e: 52                           	push	edx
+  44693f: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446942: e8 0c 82 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446947: 83 c4 20                     	add	esp, 0x20
+  44694a: 85 c0                        	test	eax, eax
+  44694c: 0f 8c 4f 05 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446952: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446956: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446959: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  44695c: e8 03 47 fd ff               	call	0x41b064 <_add_spell_to_spellbook>
+  446961: 83 c4 08                     	add	esp, 0x8
+  446964: e9 38 05 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446969: 6a 01                        	push	0x1
+  44696b: 53                           	push	ebx
+  44696c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  44696f: e8 9f 92 ff ff               	call	0x43fc13 <_silly_spell>
+  446974: 83 c4 0c                     	add	esp, 0xc
+  446977: e9 25 05 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  44697c: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  446983: 83 f9 0d                     	cmp	ecx, 0xd
+  446986: 0f 87 15 05 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  44698c: 8a 89 99 69 44 00            	mov	cl, byte ptr [ecx + 0x446999]
+  446992: ff 24 8d a7 69 44 00         	jmp	dword ptr [4*ecx + 0x4469a7]
+  446999: 02 02                        	add	al, byte ptr [edx]
+  44699b: 02 01                        	add	al, byte ptr [ecx]
+  44699d: 00 01                        	add	byte ptr [ecx], al
+  44699f: 02 00                        	add	al, byte ptr [eax]
+  4469a1: 02 01                        	add	al, byte ptr [ecx]
+  4469a3: 01 01                        	add	dword ptr [ecx], eax
+  4469a5: 01 01                        	add	dword ptr [ecx], eax
+  4469a7: a1 6e 44 00 2d               	mov	eax, dword ptr [0x2d00446e]
+  4469ac: 6a 44                        	push	0x44
+  4469ae: 00 b3 69 44 00 66            	add	byte ptr [ebx + 0x66004469], dh
+  4469b4: 83 bb ce 00 00 00 00         	cmp	dword ptr [ebx + 0xce], 0x0
+  4469bb: 75 13                        	jne	0x4469d0 <_cast_user_target+0x22be>
+  4469bd: 6a 01                        	push	0x1
+  4469bf: 53                           	push	ebx
+  4469c0: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4469c3: e8 4b 92 ff ff               	call	0x43fc13 <_silly_spell>
+  4469c8: 83 c4 0c                     	add	esp, 0xc
+  4469cb: e9 d1 04 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  4469d0: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  4469d4: 75 2b                        	jne	0x446a01 <_cast_user_target+0x22ef>
+  4469d6: 6a 00                        	push	0x0
+  4469d8: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  4469db: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4469de: 53                           	push	ebx
+  4469df: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  4469e2: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  4469e9: 50                           	push	eax
+  4469ea: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  4469ed: 52                           	push	edx
+  4469ee: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4469f1: e8 5d 81 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  4469f6: 83 c4 20                     	add	esp, 0x20
+  4469f9: 85 c0                        	test	eax, eax
+  4469fb: 0f 8c a0 04 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446a01: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446a05: 66 8b 4d e0                  	mov	cx, word ptr [ebp - 0x20]
+  446a09: 66 01 8e ae 00 00 00         	add	word ptr [esi + 0xae], cx
+  446a10: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  446a14: 66 01 86 b0 00 00 00         	add	word ptr [esi + 0xb0], ax
+  446a1b: 6a 02                        	push	0x2
+  446a1d: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446a20: e8 ff 39 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446a25: 83 c4 08                     	add	esp, 0x8
+  446a28: e9 74 04 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446a2d: 6a 01                        	push	0x1
+  446a2f: 53                           	push	ebx
+  446a30: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446a33: e8 db 91 ff ff               	call	0x43fc13 <_silly_spell>
+  446a38: 83 c4 0c                     	add	esp, 0xc
+  446a3b: e9 61 04 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446a40: 0f bf 93 cc 00 00 00         	movsx	edx, word ptr [ebx + 0xcc]
+  446a47: 83 fa 0d                     	cmp	edx, 0xd
+  446a4a: 0f 87 51 04 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446a50: 8a 92 5d 6a 44 00            	mov	dl, byte ptr [edx + 0x446a5d]
+  446a56: ff 24 95 6b 6a 44 00         	jmp	dword ptr [4*edx + 0x446a6b]
+  446a5d: 02 02                        	add	al, byte ptr [edx]
+  446a5f: 02 01                        	add	al, byte ptr [ecx]
+  446a61: 00 01                        	add	byte ptr [ecx], al
+  446a63: 02 00                        	add	al, byte ptr [eax]
+  446a65: 02 01                        	add	al, byte ptr [ecx]
+  446a67: 01 01                        	add	dword ptr [ecx], eax
+  446a69: 01 01                        	add	dword ptr [ecx], eax
+  446a6b: a1 6e 44 00 e6               	mov	eax, dword ptr [0xe600446e]
+  446a70: 6a 44                        	push	0x44
+  446a72: 00 77 6a                     	add	byte ptr [edi + 0x6a], dh
+  446a75: 44                           	inc	esp
+  446a76: 00 66 83                     	add	byte ptr [esi - 0x7d], ah
+  446a79: bb ce 00 00 00               	mov	ebx, 0xce
+  446a7e: 00 75 13                     	add	byte ptr [ebp + 0x13], dh
+  446a81: 6a 01                        	push	0x1
+  446a83: 53                           	push	ebx
+  446a84: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446a87: e8 87 91 ff ff               	call	0x43fc13 <_silly_spell>
+  446a8c: 83 c4 0c                     	add	esp, 0xc
+  446a8f: e9 0d 04 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446a94: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446a98: 75 2b                        	jne	0x446ac5 <_cast_user_target+0x23b3>
+  446a9a: 6a 00                        	push	0x0
+  446a9c: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446a9f: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446aa2: 53                           	push	ebx
+  446aa3: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446aa6: 0f bf 8b ce 00 00 00         	movsx	ecx, word ptr [ebx + 0xce]
+  446aad: 51                           	push	ecx
+  446aae: 0f b7 03                     	movzx	eax, word ptr [ebx]
+  446ab1: 50                           	push	eax
+  446ab2: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446ab5: e8 99 80 ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446aba: 83 c4 20                     	add	esp, 0x20
+  446abd: 85 c0                        	test	eax, eax
+  446abf: 0f 8c dc 03 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446ac5: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446ac9: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  446acd: 66 01 96 a2 00 00 00         	add	word ptr [esi + 0xa2], dx
+  446ad4: 6a 02                        	push	0x2
+  446ad6: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446ad9: e8 46 39 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446ade: 83 c4 08                     	add	esp, 0x8
+  446ae1: e9 bb 03 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446ae6: 6a 01                        	push	0x1
+  446ae8: 53                           	push	ebx
+  446ae9: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446aec: e8 22 91 ff ff               	call	0x43fc13 <_silly_spell>
+  446af1: 83 c4 0c                     	add	esp, 0xc
+  446af4: e9 a8 03 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446af9: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  446b00: 83 f9 0d                     	cmp	ecx, 0xd
+  446b03: 0f 87 98 03 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446b09: 8a 89 16 6b 44 00            	mov	cl, byte ptr [ecx + 0x446b16]
+  446b0f: ff 24 8d 24 6b 44 00         	jmp	dword ptr [4*ecx + 0x446b24]
+  446b16: 02 02                        	add	al, byte ptr [edx]
+  446b18: 02 01                        	add	al, byte ptr [ecx]
+  446b1a: 00 01                        	add	byte ptr [ecx], al
+  446b1c: 02 00                        	add	al, byte ptr [eax]
+  446b1e: 02 01                        	add	al, byte ptr [ecx]
+  446b20: 01 01                        	add	dword ptr [ecx], eax
+  446b22: 01 01                        	add	dword ptr [ecx], eax
+  446b24: a1 6e 44 00 9f               	mov	eax, dword ptr [0x9f00446e]
+  446b29: 6b 44 00 30 6b               	imul	eax, dword ptr [eax + eax + 0x30], 0x6b
+  446b2e: 44                           	inc	esp
+  446b2f: 00 66 83                     	add	byte ptr [esi - 0x7d], ah
+  446b32: bb ce 00 00 00               	mov	ebx, 0xce
+  446b37: 00 75 13                     	add	byte ptr [ebp + 0x13], dh
+  446b3a: 6a 01                        	push	0x1
+  446b3c: 53                           	push	ebx
+  446b3d: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446b40: e8 ce 90 ff ff               	call	0x43fc13 <_silly_spell>
+  446b45: 83 c4 0c                     	add	esp, 0xc
+  446b48: e9 54 03 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446b4d: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446b51: 75 2b                        	jne	0x446b7e <_cast_user_target+0x246c>
+  446b53: 6a 00                        	push	0x0
+  446b55: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446b58: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446b5b: 53                           	push	ebx
+  446b5c: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446b5f: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  446b66: 50                           	push	eax
+  446b67: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  446b6a: 52                           	push	edx
+  446b6b: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446b6e: e8 e0 7f ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446b73: 83 c4 20                     	add	esp, 0x20
+  446b76: 85 c0                        	test	eax, eax
+  446b78: 0f 8c 23 03 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446b7e: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446b82: 66 8b 4d e0                  	mov	cx, word ptr [ebp - 0x20]
+  446b86: 66 01 8e a4 00 00 00         	add	word ptr [esi + 0xa4], cx
+  446b8d: 6a 02                        	push	0x2
+  446b8f: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446b92: e8 8d 38 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446b97: 83 c4 08                     	add	esp, 0x8
+  446b9a: e9 02 03 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446b9f: 6a 01                        	push	0x1
+  446ba1: 53                           	push	ebx
+  446ba2: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446ba5: e8 69 90 ff ff               	call	0x43fc13 <_silly_spell>
+  446baa: 83 c4 0c                     	add	esp, 0xc
+  446bad: e9 ef 02 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446bb2: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  446bb9: 83 f8 0d                     	cmp	eax, 0xd
+  446bbc: 0f 87 df 02 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446bc2: 8a 80 cf 6b 44 00            	mov	al, byte ptr [eax + 0x446bcf]
+  446bc8: ff 24 85 dd 6b 44 00         	jmp	dword ptr [4*eax + 0x446bdd]
+  446bcf: 02 02                        	add	al, byte ptr [edx]
+  446bd1: 02 01                        	add	al, byte ptr [ecx]
+  446bd3: 00 01                        	add	byte ptr [ecx], al
+  446bd5: 02 00                        	add	al, byte ptr [eax]
+  446bd7: 02 01                        	add	al, byte ptr [ecx]
+  446bd9: 01 01                        	add	dword ptr [ecx], eax
+  446bdb: 01 01                        	add	dword ptr [ecx], eax
+  446bdd: a1 6e 44 00 58               	mov	eax, dword ptr [0x5800446e]
+  446be2: 6c                           	insb	byte ptr es:[edi], dx
+  446be3: 44                           	inc	esp
+  446be4: 00 e9                        	add	cl, ch
+  446be6: 6b 44 00 66 83               	imul	eax, dword ptr [eax + eax + 0x66], -0x7d
+  446beb: bb ce 00 00 00               	mov	ebx, 0xce
+  446bf0: 00 75 13                     	add	byte ptr [ebp + 0x13], dh
+  446bf3: 6a 01                        	push	0x1
+  446bf5: 53                           	push	ebx
+  446bf6: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446bf9: e8 15 90 ff ff               	call	0x43fc13 <_silly_spell>
+  446bfe: 83 c4 0c                     	add	esp, 0xc
+  446c01: e9 9b 02 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446c06: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446c0a: 75 2b                        	jne	0x446c37 <_cast_user_target+0x2525>
+  446c0c: 6a 00                        	push	0x0
+  446c0e: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446c11: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446c14: 53                           	push	ebx
+  446c15: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446c18: 0f bf 93 ce 00 00 00         	movsx	edx, word ptr [ebx + 0xce]
+  446c1f: 52                           	push	edx
+  446c20: 0f b7 0b                     	movzx	ecx, word ptr [ebx]
+  446c23: 51                           	push	ecx
+  446c24: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446c27: e8 27 7f ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446c2c: 83 c4 20                     	add	esp, 0x20
+  446c2f: 85 c0                        	test	eax, eax
+  446c31: 0f 8c 6a 02 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446c37: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446c3b: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  446c3f: 66 01 86 a6 00 00 00         	add	word ptr [esi + 0xa6], ax
+  446c46: 6a 02                        	push	0x2
+  446c48: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446c4b: e8 d4 37 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446c50: 83 c4 08                     	add	esp, 0x8
+  446c53: e9 49 02 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446c58: 6a 01                        	push	0x1
+  446c5a: 53                           	push	ebx
+  446c5b: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446c5e: e8 b0 8f ff ff               	call	0x43fc13 <_silly_spell>
+  446c63: 83 c4 0c                     	add	esp, 0xc
+  446c66: e9 36 02 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446c6b: 0f bf 93 cc 00 00 00         	movsx	edx, word ptr [ebx + 0xcc]
+  446c72: 83 fa 0d                     	cmp	edx, 0xd
+  446c75: 0f 87 26 02 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446c7b: 8a 92 88 6c 44 00            	mov	dl, byte ptr [edx + 0x446c88]
+  446c81: ff 24 95 96 6c 44 00         	jmp	dword ptr [4*edx + 0x446c96]
+  446c88: 02 02                        	add	al, byte ptr [edx]
+  446c8a: 02 01                        	add	al, byte ptr [ecx]
+  446c8c: 00 01                        	add	byte ptr [ecx], al
+  446c8e: 02 00                        	add	al, byte ptr [eax]
+  446c90: 02 01                        	add	al, byte ptr [ecx]
+  446c92: 01 01                        	add	dword ptr [ecx], eax
+  446c94: 01 01                        	add	dword ptr [ecx], eax
+  446c96: a1 6e 44 00 11               	mov	eax, dword ptr [0x1100446e]
+  446c9b: 6d                           	insd	dword ptr es:[edi], dx
+  446c9c: 44                           	inc	esp
+  446c9d: 00 a2 6c 44 00 66            	add	byte ptr [edx + 0x6600446c], ah
+  446ca3: 83 bb ce 00 00 00 00         	cmp	dword ptr [ebx + 0xce], 0x0
+  446caa: 75 13                        	jne	0x446cbf <_cast_user_target+0x25ad>
+  446cac: 6a 01                        	push	0x1
+  446cae: 53                           	push	ebx
+  446caf: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446cb2: e8 5c 8f ff ff               	call	0x43fc13 <_silly_spell>
+  446cb7: 83 c4 0c                     	add	esp, 0xc
+  446cba: e9 e2 01 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446cbf: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446cc3: 75 2b                        	jne	0x446cf0 <_cast_user_target+0x25de>
+  446cc5: 6a 00                        	push	0x0
+  446cc7: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446cca: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446ccd: 53                           	push	ebx
+  446cce: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446cd1: 0f bf 8b ce 00 00 00         	movsx	ecx, word ptr [ebx + 0xce]
+  446cd8: 51                           	push	ecx
+  446cd9: 0f b7 03                     	movzx	eax, word ptr [ebx]
+  446cdc: 50                           	push	eax
+  446cdd: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446ce0: e8 6e 7e ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446ce5: 83 c4 20                     	add	esp, 0x20
+  446ce8: 85 c0                        	test	eax, eax
+  446cea: 0f 8c b1 01 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446cf0: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446cf4: 66 8b 55 e0                  	mov	dx, word ptr [ebp - 0x20]
+  446cf8: 66 01 96 a8 00 00 00         	add	word ptr [esi + 0xa8], dx
+  446cff: 6a 02                        	push	0x2
+  446d01: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446d04: e8 1b 37 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446d09: 83 c4 08                     	add	esp, 0x8
+  446d0c: e9 90 01 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446d11: 6a 01                        	push	0x1
+  446d13: 53                           	push	ebx
+  446d14: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446d17: e8 f7 8e ff ff               	call	0x43fc13 <_silly_spell>
+  446d1c: 83 c4 0c                     	add	esp, 0xc
+  446d1f: e9 7d 01 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446d24: 0f bf 8b cc 00 00 00         	movsx	ecx, word ptr [ebx + 0xcc]
+  446d2b: 83 f9 0d                     	cmp	ecx, 0xd
+  446d2e: 0f 87 6d 01 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446d34: 8a 89 41 6d 44 00            	mov	cl, byte ptr [ecx + 0x446d41]
+  446d3a: ff 24 8d 4f 6d 44 00         	jmp	dword ptr [4*ecx + 0x446d4f]
+  446d41: 02 02                        	add	al, byte ptr [edx]
+  446d43: 02 01                        	add	al, byte ptr [ecx]
+  446d45: 00 01                        	add	byte ptr [ecx], al
+  446d47: 02 00                        	add	al, byte ptr [eax]
+  446d49: 02 01                        	add	al, byte ptr [ecx]
+  446d4b: 01 01                        	add	dword ptr [ecx], eax
+  446d4d: 01 01                        	add	dword ptr [ecx], eax
+  446d4f: a1 6e 44 00 ca               	mov	eax, dword ptr [0xca00446e]
+  446d54: 6d                           	insd	dword ptr es:[edi], dx
+  446d55: 44                           	inc	esp
+  446d56: 00 5b 6d                     	add	byte ptr [ebx + 0x6d], bl
+  446d59: 44                           	inc	esp
+  446d5a: 00 66 83                     	add	byte ptr [esi - 0x7d], ah
+  446d5d: bb ce 00 00 00               	mov	ebx, 0xce
+  446d62: 00 75 13                     	add	byte ptr [ebp + 0x13], dh
+  446d65: 6a 01                        	push	0x1
+  446d67: 53                           	push	ebx
+  446d68: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446d6b: e8 a3 8e ff ff               	call	0x43fc13 <_silly_spell>
+  446d70: 83 c4 0c                     	add	esp, 0xc
+  446d73: e9 29 01 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446d78: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446d7c: 75 2b                        	jne	0x446da9 <_cast_user_target+0x2697>
+  446d7e: 6a 00                        	push	0x0
+  446d80: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446d83: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446d86: 53                           	push	ebx
+  446d87: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446d8a: 0f bf 83 ce 00 00 00         	movsx	eax, word ptr [ebx + 0xce]
+  446d91: 50                           	push	eax
+  446d92: 0f b7 13                     	movzx	edx, word ptr [ebx]
+  446d95: 52                           	push	edx
+  446d96: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446d99: e8 b5 7d ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446d9e: 83 c4 20                     	add	esp, 0x20
+  446da1: 85 c0                        	test	eax, eax
+  446da3: 0f 8c f8 00 00 00            	jl	0x446ea1 <_cast_user_target+0x278f>
+  446da9: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446dad: 66 8b 4d e0                  	mov	cx, word ptr [ebp - 0x20]
+  446db1: 66 01 8e aa 00 00 00         	add	word ptr [esi + 0xaa], cx
+  446db8: 6a 02                        	push	0x2
+  446dba: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446dbd: e8 62 36 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446dc2: 83 c4 08                     	add	esp, 0x8
+  446dc5: e9 d7 00 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446dca: 6a 01                        	push	0x1
+  446dcc: 53                           	push	ebx
+  446dcd: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446dd0: e8 3e 8e ff ff               	call	0x43fc13 <_silly_spell>
+  446dd5: 83 c4 0c                     	add	esp, 0xc
+  446dd8: e9 c4 00 00 00               	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446ddd: 0f bf 83 cc 00 00 00         	movsx	eax, word ptr [ebx + 0xcc]
+  446de4: 83 f8 0d                     	cmp	eax, 0xd
+  446de7: 0f 87 b4 00 00 00            	ja	0x446ea1 <_cast_user_target+0x278f>
+  446ded: 8a 80 fa 6d 44 00            	mov	al, byte ptr [eax + 0x446dfa]
+  446df3: ff 24 85 08 6e 44 00         	jmp	dword ptr [4*eax + 0x446e08]
+  446dfa: 02 02                        	add	al, byte ptr [edx]
+  446dfc: 02 01                        	add	al, byte ptr [ecx]
+  446dfe: 00 01                        	add	byte ptr [ecx], al
+  446e00: 02 00                        	add	al, byte ptr [eax]
+  446e02: 02 01                        	add	al, byte ptr [ecx]
+  446e04: 01 01                        	add	dword ptr [ecx], eax
+  446e06: 01 01                        	add	dword ptr [ecx], eax
+  446e08: a1 6e 44 00 79               	mov	eax, dword ptr [0x7900446e]
+  446e0d: 6e                           	outsb	dx, byte ptr [esi]
+  446e0e: 44                           	inc	esp
+  446e0f: 00 14 6e                     	add	byte ptr [esi + 2*ebp], dl
+  446e12: 44                           	inc	esp
+  446e13: 00 66 83                     	add	byte ptr [esi - 0x7d], ah
+  446e16: bb ce 00 00 00               	mov	ebx, 0xce
+  446e1b: 00 75 10                     	add	byte ptr [ebp + 0x10], dh
+  446e1e: 6a 01                        	push	0x1
+  446e20: 53                           	push	ebx
+  446e21: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446e24: e8 ea 8d ff ff               	call	0x43fc13 <_silly_spell>
+  446e29: 83 c4 0c                     	add	esp, 0xc
+  446e2c: eb 73                        	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446e2e: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446e32: 75 27                        	jne	0x446e5b <_cast_user_target+0x2749>
+  446e34: 6a 00                        	push	0x0
+  446e36: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446e39: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446e3c: 53                           	push	ebx
+  446e3d: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446e40: 0f bf 93 ce 00 00 00         	movsx	edx, word ptr [ebx + 0xce]
+  446e47: 52                           	push	edx
+  446e48: 0f b7 0b                     	movzx	ecx, word ptr [ebx]
+  446e4b: 51                           	push	ecx
+  446e4c: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446e4f: e8 ff 7c ff ff               	call	0x43eb53 <_add_cast_spell_to_user>
+  446e54: 83 c4 20                     	add	esp, 0x20
+  446e57: 85 c0                        	test	eax, eax
+  446e59: 7c 46                        	jl	0x446ea1 <_cast_user_target+0x278f>
+  446e5b: c6 45 cb 01                  	mov	byte ptr [ebp - 0x35], 0x1
+  446e5f: 66 8b 45 e0                  	mov	ax, word ptr [ebp - 0x20]
+  446e63: 66 01 86 ac 00 00 00         	add	word ptr [esi + 0xac], ax
+  446e6a: 6a 02                        	push	0x2
+  446e6c: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446e6f: e8 b0 35 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  446e74: 83 c4 08                     	add	esp, 0x8
+  446e77: eb 28                        	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446e79: 6a 01                        	push	0x1
+  446e7b: 53                           	push	ebx
+  446e7c: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446e7f: e8 8f 8d ff ff               	call	0x43fc13 <_silly_spell>
+  446e84: 83 c4 0c                     	add	esp, 0xc
+  446e87: eb 18                        	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446e89: 66 83 bb ce 00 00 00 00      	cmp	word ptr [ebx + 0xce], 0x0
+  446e91: 75 0e                        	jne	0x446ea1 <_cast_user_target+0x278f>
+  446e93: 8b 55 e0                     	mov	edx, dword ptr [ebp - 0x20]
+  446e96: 89 55 b0                     	mov	dword ptr [ebp - 0x50], edx
+  446e99: eb 06                        	jmp	0x446ea1 <_cast_user_target+0x278f>
+  446e9b: 8b 4d e0                     	mov	ecx, dword ptr [ebp - 0x20]
+  446e9e: 89 4d ac                     	mov	dword ptr [ebp - 0x54], ecx
+  446ea1: ff 45 ec                     	inc	dword ptr [ebp - 0x14]
+  446ea4: 83 7d ec 0a                  	cmp	dword ptr [ebp - 0x14], 0xa
+  446ea8: 7d 0a                        	jge	0x446eb4 <_cast_user_target+0x27a2>
+  446eaa: 80 7d c3 00                  	cmp	byte ptr [ebp - 0x3d], 0x0
+  446eae: 0f 84 74 e8 ff ff            	je	0x445728 <_cast_user_target+0x1016>
+  446eb4: 80 7d c3 00                  	cmp	byte ptr [ebp - 0x3d], 0x0
+  446eb8: 0f 85 7e 01 00 00            	jne	0x44703c <_cast_user_target+0x292a>
+  446ebe: 83 3d 5c 59 48 00 00         	cmp	dword ptr [0x48595c], 0x0
+  446ec5: 0f 84 71 01 00 00            	je	0x44703c <_cast_user_target+0x292a>
+  446ecb: 83 3d 60 59 48 00 00         	cmp	dword ptr [0x485960], 0x0
+  446ed2: 0f 84 64 01 00 00            	je	0x44703c <_cast_user_target+0x292a>
+  446ed8: ff 35 60 59 48 00            	push	dword ptr [0x485960]
+  446ede: e8 70 ff fc ff               	call	0x416e53 <_add_experience+0x63b>
+  446ee3: 59                           	pop	ecx
+  446ee4: 84 c0                        	test	al, al
+  446ee6: 0f 84 50 01 00 00            	je	0x44703c <_cast_user_target+0x292a>
+  446eec: 80 7d cb 00                  	cmp	byte ptr [ebp - 0x35], 0x0
+  446ef0: 75 19                        	jne	0x446f0b <_cast_user_target+0x27f9>
+  446ef2: ff 75 e0                     	push	dword ptr [ebp - 0x20]
+  446ef5: 8d 46 1e                     	lea	eax, [esi + 0x1e]
+  446ef8: 50                           	push	eax
+  446ef9: ff 75 fc                     	push	dword ptr [ebp - 0x4]
+  446efc: 53                           	push	ebx
+  446efd: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446f00: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446f03: e8 2b 75 ff ff               	call	0x43e433 <_display_spell_success>
+  446f08: 83 c4 18                     	add	esp, 0x18
+  446f0b: 66 c7 86 f8 06 00 00 ff ff   	mov	word ptr [esi + 0x6f8], 0xffff
+  446f14: 6a ff                        	push	-0x1
+  446f16: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446f19: e8 57 6f fd ff               	call	0x41de75 <_stop_following>
+  446f1e: 83 c4 08                     	add	esp, 0x8
+  446f21: 6a 00                        	push	0x0
+  446f23: ff 35 60 59 48 00            	push	dword ptr [0x485960]
+  446f29: ff 35 5c 59 48 00            	push	dword ptr [0x48595c]
+  446f2f: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  446f32: e8 af fb fc ff               	call	0x416ae6 <_add_experience+0x2ce>
+  446f37: 83 c4 10                     	add	esp, 0x10
+  446f3a: e9 fd 00 00 00               	jmp	0x44703c <_cast_user_target+0x292a>
+  446f3f: 80 3d f4 77 48 00 00         	cmp	byte ptr [0x4877f4], 0x0
+  446f46: 0f 85 b0 00 00 00            	jne	0x446ffc <_cast_user_target+0x28ea>
+  446f4c: 68 76 5e 48 00               	push	0x485e76
+  446f51: e8 d2 1c 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  446f56: 59                           	pop	ecx
+  446f57: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  446f5a: 66 8b 8a ba 00 00 00         	mov	cx, word ptr [edx + 0xba]
+  446f61: 66 3b 8b bc 00 00 00         	cmp	cx, word ptr [ebx + 0xbc]
+  446f68: 73 2f                        	jae	0x446f99 <_cast_user_target+0x2887>
+  446f6a: 8b 45 f4                     	mov	eax, dword ptr [ebp - 0xc]
+  446f6d: 66 83 78 40 05               	cmp	word ptr [eax + 0x40], 0x5
+  446f72: 75 07                        	jne	0x446f7b <_cast_user_target+0x2869>
+  446f74: ba 65 5d 48 00               	mov	edx, 0x485d65
+  446f79: eb 05                        	jmp	0x446f80 <_cast_user_target+0x286e>
+  446f7b: ba 75 5d 48 00               	mov	edx, 0x485d75
+  446f80: 52                           	push	edx
+  446f81: 68 44 5d 48 00               	push	0x485d44
+  446f86: e8 9d 1c 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  446f8b: 83 c4 08                     	add	esp, 0x8
+  446f8e: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446f91: e8 da 41 02 00               	call	0x46b170 <_tell_user>
+  446f96: 59                           	pop	ecx
+  446f97: eb 58                        	jmp	0x446ff1 <_cast_user_target+0x28df>
+  446f99: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  446f9c: 66 8b 88 02 06 00 00         	mov	cx, word ptr [eax + 0x602]
+  446fa3: 66 3b 8b f0 00 00 00         	cmp	cx, word ptr [ebx + 0xf0]
+  446faa: 7d 45                        	jge	0x446ff1 <_cast_user_target+0x28df>
+  446fac: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  446faf: 0f b7 90 92 00 00 00         	movzx	edx, word ptr [eax + 0x92]
+  446fb6: 52                           	push	edx
+  446fb7: e8 17 bc fe ff               	call	0x432bd3 <_get_class_data>
+  446fbc: 59                           	pop	ecx
+  446fbd: 89 45 f4                     	mov	dword ptr [ebp - 0xc], eax
+  446fc0: 83 7d f4 00                  	cmp	dword ptr [ebp - 0xc], 0x0
+  446fc4: 75 07                        	jne	0x446fcd <_cast_user_target+0x28bb>
+  446fc6: 33 c0                        	xor	eax, eax
+  446fc8: e9 3c 01 00 00               	jmp	0x447109 <_cast_user_target+0x29f7>
+  446fcd: 8b 55 f4                     	mov	edx, dword ptr [ebp - 0xc]
+  446fd0: 66 83 7a 40 05               	cmp	word ptr [edx + 0x40], 0x5
+  446fd5: 75 07                        	jne	0x446fde <_cast_user_target+0x28cc>
+  446fd7: b9 c1 5e 48 00               	mov	ecx, 0x485ec1
+  446fdc: eb 05                        	jmp	0x446fe3 <_cast_user_target+0x28d1>
+  446fde: b9 da 5e 48 00               	mov	ecx, 0x485eda
+  446fe3: 51                           	push	ecx
+  446fe4: 68 a5 5e 48 00               	push	0x485ea5
+  446fe9: e8 3a 1c 03 00               	call	0x478c28 <_update_top_list+0xfaf>
+  446fee: 83 c4 08                     	add	esp, 0x8
+  446ff1: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  446ff4: e8 77 41 02 00               	call	0x46b170 <_tell_user>
+  446ff9: 59                           	pop	ecx
+  446ffa: eb 36                        	jmp	0x447032 <_cast_user_target+0x2920>
+  446ffc: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  446fff: 66 8b 90 ba 00 00 00         	mov	dx, word ptr [eax + 0xba]
+  447006: 66 3b 93 bc 00 00 00         	cmp	dx, word ptr [ebx + 0xbc]
+  44700d: 72 1f                        	jb	0x44702e <_cast_user_target+0x291c>
+  44700f: 66 83 bb bc 00 00 00 00      	cmp	word ptr [ebx + 0xbc], 0x0
+  447017: 76 09                        	jbe	0x447022 <_cast_user_target+0x2910>
+  447019: 66 8b 83 bc 00 00 00         	mov	ax, word ptr [ebx + 0xbc]
+  447020: eb 02                        	jmp	0x447024 <_cast_user_target+0x2912>
+  447022: 33 c0                        	xor	eax, eax
+  447024: 8b 55 fc                     	mov	edx, dword ptr [ebp - 0x4]
+  447027: 66 29 82 ba 00 00 00         	sub	word ptr [edx + 0xba], ax
+  44702e: c6 45 ca 01                  	mov	byte ptr [ebp - 0x36], 0x1
+  447032: 83 7d c4 01                  	cmp	dword ptr [ebp - 0x3c], 0x1
+  447036: 75 04                        	jne	0x44703c <_cast_user_target+0x292a>
+  447038: c6 45 bb 00                  	mov	byte ptr [ebp - 0x45], 0x0
+  44703c: 80 7d c3 00                  	cmp	byte ptr [ebp - 0x3d], 0x0
+  447040: 75 56                        	jne	0x447098 <_cast_user_target+0x2986>
+  447042: 83 7d b0 00                  	cmp	dword ptr [ebp - 0x50], 0x0
+  447046: 74 50                        	je	0x447098 <_cast_user_target+0x2986>
+  447048: 6a 64                        	push	0x64
+  44704a: 6a 00                        	push	0x0
+  44704c: e8 61 1c 03 00               	call	0x478cb2 <_update_top_list+0x1039>
+  447051: 83 c4 08                     	add	esp, 0x8
+  447054: 3b 45 ac                     	cmp	eax, dword ptr [ebp - 0x54]
+  447057: 7d 3f                        	jge	0x447098 <_cast_user_target+0x2986>
+  447059: ff 75 b0                     	push	dword ptr [ebp - 0x50]
+  44705c: e8 1c ff 02 00               	call	0x476f7d <_alloc_get_spell_data>
+  447061: 59                           	pop	ecx
+  447062: 89 45 bc                     	mov	dword ptr [ebp - 0x44], eax
+  447065: 8a 4d 18                     	mov	cl, byte ptr [ebp + 0x18]
+  447068: 51                           	push	ecx
+  447069: 8a 45 14                     	mov	al, byte ptr [ebp + 0x14]
+  44706c: 50                           	push	eax
+  44706d: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  447070: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  447073: ff 75 bc                     	push	dword ptr [ebp - 0x44]
+  447076: e8 97 d6 ff ff               	call	0x444712 <_cast_user_target>
+  44707b: 83 c4 14                     	add	esp, 0x14
+  44707e: 8d 55 bc                     	lea	edx, [ebp - 0x44]
+  447081: 52                           	push	edx
+  447082: e8 9b fe 02 00               	call	0x476f22 <_free_spell_data>
+  447087: 59                           	pop	ecx
+  447088: 33 c9                        	xor	ecx, ecx
+  44708a: 89 4d b0                     	mov	dword ptr [ebp - 0x50], ecx
+  44708d: c7 45 ac 64 00 00 00         	mov	dword ptr [ebp - 0x54], 0x64
+  447094: c6 45 ca 01                  	mov	byte ptr [ebp - 0x36], 0x1
+  447098: 80 7d ca 00                  	cmp	byte ptr [ebp - 0x36], 0x0
+  44709c: 75 10                        	jne	0x4470ae <_cast_user_target+0x299c>
+  44709e: 80 7d c3 00                  	cmp	byte ptr [ebp - 0x3d], 0x0
+  4470a2: 75 0a                        	jne	0x4470ae <_cast_user_target+0x299c>
+  4470a4: 83 7d c4 14                  	cmp	dword ptr [ebp - 0x3c], 0x14
+  4470a8: 0f 8c cc dd ff ff            	jl	0x444e7a <_cast_user_target+0x768>
+  4470ae: 80 7d c3 00                  	cmp	byte ptr [ebp - 0x3d], 0x0
+  4470b2: 75 53                        	jne	0x447107 <_cast_user_target+0x29f5>
+  4470b4: 80 3d f4 77 48 00 00         	cmp	byte ptr [0x4877f4], 0x0
+  4470bb: 74 38                        	je	0x4470f5 <_cast_user_target+0x29e3>
+  4470bd: 8b 45 fc                     	mov	eax, dword ptr [ebp - 0x4]
+  4470c0: 66 8b 90 02 06 00 00         	mov	dx, word ptr [eax + 0x602]
+  4470c7: 66 3b 93 f0 00 00 00         	cmp	dx, word ptr [ebx + 0xf0]
+  4470ce: 7d 0c                        	jge	0x4470dc <_cast_user_target+0x29ca>
+  4470d0: 8b 4d fc                     	mov	ecx, dword ptr [ebp - 0x4]
+  4470d3: 66 c7 81 ba 00 00 00 00 00   	mov	word ptr [ecx + 0xba], 0x0
+  4470dc: 0f b7 03                     	movzx	eax, word ptr [ebx]
+  4470df: 50                           	push	eax
+  4470e0: 6a 01                        	push	0x1
+  4470e2: 68 ff ff 00 00               	push	0xffff
+  4470e7: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4470ea: ff 75 0c                     	push	dword ptr [ebp + 0xc]
+  4470ed: e8 6d 57 00 00               	call	0x44c85f <_engage_autocombat>
+  4470f2: 83 c4 14                     	add	esp, 0x14
+  4470f5: 6a 02                        	push	0x2
+  4470f7: ff 75 10                     	push	dword ptr [ebp + 0x10]
+  4470fa: e8 25 33 fd ff               	call	0x41a424 <_calculate_secondary_stats>
+  4470ff: 83 c4 08                     	add	esp, 0x8
+  447102: 8a 45 bb                     	mov	al, byte ptr [ebp - 0x45]
+  447105: eb 02                        	jmp	0x447109 <_cast_user_target+0x29f7>
+  447107: b0 02                        	mov	al, 0x2
+  447109: 5f                           	pop	edi
+  44710a: 5e                           	pop	esi
+  44710b: 5b                           	pop	ebx
+  44710c: 8b e5                        	mov	esp, ebp
+  44710e: 5d                           	pop	ebp
+  44710f: c3                           	ret

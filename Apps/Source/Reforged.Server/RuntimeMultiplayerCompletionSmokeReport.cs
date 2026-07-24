@@ -33,7 +33,7 @@ public sealed record RuntimeMultiplayerCompletionSmokeReport(bool Passed, IReadO
             if (!killed.Died || string.IsNullOrWhiteSpace(killed.CorpseId)) throw new InvalidOperationException("shared-corpse-not-created");
             checks.Add("shared-corpse-creation");
 
-            var winners = new ConcurrentBag<RuntimeLootClaimResult>();
+            var winners = new ConcurrentBag<RuntimeMultiplayerLootClaimResult>();
             Parallel.For(0, 24, _ => winners.Add(state.ClaimLoot(killed.CorpseId!, "actor.1", "item.1", 1)));
             if (winners.Count(x => x.Succeeded) != 1) throw new InvalidOperationException("concurrent-loot-duplication");
             checks.Add("atomic-shared-loot");

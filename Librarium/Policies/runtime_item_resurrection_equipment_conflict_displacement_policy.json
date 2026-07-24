@@ -1,0 +1,17 @@
+{
+  "id": "runtime-item-resurrection-equipment-conflict-displacement",
+  "version": "0180",
+  "scope": "items.runtime.corpse.resurrection.equipment.conflicts",
+  "classification": "reforged_compatibility_infrastructure",
+  "rules": [
+    "Conflict displacement is disabled by default.",
+    "When explicitly enabled, exact-slot conflicts are unequipped before restoration.",
+    "When the projected two-handed exclusion rule is active, restoring a two-handed item displaces off-hand and shield conflicts.",
+    "When the projected two-handed exclusion rule is active, restoring an off-hand or shield item displaces an equipped two-handed conflict.",
+    "Conflicts are processed deterministically by slot and runtime instance ID.",
+    "Displacement uses ordinary Unequip validation and cannot bypass no_remove or cursed_no_remove restrictions.",
+    "The entire resurrection restoration rolls back if displacement or subsequent equipment validation fails.",
+    "Displaced instance IDs are returned to the caller for orchestration, audit, and messaging."
+  ],
+  "classic_activation": "fail_closed_pending_native_evidence"
+}

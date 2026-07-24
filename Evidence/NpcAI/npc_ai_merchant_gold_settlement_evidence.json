@@ -1,0 +1,28 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0201",
+  "boundary": "exact-npc-merchant-gold-settlement",
+  "classification": "strongly-correlated",
+  "runtime_status": "active",
+  "supporting_evidence": [
+    "RuntimeNpcMerchantAccessAdmissionService already owns exact living same-room merchant request admission.",
+    "RuntimeCurrencyAccount already owns checked carried-currency credit and debit operations.",
+    "RuntimeLivingWorldService already owns persisted exact NPC gold mutation.",
+    "RuntimeLivingWorldService already owns exact service-request completion matching."
+  ],
+  "assumptions": [
+    "The owning economy policy supplies an exact positive price or payout after all native pricing and restriction rules are resolved.",
+    "Buy and repair debit the actor and credit the merchant; sell credits the actor and debits the merchant."
+  ],
+  "safe_fallback": "Reject without settlement and restore both balances when any identity, amount, balance, request, or completion invariant fails.",
+  "runtime_impact": "Coordinates an already-admitted exact merchant request with actor carried currency and persisted NPC gold.",
+  "character_save_impact": "Actor currency remains owned by the existing currency account snapshot boundary.",
+  "world_state_impact": "Merchant NPC gold remains persisted in world-owned NPC metadata.",
+  "native_dependencies_preserved": [
+    "pricing modifiers",
+    "merchant gold generation and funding",
+    "shop restrictions",
+    "currency denomination conversion",
+    "refusal dialogue"
+  ]
+}

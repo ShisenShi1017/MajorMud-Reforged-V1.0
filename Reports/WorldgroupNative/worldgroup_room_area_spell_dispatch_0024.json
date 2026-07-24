@@ -1,0 +1,69 @@
+{
+  "update": "0024",
+  "confidence": "PROVEN",
+  "module": "wccmmud.dll",
+  "entry": "0x00449232",
+  "end": "0x00449BF0",
+  "sizeBytes": 2494,
+  "callingConvention": "cdecl",
+  "arguments": [
+    "spellOrPowerDefinition",
+    "casterSessionIndex",
+    "roomOrAreaHandle",
+    "invocationMode"
+  ],
+  "entryResolution": {
+    "casterResolver": "0x004320D9(casterSessionIndex)",
+    "roomResolver": "0x00432295(roomOrAreaHandle)",
+    "classResolver": "0x00432BD3(caster.classReference)",
+    "nullPolicy": "null definition, unresolved caster, unresolved class context, or hard eligibility rejection returns 0"
+  },
+  "definitionAndCasterFields": {
+    "allowedDefinitionTypes": [6, 7],
+    "definitionTypeOffset": "0xCC",
+    "effectIdArrayOffset": "0xD8",
+    "effectValueArrayOffset": "0xA8",
+    "resourceCostOffset": "0xBC",
+    "secondaryRequirementOffset": "0xF0",
+    "levelRequirementOffset": "0xBE",
+    "successBaseOffsets": ["0xC0", "0xC2", "0xC8"],
+    "casterResourceOffset": "0xBA",
+    "casterSecondaryResourceOffset": "0x602",
+    "casterLevelOffset": "0x94",
+    "casterSkillOffset": "0x604",
+    "casterRoomCoordinates": ["0xC4", "0xC8"],
+    "casterStateOffsets": ["0x700", "0x7C8"]
+  },
+  "preflight": [
+    "definition type must be 6 or 7",
+    "0x00420CB2 can reject the caster/definition pair",
+    "caster resource +0xBA must meet definition cost +0xBC",
+    "caster secondary resource +0x602 must meet definition requirement +0xF0",
+    "caster level +0x94 must meet definition requirement +0xBE",
+    "effect id 0xA3 invokes prerequisite helper 0x0043FDCC before the main effect loop"
+  ],
+  "chanceAndMagnitude": {
+    "roll": "0x00478CB2 produces a bounded 0..100 roll",
+    "successThreshold": "caster field +0x604 plus definition field +0xC8, capped at 98 unless definition +0xC8 is at least 200; invocation/class state can force the successful path",
+    "sharedMagnitude": "definition ranges +0xC0..+0xC2 are combined with scaled caster data, then a bounded random value is selected",
+    "perEffectValue": "each effect uses definition +0xA8[index] when nonzero, otherwise the shared randomized magnitude"
+  },
+  "effectExecution": {
+    "effectSlotBound": 10,
+    "effectIdOffset": "0xD8 + index*2",
+    "effectValueOffset": "0xA8 + index*2",
+    "directSwitchDomain": "0..53 plus separately tested IDs 105, 106, 122, 143, 150, 153, 162, and 178",
+    "roomMutationHelper": "effect 143 calls 0x0046C241(currentRoomY, currentRoomX, effectValue)",
+    "genericHelper": "effects 162 and 178 can dispatch through 0x0043FC13 with selector 3",
+    "roomOutput": "effect branches can prepare caster output and broadcast through 0x0046B010 before the shared join",
+    "semanticPolicy": "numeric effects remain structurally named unless independently correlated to authoritative records"
+  },
+  "resourceAndFailureOrdering": {
+    "success": "subtract full definition cost +0xBC from caster +0xBA and full positive definition requirement +0xF0 from caster +0x602 before effect processing",
+    "failedRoll": "subtract full positive definition cost and one-half of signed definition requirement, then emit failure output and room broadcast",
+    "hardRequirementFailure": "emits the specific unmet resource, secondary-resource, or level response and returns handled without effect execution",
+    "outputFlush": "0x0046B170 flushes caster-facing output; 0x0046B010 performs room-scoped broadcast"
+  },
+  "returnContract": "returns 0 for hard preflight/null rejection and 1 for handled success, failed roll, or requirement-response paths",
+  "nextBoundary": "correlate numeric effect handlers with room/action records, then move to Worldgroup scheduler and persistent DFA/save ownership paths"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "npc-ai-administrative-service-control-provenance.v1",
+  "update_id": "CodeUpdate0203",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcDialogueAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcItemEffectInvocation.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcEquipmentSelection.cs"
+  ],
+  "confidence": 1.0,
+  "fallback": "reject without mutation unless exact active transient metadata exists and authority/reason are explicit",
+  "runtime_impact": "administrators can safely clear orphaned active interaction ownership",
+  "character_save_impact": "none",
+  "world_state_impact": "NPC metadata only"
+}

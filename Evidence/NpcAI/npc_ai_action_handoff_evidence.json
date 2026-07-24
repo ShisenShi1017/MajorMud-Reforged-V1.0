@@ -1,0 +1,38 @@
+{
+  "schema_version": "evidence.v1",
+  "subsystem": "npc-ai",
+  "pass": "deterministic-action-handoff-and-acknowledgement",
+  "promotions": [
+    {
+      "behavior": "Admitted actionable NPC decisions emit deterministic, replay-stable action intents without executing the owning combat or service subsystem",
+      "classification": "proven",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeNpcAiDecisionEngine.cs",
+        "Apps/Source/Reforged.Server/RuntimeNpcAiScheduler.cs"
+      ],
+      "tests": ["stable-action-intent", "scheduler-deterministic-replay", "persisted-duplicate-tick-suppressed"],
+      "runtime_impact": "creates an explicit decision-to-action boundary with stable identity and payload",
+      "character_save_impact": "none",
+      "world_state_impact": "pending action identity, kind, target, and request are stored on the world-owned NPC instance"
+    },
+    {
+      "behavior": "Pending NPC actions are removed only by exact action-ID acknowledgement",
+      "classification": "strongly_correlated",
+      "sources": ["Apps/Source/Reforged.Server/RuntimeNpcAiScheduler.cs"],
+      "confidence": 0.99,
+      "assumptions": ["an action consumer must not acknowledge a different or stale NPC action"],
+      "tests": ["static validator: AcknowledgeNpcAction exact ordinal comparison"],
+      "safe_fallback": "retain the pending action when instance or action ID does not match",
+      "runtime_impact": "prevents stale consumers from clearing newly scheduled actions",
+      "character_save_impact": "none",
+      "world_state_impact": "pending action metadata survives save/load until exact acknowledgement"
+    }
+  ],
+  "blocked_native": [
+    "combat action execution and formulas",
+    "merchant transaction execution",
+    "trainer progression execution",
+    "native target acquisition and threat priority",
+    "native spell and ability action selection"
+  ]
+}

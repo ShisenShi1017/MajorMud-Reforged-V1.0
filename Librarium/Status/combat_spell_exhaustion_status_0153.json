@@ -1,0 +1,27 @@
+{
+  "update": "0153",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated spell cast-state machine",
+    "canonical spell ID validation for timed casting",
+    "deterministic monotonic world-tick ownership",
+    "one-active-cast-per-actor invariant",
+    "stable completion ordering by completion tick and cast ID",
+    "explicit ready-to-complete execution gate",
+    "promoted interruption-reason enforcement",
+    "resource lifecycle integration at start, completion, and interruption",
+    "duplicate and invalid transition rejection",
+    "spell.1304 unresolved duration and interruption fail-closed policy",
+    "deterministic cast lifecycle smoke vectors"
+  ],
+  "not_claimed_complete": [
+    "native spell cast-duration fields",
+    "native concentration checks",
+    "damage interruption thresholds",
+    "movement, silence, stun, and disconnect interruption rules",
+    "simultaneous native completion ordering",
+    "pending cast persistence and crash recovery"
+  ],
+  "next_pass": "Implement evidence-gated spell targeting validation and deterministic target-set construction without promoting unresolved native target-mode constants."
+}

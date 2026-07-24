@@ -36,8 +36,18 @@
   "damage_trap_exit_count": 273,
   "spell_trap_exit_count": 22,
   "cast_transition_exit_count": 289,
-  "hidden_exit_count": 1380,
-  "unknown_qualified_exit_count": 266,
+  "hidden_exit_count": 1381,
+  "unknown_qualified_exit_count": 0,
+  "strongly_correlated_fixed_fields": [
+    "Light",
+    "Shop",
+    "Spell",
+    "Lair",
+    "Delay"
+  ],
+  "unresolved_fixed_fields": [
+    "Placed"
+  ],
   "unparsed_interaction_count": 0,
   "decode_error_count": 0,
   "prerequisite_policy": "Preserve explicit door/text/other qualifiers; do not invent missing item, level, flag, spell, class, race, or alignment values."

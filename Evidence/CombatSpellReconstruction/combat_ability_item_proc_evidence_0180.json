@@ -1,0 +1,8 @@
+{
+  "update":"0180",
+  "promotions":[
+    {"id":"combat.ability.transaction","confidence":"strongly_correlated","support":["existing atomic combat transactions","existing ability canonical IDs","existing item/spell/effect canonical IDs"],"fallback":"reject","runtime_impact":"activated ability execution becomes atomic and traceable","character_save_impact":"none without downstream persistence sink","world_state_impact":"none before commit"},
+    {"id":"combat.proc.stable_order","confidence":"strongly_correlated","support":["deterministic action queue precedent","deterministic effect ordering precedent"],"fallback":"reject","runtime_impact":"eligible procs resolve in stable priority order","character_save_impact":"none","world_state_impact":"mutation only through sinks"}
+  ],
+  "unknown_native":["production ability costs","production cooldowns","production proc chances","exact trigger precedence across native item/ability branches"]
+}

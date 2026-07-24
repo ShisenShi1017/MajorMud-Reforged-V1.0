@@ -1,0 +1,32 @@
+{
+  "code_update": "0154",
+  "subsystem": "character",
+  "completed": [
+    "status effects phases 1-2",
+    "progression ownership and atomic XP/promotion",
+    "proven HP/mana growth",
+    "evidence-gated XP/CP schedule ownership",
+    "explicit equipment combat-statistic projection",
+    "save-version-7 derived-stat, resistance, and saving-throw ownership",
+    "deterministic statistic projection ordering and provenance"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth semantics",
+    "skill/spell/ability gain schedules",
+    "native multiclass switching",
+    "global caps and post-cap overflow",
+    "base AC, attack, defense, initiative, and weapon timing formulas",
+    "resistance and saving-throw resolution",
+    "regeneration",
+    "equipment completion",
+    "inventory",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [
+    "base combat-statistic formulas and cross-category evaluation order"
+  ],
+  "next": "Character statistics phase 3: recover remaining base formulas, resistance/save resolution, and regeneration without inventing native semantics"
+}

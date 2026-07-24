@@ -4,7 +4,9 @@ using System.Text.Json;
 namespace Reforged.Server;
 
 public sealed record RuntimeShopStockEntry(string ItemId, int Quantity, DateTimeOffset NextRestockUtc);
-public sealed record RuntimeShopState(string ShopId, IReadOnlyDictionary<string, RuntimeShopStockEntry> Stock, DateTimeOffset UpdatedAtUtc);
+public sealed record RuntimeShopState(string ShopId, IReadOnlyDictionary<string, RuntimeShopStockEntry> Stock, DateTimeOffset UpdatedAtUtc, IReadOnlyList<string>? AppliedRestockRequestIds = null);
+public sealed record RuntimeTrainerOfferingEntry(string OfferingId, string OfferingKind, bool Enabled, DateTimeOffset NextAvailableUtc, string Authority);
+public sealed record RuntimeTrainerState(string TrainerId, IReadOnlyDictionary<string, RuntimeTrainerOfferingEntry> Offerings, DateTimeOffset UpdatedAtUtc);
 
 public sealed class RuntimeGameplayCompletionStateStore
 {
@@ -16,6 +18,7 @@ public sealed class RuntimeGameplayCompletionStateStore
     {
         _root = Path.Combine(projectRoot, "Saves", "Runtime0138", "GameplayCompletion", RuntimeIdentity.Normalize(worldId, "world"));
         Directory.CreateDirectory(Path.Combine(_root, "shops"));
+        Directory.CreateDirectory(Path.Combine(_root, "trainers"));
     }
 
     public T ExecuteShopTransaction<T>(RuntimeServiceDefinition shop, Func<Dictionary<string, RuntimeShopStockEntry>, T> action)
@@ -28,6 +31,19 @@ public sealed class RuntimeGameplayCompletionStateStore
             var result = action(working);
             Save(new RuntimeShopState(shop.Id, working, DateTimeOffset.UtcNow));
             return result;
+        }
+    }
+
+    public T ExecuteExactShopStateTransaction<T>(RuntimeServiceDefinition shop, Func<RuntimeShopState, (RuntimeShopState State, T Result)> action)
+    {
+        lock (_gate)
+        {
+            var before = LoadOrCreate(shop);
+            var outcome = action(before);
+            if (!outcome.State.ShopId.Equals(shop.Id, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("shop-state-id-mismatch");
+            Save(outcome.State);
+            return outcome.Result;
         }
     }
 
@@ -44,6 +60,45 @@ public sealed class RuntimeGameplayCompletionStateStore
             }
             return state;
         }
+    }
+
+
+    public T ExecuteTrainerTransaction<T>(RuntimeServiceDefinition trainer, Func<Dictionary<string, RuntimeTrainerOfferingEntry>, T> action)
+    {
+        lock (_gate)
+        {
+            var before = LoadOrCreateTrainer(trainer);
+            var working = new Dictionary<string, RuntimeTrainerOfferingEntry>(before.Offerings, StringComparer.OrdinalIgnoreCase);
+            var result = action(working);
+            SaveTrainer(new RuntimeTrainerState(trainer.Id, working, DateTimeOffset.UtcNow));
+            return result;
+        }
+    }
+
+    public RuntimeTrainerState ReadTrainer(RuntimeServiceDefinition trainer)
+    {
+        lock (_gate) return LoadOrCreateTrainer(trainer);
+    }
+
+    private RuntimeTrainerState LoadOrCreateTrainer(RuntimeServiceDefinition trainer)
+    {
+        var path = TrainerPathFor(trainer.Id);
+        if (File.Exists(path))
+        {
+            var loaded = JsonSerializer.Deserialize<RuntimeTrainerState>(File.ReadAllText(path), JsonOptions);
+            if (loaded is not null && loaded.TrainerId.Equals(trainer.Id, StringComparison.OrdinalIgnoreCase)) return loaded;
+        }
+        var created = new RuntimeTrainerState(trainer.Id, new Dictionary<string, RuntimeTrainerOfferingEntry>(StringComparer.OrdinalIgnoreCase), DateTimeOffset.UtcNow);
+        SaveTrainer(created);
+        return created;
+    }
+
+    private void SaveTrainer(RuntimeTrainerState state)
+    {
+        var path = TrainerPathFor(state.TrainerId);
+        var temp = path + ".tmp";
+        File.WriteAllText(temp, JsonSerializer.Serialize(state, JsonOptions));
+        File.Move(temp, path, true);
     }
 
     private RuntimeShopState LoadOrCreate(RuntimeServiceDefinition shop)
@@ -107,6 +162,7 @@ public sealed class RuntimeGameplayCompletionStateStore
     }
 
     private string PathFor(string shopId) => Path.Combine(_root, "shops", RuntimeIdentity.Normalize(shopId, "shop") + ".json");
+    private string TrainerPathFor(string trainerId) => Path.Combine(_root, "trainers", RuntimeIdentity.Normalize(trainerId, "trainer") + ".json");
     private static string? ReadText(JsonElement root, string name) => root.TryGetProperty(name, out var value) ? value.ToString() : null;
     private static int ReadInt(JsonElement root, string name) => root.TryGetProperty(name, out var value) && int.TryParse(value.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
 }

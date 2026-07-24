@@ -1,0 +1,26 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update": "CodeUpdate0188",
+  "artifact": "npc trainer offering persistence",
+  "sources": [
+    {
+      "path": "Data/Classic/services.json",
+      "records": "44 generated trainer services"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+      "symbols": [
+        "AdmitNpcService",
+        "CompleteNpcService"
+      ]
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeGameplayCompletionState.cs",
+      "symbols": [
+        "RuntimeGameplayCompletionStateStore"
+      ]
+    }
+  ],
+  "confidence": 0.94,
+  "native_dependency": false
+}

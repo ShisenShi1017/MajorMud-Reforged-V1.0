@@ -1,0 +1,19 @@
+{
+  "code_update": "0172",
+  "subsystem": "items",
+  "finding": "owner-scoped limited item quantity enforcement",
+  "classification": "strongly_correlated",
+  "runtime_active": true,
+  "source_files": ["Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs", "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs"],
+  "record_ids": ["instance.metadata.maximum_owned_quantity"],
+  "byte_offsets": [],
+  "supporting_evidence": ["Existing item metadata projection pattern", "Atomic ownership-transfer engine", "Limited-item lifecycle requirement"],
+  "confidence": 0.86,
+  "assumptions": ["The limit applies only when maximum_owned_quantity is explicitly projected", "Character inventory, equipment, portable containers, bank, and trade staging share one owner scope"],
+  "safe_fallback": "No owner limit is enforced when metadata is absent; malformed limits fail closed.",
+  "tests": ["owner quantity overflow rejection", "atomic rollback", "reservation release after drop", "save-state aggregate validation"],
+  "runtime_impact": "Creation and ownership-changing transfers reject quantities above the projected owner limit.",
+  "character_save_impact": "Persisted owner inventories are validated against projected limits.",
+  "world_state_impact": "Unowned room and corpse items do not reserve a character owner limit.",
+  "native_dependency": "Native limit flag bits, account/world scopes, and exact Classic counting locations remain unresolved."
+}

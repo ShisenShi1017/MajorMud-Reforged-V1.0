@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "global-rng",
+  "pass": "Update0025",
+  "promotions": [
+    {
+      "classification": "PROVEN",
+      "confidence": 1.0,
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeGlobalRandom.cs"
+      ],
+      "supportingEvidence": [
+        "Executable deterministic stream service with state snapshots and replay validation."
+      ],
+      "assumptions": [],
+      "tests": [
+        "--smoke-global-random: deterministic-seed-replay",
+        "--smoke-global-random: snapshot-restore-replay"
+      ],
+      "safeFallback": "Unknown streams and invalid ranges fail closed.",
+      "runtimeImpact": "Provides centralized deterministic random draws without assigning game semantics.",
+      "characterSaveImpact": "None unless an owner elects to persist a per-character stream.",
+      "worldStateImpact": "World stream state can be included by save coordination.",
+      "behavior": "global-rng.deterministic-service"
+    },
+    {
+      "classification": "STRONGLY CORRELATED",
+      "confidence": 0.92,
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeGlobalRandom.cs"
+      ],
+      "supportingEvidence": [
+        "Rejection sampling avoids modulo bias and checked arithmetic supports inclusive signed ranges."
+      ],
+      "assumptions": [
+        "Reforged callers require inclusive range requests; native endpoint semantics remain unresolved."
+      ],
+      "tests": [
+        "--smoke-global-random: inclusive-bounds"
+      ],
+      "safeFallback": "Invalid ranges are rejected.",
+      "runtimeImpact": "Deterministic unbiased bounded draws.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "Advances only the selected stream.",
+      "behavior": "global-rng.unbiased-inclusive-range"
+    },
+    {
+      "classification": "PROVEN",
+      "confidence": 1.0,
+      "sources": [
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "supportingEvidence": [
+        "No current source establishes the MajorMUD 1.11p native generator or seeding contract."
+      ],
+      "assumptions": [],
+      "tests": [
+        "validator requires native dependency tracking"
+      ],
+      "safeFallback": "Compatibility service is explicitly not labeled Classic-equivalent.",
+      "runtimeImpact": "Prevents false promotion of an invented native algorithm.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "Native equivalence remains disabled.",
+      "behavior": "global-rng.classic-native-boundary"
+    }
+  ]
+}

@@ -1,0 +1,2534 @@
+{
+  "schema": "majorMud.nativeSupportBinaryLayouts.v1",
+  "update": "0020->0021",
+  "source_root": "ImportedDatabases/WCCDefaultInstall/wcc default",
+  "evidence_class": "PROVEN",
+  "summary": {
+    "mcv_containers": 4,
+    "mcv_valid_layouts": 4,
+    "mcv_index_entries": 423,
+    "msg_source_catalogs": 4,
+    "msg_field_declarations": 227,
+    "msg_level_directives": 11,
+    "bin_screens": 3,
+    "bin_screen_cells": 6000,
+    "text_override_files": 56
+  },
+  "mcv_containers": [
+    {
+      "file": "WCCMMHLP.mcv",
+      "sha256": "0f37e6339d689877719764f6d8e4b08cc41ac494b258140d00ad5ec87f90b50a",
+      "size": 114789,
+      "payload_length": 113713,
+      "offset_count": 264,
+      "format_version": 1,
+      "reserved_zero_words": [
+        0,
+        0
+      ],
+      "offset_table_start": 113713,
+      "footer_start": 114773,
+      "layout_valid": true,
+      "first_offsets": [
+        13,
+        27,
+        1530,
+        1547,
+        2593,
+        2672,
+        4470,
+        4559,
+        5596,
+        5602,
+        5679,
+        5687
+      ],
+      "last_offsets": [
+        110621,
+        110879,
+        110902,
+        111718,
+        111744,
+        112306,
+        112323,
+        112462,
+        112489,
+        113139,
+        113146,
+        113713
+      ],
+      "all_offsets_monotonic": true,
+      "all_offsets_within_payload": true,
+      "wbb_counterpart": {
+        "file": "wbbMMHLP.mcv",
+        "sha256": "314035ea7ce53d7d94b01be4e572ee4d55ccab48c24807781536714328d4e988",
+        "size": 114789,
+        "payload_length": 113713,
+        "offset_count": 264,
+        "format_version": 1,
+        "same_container_schema": true
+      }
+    },
+    {
+      "file": "WCCMMPLS.mcv",
+      "sha256": "c0496b8c178f3ade5ab4b5c0064a1475009f35634200fb6747dbe5c6628f6029",
+      "size": 4954,
+      "payload_length": 4662,
+      "offset_count": 68,
+      "format_version": 1,
+      "reserved_zero_words": [
+        0,
+        0
+      ],
+      "offset_table_start": 4662,
+      "footer_start": 4938,
+      "layout_valid": true,
+      "first_offsets": [
+        13,
+        51,
+        64,
+        102,
+        113,
+        149,
+        181,
+        211,
+        240,
+        268,
+        290,
+        299
+      ],
+      "last_offsets": [
+        4199,
+        4224,
+        4241,
+        4262,
+        4317,
+        4382,
+        4436,
+        4489,
+        4532,
+        4596,
+        4629,
+        4662
+      ],
+      "all_offsets_monotonic": true,
+      "all_offsets_within_payload": true,
+      "wbb_counterpart": {
+        "file": "wbbMMPLS.mcv",
+        "sha256": "cc3439aa20df1897a6ce3c5c7c9f088c88b638d4451ba367ae81753a42c78f24",
+        "size": 4945,
+        "payload_length": 4653,
+        "offset_count": 68,
+        "format_version": 1,
+        "same_container_schema": true
+      }
+    },
+    {
+      "file": "WCCMMUD.mcv",
+      "sha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b",
+      "size": 2623,
+      "payload_length": 2279,
+      "offset_count": 81,
+      "format_version": 1,
+      "reserved_zero_words": [
+        0,
+        0
+      ],
+      "offset_table_start": 2279,
+      "footer_start": 2607,
+      "layout_valid": true,
+      "first_offsets": [
+        13,
+        14,
+        26,
+        27,
+        38,
+        87,
+        144,
+        184,
+        190,
+        200,
+        206,
+        211
+      ],
+      "last_offsets": [
+        1825,
+        1853,
+        1886,
+        1922,
+        1955,
+        1956,
+        2000,
+        2006,
+        2101,
+        2225,
+        2228,
+        2279
+      ],
+      "all_offsets_monotonic": true,
+      "all_offsets_within_payload": true,
+      "wbb_counterpart": {
+        "file": "wbbMMUD.mcv",
+        "sha256": "29dc7247618be4ed2f597161d8589125b25623d290eced92a319d98b2880bf8d",
+        "size": 2631,
+        "payload_length": 2287,
+        "offset_count": 81,
+        "format_version": 1,
+        "same_container_schema": true
+      }
+    },
+    {
+      "file": "WCCTEXT.mcv",
+      "sha256": "a06385048eaa2e69488d5b3af2ba56a0d6bb875d6668a98cd21feded7ab9ea2a",
+      "size": 5106,
+      "payload_length": 5046,
+      "offset_count": 10,
+      "format_version": 1,
+      "reserved_zero_words": [
+        0,
+        0
+      ],
+      "offset_table_start": 5046,
+      "footer_start": 5090,
+      "layout_valid": true,
+      "first_offsets": [
+        13,
+        34,
+        729,
+        779,
+        800,
+        852,
+        905,
+        3457,
+        4515,
+        5011,
+        5046
+      ],
+      "last_offsets": [
+        13,
+        34,
+        729,
+        779,
+        800,
+        852,
+        905,
+        3457,
+        4515,
+        5011,
+        5046
+      ],
+      "all_offsets_monotonic": true,
+      "all_offsets_within_payload": true,
+      "wbb_counterpart": {
+        "file": "wbbTEXT.mcv",
+        "sha256": "8c2d5b797c37ec44c90f45c903fc72f75c0ae1def847b4842ff1fe4299ff25c2",
+        "size": 5134,
+        "payload_length": 5074,
+        "offset_count": 10,
+        "format_version": 1,
+        "same_container_schema": true
+      }
+    }
+  ],
+  "msg_source_catalogs": [
+    {
+      "file": "WCCMMHLP.MSG",
+      "sha256": "66475871b3ecc4c203dc2e0b035e49270470dccfab1402229de8bee919032446",
+      "size": 121692,
+      "ascii_ratio": 0.910791,
+      "line_count": 2573,
+      "level_directive_count": 1,
+      "field_declaration_count": 131,
+      "levels": [
+        {
+          "line": 2,
+          "level": 6,
+          "value": "MajorMUD Help"
+        }
+      ],
+      "fields": [
+        {
+          "line": 38,
+          "symbol": "HL1T1",
+          "braced_value": "Commands comands",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 68,
+          "symbol": "HL1T1A",
+          "braced_value": "Communications telepaths talking forget communicate yelling speaking telepathy",
+          "field_type": "S",
+          "tail": "54 Help Topic String"
+        },
+        {
+          "line": 99,
+          "symbol": "HL1T2",
+          "braced_value": "Combat attacking bash punch kick jumpkick kill force autocombat fire fight kick killblow",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 122,
+          "symbol": "HL1T3",
+          "braced_value": "Races",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 130,
+          "symbol": "HL1T4",
+          "braced_value": "Classes",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 144,
+          "symbol": "HL1T4A",
+          "braced_value": "Class Powers",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 173,
+          "symbol": "HL1T4B",
+          "braced_value": "Class Skills1 class skills 1 traps",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 203,
+          "symbol": "HL1T4C",
+          "braced_value": "Class Skills2 Class Skills 2 thievery martial arts dodge",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 232,
+          "symbol": "HL1T5",
+          "braced_value": "Info topten search who scan maps status high",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 259,
+          "symbol": "HL1T6",
+          "braced_value": "Spells cast invoke magic chant",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 283,
+          "symbol": "HL1T7",
+          "braced_value": "Shops buy sell list order",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 302,
+          "symbol": "HL1T8",
+          "braced_value": "Movement travel north south east west northeast northwest southeast southwest up down ne nw se sw",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 321,
+          "symbol": "HL1T9",
+          "braced_value": "Party frontrank backrank midrank invite uninvite rank parties partys",
+          "field_type": "S",
+          "tail": "48 Help Topic"
+        },
+        {
+          "line": 348,
+          "symbol": "HL1T10",
+          "braced_value": "Training room advancement",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 362,
+          "symbol": "HL1T11",
+          "braced_value": " chaos good evil reputation alignment criminals gods sins laws saints fiends outlaws villains seedy neutrality jail",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 390,
+          "symbol": "HL1T12",
+          "braced_value": "Tips",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 417,
+          "symbol": "HL1T13",
+          "braced_value": "Items give wear equipment remove get drop use light ready",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 446,
+          "symbol": "HL1T14",
+          "braced_value": "Profile statline page talk fast talk slow statusline",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 477,
+          "symbol": "HL1T15",
+          "braced_value": "Banking banks deposit withdraw bankbook",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 489,
+          "symbol": "HL1T16",
+          "braced_value": "Experience xp exp. exps",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 496,
+          "symbol": "HL1T17",
+          "braced_value": "Ninjas",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 521,
+          "symbol": "HL1T18",
+          "braced_value": "Stats1 stats 1 stat1 statname",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 556,
+          "symbol": "HL1T18A",
+          "braced_value": "Stats2 stats 2 stat2",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 588,
+          "symbol": "HL1T18B",
+          "braced_value": "Strength",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 606,
+          "symbol": "HL1T18C",
+          "braced_value": "Agility dexterity",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 628,
+          "symbol": "HL1T18D",
+          "braced_value": "Intellect intelligence perception",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 653,
+          "symbol": "HL1T18E",
+          "braced_value": "Willpower wisdom",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 673,
+          "symbol": "HL1T18F",
+          "braced_value": "Health constitution",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 702,
+          "symbol": "HL1T18G",
+          "braced_value": "Charm",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 725,
+          "symbol": "HL1T19",
+          "braced_value": "Thief theif thieves theives",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 752,
+          "symbol": "HL1T20",
+          "braced_value": "Warriors warroirs",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 774,
+          "symbol": "HL1T21",
+          "braced_value": "Paladins Paladines",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 798,
+          "symbol": "HL1T22",
+          "braced_value": "Witchunters witchhunters witch hunters",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 823,
+          "symbol": "HL1T23",
+          "braced_value": "Bards",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 849,
+          "symbol": "HL1T24",
+          "braced_value": "Gypsy gypsies gyspy",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 875,
+          "symbol": "HL1T25",
+          "braced_value": "Mages",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 904,
+          "symbol": "HL1T26",
+          "braced_value": "Warlocks",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 928,
+          "symbol": "HL1T27",
+          "braced_value": "Priests",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 953,
+          "symbol": "HL1T28",
+          "braced_value": "Clerics cleriks",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 975,
+          "symbol": "HL1T29",
+          "braced_value": "Druids",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1002,
+          "symbol": "HL1T30",
+          "braced_value": "Rangers",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1029,
+          "symbol": "HL1T31",
+          "braced_value": "Mystic mystics",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1056,
+          "symbol": "HL1T32",
+          "braced_value": "Missionary",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1080,
+          "symbol": "HL1T34",
+          "braced_value": "Humans",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1110,
+          "symbol": "HL1T35",
+          "braced_value": "Dwarf dwarves",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1140,
+          "symbol": "HL1T36",
+          "braced_value": "Gnomes",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1170,
+          "symbol": "HL1T37",
+          "braced_value": "Halflings haflings",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1198,
+          "symbol": "HL1T38",
+          "braced_value": "Elf elves",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1228,
+          "symbol": "HL1T39",
+          "braced_value": "Half-elfs halfelfs half elfs",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1256,
+          "symbol": "HL1T40",
+          "braced_value": "Dark-elf dark elf darkelf",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1286,
+          "symbol": "HL1T41",
+          "braced_value": "Half-Orcs halforcs half orcs",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1316,
+          "symbol": "HL1T42",
+          "braced_value": "Goblins",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1346,
+          "symbol": "HL1T43",
+          "braced_value": "Half-Ogres halfogres half ogre",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1376,
+          "symbol": "HL1T44",
+          "braced_value": "Kang",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1406,
+          "symbol": "HL1T45",
+          "braced_value": "Misc1 greet ask train stats",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1433,
+          "symbol": "HL1T46",
+          "braced_value": "Gangs top gangs guilds groups gruops bands topten gangs",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1458,
+          "symbol": "HL1T47",
+          "braced_value": "Stash hide",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1473,
+          "symbol": "HL1T48",
+          "braced_value": "Set Warnings set maxpages set interrupts set receive warn on evil",
+          "field_type": "S",
+          "tail": "48 Help Topic"
+        },
+        {
+          "line": 1504,
+          "symbol": "HL1T48A",
+          "braced_value": "Set2 Set entrances set speech speach set follow",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1519,
+          "symbol": "HL1T48B",
+          "braced_value": "Messages Set Messages",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1539,
+          "symbol": "HL1T49",
+          "braced_value": "Broadcasting broadgang bg",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1559,
+          "symbol": "HL1T50",
+          "braced_value": "Borrow repay identity donate loan",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1567,
+          "symbol": "HL1T51",
+          "braced_value": "Kai Powers mystic powers",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1575,
+          "symbol": "HL1T52",
+          "braced_value": "Keys",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1583,
+          "symbol": "HL1T53",
+          "braced_value": "Drag",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1603,
+          "symbol": "HL1T54",
+          "braced_value": "Backstab bs",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1612,
+          "symbol": "HL1T55",
+          "braced_value": "Practice Arena colliseum",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1623,
+          "symbol": "HL1T56",
+          "braced_value": "Actions",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1638,
+          "symbol": "HL1T57",
+          "braced_value": "Weapons armour class armor class AC DR glance glancing blows",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 1664,
+          "symbol": "HL1T58",
+          "braced_value": "Look read scrolls",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1683,
+          "symbol": "HL1T59",
+          "braced_value": "Healer temple store monsters healing rope lantern",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1692,
+          "symbol": "HL1T60",
+          "braced_value": "HP Hitpoints Hits",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1714,
+          "symbol": "HL1T62",
+          "braced_value": "Follow Mode",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1728,
+          "symbol": "HL1T63",
+          "braced_value": "Reroll Suicide password die",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1744,
+          "symbol": "HL1T64",
+          "braced_value": "Title",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1753,
+          "symbol": "HL1T65",
+          "braced_value": "Follow set follow blind set follow normal",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1769,
+          "symbol": "HL1T66",
+          "braced_value": "Forgive",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1783,
+          "symbol": "HL1T67",
+          "braced_value": "Join",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1801,
+          "symbol": "HL1T68",
+          "braced_value": "Drink eat",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1810,
+          "symbol": "HL1T69",
+          "braced_value": "Stealth sneaking sneeking hiding",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 1834,
+          "symbol": "HL1T70",
+          "braced_value": "Brief quiet mode verbose silent",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 1842,
+          "symbol": "HL1T71",
+          "braced_value": "Rob steal thievery robbing stealing",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1857,
+          "symbol": "HL1T72",
+          "braced_value": "Tracking",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1871,
+          "symbol": "HL1T73",
+          "braced_value": "Lives life",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1886,
+          "symbol": "HL1T74",
+          "braced_value": "Currency Silver copper gold platinum runic money $ cash mony coins",
+          "field_type": "S",
+          "tail": "54 Help"
+        },
+        {
+          "line": 1900,
+          "symbol": "HL1T75",
+          "braced_value": "Fire throw",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1908,
+          "symbol": "HL1T76",
+          "braced_value": "Gossip",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1928,
+          "symbol": "HL1T76A",
+          "braced_value": "Auction",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 1948,
+          "symbol": "HL1T77",
+          "braced_value": "Encumbrance encumberance weight heavy",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1967,
+          "symbol": "HL1T78",
+          "braced_value": "Doors open close locks picklocks unlock",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1980,
+          "symbol": "HL1T78A",
+          "braced_value": "Train training Levels lvls",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 1993,
+          "symbol": "HL1T79",
+          "braced_value": "Dying New fountain potions display wounded names characters spiders forest city moan pray casino necromancers location lord lady",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2001,
+          "symbol": "HL1T79A",
+          "braced_value": "Text Magician gamble enter notify description curio adventurer lord manhole pickup information stables",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2009,
+          "symbol": "HL1T79B",
+          "braced_value": "Jewellry Scroll jewelry orc bishops priests goblins tavern please detect magic",
+          "field_type": "S",
+          "tail": "58 Help Topic String"
+        },
+        {
+          "line": 2017,
+          "symbol": "HL1T79C",
+          "braced_value": "Shrine Toll cure gain smite amulets speed luck sorcerers npcs long clerk dungeon sheriff bishop create",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2025,
+          "symbol": "HL1T80",
+          "braced_value": "Street harm bless rules",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2033,
+          "symbol": "HL1T81",
+          "braced_value": "Release Notes",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2041,
+          "symbol": "HL1T82",
+          "braced_value": "Magic Resistance Magicres",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2058,
+          "symbol": "HL1T83",
+          "braced_value": "CP Character Points lives/cps cps",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2079,
+          "symbol": "HL1T84",
+          "braced_value": "Exit Quit Save",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2090,
+          "symbol": "HL1T85",
+          "braced_value": "Abilities",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2098,
+          "symbol": "HL1T86",
+          "braced_value": "Rest Meditate",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2114,
+          "symbol": "HL1T87",
+          "braced_value": "Buy healing temple healer chapel",
+          "field_type": "S",
+          "tail": "40 Help Topic String"
+        },
+        {
+          "line": 2122,
+          "symbol": "HL1T88",
+          "braced_value": "Attack interrupts",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2130,
+          "symbol": "HL1T89",
+          "braced_value": "Critical hits",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2143,
+          "symbol": "HL1T90",
+          "braced_value": "Quests",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2153,
+          "symbol": "HL1T91",
+          "braced_value": "Feedback bug bugs bugreport bugreports",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2162,
+          "symbol": "HL1T92",
+          "braced_value": "Leave",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2177,
+          "symbol": "HL1T93",
+          "braced_value": "Ansi",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2188,
+          "symbol": "HL1T94",
+          "braced_value": "Spell Level",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2198,
+          "symbol": "HL1T95",
+          "braced_value": "Apprentice",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2206,
+          "symbol": "HL1T96",
+          "braced_value": "Aide",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2217,
+          "symbol": "HL1T97",
+          "braced_value": "Share",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2239,
+          "symbol": "HL1T98",
+          "braced_value": "Wealth",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2249,
+          "symbol": "HL1T99",
+          "braced_value": "Set Response",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2264,
+          "symbol": "HL1T100",
+          "braced_value": "Keep Set Keep",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2280,
+          "symbol": "HL1T101",
+          "braced_value": "set statline custom statline full custom",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2310,
+          "symbol": "HL1T102",
+          "braced_value": "Nekojin cats",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2338,
+          "symbol": "HL1T103",
+          "braced_value": "Gaunts Gaunt Ones",
+          "field_type": "S",
+          "tail": "30 Help Topic String"
+        },
+        {
+          "line": 2368,
+          "symbol": "HL1T104",
+          "braced_value": "Spellcasting SC",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2385,
+          "symbol": "HL1T105",
+          "braced_value": "Perception Sight",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2399,
+          "symbol": "HL1T106",
+          "braced_value": "Traps Disarm",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2412,
+          "symbol": "HL1T107",
+          "braced_value": "Mana",
+          "field_type": "S",
+          "tail": "41 Help Topic String"
+        },
+        {
+          "line": 2427,
+          "symbol": "HL1T108",
+          "braced_value": "gender sex",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2440,
+          "symbol": "HL1T109",
+          "braced_value": "Changerace changeclass change",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2471,
+          "symbol": "HL1T110",
+          "braced_value": "Purge",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2482,
+          "symbol": "HL1T111",
+          "braced_value": "Stock  Unstock  Markup",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2508,
+          "symbol": "HL1T112",
+          "braced_value": "Promote Demote Lieutenant",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2522,
+          "symbol": "HL1T113",
+          "braced_value": "Metro Metropolis",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2535,
+          "symbol": "HL1T114",
+          "braced_value": "ganghouse house guildhouse",
+          "field_type": "S",
+          "tail": "51 Help Topic String"
+        },
+        {
+          "line": 2553,
+          "symbol": "HL1T9999",
+          "braced_value": "Help ?",
+          "field_type": "S",
+          "tail": "6 Final Help Topic String"
+        }
+      ]
+    },
+    {
+      "file": "WCCMMPLS.msg",
+      "sha256": "cf65842a1bd936db049fdf674eabd42fb53ce76f94ea99f5c44fe7be86c3f81a",
+      "size": 16391,
+      "ascii_ratio": 1.0,
+      "line_count": 524,
+      "level_directive_count": 4,
+      "field_declaration_count": 25,
+      "levels": [
+        {
+          "line": 2,
+          "level": 0,
+          "value": "MajorMUD Plus - Entertainment Edition"
+        },
+        {
+          "line": 9,
+          "level": 3,
+          "value": "MajorMUD Plus - Entertainment Edition"
+        },
+        {
+          "line": 60,
+          "level": 4,
+          "value": "MajorMUD Plus - Entertainment Edition"
+        },
+        {
+          "line": 105,
+          "level": 6,
+          "value": "MajorMUD Plus - Entertainment Edition"
+        }
+      ],
+      "fields": [
+        {
+          "line": 14,
+          "symbol": "ACTIVATE",
+          "braced_value": "XYBWBWBUBU",
+          "field_type": "S",
+          "tail": "30 Enter your activation code"
+        },
+        {
+          "line": 20,
+          "symbol": "DESCCHRG",
+          "braced_value": "Credits to change description? 3600",
+          "field_type": "L",
+          "tail": "0 1000000"
+        },
+        {
+          "line": 26,
+          "symbol": "DESCCOPP",
+          "braced_value": "Copper to change description? 0",
+          "field_type": "L",
+          "tail": "0 1000000"
+        },
+        {
+          "line": 33,
+          "symbol": "DESCDAYS",
+          "braced_value": "Days to change description? 0",
+          "field_type": "L",
+          "tail": "0 1000000"
+        },
+        {
+          "line": 39,
+          "symbol": "BUYLIFE",
+          "braced_value": "Credits to buy a life? 28800",
+          "field_type": "L",
+          "tail": "-1 90000000"
+        },
+        {
+          "line": 45,
+          "symbol": "COPPLIFE",
+          "braced_value": "Copper to buy a life? 10000",
+          "field_type": "L",
+          "tail": "0 99999999"
+        },
+        {
+          "line": 52,
+          "symbol": "DAYSLIFE",
+          "braced_value": "Days to buy a life? 0",
+          "field_type": "L",
+          "tail": "0 60"
+        },
+        {
+          "line": 57,
+          "symbol": "SYSOPKEY",
+          "braced_value": "WCCSYSOP",
+          "field_type": "S",
+          "tail": "15 Key required to perform sysop options?"
+        },
+        {
+          "line": 67,
+          "symbol": "MINYEAR",
+          "braced_value": "Minutes of playtime per year of age? 1000",
+          "field_type": "N",
+          "tail": "1 32767"
+        },
+        {
+          "line": 73,
+          "symbol": "STARTAGE",
+          "braced_value": "Starting default age? 17",
+          "field_type": "N",
+          "tail": "0 500"
+        },
+        {
+          "line": 82,
+          "symbol": "DESCLEN",
+          "braced_value": "Number of lines allowed in description? 6",
+          "field_type": "N",
+          "tail": "1 10"
+        },
+        {
+          "line": 87,
+          "symbol": "NEEDAPPR",
+          "braced_value": "Require approval of new descriptions? YES",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 98,
+          "symbol": "REGCOLR",
+          "braced_value": "\u001b[0;36;40m",
+          "field_type": "S",
+          "tail": "18 ANSI colour sequence for registry values"
+        },
+        {
+          "line": 103,
+          "symbol": "REGGLOB",
+          "braced_value": "/mudreg",
+          "field_type": "S",
+          "tail": "20 Global MajorMUD registry command"
+        },
+        {
+          "line": 231,
+          "symbol": "REGDISP0",
+          "braced_value": "\u001b[0m  \u001b[32mBirthplace: ",
+          "field_type": "T",
+          "tail": "First Custom entry"
+        },
+        {
+          "line": 240,
+          "symbol": "REGDISP1",
+          "braced_value": "\u001b[0m  \u001b[32mAssociates: ",
+          "field_type": "T",
+          "tail": "Second Custom entry"
+        },
+        {
+          "line": 249,
+          "symbol": "REGDISP2",
+          "braced_value": "\u001b[0m     \u001b[32mEnemies: ",
+          "field_type": "T",
+          "tail": "Third Custom Entry"
+        },
+        {
+          "line": 258,
+          "symbol": "REGDISP3",
+          "braced_value": "\u001b[0m \u001b[32mFav Hangout: ",
+          "field_type": "T",
+          "tail": "Fourth Custom entry"
+        },
+        {
+          "line": 267,
+          "symbol": "REGDISP4",
+          "braced_value": "\u001b[0;32m  Fav Weapon: ",
+          "field_type": "T",
+          "tail": "Fifth Custom entry"
+        },
+        {
+          "line": 276,
+          "symbol": "REGDISP5",
+          "braced_value": "\u001b[0m    \u001b[32mDemeanor: ",
+          "field_type": "T",
+          "tail": "Sixth Custom entry"
+        },
+        {
+          "line": 285,
+          "symbol": "REGDISP6",
+          "braced_value": "\u001b[0m    \u001b[32mDislikes: ",
+          "field_type": "T",
+          "tail": "Seventh Custom entry"
+        },
+        {
+          "line": 294,
+          "symbol": "REGDISP7",
+          "braced_value": "\u001b[0m    \u001b[32mComments: ",
+          "field_type": "T",
+          "tail": "Eighth Custom entry"
+        },
+        {
+          "line": 303,
+          "symbol": "REGDISP8",
+          "braced_value": "\u001b[0m            \u001b[32m: ",
+          "field_type": "T",
+          "tail": "Ninth Custom entry"
+        },
+        {
+          "line": 312,
+          "symbol": "REGDISP9",
+          "braced_value": "\u001b[0m  \u001b[32mLast Words: ",
+          "field_type": "T",
+          "tail": "Tenth Custom entry"
+        },
+        {
+          "line": 317,
+          "symbol": "REGAGE",
+          "braced_value": "\u001b[0m         \u001b[32mAge: ",
+          "field_type": "T",
+          "tail": "Age prompt in registry entry"
+        }
+      ]
+    },
+    {
+      "file": "WCCMMUD.msg",
+      "sha256": "2fb64b4db8df0cd081541e04d4d7c447bc0f95072f2968550719f9da6262a040",
+      "size": 19490,
+      "ascii_ratio": 1.0,
+      "line_count": 581,
+      "level_directive_count": 4,
+      "field_declaration_count": 70,
+      "levels": [
+        {
+          "line": 2,
+          "level": 0,
+          "value": ""
+        },
+        {
+          "line": 9,
+          "level": 3,
+          "value": ""
+        },
+        {
+          "line": 119,
+          "level": 4,
+          "value": ""
+        },
+        {
+          "line": 535,
+          "level": 6,
+          "value": ""
+        }
+      ],
+      "fields": [
+        {
+          "line": 20,
+          "symbol": "ACTIVATE",
+          "braced_value": "ZVYXWXYSYV",
+          "field_type": "S",
+          "tail": "30 Enter your activation code"
+        },
+        {
+          "line": 30,
+          "symbol": "GAMCRD",
+          "braced_value": "Credits per minute consumed while in the game 60",
+          "field_type": "N",
+          "tail": "0 32767"
+        },
+        {
+          "line": 39,
+          "symbol": "REALCRD",
+          "braced_value": "Credits consumed per minute by ALL users (even Exempt) 0",
+          "field_type": "N",
+          "tail": "0 32767"
+        },
+        {
+          "line": 44,
+          "symbol": "FREEMIN",
+          "braced_value": "Minutes of free time for exempt users 2",
+          "field_type": "N",
+          "tail": "0 1440"
+        },
+        {
+          "line": 49,
+          "symbol": "SYSOPKEY",
+          "braced_value": "SYSOP",
+          "field_type": "S",
+          "tail": "15 Key Required to issue SYSOP commands"
+        },
+        {
+          "line": 55,
+          "symbol": "GAMOPKEY",
+          "braced_value": "WCCGAMEOP",
+          "field_type": "S",
+          "tail": "15 Key Required to issue GAMEOP commands"
+        },
+        {
+          "line": 63,
+          "symbol": "LOANKEY",
+          "braced_value": "SYSOP",
+          "field_type": "S",
+          "tail": "15 Key Required to get loans from the banks"
+        },
+        {
+          "line": 68,
+          "symbol": "PLAYKEY",
+          "braced_value": "DEMO",
+          "field_type": "S",
+          "tail": "15 Key Required to play the game"
+        },
+        {
+          "line": 74,
+          "symbol": "NOPLAYKY",
+          "braced_value": "NOMUD",
+          "field_type": "S",
+          "tail": "15 Key used to ban a user from the game"
+        },
+        {
+          "line": 83,
+          "symbol": "SAVEKEY",
+          "braced_value": "normal",
+          "field_type": "S",
+          "tail": "15 Key required to save a player's character"
+        },
+        {
+          "line": 90,
+          "symbol": "NODMOKEY",
+          "braced_value": "normal",
+          "field_type": "S",
+          "tail": "15 Key required to pass level DEMOLVL"
+        },
+        {
+          "line": 99,
+          "symbol": "NOKICKEY",
+          "braced_value": "nokickme",
+          "field_type": "S",
+          "tail": "15 Key required to avoid low credit exits"
+        },
+        {
+          "line": 105,
+          "symbol": "GOSSKEY",
+          "braced_value": "gidiot",
+          "field_type": "S",
+          "tail": "15 Key which will disable gossip ability"
+        },
+        {
+          "line": 111,
+          "symbol": "AUCTKEY",
+          "braced_value": "aidiot",
+          "field_type": "S",
+          "tail": "15 Key which will disable auction ability"
+        },
+        {
+          "line": 116,
+          "symbol": "NOPAYKEY",
+          "braced_value": "nopaykey",
+          "field_type": "S",
+          "tail": "15 Key to avoid credit charges in MajorMUD"
+        },
+        {
+          "line": 128,
+          "symbol": "SECOTH",
+          "braced_value": "Seconds between saving Player data? 60",
+          "field_type": "N",
+          "tail": "1 20000"
+        },
+        {
+          "line": 135,
+          "symbol": "SECBUFF",
+          "braced_value": "Seconds between saving Buffer data? 300",
+          "field_type": "N",
+          "tail": "1 20000"
+        },
+        {
+          "line": 145,
+          "symbol": "BUFTOSAV",
+          "braced_value": "Number of buffers to save/set? 1",
+          "field_type": "N",
+          "tail": "1 32767"
+        },
+        {
+          "line": 158,
+          "symbol": "ROOMBUF",
+          "braced_value": "Number of rooms to buffer in memory? 1500",
+          "field_type": "N",
+          "tail": "10 32767"
+        },
+        {
+          "line": 166,
+          "symbol": "ITEMBUF",
+          "braced_value": "Number of items to buffer in memory? 750",
+          "field_type": "N",
+          "tail": "10 32767"
+        },
+        {
+          "line": 174,
+          "symbol": "MONSBUF",
+          "braced_value": "Number of active monsters to buffer? 2000",
+          "field_type": "N",
+          "tail": "10 32767"
+        },
+        {
+          "line": 182,
+          "symbol": "KMONSBUF",
+          "braced_value": "Number of known monsters to buffer? 300",
+          "field_type": "N",
+          "tail": "10 32767"
+        },
+        {
+          "line": 190,
+          "symbol": "SPELBUF",
+          "braced_value": "Number of spells to buffer in memory? 150",
+          "field_type": "N",
+          "tail": "10 32767"
+        },
+        {
+          "line": 198,
+          "symbol": "RACEBUF",
+          "braced_value": "Number of races to buffer in memory? 12",
+          "field_type": "N",
+          "tail": "5 32767"
+        },
+        {
+          "line": 206,
+          "symbol": "CLASSBUF",
+          "braced_value": "Number of classes to buffer in memory? 16",
+          "field_type": "N",
+          "tail": "5 32767"
+        },
+        {
+          "line": 214,
+          "symbol": "BANKBUF",
+          "braced_value": "Number of bankbooks to buffer in memory? 32",
+          "field_type": "N",
+          "tail": "5 32767"
+        },
+        {
+          "line": 222,
+          "symbol": "MESSBUF",
+          "braced_value": "Number of messages to buffer in memory? 250",
+          "field_type": "N",
+          "tail": "5 32767"
+        },
+        {
+          "line": 230,
+          "symbol": "SHOPBUF",
+          "braced_value": "Number of messages to buffer in memory? 50",
+          "field_type": "N",
+          "tail": "5 32767"
+        },
+        {
+          "line": 238,
+          "symbol": "GANGBUF",
+          "braced_value": "Number of messages to buffer in memory? 10",
+          "field_type": "N",
+          "tail": "3 32767"
+        },
+        {
+          "line": 244,
+          "symbol": "TALKCHAR",
+          "braced_value": "Character to start lines for talking (slow): .",
+          "field_type": "C",
+          "tail": ""
+        },
+        {
+          "line": 249,
+          "symbol": "YELLCHAR",
+          "braced_value": "Character to start lines for yelling: \"",
+          "field_type": "C",
+          "tail": ""
+        },
+        {
+          "line": 254,
+          "symbol": "USRCURNM",
+          "braced_value": "Krabby Patties",
+          "field_type": "S",
+          "tail": "28 Name for user defined currency"
+        },
+        {
+          "line": 259,
+          "symbol": "DEATHHP",
+          "braced_value": "Number of hit points at which the user dies? -100",
+          "field_type": "N",
+          "tail": "-20000 0"
+        },
+        {
+          "line": 265,
+          "symbol": "XTRALVL",
+          "braced_value": "Extra Levels of Experience before Training? 10",
+          "field_type": "N",
+          "tail": "0 16"
+        },
+        {
+          "line": 276,
+          "symbol": "PUNHUP",
+          "braced_value": "Level of punishment for hanging up? NONE",
+          "field_type": "E",
+          "tail": "HIGH MEDIUM LOW NONE"
+        },
+        {
+          "line": 282,
+          "symbol": "INVGLO1",
+          "braced_value": ";",
+          "field_type": "S",
+          "tail": "8 First Global to disallow"
+        },
+        {
+          "line": 288,
+          "symbol": "INVGLO2",
+          "braced_value": ";MENU",
+          "field_type": "S",
+          "tail": "8 Second Global to disallow"
+        },
+        {
+          "line": 294,
+          "symbol": "INVGLO3",
+          "braced_value": ";M",
+          "field_type": "S",
+          "tail": "8 Third Global to disallow"
+        },
+        {
+          "line": 300,
+          "symbol": "INVGLO4",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Fourth Global to disallow"
+        },
+        {
+          "line": 306,
+          "symbol": "INVGLO5",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Fifth Global to disallow"
+        },
+        {
+          "line": 312,
+          "symbol": "INVGLO6",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Sixth Global to disallow"
+        },
+        {
+          "line": 318,
+          "symbol": "INVGLO7",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Seventh Global to disallow"
+        },
+        {
+          "line": 324,
+          "symbol": "INVGLO8",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Eighth Global to disallow"
+        },
+        {
+          "line": 330,
+          "symbol": "INVGLO9",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Ninth Global to disallow"
+        },
+        {
+          "line": 336,
+          "symbol": "INVGLO10",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "8 Tenth Global to disallow"
+        },
+        {
+          "line": 341,
+          "symbol": "MAXTOP",
+          "braced_value": "Maximum number of TOPTEN users/gangs lists? 30",
+          "field_type": "N",
+          "tail": "10 3000"
+        },
+        {
+          "line": 347,
+          "symbol": "EVILKEEP",
+          "braced_value": "Percentage of evil points to keep? 50",
+          "field_type": "N",
+          "tail": "0 100"
+        },
+        {
+          "line": 355,
+          "symbol": "MAILUSER",
+          "braced_value": "Sysop",
+          "field_type": "S",
+          "tail": "29 User to receive internal mail"
+        },
+        {
+          "line": 361,
+          "symbol": "PROFCHEK",
+          "braced_value": "Profanity checking? NO",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 373,
+          "symbol": "INITRATE",
+          "braced_value": "Rate to perform initialization? 80",
+          "field_type": "N",
+          "tail": "10 20000"
+        },
+        {
+          "line": 385,
+          "symbol": "POLLRATE",
+          "braced_value": "Relative polling counter? 750",
+          "field_type": "N",
+          "tail": "10 2000"
+        },
+        {
+          "line": 393,
+          "symbol": "DEMOLVL",
+          "braced_value": "Maximum level attainable without NODMOKEY? 2",
+          "field_type": "N",
+          "tail": "1 100"
+        },
+        {
+          "line": 399,
+          "symbol": "EXPINTEN",
+          "braced_value": "Include experience in topten command? YES",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 411,
+          "symbol": "LVLDIFF",
+          "braced_value": "Maximum level difference for PVP? 100",
+          "field_type": "N",
+          "tail": "-1 100"
+        },
+        {
+          "line": 417,
+          "symbol": "MINHUPHP",
+          "braced_value": "Minimum percentage to lose on hangup? 0",
+          "field_type": "N",
+          "tail": "0 100"
+        },
+        {
+          "line": 423,
+          "symbol": "MAXHUPHP",
+          "braced_value": "Maximum percentage to lose on hangup? 0",
+          "field_type": "N",
+          "tail": "0 100"
+        },
+        {
+          "line": 428,
+          "symbol": "MAXHUPIT",
+          "braced_value": "Maximum items to lose on hangup? 0",
+          "field_type": "N",
+          "tail": "0 100"
+        },
+        {
+          "line": 435,
+          "symbol": "INACTIVE",
+          "braced_value": "Number of seconds of inactivity allowed? 5000",
+          "field_type": "N",
+          "tail": "60 32000"
+        },
+        {
+          "line": 449,
+          "symbol": "DATADIR",
+          "braced_value": "",
+          "field_type": "S",
+          "tail": "37 Location of databases"
+        },
+        {
+          "line": 456,
+          "symbol": "KEEPEXP",
+          "braced_value": "Keep some experience after final death? YES",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 463,
+          "symbol": "LIGHTEVY",
+          "braced_value": "Allow SYSOP LIGHTNING on all players? YES",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 471,
+          "symbol": "GENDERGO",
+          "braced_value": "Gold to charge to change gender? 5000",
+          "field_type": "N",
+          "tail": "-1 32000"
+        },
+        {
+          "line": 480,
+          "symbol": "GANGEXP",
+          "braced_value": "Experience (x10000) required? 1000",
+          "field_type": "N",
+          "tail": "0 32767"
+        },
+        {
+          "line": 488,
+          "symbol": "DELUSER",
+          "braced_value": "Delete MajorMUD user with BBS User? NO",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 499,
+          "symbol": "MAXEPDAY",
+          "braced_value": "Max EPs to forgive per day? 18",
+          "field_type": "N",
+          "tail": "4 100"
+        },
+        {
+          "line": 508,
+          "symbol": "EPCYCLE",
+          "braced_value": "Minutes per Evil Point Cycle? 60",
+          "field_type": "N",
+          "tail": "15 360"
+        },
+        {
+          "line": 516,
+          "symbol": "EPAMOUNT",
+          "braced_value": "EPs to forgive per cycle? 1",
+          "field_type": "N",
+          "tail": "1 100"
+        },
+        {
+          "line": 522,
+          "symbol": "ENABLAWF",
+          "braced_value": "Enable the choice of Lawful? YES",
+          "field_type": "B",
+          "tail": ""
+        },
+        {
+          "line": 527,
+          "symbol": "COINSWP",
+          "braced_value": "Sweep coins of this and lower? GOLD",
+          "field_type": "E",
+          "tail": "USER_DEFINED PLATINUM GOLD SILVER COPPER NONE"
+        },
+        {
+          "line": 532,
+          "symbol": "GCOINSW",
+          "braced_value": "Sweep coins from gang houses? NO",
+          "field_type": "B",
+          "tail": ""
+        }
+      ]
+    },
+    {
+      "file": "WCCTEXT.MSG",
+      "sha256": "fa87949d798f7b444a0ba5c18a9b3304d7ffe9ce4630802306382ac6358b1b20",
+      "size": 5350,
+      "ascii_ratio": 0.963178,
+      "line_count": 132,
+      "level_directive_count": 2,
+      "field_declaration_count": 1,
+      "levels": [
+        {
+          "line": 2,
+          "level": 6,
+          "value": "MajorMUD Text Blocks"
+        },
+        {
+          "line": 25,
+          "level": 99,
+          "value": "MajorMUD Text Blocks"
+        }
+      ],
+      "fields": [
+        {
+          "line": 131,
+          "symbol": "MENUPMPT",
+          "braced_value": "\u001b[1;30m[\u001b[0mMAJORMUD\u001b[1;30m]\u001b[0m: ",
+          "field_type": "T",
+          "tail": "Main Menu text"
+        }
+      ]
+    }
+  ],
+  "bin_screen_images": [
+    {
+      "file": "WCCAEDIT.BIN",
+      "sha256": "46b9875b520f516503267c6ca0e4a5565b4bde7e0e48abe04842ada41899ed26",
+      "size": 4000,
+      "cell_count": 2000,
+      "width": 80,
+      "height": 25,
+      "cell_encoding": "little-endian uint16; low byte CP437 character, high byte text attribute",
+      "unique_character_bytes": [
+        32,
+        40,
+        41,
+        44,
+        65,
+        66,
+        69,
+        73,
+        77,
+        78,
+        83,
+        85,
+        97,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        108,
+        109,
+        110,
+        111,
+        112,
+        114,
+        115,
+        116,
+        117,
+        118,
+        121,
+        186,
+        187,
+        188,
+        200,
+        201,
+        205,
+        255
+      ],
+      "unique_attribute_bytes": [
+        7,
+        9,
+        11,
+        12,
+        15
+      ],
+      "screen_layout_proven": true
+    },
+    {
+      "file": "WCCBOX.BIN",
+      "sha256": "d0a4a2ddaaab15110b3dff375871bd2de84871d67708c18a0c26329658eb19ac",
+      "size": 4000,
+      "cell_count": 2000,
+      "width": 80,
+      "height": 25,
+      "cell_encoding": "little-endian uint16; low byte CP437 character, high byte text attribute",
+      "unique_character_bytes": [
+        32,
+        186,
+        187,
+        188,
+        200,
+        201,
+        205
+      ],
+      "unique_attribute_bytes": [
+        7,
+        9,
+        11,
+        12,
+        15
+      ],
+      "screen_layout_proven": true
+    },
+    {
+      "file": "WCCMMUTL.BIN",
+      "sha256": "ce0fb835d9c144af4a84a945a8fa15d1772a44724bd72032c87933782fd71d4c",
+      "size": 4000,
+      "cell_count": 2000,
+      "width": 80,
+      "height": 25,
+      "cell_encoding": "little-endian uint16; low byte CP437 character, high byte text attribute",
+      "unique_character_bytes": [
+        32,
+        179,
+        186,
+        187,
+        188,
+        191,
+        192,
+        196,
+        200,
+        201,
+        205,
+        217,
+        218,
+        219,
+        220,
+        223,
+        255
+      ],
+      "unique_attribute_bytes": [
+        9,
+        12,
+        14,
+        15
+      ],
+      "screen_layout_proven": true
+    }
+  ],
+  "text_support_families": [
+    {
+      "extension": ".STO",
+      "file_count": 7,
+      "ascii_text_count": 7,
+      "entries": [
+        {
+          "file": "WCC1393.STO",
+          "sha256": "82509b4f2c3084b4d12686366a7efb516c69d6b247e7704738537770848e343d",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1394.STO",
+          "sha256": "b899d96f8dc9017e33c12d2a24fab36f85a59035405daf698f26382f341d0607",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1395.STO",
+          "sha256": "c1b617811a235ef2d8ca7cfc8796f89f2e0d38efc47d9f9ea6b879bec69dcb18",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1396.STO",
+          "sha256": "cfe72b2f6b86f106f2a85ab27dbfb6877783b89bda2c29d583c86b3fae5c3d92",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1397.STO",
+          "sha256": "7592522a4e59b29fcdbb7e1c998a9c37b7541bc4ae54b0c755e4211def352379",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1398.STO",
+          "sha256": "543ecfdbd3d5743bb28bd7a4270a187bfd0d7ba6fb64cc3bc5ab55dfb76b4742",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC1399.STO",
+          "sha256": "91353d595710f2d9dabbd81fec63776aedcb754cd3ca49d8decc05fcd4230181",
+          "size": 238,
+          "ascii_ratio": 1.0,
+          "line_count": 4,
+          "ascii_text_proven": true
+        }
+      ]
+    },
+    {
+      "extension": ".HSE",
+      "file_count": 47,
+      "ascii_text_count": 47,
+      "entries": [
+        {
+          "file": "WCC85015.HSE",
+          "sha256": "417f7261875c1a51f2b0d227b34180eb3a30e4b473644cd361ed4236fe312bd8",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC85115.HSE",
+          "sha256": "d35d154900034e2b1ca7ae9f674529e636219bb64094ad680949aeb6346aba6f",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC85215.HSE",
+          "sha256": "8a763af8f893529d3a2969f8f68cc3e4f51b2b335fc5ba87215b7fcb8ec55900",
+          "size": 297,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC85715.HSE",
+          "sha256": "67718a9fbff0b570f4837d29d6920d82ad83dcc57a19338eff1f052972051927",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC86115.HSE",
+          "sha256": "5a5f3b087c8f60d3a68812ea62ee15ded499145ba085c3e405a9ceb610757842",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC86215.HSE",
+          "sha256": "306e89782569da500770122505b03a018c79e9b4cf9157f58e2a0cdd06fd84b5",
+          "size": 300,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC86315.HSE",
+          "sha256": "3cd1c1721eff377e6e2639afd7d077f363bc5201f8313c802dba2f92dcec7d3e",
+          "size": 300,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC86815.HSE",
+          "sha256": "95ec3e2b7815c8273e05317e114f0c44c5caba376bdc826d59c293cd9fd5bf95",
+          "size": 294,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC87415.HSE",
+          "sha256": "1cb87078720cad62f4a8ee1de5a281c0e135925406c409a0e54179551b1b7475",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC87515.HSE",
+          "sha256": "7795cb6e1f05a0a6a08972fe25a653c477251d4c0575cbbccb81557199a3c0bb",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC87615.HSE",
+          "sha256": "a0bc17f6aca1a9b0bbc9929cd8b631e9c5169e22f3f681ff049ee74f11d4890a",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88015.HSE",
+          "sha256": "e6acb45e65a4034851cfefff2371fea0851cebffd081671126ea81498ee2a196",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88115.HSE",
+          "sha256": "daf46f851fba4dd5b10e1cafe27e48618a5725b6da178fd9a16133cb8b409b63",
+          "size": 298,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88215.HSE",
+          "sha256": "992ef60c76b7e236a0c462241edd8859e69ec97586248513811d3126acbc7360",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88315.HSE",
+          "sha256": "dec1df29a4c88452749c239bdb7c80630a2d477bb72b7ad93bd0fbb8d5436716",
+          "size": 303,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88515.HSE",
+          "sha256": "2871ca954214d257c0b17ea14262a8548105aa79f054a75e3677dbdfa1414daf",
+          "size": 299,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88715.HSE",
+          "sha256": "47f70e332b67ec0612aad117aa999d4f880ca631ccdf6622895dd1394f86fb64",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC88915.HSE",
+          "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4",
+          "size": 299,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC89015.HSE",
+          "sha256": "6540baadf5f854798769290ad6d7a0cd791f83cd3f00cc152f76a34e85a8c00e",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC89115.HSE",
+          "sha256": "b891796d7c149c6a37cf336b61f8434a8316315b49f42aac9cb598f8838fe87c",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC89215.HSE",
+          "sha256": "a6277abf7e31238e0629378f1298f11d228ada26741b26e665d689b2ca0d1d33",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC89615.HSE",
+          "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4",
+          "size": 299,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC90215.HSE",
+          "sha256": "f6d48577585eb514c20ebc4085e52efefbfcd4a4bbdb4954ff1de2a6fe95ad73",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC90315.HSE",
+          "sha256": "eade00cf04d9a251546e63975e325b99ab25e575cbbf4a6285900c22532f34ff",
+          "size": 299,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC90415.HSE",
+          "sha256": "14eba16afb497be060c1957996f743a545aafe0b1dee59b4d1568aedd0f9df21",
+          "size": 299,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC90815.HSE",
+          "sha256": "ebf0f3e5c7cb33735db5c22198f552489856e9e40dbfd3d4a25f537e5771b49a",
+          "size": 293,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC90915.HSE",
+          "sha256": "d7c5385ca2c514411457dea7ffd310a2681abfc1c8496a0198f79ab0a1e169df",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC91115.HSE",
+          "sha256": "84b783d5757e6ac1fd7e843ff13ffec96f5ed82c9dfacfa1c3a57f8606385e46",
+          "size": 302,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC91915.HSE",
+          "sha256": "ff4d6b697e9aeff6d89df1aba963dc30d7dff2e3d6e1afe7edd786de68c1cd23",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC92115.HSE",
+          "sha256": "8db92ca1ddb0faefc625054d949616767d856dc78172d8a91983978b9bcf4b4f",
+          "size": 298,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC92215.HSE",
+          "sha256": "0f62c2401a9f0ccde55e53cdfd6c6bce17f57c5bfbfab86f5d08ddb521001055",
+          "size": 297,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC92315.HSE",
+          "sha256": "34e7b24b056fc51d41fa0dfbe67c6b132dc79c4785d2021d45aecdf8eab623a9",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC92415.HSE",
+          "sha256": "dac115b4a73fcd30fece392ca1f74334f1146704166f72910813b0adf95878a5",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC93115.HSE",
+          "sha256": "c5c4547d10ea300dbb4c6c75a29eaf4d68239edcb2c83e059f277b90c23be041",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC93215.HSE",
+          "sha256": "407219b9902749bc6d53f26851c8acc87ddd9aa96fc48a0bcd3cb61530f1bfb9",
+          "size": 297,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC93315.HSE",
+          "sha256": "976f346c02e760942ae76243d2819d8d7b63ab568a077821cb00583f5f118c8e",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC93415.HSE",
+          "sha256": "b702b52ae23e08a2f022283d7793f70710c342e186bcbe49834164427122a2b0",
+          "size": 301,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94015.HSE",
+          "sha256": "f1f34fbd9f90665e554eae4fe01b51365f32d7a6db43b7aa14e385c78069f9fd",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94215.HSE",
+          "sha256": "efc4146e6563cd876781aab142de6ef03ad3eeaa9c99d5e2bb9b909cc9828e82",
+          "size": 297,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94615.HSE",
+          "sha256": "cd8a072e45284c633bb9b97690c60353090f621c26fc914e05ba0a41707d68ae",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94715.HSE",
+          "sha256": "0e0a123008145bfe8265c62f7894cc3891264b54be114370cebf0763ebce7762",
+          "size": 300,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94815.HSE",
+          "sha256": "fd55ea2132b77c98fd24804428a327f44b9d7c0f3f8dc25d89c21940847c1a8f",
+          "size": 294,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC94915.HSE",
+          "sha256": "3869d2fd545e3f56765901ce7af0772534809f7a64e49a07bf0d6179d32fc7fa",
+          "size": 300,
+          "ascii_ratio": 1.0,
+          "line_count": 6,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC96015.HSE",
+          "sha256": "ca6fecdc93c3808a349dea0b5bc4775696abf6fcfe1c1b92798fced7faa6b1bb",
+          "size": 294,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC96115.HSE",
+          "sha256": "9bd8de9b83f1bca2428d6aa9011a1ff7b1ae1a65c59dd0b04fdaae71fb46a723",
+          "size": 296,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC96815.HSE",
+          "sha256": "0fbfc852224422cbd465c9f4d6a6f1bac7190fa85e1fbb06d67fe58c6e802a6f",
+          "size": 295,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCC97115.HSE",
+          "sha256": "66e6a118e879dcb3f12aac597ec27879c9281fbf0f2edecd5c67a360a547debe",
+          "size": 297,
+          "ascii_ratio": 1.0,
+          "line_count": 5,
+          "ascii_text_proven": true
+        }
+      ]
+    },
+    {
+      "extension": ".SYS",
+      "file_count": 2,
+      "ascii_text_count": 2,
+      "entries": [
+        {
+          "file": "WCCADDON.SYS",
+          "sha256": "dac1d566f7c4aab63d672c6f4782be7974a11f07809b79c9d74922c55931810b",
+          "size": 123,
+          "ascii_ratio": 1.0,
+          "line_count": 9,
+          "ascii_text_proven": true
+        },
+        {
+          "file": "WCCDMA.SYS",
+          "sha256": "95fcf03907ab5791462ff7f391f699068ffe1f987353d3ad6b6a55e080a5fc2d",
+          "size": 6830,
+          "ascii_ratio": 1.0,
+          "line_count": 152,
+          "ascii_text_proven": true
+        }
+      ]
+    }
+  ],
+  "closures": [
+    "MCV files use a payload followed by a monotonic uint32 offset table and a 16-byte footer containing two reserved zero words, payload length, and a packed entry-count/version word.",
+    "All supplied WCC MCV containers use format version 1 and satisfy payload_length + (declared_entry_count + 1)*4 + 16 == file_size.",
+    "MSG files are ASCII source catalogs containing LEVEL directives and typed configuration declarations; they are source inputs rather than opaque binary message containers.",
+    "The three 4000-byte BIN files are 80x25 text-mode screen images encoded as 2000 little-endian character/attribute cells.",
+    "STO, HSE, and the supplied SYS payloads are ASCII text artifacts and must not be decoded as opaque binary records."
+  ],
+  "unknowns": [
+    "Semantic meaning of every MCV index entry requires correlation with the catalog compiler/consumer.",
+    "Exact CP437 palette interpretation of attribute bits follows the host terminal mode and remains host-owned.",
+    "DMA SYS authorization/token generation behavior remains unclaimed despite its text record grammar."
+  ]
+}

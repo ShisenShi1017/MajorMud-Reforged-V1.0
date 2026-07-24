@@ -1,0 +1,28 @@
+{
+  "schema": "textblock_opcode_execution_exhaustion_report_v1",
+  "code_update": "0152",
+  "status": "PASS_WITH_NATIVE_DEPENDENCIES",
+  "counts": {
+    "scripts": 182,
+    "operations": 2616,
+    "opcodes": 25,
+    "condition_opcodes": 12,
+    "effect_opcodes": 13
+  },
+  "validation": {
+    "unknown_opcodes": [],
+    "missing_expected_opcodes": [],
+    "parameter_shape_violations": [],
+    "all_opcode_parameters_typed": true,
+    "execution_and_rollback_order_captured": true
+  },
+  "native_dependencies": [
+    "message/text payload rendering",
+    "remoteaction dispatcher side effects"
+  ],
+  "evidence": {
+    "source": "Librarium/Objects/scripts/mmexplorer_textblock_stage_records.json",
+    "runtime_executor": "Apps/Source/Reforged.Server/RuntimeQuestDialogueExecution.cs",
+    "contract": "Data/Classic/textblock_command_ability_contracts.json"
+  }
+}

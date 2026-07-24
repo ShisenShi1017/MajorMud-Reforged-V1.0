@@ -1,0 +1,12 @@
+{
+  "update": "0169",
+  "runtime": "RuntimeResolvedPeriodicSpellExecution",
+  "ownership": {
+    "effect_clock": "RuntimeSpellEffectLifecycle",
+    "resistance_and_save": "RuntimeSpellResistanceSavingThrow",
+    "target_mutation": "IRuntimeCombatSpellMutationSink"
+  },
+  "ordering": ["advance effect clock", "resolve resistance", "resolve saving throw", "suppress or transform", "commit mutation"],
+  "supported": ["immunity", "negation", "vulnerability", "partial/full resistance", "absorption", "save magnitude reduction", "secondary suppression", "resolved status creation"],
+  "safe_fallback": "reject unresolved policy or mismatched canonical identity"
+}

@@ -1,0 +1,1115 @@
+{
+  "schema": "majorMud.nativeSupportPayloadContracts.v1",
+  "evidence_id": "native-support-payload-contracts-0025",
+  "update": "0024->0025",
+  "evidence_class": "PROVEN",
+  "bin_screens": [
+    {
+      "file": "WCCMMUTL.BIN",
+      "sha256": "ce0fb835d9c144af4a84a945a8fa15d1772a44724bd72032c87933782fd71d4c",
+      "bytes": 4000,
+      "cells": 2000,
+      "attribute_histogram": {
+        "9": 237,
+        "12": 391,
+        "14": 20,
+        "15": 1352
+      },
+      "attribute_values": [
+        9,
+        12,
+        14,
+        15
+      ],
+      "character_distinct_count": 17,
+      "space_cells": 1537,
+      "cp437_box_drawing_cells": 417
+    },
+    {
+      "file": "WCCBOX.BIN",
+      "sha256": "d0a4a2ddaaab15110b3dff375871bd2de84871d67708c18a0c26329658eb19ac",
+      "bytes": 4000,
+      "cells": 2000,
+      "attribute_histogram": {
+        "7": 78,
+        "9": 25,
+        "11": 733,
+        "12": 259,
+        "15": 905
+      },
+      "attribute_values": [
+        7,
+        9,
+        11,
+        12,
+        15
+      ],
+      "character_distinct_count": 7,
+      "space_cells": 1798,
+      "cp437_box_drawing_cells": 202
+    },
+    {
+      "file": "WCCAEDIT.BIN",
+      "sha256": "46b9875b520f516503267c6ca0e4a5565b4bde7e0e48abe04842ada41899ed26",
+      "bytes": 4000,
+      "cells": 2000,
+      "attribute_histogram": {
+        "7": 78,
+        "9": 24,
+        "11": 1058,
+        "12": 259,
+        "15": 581
+      },
+      "attribute_values": [
+        7,
+        9,
+        11,
+        12,
+        15
+      ],
+      "character_distinct_count": 38,
+      "space_cells": 1636,
+      "cp437_box_drawing_cells": 202
+    }
+  ],
+  "wccaddon": {
+    "sha256": "dac1d566f7c4aab63d672c6f4782be7974a11f07809b79c9d74922c55931810b",
+    "line_count": 9,
+    "trailing_lf": true,
+    "grammar": "<decimal slot>:<uppercase token>",
+    "slots": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "token_lengths": {
+      "16": 1,
+      "10": 8
+    },
+    "alphabet": [
+      "B",
+      "D",
+      "E",
+      "F",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "records": [
+      {
+        "slot": 1,
+        "token": "EUUWEXEVUWZZTVWY",
+        "token_length": 16
+      },
+      {
+        "slot": 2,
+        "token": "EVWWEVETXV",
+        "token_length": 10
+      },
+      {
+        "slot": 3,
+        "token": "DVZTFVFYTY",
+        "token_length": 10
+      },
+      {
+        "slot": 4,
+        "token": "DVZTFVFYTY",
+        "token_length": 10
+      },
+      {
+        "slot": 5,
+        "token": "DTTTFVEUZZ",
+        "token_length": 10
+      },
+      {
+        "slot": 6,
+        "token": "EWTZEWDUYU",
+        "token_length": 10
+      },
+      {
+        "slot": 7,
+        "token": "BZZUFWDZUW",
+        "token_length": 10
+      },
+      {
+        "slot": 8,
+        "token": "BYUTUWDVTV",
+        "token_length": 10
+      },
+      {
+        "slot": 9,
+        "token": "DVYUFWDVZT",
+        "token_length": 10
+      }
+    ]
+  },
+  "wccdma": {
+    "sha256": "95fcf03907ab5791462ff7f391f699068ffe1f987353d3ad6b6a55e080a5fc2d",
+    "line_count": 152,
+    "trailing_lf": true,
+    "grammar": "<IPv4> <8-digit identifier> <uppercase token>",
+    "field_count": 3,
+    "unique_addresses": 152,
+    "unique_identifiers": 140,
+    "unique_tokens": 152,
+    "token_length_histogram": {
+      "22": 34,
+      "21": 57,
+      "20": 41,
+      "23": 11,
+      "19": 7,
+      "18": 1,
+      "17": 1
+    },
+    "alphabet": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "I",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "records": [
+      {
+        "address": "192.168.122.24",
+        "identifier": "48908417",
+        "token": "ARDTCUBTDSBYBTAUBXCYDA",
+        "token_length": 22
+      },
+      {
+        "address": "192.168.122.25",
+        "identifier": "45063041",
+        "token": "BYAZDVDSDSATBXDUBSCYAD",
+        "token_length": 22
+      },
+      {
+        "address": "192.168.122.27",
+        "identifier": "97836353",
+        "token": "BXAXCUBTDSARAVCUBZCYAD",
+        "token_length": 22
+      },
+      {
+        "address": "192.168.122.28",
+        "identifier": "87035841",
+        "token": "BXBWDVDSDSDUDVAUBTCYDC",
+        "token_length": 22
+      },
+      {
+        "address": "206.169.156.34",
+        "identifier": "98551233",
+        "token": "BVASDUBTCWBTBUBUCXCXBB",
+        "token_length": 22
+      },
+      {
+        "address": "206.27.215.82",
+        "identifier": "07356801",
+        "token": "BZBXCUDYCTAXCYASDSAZS",
+        "token_length": 21
+      },
+      {
+        "address": "208.13.2.137",
+        "identifier": "28922433",
+        "token": "ATDWWSBYCTATBUARAUBA",
+        "token_length": 20
+      },
+      {
+        "address": "63.72.167.200",
+        "identifier": "15536513",
+        "token": "BWATWRAWBRBZARBXBYDSW",
+        "token_length": 21
+      },
+      {
+        "address": "203.59.133.196",
+        "identifier": "58427137",
+        "token": "ATDWCRDZAZATDWDZAYASBD",
+        "token_length": 22
+      },
+      {
+        "address": "198.211.192.146",
+        "identifier": "38194625",
+        "token": "BUDXAWATBTCSBRCTBZCWDRV",
+        "token_length": 23
+      },
+      {
+        "address": "24.124.38.67",
+        "identifier": "35747201",
+        "token": "DXAWDZDRARDZBVBRATBA",
+        "token_length": 20
+      },
+      {
+        "address": "198.232.144.44",
+        "identifier": "57537025",
+        "token": "BYBXBWDTDUDUAXAZDSDRAC",
+        "token_length": 22
+      },
+      {
+        "address": "216.186.151.34",
+        "identifier": "83127361",
+        "token": "BSAUDVBRBWDSBVAWDZBXAD",
+        "token_length": 22
+      },
+      {
+        "address": "216.36.24.161",
+        "identifier": "25314817",
+        "token": "DVAXCSDXAUAYDUASAVBRW",
+        "token_length": 21
+      },
+      {
+        "address": "206.246.124.18",
+        "identifier": "76780929",
+        "token": "BYAZCWDRAWDUBVASDYAZDD",
+        "token_length": 22
+      },
+      {
+        "address": "206.27.215.63",
+        "identifier": "97836353",
+        "token": "BXAXCYBRCUAZBZASBSARS",
+        "token_length": 21
+      },
+      {
+        "address": "204.244.18.12",
+        "identifier": "07356801",
+        "token": "BZDXAWDRCVAXCXDVDTBZS",
+        "token_length": 21
+      },
+      {
+        "address": "204.74.102.2",
+        "identifier": "34991041",
+        "token": "BYDZBYDZAWAUBWBUAZAD",
+        "token_length": 20
+      },
+      {
+        "address": "202.42.230.10",
+        "identifier": "78503937",
+        "token": "DWDYDTDRCZASBYDTBYDSW",
+        "token_length": 21
+      },
+      {
+        "address": "199.227.250.194",
+        "identifier": "15280513",
+        "token": "DTCSDVDUDZBUBTBUBWDTDXV",
+        "token_length": 23
+      },
+      {
+        "address": "206.228.231.2",
+        "identifier": "45681217",
+        "token": "BYDRDVBUAXATCTASBZBUW",
+        "token_length": 21
+      },
+      {
+        "address": "156.46.216.10",
+        "identifier": "02930433",
+        "token": "AXASCTDRDZBUCWDTBVDXR",
+        "token_length": 21
+      },
+      {
+        "address": "206.230.95.11",
+        "identifier": "89796419",
+        "token": "BYATCVDRCUASDSAUDXBRY",
+        "token_length": 21
+      },
+      {
+        "address": "207.71.74.71",
+        "identifier": "11082433",
+        "token": "ZTBZCTDSDSBUAXBUDUBC",
+        "token_length": 20
+      },
+      {
+        "address": "206.162.30.2",
+        "identifier": "67924033",
+        "token": "BXDXCUBTCUARDSATBRAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.96.152.10",
+        "identifier": "34548033",
+        "token": "ATBTCRDXASCUCTAZBRDSS",
+        "token_length": 21
+      },
+      {
+        "address": "206.137.16.2",
+        "identifier": "33029761",
+        "token": "WXAZDVBRAUDRCXBWBXAD",
+        "token_length": 20
+      },
+      {
+        "address": "205.148.231.2",
+        "identifier": "44220161",
+        "token": "YRBZDVBSAYDTBRCSAXDUS",
+        "token_length": 21
+      },
+      {
+        "address": "204.97.145.2",
+        "identifier": "11094209",
+        "token": "STDVDTBVCXCTCWAVCUAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.162.51.2",
+        "identifier": "72687233",
+        "token": "BZDUDUBTCUAUBSDRDRAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.17.159.2",
+        "identifier": "56552513",
+        "token": "BWAZDSDXCUAXBRAUCZAD",
+        "token_length": 20
+      },
+      {
+        "address": "204.245.241.76",
+        "identifier": "04426945",
+        "token": "CUAVAWDSDYDUBZDTARBZBD",
+        "token_length": 22
+      },
+      {
+        "address": "147.71.154.101",
+        "identifier": "09184257",
+        "token": "BRBXAYDXBYDRBXAYDYATDB",
+        "token_length": 22
+      },
+      {
+        "address": "206.103.211.2",
+        "identifier": "85084545",
+        "token": "BVAVCVCSDXATBSDVARDYW",
+        "token_length": 21
+      },
+      {
+        "address": "199.171.196.2",
+        "identifier": "92834817",
+        "token": "AXAXDUATBRBYBRBTDYCTV",
+        "token_length": 21
+      },
+      {
+        "address": "206.27.215.36",
+        "identifier": "13528001",
+        "token": "BYARCUDYCRAVDTASDSBXW",
+        "token_length": 21
+      },
+      {
+        "address": "206.27.215.41",
+        "identifier": "21808001",
+        "token": "DWARCUBYCUAVBUASDSARV",
+        "token_length": 21
+      },
+      {
+        "address": "206.27.215.35",
+        "identifier": "48908417",
+        "token": "AWDTCTDRCRAVAWASDSBXW",
+        "token_length": 21
+      },
+      {
+        "address": "206.27.215.43",
+        "identifier": "76251201",
+        "token": "BYBZDUDYCSATDXASBSAYS",
+        "token_length": 21
+      },
+      {
+        "address": "206.162.42.2",
+        "identifier": "55270721",
+        "token": "YZBZCVDSAUDVCZARATAD",
+        "token_length": 20
+      },
+      {
+        "address": "203.5.127.250",
+        "identifier": "59760257",
+        "token": "BZASBXAWAYBTCWATBYDSW",
+        "token_length": 21
+      },
+      {
+        "address": "206.165.124.2",
+        "identifier": "48638849",
+        "token": "AWBRCVCRAXAUBSBRBVCUR",
+        "token_length": 21
+      },
+      {
+        "address": "206.162.22.2",
+        "identifier": "49611521",
+        "token": "BRBVDVDSAUDUCZAYATAD",
+        "token_length": 20
+      },
+      {
+        "address": "208.218.215.35",
+        "identifier": "73455233",
+        "token": "BYCXBVBUAUCUAZAYBXAZBC",
+        "token_length": 22
+      },
+      {
+        "address": "206.41.37.1",
+        "identifier": "48646529",
+        "token": "ATAXDUDVDTCSCZBYDTY",
+        "token_length": 19
+      },
+      {
+        "address": "205.148.241.2",
+        "identifier": "68735106",
+        "token": "DSBXAVAUDYBYBWCZDWDUV",
+        "token_length": 21
+      },
+      {
+        "address": "207.152.55.2",
+        "identifier": "67614913",
+        "token": "TWAXBUBTCTBSAZDUAVAD",
+        "token_length": 20
+      },
+      {
+        "address": "207.30.83.5",
+        "identifier": "02900929",
+        "token": "DWDZDRBWDSBTBXARBTT",
+        "token_length": 19
+      },
+      {
+        "address": "204.117.211.3",
+        "identifier": "67325313",
+        "token": "BWDWBUBUDYAYAXDVARDTS",
+        "token_length": 21
+      },
+      {
+        "address": "207.82.77.11",
+        "identifier": "87803841",
+        "token": "CXBWCUBUDTBUBUDXBWDD",
+        "token_length": 20
+      },
+      {
+        "address": "207.182.219.3",
+        "identifier": "53433348",
+        "token": "BTBVCVCSAVBUBXCUAUDTR",
+        "token_length": 21
+      },
+      {
+        "address": "207.104.204.1",
+        "identifier": "07774401",
+        "token": "TRTZBVDSAVBVCXCUAXCTV",
+        "token_length": 21
+      },
+      {
+        "address": "207.96.243.2",
+        "identifier": "61439617",
+        "token": "DWATCSBXAYDRATDVBSAD",
+        "token_length": 20
+      },
+      {
+        "address": "207.34.80.122",
+        "identifier": "66183361",
+        "token": "XXDWCWBZDSDUAYCWBVBZS",
+        "token_length": 21
+      },
+      {
+        "address": "206.88.128.52",
+        "identifier": "84041025",
+        "token": "AYCYDSBXCTCTAZASAXDUW",
+        "token_length": 21
+      },
+      {
+        "address": "38.251.153.10",
+        "identifier": "92508033",
+        "token": "BZCSBUDWBVBXCWAYBZDTT",
+        "token_length": 21
+      },
+      {
+        "address": "207.34.68.248",
+        "identifier": "21110849",
+        "token": "DVBZBTBRAVBTATAZAWATY",
+        "token_length": 21
+      },
+      {
+        "address": "208.2.177.66",
+        "identifier": "86260161",
+        "token": "ATAZBUAUASDXATBWDRAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.55.72.4",
+        "identifier": "32255809",
+        "token": "BTBVDTDZAVDRDXBTCUT",
+        "token_length": 19
+      },
+      {
+        "address": "206.27.215.56",
+        "identifier": "99226625",
+        "token": "YRAVCUBYCTCXATASBSBZW",
+        "token_length": 21
+      },
+      {
+        "address": "199.4.124.69",
+        "identifier": "44651329",
+        "token": "ZSDSWUAXDXAZASBUCTAC",
+        "token_length": 20
+      },
+      {
+        "address": "207.31.115.34",
+        "identifier": "39008001",
+        "token": "DWBRATBYCZBUBYDSDSBSU",
+        "token_length": 21
+      },
+      {
+        "address": "207.211.236.2",
+        "identifier": "39742401",
+        "token": "DTBXBWCSAWBSBYDTBYAUS",
+        "token_length": 21
+      },
+      {
+        "address": "206.66.42.65",
+        "identifier": "43074049",
+        "token": "BXBZTWBXAWARBZAZAVBA",
+        "token_length": 20
+      },
+      {
+        "address": "206.150.130.67",
+        "identifier": "72017729",
+        "token": "BRBTDVBRAXAXBZBSCVDYBA",
+        "token_length": 22
+      },
+      {
+        "address": "207.212.140.243",
+        "identifier": "64808961",
+        "token": "BZBRBWBRAWCXATCYBXATAYS",
+        "token_length": 23
+      },
+      {
+        "address": "207.239.205.100",
+        "identifier": "58312707",
+        "token": "ASBZBWBUDVBUBRAWAWARDUW",
+        "token_length": 23
+      },
+      {
+        "address": "206.27.215.64",
+        "identifier": "96869505",
+        "token": "BYZZDUBYCVAVARASDSASU",
+        "token_length": 21
+      },
+      {
+        "address": "203.56.205.1",
+        "identifier": "47433729",
+        "token": "BXWVCTDZCZAUAZDUDZBA",
+        "token_length": 20
+      },
+      {
+        "address": "199.173.31.100",
+        "identifier": "80699457",
+        "token": "BXUXAUCTBYCTCYBTASBWDA",
+        "token_length": 22
+      },
+      {
+        "address": "165.212.242.2",
+        "identifier": "00648257",
+        "token": "ZXCTDVBUDTBVCUCZAYAZV",
+        "token_length": 21
+      },
+      {
+        "address": "204.141.102.5",
+        "identifier": "72694913",
+        "token": "BTCXAUBTCYAYBWDTDVCTW",
+        "token_length": 21
+      },
+      {
+        "address": "198.70.176.1",
+        "identifier": "77586116",
+        "token": "RWRUBSBUDVDUDSBVBUBB",
+        "token_length": 20
+      },
+      {
+        "address": "206.27.215.74",
+        "identifier": "26974724",
+        "token": "AYBZCUCYCVCUARBSBSBSV",
+        "token_length": 21
+      },
+      {
+        "address": "206.156.30.13",
+        "identifier": "80339009",
+        "token": "AWBRDVDRCTATCYAVBVDZR",
+        "token_length": 21
+      },
+      {
+        "address": "204.50.160.4",
+        "identifier": "53589057",
+        "token": "BWCRDYDVCUATDWBVAVAB",
+        "token_length": 20
+      },
+      {
+        "address": "207.67.107.2",
+        "identifier": "28282433",
+        "token": "BSDZCSBSATBVAYAXAUAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.191.193.252",
+        "identifier": "04003457",
+        "token": "AWDYDUATCXCTCTBXBRBVDUW",
+        "token_length": 23
+      },
+      {
+        "address": "209.96.152.16",
+        "identifier": "34548033",
+        "token": "ATBTCRBXAVCUAZAZBRDVW",
+        "token_length": 21
+      },
+      {
+        "address": "204.134.14.2",
+        "identifier": "62550337",
+        "token": "AXCSAUBTCSBXDSARAVAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.27.215.47",
+        "identifier": "45063041",
+        "token": "BYVYDZDYCSARBTASDSATW",
+        "token_length": 21
+      },
+      {
+        "address": "204.145.237.2",
+        "identifier": "20713217",
+        "token": "AVCZBUAUAZASDUDUBXDUW",
+        "token_length": 21
+      },
+      {
+        "address": "199.190.82.2",
+        "identifier": "05574849",
+        "token": "DTBSDVDUDYBZCZAWDTAC",
+        "token_length": 20
+      },
+      {
+        "address": "207.227.237.201",
+        "identifier": "76296641",
+        "token": "AUBTBWCSAWAZAUAUBXBUART",
+        "token_length": 23
+      },
+      {
+        "address": "206.27.215.80",
+        "identifier": "87035841",
+        "token": "BXBVDZBYCVAYAXASDSAWZ",
+        "token_length": 21
+      },
+      {
+        "address": "199.190.126.2",
+        "identifier": "20906113",
+        "token": "DVCVDUBTDRBWAZCTAXCWR",
+        "token_length": 21
+      },
+      {
+        "address": "207.240.22.1",
+        "identifier": "43499329",
+        "token": "BTBVCWBSAVAUBRATAVBA",
+        "token_length": 20
+      },
+      {
+        "address": "205.177.91.2",
+        "identifier": "03001217",
+        "token": "BWCRAUCTCRDTAUARARAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.131.152.2",
+        "identifier": "64611905",
+        "token": "DXDVAVCRCUBTDYBXDXCUW",
+        "token_length": 21
+      },
+      {
+        "address": "207.120.204.34",
+        "identifier": "70846209",
+        "token": "CSBXBVDSAVARBSARAXCXBD",
+        "token_length": 22
+      },
+      {
+        "address": "199.190.80.2",
+        "identifier": "81299907",
+        "token": "DYVXAVBUBTATCZATBRDC",
+        "token_length": 20
+      },
+      {
+        "address": "199.44.69.26",
+        "identifier": "30285057",
+        "token": "AWCWRTBSDXBVBWASBTDC",
+        "token_length": 20
+      },
+      {
+        "address": "202.10.8.3",
+        "identifier": "77690500",
+        "token": "ZSBZATCTAUDVBUAZBA",
+        "token_length": 18
+      },
+      {
+        "address": "206.183.31.2",
+        "identifier": "56936513",
+        "token": "BUAXCUDTCUASBXAYBRAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.135.2.70",
+        "identifier": "41302017",
+        "token": "DRCZDUAUDUBTDRBUCXBB",
+        "token_length": 20
+      },
+      {
+        "address": "209.172.201.7",
+        "identifier": "55701953",
+        "token": "SSCRAUBUDTBTCTAUDVDTW",
+        "token_length": 21
+      },
+      {
+        "address": "206.162.3.2",
+        "identifier": "40102849",
+        "token": "ATAXCVBRARCSDWAYDUR",
+        "token_length": 19
+      },
+      {
+        "address": "151.198.240.4",
+        "identifier": "42741313",
+        "token": "DZCRBUBUDUBTAYCZDRCUV",
+        "token_length": 21
+      },
+      {
+        "address": "209.144.3.10",
+        "identifier": "63452225",
+        "token": "BRDXDVBRDWBXCSCTBXDD",
+        "token_length": 20
+      },
+      {
+        "address": "207.136.229.20",
+        "identifier": "48097345",
+        "token": "DXBTCVDSDWAZBYARCRAYAD",
+        "token_length": 22
+      },
+      {
+        "address": "209.172.24.2",
+        "identifier": "96607617",
+        "token": "AUCUAUDUCWDTDZAZDVAD",
+        "token_length": 20
+      },
+      {
+        "address": "206.27.215.37",
+        "identifier": "71033217",
+        "token": "DRAXDTBRCRATBWASBSBSW",
+        "token_length": 21
+      },
+      {
+        "address": "209.152.211.10",
+        "identifier": "92537537",
+        "token": "AXAXAUDUDTCYBXATAVAXDB",
+        "token_length": 22
+      },
+      {
+        "address": "207.96.85.3",
+        "identifier": "04003457",
+        "token": "DVAYCXDWDUCVDXAYDXW",
+        "token_length": 19
+      },
+      {
+        "address": "208.143.216.13",
+        "identifier": "24562753",
+        "token": "ATDSAUDUCUBRBZATAZAXBB",
+        "token_length": 22
+      },
+      {
+        "address": "209.21.135.12",
+        "identifier": "63546625",
+        "token": "BRBXASBXCZDXDUARBSBZW",
+        "token_length": 21
+      },
+      {
+        "address": "206.55.154.230",
+        "identifier": "26291649",
+        "token": "AYBZDYDVCUDRBUBVDYDZBD",
+        "token_length": 22
+      },
+      {
+        "address": "204.203.52.2",
+        "identifier": "19933441",
+        "token": "DTBVBWBRAWAVAXBTBVAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.191.6.212",
+        "identifier": "52545537",
+        "token": "ARCRAUAUAZBXAVBRDVDZW",
+        "token_length": 21
+      },
+      {
+        "address": "209.137.81.130",
+        "identifier": "95209601",
+        "token": "DTDZAVDSCZAWBSBUCZBUBD",
+        "token_length": 22
+      },
+      {
+        "address": "204.215.244.254",
+        "identifier": "56121345",
+        "token": "BRAYBWCSAZAUAVATCZDUBSU",
+        "token_length": 23
+      },
+      {
+        "address": "206.251.78.66",
+        "identifier": "30763457",
+        "token": "DURRDVATCTARDXDVBRAZW",
+        "token_length": 21
+      },
+      {
+        "address": "208.188.34.187",
+        "identifier": "19850817",
+        "token": "CXCSDSDWDUBXAXCXBZDB",
+        "token_length": 20
+      },
+      {
+        "address": "203.38.130.33",
+        "identifier": "30040833",
+        "token": "CYDSARBZCXCTBVCSBYBVS",
+        "token_length": 21
+      },
+      {
+        "address": "207.161.113.152",
+        "identifier": "79382209",
+        "token": "DTBXBVCRCVDTBXDXBZDWBZR",
+        "token_length": 23
+      },
+      {
+        "address": "203.63.11.5",
+        "identifier": "09381249",
+        "token": "BYBYCZBYDUARBUDSBTT",
+        "token_length": 19
+      },
+      {
+        "address": "216.24.148.2",
+        "identifier": "63745413",
+        "token": "BWDRBTBXDUAUARBZCSAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.122.123.7",
+        "identifier": "63737729",
+        "token": "BYBVAVBRDTDXBXATDRDTV",
+        "token_length": 21
+      },
+      {
+        "address": "209.122.123.5",
+        "identifier": "04003457",
+        "token": "BYCYAUDTDTBZDZATBRDXW",
+        "token_length": 21
+      },
+      {
+        "address": "209.141.84.2",
+        "identifier": "22010945",
+        "token": "ZSDZDVCSCWASDYBTCVAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.136.219.10",
+        "identifier": "73252353",
+        "token": "BRCZDUDUATCRAUARBSAXDB",
+        "token_length": 22
+      },
+      {
+        "address": "209.242.66.100",
+        "identifier": "13021953",
+        "token": "BSARAVDUASCVCWATATBYAB",
+        "token_length": 22
+      },
+      {
+        "address": "209.100.229.226",
+        "identifier": "96135105",
+        "token": "AXBVAVDSDUBTBSDUCZAYCXW",
+        "token_length": 23
+      },
+      {
+        "address": "209.16.219.102",
+        "identifier": "01353153",
+        "token": "DRCZAXDRCSATDWCZCWBWAD",
+        "token_length": 22
+      },
+      {
+        "address": "209.118.172.20",
+        "identifier": "86283713",
+        "token": "DYCYAUBTAUCWBYAXAVDYAB",
+        "token_length": 22
+      },
+      {
+        "address": "209.139.9.29",
+        "identifier": "77188545",
+        "token": "RRDXDVDRAXAUDUBYDYBA",
+        "token_length": 20
+      },
+      {
+        "address": "208.150.53.2",
+        "identifier": "49599745",
+        "token": "DXDVBVDRAXBTDZDRATAD",
+        "token_length": 20
+      },
+      {
+        "address": "209.152.195.17",
+        "identifier": "51165249",
+        "token": "DSBYAVBRATBRDRCSDVAXBA",
+        "token_length": 22
+      },
+      {
+        "address": "207.98.186.235",
+        "identifier": "12456833",
+        "token": "AUDZCRBTATDUAWBRAWAUBC",
+        "token_length": 22
+      },
+      {
+        "address": "206.40.128.98",
+        "identifier": "25314817",
+        "token": "DVAXBTDZCVAZATASAXDSV",
+        "token_length": 21
+      },
+      {
+        "address": "207.230.39.130",
+        "identifier": "51625921",
+        "token": "BZBUCWBRCSAUDRATAWCWBD",
+        "token_length": 22
+      },
+      {
+        "address": "207.230.39.190",
+        "identifier": "98009729",
+        "token": "AUBZCWBRCVAYBTATARCZDD",
+        "token_length": 22
+      },
+      {
+        "address": "209.176.138.130",
+        "identifier": "66329025",
+        "token": "YSBZAVDRATBRAUAZBZASDSU",
+        "token_length": 23
+      },
+      {
+        "address": "209.84.182.105",
+        "identifier": "38968513",
+        "token": "ASATCTDTASDZAWBSATBVDC",
+        "token_length": 22
+      },
+      {
+        "address": "199.190.105.2",
+        "identifier": "99933313",
+        "token": "ITAXAUBTCRBUBSCTBWDWR",
+        "token_length": 21
+      },
+      {
+        "address": "208.242.83.25",
+        "identifier": "79896001",
+        "token": "BVDTAWBSAXAXBTCVBUAWU",
+        "token_length": 21
+      },
+      {
+        "address": "207.229.70.130",
+        "identifier": "69839937",
+        "token": "DWATCVBTCSCVDSBSBXDWBB",
+        "token_length": 22
+      },
+      {
+        "address": "216.63.136.13",
+        "identifier": "35264705",
+        "token": "DZZZBUDXBRBSAZBVAUAA",
+        "token_length": 20
+      },
+      {
+        "address": "203.116.211.2",
+        "identifier": "12724609",
+        "token": "AWBVBVDSDRBTAWCVBZDUR",
+        "token_length": 21
+      },
+      {
+        "address": "156.46.226.2",
+        "identifier": "21573825",
+        "token": "DVBSDUBZDUAZAYARASDC",
+        "token_length": 20
+      },
+      {
+        "address": "206.153.202.32",
+        "identifier": "35747201",
+        "token": "DWAWDVASCWDRBYBTAZAXBD",
+        "token_length": 22
+      },
+      {
+        "address": "206.21.203.194",
+        "identifier": "28922433",
+        "token": "CZDWYTDSAWBZBVATAUAZDB",
+        "token_length": 22
+      },
+      {
+        "address": "216.47.111.2",
+        "identifier": "23030849",
+        "token": "BXBZBZDYDVARBYASAVDD",
+        "token_length": 20
+      },
+      {
+        "address": "207.34.94.208",
+        "identifier": "01034051",
+        "token": "BRBVAYBVAVBYBVBUAWAXY",
+        "token_length": 21
+      },
+      {
+        "address": "206.117.78.10",
+        "identifier": "28725441",
+        "token": "CZAUDVARCVASCSAVBVDSZ",
+        "token_length": 21
+      },
+      {
+        "address": "209.223.15.2",
+        "identifier": "57216129",
+        "token": "BWDTDWDRCSATAZAUDXAD",
+        "token_length": 20
+      },
+      {
+        "address": "12.17.3.2",
+        "identifier": "25994305",
+        "token": "DWBXAXBUBUATAWBSV",
+        "token_length": 17
+      },
+      {
+        "address": "204.133.23.254",
+        "identifier": "65403521",
+        "token": "BYCWBVDSASDXDYBUATBRDD",
+        "token_length": 22
+      },
+      {
+        "address": "209.242.80.113",
+        "identifier": "68181825",
+        "token": "DZDYAWDSCRBVBRDTCZBXBA",
+        "token_length": 22
+      },
+      {
+        "address": "24.10.68.155",
+        "identifier": "06510337",
+        "token": "ATCSAYDVARBSCXDVAYCSW",
+        "token_length": 21
+      },
+      {
+        "address": "206.107.236.130",
+        "identifier": "28922433",
+        "token": "CZDWCUDUAWAUDVDRDWATDSS",
+        "token_length": 23
+      },
+      {
+        "address": "192.168.1.2",
+        "identifier": "98446849",
+        "token": "BXAZCVDTCVCVCYAWDTZ",
+        "token_length": 19
+      }
+    ]
+  },
+  "closures": [
+    "All three utility BIN assets use only the recovered DOS text attribute byte values 7, 9, 11, 12, 14, and 15; each attribute is preserved verbatim per cell rather than interpreted as a modern color name.",
+    "WCCADDON.SYS is a nine-record LF-delimited slot/token table with contiguous slots 1 through 9.",
+    "WCCDMA.SYS is a 152-record LF-delimited three-field table: IPv4 address, fixed-width eight-digit identifier, and uppercase token.",
+    "WCCDMA tokens are unique in the supplied file; identifiers are not unique, so the identifier alone is not a record key."
+  ],
+  "limitations": [
+    "Token generation and validation algorithms remain native-only and are not inferred from the observed payload grammar.",
+    "The exact Worldgroup mapping from DOS attribute nibble values to terminal colors remains host-owned."
+  ]
+}

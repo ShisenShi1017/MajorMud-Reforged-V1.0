@@ -1,0 +1,34 @@
+{
+  "code_update": "0157",
+  "subsystem": "character",
+  "current_pass": "Character Inventory Phase 1 - ownership, containers, and stack lifecycle",
+  "status": "in_progress",
+  "completed": [
+    "status effects phases 1-2",
+    "progression ownership and evidence-gated promotion",
+    "statistics projection phases 1-3",
+    "equipment phases 1-3",
+    "recursive inventory ownership and container validation",
+    "atomic stack split and merge lifecycle"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth and gain schedules",
+    "native multiclass switching and caps",
+    "native statistics formulas and cadence",
+    "equipment dual wield, layering, durability, and hidden order",
+    "inventory weight, encumbrance, overflow, and coins",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [
+    "base combat-statistic formulas",
+    "saving-throw resolution",
+    "base regeneration cadence and quantity",
+    "Classic automatic stack behavior",
+    "weight and encumbrance formulas",
+    "coin denomination and overflow semantics"
+  ],
+  "next": "Character Inventory Phase 2: recover weight, encumbrance, coins, capacity, and overflow from authoritative data without inventing semantics"
+}

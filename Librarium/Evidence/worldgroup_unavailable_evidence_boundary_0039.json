@@ -1,0 +1,42 @@
+{
+  "schema": "majormud.worldgroup-unavailable-evidence-boundary.v1",
+  "update": "WorldgroupNativeClosureUpdate0039",
+  "boundary_id": "worldgroup.btrieve.recovery-format.live-capture-unavailable",
+  "status": "conclusive_external_evidence_boundary",
+  "user_constraint": "A compatible live Worldgroup environment cannot be obtained.",
+  "affected_artifacts": [
+    "BTRVLOG.TRN",
+    "BTRVLOG.RCV",
+    "BTR_TMP.$??",
+    "????????.LOG"
+  ],
+  "proven_ownership": {
+    "major_mud": "submits DFA mutations through WGSERVER",
+    "wgserver": "marshals mutations and calls WBTRV32 BTRCALL",
+    "wbtrv32": "transports Btrieve requests",
+    "w32mkde": "owns cache, physical writes, flushes, transaction logs, and recovery"
+  },
+  "known_behavior_preserved": [
+    "physical mutation operation codes",
+    "explicit and conditional flush boundaries",
+    "artifact names and startup probe order",
+    "generic move, rename, and delete lifecycle primitives",
+    "write-back durability boundary"
+  ],
+  "unrecoverable_without_new_evidence": [
+    "exact TRN and RCV record layouts",
+    "record opcodes and field offsets",
+    "checksums",
+    "undo-preimage versus redo-image payload semantics",
+    "exact replay and cleanup ordering"
+  ],
+  "closure_policy": {
+    "runtime_behavior_changed": false,
+    "compatibility_blocked": false,
+    "semantic_exhaustion_blocked": false,
+    "speculative_parser_activated": false,
+    "capture_harness_retained": true,
+    "reopen_only_when_new_primary_evidence_exists": true
+  },
+  "final_disposition": "No further required Worldgroup implementation pass exists. The unknown byte formats are permanently bounded unless new primary evidence is supplied."
+}

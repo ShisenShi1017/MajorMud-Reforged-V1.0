@@ -1,0 +1,25 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0176",
+  "boundary": "exact-npc-merchant-trainer-service-admission-and-completion",
+  "classification": "proven",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Generated service catalog and room relationships"
+  ],
+  "activated_behavior": [
+    "living same-room service NPC admission",
+    "service-kind compatibility validation",
+    "single active service request per NPC instance",
+    "monotonic request generation",
+    "exact request completion",
+    "success and failure outcome persistence",
+    "merchant and trainer execution only after admission"
+  ],
+  "safe_fallback": "Reject missing, dead, wrong-room, unsupported, or concurrently active service requests before character, inventory, stock, or trainer state mutation.",
+  "runtime_impact": "Merchant and trainer commands now have explicit NPC-instance ownership.",
+  "character_save_impact": "Existing service transactions remain authoritative; rejected admission performs no character mutation.",
+  "world_state_impact": "Compact service ownership and completion metadata is persisted with the NPC instance.",
+  "tests": ["service-admission-exposed", "service-completion-exposed", "exact-active-request-match"]
+}

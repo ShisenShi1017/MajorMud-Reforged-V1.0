@@ -1,0 +1,14 @@
+{
+  "update": "0181",
+  "catalogs": {
+    "passive_modifier_kinds": ["attack", "defense", "initiative", "speed", "resistance", "resource_cost", "cooldown"],
+    "control_break_reasons": ["controller_death", "target_death", "room_separation", "dispel", "duration_expired", "logout", "disconnect", "world_reset", "removal"],
+    "ordering": ["ability_id", "policy_priority", "policy_id"],
+    "ownership": {"combat": "modifier evaluation and control cleanup transaction", "character_ability": "active ability ownership", "npc_ai": "controlled behavior selection", "persistence": "save implementation"}
+  },
+  "bidirectional_relationships": [
+    {"from": "ability", "to": "combat_formula_input", "relation": "passively_modifies"},
+    {"from": "control_spell", "to": "controller_ownership", "relation": "creates_and_breaks"},
+    {"from": "control_break_reason", "to": "active_effect", "relation": "conditionally_removes"}
+  ]
+}

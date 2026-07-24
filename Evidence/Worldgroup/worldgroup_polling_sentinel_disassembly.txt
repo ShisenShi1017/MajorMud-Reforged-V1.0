@@ -1,0 +1,36 @@
+## WGSERVER begin_polling injection
+0041FA55: push     0xc0
+0041FA5A: push     ebx
+0041FA5B: call     0x44c264
+
+## WGSERVER import thunk
+0044C264: jmp      dword ptr [0x47b938] ; GALGSBL!_btuinj
+
+## polling callback and reinjection
+004231EC: call     dword ptr [ecx + 0x48]
+004231EF: mov      dword ptr [0x451660], 0xffffffff
+004231F9: mov      eax, dword ptr [0x45d404]
+004231FE: cmp      dword ptr [eax + 0x48], 0
+00423202: je       0x423217
+00423204: push     0xc0
+00423209: push     dword ptr [0x45d3f8]
+0042320F: call     0x44c264
+
+## primary input selector
+0042121F: sub      ecx, 0xc0
+00421225: je       0x421235
+00421235: call     0x4231cf
+
+## GALGSBL!_btuinj queue core
+00404155: imul     edx, eax, 0x14d
+0040415B: mov      ebx, dword ptr [0x40790c]
+0040415D: test     byte ptr [ebx + edx*4 + 0x98], 8
+0040416E: imul     edx, eax, 0x14d
+00404176: mov      edx, dword ptr [ebx + edx*4 + 0x58]
+0040417A: inc      edx
+0040417B: and      edx, 0x1ff
+00404189: cmp      edx, dword ptr [esi + ebx*4 + 0x5c]
+004041A6: mov      byte ptr [eax + edx + 0x329], 0xfe
+004041C7: lea      ebx, [esi + ebx + 0x329]
+004041D3: mov      byte ptr [esi], bl
+004041DD: mov      dword ptr [ecx + eax*4 + 0x58], edx

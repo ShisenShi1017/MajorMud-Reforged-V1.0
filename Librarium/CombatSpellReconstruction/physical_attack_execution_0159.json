@@ -1,0 +1,46 @@
+{
+  "update": "0159",
+  "catalog": "physical_attack_execution",
+  "status": "active_fixture_and_evidence_gated",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimePhysicalAttackExecution.cs",
+  "ownership": {
+    "attack_request": "temporary scheduled-turn action",
+    "hit_and_damage_trace": "per-action audit state",
+    "hp_mutation": "character_or_npc runtime sink",
+    "defeat_transition": "combat instance lifecycle"
+  },
+  "execution_order": [
+    "validate canonical identities and room/combat ownership",
+    "validate scheduled turn owner and active participants",
+    "reject unresolved evidence policy",
+    "consume scheduled turn once",
+    "deterministically roll hit",
+    "compare attack total against defense total",
+    "roll damage only on hit",
+    "capture target snapshot",
+    "apply HP mutation",
+    "emit defeat transition after successful lethal mutation",
+    "restore HP and release turn on mutation failure"
+  ],
+  "promoted_fixture_policy": {
+    "hit_roll": [
+      1,
+      1
+    ],
+    "damage_roll": [
+      3,
+      3
+    ],
+    "comparison": "attack_total >= defense_total",
+    "attack_path": "unarmed"
+  },
+  "production_policy": "No weapon dice, attack modifier, defense modifier, hit range, or damage range is activated without proven or strongly correlated evidence. Missing values reject execution.",
+  "native_dependencies": [
+    "exact attack/defense formulas",
+    "weapon dice and strength contribution",
+    "automatic hit and miss",
+    "critical/fumble branches",
+    "armor and resistance ordering",
+    "ammunition and durability timing"
+  ]
+}

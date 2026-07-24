@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "builder-content-editing",
+  "runtimeOwner": "RuntimeBuilderContentPolicyService",
+  "classificationBoundaries": {
+    "classic": "Only compatibility-preserving changes; unsupported schema/logic changes fail closed.",
+    "custom": "Host-authorized Reforged content changes may be staged and published.",
+    "ai": "Host-authorized AI-world content changes remain explicitly versioned.",
+    "testRealm": "Only environment allowed to live reload staged changes."
+  },
+  "surfaces": [
+    "room",
+    "exit",
+    "item",
+    "npc",
+    "spell",
+    "quest",
+    "textblock",
+    "merchant",
+    "trainer",
+    "spawn",
+    "event"
+  ],
+  "operations": [
+    "inspect",
+    "validate",
+    "preview",
+    "stage",
+    "publish",
+    "rollback",
+    "live reload"
+  ],
+  "ownership": {
+    "contentValidation": "owning subsystem validators",
+    "authorization": "security and administrative policy",
+    "publication": "Reforged host/editor",
+    "classicRecords": "dedicated decoders and Librarium",
+    "audit": "logging diagnostics"
+  },
+  "safeFallback": "Reject unauthorized, stale, nonvalidated, Classic-incompatible, or non-test live-reload requests.",
+  "nativeDependencies": [
+    "whether original MajorMUD exposes builder commands",
+    "exact native builder permissions",
+    "native live-edit and reload support",
+    "original record validation and publish workflow",
+    "Worldgroup editor/module boundaries"
+  ]
+}

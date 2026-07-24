@@ -1,0 +1,22 @@
+{
+  "schema_version": "npc-ai-provenance.v41",
+  "pass": "CodeUpdate0191",
+  "confidence": "strongly-correlated",
+  "sources": [
+    "RuntimeNpcMerchantStockOwnership.cs",
+    "RuntimeGameplayCompletionState.cs",
+    "Data/Classic/services.json"
+  ],
+  "assumptions": [
+    "The host policy has already resolved when and what to restock."
+  ],
+  "tests": [
+    "static symbol validation",
+    "catalog ownership validation",
+    "JSON validation",
+    "replay-state smoke contract"
+  ],
+  "runtime_impact": "Adds an exact replay-safe merchant restock commit boundary.",
+  "character_save_impact": "none",
+  "world_state_impact": "persistent shop stock and applied request IDs"
+}

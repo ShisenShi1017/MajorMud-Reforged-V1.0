@@ -1,0 +1,13 @@
+{
+  "policy_id": "runtime.item.world-persistence-validation.v1",
+  "status": "reforged_compatibility_infrastructure",
+  "evidence_class": "strongly_correlated",
+  "runtime_behavior": {
+    "validated_save": "rejects invalid item or corpse state before filesystem mutation",
+    "atomic_replace": "writes and re-deserializes a temporary file before replacing authoritative state",
+    "validated_load": "rejects corrupt JSON and structurally invalid runtime ownership state",
+    "stale_temp": "removed before load or save; never promoted automatically"
+  },
+  "classic_activation": "No native save-layout meaning is inferred. This policy protects Reforged persistence until native formats are exhausted.",
+  "safe_fallback": "fail without replacing the last authoritative save"
+}

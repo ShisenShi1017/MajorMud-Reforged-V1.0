@@ -1,0 +1,1118 @@
+{
+  "schema": "mmexplorer_unmatched_reference_supplement_v1",
+  "code_update": "0139",
+  "family": "npcs",
+  "source": "Librarium/Objects/npcs/sql_mdb_records_0128.json",
+  "record_count": 26,
+  "records": [
+    {
+      "id": "mmexplorer_unmatched_npcs.197",
+      "type": "npc",
+      "name": "$@(#",
+      "sourceNumbers": {
+        "number": 197
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 537,
+        "rowIndexOnPage": 4,
+        "offset": 625,
+        "length": 680,
+        "hexPrefix": "8600c5000000000000000a000000370000006400000082000000640000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "$@(#",
+        "@33333",
+        "@@(",
+        "L@@(",
+        "A@(",
+        "sdfsfdsdfsfsfsfsdfsfsfsdfs",
+        "claws you",
+        "claws you",
+        "claws you",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.613",
+      "type": "npc",
+      "name": "V@ ",
+      "sourceNumbers": {
+        "number": 613
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1049,
+        "rowIndexOnPage": 4,
+        "offset": 570,
+        "length": 715,
+        "hexPrefix": "860065020000000000002d0000000a0000005f00000050000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "V@ ",
+        "L`@",
+        "_@333333",
+        "33333sF@",
+        "'@(",
+        "$@P",
+        "sdfsdfsdfsdfsdfsdfsd",
+        "slashes you with its claws",
+        "tramples you",
+        "guts you with its horns"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.749",
+      "type": "npc",
+      "name": "33333",
+      "sourceNumbers": {
+        "number": 749
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1233,
+        "rowIndexOnPage": 1,
+        "offset": 2751,
+        "length": 672,
+        "hexPrefix": "8600ed0200000000000063000000630000005000000041000000140000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "33333",
+        "sdfsfsdfsdfsdfsdfsdfsd",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "Room 15/846}"
+      ],
+      "relationships": [
+        {
+          "kind": "room",
+          "targetId": "mmud_sql_room_map15_room846",
+          "raw": "Room 15/846",
+          "weightOrNote": null
+        }
+      ],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.750",
+      "type": "npc",
+      "name": "33333",
+      "sourceNumbers": {
+        "number": 750
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1233,
+        "rowIndexOnPage": 2,
+        "offset": 2076,
+        "length": 675,
+        "hexPrefix": "8600ee0200000000000063000000630000005000000041000000140000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "33333",
+        "sdfsfsdfsdfsdfsdfsdfsdfsd",
+        "None",
+        "None",
+        "None",
+        "None",
+        "None",
+        "Room 15/845"
+      ],
+      "relationships": [
+        {
+          "kind": "room",
+          "targetId": "mmud_sql_room_map15_room845",
+          "raw": "Room 15/845",
+          "weightOrNote": null
+        }
+      ],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1042",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1042
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1316,
+        "rowIndexOnPage": 0,
+        "offset": 3440,
+        "length": 656,
+        "hexPrefix": "860012040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1043",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1043
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1316,
+        "rowIndexOnPage": 1,
+        "offset": 2784,
+        "length": 656,
+        "hexPrefix": "860013040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1047",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1047
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1316,
+        "rowIndexOnPage": 5,
+        "offset": 81,
+        "length": 656,
+        "hexPrefix": "860017040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.812",
+      "type": "npc",
+      "name": "o@fffff",
+      "sourceNumbers": {
+        "number": 812
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1367,
+        "rowIndexOnPage": 4,
+        "offset": 684,
+        "length": 693,
+        "hexPrefix": "86002c0300009c0500004e0000000a000000640000005a000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "o@fffff",
+        "e@fffffFT@!",
+        "33333",
+        "33333",
+        "5@P",
+        "ffffff(@d",
+        "gfffff",
+        "sdfsdfsfs",
+        "cleaves you",
+        "all-out cleaves you"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.853",
+      "type": "npc",
+      "name": "Y@d",
+      "sourceNumbers": {
+        "number": 853
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1444,
+        "rowIndexOnPage": 3,
+        "offset": 1281,
+        "length": 663,
+        "hexPrefix": "8600550300000000000000000000000000000000000000000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "Y@d",
+        "sdfsdfsdfsdfsdfsdf",
+        "dragonfire",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.907",
+      "type": "npc",
+      "name": "0h@",
+      "sourceNumbers": {
+        "number": 907
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1524,
+        "rowIndexOnPage": 2,
+        "offset": 2043,
+        "length": 659,
+        "hexPrefix": "86008b030000000000005000000005000000640000008c000000c80000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "0h@",
+        "0h@",
+        "sdfsfdsdfsdfdsfs",
+        "rips you",
+        "None",
+        "None",
+        "None",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.909",
+      "type": "npc",
+      "name": "?(#",
+      "sourceNumbers": {
+        "number": 909
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1524,
+        "rowIndexOnPage": 4,
+        "offset": 638,
+        "length": 680,
+        "hexPrefix": "86008d030000000000000a000000370000006400000082000000640000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "?(#",
+        "@fffff&I@",
+        "@@(",
+        "Y@@(",
+        "A@(",
+        "sdfsfsdfsdfsdfsdfsdfsdfsdn",
+        "claws you",
+        "claws you",
+        "claws you",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.961",
+      "type": "npc",
+      "name": "ffffff",
+      "sourceNumbers": {
+        "number": 961
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1584,
+        "rowIndexOnPage": 2,
+        "offset": 2062,
+        "length": 662,
+        "hexPrefix": "8600c1030000000000000000000005000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "ffffff",
+        "@ffffff",
+        "sdfsfsdfsdfsdfs",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1008",
+      "type": "npc",
+      "name": "mega rat",
+      "sourceNumbers": {
+        "number": 1008
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1624,
+        "rowIndexOnPage": 2,
+        "offset": 2004,
+        "length": 655,
+        "hexPrefix": "8600f0030000000000000000000005000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "mega rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1018",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1018
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1628,
+        "rowIndexOnPage": 2,
+        "offset": 2090,
+        "length": 656,
+        "hexPrefix": "8600fa030000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1119",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1119
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1651,
+        "rowIndexOnPage": 2,
+        "offset": 2130,
+        "length": 656,
+        "hexPrefix": "86005f040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1120",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1120
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1651,
+        "rowIndexOnPage": 3,
+        "offset": 1474,
+        "length": 656,
+        "hexPrefix": "860060040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1121",
+      "type": "npc",
+      "name": "333333",
+      "sourceNumbers": {
+        "number": 1121
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1651,
+        "rowIndexOnPage": 4,
+        "offset": 818,
+        "length": 656,
+        "hexPrefix": "860061040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "333333",
+        "@333333",
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1122",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1122
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1651,
+        "rowIndexOnPage": 5,
+        "offset": 162,
+        "length": 656,
+        "hexPrefix": "860062040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1123",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1123
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 0,
+        "offset": 3440,
+        "length": 656,
+        "hexPrefix": "860063040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1124",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1124
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 1,
+        "offset": 2784,
+        "length": 656,
+        "hexPrefix": "860064040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1125",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1125
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 2,
+        "offset": 2128,
+        "length": 656,
+        "hexPrefix": "860065040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1126",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1126
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 3,
+        "offset": 1472,
+        "length": 656,
+        "hexPrefix": "860066040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1127",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1127
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 4,
+        "offset": 816,
+        "length": 656,
+        "hexPrefix": "860067040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1128",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1128
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1652,
+        "rowIndexOnPage": 5,
+        "offset": 160,
+        "length": 656,
+        "hexPrefix": "860068040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1129",
+      "type": "npc",
+      "name": "giant rat",
+      "sourceNumbers": {
+        "number": 1129
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1653,
+        "rowIndexOnPage": 0,
+        "offset": 3440,
+        "length": 656,
+        "hexPrefix": "860069040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_npcs.1130",
+      "type": "npc",
+      "name": "ffffff",
+      "sourceNumbers": {
+        "number": 1130
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB monster/NPC row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 322,
+        "page": 1653,
+        "rowIndexOnPage": 1,
+        "offset": 2784,
+        "length": 656,
+        "hexPrefix": "86006a040000000000000000000001000000140000001e000000000000000000",
+        "hexSuffix": "ffffffffffffffffffffffffffffff3f"
+      },
+      "printableSegments": [
+        "ffffff",
+        "@ffffff",
+        "giant rat",
+        "bites you",
+        "None",
+        "None",
+        "Unknown",
+        "None"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "npcs",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "npc",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    }
+  ]
+}

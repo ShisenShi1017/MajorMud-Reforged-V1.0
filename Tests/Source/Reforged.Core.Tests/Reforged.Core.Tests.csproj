@@ -9,6 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../../../Core/Source/Reforged.Core/Reforged.Core.csproj" />
-    <ProjectReference Include="../../../Apps/Source/Reforged.Server/Reforged.Server.csproj" />
+    <ProjectReference Include="../../../Apps/Source/Reforged.Server.Runtime/Reforged.Server.Runtime.csproj" />
   </ItemGroup>
 </Project>

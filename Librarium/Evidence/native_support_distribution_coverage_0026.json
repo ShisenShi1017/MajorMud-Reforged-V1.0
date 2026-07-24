@@ -1,0 +1,1106 @@
+{
+  "schema": "majorMud.nativeSupportDistributionCoverage.v1",
+  "evidence_id": "native-support-distribution-coverage-0026",
+  "update": "0025->0026",
+  "evidence_class": "PROVEN",
+  "wcc": {
+    "house_description_count": 47,
+    "house_description_min_id": 850,
+    "house_description_max_id": 971,
+    "gravestone_count": 7
+  },
+  "wbb": {
+    "house_description_count": 133,
+    "house_description_min_id": 850,
+    "house_description_max_id": 982,
+    "gravestone_count": 7
+  },
+  "house_descriptions": {
+    "shared_count": 47,
+    "wcc_only_count": 0,
+    "wbb_only_count": 86,
+    "shared_byte_identical_count": 47,
+    "shared_ids": [
+      850,
+      851,
+      852,
+      857,
+      861,
+      862,
+      863,
+      868,
+      874,
+      875,
+      876,
+      880,
+      881,
+      882,
+      883,
+      885,
+      887,
+      889,
+      890,
+      891,
+      892,
+      896,
+      902,
+      903,
+      904,
+      908,
+      909,
+      911,
+      919,
+      921,
+      922,
+      923,
+      924,
+      931,
+      932,
+      933,
+      934,
+      940,
+      942,
+      946,
+      947,
+      948,
+      949,
+      960,
+      961,
+      968,
+      971
+    ],
+    "wcc_only_ids": [],
+    "wbb_only_ids": [
+      853,
+      854,
+      855,
+      856,
+      858,
+      859,
+      860,
+      864,
+      865,
+      866,
+      867,
+      869,
+      870,
+      871,
+      872,
+      873,
+      877,
+      878,
+      879,
+      884,
+      886,
+      888,
+      893,
+      894,
+      895,
+      897,
+      898,
+      899,
+      900,
+      901,
+      905,
+      906,
+      907,
+      910,
+      912,
+      913,
+      914,
+      915,
+      916,
+      917,
+      918,
+      920,
+      925,
+      926,
+      927,
+      928,
+      929,
+      930,
+      935,
+      936,
+      937,
+      938,
+      939,
+      941,
+      943,
+      944,
+      945,
+      950,
+      951,
+      952,
+      953,
+      954,
+      955,
+      956,
+      957,
+      958,
+      959,
+      962,
+      963,
+      964,
+      965,
+      966,
+      967,
+      969,
+      970,
+      972,
+      973,
+      974,
+      975,
+      976,
+      977,
+      978,
+      979,
+      980,
+      981,
+      982
+    ],
+    "shared_records": [
+      {
+        "id": 850,
+        "wcc_file": "WCC85015.HSE",
+        "wbb_file": "wbb85015.HSE",
+        "bytes": 301,
+        "sha256": "417f7261875c1a51f2b0d227b34180eb3a30e4b473644cd361ed4236fe312bd8"
+      },
+      {
+        "id": 851,
+        "wcc_file": "WCC85115.HSE",
+        "wbb_file": "wbb85115.HSE",
+        "bytes": 301,
+        "sha256": "d35d154900034e2b1ca7ae9f674529e636219bb64094ad680949aeb6346aba6f"
+      },
+      {
+        "id": 852,
+        "wcc_file": "WCC85215.HSE",
+        "wbb_file": "wbb85215.HSE",
+        "bytes": 297,
+        "sha256": "8a763af8f893529d3a2969f8f68cc3e4f51b2b335fc5ba87215b7fcb8ec55900"
+      },
+      {
+        "id": 857,
+        "wcc_file": "WCC85715.HSE",
+        "wbb_file": "wbb85715.HSE",
+        "bytes": 295,
+        "sha256": "67718a9fbff0b570f4837d29d6920d82ad83dcc57a19338eff1f052972051927"
+      },
+      {
+        "id": 861,
+        "wcc_file": "WCC86115.HSE",
+        "wbb_file": "wbb86115.HSE",
+        "bytes": 295,
+        "sha256": "5a5f3b087c8f60d3a68812ea62ee15ded499145ba085c3e405a9ceb610757842"
+      },
+      {
+        "id": 862,
+        "wcc_file": "WCC86215.HSE",
+        "wbb_file": "wbb86215.HSE",
+        "bytes": 300,
+        "sha256": "306e89782569da500770122505b03a018c79e9b4cf9157f58e2a0cdd06fd84b5"
+      },
+      {
+        "id": 863,
+        "wcc_file": "WCC86315.HSE",
+        "wbb_file": "wbb86315.HSE",
+        "bytes": 300,
+        "sha256": "3cd1c1721eff377e6e2639afd7d077f363bc5201f8313c802dba2f92dcec7d3e"
+      },
+      {
+        "id": 868,
+        "wcc_file": "WCC86815.HSE",
+        "wbb_file": "wbb86815.HSE",
+        "bytes": 294,
+        "sha256": "95ec3e2b7815c8273e05317e114f0c44c5caba376bdc826d59c293cd9fd5bf95"
+      },
+      {
+        "id": 874,
+        "wcc_file": "WCC87415.HSE",
+        "wbb_file": "wbb87415.HSE",
+        "bytes": 302,
+        "sha256": "1cb87078720cad62f4a8ee1de5a281c0e135925406c409a0e54179551b1b7475"
+      },
+      {
+        "id": 875,
+        "wcc_file": "WCC87515.HSE",
+        "wbb_file": "wbb87515.HSE",
+        "bytes": 295,
+        "sha256": "7795cb6e1f05a0a6a08972fe25a653c477251d4c0575cbbccb81557199a3c0bb"
+      },
+      {
+        "id": 876,
+        "wcc_file": "WCC87615.HSE",
+        "wbb_file": "wbb87615.HSE",
+        "bytes": 302,
+        "sha256": "a0bc17f6aca1a9b0bbc9929cd8b631e9c5169e22f3f681ff049ee74f11d4890a"
+      },
+      {
+        "id": 880,
+        "wcc_file": "WCC88015.HSE",
+        "wbb_file": "wbb88015.HSE",
+        "bytes": 296,
+        "sha256": "e6acb45e65a4034851cfefff2371fea0851cebffd081671126ea81498ee2a196"
+      },
+      {
+        "id": 881,
+        "wcc_file": "WCC88115.HSE",
+        "wbb_file": "wbb88115.HSE",
+        "bytes": 298,
+        "sha256": "daf46f851fba4dd5b10e1cafe27e48618a5725b6da178fd9a16133cb8b409b63"
+      },
+      {
+        "id": 882,
+        "wcc_file": "WCC88215.HSE",
+        "wbb_file": "wbb88215.HSE",
+        "bytes": 302,
+        "sha256": "992ef60c76b7e236a0c462241edd8859e69ec97586248513811d3126acbc7360"
+      },
+      {
+        "id": 883,
+        "wcc_file": "WCC88315.HSE",
+        "wbb_file": "wbb88315.HSE",
+        "bytes": 303,
+        "sha256": "dec1df29a4c88452749c239bdb7c80630a2d477bb72b7ad93bd0fbb8d5436716"
+      },
+      {
+        "id": 885,
+        "wcc_file": "WCC88515.HSE",
+        "wbb_file": "wbb88515.HSE",
+        "bytes": 299,
+        "sha256": "2871ca954214d257c0b17ea14262a8548105aa79f054a75e3677dbdfa1414daf"
+      },
+      {
+        "id": 887,
+        "wcc_file": "WCC88715.HSE",
+        "wbb_file": "wbb88715.HSE",
+        "bytes": 296,
+        "sha256": "47f70e332b67ec0612aad117aa999d4f880ca631ccdf6622895dd1394f86fb64"
+      },
+      {
+        "id": 889,
+        "wcc_file": "WCC88915.HSE",
+        "wbb_file": "wbb88915.HSE",
+        "bytes": 299,
+        "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4"
+      },
+      {
+        "id": 890,
+        "wcc_file": "WCC89015.HSE",
+        "wbb_file": "wbb89015.HSE",
+        "bytes": 296,
+        "sha256": "6540baadf5f854798769290ad6d7a0cd791f83cd3f00cc152f76a34e85a8c00e"
+      },
+      {
+        "id": 891,
+        "wcc_file": "WCC89115.HSE",
+        "wbb_file": "wbb89115.HSE",
+        "bytes": 302,
+        "sha256": "b891796d7c149c6a37cf336b61f8434a8316315b49f42aac9cb598f8838fe87c"
+      },
+      {
+        "id": 892,
+        "wcc_file": "WCC89215.HSE",
+        "wbb_file": "wbb89215.HSE",
+        "bytes": 302,
+        "sha256": "a6277abf7e31238e0629378f1298f11d228ada26741b26e665d689b2ca0d1d33"
+      },
+      {
+        "id": 896,
+        "wcc_file": "WCC89615.HSE",
+        "wbb_file": "wbb89615.HSE",
+        "bytes": 299,
+        "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4"
+      },
+      {
+        "id": 902,
+        "wcc_file": "WCC90215.HSE",
+        "wbb_file": "wbb90215.HSE",
+        "bytes": 296,
+        "sha256": "f6d48577585eb514c20ebc4085e52efefbfcd4a4bbdb4954ff1de2a6fe95ad73"
+      },
+      {
+        "id": 903,
+        "wcc_file": "WCC90315.HSE",
+        "wbb_file": "wbb90315.HSE",
+        "bytes": 299,
+        "sha256": "eade00cf04d9a251546e63975e325b99ab25e575cbbf4a6285900c22532f34ff"
+      },
+      {
+        "id": 904,
+        "wcc_file": "WCC90415.HSE",
+        "wbb_file": "wbb90415.HSE",
+        "bytes": 299,
+        "sha256": "14eba16afb497be060c1957996f743a545aafe0b1dee59b4d1568aedd0f9df21"
+      },
+      {
+        "id": 908,
+        "wcc_file": "WCC90815.HSE",
+        "wbb_file": "wbb90815.HSE",
+        "bytes": 293,
+        "sha256": "ebf0f3e5c7cb33735db5c22198f552489856e9e40dbfd3d4a25f537e5771b49a"
+      },
+      {
+        "id": 909,
+        "wcc_file": "WCC90915.HSE",
+        "wbb_file": "wbb90915.HSE",
+        "bytes": 302,
+        "sha256": "d7c5385ca2c514411457dea7ffd310a2681abfc1c8496a0198f79ab0a1e169df"
+      },
+      {
+        "id": 911,
+        "wcc_file": "WCC91115.HSE",
+        "wbb_file": "wbb91115.HSE",
+        "bytes": 302,
+        "sha256": "84b783d5757e6ac1fd7e843ff13ffec96f5ed82c9dfacfa1c3a57f8606385e46"
+      },
+      {
+        "id": 919,
+        "wcc_file": "WCC91915.HSE",
+        "wbb_file": "wbb91915.HSE",
+        "bytes": 296,
+        "sha256": "ff4d6b697e9aeff6d89df1aba963dc30d7dff2e3d6e1afe7edd786de68c1cd23"
+      },
+      {
+        "id": 921,
+        "wcc_file": "WCC92115.HSE",
+        "wbb_file": "wbb92115.HSE",
+        "bytes": 298,
+        "sha256": "8db92ca1ddb0faefc625054d949616767d856dc78172d8a91983978b9bcf4b4f"
+      },
+      {
+        "id": 922,
+        "wcc_file": "WCC92215.HSE",
+        "wbb_file": "wbb92215.HSE",
+        "bytes": 297,
+        "sha256": "0f62c2401a9f0ccde55e53cdfd6c6bce17f57c5bfbfab86f5d08ddb521001055"
+      },
+      {
+        "id": 923,
+        "wcc_file": "WCC92315.HSE",
+        "wbb_file": "wbb92315.HSE",
+        "bytes": 301,
+        "sha256": "34e7b24b056fc51d41fa0dfbe67c6b132dc79c4785d2021d45aecdf8eab623a9"
+      },
+      {
+        "id": 924,
+        "wcc_file": "WCC92415.HSE",
+        "wbb_file": "wbb92415.HSE",
+        "bytes": 301,
+        "sha256": "dac115b4a73fcd30fece392ca1f74334f1146704166f72910813b0adf95878a5"
+      },
+      {
+        "id": 931,
+        "wcc_file": "WCC93115.HSE",
+        "wbb_file": "wbb93115.HSE",
+        "bytes": 295,
+        "sha256": "c5c4547d10ea300dbb4c6c75a29eaf4d68239edcb2c83e059f277b90c23be041"
+      },
+      {
+        "id": 932,
+        "wcc_file": "WCC93215.HSE",
+        "wbb_file": "wbb93215.HSE",
+        "bytes": 297,
+        "sha256": "407219b9902749bc6d53f26851c8acc87ddd9aa96fc48a0bcd3cb61530f1bfb9"
+      },
+      {
+        "id": 933,
+        "wcc_file": "WCC93315.HSE",
+        "wbb_file": "wbb93315.HSE",
+        "bytes": 301,
+        "sha256": "976f346c02e760942ae76243d2819d8d7b63ab568a077821cb00583f5f118c8e"
+      },
+      {
+        "id": 934,
+        "wcc_file": "WCC93415.HSE",
+        "wbb_file": "wbb93415.HSE",
+        "bytes": 301,
+        "sha256": "b702b52ae23e08a2f022283d7793f70710c342e186bcbe49834164427122a2b0"
+      },
+      {
+        "id": 940,
+        "wcc_file": "WCC94015.HSE",
+        "wbb_file": "wbb94015.HSE",
+        "bytes": 295,
+        "sha256": "f1f34fbd9f90665e554eae4fe01b51365f32d7a6db43b7aa14e385c78069f9fd"
+      },
+      {
+        "id": 942,
+        "wcc_file": "WCC94215.HSE",
+        "wbb_file": "wbb94215.HSE",
+        "bytes": 297,
+        "sha256": "efc4146e6563cd876781aab142de6ef03ad3eeaa9c99d5e2bb9b909cc9828e82"
+      },
+      {
+        "id": 946,
+        "wcc_file": "WCC94615.HSE",
+        "wbb_file": "wbb94615.HSE",
+        "bytes": 295,
+        "sha256": "cd8a072e45284c633bb9b97690c60353090f621c26fc914e05ba0a41707d68ae"
+      },
+      {
+        "id": 947,
+        "wcc_file": "WCC94715.HSE",
+        "wbb_file": "wbb94715.HSE",
+        "bytes": 300,
+        "sha256": "0e0a123008145bfe8265c62f7894cc3891264b54be114370cebf0763ebce7762"
+      },
+      {
+        "id": 948,
+        "wcc_file": "WCC94815.HSE",
+        "wbb_file": "wbb94815.HSE",
+        "bytes": 294,
+        "sha256": "fd55ea2132b77c98fd24804428a327f44b9d7c0f3f8dc25d89c21940847c1a8f"
+      },
+      {
+        "id": 949,
+        "wcc_file": "WCC94915.HSE",
+        "wbb_file": "wbb94915.HSE",
+        "bytes": 300,
+        "sha256": "3869d2fd545e3f56765901ce7af0772534809f7a64e49a07bf0d6179d32fc7fa"
+      },
+      {
+        "id": 960,
+        "wcc_file": "WCC96015.HSE",
+        "wbb_file": "wbb96015.HSE",
+        "bytes": 294,
+        "sha256": "ca6fecdc93c3808a349dea0b5bc4775696abf6fcfe1c1b92798fced7faa6b1bb"
+      },
+      {
+        "id": 961,
+        "wcc_file": "WCC96115.HSE",
+        "wbb_file": "wbb96115.HSE",
+        "bytes": 296,
+        "sha256": "9bd8de9b83f1bca2428d6aa9011a1ff7b1ae1a65c59dd0b04fdaae71fb46a723"
+      },
+      {
+        "id": 968,
+        "wcc_file": "WCC96815.HSE",
+        "wbb_file": "wbb96815.HSE",
+        "bytes": 295,
+        "sha256": "0fbfc852224422cbd465c9f4d6a6f1bac7190fa85e1fbb06d67fe58c6e802a6f"
+      },
+      {
+        "id": 971,
+        "wcc_file": "WCC97115.HSE",
+        "wbb_file": "wbb97115.HSE",
+        "bytes": 297,
+        "sha256": "66e6a118e879dcb3f12aac597ec27879c9281fbf0f2edecd5c67a360a547debe"
+      }
+    ],
+    "wbb_only_records": [
+      {
+        "id": 853,
+        "file": "wbb85315.HSE",
+        "bytes": 301,
+        "sha256": "5d969901777052feb7c223bf2727348fe5cb765f1804e5b06fe89e1368b6ee60"
+      },
+      {
+        "id": 854,
+        "file": "wbb85415.HSE",
+        "bytes": 301,
+        "sha256": "10b67b4ffaf8fcd42ab5aa3f7787f680242861c60224ca3009ffa97f1bf92e7f"
+      },
+      {
+        "id": 855,
+        "file": "wbb85515.HSE",
+        "bytes": 301,
+        "sha256": "a570f5eb5faaa1a4b1f6c302d3e447067eda2020d6fe4a7a3dbb26445718c2d9"
+      },
+      {
+        "id": 856,
+        "file": "wbb85615.HSE",
+        "bytes": 301,
+        "sha256": "b8376b56a788fb8b32fb07005b83c968a987656dbacca3651ba62561443ff005"
+      },
+      {
+        "id": 858,
+        "file": "wbb85815.HSE",
+        "bytes": 301,
+        "sha256": "b6c110bcded276f44f17ab41dea72d0babe86e9245aa75fcdbc434cef6fc911a"
+      },
+      {
+        "id": 859,
+        "file": "wbb85915.HSE",
+        "bytes": 301,
+        "sha256": "61bd9b292ab7aea8fa74e7a5baa8aa05588fd1501720c5ca2b80f4693ed40ace"
+      },
+      {
+        "id": 860,
+        "file": "wbb86015.HSE",
+        "bytes": 301,
+        "sha256": "d5a3d44a57b7e75ec0230eb0e3b5767db77edb285283ee0dfd6cdbfc6a9561a7"
+      },
+      {
+        "id": 864,
+        "file": "wbb86415.HSE",
+        "bytes": 300,
+        "sha256": "413dc09bd785fd031607f104277c2f7b13d28649a3202c600136cbeca98f96dd"
+      },
+      {
+        "id": 865,
+        "file": "wbb86515.HSE",
+        "bytes": 300,
+        "sha256": "084e2989994af896729b57a84afc13b5b60b066ffce40988829d3eb133d37b7e"
+      },
+      {
+        "id": 866,
+        "file": "wbb86615.HSE",
+        "bytes": 300,
+        "sha256": "1f1fd0abd6fe092fcb2bf8eb34847b121c58767c406b81e92af6180efb2ac78e"
+      },
+      {
+        "id": 867,
+        "file": "wbb86715.HSE",
+        "bytes": 300,
+        "sha256": "b7f169e5f39243d3b34ff47656f8f6f4df9c884400c56f7869e79bb6efcb5033"
+      },
+      {
+        "id": 869,
+        "file": "wbb86915.HSE",
+        "bytes": 300,
+        "sha256": "c7b526e7b7ac0f544873d54b148192f0052a53ab7665cc3374b9fc2b65c6d718"
+      },
+      {
+        "id": 870,
+        "file": "wbb87015.HSE",
+        "bytes": 300,
+        "sha256": "c0617ed9a4ef5baddbd87746d3696e09c075bab501999ab50be7e836c7dc3fea"
+      },
+      {
+        "id": 871,
+        "file": "wbb87115.HSE",
+        "bytes": 300,
+        "sha256": "a6d88c37bcbc78ca91cefc5e39d05d8abf9aef618b952e4ee4c44e63b6e3e2a3"
+      },
+      {
+        "id": 872,
+        "file": "wbb87215.HSE",
+        "bytes": 300,
+        "sha256": "eadab05e26411b24a0d965686d7cb044e3a82dff93b75baf87a36d3ab2535802"
+      },
+      {
+        "id": 873,
+        "file": "wbb87315.HSE",
+        "bytes": 302,
+        "sha256": "d95e5b56601261a39f341db69bcd07857c2ba4a28bce769c348fb84c2d6d0095"
+      },
+      {
+        "id": 877,
+        "file": "wbb87715.HSE",
+        "bytes": 302,
+        "sha256": "26e37dbcf1ac1b1a776cf63bccd446779e343842e8930fdf8d50a87b2dcd54b0"
+      },
+      {
+        "id": 878,
+        "file": "wbb87815.HSE",
+        "bytes": 302,
+        "sha256": "f751efa2451ba2771ca9d3e3fa6637f8837e84707c3f87b5e28acaff3c78e14f"
+      },
+      {
+        "id": 879,
+        "file": "wbb87915.HSE",
+        "bytes": 302,
+        "sha256": "f26240b88f02b5230a5506bed649c54f06626bd1fcfb87ac878c240a575d1911"
+      },
+      {
+        "id": 884,
+        "file": "wbb88415.HSE",
+        "bytes": 302,
+        "sha256": "1a404981bb39f381e102e05372e37e631b2d8428557b475af1e7a90cd22c8c23"
+      },
+      {
+        "id": 886,
+        "file": "wbb88615.HSE",
+        "bytes": 302,
+        "sha256": "e282675a1f040e380501c4191897dda4a7c4b2ac765f71b2495d56e9977a5c46"
+      },
+      {
+        "id": 888,
+        "file": "wbb88815.HSE",
+        "bytes": 302,
+        "sha256": "9172e34562478b03b484ec866905eff78efea3a13b19a39b6a535acd7bf78969"
+      },
+      {
+        "id": 893,
+        "file": "wbb89315.HSE",
+        "bytes": 302,
+        "sha256": "9ec71f990ae3044135932d8351567064c20c7d8dfcc0e9ba65dbff26970814f7"
+      },
+      {
+        "id": 894,
+        "file": "wbb89415.HSE",
+        "bytes": 302,
+        "sha256": "636f4788dedb28450f0fed4458a3fef21c21fecdf28faf1e5562709e20854f01"
+      },
+      {
+        "id": 895,
+        "file": "wbb89515.HSE",
+        "bytes": 302,
+        "sha256": "bdea17ce70e8f7eb284142dfbd51c2955401079fe85f3bee7b8337756a5eb2b2"
+      },
+      {
+        "id": 897,
+        "file": "wbb89715.HSE",
+        "bytes": 302,
+        "sha256": "039d8324fded3bc9188fdd38524aecc6d4cdf5f67bfa970e8580a96b60c4500a"
+      },
+      {
+        "id": 898,
+        "file": "wbb89815.HSE",
+        "bytes": 302,
+        "sha256": "ca6d906fbf11cdae7ed8f5a8dfc0119d7199990301d9e3a7a4f924e9b9b8784c"
+      },
+      {
+        "id": 899,
+        "file": "wbb89915.HSE",
+        "bytes": 302,
+        "sha256": "8dd2247b1dcf300021b18339d27978b05e1d4783aee16853fc5bb46ae99df916"
+      },
+      {
+        "id": 900,
+        "file": "wbb90015.HSE",
+        "bytes": 302,
+        "sha256": "9d065f96f8c3fd32760e9ada30bde54c105abfbf6d015f487a2ad4cfc517c4c3"
+      },
+      {
+        "id": 901,
+        "file": "wbb90115.HSE",
+        "bytes": 302,
+        "sha256": "d5e1ccb9e864df27b0d8d63d826892f56b97f15a027147c0bbedbfae4ff4b695"
+      },
+      {
+        "id": 905,
+        "file": "wbb90515.HSE",
+        "bytes": 299,
+        "sha256": "2e7a0d4ca5fbfac23e153e15d82066a16c19cb1833d8230ff710f3c6a7b1d7a2"
+      },
+      {
+        "id": 906,
+        "file": "wbb90615.HSE",
+        "bytes": 299,
+        "sha256": "d3e10cf9896e3803147ab280a9aa1cfa1a309399ad9a7cba5446485956ade7f6"
+      },
+      {
+        "id": 907,
+        "file": "wbb90715.HSE",
+        "bytes": 299,
+        "sha256": "4d1d4bbe73fc4ed84ffe25e5cd52799c53bee0cb32217845f7deb058deafca62"
+      },
+      {
+        "id": 910,
+        "file": "wbb91015.HSE",
+        "bytes": 302,
+        "sha256": "54f4ca4c9d61bc16a8b0653fcca1bf124f25eb2bedacf90a2157b823b5ac4db7"
+      },
+      {
+        "id": 912,
+        "file": "wbb91215.HSE",
+        "bytes": 302,
+        "sha256": "1e9eebe5058fde63100b45280040379e7fac66e8933c295da4b7dfcf8132cafc"
+      },
+      {
+        "id": 913,
+        "file": "wbb91315.HSE",
+        "bytes": 302,
+        "sha256": "fefcb4787d79e36e90fafd7073a47c91c0e572e3f8f7152689f2f2f0e43fbf6a"
+      },
+      {
+        "id": 914,
+        "file": "wbb91415.HSE",
+        "bytes": 302,
+        "sha256": "6ff87d2a1770e27b9c99ee16fa7d424ea425cd77f6231fa7b33bd65054c7678a"
+      },
+      {
+        "id": 915,
+        "file": "wbb91515.HSE",
+        "bytes": 302,
+        "sha256": "937a7644d6643969d95e785e3d5a1629dadc2d1b1002062afd1bed1d9250be8c"
+      },
+      {
+        "id": 916,
+        "file": "wbb91615.HSE",
+        "bytes": 302,
+        "sha256": "9d16eee7b902107f2e482327baf4226aa9e4478b6035038e799cf4e1156bc1a6"
+      },
+      {
+        "id": 917,
+        "file": "wbb91715.HSE",
+        "bytes": 302,
+        "sha256": "18c2cf1f4286f6aa683d3243d2202ba8a9575afa8d30645701f1d582bb3d617c"
+      },
+      {
+        "id": 918,
+        "file": "wbb91815.HSE",
+        "bytes": 302,
+        "sha256": "4c4ac6d3aef355d3a003305952147088020a25c4084b73c990faab4e8e7ff9d1"
+      },
+      {
+        "id": 920,
+        "file": "wbb92015.HSE",
+        "bytes": 302,
+        "sha256": "8c4625dcb5db6b66e8cafa8c6754c7be186cc6cf1f964645804a62720ab00083"
+      },
+      {
+        "id": 925,
+        "file": "wbb92515.HSE",
+        "bytes": 301,
+        "sha256": "23cc144f8834b96f3fd7826d33d02b7cebf3e7d65145c2e6070cba413bf465af"
+      },
+      {
+        "id": 926,
+        "file": "wbb92615.HSE",
+        "bytes": 301,
+        "sha256": "992add48c15e3caffca666f384ddd39eb46a88b81707f5fafd2ae1be9801ec12"
+      },
+      {
+        "id": 927,
+        "file": "wbb92715.HSE",
+        "bytes": 301,
+        "sha256": "7a9b66cc8ad51d6446a09a4c0948746e3568d5bb5410152f756e029e9519d47e"
+      },
+      {
+        "id": 928,
+        "file": "wbb92815.HSE",
+        "bytes": 301,
+        "sha256": "0d8333f12123e0409bf8af355e98426034e0e11fba497d4109f2965aaad1de37"
+      },
+      {
+        "id": 929,
+        "file": "wbb92915.HSE",
+        "bytes": 301,
+        "sha256": "6a6f0d8c57fa3a15b89563edb59583464df67a16ddfc5da04b2c0bfb225e4830"
+      },
+      {
+        "id": 930,
+        "file": "wbb93015.HSE",
+        "bytes": 301,
+        "sha256": "8f92e73c62ba2e655dc9a587826ad29eab7ebbb007f009577cf726e67361a926"
+      },
+      {
+        "id": 935,
+        "file": "wbb93515.HSE",
+        "bytes": 301,
+        "sha256": "63e5b13918fab165bcace8169c52c06f7e39861975d6cc7725d9f676513e317f"
+      },
+      {
+        "id": 936,
+        "file": "wbb93615.HSE",
+        "bytes": 301,
+        "sha256": "cd8612cfef0b8196e08d13ba342c263015a221b2980ef72fc5deb275a76e30c9"
+      },
+      {
+        "id": 937,
+        "file": "wbb93715.HSE",
+        "bytes": 301,
+        "sha256": "f089614057e5bd8028b8dec5c746ac5fb95cd1b7f06dc4d2ce4290a33ade41b5"
+      },
+      {
+        "id": 938,
+        "file": "wbb93815.HSE",
+        "bytes": 301,
+        "sha256": "18ec704d15094609a832ff308f545bd23551042a696f484a181b521971fb92b1"
+      },
+      {
+        "id": 939,
+        "file": "wbb93915.HSE",
+        "bytes": 301,
+        "sha256": "2acf24fdcede76d63193a08eb2bc5f84c017941c82f49f1eea77ac14e2aa8667"
+      },
+      {
+        "id": 941,
+        "file": "wbb94115.HSE",
+        "bytes": 301,
+        "sha256": "fb03a56abe7adfcf726e6aef248dd5aa1602d835ab1eaa9211965a5dac0334c4"
+      },
+      {
+        "id": 943,
+        "file": "wbb94315.HSE",
+        "bytes": 301,
+        "sha256": "4c7d849188ec95b21df21da4416b438b85e83cf4408a77cb6eebaec355f58b51"
+      },
+      {
+        "id": 944,
+        "file": "wbb94415.HSE",
+        "bytes": 301,
+        "sha256": "73d6cb1d65469a727df0ce85df22d0ab84e52ff6e60d075e21948d20d09e42f6"
+      },
+      {
+        "id": 945,
+        "file": "wbb94515.HSE",
+        "bytes": 301,
+        "sha256": "df990abd06744248fb780796244a3821ab4153325d3fbf6f5959fe60926ffba7"
+      },
+      {
+        "id": 950,
+        "file": "wbb95015.HSE",
+        "bytes": 300,
+        "sha256": "5483fb267a04a5ab3327ed22038bf03f5a85e08bdfbb16e5172724e1063a168a"
+      },
+      {
+        "id": 951,
+        "file": "wbb95115.HSE",
+        "bytes": 300,
+        "sha256": "fbc62c8bd3c70483eacc02bb83d8574cd387118bda679513e6ec83e9081e0200"
+      },
+      {
+        "id": 952,
+        "file": "wbb95215.HSE",
+        "bytes": 300,
+        "sha256": "698bcb000fa2f5e81543ea36a16b3e42d7150cae539b1b2f82572ee2bdea67bc"
+      },
+      {
+        "id": 953,
+        "file": "wbb95315.HSE",
+        "bytes": 300,
+        "sha256": "e77c254629f9ce1ad1075702efe29adb5c33b52f8643a6e669ed7605b9acd6cc"
+      },
+      {
+        "id": 954,
+        "file": "wbb95415.HSE",
+        "bytes": 300,
+        "sha256": "377f8311798b6f0587d7172d5834c87501bf65e9db3a0073f15a20eaf4735448"
+      },
+      {
+        "id": 955,
+        "file": "wbb95515.HSE",
+        "bytes": 300,
+        "sha256": "ed36e192d315e42e929bc33e626d389f4d055849c90c587ffe2ef30d037db20e"
+      },
+      {
+        "id": 956,
+        "file": "wbb95615.HSE",
+        "bytes": 300,
+        "sha256": "032513744eaec676f6ca0003c5572fade8b3bb20b4797db4db41fc99a82e1fc5"
+      },
+      {
+        "id": 957,
+        "file": "wbb95715.HSE",
+        "bytes": 300,
+        "sha256": "02812c53516dd2cb5a5eed7da3d08a46dd7a7e03c292376901acc61f1aae42e2"
+      },
+      {
+        "id": 958,
+        "file": "wbb95815.HSE",
+        "bytes": 300,
+        "sha256": "e4a80d97f798676fe1de47d98bd505efc7247f30354f5cc33369b4128a2645e1"
+      },
+      {
+        "id": 959,
+        "file": "wbb95915.HSE",
+        "bytes": 300,
+        "sha256": "7e6328b2140681305a6569a2b543668925e5b8abc68fa81f8d8a917b330feb2b"
+      },
+      {
+        "id": 962,
+        "file": "wbb96215.HSE",
+        "bytes": 301,
+        "sha256": "65cb06e6955e717c6013da7f1427eaf7e5139e023f45493a30dc2baf410e6b8a"
+      },
+      {
+        "id": 963,
+        "file": "wbb96315.HSE",
+        "bytes": 301,
+        "sha256": "aed22a1f9bbd2db258b716d55499cb425e5b85c0c3e2072549c06d5982f62665"
+      },
+      {
+        "id": 964,
+        "file": "wbb96415.HSE",
+        "bytes": 301,
+        "sha256": "87e830d1b89b61fe81207eb63c4cfe841c87d82346545b0059b8ca5e1a4591e4"
+      },
+      {
+        "id": 965,
+        "file": "wbb96515.HSE",
+        "bytes": 298,
+        "sha256": "5f82d2733511a79d7b403ffa850e1430ada273338484655845b8ffe80275962f"
+      },
+      {
+        "id": 966,
+        "file": "wbb96615.HSE",
+        "bytes": 301,
+        "sha256": "e6851fcf599612aeb8a114d709379870210a2c4133a096e89097a235710a8705"
+      },
+      {
+        "id": 967,
+        "file": "wbb96715.HSE",
+        "bytes": 298,
+        "sha256": "eec2b272c1f9cce6be00fb829383810736ef98f13236b7d0717a57537abe5fae"
+      },
+      {
+        "id": 969,
+        "file": "wbb96915.HSE",
+        "bytes": 300,
+        "sha256": "c9fffb21f27fef93c1c67d484834555180279b4dc4411d3ea98eb96257d2561e"
+      },
+      {
+        "id": 970,
+        "file": "wbb97015.HSE",
+        "bytes": 300,
+        "sha256": "d73964f41d030dd3bc632e18f6acd2e3a6b51c389063dd2cf672cea67748731c"
+      },
+      {
+        "id": 972,
+        "file": "wbb97215.HSE",
+        "bytes": 297,
+        "sha256": "4f61d6dd72dd0b0f1d5fd86ba216048ce57c24ce906c8f1f87ce683a218dada7"
+      },
+      {
+        "id": 973,
+        "file": "wbb97315.HSE",
+        "bytes": 294,
+        "sha256": "162f577a32df10ddf182aefd2dc10d5c97bf1c9e661311384a8f417bddf223dd"
+      },
+      {
+        "id": 974,
+        "file": "wbb97415.HSE",
+        "bytes": 297,
+        "sha256": "39d08d68f8df0c2eb0223740feaf9db0171764fd426356dcc0ea6f68770561bc"
+      },
+      {
+        "id": 975,
+        "file": "wbb97515.HSE",
+        "bytes": 297,
+        "sha256": "2a8a3a17ef154482d17346fca61cf905abdd5d24b1fa50ce0fd42cb2759f9bc6"
+      },
+      {
+        "id": 976,
+        "file": "wbb97615.HSE",
+        "bytes": 296,
+        "sha256": "fc89675bb0084192270515b0f581030629988bbefdd02ee08d7d5835caf8fbe6"
+      },
+      {
+        "id": 977,
+        "file": "wbb97715.HSE",
+        "bytes": 297,
+        "sha256": "0e7c9587c211ae102191c37bb0841a5828d1fb26e09bbc27aad4e8bd4b60892c"
+      },
+      {
+        "id": 978,
+        "file": "wbb97815.HSE",
+        "bytes": 295,
+        "sha256": "c7d6a963fd72b51703031bb318b387610292013f82a9ef867508d41f969b182d"
+      },
+      {
+        "id": 979,
+        "file": "wbb97915.HSE",
+        "bytes": 296,
+        "sha256": "5b3e2744c1a9347ffead7ef8b37bb0f75915ab53c7d009dc5e131989bcf1f04d"
+      },
+      {
+        "id": 980,
+        "file": "wbb98015.HSE",
+        "bytes": 297,
+        "sha256": "2d9410f5098315281e9227fd274ce4e9276288acc699b387014deeac70339cb4"
+      },
+      {
+        "id": 981,
+        "file": "wbb98115.HSE",
+        "bytes": 295,
+        "sha256": "173ed48dbf783ca2c08a317dd9a12789535265b69a689dd406edd7585bb3426a"
+      },
+      {
+        "id": 982,
+        "file": "wbb98215.HSE",
+        "bytes": 296,
+        "sha256": "e548be5b6b9b70187b68f7ac690541d31e249ed26a01e6944642abbe5276f1cd"
+      }
+    ]
+  },
+  "gravestones": {
+    "shared_count": 7,
+    "shared_byte_identical_count": 7,
+    "records": [
+      {
+        "id": 1393,
+        "wcc_file": "WCC1393.STO",
+        "wbb_file": "wbb1393.STO",
+        "bytes": 238,
+        "sha256": "82509b4f2c3084b4d12686366a7efb516c69d6b247e7704738537770848e343d"
+      },
+      {
+        "id": 1394,
+        "wcc_file": "WCC1394.STO",
+        "wbb_file": "wbb1394.STO",
+        "bytes": 238,
+        "sha256": "b899d96f8dc9017e33c12d2a24fab36f85a59035405daf698f26382f341d0607"
+      },
+      {
+        "id": 1395,
+        "wcc_file": "WCC1395.STO",
+        "wbb_file": "wbb1395.STO",
+        "bytes": 238,
+        "sha256": "c1b617811a235ef2d8ca7cfc8796f89f2e0d38efc47d9f9ea6b879bec69dcb18"
+      },
+      {
+        "id": 1396,
+        "wcc_file": "WCC1396.STO",
+        "wbb_file": "wbb1396.STO",
+        "bytes": 238,
+        "sha256": "cfe72b2f6b86f106f2a85ab27dbfb6877783b89bda2c29d583c86b3fae5c3d92"
+      },
+      {
+        "id": 1397,
+        "wcc_file": "WCC1397.STO",
+        "wbb_file": "wbb1397.STO",
+        "bytes": 238,
+        "sha256": "7592522a4e59b29fcdbb7e1c998a9c37b7541bc4ae54b0c755e4211def352379"
+      },
+      {
+        "id": 1398,
+        "wcc_file": "WCC1398.STO",
+        "wbb_file": "wbb1398.STO",
+        "bytes": 238,
+        "sha256": "543ecfdbd3d5743bb28bd7a4270a187bfd0d7ba6fb64cc3bc5ab55dfb76b4742"
+      },
+      {
+        "id": 1399,
+        "wcc_file": "WCC1399.STO",
+        "wbb_file": "wbb1399.STO",
+        "bytes": 238,
+        "sha256": "91353d595710f2d9dabbd81fec63776aedcb754cd3ca49d8decc05fcd4230181"
+      }
+    ]
+  },
+  "binary_screens": [
+    {
+      "logical_role": "aedit",
+      "wcc_file": "WCCAEDIT.BIN",
+      "wbb_file": "wbbAEDIT.BIN",
+      "bytes": 4000,
+      "sha256": "46b9875b520f516503267c6ca0e4a5565b4bde7e0e48abe04842ada41899ed26",
+      "byte_identical": true
+    },
+    {
+      "logical_role": "box",
+      "wcc_file": "WCCBOX.BIN",
+      "wbb_file": "wbbBOX.BIN",
+      "bytes": 4000,
+      "sha256": "d0a4a2ddaaab15110b3dff375871bd2de84871d67708c18a0c26329658eb19ac",
+      "byte_identical": true
+    },
+    {
+      "logical_role": "mmutl",
+      "wcc_file": "WCCMMUTL.BIN",
+      "wbb_file": "wbbMMUTL.BIN",
+      "bytes": 4000,
+      "sha256": "ce0fb835d9c144af4a84a945a8fa15d1772a44724bd72032c87933782fd71d4c",
+      "byte_identical": true
+    }
+  ],
+  "closures": [
+    "The supplied WBB HSE family is a strict superset of the supplied WCC HSE family: all 47 WCC house-description IDs exist in WBB, plus 86 WBB-only IDs.",
+    "Every one of the 47 shared HSE files is byte-identical across WCC and WBB despite the distribution-specific filename prefix.",
+    "All seven STO gravestone overrides and all three BIN screen assets are byte-identical across the paired WCC and WBB distributions.",
+    "Asset absence is distribution evidence. A WBB-only HSE file must not be silently injected into a WCC runtime profile."
+  ],
+  "runtime_policy": {
+    "cross_distribution_substitution": "forbidden",
+    "shared_hash_acceptance": "allowed only when the requested distribution actually ships the logical asset or an explicit compatibility override is configured",
+    "missing_asset_behavior": "fail closed to the distribution-specific native/default path; do not borrow from another distribution"
+  },
+  "limitations": [
+    "The exact native fallback target after an absent HSE file remains unproven until the dynamic filename construction and consumer branch are fully recovered."
+  ]
+}

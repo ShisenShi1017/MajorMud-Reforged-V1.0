@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "transport-services",
+  "runtimeOwner": "RuntimeTransportService",
+  "persistenceOwner": "World transportation state; Economy owns fare commit; Rooms owns movement commit; session owner coordinates disconnect",
+  "supportedFamilies": [
+    "boats",
+    "ships",
+    "ferries",
+    "carriages",
+    "scheduled transport",
+    "paid transport",
+    "NPC transport",
+    "quest transport",
+    "cross-zone travel"
+  ],
+  "operations": [
+    "board",
+    "depart",
+    "advance/arrive",
+    "disconnect coordination",
+    "inspect"
+  ],
+  "typedRequests": [
+    "charge fare",
+    "move actor",
+    "announce",
+    "start/end combat restriction"
+  ],
+  "safeFallback": "Reject unknown transports, invalid stops, combat-disallowed boarding, over-capacity boarding, and premature arrival.",
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "exact Classic transport record families",
+    "native schedules and boarding windows",
+    "fare ownership and refund behavior",
+    "disconnect/linkdead behavior",
+    "capacity and party boarding",
+    "combat interruption",
+    "exact messages",
+    "persistence and restart recovery"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "runtime-item-resurrection-equipment-restoration",
+  "version": "0179",
+  "scope": "items.runtime.corpse.resurrection.equipment",
+  "classification": "reforged_compatibility_infrastructure",
+  "rules": [
+    "Corpse creation records death_original_equipped_slot only for top-level items that were equipped at death.",
+    "RestoreCorpseItems remains carried-only and removes temporary death-slot metadata.",
+    "Equipment restoration occurs only when restoreEquipment is explicitly true.",
+    "Explicit equipment restoration requires an authoritative RuntimeCharacterRecord.",
+    "Restoration reuses ordinary Equip validation for slot legality, requirements, conflicts, handedness, and broken-state checks.",
+    "Any failed equipment restoration rolls back all item, corpse, gold, and ownership changes in the restoration operation."
+  ],
+  "classic_activation": "fail_closed_pending_native_evidence"
+}

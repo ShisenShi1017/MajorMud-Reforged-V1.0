@@ -1,0 +1,24 @@
+{
+  "code_update": "0159",
+  "subsystem": "character",
+  "current_pass": "Character Inventory Phase 3 - gold ownership, conservation, and capacity quarantine",
+  "implemented": [
+    "single non-negative carried-gold scalar ownership",
+    "checked credit and debit",
+    "atomic conserving player-to-player transfer",
+    "checked NPC reward and corpse recovery credit",
+    "validated corpse escrow on death",
+    "removal of unproven metadata-based capacity enforcement"
+  ],
+  "classification": {
+    "gold_scalar_and_mutation_contract": "STRONGLY CORRELATED",
+    "container_capacity_semantics": "UNKNOWN"
+  },
+  "remaining_character_inventory": [
+    "native coin denominations and weight",
+    "carrying capacity and encumbrance thresholds",
+    "container capacity units",
+    "overflow destination behavior"
+  ],
+  "next": "Character Death Phase 1: recover corpse, drops, XP/gold loss, respawn, resurrection, cleanup, and ordering without inventing native behavior"
+}

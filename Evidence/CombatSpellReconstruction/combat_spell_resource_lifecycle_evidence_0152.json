@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "update": "0152",
+  "activation_policy": "A canonical spell may consume resources only through an explicit evidence-bearing timing policy. Unresolved timing fails closed.",
+  "lifecycle_order": ["validate_policy", "validate_available_resource", "reserve_or_commit_at_start", "execute_cast", "commit_or_refund_at_terminal_state"],
+  "atomicity": {
+    "start": "Capture resource state before reserve/commit; restore on sink failure.",
+    "finish": "Capture resource state before commit/refund; restore and permit retry on sink failure.",
+    "idempotency": "Duplicate start and duplicate terminal processing are rejected."
+  },
+  "canonical_policies": [
+    {
+      "policy_id": "policy.spell.1304.unresolved",
+      "spell_id": "spell.1304",
+      "resource_type": "native_resource_unresolved",
+      "cost": 0,
+      "timing": "unresolved",
+      "refund_on_interrupt": false,
+      "refund_on_execution_failure": false,
+      "confidence": "strongly_correlated",
+      "evidence": [
+        "Data/Classic/spells.json#spell.1304",
+        "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv#1304",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-spell-wcc.json#1304"
+      ],
+      "assumptions": ["The available promoted record establishes spell identity and effect magnitude, but does not establish resource type, cost, or consumption timing."],
+      "safe_fallback": "Reject cast resource processing until resource type, cost, and timing are independently promoted.",
+      "runtime_impact": "Prevents accidental free casts or invented resource consumption for spell.1304.",
+      "character_save_impact": "No resource mutation or persistence is permitted while timing is unresolved.",
+      "world_state_impact": "None."
+    }
+  ],
+  "runtime_ownership": {
+    "lifecycle": "Combat/Spells owns ordering, reservation identity, terminal transition, rollback, and traceable policy selection.",
+    "resource_sink": "Character/NPC ownership supplies balances and performs persistent resource mutation.",
+    "persistence": "Only the owning resource sink may persist committed changes; reservations are temporary unless later evidence proves persistence."
+  },
+  "native_dependencies": ["exact resource type per spell", "exact spell cost fields", "consumption timing", "interruption refund rules", "fizzle and resistance consumption rules"]
+}

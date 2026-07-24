@@ -1,0 +1,21 @@
+{
+  "code_update": "0178",
+  "artifact": "item_resurrection_gold_restoration",
+  "classification": "reforged_compatibility_infrastructure",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "runtime implementation"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+      "role": "deterministic smoke coverage"
+    }
+  ],
+  "unknowns": [
+    "Classic resurrection gold policy",
+    "currency credit ordering",
+    "fees and penalties",
+    "messages"
+  ]
+}

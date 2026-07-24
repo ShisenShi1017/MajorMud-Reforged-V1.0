@@ -1,0 +1,24 @@
+{
+  "code_update": "0189",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "runtime implementation"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+      "role": "deterministic smoke coverage"
+    },
+    {
+      "path": "Librarium/Policies/runtime_item_event_lifecycle_policy.json",
+      "role": "authoritative Reforged policy"
+    },
+    {
+      "path": "Evidence/Items/CodeUpdate0189/item_event_reward_cleanup_semantics.json",
+      "role": "machine-readable evidence"
+    }
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "notes": "No native event-to-item records or offsets were promoted in this pass. Activation is limited to explicit orchestration inputs."
+}

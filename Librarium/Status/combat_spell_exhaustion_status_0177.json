@@ -1,0 +1,19 @@
+{
+  "update": "0177",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "spell-driven summon request construction",
+    "ownership and population-limit validation",
+    "duration, follow, combat insertion, threat inheritance, persistence, and cleanup registration",
+    "prepare/commit/reverse-rollback fan-out"
+  ],
+  "not_claimed_complete": [
+    "production summon spell and NPC bindings",
+    "native population and duplicate limits",
+    "native duration and persistence",
+    "teleportation and movement spells",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Implement teleportation and movement-spell request construction, destination validation, combat/threat cleanup, forced movement, and rollback."
+}

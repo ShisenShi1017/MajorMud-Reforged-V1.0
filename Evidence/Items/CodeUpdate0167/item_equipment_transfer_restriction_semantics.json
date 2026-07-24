@@ -1,0 +1,30 @@
+{
+  "update": "CodeUpdate0167",
+  "subsystem": "Items",
+  "authority": "Librarium",
+  "finding": "Runtime item transitions require a single carried/equipped state and enforce only explicitly projected instance restrictions.",
+  "classification": "strongly_correlated",
+  "confidence": 0.94,
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "generated equipment.json and equipment_slots.json projections",
+    "existing ownership, slot conflict, and atomic rollback runtime invariants"
+  ],
+  "record_ids": ["runtime.item.transition.carried", "runtime.item.restriction.instance"],
+  "byte_offsets": [],
+  "assumptions": [
+    "Restriction metadata is inactive unless explicitly present as a boolean true value.",
+    "Broken-item equipment is rejected until native evidence proves a Classic exception."
+  ],
+  "safe_fallback": "Reject ambiguous or illegal state transitions without mutating ownership, location, or equipment state.",
+  "runtime_impact": "Prevents equipped items from being dropped, given, or nested; prevents broken equips and projected restricted transfers.",
+  "character_save_impact": "Persists existing instance metadata and coherent carried/equipped location state.",
+  "world_state_impact": "Prevents duplicate placement and illegal ownership transitions.",
+  "tests": [
+    "no-drop rollback",
+    "broken equip rejection",
+    "no-remove rejection",
+    "equipped transfer rejection",
+    "restriction metadata validation"
+  ]
+}

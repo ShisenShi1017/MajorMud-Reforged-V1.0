@@ -1,0 +1,507 @@
+{
+  "code_update": "0139",
+  "mode": "read_only_wcc_librarium_gap_audit",
+  "repo": "E:\\MajorMud-Reforged Github",
+  "families": [
+    {
+      "key": "areas",
+      "librarium_family": "areas",
+      "status": "no_local_source",
+      "native_runtime": null,
+      "wcc_default": null,
+      "wbb_secondary": null,
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\areas\\area_catalog_0121.json",
+        "records": 1
+      },
+      "notes": "No direct native DAT family identified in the current repo."
+    },
+    {
+      "key": "banks",
+      "librarium_family": "banks",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCBANKS.DAT",
+        "size": 1536,
+        "sha256": "58b3fa431854beb8bb5f921d47244c7008bbda46617da9895b2375cec6ab03ff",
+        "record_size_hint": 1536,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccbank2.dat",
+        "size": 24576,
+        "sha256": "791e01ae4f763a58e3cf76ebe7eeac25fb7697865e0ce9684bdfab70fef87e17",
+        "record_size_hint": 24576,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBBANK2.DAT",
+        "size": 65536,
+        "sha256": "b4b0f90a9563a68221814b06cbe42d26bba9368e4c5a87c96027c18445fc250a",
+        "record_size_hint": 24576,
+        "record_count_hint": 2,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\banks\\bank_records_0123.json",
+        "records": 27
+      },
+      "notes": ""
+    },
+    {
+      "key": "classes",
+      "librarium_family": "classes",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCCLASS.DAT",
+        "size": 6144,
+        "sha256": "8cc91e569b45c8b238b3ce820f00aef77aeb33bbdf7adfdc035fc732474d2fb4",
+        "record_size_hint": 6144,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccclas2.dat",
+        "size": 40960,
+        "sha256": "870eb7130ed0b3dd7313dd70e98606c564ac002a94b175a9ce98b198cbcdf80d",
+        "record_size_hint": 40960,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBCLAS2.DAT",
+        "size": 40960,
+        "sha256": "6afd30875447670a2f5c5ce98ad3f9b41b9c98c9d06467441c1e861f47b94a37",
+        "record_size_hint": 40960,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\classes\\sql_mdb_records_0128.json",
+        "records": 15
+      },
+      "notes": ""
+    },
+    {
+      "key": "gangs",
+      "librarium_family": "guilds",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCGANGS.DAT",
+        "size": 2048,
+        "sha256": "19ab7942a50ede6797bb3e263087f2f0bb5f205414103db977f65177b6b9c97f",
+        "record_size_hint": 2048,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccgang2.dat",
+        "size": 28672,
+        "sha256": "4958ba43716400ab8a3e4e5951917c8682d6e382dfa82dd2ac0402a85af5ec7c",
+        "record_size_hint": 28672,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBGANG2.DAT",
+        "size": 53248,
+        "sha256": "602966809c0b49949f2570ec5ce30366e52db78c955c801da14e44c866db3fdb",
+        "record_size_hint": 28672,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\guilds\\guild_records_0123.json",
+        "records": 44
+      },
+      "notes": ""
+    },
+    {
+      "key": "items",
+      "librarium_family": "items",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCITEMS.DAT",
+        "size": 1404928,
+        "sha256": "22d54b7aab28e1db5fd5fca9da3aa7f5e9867f671239ee22a306f05e0c4f1e62",
+        "record_size_hint": 1024,
+        "record_count_hint": 1372,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccitem2.dat",
+        "size": 2719744,
+        "sha256": "2ee07ecda220ff82edcdb76800289cea7aa45b14fdf80cb1edc0d2928df863c7",
+        "record_size_hint": 1024,
+        "record_count_hint": 2656,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBITEM2.DAT",
+        "size": 3006464,
+        "sha256": "b8ea3c7d43ad1109baa79432eda4da9cc0e673ac2e7babecb62e1ab788f7103a",
+        "record_size_hint": 1024,
+        "record_count_hint": 2936,
+        "record_size_evenly_divides": true
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\items\\item_records_0122.json",
+        "records": 1950
+      },
+      "notes": ""
+    },
+    {
+      "key": "item_world",
+      "librarium_family": "loot_rules",
+      "status": "source_present",
+      "native_runtime": null,
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccitow2.dat",
+        "size": 73728,
+        "sha256": "89af59878ef03eb21769aa562e23c13f0353b32326dc12c53a4eb77e27059d95",
+        "record_size_hint": 73728,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBITOW2.DAT",
+        "size": 102400,
+        "sha256": "b3adaec2d6ed5763e133d5803cc07873988b9c0e7505c12850e2f36606736f0b",
+        "record_size_hint": 73728,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\loot_rules\\loot_rule_catalog_0121.json",
+        "records": 1
+      },
+      "notes": ""
+    },
+    {
+      "key": "known_messages",
+      "librarium_family": "npcs",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCKNMSR.DAT",
+        "size": 561152,
+        "sha256": "b33f96d837052006a29e708511a8af8022e56c992b5df3483e02e5dcf3f3149c",
+        "record_size_hint": 561152,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccknms2.dat",
+        "size": 973824,
+        "sha256": "97da7a17bfeaf16cba52ef47ef4b5894f1456af01313ad1d05e3b2f5bbb378f8",
+        "record_size_hint": 973824,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBKNMS2.DAT",
+        "size": 1049088,
+        "sha256": "10282b9f6171eba4ac91f074eababbba7eed18cd8b7fbd735a4385e972ef2f33",
+        "record_size_hint": 973824,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\npcs\\npc_records_0122.json",
+        "records": 1100
+      },
+      "notes": ""
+    },
+    {
+      "key": "map_room_text",
+      "librarium_family": "room_descriptions",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCMP001.DAT",
+        "size": 30973440,
+        "sha256": "17442fe74d608511b31cf22ca7f0924310acfbecdef49984a9e8cbd4209dc3c9",
+        "record_size_hint": 1536,
+        "record_count_hint": 20165,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccmp002.dat",
+        "size": 56500224,
+        "sha256": "06eec04e1020ded5f63d6a9e67a794b871696ca90f6afc0fcdfcccdd4ac657be",
+        "record_size_hint": 1536,
+        "record_count_hint": 36784,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBMP002.DAT",
+        "size": 56541184,
+        "sha256": "16c417842372505966e90e3e6668a0c95c3d557ae29c38955a946886bd555c12",
+        "record_size_hint": 1536,
+        "record_count_hint": 36810,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\room_descriptions\\native_map_room_description_records_0139.json",
+        "records": 2417
+      },
+      "notes": ""
+    },
+    {
+      "key": "messages",
+      "librarium_family": "events",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCMSG.DAT",
+        "size": 870912,
+        "sha256": "37546e9bdc91ffb006c761cdd557d3114f776c152e10b3ef53303b4826bc0f0c",
+        "record_size_hint": 870912,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccmsg2.dat",
+        "size": 1220608,
+        "sha256": "7bcc4ce3fb34038ac5623892148f3af01a5ef51b3909ae92678010b7a62283e2",
+        "record_size_hint": 1220608,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBMSG2.DAT",
+        "size": 1216512,
+        "sha256": "8d57d152f86e96350fe77982f07380307afd673d726bb7bd0ebdb0887753241c",
+        "record_size_hint": 1220608,
+        "record_count_hint": 0,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\events\\event_records_0123.json",
+        "records": 1501
+      },
+      "notes": ""
+    },
+    {
+      "key": "races",
+      "librarium_family": "races",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCRACE.DAT",
+        "size": 3072,
+        "sha256": "1c227140da2fa8e6863ce81a90d061178aacc19bfa683e475728918ccbafed4e",
+        "record_size_hint": 3072,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccrace2.dat",
+        "size": 40960,
+        "sha256": "f67d6c35abef2a3646d44073241bd7c72de0b41792baa7f4fef77499472dfd50",
+        "record_size_hint": 40960,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBRACE2.DAT",
+        "size": 40960,
+        "sha256": "9e8e139bc714b74798b66caa06fc3c49d2148d57fa716abab2c59869eb89cea0",
+        "record_size_hint": 40960,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\races\\sql_mdb_records_0128.json",
+        "records": 13
+      },
+      "notes": ""
+    },
+    {
+      "key": "shops",
+      "librarium_family": "shops",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCSHOPS.DAT",
+        "size": 78336,
+        "sha256": "1d5d8bd676717b1ffb8e10adf41123cbb3001c1d6750ef297ebffc56b46ed012",
+        "record_size_hint": 512,
+        "record_count_hint": 153,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccshop2.dat",
+        "size": 143360,
+        "sha256": "ea7a5ddda7aacfec247dc6d96c2dd5b0b53a893e9121efd1e185494d99a7fe30",
+        "record_size_hint": 512,
+        "record_count_hint": 280,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBSHOP2.DAT",
+        "size": 155648,
+        "sha256": "25840af6405aef7e148d8417c9823f37c003afec1c889967212a800752e3c44e",
+        "record_size_hint": 512,
+        "record_count_hint": 304,
+        "record_size_evenly_divides": true
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\shops\\shop_records_0122.json",
+        "records": 178
+      },
+      "notes": ""
+    },
+    {
+      "key": "spells",
+      "librarium_family": "spells",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCSPELS.DAT",
+        "size": 256512,
+        "sha256": "131d9221f12e4ff09a2be53c5456c504ecf24a15a526a12363efec4d0e21ebd7",
+        "record_size_hint": 256,
+        "record_count_hint": 1002,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccspel2.dat",
+        "size": 466944,
+        "sha256": "49d7ce89a68a38f12f7d5e98410dc2f485ce6acd3bfcb743246cebc37c199eeb",
+        "record_size_hint": 256,
+        "record_count_hint": 1824,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBSPEL2.DAT",
+        "size": 466944,
+        "sha256": "c55e9f232e3413678a4af6974bcb6c5dc4f8829066586b111c5fdece15d8ecc9",
+        "record_size_hint": 256,
+        "record_count_hint": 1824,
+        "record_size_evenly_divides": true
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\spells\\spell_records_0122.json",
+        "records": 1350
+      },
+      "notes": ""
+    },
+    {
+      "key": "textblocks",
+      "librarium_family": "quests",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCTEXT.DAT",
+        "size": 1073152,
+        "sha256": "de1232049704ccbea60421ad48263b7f198de267feaafa8507f6d4e706bcd9cf",
+        "record_size_hint": 1073152,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wcctext2.dat",
+        "size": 7442432,
+        "sha256": "fadca283e75df5d07c1812133644c19c5cf8915e56e4968c2229d904cbb4f275",
+        "record_size_hint": 7442432,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": true
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBTEXT2.DAT",
+        "size": 7444480,
+        "sha256": "51eeadd9ac65ca6041b34decf1d78d2be9146a088a294b0f36680744796d2e50",
+        "record_size_hint": 7442432,
+        "record_count_hint": 1,
+        "record_size_evenly_divides": false
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\quests\\quest_records_0123.json",
+        "records": 2183
+      },
+      "notes": ""
+    },
+    {
+      "key": "updates",
+      "librarium_family": "validation_rules",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCUPDAT.DAT",
+        "size": 58357760,
+        "sha256": "f7e4cf0a261ff38134dd7df40502ae8c46b55651056e859aaa3853583c43b235"
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccupda2.dat",
+        "size": 80359424,
+        "sha256": "4b24b9cd65b9733fed5b85c78ad8398a98a1b2d7aab1e70fdba9b6a9accec40a"
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBUPDA2.DAT",
+        "size": 80543744,
+        "sha256": "1608ecb531ab7e223323cfd23e1e3c46cf16d968143b20b2f0cad490e25ba3d1"
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\validation_rules\\validation_rule_catalog_0121.json",
+        "records": 1
+      },
+      "notes": ""
+    },
+    {
+      "key": "users",
+      "librarium_family": "character_foundation",
+      "status": "source_present",
+      "native_runtime": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\NativeRuntime\\WCCUSERS.DAT",
+        "size": 10240,
+        "sha256": "88d6a7002a20ed1b228ec8ad8b6bbf0731a33c2ce6a76b5f2656971f33c7d73d"
+      },
+      "wcc_default": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCDefaultInstall\\wcc default\\wccuser2.dat",
+        "size": 20480,
+        "sha256": "74b14d56fe69d5f701b358fce4067310385639fc4103bbeafed266ab4189801a"
+      },
+      "wbb_secondary": {
+        "path": "E:\\MajorMud-Reforged Github\\ImportedDatabases\\WCCLabeledWBB\\Extracted\\WBBUSER2.DAT",
+        "size": 212992,
+        "sha256": "9866caef89d1acef704f63fcd156d826e55c3c0dcbefd01437710c5f22ced23e"
+      },
+      "librarium": {
+        "selected_file": "E:\\MajorMud-Reforged Github\\Librarium\\Objects\\character_foundation\\character_foundation_records_0137.json",
+        "records": 1
+      },
+      "notes": ""
+    }
+  ],
+  "room_text": {
+    "promotable_native_wccmp_files": [
+      "WCCMP001.DAT"
+    ],
+    "available_reference_wccmp_files": [
+      "WBBMP002.DAT",
+      "WCCMP002.DAT"
+    ],
+    "available_wccmp_files": [
+      "WCCMP001.DAT",
+      "WCCMP002.DAT"
+    ],
+    "available_but_not_promoted_wccmp_files": [
+      "WCCMP002.DAT"
+    ],
+    "missing_expected_wccmp_files": [
+      "WCCMP003.DAT",
+      "WCCMP004.DAT",
+      "WCCMP005.DAT",
+      "WCCMP006.DAT",
+      "WCCMP007.DAT",
+      "WCCMP008.DAT",
+      "WCCMP009.DAT",
+      "WCCMP010.DAT",
+      "WCCMP011.DAT",
+      "WCCMP012.DAT",
+      "WCCMP013.DAT",
+      "WCCMP014.DAT",
+      "WCCMP015.DAT",
+      "WCCMP016.DAT",
+      "WCCMP017.DAT"
+    ],
+    "librarium_room_records": 26666,
+    "librarium_room_description_records": 2417,
+    "coverage_percent_against_librarium_rooms": 9.06
+  }
+}

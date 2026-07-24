@@ -1,0 +1,36 @@
+{
+  "code_update": "0158",
+  "subsystem": "character",
+  "current_pass": "Character Inventory Phase 2 - authoritative item weight projection",
+  "status": "in_progress",
+  "completed": [
+    "status effects phases 1-2",
+    "progression ownership and evidence-gated promotion",
+    "statistics projection phases 1-3",
+    "equipment phases 1-3",
+    "recursive inventory ownership and container validation",
+    "atomic stack split and merge lifecycle",
+    "authoritative item unit-weight loading and deterministic carried-weight projection"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth and gain schedules",
+    "native multiclass switching and caps",
+    "native statistics formulas and cadence",
+    "equipment dual wield, layering, durability, and hidden order",
+    "inventory encumbrance, capacity, overflow, and coins",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [
+    "base combat-statistic formulas",
+    "saving-throw resolution",
+    "base regeneration cadence and quantity",
+    "Classic automatic stack behavior",
+    "carry capacity and encumbrance formulas",
+    "container effective-weight semantics",
+    "coin denomination, weight, and overflow semantics"
+  ],
+  "next": "Character Inventory Phase 3: recover capacity, encumbrance, coins, and overflow semantics without inventing native behavior"
+}

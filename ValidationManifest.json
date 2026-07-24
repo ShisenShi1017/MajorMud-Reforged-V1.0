@@ -1,0 +1,53 @@
+{
+  "policy": "One-time import, decode, promotion, and reconciliation checks are recorded here after they pass. They are not part of the recurring validator unless their source data changes.",
+  "currentValidator": "Tools/validator.py",
+  "activeGate": "current_health_validator",
+  "acceptedValidations": [
+    {
+      "name": "Classic room description recovery",
+      "status": "accepted",
+      "summary": "All 26666 Classic rooms have generated descriptions. WCCMP002 is the selected MajorMUD 1.11p room/map source for the final placeholder recovery; WBBMP002 is comparison evidence only.",
+      "evidence": [
+        "Reports/DataDecode/wccmp002_placeholder_room_description_recovery.json",
+        "Reports/RuntimeVerification/classic_runtime_audit.md"
+      ]
+    },
+    {
+      "name": "Room semantic material",
+      "status": "accepted",
+      "summary": "Room interactions, exit semantics, edge states, action latches, reset/dependency semantics, and trigger/script/quest clauses were accepted into the generated Classic baseline.",
+      "evidence": [
+        "Reports/DataDecode/room_interaction_semantics.json",
+        "Reports/DataDecode/room_exit_semantics.json",
+        "Reports/DataDecode/room_edge_state.json"
+      ]
+    },
+    {
+      "name": "MMExplorer and OmniVerse reference reconciliation",
+      "status": "accepted",
+      "summary": "Reference-backed item, spell, NPC, shop, ability, and room evidence was reconciled into Librarium without overriding binary-backed Classic evidence.",
+      "evidence": [
+        "Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.json"
+      ]
+    },
+    {
+      "name": "Room native effect and message decode closure",
+      "status": "accepted",
+      "summary": "Resolved 7 distinct native/passive room-effect linkage gaps across 12 exit rows without promoting invented player commands. MegaMUD /mp route replay found 0 command hits for the affected map-qualified exits. Native WCCMSG room action, door, hidden-exit, lock/key, search, and failure strings are cataloged as 117 unique offset-backed room message records.",
+      "evidence": [
+        "Reports/DataDecode/room_native_effect_linkage_and_message_decode.json",
+        "Reports/DataDecode/room_native_effect_linkage_and_message_decode.md"
+      ]
+    },
+    {
+      "name": "Quest dialogue dispatch intake",
+      "status": "accepted",
+      "summary": "Loaded cumulative quest/dialogue dispatch package material into Librarium source records. Generated 182 decoded textblock stage scripts, 83 NPC quest-entry triggers, and 182 linked stage script references. Runtime interaction narrative smoke verifies branch dispatch, item consumption/reward transition, random textblock table execution, cast/summon/remoteaction coverage, world-intent target validation, exhaustive NPC quest-entry dispatch validation, and failure/no-mutation behavior.",
+      "evidence": [
+        "Reports/DataDecode/quest_dialogue_dispatch_intake.json",
+        "Reports/DataDecode/quest_dialogue_dispatch_intake.md",
+        "Reports/RuntimeVerification/validator_latest.json"
+      ]
+    }
+  ]
+}

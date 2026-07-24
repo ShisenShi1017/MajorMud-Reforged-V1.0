@@ -1,0 +1,8 @@
+{
+  "update": "0181",
+  "sources": [
+    {"source": "CodeUpdate0180 runtime architecture", "records": ["RuntimeCombatAbilityPolicy", "RuntimeCombatControlPolicy"], "offsets": [], "role": "execution and ownership boundary"},
+    {"source": "established evidence policy", "records": ["promoted-policy gating", "atomic prepare/commit/rollback"], "offsets": [], "role": "activation constraint"}
+  ],
+  "native_dependencies": ["exact passive modifier constants", "native passive ordering", "control persistence flags", "control break precedence"]
+}

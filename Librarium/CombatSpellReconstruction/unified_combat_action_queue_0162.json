@@ -1,0 +1,41 @@
+{
+  "update": "0162",
+  "subsystem": "combat_spells",
+  "feature": "unified_combat_action_queue",
+  "status": "strongly_correlated_fixture_active_production_unresolved_fail_closed",
+  "runtime_owner": "RuntimeCombatActionQueue",
+  "action_kinds": [
+    "physical_attack",
+    "spell_completion",
+    "periodic_effect"
+  ],
+  "ordering": [
+    "due_tick",
+    "same_tick_priority",
+    "source_sequence",
+    "canonical_action_id"
+  ],
+  "state_machine": [
+    "queued",
+    "claimed",
+    "completed",
+    "failed",
+    "cancelled"
+  ],
+  "atomicity": "claim is batch-atomic; each action permits exactly one terminal transition",
+  "canonical_references": {
+    "action": "action.*",
+    "combat": "combat.*",
+    "actors": [
+      "character.*",
+      "npc.*",
+      "world.*"
+    ],
+    "runtime": [
+      "attack.*",
+      "cast.*",
+      "effect.*"
+    ]
+  },
+  "safe_fallback": "reject enqueue when promoted same-tick priority is unavailable; do not infer native ordering"
+}

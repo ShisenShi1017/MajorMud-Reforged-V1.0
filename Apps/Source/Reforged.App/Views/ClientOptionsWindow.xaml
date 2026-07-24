@@ -1,0 +1,113 @@
+<Window x:Class="Reforged.App.Views.ClientOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Client Options"
+        Width="860"
+        Height="620"
+        MinWidth="720"
+        MinHeight="480"
+        Background="{StaticResource ParchmentBrush}"
+        TextElement.Foreground="{StaticResource ParchmentTextBrush}">
+    <DockPanel Margin="12">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Save Profiles" Margin="4" Padding="14,7" Click="SaveProfilesClicked"/>
+            <Button Content="Close" Margin="4" Padding="14,7" Click="CloseClicked"/>
+        </StackPanel>
+
+        <TabControl>
+            <TabItem Header="Server">
+                <Grid Margin="12" DataContext="{Binding SelectedLiveSession}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Session name"/>
+                    <TextBox Grid.Column="1" Margin="0,3" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="1" Text="Character"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="2" Text="Server / BBS"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" Text="{Binding ServerProfileName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="3" Text="World"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" Text="{Binding WorldName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="4" Text="Host"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="0,3" Text="{Binding HostName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="5" Text="Port"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="0,3" Width="90" HorizontalAlignment="Left" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Terminal">
+                <Grid Margin="12" DataContext="{Binding SelectedLiveSession.TerminalPreferences}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Content="Enable Telnet negotiation" IsChecked="{Binding EnableTelnetNegotiation}"/>
+                    <CheckBox Grid.Row="1" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}"/>
+                    <CheckBox Grid.Row="2" Content="Show timestamps" IsChecked="{Binding ShowTimestamps}"/>
+                    <CheckBox Grid.Row="3" Content="Log terminal output" IsChecked="{Binding LoggingEnabled}"/>
+                    <TextBlock Grid.Row="4" Text="Scrollback lines" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding MaximumScrollbackLines, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Automation">
+                <ScrollViewer>
+                    <Grid Margin="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <CheckBox Content="Automation enabled" IsChecked="{Binding AutomationProfile.Enabled}"/>
+                        <TextBlock Grid.Row="1" Text="Profile name" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AutomationProfile.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Row="2" Text="Minimum command delay" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding AutomationProfile.MinimumCommandDelayMs, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Parsing">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Profile:" VerticalAlignment="Center"/>
+                        <ComboBox Width="320" Margin="8,0" ItemsSource="{Binding AvailableParsingProfiles}" SelectedItem="{Binding SelectedParsingProfileSummary}" DisplayMemberPath="DisplayName"/>
+                        <Button Content="Open" Padding="12,5" Click="SelectParsingProfileClicked"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding ParsingProfile.Rules}" SelectedItem="{Binding SelectedParsingRule}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="55"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Kind}" Width="150"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180"/>
+                            <DataGridTextColumn Header="Pattern" Binding="{Binding Pattern}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

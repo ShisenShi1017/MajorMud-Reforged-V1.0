@@ -1,0 +1,24 @@
+{
+  "schema": "textblock_output_reference_exhaustion_report_v1",
+  "code_update": "0154",
+  "status": "PASS_WITH_NATIVE_DEPENDENCIES",
+  "counts": {
+    "output_references": 519,
+    "message_references": 130,
+    "textblock_references": 389
+  },
+  "validation": {
+    "violations": [],
+    "typed_reference_kinds": true,
+    "ordering_captured": true,
+    "transactional_rollback_captured": true,
+    "fabricated_rendering_prevented": true
+  },
+  "native_dependencies": [
+    "message-id to payload catalog",
+    "textblock-id to payload/branch catalog",
+    "substitution token grammar",
+    "color and formatting control codes",
+    "pagination and timing dispatcher"
+  ]
+}

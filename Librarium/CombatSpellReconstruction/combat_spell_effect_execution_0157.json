@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "update": "0157",
+  "subsystem": "combat_spells",
+  "runtime_boundary": "periodic_effect_atomic_execution_and_dispel_selection",
+  "confidence": "strongly_correlated",
+  "execution_order": [
+    "capture_effect_lifecycle_snapshot",
+    "advance_effect_clock_and_collect_due_ticks",
+    "require_promoted_execution_policy_for_each_tick",
+    "capture_each_target_before_first_mutation",
+    "commit_periodic_mutations_in_effect_tick_order",
+    "restore_target_and_effect_snapshots_on_failure",
+    "select_dispel_candidates_by_target_category_and_polarity",
+    "order_dispel_candidates_by_priority_desc_applied_tick_effect_id",
+    "remove_up_to_promoted_maximum_effects"
+  ],
+  "ownership": {
+    "effect_clock": "RuntimeSpellEffectLifecycle",
+    "periodic_mutation_transaction": "RuntimeCombatSpellEffectExecution",
+    "target_state": "IRuntimeCombatSpellMutationSink",
+    "dispel_selection": "RuntimeCombatSpellEffectExecution",
+    "native_effect_meaning": "unresolved policies reject"
+  },
+  "determinism": {
+    "periodic_order": [
+      "world_tick",
+      "effect_id"
+    ],
+    "dispel_order": [
+      "dispel_priority_desc",
+      "applied_tick",
+      "effect_id"
+    ],
+    "rollback": "target snapshots and effect lifecycle snapshot restore together",
+    "magnitude": "effect magnitude multiplied by stack count using checked integer arithmetic"
+  },
+  "canonical_fixture": {
+    "effect_id": "effect.10",
+    "spell_id": "spell.9010",
+    "target_id": "npc.2",
+    "source_actor_id": "character.1",
+    "dispel_id": "dispel.one"
+  },
+  "safe_fallback": "Reject periodic execution or dispel when an active spell lacks a promoted execution policy, category, polarity, priority, or mutation disposition.",
+  "native_dependencies": [
+    "production spell effect polarity and dispel categories",
+    "native dispel power and resistance checks",
+    "native same-tick ordering against death regeneration and cast completion",
+    "production periodic damage and healing formulas before stored magnitude",
+    "spell.1304 effect execution and dispel semantics"
+  ],
+  "smoke_vectors": [
+    "periodic_ticks_commit_in_stable_order",
+    "periodic_magnitude_includes_stack_count",
+    "mutation_failure_restores_effect_clock",
+    "dispel_uses_priority_then_age_then_effect_id",
+    "dispel_respects_maximum_effects",
+    "unresolved_execution_policy_rejects"
+  ]
+}

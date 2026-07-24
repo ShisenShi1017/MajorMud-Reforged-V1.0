@@ -1,0 +1,45 @@
+{
+  "catalogId": "economy-loot-runtime-0153",
+  "runtimeOwner": "Reforged.Server",
+  "components": {
+    "resolver": {
+      "type": "RuntimeLootResolver",
+      "inputs": ["lootTableId", "currencyId", "guaranteed grants", "weighted entries", "roll count", "replacement policy", "seed"],
+      "outputs": ["currencyBaseUnits", "itemQuantities", "selectedEntryIds"],
+      "arithmetic": "checked Int64; weighted target in [0,totalWeight)",
+      "determinism": "same table and seed produce the same ordered result"
+    },
+    "corpse": {
+      "type": "RuntimeLootCorpse",
+      "owns": ["currency", "item quantities", "owner IDs", "claim replay IDs", "expiry", "cleanup state"],
+      "rights": ["private owner set", "public loot flag"],
+      "lifecycle": ["created", "claimable", "empty", "expired", "cleaned"]
+    },
+    "claim": {
+      "type": "RuntimeLootClaimEngine",
+      "order": ["validate IDs", "validate currency", "lock corpse-wallet-inventory", "validate rights and expiry", "capture all state", "add items", "add currency", "clear corpse", "mark claim", "return versions"],
+      "rollback": ["corpse", "wallet", "inventory"],
+      "replayProtection": "claimId retained on corpse"
+    },
+    "persistence": {
+      "type": "RuntimeLootPersistence",
+      "schemaVersion": 1,
+      "persists": ["corpse identity", "source entity", "currency", "owners", "public state", "remaining grants", "timestamps", "version", "claim IDs", "cleanup state"]
+    }
+  },
+  "relationships": [
+    {"from": "lootTableId", "to": "RuntimeLootResolution", "relation": "resolves"},
+    {"from": "sourceEntityId", "to": "corpseId", "relation": "creates"},
+    {"from": "corpseId", "to": "walletId", "relation": "transfers currency to"},
+    {"from": "corpseId", "to": "inventoryId", "relation": "transfers items to"},
+    {"from": "ownerId", "to": "corpseId", "relation": "may claim"}
+  ],
+  "unknownNativeDependencies": [
+    "MajorMUD 1.11p loot-table contents",
+    "native weighted probabilities and roll counts",
+    "quest and rare-drop predicates",
+    "corpse public-loot transition timing",
+    "native corpse expiry and cleanup intervals",
+    "party loot-right distribution"
+  ]
+}

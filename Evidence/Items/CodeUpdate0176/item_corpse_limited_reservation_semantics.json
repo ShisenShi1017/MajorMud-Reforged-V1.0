@@ -1,0 +1,45 @@
+{
+  "code_update": "0176",
+  "subsystem": "items",
+  "finding": "corpse_limited_item_reservation_and_release",
+  "classification": "strongly_correlated_reinforced_compatibility_infrastructure",
+  "runtime_activation": "evidence_gated",
+  "sources": [
+    "existing owner-scoped maximum_owned_quantity enforcement",
+    "persisted RuntimeCorpseState character identity",
+    "existing atomic corpse creation, loot, decay, and save/load paths"
+  ],
+  "semantics": {
+    "reservation_owner": "persisted corpse LimitedItemReservationOwnerId; legacy/null records safely fall back to corpse CharacterId",
+    "counted_state": "root and nested corpse-held items count toward the reservation owner when maximum_owned_quantity is projected",
+    "acquisition": "creation, pickup, purchase, give, NPC transfer, and restore paths reject owner-limit overflow while a corpse reservation exists",
+    "loot": "the transferred corpse quantity is excluded from its old reservation before destination-owner enforcement",
+    "release": "recursive corpse decay removes reserved instances and releases counts atomically",
+    "rollback": "failed acquisition leaves corpse, item, and owner state unchanged"
+  },
+  "confidence": 0.91,
+  "assumptions": [
+    "Exact Classic limited-item scope and corpse reservation rules are not yet decoded.",
+    "Only items with explicit maximum_owned_quantity metadata participate.",
+    "Account, party, guild, and world scopes remain inactive."
+  ],
+  "safe_fallback": "Items without projected maximum_owned_quantity are unaffected; legacy corpse records use CharacterId only as a compatibility reservation identity.",
+  "tests": [
+    "corpse creation persists reservation owner",
+    "duplicate owner acquisition rejected while corpse holds limited item",
+    "corpse decay releases reservation",
+    "nested corpse contents resolve through their root corpse",
+    "save validation includes corpse-held quantities"
+  ],
+  "runtime_impact": "Owner-scoped limited-item enforcement now spans active corpses and nested corpse containers.",
+  "character_save_impact": "Corpse reservation owner persists with RuntimeCorpseState and legacy saves remain readable.",
+  "world_state_impact": "Active corpse reservations participate in deterministic validation and release on cleanup.",
+  "native_dependencies": [
+    "Classic limit flag mapping",
+    "exact limit scope",
+    "death and resurrection exceptions",
+    "corpse decay release ordering",
+    "crash recovery reconciliation",
+    "failure messages"
+  ]
+}

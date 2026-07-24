@@ -1,0 +1,16 @@
+{
+  "update": "0169",
+  "promotions": [
+    {
+      "behavior": "periodic effects use the promoted resistance/save trace before mutation",
+      "confidence": "strongly_correlated",
+      "sources": ["RuntimeCombatSpellEffectExecution.cs", "RuntimeSpellResistanceSavingThrow.cs", "RuntimeDirectSpellExecution.cs"],
+      "assumptions": ["periodic and direct effects share promoted resistance/save result semantics"],
+      "fallback": "reject",
+      "runtime_impact": "periodic mutation is suppressed, reduced, amplified, or converted to healing",
+      "character_save_impact": "none added",
+      "world_state_impact": "temporary combat effect state only"
+    }
+  ],
+  "unknown": ["production spell-to-resistance catalog", "production spell-to-save catalog", "native duration reduction rounding"]
+}

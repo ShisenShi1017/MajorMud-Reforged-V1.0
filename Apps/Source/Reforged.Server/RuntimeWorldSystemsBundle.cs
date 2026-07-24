@@ -15,14 +15,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         var catalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var services = ResolveServicesAtRoom(catalog, session.CurrentRoom.RoomNumber).ToArray();
         if (services.Length == 0) throw new InvalidOperationException("There is no generated service in this room.");
+        if (command.Name is "tat" or "stats" || (command.Name == "train" && command.ArgumentText.StartsWith("stats ", StringComparison.OrdinalIgnoreCase)))
+            return command.Name == "train" ? SpendTatPoint(character, command.ArgumentText[6..]) : SpendTatPoint(character, command.ArgumentText);
+
+        // Classic shops and trainers are room-owned services. A merchant NPC may be present
+        // for atmosphere, but buying, selling, repairing, and training do not require one.
         return command.Name switch
         {
             "buy" => BuyGeneratedItem(character, services, command.ArgumentText),
             "sell" => SellGeneratedItem(character, services, command.ArgumentText),
             "repair" => RepairGeneratedItem(character, services, command.ArgumentText),
-            "train" when command.ArgumentText.StartsWith("stats ", StringComparison.OrdinalIgnoreCase) => SpendTatPoint(character, command.ArgumentText[6..]),
             "train" => TrainAtGeneratedTrainer(character, services),
-            "tat" or "stats" => SpendTatPoint(character, command.ArgumentText),
             _ => throw new InvalidOperationException("Unsupported generated service transaction.")
         };
     }
@@ -34,26 +37,31 @@ public sealed partial class RuntimeLiveGameplayFacade
     private string BuyGeneratedItem(RuntimeCharacterRecord character, IReadOnlyList<RuntimeServiceDefinition> services, string query)
     {
         var shop = RequireShop(services);
-        var entry = ResolveOffering(shop.GeneratedRecord, "inventory", query);
-        var itemId = ReadText(entry, "item_ref") ?? throw new InvalidOperationException("Generated shop entry has no item reference.");
         var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var request = ParseMerchantQuantity(query);
+        var entry = ResolveOffering(shop.GeneratedRecord, "inventory", request.Query, items);
+        var itemId = ReadText(entry, "item_ref") ?? throw new InvalidOperationException("Generated shop entry has no item reference.");
         var definition = items.Require(itemId);
-        var cost = ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, character.WorldId, definition.Id));
-        if (cost <= 0) throw new InvalidOperationException("The generated item has no positive economy cost.");
+        var cost = Math.Max(0, ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, character.WorldId, definition.Id)));
 
         return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
         {
-            if (!stock.TryGetValue(itemId, out var current) || current.Quantity <= 0)
-                throw new InvalidOperationException($"{definition.Name} is currently out of stock.");
+            if (!stock.TryGetValue(itemId, out var current) || current.Quantity < request.Quantity)
+                throw new InvalidOperationException($"{definition.Name} does not have {request.Quantity} in stock.");
             var before = _characters.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Character save was not found.");
             var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
-            if (state.Gold < cost) throw new InvalidOperationException("You do not have enough carried gold.");
+            var totalCostGold = checked(cost * request.Quantity);
+            var totalCostCopper = checked(totalCostGold * 100L);
+            var settledState = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, totalCostCopper);
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
-            var created = engine.Create(itemId, RuntimeItemLocations.Character, before.CharacterId, ownerId: before.CharacterId);
-            var updated = before with { ItemState = engine.Snapshot(state.Gold - cost, state.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow };
+            RuntimeItemInstance? created = null;
+            for (var index = 0; index < request.Quantity; index++)
+                created = engine.Create(itemId, RuntimeItemLocations.Character, before.CharacterId, ownerId: before.CharacterId);
+            var updated = before with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow };
             _characters.SaveCharacter(updated);
-            stock[itemId] = current with { Quantity = current.Quantity - 1 };
-            return $"You buy {items.Require(created.CanonicalItemId).Name} for {cost} gold. {current.Quantity - 1} remain.";
+            stock[itemId] = current with { Quantity = current.Quantity - request.Quantity };
+            var priceText = totalCostCopper == 0 ? "free" : RuntimeBundleCEconomyAuthority.FormatCopperValue(totalCostCopper);
+            return $"You buy {request.Quantity} {items.Require(created!.CanonicalItemId).Name} for {priceText}. {current.Quantity - request.Quantity} remain.";
         });
     }
 
@@ -61,20 +69,59 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         var shop = RequireShop(services);
         var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var request = ParseMerchantQuantity(query);
         return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
         {
             var before = _characters.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Character save was not found.");
             var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
-            var selected = Resolve(engine.Inventory(before.CharacterId), items, query);
-            var value = ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, selected.CanonicalItemId));
+            var matching = engine.Inventory(before.CharacterId)
+                .Where(x => MerchantItemMatches(x, items, request.Query))
+                .Take(request.Quantity + 1)
+                .ToArray();
+            if (matching.Length < request.Quantity) throw new InvalidOperationException($"You do not carry {request.Quantity} matching items.");
+            var selected = matching.Take(request.Quantity).ToArray();
+            var canonicalId = selected[0].CanonicalItemId;
+            if (selected.Any(x => !x.CanonicalItemId.Equals(canonicalId, StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidOperationException("A merchant sale quantity must resolve to one canonical item type.");
+            var value = ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, canonicalId));
             if (value <= 0) throw new InvalidOperationException("That item has no generated economy value.");
-            engine.Remove(selected.InstanceId);
-            _characters.SaveCharacter(before with { ItemState = engine.Snapshot(checked(state.Gold + value), state.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
-            if (stock.TryGetValue(selected.CanonicalItemId, out var current))
-                stock[selected.CanonicalItemId] = current with { Quantity = checked(current.Quantity + 1) };
-            return $"You sell {items.Require(selected.CanonicalItemId).Name} for {value} gold.";
+            foreach (var item in selected) engine.SellToMerchant(item.InstanceId, before.CharacterId, shop.Id, 1);
+            var totalValueGold = checked(value * request.Quantity);
+            var totalValueCopper = checked(totalValueGold * 100L);
+            var settledState = RuntimeBundleCEconomyAuthority.CreditCopperValue(state, totalValueCopper);
+            _characters.SaveCharacter(before with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
+            if (stock.TryGetValue(canonicalId, out var current))
+                stock[canonicalId] = current with { Quantity = checked(current.Quantity + request.Quantity) };
+            else
+                stock[canonicalId] = new RuntimeShopStockEntry(canonicalId, request.Quantity, DateTimeOffset.MaxValue);
+            return $"You sell {request.Quantity} {items.Require(canonicalId).Name} for {RuntimeBundleCEconomyAuthority.FormatCopperValue(totalValueCopper)}.";
         });
+    }
+
+
+    private sealed record RuntimeMerchantQuantityRequest(int Quantity, string Query);
+
+    private static RuntimeMerchantQuantityRequest ParseMerchantQuantity(string argument)
+    {
+        var text = argument.Trim();
+        if (text.Length == 0) throw new InvalidOperationException("Specify an item.");
+        var split = text.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (split.Length == 2 && int.TryParse(split[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out var quantity))
+        {
+            if (quantity <= 0 || quantity > 1000) throw new InvalidOperationException("Merchant quantity must be between 1 and 1000.");
+            return new(quantity, split[1]);
+        }
+        return new(1, text);
+    }
+
+    private static bool MerchantItemMatches(RuntimeItemInstance item, RuntimeItemCatalog catalog, string query)
+    {
+        var definition = catalog.Require(item.CanonicalItemId);
+        return item.CanonicalItemId.Equals(query, StringComparison.OrdinalIgnoreCase)
+            || item.CanonicalItemId.StartsWith(query, StringComparison.OrdinalIgnoreCase)
+            || definition.Name.Equals(query, StringComparison.OrdinalIgnoreCase)
+            || definition.Name.StartsWith(query, StringComparison.OrdinalIgnoreCase);
     }
 
     private string RepairGeneratedItem(RuntimeCharacterRecord character, IReadOnlyList<RuntimeServiceDefinition> services, string query)
@@ -90,33 +137,36 @@ public sealed partial class RuntimeLiveGameplayFacade
         var unit = ReadLong(repair.GeneratedRecord, "repair_cost_per_point", "repair_cost");
         var cost = checked(unit * (maximum - durability));
         if (cost <= 0) throw new InvalidOperationException("Generated repair cost is unavailable.");
-        if (state.Gold < cost) throw new InvalidOperationException("You do not have enough carried gold.");
+        var repairCostCopper = checked(cost * 100L);
+        var settledState = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, repairCostCopper);
         var metadata = new Dictionary<string,string>(selected.Metadata ?? new Dictionary<string,string>(), StringComparer.OrdinalIgnoreCase) { ["durability"] = maximum.ToString(CultureInfo.InvariantCulture) };
         engine.Remove(selected.InstanceId); engine.Add(selected with { Metadata = metadata });
-        _characters.SaveCharacter(character with { ItemState = engine.Snapshot(state.Gold - cost, state.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
-        return $"You repair {items.Require(selected.CanonicalItemId).Name} for {cost} gold.";
+        _characters.SaveCharacter(character with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return $"You repair {items.Require(selected.CanonicalItemId).Name} for {RuntimeBundleCEconomyAuthority.FormatCopperValue(repairCostCopper)}.";
     }
 
     private string TrainAtGeneratedTrainer(RuntimeCharacterRecord character, IReadOnlyList<RuntimeServiceDefinition> services)
     {
-        var trainer = services.FirstOrDefault(x => ReadServiceKind(x).Equals("trainer", StringComparison.OrdinalIgnoreCase))
-            ?? throw new InvalidOperationException("There is no generated trainer in this room.");
         var targetLevel = checked(character.Level + 1);
-        var min = ReadNestedInt(trainer.GeneratedRecord, "level_range", "min", 1);
-        var max = ReadNestedInt(trainer.GeneratedRecord, "level_range", "max", int.MaxValue);
-        if (targetLevel < min || targetLevel > max) throw new InvalidOperationException($"This trainer supports levels {min}-{max}; it cannot train you to level {targetLevel}.");
-        var classLimit = ReadInt(trainer.GeneratedRecord, "class_limit");
-        if (classLimit > 0 && ParseLegacyNumber(character.ClassId) != classLimit) throw new InvalidOperationException("This trainer does not support your class.");
+        var trainerRule = RuntimeCharacterTrainerCatalog.RequireTrainer(services, character, targetLevel);
+        var trainer = services.First(service => service.Id.Equals(trainerRule.TrainerId, StringComparison.OrdinalIgnoreCase));
 
-        var progression = RuntimeTrainerProgressionCatalog.Load(_characters.ProjectRoot, character.WorldId);
-        var requiredExperience = progression.RequireExperience(character, targetLevel);
-        if (character.Experience < requiredExperience) throw new InvalidOperationException($"You need {requiredExperience} total experience to train to level {targetLevel}.");
-        var awardedCp = progression.RequireCharacterPointAward(targetLevel);
-        var conditions = new Dictionary<string,string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
-        var currentCp = conditions.TryGetValue(CharacterPointsKey, out var value) && int.TryParse(value, out var parsed) ? parsed : 0;
-        conditions[CharacterPointsKey] = checked(currentCp + awardedCp).ToString(CultureInfo.InvariantCulture);
-        _characters.SaveCharacter(character with { Level = targetLevel, Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
-        return $"You train to level {targetLevel} and receive {awardedCp} CP. Use TRAIN STATS/TAT to spend unallocated CP.";
+        var schedule = RuntimeCharacterProgressionSchedule.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId));
+        var row = schedule.Require(character, targetLevel);
+        if (character.Experience < row.RequiredExperience) throw new InvalidOperationException($"You need {row.RequiredExperience} total experience to train to level {targetLevel}.");
+
+        var foundation = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var race = foundation.RequireRace(character.RaceId);
+        var characterClass = foundation.RequireClass(character.ClassId);
+        var promoted = RuntimeCharacterProgressionResolver.Promote(
+            character,
+            targetLevel,
+            row.CharacterPointAward,
+            race,
+            characterClass,
+            $"trainer:{trainer.Id}|progression:{row.RowId}");
+        _characters.SaveCharacter(promoted);
+        return $"You train to level {targetLevel} and receive {row.CharacterPointAward} CP. Use TRAIN STATS/TAT to spend unallocated CP.";
     }
 
 
@@ -149,7 +199,178 @@ public sealed partial class RuntimeLiveGameplayFacade
         return $"You increase {key.ToUpperInvariant()} to {current + 1} for {cost} CP. {available - cost} CP remain.";
     }
 
-    public string ExecuteWorldNarrativeCommand(RuntimeSession session, RuntimeCommand command) => _policyGateway.Execute(session, command);
+    public string ExecuteWorldNarrativeCommand(RuntimeSession session, RuntimeCommand command)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        return command.Name switch
+        {
+            "talk" => ExecuteGeneratedNpcDialogue(session, character, command.ArgumentText),
+            "journal" or "quest" when command.Arguments.Count == 0 => RenderGeneratedQuestJournal(character),
+            "quest" when command.Arguments.Count > 0 && command.Arguments[0].Equals("reset", StringComparison.OrdinalIgnoreCase) => MarkQuestState(character, string.Join(" ", command.Arguments.Skip(1)), "reset"),
+            "accept" => MarkQuestState(character, command.ArgumentText, "active"),
+            "abandon" => MarkQuestState(character, command.ArgumentText, "abandoned"),
+            "complete" => MarkQuestState(character, command.ArgumentText, "completed"),
+            _ => _policyGateway.Execute(session, command)
+        };
+    }
+
+    private string ExecuteGeneratedNpcDialogue(RuntimeSession session, RuntimeCharacterRecord character, string query)
+    {
+        var npc = ResolveDialogueNpc(session, query);
+        var admission = AdmitLivingNpcDialogue(session, npc, character.CharacterId);
+        if (!admission.Admitted || string.IsNullOrWhiteSpace(admission.RequestId))
+            throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
+        var catalog = session.World.NarrativeCatalog.DialogueCatalog;
+        var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var worldIntents = RuntimeQuestWorldIntentValidator.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var context = new RuntimeQuestDialogueContext(character, itemCatalog, worldIntents);
+        RuntimeQuestDialogueDispatchResult result;
+        try
+        {
+            result = catalog.Dispatch(npc.NpcId, context);
+        }
+        catch
+        {
+            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "dispatch-exception");
+            throw;
+        }
+        if (!result.Matched)
+        {
+            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, result.FailureCode);
+            return $"No generated quest dialogue matched {npc.Name}. ({result.FailureCode})";
+        }
+
+        var updatedCharacter = context.ToCharacterRecord();
+        var hostIntents = ApplyQuestWorldIntents(session, updatedCharacter, result.Events, result.TriggerId, result.ScriptId);
+        updatedCharacter = hostIntents.Character;
+        _characters.SaveCharacter(updatedCharacter);
+        if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, result.ClauseId ?? result.ScriptId ?? "matched"))
+            throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
+        var events = result.Events.Count == 0
+            ? "No state changes."
+            : string.Join("; ", result.Events.Select(e => e.SubjectId is null ? e.EventType : $"{e.EventType}:{e.SubjectId}"));
+        var lines = result.Lines.Count == 0 ? "No generated response text was emitted." : string.Join(Environment.NewLine, result.Lines);
+        return string.Join(Environment.NewLine, new[]
+        {
+            $"{npc.Name}:",
+            lines,
+            $"Trigger: {result.TriggerId}",
+            $"Script: {result.ScriptId}",
+            $"Clause: {result.ClauseId}",
+            $"Events: {events}"
+        }.Concat(hostIntents.Lines));
+    }
+
+    private (RuntimeCharacterRecord Character, IReadOnlyList<string> Lines) ApplyQuestWorldIntents(
+        RuntimeSession session,
+        RuntimeCharacterRecord character,
+        IReadOnlyList<RuntimeQuestDialogueEvent> events,
+        string? triggerId,
+        string? scriptId)
+    {
+        var lines = new List<string>();
+        foreach (var questEvent in events)
+        {
+            switch (questEvent.EventType)
+            {
+                case "world_intent.teleport_character":
+                    if (string.IsNullOrWhiteSpace(questEvent.SubjectId))
+                        throw new InvalidOperationException("Generated teleport intent has no room target.");
+                    var room = session.World.FindRoomById(questEvent.SubjectId)
+                        ?? throw new InvalidOperationException($"Generated teleport target {questEvent.SubjectId} was not found.");
+                    character = character with
+                    {
+                        RoomId = room.Id,
+                        RoomNumber = room.RoomNumber,
+                        UpdatedAtUtc = DateTimeOffset.UtcNow
+                    };
+                    session.MoveToWorld(session.World, room, "quest-dialogue-teleport");
+                    lines.Add($"Host intent applied: teleport_character:{room.Id}");
+                    break;
+                case "world_intent.summon_npc":
+                    if (string.IsNullOrWhiteSpace(questEvent.SubjectId))
+                        throw new InvalidOperationException("Generated summon intent has no NPC target.");
+                    var summoned = SummonLivingNpc(session, questEvent.SubjectId, scriptId ?? triggerId ?? "quest-dialogue");
+                    lines.Add($"Host intent applied: summon_npc:{summoned.NpcId}:{summoned.InstanceId}");
+                    break;
+                case "world_intent.cast_spell":
+                    lines.Add($"Host intent validated: cast_spell:{questEvent.SubjectId}");
+                    break;
+                case "world_intent.remote_action":
+                    lines.Add($"Host intent preserved: remote_action:{questEvent.Metadata.GetValueOrDefault("raw", string.Empty)}");
+                    break;
+            }
+        }
+
+        return (character, lines);
+    }
+
+    private RuntimeLivingNpcState ResolveDialogueNpc(RuntimeSession session, string query)
+    {
+        var npcs = LivingNpcsInRoom(session)
+            .Where(npc => npc.Alive)
+            .ToArray();
+        if (npcs.Length == 0) throw new InvalidOperationException("There is no one here to talk to.");
+        if (string.IsNullOrWhiteSpace(query) && npcs.Length == 1) return npcs[0];
+        var q = query.Trim();
+        var matches = npcs.Where(npc =>
+                npc.InstanceId.Equals(q, StringComparison.OrdinalIgnoreCase) ||
+                npc.NpcId.Equals(q, StringComparison.OrdinalIgnoreCase) ||
+                npc.Name.Contains(q, StringComparison.OrdinalIgnoreCase))
+            .Take(3)
+            .ToArray();
+        return matches.Length switch
+        {
+            1 => matches[0],
+            0 => throw new InvalidOperationException($"No visible NPC matches '{query}'."),
+            _ => throw new InvalidOperationException($"Multiple visible NPCs match '{query}'.")
+        };
+    }
+
+    private string RenderGeneratedQuestJournal(RuntimeCharacterRecord character)
+    {
+        var questStates = character.Conditions
+            .Where(pair => pair.Key.StartsWith("quest.state.", StringComparison.OrdinalIgnoreCase))
+            .OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+            .Select(pair => $"{pair.Key["quest.state.".Length..]}: {pair.Value}")
+            .ToArray();
+        var flags = character.Conditions
+            .Where(pair => pair.Key.StartsWith("quest.ability.", StringComparison.OrdinalIgnoreCase))
+            .OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+            .Take(25)
+            .Select(pair => $"{pair.Key["quest.ability.".Length..]}={pair.Value}")
+            .ToArray();
+        if (questStates.Length == 0 && flags.Length == 0) return "No generated quest state has been recorded yet.";
+        var sections = new List<string> { "Generated quest journal:" };
+        if (questStates.Length > 0) sections.AddRange(questStates);
+        if (flags.Length > 0)
+        {
+            sections.Add("Quest flags:");
+            sections.AddRange(flags);
+        }
+        return string.Join(Environment.NewLine, sections);
+    }
+
+    private string MarkQuestState(RuntimeCharacterRecord character, string questId, string state)
+    {
+        if (string.IsNullOrWhiteSpace(questId)) throw new InvalidOperationException($"Usage: {state.ToUpperInvariant()} <quest-id>");
+        var key = "quest.state." + questId.Trim();
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
+        if (state.Equals("reset", StringComparison.OrdinalIgnoreCase))
+        {
+            if (conditions.TryGetValue(key, out var existingResetState) && existingResetState.Equals("completed", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Classic quests cannot be repeated on the same character. Start a new character to replay a completed quest.");
+            conditions.Remove(key);
+            _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+            return $"Quest state reset for {questId}.";
+        }
+        if (conditions.TryGetValue(key, out var existing) && existing.Equals("completed", StringComparison.OrdinalIgnoreCase) && !state.Equals("completed", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Classic quests cannot be repeated on the same character. Start a new character to replay a completed quest.");
+        conditions[key] = state;
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return $"Quest {questId} marked {state}.";
+    }
 
     private static JsonElement RequireGeneratedItemRecord(string projectRoot, string worldId, string itemId)
     {
@@ -172,81 +393,34 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (item.TryGetProperty("economy", out var economy) && economy.ValueKind == JsonValueKind.Object) return ReadLong(economy, "cost");
         return ReadLong(item, "cost", "value", "price");
     }
-    private static JsonElement ResolveOffering(JsonElement service, string arrayName, string query)
+    private static JsonElement ResolveOffering(JsonElement service, string arrayName, string query, RuntimeItemCatalog items)
     {
-        if (!service.TryGetProperty(arrayName, out var array) || array.ValueKind != JsonValueKind.Array) throw new InvalidOperationException($"Generated service has no executable {arrayName} relationships.");
-        var q=query.Trim(); var matches=array.EnumerateArray().Where(x => new[]{ReadText(x,"item_ref"),ReadText(x,"name")}.Any(v=>!string.IsNullOrWhiteSpace(v)&&(v.Equals(q,StringComparison.OrdinalIgnoreCase)||v.Contains(q,StringComparison.OrdinalIgnoreCase)))).Take(2).ToArray();
-        return matches.Length == 1 ? matches[0] : throw new InvalidOperationException(matches.Length == 0 ? $"No generated shop item matches '{q}'." : $"Multiple generated shop items match '{q}'.");
+        if (!service.TryGetProperty(arrayName, out var array) || array.ValueKind != JsonValueKind.Array)
+            throw new InvalidOperationException($"Generated service has no executable {arrayName} relationships.");
+        var q = query.Trim();
+        if (q.Length == 0) throw new InvalidOperationException("Buy what?");
+        var matches = array.EnumerateArray().Where(entry =>
+        {
+            var itemRef = ReadText(entry, "item_ref");
+            var generatedName = ReadText(entry, "name");
+            string? catalogName = null;
+            if (!string.IsNullOrWhiteSpace(itemRef))
+            {
+                try { catalogName = items.Require(itemRef).Name; } catch { }
+            }
+            return new[] { itemRef, generatedName, catalogName }.Any(value =>
+                !string.IsNullOrWhiteSpace(value) &&
+                (value.Equals(q, StringComparison.OrdinalIgnoreCase) || value.StartsWith(q, StringComparison.OrdinalIgnoreCase)));
+        }).Take(2).ToArray();
+        return matches.Length == 1 ? matches[0] : throw new InvalidOperationException(matches.Length == 0
+            ? $"No shop item matches '{q}'."
+            : $"Multiple shop items match '{q}'.");
     }
     private static bool HasOperation(JsonElement root,string operation) => root.TryGetProperty("operations",out var value)&&value.ValueKind==JsonValueKind.Array&&value.EnumerateArray().Any(x=>x.ToString().Equals(operation,StringComparison.OrdinalIgnoreCase));
     private static string? ReadText(JsonElement root, params string[] names){foreach(var n in names)if(root.ValueKind==JsonValueKind.Object&&root.TryGetProperty(n,out var v)&&v.ValueKind!=JsonValueKind.Null){var s=v.ToString();if(!string.IsNullOrWhiteSpace(s))return s;}return null;}
     private static long ReadLong(JsonElement root, params string[] names){foreach(var n in names)if(root.ValueKind==JsonValueKind.Object&&root.TryGetProperty(n,out var v)&&long.TryParse(v.ToString(),NumberStyles.Integer,CultureInfo.InvariantCulture,out var x))return x;return 0;}
     private static int ReadInt(JsonElement root, params string[] names)=>checked((int)Math.Clamp(ReadLong(root,names),int.MinValue,int.MaxValue));
     private static int ReadNestedInt(JsonElement root,string parent,string name,int fallback)=>root.TryGetProperty(parent,out var nested)&&nested.ValueKind==JsonValueKind.Object&&nested.TryGetProperty(name,out var value)&&int.TryParse(value.ToString(),out var parsed)?parsed:fallback;
-    private static int ParseLegacyNumber(string id){var dot=id.LastIndexOf('.');return int.TryParse(dot>=0?id[(dot+1)..]:id,out var value)?value:0;}
-}
-
-public sealed class RuntimeTrainerProgressionCatalog
-{
-    private readonly string _dataRoot;
-    private RuntimeTrainerProgressionCatalog(string dataRoot) => _dataRoot = dataRoot;
-    public static RuntimeTrainerProgressionCatalog Load(string projectRoot,string worldId) =>
-        new(Path.Combine(projectRoot,"Data",worldId));
-
-    public long RequireExperience(RuntimeCharacterRecord character,int targetLevel)
-    {
-        foreach (var path in Directory.EnumerateFiles(_dataRoot,"*.json",SearchOption.TopDirectoryOnly))
-        {
-            using var doc=JsonDocument.Parse(File.ReadAllText(path));
-            var match=FindLevelRow(doc.RootElement,targetLevel,character);
-            if (match is not null) return match.Value;
-        }
-        throw new InvalidOperationException($"Generated progression data contains no executable experience row for level {targetLevel}, race {character.RaceId}, class {character.ClassId}.");
-    }
-
-    public int RequireCharacterPointAward(int targetLevel)
-    {
-        foreach (var path in Directory.EnumerateFiles(_dataRoot,"*.json",SearchOption.TopDirectoryOnly))
-        {
-            using var doc=JsonDocument.Parse(File.ReadAllText(path));
-            var value=FindCpAward(doc.RootElement,targetLevel);
-            if (value is not null) return value.Value;
-        }
-        throw new InvalidOperationException($"Generated progression data contains no CP award for level {targetLevel}.");
-    }
-
-    private static long? FindLevelRow(JsonElement node,int targetLevel,RuntimeCharacterRecord character)
-    {
-        if (node.ValueKind==JsonValueKind.Object)
-        {
-            var level=ReadInt(node,"level","target_level");
-            var xp=ReadLong(node,"required_experience","experience_required","total_experience","experience","xp");
-            if (level==targetLevel && xp>0 && Matches(node,"class",character.ClassId,character.ClassName) && Matches(node,"race",character.RaceId,character.RaceName)) return xp;
-            foreach(var property in node.EnumerateObject()) { var found=FindLevelRow(property.Value,targetLevel,character); if(found is not null)return found; }
-        }
-        else if(node.ValueKind==JsonValueKind.Array) foreach(var child in node.EnumerateArray()){var found=FindLevelRow(child,targetLevel,character);if(found is not null)return found;}
-        return null;
-    }
-    private static int? FindCpAward(JsonElement node,int targetLevel)
-    {
-        if(node.ValueKind==JsonValueKind.Object)
-        {
-            var level=ReadInt(node,"level","target_level");
-            var cp=ReadInt(node,"character_points","cp_award","cp_per_level","cp");
-            if(level==targetLevel&&cp>0)return cp;
-            foreach(var property in node.EnumerateObject()){var found=FindCpAward(property.Value,targetLevel);if(found is not null)return found;}
-        }
-        else if(node.ValueKind==JsonValueKind.Array)foreach(var child in node.EnumerateArray()){var found=FindCpAward(child,targetLevel);if(found is not null)return found;}
-        return null;
-    }
-    private static bool Matches(JsonElement row,string prefix,string id,string name)
-    {
-        var expected=ReadText(row,prefix+"_ref",prefix+"_id",prefix+"_name",prefix);
-        return string.IsNullOrWhiteSpace(expected)||expected.Equals(id,StringComparison.OrdinalIgnoreCase)||expected.Equals(name,StringComparison.OrdinalIgnoreCase)||ParseLegacyNumber(id).ToString(CultureInfo.InvariantCulture)==expected;
-    }
-    private static string? ReadText(JsonElement root,params string[] names){foreach(var name in names)if(root.TryGetProperty(name,out var v)&&v.ValueKind!=JsonValueKind.Null){var s=v.ToString();if(!string.IsNullOrWhiteSpace(s))return s;}return null;}
-    private static long ReadLong(JsonElement root,params string[] names){foreach(var name in names)if(root.TryGetProperty(name,out var v)&&long.TryParse(v.ToString(),NumberStyles.Integer,CultureInfo.InvariantCulture,out var n))return n;return 0;}
-    private static int ReadInt(JsonElement root,params string[] names)=>checked((int)Math.Clamp(ReadLong(root,names),int.MinValue,int.MaxValue));
     private static int ParseLegacyNumber(string id){var dot=id.LastIndexOf('.');return int.TryParse(dot>=0?id[(dot+1)..]:id,out var value)?value:0;}
 }
 

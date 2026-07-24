@@ -1,0 +1,42 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0168",
+  "boundary": "explicit-threat-generation",
+  "classification": "strongly-correlated active runtime boundary",
+  "confidence": 0.93,
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcThreat.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Data/Classic/npc_ai_runtime.json"
+  ],
+  "record_ids": [
+    "all materialized runtime NPC instance IDs"
+  ],
+  "byte_offsets": [],
+  "supporting_evidence": [
+    "existing explicit threat ranking already treats host scores as authoritative",
+    "world runtime owns NPC metadata and target state",
+    "monotonic world-tick admission matches existing deterministic scheduler boundaries"
+  ],
+  "assumptions": [
+    "host aggregates all threat-producing events for an NPC into one snapshot per world tick",
+    "only explicitly positive deltas are admitted"
+  ],
+  "tests": [
+    "explicit-threat-deltas-accumulate",
+    "nonpositive-delta-rejected",
+    "duplicate-tick-suppressed",
+    "deterministic-threat-generation-replay"
+  ],
+  "safe_fallback": "reject missing, invalid, nonpositive, duplicate or regressive input without mutating world state",
+  "runtime_impact": "adds checked deterministic accumulation and target selection from explicit deltas",
+  "character_save_impact": "none",
+  "world_state_impact": "persists threat ledger, selected target and compact audit metadata",
+  "native_dependencies": [
+    "damage/healing/spell formulas",
+    "decay",
+    "taunt",
+    "hate transfer",
+    "memory duration"
+  ]
+}

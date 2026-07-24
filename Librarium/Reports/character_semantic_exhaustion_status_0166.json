@@ -1,0 +1,23 @@
+{
+  "update": "0166",
+  "subsystem": "Character native dependency boundary and closure lock",
+  "status": "character_runtime_exhausted_native_dependencies_fail_closed",
+  "classification": "PROVEN",
+  "implemented": [
+    "typed registry for all six unresolved native lifecycle dependencies",
+    "queryable UNKNOWN classification and evidence requirements",
+    "explicit non-executable decisions",
+    "fail-closed native dependency execution gate",
+    "RuntimeCharacterService boundary exposure"
+  ],
+  "unknown_native": [
+    "exact welcome and event-message ordering",
+    "reconnect grace interval and socket takeover",
+    "link-dead combat retention duration",
+    "party leadership succession ordering",
+    "trade escrow disposition beyond cancellation",
+    "offline corpse decay reconciliation"
+  ],
+  "closure": "No unresolved Character native behavior is executable. Each dependency is typed, queryable, evidence-gated, and preserved for the final native pass.",
+  "next": "Do not run another Character-only semantic pass without new native evidence. Continue with the final WCC/WBB/native DLL closure pass or another subsystem."
+}

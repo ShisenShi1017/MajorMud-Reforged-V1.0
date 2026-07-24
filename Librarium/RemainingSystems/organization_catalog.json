@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "guild-faction-organization",
+  "updatedByPass": "RemainingSystems-0003-Organizations",
+  "runtimeOwner": "RuntimeOrganizationService",
+  "persistenceOwner": "world organization coordination; Classic persistence is native-dependent",
+  "organizationKinds": [
+    "guild",
+    "clan",
+    "faction",
+    "order",
+    "house",
+    "allegiance",
+    "class-guild",
+    "race-guild",
+    "quest-organization",
+    "administrative-group"
+  ],
+  "implementedLifecycle": [
+    "defined organization creation",
+    "policy-gated player creation",
+    "rank definition",
+    "invitation",
+    "acceptance",
+    "decline",
+    "promotion",
+    "demotion",
+    "expulsion",
+    "leaving",
+    "leadership transfer",
+    "disband",
+    "guild chat routing"
+  ],
+  "permissionModel": [
+    "invite",
+    "remove-member",
+    "promote",
+    "demote",
+    "manage-ranks",
+    "transfer-leadership",
+    "disband",
+    "speak"
+  ],
+  "safePolicies": [
+    "player-created organizations disabled by default",
+    "exclusive membership for guild-like organizations",
+    "leader cannot leave without transfer or disband",
+    "rank authority prevents peer elevation",
+    "unknown persistence disabled"
+  ],
+  "integrations": [
+    {
+      "target": "communications",
+      "relationship": "guild chat recipient routing"
+    },
+    {
+      "target": "rooms-services-quests",
+      "relationship": "organization restrictions remain consumers of organization identity; exact Classic behavior pending"
+    }
+  ],
+  "nativeDependencies": [
+    "which organization kinds exist in MajorMUD 1.11p",
+    "whether player-created guilds exist",
+    "exact ranks and permissions",
+    "dues/storage/halls/trainers/merchants/quests",
+    "reputation/hostility/alliance arithmetic",
+    "logout/deletion/reset/restart persistence",
+    "exact commands and messages"
+  ]
+}

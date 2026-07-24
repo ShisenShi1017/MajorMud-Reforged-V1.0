@@ -1,0 +1,43 @@
+{
+  "code_update": "0173",
+  "subsystem": "items",
+  "finding": "corpse and portable-container hierarchy preservation",
+  "classification": "strongly_correlated",
+  "runtime_active": true,
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs"
+  ],
+  "record_ids": [
+    "runtime.item.location.container",
+    "runtime.item.location.corpse",
+    "runtime.corpse.contents"
+  ],
+  "byte_offsets": [],
+  "supporting_evidence": [
+    "Existing single-owner and single-location item invariant",
+    "Existing portable-container parent references",
+    "Existing corpse persistence records",
+    "Container contents must remain reachable through death, loot, save, and decay transitions"
+  ],
+  "confidence": 0.91,
+  "assumptions": [
+    "Death transfers only top-level owned items into the corpse root",
+    "Contained descendants retain container location and instance identity",
+    "Corpse-owned descendants have null owner until the root container is looted",
+    "Looting a root container assigns the looter as owner of every contained descendant",
+    "Corpse decay recursively destroys the entire contained subtree"
+  ],
+  "safe_fallback": "Circular or invalid container graphs fail validation and recursive cleanup aborts atomically rather than orphaning or silently discarding reachable state.",
+  "tests": [
+    "nested container hierarchy survives corpse creation",
+    "contained ownership clears on death",
+    "contained ownership restores on loot",
+    "corpse decay recursively removes nested contents",
+    "post-transition runtime validation"
+  ],
+  "runtime_impact": "Character death, corpse looting, and corpse cleanup now preserve or remove complete item subtrees atomically.",
+  "character_save_impact": "Nested portable-container identity and ownership remain coherent across corpse and restored inventory states.",
+  "world_state_impact": "Corpse decay no longer leaves orphaned nested item instances in world persistence.",
+  "native_dependency": "Exact Classic death-protection flags, corpse access policy, decay timing, and protected-item exceptions remain unresolved."
+}

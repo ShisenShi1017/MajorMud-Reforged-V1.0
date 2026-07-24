@@ -1,0 +1,31 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update_id": "CodeUpdate0198",
+  "boundary": "npc-explicit-route",
+  "records": [
+    {
+      "runtime_symbol": "RuntimeLivingWorldService.AdmitNpcExplicitRoute / CompleteNpcExplicitRouteStep / CancelNpcExplicitRoute",
+      "classification": "strongly-correlated",
+      "confidence": 0.98,
+      "sources": [
+        "RuntimeLivingWorldService persistent ownership",
+        "generated canonical room catalog",
+        "prior exact movement completion contracts"
+      ],
+      "byte_offsets": [],
+      "fallback": "reject without mutation",
+      "tests": [
+        "route admission API exposed",
+        "canonical route rooms required",
+        "route origin must match NPC room",
+        "exact route and step matching",
+        "rejected completion preserves route state",
+        "completion advances exactly one step",
+        "explicit cancellation clears active route"
+      ],
+      "runtime_impact": "persists an exact canonical room sequence and commits one explicitly completed traversal at a time",
+      "character_save_impact": "none",
+      "world_state_impact": "NPC route metadata and exact room mutation"
+    }
+  ]
+}

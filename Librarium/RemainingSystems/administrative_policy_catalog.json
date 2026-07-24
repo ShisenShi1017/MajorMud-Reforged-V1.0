@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "administrative-policy",
+  "runtimeOwner": "RuntimeAdministrativePolicyService",
+  "actionFamilies": [
+    "inspection",
+    "teleport/summon",
+    "spawn/despawn",
+    "kill/heal",
+    "grant item/currency/experience",
+    "set level/flags",
+    "reset",
+    "event control",
+    "broadcast/moderation",
+    "kick/ban/freeze",
+    "save/reload",
+    "runtime inspection/tracing"
+  ],
+  "policy": [
+    "host-operator boundary",
+    "minimum authority",
+    "explicit permission",
+    "confirmation for destructive actions",
+    "typed owner dispatch",
+    "audit every accept and rejection",
+    "rollback capability declared per action",
+    "save/world impact declared per action"
+  ],
+  "safeFallback": "Reject unknown, unauthorized, unconfirmed, or actor-mismatched requests and record the rejection.",
+  "nativeDependencies": [
+    "exact MajorMUD and Worldgroup administrator levels",
+    "exact command names and aliases",
+    "exact confirmation behavior",
+    "visibility to targets and normal players",
+    "native audit logging",
+    "rollback support",
+    "save timing",
+    "world-state mutation ordering",
+    "ban, kick, mute, freeze and module-lock ownership",
+    "builder versus sysop permissions",
+    "native remote-action authority"
+  ]
+}

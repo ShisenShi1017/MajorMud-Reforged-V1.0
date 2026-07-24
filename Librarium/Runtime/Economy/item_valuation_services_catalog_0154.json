@@ -1,0 +1,143 @@
+{
+  "catalogId": "economy-item-valuation-services-0154",
+  "schemaVersion": 1,
+  "classificationPolicy": {
+    "PROVEN": "checked arithmetic, atomic wallet transfer reuse, rollback and replay invariants",
+    "STRONGLY CORRELATED": "service transaction ordering and provider ownership contracts",
+    "UNKNOWN": "native percentages, divisors, caps, modifier order, repair and trainer formulas"
+  },
+  "itemValueCatalog": [
+    {
+      "itemId": "canonical:item:*",
+      "baseValue": "policy/data supplied",
+      "stackValue": "checked(baseValue*quantity)",
+      "condition": "current/max durability basis points",
+      "charges": "current/max charge basis points",
+      "restrictions": [
+        "cursed",
+        "quest",
+        "limited",
+        "unique",
+        "unsellable",
+        "zero-value"
+      ]
+    }
+  ],
+  "formulaCatalog": [
+    {
+      "formulaId": "item-value-0154",
+      "rounding": [
+        "Floor",
+        "Ceiling",
+        "NearestAwayFromZero"
+      ],
+      "unknownInputs": [
+        "native buy percentage",
+        "native sell percentage",
+        "native appraisal percentage",
+        "native repair formula",
+        "modifier ordering"
+      ]
+    }
+  ],
+  "serviceCatalog": [
+    {
+      "types": [
+        "Training",
+        "SpellLearning",
+        "AbilityLearning",
+        "ItemRepair",
+        "Resurrection",
+        "Inn",
+        "Teleport",
+        "GuildJoin",
+        "GuildDues",
+        "GuildRank",
+        "QuestPayment",
+        "Scripted",
+        "TextblockPayment",
+        "CommandReward",
+        "WorldEventPayment"
+      ],
+      "executionOrder": [
+        "resolve",
+        "provider ownership",
+        "availability",
+        "eligibility",
+        "references",
+        "cost",
+        "funds",
+        "deduct",
+        "effect callback",
+        "persist",
+        "commit",
+        "replay",
+        "result"
+      ]
+    }
+  ],
+  "ownershipGraph": {
+    "bidirectional": true,
+    "edges": [
+      "npc<->service",
+      "trainer<->spell",
+      "trainer<->ability",
+      "item<->repair-service",
+      "service<->currency",
+      "event-source<->payment"
+    ]
+  },
+  "runtimeGraph": [
+    "RuntimeItemValuation",
+    "RuntimeEconomicServiceEngine",
+    "IRuntimeEconomicServiceEffect",
+    "IRuntimeEconomicPersistenceCoordinator",
+    "RuntimeEconomicPaymentEngine",
+    "RuntimeCurrencyTransferEngine"
+  ],
+  "saveImpact": {
+    "character": [
+      "learned spell",
+      "ability rank",
+      "durability",
+      "dead/alive",
+      "guild/training state"
+    ],
+    "economy": [
+      "wallet balance",
+      "replay keys",
+      "item state"
+    ],
+    "provider": [
+      "availability/provider state"
+    ],
+    "world": [
+      "external effect callback state"
+    ]
+  },
+  "worldImpact": {
+    "economyOwns": [
+      "cost",
+      "validation",
+      "deduction",
+      "refund rollback",
+      "transaction",
+      "persistence coordination"
+    ],
+    "externalOwns": [
+      "teleport movement",
+      "resurrection gameplay",
+      "training progression",
+      "spell/ability gameplay",
+      "guild membership gameplay",
+      "inn recovery"
+    ]
+  },
+  "nativeDependencyReport": [
+    {
+      "dependency": "WCC/WBB/DLL service and pricing constants",
+      "status": "UNKNOWN",
+      "fallback": "explicit supplied policy; fail closed when unsafe"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "command_execution_outcome_exhaustion_report_v1",
+  "code_update": "0156",
+  "status": "PASS",
+  "counts": {
+    "commands": 77,
+    "read_only": 17,
+    "domain_transaction": 20,
+    "movement": 10,
+    "explicit_save": 1
+  },
+  "validation": {
+    "violations": [],
+    "received_event_present": true,
+    "completed_event_present": true,
+    "failed_event_present": true,
+    "central_exception_boundary_present": true,
+    "implicit_retry_disabled": true
+  },
+  "remaining_dependencies": [
+    "domain-specific rollback completeness remains owned and audited by each subsystem",
+    "native command handlers absent from this managed registry remain final native-pass dependencies"
+  ]
+}

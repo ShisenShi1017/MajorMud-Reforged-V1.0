@@ -1,0 +1,24 @@
+{
+  "update": "0165",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated voluntary forced and fear movement policies",
+    "root stun sleep paralysis encumbrance and exit restriction gates",
+    "explicit promoted escape outcome requirement",
+    "pending and claimed action interruption",
+    "combat participant fled transition",
+    "temporary threat cleanup",
+    "canonical room-exit handoff",
+    "fail-closed pursuit opportunity-attack and direction-selection semantics"
+  ],
+  "not_claimed_complete": [
+    "native escape chance formula",
+    "direction selection",
+    "pursuit",
+    "opportunity attacks",
+    "failed-flee round and resource consumption",
+    "forced movement variants beyond the promoted handoff boundary"
+  ],
+  "next_pass": "Implement evidence-gated direct spell damage and healing formulas with deterministic scaling, caps, resistance/save result application, atomic resource mutation, and exact execution traces."
+}

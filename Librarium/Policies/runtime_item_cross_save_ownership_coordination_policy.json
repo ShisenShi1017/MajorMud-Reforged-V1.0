@@ -1,0 +1,14 @@
+{
+  "policy_id": "runtime_item_cross_save_ownership_coordination",
+  "version": "0200",
+  "classification": "Reforged compatibility infrastructure",
+  "rules": [
+    "Validate internal Items state before cross-save validation.",
+    "Require character-scoped owners to exist in authoritative Character state.",
+    "Require NPC and merchant owners to exist in authoritative subsystem state.",
+    "Require quest_id and event_id metadata references to exist when projected.",
+    "Require active corpse subjects, loot owners, and limited-item reservation owners to resolve.",
+    "Reject ambiguous missing ownership; do not silently delete, move, or recreate items."
+  ],
+  "native_boundary": "Native commit sequencing, journals, and exact recovery ordering remain deferred to the final DLL/WCC/WBB pass."
+}

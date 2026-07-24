@@ -1,0 +1,16 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime_item_partial_bank_merchant_stack_policy",
+  "version": "0170",
+  "rules": {
+    "eligibility": "Partial quantity operations are legal only for explicitly stackable definitions and quantities from 1 through the current stack quantity.",
+    "identity": "A partial operation retains the source instance ID for the remainder and creates exactly one new instance ID for the transferred quantity.",
+    "atomicity": "Split, restriction validation, ownership mutation, location mutation, and post-validation occur in one rollback boundary.",
+    "bank": "Deposited items remain character-owned and are located at the selected bank identity.",
+    "merchant": "Sold quantities become merchant-owned stock; purchased quantities become buyer-owned carried inventory.",
+    "merging": "No automatic destination-stack merge is performed until native behavior is proven.",
+    "economy_boundary": "Pricing and currency mutation are coordinated by Economy and are not performed by Items."
+  },
+  "classic_activation": "fail_closed_until_stackability_is_projected",
+  "mode": "Reforged compatibility infrastructure"
+}

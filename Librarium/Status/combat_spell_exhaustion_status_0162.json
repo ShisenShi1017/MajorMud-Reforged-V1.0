@@ -1,0 +1,21 @@
+{
+  "update": "0162",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "unified physical attack spell completion and periodic effect queue",
+    "evidence-gated same-tick priorities",
+    "stable due-tick priority sequence and canonical-id ordering",
+    "claim and exactly-once terminal transitions",
+    "canonical runtime reference validation",
+    "fail-closed unresolved production ordering"
+  ],
+  "not_claimed_complete": [
+    "exact native same-tick priority constants",
+    "movement regeneration death and summon insertion order",
+    "simultaneous action rollback",
+    "queued-action persistence",
+    "full dispatcher integration with every execution owner"
+  ],
+  "next_pass": "Integrate death cancellation and target invalidation into the unified action queue, including deterministic cancellation of pending attacks, casts, and periodic effects."
+}

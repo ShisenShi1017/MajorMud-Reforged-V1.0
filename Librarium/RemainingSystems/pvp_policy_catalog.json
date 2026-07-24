@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "pvp-policy",
+  "runtimeOwner": "RuntimePvpPolicyService",
+  "status": "runtime-active-partially-exhausted",
+  "zonePolicies": ["forbidden", "consent-only", "open"],
+  "policyChecks": [
+    "same-room validation",
+    "safe-zone denial",
+    "mutual consent",
+    "level-range limits",
+    "same-party restrictions",
+    "same-guild restrictions",
+    "attack cooldown",
+    "combat logout restriction"
+  ],
+  "integrations": {
+    "combat": "owns attack, damage, death, and kill execution",
+    "character": "owns character level, PvP flag, alignment, and Evil Point state",
+    "party": "supplies party identity",
+    "organizations": "supplies guild identity",
+    "law": "receives crime and guard-evaluation requests",
+    "economy": "owns loot and currency transfer",
+    "rooms": "supplies room and zone policy"
+  },
+  "safeFallback": "deny unknown actors, unknown zones, unsupported transitions, and unproven policy exceptions",
+  "persistence": "session/world policy only; native PvP flag and cooldown persistence remain unresolved",
+  "nativeDependencies": [
+    "exact Classic PvP availability and consent model",
+    "safe and restricted zone encodings",
+    "level and alignment restrictions",
+    "criminal and Evil Point interactions",
+    "party and guild restrictions",
+    "kill credit and death penalties",
+    "loot and corpse access",
+    "guard and bounty reactions",
+    "cooldown and logout restrictions",
+    "exact commands and messages"
+  ]
+}

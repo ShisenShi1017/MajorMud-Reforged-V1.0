@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "worldgroup-integration",
+  "runtimeOwner": "RuntimeWorldgroupIntegrationService",
+  "boundaries": [
+    {
+      "id": "terminal-session",
+      "owner": "Worldgroup"
+    },
+    {
+      "id": "module-character",
+      "owner": "MajorMUD"
+    },
+    {
+      "id": "host-message",
+      "owner": "Shared"
+    },
+    {
+      "id": "billing-access",
+      "owner": "UnknownNativeBoundary",
+      "enabled": false
+    }
+  ],
+  "policies": [
+    "host authentication precedes host-owned dispatch",
+    "unknown native boundaries fail closed",
+    "MajorMUD does not claim Worldgroup account ownership",
+    "all shared boundary mutations require correlation and audit context"
+  ],
+  "nativeDependencies": [
+    "exact Worldgroup terminal-session APIs",
+    "account and billing/access interfaces",
+    "host scheduler and shutdown hooks",
+    "message-system ownership",
+    "WCC/WBB library call boundaries",
+    "native error messages and return codes"
+  ]
+}

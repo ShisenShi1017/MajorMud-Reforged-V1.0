@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "mail-offline-messaging",
+  "runtimeOwner": "RuntimeOfflineMessagingService",
+  "hostBoundary": "Player mail, bulletin boards, notes, and host announcements remain disabled by default until MajorMUD versus Worldgroup ownership is proven.",
+  "supportedEnvelopeKinds": [
+    "player-mail",
+    "system-mail",
+    "quest-mail",
+    "administrative-mail",
+    "offline-tell",
+    "note",
+    "bulletin",
+    "announcement"
+  ],
+  "activeClassicSafeKinds": [
+    "system-mail",
+    "quest-mail",
+    "administrative-mail with permission",
+    "offline-tell when enabled by host policy"
+  ],
+  "lifecycle": [
+    "queue",
+    "deliver",
+    "read",
+    "delete",
+    "expire"
+  ],
+  "persistence": [
+    "schema-versioned snapshot",
+    "atomic replacement",
+    "corrupt-state fail-closed"
+  ],
+  "attachmentOwnership": {
+    "item": "CharacterInventory",
+    "currency": "Economy"
+  },
+  "safeFallback": "Disable host-boundary features, reject attachments by default, enforce recipient/admin authorization, and never mutate assets directly.",
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "MajorMUD versus Worldgroup ownership of player mail, notes, bulletin boards, and announcements",
+    "exact offline tell behavior",
+    "native subject/body limits",
+    "attachment support",
+    "currency and item escrow semantics",
+    "read/delete persistence",
+    "expiration rules",
+    "character deletion behavior",
+    "delivery timing",
+    "exact commands and messages",
+    "host message queue and moderation integration"
+  ]
+}

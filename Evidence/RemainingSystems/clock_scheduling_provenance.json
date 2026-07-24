@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "clock-scheduling",
+  "pass": "RemainingSystems-0008-ClockScheduling",
+  "promotions": [
+    {
+      "behavior": "Central validated scheduling lifecycle with deterministic due-time and schedule-ID ordering",
+      "classification": "proven",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeClockScheduling.cs",
+        "Apps/Source/Reforged.Server/RuntimeClockSchedulingSmokeReport.cs",
+        "Librarium/RemainingSystems/clock_scheduling_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "subsystems consume typed dispatches and retain mutation ownership"
+      ],
+      "tests": [
+        "--smoke-clock-scheduling",
+        "Tools/Validation/validate_remaining_systems.py"
+      ],
+      "safeFallback": "reject invalid definitions and unknown schedules; stop on backward clock movement",
+      "runtimeImpact": "provides one deterministic owner for global schedule dispatch",
+      "characterSaveImpact": "none directly",
+      "worldStateImpact": "persistent next-due, enabled, revision, and fire-count state"
+    },
+    {
+      "behavior": "Bounded missed-timer recovery policies",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeClockScheduling.cs",
+        "Librarium/RemainingSystems/clock_scheduling_catalog.json"
+      ],
+      "confidence": 0.82,
+      "assumptions": [
+        "native restart recovery distinguishes skip, single-fire, or bounded catch-up behavior"
+      ],
+      "tests": [
+        "bounded-catch-up smoke check",
+        "skip-to-next smoke check"
+      ],
+      "safeFallback": "bound catch-up and avoid unbounded replay",
+      "runtimeImpact": "prevents timer storms after stalls or restart",
+      "characterSaveImpact": "none",
+      "worldStateImpact": "advances persisted deadlines deterministically"
+    },
+    {
+      "behavior": "World-state timer snapshot and restart restoration",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeClockScheduling.cs",
+        "Librarium/RemainingSystems/clock_scheduling_catalog.json"
+      ],
+      "confidence": 0.8,
+      "assumptions": [
+        "only explicitly persistent schedules survive restart"
+      ],
+      "tests": [
+        "state invariant validation",
+        "schema-version restoration path"
+      ],
+      "safeFallback": "ignore corrupt or incompatible snapshots and use validated definitions",
+      "runtimeImpact": "restores global schedules without transferring action ownership",
+      "characterSaveImpact": "none",
+      "worldStateImpact": "stores scheduling state atomically"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "update": "0165",
+  "subsystem": "combat_spells",
+  "catalog": "combat_movement",
+  "runtime_owner": "RuntimeCombatMovementCoordinator",
+  "promoted_behaviors": [
+    {
+      "id": "movement.validate_before_exit",
+      "confidence": "strongly_correlated",
+      "behavior": "Canonical combat participants may leave combat only through a promoted movement policy, explicit source/destination/exit references, and a promoted escape outcome where required.",
+      "safe_fallback": "Reject unresolved escape chance, direction selection, or restriction semantics."
+    },
+    {
+      "id": "movement.interrupt_and_transition",
+      "confidence": "strongly_correlated",
+      "behavior": "Successful movement invalidates dependent queued or claimed actions, cleans temporary threat, marks the participant fled, and emits a room-exit handoff.",
+      "ordering": ["validate", "interrupt_actions", "cleanup_threat", "transition_participant", "emit_handoff"],
+      "safe_fallback": "Do not move when any required execution policy is absent."
+    },
+    {
+      "id": "movement.blockers",
+      "confidence": "strongly_correlated",
+      "behavior": "Root, stun, sleep, paralysis, encumbrance, locked exits, and restricted exits may block movement only when included by the promoted policy."
+    }
+  ],
+  "movement_kinds": ["voluntary_flee", "forced_flee", "fear_flee"],
+  "unresolved": [
+    "native escape chance formula",
+    "direction selection",
+    "pursuit",
+    "opportunity attacks",
+    "round and resource consumption on failed flee",
+    "cross-room threat propagation"
+  ]
+}

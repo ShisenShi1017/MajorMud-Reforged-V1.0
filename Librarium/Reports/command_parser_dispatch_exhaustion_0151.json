@@ -1,0 +1,22 @@
+{
+  "schema": "command_parser_dispatch_exhaustion_report_v1",
+  "code_update": "0151",
+  "status": "PASS",
+  "counts": {
+    "registrations": 77,
+    "aliases": 23,
+    "movement_commands": 10,
+    "dispatch_routes": 19
+  },
+  "validated": {
+    "all_registered_commands_routed": true,
+    "no_unregistered_routes": true,
+    "parser_order_captured": true,
+    "argument_consumption_captured": true,
+    "failure_boundary_captured": true
+  },
+  "evidence": {
+    "runtime": "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "generated_graph": "Librarium/BehaviorGraph/command_parser_dispatch_graph_0151.json"
+  }
+}

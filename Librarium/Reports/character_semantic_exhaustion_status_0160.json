@@ -1,0 +1,29 @@
+{
+  "code_update": "0160",
+  "subsystem": "character",
+  "current_pass": "Character Death Phase 1 - defeat, corpse escrow, respawn, recovery gate, and ordering",
+  "implemented": [
+    "centralized fail-closed defeat transition",
+    "single corpse creation and deterministic item classification",
+    "ability-83 retained-on-death integration",
+    "full carried-gold corpse escrow",
+    "persistent death event provenance",
+    "dead flag and zero-HP consistency validation",
+    "respawn requiring a prior death/corpse event",
+    "corpse recovery blocked until respawn"
+  ],
+  "classification": {
+    "defeat_corpse_respawn_order": "STRONGLY CORRELATED",
+    "dead_flag_lifecycle": "PROVEN",
+    "xp_loss_resurrection_decay_native_rules": "UNKNOWN"
+  },
+  "remaining_character_death": [
+    "native XP loss formula",
+    "native gold loss percentage",
+    "corpse decay duration and cleanup destination",
+    "resurrection spell and penalty ordering",
+    "status effect and timer cleanup matrix",
+    "corpse visibility and looting permissions"
+  ],
+  "next": "Character Death Phase 2: recover cleanup, resurrection hooks, XP/gold penalty evidence, and corpse lifecycle without inventing native behavior"
+}

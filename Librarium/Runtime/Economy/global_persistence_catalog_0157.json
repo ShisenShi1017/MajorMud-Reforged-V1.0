@@ -1,0 +1,17 @@
+{
+  "catalogId": "economy-global-persistence-0157",
+  "classification": "STRONGLY CORRELATED",
+  "persistenceCatalog": ["currency wallets", "merchant stock", "bank accounts", "loot corpses", "service state", "merchant lifecycle", "limited-item ledger"],
+  "saveTriggerCatalog": ["autosave", "logout", "disconnect", "shutdown", "administrative", "recovery checkpoint"],
+  "checkpointCatalog": ["current checkpoint", "previous checkpoint", "component snapshots", "applied replay keys", "SHA-256 integrity"],
+  "journalCatalog": ["transaction sequence", "replay key", "save reason", "component snapshots", "bounded retention", "entry checksum"],
+  "recoveryCatalog": ["strict current", "last-known-good backup", "validated journal replay"],
+  "compatibilityCatalog": ["envelope schema version", "component schema version", "component identity", "snapshot version"],
+  "corruptionCatalog": ["checkpoint checksum mismatch", "component checksum mismatch", "unsupported schema", "missing component", "duplicate component"],
+  "rollbackCatalog": ["participant pre-save snapshots", "store-write failure rollback", "multi-component restore rollback"],
+  "ownershipGraph": {"edges": ["economy coordinator<->component participant", "checkpoint<->component snapshot", "journal entry<->replay key", "save trigger<->checkpoint", "recovery mode<->checkpoint", "component snapshot<->schema version"]},
+  "runtimeGraph": {"order": ["capture all components", "validate component schemas", "hash payloads", "append journal entry", "build checkpoint", "write envelope atomically", "commit replay key", "return deterministic result"]},
+  "saveImpact": "Coordinates durable state for every implemented Economy runtime surface without changing subsystem-owned serialization formats.",
+  "worldImpact": "Prevents partial economic saves and supports deterministic recovery after disconnect, shutdown, corruption, or interrupted writes.",
+  "nativeDependencyReport": [{"dependency": "exact MajorMUD autosave cadence, logout/disconnect ordering, journal behavior and corruption fallback", "classification": "UNKNOWN", "fallback": "explicit configured triggers, atomic envelope, checksum validation, fail closed in strict mode, optional last-known-good or journal replay"}]
+}

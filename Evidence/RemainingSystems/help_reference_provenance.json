@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "help-reference",
+  "promotions": [
+    {
+      "behavior": "Central help-reference service validates topics and aliases and provides deterministic permission-filtered resolution and search.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeHelpReference.cs",
+        "Apps/Source/Reforged.Server/RuntimeHelpReferenceSmokeReport.cs",
+        "Librarium/RemainingSystems/help_reference_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "This proves Reforged coordination behavior, not exact native MajorMUD HELP implementation."
+      ],
+      "tests": [
+        "--smoke-help-reference"
+      ],
+      "safeFallback": "Hide unauthorized topics and return typed not-found or invalid-query results.",
+      "runtimeImpact": "Provides one validated help lookup and search boundary.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "None."
+    },
+    {
+      "behavior": "Help content ownership remains explicit across module, host, generated catalogs, and Librarium references.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeHelpReference.cs",
+        "Librarium/RemainingSystems/help_reference_catalog.json"
+      ],
+      "confidence": 0.94,
+      "assumptions": [
+        "Command, ability, spell, item, and quest catalogs retain semantic ownership of generated reference content."
+      ],
+      "tests": [
+        "content owner and source textblock smoke assertions"
+      ],
+      "safeFallback": "Do not project unowned Librarium or host content into Classic runtime.",
+      "runtimeImpact": "Prevents help data from becoming an unauthorized behavior source.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "None."
+    },
+    {
+      "behavior": "Administrative help topics are permission-filtered and fail closed for normal players.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeHelpReference.cs",
+        "Apps/Source/Reforged.Server/RuntimeHelpReferenceSmokeReport.cs",
+        "Librarium/RemainingSystems/security_permission_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "Runtime access levels are supplied by the security owner."
+      ],
+      "tests": [
+        "permission-filter and admin-access smoke cases"
+      ],
+      "safeFallback": "Return topic unavailable without revealing restricted content.",
+      "runtimeImpact": "Prevents administrative capability disclosure through help lookup.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "None."
+    }
+  ]
+}

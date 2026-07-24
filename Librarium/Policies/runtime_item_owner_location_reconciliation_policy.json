@@ -1,0 +1,16 @@
+{
+  "id": "runtime-item-owner-location-reconciliation",
+  "code_update": "0198",
+  "subsystem": "Items",
+  "classification": "Reforged compatibility infrastructure",
+  "confidence": "strongly_correlated",
+  "rules": [
+    "Owned character, equipment, NPC, trade, bank, and merchant locations normalize location identity to the already-authoritative owner identity.",
+    "Room- and corpse-held items clear stale owner identity because those locations are authoritative non-owned states.",
+    "Equipment records missing a slot recover to carried owner inventory; no slot is guessed.",
+    "Non-equipment records with stale slots clear the slot and retain provenance.",
+    "Any state still invalid after these narrow repairs is rejected and not persisted."
+  ],
+  "safe_fallback": "Fail closed when no authoritative owner or destination can be established.",
+  "native_dependency": "Exact native corruption-repair behavior remains unresolved for the final native pass."
+}

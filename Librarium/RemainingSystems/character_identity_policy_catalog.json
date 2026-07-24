@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "character-identity-policy",
+  "runtimeOwner": "RuntimeCharacterIdentityPolicyService",
+  "operations": [
+    "canonical name validation",
+    "reserved-name and prefix rejection",
+    "duplicate-name callback",
+    "permissioned title grant authorization",
+    "viewer-relative identity presentation",
+    "disguise and hidden-identity projection"
+  ],
+  "titlePositions": [
+    "prefix",
+    "suffix",
+    "guild tag"
+  ],
+  "visibility": [
+    "public",
+    "self and administrators",
+    "administrators only"
+  ],
+  "ownership": {
+    "identityStorage": "Character subsystem",
+    "nameAndTitlePolicy": "RuntimeCharacterIdentityPolicyService",
+    "guildTags": "Organization subsystem",
+    "administrativeTitles": "Administrative policy",
+    "disguiseState": "owning Character/Spell/Ability effect subsystem"
+  },
+  "safeFallback": "Reject invalid, duplicate, reserved, malformed, unauthorized, or unknown identity elements; conceal hidden identities from unprivileged viewers.",
+  "nativeDependencies": [
+    "exact Classic name length and allowed characters",
+    "reserved-name list and duplicate comparison",
+    "title sources and precedence",
+    "alignment, class, level, guild, and administrative title tables",
+    "hidden and invisible identity rendering",
+    "disguise behavior",
+    "exact validation and failure messages",
+    "Worldgroup versus MajorMUD name ownership"
+  ]
+}

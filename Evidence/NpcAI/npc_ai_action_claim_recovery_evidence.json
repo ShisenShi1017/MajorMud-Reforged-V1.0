@@ -1,0 +1,34 @@
+{
+  "evidence_id": "npc-ai-action-claim-recovery-0156",
+  "update_id": "CodeUpdate0156",
+  "classification": "strongly-correlated",
+  "runtime_behavior": [
+    "claim acquisition persists world tick",
+    "exact claimant may renew monotonically",
+    "host supplies maximum claim age in ticks",
+    "expired claims release in stable NPC instance order",
+    "claims without acquisition tick fail closed and are not auto-released"
+  ],
+  "supporting_evidence": [
+    "CodeUpdate0155 exclusive world-owned claim metadata",
+    "persisted monotonic NPC world tick model",
+    "save/load reconstruction requirement",
+    "single-consumer action ownership"
+  ],
+  "assumptions": [
+    "world tick is monotonic within the active world epoch",
+    "host policy selects retry age; no native duration is asserted"
+  ],
+  "safe_fallback": "do not recover a claim when acquisition tick is missing, malformed, or later than current tick",
+  "tests": [
+    "static exact-match renewal",
+    "regressive renewal rejection",
+    "strict age boundary",
+    "stable recovery ordering",
+    "legacy claim preservation"
+  ],
+  "runtime_impact": "prevents permanently orphaned action claims while retaining deterministic single-consumer delivery",
+  "character_save_impact": "none",
+  "world_state_impact": "claim lease watermark and explicit release of expired ownership metadata",
+  "native_dependency": "exact native timeout and retry cadence remain unresolved"
+}

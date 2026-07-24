@@ -1,0 +1,35 @@
+{
+  "evidenceId": "economy-commerce-runtime-0151",
+  "classification": "STRONGLY_CORRELATED",
+  "scope": "merchant stock ownership, deterministic quote arithmetic, atomic buying and selling, quantity, stack, capacity, and rollback semantics",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeEconomyCurrency.cs",
+      "observations": "The cumulative runtime provides checked wallet balances, account limits, canonical denomination conversion, deterministic wallet locking, snapshots, and rollback-safe ownership transfer.",
+      "byteOffsets": "not-applicable-source-code"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeServicesEconomy.cs",
+      "observations": "The authoritative repository baseline was previously documented as containing transactional economy services, guarded debits, checked credits, ledgers, and trade ownership boundaries.",
+      "byteOffsets": "not-applicable-source-code"
+    }
+  ],
+  "assumptions": [
+    "Merchant pricing modifiers are represented as explicit data-driven basis points rather than hard-coded MajorMUD constants.",
+    "A commerce transaction must either commit merchandise and payment together or restore all participating snapshots.",
+    "Quest items and items explicitly marked non-sellable are rejected before merchant payment.",
+    "Unlimited stock is virtual and is not decremented or incremented."
+  ],
+  "fallback": "Reject unknown items, invalid quantities, unsupported stock, insufficient funds, capacity overflow, stack overflow, merchant refusal, merchant stock overflow, wallet mismatch, and checked arithmetic overflow; restore every participant on any failure.",
+  "confidence": 0.9,
+  "runtimeImpact": "Adds executable shop purchase and sale transactions over the currency runtime with deterministic data-driven pricing and full rollback.",
+  "saveImpact": "Adds versioned inventory and merchant-stock snapshots suitable for persistence binding; this pass does not invent native save timing.",
+  "worldImpact": "Prevents partial purchases, partial sales, duplicated items, lost currency, merchant-wallet substitution, stock underflow, stock overflow, and capacity bypass.",
+  "unknownNativeDependencies": [
+    "MajorMUD 1.11p item base values and merchant records",
+    "exact buy and sell formulas",
+    "charisma, reputation, alignment, race, class, skill, ability, condition, limited-stock, world, and random modifiers",
+    "shop hours and restrictions",
+    "restock timing and persistence"
+  ]
+}

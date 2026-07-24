@@ -1,0 +1,115 @@
+{
+  "schema": "textblock_command_ability_native_dependency_quarantine_report_v1",
+  "code_update": "0160",
+  "status": "managed_runtime_closed_native_dependencies_quarantined",
+  "managed_runtime_status": "closed_for_current_decoded_corpus",
+  "dependency_count": 4,
+  "dependencies": [
+    {
+      "id": "native.message_payload_catalog",
+      "scope": "130 message references",
+      "required_for": "exact player-visible message payloads and substitutions",
+      "runtime_policy": "buffer and fail closed",
+      "blocked_runtime_surfaces": [
+        "message opcode rendering",
+        "message substitution grammar",
+        "color and formatting",
+        "pagination and timing"
+      ],
+      "required_evidence": [
+        "native message record source",
+        "record identifier mapping",
+        "raw byte offsets",
+        "payload encoding",
+        "token grammar",
+        "rendering order",
+        "failure behavior"
+      ],
+      "promotion_test": "decode every referenced message id; reproduce exact output bytes or normalized terminal stream for representative records",
+      "current_reference_count": 130,
+      "status": "quarantined_native_only",
+      "activation_policy": "non_executable_until_promotion_test_passes",
+      "provenance_required": true,
+      "fallback": "fail_closed_without_invented_semantics"
+    },
+    {
+      "id": "native.textblock_payload_catalog",
+      "scope": "389 invocations / 156 unique targets",
+      "required_for": "payload body, native branches, return semantics, formatting and dynamic substitutions",
+      "runtime_policy": "typed unresolved invocation; fail closed",
+      "blocked_runtime_surfaces": [
+        "text opcode target resolution",
+        "nested payload branching",
+        "native return behavior",
+        "native embedded expressions"
+      ],
+      "required_evidence": [
+        "native textblock record source",
+        "record identifier mapping",
+        "raw byte offsets",
+        "payload grammar",
+        "branch encoding",
+        "return/termination behavior"
+      ],
+      "promotion_test": "resolve all 389 invocations and prove branch/return behavior without numeric-id fallback",
+      "current_reference_count": 389,
+      "status": "quarantined_native_only",
+      "activation_policy": "non_executable_until_promotion_test_passes",
+      "provenance_required": true,
+      "fallback": "fail_closed_without_invented_semantics"
+    },
+    {
+      "id": "native.remoteaction_dispatcher",
+      "scope": "remoteaction 1423 66 0 3",
+      "required_for": "exact world side effects and dispatcher ordering",
+      "runtime_policy": "validated opaque world intent only",
+      "blocked_runtime_surfaces": [
+        "remoteaction opcode side effects",
+        "native event dispatch",
+        "world-state mutation ownership"
+      ],
+      "required_evidence": [
+        "dispatcher entry point",
+        "argument decoding",
+        "target resolution",
+        "mutation order",
+        "failure/rollback behavior",
+        "save/world impact"
+      ],
+      "promotion_test": "reproduce remoteaction 1423 66 0 3 against an authoritative native trace or independently agreeing binary evidence",
+      "current_reference_count": 1,
+      "status": "quarantined_native_only",
+      "activation_policy": "non_executable_until_promotion_test_passes",
+      "provenance_required": true,
+      "fallback": "fail_closed_without_invented_semantics"
+    },
+    {
+      "id": "native.player_command_table",
+      "scope": "commands outside the 77 managed registrations",
+      "required_for": "proof of original native command completeness and aliases",
+      "runtime_policy": "unknown commands reject without gameplay side effects",
+      "blocked_runtime_surfaces": [
+        "commands outside the 77 managed registrations",
+        "native abbreviation table",
+        "native aliases",
+        "native dispatch ownership"
+      ],
+      "required_evidence": [
+        "original command table source",
+        "command token",
+        "minimum prefix",
+        "alias mapping",
+        "handler entry point",
+        "argument parser",
+        "failure behavior"
+      ],
+      "promotion_test": "enumerate and validate the complete native command table, then diff it against the 77 managed registrations",
+      "current_reference_count": 77,
+      "status": "quarantined_native_only",
+      "activation_policy": "non_executable_until_promotion_test_passes",
+      "provenance_required": true,
+      "fallback": "fail_closed_without_invented_semantics"
+    }
+  ],
+  "exit_condition": "all four dependencies promoted by their promotion tests or retained for the final WCC/WBB/native DLL exhaustion pass"
+}

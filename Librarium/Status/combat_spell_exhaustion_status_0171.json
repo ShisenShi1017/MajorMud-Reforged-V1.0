@@ -1,0 +1,23 @@
+{
+  "update": "0171",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated combat status modifier policies",
+    "deterministic active-effect aggregation",
+    "attack, defense, initiative, speed, resistance, and visibility modifiers",
+    "physical attack, spell cast, and movement restrictions",
+    "hidden-break decision signal",
+    "fail-closed unresolved status families"
+  ],
+  "not_claimed_complete": [
+    "production status-family catalog",
+    "native additive and multiplicative ordering",
+    "status caps and floors",
+    "visibility and detection semantics",
+    "charm and fear ownership",
+    "active-effect persistence",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Integrate promoted status modifier traces into physical attack, spell cast, initiative, and movement validation boundaries."
+}

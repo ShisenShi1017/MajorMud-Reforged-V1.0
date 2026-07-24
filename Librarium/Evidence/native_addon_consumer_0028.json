@@ -1,0 +1,69 @@
+{
+  "schema": "majorMud.nativeAddonConsumer.v1",
+  "evidence_id": "native-addon-consumer-0028",
+  "update": "0027->0028",
+  "evidence_class": "PROVEN",
+  "modules": [
+    {
+      "distribution": "WCC",
+      "file": "wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "path_literal": "WCCADDON.SYS"
+    },
+    {
+      "distribution": "WBB",
+      "file": "wbbmmud.dll",
+      "sha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+      "path_literal": "WBBADDON.SYS"
+    }
+  ],
+  "loader": {
+    "entry_rva": "0x4F242",
+    "open_api": "fopen",
+    "mode": "rt",
+    "line_api": "fgets",
+    "line_buffer_bytes": 100,
+    "allocation_bytes_per_node": 12,
+    "slot_parse_api": "atol",
+    "delimiter": ":",
+    "token_allocation": "strlen(token)+1",
+    "line_termination": "first CR or LF is replaced by NUL",
+    "list_insertion": "prepend to process-global singly-linked list",
+    "node_layout": {
+      "offset_0": "32-bit parsed slot",
+      "offset_4": "heap pointer to copied token",
+      "offset_8": "next node pointer"
+    },
+    "missing_file": "leave list empty and return without error synthesis",
+    "malformed_line_without_colon": "discard allocated node and continue",
+    "allocation_failure": "discard current record and continue or leave list empty; no synthesized token"
+  },
+  "lookup": {
+    "lazy_initialization": true,
+    "key": "32-bit slot number",
+    "algorithm": "linear traversal from list head",
+    "not_found": "NULL",
+    "returned_value": "stored token pointer",
+    "cleanup": "dedicated traversal frees token then node and clears global head"
+  },
+  "comparison_helper": {
+    "behavior": "lookup token by slot, then compare supplied string against stored token",
+    "missing_slot": "false",
+    "comparison_result": "true only when Worldgroup _sameas reports equality; exact collation remains host-owned",
+    "native_api": "_sameas"
+  },
+  "cross_distribution": {
+    "consumer_instruction_range_byte_identical": true,
+    "only_path_literal_is_distribution_prefixed": true
+  },
+  "runtime_policy": {
+    "parse_text_mode": true,
+    "preserve_token_case": true,
+    "duplicate_slots": "last physical record wins because nodes are prepended",
+    "unknown_or_missing_slot": "fail closed"
+  },
+  "limitations": [
+    "The algorithm that creates or authorizes the token values remains outside this loader path.",
+    "Exact _sameas collation and case-folding semantics remain Worldgroup-host owned."
+  ]
+}

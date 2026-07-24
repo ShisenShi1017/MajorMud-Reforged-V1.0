@@ -1,0 +1,25 @@
+{
+  "update": "0168",
+  "claims": [
+    {
+      "id": "combatspell.0168.resolved-direct-integration",
+      "confidence": "strongly_correlated",
+      "runtime_impact": "Resistance and saving-throw decisions now directly govern spell magnitude, immunity, absorption, vulnerability, duration and secondary-effect application.",
+      "character_save_impact": "none; execution state remains transactional",
+      "world_state_impact": "atomic HP/resource mutation only",
+      "safe_fallback": "reject",
+      "tests": [
+        "identity mismatch rejection",
+        "evidence merge",
+        "nonnegative final magnitude",
+        "duration reduction and secondary suppression paths"
+      ]
+    }
+  ],
+  "native_dependencies": [
+    "production resistance/save mappings",
+    "absorption destination semantics per spell",
+    "native duration rounding",
+    "spell.1304 policy"
+  ]
+}

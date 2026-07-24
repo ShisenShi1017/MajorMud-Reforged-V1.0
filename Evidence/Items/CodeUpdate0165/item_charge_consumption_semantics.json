@@ -1,0 +1,63 @@
+{
+  "code_update": "0165",
+  "subsystem": "items",
+  "pass": "charge, consumption, and destruction lifecycle phase 1",
+  "authority": "Librarium",
+  "classification": "reforged_compatibility_infrastructure",
+  "runtime_behavior": [
+    "charge spending is atomic, owner-validated, positive-cost-only, and rejects insufficient charges",
+    "recharge is atomic and requires an evidence-projected maximum_charges value on the runtime instance",
+    "consumable quantity mutation decrements a stack or removes the final runtime instance",
+    "final-instance consumption rejects non-empty portable containers",
+    "negative charges, negative durability, and charges above projected maximum are invalid save/runtime states"
+  ],
+  "classic_activation": {
+    "status": "partially_fail_closed",
+    "active": [
+      "generated consumable flag",
+      "generated default charge count",
+      "non-negative charge state validation"
+    ],
+    "blocked": [
+      "native maximum charge values not projected by current generated data",
+      "native recharge sources and timers",
+      "failure-consumption ordering",
+      "empty-item replacement definitions",
+      "native per-use charge costs greater than one"
+    ]
+  },
+  "provenance": [
+    {
+      "source": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "existing Reforged item use and persistence engine"
+    },
+    {
+      "source": "Data/Classic/items.json",
+      "role": "Librarium-generated consumable and default charge projections"
+    }
+  ],
+  "confidence": "proven for Reforged infrastructure; Classic item-specific recharge and replacement semantics remain unknown",
+  "assumptions": [
+    "maximum_charges metadata is trusted only when supplied by an authoritative projection",
+    "zero-charge non-consumables remain as instances and fail use safely"
+  ],
+  "tests": [
+    "charge decrement",
+    "bounded recharge",
+    "recharge overflow rollback",
+    "consumable stack decrement",
+    "final consumable instance destruction",
+    "negative-state validator rejection"
+  ],
+  "safe_fallback": "Reject recharge without maximum_charges, reject charge underflow and overflow, reject invalid consumption quantities, and roll back every failed mutation.",
+  "runtime_impact": "Adds explicit charge and consumable lifecycle primitives without inventing spell, ability, text, cooldown, or replacement-item effects.",
+  "character_save_impact": "Current charges and remaining stack quantity persist; fully consumed instances are removed from snapshots.",
+  "world_state_impact": "Destroyed instances are removed from authoritative item state and cannot remain as container parents.",
+  "native_dependencies": [
+    "Classic maximum-charge source fields",
+    "Classic recharge rules and timers",
+    "Classic charged-item zero-charge behavior",
+    "Classic consumable failure and interruption ordering",
+    "Classic empty-container or residue replacement behavior"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update_id": "CodeUpdate0198",
+  "boundary": "npc-explicit-route",
+  "status": "strongly-correlated-active",
+  "confidence": 0.98,
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcExplicitRoute.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Data/Classic/rooms.json"
+  ],
+  "supporting_evidence": [
+    "existing canonical generated room lookup",
+    "existing exact single-step movement completion boundaries",
+    "world-owned persisted NPC metadata and room state"
+  ],
+  "assumptions": [
+    "route selection and legality are resolved by the owning host subsystem",
+    "each completion represents one already validated traversal"
+  ],
+  "tests": [
+    "route admission API exposed",
+    "canonical route rooms required",
+    "route origin must match NPC room",
+    "exact route and step matching",
+    "rejected completion preserves route state",
+    "completion advances exactly one step",
+    "explicit cancellation clears active route"
+  ],
+  "safe_fallback": "reject without room or route-state mutation",
+  "runtime_impact": "persists an exact canonical room sequence and commits one explicitly completed traversal at a time",
+  "character_save_impact": "none",
+  "world_state_impact": "NPC room and route metadata only",
+  "native_dependencies": [
+    "route selection",
+    "exit restrictions",
+    "movement costs",
+    "cadence",
+    "pathfinding",
+    "chase/leash decisions"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "pass": "CodeUpdate0164",
+  "classification": "STRONGLY_CORRELATED",
+  "findings": [
+    {
+      "id": "economy.service.finalization.policy-stages",
+      "claim": "Minimum price and additive adjustments must be explicit policy stages because current WCC/WBB evidence does not establish their native order.",
+      "confidence": 0.9,
+      "runtimeActivation": "policy-driven",
+      "nativeActivation": "fail-closed"
+    },
+    {
+      "id": "economy.service.finalization.checked-arithmetic",
+      "claim": "All additive and minimum operations use checked non-negative integer arithmetic with overflow and underflow rejection.",
+      "confidence": 1.0,
+      "runtimeActivation": "active"
+    }
+  ],
+  "tests": ["additive-before", "minimum-after", "native-unresolved-fail-closed", "overflow-token-validation"]
+}

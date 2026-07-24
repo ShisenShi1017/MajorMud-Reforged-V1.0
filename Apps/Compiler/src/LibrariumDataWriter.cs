@@ -12,6 +12,7 @@ public sealed class LibrariumDataWriter
         var result = new CompileResult { WorldId = LibrariumCompilerOptions.NormalizeWorld(options.WorldId), OutputRoot = options.OutputRoot };
         var reader = new LibrariumCatalogReader();
         var families = reader.ReadFamilies(options.LibrariumRoot, result.Diagnostics);
+        ApplyCrossFamilyRuntimeGuards(families);
         new LibrariumValidator().Validate(families, result.Diagnostics);
 
         if (!result.Success) return result;
@@ -46,12 +47,68 @@ public sealed class LibrariumDataWriter
         return result;
     }
 
+    private static void ApplyCrossFamilyRuntimeGuards(IReadOnlyList<LibrariumFamily> families)
+    {
+        var rooms = families.FirstOrDefault(f => f.Name.Equals("rooms", StringComparison.OrdinalIgnoreCase));
+        var exits = families.FirstOrDefault(f => f.Name.Equals("exits", StringComparison.OrdinalIgnoreCase));
+        if (rooms is null || exits is null) return;
+
+        var roomIds = rooms.Records
+            .Select(record => record["id"]?.GetValue<string>())
+            .Where(id => !string.IsNullOrWhiteSpace(id))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var exit in exits.Records)
+        {
+            var targetId = ReadExitTargetRoomId(exit);
+            if (string.IsNullOrWhiteSpace(targetId) || roomIds.Contains(targetId)) continue;
+
+            exit["runtime_disposition"] = "invalid_destination_blocked";
+            exit["semantic_status"] = "blocked_unresolved_destination";
+            exit["fallback_behavior"] = "deny traversal because generated target room is not present";
+            exit["generator_validation"] = new JsonObject
+            {
+                ["status"] = "blocked_unresolved_destination",
+                ["target_room_id"] = targetId,
+                ["policy"] = "compiler cross-family validation prevents unresolved exits from becoming executable traversal"
+            };
+
+            if (exit["runtime_mapping"] is JsonObject runtimeMapping)
+            {
+                runtimeMapping["status"] = "blocked_unresolved_destination";
+            }
+        }
+    }
+
+    private static string? ReadExitTargetRoomId(JsonObject exit)
+    {
+        if (exit["relationships"] is JsonObject relationships)
+        {
+            var relationshipTarget = relationships["to_room"]?.GetValue<string>();
+            if (!string.IsNullOrWhiteSpace(relationshipTarget)) return relationshipTarget;
+        }
+
+        var map = ReadInt(exit, "to_map_number");
+        var room = ReadInt(exit, "to_room_number");
+        return map > 0 && room > 0 ? $"room.map{map}.{room}" : null;
+    }
+
 
     private static JsonObject CreateRuntimeFamilyProjection(
         LibrariumCompilerOptions options,
         CompileResult result,
         LibrariumFamily family)
     {
+        if (family.Name.Equals("rooms", StringComparison.OrdinalIgnoreCase))
+        {
+            var audit = new NativeMapRoomTextResolver().ApplyDescriptions(options.RepositoryRoot, family);
+            result.Diagnostics.Add(new(
+                DiagnosticSeverity.Info,
+                "ROOMTEXT001",
+                $"Native room text recovery emitted {audit.EmittedNonEmptyDescriptions:N0}/{audit.SourceRooms:N0} non-empty descriptions; unresolved {audit.UnresolvedReferences:N0}; missing native map files {audit.MissingNativeMapFiles.Count:N0}.",
+                family.SourceFile));
+        }
+
         if (family.Name.Equals("character_foundation", StringComparison.OrdinalIgnoreCase))
         {
             var promoted = TryReadPromotedCharacterFoundation(family);
@@ -66,7 +123,7 @@ public sealed class LibrariumDataWriter
             }
         }
 
-        return new JsonObject
+        var projection = new JsonObject
         {
             ["authority"] = "Librarium",
             ["generated_by"] = "MajorMud.Reforged.Compiler",
@@ -77,6 +134,16 @@ public sealed class LibrariumDataWriter
             ["record_count"] = family.Records.Count,
             ["records"] = new JsonArray(family.Records.Select(r => r.DeepClone()).ToArray())
         };
+
+        var sourceFiles = family.SourceFiles ?? [family.SourceFile];
+        if (sourceFiles.Count > 1)
+        {
+            projection["source_files"] = new JsonArray(sourceFiles
+                .Select(path => JsonValue.Create(Path.GetRelativePath(options.RepositoryRoot, path).Replace('\\', '/')))
+                .ToArray());
+        }
+
+        return projection;
     }
 
     private static JsonObject? TryReadPromotedCharacterFoundation(LibrariumFamily family)
@@ -119,6 +186,9 @@ public sealed class LibrariumDataWriter
             {
                 ["family"] = f.Name,
                 ["source_file"] = f.SourceFile.Replace('\\', '/'),
+                ["source_files"] = new JsonArray((f.SourceFiles ?? [f.SourceFile])
+                    .Select(path => JsonValue.Create(path.Replace('\\', '/')))
+                    .ToArray()),
                 ["record_count"] = f.Records.Count
             }).ToArray()),
             ["diagnostics"] = new JsonArray(result.Diagnostics.Select(d => new JsonObject
@@ -229,6 +299,85 @@ public sealed class LibrariumDataWriter
     private static void WriteJson(string path, JsonNode node)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        File.WriteAllText(path, node.ToJsonString(JsonOptions));
+        var serialized = SerializeJson(node);
+        if (serialized.Length < 90_000_000 || node is not JsonObject obj || obj["records"] is not JsonArray records)
+        {
+            File.WriteAllText(path, serialized);
+            return;
+        }
+
+        var familyName = Path.GetFileNameWithoutExtension(path);
+        var partDirectoryName = familyName + ".parts";
+        var partDirectory = Path.Combine(Path.GetDirectoryName(path)!, partDirectoryName);
+        if (Directory.Exists(partDirectory)) Directory.Delete(partDirectory, recursive: true);
+        Directory.CreateDirectory(partDirectory);
+
+        var partFiles = new JsonArray();
+        var partRecords = new JsonArray();
+        var partIndex = 1;
+        foreach (var record in records.Select(record => record?.DeepClone()).ToArray())
+        {
+            partRecords.Add(record);
+            if (partRecords.Count < 5_000) continue;
+            WritePart(path, obj, partDirectoryName, partDirectory, partIndex++, partRecords, partFiles);
+            partRecords = new JsonArray();
+        }
+
+        if (partRecords.Count > 0)
+        {
+            WritePart(path, obj, partDirectoryName, partDirectory, partIndex, partRecords, partFiles);
+        }
+
+        var manifest = new JsonObject();
+        foreach (var property in obj)
+        {
+            if (property.Key.Equals("records", StringComparison.OrdinalIgnoreCase)) continue;
+            manifest[property.Key] = property.Value?.DeepClone();
+        }
+
+        manifest["chunked_records"] = true;
+        manifest["record_parts"] = partFiles;
+        WriteJsonFile(path, manifest);
+    }
+
+    private static void WritePart(
+        string originalPath,
+        JsonObject original,
+        string partDirectoryName,
+        string partDirectory,
+        int partIndex,
+        JsonArray partRecords,
+        JsonArray partFiles)
+    {
+        var fileName = $"{Path.GetFileNameWithoutExtension(originalPath)}.part{partIndex:0000}.json";
+        var part = new JsonObject
+        {
+            ["authority"] = original["authority"]?.DeepClone(),
+            ["generated_by"] = original["generated_by"]?.DeepClone(),
+            ["world_id"] = original["world_id"]?.DeepClone(),
+            ["family"] = original["family"]?.DeepClone(),
+            ["record_count"] = partRecords.Count,
+            ["records"] = partRecords
+        };
+        WriteJsonFile(Path.Combine(partDirectory, fileName), part);
+        partFiles.Add($"{partDirectoryName}/{fileName}");
+    }
+
+    private static string SerializeJson(JsonNode node)
+    {
+        using var stream = new MemoryStream();
+        using (var writer = new Utf8JsonWriter(stream, new JsonWriterOptions { Indented = JsonOptions.WriteIndented }))
+        {
+            node.WriteTo(writer);
+        }
+
+        return System.Text.Encoding.UTF8.GetString(stream.ToArray());
+    }
+
+    private static void WriteJsonFile(string path, JsonNode node)
+    {
+        using var stream = File.Create(path);
+        using var writer = new Utf8JsonWriter(stream, new JsonWriterOptions { Indented = JsonOptions.WriteIndented });
+        node.WriteTo(writer);
     }
 }

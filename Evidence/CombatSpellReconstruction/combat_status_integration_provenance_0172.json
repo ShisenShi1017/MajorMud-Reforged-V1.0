@@ -1,0 +1,12 @@
+{
+  "update": "0172",
+  "artifact": "combat status execution integration",
+  "records": [
+    {"id": "statusintegration.physical", "source": "RuntimeCombatStatusModifierEvaluator + RuntimePhysicalAttackRequest", "offset": null},
+    {"id": "statusintegration.cast", "source": "RuntimeCombatStatusModifierEvaluator + RuntimeSpellCastLifecycle", "offset": null},
+    {"id": "statusintegration.schedule", "source": "RuntimeCombatStatusModifierEvaluator + RuntimeCombatScheduledTurn", "offset": null},
+    {"id": "statusintegration.movement", "source": "RuntimeCombatStatusModifierEvaluator + RuntimeCombatMovementCoordinator", "offset": null}
+  ],
+  "confidence": "strongly_correlated",
+  "fallback": "fail closed before downstream mutation"
+}

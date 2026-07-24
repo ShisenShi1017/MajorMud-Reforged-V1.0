@@ -1,0 +1,9 @@
+{
+  "update":"0179","subsystem":"combat_spells","topic":"control_and_perception","status":"in_progress",
+  "runtime":"RuntimeCombatControlPerceptionCoordinator",
+  "control_kinds":["Fear","Charm"],"concealment_kinds":["Hidden","Invisible"],
+  "ownership":"Combat/Spell owns effect resolution; NPC AI retains behavior and target selection; Movement owns destination selection and room mutation.",
+  "deterministic_order":["validate canonical identities","validate promoted policy","validate living and room state","inspect active control effects","resolve replacement","emit control or forced-movement request","aggregate observer detection","aggregate target concealment","compare detection against concealment"],
+  "fail_closed":["unmapped production spells","weak policies","unknown control replacement","unknown break conditions","unknown persistence","spell.1304 semantics"],
+  "bidirectional_relationships":{"spell_to_control":"spell policy declares fear or charm","control_to_actor":"controller and target retained","spell_to_concealment":"spell policy declares hidden/invisible contribution","observer_to_detection":"observer effects contribute detection","perception_to_targeting":"CanTarget follows promoted visibility result"}
+}

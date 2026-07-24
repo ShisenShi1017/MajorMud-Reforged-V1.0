@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "import-export-compatibility",
+  "runtimeOwner": "RuntimeImportExportCompatibilityService",
+  "formats": [
+    "WCC",
+    "WBB",
+    "world data",
+    "custom data",
+    "character save",
+    "Reforged package"
+  ],
+  "operations": [
+    "inspect",
+    "validate",
+    "import",
+    "export",
+    "migrate"
+  ],
+  "ownership": {
+    "binaryDecoding": "dedicated WCC/WBB/native decoders",
+    "authorization": "security and administrative policy",
+    "recordValidation": "owning subsystem validators",
+    "commit": "owning subsystem persistence owner",
+    "compatibilityBoundary": "RuntimeImportExportCompatibilityService"
+  },
+  "classicRules": [
+    "preserve canonical identifiers",
+    "reject Reforged extension package",
+    "require host authorization for mutation",
+    "owner validation before commit"
+  ],
+  "safeFallback": "Reject unauthorized, malformed, oversized, binary, version-invalid, Classic-incompatible, or owner-unvalidated requests.",
+  "nativeDependencies": [
+    "exact WCC/WBB record versioning",
+    "native import/export commands",
+    "legacy save migrations",
+    "duplicate and missing-reference behavior",
+    "rollback semantics",
+    "binary checksums and packing"
+  ]
+}

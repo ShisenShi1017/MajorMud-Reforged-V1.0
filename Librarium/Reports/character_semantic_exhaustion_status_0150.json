@@ -1,0 +1,24 @@
+{
+  "code_update": "0150",
+  "subsystem": "Character status effects and timers phase 2",
+  "status": "promoted",
+  "proven": [
+    "independent effect-instance stacking",
+    "no implicit refresh or replacement",
+    "deterministic timer ownership and save/load ordering",
+    "world-ledger reconnect restoration",
+    "stale spell-projection cleanup",
+    "preservation of non-spell statuses and timers",
+    "spell and caster ownership projection"
+  ],
+  "save_version": 6,
+  "backward_compatible_versions": [1, 2, 3, 4, 5],
+  "blocked": [
+    "native named status category execution",
+    "native category priority and replacement",
+    "periodic native tick formulas",
+    "death/resurrection/login/logout clearing matrix",
+    "native status bitfields and masks"
+  ],
+  "next": "Character level progression and experience tables"
+}

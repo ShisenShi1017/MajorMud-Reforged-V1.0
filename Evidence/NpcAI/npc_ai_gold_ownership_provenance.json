@@ -1,0 +1,11 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "code_update": "CodeUpdate0200",
+  "claim": "NPC gold is explicit world-owned per-instance state and may be inspected or changed only by an exact authorized request.",
+  "confidence": 1.0,
+  "assumptions": ["policy owners supply exact balances or deltas", "absence of npc_gold means zero"],
+  "tests": ["method contract reflection", "negative balance rejection", "checked overflow rejection", "underflow rejection", "save metadata ownership"],
+  "character_save_impact": "none",
+  "world_state_impact": "persists exact NPC balance metadata",
+  "native_dependency": "spawn, merchant, reward, loot, denomination, and cap policy remain unresolved"
+}

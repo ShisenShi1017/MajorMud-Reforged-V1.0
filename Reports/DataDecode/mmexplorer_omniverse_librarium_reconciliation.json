@@ -1,0 +1,64 @@
+{
+  "code_update": "0139",
+  "mode": "mmexplorer_omniverse_librarium_reconciliation",
+  "policy": "gap-fill/reference promotion; no binary-backed field overwrites",
+  "omni_promotions": {
+    "items": {
+      "matched": 1950,
+      "unmatched": 0,
+      "librarium_records": 1950,
+      "source_records": 1950
+    },
+    "spells": {
+      "matched": 1350,
+      "unmatched": 0,
+      "librarium_records": 1350,
+      "source_records": 1350
+    },
+    "npcs": {
+      "matched": 1100,
+      "unmatched": 0,
+      "librarium_records": 1100,
+      "source_records": 1100
+    },
+    "shops": {
+      "matched": 178,
+      "unmatched": 0,
+      "librarium_records": 178,
+      "source_records": 178
+    }
+  },
+  "mmexplorer_promotions": {
+    "items": {
+      "matched": 1950,
+      "unmatched": 67,
+      "librarium_records": 1950,
+      "source_records": 2017
+    },
+    "spells": {
+      "matched": 1350,
+      "unmatched": 108,
+      "librarium_records": 1350,
+      "source_records": 1458
+    },
+    "npcs": {
+      "matched": 1100,
+      "unmatched": 26,
+      "librarium_records": 1100,
+      "source_records": 1126
+    },
+    "shops": {
+      "matched": 178,
+      "unmatched": 0,
+      "librarium_records": 178,
+      "source_records": 178
+    }
+  },
+  "character_foundation": {
+    "races_matched": 13,
+    "classes_matched": 15
+  },
+  "abilities": {
+    "records": 188
+  }
+}

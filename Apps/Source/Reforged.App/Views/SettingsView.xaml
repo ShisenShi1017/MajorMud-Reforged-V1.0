@@ -1,0 +1,33 @@
+<UserControl x:Class="Reforged.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Border Style="{StaticResource ParchmentPanelStyle}" Margin="20" Padding="18" MaxWidth="720" HorizontalAlignment="Left">
+      <StackPanel>
+        <TextBlock Text="Application Settings" FontSize="22" FontWeight="Bold"/>
+        <TextBlock Text="Font size"/>
+        <TextBox Text="{Binding Settings.FontSize}"/>
+        <TextBlock Text="Default world"/>
+        <TextBox Text="{Binding Settings.DefaultWorld}"/>
+        <TextBlock Text="Default connection profile"/>
+        <TextBox Text="{Binding Settings.DefaultConnectionProfile}"/>
+        <CheckBox Content="Auto-start local Host" IsChecked="{Binding Settings.AutoStartLocalHost}"/>
+        <CheckBox Content="Restore previous layout" IsChecked="{Binding Settings.RestorePreviousLayout}"/>
+        <CheckBox Content="Restore previous sessions" IsChecked="{Binding Settings.RestorePreviousSessions}"/>
+        <TextBlock Text="Log level"/>
+        <TextBox Text="{Binding Settings.LogLevel}"/>
+        <TextBlock Text="Data directory"/>
+        <TextBox Text="{Binding Settings.DataDirectory}"/>
+        <TextBlock Text="Saves directory"/>
+        <TextBox Text="{Binding Settings.SavesDirectory}"/>
+        <Separator/>
+        <TextBlock Text="Automatic Host cleanup/reset is configured in the Host workspace and shown on Home." FontWeight="Bold" TextWrapping="Wrap"/>
+        <WrapPanel>
+          <Button Content="Save Settings" Command="{Binding SaveCommand}"/>
+          <Button Content="Export Settings"/>
+          <Button Content="Import Settings"/>
+        </WrapPanel>
+      </StackPanel>
+    </Border>
+  </ScrollViewer>
+</UserControl>

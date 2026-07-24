@@ -1,0 +1,33 @@
+{
+  "schema": "ability_ownership_lifecycle_exhaustion_report_v1",
+  "code_update": "0153",
+  "status": "PASS",
+  "counts": {
+    "catalog_abilities": 188,
+    "textblock_referenced_abilities": 9,
+    "check_edges": 1099,
+    "replace_edges": 146,
+    "increment_edges": 5,
+    "total_edges": 1250
+  },
+  "validation": {
+    "missing_ability_ids": [],
+    "all_textblock_ability_ids_canonical": true,
+    "ownership_captured": true,
+    "lifecycle_captured": true,
+    "persistence_and_rollback_captured": true
+  },
+  "unproven_cross_system_consumers": [
+    "combat",
+    "spell",
+    "equipment",
+    "race",
+    "class",
+    "trainer runtime outside decoded textblocks"
+  ],
+  "evidence": {
+    "ability_catalog": "Data/Classic/abilities.json",
+    "textblock_stage_records": "Librarium/Objects/scripts/mmexplorer_textblock_stage_records.json",
+    "runtime_executor": "Apps/Source/Reforged.Server/RuntimeQuestDialogueExecution.cs"
+  }
+}

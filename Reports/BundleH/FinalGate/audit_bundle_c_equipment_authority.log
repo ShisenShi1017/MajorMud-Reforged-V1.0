@@ -1,0 +1,182 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+{
+  "Status": "PASS",
+  "EquipmentRecordCount": 532,
+  "SlotCount": 17,
+  "RuleCount": 3,
+  "Fields": [
+    {
+      "Field": "item_id",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:item_id",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip/RestoreEquipment/EquipNpc",
+      "PersistenceOwner": "RuntimeItemInstance.CanonicalItemId",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "single catalog identity",
+      "Passed": true
+    },
+    {
+      "Field": "slot",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:slot \u002B worn_on",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment/_slots",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip/EnforceHandRules",
+      "PersistenceOwner": "RuntimeItemInstance.EquippedSlot",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "live commands delegate to RuntimeItemEngine",
+      "Passed": true
+    },
+    {
+      "Field": "two_handed",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:two_handed",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment",
+      "RuntimeConsumer": "RuntimeItemEngine.EnforceHandRules",
+      "PersistenceOwner": "equipped state revalidated on load",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "single hand-conflict executor",
+      "Passed": true
+    },
+    {
+      "Field": "class_restricted",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:class_restricted \u002B character_foundation item requirements",
+      "RuntimeOwner": "RuntimeCharacterBundleCatalog.ItemRequirements",
+      "RuntimeConsumer": "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements",
+      "PersistenceOwner": "character class id \u002B equipped item state",
+      "EvidenceStatus": "strongly_correlated",
+      "DuplicateDisposition": "generated boolean is compatibility marker only",
+      "Passed": true
+    },
+    {
+      "Field": "race_restricted",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:race_restricted \u002B character_foundation item requirements",
+      "RuntimeOwner": "RuntimeCharacterBundleCatalog.ItemRequirements",
+      "RuntimeConsumer": "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements",
+      "PersistenceOwner": "character race id \u002B equipped item state",
+      "EvidenceStatus": "strongly_correlated",
+      "DuplicateDisposition": "generated boolean is compatibility marker only",
+      "Passed": true
+    },
+    {
+      "Field": "minimum_level",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:minimum_level \u002B items runtime_projection",
+      "RuntimeOwner": "RuntimeCharacterBundleCatalog.ItemRequirements",
+      "RuntimeConsumer": "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements",
+      "PersistenceOwner": "RuntimeCharacterRecord.Level \u002B RuntimeItemInstance",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "Bundle A authority supersedes relationship fallback",
+      "Passed": true
+    },
+    {
+      "Field": "minimum_strength",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:minimum_strength",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip",
+      "PersistenceOwner": "RuntimeCharacterRecord.BaseStats \u002B RuntimeItemInstance",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "single live equip check",
+      "Passed": true
+    },
+    {
+      "Field": "alignment",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:alignment",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip",
+      "PersistenceOwner": "RuntimeCharacterRecord.Conditions \u002B RuntimeItemInstance",
+      "EvidenceStatus": "strongly_correlated",
+      "DuplicateDisposition": "single live equip check",
+      "Passed": true
+    },
+    {
+      "Field": "gender",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "equipment.json:gender",
+      "RuntimeOwner": "RuntimeItemCatalog._equipment",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip",
+      "PersistenceOwner": "RuntimeCharacterRecord.Conditions \u002B RuntimeItemInstance",
+      "EvidenceStatus": "strongly_correlated",
+      "DuplicateDisposition": "single live equip check",
+      "Passed": true
+    },
+    {
+      "Field": "combat modifiers",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "items.json:combat",
+      "RuntimeOwner": "RuntimeItemCatalog._items",
+      "RuntimeConsumer": "RuntimeItemEngine.EquipmentModifiers -\u003E RuntimeCharacterCombatStatisticProjector",
+      "PersistenceOwner": "RuntimeCharacterSemanticState derived projection",
+      "EvidenceStatus": "strongly_correlated",
+      "DuplicateDisposition": "calculator owns aggregation; projector owns character projection",
+      "Passed": true
+    },
+    {
+      "Field": "curse/maintenance-cleanup abilities",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "items.json ability flags 82/83 and Del@Maint ability 119",
+      "RuntimeOwner": "RuntimeItemCatalog._items",
+      "RuntimeConsumer": "RuntimeItemEngine transfer/death/cleanup guards",
+      "PersistenceOwner": "RuntimeItemInstance metadata/location \u002B save state",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "single item lifecycle executor",
+      "Passed": true
+    },
+    {
+      "Field": "weight",
+      "OriginalDecode": "WCC/Worldgroup/MDB/Librarium decoded projection",
+      "GeneratedField": "items.json:economy.weight",
+      "RuntimeOwner": "RuntimeItemCatalog._items",
+      "RuntimeConsumer": "RuntimeItemEngine.InventoryWeight",
+      "PersistenceOwner": "item stack/location state; recalculated total",
+      "EvidenceStatus": "verified",
+      "DuplicateDisposition": "single authoritative weight summation",
+      "Passed": true
+    }
+  ],
+  "Checks": [
+    "equipment records loaded",
+    "equipment slots loaded",
+    "equipment rules loaded",
+    "every equipment relationship resolves an item",
+    "every equipment relationship resolves a legal slot",
+    "equipment relationship identity is unique",
+    "authoritative requirement consumer",
+    "equipment persistence record",
+    "single equipment modifier aggregation",
+    "authoritative equipment/inventory weight aggregation",
+    "live equip delegates to item engine",
+    "live unequip delegates to item engine",
+    "derived-stat projection consumes authoritative totals"
+  ],
+  "Errors": [],
+  "Passed": true
+}

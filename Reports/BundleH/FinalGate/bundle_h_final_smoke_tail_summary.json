@@ -1,0 +1,58 @@
+﻿[
+    {
+        "Smoke":  "--smoke-global-random",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  12.845,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_global_random.log"
+    },
+    {
+        "Smoke":  "--smoke-global-world-state",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  9.104,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_global_world_state.log"
+    },
+    {
+        "Smoke":  "--smoke-help-reference",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  8.566,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_help_reference.log"
+    },
+    {
+        "Smoke":  "--smoke-host-enablement",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  25.934,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_host_enablement.log"
+    },
+    {
+        "Smoke":  "--smoke-import-export-compatibility",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  9.225,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_import_export_compatibility.log"
+    },
+    {
+        "Smoke":  "--smoke-interaction-narrative",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  219.646,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_interaction_narrative.log"
+    },
+    {
+        "Smoke":  "--smoke-inventory-closure",
+        "ExitCode":  0,
+        "Status":  "PASS",
+        "Seconds":  8.817,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_inventory_closure.log"
+    },
+    {
+        "Smoke":  "--smoke-item-runtime",
+        "ExitCode":  8,
+        "Status":  "FAIL",
+        "Seconds":  9.017,
+        "Log":  "Reports\\BundleH\\FinalGate\\smoke_item_runtime.log"
+    }
+]

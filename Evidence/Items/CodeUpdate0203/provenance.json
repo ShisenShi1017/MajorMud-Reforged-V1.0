@@ -1,0 +1,19 @@
+{
+  "code_update": "0203",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+    "Librarium/Policies/runtime_item_administration_policy.json"
+  ],
+  "tests": [
+    "administrative inspection",
+    "administrative room movement and owner normalization",
+    "non-mutating runtime and limited-item audit",
+    "explicit administrative removal"
+  ],
+  "assumptions": [
+    "authorization is supplied by the Administration/Permissions subsystem",
+    "all movement destinations are explicit",
+    "native command text remains unresolved"
+  ]
+}

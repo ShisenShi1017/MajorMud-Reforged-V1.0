@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "update": "0150",
+  "activation_policy": "Only proven or strongly correlated profiles may execute. Missing profiles fail closed.",
+  "profiles": [
+    {
+      "profile_id": "combat-spell-resolution-vector-0001",
+      "scope": "deterministic pipeline validation",
+      "confidence": "strongly_correlated",
+      "damage_type": "physical",
+      "resistance_type": "physical_dr",
+      "saving_throw_type": "evasion",
+      "evaluation_order": ["base_roll", "actor_power", "flat_modifier", "critical", "resistance", "saving_throw", "clamp"],
+      "formula": {
+        "minimum_roll": 4,
+        "maximum_roll": 9,
+        "flat_modifier": 2,
+        "resistance_scale": 1,
+        "saving_throw_difficulty": 80,
+        "save_reduction_percent": 50,
+        "minimum_final_magnitude": 0,
+        "maximum_final_magnitude": 999,
+        "critical_threshold": 95,
+        "critical_multiplier": "2/1"
+      },
+      "evidence": [
+        "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+        "Librarium/Evidence/Combat/dll_calculate_attack_evidence_0130.json"
+      ],
+      "assumptions": ["This profile is a deterministic execution-order vector, not a claim that all MajorMUD attacks use these constants."],
+      "safe_fallback": "Reject resolution when a profile or evidence reference is unavailable.",
+      "runtime_impact": "Provides one auditable shared damage/healing pipeline for combat and spell execution.",
+      "character_save_impact": "None; trace is transient unless explicitly persisted by the owning combat save layer.",
+      "world_state_impact": "None until the returned magnitude is committed by an owning event sink."
+    }
+  ]
+}

@@ -1,0 +1,2131 @@
+{
+  "schema": "majormud.native-host-iat-layout.v1",
+  "update": "FinalNativeClosure0007",
+  "source_report": "Reports/NativeDecode/native_host_import_reference_0005.json",
+  "source_sha256": "668e512a868e67f2e68b83ee51742efbfe22b69a08046739c3a5c99614294a34",
+  "evidence_class": "proven",
+  "method": "Sort every named WGSERVER import slot by virtual address and recover contiguous 4-byte x86 IAT runs.",
+  "modules": [
+    {
+      "file": "wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "machine": "x86",
+      "pointer_width_bytes": 4,
+      "import_count": 149,
+      "contiguous_iat_run_count": 1,
+      "iat_runs": [
+        {
+          "start_va": "0x0049d488",
+          "end_va": "0x0049d6d8",
+          "slot_count": 149,
+          "slot_width_bytes": 4,
+          "symbols": [
+            {
+              "iat_va": "0x0049d488",
+              "symbol": "_curcury",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d48c",
+              "symbol": "_nglobs",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d490",
+              "symbol": "_cofdat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d494",
+              "symbol": "_cntdir",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d498",
+              "symbol": "_margv",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d49c",
+              "symbol": "_margc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4a0",
+              "symbol": "_clrprf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4a4",
+              "symbol": "_chropt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4a8",
+              "symbol": "_l2as",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4ac",
+              "symbol": "_channel",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4b0",
+              "symbol": "_catastro",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4b4",
+              "symbol": "_c2bcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4b8",
+              "symbol": "_clsmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4bc",
+              "symbol": "_namtmp",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4c0",
+              "symbol": "_cnvs2d",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4c4",
+              "symbol": "_now",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4c8",
+              "symbol": "_curcurx",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4cc",
+              "symbol": "_numopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d0",
+              "symbol": "_curusr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d4",
+              "symbol": "_hdlinp",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d8",
+              "symbol": "_globs",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4dc",
+              "symbol": "_byenow",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e0",
+              "symbol": "_injacr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e4",
+              "symbol": "_galfree",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e8",
+              "symbol": "_fsdxan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4ec",
+              "symbol": "_fsdscb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4f0",
+              "symbol": "_lngrnd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4f4",
+              "symbol": "_b2ccpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4f8",
+              "symbol": "_haskey",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4fc",
+              "symbol": "_alczer",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d500",
+              "symbol": "_fsdnan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d504",
+              "symbol": "_alcmem",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d508",
+              "symbol": "_alcblok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d50c",
+              "symbol": "_txtvars",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d510",
+              "symbol": "_fsdapr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d514",
+              "symbol": "_accbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d518",
+              "symbol": "_echsec",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d51c",
+              "symbol": "_echonu",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d520",
+              "symbol": "_tfsopn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d524",
+              "symbol": "_tfsbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d528",
+              "symbol": "_echon",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d52c",
+              "symbol": "_tfsrdl",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d530",
+              "symbol": "_findtvar",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d534",
+              "symbol": "_uacoff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d538",
+              "symbol": "_fsdbkg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d53c",
+              "symbol": "_fsdego",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d540",
+              "symbol": "_fsdemg",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d544",
+              "symbol": "_vdasiz",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d548",
+              "symbol": "_fsdord",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d54c",
+              "symbol": "_fsdrft",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d550",
+              "symbol": "_fsdroom",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d554",
+              "symbol": "_dfsthn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d558",
+              "symbol": "_stp4cs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d55c",
+              "symbol": "_begin_polling",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d560",
+              "symbol": "_genbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d564",
+              "symbol": "_getFileTm",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d568",
+              "symbol": "_gmdnam",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d56c",
+              "symbol": "_dfaUpdateDup",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d570",
+              "symbol": "_bgnedt",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d574",
+              "symbol": "_stgopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d578",
+              "symbol": "_dfaStepLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d57c",
+              "symbol": "_inplen",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d580",
+              "symbol": "_input",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d584",
+              "symbol": "_stdmchk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d588",
+              "symbol": "_lastwd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d58c",
+              "symbol": "_listing",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d590",
+              "symbol": "_locate",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d594",
+              "symbol": "_status",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d598",
+              "symbol": "_dfaSetBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d59c",
+              "symbol": "_msgscan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5a0",
+              "symbol": "_msysid",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5a4",
+              "symbol": "_dfaRstBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5a8",
+              "symbol": "_ncdate",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5ac",
+              "symbol": "_ncedat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b0",
+              "symbol": "_nctime",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b4",
+              "symbol": "_skpwht",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b8",
+              "symbol": "_dfaQueryNP",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5bc",
+              "symbol": "_nterms",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5c0",
+              "symbol": "_numbyts",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5c4",
+              "symbol": "_dfaQuery",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5c8",
+              "symbol": "_odedcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5cc",
+              "symbol": "_opnmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5d0",
+              "symbol": "_othusn",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5d4",
+              "symbol": "_senddpk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5d8",
+              "symbol": "_sameto",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5dc",
+              "symbol": "_dfaOpen",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e0",
+              "symbol": "_dfaMode",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e4",
+              "symbol": "_rtkick",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e8",
+              "symbol": "_dfaInsertV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5ec",
+              "symbol": "_dfaInsertDup",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f0",
+              "symbol": "_rstmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f4",
+              "symbol": "_rsp2write",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f8",
+              "symbol": "_dfaGetAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5fc",
+              "symbol": "_rsp2read",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d600",
+              "symbol": "_rmvwht",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d604",
+              "symbol": "_dfaDelete",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d608",
+              "symbol": "_rejectreq",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d60c",
+              "symbol": "_register_textvar",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d610",
+              "symbol": "_dfaCountRec",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d614",
+              "symbol": "_register_module",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d618",
+              "symbol": "_register_agent",
+              "reference_kind": "imported_no_static_code_reference"
+            },
+            {
+              "iat_va": "0x0049d61c",
+              "symbol": "_rstrin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d620",
+              "symbol": "_rstrxf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d624",
+              "symbol": "_dfaClose",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d628",
+              "symbol": "_sameas",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d62c",
+              "symbol": "_samein",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d630",
+              "symbol": "_samepatu",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d634",
+              "symbol": "_ptrblok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d638",
+              "symbol": "_profan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d63c",
+              "symbol": "_setmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d640",
+              "symbol": "_shocst",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d644",
+              "symbol": "_dfaAcqLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d648",
+              "symbol": "_skpwrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d64c",
+              "symbol": "_sortstgs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d650",
+              "symbol": "_spr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d654",
+              "symbol": "_prfptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d658",
+              "symbol": "_prfmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d65c",
+              "symbol": "_dfaAcqAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d660",
+              "symbol": "_stop_polling",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d664",
+              "symbol": "_prfbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d668",
+              "symbol": "_stzcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d66c",
+              "symbol": "_syscyc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d670",
+              "symbol": "_tfsabt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d674",
+              "symbol": "_prf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d678",
+              "symbol": "_dfaAbs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d67c",
+              "symbol": "_tfspfx",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d680",
+              "symbol": "_tfspst",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d684",
+              "symbol": "_prat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d688",
+              "symbol": "_tfstate",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d68c",
+              "symbol": "_today",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d690",
+              "symbol": "_tokopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d694",
+              "symbol": "_parsin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d698",
+              "symbol": "_depad",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d69c",
+              "symbol": "_uidarr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a0",
+              "symbol": "_usaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a4",
+              "symbol": "_usrnum",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a8",
+              "symbol": "_usroff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6ac",
+              "symbol": "_usrptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6b0",
+              "symbol": "_vdaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6b4",
+              "symbol": "_paccit",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6b8",
+              "symbol": "_vdatmp",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6bc",
+              "symbol": "_version",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6c0",
+              "symbol": "_vfyadn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6c4",
+              "symbol": "_vtmsend",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6c8",
+              "symbol": "_vtmsndok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6cc",
+              "symbol": "_ynopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d0",
+              "symbol": "_genrdn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d4",
+              "symbol": "_otstcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d8",
+              "symbol": "_dclvda",
+              "reference_kind": "direct_callable_import"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "wccmmpls.dll",
+      "sha256": "bc15929af9f0b0693b123683b55f1752ae7f703d620cdcb79d9b2a185e408aa5",
+      "machine": "x86",
+      "pointer_width_bytes": 4,
+      "import_count": 55,
+      "contiguous_iat_run_count": 1,
+      "iat_runs": [
+        {
+          "start_va": "0x00407254",
+          "end_va": "0x0040732c",
+          "slot_count": 55,
+          "slot_width_bytes": 4,
+          "symbols": [
+            {
+              "iat_va": "0x00407254",
+              "symbol": "_odedcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407258",
+              "symbol": "_ncedat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040725c",
+              "symbol": "_msgscan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407260",
+              "symbol": "_ynopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407264",
+              "symbol": "_nterms",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407268",
+              "symbol": "_opnmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040726c",
+              "symbol": "_alczer",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407270",
+              "symbol": "_margc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407274",
+              "symbol": "_lngopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407278",
+              "symbol": "_input",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0040727c",
+              "symbol": "_hasmkey",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407280",
+              "symbol": "_gmdnam",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407284",
+              "symbol": "_globalcmd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407288",
+              "symbol": "_genbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0040728c",
+              "symbol": "_dfsthn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407290",
+              "symbol": "_usrptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407294",
+              "symbol": "_usroff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407298",
+              "symbol": "_dfaRstBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040729c",
+              "symbol": "_vdaoff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a0",
+              "symbol": "_dfaSetBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a4",
+              "symbol": "_dfaUpdateV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a8",
+              "symbol": "_dfaInsertV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072ac",
+              "symbol": "_galfree",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072b0",
+              "symbol": "_dfaDelete",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072b4",
+              "symbol": "_usrnum",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072b8",
+              "symbol": "_usaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072bc",
+              "symbol": "_dfaAcqLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072c0",
+              "symbol": "_dfaAcqAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072c4",
+              "symbol": "_status",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072c8",
+              "symbol": "_dfaAbs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072cc",
+              "symbol": "_margv",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072d0",
+              "symbol": "_depad",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072d4",
+              "symbol": "_setmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072d8",
+              "symbol": "_sameto",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072dc",
+              "symbol": "_numopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e0",
+              "symbol": "_dclvda",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e4",
+              "symbol": "_clsmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e8",
+              "symbol": "_othusn",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072ec",
+              "symbol": "_otstcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072f0",
+              "symbol": "_register_module",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072f4",
+              "symbol": "_clsbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072f8",
+              "symbol": "_prfmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072fc",
+              "symbol": "_prfbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407300",
+              "symbol": "_catastro",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407304",
+              "symbol": "_rstmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407308",
+              "symbol": "_rstrin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040730c",
+              "symbol": "_sameas",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407310",
+              "symbol": "_prf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407314",
+              "symbol": "_outprf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407318",
+              "symbol": "_shocst",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040731c",
+              "symbol": "_spr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407320",
+              "symbol": "_bgnedt",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407324",
+              "symbol": "_stgopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407328",
+              "symbol": "_stzcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040732c",
+              "symbol": "_uacoff",
+              "reference_kind": "direct_callable_import"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "wbbmmud.dll",
+      "sha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+      "machine": "x86",
+      "pointer_width_bytes": 4,
+      "import_count": 149,
+      "contiguous_iat_run_count": 1,
+      "iat_runs": [
+        {
+          "start_va": "0x0049d488",
+          "end_va": "0x0049d6d8",
+          "slot_count": 149,
+          "slot_width_bytes": 4,
+          "symbols": [
+            {
+              "iat_va": "0x0049d488",
+              "symbol": "_curcury",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d48c",
+              "symbol": "_nglobs",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d490",
+              "symbol": "_cofdat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d494",
+              "symbol": "_cntdir",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d498",
+              "symbol": "_margv",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d49c",
+              "symbol": "_margc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4a0",
+              "symbol": "_clrprf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4a4",
+              "symbol": "_chropt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4a8",
+              "symbol": "_l2as",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4ac",
+              "symbol": "_channel",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4b0",
+              "symbol": "_catastro",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4b4",
+              "symbol": "_c2bcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4b8",
+              "symbol": "_clsmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4bc",
+              "symbol": "_namtmp",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4c0",
+              "symbol": "_cnvs2d",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4c4",
+              "symbol": "_now",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4c8",
+              "symbol": "_curcurx",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4cc",
+              "symbol": "_numopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d0",
+              "symbol": "_curusr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d4",
+              "symbol": "_hdlinp",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4d8",
+              "symbol": "_globs",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4dc",
+              "symbol": "_byenow",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e0",
+              "symbol": "_injacr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e4",
+              "symbol": "_galfree",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4e8",
+              "symbol": "_fsdxan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4ec",
+              "symbol": "_fsdscb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d4f0",
+              "symbol": "_lngrnd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4f4",
+              "symbol": "_b2ccpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4f8",
+              "symbol": "_haskey",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d4fc",
+              "symbol": "_alczer",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d500",
+              "symbol": "_fsdnan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d504",
+              "symbol": "_alcmem",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d508",
+              "symbol": "_alcblok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d50c",
+              "symbol": "_txtvars",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d510",
+              "symbol": "_fsdapr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d514",
+              "symbol": "_accbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d518",
+              "symbol": "_echsec",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d51c",
+              "symbol": "_echonu",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d520",
+              "symbol": "_tfsopn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d524",
+              "symbol": "_tfsbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d528",
+              "symbol": "_echon",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d52c",
+              "symbol": "_tfsrdl",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d530",
+              "symbol": "_findtvar",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d534",
+              "symbol": "_uacoff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d538",
+              "symbol": "_fsdbkg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d53c",
+              "symbol": "_fsdego",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d540",
+              "symbol": "_fsdemg",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d544",
+              "symbol": "_vdasiz",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d548",
+              "symbol": "_fsdord",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d54c",
+              "symbol": "_fsdrft",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d550",
+              "symbol": "_fsdroom",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d554",
+              "symbol": "_dfsthn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d558",
+              "symbol": "_stp4cs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d55c",
+              "symbol": "_begin_polling",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d560",
+              "symbol": "_genbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d564",
+              "symbol": "_getFileTm",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d568",
+              "symbol": "_gmdnam",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d56c",
+              "symbol": "_dfaUpdateDup",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d570",
+              "symbol": "_bgnedt",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d574",
+              "symbol": "_stgopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d578",
+              "symbol": "_dfaStepLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d57c",
+              "symbol": "_inplen",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d580",
+              "symbol": "_input",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d584",
+              "symbol": "_stdmchk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d588",
+              "symbol": "_lastwd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d58c",
+              "symbol": "_listing",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d590",
+              "symbol": "_locate",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d594",
+              "symbol": "_status",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d598",
+              "symbol": "_dfaSetBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d59c",
+              "symbol": "_msgscan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5a0",
+              "symbol": "_msysid",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5a4",
+              "symbol": "_dfaRstBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5a8",
+              "symbol": "_ncdate",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5ac",
+              "symbol": "_ncedat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b0",
+              "symbol": "_nctime",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b4",
+              "symbol": "_skpwht",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5b8",
+              "symbol": "_dfaQueryNP",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5bc",
+              "symbol": "_nterms",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5c0",
+              "symbol": "_numbyts",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5c4",
+              "symbol": "_dfaQuery",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5c8",
+              "symbol": "_odedcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5cc",
+              "symbol": "_opnmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5d0",
+              "symbol": "_othusn",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d5d4",
+              "symbol": "_senddpk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5d8",
+              "symbol": "_sameto",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5dc",
+              "symbol": "_dfaOpen",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e0",
+              "symbol": "_dfaMode",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e4",
+              "symbol": "_rtkick",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5e8",
+              "symbol": "_dfaInsertV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5ec",
+              "symbol": "_dfaInsertDup",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f0",
+              "symbol": "_rstmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f4",
+              "symbol": "_rsp2write",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5f8",
+              "symbol": "_dfaGetAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d5fc",
+              "symbol": "_rsp2read",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d600",
+              "symbol": "_rmvwht",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d604",
+              "symbol": "_dfaDelete",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d608",
+              "symbol": "_rejectreq",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d60c",
+              "symbol": "_register_textvar",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d610",
+              "symbol": "_dfaCountRec",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d614",
+              "symbol": "_register_module",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d618",
+              "symbol": "_register_agent",
+              "reference_kind": "imported_no_static_code_reference"
+            },
+            {
+              "iat_va": "0x0049d61c",
+              "symbol": "_rstrin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d620",
+              "symbol": "_rstrxf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d624",
+              "symbol": "_dfaClose",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d628",
+              "symbol": "_sameas",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d62c",
+              "symbol": "_samein",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d630",
+              "symbol": "_samepatu",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d634",
+              "symbol": "_ptrblok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d638",
+              "symbol": "_profan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d63c",
+              "symbol": "_setmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d640",
+              "symbol": "_shocst",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d644",
+              "symbol": "_dfaAcqLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d648",
+              "symbol": "_skpwrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d64c",
+              "symbol": "_sortstgs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d650",
+              "symbol": "_spr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d654",
+              "symbol": "_prfptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d658",
+              "symbol": "_prfmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d65c",
+              "symbol": "_dfaAcqAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d660",
+              "symbol": "_stop_polling",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d664",
+              "symbol": "_prfbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d668",
+              "symbol": "_stzcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d66c",
+              "symbol": "_syscyc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d670",
+              "symbol": "_tfsabt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d674",
+              "symbol": "_prf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d678",
+              "symbol": "_dfaAbs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d67c",
+              "symbol": "_tfspfx",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d680",
+              "symbol": "_tfspst",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d684",
+              "symbol": "_prat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d688",
+              "symbol": "_tfstate",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d68c",
+              "symbol": "_today",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d690",
+              "symbol": "_tokopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d694",
+              "symbol": "_parsin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d698",
+              "symbol": "_depad",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d69c",
+              "symbol": "_uidarr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a0",
+              "symbol": "_usaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a4",
+              "symbol": "_usrnum",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6a8",
+              "symbol": "_usroff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6ac",
+              "symbol": "_usrptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6b0",
+              "symbol": "_vdaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6b4",
+              "symbol": "_paccit",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6b8",
+              "symbol": "_vdatmp",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6bc",
+              "symbol": "_version",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0049d6c0",
+              "symbol": "_vfyadn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6c4",
+              "symbol": "_vtmsend",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6c8",
+              "symbol": "_vtmsndok",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6cc",
+              "symbol": "_ynopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d0",
+              "symbol": "_genrdn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d4",
+              "symbol": "_otstcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0049d6d8",
+              "symbol": "_dclvda",
+              "reference_kind": "direct_callable_import"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "wbbmmpls.dll",
+      "sha256": "e73973e68dc2b872b97c867731a5be57166fe544c7ba6abb2ee9c219216776bb",
+      "machine": "x86",
+      "pointer_width_bytes": 4,
+      "import_count": 55,
+      "contiguous_iat_run_count": 1,
+      "iat_runs": [
+        {
+          "start_va": "0x00407254",
+          "end_va": "0x0040732c",
+          "slot_count": 55,
+          "slot_width_bytes": 4,
+          "symbols": [
+            {
+              "iat_va": "0x00407254",
+              "symbol": "_odedcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407258",
+              "symbol": "_ncedat",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040725c",
+              "symbol": "_msgscan",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407260",
+              "symbol": "_ynopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407264",
+              "symbol": "_nterms",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407268",
+              "symbol": "_opnmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040726c",
+              "symbol": "_alczer",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407270",
+              "symbol": "_margc",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407274",
+              "symbol": "_lngopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407278",
+              "symbol": "_input",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0040727c",
+              "symbol": "_hasmkey",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407280",
+              "symbol": "_gmdnam",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407284",
+              "symbol": "_globalcmd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407288",
+              "symbol": "_genbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x0040728c",
+              "symbol": "_dfsthn",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407290",
+              "symbol": "_usrptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407294",
+              "symbol": "_usroff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407298",
+              "symbol": "_dfaRstBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040729c",
+              "symbol": "_vdaoff",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a0",
+              "symbol": "_dfaSetBlk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a4",
+              "symbol": "_dfaUpdateV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072a8",
+              "symbol": "_dfaInsertV",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072ac",
+              "symbol": "_galfree",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072b0",
+              "symbol": "_dfaDelete",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072b4",
+              "symbol": "_usrnum",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072b8",
+              "symbol": "_usaptr",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072bc",
+              "symbol": "_dfaAcqLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072c0",
+              "symbol": "_dfaAcqAbsLock",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072c4",
+              "symbol": "_status",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072c8",
+              "symbol": "_dfaAbs",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072cc",
+              "symbol": "_margv",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072d0",
+              "symbol": "_depad",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072d4",
+              "symbol": "_setmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072d8",
+              "symbol": "_sameto",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072dc",
+              "symbol": "_numopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e0",
+              "symbol": "_dclvda",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e4",
+              "symbol": "_clsmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072e8",
+              "symbol": "_othusn",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072ec",
+              "symbol": "_otstcrd",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072f0",
+              "symbol": "_register_module",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072f4",
+              "symbol": "_clsbb",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x004072f8",
+              "symbol": "_prfmsg",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x004072fc",
+              "symbol": "_prfbuf",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407300",
+              "symbol": "_catastro",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407304",
+              "symbol": "_rstmbk",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407308",
+              "symbol": "_rstrin",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040730c",
+              "symbol": "_sameas",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407310",
+              "symbol": "_prf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407314",
+              "symbol": "_outprf",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407318",
+              "symbol": "_shocst",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040731c",
+              "symbol": "_spr",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407320",
+              "symbol": "_bgnedt",
+              "reference_kind": "iat_data_or_indirect_reference"
+            },
+            {
+              "iat_va": "0x00407324",
+              "symbol": "_stgopt",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x00407328",
+              "symbol": "_stzcpy",
+              "reference_kind": "direct_callable_import"
+            },
+            {
+              "iat_va": "0x0040732c",
+              "symbol": "_uacoff",
+              "reference_kind": "direct_callable_import"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "closed_boundaries": [
+    "Every supplied MMUD/MMPLS WGSERVER import is represented by a 4-byte x86 IAT slot.",
+    "IAT slot order and virtual addresses are now canonicalized per exact module hash.",
+    "WCC/WBB counterparts can be validated without assuming interchangeable file identity."
+  ],
+  "limitations": [
+    "IAT layout identifies linkage slots, not implementations inside WGSERVER.EXE.",
+    "The native type behind data imports remains unknown beyond the 32-bit imported slot value."
+  ]
+}

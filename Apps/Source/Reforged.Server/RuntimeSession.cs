@@ -54,26 +54,8 @@ public sealed class RuntimeSession
     public bool TryMove(string direction, out string message)
     {
         Touch();
-        var normalized = NormalizeDirection(direction);
-        var exit = CurrentRoom.Exits.FirstOrDefault(candidate => string.Equals(candidate.Direction, normalized, StringComparison.OrdinalIgnoreCase));
-        if (exit is null)
-        {
-            message = "You cannot go that way.";
+        if (!World.TryResolveExit(CurrentRoom, direction, out _, out var target, out message) || target is null)
             return false;
-        }
-
-        if (exit.HasBlockedDestination)
-        {
-            message = $"Exit {normalized} points to unresolved destination {exit.TargetKey}. Movement blocked until evidence is reconciled.";
-            return false;
-        }
-
-        var target = World.FindRoom(exit.TargetMapId, exit.TargetRoomNumber);
-        if (target is null)
-        {
-            message = $"Exit {normalized} points to unresolved destination {exit.TargetKey}. Movement blocked until evidence is reconciled.";
-            return false;
-        }
 
         CurrentRoom = target;
         message = RoomRenderer.Render(World, CurrentRoom);

@@ -43,6 +43,14 @@ TRAP_RE = re.compile(r"^trap\s*,\s*(?P<damage>\d+)\s+damage$", re.IGNORECASE)
 SPELL_TRAP_RE = re.compile(r"^spell trap\s*:\s*(?P<spell_id>\d+)$", re.IGNORECASE)
 CAST_RE = re.compile(r"^cast\s*:\s*pre-(?P<pre>\d+)\s*,\s*post-(?P<post>\d+)$", re.IGNORECASE)
 HIDDEN_RE = re.compile(r"^hidden/(?P<mode>passable|searchable|needs\s+\d+\s+actions?,\s*(?:any|specific)\s+order)$", re.IGNORECASE)
+KEY_RE = re.compile(r"^key\s*:\s*(?P<item_id>\d+)(?:\s*\[or\s+(?P<difficulty>any|\d+)\s+picklocks(?P<strength>/strength)?\])?$", re.IGNORECASE)
+LEVEL_RE = re.compile(r"^level\s*:\s*(?P<minimum>-?\d+)\s+to\s+(?P<maximum>-?\d+)$", re.IGNORECASE)
+CLASS_RE = re.compile(r"^class\s*:\s*(?P<class_id>\d+)\s+OK,\s*(?P<denied>\d+)\s+NO$", re.IGNORECASE)
+RACE_RE = re.compile(r"^race\s*:\s*(?P<race_id>\d+)\s+OK,\s*(?P<denied>\d+)\s+NO$", re.IGNORECASE)
+ALIGNMENT_RE = re.compile(r"^alignment\s*:\s*(?P<minimum>.+?)\s+to\s+(?P<maximum>.+)$", re.IGNORECASE)
+ABILITY_RE = re.compile(r"^ability\s*:\s*(?P<ability_id>\d+)\s+w/value\s+(?P<minimum>-?\d+)\s+to\s+(?P<maximum>-?\d+)$", re.IGNORECASE)
+TICKET_ITEM_RE = re.compile(r"^ticket/item\s*:\s*(?P<item_id>\d+)$", re.IGNORECASE)
+TIMED_RE = re.compile(r"^timed\s*:\s*(?P<multiplier>\d+)\*(?P<minutes>\d+)\s+minutes$", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -116,9 +124,20 @@ def read_fixed_fields(blob: bytes) -> dict[str, int | str]:
     # Map and room offsets are verified by the Rooms table definition and all
     # decoded rows. Remaining fixed bytes are retained losslessly until each
     # numeric field's exact width/signedness is independently verified.
+    # The five consecutive signed 32-bit values at offsets 10..29 correlate
+    # exhaustively with MMExplorer's Light, Shop, Spell, Lair, and Delay
+    # columns.  They are promoted as strongly-correlated runtime values while
+    # retaining the raw prefix for future independent verification.  Placed is
+    # deliberately not read from bytes 30..33 because those bytes participate
+    # in Jet row metadata and are not a verified field boundary.
     return {
-        "map_number": int.from_bytes(blob[2:4], "little"),
-        "room_number": int.from_bytes(blob[6:8], "little"),
+        "map_number": int.from_bytes(blob[2:6], "little", signed=False),
+        "room_number": int.from_bytes(blob[6:10], "little", signed=False),
+        "light": int.from_bytes(blob[10:14], "little", signed=True),
+        "shop_id": int.from_bytes(blob[14:18], "little", signed=True),
+        "spell_id": int.from_bytes(blob[18:22], "little", signed=True),
+        "lair_id": int.from_bytes(blob[22:26], "little", signed=True),
+        "delay": int.from_bytes(blob[26:30], "little", signed=True),
         "fixed_prefix_hex": blob[:34].hex(),
     }
 
@@ -173,6 +192,47 @@ def parse_qualifier(qualifier: str) -> dict:
     text_match = TEXT_GATE_RE.match(qualifier)
     if text_match:
         return {"gate_kind": "text_command", "commands": split_commands(text_match.group("commands")), "prerequisites": {}}
+    key = KEY_RE.match(qualifier)
+    if key:
+        difficulty = key.group("difficulty")
+        return {
+            "gate_kind": "key",
+            "prerequisites": {
+                "required_item_id": int(key.group("item_id")),
+                "picklocks_difficulty": None if not difficulty or difficulty.lower() == "any" else int(difficulty),
+                "any_picklocks": bool(difficulty and difficulty.lower() == "any"),
+                "strength_alternative": bool(key.group("strength")),
+            },
+        }
+    level = LEVEL_RE.match(qualifier)
+    if level:
+        return {"gate_kind": "level_range", "prerequisites": {"minimum_level": int(level.group("minimum")), "maximum_level": int(level.group("maximum"))}}
+    class_gate = CLASS_RE.match(qualifier)
+    if class_gate:
+        return {"gate_kind": "class", "prerequisites": {"allowed_class_id": int(class_gate.group("class_id")), "denied_class_id": int(class_gate.group("denied"))}}
+    race_gate = RACE_RE.match(qualifier)
+    if race_gate:
+        return {"gate_kind": "race", "prerequisites": {"allowed_race_id": int(race_gate.group("race_id")), "denied_race_id": int(race_gate.group("denied"))}}
+    alignment = ALIGNMENT_RE.match(qualifier)
+    if alignment:
+        return {"gate_kind": "alignment_range", "prerequisites": {"minimum_alignment_name": alignment.group("minimum").strip(), "maximum_alignment_name": alignment.group("maximum").strip()}}
+    ability = ABILITY_RE.match(qualifier)
+    if ability:
+        return {"gate_kind": "ability_range", "prerequisites": {"ability_id": int(ability.group("ability_id")), "minimum_value": int(ability.group("minimum")), "maximum_value": int(ability.group("maximum"))}}
+    ticket = TICKET_ITEM_RE.match(qualifier)
+    if ticket:
+        return {"gate_kind": "ticket_item", "prerequisites": {"required_item_id": int(ticket.group("item_id"))}}
+    timed = TIMED_RE.match(qualifier)
+    if timed:
+        return {"gate_kind": "timed", "prerequisites": {"time_multiplier": int(timed.group("multiplier")), "minutes": int(timed.group("minutes"))}}
+    if qualifier.strip().lower() == "hidden/unknown":
+        return {
+            "gate_kind": "hidden",
+            "hidden_mode": "unknown",
+            "prerequisites": {},
+            "evidence_status": "strongly_correlated",
+            "runtime_fallback": "hidden_not_auto_traversed",
+        }
     return {"gate_kind": "qualified_unknown", "prerequisites": {}}
 
 
@@ -292,6 +352,12 @@ def decode_rooms(mdb_path: Path) -> tuple[list[dict], list[dict], list[dict], li
                     "name": variable["name"] or f"Room {map_number}/{room_number}",
                     "npc_definition": variable["npc"],
                     "command_definition": variable["cmd"],
+                    "light": fixed["light"],
+                    "shop_id": fixed["shop_id"],
+                    "spell_id": fixed["spell_id"],
+                    "lair_id": fixed["lair_id"],
+                    "delay": fixed["delay"],
+                    "placed_definition": None,
                     "exit_ids": room_exits,
                     "fixed_fields_raw": fixed["fixed_prefix_hex"],
                     "source": {
@@ -303,7 +369,15 @@ def decode_rooms(mdb_path: Path) -> tuple[list[dict], list[dict], list[dict], li
                         "offset": row.offset,
                         "row_pointer_flags_hex": hex(row.row_pointer_raw & 0xF000),
                     },
-                    "confidence": "high_map_room_name_npc_cmd_and_direction_columns",
+                    "confidence": "verified_map_room_name_npc_cmd_directions; strongly_correlated_light_shop_spell_lair_delay",
+                    "field_evidence": {
+                        "light": "strongly_correlated_signed_int32_offset_10",
+                        "shop_id": "strongly_correlated_signed_int32_offset_14",
+                        "spell_id": "strongly_correlated_signed_int32_offset_18",
+                        "lair_id": "strongly_correlated_signed_int32_offset_22",
+                        "delay": "strongly_correlated_signed_int32_offset_26",
+                        "placed_definition": "unresolved_not_promoted",
+                    },
                 })
             except Exception as exc:
                 errors.append({
@@ -356,6 +430,8 @@ def main() -> int:
         "cast_transition_exit_count": sum(exit_["gate_kind"] == "cast_transition" for exit_ in exits),
         "hidden_exit_count": sum(exit_["gate_kind"] == "hidden" for exit_ in exits),
         "unknown_qualified_exit_count": sum(exit_["gate_kind"] == "qualified_unknown" for exit_ in exits if exit_.get("status") == "decoded"),
+        "strongly_correlated_fixed_fields": ["Light", "Shop", "Spell", "Lair", "Delay"],
+        "unresolved_fixed_fields": ["Placed"],
         "unparsed_interaction_count": sum(item.get("status") == "unparsed_reference" for item in interactions),
         "decode_error_count": len(errors),
         "prerequisite_policy": "Preserve explicit door/text/other qualifiers; do not invent missing item, level, flag, spell, class, race, or alignment values.",

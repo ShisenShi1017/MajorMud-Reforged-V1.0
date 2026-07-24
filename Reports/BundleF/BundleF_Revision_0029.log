@@ -1,0 +1,83 @@
+Validating cumulative package...
+{
+  "Passed": true,
+  "Revision": 29,
+  "Phase": "F16-COMPILE-SYNCHRONIZATION",
+  "BundleFDisconnectCount": 0,
+  "Failures": []
+}
+Restoring and building...
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Reforged.Core -> E:\MajorMud-Reforged Github\Core\Source\Reforged.Core\bin\Release\net8.0\Reforged.Core.dll
+  Reforged.Server.Runtime -> E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server.Runtime\bin\Release\net8.0\Reforged.Server.Runtime.dll
+  MajorMud.Reforged.Compiler -> E:\MajorMud-Reforged Github\Apps\Compiler\bin\Release\net8.0\MajorMud.Reforged.Compiler.dll
+  Reforged.App -> E:\MajorMud-Reforged Github\Apps\Source\Reforged.App\bin\Release\net8.0-windows\win-x64\MajorMudReforged.dll
+  MajorMud.Reforged.Compiler.Tests -> E:\MajorMud-Reforged Github\Apps\Compiler.Tests\bin\Release\net8.0\MajorMud.Reforged.Compiler.Tests.dll
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(581,69): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(589,60): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(597,67): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(605,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(613,19): error CS0103: The name 'RuntimeStartupPathResolver' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(621,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(625,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(630,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(634,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(642,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(647,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(651,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(656,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(660,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(665,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(669,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(677,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(682,9): error CS0136: A local or parameter named 'report' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(682,18): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(686,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(714,64): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(722,9): error CS0136: A local or parameter named 'report' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(722,67): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(730,59): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(739,71): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(745,75): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(753,81): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(761,75): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(769,80): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+
+Build FAILED.
+
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(581,69): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(589,60): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(597,67): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(605,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(613,19): error CS0103: The name 'RuntimeStartupPathResolver' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(621,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(625,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(630,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(634,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(642,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(647,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(651,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(656,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(660,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(665,19): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(669,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(677,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(682,9): error CS0136: A local or parameter named 'report' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(682,18): error CS0103: The name 'RuntimeStartupValidation' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(686,5): error CS0126: An object of a type convertible to 'int' is required [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(714,64): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(722,9): error CS0136: A local or parameter named 'report' cannot be declared in this scope because that name is used in an enclosing local scope to define a local or parameter [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(722,67): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(730,59): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(739,71): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(745,75): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(753,81): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(761,75): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs(769,80): error CS0103: The name 'projectRoot' does not exist in the current context [E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Reforged.Server.csproj]
+    0 Warning(s)
+    29 Error(s)
+
+Time Elapsed 00:00:02.98

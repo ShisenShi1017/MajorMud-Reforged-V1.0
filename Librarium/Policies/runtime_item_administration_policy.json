@@ -1,0 +1,15 @@
+{
+  "policy_id": "runtime_item_administration",
+  "code_update": "0203",
+  "classification": "Reforged compatibility infrastructure",
+  "status": "active",
+  "rules": [
+    "Administrative inspection returns the authoritative instance, definition, contained descendants, and validation issues.",
+    "Administrative movement requires an explicit canonical destination and preserves runtime identities.",
+    "Portable-container subtree movement propagates one authoritative owner and rejects circular or contradictory placement.",
+    "Administrative repair remains evidence-gated by projected durability and maximum_durability.",
+    "Administrative removal is explicit and reports its override status.",
+    "Administrative audit runs runtime-state and global limited-item reconciliation without mutating state."
+  ],
+  "classic_boundary": "This policy does not claim original MajorMUD sysop command syntax, permissions, messages, or native repair formulas."
+}

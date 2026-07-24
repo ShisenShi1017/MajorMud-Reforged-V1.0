@@ -1,0 +1,2287 @@
+{
+  "schema": "mmexplorer_unmatched_reference_supplement_v1",
+  "code_update": "0139",
+  "family": "items",
+  "source": "Librarium/Objects/items/sql_mdb_records_0128.json",
+  "record_count": 67,
+  "records": [
+    {
+      "id": "mmexplorer_unmatched_items.2048",
+      "type": "item",
+      "name": "item row 222:6",
+      "sourceNumbers": {
+        "number": 2048
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 222,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f0000080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2049",
+      "type": "item",
+      "name": "item row 222:7",
+      "sourceNumbers": {
+        "number": 2049
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 222,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f0001080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2050",
+      "type": "item",
+      "name": "item row 222:8",
+      "sourceNumbers": {
+        "number": 2050
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 222,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f0002080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2051",
+      "type": "item",
+      "name": "item row 223:0",
+      "sourceNumbers": {
+        "number": 2051
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0003080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2052",
+      "type": "item",
+      "name": "item row 223:1",
+      "sourceNumbers": {
+        "number": 2052
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f0004080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2053",
+      "type": "item",
+      "name": "item row 223:2",
+      "sourceNumbers": {
+        "number": 2053
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f0005080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2054",
+      "type": "item",
+      "name": "item row 223:3",
+      "sourceNumbers": {
+        "number": 2054
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f0006080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2055",
+      "type": "item",
+      "name": "item row 223:4",
+      "sourceNumbers": {
+        "number": 2055
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f0007080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2056",
+      "type": "item",
+      "name": "item row 223:5",
+      "sourceNumbers": {
+        "number": 2056
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f0008080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2057",
+      "type": "item",
+      "name": "item row 223:6",
+      "sourceNumbers": {
+        "number": 2057
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f0009080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2058",
+      "type": "item",
+      "name": "item row 223:7",
+      "sourceNumbers": {
+        "number": 2058
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f000a080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2059",
+      "type": "item",
+      "name": "item row 223:8",
+      "sourceNumbers": {
+        "number": 2059
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 223,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f000b080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2060",
+      "type": "item",
+      "name": "item row 288:0",
+      "sourceNumbers": {
+        "number": 2060
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f000c080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2061",
+      "type": "item",
+      "name": "item row 288:1",
+      "sourceNumbers": {
+        "number": 2061
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f000d080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2062",
+      "type": "item",
+      "name": "item row 288:2",
+      "sourceNumbers": {
+        "number": 2062
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f000e080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2063",
+      "type": "item",
+      "name": "item row 288:3",
+      "sourceNumbers": {
+        "number": 2063
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f000f080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2064",
+      "type": "item",
+      "name": "item row 288:4",
+      "sourceNumbers": {
+        "number": 2064
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f0010080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2065",
+      "type": "item",
+      "name": "item row 288:5",
+      "sourceNumbers": {
+        "number": 2065
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f0011080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2066",
+      "type": "item",
+      "name": "item row 288:6",
+      "sourceNumbers": {
+        "number": 2066
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f0012080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2067",
+      "type": "item",
+      "name": "item row 288:7",
+      "sourceNumbers": {
+        "number": 2067
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f0013080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2068",
+      "type": "item",
+      "name": "item row 288:8",
+      "sourceNumbers": {
+        "number": 2068
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 288,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f0014080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2069",
+      "type": "item",
+      "name": "item row 289:0",
+      "sourceNumbers": {
+        "number": 2069
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0015080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2070",
+      "type": "item",
+      "name": "item row 289:1",
+      "sourceNumbers": {
+        "number": 2070
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f0016080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2071",
+      "type": "item",
+      "name": "item row 289:2",
+      "sourceNumbers": {
+        "number": 2071
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f0017080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2072",
+      "type": "item",
+      "name": "item row 289:3",
+      "sourceNumbers": {
+        "number": 2072
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f0018080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2073",
+      "type": "item",
+      "name": "item row 289:4",
+      "sourceNumbers": {
+        "number": 2073
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f0019080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2074",
+      "type": "item",
+      "name": "item row 289:5",
+      "sourceNumbers": {
+        "number": 2074
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f001a080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2075",
+      "type": "item",
+      "name": "item row 289:6",
+      "sourceNumbers": {
+        "number": 2075
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f001b080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2076",
+      "type": "item",
+      "name": "item row 289:7",
+      "sourceNumbers": {
+        "number": 2076
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f001c080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2077",
+      "type": "item",
+      "name": "item row 289:8",
+      "sourceNumbers": {
+        "number": 2077
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 289,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f001d080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2078",
+      "type": "item",
+      "name": "item row 290:0",
+      "sourceNumbers": {
+        "number": 2078
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f001e080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2079",
+      "type": "item",
+      "name": "item row 290:1",
+      "sourceNumbers": {
+        "number": 2079
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f001f080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2080",
+      "type": "item",
+      "name": "item row 290:2",
+      "sourceNumbers": {
+        "number": 2080
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f0020080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2081",
+      "type": "item",
+      "name": "item row 290:3",
+      "sourceNumbers": {
+        "number": 2081
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f0021080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2082",
+      "type": "item",
+      "name": "item row 290:4",
+      "sourceNumbers": {
+        "number": 2082
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f0022080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2083",
+      "type": "item",
+      "name": "item row 290:5",
+      "sourceNumbers": {
+        "number": 2083
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f0023080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2084",
+      "type": "item",
+      "name": "item row 290:6",
+      "sourceNumbers": {
+        "number": 2084
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f0024080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2085",
+      "type": "item",
+      "name": "item row 290:7",
+      "sourceNumbers": {
+        "number": 2085
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f0025080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2086",
+      "type": "item",
+      "name": "item row 290:8",
+      "sourceNumbers": {
+        "number": 2086
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 290,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f0026080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2087",
+      "type": "item",
+      "name": "item row 291:0",
+      "sourceNumbers": {
+        "number": 2087
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0027080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2088",
+      "type": "item",
+      "name": "item row 291:1",
+      "sourceNumbers": {
+        "number": 2088
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f0028080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2089",
+      "type": "item",
+      "name": "item row 291:2",
+      "sourceNumbers": {
+        "number": 2089
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f0029080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2090",
+      "type": "item",
+      "name": "item row 291:3",
+      "sourceNumbers": {
+        "number": 2090
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f002a080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2091",
+      "type": "item",
+      "name": "item row 291:4",
+      "sourceNumbers": {
+        "number": 2091
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f002b080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2092",
+      "type": "item",
+      "name": "item row 291:5",
+      "sourceNumbers": {
+        "number": 2092
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f002c080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2093",
+      "type": "item",
+      "name": "item row 291:6",
+      "sourceNumbers": {
+        "number": 2093
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f002d080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2094",
+      "type": "item",
+      "name": "item row 291:7",
+      "sourceNumbers": {
+        "number": 2094
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f002e080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2095",
+      "type": "item",
+      "name": "item row 291:8",
+      "sourceNumbers": {
+        "number": 2095
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 291,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f002f080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2096",
+      "type": "item",
+      "name": "item row 292:0",
+      "sourceNumbers": {
+        "number": 2096
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0030080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2097",
+      "type": "item",
+      "name": "item row 292:1",
+      "sourceNumbers": {
+        "number": 2097
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f0031080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2098",
+      "type": "item",
+      "name": "item row 292:2",
+      "sourceNumbers": {
+        "number": 2098
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f0032080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2099",
+      "type": "item",
+      "name": "item row 292:3",
+      "sourceNumbers": {
+        "number": 2099
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f0033080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2100",
+      "type": "item",
+      "name": "item row 292:4",
+      "sourceNumbers": {
+        "number": 2100
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f0034080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2101",
+      "type": "item",
+      "name": "item row 292:5",
+      "sourceNumbers": {
+        "number": 2101
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f0035080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2102",
+      "type": "item",
+      "name": "item row 292:6",
+      "sourceNumbers": {
+        "number": 2102
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f0036080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2103",
+      "type": "item",
+      "name": "item row 292:7",
+      "sourceNumbers": {
+        "number": 2103
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f0037080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2104",
+      "type": "item",
+      "name": "item row 292:8",
+      "sourceNumbers": {
+        "number": 2104
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 292,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f0038080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2105",
+      "type": "item",
+      "name": "item row 293:0",
+      "sourceNumbers": {
+        "number": 2105
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0039080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2106",
+      "type": "item",
+      "name": "item row 293:1",
+      "sourceNumbers": {
+        "number": 2106
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 1,
+        "offset": 3256,
+        "length": 420,
+        "hexPrefix": "5f003a080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2107",
+      "type": "item",
+      "name": "item row 293:2",
+      "sourceNumbers": {
+        "number": 2107
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 2,
+        "offset": 2836,
+        "length": 420,
+        "hexPrefix": "5f003b080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2108",
+      "type": "item",
+      "name": "item row 293:3",
+      "sourceNumbers": {
+        "number": 2108
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 3,
+        "offset": 2416,
+        "length": 420,
+        "hexPrefix": "5f003c080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2109",
+      "type": "item",
+      "name": "item row 293:4",
+      "sourceNumbers": {
+        "number": 2109
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 4,
+        "offset": 1996,
+        "length": 420,
+        "hexPrefix": "5f003d080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2110",
+      "type": "item",
+      "name": "item row 293:5",
+      "sourceNumbers": {
+        "number": 2110
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 5,
+        "offset": 1576,
+        "length": 420,
+        "hexPrefix": "5f003e080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2111",
+      "type": "item",
+      "name": "item row 293:6",
+      "sourceNumbers": {
+        "number": 2111
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 6,
+        "offset": 1156,
+        "length": 420,
+        "hexPrefix": "5f003f080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2112",
+      "type": "item",
+      "name": "item row 293:7",
+      "sourceNumbers": {
+        "number": 2112
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 7,
+        "offset": 736,
+        "length": 420,
+        "hexPrefix": "5f0040080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2113",
+      "type": "item",
+      "name": "item row 293:8",
+      "sourceNumbers": {
+        "number": 2113
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 293,
+        "rowIndexOnPage": 8,
+        "offset": 316,
+        "length": 420,
+        "hexPrefix": "5f0041080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    },
+    {
+      "id": "mmexplorer_unmatched_items.2114",
+      "type": "item",
+      "name": "item row 294:0",
+      "sourceNumbers": {
+        "number": 2114
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB item row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 22,
+        "page": 294,
+        "rowIndexOnPage": 0,
+        "offset": 3676,
+        "length": 420,
+        "hexPrefix": "5f0042080000000000000000000000000000ffffffff00000000000000000000",
+        "hexSuffix": "72010300ffffffffffffffffffffff7f"
+      },
+      "printableSegments": [],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "items",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction.",
+      "object_type": "item",
+      "canonical_status_0139": "reference_supplement_unmatched_to_active_librarium_record",
+      "promotion_code_update": "0139"
+    }
+  ]
+}

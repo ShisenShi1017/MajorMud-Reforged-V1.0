@@ -1,9 +1,0 @@
-{"seq": 1, "probe": "TRACE-0080-001", "event": "host.loop.enter", "source": "MBBSEmu.MbbsHost.WorkerThread", "evidence_state": "derived_from_source"}
-{"seq": 2, "probe": "TRACE-0080-001", "event": "host.wait_for_next_tick", "source": "WaitForNextTick Timer.Hertz gate or pending-data bypass", "evidence_state": "derived_from_source"}
-{"seq": 3, "probe": "TRACE-0080-005", "event": "session.iteration.start", "source": "foreach _channelDictionary.Values", "evidence_state": "derived_from_source"}
-{"seq": 4, "probe": "TRACE-0080-005", "event": "session.input.process", "source": "session.ProcessDataFromClient + ProcessIncomingCharacter", "evidence_state": "derived_from_source"}
-{"seq": 5, "probe": "TRACE-0080-002", "event": "module.status_or_command_callback", "source": "ProcessSTSROU/ProcessSTTROU/ProcessPollingRoutine depending on session status", "evidence_state": "derived_from_source"}
-{"seq": 6, "probe": "TRACE-0080-003", "event": "timer.rtkick.process", "source": "ProcessRTKICK", "evidence_state": "derived_from_source"}
-{"seq": 7, "probe": "TRACE-0080-003", "event": "timer.rtihdlr.process", "source": "ProcessRTIHDLR 55ms gate", "evidence_state": "derived_from_source"}
-{"seq": 8, "probe": "TRACE-0080-003", "event": "timer.syscyc.process", "source": "ProcessSYSCYC", "evidence_state": "derived_from_source"}
-{"seq": 9, "probe": "TRACE-0080-003", "event": "host.tasks.process", "source": "ProcessTasks INITASK routines", "evidence_state": "derived_from_source"}

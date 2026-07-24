@@ -1,0 +1,46 @@
+{
+  "update": "0160",
+  "catalog": "physical_weapon_attack_execution",
+  "status": "active_fixture_and_evidence_gated",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimePhysicalWeaponAttackExecution.cs",
+  "ownership": {
+    "weapon_binding": "static definition binding",
+    "defensive_result": "per-action result",
+    "mitigation_trace": "per-action audit state",
+    "hp_mutation": "character_or_npc runtime sink"
+  },
+  "execution_order": [
+    "validate combat room turn and active participants",
+    "validate weapon binding and readiness",
+    "reject unresolved formula policy",
+    "consume scheduled turn once",
+    "roll hit",
+    "apply automatic miss or hit",
+    "compare attack and defense totals",
+    "resolve dodge then parry then block",
+    "roll base damage",
+    "apply critical multiplier",
+    "apply flat armor reduction",
+    "apply resistance basis points",
+    "apply block flat reduction",
+    "apply minimum damage clamp",
+    "atomically mutate HP",
+    "emit defeat transition"
+  ],
+  "promoted_fixture_binding": {
+    "definition_id": "item.1622",
+    "attack_path": "one_handed",
+    "requires_weapon": true,
+    "requires_ammunition": false
+  },
+  "production_policy": "Weapon paths, defensive outcomes, critical thresholds, armor, resistance, and block values remain inactive unless proven or strongly correlated. Missing values reject execution.",
+  "native_dependencies": [
+    "exact automatic hit and miss thresholds",
+    "critical and fumble ranges",
+    "dodge parry block formulas",
+    "armor and resistance order",
+    "weapon readiness timing",
+    "ammunition consumption timing",
+    "durability mutation timing"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "runtime_item_global_limited_reconciliation",
+  "code_update": "0202",
+  "owner": "Items",
+  "policy": "Aggregate explicit owner-scoped and world-scoped limited-item reservations across all persisted item locations and reject malformed, inconsistent, unresolved, or over-limit states without destructive repair.",
+  "owner_scopes": ["inventory", "equipment", "trade", "bank", "portable_container", "active_corpse"],
+  "world_scopes": ["all persisted item instances"],
+  "fallback": "fail_closed_preserve_instances",
+  "classic_status": "compatibility_infrastructure_not_claimed_native"
+}

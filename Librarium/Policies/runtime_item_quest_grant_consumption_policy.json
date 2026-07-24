@@ -1,0 +1,18 @@
+{
+  "id": "runtime_item_quest_grant_consumption_policy",
+  "authority": "Librarium",
+  "version": "CodeUpdate0187",
+  "classification": "strongly_correlated",
+  "rules": {
+    "grant": "Reconcile an authoritative quest grant key to an explicit owner-scoped target quantity; preserve existing identities and create only deficits.",
+    "consume": "Consume an exact authoritative quantity from character-owned items carrying the matching quest identity in stable instance-ID order.",
+    "rollback": "Reject insufficient quantity or invalid identities atomically without partial mutation.",
+    "fail_closed": "Do not infer native quest mappings, cleanup triggers, or messages."
+  },
+  "bidirectional_relationships": [
+    "quest -> granted item definition",
+    "quest -> consumed item definition",
+    "item instance -> quest identity",
+    "item instance -> character owner"
+  ]
+}

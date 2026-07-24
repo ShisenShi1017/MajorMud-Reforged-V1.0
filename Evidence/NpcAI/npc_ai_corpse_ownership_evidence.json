@@ -1,0 +1,19 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "pass": "CodeUpdate0178",
+  "behavior": "npc-corpse-inventory-ownership",
+  "classification": "PROVEN",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcInventoryOwnership.cs"
+  ],
+  "runtime": {
+    "owner": "RuntimeNpcCorpseOwnershipService and RuntimeItemEngine",
+    "admission": ["dead NPC", "exact current room", "explicit authority", "unique corpse ID", "nonnegative explicit gold"],
+    "effects": ["materialize exact corpse", "transfer all existing NPC-owned items atomically", "clear NPC item ownership"],
+    "fallback": "reject without mutation",
+    "not_inferred": ["loot tables", "drop chance", "corpse access", "native decay", "merchant gold", "equipment AI"]
+  },
+  "tests": ["living NPC rejected", "exact dead inventory transfer", "duplicate corpse rejected", "corpse item ownership"]
+}

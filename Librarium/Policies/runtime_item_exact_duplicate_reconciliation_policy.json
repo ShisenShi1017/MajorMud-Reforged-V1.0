@@ -1,0 +1,19 @@
+{
+  "id": "runtime.items.exact-duplicate-reconciliation",
+  "version": "0196",
+  "classification": "Reforged compatibility infrastructure",
+  "activation": "explicit recovery or administrative invocation only",
+  "inputs": [
+    "persisted item state",
+    "canonical item catalog"
+  ],
+  "rules": [
+    "collapse only byte-semantic-equivalent duplicate item records sharing one instance ID",
+    "collapse only value-equivalent duplicate corpse records sharing one corpse ID",
+    "reject conflicting duplicates without changing authoritative state",
+    "validate the complete repaired state before acceptance",
+    "preserve all surviving identities and references"
+  ],
+  "fallback": "reject conflicting or still-invalid state; never invent a replacement identity or silently choose between differing records",
+  "native_status": "native duplicate cleanup and corruption repair behavior unresolved"
+}

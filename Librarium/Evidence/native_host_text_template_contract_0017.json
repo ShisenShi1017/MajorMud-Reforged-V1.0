@@ -1,0 +1,6952 @@
+{
+  "schema": "majormud.native-host-text-template-contract.v1",
+  "update": "FinalNativeClosure0017",
+  "generated_utc": "2026-07-16T04:15:02.827006+00:00",
+  "evidence_class": "PROVEN_CALLER_TEXT_TEMPLATE_SYNTAX",
+  "method": "Derive only syntactic properties from printable ASCII addresses proven in FinalNativeClosure0016: literal versus C printf-style conversion template, exact conversion directives, CR/LF/TAB controls, escaped percent markers, byte lengths, host symbol, argument position, and occurrence counts.",
+  "interpretation_limits": [
+    "A printf-shaped directive proves caller-supplied template syntax, not the exact Worldgroup formatter implementation.",
+    "Literal text may still be interpreted by a host service according to semantics unavailable without WGSERVER.EXE.",
+    "Directive syntax does not by itself prove the native type of the corresponding variadic argument.",
+    "Only immediate in-module printable ASCII pointers are represented; runtime-built and indirect strings remain outside this pass."
+  ],
+  "source_evidence": "Librarium/Evidence/native_host_immediate_provenance_0016.json",
+  "summary": {
+    "ascii_records": 396,
+    "distinct_ascii_texts": 209,
+    "observed_ascii_argument_occurrences": 628,
+    "printf_template_records": 82,
+    "literal_records": 314,
+    "format_conversion_occurrences": 232,
+    "feature_occurrences": {
+      "carriage_return": 118,
+      "edge_whitespace": 22,
+      "line_feed": 36,
+      "literal_ascii": 464,
+      "printf_conversion_template": 164
+    },
+    "conversion_code_occurrences": {
+      "d": 96,
+      "s": 98,
+      "u": 38
+    },
+    "symbols_with_ascii_arguments": 21,
+    "texts_referenced_from_multiple_sites": 167,
+    "wcc_wbb_pairs_matching": 2
+  },
+  "distribution_parity": [
+    {
+      "pair": "wccmmud.dll:wbbmmud.dll",
+      "matching_syntactic_contract": true,
+      "wcc_record_occurrences": 258,
+      "wbb_record_occurrences": 258
+    },
+    {
+      "pair": "wccmmpls.dll:wbbmmpls.dll",
+      "matching_syntactic_contract": true,
+      "wcc_record_occurrences": 56,
+      "wbb_record_occurrences": 56
+    }
+  ],
+  "symbol_record_counts": {
+    "_c2bcpy": 2,
+    "_catastro": 2,
+    "_findtvar": 2,
+    "_fsdxan": 12,
+    "_gmdnam": 2,
+    "_haskey": 2,
+    "_msgscan": 8,
+    "_opnmsg": 2,
+    "_prat": 2,
+    "_prf": 102,
+    "_prfmsg": 2,
+    "_sameas": 20,
+    "_samepatu": 2,
+    "_sameto": 28,
+    "_senddpk": 2,
+    "_shocst": 150,
+    "_spr": 40,
+    "_stzcpy": 4,
+    "_tfsopn": 2,
+    "_tokopt": 8,
+    "_vdaoff": 2
+  },
+  "records": [
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692520,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692562,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Please enter a new name: ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692609,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "\rWe're sorry, but the game is currently full.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 46
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692656,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "Please ask your sysop to upgrade his/her user license!\r\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 56
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692811,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s just entered the Realm.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692841,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "*** MajorMUD Tournament Play enabled! ***\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692909,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%4d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%4d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692913,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "\r\nYou have %d CP to distribute.\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4693867,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "You MUST have a last name!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 74
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4693942,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Your last name contains invalid characters!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 91
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694055,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "The name you have chosen is invalid!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 84
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694140,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "The name you have chosen is already in use!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 91
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694232,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "You have previously created a character while you where paying.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 64
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694297,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "As unpaid accounts may not save characters, you may not play this\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 66
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694364,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "character until you have switched to a paying class again.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 59
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694424,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "\rTo prevent accidental suicide or reroll, these commands\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 57
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694482,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "have been password protected.  You have not yet entered\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 56
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694539,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "your suicide password, so please do so soon using the\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 54
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694594,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "SET SUICIDE command.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694637,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Please wait - Validating your name.\r ",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 37
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694680,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "\r\n     M A J O R   M U D\r\n\r\n     Character Generator\r\n\r\n+-    Point Cost Chart    -+\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 86
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694767,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "|                          |\r\n| 1st 10 points: 1 CP each |\r\n| 2nd 10 points: 2 CP each |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694858,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| 3rd 10 points: 3 CP each |\r\n|     ... and so on ...    |\r\n|                          |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4694949,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| +10 to base stat:  10 CP |\r\n| +20 to base stat:  30 CP |\r\n| +30 to base stat:  60 CP |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695040,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| +40 to base stat: 100 CP |\r\n| +50 to base stat: 150 CP |\r\n+-    ... and so on ...   -+\r\n\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 92
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695133,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Strength  %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695153,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Intellect %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695173,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Willpower %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695193,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Agility   %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695213,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Health    %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4695233,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Charm     %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215853,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Current registry settings:\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215503,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215881,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Press <enter> to stop the listing.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 35
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215917,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "No descriptions found!\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215966,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Removed custom registry for %s\n",
+      "features": [
+        "printf_conversion_template",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 31
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215998,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%d descriptions found.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216022,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Start listing at what letter (enter='a'):",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 41
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216064,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Delete which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216098,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Deleting the description for %s:\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215546,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%s\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216132,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No description found for that user.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 36
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216169,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "View which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 31
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216267,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "No description found.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 22
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216070,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": " which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216290,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Done.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216297,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Approve which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 34
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216332,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "This will cost you %s credits, %s copper, and %s days off your membership.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "s"
+      ],
+      "conversion_count": 3,
+      "byte_length": 75
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216415,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Do you wish to continue? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216441,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Not implemented yet.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_prf",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215994,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s\n",
+      "features": [
+        "printf_conversion_template",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692520,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692562,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Please enter a new name: ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692609,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "\rWe're sorry, but the game is currently full.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 46
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692656,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "Please ask your sysop to upgrade his/her user license!\r\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 56
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692811,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s just entered the Realm.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692841,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "*** MajurMUD Tournament Play enabled! ***\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692909,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%4d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%4d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692913,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "\r\nYou have %d CP to distribute.\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4693867,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "You MUST have a last name!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 74
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4693942,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Your last name contains invalid characters!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 91
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694055,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "The name you have chosen is invalid!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 84
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694140,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "The name you have chosen is already in use!\rYou will have to start over again.\rPress Enter.",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 91
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694232,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "You have previously created a character while you where paying.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 64
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694297,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "As unpaid accounts may not save characters, you may not play this\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 66
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694364,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "character until you have switched to a paying class again.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 59
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694424,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "\rTo prevent accidental suicide or reroll, these commands\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 57
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694482,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "have been password protected.  You have not yet entered\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 56
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694539,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "your suicide password, so please do so soon using the\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 54
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694594,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "SET SUICIDE command.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694637,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Please wait - Validating your name.\r ",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 37
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694680,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "\r\n     M A J O R   M U D\r\n\r\n     Character Generator\r\n\r\n+-    Point Cost Chart    -+\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 86
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694767,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "|                          |\r\n| 1st 10 points: 1 CP each |\r\n| 2nd 10 points: 2 CP each |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694858,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| 3rd 10 points: 3 CP each |\r\n|     ... and so on ...    |\r\n|                          |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4694949,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| +10 to base stat:  10 CP |\r\n| +20 to base stat:  30 CP |\r\n| +30 to base stat:  60 CP |\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 90
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695040,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "| +40 to base stat: 100 CP |\r\n| +50 to base stat: 150 CP |\r\n+-    ... and so on ...   -+\r\n\r\n",
+      "features": [
+        "literal_ascii",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 92
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695133,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Strength  %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695153,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Intellect %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695173,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Willpower %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695193,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Agility   %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695213,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Health    %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4695233,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Charm     %d - %d\r\n",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215853,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Current registry settings:\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215503,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215881,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Press <enter> to stop the listing.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 35
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215917,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "No descriptions found!\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215966,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Removed custom registry for %s\n",
+      "features": [
+        "printf_conversion_template",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 31
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215998,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%d descriptions found.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216022,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Start listing at what letter (enter='a'):",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 41
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216064,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Delete which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216098,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Deleting the description for %s:\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215546,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%s\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216132,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No description found for that user.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 36
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216169,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "View which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 31
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216267,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "No description found.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 22
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216070,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": " which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 27
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216290,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Done.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216297,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Approve which user's description? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 34
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216332,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "This will cost you %s credits, %s copper, and %s days off your membership.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "s"
+      ],
+      "conversion_count": 3,
+      "byte_length": 75
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216415,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Do you wish to continue? ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216441,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Not implemented yet.\r",
+      "features": [
+        "literal_ascii",
+        "carriage_return"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_prf",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215994,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s\n",
+      "features": [
+        "printf_conversion_template",
+        "line_feed"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prfmsg",
+      "module": "wccmmpls.dll",
+      "position": 4,
+      "address_u32": 4217964,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Pu",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_prfmsg",
+      "module": "wbbmmpls.dll",
+      "position": 4,
+      "address_u32": 4217964,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Pu",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4789500,
+      "occurrences": 17,
+      "section": "DATA",
+      "text": "gerData$qv",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4705440,
+      "occurrences": 11,
+      "section": "DATA",
+      "text": "%lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4705892,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%u",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%u"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4706089,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4706268,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d users, %lu minutes, %d evil points, %d total users.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%d",
+        "%lu",
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "u",
+        "d",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 55
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4709836,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%ld",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%ld"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4710551,
+      "occurrences": 9,
+      "section": "DATA",
+      "text": "%s%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s"
+      ],
+      "conversion_count": 2,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4710943,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%s%s%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "s"
+      ],
+      "conversion_count": 3,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4710553,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4712328,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Failed to drop %s%s in %d/%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "d",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 28
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4712366,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Kil:Item %d not found",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4712388,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Kil:Key %d not found",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4713140,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%u",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%u"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4712354,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4713741,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215277,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s bought mud description",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215941,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s bought mud life",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216412,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4216408,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "%ld",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%ld"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wccmmpls.dll",
+      "position": 3,
+      "address_u32": 4215303,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "\nTime to charge him/her!",
+      "features": [
+        "literal_ascii",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 24
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4789500,
+      "occurrences": 17,
+      "section": "DATA",
+      "text": "gerData$qv",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4705440,
+      "occurrences": 11,
+      "section": "DATA",
+      "text": "%lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4705892,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%u",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%u"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4706089,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4706268,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d users, %lu minutes, %d evil points, %d total users.\r",
+      "features": [
+        "printf_conversion_template",
+        "carriage_return"
+      ],
+      "format_directives": [
+        "%d",
+        "%lu",
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "u",
+        "d",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 55
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4709836,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%ld",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%ld"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4710551,
+      "occurrences": 9,
+      "section": "DATA",
+      "text": "%s%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s"
+      ],
+      "conversion_count": 2,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4710943,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%s%s%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%s"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "s"
+      ],
+      "conversion_count": 3,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4710553,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4712328,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Failed to drop %s%s in %d/%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s",
+        "%s",
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "s",
+        "s",
+        "d",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 28
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4712366,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Kil:Item %d not found",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4712388,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Kil:Key %d not found",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4713140,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%u",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%u"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4712354,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4713741,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215277,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s bought mud description",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215941,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%s bought mud life",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216412,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "%d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4216408,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "%ld",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%ld"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_spr",
+      "module": "wbbmmpls.dll",
+      "position": 3,
+      "address_u32": 4215303,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "\nTime to charge him/her!",
+      "features": [
+        "literal_ascii",
+        "line_feed"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 24
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4691652,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NO",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707056,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "trap",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707164,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Fast",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707169,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Slow",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707206,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "on",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707209,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "off",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4707213,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "full",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215256,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NO",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215506,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMPLS_REG",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215263,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMPLS_DESC",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4691652,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NO",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707056,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "trap",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707164,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Fast",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707169,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Slow",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707206,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "on",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707209,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "off",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4707213,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "full",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215256,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NO",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 2
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215506,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMPLS_REG",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_sameas",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215263,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMPLS_DESC",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4712617,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "healing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4712812,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "curing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4712819,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "cure poison",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4712950,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "training",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4732958,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "map",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4732962,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4732967,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "user",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4732972,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4731334,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "name",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4753069,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "sysop",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 5
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4755791,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "all",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4756743,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4762297,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "gangs",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 5
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215960,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Yes",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4712617,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "healing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4712812,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "curing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4712819,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "cure poison",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4712950,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "training",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4732958,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "map",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4732962,
+      "occurrences": 4,
+      "section": "DATA",
+      "text": "gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4732967,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "user",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4732972,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4731334,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "name",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4753069,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "sysop",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 5
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4755791,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "all",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4756743,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4762297,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "gangs",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 5
+    },
+    {
+      "symbol": "_sameto",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215960,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Yes",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4692413,
+      "occurrences": 6,
+      "section": "DATA",
+      "text": "MajorMUD - Notice",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4705997,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD Items swept up",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4706206,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD User cleanup",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4722428,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Check mongen stats",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4723055,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "MajorMud - Warning unable to create node",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 40
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4723666,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4724024,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD - Debug",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727605,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "MajorMUD - Recovery Mode",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 24
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727680,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD - Warning",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727733,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD - Warning Unable to build the active list",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 50
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727797,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD - Error",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727858,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD - Corruption Please wait",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4727961,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room Counts",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4728052,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD Initialized",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4728951,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a room",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4728979,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a player",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729011,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with an item",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729040,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729074,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a known monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 26
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729120,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with spell",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729148,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with class",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729176,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with race",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729202,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with shop",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729228,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with Bankbook",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729262,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with message",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729294,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with Gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729320,
+      "occurrences": 14,
+      "section": "DATA",
+      "text": "Saving error",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4729571,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Couldn't find delete monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 28
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4732890,
+      "occurrences": 5,
+      "section": "DATA",
+      "text": "MajorMud - Warning",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4767461,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD Notice",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692431,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Recovery not completed - leaving flag file",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692474,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Offline recovery required - leaving flag file",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 45
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4705344,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Starting Cleanup",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4706021,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Hid %d items.",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4706228,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d (%d) users, %s mins, %d EPs forgiven",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d",
+        "%d",
+        "%s",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d",
+        "s",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 39
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4706324,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Cleanup Complete",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4706553,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d Demo days left",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4706571,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Demo Expired",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4722447,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room: %d, Map: %d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4724041,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Avoided divide by zero in CEU...continuing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4727630,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Detected Abnormal system shutdown",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4727814,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No database update found - Game not started",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 43
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4727892,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Corrupt database detected - attempting to fix",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 45
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4727938,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Known Monsters checked",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 22
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4727995,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Rooms processed",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4728073,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Maps updated",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4728969,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4728999,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Player NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729030,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Item NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729061,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Monster NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729101,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Known Monster NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729137,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Spell NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729165,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Class NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729192,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Race NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729218,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Shop NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729248,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Bankbook NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729281,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Message NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729310,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Gang NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729333,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No rooms",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729342,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No items",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729351,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No monsters",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729363,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No known monsters",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729381,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No spells",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729391,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No classes",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729402,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No races",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729411,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No shops",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729420,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "No bankbooks",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729433,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No messages",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729445,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "No gangs",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4729600,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Monster Number: %lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4732909,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Unable to create Item Owner Node",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 32
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4738564,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "Unable to create Key Node (Out of memory)",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 41
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4767477,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Automatic Database Update Complete",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 34
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215466,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajorMUD Plus - Demo Mode",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215492,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Expires on %s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4692413,
+      "occurrences": 6,
+      "section": "DATA",
+      "text": "MajurMUD - Notice",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4705997,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD Items swept up",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 23
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4706206,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD User cleanup",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 21
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4722428,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Check mongen stats",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4723055,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "MajurMud - Warning unable to create node",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 40
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4723666,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4724024,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD - Debug",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727605,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "MajurMUD - Recovery Mode",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 24
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727680,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD - Warning",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727733,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD - Warning Unable to build the active list",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 50
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727797,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD - Error",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727858,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD - Corruption Please wait",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4727961,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room Counts",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4728052,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD Initialized",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4728951,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a room",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4728979,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a player",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729011,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with an item",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729040,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 20
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729074,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with a known monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 26
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729120,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with spell",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729148,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with class",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729176,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with race",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729202,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with shop",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729228,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with Bankbook",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729262,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with message",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729294,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Error with Gang",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729320,
+      "occurrences": 14,
+      "section": "DATA",
+      "text": "Saving error",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4729571,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Couldn't find delete monster",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 28
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4732890,
+      "occurrences": 5,
+      "section": "DATA",
+      "text": "MajurMud - Warning",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4767461,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD Notice",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692431,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Recovery not completed - leaving flag file",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692474,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Offline recovery required - leaving flag file",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 45
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4705344,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Starting Cleanup",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4706021,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Hid %d items.",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4706228,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d (%d) users, %s mins, %d EPs forgiven",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d",
+        "%d",
+        "%s",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d",
+        "s",
+        "d"
+      ],
+      "conversion_count": 4,
+      "byte_length": 39
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4706324,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Cleanup Complete",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 16
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4706553,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "%d Demo days left",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4706571,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Demo Expired",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4722447,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room: %d, Map: %d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%d",
+        "%d"
+      ],
+      "conversion_codes": [
+        "d",
+        "d"
+      ],
+      "conversion_count": 2,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4724041,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Avoided divide by zero in CEU...continuing",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 42
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4727630,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Detected Abnormal system shutdown",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 33
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4727814,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No database update found - Game not started",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 43
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4727892,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Corrupt database detected - attempting to fix",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 45
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4727938,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Known Monsters checked",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 22
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4727995,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Rooms processed",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 15
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4728073,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Maps updated",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4728969,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Room NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4728999,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Player NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729030,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Item NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729061,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Monster NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729101,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Known Monster NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 18
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729137,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Spell NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729165,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Class NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729192,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Race NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729218,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Shop NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729248,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Bankbook NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729281,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Message NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729310,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Gang NULL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729333,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No rooms",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729342,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No items",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729351,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No monsters",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729363,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No known monsters",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 17
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729381,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No spells",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 9
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729391,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No classes",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729402,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No races",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729411,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No shops",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729420,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "No bankbooks",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729433,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "No messages",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729445,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "No gangs",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4729600,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Monster Number: %lu",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%lu"
+      ],
+      "conversion_codes": [
+        "u"
+      ],
+      "conversion_count": 1,
+      "byte_length": 19
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4732909,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "Unable to create Item Owner Node",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 32
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4738564,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "Unable to create Key Node (Out of memory)",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 41
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4767477,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Automatic Database Update Complete",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 34
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215466,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MajurMUD Plus - Demo Mode",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_shocst",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215492,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Expires on %s",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%s"
+      ],
+      "conversion_codes": [
+        "s"
+      ],
+      "conversion_count": 1,
+      "byte_length": 13
+    },
+    {
+      "symbol": "_haskey",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4835041,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "?+?:?H?",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_haskey",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4835041,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "?+?:?H?",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_vdaoff",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215506,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMPLS_REG",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_vdaoff",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215506,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMPLS_REG",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_prat",
+      "module": "wccmmud.dll",
+      "position": 3,
+      "address_u32": 4706549,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%3d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%3d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_prat",
+      "module": "wbbmmud.dll",
+      "position": 3,
+      "address_u32": 4706549,
+      "occurrences": 3,
+      "section": "DATA",
+      "text": "%3d",
+      "features": [
+        "printf_conversion_template"
+      ],
+      "format_directives": [
+        "%3d"
+      ],
+      "conversion_codes": [
+        "d"
+      ],
+      "conversion_count": 1,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692947,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_STR",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692955,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_INT",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692963,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_WISDOM",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692974,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_AGIL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692983,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_HEALTH",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4692994,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_CHAR",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692947,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_STR",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692955,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_INT",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692963,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_WISDOM",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692974,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_AGIL",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692983,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_HEALTH",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_fsdxan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4692994,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TOT_CHAR",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 8
+    },
+    {
+      "symbol": "_stzcpy",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4779696,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_stzcpy",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4779704,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "gentext",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_stzcpy",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4779696,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_stzcpy",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4779704,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "gentext",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_catastro",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215440,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Cannot open WCCMMPLS.MCV!",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_catastro",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215440,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "Cannot open WBBMMPLS.MCV!",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 25
+    },
+    {
+      "symbol": "_opnmsg",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215427,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMPLS.MCV",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_opnmsg",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215427,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMPLS.MCV",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_c2bcpy",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4782568,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "<none>",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_c2bcpy",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4782568,
+      "occurrences": 2,
+      "section": "DATA",
+      "text": "<none>",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_findtvar",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4781360,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TCP_IP",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_findtvar",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4781360,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "TCP_IP",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_gmdnam",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215414,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMPLS.MDF",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_gmdnam",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215414,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMPLS.MDF",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 12
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4691633,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "tcplibm.msg",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4691645,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "SUBBBS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wccmmpls.dll",
+      "position": 1,
+      "address_u32": 4215237,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "tcplibm.msg",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wccmmpls.dll",
+      "position": 2,
+      "address_u32": 4215249,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "SUBBBS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4691633,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "tcplibm.msg",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4691645,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "SUBBBS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wbbmmpls.dll",
+      "position": 1,
+      "address_u32": 4215237,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "tcplibm.msg",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 11
+    },
+    {
+      "symbol": "_msgscan",
+      "module": "wbbmmpls.dll",
+      "position": 2,
+      "address_u32": 4215249,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "SUBBBS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_tfsopn",
+      "module": "wccmmud.dll",
+      "position": 1,
+      "address_u32": 4781349,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCDMA.SYS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_tfsopn",
+      "module": "wbbmmud.dll",
+      "position": 1,
+      "address_u32": 4781349,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBDMA.SYS",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_samepatu",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4782575,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "sau:vterm ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_samepatu",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4782575,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "sau:vterm ",
+      "features": [
+        "literal_ascii",
+        "edge_whitespace"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 10
+    },
+    {
+      "symbol": "_senddpk",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4779696,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WCCMMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_senddpk",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4779696,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "WBBMMUD",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 7
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wccmmud.dll",
+      "position": 2,
+      "address_u32": 4691612,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "HIGH",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wccmmud.dll",
+      "position": 3,
+      "address_u32": 4691617,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MEDIUM",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wccmmud.dll",
+      "position": 4,
+      "address_u32": 4691624,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "LOW",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wccmmud.dll",
+      "position": 5,
+      "address_u32": 4691628,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NONE",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wbbmmud.dll",
+      "position": 2,
+      "address_u32": 4691612,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "HIGH",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wbbmmud.dll",
+      "position": 3,
+      "address_u32": 4691617,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "MEDIUM",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 6
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wbbmmud.dll",
+      "position": 4,
+      "address_u32": 4691624,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "LOW",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 3
+    },
+    {
+      "symbol": "_tokopt",
+      "module": "wbbmmud.dll",
+      "position": 5,
+      "address_u32": 4691628,
+      "occurrences": 1,
+      "section": "DATA",
+      "text": "NONE",
+      "features": [
+        "literal_ascii"
+      ],
+      "format_directives": [],
+      "conversion_codes": [],
+      "conversion_count": 0,
+      "byte_length": 4
+    }
+  ]
+}

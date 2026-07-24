@@ -1,0 +1,32 @@
+{
+  "schema_version": "npc-ai-defensive-profile-evidence.v1",
+  "update_id": "CodeUpdate0174",
+  "status": "proven",
+  "runtime_boundary": "generated NPC defensive profile projection",
+  "source_files": [
+    "Data/Classic/npcs.json",
+    "Apps/Source/Reforged.Server/RuntimeNpcDefensiveProfiles.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveCombat.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs"
+  ],
+  "findings": [
+    "All 1100 generated NPC definitions project directly to runtime defensive profiles.",
+    "ArmorClass, DamageResistance, and MagicResistance remain definition-owned values.",
+    "No synthetic NPC DefenseValue or DodgeBonus is introduced.",
+    "Classic combatant mapping carries generated armor class and damage resistance into combat admission."
+  ],
+  "confidence": 1.0,
+  "assumptions": [],
+  "safe_fallback": "Reject missing IDs or nonpositive NPC hit points; do not invent defensive values.",
+  "character_save_impact": "none",
+  "world_state_impact": "none; profile is derived from generated definition data",
+  "tests": [
+    "npc-count",
+    "all-npc-defensive-profiles-ready",
+    "no-synthetic-npc-defense-value",
+    "no-synthetic-npc-dodge-value",
+    "generated-npc-armor-class",
+    "generated-npc-damage-resistance",
+    "classic-combatant-mapping"
+  ]
+}

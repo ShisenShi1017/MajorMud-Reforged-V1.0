@@ -1,0 +1,29 @@
+W32MKDE.EXE SHA-256 50453af66f993518cc45172dd0828257b220985a1aaad904f08b9bd11f0bbaa1
+
+Delete wrapper 0x00404820
+0040483D mov edi,[DeleteFileA]
+00404843 push source_path
+00404844 call edi
+00404848 jne success
+0040484A lea eax,[expanded_path]
+0040484F push source_path
+00404850 call GetFullPathNameA
+0040485B call DeleteFileA
+00404861 call GetLastError
+00404874..00404881 dispatch Win32 error through Btrieve status map
+004048B0 return 0 on success
+
+Move wrapper 0x004049A0
+004049BA mov edi,[MoveFileA]
+004049C0 push destination
+004049C1 push source
+004049C2 call edi
+004049C6 jne success
+004049C8..004049DF expand source and destination with GetFullPathNameA
+004049EE call MoveFileA
+004049F4 call GetLastError
+00404A00..00404A10 dispatch Win32 error through Btrieve status map
+00404A7C return 0 on success
+
+Static-boundary result
+No BTRVLOG.TRN/BTRVLOG.RCV sample files are present in the supplied Worldgroup tree. The filename strings are retained with RECOVERY.C/TRANSLOG.C provenance, but direct artifact-specific references to these generic wrappers are not proven by the stripped image.

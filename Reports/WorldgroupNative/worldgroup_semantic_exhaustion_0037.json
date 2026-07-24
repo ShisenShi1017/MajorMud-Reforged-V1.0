@@ -1,0 +1,80 @@
+{
+  "schema": "majormud.worldgroup-native-semantic-exhaustion.v1",
+  "update": "WorldgroupNativeClosureUpdate0037",
+  "generated_utc": "2026-07-17T02:52:55.712358+00:00",
+  "status": "semantically_exhausted_with_explicit_external_artifact_boundary",
+  "compatibility": {
+    "supplied_worldgroup_runtime_bound": true,
+    "majormud_used_symbols": 156,
+    "matched_exports": 156,
+    "unmatched_exports": 0,
+    "callable_imports": 121,
+    "imported_globals_or_indirect": 34,
+    "unused_static_imports": 1,
+    "abi_and_ownership_closed": true,
+    "runtime_activation_policy": "PROVEN behavior is authoritative; STRONGLY CORRELATED behavior remains provenance-bound with fail-safe fallback; WEAK/UNKNOWN behavior is not activated."
+  },
+  "closed_domains": [
+    "runtime inventory and version binding",
+    "host import/export ownership",
+    "calling conventions and imported-global boundaries",
+    "PRNG implementation and seed lifecycle",
+    "TFS multi-file text scanner",
+    "lifecycle vectors and callback ordering",
+    "player-command and session-state dispatch",
+    "gameplay command gateway",
+    "CAST/INVOKE and spell target dispatch",
+    "textblock special-command execution",
+    "remoteaction room-action dispatch",
+    "cooperative polling and task scheduling",
+    "DFA mutation submission and Btrieve transport",
+    "MKDE cache/write/flush ownership",
+    "Room latch and unknown-qualified-exit fail-safe policy",
+    "message/terminal ownership",
+    "token boundary",
+    "HSE/STO ownership"
+  ],
+  "correction_audit": [
+    {
+      "superseded_update": "Update0005",
+      "correction": "0x004381F2 is _add2arr, not a lifecycle callback dispatcher. Lifecycle hooks register into vectors and _dovecs executes them FIFO."
+    },
+    {
+      "superseded_update": "Update0008",
+      "correction": "0x004789CA is WGSERVER!_injacr; 0x0049D4D8 and 0x0049D48C are imported _globs and _nglobs, not a MajorMUD-local callback array."
+    },
+    {
+      "superseded_update": "Update0011",
+      "correction": "0x0046B010 is an eight-argument room-scoped broadcast dispatcher, not command tokenization/lookup."
+    },
+    {
+      "superseded_update": "Update0025",
+      "correction": "0xC0 is a cooperative input-queue polling sentinel injected by GALGSBL!_btuinj, not a timer delay."
+    }
+  ],
+  "room_exit_closure": {
+    "distinct_latches": 7,
+    "exit_rows": 12,
+    "policy": "Reciprocal rows share one native/passive state owner; absent a verified trigger, exits remain closed/hidden and no player command is invented."
+  },
+  "external_evidence_boundary": {
+    "topic": "Exact BTRVLOG.TRN and BTRVLOG.RCV binary record layouts and undo-versus-redo payload semantics",
+    "reason": "No representative transaction/recovery artifacts, controlled crash captures, symbols, or source were supplied.",
+    "known_ownership": "W32MKDE.EXE owns cache, physical I/O, explicit flushes, transaction/recovery artifacts, move/delete lifecycle primitives, and startup recovery probing.",
+    "runtime_effect": "No speculative parser or replay implementation is activated. Existing host storage ownership remains authoritative.",
+    "closure_class": "conclusively_bounded_external_artifact_dependency"
+  },
+  "exit_criteria": {
+    "all_used_imports_owned": true,
+    "used_imported_globals_bounded": true,
+    "callback_and_indirect_paths_bounded": true,
+    "rng_closed": true,
+    "message_terminal_boundary_closed": true,
+    "scheduling_closed": true,
+    "save_database_ownership_closed": true,
+    "room_latches_closed": true,
+    "unknown_qualified_exits_closed": true,
+    "compatibility_audit_passed": true,
+    "semantic_exhaustion_report_complete": true
+  }
+}

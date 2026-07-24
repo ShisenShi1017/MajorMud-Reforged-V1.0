@@ -1,0 +1,14 @@
+{
+  "update":"0180",
+  "runtime_owner":"Combat",
+  "ability_execution":{
+    "validated_inputs":["ability","actor","target","combat","attack_path","required_item","resource","cooldown"],
+    "commit_model":"prepare all sinks, commit in registration order, rollback committed sinks in reverse order",
+    "duplicate_protection":true
+  },
+  "proc_order":["priority ascending","canonical proc policy id"],
+  "proc_triggers":["on_hit","on_cast","on_being_hit","on_kill","defensive"],
+  "proc_dispositions":["damage","healing","apply_status","resource_delta","threat_delta"],
+  "fail_closed":["missing policy","weak hypothesis","unresolved resource or cooldown","unresolved item binding","unresolved proc chance or magnitude"],
+  "ownership":{"ability_definition":"Ability subsystem","inventory_and_equipment":"Character/NPC/Item subsystems","execution_and_proc_order":"Combat"}
+}

@@ -1,0 +1,23 @@
+{
+  "policy_id": "runtime_item_native_boundary_policy",
+  "code_update": "0204",
+  "subsystem": "Items",
+  "status": "pre_native_semantic_exhaustion_complete",
+  "native_only_boundary_reached": true,
+  "rules": [
+    "Do not add new Classic item semantics from names, field presence, or analogy alone.",
+    "Keep unresolved native mappings and formulas fail-closed.",
+    "Accept promotions only with Proven or Strongly Correlated evidence and full provenance.",
+    "Reopen Items during the final WCC/WBB/native DLL and leftover-file pass.",
+    "Preserve every unresolved dependency in the native-dependency report until conclusively resolved."
+  ],
+  "remaining_dependency_groups": [
+    "record_layout_and_flags",
+    "charges_durability_and_use",
+    "loot_reset_and_scheduling",
+    "persistence_and_recovery",
+    "commands_messages_and_permissions",
+    "native_edge_cases"
+  ],
+  "pre_native_semantic_exhaustion_complete": true
+}

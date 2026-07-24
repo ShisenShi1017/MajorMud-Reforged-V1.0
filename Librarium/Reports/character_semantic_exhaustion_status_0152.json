@@ -1,0 +1,28 @@
+{
+  "code_update": "0152",
+  "subsystem": "character",
+  "completed": [
+    "status effects phase 1",
+    "status effects phase 2",
+    "level progression ownership",
+    "atomic XP and promotion",
+    "proven HP level growth",
+    "proven mana level growth",
+    "promotion roll provenance and overflow rejection"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth semantics",
+    "skill/spell/ability gain schedules",
+    "native multiclass switching",
+    "caps and post-cap overflow",
+    "statistics",
+    "equipment completion",
+    "inventory",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [],
+  "next": "Character level progression phase 3: recover XP/CP rows and remaining grant schedules without invention"
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "updatedByPass": "RemainingSystems-0035-OptionalActivities",
+  "subsystem": "games-arenas-optional-activities",
+  "runtimeOwner": "RuntimeOptionalActivitiesService",
+  "supportedFamilies": ["duel", "arena", "tournament", "dice-game", "lottery", "raffle", "contest", "scoreboard"],
+  "classicActivationPolicy": "disabled unless Classic evidence is explicitly confirmed",
+  "lifecycle": ["join", "leave", "start", "complete"],
+  "ownership": {
+    "activityLifecycle": "RuntimeOptionalActivitiesService",
+    "entryCostsAndRewards": "Economy",
+    "combatRules": "Combat and PvP Policy",
+    "resultsAndScoreboards": "RankingsStatistics",
+    "announcements": "Communications"
+  },
+  "safeFallback": "reject activation, participation, costs, and rewards when Classic evidence is absent",
+  "nativeDependencies": [
+    "whether MajorMUD 1.11p implements any arena, duel, tournament, gambling, lottery, raffle, or contest system",
+    "exact commands, entry requirements, costs, rewards, rules, matchmaking, death behavior, item loss, persistence, and administrative control",
+    "Worldgroup versus MajorMUD ownership of optional games"
+  ]
+}

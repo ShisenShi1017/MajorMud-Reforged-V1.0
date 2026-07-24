@@ -1,0 +1,36 @@
+{
+  "update": "0178",
+  "confidence": "strongly_correlated",
+  "behavior": "transactional teleportation and movement-spell request construction",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeCombatMovement.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatPursuitOpportunity.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatSpellSummoning.cs",
+    "Librarium/Status/combat_spell_exhaustion_status_0177.json"
+  ],
+  "record_ids": [
+    "movement-policy.promoted.0178",
+    "test-vector.movement.0178"
+  ],
+  "byte_offsets": [],
+  "supporting_evidence": [
+    "existing combat movement already owns action interruption, threat cleanup and room handoff",
+    "death, revival and summon boundaries use prepare/commit/reverse rollback",
+    "handoff 0177 explicitly names teleportation and movement-spell request construction as next pass"
+  ],
+  "assumptions": [
+    "exact native destination-selection formulas are unresolved",
+    "policy inputs must be promoted before execution"
+  ],
+  "tests": [
+    "target teleport commits in declared order",
+    "combat movement interrupts actions and cleans threat/combat",
+    "root and hidden dispositions are explicit",
+    "duplicate movement rejected",
+    "missing consent rejected"
+  ],
+  "safe_fallback": "reject movement before any sink commit when any policy, destination, consent, room, combat or ownership input is unresolved",
+  "runtime_impact": "adds executable rollback-safe spell movement transaction",
+  "character_save_impact": "none unless PersistMovementState is explicitly promoted",
+  "world_state_impact": "room occupancy/portal state changes only through prepared downstream sinks"
+}

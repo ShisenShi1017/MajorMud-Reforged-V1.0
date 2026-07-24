@@ -1,0 +1,722 @@
+{
+  "schema": "majorMud.nativeSupportConsumerEvidence.v1",
+  "evidence_id": "native-support-consumers-0023",
+  "status": "proven-static-file-contract",
+  "sto": {
+    "count": 7,
+    "filename_grammar": "WCC<decimal-record-id>.STO",
+    "records": [
+      {
+        "file": "WCC1393.STO",
+        "record_id": 1393,
+        "bytes": 238,
+        "sha256": "82509b4f2c3084b4d12686366a7efb516c69d6b247e7704738537770848e343d",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1393.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1394.STO",
+        "record_id": 1394,
+        "bytes": 238,
+        "sha256": "b899d96f8dc9017e33c12d2a24fab36f85a59035405daf698f26382f341d0607",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1394.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1395.STO",
+        "record_id": 1395,
+        "bytes": 238,
+        "sha256": "c1b617811a235ef2d8ca7cfc8796f89f2e0d38efc47d9f9ea6b879bec69dcb18",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1395.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1396.STO",
+        "record_id": 1396,
+        "bytes": 238,
+        "sha256": "cfe72b2f6b86f106f2a85ab27dbfb6877783b89bda2c29d583c86b3fae5c3d92",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1396.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1397.STO",
+        "record_id": 1397,
+        "bytes": 238,
+        "sha256": "7592522a4e59b29fcdbb7e1c998a9c37b7541bc4ae54b0c755e4211def352379",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1397.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1398.STO",
+        "record_id": 1398,
+        "bytes": 238,
+        "sha256": "543ecfdbd3d5743bb28bd7a4270a187bfd0d7ba6fb64cc3bc5ab55dfb76b4742",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1398.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC1399.STO",
+        "record_id": 1399,
+        "bytes": 238,
+        "sha256": "91353d595710f2d9dabbd81fec63776aedcb754cd3ca49d8decc05fcd4230181",
+        "line_count": 4,
+        "contains_self_filename": true,
+        "wbb_file": "wbb1399.STO",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      }
+    ]
+  },
+  "hse": {
+    "count": 47,
+    "filename_grammar": "WCC<decimal-house-room-id>15.HSE",
+    "fixed_suffix": 15,
+    "role_counts": {
+      "entrance": 10,
+      "normal": 10,
+      "vault": 10,
+      "rest": 9,
+      "shop": 8
+    },
+    "records": [
+      {
+        "file": "WCC85015.HSE",
+        "house_room_id": 850,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "417f7261875c1a51f2b0d227b34180eb3a30e4b473644cd361ed4236fe312bd8",
+        "title": "Entrance White House Room",
+        "role": "entrance",
+        "wbb_file": "wbb85015.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC85115.HSE",
+        "house_room_id": 851,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "d35d154900034e2b1ca7ae9f674529e636219bb64094ad680949aeb6346aba6f",
+        "title": "Normal White House Room",
+        "role": "normal",
+        "wbb_file": "wbb85115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC85215.HSE",
+        "house_room_id": 852,
+        "fixed_suffix": 15,
+        "bytes": 297,
+        "sha256": "8a763af8f893529d3a2969f8f68cc3e4f51b2b335fc5ba87215b7fcb8ec55900",
+        "title": "Vault White House Room",
+        "role": "vault",
+        "wbb_file": "wbb85215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC85715.HSE",
+        "house_room_id": 857,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "67718a9fbff0b570f4837d29d6920d82ad83dcc57a19338eff1f052972051927",
+        "title": "Rest White House Room",
+        "role": "rest",
+        "wbb_file": "wbb85715.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC86115.HSE",
+        "house_room_id": 861,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "5a5f3b087c8f60d3a68812ea62ee15ded499145ba085c3e405a9ceb610757842",
+        "title": "Shop White House Room",
+        "role": "shop",
+        "wbb_file": "wbb86115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC86215.HSE",
+        "house_room_id": 862,
+        "fixed_suffix": 15,
+        "bytes": 300,
+        "sha256": "306e89782569da500770122505b03a018c79e9b4cf9157f58e2a0cdd06fd84b5",
+        "title": "Entrance Gold House Room",
+        "role": "entrance",
+        "wbb_file": "wbb86215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC86315.HSE",
+        "house_room_id": 863,
+        "fixed_suffix": 15,
+        "bytes": 300,
+        "sha256": "3cd1c1721eff377e6e2639afd7d077f363bc5201f8313c802dba2f92dcec7d3e",
+        "title": "Normal Gold House Room",
+        "role": "normal",
+        "wbb_file": "wbb86315.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC86815.HSE",
+        "house_room_id": 868,
+        "fixed_suffix": 15,
+        "bytes": 294,
+        "sha256": "95ec3e2b7815c8273e05317e114f0c44c5caba376bdc826d59c293cd9fd5bf95",
+        "title": "Rest Gold House Room",
+        "role": "rest",
+        "wbb_file": "wbb86815.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC87415.HSE",
+        "house_room_id": 874,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "1cb87078720cad62f4a8ee1de5a281c0e135925406c409a0e54179551b1b7475",
+        "title": "Entrance Orange House Room",
+        "role": "entrance",
+        "wbb_file": "wbb87415.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC87515.HSE",
+        "house_room_id": 875,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "7795cb6e1f05a0a6a08972fe25a653c477251d4c0575cbbccb81557199a3c0bb",
+        "title": "Shop White House Room",
+        "role": "shop",
+        "wbb_file": "wbb87515.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC87615.HSE",
+        "house_room_id": 876,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "a0bc17f6aca1a9b0bbc9929cd8b631e9c5169e22f3f681ff049ee74f11d4890a",
+        "title": "Normal Orange House Room",
+        "role": "normal",
+        "wbb_file": "wbb87615.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88015.HSE",
+        "house_room_id": 880,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "e6acb45e65a4034851cfefff2371fea0851cebffd081671126ea81498ee2a196",
+        "title": "Rest Silver House Room",
+        "role": "rest",
+        "wbb_file": "wbb88015.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88115.HSE",
+        "house_room_id": 881,
+        "fixed_suffix": 15,
+        "bytes": 298,
+        "sha256": "daf46f851fba4dd5b10e1cafe27e48618a5725b6da178fd9a16133cb8b409b63",
+        "title": "Vault Yellow House Room",
+        "role": "vault",
+        "wbb_file": "wbb88115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88215.HSE",
+        "house_room_id": 882,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "992ef60c76b7e236a0c462241edd8859e69ec97586248513811d3126acbc7360",
+        "title": "Entrance Yellow House Room",
+        "role": "entrance",
+        "wbb_file": "wbb88215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88315.HSE",
+        "house_room_id": 883,
+        "fixed_suffix": 15,
+        "bytes": 303,
+        "sha256": "dec1df29a4c88452749c239bdb7c80630a2d477bb72b7ad93bd0fbb8d5436716",
+        "title": "Normal Yellow House Room",
+        "role": "normal",
+        "wbb_file": "wbb88315.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88515.HSE",
+        "house_room_id": 885,
+        "fixed_suffix": 15,
+        "bytes": 299,
+        "sha256": "2871ca954214d257c0b17ea14262a8548105aa79f054a75e3677dbdfa1414daf",
+        "title": "Vault Yellow House Room",
+        "role": "vault",
+        "wbb_file": "wbb88515.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88715.HSE",
+        "house_room_id": 887,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "47f70e332b67ec0612aad117aa999d4f880ca631ccdf6622895dd1394f86fb64",
+        "title": "Rest Yellow House Room",
+        "role": "rest",
+        "wbb_file": "wbb88715.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC88915.HSE",
+        "house_room_id": 889,
+        "fixed_suffix": 15,
+        "bytes": 299,
+        "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4",
+        "title": "Vault Violet House Room",
+        "role": "vault",
+        "wbb_file": "wbb88915.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC89015.HSE",
+        "house_room_id": 890,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "6540baadf5f854798769290ad6d7a0cd791f83cd3f00cc152f76a34e85a8c00e",
+        "title": "Shop Yellow House Room",
+        "role": "shop",
+        "wbb_file": "wbb89015.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC89115.HSE",
+        "house_room_id": 891,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "b891796d7c149c6a37cf336b61f8434a8316315b49f42aac9cb598f8838fe87c",
+        "title": "Entrance Violet House Room",
+        "role": "entrance",
+        "wbb_file": "wbb89115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC89215.HSE",
+        "house_room_id": 892,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "a6277abf7e31238e0629378f1298f11d228ada26741b26e665d689b2ca0d1d33",
+        "title": "Normal Violet House Room",
+        "role": "normal",
+        "wbb_file": "wbb89215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC89615.HSE",
+        "house_room_id": 896,
+        "fixed_suffix": 15,
+        "bytes": 299,
+        "sha256": "684192762be8f9ea8406cfabb34af403802a7be831f15021af4a92b0ccdb33a4",
+        "title": "Vault Violet House Room",
+        "role": "vault",
+        "wbb_file": "wbb89615.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC90215.HSE",
+        "house_room_id": 902,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "f6d48577585eb514c20ebc4085e52efefbfcd4a4bbdb4954ff1de2a6fe95ad73",
+        "title": "Shop Violet House Room",
+        "role": "shop",
+        "wbb_file": "wbb90215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC90315.HSE",
+        "house_room_id": 903,
+        "fixed_suffix": 15,
+        "bytes": 299,
+        "sha256": "eade00cf04d9a251546e63975e325b99ab25e575cbbf4a6285900c22532f34ff",
+        "title": "Entrance Red House Room",
+        "role": "entrance",
+        "wbb_file": "wbb90315.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC90415.HSE",
+        "house_room_id": 904,
+        "fixed_suffix": 15,
+        "bytes": 299,
+        "sha256": "14eba16afb497be060c1957996f743a545aafe0b1dee59b4d1568aedd0f9df21",
+        "title": "Normal Red House Room",
+        "role": "normal",
+        "wbb_file": "wbb90415.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC90815.HSE",
+        "house_room_id": 908,
+        "fixed_suffix": 15,
+        "bytes": 293,
+        "sha256": "ebf0f3e5c7cb33735db5c22198f552489856e9e40dbfd3d4a25f537e5771b49a",
+        "title": "Rest Red House Room",
+        "role": "rest",
+        "wbb_file": "wbb90815.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC90915.HSE",
+        "house_room_id": 909,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "d7c5385ca2c514411457dea7ffd310a2681abfc1c8496a0198f79ab0a1e169df",
+        "title": "Entrance Silver House Room",
+        "role": "entrance",
+        "wbb_file": "wbb90915.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC91115.HSE",
+        "house_room_id": 911,
+        "fixed_suffix": 15,
+        "bytes": 302,
+        "sha256": "84b783d5757e6ac1fd7e843ff13ffec96f5ed82c9dfacfa1c3a57f8606385e46",
+        "title": "Normal Silver House Room",
+        "role": "normal",
+        "wbb_file": "wbb91115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC91915.HSE",
+        "house_room_id": 919,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "ff4d6b697e9aeff6d89df1aba963dc30d7dff2e3d6e1afe7edd786de68c1cd23",
+        "title": "Shop Silver House Room",
+        "role": "shop",
+        "wbb_file": "wbb91915.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC92115.HSE",
+        "house_room_id": 921,
+        "fixed_suffix": 15,
+        "bytes": 298,
+        "sha256": "8db92ca1ddb0faefc625054d949616767d856dc78172d8a91983978b9bcf4b4f",
+        "title": "Vault Silver House Room",
+        "role": "vault",
+        "wbb_file": "wbb92115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC92215.HSE",
+        "house_room_id": 922,
+        "fixed_suffix": 15,
+        "bytes": 297,
+        "sha256": "0f62c2401a9f0ccde55e53cdfd6c6bce17f57c5bfbfab86f5d08ddb521001055",
+        "title": "Rest Silver House Room",
+        "role": "rest",
+        "wbb_file": "wbb92215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC92315.HSE",
+        "house_room_id": 923,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "34e7b24b056fc51d41fa0dfbe67c6b132dc79c4785d2021d45aecdf8eab623a9",
+        "title": "Entrance Green House Room",
+        "role": "entrance",
+        "wbb_file": "wbb92315.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC92415.HSE",
+        "house_room_id": 924,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "dac115b4a73fcd30fece392ca1f74334f1146704166f72910813b0adf95878a5",
+        "title": "Normal Green House Room",
+        "role": "normal",
+        "wbb_file": "wbb92415.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC93115.HSE",
+        "house_room_id": 931,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "c5c4547d10ea300dbb4c6c75a29eaf4d68239edcb2c83e059f277b90c23be041",
+        "title": "Rest Green House Room",
+        "role": "rest",
+        "wbb_file": "wbb93115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC93215.HSE",
+        "house_room_id": 932,
+        "fixed_suffix": 15,
+        "bytes": 297,
+        "sha256": "407219b9902749bc6d53f26851c8acc87ddd9aa96fc48a0bcd3cb61530f1bfb9",
+        "title": "Vault Green House Room",
+        "role": "vault",
+        "wbb_file": "wbb93215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC93315.HSE",
+        "house_room_id": 933,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "976f346c02e760942ae76243d2819d8d7b63ab568a077821cb00583f5f118c8e",
+        "title": "Entrance Black House Room",
+        "role": "entrance",
+        "wbb_file": "wbb93315.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC93415.HSE",
+        "house_room_id": 934,
+        "fixed_suffix": 15,
+        "bytes": 301,
+        "sha256": "b702b52ae23e08a2f022283d7793f70710c342e186bcbe49834164427122a2b0",
+        "title": "Normal Black House Room",
+        "role": "normal",
+        "wbb_file": "wbb93415.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94015.HSE",
+        "house_room_id": 940,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "f1f34fbd9f90665e554eae4fe01b51365f32d7a6db43b7aa14e385c78069f9fd",
+        "title": "Rest Black House Room",
+        "role": "rest",
+        "wbb_file": "wbb94015.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94215.HSE",
+        "house_room_id": 942,
+        "fixed_suffix": 15,
+        "bytes": 297,
+        "sha256": "efc4146e6563cd876781aab142de6ef03ad3eeaa9c99d5e2bb9b909cc9828e82",
+        "title": "Vault Black House Room",
+        "role": "vault",
+        "wbb_file": "wbb94215.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94615.HSE",
+        "house_room_id": 946,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "cd8a072e45284c633bb9b97690c60353090f621c26fc914e05ba0a41707d68ae",
+        "title": "Shop Black House Room",
+        "role": "shop",
+        "wbb_file": "wbb94615.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94715.HSE",
+        "house_room_id": 947,
+        "fixed_suffix": 15,
+        "bytes": 300,
+        "sha256": "0e0a123008145bfe8265c62f7894cc3891264b54be114370cebf0763ebce7762",
+        "title": "Entrance Blue House Room",
+        "role": "entrance",
+        "wbb_file": "wbb94715.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94815.HSE",
+        "house_room_id": 948,
+        "fixed_suffix": 15,
+        "bytes": 294,
+        "sha256": "fd55ea2132b77c98fd24804428a327f44b9d7c0f3f8dc25d89c21940847c1a8f",
+        "title": "Shop Blue House Room",
+        "role": "shop",
+        "wbb_file": "wbb94815.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC94915.HSE",
+        "house_room_id": 949,
+        "fixed_suffix": 15,
+        "bytes": 300,
+        "sha256": "3869d2fd545e3f56765901ce7af0772534809f7a64e49a07bf0d6179d32fc7fa",
+        "title": "Normal Blue House Room",
+        "role": "normal",
+        "wbb_file": "wbb94915.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC96015.HSE",
+        "house_room_id": 960,
+        "fixed_suffix": 15,
+        "bytes": 294,
+        "sha256": "ca6fecdc93c3808a349dea0b5bc4775696abf6fcfe1c1b92798fced7faa6b1bb",
+        "title": "Rest Blue House Room",
+        "role": "rest",
+        "wbb_file": "wbb96015.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC96115.HSE",
+        "house_room_id": 961,
+        "fixed_suffix": 15,
+        "bytes": 296,
+        "sha256": "9bd8de9b83f1bca2428d6aa9011a1ff7b1ae1a65c59dd0b04fdaae71fb46a723",
+        "title": "Vault Blue House Room",
+        "role": "vault",
+        "wbb_file": "wbb96115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC96815.HSE",
+        "house_room_id": 968,
+        "fixed_suffix": 15,
+        "bytes": 295,
+        "sha256": "0fbfc852224422cbd465c9f4d6a6f1bac7190fa85e1fbb06d67fe58c6e802a6f",
+        "title": "Shop Gold House Room",
+        "role": "shop",
+        "wbb_file": "wbb96815.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      },
+      {
+        "file": "WCC97115.HSE",
+        "house_room_id": 971,
+        "fixed_suffix": 15,
+        "bytes": 297,
+        "sha256": "66e6a118e879dcb3f12aac597ec27879c9281fbf0f2edecd5c67a360a547debe",
+        "title": "Vault Gold House Room",
+        "role": "vault",
+        "wbb_file": "wbb97115.HSE",
+        "wbb_present": true,
+        "wbb_payload_identical": true
+      }
+    ]
+  },
+  "native_static_references": [
+    {
+      "module": "wccmmud.dll",
+      "module_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "asset": "WCCADDON.SYS",
+      "file_offsets": [
+        497913,
+        555172
+      ]
+    },
+    {
+      "module": "wccmmud.dll",
+      "module_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "asset": "WCCDMA.SYS",
+      "file_offsets": [
+        583973
+      ]
+    },
+    {
+      "module": "wccmmud.dll",
+      "module_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "asset": "wccknows.sys",
+      "file_offsets": [
+        508987
+      ]
+    },
+    {
+      "module": "wccmmutl.exe",
+      "module_sha256": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+      "asset": "wccmmutl.bin",
+      "file_offsets": [
+        83903
+      ]
+    },
+    {
+      "module": "wccmmutl.exe",
+      "module_sha256": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+      "asset": "WCCBOX.BIN",
+      "file_offsets": [
+        84551,
+        86604
+      ]
+    },
+    {
+      "module": "wccmmutl.exe",
+      "module_sha256": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+      "asset": "wccaedit.bin",
+      "file_offsets": [
+        87024
+      ]
+    }
+  ],
+  "limitations": [
+    "Static filename references prove native consumers locate named support files; they do not prove complete load order or token algorithms.",
+    "WBB files absent from a WCC subset are preserved as distribution coverage differences, not inferred behavior."
+  ]
+}

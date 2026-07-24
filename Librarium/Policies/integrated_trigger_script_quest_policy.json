@@ -1,0 +1,13 @@
+{
+  "policy_id": "integrated-trigger-script-quest-0197",
+  "scope": ["triggers", "scripts", "quests"],
+  "rule": "Decode and validate these families together because NPC command dispatch, textblock execution, quest-state mutation, branching, rewards, and failure behavior are one connected semantic graph.",
+  "runtime_evidence_policy": {
+    "proven": "authoritative active runtime behavior",
+    "strongly_correlated": "active runtime behavior with provenance, confidence, assumptions, fallback, tests, and save/world-state impact",
+    "weak_hypothesis": "research only",
+    "unknown": "raw evidence preserved and execution fails closed"
+  },
+  "pass_0197_promotion": "The 83 decoded NPC/textblock quest flows are linked to 182 explicit script-stage records and 83 NPC-scoped command triggers.",
+  "native_reverification": "Native WCC/WBB DLL evidence may refine operation precedence without discarding source textblocks or historical provenance."
+}

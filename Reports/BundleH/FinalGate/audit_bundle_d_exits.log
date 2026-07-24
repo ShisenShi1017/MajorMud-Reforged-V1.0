@@ -1,0 +1,66 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+{
+  "Passed": true,
+  "WorldId": "classic",
+  "ExitCount": 61976,
+  "CardinalExitCount": 60162,
+  "VerticalExitCount": 1814,
+  "SpecialExitCount": 4371,
+  "OneWayExitCount": 920,
+  "BlockedDestinationCount": 5,
+  "ResolvedDestinationCount": 61971,
+  "Checks": [
+    "runtime_exit_count_matches_room_graph",
+    "every_exit_is_owned_by_its_canonical_source_room",
+    "every_exit_has_generated_identity",
+    "every_exit_has_direction",
+    "one_exit_per_direction_per_room",
+    "all_executable_exit_destinations_resolve",
+    "all_dangling_destinations_are_runtime_blocked",
+    "authoritative_exit_lookup_returns_room_owned_instance"
+  ],
+  "Failures": [],
+  "Verified": [
+    "RuntimeWorld owns the map-qualified exit graph and is the single destination resolver.",
+    "RuntimeSession movement, directional look, living-world traversal, and gate evaluation consume RuntimeWorld exit resolution.",
+    "One-way exits are preserved as decoded graph relationships and are not auto-reciprocated.",
+    "Dangling generated destinations remain visible to validation but are blocked from live movement."
+  ],
+  "StronglyCorroborated": [
+    "Exit type, gate kind, qualifier, disposition, destination status, and source verification remain attached to RuntimeExit for later specialized consumers.",
+    "Non-cardinal and qualified exits are preserved without inventing reciprocal or gate behavior."
+  ],
+  "DecodedButNotMapped": [
+    "Door, hidden, conditional, teleporter, toll, cast-transition, and trap effects remain assigned to their dedicated complete Bundle D passes."
+  ],
+  "Conflicts": [
+    "Movement triggers remain compatibility evidence; they may block invalid destinations but do not replace RuntimeExit graph ownership."
+  ],
+  "TrueUnknown": [
+    "Unclassified native exit qualifiers remain evidence-only until a source proves their gameplay effect."
+  ]
+}

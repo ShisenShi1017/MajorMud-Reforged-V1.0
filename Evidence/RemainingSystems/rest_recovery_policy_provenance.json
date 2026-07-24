@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "rest-inn-recovery-policy",
+  "promotions": [
+    {
+      "behavior": "Central rest, sleep, wake, and safe-logout policy coordination",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeRestRecoveryPolicy.cs",
+        "Apps/Source/Reforged.Server/RuntimeRestRecoveryPolicySmokeReport.cs"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-rest-recovery-policy"
+      ],
+      "safeFallback": "Reject unknown rooms and invalid actor states.",
+      "runtimeImpact": "Adds deterministic policy orchestration without mutating Character resources directly.",
+      "characterSaveImpact": "None directly; emits requests to Character/session owners.",
+      "worldStateImpact": "None directly."
+    },
+    {
+      "behavior": "Inn charges, recovery modifiers, login-room changes, and logout are typed owner requests",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeRestRecoveryPolicy.cs",
+        "Librarium/RemainingSystems/rest_recovery_policy_catalog.json"
+      ],
+      "confidence": 0.82,
+      "assumptions": [
+        "Owning subsystems commit emitted requests atomically."
+      ],
+      "tests": [
+        "inn-charge-routing",
+        "login-room-routing",
+        "safe-logout"
+      ],
+      "safeFallback": "Do not commit external state inside the policy service.",
+      "runtimeImpact": "Preserves subsystem ownership boundaries.",
+      "characterSaveImpact": "Potential only after owner commit.",
+      "worldStateImpact": "Potential login-room policy change after owner commit."
+    }
+  ]
+}

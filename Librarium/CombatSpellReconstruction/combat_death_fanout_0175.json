@@ -1,0 +1,27 @@
+{
+  "update": "0175",
+  "catalog": "combat_death_fanout",
+  "ownership": "Combat owns lethal-resolution ordering and deterministic event emission; Character, NPC, Quest, Economy, loot, corpse, and respawn subsystems own their requested mutations.",
+  "ordered_events": [
+    "combat_action_cancellation",
+    "status_cleanup",
+    "threat_cleanup",
+    "target_cleanup",
+    "combat_participant_defeat",
+    "quest_death_event",
+    "experience_request",
+    "loot_request",
+    "corpse_request",
+    "gold_handling_request",
+    "respawn_request",
+    "resurrection_eligibility_request"
+  ],
+  "atomicity": "all sinks prepare before commit; committed sinks rollback in reverse order on failure",
+  "unknowns": [
+    "production reward allocation order",
+    "corpse and gold ownership details",
+    "native respawn timing",
+    "resurrection eligibility window"
+  ],
+  "safe_fallback": "reject missing sink or unpromoted ordering policy; rollback committed fan-out"
+}

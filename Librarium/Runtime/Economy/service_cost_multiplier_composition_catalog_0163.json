@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "codeUpdate": "0163",
+  "runtimeOwner": "Economy",
+  "formula": "round_once(base * levelOrRankBp * providerMarkupBp * discountOrSurchargeBp / 10000^3)",
+  "resolvedDependency": "relative ordering of purely multiplicative level/rank, provider markup, and discount/surcharge factors",
+  "classification": "STRONGLY_CORRELATED",
+  "confidence": 0.93,
+  "assumptions": [
+    "Each supplied factor is multiplicative and represented in basis points.",
+    "No hidden additive native stage occurs between these factors.",
+    "Reforged uses one explicit final rounding operation for deterministic policy execution."
+  ],
+  "fallback": "Fail closed when a policy requires native intermediate rounding or an additive stage not represented by the supplied factors.",
+  "nativeDependency": "Exact original MajorMUD intermediate rounding remains UNKNOWN and requires transaction traces.",
+  "runtimeImpact": "Removes artificial level-vs-markup order sensitivity for policy-driven services.",
+  "saveImpact": "None beyond the already persisted final charged amount and replay record.",
+  "worldImpact": "Service charges become permutation-invariant for the three represented multiplicative factors.",
+  "relationships": [
+    {"from":"service-cost-multiplier-composition","to":"service-cost-trace-0161","type":"refines"},
+    {"from":"service-cost-multiplier-composition","to":"native-markup-0162","type":"consumes"},
+    {"from":"service-cost-trace-0161","to":"service-cost-multiplier-composition","type":"uses"}
+  ]
+}

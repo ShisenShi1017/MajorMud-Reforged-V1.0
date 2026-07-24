@@ -1,0 +1,18 @@
+{
+  "code_update": "0180",
+  "artifact": "item_resurrection_equipment_conflict_displacement",
+  "classification": "reforged_compatibility_infrastructure",
+  "sources": [
+    {"path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs", "role": "runtime implementation"},
+    {"path": "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs", "role": "deterministic smoke coverage"},
+    {"path": "Librarium/Policies/runtime_item_resurrection_equipment_conflict_displacement_policy.json", "role": "authoritative Reforged policy"}
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "unknowns": [
+    "Classic conflict displacement activation",
+    "Classic displacement ordering",
+    "Classic no-remove and curse exceptions",
+    "Classic messages"
+  ]
+}

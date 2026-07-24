@@ -1,0 +1,13 @@
+{
+  "code_update": "0183",
+  "sources": [
+    {"path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs", "role": "existing item instance, ownership, container, stack, capacity, and atomic mutation runtime"},
+    {"path": "Librarium/Policies/runtime_item_room_reset_identity_policy.json", "role": "prior evidence-gated target reconciliation pattern"},
+    {"path": "Librarium/Policies/runtime_item_merchant_restock_identity_policy.json", "role": "prior identity-preserving restock pattern"},
+    {"path": "Data/Classic/items.json", "role": "canonical item-definition catalog"}
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "confidence": "strongly_correlated",
+  "unresolved_native_only": true
+}

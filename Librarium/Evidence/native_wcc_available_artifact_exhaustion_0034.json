@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "evidence_id": "native_wcc_available_artifact_exhaustion_0034",
+  "classification": "PROVEN",
+  "scope": [
+    "ImportedDatabases/WCCDefaultInstall",
+    "ImportedDatabases/NativeRuntime",
+    "supplied WCC MMUD.DLL, MMPLS.DLL, and MMUTL.EXE",
+    "all WCC support-file families cataloged through Update0033"
+  ],
+  "result": "AVAILABLE_WCC_ARTIFACTS_EXHAUSTED",
+  "decoded_or_closed_families": [
+    {
+      "family": "DAT",
+      "status": "decoded_or_owned",
+      "basis": "Existing subsystem decoders, native runtime catalogs, layouts, canonical IDs, and ownership evidence."
+    },
+    {
+      "family": "DLL/EXE",
+      "status": "statically_exhausted",
+      "basis": "Hashes, PE layout, imports/exports, host callsites, ABI footprints, arguments, returns, strings, direct consumers, and support references recovered."
+    },
+    {
+      "family": "MCV/MSG/H/MDF",
+      "status": "decoded",
+      "basis": "Catalog slots, symbols, compiled payloads, module descriptors, declarations, and correlations recovered."
+    },
+    {
+      "family": "ADDON.SYS",
+      "status": "consumer_closed",
+      "basis": "Text-mode loader, linked-list layout, duplicate precedence, lookup, and fail-closed behavior recovered."
+    },
+    {
+      "family": "DMA.SYS",
+      "status": "consumer_closed_to_host_boundary",
+      "basis": "Open/read/filter/prefix/extraction/abort/failure semantics recovered; token comparison/generation belongs beyond available WCC evidence."
+    },
+    {
+      "family": "KNOWS.SYS",
+      "status": "consumer_closed",
+      "basis": "Existence-only access(path,0) inverted validation gate recovered."
+    },
+    {
+      "family": "BIN",
+      "status": "consumer_closed",
+      "basis": "80x25 cell layout, attribute mapping, normalization, coordinates, staging, and Win32 console-write ordering recovered."
+    },
+    {
+      "family": "HSE/STO",
+      "status": "file_contract_exhausted_external_consumer_boundary",
+      "basis": "Grammar, IDs, distribution coverage, byte identity, and text contract recovered; no direct filename literals or static consumer in supplied native modules."
+    },
+    {
+      "family": "REL/RLN/NOT/ANS/UIC/DOC/LIC/AD/STA/BAN/EMB",
+      "status": "cataloged_and_ownership_bounded",
+      "basis": "Shipped identities, direct references where present, descriptors, or data-only roles cataloged; no remaining unclassified WCC file family."
+    }
+  ],
+  "remaining_unknowns_reclassified": [
+    {
+      "unknown": "authorization token generation and final collation/comparison",
+      "owner": "Worldgroup host or unavailable external registration/licensing implementation",
+      "reason": "WCC consumers recover stored tokens and delegate comparison to imported host service; no generating implementation is present in supplied WCC images."
+    },
+    {
+      "unknown": "HSE/STO open and fallback implementation",
+      "owner": "dynamic/external consumer not present in supplied WCC module set",
+      "reason": "No exact HSE/STO literal or direct static consumer exists in MMUD/MMPLS/MMUTL; file contracts are exhausted."
+    },
+    {
+      "unknown": "host RNG, persistence, scheduling, formatting, locking, polling, callbacks, and imported global declarations",
+      "owner": "WGSERVER.EXE and Worldgroup runtime",
+      "reason": "Supplied WCC modules import or consume these services but do not contain their implementations."
+    }
+  ],
+  "wcc_exit_criteria": {
+    "all_supplied_wcc_files_inventoried": true,
+    "all_file_families_classified": true,
+    "all_direct_native_support_references_audited": true,
+    "unresolved_items_have_non_wcc_ownership_boundary": true,
+    "further_wcc_only_static_pass_expected_to_add_semantics": false
+  },
+  "next_required_artifacts": [
+    "matching WGSERVER.EXE",
+    "matching Worldgroup runtime DLL set",
+    "optional Worldgroup symbols/MAP/LIB/header files",
+    "controlled runtime traces or memory captures",
+    "paired save/database samples for persistence and migration analysis"
+  ],
+  "runtime_rule": "Treat the supplied WCC artifact set as exhausted. Do not invent token algorithms, HSE/STO fallbacks, or host implementations. Continue only with Worldgroup/native-host evidence or new original binaries."
+}

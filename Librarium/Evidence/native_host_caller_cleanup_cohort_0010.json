@@ -1,0 +1,540 @@
+{
+  "schema": "majormud.native-host-caller-cleanup-cohort.v1",
+  "update": "FinalNativeClosure0010",
+  "generated_utc": "2026-07-16T03:55:13.629444+00:00",
+  "evidence_class": "PROVEN_STATIC_CALLSITE_CLEANUP",
+  "source_evidence": "FinalNativeClosure0009/native_host_call_abi_footprint_0009.json",
+  "method": "Aggregate every direct WGSERVER thunk callsite by imported symbol. Promote only symbols for which every observed direct callsite has an immediate ADD ESP cleanup and all observed cleanup sizes are identical.",
+  "interpretation_limits": [
+    "Immediate caller cleanup proves the observed caller restores a fixed number of stack bytes at these direct callsites; it does not alone recover parameter types.",
+    "The 28 exact-footprint symbols additionally have bounded pre-call push counts equal to cleanup_bytes/4 at every observed callsite, but register or hidden arguments are still not excluded.",
+    "Symbols with variable formatting arguments, earlier pushes outside the bounded window, or stack temporaries remain in the non-exact cohort.",
+    "Indirect calls and host-internal calls are outside scope."
+  ],
+  "summary": {
+    "symbols_with_uniform_immediate_caller_cleanup": 42,
+    "symbols_with_exact_bounded_push_cleanup_match": 28,
+    "symbols_with_uniform_cleanup_but_nonexact_bounded_pushes": 14,
+    "direct_callsites_covered": 2320,
+    "exact_footprint_callsites": 796
+  },
+  "symbols": [
+    {
+      "symbol": "_sameas",
+      "total_direct_callsites": 394,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 394
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaStepLock",
+      "total_direct_callsites": 94,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 94
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_numopt",
+      "total_direct_callsites": 78,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 78
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaQuery",
+      "total_direct_callsites": 48,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 48
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_alcblok",
+      "total_direct_callsites": 24,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 24
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_begin_polling",
+      "total_direct_callsites": 24,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 24
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_rtkick",
+      "total_direct_callsites": 18,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 18
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_fsdxan",
+      "total_direct_callsites": 12,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 12
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_odedcrd",
+      "total_direct_callsites": 10,
+      "immediate_caller_cleanup_bytes": 16,
+      "cleanup_slot_count": 4,
+      "bounded_pre_call_push_histogram": {
+        "4": 10
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_otstcrd",
+      "total_direct_callsites": 10,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 10
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_vfyadn",
+      "total_direct_callsites": 10,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 10
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_fsdroom",
+      "total_direct_callsites": 8,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 8
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_listing",
+      "total_direct_callsites": 8,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 8
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_lngopt",
+      "total_direct_callsites": 8,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 8
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_samein",
+      "total_direct_callsites": 8,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 8
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_c2bcpy",
+      "total_direct_callsites": 6,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 6
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_echsec",
+      "total_direct_callsites": 6,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 6
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_b2ccpy",
+      "total_direct_callsites": 4,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_getFileTm",
+      "total_direct_callsites": 4,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_msgscan",
+      "total_direct_callsites": 4,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_rsp2read",
+      "total_direct_callsites": 4,
+      "immediate_caller_cleanup_bytes": 16,
+      "cleanup_slot_count": 4,
+      "bounded_pre_call_push_histogram": {
+        "4": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_fsdapr",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_fsdego",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_locate",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_register_textvar",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_samepatu",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "3": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_sortstgs",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_tokopt",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 24,
+      "cleanup_slot_count": 6,
+      "bounded_pre_call_push_histogram": {
+        "6": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": true,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_sameto",
+      "total_direct_callsites": 694,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 692,
+        "5": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_genrdn",
+      "total_direct_callsites": 292,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 286,
+        "3": 2,
+        "5": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaAcqLock",
+      "total_direct_callsites": 266,
+      "immediate_caller_cleanup_bytes": 20,
+      "cleanup_slot_count": 5,
+      "bounded_pre_call_push_histogram": {
+        "2": 2,
+        "5": 262,
+        "9": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_lngrnd",
+      "total_direct_callsites": 84,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "1": 2,
+        "2": 82
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaGetAbsLock",
+      "total_direct_callsites": 68,
+      "immediate_caller_cleanup_bytes": 16,
+      "cleanup_slot_count": 4,
+      "bounded_pre_call_push_histogram": {
+        "2": 68
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaOpen",
+      "total_direct_callsites": 36,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "1": 32,
+        "3": 4
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_ptrblok",
+      "total_direct_callsites": 24,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "2": 2,
+        "3": 22
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaAcqAbsLock",
+      "total_direct_callsites": 20,
+      "immediate_caller_cleanup_bytes": 16,
+      "cleanup_slot_count": 4,
+      "bounded_pre_call_push_histogram": {
+        "2": 2,
+        "4": 18
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaInsertV",
+      "total_direct_callsites": 12,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "1": 2,
+        "2": 10
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_stzcpy",
+      "total_direct_callsites": 12,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "2": 6,
+        "3": 6
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_rsp2write",
+      "total_direct_callsites": 8,
+      "immediate_caller_cleanup_bytes": 16,
+      "cleanup_slot_count": 4,
+      "bounded_pre_call_push_histogram": {
+        "3": 2,
+        "4": 6
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_dfaUpdateV",
+      "total_direct_callsites": 4,
+      "immediate_caller_cleanup_bytes": 8,
+      "cleanup_slot_count": 2,
+      "bounded_pre_call_push_histogram": {
+        "1": 2,
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_senddpk",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 28,
+      "cleanup_slot_count": 7,
+      "bounded_pre_call_push_histogram": {
+        "5": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    },
+    {
+      "symbol": "_vtmsend",
+      "total_direct_callsites": 2,
+      "immediate_caller_cleanup_bytes": 12,
+      "cleanup_slot_count": 3,
+      "bounded_pre_call_push_histogram": {
+        "2": 2
+      },
+      "all_observed_callsites_have_immediate_cleanup": true,
+      "all_observed_bounded_push_counts_match_cleanup_slots": false,
+      "abi_interpretation": "caller_cleanup_observed_at_every_direct_callsite; exact parameter types and complete prototype remain unknown"
+    }
+  ]
+}

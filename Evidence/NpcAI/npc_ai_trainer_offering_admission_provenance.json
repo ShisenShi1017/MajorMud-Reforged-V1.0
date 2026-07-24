@@ -1,0 +1,31 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update": "CodeUpdate0189",
+  "behavior": "trainer offering availability admission and cooldown commit",
+  "confidence": "strongly-correlated",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcTrainerOfferingOwnership.cs",
+      "record_ids": [
+        "persistent-offering-enabled",
+        "persistent-next-available-utc"
+      ]
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+      "record_ids": [
+        "exact-service-request-id",
+        "living-same-room-trainer-admission"
+      ]
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeGameplayCompletionState.cs",
+      "record_ids": [
+        "trainer-state-atomic-save"
+      ]
+    }
+  ],
+  "byte_offsets": [],
+  "native_dependency": false,
+  "safe_fallback": "reject without mutation unless exact offering availability and active request identity are proven."
+}

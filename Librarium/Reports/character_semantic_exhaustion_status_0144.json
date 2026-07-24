@@ -1,0 +1,25 @@
+{
+  "code_update": "0144",
+  "subsystem": "Character",
+  "pass": "Equipment Interaction Phase 1",
+  "completed": [
+    "canonical equipment slots",
+    "equip and unequip lifecycle",
+    "single-location ownership",
+    "slot occupancy",
+    "two-handed off-hand and shield conflict",
+    "generated restriction checks",
+    "equipment-state persistence",
+    "restore-time equipment validation"
+  ],
+  "remaining": [
+    "ready/readied native state",
+    "dual-wield eligibility and penalties",
+    "ring and wrist multiplicity",
+    "layering",
+    "curse and no-remove",
+    "hidden modifiers and aggregation order",
+    "durability effects"
+  ],
+  "next_recommended_pass": "Character abilities and equipment modifier evidence"
+}

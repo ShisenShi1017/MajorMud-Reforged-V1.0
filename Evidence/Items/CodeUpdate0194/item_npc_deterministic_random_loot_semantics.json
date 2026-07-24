@@ -1,0 +1,35 @@
+{
+  "code_update": "0194",
+  "subsystem": "Items",
+  "topic": "deterministic NPC random and rare corpse loot tables",
+  "classification": "Reforged compatibility infrastructure",
+  "confidence": "strongly_correlated",
+  "runtime_behavior": [
+    "Accept only explicit evidence-projected loot entries",
+    "Use SHA-256-derived deterministic chance and quantity rolls",
+    "Reconcile awarded quantities through existing idempotent corpse-loot targets",
+    "Preserve identities on repeated evaluation with the same corpse, table, seed, and entries",
+    "Reject invalid chances, quantity ranges, duplicate keys, missing identities, and cleaned corpses atomically"
+  ],
+  "assumptions": [
+    "Chance is expressed in basis points from 0 through 10000",
+    "Native table mappings, seeds, probability formulas, and quantity formulas remain unknown"
+  ],
+  "safe_fallback": "No random or rare loot is produced unless an authoritative caller supplies the complete table and seed.",
+  "runtime_impact": "Adds deterministic evidence-gated random and rare NPC corpse-loot evaluation.",
+  "character_save_impact": "None directly. Loot becomes normal corpse-held runtime item instances after reconciliation.",
+  "world_state_impact": "Awarded corpse loot persists through the existing world-item persistence boundary.",
+  "tests": [
+    "Stable roll outcome",
+    "Idempotent repeated reconciliation",
+    "100 percent and zero percent boundaries",
+    "Invalid chance rollback"
+  ],
+  "native_dependencies": [
+    "Native loot table records",
+    "Native RNG and seeding",
+    "Native probability and quantity formulas",
+    "Native conditional and quality rules",
+    "Native messages"
+  ]
+}

@@ -15,38 +15,53 @@ public sealed class RuntimeWorldLoader
         var rooms = new Dictionary<string, RuntimeRoom>(StringComparer.OrdinalIgnoreCase);
         var roomsByKey = new Dictionary<RuntimeRoomKey, RuntimeRoom>();
         var roomsByNumberCandidates = new Dictionary<int, List<RuntimeRoom>>();
-        using (var document = JsonDocument.Parse(File.ReadAllText(roomsPath)))
+        ForEachGeneratedRecord(roomsPath, roomElement =>
         {
-            foreach (var roomElement in EnumerateGeneratedRecords(document.RootElement, roomsPath))
+            var room = RuntimeRoom.FromJson(roomElement);
+            if (string.IsNullOrWhiteSpace(room.Id))
             {
-                var room = RuntimeRoom.FromJson(roomElement);
-                if (string.IsNullOrWhiteSpace(room.Id))
-                {
-                    continue;
-                }
-
-                rooms[room.Id] = room;
-                if (room.MapId <= 0 || room.RoomNumber <= 0)
-                {
-                    throw new InvalidOperationException($"Generated room '{room.Id}' is not map-qualified.");
-                }
-                var roomKey = new RuntimeRoomKey(room.MapId, room.RoomNumber);
-                if (!roomsByKey.TryAdd(roomKey, room))
-                {
-                    throw new InvalidOperationException($"Duplicate generated room identity '{roomKey}'.");
-                }
-                if (!roomsByNumberCandidates.TryGetValue(room.RoomNumber, out var candidates))
-                {
-                    candidates = new List<RuntimeRoom>();
-                    roomsByNumberCandidates[room.RoomNumber] = candidates;
-                }
-                candidates.Add(room);
+                return;
             }
-        }
+
+            rooms[room.Id] = room;
+            if (room.MapId <= 0 || room.RoomNumber <= 0)
+            {
+                throw new InvalidOperationException($"Generated room '{room.Id}' is not map-qualified.");
+            }
+            var roomKey = new RuntimeRoomKey(room.MapId, room.RoomNumber);
+            if (!roomsByKey.TryAdd(roomKey, room))
+            {
+                throw new InvalidOperationException($"Duplicate generated room identity '{roomKey}'.");
+            }
+            if (!roomsByNumberCandidates.TryGetValue(room.RoomNumber, out var candidates))
+            {
+                candidates = new List<RuntimeRoom>();
+                roomsByNumberCandidates[room.RoomNumber] = candidates;
+            }
+            candidates.Add(room);
+        });
 
         if (rooms.Count == 0)
         {
             throw new InvalidOperationException($"World rooms file did not contain any loadable room records: {roomsPath}");
+        }
+
+        var environmentPath = Path.Combine(projectRoot, definition.DataRoot, "environment_rooms.json");
+        if (File.Exists(environmentPath))
+        {
+            var environment = RuntimeRoomEnvironmentCatalog.Load(environmentPath);
+            foreach (var pair in rooms.ToArray())
+            {
+                var key = new RuntimeRoomKey(pair.Value.MapId, pair.Value.RoomNumber);
+                if (environment.TryGetValue(key, out var record)) rooms[pair.Key] = pair.Value.WithEnvironment(record);
+            }
+            roomsByKey.Clear(); roomsByNumberCandidates.Clear();
+            foreach (var room in rooms.Values)
+            {
+                roomsByKey.Add(new RuntimeRoomKey(room.MapId, room.RoomNumber), room);
+                if (!roomsByNumberCandidates.TryGetValue(room.RoomNumber, out var candidates)) roomsByNumberCandidates[room.RoomNumber] = candidates = new List<RuntimeRoom>();
+                candidates.Add(room);
+            }
         }
 
         var roomsByNumber = roomsByNumberCandidates
@@ -80,7 +95,15 @@ public sealed class RuntimeWorldLoader
                 $"Configured diagnostic room '{definition.DiagnosticRoom}' was not found for world '{definition.Id}'.");
         }
 
+        var narrativeCatalog = RuntimeClassicNarrativeCatalog.Load(projectRoot, definition.Id);
+
         var catalog = GeneratedWorldDataCatalog.Validate(projectRoot, definition);
+        var commandCatalog = RuntimeClassicCommandCatalog.Load(Path.Combine(projectRoot, definition.DataRoot, "commands.json"));
+        var npcAiCatalog = RuntimeClassicNpcAiCatalog.Load(Path.Combine(projectRoot, definition.DataRoot, "npc_ai_runtime.json"), spawns);
+        var statusEffectCatalog = RuntimeClassicStatusEffectCatalog.Load(
+            Path.Combine(projectRoot, definition.DataRoot, "status_effects.json"),
+            Path.Combine(projectRoot, definition.DataRoot, "spells.json"));
+        var lootRuleCatalog = RuntimeClassicLootRuleCatalog.Load(Path.Combine(projectRoot, definition.DataRoot, "loot_rules.json"));
         if (!catalog.Passed)
         {
             throw new InvalidOperationException($"Generated world data validation failed for world '{definition.Id}': {string.Join("; ", catalog.Diagnostics)}");
@@ -100,7 +123,12 @@ public sealed class RuntimeWorldLoader
             npcs,
             spawns,
             triggers,
-            catalog);
+            catalog,
+            narrativeCatalog,
+            commandCatalog,
+            npcAiCatalog,
+            statusEffectCatalog,
+            lootRuleCatalog);
     }
 
 
@@ -114,13 +142,12 @@ public sealed class RuntimeWorldLoader
         }
 
         var triggers = new List<RuntimeMovementTrigger>();
-        using var document = JsonDocument.Parse(File.ReadAllText(triggersPath));
-        foreach (var element in EnumerateGeneratedRecords(document.RootElement, triggersPath))
+        ForEachGeneratedRecord(triggersPath, element =>
         {
             if (!string.Equals(JsonValueReader.ReadString(element, "trigger_type", string.Empty),
                     "movement_or_exit_gate", StringComparison.OrdinalIgnoreCase))
             {
-                continue;
+                return;
             }
 
             var trigger = RuntimeMovementTrigger.FromJson(element, roomsByKey);
@@ -131,7 +158,7 @@ public sealed class RuntimeWorldLoader
             }
 
             triggers.Add(trigger);
-        }
+        });
 
         // Promoted MMExplorer worlds express movement gates on exits.json and use
         // triggers.json for room/exit interactions. Legacy movement trigger records
@@ -147,17 +174,16 @@ public sealed class RuntimeWorldLoader
         }
 
         var npcs = new Dictionary<int, RuntimeNpcDefinition>();
-        using var document = JsonDocument.Parse(File.ReadAllText(npcsPath));
-        foreach (var element in EnumerateGeneratedRecords(document.RootElement, npcsPath))
+        ForEachGeneratedRecord(npcsPath, element =>
         {
             var npc = RuntimeNpcDefinition.FromJson(element);
             if (npc.LegacyId <= 0 || string.IsNullOrWhiteSpace(npc.Id))
             {
-                continue;
+                return;
             }
 
             npcs[npc.LegacyId] = npc;
-        }
+        });
 
         if (npcs.Count == 0)
         {
@@ -185,13 +211,12 @@ public sealed class RuntimeWorldLoader
             .ToDictionary(group => group.Key, group => (IReadOnlyList<RuntimeNpcDefinition>)group.OrderBy(npc => npc.LegacyId).ToArray());
 
         var spawns = new List<RuntimeNpcSpawn>();
-        using var document = JsonDocument.Parse(File.ReadAllText(spawnsPath));
-        foreach (var element in EnumerateGeneratedRecords(document.RootElement, spawnsPath))
+        ForEachGeneratedRecord(spawnsPath, element =>
         {
             var spawn = RuntimeNpcSpawn.FromJson(element, npcs, npcsByGroup);
             if (string.IsNullOrWhiteSpace(spawn.Id) || string.IsNullOrWhiteSpace(spawn.RoomId))
             {
-                continue;
+                return;
             }
 
             if (spawn.SourceMapId <= 0 || spawn.SourceRoomNumber <= 0)
@@ -202,17 +227,6 @@ public sealed class RuntimeWorldLoader
             // Spawn identity is map-qualified. Never collapse duplicate room numbers across maps.
             roomsByKey.TryGetValue(new RuntimeRoomKey(spawn.SourceMapId, spawn.SourceRoomNumber), out var primaryRoom);
 
-            if (primaryRoom is null && !string.IsNullOrWhiteSpace(spawn.RoomId))
-            {
-                rooms.TryGetValue(spawn.RoomId, out primaryRoom);
-            }
-
-            // Legacy room-number fallback is allowed only when that number is unique in the active world.
-            if (primaryRoom is null)
-            {
-                roomsByNumber.TryGetValue(spawn.SourceRoomNumber, out primaryRoom);
-            }
-
             if (primaryRoom is not null)
             {
                 spawn.ResolvedRuntimeRoomId = primaryRoom.Id;
@@ -222,7 +236,7 @@ public sealed class RuntimeWorldLoader
             // need to own an independent spawn record. Preserve the qualified key even
             // when that map is not yet present in the current generated room slice.
             spawns.Add(spawn);
-        }
+        });
 
         if (spawns.Count == 0)
         {
@@ -282,6 +296,27 @@ public sealed class RuntimeWorldLoader
         return roomId.Length > 0;
     }
 
+    private static void ForEachGeneratedRecord(string sourcePath, Action<JsonElement> action)
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(sourcePath));
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("record_parts", out var partsElement) && partsElement.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in partsElement.EnumerateArray())
+            {
+                if (part.ValueKind != JsonValueKind.String) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(sourcePath)!, part.GetString()!.Replace('/', Path.DirectorySeparatorChar)));
+                ForEachGeneratedRecord(partPath, action);
+            }
+            return;
+        }
+
+        foreach (var record in EnumerateGeneratedRecords(root, sourcePath))
+        {
+            action(record);
+        }
+    }
+
     private static IEnumerable<JsonElement> EnumerateGeneratedRecords(JsonElement root, string sourcePath)
     {
         return root.ValueKind switch
@@ -299,14 +334,13 @@ public sealed class RuntimeWorldLoader
         IDictionary<int, RuntimeRoom> roomsByNumber)
     {
         var exitsByRoom = new Dictionary<RuntimeRoomKey, List<RuntimeExit>>();
-        using var document = JsonDocument.Parse(File.ReadAllText(exitsPath));
-        foreach (var exitElement in EnumerateGeneratedRecords(document.RootElement, exitsPath))
+        ForEachGeneratedRecord(exitsPath, exitElement =>
         {
             var sourceKey = RuntimeExit.ReadSourceKey(exitElement);
             var exit = RuntimeExit.FromGeneratedRecord(exitElement);
             if (!sourceKey.IsValid || !exit.TargetKey.IsValid || string.IsNullOrWhiteSpace(exit.Direction))
             {
-                continue;
+                return;
             }
 
             if (!roomsByKey.ContainsKey(sourceKey))
@@ -322,7 +356,7 @@ public sealed class RuntimeWorldLoader
 
             var existingIndex = roomExits.FindIndex(candidate => string.Equals(candidate.Direction, exit.Direction, StringComparison.OrdinalIgnoreCase));
             if (existingIndex >= 0) roomExits[existingIndex] = exit; else roomExits.Add(exit);
-        }
+        });
 
         foreach (var pair in exitsByRoom)
         {
@@ -357,7 +391,12 @@ public sealed class RuntimeWorld
         IReadOnlyDictionary<int, RuntimeNpcDefinition> npcs,
         IReadOnlyList<RuntimeNpcSpawn> spawns,
         IReadOnlyList<RuntimeMovementTrigger> triggers,
-        GeneratedWorldDataCatalog dataCatalog)
+        GeneratedWorldDataCatalog dataCatalog,
+        RuntimeClassicNarrativeCatalog narrativeCatalog,
+        RuntimeClassicCommandCatalog commandCatalog,
+        RuntimeClassicNpcAiCatalog npcAiCatalog,
+        RuntimeClassicStatusEffectCatalog statusEffectCatalog,
+        RuntimeClassicLootRuleCatalog lootRuleCatalog )
     {
         Definition = definition;
         _rooms = rooms;
@@ -380,9 +419,15 @@ public sealed class RuntimeWorld
             .GroupBy(spawn => spawn.ResolvedRuntimeRoomId, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(group => group.Key, group => (IReadOnlyList<RuntimeNpcSpawn>)group.ToArray(), StringComparer.OrdinalIgnoreCase);
         DataCatalog = dataCatalog;
+        NarrativeCatalog = narrativeCatalog;
+        CommandCatalog = commandCatalog;
+        NpcAiCatalog = npcAiCatalog;
+        StatusEffectCatalog = statusEffectCatalog;
+        LootRuleCatalog = lootRuleCatalog;
     }
 
     public WorldRuntimeDefinition Definition { get; }
+    public RuntimeClassicNarrativeCatalog NarrativeCatalog { get; }
     public string EvidencePath { get; }
     public string ExitsEvidencePath { get; }
     public string TriggersEvidencePath { get; }
@@ -406,6 +451,10 @@ public sealed class RuntimeWorld
     public int UnresolvedGroupCount => Spawns.Count(spawn => !spawn.GroupResolved);
     public int UnresolvedBossCount => Spawns.Count(spawn => !spawn.BossResolved);
     public GeneratedWorldDataCatalog DataCatalog { get; }
+    public RuntimeClassicCommandCatalog CommandCatalog { get; }
+    public RuntimeClassicNpcAiCatalog NpcAiCatalog { get; }
+    public RuntimeClassicStatusEffectCatalog StatusEffectCatalog { get; }
+    public RuntimeClassicLootRuleCatalog LootRuleCatalog { get; }
     public int RoomCount => _rooms.Count;
 
     public RuntimeRoom? ResolveGeneratedCharacterStartRoom() =>
@@ -423,8 +472,48 @@ public sealed class RuntimeWorld
 
     public IReadOnlyList<RuntimeRoom> AllRooms() => _rooms.Values.ToArray();
 
+    public IReadOnlyList<int> GetResetPlacedItemIds(string roomId) =>
+        FindRoomById(roomId)?.PlacedDefinition.DecodedItemIds ?? Array.Empty<int>();
+
+    public RuntimeRoom? GetAuthoritativeRoomMetadata(string roomId) => FindRoomById(roomId);
+
     public IReadOnlyList<RuntimeNpcSpawn> FindSpawnsByRoom(string roomId) =>
         SpawnsByRoom.TryGetValue(roomId, out var spawns) ? spawns : Array.Empty<RuntimeNpcSpawn>();
+
+    public RuntimeNpcSpawn? FindSpawnById(string spawnId) =>
+        Spawns.FirstOrDefault(spawn => spawn.Id.Equals(spawnId, StringComparison.OrdinalIgnoreCase));
+
+    public RuntimeExit? FindExit(RuntimeRoom room, string direction)
+    {
+        ArgumentNullException.ThrowIfNull(room);
+        var normalized = NormalizeDirection(direction);
+        return room.Exits.FirstOrDefault(exit => NormalizeDirection(exit.Direction).Equals(normalized, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public RuntimeRoom? ResolveExitDestination(RuntimeExit exit)
+    {
+        ArgumentNullException.ThrowIfNull(exit);
+        return exit.HasBlockedDestination ? null : FindRoom(exit.TargetMapId, exit.TargetRoomNumber);
+    }
+
+    public bool TryResolveExit(RuntimeRoom room, string direction, out RuntimeExit? exit, out RuntimeRoom? destination, out string failure)
+    {
+        exit = FindExit(room, direction);
+        if (exit is null)
+        {
+            destination = null;
+            failure = "You cannot go that way.";
+            return false;
+        }
+        destination = ResolveExitDestination(exit);
+        if (destination is null)
+        {
+            failure = $"Exit {NormalizeDirection(direction)} points to unresolved destination {exit.TargetKey}. Movement blocked until evidence is reconciled.";
+            return false;
+        }
+        failure = string.Empty;
+        return true;
+    }
 
     public IReadOnlyList<RuntimeMovementTrigger> FindMovementTriggers(int mapId, int roomNumber, string direction) =>
         TriggersByRoomAndDirection.TryGetValue($"{mapId}:{roomNumber}:{NormalizeDirection(direction)}", out var triggers)
@@ -434,6 +523,7 @@ public sealed class RuntimeWorld
     private static string NormalizeDirection(string value) => value.Trim().ToUpperInvariant() switch
     {
         "NORTH" => "N", "SOUTH" => "S", "EAST" => "E", "WEST" => "W",
+        "NORTHEAST" => "NE", "NORTHWEST" => "NW", "SOUTHEAST" => "SE", "SOUTHWEST" => "SW",
         "UP" => "U", "DOWN" => "D", var direction => direction
     };
 }

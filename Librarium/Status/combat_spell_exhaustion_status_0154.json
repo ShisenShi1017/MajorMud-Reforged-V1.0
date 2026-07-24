@@ -1,0 +1,30 @@
+{
+  "update": "0154",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated spell target policies",
+    "canonical spell, character, NPC, item, corpse, room, and exit identifier validation",
+    "deterministic target-candidate normalization",
+    "duplicate candidate rejection",
+    "self, explicit-single, party, room-creature, and no-explicit-target execution paths",
+    "target-kind, room, alive, visibility, friendly, and hostile gates",
+    "stable canonical target ordering",
+    "post-filter maximum-target enforcement",
+    "empty required target-set rejection",
+    "spell.1304 unresolved target-mode fail-closed policy",
+    "deterministic target construction smoke vectors"
+  ],
+  "not_claimed_complete": [
+    "native target-mode numeric constants",
+    "spell.1304 target semantics",
+    "range and line-of-sight rules",
+    "cross-room and directional targeting",
+    "hidden versus invisible distinctions",
+    "dead and corpse targeting",
+    "friendly-fire defaults",
+    "random target selection",
+    "item, door, exit, world, and remote targeting"
+  ],
+  "next_pass": "Integrate evidence-gated target decisions with cast completion and atomic effect execution, preserving rollback when target validation or effect application fails."
+}

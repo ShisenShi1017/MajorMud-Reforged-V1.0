@@ -1,0 +1,41 @@
+{
+  "code_update": "0170",
+  "subsystem": "items",
+  "finding": "partial_quantity_bank_and_merchant_transfers",
+  "classification": "strongly_correlated",
+  "runtime_status": "active_reforged_compatibility_infrastructure_evidence_gated_for_classic",
+  "source_files": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+    "Data/*/items.json"
+  ],
+  "supporting_evidence": [
+    "Existing runtime stack split semantics create one new instance identity and retain the source identity.",
+    "Bank and merchant transfers already preserve full-stack identity and use atomic rollback.",
+    "Quantity-sensitive transaction paths require the same split-before-transfer lifecycle primitive."
+  ],
+  "confidence": 0.9,
+  "assumptions": [
+    "Only definitions explicitly projected as stackable may use partial quantity operations.",
+    "Native pricing and currency mutation remain owned by Economy and are not inferred here.",
+    "Native automatic destination-stack merging is not activated without evidence."
+  ],
+  "safe_fallback": "Reject invalid quantities; transfer the entire existing instance only when the requested quantity equals the stack quantity; do not infer Classic stackability.",
+  "runtime_impact": "Atomic partial deposit, withdrawal, merchant sale, and merchant purchase with one new transferred instance ID.",
+  "character_save_impact": "Source and split quantities plus both instance IDs persist through the existing item-state serializer.",
+  "world_state_impact": "Merchant stock receives the split instance; bank state retains character ownership and bank location.",
+  "tests": [
+    "partial bank deposit",
+    "partial bank withdrawal",
+    "partial merchant sale",
+    "partial merchant purchase",
+    "invalid quantity rollback",
+    "restriction rollback"
+  ],
+  "native_dependencies": [
+    "Classic stackable item flags",
+    "Classic maximum stack sizes",
+    "Native destination auto-merge behavior",
+    "Native price and currency transaction ordering"
+  ]
+}

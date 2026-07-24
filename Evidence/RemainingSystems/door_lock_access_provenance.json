@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "doors-locks-access",
+  "promotions": [
+    {
+      "behavior": "Door state and traversal ordering are centralized in RuntimeDoorAccessService.",
+      "classification": "proven",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeDoorAccess.cs",
+        "Apps/Source/Reforged.Server/RuntimeDoorAccessSmokeReport.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs"
+      ],
+      "recordIds": [
+        "runtime-door-state",
+        "runtime-exit-gate:door"
+      ],
+      "byteOffsets": [],
+      "supportingEvidence": [
+        "Existing living-world traversal blocks locked and closed doors.",
+        "Existing generated gate records classify door gates separately from trap and movement effects.",
+        "Smoke validation proves deterministic access-state-trap-movement ordering."
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-door-access:locked-blocks-traversal",
+        "--smoke-door-access:ordering-trap-before-movement",
+        "--smoke-door-access:state-invariants"
+      ],
+      "safeFallback": "Missing or invalid door state denies traversal.",
+      "runtimeImpact": "Door access now has an explicit deterministic coordinator.",
+      "characterSaveImpact": "None; inventory consumption is returned as a request to the Character inventory owner.",
+      "worldStateImpact": "Open, locked, broken, reset deadline, and revision may persist when configured."
+    },
+    {
+      "behavior": "Keys authorize lock and unlock requests, while inventory ownership and final consumption remain outside the door subsystem.",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeDoorAccess.cs",
+        "Librarium/RemainingSystems/door_lock_access_catalog.json"
+      ],
+      "recordIds": [
+        "door.requiredKeyId",
+        "door.consumableKey"
+      ],
+      "byteOffsets": [],
+      "supportingEvidence": [
+        "Door/key relationships are represented in existing room and exit catalogs.",
+        "Ownership separation avoids duplicating Character inventory mutation."
+      ],
+      "confidence": 0.86,
+      "assumptions": [
+        "A consumable key is consumed only after the inventory owner commits the returned request."
+      ],
+      "tests": [
+        "--smoke-door-access:consumable-key-request",
+        "--smoke-door-access:linked-unlock-synchronized"
+      ],
+      "safeFallback": "Missing, mismatched, or unowned keys deny state mutation.",
+      "runtimeImpact": "Lock and unlock operations validate explicit key identity and ownership.",
+      "characterSaveImpact": "Potential item decrement only after an external inventory transaction succeeds.",
+      "worldStateImpact": "Successful authorization mutates door lock state."
+    },
+    {
+      "behavior": "Lockpick and bash are evidence-only authorization requests rather than invented native success formulas.",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeDoorAccess.cs",
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "recordIds": [
+        "door.pickable",
+        "door.bashable"
+      ],
+      "byteOffsets": [],
+      "supportingEvidence": [
+        "Commands and abilities can request these actions, but exact native probability and durability formulas remain unresolved."
+      ],
+      "confidence": 0.78,
+      "assumptions": [
+        "The ability owner resolves skill success before or after this policy request in final integration."
+      ],
+      "tests": [
+        "RuntimeDoorAccessService.Act(Pick)",
+        "RuntimeDoorAccessService.Act(Bash)"
+      ],
+      "safeFallback": "Deny unless the definition explicitly permits the action and the actor has the required ability marker.",
+      "runtimeImpact": "No random formula is invented.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "Only an approved request mutates lock or broken state; marked evidence-only."
+    }
+  ]
+}

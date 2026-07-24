@@ -1,0 +1,103 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+Runtime Live Combat Round Smoke Report
+{
+  "Passed": true,
+  "Checks": [
+    "generated-player-weapon-profile",
+    "npc-status-expiration-removes-only-expired",
+    "npc-status-expiration-preserves-live",
+    "generated-npc-executable-attacks",
+    "generated-npc-multi-attack-count",
+    "npc-attack-count-live-consumer",
+    "generated-npc-zero-attack-count",
+    "zero-attack-npc-does-not-attack",
+    "decoded-npc-attack-energy-cost",
+    "npc-attack-blocked-without-energy",
+    "npc-affordable-attack-selected",
+    "npc-attack-energy-deducted",
+    "npc-resisted-spell-half-energy-refund",
+    "npc-resisted-spell-refund-truncates",
+    "npc-resisted-spell-refund-capped",
+    "npc-encounter-energy-reset-to-decoded-maximum",
+    "negative-npc-attack-count-rejected",
+    "positive-attack-count-requires-attack-rows",
+    "generated-npc-outcome-message-relationships",
+    "npc-hit-message-live-consumer",
+    "npc-miss-message-live-consumer",
+    "npc-dodge-message-live-consumer",
+    "generated-npc-hit-spell-relationship",
+    "npc-hit-spell-canonical-resolution",
+    "npc-hit-spell-effect-range-bound",
+    "npc-hit-spell-metadata-bound",
+    "npc-hit-spell-cold-classification",
+    "npc-hit-spell-fire-classification",
+    "npc-hit-spell-stone-classification",
+    "npc-hit-spell-lightning-classification",
+    "npc-hit-spell-untyped-classification",
+    "npc-hit-spell-acid-classification",
+    "npc-hit-spell-poison-classification",
+    "npc-hit-spell-contact-target-classification",
+    "npc-hit-spell-scripted-target-classification",
+    "npc-hit-spell-single-hostile-target-classification",
+    "npc-hit-spell-area-hostile-target-classification",
+    "npc-hit-spell-never-resisted-classification",
+    "npc-hit-spell-antimagic-only-classification",
+    "npc-hit-spell-magic-resistance-eligible-classification",
+    "npc-hit-spell-immediate-type-classification",
+    "npc-hit-spell-poison-type-classification",
+    "npc-hit-spell-status-scripted-type-classification",
+    "generated-npc-immediate-damage-hit-spell",
+    "npc-hit-spell-immediate-damage-live-consumer",
+    "npc-hit-spell-elemental-resistance-reduction",
+    "npc-hit-spell-elemental-vulnerability-increase",
+    "npc-hit-spell-elemental-immunity-threshold",
+    "npc-hit-spell-overcap-resistance-suppression",
+    "npc-hit-spell-poison-immunity",
+    "npc-hit-spell-acid-unmapped-resistance-fallback",
+    "npc-hit-spell-untyped-resistance-bypass",
+    "npc-hit-spell-status-effect-quarantined",
+    "generated-npc-poison-status-delivery",
+    "npc-hit-spell-poison-status-live-consumer",
+    "npc-hit-spell-poison-status-immunity",
+    "npc-hit-spell-status-refresh-same-spell",
+    "generated-npc-general-status-delivery",
+    "npc-hit-spell-general-status-live-consumer",
+    "npc-hit-spell-mr-equation",
+    "npc-hit-spell-mr-inclusive-boundary",
+    "npc-hit-spell-never-resisted-gate",
+    "npc-hit-spell-antimagic-ability-gate",
+    "npc-hit-spell-antimagic-live-check",
+    "npc-hit-spell-only-on-hit",
+    "round-command-route",
+    "live-round-execution",
+    "classic-resolver-connected",
+    "dodge-minimum-attacker-threshold",
+    "dodge-final-cap",
+    "backstab-dodge-reduction"
+  ],
+  "Failures": []
+}

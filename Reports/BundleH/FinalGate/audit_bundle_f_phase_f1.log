@@ -1,0 +1,188 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+Runtime Bundle F Phase F1 Authority Audit
+{
+  "Passed": true,
+  "FamilyCount": 12,
+  "DecodedRecordCount": 35541,
+  "VerifiedDisconnectCount": 0,
+  "StronglyCorroboratedDisconnectCount": 0,
+  "DuplicateAuthorityCount": 0,
+  "FieldLedger": [
+    {
+      "Family": "Textblocks and scripts",
+      "SourceFile": "scripts.json",
+      "DecodedRecordCount": 183,
+      "CanonicalOwner": "ClassicRuntimeCatalog / RuntimeClassicNarrativeCatalog",
+      "RuntimeConsumer": "RuntimeQuestDialogueExecution",
+      "PersistenceOwner": "Bundle A-G mutation owners",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Quests and missions",
+      "SourceFile": "quests.json",
+      "DecodedRecordCount": 2183,
+      "CanonicalOwner": "ClassicRuntimeCatalog / RuntimeClassicNarrativeCatalog",
+      "RuntimeConsumer": "RuntimeQuestDialogueExecution",
+      "PersistenceOwner": "Bundle A character quest state / Bundle G storage",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Triggers and events",
+      "SourceFile": "triggers.json",
+      "DecodedRecordCount": 367,
+      "CanonicalOwner": "ClassicRuntimeCatalog",
+      "RuntimeConsumer": "RuntimeTextblockInvocation and authoritative Bundle A-E event producers",
+      "PersistenceOwner": "Bundle G storage and reset authority",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Commands",
+      "SourceFile": "commands.json",
+      "DecodedRecordCount": 25,
+      "CanonicalOwner": "ClassicRuntimeCatalog",
+      "RuntimeConsumer": "authoritative command router and RuntimeTextblockInvocation",
+      "PersistenceOwner": "owning Bundle A-G subsystem",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Narrative events",
+      "SourceFile": "events.json",
+      "DecodedRecordCount": 1501,
+      "CanonicalOwner": "ClassicRuntimeCatalog",
+      "RuntimeConsumer": "authoritative event execution contract",
+      "PersistenceOwner": "Bundle G scheduler/storage",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Race descriptions",
+      "SourceFile": "races.json",
+      "DecodedRecordCount": 13,
+      "CanonicalOwner": "ClassicRuntimeCatalog race record",
+      "RuntimeConsumer": "character creation/help/look/examine projection",
+      "PersistenceOwner": "Bundle A identity persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Room descriptions",
+      "SourceFile": "rooms.json",
+      "DecodedRecordCount": 26668,
+      "CanonicalOwner": "ClassicRuntimeCatalog room record",
+      "RuntimeConsumer": "Bundle D look/examine projection",
+      "PersistenceOwner": "Bundle D world persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "NPC and monster descriptions",
+      "SourceFile": "npcs.json",
+      "DecodedRecordCount": 1100,
+      "CanonicalOwner": "ClassicRuntimeCatalog NPC record",
+      "RuntimeConsumer": "Bundle E interaction/look projection",
+      "PersistenceOwner": "Bundle E NPC persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Item and equipment descriptions",
+      "SourceFile": "items.json",
+      "DecodedRecordCount": 1950,
+      "CanonicalOwner": "ClassicRuntimeCatalog item record",
+      "RuntimeConsumer": "Bundle C inventory/look/examine projection",
+      "PersistenceOwner": "Bundle C item persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Spell descriptions",
+      "SourceFile": "spells.json",
+      "DecodedRecordCount": 1350,
+      "CanonicalOwner": "ClassicRuntimeCatalog spell record",
+      "RuntimeConsumer": "Bundle A spell/help projection",
+      "PersistenceOwner": "Bundle A learned-spell persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Skill descriptions",
+      "SourceFile": "skills.json",
+      "DecodedRecordCount": 13,
+      "CanonicalOwner": "ClassicRuntimeCatalog skill record",
+      "RuntimeConsumer": "Bundle A skill/help projection",
+      "PersistenceOwner": "Bundle A character persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    },
+    {
+      "Family": "Ability descriptions",
+      "SourceFile": "abilities.json",
+      "DecodedRecordCount": 188,
+      "CanonicalOwner": "ClassicRuntimeCatalog ability record",
+      "RuntimeConsumer": "Bundle A ability/help projection",
+      "PersistenceOwner": "Bundle A ability persistence",
+      "EvidenceStatus": "Verified or Strongly Corroborated records promoted individually",
+      "Disposition": "canonical authority assigned; live-consumer exhaustion continues by phase"
+    }
+  ],
+  "Checks": [
+    "required-textblock-command-contract-present",
+    "required-npc-ai-runtime-present",
+    "decoded-family-nonempty:scripts.json",
+    "decoded-family-nonempty:quests.json",
+    "decoded-family-nonempty:triggers.json",
+    "decoded-family-nonempty:commands.json",
+    "decoded-family-nonempty:events.json",
+    "decoded-family-nonempty:races.json",
+    "decoded-family-nonempty:rooms.json",
+    "decoded-family-nonempty:npcs.json",
+    "decoded-family-nonempty:items.json",
+    "decoded-family-nonempty:spells.json",
+    "decoded-family-nonempty:skills.json",
+    "decoded-family-nonempty:abilities.json",
+    "canonical-runtime-present:RuntimeClassicNarrativeCatalog.cs",
+    "canonical-runtime-present:RuntimeClassicNarrativeTypes.cs",
+    "canonical-runtime-present:RuntimeQuestDialogueExecution.cs",
+    "canonical-runtime-present:RuntimeTextblockInvocation.cs",
+    "canonical-runtime-present:RuntimeTextblockCommandAbilityCatalog.cs",
+    "no-parallel-quest-engine",
+    "no-parallel-dialogue-engine",
+    "no-duplicate-textblock-catalog",
+    "narrative-executable-scripts-loaded",
+    "narrative-connected-quest-flows-loaded",
+    "narrative-quarantine-count-accounted",
+    "known-textblock-root-traced:335",
+    "known-textblock-root-traced:366",
+    "known-textblock-root-traced:428",
+    "known-textblock-root-traced:2798:monster.716:command_map"
+  ],
+  "Failures": []
+}

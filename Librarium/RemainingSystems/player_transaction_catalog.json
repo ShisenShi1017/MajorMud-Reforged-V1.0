@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "player-transactions",
+  "runtimeOwner": "RuntimePlayerTransactionService",
+  "persistenceOwner": "transaction coordinator; Character inventory and Economy own assets and balances",
+  "operations": [
+    "offer",
+    "accept",
+    "commit",
+    "cancel",
+    "disconnect cancellation"
+  ],
+  "policies": [
+    "revision conflict rejection",
+    "quest/limited/bound item restrictions",
+    "positive quantities",
+    "offer expiration",
+    "two-party authorization"
+  ],
+  "typedRequests": [
+    "CharacterInventory reserve-transfer",
+    "Economy reserve-transfer"
+  ],
+  "safeFallback": "Reject unknown parties, restricted assets, stale revisions, expired offers, and unauthorized acceptance.",
+  "evidenceClassification": "strongly-correlated",
+  "nativeDependencies": [
+    "exact Classic give/trade/auction command families",
+    "native escrow and atomicity",
+    "capacity and weight validation ordering",
+    "limited and quest item restrictions",
+    "disconnect rollback",
+    "auction/bid/buyout persistence",
+    "exact messages and logging"
+  ]
+}

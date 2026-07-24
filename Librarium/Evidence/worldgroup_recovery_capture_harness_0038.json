@@ -1,0 +1,27 @@
+{
+  "update": "WorldgroupNativeClosureUpdate0038",
+  "status": "implemented_evidence_capture_harness",
+  "purpose": "Capture byte-identical Btrieve/MKDE transaction and recovery artifacts before and after controlled operations without inventing their record formats.",
+  "schemas": [
+    "majormud.worldgroup-recovery-capture.v1",
+    "majormud.worldgroup-recovery-artifact-diff.v1"
+  ],
+  "candidate_patterns": ["BTRVLOG.TRN", "BTRVLOG.RCV", "BTR_TMP.$??", "????????.LOG", "MKDEWE.TRA", "MKDEMSG.LOG"],
+  "captured_metadata": ["relative path", "size", "mtime_ns", "sha256"],
+  "optional_payload_capture": true,
+  "safety_policy": {
+    "runtime_behavior_changed": false,
+    "unknown_format_parser_activated": false,
+    "single_difference_generalization_allowed": false,
+    "original_binary_redistribution_required": false
+  },
+  "controlled_capture_sequence": [
+    "snapshot clean baseline",
+    "perform exactly one documented MajorMUD mutation",
+    "snapshot after clean commit or shutdown",
+    "repeat with identical starting state",
+    "compare stable changed offsets across independent captures",
+    "perform forced-termination capture only in an isolated duplicate installation"
+  ],
+  "closure_impact": "Provides the reproducible acquisition and comparison path required to enrich the conclusively bounded TRN/RCV format boundary when artifacts become available."
+}

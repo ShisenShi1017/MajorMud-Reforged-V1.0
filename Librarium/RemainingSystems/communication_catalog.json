@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "communications",
+  "runtimeOwner": "RuntimeCommunicationService",
+  "channels": [
+    {
+      "id": "say",
+      "scope": "same-room",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "whisper",
+      "scope": "same-room-target",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "tell",
+      "scope": "connected-target",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "shout",
+      "scope": "connected-world-fallback",
+      "status": "active-safe-shell",
+      "nativeDependency": "exact Classic range"
+    },
+    {
+      "id": "yell",
+      "scope": "connected-world-fallback",
+      "status": "active-safe-shell",
+      "nativeDependency": "exact Classic range"
+    },
+    {
+      "id": "emote",
+      "scope": "same-room",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "pose",
+      "scope": "same-room",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "party",
+      "scope": "RuntimePartyCoordinationService route",
+      "status": "active-safe-shell"
+    },
+    {
+      "id": "guild",
+      "scope": "matching guild identity",
+      "status": "active-safe-shell",
+      "nativeDependency": "guild semantics"
+    },
+    {
+      "id": "global",
+      "scope": "host-policy gated",
+      "status": "disabled-by-default"
+    },
+    {
+      "id": "system",
+      "scope": "connected-world",
+      "status": "internal-only-policy"
+    },
+    {
+      "id": "administrative-broadcast",
+      "scope": "connected-world",
+      "status": "administrator-gated"
+    }
+  ],
+  "filters": [
+    "connected",
+    "deafened",
+    "silenced",
+    "ignore-list",
+    "flood-window",
+    "channel-policy"
+  ],
+  "ownership": {
+    "recipientSelection": "communications",
+    "partyMembership": "party-coordination",
+    "guildMembership": "guild-faction-organization",
+    "commandParsing": "commands subsystem",
+    "characterIdentityStorage": "character subsystem",
+    "hostTerminalDelivery": "worldgroup integration boundary"
+  },
+  "persistence": {
+    "floodWindow": "runtime-only",
+    "ignoreList": "native-dependent",
+    "deliveryLog": "native-dependent"
+  }
+}

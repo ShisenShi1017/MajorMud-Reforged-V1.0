@@ -1,0 +1,397 @@
+﻿{
+    "schema":  "reforged_gang_house_catalog_v1",
+    "record_count":  10,
+    "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+    "records":  [
+                    {
+                        "id":  "gang_house.red",
+                        "house_id":  "gang_house.red",
+                        "color":  "red",
+                        "name":  "Red Gang House",
+                        "deed_item_id":  "item.1008",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_red.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.908",
+                                              "room_id":  "room.map15.908",
+                                              "map_id":  15,
+                                              "room_number":  908,
+                                              "room_name":  "Red Hall Inner Sanctum",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.132",
+                                              "legacy_shop_number":  132,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.973",
+                                              "room_id":  "room.map15.973",
+                                              "map_id":  15,
+                                              "room_number":  973,
+                                              "room_name":  "Red Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.136",
+                                              "legacy_shop_number":  136,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.orange",
+                        "house_id":  "gang_house.orange",
+                        "color":  "orange",
+                        "name":  "Orange Gang House",
+                        "deed_item_id":  "item.1009",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_orange.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.875",
+                                              "room_id":  "room.map15.875",
+                                              "map_id":  15,
+                                              "room_number":  875,
+                                              "room_name":  "Anchor Hall Inner Chamber",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.126",
+                                              "legacy_shop_number":  126,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.974",
+                                              "room_id":  "room.map15.974",
+                                              "map_id":  15,
+                                              "room_number":  974,
+                                              "room_name":  "Anchor Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.137",
+                                              "legacy_shop_number":  137,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.yellow",
+                        "house_id":  "gang_house.yellow",
+                        "color":  "yellow",
+                        "name":  "Yellow Gang House",
+                        "deed_item_id":  "item.1010",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_yellow.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.890",
+                                              "room_id":  "room.map15.890",
+                                              "map_id":  15,
+                                              "room_number":  890,
+                                              "room_name":  "Leafseal Inner Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.127",
+                                              "legacy_shop_number":  127,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.975",
+                                              "room_id":  "room.map15.975",
+                                              "map_id":  15,
+                                              "room_number":  975,
+                                              "room_name":  "Yellow Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.138",
+                                              "legacy_shop_number":  138,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.green",
+                        "house_id":  "gang_house.green",
+                        "color":  "green",
+                        "name":  "Green Gang House",
+                        "deed_item_id":  "item.1011",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_green.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.932",
+                                              "room_id":  "room.map15.932",
+                                              "map_id":  15,
+                                              "room_number":  932,
+                                              "room_name":  "Ironwood Inner Supply",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.133",
+                                              "legacy_shop_number":  133,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.976",
+                                              "room_id":  "room.map15.976",
+                                              "map_id":  15,
+                                              "room_number":  976,
+                                              "room_name":  "Ironwood Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.139",
+                                              "legacy_shop_number":  139,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.blue",
+                        "house_id":  "gang_house.blue",
+                        "color":  "blue",
+                        "name":  "Blue Gang House",
+                        "deed_item_id":  "item.1012",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_blue.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.948",
+                                              "room_id":  "room.map15.948",
+                                              "map_id":  15,
+                                              "room_number":  948,
+                                              "room_name":  "Swords Hall Armory Chamber",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.131",
+                                              "legacy_shop_number":  131,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.978",
+                                              "room_id":  "room.map15.978",
+                                              "map_id":  15,
+                                              "room_number":  978,
+                                              "room_name":  "Swords Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.141",
+                                              "legacy_shop_number":  141,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.violet",
+                        "house_id":  "gang_house.violet",
+                        "color":  "violet",
+                        "name":  "Violet Gang House",
+                        "deed_item_id":  "item.1013",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_violet.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.902",
+                                              "room_id":  "room.map15.902",
+                                              "map_id":  15,
+                                              "room_number":  902,
+                                              "room_name":  "Gatehouse Barracks Inner Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.128",
+                                              "legacy_shop_number":  128,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.977",
+                                              "room_id":  "room.map15.977",
+                                              "map_id":  15,
+                                              "room_number":  977,
+                                              "room_name":  "Blue Fortress Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.140",
+                                              "legacy_shop_number":  140,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.black",
+                        "house_id":  "gang_house.black",
+                        "color":  "black",
+                        "name":  "Black Gang House",
+                        "deed_item_id":  "item.1014",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_black.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.946",
+                                              "room_id":  "room.map15.946",
+                                              "map_id":  15,
+                                              "room_number":  946,
+                                              "room_name":  "Shadow Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.130",
+                                              "legacy_shop_number":  130,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.979",
+                                              "room_id":  "room.map15.979",
+                                              "map_id":  15,
+                                              "room_number":  979,
+                                              "room_name":  "Shadow Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.142",
+                                              "legacy_shop_number":  142,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.silver",
+                        "house_id":  "gang_house.silver",
+                        "color":  "silver",
+                        "name":  "Silver Gang House",
+                        "deed_item_id":  "item.1015",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_silver.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.919",
+                                              "room_id":  "room.map15.919",
+                                              "map_id":  15,
+                                              "room_number":  919,
+                                              "room_name":  "Silver Steed Inner Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.129",
+                                              "legacy_shop_number":  129,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.980",
+                                              "room_id":  "room.map15.980",
+                                              "map_id":  15,
+                                              "room_number":  980,
+                                              "room_name":  "Silver Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.143",
+                                              "legacy_shop_number":  143,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.gold",
+                        "house_id":  "gang_house.gold",
+                        "color":  "gold",
+                        "name":  "Gold Gang House",
+                        "deed_item_id":  "item.1016",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_gold.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.968",
+                                              "room_id":  "room.map15.968",
+                                              "map_id":  15,
+                                              "room_number":  968,
+                                              "room_name":  "Crown Hall Inner Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.134",
+                                              "legacy_shop_number":  134,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.981",
+                                              "room_id":  "room.map15.981",
+                                              "map_id":  15,
+                                              "room_number":  981,
+                                              "room_name":  "Crown Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.144",
+                                              "legacy_shop_number":  144,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    },
+                    {
+                        "id":  "gang_house.white",
+                        "house_id":  "gang_house.white",
+                        "color":  "white",
+                        "name":  "White Gang House",
+                        "deed_item_id":  "item.1017",
+                        "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_white.html",
+                        "source_classification":  "wcc_shop_api_reference_backed_service_locations",
+                        "locations":  [
+                                          {
+                                              "location_id":  "room.map15.861",
+                                              "room_id":  "room.map15.861",
+                                              "map_id":  15,
+                                              "room_number":  861,
+                                              "room_name":  "Diamond Star Vault",
+                                              "location_kind":  "vault",
+                                              "shop_id":  "shop.125",
+                                              "legacy_shop_number":  125,
+                                              "is_gang_house":  true,
+                                              "is_vault":  true,
+                                              "is_gang_house_shop":  false,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          },
+                                          {
+                                              "location_id":  "room.map15.982",
+                                              "room_id":  "room.map15.982",
+                                              "map_id":  15,
+                                              "room_number":  982,
+                                              "room_name":  "Diamond Hall Supply Room",
+                                              "location_kind":  "supply_shop",
+                                              "shop_id":  "shop.145",
+                                              "legacy_shop_number":  145,
+                                              "is_gang_house":  true,
+                                              "is_vault":  false,
+                                              "is_gang_house_shop":  true,
+                                              "evidence":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json"
+                                          }
+                                      ]
+                    }
+                ]
+}

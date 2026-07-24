@@ -1,0 +1,15 @@
+{
+  "policy_id": "runtime.item.npc_corpse_loot.deterministic_table",
+  "version": "0194",
+  "scope": "NPC corpse loot creation",
+  "rules": [
+    "Require an authoritative corpse, table key, seed, and complete entry list",
+    "Require unique nonempty loot keys",
+    "Require chance values from 0 through 10000 basis points",
+    "Require nonnegative valid quantity ranges",
+    "Derive rolls from SHA-256 over stable authoritative inputs",
+    "Reconcile awards through the existing idempotent NPC corpse-loot target path",
+    "Do not activate native loot tables without decoded mappings"
+  ],
+  "classic_native_status": "unknown; final native pass required"
+}

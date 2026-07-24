@@ -1,0 +1,13 @@
+{
+  "id": "policy.integrated_tsq.pending_evidence.0198",
+  "scope": [
+    "triggers",
+    "scripts",
+    "quests"
+  ],
+  "proven": "npc_textblock quest flows retain executable status",
+  "strongly_correlated": "key items linked by decoded quest operation or exact exit qualifier are active only through the owning quest/exit",
+  "research_only": "simulator condition clues and unlinked key candidates cannot create quest state",
+  "fallback": "preserve evidence; never infer offer, stage, reward, consumption, or completion from item existence alone",
+  "save_world_state_impact": "prevents false quest flags and accidental item consumption"
+}

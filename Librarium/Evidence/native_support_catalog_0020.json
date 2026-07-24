@@ -1,0 +1,3621 @@
+{
+  "schema": "majorMud.nativeSupportCatalog.v1",
+  "update": "0019->0020",
+  "source_root": "ImportedDatabases/WCCDefaultInstall/wcc default",
+  "evidence_class": "PROVEN",
+  "summary": {
+    "header_files": 4,
+    "message_symbol_definitions": 414,
+    "module_descriptors": 2,
+    "configuration_catalogs": 4,
+    "uic_files": 1,
+    "uic_owned_files": 3,
+    "support_families": 14
+  },
+  "headers": [
+    {
+      "file": "WCCMMHLP.h",
+      "sha256": "55d970e9de39a151ebd0b83d31721617191365703b4161dede50134f84e05cfe",
+      "define_count": 263,
+      "defines": [
+        {
+          "name": "HL1B0",
+          "value": 1
+        },
+        {
+          "name": "HL1T1",
+          "value": 2
+        },
+        {
+          "name": "HL1B1",
+          "value": 3
+        },
+        {
+          "name": "HL1T1A",
+          "value": 4
+        },
+        {
+          "name": "HL1B1A",
+          "value": 5
+        },
+        {
+          "name": "HL1T2",
+          "value": 6
+        },
+        {
+          "name": "HL1B2",
+          "value": 7
+        },
+        {
+          "name": "HL1T3",
+          "value": 8
+        },
+        {
+          "name": "HL1B3",
+          "value": 9
+        },
+        {
+          "name": "HL1T4",
+          "value": 10
+        },
+        {
+          "name": "HL1B4",
+          "value": 11
+        },
+        {
+          "name": "HL1T4A",
+          "value": 12
+        },
+        {
+          "name": "HL1B4A",
+          "value": 13
+        },
+        {
+          "name": "HL1T4B",
+          "value": 14
+        },
+        {
+          "name": "HL1B4B",
+          "value": 15
+        },
+        {
+          "name": "HL1T4C",
+          "value": 16
+        },
+        {
+          "name": "HL1B4C",
+          "value": 17
+        },
+        {
+          "name": "HL1T5",
+          "value": 18
+        },
+        {
+          "name": "HL1B5",
+          "value": 19
+        },
+        {
+          "name": "HL1T6",
+          "value": 20
+        },
+        {
+          "name": "HL1B6",
+          "value": 21
+        },
+        {
+          "name": "HL1T7",
+          "value": 22
+        },
+        {
+          "name": "HL1B7",
+          "value": 23
+        },
+        {
+          "name": "HL1T8",
+          "value": 24
+        },
+        {
+          "name": "HL1B8",
+          "value": 25
+        },
+        {
+          "name": "HL1T9",
+          "value": 26
+        },
+        {
+          "name": "HL1B9",
+          "value": 27
+        },
+        {
+          "name": "HL1T10",
+          "value": 28
+        },
+        {
+          "name": "HL1B10",
+          "value": 29
+        },
+        {
+          "name": "HL1T11",
+          "value": 30
+        },
+        {
+          "name": "HL1B11",
+          "value": 31
+        },
+        {
+          "name": "HL1T12",
+          "value": 32
+        },
+        {
+          "name": "HL1B12",
+          "value": 33
+        },
+        {
+          "name": "HL1T13",
+          "value": 34
+        },
+        {
+          "name": "HL1B13",
+          "value": 35
+        },
+        {
+          "name": "HL1T14",
+          "value": 36
+        },
+        {
+          "name": "HL1B14",
+          "value": 37
+        },
+        {
+          "name": "HL1T15",
+          "value": 38
+        },
+        {
+          "name": "HL1B15",
+          "value": 39
+        },
+        {
+          "name": "HL1T16",
+          "value": 40
+        },
+        {
+          "name": "HL1B16",
+          "value": 41
+        },
+        {
+          "name": "HL1T17",
+          "value": 42
+        },
+        {
+          "name": "HL1B17",
+          "value": 43
+        },
+        {
+          "name": "HL1T18",
+          "value": 44
+        },
+        {
+          "name": "HL1B18",
+          "value": 45
+        },
+        {
+          "name": "HL1T18A",
+          "value": 46
+        },
+        {
+          "name": "HL1B18A",
+          "value": 47
+        },
+        {
+          "name": "HL1T18B",
+          "value": 48
+        },
+        {
+          "name": "HL1B18B",
+          "value": 49
+        },
+        {
+          "name": "HL1T18C",
+          "value": 50
+        },
+        {
+          "name": "HL1B18C",
+          "value": 51
+        },
+        {
+          "name": "HL1T18D",
+          "value": 52
+        },
+        {
+          "name": "HL1B18D",
+          "value": 53
+        },
+        {
+          "name": "HL1T18E",
+          "value": 54
+        },
+        {
+          "name": "HL1B18E",
+          "value": 55
+        },
+        {
+          "name": "HL1T18F",
+          "value": 56
+        },
+        {
+          "name": "HL1B18F",
+          "value": 57
+        },
+        {
+          "name": "HL1T18G",
+          "value": 58
+        },
+        {
+          "name": "HL1B18G",
+          "value": 59
+        },
+        {
+          "name": "HL1T19",
+          "value": 60
+        },
+        {
+          "name": "HL1B19",
+          "value": 61
+        },
+        {
+          "name": "HL1T20",
+          "value": 62
+        },
+        {
+          "name": "HL1B20",
+          "value": 63
+        },
+        {
+          "name": "HL1T21",
+          "value": 64
+        },
+        {
+          "name": "HL1B21",
+          "value": 65
+        },
+        {
+          "name": "HL1T22",
+          "value": 66
+        },
+        {
+          "name": "HL1B22",
+          "value": 67
+        },
+        {
+          "name": "HL1T23",
+          "value": 68
+        },
+        {
+          "name": "HL1B23",
+          "value": 69
+        },
+        {
+          "name": "HL1T24",
+          "value": 70
+        },
+        {
+          "name": "HL1B24",
+          "value": 71
+        },
+        {
+          "name": "HL1T25",
+          "value": 72
+        },
+        {
+          "name": "HL1B25",
+          "value": 73
+        },
+        {
+          "name": "HL1T26",
+          "value": 74
+        },
+        {
+          "name": "HL1B26",
+          "value": 75
+        },
+        {
+          "name": "HL1T27",
+          "value": 76
+        },
+        {
+          "name": "HL1B27",
+          "value": 77
+        },
+        {
+          "name": "HL1T28",
+          "value": 78
+        },
+        {
+          "name": "HL1B28",
+          "value": 79
+        },
+        {
+          "name": "HL1T29",
+          "value": 80
+        },
+        {
+          "name": "HL1B29",
+          "value": 81
+        },
+        {
+          "name": "HL1T30",
+          "value": 82
+        },
+        {
+          "name": "HL1B30",
+          "value": 83
+        },
+        {
+          "name": "HL1T31",
+          "value": 84
+        },
+        {
+          "name": "HL1B31",
+          "value": 85
+        },
+        {
+          "name": "HL1T32",
+          "value": 86
+        },
+        {
+          "name": "HL1B32",
+          "value": 87
+        },
+        {
+          "name": "HL1T34",
+          "value": 88
+        },
+        {
+          "name": "HL1B34",
+          "value": 89
+        },
+        {
+          "name": "HL1T35",
+          "value": 90
+        },
+        {
+          "name": "HL1B35",
+          "value": 91
+        },
+        {
+          "name": "HL1T36",
+          "value": 92
+        },
+        {
+          "name": "HL1B36",
+          "value": 93
+        },
+        {
+          "name": "HL1T37",
+          "value": 94
+        },
+        {
+          "name": "HL1B37",
+          "value": 95
+        },
+        {
+          "name": "HL1T38",
+          "value": 96
+        },
+        {
+          "name": "HL1B38",
+          "value": 97
+        },
+        {
+          "name": "HL1T39",
+          "value": 98
+        },
+        {
+          "name": "HL1B39",
+          "value": 99
+        },
+        {
+          "name": "HL1T40",
+          "value": 100
+        },
+        {
+          "name": "HL1B40",
+          "value": 101
+        },
+        {
+          "name": "HL1T41",
+          "value": 102
+        },
+        {
+          "name": "HL1B41",
+          "value": 103
+        },
+        {
+          "name": "HL1T42",
+          "value": 104
+        },
+        {
+          "name": "HL1B42",
+          "value": 105
+        },
+        {
+          "name": "HL1T43",
+          "value": 106
+        },
+        {
+          "name": "HL1B43",
+          "value": 107
+        },
+        {
+          "name": "HL1T44",
+          "value": 108
+        },
+        {
+          "name": "HL1B44",
+          "value": 109
+        },
+        {
+          "name": "HL1T45",
+          "value": 110
+        },
+        {
+          "name": "HL1B45",
+          "value": 111
+        },
+        {
+          "name": "HL1T46",
+          "value": 112
+        },
+        {
+          "name": "HL1B46",
+          "value": 113
+        },
+        {
+          "name": "HL1T47",
+          "value": 114
+        },
+        {
+          "name": "HL1B47",
+          "value": 115
+        },
+        {
+          "name": "HL1T48",
+          "value": 116
+        },
+        {
+          "name": "HL1B48",
+          "value": 117
+        },
+        {
+          "name": "HL1T48A",
+          "value": 118
+        },
+        {
+          "name": "HL1B48A",
+          "value": 119
+        },
+        {
+          "name": "HL1T48B",
+          "value": 120
+        },
+        {
+          "name": "HL1B48B",
+          "value": 121
+        },
+        {
+          "name": "HL1T49",
+          "value": 122
+        },
+        {
+          "name": "HL1B49",
+          "value": 123
+        },
+        {
+          "name": "HL1T50",
+          "value": 124
+        },
+        {
+          "name": "HL1B50",
+          "value": 125
+        },
+        {
+          "name": "HL1T51",
+          "value": 126
+        },
+        {
+          "name": "HL1B51",
+          "value": 127
+        },
+        {
+          "name": "HL1T52",
+          "value": 128
+        },
+        {
+          "name": "HL1B52",
+          "value": 129
+        },
+        {
+          "name": "HL1T53",
+          "value": 130
+        },
+        {
+          "name": "HL1B53",
+          "value": 131
+        },
+        {
+          "name": "HL1T54",
+          "value": 132
+        },
+        {
+          "name": "HL1B54",
+          "value": 133
+        },
+        {
+          "name": "HL1T55",
+          "value": 134
+        },
+        {
+          "name": "HL1B55",
+          "value": 135
+        },
+        {
+          "name": "HL1T56",
+          "value": 136
+        },
+        {
+          "name": "HL1B56",
+          "value": 137
+        },
+        {
+          "name": "HL1T57",
+          "value": 138
+        },
+        {
+          "name": "HL1B57",
+          "value": 139
+        },
+        {
+          "name": "HL1T58",
+          "value": 140
+        },
+        {
+          "name": "HL1B58",
+          "value": 141
+        },
+        {
+          "name": "HL1T59",
+          "value": 142
+        },
+        {
+          "name": "HL1B59",
+          "value": 143
+        },
+        {
+          "name": "HL1T60",
+          "value": 144
+        },
+        {
+          "name": "HL1B61",
+          "value": 145
+        },
+        {
+          "name": "HL1T62",
+          "value": 146
+        },
+        {
+          "name": "HL1B62",
+          "value": 147
+        },
+        {
+          "name": "HL1T63",
+          "value": 148
+        },
+        {
+          "name": "HL1B63",
+          "value": 149
+        },
+        {
+          "name": "HL1T64",
+          "value": 150
+        },
+        {
+          "name": "HL1B64",
+          "value": 151
+        },
+        {
+          "name": "HL1T65",
+          "value": 152
+        },
+        {
+          "name": "HL1B65",
+          "value": 153
+        },
+        {
+          "name": "HL1T66",
+          "value": 154
+        },
+        {
+          "name": "HL1B66",
+          "value": 155
+        },
+        {
+          "name": "HL1T67",
+          "value": 156
+        },
+        {
+          "name": "HL1B67A",
+          "value": 157
+        },
+        {
+          "name": "HL1T68",
+          "value": 158
+        },
+        {
+          "name": "HL1B68",
+          "value": 159
+        },
+        {
+          "name": "HL1T69",
+          "value": 160
+        },
+        {
+          "name": "HL1B69",
+          "value": 161
+        },
+        {
+          "name": "HL1T70",
+          "value": 162
+        },
+        {
+          "name": "HL1B70",
+          "value": 163
+        },
+        {
+          "name": "HL1T71",
+          "value": 164
+        },
+        {
+          "name": "HL1B71",
+          "value": 165
+        },
+        {
+          "name": "HL1T72",
+          "value": 166
+        },
+        {
+          "name": "HL1B72",
+          "value": 167
+        },
+        {
+          "name": "HL1T73",
+          "value": 168
+        },
+        {
+          "name": "HL1B73",
+          "value": 169
+        },
+        {
+          "name": "HL1T74",
+          "value": 170
+        },
+        {
+          "name": "HL1B74",
+          "value": 171
+        },
+        {
+          "name": "HL1T75",
+          "value": 172
+        },
+        {
+          "name": "HL1B75",
+          "value": 173
+        },
+        {
+          "name": "HL1T76",
+          "value": 174
+        },
+        {
+          "name": "HL1B76",
+          "value": 175
+        },
+        {
+          "name": "HL1T76A",
+          "value": 176
+        },
+        {
+          "name": "HL1B76A",
+          "value": 177
+        },
+        {
+          "name": "HL1T77",
+          "value": 178
+        },
+        {
+          "name": "HL1B77",
+          "value": 179
+        },
+        {
+          "name": "HL1T78",
+          "value": 180
+        },
+        {
+          "name": "HL1B78",
+          "value": 181
+        },
+        {
+          "name": "HL1T78A",
+          "value": 182
+        },
+        {
+          "name": "HL1B78A",
+          "value": 183
+        },
+        {
+          "name": "HL1T79",
+          "value": 184
+        },
+        {
+          "name": "HL1B79",
+          "value": 185
+        },
+        {
+          "name": "HL1T79A",
+          "value": 186
+        },
+        {
+          "name": "HL1B79A",
+          "value": 187
+        },
+        {
+          "name": "HL1T79B",
+          "value": 188
+        },
+        {
+          "name": "HL1B79B",
+          "value": 189
+        },
+        {
+          "name": "HL1T79C",
+          "value": 190
+        },
+        {
+          "name": "HL1B79C",
+          "value": 191
+        },
+        {
+          "name": "HL1T80",
+          "value": 192
+        },
+        {
+          "name": "HL1B80",
+          "value": 193
+        },
+        {
+          "name": "HL1T81",
+          "value": 194
+        },
+        {
+          "name": "HL1B81",
+          "value": 195
+        },
+        {
+          "name": "HL1T82",
+          "value": 196
+        },
+        {
+          "name": "HL1B82",
+          "value": 197
+        },
+        {
+          "name": "HL1T83",
+          "value": 198
+        },
+        {
+          "name": "HL1B83",
+          "value": 199
+        },
+        {
+          "name": "HL1T84",
+          "value": 200
+        },
+        {
+          "name": "HL1B84",
+          "value": 201
+        },
+        {
+          "name": "HL1T85",
+          "value": 202
+        },
+        {
+          "name": "HL1B85",
+          "value": 203
+        },
+        {
+          "name": "HL1T86",
+          "value": 204
+        },
+        {
+          "name": "HL1B86",
+          "value": 205
+        },
+        {
+          "name": "HL1T87",
+          "value": 206
+        },
+        {
+          "name": "HL1B87",
+          "value": 207
+        },
+        {
+          "name": "HL1T88",
+          "value": 208
+        },
+        {
+          "name": "HL1B88",
+          "value": 209
+        },
+        {
+          "name": "HL1T89",
+          "value": 210
+        },
+        {
+          "name": "HL1B89",
+          "value": 211
+        },
+        {
+          "name": "HL1T90",
+          "value": 212
+        },
+        {
+          "name": "HL1B90",
+          "value": 213
+        },
+        {
+          "name": "HL1T91",
+          "value": 214
+        },
+        {
+          "name": "HL1B91",
+          "value": 215
+        },
+        {
+          "name": "HL1T92",
+          "value": 216
+        },
+        {
+          "name": "HL1B92",
+          "value": 217
+        },
+        {
+          "name": "HL1T93",
+          "value": 218
+        },
+        {
+          "name": "HL1B93",
+          "value": 219
+        },
+        {
+          "name": "HL1T94",
+          "value": 220
+        },
+        {
+          "name": "HL1B94",
+          "value": 221
+        },
+        {
+          "name": "HL1T95",
+          "value": 222
+        },
+        {
+          "name": "HL1B95",
+          "value": 223
+        },
+        {
+          "name": "HL1T96",
+          "value": 224
+        },
+        {
+          "name": "HL1B96",
+          "value": 225
+        },
+        {
+          "name": "HL1T97",
+          "value": 226
+        },
+        {
+          "name": "HL1B97",
+          "value": 227
+        },
+        {
+          "name": "HL1T98",
+          "value": 228
+        },
+        {
+          "name": "HL1B98",
+          "value": 229
+        },
+        {
+          "name": "HL1T99",
+          "value": 230
+        },
+        {
+          "name": "HL1B99",
+          "value": 231
+        },
+        {
+          "name": "HL1T100",
+          "value": 232
+        },
+        {
+          "name": "HL1B100",
+          "value": 233
+        },
+        {
+          "name": "HL1T101",
+          "value": 234
+        },
+        {
+          "name": "HL1B101A",
+          "value": 235
+        },
+        {
+          "name": "HL1T102",
+          "value": 236
+        },
+        {
+          "name": "HL1B102",
+          "value": 237
+        },
+        {
+          "name": "HL1T103",
+          "value": 238
+        },
+        {
+          "name": "HL1B103",
+          "value": 239
+        },
+        {
+          "name": "HL1T104",
+          "value": 240
+        },
+        {
+          "name": "HL1B104",
+          "value": 241
+        },
+        {
+          "name": "HL1T105",
+          "value": 242
+        },
+        {
+          "name": "HL1B105",
+          "value": 243
+        },
+        {
+          "name": "HL1T106",
+          "value": 244
+        },
+        {
+          "name": "HL1B106",
+          "value": 245
+        },
+        {
+          "name": "HL1T107",
+          "value": 246
+        },
+        {
+          "name": "HL1B107",
+          "value": 247
+        },
+        {
+          "name": "HL1T108",
+          "value": 248
+        },
+        {
+          "name": "HL1B108",
+          "value": 249
+        },
+        {
+          "name": "HL1T109",
+          "value": 250
+        },
+        {
+          "name": "HL1B109",
+          "value": 251
+        },
+        {
+          "name": "HL1T110",
+          "value": 252
+        },
+        {
+          "name": "HL1B110",
+          "value": 253
+        },
+        {
+          "name": "HL1T111",
+          "value": 254
+        },
+        {
+          "name": "HL1B111",
+          "value": 255
+        },
+        {
+          "name": "HL1T112",
+          "value": 256
+        },
+        {
+          "name": "HL1B112",
+          "value": 257
+        },
+        {
+          "name": "HL1T113",
+          "value": 258
+        },
+        {
+          "name": "HL1B113",
+          "value": 259
+        },
+        {
+          "name": "HL1T114",
+          "value": 260
+        },
+        {
+          "name": "HL1B114",
+          "value": 261
+        },
+        {
+          "name": "HL1T9999",
+          "value": 262
+        },
+        {
+          "name": "HL1B9999",
+          "value": 263
+        }
+      ]
+    },
+    {
+      "file": "WCCMMPLS.h",
+      "sha256": "3c0232a3f716d0252ad4ee1abf0b6b8dd7e683fc3c5048e744f2670dc955fbed",
+      "define_count": 65,
+      "defines": [
+        {
+          "name": "LEVEL0",
+          "value": 0
+        },
+        {
+          "name": "FILE01",
+          "value": 1
+        },
+        {
+          "name": "ACTIVATE",
+          "value": 3
+        },
+        {
+          "name": "DESCCHRG",
+          "value": 4
+        },
+        {
+          "name": "DESCCOPP",
+          "value": 5
+        },
+        {
+          "name": "DESCDAYS",
+          "value": 6
+        },
+        {
+          "name": "BUYLIFE",
+          "value": 7
+        },
+        {
+          "name": "COPPLIFE",
+          "value": 8
+        },
+        {
+          "name": "DAYSLIFE",
+          "value": 9
+        },
+        {
+          "name": "SYSOPKEY",
+          "value": 10
+        },
+        {
+          "name": "MINYEAR",
+          "value": 12
+        },
+        {
+          "name": "STARTAGE",
+          "value": 13
+        },
+        {
+          "name": "DESCLEN",
+          "value": 14
+        },
+        {
+          "name": "NEEDAPPR",
+          "value": 15
+        },
+        {
+          "name": "APPRUSER",
+          "value": 16
+        },
+        {
+          "name": "REGCOLR",
+          "value": 17
+        },
+        {
+          "name": "REGGLOB",
+          "value": 18
+        },
+        {
+          "name": "CHARDESC",
+          "value": 20
+        },
+        {
+          "name": "ABOUDESC",
+          "value": 21
+        },
+        {
+          "name": "MAINMENU",
+          "value": 22
+        },
+        {
+          "name": "LIFEOPT",
+          "value": 23
+        },
+        {
+          "name": "SYSMENU",
+          "value": 24
+        },
+        {
+          "name": "CONFLIFE",
+          "value": 25
+        },
+        {
+          "name": "INFOTEXT",
+          "value": 26
+        },
+        {
+          "name": "SYSMMENU",
+          "value": 27
+        },
+        {
+          "name": "MENUPMPT",
+          "value": 28
+        },
+        {
+          "name": "REGDISP",
+          "value": 29
+        },
+        {
+          "name": "REGDISP0",
+          "value": 30
+        },
+        {
+          "name": "REGDISP1",
+          "value": 31
+        },
+        {
+          "name": "REGDISP2",
+          "value": 32
+        },
+        {
+          "name": "REGDISP3",
+          "value": 33
+        },
+        {
+          "name": "REGDISP4",
+          "value": 34
+        },
+        {
+          "name": "REGDISP5",
+          "value": 35
+        },
+        {
+          "name": "REGDISP6",
+          "value": 36
+        },
+        {
+          "name": "REGDISP7",
+          "value": 37
+        },
+        {
+          "name": "REGDISP8",
+          "value": 38
+        },
+        {
+          "name": "REGDISP9",
+          "value": 39
+        },
+        {
+          "name": "REGAGE",
+          "value": 40
+        },
+        {
+          "name": "REGPMPT0",
+          "value": 41
+        },
+        {
+          "name": "REGPMPT1",
+          "value": 42
+        },
+        {
+          "name": "REGPMPT2",
+          "value": 43
+        },
+        {
+          "name": "REGPMPT3",
+          "value": 44
+        },
+        {
+          "name": "REGPMPT4",
+          "value": 45
+        },
+        {
+          "name": "REGPMPT5",
+          "value": 46
+        },
+        {
+          "name": "REGPMPT6",
+          "value": 47
+        },
+        {
+          "name": "REGPMPT7",
+          "value": 48
+        },
+        {
+          "name": "REGPMPT8",
+          "value": 49
+        },
+        {
+          "name": "REGPMPT9",
+          "value": 50
+        },
+        {
+          "name": "REGAGEP",
+          "value": 51
+        },
+        {
+          "name": "REGEDPMT",
+          "value": 52
+        },
+        {
+          "name": "REGPMPT",
+          "value": 53
+        },
+        {
+          "name": "REGMENU",
+          "value": 54
+        },
+        {
+          "name": "REGSMENU",
+          "value": 55
+        },
+        {
+          "name": "REGUNAME",
+          "value": 56
+        },
+        {
+          "name": "REMUNAME",
+          "value": 57
+        },
+        {
+          "name": "USRNOTFD",
+          "value": 58
+        },
+        {
+          "name": "INVENTRY",
+          "value": 59
+        },
+        {
+          "name": "NOTAPPRV",
+          "value": 60
+        },
+        {
+          "name": "DSCNOCRD",
+          "value": 61
+        },
+        {
+          "name": "LIFNOCRD",
+          "value": 62
+        },
+        {
+          "name": "LIFNOCHR",
+          "value": 63
+        },
+        {
+          "name": "LIFNOLIF",
+          "value": 64
+        },
+        {
+          "name": "LIFSUCES",
+          "value": 65
+        },
+        {
+          "name": "NOREGFND",
+          "value": 66
+        },
+        {
+          "name": "REGFOUND",
+          "value": 67
+        }
+      ]
+    },
+    {
+      "file": "WCCMMUD.h",
+      "sha256": "5c690b56db2696221b3f2528609c2ee71730ae0c67a2120e6a5ab2049a9c26c5",
+      "define_count": 78,
+      "defines": [
+        {
+          "name": "LEVEL0",
+          "value": 0
+        },
+        {
+          "name": "FILE01",
+          "value": 1
+        },
+        {
+          "name": "ACTIVATE",
+          "value": 3
+        },
+        {
+          "name": "GAMCRD",
+          "value": 4
+        },
+        {
+          "name": "REALCRD",
+          "value": 5
+        },
+        {
+          "name": "FREEMIN",
+          "value": 6
+        },
+        {
+          "name": "SYSOPKEY",
+          "value": 7
+        },
+        {
+          "name": "GAMOPKEY",
+          "value": 8
+        },
+        {
+          "name": "LOANKEY",
+          "value": 9
+        },
+        {
+          "name": "PLAYKEY",
+          "value": 10
+        },
+        {
+          "name": "NOPLAYKY",
+          "value": 11
+        },
+        {
+          "name": "SAVEKEY",
+          "value": 12
+        },
+        {
+          "name": "NODMOKEY",
+          "value": 13
+        },
+        {
+          "name": "NOKICKEY",
+          "value": 14
+        },
+        {
+          "name": "GOSSKEY",
+          "value": 15
+        },
+        {
+          "name": "AUCTKEY",
+          "value": 16
+        },
+        {
+          "name": "NOPAYKEY",
+          "value": 17
+        },
+        {
+          "name": "SECOTH",
+          "value": 19
+        },
+        {
+          "name": "SECBUFF",
+          "value": 20
+        },
+        {
+          "name": "BUFTOSAV",
+          "value": 21
+        },
+        {
+          "name": "ROOMBUF",
+          "value": 22
+        },
+        {
+          "name": "ITEMBUF",
+          "value": 23
+        },
+        {
+          "name": "MONSBUF",
+          "value": 24
+        },
+        {
+          "name": "KMONSBUF",
+          "value": 25
+        },
+        {
+          "name": "SPELBUF",
+          "value": 26
+        },
+        {
+          "name": "RACEBUF",
+          "value": 27
+        },
+        {
+          "name": "CLASSBUF",
+          "value": 28
+        },
+        {
+          "name": "BANKBUF",
+          "value": 29
+        },
+        {
+          "name": "MESSBUF",
+          "value": 30
+        },
+        {
+          "name": "SHOPBUF",
+          "value": 31
+        },
+        {
+          "name": "GANGBUF",
+          "value": 32
+        },
+        {
+          "name": "TALKCHAR",
+          "value": 33
+        },
+        {
+          "name": "YELLCHAR",
+          "value": 34
+        },
+        {
+          "name": "USRCURNM",
+          "value": 35
+        },
+        {
+          "name": "DEATHHP",
+          "value": 36
+        },
+        {
+          "name": "XTRALVL",
+          "value": 37
+        },
+        {
+          "name": "PUNHUP",
+          "value": 38
+        },
+        {
+          "name": "INVGLO1",
+          "value": 39
+        },
+        {
+          "name": "INVGLO2",
+          "value": 40
+        },
+        {
+          "name": "INVGLO3",
+          "value": 41
+        },
+        {
+          "name": "INVGLO4",
+          "value": 42
+        },
+        {
+          "name": "INVGLO5",
+          "value": 43
+        },
+        {
+          "name": "INVGLO6",
+          "value": 44
+        },
+        {
+          "name": "INVGLO7",
+          "value": 45
+        },
+        {
+          "name": "INVGLO8",
+          "value": 46
+        },
+        {
+          "name": "INVGLO9",
+          "value": 47
+        },
+        {
+          "name": "INVGLO10",
+          "value": 48
+        },
+        {
+          "name": "MAXTOP",
+          "value": 49
+        },
+        {
+          "name": "EVILKEEP",
+          "value": 50
+        },
+        {
+          "name": "MAILUSER",
+          "value": 51
+        },
+        {
+          "name": "PROFCHEK",
+          "value": 52
+        },
+        {
+          "name": "INITRATE",
+          "value": 53
+        },
+        {
+          "name": "POLLRATE",
+          "value": 54
+        },
+        {
+          "name": "DEMOLVL",
+          "value": 55
+        },
+        {
+          "name": "EXPINTEN",
+          "value": 56
+        },
+        {
+          "name": "LVLDIFF",
+          "value": 57
+        },
+        {
+          "name": "MINHUPHP",
+          "value": 58
+        },
+        {
+          "name": "MAXHUPHP",
+          "value": 59
+        },
+        {
+          "name": "MAXHUPIT",
+          "value": 60
+        },
+        {
+          "name": "INACTIVE",
+          "value": 61
+        },
+        {
+          "name": "DATADIR",
+          "value": 62
+        },
+        {
+          "name": "KEEPEXP",
+          "value": 63
+        },
+        {
+          "name": "LIGHTEVY",
+          "value": 64
+        },
+        {
+          "name": "GENDERGO",
+          "value": 65
+        },
+        {
+          "name": "GANGEXP",
+          "value": 66
+        },
+        {
+          "name": "DELUSER",
+          "value": 67
+        },
+        {
+          "name": "MAXEPDAY",
+          "value": 68
+        },
+        {
+          "name": "EPCYCLE",
+          "value": 69
+        },
+        {
+          "name": "EPAMOUNT",
+          "value": 70
+        },
+        {
+          "name": "ENABLAWF",
+          "value": 71
+        },
+        {
+          "name": "COINSWP",
+          "value": 72
+        },
+        {
+          "name": "GCOINSW",
+          "value": 73
+        },
+        {
+          "name": "USRLOGIN",
+          "value": 75
+        },
+        {
+          "name": "USRLOGOF",
+          "value": 76
+        },
+        {
+          "name": "USRFOLED",
+          "value": 77
+        },
+        {
+          "name": "USREXIT",
+          "value": 78
+        },
+        {
+          "name": "LEAVEMNU",
+          "value": 79
+        },
+        {
+          "name": "INACHUP",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "file": "WCCTEXT.h",
+      "sha256": "2baeb28b1c2541634647e1e8c8715d21b36ac3fd2e47b63ddcf445e763648f65",
+      "define_count": 8,
+      "defines": [
+        {
+          "name": "GOODTEXT",
+          "value": 1
+        },
+        {
+          "name": "GOODPMPT",
+          "value": 2
+        },
+        {
+          "name": "CHSRACE",
+          "value": 4
+        },
+        {
+          "name": "CHSCLASS",
+          "value": 5
+        },
+        {
+          "name": "EDITCHA1",
+          "value": 6
+        },
+        {
+          "name": "EDTCHAN2",
+          "value": 7
+        },
+        {
+          "name": "MENUTEXT",
+          "value": 8
+        },
+        {
+          "name": "MENUPMPT",
+          "value": 9
+        }
+      ]
+    }
+  ],
+  "module_descriptors": [
+    {
+      "file": "wccmmpls.MDF",
+      "sha256": "d835bb34a1d1b18ca9bfccdf6d5572386ad5f8c23a099496352276236a5a7d8f",
+      "fields": {
+        "Module Name": "MajorMUD Plus",
+        "Developer": "Lance Neumann (West Coast Creations)",
+        "Requires": "WCCMMUD",
+        "Replaces": "",
+        "Install": "",
+        "Online user manual": "WCCMMPLS.DOC",
+        "DLLs": "WCCMMPLS",
+        "MSGs": "WCCMMPLS",
+        "Btrieve files": "1",
+        "Cleanup": "",
+        "Event-1": "",
+        "Event-2": "",
+        "Event-3": "",
+        "Event-4": "",
+        "Add-On Utility": "",
+        "I Need": "WCCMMUD",
+        "Needs Me": "WCCMMUD"
+      }
+    },
+    {
+      "file": "wccmmud.mdf",
+      "sha256": "11a8282b8c3fe428aace0913527e46502902a6f775c92e7ddb141cd431582995",
+      "fields": {
+        "Module Name": "MajorMUD",
+        "Developer": "Lance Neumann (West Coast Creations)",
+        "Requires": "GALEML WGSFSD WGSFSE WGSFTF",
+        "Replaces": "",
+        "Install": "WCCMISC",
+        "Online user manual": "WCCMMUD.DOC",
+        "DLLs": "WCCMMUD",
+        "MSGs": "WCCMMUD WCCMMHLP WCCTEXT",
+        "Btrieve files": "17",
+        "Cleanup": "",
+        "Event-1": "",
+        "Event-2": "",
+        "Event-3": "",
+        "Event-4": "",
+        "WGS UP": "wccmmutl -needed -fast",
+        "Add-On Utility": "WCCMMUTL -- MajorMUD Utilities",
+        "I Need": "GALEML WGSFSD WGSFSE WGSFTF",
+        "Needs Me": "WCCMMPLS"
+      }
+    }
+  ],
+  "configuration_catalogs": [
+    {
+      "file": "WCCMMHLP.mcv",
+      "sha256": "0f37e6339d689877719764f6d8e4b08cc41ac494b258140d00ad5ec87f90b50a",
+      "printable_string_count": 3169,
+      "configuration_prompt_count": 190,
+      "configuration_prompts": [
+        {
+          "offset": 101,
+          "text": "[1;36mNOTE: "
+        },
+        {
+          "offset": 1116,
+          "text": "[0m- You have friends? Well here's how to use them"
+        },
+        {
+          "offset": 1559,
+          "text": "[1mMovement: "
+        },
+        {
+          "offset": 1713,
+          "text": "[1mInfo: "
+        },
+        {
+          "offset": 1884,
+          "text": "[1mCombat: "
+        },
+        {
+          "offset": 1970,
+          "text": "[1mItems: "
+        },
+        {
+          "offset": 2041,
+          "text": "[1mShops: "
+        },
+        {
+          "offset": 2085,
+          "text": "[1mCommunicate: "
+        },
+        {
+          "offset": 2156,
+          "text": "[1mParty: "
+        },
+        {
+          "offset": 2205,
+          "text": "[1mSpells: "
+        },
+        {
+          "offset": 2285,
+          "text": "[1mProfile: "
+        },
+        {
+          "offset": 2376,
+          "text": "[1mMisc: "
+        },
+        {
+          "offset": 2765,
+          "text": "                      as yourself (Ie... .Hey Dakor, how's life?)"
+        },
+        {
+          "offset": 5999,
+          "text": "[1mHP/level: "
+        },
+        {
+          "offset": 6129,
+          "text": "[1mMagic: "
+        },
+        {
+          "offset": 6569,
+          "text": "[1mCombat: "
+        },
+        {
+          "offset": 6788,
+          "text": "[1mWeapons: "
+        },
+        {
+          "offset": 7067,
+          "text": "[1mArmour: "
+        },
+        {
+          "offset": 7329,
+          "text": "[1mBash: "
+        },
+        {
+          "offset": 7518,
+          "text": "[1mStealth: "
+        },
+        {
+          "offset": 7948,
+          "text": "[1mTraps: "
+        },
+        {
+          "offset": 8230,
+          "text": "[1mLockpicking: "
+        },
+        {
+          "offset": 8752,
+          "text": "[1mThievery: "
+        },
+        {
+          "offset": 9106,
+          "text": "[1mTracking: "
+        },
+        {
+          "offset": 9400,
+          "text": "[1mDodge: "
+        },
+        {
+          "offset": 9623,
+          "text": "[1mMartial Arts: "
+        },
+        {
+          "offset": 9974,
+          "text": " No Magic Items: As a result of their vows, WitchHunter can not, and would not"
+        },
+        {
+          "offset": 20718,
+          "text": "                       NOTE: Sneaking players will not show up when you hit"
+        },
+        {
+          "offset": 22109,
+          "text": "The following is a table of experience for Your character:"
+        },
+        {
+          "offset": 22294,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 23323,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 23348,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 23371,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 23399,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 23423,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 23536,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 25548,
+          "text": "[0mThe cost to increase stats is as follows:"
+        },
+        {
+          "offset": 25594,
+          "text": "The first 1 to 10 points above your race's base stat:  1 CP each."
+        },
+        {
+          "offset": 25660,
+          "text": "The second 1 to 10 points above your race's base stat: 2 CP each."
+        },
+        {
+          "offset": 25726,
+          "text": "The third 1 to 10 points above your race's base stat:  3 CP each."
+        },
+        {
+          "offset": 26216,
+          "text": "you can see, and not very wise: even though your character would be incredibly"
+        },
+        {
+          "offset": 28293,
+          "text": "Agility is important for the following character skills: "
+        },
+        {
+          "offset": 29688,
+          "text": "Intellect directly affects the following skills and abilities: "
+        },
+        {
+          "offset": 30652,
+          "text": "Willpower directly affects the following skills and abilities: "
+        },
+        {
+          "offset": 33081,
+          "text": "Charm directly affects the following skills and abilities: "
+        },
+        {
+          "offset": 33428,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 33626,
+          "text": "[0mreasons, and are very good at it. Not all thieves rob for personal gain:  "
+        },
+        {
+          "offset": 34612,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 34637,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 34661,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 34686,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 34710,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 34825,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 35118,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 35495,
+          "text": "[0mand can be varied: Warriors are guardsmen, mercenaries, infantry, bowmen, "
+        },
+        {
+          "offset": 35893,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 35920,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 35944,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 35969,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 35995,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 36106,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 36367,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 37300,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 37326,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 37353,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 37377,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 37402,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 37513,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 37797,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 38867,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 38893,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 38914,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 38943,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 38967,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 39080,
+          "text": "[0mAbilities: No Magic Items, Anti-Magic."
+        },
+        {
+          "offset": 39341,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 39628,
+          "text": "[0mthat last respect, Bards are very important: few people travel far, and   "
+        },
+        {
+          "offset": 40479,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 40503,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 40528,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 40554,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 40577,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 40692,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 40986,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 41185,
+          "text": "[0mmany respects, the two classes are quite similar: they both have the same "
+        },
+        {
+          "offset": 42125,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 42150,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 42175,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 42199,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 42223,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 42338,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 42616,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 42726,
+          "text": "[0mThere are as many kinds of Mages as there are other classes: Wizards,"
+        },
+        {
+          "offset": 43977,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 44002,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 44027,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 44051,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 44077,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 44190,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 44441,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 45392,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 45417,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 45441,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 45467,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 45490,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 45605,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 45854,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 46894,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 46919,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 46945,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 46968,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 46994,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 47107,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 47364,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 48174,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 48199,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 48225,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 48251,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 48276,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 48387,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 48634,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 49868,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 49892,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 49917,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 49941,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 49966,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 50081,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 50330,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 51540,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 51565,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 51590,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 51614,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 51638,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 51753,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 52022,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 53251,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 53276,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 53298,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 53325,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 53351,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 53464,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 53774,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 54712,
+          "text": "[0mHP/Level: "
+        },
+        {
+          "offset": 54737,
+          "text": "[0mMagic: "
+        },
+        {
+          "offset": 54763,
+          "text": "[0mCombat: "
+        },
+        {
+          "offset": 54787,
+          "text": "[0mWeapons: "
+        },
+        {
+          "offset": 54810,
+          "text": "[0mArmour: "
+        },
+        {
+          "offset": 54925,
+          "text": "[0mAbilities: "
+        },
+        {
+          "offset": 55192,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 57339,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 59536,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 60097,
+          "text": "[0mDwarves was changed into something more refined than metallurgy or mining: "
+        },
+        {
+          "offset": 61692,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 63701,
+          "text": "[37mEXP: "
+        },
+        {
+          "offset": 65869,
+          "text": "[37mEXP: "
+        },
+        {
+          "offset": 67808,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 70057,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 72197,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 74392,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 76600,
+          "text": "[37mEXP: "
+        },
+        {
+          "offset": 81211,
+          "text": "[0mcommand is used to change a number of your profile options:"
+        },
+        {
+          "offset": 82819,
+          "text": "The SET command is used to change a number of your profile options:"
+        },
+        {
+          "offset": 83250,
+          "text": "which you receive in the game:"
+        },
+        {
+          "offset": 83315,
+          "text": "In general: "
+        },
+        {
+          "offset": 84854,
+          "text": "There are two ways to begin dragging someone:"
+        },
+        {
+          "offset": 86829,
+          "text": "every location you can! Your AC/DR stat is a measure of how protected you are:"
+        },
+        {
+          "offset": 87445,
+          "text": "which you may look at:"
+        },
+        {
+          "offset": 89879,
+          "text": "Syntax:"
+        },
+        {
+          "offset": 90120,
+          "text": "Syntax:"
+        },
+        {
+          "offset": 90151,
+          "text": "The JOIN command does one of three things:  Join a broadcast group, Join"
+        },
+        {
+          "offset": 92093,
+          "text": "earned items and currency. The following commands may be used:"
+        },
+        {
+          "offset": 94308,
+          "text": "There are four levels of encumbrance, each with its own modifiers:"
+        },
+        {
+          "offset": 94381,
+          "text": "[0;1mNo Encumbrance: "
+        },
+        {
+          "offset": 94465,
+          "text": "[0;1mLight Encumbrance: "
+        },
+        {
+          "offset": 94535,
+          "text": "[0;1mMedium Encumbrance: "
+        },
+        {
+          "offset": 94618,
+          "text": "[0;1mHeavy Encumbrance: "
+        },
+        {
+          "offset": 99075,
+          "text": "The leave command does a number of things depending on its use:"
+        },
+        {
+          "offset": 100162,
+          "text": "The syntax of the command is:"
+        },
+        {
+          "offset": 100915,
+          "text": "The SET RESPONSE command has the following optional forms:"
+        },
+        {
+          "offset": 101321,
+          "text": "The SET KEEP command has the following optional forms:"
+        },
+        {
+          "offset": 102124,
+          "text": "You may include the following variables in xxx:"
+        },
+        {
+          "offset": 102831,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 104899,
+          "text": "[0;1mEXP: "
+        },
+        {
+          "offset": 111239,
+          "text": "Ex: Stock hatchet 1000 Gold "
+        },
+        {
+          "offset": 111502,
+          "text": "Ex: Unstock club"
+        },
+        {
+          "offset": 111702,
+          "text": "Ex: Markup 900"
+        },
+        {
+          "offset": 112354,
+          "text": "http://www.majormud.com"
+        },
+        {
+          "offset": 112378,
+          "text": "http://www.mudcentral.com"
+        },
+        {
+          "offset": 112404,
+          "text": "http://www.metrobbs.com/cgi-bin/dcforum/dcboard.cgi"
+        },
+        {
+          "offset": 113139,
+          "text": "Help ?"
+        }
+      ]
+    },
+    {
+      "file": "WCCMMPLS.mcv",
+      "sha256": "c0496b8c178f3ade5ab4b5c0064a1475009f35634200fb6747dbe5c6628f6029",
+      "printable_string_count": 251,
+      "configuration_prompt_count": 49,
+      "configuration_prompts": [
+        {
+          "offset": 113,
+          "text": "Credits to change description? 3600"
+        },
+        {
+          "offset": 149,
+          "text": "Copper to change description? 0"
+        },
+        {
+          "offset": 181,
+          "text": "Days to change description? 0"
+        },
+        {
+          "offset": 211,
+          "text": "Credits to buy a life? 28800"
+        },
+        {
+          "offset": 240,
+          "text": "Copper to buy a life? 10000"
+        },
+        {
+          "offset": 268,
+          "text": "Days to buy a life? 0"
+        },
+        {
+          "offset": 337,
+          "text": "Minutes of playtime per year of age? 1000"
+        },
+        {
+          "offset": 379,
+          "text": "Starting default age? 17"
+        },
+        {
+          "offset": 404,
+          "text": "Number of lines allowed in description? 6"
+        },
+        {
+          "offset": 446,
+          "text": "Require approval of new descriptions? YES"
+        },
+        {
+          "offset": 1190,
+          "text": "NOTE: Your description must be approved by the Sysop, so please keep things"
+        },
+        {
+          "offset": 1826,
+          "text": "[32mAre you sure that you wish to continue? "
+        },
+        {
+          "offset": 2529,
+          "text": "[0m: "
+        },
+        {
+          "offset": 2554,
+          "text": "[32mName: "
+        },
+        {
+          "offset": 2584,
+          "text": "[32mRace: "
+        },
+        {
+          "offset": 2622,
+          "text": "[32mTitle: "
+        },
+        {
+          "offset": 2651,
+          "text": "[32mSex: "
+        },
+        {
+          "offset": 2690,
+          "text": "[32mAge: "
+        },
+        {
+          "offset": 2710,
+          "text": "[32mHair Colour: "
+        },
+        {
+          "offset": 2750,
+          "text": "[32mReputation: "
+        },
+        {
+          "offset": 2776,
+          "text": "[32mHair Length: "
+        },
+        {
+          "offset": 2822,
+          "text": "[32mGang: "
+        },
+        {
+          "offset": 2843,
+          "text": "[32mEye Colour: "
+        },
+        {
+          "offset": 2882,
+          "text": "[32mBirthplace: "
+        },
+        {
+          "offset": 2906,
+          "text": "[32mAssociates: "
+        },
+        {
+          "offset": 2933,
+          "text": "[32mEnemies: "
+        },
+        {
+          "offset": 2953,
+          "text": "[32mFav Hangout: "
+        },
+        {
+          "offset": 2972,
+          "text": "[0;32m  Fav Weapon: "
+        },
+        {
+          "offset": 3002,
+          "text": "[32mDemeanor: "
+        },
+        {
+          "offset": 3026,
+          "text": "[32mDislikes: "
+        },
+        {
+          "offset": 3050,
+          "text": "[32mComments: "
+        },
+        {
+          "offset": 3082,
+          "text": "[32m: "
+        },
+        {
+          "offset": 3096,
+          "text": "[32mLast Words: "
+        },
+        {
+          "offset": 3127,
+          "text": "[32mAge: "
+        },
+        {
+          "offset": 3143,
+          "text": "[32mYour character's birthplace: "
+        },
+        {
+          "offset": 3183,
+          "text": "[32mAssociates or friends in the Realm: "
+        },
+        {
+          "offset": 3235,
+          "text": "[32mEnemies: "
+        },
+        {
+          "offset": 3255,
+          "text": "[32mFavorite Hangout: "
+        },
+        {
+          "offset": 3284,
+          "text": "[32mYour weapon of choice: "
+        },
+        {
+          "offset": 3318,
+          "text": "[32mYour demeanor or behaviour: "
+        },
+        {
+          "offset": 3357,
+          "text": "[32mDislikes: "
+        },
+        {
+          "offset": 3378,
+          "text": "[32mComments line one: "
+        },
+        {
+          "offset": 3408,
+          "text": "[32mComments line two: "
+        },
+        {
+          "offset": 3438,
+          "text": "[32mClosing Statement: "
+        },
+        {
+          "offset": 3581,
+          "text": "[32mAge: "
+        },
+        {
+          "offset": 3700,
+          "text": "[32mChoice:"
+        },
+        {
+          "offset": 3744,
+          "text": "[0m:"
+        },
+        {
+          "offset": 4179,
+          "text": "Lookup which user? "
+        },
+        {
+          "offset": 4204,
+          "text": "Remove which user? "
+        }
+      ]
+    },
+    {
+      "file": "WCCMMUD.mcv",
+      "sha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b",
+      "printable_string_count": 67,
+      "configuration_prompt_count": 44,
+      "configuration_prompts": [
+        {
+          "offset": 38,
+          "text": "Credits per minute consumed while in the game 60"
+        },
+        {
+          "offset": 87,
+          "text": "Credits consumed per minute by ALL users (even Exempt) 0"
+        },
+        {
+          "offset": 264,
+          "text": "Seconds between saving Player data? 60"
+        },
+        {
+          "offset": 303,
+          "text": "Seconds between saving Buffer data? 300"
+        },
+        {
+          "offset": 343,
+          "text": "Number of buffers to save/set? 1"
+        },
+        {
+          "offset": 376,
+          "text": "Number of rooms to buffer in memory? 1500"
+        },
+        {
+          "offset": 418,
+          "text": "Number of items to buffer in memory? 750"
+        },
+        {
+          "offset": 459,
+          "text": "Number of active monsters to buffer? 2000"
+        },
+        {
+          "offset": 501,
+          "text": "Number of known monsters to buffer? 300"
+        },
+        {
+          "offset": 541,
+          "text": "Number of spells to buffer in memory? 150"
+        },
+        {
+          "offset": 583,
+          "text": "Number of races to buffer in memory? 12"
+        },
+        {
+          "offset": 623,
+          "text": "Number of classes to buffer in memory? 16"
+        },
+        {
+          "offset": 665,
+          "text": "Number of bankbooks to buffer in memory? 32"
+        },
+        {
+          "offset": 709,
+          "text": "Number of messages to buffer in memory? 250"
+        },
+        {
+          "offset": 753,
+          "text": "Number of messages to buffer in memory? 50"
+        },
+        {
+          "offset": 796,
+          "text": "Number of messages to buffer in memory? 10"
+        },
+        {
+          "offset": 839,
+          "text": "Character to start lines for talking (slow): ."
+        },
+        {
+          "offset": 886,
+          "text": "Character to start lines for yelling: \""
+        },
+        {
+          "offset": 941,
+          "text": "Number of hit points at which the user dies? -100"
+        },
+        {
+          "offset": 991,
+          "text": "Extra Levels of Experience before Training? 10"
+        },
+        {
+          "offset": 1038,
+          "text": "Level of punishment for hanging up? NONE"
+        },
+        {
+          "offset": 1097,
+          "text": "Maximum number of TOPTEN users/gangs lists? 30"
+        },
+        {
+          "offset": 1144,
+          "text": "Percentage of evil points to keep? 50"
+        },
+        {
+          "offset": 1188,
+          "text": "Profanity checking? NO"
+        },
+        {
+          "offset": 1211,
+          "text": "Rate to perform initialization? 80"
+        },
+        {
+          "offset": 1246,
+          "text": "Relative polling counter? 750"
+        },
+        {
+          "offset": 1276,
+          "text": "Maximum level attainable without NODMOKEY? 2"
+        },
+        {
+          "offset": 1321,
+          "text": "Include experience in topten command? YES"
+        },
+        {
+          "offset": 1363,
+          "text": "Maximum level difference for PVP? 100"
+        },
+        {
+          "offset": 1401,
+          "text": "Minimum percentage to lose on hangup? 0"
+        },
+        {
+          "offset": 1441,
+          "text": "Maximum percentage to lose on hangup? 0"
+        },
+        {
+          "offset": 1481,
+          "text": "Maximum items to lose on hangup? 0"
+        },
+        {
+          "offset": 1516,
+          "text": "Number of seconds of inactivity allowed? 5000"
+        },
+        {
+          "offset": 1563,
+          "text": "Keep some experience after final death? YES"
+        },
+        {
+          "offset": 1607,
+          "text": "Allow SYSOP LIGHTNING on all players? YES"
+        },
+        {
+          "offset": 1649,
+          "text": "Gold to charge to change gender? 5000"
+        },
+        {
+          "offset": 1687,
+          "text": "Experience (x10000) required? 1000"
+        },
+        {
+          "offset": 1722,
+          "text": "Delete MajorMUD user with BBS User? NO"
+        },
+        {
+          "offset": 1761,
+          "text": "Max EPs to forgive per day? 18"
+        },
+        {
+          "offset": 1792,
+          "text": "Minutes per Evil Point Cycle? 60"
+        },
+        {
+          "offset": 1825,
+          "text": "EPs to forgive per cycle? 1"
+        },
+        {
+          "offset": 1853,
+          "text": "Enable the choice of Lawful? YES"
+        },
+        {
+          "offset": 1886,
+          "text": "Sweep coins of this and lower? GOLD"
+        },
+        {
+          "offset": 1922,
+          "text": "Sweep coins from gang houses? NO"
+        }
+      ]
+    },
+    {
+      "file": "WCCTEXT.mcv",
+      "sha256": "a06385048eaa2e69488d5b3af2ba56a0d6bb875d6668a98cd21feded7ab9ea2a",
+      "printable_string_count": 282,
+      "configuration_prompt_count": 49,
+      "configuration_prompts": [
+        {
+          "offset": 763,
+          "text": "[0m?  [Yes/No] "
+        },
+        {
+          "offset": 806,
+          "text": "[32mPlease choose your race [ ? for help ] : "
+        },
+        {
+          "offset": 858,
+          "text": "[32mPlease choose your class [ ? for help ] : "
+        },
+        {
+          "offset": 1193,
+          "text": "[1;37m?????????????????? "
+        },
+        {
+          "offset": 1260,
+          "text": "[0;35m10 points: "
+        },
+        {
+          "offset": 1341,
+          "text": "[1;37m?????????????????? "
+        },
+        {
+          "offset": 1408,
+          "text": "[0;35m10 points: "
+        },
+        {
+          "offset": 1489,
+          "text": "[37m?????????????????? "
+        },
+        {
+          "offset": 1552,
+          "text": "[0;35m10 points: "
+        },
+        {
+          "offset": 1633,
+          "text": "[37m?????????????????? "
+        },
+        {
+          "offset": 1911,
+          "text": "[0;35mto base stat:  "
+        },
+        {
+          "offset": 2067,
+          "text": "[0;35mto base stat:  "
+        },
+        {
+          "offset": 2223,
+          "text": "[0;35mto base stat:  "
+        },
+        {
+          "offset": 2379,
+          "text": "[0;35mto base stat: "
+        },
+        {
+          "offset": 2535,
+          "text": "[0;35mto base stat: "
+        },
+        {
+          "offset": 2780,
+          "text": "[1;37m???????????????  "
+        },
+        {
+          "offset": 2897,
+          "text": "[1;37m???????????????  "
+        },
+        {
+          "offset": 3020,
+          "text": "[1;37m???????????????  "
+        },
+        {
+          "offset": 3167,
+          "text": "[0;36mExit: "
+        },
+        {
+          "offset": 3180,
+          "text": "[1;37m???? "
+        },
+        {
+          "offset": 3209,
+          "text": "[36mCP Left:       "
+        },
+        {
+          "offset": 3662,
+          "text": "Given Name  ??????????"
+        },
+        {
+          "offset": 3685,
+          "text": "Family Name ??????????????????"
+        },
+        {
+          "offset": 3716,
+          "text": "Race        ???????????????????????????????"
+        },
+        {
+          "offset": 3760,
+          "text": "Class       ???????????????????????????????"
+        },
+        {
+          "offset": 3805,
+          "text": "Not Used: Base Strength:   $$$$"
+        },
+        {
+          "offset": 3837,
+          "text": "Not Used: Max Strength:   $$$$"
+        },
+        {
+          "offset": 3868,
+          "text": " Strength:  $$$$"
+        },
+        {
+          "offset": 3885,
+          "text": "Not Used: Base Intellect:  $$$$"
+        },
+        {
+          "offset": 3917,
+          "text": "Not Used: Max Intellect:  $$$$"
+        },
+        {
+          "offset": 3948,
+          "text": " Intellect: $$$$"
+        },
+        {
+          "offset": 3965,
+          "text": "Not Used: Base Willpower:  $$$$"
+        },
+        {
+          "offset": 3997,
+          "text": "Not Used: Max Willpower:  $$$$"
+        },
+        {
+          "offset": 4028,
+          "text": " Willpower: $$$$"
+        },
+        {
+          "offset": 4045,
+          "text": "Not Used: Base Agility:    $$$$"
+        },
+        {
+          "offset": 4077,
+          "text": "Not Used: Max Agility:    $$$$"
+        },
+        {
+          "offset": 4108,
+          "text": " Agility:   $$$$"
+        },
+        {
+          "offset": 4125,
+          "text": "Not Used: Base Health:     $$$$"
+        },
+        {
+          "offset": 4157,
+          "text": "Not Used: Max Health:     $$$$"
+        },
+        {
+          "offset": 4188,
+          "text": " Health:    $$$$"
+        },
+        {
+          "offset": 4205,
+          "text": "Not Used: Base Charm:      $$$$"
+        },
+        {
+          "offset": 4237,
+          "text": "Not Used: Max Charm:      $$$$"
+        },
+        {
+          "offset": 4268,
+          "text": " Charm:     $$$$"
+        },
+        {
+          "offset": 4321,
+          "text": " Hair Length ???????????????"
+        },
+        {
+          "offset": 4386,
+          "text": " Hair Colour ???????????????"
+        },
+        {
+          "offset": 4451,
+          "text": " Eye Colour  ???????????????"
+        },
+        {
+          "offset": 4481,
+          "text": " Exit: ????"
+        },
+        {
+          "offset": 4494,
+          "text": " CP Available: $$$$"
+        },
+        {
+          "offset": 5040,
+          "text": "[0m: "
+        }
+      ]
+    }
+  ],
+  "uic_ownership": [
+    {
+      "file": "WCCMMUD.UIC",
+      "sha256": "eed43ea5c37b89c762115afa4dcade35e74983b5fe66ed50521b83237567a307",
+      "file_entry_count": 3,
+      "entries": [
+        {
+          "filename": "WCCUSERS.DAT",
+          "type": "BTRIEVE",
+          "records_affected": "1",
+          "do_uid_change": "YES",
+          "key_type": "SIMPLE",
+          "key_number": "0",
+          "position": null,
+          "length": null
+        },
+        {
+          "filename": "WCCMP001.DAT",
+          "type": "BTRIEVE",
+          "records_affected": "UNKNOWN",
+          "do_uid_change": "YES",
+          "key_type": "NONE",
+          "key_number": null,
+          "position": "807",
+          "length": "30"
+        },
+        {
+          "filename": "WCCBANKS.DAT",
+          "type": "BTRIEVE",
+          "records_affected": "UNKNOWN",
+          "do_uid_change": "YES",
+          "key_type": "NONE",
+          "key_number": null,
+          "position": "0",
+          "length": "30"
+        }
+      ]
+    }
+  ],
+  "support_file_families": [
+    {
+      "extension": ".STO",
+      "file_count": 7,
+      "ascii_like_count": 7,
+      "sample_files": [
+        {
+          "file": "WCC1393.STO",
+          "size": 238,
+          "sha256": "82509b4f2c3084b4d12686366a7efb516c69d6b247e7704738537770848e343d",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1394.STO",
+          "size": 238,
+          "sha256": "b899d96f8dc9017e33c12d2a24fab36f85a59035405daf698f26382f341d0607",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1395.STO",
+          "size": 238,
+          "sha256": "c1b617811a235ef2d8ca7cfc8796f89f2e0d38efc47d9f9ea6b879bec69dcb18",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1396.STO",
+          "size": 238,
+          "sha256": "cfe72b2f6b86f106f2a85ab27dbfb6877783b89bda2c29d583c86b3fae5c3d92",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1397.STO",
+          "size": 238,
+          "sha256": "7592522a4e59b29fcdbb7e1c998a9c37b7541bc4ae54b0c755e4211def352379",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1398.STO",
+          "size": 238,
+          "sha256": "543ecfdbd3d5743bb28bd7a4270a187bfd0d7ba6fb64cc3bc5ab55dfb76b4742",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC1399.STO",
+          "size": 238,
+          "sha256": "91353d595710f2d9dabbd81fec63776aedcb754cd3ca49d8decc05fcd4230181",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".HSE",
+      "file_count": 47,
+      "ascii_like_count": 47,
+      "sample_files": [
+        {
+          "file": "WCC85015.HSE",
+          "size": 301,
+          "sha256": "417f7261875c1a51f2b0d227b34180eb3a30e4b473644cd361ed4236fe312bd8",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC85115.HSE",
+          "size": 301,
+          "sha256": "d35d154900034e2b1ca7ae9f674529e636219bb64094ad680949aeb6346aba6f",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC85215.HSE",
+          "size": 297,
+          "sha256": "8a763af8f893529d3a2969f8f68cc3e4f51b2b335fc5ba87215b7fcb8ec55900",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC85715.HSE",
+          "size": 295,
+          "sha256": "67718a9fbff0b570f4837d29d6920d82ad83dcc57a19338eff1f052972051927",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC86115.HSE",
+          "size": 295,
+          "sha256": "5a5f3b087c8f60d3a68812ea62ee15ded499145ba085c3e405a9ceb610757842",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC86215.HSE",
+          "size": 300,
+          "sha256": "306e89782569da500770122505b03a018c79e9b4cf9157f58e2a0cdd06fd84b5",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC86315.HSE",
+          "size": 300,
+          "sha256": "3cd1c1721eff377e6e2639afd7d077f363bc5201f8313c802dba2f92dcec7d3e",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCC86815.HSE",
+          "size": 294,
+          "sha256": "95ec3e2b7815c8273e05317e114f0c44c5caba376bdc826d59c293cd9fd5bf95",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".BIN",
+      "file_count": 3,
+      "ascii_like_count": 0,
+      "sample_files": [
+        {
+          "file": "WCCAEDIT.BIN",
+          "size": 4000,
+          "sha256": "46b9875b520f516503267c6ca0e4a5565b4bde7e0e48abe04842ada41899ed26",
+          "printable_ratio": 0.4547
+        },
+        {
+          "file": "WCCBOX.BIN",
+          "size": 4000,
+          "sha256": "d0a4a2ddaaab15110b3dff375871bd2de84871d67708c18a0c26329658eb19ac",
+          "printable_ratio": 0.4557
+        },
+        {
+          "file": "WCCMMUTL.BIN",
+          "size": 4000,
+          "sha256": "ce0fb835d9c144af4a84a945a8fa15d1772a44724bd72032c87933782fd71d4c",
+          "printable_ratio": 0.4435
+        }
+      ]
+    },
+    {
+      "extension": ".SYS",
+      "file_count": 2,
+      "ascii_like_count": 2,
+      "sample_files": [
+        {
+          "file": "WCCADDON.SYS",
+          "size": 123,
+          "sha256": "dac1d566f7c4aab63d672c6f4782be7974a11f07809b79c9d74922c55931810b",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCDMA.SYS",
+          "size": 6830,
+          "sha256": "95fcf03907ab5791462ff7f391f699068ffe1f987353d3ad6b6a55e080a5fc2d",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".REL",
+      "file_count": 2,
+      "ascii_like_count": 2,
+      "sample_files": [
+        {
+          "file": "WCCMMPLS.REL",
+          "size": 22444,
+          "sha256": "fb55b325c841152f91fa4bccd8a1eb74f5a24b5f2015334b4568c6b29e18f312",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMMSYS.REL",
+          "size": 15858,
+          "sha256": "817b5e94f01a08a3ec195509bb764fa1981744deb3cbb5882a8560da588d2f0e",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".RLN",
+      "file_count": 1,
+      "ascii_like_count": 1,
+      "sample_files": [
+        {
+          "file": "WCCMMUD.RLN",
+          "size": 113606,
+          "sha256": "84e16519ea18e5c30f83025cbba40858f7f4c246ba888088ae9d2b23d7fd83ea",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".DOC",
+      "file_count": 2,
+      "ascii_like_count": 2,
+      "sample_files": [
+        {
+          "file": "WCCMMPLS.DOC",
+          "size": 482,
+          "sha256": "2433d7415eb942d739c01b36b6e7e2e0a1a5ab6b4da6af50d563228302f5f2ce",
+          "printable_ratio": 0.9979
+        },
+        {
+          "file": "WCCMMUD.DOC",
+          "size": 15009,
+          "sha256": "76e21839dee30821281b1132b125e278304b163a56e9450259d584197fcdf017",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".NOT",
+      "file_count": 2,
+      "ascii_like_count": 2,
+      "sample_files": [
+        {
+          "file": "WCCMMSYS.NOT",
+          "size": 31146,
+          "sha256": "7173c8914bccec70ea681af9245347949a7581978ae42938ca5527e5c75b3805",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMMUD.NOT",
+          "size": 124085,
+          "sha256": "8e427d3598c55b17c4e81dd7b265ce399db1c655a1f544ba31d67a9be8757e1b",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".LIC",
+      "file_count": 1,
+      "ascii_like_count": 1,
+      "sample_files": [
+        {
+          "file": "WCCMMUD.LIC",
+          "size": 3298,
+          "sha256": "9b74ff6005a6cae35de21a31f0174232fff62f752642d3c246a993c027ab51dc",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".AD",
+      "file_count": 7,
+      "ascii_like_count": 7,
+      "sample_files": [
+        {
+          "file": "WCCCRSRN.AD",
+          "size": 1154,
+          "sha256": "5310d95668a3c9306a50f1f620c9b0beff4fd72149833ec2049dc4fd08daada1",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCDRGTH.AD",
+          "size": 1726,
+          "sha256": "70f3b0410f71ebac31b14d22ad979b1a34f5ae9aedf9a216c6f988ba5bf43e4e",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMMPLS.AD",
+          "size": 1708,
+          "sha256": "edcbe34fff9ff5257a60688fe9e0c017d2f2460618449ddff9ee6009d07c92ca",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCRISDN.AD",
+          "size": 1410,
+          "sha256": "486f9fe88cd5d4a444b481711e0d0f601703a4b0df49c739b3538ea930d0a92a",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCSANDS.AD",
+          "size": 1317,
+          "sha256": "3d47894c596b7e5b37facd44fcecaa8c6556b743c9a13047805b1c5d9c0de327",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCSTRNG.AD",
+          "size": 1474,
+          "sha256": "524ff24e4b3950c25ba8273121d4a26f8cf721b56edf4389bef047fe139bf266",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCTERBE.AD",
+          "size": 1909,
+          "sha256": "a24f240a2e48a3aa02bb2ddbdfc02c9ebbb059608db2b482b5a42d4d08172f3b",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".STA",
+      "file_count": 14,
+      "ascii_like_count": 14,
+      "sample_files": [
+        {
+          "file": "WCCBAR.STA",
+          "size": 269,
+          "sha256": "7ce1d3922f15b120ced0cb8ee52ace2834c167a8bade99716c863c432302bca2",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCDRU.STA",
+          "size": 270,
+          "sha256": "c9b09ed1f43030d6e36fc43e45c21882b4d698437d6a15e83b5a7d864f72e4f5",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCGYP.STA",
+          "size": 270,
+          "sha256": "5734a0b01750144d29b7e9513ff017b4c231a35d35db86fdecb9e65aa60679d3",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMAG.STA",
+          "size": 269,
+          "sha256": "b4b35e7c70b07dad2e05629a38d70ae3d55266c83ecb664170bb45339ae19e95",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMIS.STA",
+          "size": 275,
+          "sha256": "0187d61fbbf89e5df47f138f958c25b08b976cbe3c759dffb1186ba4366a7039",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCMYS.STA",
+          "size": 271,
+          "sha256": "d305ec90f89594aad825aea84057cc3703b0b27147c8a0b73ff6e166dddf8c52",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCNIN.STA",
+          "size": 270,
+          "sha256": "3584c293dad4af215b5bd404eaa99279e9295ae9baa25c364f22c8a2581eeb03",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCPAL.STA",
+          "size": 272,
+          "sha256": "ec7b1d735b99e509dc59f6edb2a2a71c843ee78d33febf3842a0d2a4795f12d7",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".BAN",
+      "file_count": 10,
+      "ascii_like_count": 10,
+      "sample_files": [
+        {
+          "file": "WCCBLAC.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCBLUE.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCGOLD.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCGRE.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCORAN.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCRED.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCSILV.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCVIOL.BAN",
+          "size": 158,
+          "sha256": "d42392e8e11e7c57cdd20b429c1bbd4f0addb7274740ab64d12e0a125d353b94",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".EMB",
+      "file_count": 10,
+      "ascii_like_count": 10,
+      "sample_files": [
+        {
+          "file": "WCCAMBER.EMB",
+          "size": 374,
+          "sha256": "103cefcf9d1aef087ce67bcc083dc812c119e7b014ea5bd05a077b3e04496796",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCAMETH.EMB",
+          "size": 374,
+          "sha256": "57bc43936d67faab2aaa7ad2f40bca424a0ed0f93ad379314603f3fc01af7867",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCDIAM.EMB",
+          "size": 373,
+          "sha256": "3948284b250256942067519bcb9639e825d9aaa651a90103500ec5898bba87de",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCEMERA.EMB",
+          "size": 374,
+          "sha256": "38d93915b232bcb1f351770e07aa84fb350759d5cbb2a04683b2beba1926052f",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCGOLD.EMB",
+          "size": 373,
+          "sha256": "9f221097ef7371375b4de4aa57ad95f9a814ffe7f05b2f21c9f05b733072b42d",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCONYX.EMB",
+          "size": 373,
+          "sha256": "6210c79c6554a4d48dafa485b0e46209972e533c6b84d24071b2e4ca544bfcca",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCRUBY.EMB",
+          "size": 373,
+          "sha256": "ba60d99c1ce767f42148ee6fcc9d7d2767086b9fb7e8c6aaeb59b1cb64434344",
+          "printable_ratio": 1.0
+        },
+        {
+          "file": "WCCSAPPH.EMB",
+          "size": 374,
+          "sha256": "bec65da98a9b152113028a1b35c12fc790ac1d717bc14c10ac888010cfd08049",
+          "printable_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "extension": ".ANS",
+      "file_count": 1,
+      "ascii_like_count": 0,
+      "sample_files": [
+        {
+          "file": "WCCMAP01.ANS",
+          "size": 3779,
+          "sha256": "53c1a27c325718fbde39096e008a3174a5c6a7ae866315ea56b1b0c892e6fd72",
+          "printable_ratio": 0.756
+        }
+      ]
+    }
+  ],
+  "closures": [
+    "Message IDs in the shipped header files are authoritative symbol-to-number mappings derived from the corresponding MSG catalogs.",
+    "MDF files prove module dependency, DLL, message-catalog, Btrieve-file-count, startup utility, and add-on ownership declarations.",
+    "UIC files prove explicit UID-rewrite ownership, key mode, and record byte positions for listed Btrieve files.",
+    "MCV files preserve shipped configuration labels/default text and therefore provide native configuration-contract evidence."
+  ],
+  "unknowns": [
+    "Binary MSG/MCV encoding internals beyond recovered printable content remain unclaimed.",
+    "Exact STO/HSE runtime parser semantics require correlation with consuming native code or controlled runtime traces."
+  ]
+}

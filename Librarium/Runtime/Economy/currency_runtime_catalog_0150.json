@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "economy.currency.runtime.0150",
+  "runtimeOwner": "Reforged.Server.Runtime",
+  "capabilities": [
+    "checked denomination-to-base-unit conversion",
+    "canonical base-unit-to-denomination conversion",
+    "account maximum enforcement",
+    "optional coin-weight calculation",
+    "atomic wallet-to-wallet transfer",
+    "rollback on destination overflow",
+    "versioned wallet snapshots",
+    "JSON persistence validation"
+  ],
+  "relationships": [
+    {"from": "RuntimeCurrencyDefinition", "to": "RuntimeCurrencyMath", "type": "defines arithmetic"},
+    {"from": "RuntimeCurrencyMath", "to": "RuntimeCurrencyWallet", "type": "validates balances"},
+    {"from": "RuntimeCurrencyWallet", "to": "RuntimeCurrencyTransferEngine", "type": "participates in atomic transfer"},
+    {"from": "RuntimeCurrencyWalletSnapshot", "to": "RuntimeCurrencyPersistence", "type": "persists"}
+  ],
+  "nativeDependencies": [
+    "Exact MajorMUD denomination ratios remain unpromoted until native or independently corroborated evidence is available.",
+    "Exact coin weight and maximum account limits remain data-driven and are not invented by this pass."
+  ]
+}

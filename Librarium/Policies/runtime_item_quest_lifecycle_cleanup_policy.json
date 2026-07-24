@@ -1,0 +1,20 @@
+{
+  "id": "runtime_item_quest_lifecycle_cleanup_policy",
+  "authority": "Librarium",
+  "version": "CodeUpdate0188",
+  "classification": "strongly_correlated",
+  "rules": {
+    "authoritative_inputs": "Quest identity, character identity, canonical item identity, cleanup key, lifecycle reason, and target quantity must be supplied explicitly.",
+    "target_reconciliation": "Remove only matching quest-owned quantity above the explicit target and preserve quantities at or below target.",
+    "identity": "Retain earlier stable instance identities; partial reductions preserve their instance identity.",
+    "protection": "Explicit quest_cleanup_protected state rejects cleanup atomically.",
+    "rollback": "Any protected item, invalid identity, or container-integrity failure restores the full pre-cleanup state.",
+    "fail_closed": "Do not infer cleanup triggers, quantities, party credit, or native text."
+  },
+  "bidirectional_relationships": [
+    "quest lifecycle -> item cleanup target",
+    "item instance -> quest identity",
+    "item instance -> cleanup protection",
+    "character -> retained quest quantity"
+  ]
+}

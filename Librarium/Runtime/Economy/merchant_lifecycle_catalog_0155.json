@@ -1,0 +1,78 @@
+{
+  "catalogId": "economy-merchant-lifecycle-0155",
+  "classification": "STRONGLY CORRELATED",
+  "merchantLifecycleCatalog": [
+    {
+      "canonicalMerchantId": "merchant:<provider-record-id>",
+      "canonicalShopId": "shop:<shop-record-id>",
+      "availabilityStates": ["Open", "Closed", "Suspended", "Disabled"],
+      "policyInputs": ["schedule", "visibility", "categories", "customer restrictions", "restock interval", "restock entries", "generated selection count"],
+      "runtimeOwner": "Economy"
+    }
+  ],
+  "generatedInventoryCatalog": [
+    {
+      "selection": "deterministic weighted without replacement",
+      "seedInputs": ["replay key", "elapsed cycle index", "draw index"],
+      "unknownNativeInputs": ["native seed", "weight table", "selection count", "modifier order"]
+    }
+  ],
+  "restockRuleCatalog": [
+    "None",
+    "FixedQuantity",
+    "FillToTarget",
+    "GeneratedInventory"
+  ],
+  "shopHoursCatalog": {
+    "timeModel": "minute-of-day plus day-of-week policy",
+    "supportsOvernightWindows": true,
+    "nativeTimezoneDependency": "UNKNOWN"
+  },
+  "visibilityCatalog": ["Public", "Hidden", "RequirementGated"],
+  "restrictionCatalog": ["race", "class", "level", "flag", "location", "reputation"],
+  "categoryCatalog": {
+    "relationship": "merchant<->category",
+    "nativeCategoryIdentifiers": "UNKNOWN"
+  },
+  "ownershipGraph": {
+    "edges": [
+      "merchant<->shop",
+      "merchant<->stock",
+      "merchant<->category",
+      "merchant<->schedule",
+      "merchant<->restock-policy",
+      "restock-entry<->item",
+      "generated-pool<->item"
+    ]
+  },
+  "runtimeGraph": {
+    "order": [
+      "resolve lifecycle definition",
+      "validate merchant and shop ownership",
+      "evaluate availability and schedule",
+      "evaluate visibility and customer restrictions",
+      "detect elapsed restock cycles",
+      "capture stock and lifecycle snapshots",
+      "select deterministic generated inventory",
+      "apply capped stock mutations",
+      "persist lifecycle snapshot",
+      "commit replay key",
+      "return deterministic result"
+    ],
+    "failure": "restore stock and lifecycle snapshot; no replay key committed"
+  },
+  "saveImpact": ["stock quantities", "availability", "last and next restock time", "restock version", "generated item membership", "replay keys"],
+  "worldImpact": ["merchant inventory availability", "shop accessibility", "time-gated commerce", "persistent generated inventory"],
+  "nativeDependencyReport": [
+    {
+      "dependency": "WCC/WBB shop schedules, restock timers, generated inventory pools and category flags",
+      "status": "UNKNOWN",
+      "fallback": "require explicit verified configuration; no invented native constants"
+    },
+    {
+      "dependency": "DLL restock random seed and exact cycle ordering",
+      "status": "UNKNOWN",
+      "fallback": "stable deterministic hash policy with provenance until native binding"
+    }
+  ]
+}

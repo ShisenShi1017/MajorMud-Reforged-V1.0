@@ -1,0 +1,121 @@
+{
+  "schema": "majorMud.worldgroup.tfsRuntime.v1",
+  "update": "WorldgroupNativeClosureUpdate0004",
+  "generated_utc": "2026-07-16T06:53:12.865942+00:00",
+  "wgserver_sha256": "4da28d718cf99701aa63c1889770f293bb3ec828aea5e8bea500473d2698c73f",
+  "architecture": "x86",
+  "evidence_class": "proven",
+  "exports": [
+    {
+      "symbol": "_tfsrdl",
+      "ordinal": 1279,
+      "rva": "0x0003E8D6",
+      "calling": "cdecl",
+      "args": [],
+      "ret": "int32 state",
+      "semantics": "Clears _tfsbuf and advances a five-state multi-file text scanner. State 1 stages the first match; state 2 builds and opens the current path in rt mode; state 3 reads with fgets(buffer,0x81,FILE*), strips one trailing LF, normalizes the line, and closes at EOF; state 4 advances find-next and returns to state 2 or state 0."
+    },
+    {
+      "symbol": "_tfsdpr",
+      "ordinal": 1273,
+      "rva": "0x0003EA2A",
+      "calling": "cdecl",
+      "args": [],
+      "ret": "char*",
+      "semantics": "Copies the suffix selected by _tfspfx from _tfspst to the start of _tfsbuf and returns the strcpy result."
+    }
+  ],
+  "states": [
+    {
+      "value": 0,
+      "name": "closed_or_exhausted"
+    },
+    {
+      "value": 1,
+      "name": "first_match_staged"
+    },
+    {
+      "value": 2,
+      "name": "open_pending"
+    },
+    {
+      "value": 3,
+      "name": "reading"
+    },
+    {
+      "value": 4,
+      "name": "advance_enumeration"
+    }
+  ],
+  "layout": [
+    {
+      "symbol": "_tfstate",
+      "address": "0x00463DDC",
+      "size": 4,
+      "confidence": "proven"
+    },
+    {
+      "symbol": "_tfsbuf",
+      "address": "0x00463DE0",
+      "size": 132,
+      "confidence": "proven",
+      "notes": "fgets count 0x81; buffer cleared before dispatch"
+    },
+    {
+      "symbol": "_tfspst",
+      "address": "0x00463E64",
+      "size": 4,
+      "confidence": "proven"
+    },
+    {
+      "symbol": "_tfsfb_metadata",
+      "address": "0x00463E68",
+      "offset": 0,
+      "size": 16,
+      "confidence": "bounded"
+    },
+    {
+      "symbol": "_tfsfb_filename",
+      "address": "0x00463E78",
+      "offset": 16,
+      "size": 260,
+      "confidence": "proven"
+    },
+    {
+      "symbol": "_tfsfp",
+      "address": "0x00463F78",
+      "size": 4,
+      "confidence": "proven"
+    },
+    {
+      "symbol": "_tfspth",
+      "address": "0x00463F7C",
+      "size": 264,
+      "confidence": "proven"
+    },
+    {
+      "symbol": "derived_path_pointer",
+      "address": "0x00464084",
+      "size": 4,
+      "confidence": "proven"
+    }
+  ],
+  "callsites": {
+    "fopen_thunk": "0x0044BF52",
+    "fopen_import": "CW3220MT.DLL!_fopen",
+    "fgets_thunk": "0x0044BF2E",
+    "fgets_import": "CW3220MT.DLL!_fgets",
+    "fclose_thunk": "0x0044BE50",
+    "fclose_import": "CW3220MT.DLL!_fclose",
+    "strlen_thunk": "0x0044BEFE",
+    "strcpy_thunk": "0x0044BF1C"
+  },
+  "conclusions": [
+    "The TFS scanner is a deterministic multi-file text-line iterator, not a database transaction engine.",
+    "The 0x114-byte _tfsfb reservation consists of a 16-byte opaque helper-owned prefix followed by a proven 260-byte filename region.",
+    "Abort closes only an active state-3 FILE* and then returns the scanner to state 0."
+  ],
+  "limitations": [
+    "The semantic names of the four 32-bit metadata fields in the first 16 bytes of _tfsfb remain unproven."
+  ]
+}

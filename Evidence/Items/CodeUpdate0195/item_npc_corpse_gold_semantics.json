@@ -1,0 +1,34 @@
+{
+  "code_update": "0195",
+  "subsystem": "Items",
+  "topic": "deterministic NPC corpse gold generation",
+  "classification": "Reforged compatibility infrastructure",
+  "confidence": "strongly_correlated",
+  "runtime_behavior": [
+    "Accept only an explicit corpse identity, gold key, seed, and inclusive minimum/maximum gold range",
+    "Use SHA-256-derived deterministic gold rolls",
+    "Reconcile zero or identical corpse gold idempotently",
+    "Reject conflicting pre-existing corpse gold rather than overwrite it",
+    "Reject invalid ranges and cleaned corpses atomically"
+  ],
+  "assumptions": [
+    "Native NPC gold mappings, RNG, ranges, scaling, and conditional formulas remain unknown"
+  ],
+  "safe_fallback": "No NPC corpse gold is generated unless an authoritative caller supplies the complete range, key, and seed.",
+  "runtime_impact": "Adds deterministic evidence-gated NPC corpse-gold generation.",
+  "character_save_impact": "None directly. Economy or Character orchestration credits gold only when it is later looted.",
+  "world_state_impact": "Generated gold is stored in persistent corpse state and follows existing corpse validation and recovery.",
+  "tests": [
+    "Stable gold result",
+    "Idempotent repeated reconciliation",
+    "Conflicting-gold rollback",
+    "Invalid-range rollback"
+  ],
+  "native_dependencies": [
+    "Native NPC gold source records",
+    "Native RNG and seed source",
+    "Native gold range and scaling formulas",
+    "Native conditional rules",
+    "Native messages"
+  ]
+}

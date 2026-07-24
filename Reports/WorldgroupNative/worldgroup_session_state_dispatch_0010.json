@@ -1,0 +1,427 @@
+{
+  "schema": "majorMud.worldgroup.sessionStateDispatch.v1",
+  "update": "WorldgroupNativeClosureUpdate0010",
+  "generated_utc": "2026-07-16T18:52:22.344253+00:00",
+  "module": {
+    "file": "wccmmud.dll",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "image_base": "0x00400000"
+  },
+  "dispatch": {
+    "state_field_offset": "0x1C",
+    "state_max_inclusive": "0x88",
+    "index_table_va": "0x00405221",
+    "index_table_length": 137,
+    "target_table_va": "0x004052AA",
+    "unique_selector_count": 38,
+    "default_target_va": "0x0040537B",
+    "mechanism": "unsigned state range check; byte selector lookup; indirect jump through 32-bit target table"
+  },
+  "handlers": [
+    {
+      "selector": 0,
+      "target_va": "0x0040537B",
+      "states": [
+        "0x02",
+        "0x03",
+        "0x04",
+        "0x05",
+        "0x06",
+        "0x07",
+        "0x08",
+        "0x09",
+        "0x0A",
+        "0x1B",
+        "0x1C",
+        "0x1D",
+        "0x1E",
+        "0x1F",
+        "0x20",
+        "0x21",
+        "0x22",
+        "0x23",
+        "0x24",
+        "0x25",
+        "0x26",
+        "0x27",
+        "0x28",
+        "0x29",
+        "0x2A",
+        "0x2B",
+        "0x2C",
+        "0x2D",
+        "0x2E",
+        "0x2F",
+        "0x30",
+        "0x31",
+        "0x32",
+        "0x35",
+        "0x37",
+        "0x3E",
+        "0x3F",
+        "0x40",
+        "0x41",
+        "0x42",
+        "0x43",
+        "0x44",
+        "0x45",
+        "0x4B",
+        "0x4C",
+        "0x4D",
+        "0x4E",
+        "0x4F",
+        "0x50",
+        "0x51",
+        "0x52",
+        "0x53",
+        "0x54",
+        "0x55",
+        "0x56",
+        "0x57",
+        "0x58",
+        "0x59",
+        "0x5A",
+        "0x5B",
+        "0x5C",
+        "0x5D",
+        "0x5E",
+        "0x5F",
+        "0x60",
+        "0x61",
+        "0x62",
+        "0x63",
+        "0x64",
+        "0x65",
+        "0x66",
+        "0x67",
+        "0x68",
+        "0x69",
+        "0x6A",
+        "0x6B",
+        "0x6C",
+        "0x6D",
+        "0x6E",
+        "0x6F",
+        "0x70",
+        "0x71",
+        "0x72",
+        "0x73",
+        "0x74",
+        "0x75",
+        "0x76",
+        "0x77",
+        "0x78",
+        "0x79",
+        "0x7A",
+        "0x7B",
+        "0x7C",
+        "0x7D",
+        "0x7E",
+        "0x7F",
+        "0x80",
+        "0x81"
+      ]
+    },
+    {
+      "selector": 1,
+      "target_va": "0x004083DC",
+      "states": [
+        "0x88"
+      ]
+    },
+    {
+      "selector": 2,
+      "target_va": "0x00408853",
+      "states": [
+        "0x87"
+      ]
+    },
+    {
+      "selector": 3,
+      "target_va": "0x004084C8",
+      "states": [
+        "0x86"
+      ]
+    },
+    {
+      "selector": 4,
+      "target_va": "0x004086DC",
+      "states": [
+        "0x85"
+      ]
+    },
+    {
+      "selector": 5,
+      "target_va": "0x004085C4",
+      "states": [
+        "0x84"
+      ]
+    },
+    {
+      "selector": 6,
+      "target_va": "0x004087E6",
+      "states": [
+        "0x83"
+      ]
+    },
+    {
+      "selector": 7,
+      "target_va": "0x004088CC",
+      "states": [
+        "0x82"
+      ]
+    },
+    {
+      "selector": 8,
+      "target_va": "0x00408045",
+      "states": [
+        "0x34",
+        "0x4A"
+      ]
+    },
+    {
+      "selector": 9,
+      "target_va": "0x00407D99",
+      "states": [
+        "0x33",
+        "0x49"
+      ]
+    },
+    {
+      "selector": 10,
+      "target_va": "0x00407C45",
+      "states": [
+        "0x48"
+      ]
+    },
+    {
+      "selector": 11,
+      "target_va": "0x00407B9E",
+      "states": [
+        "0x47"
+      ]
+    },
+    {
+      "selector": 12,
+      "target_va": "0x00407AF7",
+      "states": [
+        "0x46"
+      ]
+    },
+    {
+      "selector": 13,
+      "target_va": "0x004053E2",
+      "states": [
+        "0x3D"
+      ]
+    },
+    {
+      "selector": 14,
+      "target_va": "0x00405342",
+      "states": [
+        "0x3C"
+      ]
+    },
+    {
+      "selector": 15,
+      "target_va": "0x00406848",
+      "states": [
+        "0x3B"
+      ]
+    },
+    {
+      "selector": 16,
+      "target_va": "0x004082E0",
+      "states": [
+        "0x3A"
+      ]
+    },
+    {
+      "selector": 17,
+      "target_va": "0x00405781",
+      "states": [
+        "0x39"
+      ]
+    },
+    {
+      "selector": 18,
+      "target_va": "0x00406863",
+      "states": [
+        "0x38"
+      ]
+    },
+    {
+      "selector": 19,
+      "target_va": "0x00407D25",
+      "states": [
+        "0x36"
+      ]
+    },
+    {
+      "selector": 20,
+      "target_va": "0x00406278",
+      "states": [
+        "0x1A"
+      ]
+    },
+    {
+      "selector": 21,
+      "target_va": "0x00406193",
+      "states": [
+        "0x19"
+      ]
+    },
+    {
+      "selector": 22,
+      "target_va": "0x00406118",
+      "states": [
+        "0x18"
+      ]
+    },
+    {
+      "selector": 23,
+      "target_va": "0x0040609D",
+      "states": [
+        "0x17"
+      ]
+    },
+    {
+      "selector": 24,
+      "target_va": "0x00406022",
+      "states": [
+        "0x16"
+      ]
+    },
+    {
+      "selector": 25,
+      "target_va": "0x00405A5E",
+      "states": [
+        "0x15"
+      ]
+    },
+    {
+      "selector": 26,
+      "target_va": "0x00405A36",
+      "states": [
+        "0x14"
+      ]
+    },
+    {
+      "selector": 27,
+      "target_va": "0x00405E12",
+      "states": [
+        "0x13"
+      ]
+    },
+    {
+      "selector": 28,
+      "target_va": "0x00405E3A",
+      "states": [
+        "0x12"
+      ]
+    },
+    {
+      "selector": 29,
+      "target_va": "0x00405F16",
+      "states": [
+        "0x11"
+      ]
+    },
+    {
+      "selector": 30,
+      "target_va": "0x00405DEA",
+      "states": [
+        "0x10"
+      ]
+    },
+    {
+      "selector": 31,
+      "target_va": "0x00405D53",
+      "states": [
+        "0x0F"
+      ]
+    },
+    {
+      "selector": 32,
+      "target_va": "0x00405CBC",
+      "states": [
+        "0x0E"
+      ]
+    },
+    {
+      "selector": 33,
+      "target_va": "0x00405A0E",
+      "states": [
+        "0x0D"
+      ]
+    },
+    {
+      "selector": 34,
+      "target_va": "0x00405933",
+      "states": [
+        "0x0C"
+      ]
+    },
+    {
+      "selector": 35,
+      "target_va": "0x0040638C",
+      "states": [
+        "0x0B"
+      ]
+    },
+    {
+      "selector": 36,
+      "target_va": "0x004088BD",
+      "states": [
+        "0x01"
+      ]
+    },
+    {
+      "selector": 37,
+      "target_va": "0x0040537B",
+      "states": [
+        "0x00"
+      ]
+    }
+  ],
+  "proven_boundaries": [
+    {
+      "states": [
+        "0x82"
+      ],
+      "target": "0x004088CC",
+      "classification": "active gameplay/default execution state",
+      "evidence": "state 0x82 is repeatedly restored by modal handlers; target invokes 0x0045003C then common cleanup/return"
+    },
+    {
+      "states": [
+        "0x83",
+        "0x84",
+        "0x85",
+        "0x86",
+        "0x87",
+        "0x88"
+      ],
+      "classification": "modal input/confirmation substates",
+      "evidence": "handlers validate current input and explicitly restore session state 0x82 on completion or cancellation"
+    },
+    {
+      "states": [
+        "0x00",
+        "0x02-0x0A",
+        "0x1B-0x32",
+        "0x35",
+        "0x37",
+        "0x3E-0x45",
+        "0x4B-0x81"
+      ],
+      "target": "0x0040537B",
+      "classification": "shared fallback/default handler"
+    }
+  ],
+  "confidence": "PROVEN",
+  "limitations": [
+    "Internal routine 0x0045003C is the next unresolved gameplay parser/executor boundary.",
+    "Semantic names for legacy states 0x0B-0x4A remain to be assigned from their handlers and message strings."
+  ]
+}

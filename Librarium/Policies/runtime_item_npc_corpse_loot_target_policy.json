@@ -1,0 +1,26 @@
+{
+  "id": "runtime_item_npc_corpse_loot_target_policy",
+  "authority": "Librarium",
+  "code_update": "0186",
+  "status": "active_evidence_gated",
+  "summary": "NPC corpse loot definitions are reconciled by authoritative corpse, canonical item, and loot-key target quantities.",
+  "rules": [
+    "Existing matching loot identities are preserved.",
+    "Only target deficits are created.",
+    "Repeated reconciliation at the same target is idempotent.",
+    "Projected maximum_stack is enforced.",
+    "Existing quantities above target fail atomically and are never silently deleted.",
+    "Loot semantics remain inactive without an explicit authoritative loot key and target."
+  ],
+  "ownership": {
+    "definition": "Items",
+    "scheduling_and_rolls": "NPC/World Runtime",
+    "final_loot_transfer": "Items"
+  },
+  "native_dependencies": [
+    "native guaranteed/random/rare loot source mappings",
+    "drop probabilities",
+    "drop quantity rolls",
+    "exact messages"
+  ]
+}

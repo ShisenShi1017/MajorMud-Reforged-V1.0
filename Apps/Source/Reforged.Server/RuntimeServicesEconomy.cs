@@ -9,11 +9,13 @@ public sealed class RuntimeServiceCatalog
 {
     private readonly Dictionary<string, RuntimeServiceDefinition> _services;
     private readonly Dictionary<string, RuntimeEconomyRuleDefinition> _rules;
+    public RuntimeBundleCDecodedServiceAuthority BundleCAuthority { get; }
 
-    private RuntimeServiceCatalog(IEnumerable<RuntimeServiceDefinition> services, IEnumerable<RuntimeEconomyRuleDefinition> rules)
+    private RuntimeServiceCatalog(IEnumerable<RuntimeServiceDefinition> services, IEnumerable<RuntimeEconomyRuleDefinition> rules, RuntimeBundleCDecodedServiceAuthority bundleCAuthority)
     {
         _services = services.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
         _rules = rules.ToDictionary(x => x.Id, StringComparer.OrdinalIgnoreCase);
+        BundleCAuthority = bundleCAuthority;
     }
 
     public int ServiceCount => _services.Count;
@@ -32,7 +34,8 @@ public sealed class RuntimeServiceCatalog
         services.AddRange(ReadFamily(Path.Combine(resolved.DataRoot, "shops.json"), "shop"));
         services.AddRange(ReadFamily(Path.Combine(resolved.DataRoot, "banks.json"), "bank"));
         var rules = ReadRules(Path.Combine(resolved.DataRoot, "economy_rules.json"));
-        return new RuntimeServiceCatalog(services, rules);
+        var bundleCAuthority = RuntimeBundleCDecodedServiceAuthority.Load(projectRoot, worldId);
+        return new RuntimeServiceCatalog(services, rules, bundleCAuthority);
     }
 
     private static IEnumerable<RuntimeServiceDefinition> ReadFamily(string path, string kind)

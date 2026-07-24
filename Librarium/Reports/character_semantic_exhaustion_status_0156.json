@@ -1,0 +1,54 @@
+{
+  "code_update": "0156",
+  "subsystem": "character",
+  "completed": [
+    "status effects phases 1-2",
+    "progression ownership and atomic XP/promotion",
+    "proven HP/mana growth",
+    "evidence-gated XP/CP schedule ownership",
+    "explicit equipment combat-statistic projection",
+    "explicit ability resistance projection for cold, fire, stone, lightning, and water",
+    "explicit speed, HP-regeneration, and mana-regeneration modifier projection",
+    "save-version-7 derived-stat, resistance, and saving-throw ownership",
+    "deterministic statistic projection ordering and provenance"
+  ],
+  "remaining": [
+    "absolute XP and CP tables",
+    "SP/EP growth semantics",
+    "skill/spell/ability gain schedules",
+    "native multiclass switching",
+    "global caps and post-cap overflow",
+    "base AC, attack, defense, initiative, and weapon timing formulas",
+    "saving-throw resolution",
+    "base regeneration tick quantity and cadence",
+    "equipment completion",
+    "inventory",
+    "death",
+    "save/load",
+    "lifecycle"
+  ],
+  "native_only_unknowns": [
+    "base combat-statistic formulas",
+    "saving-throw resolution",
+    "base regeneration cadence and quantity",
+    "cross-category hidden evaluation order"
+  ],
+  "next": "Character statistics phase 4: recover remaining native base formulas, saving throws, and regeneration cadence without inventing semantics",
+  "current_pass": "Character Equipment Phase 3 - curse ownership and no-remove lifecycle",
+  "status": "in_progress",
+  "completed_passes": [
+    {
+      "code_update": "0156",
+      "area": "equipment",
+      "result": "Ability 82/83 curse ownership, transfer guards, ability 84 remove-curse execution, and ability 83 death retention activated."
+    }
+  ],
+  "remaining_character_work": [
+    "Equipment: dual wield, layering, duplicate-slot multiplicity, durability, and hidden modifier order",
+    "Inventory ownership, containers, stacking, coins, weight, encumbrance, and overflow",
+    "Death lifecycle beyond proven ability-83 retention",
+    "Save/load crash recovery and compatibility",
+    "Login/logout/world-entry/movement/resting/cleanup lifecycle",
+    "Native-only statistics formulas and cadence tracked for final DLL pass"
+  ]
+}

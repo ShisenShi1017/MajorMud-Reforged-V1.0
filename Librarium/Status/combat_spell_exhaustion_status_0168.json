@@ -1,0 +1,22 @@
+{
+  "update": "0168",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "resistance/save trace integration into direct spell execution",
+    "immunity and save-negation suppression",
+    "vulnerability amplification through signed basis points",
+    "absorption conversion from damage to restoration",
+    "save-based duration reduction",
+    "secondary-effect suppression",
+    "canonical cross-request identity validation"
+  ],
+  "not_claimed_complete": [
+    "periodic effect resistance/save integration",
+    "production resistance and save catalogs",
+    "absorption ownership for all spell families",
+    "spell.1304 semantics",
+    "status-specific secondary effect construction"
+  ],
+  "next_pass": "Integrate resolved resistance/save decisions into periodic effects and active status creation, including duration adjustment, immunity, absorption, and secondary-effect suppression."
+}

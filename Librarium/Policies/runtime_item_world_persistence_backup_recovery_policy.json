@@ -1,0 +1,19 @@
+{
+  "policy_id": "runtime_item_world_persistence_backup_recovery",
+  "code_update": "0191",
+  "status": "active_reinforced_compatibility_infrastructure",
+  "rules": [
+    "A new authoritative state must pass complete item and corpse validation before persistence.",
+    "An existing primary generation must independently validate before it may be rotated into backup.",
+    "Primary recovery may occur only when the primary is absent, corrupt, or fails complete runtime validation.",
+    "A backup must independently deserialize and pass complete runtime validation before recovery.",
+    "Successful recovery atomically restores the backup bytes to the authoritative primary path before state is returned.",
+    "Failure of both generations surfaces an explicit error and does not silently create empty state."
+  ],
+  "ownership": {
+    "items": "item and corpse state validation, generation rotation, and recovery",
+    "world_runtime": "save scheduling and coordinated checkpoint timing",
+    "character_economy_quests": "cross-subsystem transaction coordination remains external"
+  },
+  "native_boundary": "Native MajorMUD journaling, backup count, and cross-save recovery order remain pending final WCC/WBB/native exhaustion."
+}

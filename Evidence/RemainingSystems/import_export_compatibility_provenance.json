@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "import-export-compatibility",
+  "promotions": [
+    {
+      "behavior": "Central compatibility gate validates mode, authorization, versions, canonical IDs, payload size, and owner-commit boundaries.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs",
+        "Apps/Source/Reforged.Server/RuntimeImportExportCompatibilitySmokeReport.cs",
+        "Librarium/RemainingSystems/import_export_compatibility_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "Reforged compatibility infrastructure is not evidence of original MajorMUD import commands."
+      ],
+      "tests": [
+        "--smoke-import-export-compatibility"
+      ],
+      "safeFallback": "Reject the request without mutating owner state.",
+      "runtimeImpact": "Prevents unsafe or cross-mode import/export requests.",
+      "characterSaveImpact": "No direct mutation; Character save owner validates and commits.",
+      "worldStateImpact": "No direct mutation; owning world subsystem validates and commits."
+    },
+    {
+      "behavior": "Classic imports preserve canonical identifiers and reject Reforged extension packages.",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs",
+        "Librarium/RemainingSystems/import_export_compatibility_catalog.json"
+      ],
+      "confidence": 0.93,
+      "assumptions": [
+        "Classic compatibility requires stable source identifiers."
+      ],
+      "tests": [
+        "classic-boundary and classic-id smoke cases"
+      ],
+      "safeFallback": "Reject non-preserving or extension-bearing Classic requests.",
+      "runtimeImpact": "Prevents Custom/AI schema leakage into Classic mode.",
+      "characterSaveImpact": "Prevents incompatible Classic save migration.",
+      "worldStateImpact": "Prevents incompatible Classic world records."
+    },
+    {
+      "behavior": "WCC/WBB decoding and migrations remain delegated to dedicated decoders and owning subsystem validators.",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs",
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [
+        "A compatibility coordinator must not invent binary semantics."
+      ],
+      "tests": [
+        "WCC/WBB request emits native-decoder-owner-required"
+      ],
+      "safeFallback": "Return a typed dependency warning and require owner commit.",
+      "runtimeImpact": "Preserves decoder and runtime ownership boundaries.",
+      "characterSaveImpact": "None until owner commit.",
+      "worldStateImpact": "None until owner commit."
+    }
+  ]
+}

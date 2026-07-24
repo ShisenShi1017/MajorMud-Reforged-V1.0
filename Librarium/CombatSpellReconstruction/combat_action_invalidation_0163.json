@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "update": "0163",
+  "subsystem": "combat_spells",
+  "catalog": "combat_action_invalidation",
+  "runtime_owner": "RuntimeCombatActionInvalidationCoordinator",
+  "promoted_behaviors": [
+    {
+      "id": "invalidation.dependent_action_cancellation",
+      "confidence": "strongly_correlated",
+      "behavior": "Death or other promoted invalidation cancels queued or claimed actions whose actor or target dependency matches.",
+      "ordering": [
+        "due_tick",
+        "same_tick_priority",
+        "source_sequence",
+        "canonical_action_id"
+      ],
+      "safe_fallback": "Reject unpromoted dependency policies and leave unresolved native precedence explicit."
+    },
+    {
+      "id": "invalidation.exactly_once",
+      "confidence": "proven",
+      "behavior": "An entity invalidation is applied once per coordinator state and each affected action transitions once to Cancelled."
+    }
+  ],
+  "action_kinds": [
+    "physical_attack",
+    "spell_completion",
+    "periodic_effect"
+  ],
+  "unresolved": [
+    "native death insertion priority relative to already executing mutation",
+    "cross-combat target invalidation",
+    "persistence of queued cancellations"
+  ]
+}

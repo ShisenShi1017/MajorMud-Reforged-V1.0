@@ -1,0 +1,43 @@
+{
+  "id": "policy.classic.room_edge_reset.0194",
+  "object_type": "runtime_policy",
+  "status": "strongly_correlated_active",
+  "scope": "Classic room doors, hidden latches, action progress, and placed-room items",
+  "execution_order": [
+    "identify owning area reset event",
+    "remove transient door/latch/action progress",
+    "restore each edge initial state",
+    "reconcile placed items without duplicating surviving persistent instances",
+    "publish reset completion after mutations are committed"
+  ],
+  "ownership": {
+    "door_and_latch": "world edge",
+    "hidden discovery": "player/client discovery state unless exit explicitly uses shared latch",
+    "placed_items": "room world state"
+  },
+  "persistence": {
+    "character_save": "no shared room-edge state",
+    "live_world_snapshot": "yes",
+    "invalid_or_absent_snapshot": "initialize from static room/exit records"
+  },
+  "fallback": "fail closed for unresolved latches; preserve raw evidence; never perform host-wide restart as a room-reset substitute",
+  "confidence": "strongly_correlated",
+  "source_evidence": [
+    "Apps/Source/Reforged.Server/RuntimeWorldMultiplayer.cs: RuntimeWorldSchedulerState reset event support",
+    "Apps/Source/Reforged.App/Services/HostCleanupScheduler.cs: host restart cleanup path",
+    "Data/Classic/exits.json edge-state reset semantics from updates 0187-0193",
+    "Data/Classic/rooms.json placed-item initialization/reset semantics"
+  ],
+  "assumptions": [
+    "area reset event identity is supplied by the runtime scheduler",
+    "live snapshot restoration has precedence over static initialization"
+  ],
+  "tests": [
+    "reset clears latch progress",
+    "reset restores closed initial state",
+    "reciprocal exits reference one state",
+    "placed items are not duplicated",
+    "character save does not own shared edge state"
+  ],
+  "save_world_state_impact": "changes transient/live world snapshots only; no character-save schema migration"
+}

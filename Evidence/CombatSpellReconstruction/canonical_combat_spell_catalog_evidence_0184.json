@@ -1,0 +1,17 @@
+{
+  "update": "0184",
+  "classification": "proven identity and extracted field binding; enum semantics remain opaque",
+  "counts": {
+    "spells": 1350,
+    "items": 1950,
+    "abilities": 188,
+    "weapon_candidates": 392
+  },
+  "sources": [
+    "Data/Classic/spells.json",
+    "Data/Classic/items.json",
+    "Data/Classic/abilities.json"
+  ],
+  "runtime_impact": "All canonical records can be required by ID before evidence-gated execution binding.",
+  "safe_fallback": "Reject missing IDs or invalid ranges/evidence; never infer raw enum meanings."
+}

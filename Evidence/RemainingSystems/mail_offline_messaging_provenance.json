@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "mail-offline-messaging",
+  "promotions": [
+    {
+      "behavior": "Validated persistent offline-message envelope lifecycle with recipient authorization",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeOfflineMessaging.cs",
+        "Apps/Source/Reforged.Server/RuntimeOfflineMessagingSmokeReport.cs"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-offline-messaging"
+      ],
+      "safeFallback": "Reject invalid identities, state transitions, and unauthorized access.",
+      "runtimeImpact": "Adds deterministic queue, delivery, read, delete, and expiration coordination.",
+      "characterSaveImpact": "None; message state is world/service-owned.",
+      "worldStateImpact": "Adds versioned offline-message persistence."
+    },
+    {
+      "behavior": "Player mail and host-style messaging remain disabled until the MajorMUD/Worldgroup boundary is proven",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Librarium/RemainingSystems/mail_offline_messaging_catalog.json",
+        "Reports/RemainingSystems/native_dependencies.json"
+      ],
+      "confidence": 0.95,
+      "assumptions": [
+        "Worldgroup may own mailbox and bulletin-board facilities."
+      ],
+      "tests": [
+        "player-mail-host-boundary",
+        "admin-permission"
+      ],
+      "safeFallback": "Disable ambiguous host-boundary features.",
+      "runtimeImpact": "Prevents accidental reimplementation of host services.",
+      "characterSaveImpact": "None.",
+      "worldStateImpact": "No unsupported queues are created."
+    },
+    {
+      "behavior": "Attachments are emitted as owner requests to Character inventory and Economy",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeOfflineMessaging.cs"
+      ],
+      "confidence": 0.9,
+      "assumptions": [
+        "Owner subsystems provide reserve/release transaction semantics."
+      ],
+      "tests": [
+        "attachment restrictions are enabled fail-closed by policy"
+      ],
+      "safeFallback": "Attachments disabled by default and never directly mutated.",
+      "runtimeImpact": "Preserves transaction ownership.",
+      "characterSaveImpact": "Only after owner commit.",
+      "worldStateImpact": "Envelope retains attachment metadata only."
+    }
+  ]
+}

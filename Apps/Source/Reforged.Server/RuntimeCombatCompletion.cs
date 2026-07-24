@@ -1,11 +1,23 @@
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 
 namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
+    public const int ClassicCombatRoundMilliseconds = 6000;
     public async Task TickLiveCombatsAsync(CancellationToken cancellationToken)
     {
+        PruneInactiveCombatOwnership();
+        var nowUtc = DateTimeOffset.UtcNow;
+        var statusWorlds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var activeSession in _sessions.ActiveSessions)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (statusWorlds.Add(activeSession.World.Definition.Id))
+                TickClassicLiveStatuses(activeSession, nowUtc);
+        }
         foreach (var session in _sessions.ActiveSessions)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -27,18 +39,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        if (character.HitPoints > 0) return "You are not dead.";
+        if (!RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead) || character.HitPoints != 0) return "You are not dead.";
         var room = session.World.ResolveGeneratedCharacterStartRoom() ?? throw new InvalidOperationException("Generated character start room is unavailable.");
-        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
-        conditions.Remove("dead");
-        var updated = character with
-        {
-            HitPoints = character.MaximumHitPoints,
-            RoomId = room.Id,
-            RoomNumber = room.RoomNumber,
-            Conditions = conditions,
-            UpdatedAtUtc = DateTimeOffset.UtcNow
-        };
+        var updated = RuntimeCharacterDeathResolver.Respawn(character, room.Id, room.RoomNumber, DateTimeOffset.UtcNow);
         _characters.SaveCharacter(updated);
         session.MoveToWorld(session.World, room, "combat-respawn");
         _sessions.BroadcastRoom(session, $"{actor.DisplayName} returns to life.", includeSource: false);
@@ -49,51 +52,143 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-        var corpse = (state.Corpses ?? Array.Empty<RuntimeCorpseState>())
-            .Where(x => !x.CleanedUp && x.CharacterId.Equals(actor.Id, StringComparison.OrdinalIgnoreCase) && x.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
-            .OrderByDescending(x => x.CreatedAtUtc)
-            .FirstOrDefault();
-        if (corpse is null) return "Your corpse is not here.";
+        if (RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead)) return "You must respawn before recovering your corpse.";
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
-        var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses);
-        var items = engine.Items.Where(x => x.LocationKind.Equals(RuntimeItemLocations.Corpse, StringComparison.OrdinalIgnoreCase) && x.LocationId.Equals(corpse.CorpseId, StringComparison.OrdinalIgnoreCase)).ToArray();
-        foreach (var item in items) engine.Loot(item.InstanceId, corpse.CorpseId, actor.Id);
-        var gold = engine.LootGold(corpse.CorpseId);
-        var snapshot = engine.Snapshot(checked(state.Gold + gold), state.ActiveItemState);
-        _characters.SaveCharacter(character with { ItemState = snapshot, UpdatedAtUtc = DateTimeOffset.UtcNow });
-        _sessions.BroadcastRoom(session, $"{actor.DisplayName} recovers a corpse.", includeSource: false);
-        return $"You recover {items.Length} item(s) and {gold} gold from your corpse.";
+        try
+        {
+            var updated = RuntimeCharacterDeathResolver.RecoverCorpse(character, catalog, session.CurrentRoom.Id, DateTimeOffset.UtcNow, out var recovery);
+            _characters.SaveCharacter(updated);
+            _sessions.BroadcastRoom(session, $"{actor.DisplayName} recovers a corpse.", includeSource: false);
+            return $"You recover {recovery.RootItemsRecovered} item(s) and {recovery.GoldRecovered} gold from your corpse.";
+        }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("not in the current room", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Your corpse is not here.";
+        }
     }
 
     private string CompleteNpcDefeat(RuntimeSession session, RuntimeCharacterRecord before, RuntimeNpcDefinition npc, int playerHp)
     {
         var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-        var updatedState = state with { Gold = checked(state.Gold + npc.GoldReward) };
-        var updated = before with
+
+        // Decoded monster currency fields are denomination amounts, not a drop percentage.
+        // Preserve the authored values exactly and never fabricate money for zero-value NPCs.
+        var currencyText = RuntimeClassicRoomCurrencyStore.AddExact(
+            _characters.ProjectRoot,
+            before.WorldId,
+            session.CurrentRoom.Id,
+            npc.RunicReward,
+            npc.PlatinumReward,
+            npc.GoldReward,
+            npc.SilverReward,
+            npc.CopperReward);
+
+        var characterCatalog = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, before.WorldId);
+        var race = characterCatalog.RequireRace(before.RaceId);
+        var characterClass = characterCatalog.RequireClass(before.ClassId);
+        var awarded = RuntimeCharacterProgressionResolver.AwardExperience(before, npc.ExperienceReward, race, characterClass, "npc:" + npc.Id);
+        var dropped = new List<string>();
+        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, before.WorldId);
+        var movedItems = state.Items
+            .Where(item => !RuntimeClassicRoomCurrencyStore.IsLegacyCurrency(item))
+            .Select(item =>
+            {
+                var belongsToNpc = string.Equals(item.LocationKind, RuntimeItemLocations.Npc, StringComparison.OrdinalIgnoreCase)
+                    && (string.Equals(item.LocationId, npc.Id, StringComparison.OrdinalIgnoreCase)
+                        || string.Equals(item.OwnerId, npc.Id, StringComparison.OrdinalIgnoreCase)
+                        || string.Equals(item.OwnerId, "npc:" + npc.Id, StringComparison.OrdinalIgnoreCase));
+                if (!belongsToNpc) return item;
+                try { dropped.Add(catalog.Require(item.CanonicalItemId).Name); } catch { dropped.Add(item.CanonicalItemId); }
+                return item with
+                {
+                    OwnerId = null,
+                    LocationKind = RuntimeItemLocations.Room,
+                    LocationId = session.CurrentRoom.Id,
+                    EquippedSlot = null
+                };
+            }).ToList();
+
+        foreach (var loot in npc.Loot.OrderBy(x => x.ItemLegacyId))
+        {
+            RuntimeItemDefinition definition;
+            try { definition = catalog.Require(loot.CanonicalItemId); }
+            catch
+            {
+                // Decoded relationship has no canonical generated item. Quarantine it rather than
+                // inventing an item or crashing the authoritative death/loot transaction.
+                continue;
+            }
+            var roll = RollNpcLootPercent(before.CharacterId, npc.Id, loot.CanonicalItemId, before.Experience, session.CurrentRoom.Id);
+            if (!ShouldDropNpcLoot(loot.DropPercent, roll)) continue;
+            movedItems.Add(new RuntimeItemInstance(
+                $"npc-loot:{npc.LegacyId}:{Guid.NewGuid():N}",
+                loot.CanonicalItemId,
+                null,
+                RuntimeItemLocations.Room,
+                session.CurrentRoom.Id,
+                null,
+                Math.Max(0, definition.DefaultCharges),
+                1,
+                null,
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["npc_source_id"] = npc.Id,
+                    ["npc_source_legacy_id"] = npc.LegacyId.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                    ["loot_drop_percent"] = loot.DropPercent.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                    ["loot_roll"] = roll.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                    ["loot_credit_character_id"] = before.CharacterId,
+                    ["loot_authority"] = "decoded-public_reference_0139.loot_named"
+                }));
+            dropped.Add(definition.Name);
+        }
+
+        var attribution = new Dictionary<string, string>(awarded.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            ["combat.last_kill_credit_character_id"] = before.CharacterId,
+            ["combat.last_kill_npc_id"] = npc.Id,
+            ["combat.last_kill_npc_legacy_id"] = npc.LegacyId.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            ["combat.last_kill_xp_awarded"] = (awarded.Experience - before.Experience).ToString(System.Globalization.CultureInfo.InvariantCulture),
+            ["combat.last_loot_attribution_character_id"] = before.CharacterId,
+            ["combat.last_kill_at_utc"] = DateTimeOffset.UtcNow.ToString("O")
+        };
+        var updated = awarded with
         {
             HitPoints = playerHp,
-            Experience = checked(before.Experience + npc.ExperienceReward),
-            ItemState = updatedState,
+            Conditions = attribution,
+            ItemState = state with { Items = movedItems.ToArray() },
             UpdatedAtUtc = DateTimeOffset.UtcNow
         };
         _characters.SaveCharacter(updated);
-        var lootStatus = npc.LootKnown && npc.LootTableEntries > 0
-            ? "Generated loot relationships are present but item instantiation is not yet attached."
-            : "No authoritative generated loot entries are available for this NPC.";
-        return $"Reward: {npc.ExperienceReward} XP and {npc.GoldReward} gold. {lootStatus}";
+
+        var moneyStatus = string.IsNullOrWhiteSpace(currencyText) ? string.Empty : $" {currencyText} fall to the ground.";
+        var lootStatus = dropped.Count == 0 ? string.Empty : " It also drops " + string.Join(", ", dropped) + ".";
+        var awardedXp = awarded.Experience - before.Experience;
+        return $"Reward: {awardedXp} XP.{moneyStatus}{lootStatus}";
+    }
+
+    internal static bool ShouldDropNpcLoot(int dropPercent, int roll)
+    {
+        if (dropPercent is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(dropPercent));
+        if (roll is < 1 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
+        return roll <= dropPercent;
+    }
+
+    internal static int RollNpcLootPercent(string characterId, string npcId, string canonicalItemId, long experienceBeforeKill, string roomId)
+    {
+        var key = $"{characterId}|{npcId}|{canonicalItemId}|{experienceBeforeKill}|{roomId}";
+        var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(key));
+        return 1 + (int)(BitConverter.ToUInt32(bytes, 0) % 100);
     }
 
     private string CompletePlayerDefeat(RuntimeSession session, RuntimeCharacterRecord before)
     {
-        var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, before.WorldId);
-        var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses);
-        var corpse = engine.CreateCorpse(before.CharacterId, session.CurrentRoom.Id, state.Gold);
-        var conditions = new Dictionary<string, string>(before.Conditions, StringComparer.OrdinalIgnoreCase) { ["dead"] = "true" };
-        var snapshot = engine.Snapshot(0, state.ActiveItemState);
-        _characters.SaveCharacter(before with { HitPoints = 0, ItemState = snapshot, Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
-        return $"Your corpse ({corpse.CorpseId}) remains in {session.CurrentRoom.Name}. Use 'respawn', then return and use 'recover'.";
+        var nowUtc = DateTimeOffset.UtcNow;
+        RemoveCharacterLiveStatusEffects(before.CharacterId, nowUtc, "runtime.live_status.player_death");
+        var cleaned = RuntimeClassicStatusProjection.Clear(before, nowUtc, "runtime.live_status.player_death");
+        var transition = RuntimeCharacterDeathResolver.Defeat(cleaned, catalog, session.CurrentRoom.Id, nowUtc);
+        _characters.SaveCharacter(transition.Character);
+        return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. Use 'respawn', then return and use 'recover'.";
     }
 }
 
@@ -112,7 +207,30 @@ public sealed class RuntimeCombatCompletionSmokeReport
             using var doc = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "npcs.json")));
             var records = doc.RootElement.GetProperty("records").EnumerateArray().ToArray();
             Require(records.Any(x => x.TryGetProperty("rewards", out var r) && JsonValueReader.ReadInt(r, "xp_base", 0) >= 0), "generated-xp-rewards"); report.Checks.Add("generated-xp-rewards");
-            Require(records.Any(x => x.TryGetProperty("rewards", out var r) && JsonValueReader.ReadInt(r, "gold", 0) >= 0), "generated-gold-rewards"); report.Checks.Add("generated-gold-rewards");
+            Require(records.All(x => x.TryGetProperty("rewards", out var r)
+                && JsonValueReader.ReadInt(r, "copper", -1) >= 0
+                && JsonValueReader.ReadInt(r, "silver", -1) >= 0
+                && JsonValueReader.ReadInt(r, "gold", -1) >= 0
+                && JsonValueReader.ReadInt(r, "platinum", -1) >= 0
+                && JsonValueReader.ReadInt(r, "runic", -1) >= 0), "generated-denomination-rewards"); report.Checks.Add("generated-denomination-rewards");
+            Require(records.Any(x => x.TryGetProperty("rewards", out var r)
+                && JsonValueReader.ReadInt(r, "copper", 0) == 0
+                && JsonValueReader.ReadInt(r, "silver", 0) == 0
+                && JsonValueReader.ReadInt(r, "gold", 0) == 0
+                && JsonValueReader.ReadInt(r, "platinum", 0) == 0
+                && JsonValueReader.ReadInt(r, "runic", 0) == 0), "zero-currency-npcs-preserved"); report.Checks.Add("zero-currency-npcs-preserved");
+            Require(records.Any(x => x.TryGetProperty("public_reference_0139", out var pr)
+                && pr.TryGetProperty("fields", out var fields)
+                && fields.TryGetProperty("loot_named", out var loot)
+                && loot.ValueKind == JsonValueKind.Array
+                && loot.GetArrayLength() > 0), "decoded-npc-loot-relationships"); report.Checks.Add("decoded-npc-loot-relationships");
+            Require(RuntimeLiveGameplayFacade.ShouldDropNpcLoot(1, 1), "loot-one-percent-inclusive-success"); report.Checks.Add("loot-one-percent-inclusive-success");
+            Require(!RuntimeLiveGameplayFacade.ShouldDropNpcLoot(1, 2), "loot-one-percent-inclusive-failure"); report.Checks.Add("loot-one-percent-inclusive-failure");
+            Require(RuntimeLiveGameplayFacade.ShouldDropNpcLoot(100, 100), "loot-hundred-percent-inclusive-success"); report.Checks.Add("loot-hundred-percent-inclusive-success");
+            var exact = new RuntimeClassicRoomCurrencyBalance(1, 2, 3, 4, 5);
+            Require(RuntimeClassicRoomCurrencyStore.Format(exact).Contains("1 runic coin", StringComparison.Ordinal), "exact-runic-denomination-format"); report.Checks.Add("exact-runic-denomination-format");
+            Require(RuntimeClassicRoomCurrencyStore.Format(exact).Contains("2 platinum pieces", StringComparison.Ordinal), "exact-denomination-format"); report.Checks.Add("exact-denomination-format");
+            Require(RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds == 6000, "classic-six-second-combat-round"); report.Checks.Add("classic-six-second-combat-round");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TickLiveCombatsAsync)) is not null, "automatic-combat-tick"); report.Checks.Add("automatic-combat-tick");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RespawnCharacter)) is not null, "respawn-execution"); report.Checks.Add("respawn-execution");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RecoverCorpse)) is not null, "corpse-recovery"); report.Checks.Add("corpse-recovery");

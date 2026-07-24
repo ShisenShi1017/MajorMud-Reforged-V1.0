@@ -5,17 +5,17 @@ namespace Reforged.Server;
 public sealed class RuntimeStateStore
 {
     private readonly ConcurrentDictionary<string, RuntimeWorldState> _worlds = new(StringComparer.OrdinalIgnoreCase);
-    private readonly ConcurrentDictionary<string, RuntimeSessionState> _sessions = new(StringComparer.OrdinalIgnoreCase);
+    private readonly ConcurrentDictionary<string, RuntimeTrackedSessionState> _sessions = new(StringComparer.OrdinalIgnoreCase);
     private readonly ConcurrentDictionary<string, RuntimeCharacterState> _characters = new(StringComparer.OrdinalIgnoreCase);
 
     public IReadOnlyCollection<RuntimeWorldState> Worlds => _worlds.Values.ToArray();
-    public IReadOnlyCollection<RuntimeSessionState> Sessions => _sessions.Values.ToArray();
+    public IReadOnlyCollection<RuntimeTrackedSessionState> Sessions => _sessions.Values.ToArray();
     public IReadOnlyCollection<RuntimeCharacterState> Characters => _characters.Values.ToArray();
     public bool TryGetCharacter(string characterId, out RuntimeCharacterState character) => _characters.TryGetValue(characterId, out character!);
 
     public void EnsureWorld(RuntimeWorld world) => _worlds[world.Definition.Id] = new RuntimeWorldState(world.Definition.Id, world.Definition.Name, world.Definition.Type, world.Definition.RulesProfile, world.Definition.AiMode, world.Definition.ClassicProtected, world.Definition.TransfersAllowed, world.RoomCount, DateTimeOffset.UtcNow);
 
-    public RuntimeSessionState TrackSession(RuntimeSession session)
+    public RuntimeTrackedSessionState TrackSession(RuntimeSession session)
     {
         var state = CreateSessionState(session, true);
         _sessions[session.Id] = state;
@@ -36,7 +36,7 @@ public sealed class RuntimeStateStore
         _characters[character.Id] = new RuntimeCharacterState(character.Id, character.DisplayName, session.World.Definition.Id, session.CurrentRoom.Id, session.CurrentRoom.RoomNumber, character.Race, character.CharacterClass, character.Level, _characters.TryGetValue(character.Id, out var existing) ? existing.CreatedAtUtc : now, now);
     }
 
-    private static RuntimeSessionState CreateSessionState(RuntimeSession session, bool connected) => new(session.Id, session.Actor.Id, session.Actor.DisplayName, session.Actor.Kind, session.World.Definition.Id, session.CurrentRoom.Id, session.CurrentRoom.RoomNumber, session.ConnectedAtUtc, session.LastCommandAtUtc, connected);
+    private static RuntimeTrackedSessionState CreateSessionState(RuntimeSession session, bool connected) => new(session.Id, session.Actor.Id, session.Actor.DisplayName, session.Actor.Kind, session.World.Definition.Id, session.CurrentRoom.Id, session.CurrentRoom.RoomNumber, session.ConnectedAtUtc, session.LastCommandAtUtc, connected);
 
     public void RemoveSession(string sessionId)
     {
@@ -47,5 +47,5 @@ public sealed class RuntimeStateStore
 }
 
 public sealed record RuntimeWorldState(string WorldId, string Name, string Type, string RulesProfile, string AiMode, bool ClassicProtected, bool TransfersAllowed, int RoomCount, DateTimeOffset LoadedAtUtc);
-public sealed record RuntimeSessionState(string SessionId, string ActorId, string ActorName, string ActorKind, string WorldId, string RoomId, int RoomNumber, DateTimeOffset ConnectedAtUtc, DateTimeOffset LastCommandAtUtc, bool Connected);
+public sealed record RuntimeTrackedSessionState(string SessionId, string ActorId, string ActorName, string ActorKind, string WorldId, string RoomId, int RoomNumber, DateTimeOffset ConnectedAtUtc, DateTimeOffset LastCommandAtUtc, bool Connected);
 public sealed record RuntimeCharacterState(string CharacterId, string DisplayName, string WorldId, string RoomId, int RoomNumber, string Race, string CharacterClass, int Level, DateTimeOffset CreatedAtUtc, DateTimeOffset UpdatedAtUtc);

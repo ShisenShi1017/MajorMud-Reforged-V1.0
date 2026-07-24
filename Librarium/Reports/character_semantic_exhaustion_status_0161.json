@@ -1,0 +1,29 @@
+{
+  "code_update": "0161",
+  "subsystem": "character",
+  "current_pass": "Character Death Phase 2 - event-bound atomic corpse recovery",
+  "implemented": [
+    "exact active death-event corpse binding",
+    "owner and death-room recovery validation",
+    "atomic root-item and nested-content recovery",
+    "checked gold recovery",
+    "consumed corpse cleanup state",
+    "repeat-recovery rejection",
+    "persistent recovery provenance"
+  ],
+  "classification": {
+    "event_bound_corpse_recovery": "STRONGLY CORRELATED",
+    "item_and_gold_transaction_safety": "PROVEN",
+    "native_penalty_decay_resurrection_rules": "UNKNOWN"
+  },
+  "remaining_character_death": [
+    "native XP loss formula",
+    "native partial gold loss",
+    "corpse decay duration and destination",
+    "resurrection spell and penalty ordering",
+    "status effect and timer cleanup matrix",
+    "alternate respawn rules",
+    "corpse visibility and third-party looting permissions"
+  ],
+  "next": "Character Save/Load Phase 1: serialization validation, autosave/disconnect ordering, compatibility, and crash-recovery boundaries"
+}

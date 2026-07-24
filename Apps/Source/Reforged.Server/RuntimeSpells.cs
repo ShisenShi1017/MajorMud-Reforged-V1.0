@@ -167,7 +167,7 @@ public sealed class RuntimeSpellEngine
 
     public bool Knows(string characterId, string spellId) { lock (_gate) return _known.ContainsKey(Key(characterId, spellId)); }
     public IReadOnlyList<RuntimeKnownSpell> Spellbook(string characterId) { lock (_gate) return _known.Values.Where(x => Same(x.CharacterId, characterId)).OrderBy(x => x.SpellId).ToArray(); }
-    public IReadOnlyList<RuntimeActiveSpellEffect> EffectsFor(string targetId) { lock (_gate) return _effects.Values.Where(x => Same(x.Target.Id, targetId)).ToArray(); }
+    public IReadOnlyList<RuntimeActiveSpellEffect> EffectsFor(string targetId) { lock (_gate) return _effects.Values.Where(x => Same(x.Target.Id, targetId)).OrderBy(x => x.AppliedAtUtc).ThenBy(x => x.EffectId, StringComparer.OrdinalIgnoreCase).ToArray(); }
 
     public RuntimeSpellCastResult Cast(RuntimeSpellCastRequest request) => Atomic(() =>
     {
@@ -191,7 +191,7 @@ public sealed class RuntimeSpellEngine
 
     public int Expire(DateTimeOffset nowUtc) => Atomic(() =>
     {
-        var expired = _effects.Values.Where(x => x.ExpiresAtUtc is not null && x.ExpiresAtUtc <= nowUtc).Select(x => x.EffectId).ToArray();
+        var expired = _effects.Values.Where(x => x.ExpiresAtUtc is not null && x.ExpiresAtUtc <= nowUtc).OrderBy(x => x.ExpiresAtUtc).ThenBy(x => x.EffectId, StringComparer.OrdinalIgnoreCase).Select(x => x.EffectId).ToArray();
         foreach (var id in expired) _effects.Remove(id);
         return expired.Length;
     });
@@ -221,7 +221,10 @@ public sealed class RuntimeSpellEngine
         foreach (var pair in state.Resources) _resources.Add(pair.Key, pair.Value);
     }
 
-    private RuntimeSpellState SnapshotCore() => new(_known.Values.ToArray(), _effects.Values.ToArray(), new Dictionary<string, RuntimeSpellResources>(_resources, StringComparer.OrdinalIgnoreCase));
+    private RuntimeSpellState SnapshotCore() => new(
+        _known.Values.OrderBy(x => x.CharacterId, StringComparer.OrdinalIgnoreCase).ThenBy(x => x.SpellId, StringComparer.OrdinalIgnoreCase).ToArray(),
+        _effects.Values.OrderBy(x => x.AppliedAtUtc).ThenBy(x => x.EffectId, StringComparer.OrdinalIgnoreCase).ToArray(),
+        _resources.OrderBy(x => x.Key, StringComparer.OrdinalIgnoreCase).ToDictionary(x => x.Key, x => x.Value, StringComparer.OrdinalIgnoreCase));
     private RuntimeSpellCastResult Failure(string code, string message, RuntimeSpellResources resources) => new(false, code, message, resources, null);
     private static string Key(string characterId, string spellId) => $"{characterId}\u001f{spellId}";
     private static bool Same(string? left, string? right) => string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
@@ -274,11 +277,15 @@ public sealed class RuntimeSpellStateRepository
     {
         Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
         var temp = _path + ".tmp";
-        File.WriteAllText(temp, JsonSerializer.Serialize(state, new JsonSerializerOptions { WriteIndented = true }));
+        File.WriteAllText(temp, JsonSerializer.Serialize(Normalize(state), new JsonSerializerOptions { WriteIndented = true }));
         File.Move(temp, _path, true);
     }
     public RuntimeSpellState Load() => File.Exists(_path)
-        ? JsonSerializer.Deserialize<RuntimeSpellState>(File.ReadAllText(_path)) ?? Empty()
+        ? Normalize(JsonSerializer.Deserialize<RuntimeSpellState>(File.ReadAllText(_path)) ?? Empty())
         : Empty();
+    private static RuntimeSpellState Normalize(RuntimeSpellState state) => new(
+        state.KnownSpells.OrderBy(x => x.CharacterId, StringComparer.OrdinalIgnoreCase).ThenBy(x => x.SpellId, StringComparer.OrdinalIgnoreCase).ToArray(),
+        state.ActiveEffects.OrderBy(x => x.AppliedAtUtc).ThenBy(x => x.EffectId, StringComparer.OrdinalIgnoreCase).ToArray(),
+        state.Resources.OrderBy(x => x.Key, StringComparer.OrdinalIgnoreCase).ToDictionary(x => x.Key, x => x.Value, StringComparer.OrdinalIgnoreCase));
     private static RuntimeSpellState Empty() => new(Array.Empty<RuntimeKnownSpell>(), Array.Empty<RuntimeActiveSpellEffect>(), new Dictionary<string, RuntimeSpellResources>());
 }

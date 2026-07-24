@@ -31,16 +31,22 @@ public sealed partial class RuntimeLiveGameplayFacade
         var catalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var service = ResolveServicesAtRoom(catalog, session.CurrentRoom.RoomNumber)
             .FirstOrDefault(x => !ReadServiceKind(x).Equals("bank", StringComparison.OrdinalIgnoreCase));
-        if (service is null) throw new InvalidOperationException("There is no generated shop or trainer service in this room.");
+        if (service is null) throw new InvalidOperationException("There is no shop or trainer service in this room.");
 
         var kind = ReadServiceKind(service);
         if (kind.Equals("trainer", StringComparison.OrdinalIgnoreCase)) return RenderTrainerDefinition(service);
         if (!service.GeneratedRecord.TryGetProperty("inventory", out var inventory) || inventory.ValueKind != JsonValueKind.Array)
-            return $"{ReadServiceName(service)} has no generated inventory records.";
+            return "There are no items for sale here.";
 
         var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var runtimeState = GameplayStore(session.World.Definition.Id).Read(service);
-        var lines = new List<string>();
+        var lines = new List<string>
+        {
+            "The following items are for sale here:",
+            string.Empty,
+            $"{"Item",-30}{"Quantity",-12}Price",
+            new string('-', 54)
+        };
         foreach (var entry in inventory.EnumerateArray())
         {
             if (!entry.TryGetProperty("item_exists", out var exists) || exists.ValueKind != JsonValueKind.True) continue;
@@ -48,11 +54,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (string.IsNullOrWhiteSpace(itemRef)) continue;
             var name = itemCatalog.Require(itemRef).Name;
             var quantity = runtimeState.Stock.TryGetValue(itemRef, out var stock) ? stock.Quantity : 0;
-            lines.Add($"- {name} ({itemRef}) stock={quantity}");
+            var generated = RequireGeneratedItemRecord(_characters.ProjectRoot, session.World.Definition.Id, itemRef);
+            var cost = ReadItemCost(generated);
+            var price = cost <= 0 ? "Free" : cost == 1 ? "1 gold crown" : $"{cost} gold crowns";
+            lines.Add($"{name,-30}{quantity,-12}{price}");
         }
-        return lines.Count == 0
-            ? $"{ReadServiceName(service)} has no verified generated inventory available."
-            : $"{ReadServiceName(service)} [{kind}]" + Environment.NewLine + string.Join(Environment.NewLine, lines);
+        return lines.Count == 4 ? "There are no items for sale here." : string.Join(Environment.NewLine, lines);
     }
 
     private string RenderTrainerHere(RuntimeSession session)
@@ -105,10 +112,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             var sourceState = sourceCharacter.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
             var targetState = targetCharacter.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-            if (sourceState.Gold < amount) throw new InvalidOperationException("You do not have enough carried gold.");
-            var sourceUpdated = sourceCharacter with { ItemState = sourceState with { Gold = checked(sourceState.Gold - amount) } };
-            var targetUpdated = targetCharacter with { ItemState = targetState with { Gold = checked(targetState.Gold + amount) } };
-            return (sourceUpdated, targetUpdated, amount);
+            var transfer = RuntimeCharacterGold.Transfer(sourceState.Gold, targetState.Gold, amount);
+            var sourceUpdated = sourceCharacter with { ItemState = sourceState with { Gold = transfer.SourceAfter } };
+            var targetUpdated = targetCharacter with { ItemState = targetState with { Gold = transfer.TargetAfter } };
+            return (sourceUpdated, targetUpdated, transfer.Amount);
         });
         targetSession.EnqueueMessage($"{sourceSession.Actor.DisplayName} gives you {transferredAmount} gold.");
         return $"You give {transferredAmount} gold to {targetSession.Actor.DisplayName}.";

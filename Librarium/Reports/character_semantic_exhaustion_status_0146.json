@@ -1,0 +1,21 @@
+{
+  "code_update": "0146",
+  "subsystem": "Character abilities phase 1",
+  "status": "promoted",
+  "proven": [
+    "canonical ability catalog source is abilities.json",
+    "race creation ability ownership",
+    "class creation ability ownership",
+    "race-before-class source evaluation order",
+    "duplicate source grants preserved",
+    "permanent saved lifetime with no reset"
+  ],
+  "blocked": [
+    "ability-specific numeric value interpretation",
+    "temporary and learned ability lifetime",
+    "passive versus activated execution",
+    "trainer and level-gain acquisition",
+    "cooldown formulas and removal conditions"
+  ],
+  "next": "Character flags ownership and lifetime"
+}

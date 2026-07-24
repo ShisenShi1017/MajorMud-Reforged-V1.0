@@ -1,0 +1,3577 @@
+{
+  "authority": "Librarium",
+  "object_type": "room_message_catalog",
+  "world_scope": [
+    "classic"
+  ],
+  "source": {
+    "file": "Data/NativeDecodeReports/CodeUpdate0139RoomTextAudit/WCCMSG_strings.tsv",
+    "classification": "native_wccmsg_string_catalog",
+    "id_policy": "message_id is native byte offset because no safer internal enum has been proven"
+  },
+  "record_count": 117,
+  "category_reference_count": 120,
+  "categories": {
+    "room_action_command_alias": [
+      {
+        "message_id": "wccmsg.offset.11527",
+        "source": "WCCMSG.DAT",
+        "offset": 11527,
+        "block_512": 22,
+        "block_offset": 263,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.155146",
+        "source": "WCCMSG.DAT",
+        "offset": 155146,
+        "block_512": 303,
+        "block_offset": 10,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.411481",
+        "source": "WCCMSG.DAT",
+        "offset": 411481,
+        "block_512": 803,
+        "block_offset": 345,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.764938",
+        "source": "WCCMSG.DAT",
+        "offset": 764938,
+        "block_512": 1494,
+        "block_offset": 10,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.826890",
+        "source": "WCCMSG.DAT",
+        "offset": 826890,
+        "block_512": 1615,
+        "block_offset": 10,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.842762",
+        "source": "WCCMSG.DAT",
+        "offset": 842762,
+        "block_512": 1646,
+        "block_offset": 10,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.843274",
+        "source": "WCCMSG.DAT",
+        "offset": 843274,
+        "block_512": 1647,
+        "block_offset": 10,
+        "length": 10,
+        "text": "pull lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.22026",
+        "source": "WCCMSG.DAT",
+        "offset": 22026,
+        "block_512": 43,
+        "block_offset": 10,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.22190",
+        "source": "WCCMSG.DAT",
+        "offset": 22190,
+        "block_512": 43,
+        "block_offset": 174,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.35243",
+        "source": "WCCMSG.DAT",
+        "offset": 35243,
+        "block_512": 68,
+        "block_offset": 427,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.166410",
+        "source": "WCCMSG.DAT",
+        "offset": 166410,
+        "block_512": 325,
+        "block_offset": 10,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.166492",
+        "source": "WCCMSG.DAT",
+        "offset": 166492,
+        "block_512": 325,
+        "block_offset": 92,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.166574",
+        "source": "WCCMSG.DAT",
+        "offset": 166574,
+        "block_512": 325,
+        "block_offset": 174,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.171783",
+        "source": "WCCMSG.DAT",
+        "offset": 171783,
+        "block_512": 335,
+        "block_offset": 263,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.171865",
+        "source": "WCCMSG.DAT",
+        "offset": 171865,
+        "block_512": 335,
+        "block_offset": 345,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.410375",
+        "source": "WCCMSG.DAT",
+        "offset": 410375,
+        "block_512": 801,
+        "block_offset": 263,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.565511",
+        "source": "WCCMSG.DAT",
+        "offset": 565511,
+        "block_512": 1104,
+        "block_offset": 263,
+        "length": 11,
+        "text": "push button",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.11691",
+        "source": "WCCMSG.DAT",
+        "offset": 11691,
+        "block_512": 22,
+        "block_offset": 427,
+        "length": 10,
+        "text": "move lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.155228",
+        "source": "WCCMSG.DAT",
+        "offset": 155228,
+        "block_512": 303,
+        "block_offset": 92,
+        "length": 10,
+        "text": "move lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.411563",
+        "source": "WCCMSG.DAT",
+        "offset": 411563,
+        "block_512": 803,
+        "block_offset": 427,
+        "length": 10,
+        "text": "move lever",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.602286",
+        "source": "WCCMSG.DAT",
+        "offset": 602286,
+        "block_512": 1176,
+        "block_offset": 174,
+        "length": 21,
+        "text": "turn obsidian carving",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.564746",
+        "source": "WCCMSG.DAT",
+        "offset": 564746,
+        "block_512": 1103,
+        "block_offset": 10,
+        "length": 18,
+        "text": "open stone door %s",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.591111",
+        "source": "WCCMSG.DAT",
+        "offset": 591111,
+        "block_512": 1154,
+        "block_offset": 263,
+        "length": 18,
+        "text": "open stone door %s",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.652551",
+        "source": "WCCMSG.DAT",
+        "offset": 652551,
+        "block_512": 1274,
+        "block_offset": 263,
+        "length": 18,
+        "text": "open stone door %s",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.535562",
+        "source": "WCCMSG.DAT",
+        "offset": 535562,
+        "block_512": 1046,
+        "block_offset": 10,
+        "length": 16,
+        "text": "push sarcophagus",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.535644",
+        "source": "WCCMSG.DAT",
+        "offset": 535644,
+        "block_512": 1046,
+        "block_offset": 92,
+        "length": 16,
+        "text": "move sarcophagus",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.681482",
+        "source": "WCCMSG.DAT",
+        "offset": 681482,
+        "block_512": 1331,
+        "block_offset": 10,
+        "length": 50,
+        "text": "Your search turns up a small key made of red iron.",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.746588",
+        "source": "WCCMSG.DAT",
+        "offset": 746588,
+        "block_512": 1458,
+        "block_offset": 92,
+        "length": 38,
+        "text": "The swarm flies off in search of food.",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.783452",
+        "source": "WCCMSG.DAT",
+        "offset": 783452,
+        "block_512": 1530,
+        "block_offset": 92,
+        "length": 37,
+        "text": "The %s searches for a meal to the %s!",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.796423",
+        "source": "WCCMSG.DAT",
+        "offset": 796423,
+        "block_512": 1555,
+        "block_offset": 263,
+        "length": 46,
+        "text": "A search reveals a hidden passage to the west.",
+        "category": "room_action_command_alias"
+      },
+      {
+        "message_id": "wccmsg.offset.796935",
+        "source": "WCCMSG.DAT",
+        "offset": 796935,
+        "block_512": 1556,
+        "block_offset": 263,
+        "length": 46,
+        "text": "A search reveals a secret passage to the east.",
+        "category": "room_action_command_alias"
+      }
+    ],
+    "room_action_success": [
+      {
+        "message_id": "wccmsg.offset.40711",
+        "source": "WCCMSG.DAT",
+        "offset": 40711,
+        "block_512": 79,
+        "block_offset": 263,
+        "length": 63,
+        "text": "You pull the lever. Off in the distance you hear a small click.",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.40970",
+        "source": "WCCMSG.DAT",
+        "offset": 40970,
+        "block_512": 80,
+        "block_offset": 10,
+        "length": 20,
+        "text": "You push the button.",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.41223",
+        "source": "WCCMSG.DAT",
+        "offset": 41223,
+        "block_512": 80,
+        "block_offset": 263,
+        "length": 19,
+        "text": "You pull the lever.",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.156170",
+        "source": "WCCMSG.DAT",
+        "offset": 156170,
+        "block_512": 305,
+        "block_offset": 10,
+        "length": 19,
+        "text": "You pull the lever.",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.112138",
+        "source": "WCCMSG.DAT",
+        "offset": 112138,
+        "block_512": 219,
+        "block_offset": 10,
+        "length": 52,
+        "text": "You turn the candle, and slip through a hidden door.",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.200967",
+        "source": "WCCMSG.DAT",
+        "offset": 200967,
+        "block_512": 392,
+        "block_offset": 263,
+        "length": 54,
+        "text": "As you push the hidden stone, you hear a slight click!",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.201479",
+        "source": "WCCMSG.DAT",
+        "offset": 201479,
+        "block_512": 393,
+        "block_offset": 263,
+        "length": 58,
+        "text": "As you push the button, the face's toothy jaw creaks open!",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.662791",
+        "source": "WCCMSG.DAT",
+        "offset": 662791,
+        "block_512": 1294,
+        "block_offset": 263,
+        "length": 55,
+        "text": "You heave mightily on the winch, and it begins to turn!",
+        "category": "room_action_success"
+      },
+      {
+        "message_id": "wccmsg.offset.535815",
+        "source": "WCCMSG.DAT",
+        "offset": 535815,
+        "block_512": 1046,
+        "block_offset": 263,
+        "length": 62,
+        "text": "You heave against a sarcophagus, and it slowly begins to move!",
+        "category": "room_action_success"
+      }
+    ],
+    "door_open": [
+      {
+        "message_id": "wccmsg.offset.280074",
+        "source": "WCCMSG.DAT",
+        "offset": 280074,
+        "block_512": 547,
+        "block_offset": 10,
+        "length": 45,
+        "text": "A gigantic stone door opens in the west wall!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.280156",
+        "source": "WCCMSG.DAT",
+        "offset": 280156,
+        "block_512": 547,
+        "block_offset": 92,
+        "length": 45,
+        "text": "A gigantic stone door opens in the west wall!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.280238",
+        "source": "WCCMSG.DAT",
+        "offset": 280238,
+        "block_512": 547,
+        "block_offset": 174,
+        "length": 45,
+        "text": "A gigantic stone door opens in the west wall!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463623",
+        "source": "WCCMSG.DAT",
+        "offset": 463623,
+        "block_512": 905,
+        "block_offset": 263,
+        "length": 37,
+        "text": "A large stone door opens to the east!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463705",
+        "source": "WCCMSG.DAT",
+        "offset": 463705,
+        "block_512": 905,
+        "block_offset": 345,
+        "length": 37,
+        "text": "A large stone door opens to the east!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463787",
+        "source": "WCCMSG.DAT",
+        "offset": 463787,
+        "block_512": 905,
+        "block_offset": 427,
+        "length": 37,
+        "text": "A large stone door opens to the east!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.464647",
+        "source": "WCCMSG.DAT",
+        "offset": 464647,
+        "block_512": 907,
+        "block_offset": 263,
+        "length": 37,
+        "text": "A small stone door opens in the wall.",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.464729",
+        "source": "WCCMSG.DAT",
+        "offset": 464729,
+        "block_512": 907,
+        "block_offset": 345,
+        "length": 37,
+        "text": "A small stone door opens in the wall.",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.464811",
+        "source": "WCCMSG.DAT",
+        "offset": 464811,
+        "block_512": 907,
+        "block_offset": 427,
+        "length": 37,
+        "text": "A small stone door opens in the wall.",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463111",
+        "source": "WCCMSG.DAT",
+        "offset": 463111,
+        "block_512": 904,
+        "block_offset": 263,
+        "length": 29,
+        "text": "A small stone door pops open!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463193",
+        "source": "WCCMSG.DAT",
+        "offset": 463193,
+        "block_512": 904,
+        "block_offset": 345,
+        "length": 29,
+        "text": "A small stone door pops open!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.463275",
+        "source": "WCCMSG.DAT",
+        "offset": 463275,
+        "block_512": 904,
+        "block_offset": 427,
+        "length": 29,
+        "text": "A small stone door pops open!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.652298",
+        "source": "WCCMSG.DAT",
+        "offset": 652298,
+        "block_512": 1274,
+        "block_offset": 10,
+        "length": 35,
+        "text": "A concealed stone door swings open!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.564487",
+        "source": "WCCMSG.DAT",
+        "offset": 564487,
+        "block_512": 1102,
+        "block_offset": 263,
+        "length": 50,
+        "text": "A cleverly-concealed stone door swings open to %s.",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.590858",
+        "source": "WCCMSG.DAT",
+        "offset": 590858,
+        "block_512": 1154,
+        "block_offset": 10,
+        "length": 47,
+        "text": "A stone door swings open with a grinding sound!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.489994",
+        "source": "WCCMSG.DAT",
+        "offset": 489994,
+        "block_512": 957,
+        "block_offset": 10,
+        "length": 59,
+        "text": "With the rattle of many complex mechanisms, the door opens!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.490076",
+        "source": "WCCMSG.DAT",
+        "offset": 490076,
+        "block_512": 957,
+        "block_offset": 92,
+        "length": 59,
+        "text": "With the rattle of many complex mechanisms, the door opens!",
+        "category": "door_open"
+      },
+      {
+        "message_id": "wccmsg.offset.490158",
+        "source": "WCCMSG.DAT",
+        "offset": 490158,
+        "block_512": 957,
+        "block_offset": 174,
+        "length": 59,
+        "text": "With the rattle of many complex mechanisms, the door opens!",
+        "category": "door_open"
+      }
+    ],
+    "hidden_exit_open": [
+      {
+        "message_id": "wccmsg.offset.459527",
+        "source": "WCCMSG.DAT",
+        "offset": 459527,
+        "block_512": 897,
+        "block_offset": 263,
+        "length": 35,
+        "text": "A cleverly concealed passage opens!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.459609",
+        "source": "WCCMSG.DAT",
+        "offset": 459609,
+        "block_512": 897,
+        "block_offset": 345,
+        "length": 35,
+        "text": "A cleverly concealed passage opens!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.459691",
+        "source": "WCCMSG.DAT",
+        "offset": 459691,
+        "block_512": 897,
+        "block_offset": 427,
+        "length": 35,
+        "text": "A cleverly concealed passage opens!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.466442",
+        "source": "WCCMSG.DAT",
+        "offset": 466442,
+        "block_512": 911,
+        "block_offset": 10,
+        "length": 42,
+        "text": "A concealed passage opens up with a groan!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.466524",
+        "source": "WCCMSG.DAT",
+        "offset": 466524,
+        "block_512": 911,
+        "block_offset": 92,
+        "length": 42,
+        "text": "A concealed passage opens up with a groan!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.466606",
+        "source": "WCCMSG.DAT",
+        "offset": 466606,
+        "block_512": 911,
+        "block_offset": 174,
+        "length": 42,
+        "text": "A concealed passage opens up with a groan!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.460039",
+        "source": "WCCMSG.DAT",
+        "offset": 460039,
+        "block_512": 898,
+        "block_offset": 263,
+        "length": 44,
+        "text": "A small hidden passage silently slides open.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.460121",
+        "source": "WCCMSG.DAT",
+        "offset": 460121,
+        "block_512": 898,
+        "block_offset": 345,
+        "length": 44,
+        "text": "A small hidden passage silently slides open.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.460203",
+        "source": "WCCMSG.DAT",
+        "offset": 460203,
+        "block_512": 898,
+        "block_offset": 427,
+        "length": 44,
+        "text": "A small hidden passage silently slides open.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.658442",
+        "source": "WCCMSG.DAT",
+        "offset": 658442,
+        "block_512": 1286,
+        "block_offset": 10,
+        "length": 69,
+        "text": "With a loud grinding noise, a concealed passage opens in the ceiling!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.462087",
+        "source": "WCCMSG.DAT",
+        "offset": 462087,
+        "block_512": 902,
+        "block_offset": 263,
+        "length": 57,
+        "text": "With a rumbling sound, a stony passage opens to the east.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.462169",
+        "source": "WCCMSG.DAT",
+        "offset": 462169,
+        "block_512": 902,
+        "block_offset": 345,
+        "length": 57,
+        "text": "With a rumbling sound, a stony passage opens to the east.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.462251",
+        "source": "WCCMSG.DAT",
+        "offset": 462251,
+        "block_512": 902,
+        "block_offset": 427,
+        "length": 57,
+        "text": "With a rumbling sound, a stony passage opens to the east.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.496650",
+        "source": "WCCMSG.DAT",
+        "offset": 496650,
+        "block_512": 970,
+        "block_offset": 10,
+        "length": 64,
+        "text": "With a groaning crack, a passage in the dead-end reveals itself.",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.457226",
+        "source": "WCCMSG.DAT",
+        "offset": 457226,
+        "block_512": 893,
+        "block_offset": 10,
+        "length": 52,
+        "text": "The ceiling cracks open, revealing a hidden passage!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.457308",
+        "source": "WCCMSG.DAT",
+        "offset": 457308,
+        "block_512": 893,
+        "block_offset": 92,
+        "length": 52,
+        "text": "The ceiling cracks open, revealing a hidden passage!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.457390",
+        "source": "WCCMSG.DAT",
+        "offset": 457390,
+        "block_512": 893,
+        "block_offset": 174,
+        "length": 52,
+        "text": "The ceiling cracks open, revealing a hidden passage!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.451082",
+        "source": "WCCMSG.DAT",
+        "offset": 451082,
+        "block_512": 881,
+        "block_offset": 10,
+        "length": 62,
+        "text": "The shelving slides out of the way, revealing a black passage!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.451164",
+        "source": "WCCMSG.DAT",
+        "offset": 451164,
+        "block_512": 881,
+        "block_offset": 92,
+        "length": 62,
+        "text": "The shelving slides out of the way, revealing a black passage!",
+        "category": "hidden_exit_open"
+      },
+      {
+        "message_id": "wccmsg.offset.451246",
+        "source": "WCCMSG.DAT",
+        "offset": 451246,
+        "block_512": 881,
+        "block_offset": 174,
+        "length": 62,
+        "text": "The shelving slides out of the way, revealing a black passage!",
+        "category": "hidden_exit_open"
+      }
+    ],
+    "hidden_exit_traverse": [
+      {
+        "message_id": "wccmsg.offset.230151",
+        "source": "WCCMSG.DAT",
+        "offset": 230151,
+        "block_512": 449,
+        "block_offset": 263,
+        "length": 60,
+        "text": "You follow the hidden path, and arrive at the stair landing!",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.230233",
+        "source": "WCCMSG.DAT",
+        "offset": 230233,
+        "block_512": 449,
+        "block_offset": 345,
+        "length": 25,
+        "text": "%s follows a hidden path!",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.761095",
+        "source": "WCCMSG.DAT",
+        "offset": 761095,
+        "block_512": 1486,
+        "block_offset": 263,
+        "length": 36,
+        "text": "You enter a hidden path to the west.",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.761177",
+        "source": "WCCMSG.DAT",
+        "offset": 761177,
+        "block_512": 1486,
+        "block_offset": 345,
+        "length": 37,
+        "text": "%s entered a hidden path to the west.",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.761607",
+        "source": "WCCMSG.DAT",
+        "offset": 761607,
+        "block_512": 1487,
+        "block_offset": 263,
+        "length": 36,
+        "text": "You enter a hidden path to the east.",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.761689",
+        "source": "WCCMSG.DAT",
+        "offset": 761689,
+        "block_512": 1487,
+        "block_offset": 345,
+        "length": 37,
+        "text": "%s entered a hidden path to the east.",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.367626",
+        "source": "WCCMSG.DAT",
+        "offset": 367626,
+        "block_512": 718,
+        "block_offset": 10,
+        "length": 32,
+        "text": "You slip into the rocky passage.",
+        "category": "hidden_exit_traverse"
+      },
+      {
+        "message_id": "wccmsg.offset.367708",
+        "source": "WCCMSG.DAT",
+        "offset": 367708,
+        "block_512": 718,
+        "block_offset": 92,
+        "length": 32,
+        "text": "%s slips into the rocky passage.",
+        "category": "hidden_exit_traverse"
+      }
+    ],
+    "lock_or_key_failure": [
+      {
+        "message_id": "wccmsg.offset.237831",
+        "source": "WCCMSG.DAT",
+        "offset": 237831,
+        "block_512": 464,
+        "block_offset": 263,
+        "length": 30,
+        "text": "You do not have the cross key.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.238343",
+        "source": "WCCMSG.DAT",
+        "offset": 238343,
+        "block_512": 465,
+        "block_offset": 263,
+        "length": 30,
+        "text": "You do not have the runed key.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.238855",
+        "source": "WCCMSG.DAT",
+        "offset": 238855,
+        "block_512": 466,
+        "block_offset": 263,
+        "length": 30,
+        "text": "You do not have the skull key.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.291591",
+        "source": "WCCMSG.DAT",
+        "offset": 291591,
+        "block_512": 569,
+        "block_offset": 263,
+        "length": 44,
+        "text": "You do not have the proper tools to do that!",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.558343",
+        "source": "WCCMSG.DAT",
+        "offset": 558343,
+        "block_512": 1090,
+        "block_offset": 263,
+        "length": 39,
+        "text": "You do not have a pickaxe to mine with.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.558855",
+        "source": "WCCMSG.DAT",
+        "offset": 558855,
+        "block_512": 1091,
+        "block_offset": 263,
+        "length": 57,
+        "text": "You don't have a mine pass, so you can't enter the mines.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.579335",
+        "source": "WCCMSG.DAT",
+        "offset": 579335,
+        "block_512": 1131,
+        "block_offset": 263,
+        "length": 37,
+        "text": "You do not have an obsidian talisman.",
+        "category": "lock_or_key_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.556807",
+        "source": "WCCMSG.DAT",
+        "offset": 556807,
+        "block_512": 1087,
+        "block_offset": 263,
+        "length": 59,
+        "text": "Nothing you have will allow you to scale the mountain face.",
+        "category": "lock_or_key_failure"
+      }
+    ],
+    "search_success": [
+      {
+        "message_id": "wccmsg.offset.796423",
+        "source": "WCCMSG.DAT",
+        "offset": 796423,
+        "block_512": 1555,
+        "block_offset": 263,
+        "length": 46,
+        "text": "A search reveals a hidden passage to the west.",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.796935",
+        "source": "WCCMSG.DAT",
+        "offset": 796935,
+        "block_512": 1556,
+        "block_offset": 263,
+        "length": 46,
+        "text": "A search reveals a secret passage to the east.",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.799754",
+        "source": "WCCMSG.DAT",
+        "offset": 799754,
+        "block_512": 1562,
+        "block_offset": 10,
+        "length": 51,
+        "text": "A secret trapdoor is uncovered from under the sand!",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.799836",
+        "source": "WCCMSG.DAT",
+        "offset": 799836,
+        "block_512": 1562,
+        "block_offset": 92,
+        "length": 51,
+        "text": "A secret trapdoor is uncovered from under the sand!",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.799918",
+        "source": "WCCMSG.DAT",
+        "offset": 799918,
+        "block_512": 1562,
+        "block_offset": 174,
+        "length": 51,
+        "text": "A secret trapdoor is uncovered from under the sand!",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.681482",
+        "source": "WCCMSG.DAT",
+        "offset": 681482,
+        "block_512": 1331,
+        "block_offset": 10,
+        "length": 50,
+        "text": "Your search turns up a small key made of red iron.",
+        "category": "search_success"
+      },
+      {
+        "message_id": "wccmsg.offset.848299",
+        "source": "WCCMSG.DAT",
+        "offset": 848299,
+        "block_512": 1656,
+        "block_offset": 427,
+        "length": 63,
+        "text": "You can sense the faint outline of a portal appear in the room.",
+        "category": "search_success"
+      }
+    ],
+    "generic_failure": [
+      {
+        "message_id": "wccmsg.offset.419850",
+        "source": "WCCMSG.DAT",
+        "offset": 419850,
+        "block_512": 820,
+        "block_offset": 10,
+        "length": 16,
+        "text": "Nothing happens.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.508426",
+        "source": "WCCMSG.DAT",
+        "offset": 508426,
+        "block_512": 993,
+        "block_offset": 10,
+        "length": 8,
+        "text": "Nothing.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.508508",
+        "source": "WCCMSG.DAT",
+        "offset": 508508,
+        "block_512": 993,
+        "block_offset": 92,
+        "length": 8,
+        "text": "Nothing.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.508590",
+        "source": "WCCMSG.DAT",
+        "offset": 508590,
+        "block_512": 993,
+        "block_offset": 174,
+        "length": 8,
+        "text": "Nothing.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.188167",
+        "source": "WCCMSG.DAT",
+        "offset": 188167,
+        "block_512": 367,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.247559",
+        "source": "WCCMSG.DAT",
+        "offset": 247559,
+        "block_512": 483,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.329991",
+        "source": "WCCMSG.DAT",
+        "offset": 329991,
+        "block_512": 644,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.493319",
+        "source": "WCCMSG.DAT",
+        "offset": 493319,
+        "block_512": 963,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.493831",
+        "source": "WCCMSG.DAT",
+        "offset": 493831,
+        "block_512": 964,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.494343",
+        "source": "WCCMSG.DAT",
+        "offset": 494343,
+        "block_512": 965,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.509450",
+        "source": "WCCMSG.DAT",
+        "offset": 509450,
+        "block_512": 995,
+        "block_offset": 10,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.554759",
+        "source": "WCCMSG.DAT",
+        "offset": 554759,
+        "block_512": 1083,
+        "block_offset": 263,
+        "length": 29,
+        "text": "You cannot do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.413959",
+        "source": "WCCMSG.DAT",
+        "offset": 413959,
+        "block_512": 808,
+        "block_offset": 263,
+        "length": 28,
+        "text": "You can't do that right now!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.280327",
+        "source": "WCCMSG.DAT",
+        "offset": 280327,
+        "block_512": 547,
+        "block_offset": 263,
+        "length": 39,
+        "text": "A mysterious force blocks your passage!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.280586",
+        "source": "WCCMSG.DAT",
+        "offset": 280586,
+        "block_512": 548,
+        "block_offset": 10,
+        "length": 39,
+        "text": "A mysterious force blocks your passage!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.795911",
+        "source": "WCCMSG.DAT",
+        "offset": 795911,
+        "block_512": 1554,
+        "block_offset": 263,
+        "length": 42,
+        "text": "A mysterious force stops you from passing.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.796170",
+        "source": "WCCMSG.DAT",
+        "offset": 796170,
+        "block_512": 1555,
+        "block_offset": 10,
+        "length": 42,
+        "text": "A mysterious force stops you from passing.",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.107271",
+        "source": "WCCMSG.DAT",
+        "offset": 107271,
+        "block_512": 209,
+        "block_offset": 263,
+        "length": 39,
+        "text": "An invisible barrier blocks your entry!",
+        "category": "generic_failure"
+      },
+      {
+        "message_id": "wccmsg.offset.320939",
+        "source": "WCCMSG.DAT",
+        "offset": 320939,
+        "block_512": 626,
+        "block_offset": 427,
+        "length": 19,
+        "text": "The portal is shut!",
+        "category": "generic_failure"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "room_message.wccmsg.offset.11527",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.11527",
+      "source": "WCCMSG.DAT",
+      "offset": 11527,
+      "block_512": 22,
+      "block_offset": 263,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.155146",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.155146",
+      "source": "WCCMSG.DAT",
+      "offset": 155146,
+      "block_512": 303,
+      "block_offset": 10,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.411481",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.411481",
+      "source": "WCCMSG.DAT",
+      "offset": 411481,
+      "block_512": 803,
+      "block_offset": 345,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.764938",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.764938",
+      "source": "WCCMSG.DAT",
+      "offset": 764938,
+      "block_512": 1494,
+      "block_offset": 10,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.826890",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.826890",
+      "source": "WCCMSG.DAT",
+      "offset": 826890,
+      "block_512": 1615,
+      "block_offset": 10,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.842762",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.842762",
+      "source": "WCCMSG.DAT",
+      "offset": 842762,
+      "block_512": 1646,
+      "block_offset": 10,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.843274",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.843274",
+      "source": "WCCMSG.DAT",
+      "offset": 843274,
+      "block_512": 1647,
+      "block_offset": 10,
+      "length": 10,
+      "text": "pull lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.22026",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.22026",
+      "source": "WCCMSG.DAT",
+      "offset": 22026,
+      "block_512": 43,
+      "block_offset": 10,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.22190",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.22190",
+      "source": "WCCMSG.DAT",
+      "offset": 22190,
+      "block_512": 43,
+      "block_offset": 174,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.35243",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.35243",
+      "source": "WCCMSG.DAT",
+      "offset": 35243,
+      "block_512": 68,
+      "block_offset": 427,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.166410",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.166410",
+      "source": "WCCMSG.DAT",
+      "offset": 166410,
+      "block_512": 325,
+      "block_offset": 10,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.166492",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.166492",
+      "source": "WCCMSG.DAT",
+      "offset": 166492,
+      "block_512": 325,
+      "block_offset": 92,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.166574",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.166574",
+      "source": "WCCMSG.DAT",
+      "offset": 166574,
+      "block_512": 325,
+      "block_offset": 174,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.171783",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.171783",
+      "source": "WCCMSG.DAT",
+      "offset": 171783,
+      "block_512": 335,
+      "block_offset": 263,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.171865",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.171865",
+      "source": "WCCMSG.DAT",
+      "offset": 171865,
+      "block_512": 335,
+      "block_offset": 345,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.410375",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.410375",
+      "source": "WCCMSG.DAT",
+      "offset": 410375,
+      "block_512": 801,
+      "block_offset": 263,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.565511",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.565511",
+      "source": "WCCMSG.DAT",
+      "offset": 565511,
+      "block_512": 1104,
+      "block_offset": 263,
+      "length": 11,
+      "text": "push button",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.11691",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.11691",
+      "source": "WCCMSG.DAT",
+      "offset": 11691,
+      "block_512": 22,
+      "block_offset": 427,
+      "length": 10,
+      "text": "move lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.155228",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.155228",
+      "source": "WCCMSG.DAT",
+      "offset": 155228,
+      "block_512": 303,
+      "block_offset": 92,
+      "length": 10,
+      "text": "move lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.411563",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.411563",
+      "source": "WCCMSG.DAT",
+      "offset": 411563,
+      "block_512": 803,
+      "block_offset": 427,
+      "length": 10,
+      "text": "move lever",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.602286",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.602286",
+      "source": "WCCMSG.DAT",
+      "offset": 602286,
+      "block_512": 1176,
+      "block_offset": 174,
+      "length": 21,
+      "text": "turn obsidian carving",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.564746",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.564746",
+      "source": "WCCMSG.DAT",
+      "offset": 564746,
+      "block_512": 1103,
+      "block_offset": 10,
+      "length": 18,
+      "text": "open stone door %s",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.591111",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.591111",
+      "source": "WCCMSG.DAT",
+      "offset": 591111,
+      "block_512": 1154,
+      "block_offset": 263,
+      "length": 18,
+      "text": "open stone door %s",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.652551",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.652551",
+      "source": "WCCMSG.DAT",
+      "offset": 652551,
+      "block_512": 1274,
+      "block_offset": 263,
+      "length": 18,
+      "text": "open stone door %s",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.535562",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.535562",
+      "source": "WCCMSG.DAT",
+      "offset": 535562,
+      "block_512": 1046,
+      "block_offset": 10,
+      "length": 16,
+      "text": "push sarcophagus",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.535644",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.535644",
+      "source": "WCCMSG.DAT",
+      "offset": 535644,
+      "block_512": 1046,
+      "block_offset": 92,
+      "length": 16,
+      "text": "move sarcophagus",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.681482",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.681482",
+      "source": "WCCMSG.DAT",
+      "offset": 681482,
+      "block_512": 1331,
+      "block_offset": 10,
+      "length": 50,
+      "text": "Your search turns up a small key made of red iron.",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias",
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.746588",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.746588",
+      "source": "WCCMSG.DAT",
+      "offset": 746588,
+      "block_512": 1458,
+      "block_offset": 92,
+      "length": 38,
+      "text": "The swarm flies off in search of food.",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.783452",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.783452",
+      "source": "WCCMSG.DAT",
+      "offset": 783452,
+      "block_512": 1530,
+      "block_offset": 92,
+      "length": 37,
+      "text": "The %s searches for a meal to the %s!",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.796423",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.796423",
+      "source": "WCCMSG.DAT",
+      "offset": 796423,
+      "block_512": 1555,
+      "block_offset": 263,
+      "length": 46,
+      "text": "A search reveals a hidden passage to the west.",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias",
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.796935",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.796935",
+      "source": "WCCMSG.DAT",
+      "offset": 796935,
+      "block_512": 1556,
+      "block_offset": 263,
+      "length": 46,
+      "text": "A search reveals a secret passage to the east.",
+      "category": "room_action_command_alias",
+      "categories": [
+        "room_action_command_alias",
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.40711",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.40711",
+      "source": "WCCMSG.DAT",
+      "offset": 40711,
+      "block_512": 79,
+      "block_offset": 263,
+      "length": 63,
+      "text": "You pull the lever. Off in the distance you hear a small click.",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.40970",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.40970",
+      "source": "WCCMSG.DAT",
+      "offset": 40970,
+      "block_512": 80,
+      "block_offset": 10,
+      "length": 20,
+      "text": "You push the button.",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.41223",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.41223",
+      "source": "WCCMSG.DAT",
+      "offset": 41223,
+      "block_512": 80,
+      "block_offset": 263,
+      "length": 19,
+      "text": "You pull the lever.",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.156170",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.156170",
+      "source": "WCCMSG.DAT",
+      "offset": 156170,
+      "block_512": 305,
+      "block_offset": 10,
+      "length": 19,
+      "text": "You pull the lever.",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.112138",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.112138",
+      "source": "WCCMSG.DAT",
+      "offset": 112138,
+      "block_512": 219,
+      "block_offset": 10,
+      "length": 52,
+      "text": "You turn the candle, and slip through a hidden door.",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.200967",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.200967",
+      "source": "WCCMSG.DAT",
+      "offset": 200967,
+      "block_512": 392,
+      "block_offset": 263,
+      "length": 54,
+      "text": "As you push the hidden stone, you hear a slight click!",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.201479",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.201479",
+      "source": "WCCMSG.DAT",
+      "offset": 201479,
+      "block_512": 393,
+      "block_offset": 263,
+      "length": 58,
+      "text": "As you push the button, the face's toothy jaw creaks open!",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.662791",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.662791",
+      "source": "WCCMSG.DAT",
+      "offset": 662791,
+      "block_512": 1294,
+      "block_offset": 263,
+      "length": 55,
+      "text": "You heave mightily on the winch, and it begins to turn!",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.535815",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.535815",
+      "source": "WCCMSG.DAT",
+      "offset": 535815,
+      "block_512": 1046,
+      "block_offset": 263,
+      "length": 62,
+      "text": "You heave against a sarcophagus, and it slowly begins to move!",
+      "category": "room_action_success",
+      "categories": [
+        "room_action_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.280074",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.280074",
+      "source": "WCCMSG.DAT",
+      "offset": 280074,
+      "block_512": 547,
+      "block_offset": 10,
+      "length": 45,
+      "text": "A gigantic stone door opens in the west wall!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.280156",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.280156",
+      "source": "WCCMSG.DAT",
+      "offset": 280156,
+      "block_512": 547,
+      "block_offset": 92,
+      "length": 45,
+      "text": "A gigantic stone door opens in the west wall!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.280238",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.280238",
+      "source": "WCCMSG.DAT",
+      "offset": 280238,
+      "block_512": 547,
+      "block_offset": 174,
+      "length": 45,
+      "text": "A gigantic stone door opens in the west wall!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463623",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463623",
+      "source": "WCCMSG.DAT",
+      "offset": 463623,
+      "block_512": 905,
+      "block_offset": 263,
+      "length": 37,
+      "text": "A large stone door opens to the east!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463705",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463705",
+      "source": "WCCMSG.DAT",
+      "offset": 463705,
+      "block_512": 905,
+      "block_offset": 345,
+      "length": 37,
+      "text": "A large stone door opens to the east!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463787",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463787",
+      "source": "WCCMSG.DAT",
+      "offset": 463787,
+      "block_512": 905,
+      "block_offset": 427,
+      "length": 37,
+      "text": "A large stone door opens to the east!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.464647",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.464647",
+      "source": "WCCMSG.DAT",
+      "offset": 464647,
+      "block_512": 907,
+      "block_offset": 263,
+      "length": 37,
+      "text": "A small stone door opens in the wall.",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.464729",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.464729",
+      "source": "WCCMSG.DAT",
+      "offset": 464729,
+      "block_512": 907,
+      "block_offset": 345,
+      "length": 37,
+      "text": "A small stone door opens in the wall.",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.464811",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.464811",
+      "source": "WCCMSG.DAT",
+      "offset": 464811,
+      "block_512": 907,
+      "block_offset": 427,
+      "length": 37,
+      "text": "A small stone door opens in the wall.",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463111",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463111",
+      "source": "WCCMSG.DAT",
+      "offset": 463111,
+      "block_512": 904,
+      "block_offset": 263,
+      "length": 29,
+      "text": "A small stone door pops open!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463193",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463193",
+      "source": "WCCMSG.DAT",
+      "offset": 463193,
+      "block_512": 904,
+      "block_offset": 345,
+      "length": 29,
+      "text": "A small stone door pops open!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.463275",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.463275",
+      "source": "WCCMSG.DAT",
+      "offset": 463275,
+      "block_512": 904,
+      "block_offset": 427,
+      "length": 29,
+      "text": "A small stone door pops open!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.652298",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.652298",
+      "source": "WCCMSG.DAT",
+      "offset": 652298,
+      "block_512": 1274,
+      "block_offset": 10,
+      "length": 35,
+      "text": "A concealed stone door swings open!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.564487",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.564487",
+      "source": "WCCMSG.DAT",
+      "offset": 564487,
+      "block_512": 1102,
+      "block_offset": 263,
+      "length": 50,
+      "text": "A cleverly-concealed stone door swings open to %s.",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.590858",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.590858",
+      "source": "WCCMSG.DAT",
+      "offset": 590858,
+      "block_512": 1154,
+      "block_offset": 10,
+      "length": 47,
+      "text": "A stone door swings open with a grinding sound!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.489994",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.489994",
+      "source": "WCCMSG.DAT",
+      "offset": 489994,
+      "block_512": 957,
+      "block_offset": 10,
+      "length": 59,
+      "text": "With the rattle of many complex mechanisms, the door opens!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.490076",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.490076",
+      "source": "WCCMSG.DAT",
+      "offset": 490076,
+      "block_512": 957,
+      "block_offset": 92,
+      "length": 59,
+      "text": "With the rattle of many complex mechanisms, the door opens!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.490158",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.490158",
+      "source": "WCCMSG.DAT",
+      "offset": 490158,
+      "block_512": 957,
+      "block_offset": 174,
+      "length": 59,
+      "text": "With the rattle of many complex mechanisms, the door opens!",
+      "category": "door_open",
+      "categories": [
+        "door_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.459527",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.459527",
+      "source": "WCCMSG.DAT",
+      "offset": 459527,
+      "block_512": 897,
+      "block_offset": 263,
+      "length": 35,
+      "text": "A cleverly concealed passage opens!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.459609",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.459609",
+      "source": "WCCMSG.DAT",
+      "offset": 459609,
+      "block_512": 897,
+      "block_offset": 345,
+      "length": 35,
+      "text": "A cleverly concealed passage opens!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.459691",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.459691",
+      "source": "WCCMSG.DAT",
+      "offset": 459691,
+      "block_512": 897,
+      "block_offset": 427,
+      "length": 35,
+      "text": "A cleverly concealed passage opens!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.466442",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.466442",
+      "source": "WCCMSG.DAT",
+      "offset": 466442,
+      "block_512": 911,
+      "block_offset": 10,
+      "length": 42,
+      "text": "A concealed passage opens up with a groan!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.466524",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.466524",
+      "source": "WCCMSG.DAT",
+      "offset": 466524,
+      "block_512": 911,
+      "block_offset": 92,
+      "length": 42,
+      "text": "A concealed passage opens up with a groan!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.466606",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.466606",
+      "source": "WCCMSG.DAT",
+      "offset": 466606,
+      "block_512": 911,
+      "block_offset": 174,
+      "length": 42,
+      "text": "A concealed passage opens up with a groan!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.460039",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.460039",
+      "source": "WCCMSG.DAT",
+      "offset": 460039,
+      "block_512": 898,
+      "block_offset": 263,
+      "length": 44,
+      "text": "A small hidden passage silently slides open.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.460121",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.460121",
+      "source": "WCCMSG.DAT",
+      "offset": 460121,
+      "block_512": 898,
+      "block_offset": 345,
+      "length": 44,
+      "text": "A small hidden passage silently slides open.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.460203",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.460203",
+      "source": "WCCMSG.DAT",
+      "offset": 460203,
+      "block_512": 898,
+      "block_offset": 427,
+      "length": 44,
+      "text": "A small hidden passage silently slides open.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.658442",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.658442",
+      "source": "WCCMSG.DAT",
+      "offset": 658442,
+      "block_512": 1286,
+      "block_offset": 10,
+      "length": 69,
+      "text": "With a loud grinding noise, a concealed passage opens in the ceiling!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.462087",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.462087",
+      "source": "WCCMSG.DAT",
+      "offset": 462087,
+      "block_512": 902,
+      "block_offset": 263,
+      "length": 57,
+      "text": "With a rumbling sound, a stony passage opens to the east.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.462169",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.462169",
+      "source": "WCCMSG.DAT",
+      "offset": 462169,
+      "block_512": 902,
+      "block_offset": 345,
+      "length": 57,
+      "text": "With a rumbling sound, a stony passage opens to the east.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.462251",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.462251",
+      "source": "WCCMSG.DAT",
+      "offset": 462251,
+      "block_512": 902,
+      "block_offset": 427,
+      "length": 57,
+      "text": "With a rumbling sound, a stony passage opens to the east.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.496650",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.496650",
+      "source": "WCCMSG.DAT",
+      "offset": 496650,
+      "block_512": 970,
+      "block_offset": 10,
+      "length": 64,
+      "text": "With a groaning crack, a passage in the dead-end reveals itself.",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.457226",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.457226",
+      "source": "WCCMSG.DAT",
+      "offset": 457226,
+      "block_512": 893,
+      "block_offset": 10,
+      "length": 52,
+      "text": "The ceiling cracks open, revealing a hidden passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.457308",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.457308",
+      "source": "WCCMSG.DAT",
+      "offset": 457308,
+      "block_512": 893,
+      "block_offset": 92,
+      "length": 52,
+      "text": "The ceiling cracks open, revealing a hidden passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.457390",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.457390",
+      "source": "WCCMSG.DAT",
+      "offset": 457390,
+      "block_512": 893,
+      "block_offset": 174,
+      "length": 52,
+      "text": "The ceiling cracks open, revealing a hidden passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.451082",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.451082",
+      "source": "WCCMSG.DAT",
+      "offset": 451082,
+      "block_512": 881,
+      "block_offset": 10,
+      "length": 62,
+      "text": "The shelving slides out of the way, revealing a black passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.451164",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.451164",
+      "source": "WCCMSG.DAT",
+      "offset": 451164,
+      "block_512": 881,
+      "block_offset": 92,
+      "length": 62,
+      "text": "The shelving slides out of the way, revealing a black passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.451246",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.451246",
+      "source": "WCCMSG.DAT",
+      "offset": 451246,
+      "block_512": 881,
+      "block_offset": 174,
+      "length": 62,
+      "text": "The shelving slides out of the way, revealing a black passage!",
+      "category": "hidden_exit_open",
+      "categories": [
+        "hidden_exit_open"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.230151",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.230151",
+      "source": "WCCMSG.DAT",
+      "offset": 230151,
+      "block_512": 449,
+      "block_offset": 263,
+      "length": 60,
+      "text": "You follow the hidden path, and arrive at the stair landing!",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.230233",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.230233",
+      "source": "WCCMSG.DAT",
+      "offset": 230233,
+      "block_512": 449,
+      "block_offset": 345,
+      "length": 25,
+      "text": "%s follows a hidden path!",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.761095",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.761095",
+      "source": "WCCMSG.DAT",
+      "offset": 761095,
+      "block_512": 1486,
+      "block_offset": 263,
+      "length": 36,
+      "text": "You enter a hidden path to the west.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.761177",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.761177",
+      "source": "WCCMSG.DAT",
+      "offset": 761177,
+      "block_512": 1486,
+      "block_offset": 345,
+      "length": 37,
+      "text": "%s entered a hidden path to the west.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.761607",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.761607",
+      "source": "WCCMSG.DAT",
+      "offset": 761607,
+      "block_512": 1487,
+      "block_offset": 263,
+      "length": 36,
+      "text": "You enter a hidden path to the east.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.761689",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.761689",
+      "source": "WCCMSG.DAT",
+      "offset": 761689,
+      "block_512": 1487,
+      "block_offset": 345,
+      "length": 37,
+      "text": "%s entered a hidden path to the east.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.367626",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.367626",
+      "source": "WCCMSG.DAT",
+      "offset": 367626,
+      "block_512": 718,
+      "block_offset": 10,
+      "length": 32,
+      "text": "You slip into the rocky passage.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.367708",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.367708",
+      "source": "WCCMSG.DAT",
+      "offset": 367708,
+      "block_512": 718,
+      "block_offset": 92,
+      "length": 32,
+      "text": "%s slips into the rocky passage.",
+      "category": "hidden_exit_traverse",
+      "categories": [
+        "hidden_exit_traverse"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.237831",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.237831",
+      "source": "WCCMSG.DAT",
+      "offset": 237831,
+      "block_512": 464,
+      "block_offset": 263,
+      "length": 30,
+      "text": "You do not have the cross key.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.238343",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.238343",
+      "source": "WCCMSG.DAT",
+      "offset": 238343,
+      "block_512": 465,
+      "block_offset": 263,
+      "length": 30,
+      "text": "You do not have the runed key.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.238855",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.238855",
+      "source": "WCCMSG.DAT",
+      "offset": 238855,
+      "block_512": 466,
+      "block_offset": 263,
+      "length": 30,
+      "text": "You do not have the skull key.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.291591",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.291591",
+      "source": "WCCMSG.DAT",
+      "offset": 291591,
+      "block_512": 569,
+      "block_offset": 263,
+      "length": 44,
+      "text": "You do not have the proper tools to do that!",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.558343",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.558343",
+      "source": "WCCMSG.DAT",
+      "offset": 558343,
+      "block_512": 1090,
+      "block_offset": 263,
+      "length": 39,
+      "text": "You do not have a pickaxe to mine with.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.558855",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.558855",
+      "source": "WCCMSG.DAT",
+      "offset": 558855,
+      "block_512": 1091,
+      "block_offset": 263,
+      "length": 57,
+      "text": "You don't have a mine pass, so you can't enter the mines.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.579335",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.579335",
+      "source": "WCCMSG.DAT",
+      "offset": 579335,
+      "block_512": 1131,
+      "block_offset": 263,
+      "length": 37,
+      "text": "You do not have an obsidian talisman.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.556807",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.556807",
+      "source": "WCCMSG.DAT",
+      "offset": 556807,
+      "block_512": 1087,
+      "block_offset": 263,
+      "length": 59,
+      "text": "Nothing you have will allow you to scale the mountain face.",
+      "category": "lock_or_key_failure",
+      "categories": [
+        "lock_or_key_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.799754",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.799754",
+      "source": "WCCMSG.DAT",
+      "offset": 799754,
+      "block_512": 1562,
+      "block_offset": 10,
+      "length": 51,
+      "text": "A secret trapdoor is uncovered from under the sand!",
+      "category": "search_success",
+      "categories": [
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.799836",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.799836",
+      "source": "WCCMSG.DAT",
+      "offset": 799836,
+      "block_512": 1562,
+      "block_offset": 92,
+      "length": 51,
+      "text": "A secret trapdoor is uncovered from under the sand!",
+      "category": "search_success",
+      "categories": [
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.799918",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.799918",
+      "source": "WCCMSG.DAT",
+      "offset": 799918,
+      "block_512": 1562,
+      "block_offset": 174,
+      "length": 51,
+      "text": "A secret trapdoor is uncovered from under the sand!",
+      "category": "search_success",
+      "categories": [
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.848299",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.848299",
+      "source": "WCCMSG.DAT",
+      "offset": 848299,
+      "block_512": 1656,
+      "block_offset": 427,
+      "length": 63,
+      "text": "You can sense the faint outline of a portal appear in the room.",
+      "category": "search_success",
+      "categories": [
+        "search_success"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.419850",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.419850",
+      "source": "WCCMSG.DAT",
+      "offset": 419850,
+      "block_512": 820,
+      "block_offset": 10,
+      "length": 16,
+      "text": "Nothing happens.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.508426",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.508426",
+      "source": "WCCMSG.DAT",
+      "offset": 508426,
+      "block_512": 993,
+      "block_offset": 10,
+      "length": 8,
+      "text": "Nothing.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.508508",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.508508",
+      "source": "WCCMSG.DAT",
+      "offset": 508508,
+      "block_512": 993,
+      "block_offset": 92,
+      "length": 8,
+      "text": "Nothing.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.508590",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.508590",
+      "source": "WCCMSG.DAT",
+      "offset": 508590,
+      "block_512": 993,
+      "block_offset": 174,
+      "length": 8,
+      "text": "Nothing.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.188167",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.188167",
+      "source": "WCCMSG.DAT",
+      "offset": 188167,
+      "block_512": 367,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.247559",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.247559",
+      "source": "WCCMSG.DAT",
+      "offset": 247559,
+      "block_512": 483,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.329991",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.329991",
+      "source": "WCCMSG.DAT",
+      "offset": 329991,
+      "block_512": 644,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.493319",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.493319",
+      "source": "WCCMSG.DAT",
+      "offset": 493319,
+      "block_512": 963,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.493831",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.493831",
+      "source": "WCCMSG.DAT",
+      "offset": 493831,
+      "block_512": 964,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.494343",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.494343",
+      "source": "WCCMSG.DAT",
+      "offset": 494343,
+      "block_512": 965,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.509450",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.509450",
+      "source": "WCCMSG.DAT",
+      "offset": 509450,
+      "block_512": 995,
+      "block_offset": 10,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.554759",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.554759",
+      "source": "WCCMSG.DAT",
+      "offset": 554759,
+      "block_512": 1083,
+      "block_offset": 263,
+      "length": 29,
+      "text": "You cannot do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.413959",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.413959",
+      "source": "WCCMSG.DAT",
+      "offset": 413959,
+      "block_512": 808,
+      "block_offset": 263,
+      "length": 28,
+      "text": "You can't do that right now!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.280327",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.280327",
+      "source": "WCCMSG.DAT",
+      "offset": 280327,
+      "block_512": 547,
+      "block_offset": 263,
+      "length": 39,
+      "text": "A mysterious force blocks your passage!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.280586",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.280586",
+      "source": "WCCMSG.DAT",
+      "offset": 280586,
+      "block_512": 548,
+      "block_offset": 10,
+      "length": 39,
+      "text": "A mysterious force blocks your passage!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.795911",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.795911",
+      "source": "WCCMSG.DAT",
+      "offset": 795911,
+      "block_512": 1554,
+      "block_offset": 263,
+      "length": 42,
+      "text": "A mysterious force stops you from passing.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.796170",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.796170",
+      "source": "WCCMSG.DAT",
+      "offset": 796170,
+      "block_512": 1555,
+      "block_offset": 10,
+      "length": 42,
+      "text": "A mysterious force stops you from passing.",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.107271",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.107271",
+      "source": "WCCMSG.DAT",
+      "offset": 107271,
+      "block_512": 209,
+      "block_offset": 263,
+      "length": 39,
+      "text": "An invisible barrier blocks your entry!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    },
+    {
+      "id": "room_message.wccmsg.offset.320939",
+      "object_type": "room_message",
+      "world_scope": [
+        "classic"
+      ],
+      "message_id": "wccmsg.offset.320939",
+      "source": "WCCMSG.DAT",
+      "offset": 320939,
+      "block_512": 626,
+      "block_offset": 427,
+      "length": 19,
+      "text": "The portal is shut!",
+      "category": "generic_failure",
+      "categories": [
+        "generic_failure"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "confidence": "native_string_offset_verified"
+    }
+  ]
+}

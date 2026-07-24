@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "update": "0153",
+  "activation_policy": "A canonical spell enters timed casting only when duration and each accepted interruption branch are evidence-bearing. Unresolved timing or interruption semantics fail closed.",
+  "lifecycle_order": ["validate_cast_request", "start_resource_transaction", "enter_casting", "advance_owner_tick", "mark_ready", "execute_effect", "commit_or_refund_resources", "enter_terminal_state"],
+  "timer_ownership": {
+    "owner": "Combat/Spells runtime world-tick scheduler",
+    "clock": "monotonic integer world tick supplied by the host runtime",
+    "ordering": "completion tick ascending, then cast ID ordinal-ignore-case",
+    "persistence": "pending cast timers are temporary and are not persisted until save semantics are independently promoted"
+  },
+  "state_machine": {
+    "states": ["created", "casting", "ready_to_complete", "completed", "interrupted", "failed"],
+    "terminal_states": ["completed", "interrupted", "failed"],
+    "invariants": ["one active cast per actor", "cast IDs are unique", "world ticks never regress", "completion is explicit after timer readiness", "duplicate terminal transitions fail closed"]
+  },
+  "canonical_policies": [
+    {
+      "policy_id": "policy.spell.1304.cast-timing-unresolved",
+      "spell_id": "spell.1304",
+      "cast_duration_ticks": null,
+      "promoted_interruptions": [],
+      "confidence": "strongly_correlated",
+      "evidence": [
+        "Data/Classic/spells.json#spell.1304",
+        "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv#1304",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-spell-wcc.json#1304"
+      ],
+      "assumptions": ["Promoted spell identity and effect magnitude do not establish cast duration, concentration windows, or interruption causes."],
+      "safe_fallback": "Reject timed cast creation and every interruption branch until exact duration and interruption evidence are promoted.",
+      "runtime_impact": "Prevents instant-cast approximation and unsupported cancellation behavior.",
+      "character_save_impact": "No pending cast state is written.",
+      "world_state_impact": "No effect or resource mutation occurs when timing is unresolved."
+    }
+  ],
+  "runtime_ownership": {
+    "combat_spells": "Owns cast IDs, timer scheduling, state transitions, interruption validation, and deterministic transition traces.",
+    "character_npc": "Owns actor availability, resource balances, and persistent save mutation.",
+    "effect_execution": "Occurs only after ready-to-complete and remains delegated to the evidence-backed resolution pipeline."
+  },
+  "native_dependencies": ["exact cast duration per spell", "concentration checks", "damage interruption threshold", "movement interruption rules", "disconnect behavior", "pending-cast persistence", "native simultaneous completion ordering"]
+}

@@ -1,0 +1,26 @@
+{
+  "update": "0175",
+  "finding_id": "combat-death-fanout-order-0175",
+  "confidence": "strongly_correlated",
+  "supporting_evidence": [
+    "existing lethal HP clamp and participant defeat runtime",
+    "existing action invalidation coordinator",
+    "existing threat cleanup ownership",
+    "master handoff death ordering requirements"
+  ],
+  "promoted_behavior": "deterministic cancellation-cleanup-defeat-then-external-request ordering",
+  "assumptions": [
+    "external subsystem mutations occur only through sinks",
+    "all sink commits are compensatable within this boundary"
+  ],
+  "tests": [
+    "ordered event vector",
+    "canonical event IDs",
+    "duplicate death rejection",
+    "lethal HP clamp validation"
+  ],
+  "safe_fallback": "fail before emission when policy or sink is unresolved; reverse rollback after commit failure",
+  "runtime_impact": "active",
+  "character_save_impact": "none directly; emitted requests may be handled by Character owner",
+  "world_state_impact": "none until downstream sinks commit"
+}

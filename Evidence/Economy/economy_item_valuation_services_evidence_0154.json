@@ -1,0 +1,85 @@
+{
+  "evidenceId": "economy-item-valuation-services-evidence-0154",
+  "findings": [
+    {
+      "id": "EV-0154-001",
+      "classification": "PROVEN",
+      "behavior": "checked deterministic integer arithmetic and wallet rollback integration",
+      "sourceFile": "RuntimeEconomyCurrency.cs; RuntimeEconomyCommerce.cs",
+      "recordId": "runtime-contract",
+      "byteOffsets": null,
+      "decoderSource": "static implementation",
+      "nativeDependency": null,
+      "assumptions": [],
+      "fallback": "exceptions fail closed",
+      "confidence": 1.0,
+      "runtimeOwnership": "Economy",
+      "saveImpact": "wallet/item snapshots",
+      "worldImpact": "none unless callback commits"
+    },
+    {
+      "id": "EV-0154-002",
+      "classification": "STRONGLY CORRELATED",
+      "behavior": "provider-owned economic services use validate-charge-effect-persist-commit-replay ordering",
+      "sourceFile": "repository economy pass requirements",
+      "recordId": "handoff-0154",
+      "byteOffsets": null,
+      "decoderSource": "semantic reconstruction",
+      "nativeDependency": "final DLL ordering verification",
+      "assumptions": [
+        "provider service binding precedes charge",
+        "persistence failure requires rollback"
+      ],
+      "fallback": "atomic snapshot restoration",
+      "confidence": 0.86,
+      "runtimeOwnership": "Economy coordinator",
+      "saveImpact": "character/provider/world coordination",
+      "worldImpact": "external callback boundary"
+    },
+    {
+      "id": "EV-0154-003",
+      "classification": "UNKNOWN",
+      "behavior": "native item valuation, repair, trainer and provider service constants/formula ordering",
+      "sourceFile": "WCC/WBB/native DLL pending",
+      "recordId": "native-economy-formulas",
+      "byteOffsets": null,
+      "decoderSource": "not yet decoded",
+      "nativeDependency": "WCC/WBB/DLL final pass",
+      "assumptions": [],
+      "fallback": "explicit policy inputs; fail closed without safe values",
+      "confidence": 0.0,
+      "runtimeOwnership": "policy only",
+      "saveImpact": "none until configured",
+      "worldImpact": "none until configured"
+    },
+    {
+      "id": "EV-0154-004",
+      "classification": "WEAK",
+      "behavior": "specific service effects and restrictions not represented by current canonical evidence",
+      "sourceFile": "none",
+      "recordId": "unbound-service-effects",
+      "byteOffsets": null,
+      "decoderSource": "research placeholder",
+      "nativeDependency": "other subsystem and native evidence",
+      "assumptions": [],
+      "fallback": "effect interface only; no invented gameplay",
+      "confidence": 0.2,
+      "runtimeOwnership": "external subsystem",
+      "saveImpact": "external",
+      "worldImpact": "external"
+    }
+  ],
+  "requiredFields": [
+    "sourceFile",
+    "recordId",
+    "byteOffsets",
+    "decoderSource",
+    "nativeDependency",
+    "assumptions",
+    "fallback",
+    "confidence",
+    "runtimeOwnership",
+    "saveImpact",
+    "worldImpact"
+  ]
+}

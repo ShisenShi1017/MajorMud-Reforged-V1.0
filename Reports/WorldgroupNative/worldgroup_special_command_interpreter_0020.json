@@ -1,0 +1,30 @@
+{
+  "update": "0020",
+  "confidence": "proven",
+  "interpreter": {
+    "entry": "0x00470209",
+    "end": "0x00471A30",
+    "callingConvention": "cdecl",
+    "arguments": ["worldgroupSessionIndex", "mutableCommandLine"],
+    "playerResolution": "0x004320D9",
+    "segmentDelimiter": ":",
+    "scratchReferenceCapacity": 100,
+    "dispatch": "ordered keyword comparisons using WGSERVER!_sameto",
+    "tokenHelpers": ["WGSERVER!_skpwrd", "WGSERVER!_skpwht"],
+    "results": {"0": "continue/not terminal", "1": "stop and handled", "2": "reject/defer or malformed branch"},
+    "segmentLoop": "restores each overwritten colon and continues while a non-empty remainder exists",
+    "ownership": "MajorMUD interpreter with Worldgroup token-comparison helpers"
+  },
+  "recordFetch": {
+    "entry": "0x0043379C",
+    "end": "0x004337FC",
+    "arguments": ["textblockId", "recordSelector16", "recordBuffer"],
+    "recordIdOffset": "0x10",
+    "selectorOffset": "0x00",
+    "transientFlagOffset": "0x7E7",
+    "hostCalls": ["WGSERVER!_dfaSetBlk", "WGSERVER!_dfaAcqLock", "WGSERVER!_dfaRstBlk"],
+    "lockMode": 9,
+    "postFetchNormalization": "0x0044E376",
+    "return": "signed 16-bit host acquisition result, forced to zero if the record ID changed during fetch/normalization"
+  }
+}

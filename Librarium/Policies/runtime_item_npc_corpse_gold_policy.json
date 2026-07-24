@@ -1,0 +1,22 @@
+{
+  "id": "runtime.items.npc-corpse-gold",
+  "version": "0195",
+  "classification": "Reforged compatibility infrastructure",
+  "activation": "explicit evidence input only",
+  "inputs": [
+    "corpse_id",
+    "gold_key",
+    "seed",
+    "minimum_gold",
+    "maximum_gold"
+  ],
+  "rules": [
+    "inclusive nonnegative range",
+    "deterministic SHA-256-derived roll",
+    "idempotent same-result reconciliation",
+    "conflicting existing gold is rejected",
+    "Economy owns currency credit after loot"
+  ],
+  "fallback": "do not generate gold without authoritative inputs",
+  "native_status": "mapping and formulas unresolved"
+}

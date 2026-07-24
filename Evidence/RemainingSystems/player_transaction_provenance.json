@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "player-transactions",
+  "promotions": [
+    {
+      "behavior": "Revisioned two-party offer, acceptance, cancellation, and commit lifecycle",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimePlayerTransactions.cs",
+        "Apps/Source/Reforged.Server/RuntimePlayerTransactionSmokeReport.cs"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-player-transactions"
+      ],
+      "safeFallback": "Reject invalid state transitions and revision conflicts.",
+      "runtimeImpact": "Adds deterministic transfer orchestration.",
+      "characterSaveImpact": "None until owner transaction commits.",
+      "worldStateImpact": "Tracks pending transaction state."
+    },
+    {
+      "behavior": "Asset mutation is emitted as typed requests to Character inventory and Economy",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimePlayerTransactions.cs",
+        "Librarium/RemainingSystems/player_transaction_catalog.json"
+      ],
+      "confidence": 0.9,
+      "assumptions": [
+        "Owners provide atomic reserve/commit/rollback operations."
+      ],
+      "tests": [
+        "accept-owner-routing",
+        "revision-conflict",
+        "disconnect-cancel"
+      ],
+      "safeFallback": "Never directly mutate inventories or balances.",
+      "runtimeImpact": "Preserves subsystem ownership.",
+      "characterSaveImpact": "Only after owner commit.",
+      "worldStateImpact": "Pending coordinator state only."
+    }
+  ]
+}

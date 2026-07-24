@@ -1,0 +1,28 @@
+{
+  "code_update": "0149",
+  "subsystem": "Character status effects and timers phase 1",
+  "status": "promoted",
+  "proven": [
+    "character-target ownership for active spell effects",
+    "unique effect-instance identity",
+    "application after successful cast",
+    "UTC expiration lifecycle",
+    "explicit dispel lifecycle",
+    "world persistence and reconnect restoration",
+    "character semantic status/timer synchronization",
+    "save versions 1-4 backward compatibility"
+  ],
+  "counts": {
+    "promoted_status_families": 1,
+    "promoted_timer_domains": 1,
+    "promoted_removal_paths": 2
+  },
+  "blocked": [
+    "named status effect execution semantics",
+    "refresh, priority, and category stacking",
+    "periodic native tick formulas",
+    "death, resurrection, logout, and login reset matrix",
+    "native status bitfields and masks"
+  ],
+  "next": "Character level progression and experience tables"
+}

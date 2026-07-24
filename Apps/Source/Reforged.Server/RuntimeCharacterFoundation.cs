@@ -38,7 +38,9 @@ public sealed record RuntimeCharacterRecord(
     DateTimeOffset CreatedAtUtc,
     DateTimeOffset UpdatedAtUtc,
     int SaveVersion = 1,
-    RuntimeItemState? ItemState = null);
+    RuntimeItemState? ItemState = null,
+    RuntimeCharacterSemanticState? SemanticState = null,
+    string Sex = "Unspecified");
 
 public sealed record RuntimeCharacterDefinition(
     string Id,
@@ -48,9 +50,55 @@ public sealed record RuntimeCharacterDefinition(
     IReadOnlyDictionary<string, int> MinimumStats,
     IReadOnlyDictionary<string, int> MaximumStats,
     int HitPointsPerLevelAdjustment,
+    int BaseCreationPoints,
+    int ExperienceAddPercent,
     IReadOnlyList<RuntimeAbilityGrant> AbilitySlots,
     RuntimeClassHitPointDefinition? HitPoints,
-    RuntimeMagicDefinition? Magic);
+    RuntimeMagicDefinition? Magic,
+    int LegacyNumber,
+    int ExperienceStored,
+    int ExperiencePercent,
+    int WeaponType,
+    int ArmourType,
+    int CombatLevel,
+    string MageryName,
+    string SourceFile,
+    long SourceRecordOffset,
+    string SourceClassification);
+
+
+public sealed record RuntimeCharacterExperienceRule(
+    string ClassPercentFormula,
+    string RaceAddPercentFormula,
+    string CombinedPercentFormula,
+    IReadOnlyList<string> Evidence);
+
+public sealed record RuntimeCharacterDerivedFormulaContract(
+    string MaximumHitPointsFormula,
+    string ConstitutionAdjustmentFormula,
+    string CreationHitPointRollRule,
+    string LevelUpHitPointRollRule,
+    string MaximumManaTypeZeroFormula,
+    string MaximumManaCasterFormula,
+    string MaximumManaKaiFormula,
+    int CreationAbilityAndEquipmentCache,
+    IReadOnlyDictionary<int, string> SpellcastingTypes);
+
+public sealed record RuntimeCharacterAlignmentRuleContract(
+    int InitialEvilPoints,
+    string InitialReputation,
+    IReadOnlyDictionary<string, int> AttackReputationPenalties,
+    string AttackPenaltyRule,
+    bool CreationBlocking,
+    int EvilActionReduction,
+    int NoEvilActionBaseReduction,
+    int CycleMinutes,
+    int CycleAmount,
+    int DefaultEpCycleMinutes,
+    int DefaultEpAmount,
+    int MaximumDailyReduction,
+    string NegativeEpException,
+    int FiendAttackLockoutThreshold);
 
 public sealed record RuntimeAbilityGrant(int AbilityId, int Value);
 
@@ -63,6 +111,68 @@ public sealed record RuntimeMagicDefinition(
     int Type,
     int Level);
 
+public sealed record RuntimeCharacterCreationContract(
+    bool AllRaceClassCombinationsAllowed,
+    int AllowedPairCount,
+    int StartingGold,
+    string StartingAlignment,
+    int StartingAlignmentValue,
+    string StartingAlignmentClassification,
+    string StartingRoomId,
+    int StartingRoomNumber,
+    IReadOnlyList<string> StartingInventory,
+    IReadOnlyDictionary<string, string> StartingEquipment,
+    IReadOnlyList<string> StartingSpells,
+    string StartingAbilitiesRule,
+    string StartingStatsRule)
+{
+    public static RuntimeCharacterCreationContract Blocked { get; } = new(false, 0, 0, "Neutral", 0, string.Empty, string.Empty, 0, Array.Empty<string>(), new Dictionary<string, string>(), Array.Empty<string>(), string.Empty, string.Empty);
+
+    public static RuntimeCharacterCreationContract FromFoundation(JsonElement root)
+    {
+        if (!root.TryGetProperty("character_creation_rules", out var rules) || rules.ValueKind != JsonValueKind.Object)
+        {
+            return Blocked;
+        }
+
+        var allPairs = rules.TryGetProperty("all_race_class_combinations_allowed", out var allowed) && allowed.ValueKind == JsonValueKind.True;
+        var pairCount = rules.TryGetProperty("allowed_pair_count", out var count) && count.TryGetInt32(out var parsedCount) ? parsedCount : 0;
+        var gold = rules.TryGetProperty("starting_gold", out var goldValue) && goldValue.TryGetInt32(out var parsedGold) ? parsedGold : 0;
+        var alignmentValue = rules.TryGetProperty("starting_alignment", out var alignment) && alignment.TryGetInt32(out var parsedAlignment) ? parsedAlignment : 0;
+        var alignmentName = rules.TryGetProperty("starting_alignment_name", out var name) && name.ValueKind == JsonValueKind.String ? name.GetString() ?? "Neutral" : "Neutral";
+        var alignmentClassification = rules.TryGetProperty("starting_alignment_classification", out var classification) && classification.ValueKind == JsonValueKind.String ? classification.GetString() ?? string.Empty : string.Empty;
+        var inventory = ReadStrings(rules, "starting_inventory");
+        var spells = ReadStrings(rules, "starting_spells");
+        var equipment = ReadStringMap(rules, "starting_equipment");
+        var abilitiesRule = ReadString(rules, "starting_abilities_rule");
+        var statsRule = ReadString(rules, "starting_stats_rule");
+        var roomId = string.Empty;
+        var roomNumber = 0;
+        if (rules.TryGetProperty("new_character_start", out var start) && start.ValueKind == JsonValueKind.Object)
+        {
+            roomId = start.TryGetProperty("room_id", out var id) && id.ValueKind == JsonValueKind.String ? id.GetString() ?? string.Empty : string.Empty;
+            roomNumber = start.TryGetProperty("room_number", out var number) && number.TryGetInt32(out var parsedRoom) ? parsedRoom : 0;
+        }
+
+        return new RuntimeCharacterCreationContract(allPairs, pairCount, gold, alignmentName, alignmentValue, alignmentClassification, roomId, roomNumber, inventory, equipment, spells, abilitiesRule, statsRule);
+    }
+
+    private static string ReadString(JsonElement element, string property) =>
+        element.TryGetProperty(property, out var value) && value.ValueKind == JsonValueKind.String ? value.GetString() ?? string.Empty : string.Empty;
+
+    private static IReadOnlyDictionary<string, string> ReadStringMap(JsonElement element, string property)
+    {
+        if (!element.TryGetProperty(property, out var values) || values.ValueKind != JsonValueKind.Object) return new Dictionary<string, string>();
+        return values.EnumerateObject().Where(p => p.Value.ValueKind == JsonValueKind.String).ToDictionary(p => p.Name, p => p.Value.GetString() ?? string.Empty, StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static IReadOnlyList<string> ReadStrings(JsonElement element, string property)
+    {
+        if (!element.TryGetProperty(property, out var values) || values.ValueKind != JsonValueKind.Array) return Array.Empty<string>();
+        return values.EnumerateArray().Where(value => value.ValueKind == JsonValueKind.String).Select(value => value.GetString() ?? string.Empty).Where(value => value.Length > 0).ToArray();
+    }
+}
+
 public sealed class RuntimeCharacterCatalog
 {
     private readonly Dictionary<string, RuntimeCharacterDefinition> _races = new(StringComparer.OrdinalIgnoreCase);
@@ -72,6 +182,10 @@ public sealed class RuntimeCharacterCatalog
     public IReadOnlyCollection<RuntimeCharacterDefinition> Classes => _classes.Values.OrderBy(value => value.Name).ToArray();
     public bool CreationGateReady { get; private set; }
     public IReadOnlyList<string> CreationGateBlockers { get; private set; } = Array.Empty<string>();
+    public RuntimeCharacterCreationContract CreationContract { get; private set; } = RuntimeCharacterCreationContract.Blocked;
+    public RuntimeCharacterExperienceRule ExperienceRule { get; private set; } = new(string.Empty, string.Empty, string.Empty, Array.Empty<string>());
+    public RuntimeCharacterDerivedFormulaContract DerivedFormulaContract { get; private set; } = new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0, new Dictionary<int, string>());
+    public RuntimeCharacterAlignmentRuleContract AlignmentRuleContract { get; private set; } = new(0, "Neutral", new Dictionary<string, int>(), string.Empty, false, 2, 3, 60, 1, 60, 1, int.MaxValue, string.Empty, 300);
 
     public static RuntimeCharacterCatalog Load(string projectRoot, string worldId)
     {
@@ -112,6 +226,11 @@ public sealed class RuntimeCharacterCatalog
 
         LoadArray(root, "races", "race", _races);
         LoadArray(root, "classes", "class", _classes);
+        CreationContract = RuntimeCharacterCreationContract.FromFoundation(root);
+        ExperienceRule = ReadExperienceRule(root);
+        DerivedFormulaContract = ReadDerivedFormulaContract(root);
+        AlignmentRuleContract = ReadAlignmentRuleContract(root);
+
         if (root.TryGetProperty("creation_gate", out var gate) && gate.ValueKind == JsonValueKind.Object)
         {
             CreationGateReady = gate.TryGetProperty("ready", out var ready) && ready.ValueKind == JsonValueKind.True;
@@ -124,6 +243,53 @@ public sealed class RuntimeCharacterCatalog
                 ? Array.Empty<string>()
                 : new[] { "generated character creation rules are not ready" };
         }
+    }
+
+    private static RuntimeCharacterExperienceRule ReadExperienceRule(JsonElement root)
+    {
+        if (!root.TryGetProperty("xp_rule", out var rule) || rule.ValueKind != JsonValueKind.Object)
+            return new(string.Empty, string.Empty, string.Empty, Array.Empty<string>());
+        return new(ReadString(rule, "class_percent_formula"), ReadString(rule, "race_add_percent_formula"), ReadString(rule, "combined_percent_formula"), ReadStringArray(rule, "evidence"));
+    }
+
+    private static RuntimeCharacterDerivedFormulaContract ReadDerivedFormulaContract(JsonElement root)
+    {
+        if (!root.TryGetProperty("derived_stat_formulas", out var formulas) || formulas.ValueKind != JsonValueKind.Object)
+            return new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0, new Dictionary<int, string>());
+        formulas.TryGetProperty("maximum_hit_points", out var hp);
+        formulas.TryGetProperty("maximum_mana", out var mana);
+        var types = new Dictionary<int, string>();
+        if (formulas.TryGetProperty("spellcasting", out var spellcasting) && spellcasting.TryGetProperty("types", out var typeValues) && typeValues.ValueKind == JsonValueKind.Object)
+            foreach (var property in typeValues.EnumerateObject()) if (int.TryParse(property.Name, out var id) && property.Value.ValueKind == JsonValueKind.String) types[id] = property.Value.GetString() ?? string.Empty;
+        return new(ReadString(hp, "formula"), ReadString(hp, "con_adj"), ReadString(hp, "creation_accumulated_hp_rolls"), ReadString(hp, "level_up_roll"), ReadString(mana, "magic_type_0"), ReadString(mana, "magic_type_1_to_4"), ReadString(mana, "magic_type_5"), ReadInt(mana, "creation_ability_and_equipment_cache"), types);
+    }
+
+    private static RuntimeCharacterAlignmentRuleContract ReadAlignmentRuleContract(JsonElement root)
+    {
+        if (!root.TryGetProperty("character_creation_rules", out var creation) || !creation.TryGetProperty("alignment_evil_point_rules", out var rules))
+            return new(0, "Neutral", new Dictionary<string, int>(), string.Empty, false, 2, 3, 60, 1, 60, 1, int.MaxValue, string.Empty, 300);
+        var penalties = ReadIntDictionary(rules, "attack_reputation_penalties");
+        rules.TryGetProperty("daily_cleanup", out var cleanup);
+        cleanup.TryGetProperty("evil_action_that_day", out var evilDay);
+        cleanup.TryGetProperty("no_evil_action_that_day", out var cleanDay);
+        rules.TryGetProperty("fiend_attack_lockout", out var lockout);
+        var maximumDailyReduction = ReadInt(cleanDay, "maximum_daily_reduction");
+        if (maximumDailyReduction <= 0) maximumDailyReduction = int.MaxValue;
+        return new(
+            ReadInt(rules, "initial_evil_points"),
+            ReadString(rules, "initial_reputation"),
+            penalties,
+            ReadString(rules, "attack_penalty_rule"),
+            rules.TryGetProperty("creation_blocking", out var creationBlocking) && creationBlocking.ValueKind == JsonValueKind.True,
+            ReadInt(evilDay, "evil_points_reduced_by"),
+            ReadInt(cleanDay, "base_reduction"),
+            ReadInt(cleanDay, "cycle_minutes"),
+            ReadInt(cleanDay, "cycle_amount"),
+            ReadInt(cleanDay, "default_epcycle_minutes"),
+            ReadInt(cleanDay, "default_epamount"),
+            maximumDailyReduction,
+            ReadString(cleanup, "negative_ep_exception"),
+            ReadInt(lockout, "threshold"));
     }
 
     private static void LoadArray(JsonElement root, string property, string kind, Dictionary<string, RuntimeCharacterDefinition> destination)
@@ -155,9 +321,21 @@ public sealed class RuntimeCharacterCatalog
                 ReadIntDictionary(record, "minimum_stats"),
                 ReadIntDictionary(record, "maximum_stats"),
                 ReadInt(record, "hp_per_level_adjustment"),
+                ReadInt(record, "base_cp"),
+                ReadInt(record, "experience_add_percent"),
                 ReadAbilitySlots(record),
                 ReadHitPoints(record),
-                ReadMagic(record));
+                ReadMagic(record),
+                ReadInt(record, "number"),
+                ReadInt(record, "experience_stored"),
+                ReadInt(record, "experience_percent"),
+                ReadInt(record, "weapon_type"),
+                ReadInt(record, "armour_type"),
+                ReadInt(record, "combat_level"),
+                ReadString(record, "magery_name"),
+                ReadNestedString(record, "source", "file"),
+                ReadNestedLong(record, "source", "record_offset"),
+                ReadNestedString(record, "source", "classification"));
         }
     }
 
@@ -171,11 +349,22 @@ public sealed class RuntimeCharacterCatalog
             return new Dictionary<string, int>();
         }
 
-        return values.EnumerateObject()
-            .Where(property => property.Value.ValueKind == JsonValueKind.Number && property.Value.TryGetInt32(out _))
-            .ToDictionary(property => property.Name, property => property.Value.GetInt32(), StringComparer.OrdinalIgnoreCase);
+        var result = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        foreach (var property in values.EnumerateObject())
+        {
+            if (TryReadInt(property.Value, out var number)) result[property.Name] = number;
+        }
+        return result;
     }
 
+
+    private static bool TryReadInt(JsonElement value, out int number)
+    {
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out number)) return true;
+        if (value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out number)) return true;
+        number = 0;
+        return false;
+    }
 
     private static IReadOnlyList<RuntimeAbilityGrant> ReadAbilitySlots(JsonElement element)
     {
@@ -229,6 +418,14 @@ public sealed class RuntimeCharacterCatalog
         return ReadString(nested, propertyName);
     }
 
+    private static long ReadNestedLong(JsonElement element, string objectName, string propertyName)
+    {
+        if (!element.TryGetProperty(objectName, out var nested) || nested.ValueKind != JsonValueKind.Object ||
+            !nested.TryGetProperty(propertyName, out var value)) return 0;
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt64(out var number)) return number;
+        return value.ValueKind == JsonValueKind.String && long.TryParse(value.GetString(), out number) ? number : 0;
+    }
+
     private static int ReadInt(JsonElement element, string name) =>
         element.TryGetProperty(name, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var parsed) ? parsed : 0;
 
@@ -251,13 +448,39 @@ public sealed class RuntimeCharacterRepository
 {
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
     private readonly string _root;
+    private readonly string _projectRoot;
     private readonly object _gate = new();
 
     public RuntimeCharacterRepository(string projectRoot)
     {
+        _projectRoot = projectRoot;
         _root = Path.Combine(projectRoot, "Saves", "Runtime0137");
         Directory.CreateDirectory(Path.Combine(_root, "accounts"));
         Directory.CreateDirectory(Path.Combine(_root, "characters"));
+        StartupRecoverySweep();
+    }
+
+    public IReadOnlyList<string> StartupRecoverySweep()
+    {
+        var recovered = new List<string>();
+        lock (_gate)
+        {
+            var directory = Path.Combine(_root, "characters");
+            foreach (var path in Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            {
+                var result = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
+                if (result.Source == "missing") continue;
+                var migrated = RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_projectRoot, result.Character);
+                if (result.Recovered || !ReferenceEquals(migrated, result.Character))
+                {
+                    var reason = result.Recovered ? "startup-recovery" : "legacy-currency-migration";
+                    var repaired = RuntimeCharacterPersistencePolicy.PrepareForSave(migrated, reason, DateTimeOffset.UtcNow);
+                    WriteAtomic(path, repaired, retainBackup: true);
+                    recovered.Add(repaired.CharacterId);
+                }
+            }
+        }
+        return recovered;
     }
 
     public RuntimeAccountRecord GetOrCreateAccount(string accountName)
@@ -279,7 +502,22 @@ public sealed class RuntimeCharacterRepository
     }
 
     public RuntimeAccountRecord? TryLoadAccount(string accountId) => Read<RuntimeAccountRecord>(AccountPath(RuntimeIdentity.Normalize(accountId, "account")));
-    public RuntimeCharacterRecord? TryLoadCharacter(string characterId) => Read<RuntimeCharacterRecord>(CharacterPath(CanonicalCharacterId(characterId)));
+    public bool AccountExists(string accountName) => TryLoadAccount(accountName) is not null;
+    public RuntimeCharacterRecord? TryLoadCharacter(string characterId)
+    {
+        var path = CharacterPath(CanonicalCharacterId(characterId));
+        var result = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
+        if (result.Source == "missing") return null;
+        var migrated = RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_projectRoot, result.Character);
+        if (result.Recovered || !ReferenceEquals(migrated, result.Character))
+        {
+            var reason = result.Recovered ? "crash-recovery" : "legacy-currency-migration";
+            var recovered = RuntimeCharacterPersistencePolicy.PrepareForSave(migrated, reason, DateTimeOffset.UtcNow);
+            WriteAtomic(path, recovered, retainBackup: true);
+            return recovered;
+        }
+        return migrated;
+    }
 
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId)
     {
@@ -306,18 +544,20 @@ public sealed class RuntimeCharacterRepository
                 throw new InvalidOperationException($"Character '{character.DisplayName}' already exists.");
             }
 
-            WriteAtomic(CharacterPath(character.CharacterId), character);
+            character = RuntimeCharacterPersistencePolicy.PrepareForSave(character, "create", DateTimeOffset.UtcNow);
+            WriteAtomic(CharacterPath(character.CharacterId), character, retainBackup: true);
             var ids = account.CharacterIds.Concat(new[] { character.CharacterId }).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
             WriteAtomic(AccountPath(account.AccountId), account with { CharacterIds = ids, UpdatedAtUtc = DateTimeOffset.UtcNow });
             return character;
         }
     }
 
-    public void SaveCharacter(RuntimeCharacterRecord character)
+    public void SaveCharacter(RuntimeCharacterRecord character, string reason = "runtime-mutation")
     {
         lock (_gate)
         {
-            WriteAtomic(CharacterPath(character.CharacterId), character with { UpdatedAtUtc = DateTimeOffset.UtcNow });
+            var updated = RuntimeCharacterPersistencePolicy.PrepareForSave(character, reason, DateTimeOffset.UtcNow);
+            WriteAtomic(CharacterPath(character.CharacterId), updated, retainBackup: true);
         }
     }
 
@@ -332,14 +572,14 @@ public sealed class RuntimeCharacterRepository
             var secondPath = CharacterPath(second.CharacterId);
             try
             {
-                WriteAtomic(firstPath, outcome.First with { UpdatedAtUtc = DateTimeOffset.UtcNow });
-                WriteAtomic(secondPath, outcome.Second with { UpdatedAtUtc = DateTimeOffset.UtcNow });
+                WriteAtomic(firstPath, RuntimeCharacterPersistencePolicy.PrepareForSave(outcome.First, "character-transaction", DateTimeOffset.UtcNow), retainBackup: true);
+                WriteAtomic(secondPath, RuntimeCharacterPersistencePolicy.PrepareForSave(outcome.Second, "character-transaction", DateTimeOffset.UtcNow), retainBackup: true);
                 return outcome.Result;
             }
             catch
             {
-                WriteAtomic(firstPath, first);
-                WriteAtomic(secondPath, second);
+                WriteAtomic(firstPath, first, retainBackup: true);
+                WriteAtomic(secondPath, second, retainBackup: true);
                 throw;
             }
         }
@@ -388,7 +628,7 @@ public sealed class RuntimeCharacterRepository
         return JsonSerializer.Deserialize<T>(File.ReadAllText(path), JsonOptions);
     }
 
-    private static void WriteAtomic<T>(string path, T value)
+    private static void WriteAtomic<T>(string path, T value, bool retainBackup = false)
     {
         var directory = Path.GetDirectoryName(path)
             ?? throw new InvalidOperationException($"Persistence path '{path}' has no parent directory.");
@@ -417,17 +657,23 @@ public sealed class RuntimeCharacterRepository
             try
             {
                 File.Replace(temporary, path, backup, ignoreMetadataErrors: true);
-                TryDelete(backup);
+                if (!retainBackup) TryDelete(backup);
             }
             catch (PlatformNotSupportedException)
             {
-                ReplaceWithCopyFallback(temporary, path, backup);
+                ReplaceWithCopyFallback(temporary, path, backup, retainBackup);
             }
             catch (IOException)
             {
                 // Some Windows filesystems and mounted/synchronized folders reject
                 // File.Replace/File.Move overwrite semantics with ERROR_INVALID_PARAMETER.
-                ReplaceWithCopyFallback(temporary, path, backup);
+                ReplaceWithCopyFallback(temporary, path, backup, retainBackup);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // Antivirus, indexing, and synchronized folders can briefly deny
+                // File.Replace even though overwrite-copy access is available.
+                ReplaceWithCopyFallback(temporary, path, backup, retainBackup);
             }
         }
         finally
@@ -436,13 +682,13 @@ public sealed class RuntimeCharacterRepository
         }
     }
 
-    private static void ReplaceWithCopyFallback(string temporary, string path, string backup)
+    private static void ReplaceWithCopyFallback(string temporary, string path, string backup, bool retainBackup)
     {
         File.Copy(path, backup, overwrite: true);
         try
         {
             File.Copy(temporary, path, overwrite: true);
-            TryDelete(backup);
+            if (!retainBackup) TryDelete(backup);
         }
         catch
         {
@@ -476,6 +722,7 @@ public sealed class RuntimeCharacterService
 {
     private readonly RuntimeCharacterRepository _repository;
     private readonly string _projectRoot;
+    private readonly RuntimeCharacterLifecycleCoordinator _lifecycle = new();
 
     public RuntimeCharacterService(string projectRoot)
     {
@@ -484,56 +731,117 @@ public sealed class RuntimeCharacterService
     }
 
     public string ProjectRoot => _projectRoot;
+    public RuntimeCharacterLifecycleCoordinator Lifecycle => _lifecycle;
+    public IReadOnlyList<RuntimeCharacterNativeDependencyDecision> CharacterNativeDependencies => _lifecycle.NativeDependencies;
+    public RuntimeCharacterNativeDependencyDecision GetCharacterNativeDependencyDecision(RuntimeCharacterNativeDependency dependency) => _lifecycle.GetNativeDependencyDecision(dependency);
+    public void RequireExecutableCharacterNativeDependency(RuntimeCharacterNativeDependency dependency) => _lifecycle.RequireExecutableNativeDependency(dependency);
     public RuntimeAccountRecord GetOrCreateAccount(string accountName) => _repository.GetOrCreateAccount(accountName);
+    public RuntimeAccountRecord? TryLoadAccount(string accountName) => _repository.TryLoadAccount(accountName);
+    public bool AccountExists(string accountName) => _repository.AccountExists(accountName);
     public RuntimeCharacterCatalog GetCatalog(string worldId) => RuntimeCharacterCatalog.Load(_projectRoot, worldId);
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId) => _repository.ListCharacters(accountId);
     public RuntimeCharacterRecord? LoadCharacter(string id) => _repository.TryLoadCharacter(id);
-    public void SaveCharacter(RuntimeCharacterRecord character) => _repository.SaveCharacter(character);
+    public RuntimeCharacterRecord LoginCharacter(string characterId, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool reconnect = false) =>
+        _lifecycle.Login(characterId, sessionId, _repository.TryLoadCharacter, hooks, DateTimeOffset.UtcNow, reconnect);
+    public RuntimeCharacterRecord LogoutCharacter(RuntimeCharacterRecord character, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool graceful = true) =>
+        _lifecycle.Logout(character, sessionId, hooks, _repository.SaveCharacter, DateTimeOffset.UtcNow, graceful);
+    public RuntimeCharacterRecord RecoverStaleCharacterSession(RuntimeCharacterRecord character, string staleSessionId, RuntimeCharacterLifecycleHooks hooks) =>
+        _lifecycle.RecoverStaleSession(character, staleSessionId, hooks, _repository.SaveCharacter, DateTimeOffset.UtcNow);
+    public void SaveCharacter(RuntimeCharacterRecord character, string reason = "runtime-mutation") => _repository.SaveCharacter(character, reason);
+    public IReadOnlyList<string> StartupRecoverySweep() => _repository.StartupRecoverySweep();
+
+    public int AutosaveSessions(IEnumerable<RuntimeSession> sessions, DateTimeOffset now, TimeSpan interval)
+    {
+        var saved = 0;
+        foreach (var session in sessions.OrderBy(x => x.Actor.Id, StringComparer.OrdinalIgnoreCase))
+        {
+            if (session.Actor is not RuntimeCharacterActor actor) continue;
+            var character = _repository.TryLoadCharacter(actor.Id);
+            if (character is null || !RuntimeCharacterPersistencePolicy.IsAutosaveDue(character, now, interval)) continue;
+            var snapshot = RuntimeCharacterPersistencePolicy.MarkAutosave(character with
+            {
+                WorldId = session.World.Definition.Id, RoomId = session.CurrentRoom.Id, RoomNumber = session.CurrentRoom.RoomNumber,
+                Level = actor.Level, UpdatedAtUtc = now
+            }, now);
+            _repository.SaveCharacter(snapshot, "autosave");
+            saved++;
+        }
+        return saved;
+    }
     public T ExecuteCharacterTransaction<T>(string firstCharacterId, string secondCharacterId, Func<RuntimeCharacterRecord, RuntimeCharacterRecord, (RuntimeCharacterRecord First, RuntimeCharacterRecord Second, T Result)> action) => _repository.ExecuteCharacterTransaction(firstCharacterId, secondCharacterId, action);
 
-    public RuntimeCharacterRecord CreateCharacter(RuntimeAccountRecord account, RuntimeWorld world, string name, string race, string characterClass)
+    public RuntimeCharacterRecord CreateCharacter(RuntimeAccountRecord account, RuntimeWorld world, string name, string sex, string race, string characterClass) =>
+        CreateCharacter(account, world, name, sex, race, characterClass, null, name, string.Empty, "short", "brown", "brown", 100);
+
+    public RuntimeCharacterRecord CreateCharacter(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        string name,
+        string sex,
+        string race,
+        string characterClass,
+        IReadOnlyDictionary<string, int>? selectedStats,
+        string givenName,
+        string familyName,
+        string hairLength,
+        string hairColor,
+        string eyeColor,
+        int creationPointsRemaining)
     {
-        RuntimeIdentity.ValidateCharacterName(name);
+        // Classic character identity is composed of separately validated given and family names.
+        // The display name may contain the separator space and must not be rejected as a single token.
+        RuntimeIdentity.ValidateCharacterName(givenName);
+        if (!string.IsNullOrWhiteSpace(familyName))
+            RuntimeIdentity.ValidateCharacterName(familyName);
+        var normalizedSex = NormalizeSex(sex);
         var catalog = RuntimeCharacterCatalog.Load(_projectRoot, world.Definition.Id);
         var raceDefinition = catalog.RequireRace(race);
         var classDefinition = catalog.RequireClass(characterClass);
+        var creation = catalog.CreationContract;
+        if (catalog.AlignmentRuleContract.CreationBlocking)
+        {
+            throw new InvalidOperationException("Decoded Classic alignment rules block character creation.");
+        }
+
         if (!catalog.CreationGateReady)
         {
             var blockers = catalog.CreationGateBlockers.Count == 0 ? "unknown blockers" : string.Join(", ", catalog.CreationGateBlockers);
             throw new InvalidOperationException($"Character Foundation Phase003 creation gate is blocked: {blockers}.");
         }
 
+        if (!creation.AllRaceClassCombinationsAllowed || creation.AllowedPairCount != catalog.Races.Count * catalog.Classes.Count)
+        {
+            throw new InvalidOperationException("Generated character creation race/class matrix is incomplete or inconsistent.");
+        }
+
         var start = world.ResolveGeneratedCharacterStartRoom()
             ?? throw new InvalidOperationException($"World '{world.Definition.Id}' has no generated Classic character-start room. Character creation is blocked rather than guessing a start.");
+        if (!string.Equals(start.Id, creation.StartingRoomId, StringComparison.OrdinalIgnoreCase) || start.RoomNumber != creation.StartingRoomNumber)
+        {
+            throw new InvalidOperationException($"Generated character start room '{start.Id}' does not match promoted creation contract '{creation.StartingRoomId}'.");
+        }
         var characterId = RuntimeIdentity.CharacterId(world.Definition.Id, name);
         var now = DateTimeOffset.UtcNow;
         const int startingLevel = 1;
-        var health = raceDefinition.MinimumStats.TryGetValue("hea", out var startingHealth) ? startingHealth : 0;
-        var classHitPoints = classDefinition.HitPoints ?? throw new InvalidOperationException($"Generated class '{classDefinition.Name}' has no hit-point definition.");
-        // DLL-verified calculate_secondary_stats @0x0041a424.
-        var healthAdjustmentProduct = (health - 50) * startingLevel;
-        if (healthAdjustmentProduct < 0)
+        var baseStats = selectedStats is null
+            ? new Dictionary<string, int>(raceDefinition.MinimumStats, StringComparer.OrdinalIgnoreCase)
+            : new Dictionary<string, int>(selectedStats, StringComparer.OrdinalIgnoreCase);
+        foreach (var pair in raceDefinition.MinimumStats)
         {
-            healthAdjustmentProduct += 15;
+            var value = baseStats.TryGetValue(pair.Key, out var selected) ? selected : pair.Value;
+            var maximum = raceDefinition.MaximumStats.TryGetValue(pair.Key, out var max) ? max : pair.Value;
+            if (value < pair.Value || value > maximum)
+                throw new InvalidOperationException($"Stat '{pair.Key}' must be between {pair.Value} and {maximum}.");
+            baseStats[pair.Key] = value;
         }
-        var constitutionAdjustment = healthAdjustmentProduct >> 4;
-        var accumulatedHitPointRolls = classHitPoints.MaximumBonusPerLevel; // creation seeds the full roll cap
-        var maximumHitPoints = (health / 2)
-            + (startingLevel * classHitPoints.MinimumPerLevel)
-            + (startingLevel * raceDefinition.HitPointsPerLevelAdjustment)
-            + constitutionAdjustment
-            + accumulatedHitPointRolls
-            + constitutionAdjustment; // the Classic DLL adds con_adj twice
-        maximumHitPoints = Math.Max(1, maximumHitPoints);
-        var magic = classDefinition.Magic;
-        var maximumMana = magic switch
-        {
-            null => 0,
-            { Type: 0 } => 0,
-            { Type: 5 } => Math.Max(0, startingLevel - 1),
-            { Type: >= 1 and <= 4 } => (magic.Level * startingLevel * 2) + 6,
-            _ => 0
-        };
+        var derivedStatistics = RuntimeCharacterDerivedStatisticCalculator.CalculateCreation(
+            raceDefinition,
+            classDefinition,
+            startingLevel,
+            baseStats,
+            equipmentManaCache: catalog.DerivedFormulaContract.CreationAbilityAndEquipmentCache);
+        var maximumHitPoints = derivedStatistics.MaximumHitPoints;
+        var maximumMana = derivedStatistics.MaximumMana;
         var startingAbilities = raceDefinition.AbilitySlots
             .Concat(classDefinition.AbilitySlots)
             .GroupBy(value => value.AbilityId)
@@ -558,15 +866,55 @@ public sealed class RuntimeCharacterService
             maximumMana,
             start.Id,
             start.RoomNumber,
-            raceDefinition.MinimumStats,
+            baseStats,
             startingAbilities,
-            Array.Empty<string>(),
-            Array.Empty<string>(),
+            creation.StartingSpells,
+            creation.StartingInventory,
             new Dictionary<string, string?>(),
-            new Dictionary<string, string> { ["alignment"] = "Neutral", ["evil_points"] = "0", ["online_alignment_minutes"] = "0" },
+            new Dictionary<string, string>
+            {
+                ["alignment"] = creation.StartingAlignment,
+                ["alignment_value"] = creation.StartingAlignmentValue.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["alignment_classification"] = creation.StartingAlignmentClassification,
+                ["evil_points"] = catalog.AlignmentRuleContract.InitialEvilPoints.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["online_alignment_minutes"] = "0",
+                ["starting_gold"] = creation.StartingGold.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["race_experience_add_percent"] = raceDefinition.ExperienceAddPercent.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["race_base_creation_points"] = raceDefinition.BaseCreationPoints.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["creation_points"] = Math.Max(0, creationPointsRemaining).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["given_name"] = givenName ?? string.Empty,
+                ["family_name"] = familyName ?? string.Empty,
+                ["hair_length"] = hairLength ?? string.Empty,
+                ["hair_color"] = hairColor ?? string.Empty,
+                ["eye_color"] = eyeColor ?? string.Empty,
+                ["combat.attack_value"] = Math.Max(1, (ReadStat(baseStats, "strength", "str") + ReadStat(baseStats, "agility", "agi", "agl")) / 2 + startingLevel).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.defense_value"] = Math.Max(1, (ReadStat(baseStats, "agility", "agi", "agl") + ReadStat(baseStats, "health", "hea")) / 2 + startingLevel).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.dodge_bonus"] = Math.Max(0, ReadStat(baseStats, "agility", "agi", "agl") / 10).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.minimum_damage"] = "1",
+                ["combat.maximum_damage"] = Math.Max(2, 2 + ReadStat(baseStats, "strength", "str") / 25).ToString(System.Globalization.CultureInfo.InvariantCulture)
+            },
             now,
-            now);
+            now,
+            RuntimeCharacterRecordValidator.CurrentSaveVersion,
+            null,
+            RuntimeCharacterSemanticState.Empty with { Alignment = RuntimeCharacterAlignmentResolver.CreateInitial(catalog.AlignmentRuleContract) },
+            normalizedSex);
         return _repository.CreateCharacter(account, character);
+    }
+
+    private static int ReadStat(IReadOnlyDictionary<string, int> values, params string[] keys)
+    {
+        foreach (var key in keys)
+            if (values.TryGetValue(key, out var value)) return value;
+        return 0;
+    }
+
+    private static string NormalizeSex(string sex)
+    {
+        var value = (sex ?? string.Empty).Trim();
+        if (string.Equals(value, "male", StringComparison.OrdinalIgnoreCase)) return "Male";
+        if (string.Equals(value, "female", StringComparison.OrdinalIgnoreCase)) return "Female";
+        throw new InvalidOperationException("Character sex must be Male or Female.");
     }
 
     public void SaveSession(RuntimeSession session)
@@ -589,7 +937,7 @@ public sealed class RuntimeCharacterService
             RoomNumber = session.CurrentRoom.RoomNumber,
             Level = actor.Level,
             UpdatedAtUtc = DateTimeOffset.UtcNow
-        });
+        }, "disconnect");
     }
 }
 

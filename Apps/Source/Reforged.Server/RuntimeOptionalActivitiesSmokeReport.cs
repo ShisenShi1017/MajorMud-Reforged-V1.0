@@ -1,0 +1,7 @@
+using System.Text.Json;
+namespace Reforged.Server;
+public sealed record RuntimeOptionalActivitiesSmokeReport(bool Passed,IReadOnlyList<string> Checks,IReadOnlyList<string> Failures)
+{
+ public string ToJson()=>JsonSerializer.Serialize(this,new JsonSerializerOptions{WriteIndented=true});
+ public static RuntimeOptionalActivitiesSmokeReport Run(){var c=new List<string>();var f=new List<string>();void Check(string id,bool ok){c.Add(id);if(!ok)f.Add(id);}var s=new RuntimeOptionalActivitiesService(new[]{new RuntimeOptionalActivityDefinition("classic-disabled",RuntimeOptionalActivityKind.Duel,false),new RuntimeOptionalActivityDefinition("verified-arena",RuntimeOptionalActivityKind.Arena,true,2,2,10,"gold",true)});Check("classic-disabled",s.Join("classic-disabled","a").Code=="optional-activity-disabled");Check("join-a",s.Join("verified-arena","a").Success);Check("entry-charge",s.Join("verified-arena","b").Requests?.Any(r=>r.OwnerSubsystem=="Economy")==true);Check("capacity",s.Join("verified-arena","c").Code=="optional-activity-full");Check("admin-start",s.Start("verified-arena",false).Code=="optional-activity-administrator-required");Check("start",s.Start("verified-arena",true).Requests?.Any(r=>r.OwnerSubsystem=="Combat")==true);Check("leave-active",s.Leave("verified-arena","a").Code=="optional-activity-active-leave-denied");Check("complete",s.Complete("verified-arena","a",true).Requests?.Count==2);Check("state-valid",s.ValidateState().Count==0);return new(f.Count==0,c,f);}
+}

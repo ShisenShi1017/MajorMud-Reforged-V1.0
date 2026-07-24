@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "worldId": "classic",
+  "sources": [
+    {
+      "sourceId": "wccbanks.dat",
+      "length": 1536,
+      "sha256": "58b3fa431854beb8bb5f921d47244c7008bbda46617da9895b2375cec6ab03ff"
+    },
+    {
+      "sourceId": "wccitems.dat",
+      "length": 1404928,
+      "sha256": "22d54b7aab28e1db5fd5fca9da3aa7f5e9867f671239ee22a306f05e0c4f1e62"
+    },
+    {
+      "sourceId": "wccshops.dat",
+      "length": 78336,
+      "sha256": "1d5d8bd676717b1ffb8e10adf41123cbb3001c1d6750ef297ebffc56b46ed012"
+    }
+  ],
+  "assertions": [],
+  "promotionPolicy": {
+    "minimumObservedAssertions": 2,
+    "minimumIndependentSources": 2,
+    "requiresStableOutputDigest": true,
+    "contradictionBlocksPromotion": true
+  },
+  "dependencies": [
+    {
+      "dependencyId": "native.timer-unit",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.price-order",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.repair-formula",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.bank-constants",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.service-cost-order",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.limited-release-order",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    },
+    {
+      "dependencyId": "native.transaction-order",
+      "state": "INCOMPLETE",
+      "activation": "FAIL_CLOSED"
+    }
+  ]
+}

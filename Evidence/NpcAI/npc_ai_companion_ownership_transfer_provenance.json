@@ -1,0 +1,16 @@
+{
+  "update": "CodeUpdate0204",
+  "sources": [
+    "RuntimeNpcCompanionOwnership.cs",
+    "RuntimeNpcCompanionFollow.cs",
+    "RuntimeNpcCompanionCombatAssist.cs",
+    "RuntimeNpcCompanionCommand.cs"
+  ],
+  "confidence": "proven-runtime-contract",
+  "assumptions": [
+    "caller resolves transfer policy and authorization"
+  ],
+  "safe_fallback": "reject without mutation",
+  "world_state_impact": "replaces persisted companion owner and clears owner-bound transient state",
+  "character_save_impact": "none directly"
+}

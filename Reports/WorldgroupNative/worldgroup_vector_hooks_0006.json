@@ -1,0 +1,149 @@
+{
+  "schema": "majorMud.worldgroup.vector_hooks.v2",
+  "update": "0006",
+  "generated_utc": "2026-07-16T07:10:19.951708+00:00",
+  "evidence_class": "proven",
+  "module": {
+    "name": "WGSERVER.EXE",
+    "sha256": "4da28d718cf99701aa63c1889770f293bb3ec828aea5e8bea500473d2698c73f",
+    "image_base": "0x00400000"
+  },
+  "correction": {
+    "supersedes": "worldgroup_callback_dispatch_0005.json hook_dispatch interpretation",
+    "finding": "0x004381F2 is exported _add2arr and registers one element; it is not the callback dispatcher."
+  },
+  "array_runtime": {
+    "_newarr": {
+      "va": "0x0043814C",
+      "ordinal": 963,
+      "descriptor_size": 20,
+      "descriptor_fields": {
+        "0x00": "data pointer",
+        "0x04": "capacity",
+        "0x08": "count",
+        "0x0C": "growth increment",
+        "0x10": "element size"
+      }
+    },
+    "_add2arr": {
+      "va": "0x004381F2",
+      "ordinal": 214,
+      "semantics": "grow descriptor storage when count reaches capacity, copy one element from source pointer, increment count, return inserted slot",
+      "growth": "capacity += growth increment",
+      "copy": "memcpy when source non-null; memset zero when source null"
+    },
+    "_ninarr": {
+      "va": "0x00438296",
+      "ordinal": 968,
+      "returns": "current element count"
+    },
+    "_arrelem": {
+      "va": "0x004382AB",
+      "ordinal": 256,
+      "returns": "base + index * element_size"
+    },
+    "_dovecs": {
+      "va": "0x0041FB83",
+      "ordinal": 499,
+      "semantics": "snapshot count, iterate indices 0..count-1, load each four-byte function pointer and call it with no arguments",
+      "ordering": "registration/FIFO order",
+      "return_policy": "callback return values ignored",
+      "mutation_policy": "count snapshot prevents callbacks appended during the pass from running until a later invocation"
+    }
+  },
+  "hook_vectors": {
+    "initial_capacity": 25,
+    "growth_increment": 25,
+    "element_size": 4,
+    "entries": "raw function pointers",
+    "hooks": [
+      {
+        "name": "_hook_connect",
+        "rva": "0x0001FA86",
+        "descriptor_global": "0x0045D3C0"
+      },
+      {
+        "name": "_hook_disconnect",
+        "rva": "0x0001FA9D",
+        "descriptor_global": "0x0045D3C4"
+      },
+      {
+        "name": "_hook_cleanup",
+        "rva": "0x0001FAB4",
+        "descriptor_global": "0x0045D3C8"
+      },
+      {
+        "name": "_hook_createacct",
+        "rva": "0x0001FACB",
+        "descriptor_global": "0x0045D3CC"
+      },
+      {
+        "name": "_hook_delacct",
+        "rva": "0x0001FAE2",
+        "descriptor_global": "0x0045D3D0"
+      },
+      {
+        "name": "_hook_startup",
+        "rva": "0x0001FAF9",
+        "descriptor_global": "0x0045D3D4"
+      },
+      {
+        "name": "_hook_shutdown",
+        "rva": "0x0001FB10",
+        "descriptor_global": "0x0045D3D8"
+      },
+      {
+        "name": "_hook_finalshutdown",
+        "rva": "0x0001FB27",
+        "descriptor_global": "0x0045D3DC"
+      },
+      {
+        "name": "_hook_swt2aa",
+        "rva": "0x0001FB3E",
+        "descriptor_global": "0x0045D3E0"
+      },
+      {
+        "name": "_hook_swt2cs",
+        "rva": "0x0001FB55",
+        "descriptor_global": "0x0045D3E4"
+      },
+      {
+        "name": "_hook_announce",
+        "rva": "0x0001FB6C",
+        "descriptor_global": "0x0045D3E8"
+      }
+    ]
+  },
+  "proven_call_sites": [
+    {
+      "event": "connect",
+      "va": "0x00448660",
+      "action": "_dovecs(connect vector)"
+    },
+    {
+      "event": "disconnect",
+      "va": "0x004486A1",
+      "action": "_dovecs(disconnect vector)"
+    },
+    {
+      "event": "cleanup",
+      "va": "0x00423180",
+      "action": "_dovecs(cleanup vector)"
+    },
+    {
+      "event": "startup",
+      "va": "0x0041E2CF",
+      "action": "_dovecs(startup vector)"
+    },
+    {
+      "event": "shutdown then final-shutdown",
+      "va": "0x00425CF7",
+      "action": "_dovecs(shutdown), then _dovecs(final-shutdown)"
+    }
+  ],
+  "conclusions": [
+    "Lifecycle hook exports register callback pointers; they do not execute callbacks.",
+    "_dovecs is the no-argument invocation helper and executes callbacks in registration order.",
+    "No stop/continue semantics exist in _dovecs; every snapshotted entry is called and callback returns are ignored."
+  ]
+}

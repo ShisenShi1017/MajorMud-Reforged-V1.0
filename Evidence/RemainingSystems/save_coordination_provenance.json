@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "save-coordination",
+  "promotions": [
+    {
+      "behavior": "Central deterministic prepare/commit/rollback coordination for cross-system saves",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeSaveCoordination.cs",
+        "Apps/Source/Reforged.Server/RuntimeSaveCoordinationSmokeReport.cs"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "--smoke-save-coordination",
+        "deterministic-order",
+        "rollback"
+      ],
+      "safeFallback": "Abort on unknown participants or failed required operations.",
+      "runtimeImpact": "Coordinates save participants without taking ownership of subsystem payloads.",
+      "characterSaveImpact": "Orders Character-owned save participation but does not define its payload.",
+      "worldStateImpact": "Coordinates world-state commits and rollback requests."
+    },
+    {
+      "behavior": "Schema-versioned save-generation snapshot and atomic replacement",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeSaveCoordination.cs",
+        "Librarium/RemainingSystems/save_coordination_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": [],
+      "tests": [
+        "successful-save",
+        "unknown-fail-closed"
+      ],
+      "safeFallback": "Reject incompatible or corrupt snapshots.",
+      "runtimeImpact": "Restores coordination generations only.",
+      "characterSaveImpact": "No character payload mutation.",
+      "worldStateImpact": "Persists coordination metadata atomically."
+    },
+    {
+      "behavior": "Exact Classic and Worldgroup save ordering remains native-dependent",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Reports/RemainingSystems/native_dependencies.json",
+        "Librarium/RemainingSystems/remaining_systems_registry.json"
+      ],
+      "confidence": 0.9,
+      "assumptions": [
+        "Native save boundaries have not been exhausted."
+      ],
+      "tests": [
+        "rollback"
+      ],
+      "safeFallback": "Use explicit Reforged ordering and retain native dependency.",
+      "runtimeImpact": "Provides deterministic compatibility infrastructure.",
+      "characterSaveImpact": "Preserves Character ownership.",
+      "worldStateImpact": "Preserves subsystem ownership and explicit transaction boundaries."
+    }
+  ]
+}

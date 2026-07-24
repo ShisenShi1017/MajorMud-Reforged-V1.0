@@ -1,0 +1,370 @@
+using System.IO;
+using System.Text.Json;
+using Reforged.App.Models;
+
+namespace Reforged.App.Services;
+
+public interface IClientAutomationService
+{
+    ClientAutomationProfile Profile { get; }
+    ClientAutomationPolicy Policy { get; }
+    event EventHandler<ClientAutomationCommandRequest>? CommandRequested;
+    Task LoadAsync();
+    Task SaveAsync();
+    IReadOnlyList<ClientAutomationCommandRequest> Evaluate(ClientAutomationContext context);
+    void SetMasterEnabled(bool enabled);
+    void StopAll();
+}
+
+public sealed class ClientAutomationService : IClientAutomationService
+{
+    private readonly IApplicationSettingsService _settings;
+    private DateTimeOffset _lastCommandAt = DateTimeOffset.MinValue;
+    private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
+    private readonly Dictionary<string, DateTimeOffset> _ruleLastRun = new(StringComparer.OrdinalIgnoreCase);
+
+    public ClientAutomationProfile Profile { get; private set; } = CreateDefaultProfile();
+    public ClientAutomationPolicy Policy { get; } = new();
+    public event EventHandler<ClientAutomationCommandRequest>? CommandRequested;
+
+    public ClientAutomationService(IApplicationSettingsService settings) => _settings = settings;
+
+    public async Task LoadAsync()
+    {
+        var path = GetPath();
+        if (!File.Exists(path)) return;
+        try
+        {
+            var loaded = JsonSerializer.Deserialize<ClientAutomationProfile>(await File.ReadAllTextAsync(path), _json);
+            if (loaded is not null)
+            {
+                Profile = loaded;
+                EnsureProfileDefaults(Profile);
+            }
+        }
+        catch
+        {
+            Profile = CreateDefaultProfile();
+        }
+    }
+
+    public async Task SaveAsync()
+    {
+        SynchronizeRulesFromOptions(Profile);
+        var path = GetPath();
+        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+        await File.WriteAllTextAsync(path, JsonSerializer.Serialize(Profile, _json));
+    }
+
+    public IReadOnlyList<ClientAutomationCommandRequest> Evaluate(ClientAutomationContext context)
+    {
+        if (!Profile.Enabled || Profile.PauseAll || !Policy.AutomationAllowed) return [];
+        SynchronizeRulesFromOptions(Profile);
+        var delay = Math.Max(Profile.MinimumCommandDelayMs, Policy.MinimumCommandDelayMs);
+        if ((context.Timestamp - _lastCommandAt).TotalMilliseconds < delay) return [];
+
+        var ruleMatches = Profile.Rules
+            .Where(r => r.Enabled && IsPermitted(r) && ContextAllowed(r, context) && CooldownReady(r, context.Timestamp) && Matches(r, context) && !string.IsNullOrWhiteSpace(r.Command))
+            .OrderBy(r => r.Priority)
+            .Select(r => new ClientAutomationCommandRequest(r.Id, r.Name, r.Command.Trim(), r.Area, context.Timestamp));
+
+        var scheduledMatches = Profile.Options.Events.ScheduledEvents
+            .Where(e => e.Enabled && !string.IsNullOrWhiteSpace(e.Command))
+            .Where(e => !e.OnlyOutOfCombat || !context.InCombat)
+            .Where(e => !_ruleLastRun.TryGetValue(e.Id, out var last) || (context.Timestamp - last).TotalMinutes >= Math.Max(1, e.IntervalMinutes))
+            .Select(e => new ClientAutomationCommandRequest(e.Id, e.Name, e.Command.Trim(), AutomationArea.Events, context.Timestamp));
+
+        var matches = ruleMatches.Concat(scheduledMatches).Take(1).ToArray();
+
+        foreach (var request in matches)
+        {
+            _lastCommandAt = context.Timestamp;
+            _ruleLastRun[request.RuleId] = context.Timestamp;
+            CommandRequested?.Invoke(this, request);
+        }
+        return matches;
+    }
+
+    public void SetMasterEnabled(bool enabled)
+    {
+        Profile.Enabled = enabled;
+        if (enabled) Profile.PauseAll = false;
+    }
+
+    public void StopAll()
+    {
+        Profile.PauseAll = true;
+        Profile.Enabled = false;
+    }
+
+    private bool IsPermitted(ClientAutomationRule rule) => rule.Area switch
+    {
+        AutomationArea.Roaming => Policy.MovementAllowed,
+        AutomationArea.Combat or AutomationArea.PvP => Policy.CombatAllowed,
+        AutomationArea.Spells or AutomationArea.Health => Policy.SpellcastingAllowed,
+        AutomationArea.LootAndCash or AutomationArea.Utility => Policy.ItemUseAllowed,
+        _ => true
+    };
+
+    private bool CooldownReady(ClientAutomationRule rule, DateTimeOffset now)
+        => !_ruleLastRun.TryGetValue(rule.Id, out var last) || (now - last).TotalSeconds >= Math.Max(0, rule.CooldownSeconds);
+
+    private static bool ContextAllowed(ClientAutomationRule rule, ClientAutomationContext context)
+        => (!rule.OnlyOutOfCombat || !context.InCombat)
+           && (!rule.OnlyInCombat || context.InCombat)
+           && (rule.MinimumHealthPercent <= 0 || context.HealthPercent >= rule.MinimumHealthPercent)
+           && (rule.MinimumManaPercent <= 0 || context.ManaPercent >= rule.MinimumManaPercent);
+
+    private static bool Matches(ClientAutomationRule rule, ClientAutomationContext c)
+    {
+        var trigger = rule.Trigger.Trim().ToLowerInvariant();
+        return trigger switch
+        {
+            "health-below" => c.HealthPercent <= rule.Threshold,
+            "mana-below" => c.ManaPercent <= rule.Threshold,
+            "in-combat" => c.InCombat,
+            "out-of-combat" => !c.InCombat,
+            "resting" => c.IsResting,
+            "moving" => c.IsMoving,
+            "text-contains" => rule.Description.Length > 0 && c.LastLine.Contains(rule.Description, StringComparison.OrdinalIgnoreCase),
+            "health-above" => c.HealthPercent >= rule.Threshold,
+            "mana-above" => c.ManaPercent >= rule.Threshold,
+            "combat-started" => c.InCombat && c.LastLine.Contains("attack", StringComparison.OrdinalIgnoreCase),
+            "combat-ended" => !c.InCombat && (c.LastLine.Contains("combat", StringComparison.OrdinalIgnoreCase) || c.LastLine.Contains("dead", StringComparison.OrdinalIgnoreCase)),
+            "room-entered" => c.IsMoving,
+            "always" => true,
+            _ => false
+        };
+    }
+
+    private string GetPath() => Path.Combine(_settings.RootPath, "Client", "Profiles", "automation-default.json");
+
+    private static ClientAutomationProfile CreateDefaultProfile()
+    {
+        var profile = new ClientAutomationProfile();
+        EnsureProfileDefaults(profile);
+        Add(profile, AutomationArea.Health, "Auto Minor Heal", "Use the configured minor healing command at the first health threshold.", "health-below", "cast minor heal", 80, 10, 8);
+        Add(profile, AutomationArea.Health, "Auto Major Heal", "Use the configured major healing command at the emergency threshold.", "health-below", "cast major heal", 55, 1, 5);
+        Add(profile, AutomationArea.Health, "Auto Cure Poison", "React when the Host reports poison.", "text-contains", "cast cure poison", 0, 4, 15, "poison");
+        Add(profile, AutomationArea.Health, "Auto Cure Disease", "React when the Host reports disease.", "text-contains", "cast cure disease", 0, 5, 15, "disease");
+        Add(profile, AutomationArea.Health, "Auto Cure Blindness", "React when the Host reports blindness.", "text-contains", "cast cure blindness", 0, 6, 15, "blind");
+        Add(profile, AutomationArea.Health, "Emergency Healing Item", "Use the configured healing item at the emergency threshold.", "health-below", "use healing potion", 35, 2, 10);
+        Add(profile, AutomationArea.Health, "Stop Resting When Recovered", "Stand when mana has recovered to the configured percentage.", "mana-above", "stand", 90, 35, 10, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Health, "Auto Rest", "Rest when mana reaches the configured percentage.", "mana-below", "rest", 25, 30, 20, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Health, "Auto Meditate", "Meditate when mana is low and the character is safe.", "mana-below", "meditate", 15, 25, 20, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Health, "Auto Cure Silence", "React when the Host reports that spellcasting is silenced.", "text-contains", "cast remove silence", 0, 3, 15, "silenced");
+        Add(profile, AutomationArea.Health, "Emergency Recall", "Use the configured emergency travel command at critical health.", "health-below", "recall", 15, -2, 20);
+        Add(profile, AutomationArea.Health, "Auto Wake", "Wake when the Host reports that the character is asleep.", "text-contains", "wake", 0, 7, 5, "you are asleep");
+        Add(profile, AutomationArea.Spells, "Maintain Bless", "Maintain the configured blessing while out of combat.", "out-of-combat", "cast bless", 0, 50, 120, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Spells, "Maintain Armor", "Maintain the configured defensive spell while out of combat.", "out-of-combat", "cast armor", 0, 55, 120, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Spells, "Auto Room Light", "Create light when darkness is detected.", "text-contains", "cast light", 0, 30, 30, "too dark");
+        Add(profile, AutomationArea.Spells, "Retry Failed Cast", "Retry the configured spell command after a failed cast message.", "text-contains", "cast", 0, 45, 5, "failed to cast");
+        Add(profile, AutomationArea.Spells, "Recast After Dispel", "Recast a maintained effect after the Host reports that it faded or was dispelled.", "text-contains", "cast bless", 0, 46, 15, "spell fades");
+        Add(profile, AutomationArea.Combat, "Auto Attack", "Attack the current Host-selected target.", "in-combat", "attack", 0, 20, 3, onlyInCombat: true);
+        Add(profile, AutomationArea.Combat, "Auto Bash", "Attempt the configured bash command during combat.", "in-combat", "bash", 0, 24, 8, onlyInCombat: true);
+        Add(profile, AutomationArea.Combat, "Auto Retarget", "Acquire another target after the current opponent is defeated.", "combat-ended", "attack", 0, 22, 3);
+        Add(profile, AutomationArea.Combat, "Auto Rescue Party", "Attempt the configured rescue command when a party member needs help.", "text-contains", "rescue", 0, 12, 5, "needs your help", onlyInCombat: true);
+        Add(profile, AutomationArea.Combat, "Auto Flee", "Flee at the configured safety threshold.", "health-below", "flee", 25, 0, 2, onlyInCombat: true);
+        Add(profile, AutomationArea.Combat, "Defensive Action", "Use a defensive command at the configured low-health threshold.", "health-below", "defend", 40, 3, 8, onlyInCombat: true);
+        Add(profile, AutomationArea.Combat, "Low Mana Escape", "Use the configured escape command when mana is critically low in combat.", "mana-below", "flee", 10, 4, 8, onlyInCombat: true);
+        Add(profile, AutomationArea.PvP, "PvP Alert", "Play the configured PvP reaction command when another player attacks.", "text-contains", "flee", 0, 1, 2, "attacks you");
+        Add(profile, AutomationArea.PvP, "PvP Return Attack", "Return an attack using the configured command.", "text-contains", "attack", 0, 2, 2, "attacks you");
+        Add(profile, AutomationArea.PvP, "Chase PvP Opponent", "Use the configured chase command when an attacking player flees.", "text-contains", "chase", 0, 3, 3, "flees from you");
+        Add(profile, AutomationArea.Party, "Assist Leader", "Assist the current party leader during combat.", "in-combat", "assist", 0, 25, 5, onlyInCombat: true);
+        Add(profile, AutomationArea.Party, "Follow Leader", "Follow when the leader moves.", "text-contains", "follow", 0, 40, 2, "leaves");
+        Add(profile, AutomationArea.Party, "Accept Invite", "Accept a trusted party invitation.", "text-contains", "join", 0, 10, 5, "invites you");
+        Add(profile, AutomationArea.Party, "Heal Wounded Party", "Use the configured party-heal command when a member is reported wounded.", "text-contains", "cast heal", 0, 8, 8, "badly wounded");
+        Add(profile, AutomationArea.Party, "Regroup When Separated", "Run the configured regroup command when the leader is lost.", "text-contains", "where", 0, 15, 10, "cannot follow");
+        Add(profile, AutomationArea.Party, "Wait For Leader", "Wait safely when the Host reports that the leader is missing.", "text-contains", "wait", 0, 16, 8, "leader is not here");
+        Add(profile, AutomationArea.Party, "Resume With Leader", "Resume following when the leader returns.", "text-contains", "follow", 0, 17, 8, "leader arrives");
+        Add(profile, AutomationArea.Roaming, "Auto Search", "Search after entering a room.", "room-entered", "search", 0, 70, 5);
+        Add(profile, AutomationArea.Roaming, "Auto Sneak", "Attempt to maintain stealth while moving.", "moving", "sneak", 0, 40, 10);
+        Add(profile, AutomationArea.Roaming, "Auto Track", "Use the configured tracking command while roaming.", "room-entered", "track", 0, 75, 10);
+        Add(profile, AutomationArea.Roaming, "Auto Open Doors", "Open a door when the Host reports it closed.", "text-contains", "open door", 0, 15, 2, "closed");
+        Add(profile, AutomationArea.Roaming, "Auto Pick Locks", "Attempt the configured pick-lock command.", "text-contains", "pick lock", 0, 16, 4, "locked");
+        Add(profile, AutomationArea.Roaming, "Auto Bash Doors", "Attempt the configured bash command when a door blocks travel.", "text-contains", "bash door", 0, 17, 4, "won't budge");
+        Add(profile, AutomationArea.Roaming, "Auto Detect Traps", "Check for traps when the Host reports a suspicious passage or container.", "text-contains", "detect traps", 0, 18, 6, "trap");
+        Add(profile, AutomationArea.Roaming, "Auto Disarm Traps", "Attempt the configured disarm command after a trap is found.", "text-contains", "disarm trap", 0, 19, 6, "trap detected");
+        Add(profile, AutomationArea.LootAndCash, "Auto Get Cash", "Collect visible currency.", "text-contains", "get coins", 0, 60, 3, "coins");
+        Add(profile, AutomationArea.LootAndCash, "Auto Get Items", "Collect items matching Client loot rules.", "text-contains", "get all", 0, 65, 3, "you see");
+        Add(profile, AutomationArea.LootAndCash, "Auto Deposit", "Deposit cash when the configured Client threshold is reached.", "text-contains", "deposit all", 0, 80, 30, "banker");
+        Add(profile, AutomationArea.LootAndCash, "Auto Loot Corpse", "Loot a defeated enemy using the configured corpse command.", "text-contains", "get all corpse", 0, 55, 3, "corpse");
+        Add(profile, AutomationArea.LootAndCash, "Convert Currency", "Convert carried denominations when a banker is recognized.", "text-contains", "exchange all", 0, 82, 30, "banker");
+        Add(profile, AutomationArea.LootAndCash, "Auto Sell At Shop", "Sell configured loot when a shopkeeper is recognized.", "text-contains", "sell all", 0, 84, 20, "shopkeeper");
+        Add(profile, AutomationArea.LootAndCash, "Drop When Overweight", "Use the configured drop command after an overweight rejection.", "text-contains", "drop heavy", 0, 5, 10, "too heavy");
+        Add(profile, AutomationArea.Utility, "Auto Hide", "Hide when entering a safe room.", "room-entered", "hide", 0, 45, 10, onlyOutOfCombat: true);
+        Add(profile, AutomationArea.Utility, "Auto Stand", "Stand after the Host reports that the character is resting.", "text-contains", "stand", 0, 5, 4, "you are resting");
+        Add(profile, AutomationArea.Utility, "Auto Recover", "Use the configured recovery command after incapacitation.", "text-contains", "recover", 0, 2, 10, "incapacitated");
+        Add(profile, AutomationArea.Utility, "Auto Look", "Refresh the room display after movement.", "room-entered", "look", 0, 90, 3);
+        Add(profile, AutomationArea.Events, "Scheduled Event", "User-defined timer or event command.", "always", string.Empty, 0, 100, 60);
+        return profile;
+    }
+
+    private static void SynchronizeRulesFromOptions(ClientAutomationProfile profile)
+    {
+        EnsureProfileDefaults(profile);
+        var o = profile.Options;
+        Configure(profile, "Auto Minor Heal", o.Health.AutoHeal, o.Spells.MinorHealCommand, o.Health.MinorHealAtPercent);
+        Configure(profile, "Auto Major Heal", o.Health.AutoHeal, o.Spells.MajorHealCommand, o.Health.MajorHealAtPercent);
+        Configure(profile, "Auto Cure Poison", o.Health.CurePoison, "cast cure poison");
+        Configure(profile, "Auto Cure Disease", o.Health.CureDisease, "cast cure disease");
+        Configure(profile, "Auto Cure Blindness", o.Health.CureBlindness, o.Health.CureBlindnessCommand);
+        Configure(profile, "Emergency Healing Item", o.Health.AutoUseHealingItem, o.Health.HealingItemCommand, o.Health.HealingItemAtPercent);
+        Configure(profile, "Stop Resting When Recovered", o.Health.StopRestingWhenRecovered, "stand", o.Health.StopRestingManaPercent);
+        Configure(profile, "Auto Rest", o.Health.AutoRest, "rest", o.Health.RestManaAtPercent);
+        Configure(profile, "Auto Meditate", o.Health.AutoMeditate, "meditate", o.Health.RestManaAtPercent);
+        Configure(profile, "Auto Cure Silence", o.Health.CureSilence, o.Health.CureSilenceCommand);
+        Configure(profile, "Emergency Recall", o.Health.AutoRecallAtCriticalHealth, o.Health.RecallCommand, o.Health.RecallAtPercent);
+        Configure(profile, "Auto Wake", o.Health.AutoWake, o.Health.WakeCommand);
+        Configure(profile, "Maintain Bless", o.Spells.MaintainBless, o.Spells.BlessCommand, cooldownSeconds: o.Spells.MaintainedSpellCooldownSeconds, onlyOutOfCombat: o.Spells.CastMaintainedSpellsOnlyOutOfCombat);
+        Configure(profile, "Maintain Armor", o.Spells.MaintainArmor, o.Spells.ArmorCommand, cooldownSeconds: o.Spells.MaintainedSpellCooldownSeconds, onlyOutOfCombat: o.Spells.CastMaintainedSpellsOnlyOutOfCombat);
+        Configure(profile, "Auto Room Light", o.Spells.MaintainRoomLight, o.Spells.LightCommand);
+        Configure(profile, "Retry Failed Cast", o.Spells.RetryFailedCast, o.Spells.RetryFailedCastCommand);
+        Configure(profile, "Recast After Dispel", o.Spells.RecastAfterDispel, o.Spells.RecastAfterDispelCommand);
+        Configure(profile, "Auto Attack", o.Combat.AutoAttack, o.Combat.PrimaryAttackCommand);
+        Configure(profile, "Auto Bash", o.Combat.UseSecondaryAttack, o.Combat.SecondaryAttackCommand);
+        Configure(profile, "Auto Retarget", o.Combat.AutoRetarget, o.Combat.RetargetCommand);
+        Configure(profile, "Auto Rescue Party", o.Combat.AutoRescueParty, o.Combat.RescueCommand);
+        Configure(profile, "Auto Flee", o.Combat.AutoFlee, "flee", o.Combat.FleeAtPercent);
+        Configure(profile, "Defensive Action", o.Combat.UseDefensiveActionAtLowHealth, o.Combat.DefensiveActionCommand, o.Combat.DefensiveActionAtPercent);
+        Configure(profile, "Low Mana Escape", o.Combat.EscapeAtLowMana, o.Combat.LowManaEscapeCommand, o.Combat.LowManaEscapeAtPercent);
+        Configure(profile, "PvP Alert", o.PvP.Enabled && o.PvP.AlertWhenAttacked, o.PvP.ReactionCommand);
+        Configure(profile, "PvP Return Attack", o.PvP.Enabled && o.PvP.AutoReturnAttack, o.PvP.ReturnAttackCommand);
+        Configure(profile, "Chase PvP Opponent", o.PvP.Enabled && o.PvP.ChaseFleeingAttacker, o.PvP.ChaseCommand);
+        Configure(profile, "Assist Leader", o.Party.AutoAssistLeader, JoinCommand(o.Party.AssistCommand, o.Party.LeaderName));
+        Configure(profile, "Follow Leader", o.Party.AutoFollowLeader, JoinCommand(o.Party.FollowCommand, o.Party.LeaderName));
+        Configure(profile, "Accept Invite", o.Party.AutoAcceptTrustedInvites, o.Party.AcceptInviteCommand);
+        Configure(profile, "Heal Wounded Party", o.Party.AutoHealParty, o.Party.HealPartyCommand);
+        Configure(profile, "Regroup When Separated", o.Party.RegroupWhenSeparated, o.Party.RegroupCommand);
+        Configure(profile, "Wait For Leader", o.Party.WaitWhenLeaderMissing, o.Party.WaitCommand);
+        Configure(profile, "Resume With Leader", o.Party.ResumeWhenLeaderReturns, JoinCommand(o.Party.ResumeCommand, o.Party.LeaderName));
+        Configure(profile, "Auto Get Cash", o.LootAndCash.GetCash, o.LootAndCash.GetCashCommand);
+        Configure(profile, "Auto Get Items", o.LootAndCash.GetItems, o.LootAndCash.GetItemsCommand);
+        Configure(profile, "Auto Loot Corpse", o.LootAndCash.LootCorpses, o.LootAndCash.LootCorpseCommand);
+        Configure(profile, "Auto Deposit", o.LootAndCash.DepositAtBank, o.LootAndCash.DepositCommand);
+        Configure(profile, "Convert Currency", o.LootAndCash.ConvertCurrencyAtBank, o.LootAndCash.ConvertCurrencyCommand);
+        Configure(profile, "Auto Sell At Shop", o.LootAndCash.AutoSellAtShop, o.LootAndCash.SellCommand);
+        Configure(profile, "Drop When Overweight", o.LootAndCash.DropWhenOverweight, o.LootAndCash.DropOverweightCommand);
+        Configure(profile, "Auto Search", o.Roaming.AutoSearch, o.Roaming.SearchCommand);
+        Configure(profile, "Auto Sneak", o.Roaming.AutoSneak, o.Roaming.SneakCommand);
+        Configure(profile, "Auto Track", o.Roaming.AutoTrack, o.Roaming.TrackCommand);
+        Configure(profile, "Auto Open Doors", o.Roaming.OpenClosedDoors, o.Roaming.OpenDoorCommand);
+        Configure(profile, "Auto Pick Locks", o.Roaming.PickLockedDoors, o.Roaming.PickLockCommand);
+        Configure(profile, "Auto Bash Doors", o.Roaming.BashBlockedDoors, o.Roaming.BashDoorCommand);
+        Configure(profile, "Auto Detect Traps", o.Roaming.DetectTraps, o.Roaming.DetectTrapCommand);
+        Configure(profile, "Auto Disarm Traps", o.Roaming.DisarmTraps, o.Roaming.DisarmTrapCommand);
+        Configure(profile, "Auto Hide", o.Utility.AutoHide, o.Utility.HideCommand);
+        Configure(profile, "Auto Stand", o.Utility.AutoStand, o.Utility.StandCommand);
+        Configure(profile, "Auto Recover", o.Utility.AutoRecover, o.Utility.RecoverCommand);
+        Configure(profile, "Auto Look", o.Utility.AutoLook, o.Utility.LookCommand);
+        SynchronizePriorityRules(profile, AutomationArea.Spells, "Priority Spell", o.Spells.PriorityActions);
+        SynchronizePriorityRules(profile, AutomationArea.Combat, "Priority Combat", o.Combat.PriorityActions);
+    }
+
+    private static void SynchronizePriorityRules(ClientAutomationProfile profile, AutomationArea area, string prefix, IEnumerable<ClientPriorityAction> actions)
+    {
+        var activeIds = new HashSet<string>(actions.Select(a => a.Id), StringComparer.OrdinalIgnoreCase);
+        foreach (var obsolete in profile.Rules.Where(r => r.Area == area && r.Name.StartsWith(prefix + ":", StringComparison.OrdinalIgnoreCase) && !activeIds.Contains(r.Id)).ToArray())
+            profile.Rules.Remove(obsolete);
+        foreach (var action in actions)
+        {
+            var rule = profile.Rules.FirstOrDefault(r => string.Equals(r.Id, action.Id, StringComparison.OrdinalIgnoreCase));
+            if (rule is null)
+            {
+                rule = new ClientAutomationRule { Id = action.Id, Area = area };
+                profile.Rules.Add(rule);
+            }
+            rule.Name = $"{prefix}: {action.Name}";
+            rule.Description = "User-configured priority action";
+            rule.Enabled = action.Enabled;
+            rule.Command = action.Command.Trim();
+            rule.Priority = action.Priority;
+            rule.Trigger = action.OnlyInCombat ? "in-combat" : action.OnlyOutOfCombat ? "out-of-combat" : "always";
+            rule.OnlyInCombat = action.OnlyInCombat;
+            rule.OnlyOutOfCombat = action.OnlyOutOfCombat;
+            rule.MinimumHealthPercent = action.MinimumHealthPercent;
+            rule.MinimumManaPercent = action.MinimumManaPercent;
+            rule.CooldownSeconds = 3;
+        }
+    }
+
+    private static void Configure(ClientAutomationProfile profile, string name, bool enabled, string command, int? threshold = null, int? cooldownSeconds = null, bool? onlyOutOfCombat = null)
+    {
+        var rule = profile.Rules.FirstOrDefault(r => string.Equals(r.Name, name, StringComparison.OrdinalIgnoreCase));
+        if (rule is null) return;
+        rule.Enabled = enabled;
+        rule.Command = command.Trim();
+        if (threshold.HasValue) rule.Threshold = threshold.Value;
+        if (cooldownSeconds.HasValue) rule.CooldownSeconds = Math.Max(0, cooldownSeconds.Value);
+        if (onlyOutOfCombat.HasValue) rule.OnlyOutOfCombat = onlyOutOfCombat.Value;
+    }
+
+    private static string JoinCommand(string command, string argument)
+        => string.IsNullOrWhiteSpace(argument) ? command.Trim() : $"{command.Trim()} {argument.Trim()}";
+
+    private static void EnsureProfileDefaults(ClientAutomationProfile profile)
+    {
+        profile.Options ??= new ClientAutomationOptions();
+        profile.Options.Health ??= new HealthAutomationOptions();
+        profile.Options.Spells ??= new SpellAutomationOptions();
+        profile.Options.Combat ??= new CombatAutomationOptions();
+        profile.Options.PvP ??= new PvpAutomationOptions();
+        profile.Options.Party ??= new PartyAutomationOptions();
+        profile.Options.LootAndCash ??= new LootCashAutomationOptions();
+        profile.Options.Roaming ??= new RoamingAutomationOptions();
+        profile.Options.Utility ??= new UtilityAutomationOptions();
+        profile.Options.Events ??= new EventAutomationOptions();
+        profile.Options.Presentation ??= new ClientPresentationOptions();
+        profile.Options.Sounds ??= new ClientSoundOptions();
+        profile.Options.Toolbar ??= [];
+        if (profile.Options.Toolbar.Count == 0)
+        {
+            var labels = new[] { "Health", "Spells", "Combat", "Party", "Roaming", "Loot & Cash", "Utility", "Events" };
+            for (var index = 0; index < labels.Length; index++)
+                profile.Options.Toolbar.Add(new ClientToolbarOption { Label = labels[index], AutomationArea = labels[index].Replace(" & ", "And"), Order = index });
+        }
+        profile.Options.Events.ScheduledEvents ??= [];
+        profile.Options.Spells.PriorityActions ??= [];
+        profile.Options.Combat.PriorityActions ??= [];
+        profile.Options.LootAndCash.CurrencyRules ??= [];
+        EnsureRule(profile, AutomationArea.Health, "Auto Cure Silence", "text-contains", "cast remove silence", 0, 3, 15, "silenced");
+        EnsureRule(profile, AutomationArea.Health, "Emergency Recall", "health-below", "recall", 15, -2, 20);
+        EnsureRule(profile, AutomationArea.Health, "Auto Wake", "text-contains", "wake", 0, 7, 5, "you are asleep");
+        EnsureRule(profile, AutomationArea.Spells, "Retry Failed Cast", "text-contains", "cast", 0, 45, 5, "failed to cast");
+        EnsureRule(profile, AutomationArea.Spells, "Recast After Dispel", "text-contains", "cast bless", 0, 46, 15, "spell fades");
+        EnsureRule(profile, AutomationArea.Combat, "Defensive Action", "health-below", "defend", 40, 3, 8, onlyInCombat: true);
+        EnsureRule(profile, AutomationArea.Combat, "Low Mana Escape", "mana-below", "flee", 10, 4, 8, onlyInCombat: true);
+        EnsureRule(profile, AutomationArea.PvP, "Chase PvP Opponent", "text-contains", "chase", 0, 3, 3, "flees from you");
+        EnsureRule(profile, AutomationArea.Party, "Wait For Leader", "text-contains", "wait", 0, 16, 8, "leader is not here");
+        EnsureRule(profile, AutomationArea.Party, "Resume With Leader", "text-contains", "follow", 0, 17, 8, "leader arrives");
+        EnsureRule(profile, AutomationArea.LootAndCash, "Auto Sell At Shop", "text-contains", "sell all", 0, 84, 20, "shopkeeper");
+        EnsureRule(profile, AutomationArea.LootAndCash, "Drop When Overweight", "text-contains", "drop heavy", 0, 5, 10, "too heavy");
+        if (profile.Options.Spells.PriorityActions.Count == 0)
+        {
+            profile.Options.Spells.PriorityActions.Add(new ClientPriorityAction { Name = "Emergency Heal", Command = profile.Options.Spells.MajorHealCommand, Priority = 1, MinimumManaPercent = 5 });
+            profile.Options.Spells.PriorityActions.Add(new ClientPriorityAction { Name = "Minor Heal", Command = profile.Options.Spells.MinorHealCommand, Priority = 10, MinimumManaPercent = 5 });
+            profile.Options.Spells.PriorityActions.Add(new ClientPriorityAction { Name = "Bless", Command = profile.Options.Spells.BlessCommand, Priority = 50, OnlyOutOfCombat = true });
+        }
+        if (profile.Options.Combat.PriorityActions.Count == 0)
+        {
+            profile.Options.Combat.PriorityActions.Add(new ClientPriorityAction { Name = "Primary Attack", Command = profile.Options.Combat.PrimaryAttackCommand, Priority = 20, OnlyInCombat = true });
+            profile.Options.Combat.PriorityActions.Add(new ClientPriorityAction { Name = "Secondary Attack", Command = profile.Options.Combat.SecondaryAttackCommand, Priority = 30, OnlyInCombat = true });
+        }
+        if (profile.Options.LootAndCash.CurrencyRules.Count == 0)
+        {
+            profile.Options.LootAndCash.CurrencyRules.Add(new ClientCurrencyRule { Name = "Copper", RecognitionWords = "copper,coppers", SortOrder = 10 });
+            profile.Options.LootAndCash.CurrencyRules.Add(new ClientCurrencyRule { Name = "Silver", RecognitionWords = "silver,silvers", SortOrder = 20 });
+            profile.Options.LootAndCash.CurrencyRules.Add(new ClientCurrencyRule { Name = "Gold", RecognitionWords = "gold,golds", SortOrder = 30 });
+            profile.Options.LootAndCash.CurrencyRules.Add(new ClientCurrencyRule { Name = "Platinum", RecognitionWords = "platinum,platinums", SortOrder = 40 });
+        }
+    }
+
+    private static void EnsureRule(ClientAutomationProfile profile, AutomationArea area, string name, string trigger, string command, int threshold, int priority, int cooldownSeconds, string? matchText = null, bool onlyOutOfCombat = false, bool onlyInCombat = false)
+    {
+        if (profile.Rules.Any(rule => string.Equals(rule.Name, name, StringComparison.OrdinalIgnoreCase))) return;
+        Add(profile, area, name, "Migrated MegaMUD-compatible automation option.", trigger, command, threshold, priority, cooldownSeconds, matchText, onlyOutOfCombat, onlyInCombat);
+    }
+
+    private static void Add(ClientAutomationProfile p, AutomationArea area, string name, string description, string trigger, string command, int threshold, int priority, int cooldownSeconds, string? matchText = null, bool onlyOutOfCombat = false, bool onlyInCombat = false)
+        => p.Rules.Add(new ClientAutomationRule { Area = area, Name = name, Description = matchText ?? description, Trigger = trigger, Command = command, Threshold = threshold, Priority = priority, CooldownSeconds = cooldownSeconds, OnlyOutOfCombat = onlyOutOfCombat, OnlyInCombat = onlyInCombat });
+}

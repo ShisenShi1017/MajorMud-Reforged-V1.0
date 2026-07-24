@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "codeUpdate": "0162",
+  "classification": "STRONGLY_CORRELATED",
+  "activation": "markup encoding and multiplicative arithmetic activated; relative native ordering remains fail-closed",
+  "findings": [
+    {
+      "id": "native.markup-neutral-100",
+      "claim": "WCC shop markup value 100 is the neutral 1.00x multiplier",
+      "support": {
+        "records": 178,
+        "neutralRecords": 94,
+        "crossDomains": [
+          "merchandise",
+          "trainer",
+          "spell service",
+          "other service"
+        ]
+      },
+      "confidence": 0.96
+    },
+    {
+      "id": "native.markup-whole-percent",
+      "claim": "raw markup is expressed in whole percent and converts to basis points by multiplying by 100",
+      "support": {
+        "examples": [
+          {
+            "raw": 100,
+            "basisPoints": 10000
+          },
+          {
+            "raw": 175,
+            "basisPoints": 17500
+          },
+          {
+            "raw": 275,
+            "basisPoints": 27500
+          },
+          {
+            "raw": 500,
+            "basisPoints": 50000
+          }
+        ]
+      },
+      "confidence": 0.94
+    },
+    {
+      "id": "native.markup-order",
+      "claim": "the field position relative to other modifiers is not proven",
+      "classification": "UNKNOWN",
+      "fallback": "do not claim native-exact quotes until ordering is independently traced"
+    }
+  ],
+  "tests": [
+    "100 percent preserves value",
+    "275 percent applies 2.75x",
+    "overflow fails",
+    "negative values fail",
+    "service trace uses multiplicative field semantics"
+  ],
+  "runtimeImpact": "corrects prior candidate additive interpretation",
+  "saveImpact": "none",
+  "worldImpact": "provider quotes and service projections"
+}

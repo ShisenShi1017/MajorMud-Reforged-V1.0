@@ -1,0 +1,16 @@
+{
+  "id": "runtime-item-death-protection-partial-corpse-loot",
+  "authority": "Librarium",
+  "version": "0174",
+  "rules": [
+    "Corpse creation transfers only non-container top-level items not explicitly projected death-protected.",
+    "death_protected and no_drop_on_death are evidence-gated metadata inputs; absent metadata never implies protection.",
+    "Partial corpse loot is legal only for projected stackable definitions and a positive quantity not exceeding the corpse stack.",
+    "A partial loot preserves the corpse source instance ID, creates one transferred instance ID, then applies owner limits and destination-stack reconciliation atomically.",
+    "Nested portable containers are never partially looted because container definitions are not stack-split by this policy."
+  ],
+  "safe_fallbacks": [
+    "unknown death flags do not activate protection",
+    "invalid partial requests leave corpse and destination state unchanged"
+  ]
+}

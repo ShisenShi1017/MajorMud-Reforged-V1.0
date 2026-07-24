@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "global-world-state",
+  "pass": "Update0026",
+  "runtimeOwner": "RuntimeGlobalWorldStateService",
+  "classification": "Reforged compatibility infrastructure; native meanings unresolved",
+  "scopes": [
+    "global",
+    "area",
+    "zone",
+    "event",
+    "module"
+  ],
+  "valueKinds": [
+    "boolean",
+    "integer",
+    "text"
+  ],
+  "capabilities": [
+    "catalog-defined state",
+    "owner-scoped mutation authorization",
+    "checked counters",
+    "deterministic reset policies",
+    "player visibility filtering",
+    "schema-versioned persistent snapshots",
+    "atomic replacement"
+  ],
+  "ownership": {
+    "definitions": "Librarium and owning subsystem",
+    "runtimeValues": "RuntimeGlobalWorldStateService",
+    "domainMeaning": "declared owner subsystem",
+    "persistence": "save coordination"
+  },
+  "safeFallback": [
+    "unknown state IDs fail closed",
+    "unauthorized mutations reject",
+    "unknown bits and counters are not assigned meaning",
+    "invalid values reject",
+    "corrupt snapshots preserve catalog defaults"
+  ],
+  "nativeDependencies": [
+    "exact global flag record families",
+    "unknown bits masks and counters",
+    "native default values",
+    "mutation call sites",
+    "reset and restart semantics",
+    "visibility and replication behavior"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": "majormud.native.wcc_dma_consumer.v1",
+  "update": "0029",
+  "evidence_class": "PROVEN",
+  "source_modules": [
+    {
+      "distribution": "WCC",
+      "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "function_va": "0x0046BDF6"
+    },
+    {
+      "distribution": "WBB",
+      "file": "ImportedDatabases/WCCLabeledWBB/wbbmmud.dll",
+      "parity": "counterpart code path preserved; distribution filename substitution only"
+    }
+  ],
+  "file_contract": {
+    "wcc_filename": "WCCDMA.SYS",
+    "open_api": "_tfsopn",
+    "open_success": "return == 0",
+    "read_api": "_tfsrdl",
+    "success_close_api": "_tfsabt",
+    "record_type_required": 3
+  },
+  "lookup_contract": {
+    "inputs": [
+      {
+        "position": 1,
+        "meaning": "IP/prefix lookup string",
+        "null_rejected": true
+      },
+      {
+        "position": 2,
+        "meaning": "8-byte identifier output buffer",
+        "minimum_capacity": 9,
+        "initialized_empty": true
+      },
+      {
+        "position": 3,
+        "meaning": "token output buffer",
+        "minimum_capacity": 50,
+        "initialized_empty": true
+      }
+    ],
+    "record_scan": "sequential, first qualifying match wins",
+    "prefix_api": "_tfspfx",
+    "prefix_match_required": "nonzero 16-bit return",
+    "identifier": {
+      "source": "first word after matched IP prefix",
+      "copy_bytes": 8,
+      "forced_nul_offset": 8,
+      "postprocess": "_rmvwht"
+    },
+    "token": {
+      "source": "remaining text after identifier delimiter and _skpwht",
+      "copy_bytes": 50,
+      "forced_nul_offset": 49,
+      "postprocess": "_rmvwht"
+    },
+    "success": "abort active text-file scan with _tfsabt and return true",
+    "failure": [
+      "null input/output pointer",
+      "open failure",
+      "end of file without type-3 prefix match",
+      "empty/malformed qualifying payload"
+    ]
+  },
+  "instruction_evidence": [
+    {
+      "va": "0x0046BE1E",
+      "meaning": "push WCCDMA.SYS then call _tfsopn"
+    },
+    {
+      "va": "0x0046BE38",
+      "meaning": "accept only current text-file record type 3"
+    },
+    {
+      "va": "0x0046BE45",
+      "meaning": "call _tfspfx with caller lookup prefix"
+    },
+    {
+      "va": "0x0046BE51",
+      "meaning": "split first post-prefix word using _skpwrd"
+    },
+    {
+      "va": "0x0046BE66",
+      "meaning": "advance past delimiter and call _skpwht"
+    },
+    {
+      "va": "0x0046BE6E",
+      "meaning": "copy token with bound 0x32 and force NUL at offset 0x31"
+    },
+    {
+      "va": "0x0046BE93",
+      "meaning": "copy identifier with bound 8 and force NUL at offset 8"
+    },
+    {
+      "va": "0x0046BEAA",
+      "meaning": "call _tfsabt after successful extraction"
+    },
+    {
+      "va": "0x0046BEB3",
+      "meaning": "continue scan through _tfsrdl until exhaustion"
+    }
+  ],
+  "limits": [
+    "Token-generation mathematics is not present in this consumer path.",
+    "Worldgroup text-file API internals remain host-owned.",
+    "The higher-level authorization comparison uses additional code and host collation and is not reclassified here."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "code_update": "0185",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+      "role": "existing NPC ownership, corpse, container hierarchy, atomic transfer, and persistence runtime"
+    },
+    {
+      "path": "Librarium/Policies/runtime_item_corpse_container_hierarchy_policy.json",
+      "role": "prior corpse subtree preservation policy"
+    },
+    {
+      "path": "Librarium/Policies/runtime_item_npc_inventory_equipment_reset_policy.json",
+      "role": "prior NPC item ownership and reset provenance policy"
+    },
+    {
+      "path": "Data/Classic/items.json",
+      "role": "canonical item-definition catalog"
+    }
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "confidence": "strongly_correlated",
+  "unresolved_native_only": true
+}

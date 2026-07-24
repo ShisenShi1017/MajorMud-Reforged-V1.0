@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "security-permissions",
+  "runtimeOwner": "RuntimeSecurityPolicyService",
+  "trustBoundaries": [
+    "player",
+    "script",
+    "textblock",
+    "builder",
+    "administrator",
+    "host",
+    "internal-runtime"
+  ],
+  "operations": [
+    "read",
+    "execute",
+    "mutate-character",
+    "mutate-world",
+    "configure",
+    "persist",
+    "cross-character",
+    "cross-world",
+    "remote-action",
+    "file-access"
+  ],
+  "policy": [
+    "authentication before authorization",
+    "minimum trust boundary",
+    "explicit allowed operation",
+    "explicit capability match",
+    "validated canonical identifiers",
+    "bounded and sanitized input",
+    "audit all denials and sensitive approvals",
+    "internal runtime calls remain identified and attributable",
+    "unknown permissions fail closed"
+  ],
+  "capabilityForms": [
+    "Subsystem:Resource:Operation",
+    "Subsystem:*:Operation",
+    "*:*:Operation"
+  ],
+  "safeFallback": "Reject unauthenticated, under-privileged, unregistered, malformed, oversized, cross-scope, or unknown requests and require an audit record.",
+  "nativeDependencies": [
+    "exact MajorMUD player, sysop and builder privilege levels",
+    "Worldgroup authentication and authorization interfaces",
+    "native script and textblock execution privilege",
+    "remote-action authorization and caller identity",
+    "native save and file access boundary",
+    "cross-character and cross-world access rules",
+    "native command sanitization and rendering rules",
+    "audit log destination and retention",
+    "host/module trust handoff",
+    "exact unauthorized-action messages"
+  ]
+}

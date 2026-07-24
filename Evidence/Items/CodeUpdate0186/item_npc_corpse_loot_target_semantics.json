@@ -1,0 +1,26 @@
+{
+  "code_update": "0186",
+  "subsystem": "Items",
+  "finding": "NPC corpse loot target reconciliation",
+  "classification": "strongly_correlated",
+  "runtime_activation": "evidence_gated",
+  "supporting_evidence": [
+    "Existing NPC corpse lifecycle and reset target reconciliation primitives",
+    "Authoritative canonical item catalog and runtime instance identity model",
+    "Atomic item mutation and destination-stack reconciliation"
+  ],
+  "assumptions": [
+    "Caller supplies an authoritative loot key and already-resolved target quantity",
+    "Random chance and quantity rolling occur outside this method"
+  ],
+  "safe_fallback": "No loot is created without an explicit call; excess state is preserved and the operation fails.",
+  "runtime_impact": "Creates only missing corpse-held runtime item instances.",
+  "character_save_impact": "None until loot transfer.",
+  "world_state_impact": "Corpse item state persists through the existing world item repository.",
+  "tests": [
+    "target creation",
+    "idempotency",
+    "identity preservation",
+    "excess-state rollback"
+  ]
+}

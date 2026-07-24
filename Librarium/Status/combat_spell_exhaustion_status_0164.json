@@ -1,0 +1,24 @@
+{
+  "update": "0164",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated threat event policies",
+    "atomic per-observer threat mutation",
+    "physical damage healing taunt and other shared threat event categories",
+    "deterministic threat inspection ordering",
+    "death defeat flee room-exit disconnect removal and combat-end cleanup",
+    "exactly-once mutation and cleanup protection",
+    "explicit Combat versus NPC AI ownership boundary",
+    "fail-closed unresolved threat semantics"
+  ],
+  "not_claimed_complete": [
+    "production threat multipliers and caps",
+    "native threat decay",
+    "threat transfer inheritance and group aggro",
+    "cross-room aggro propagation",
+    "threat persistence",
+    "NPC target selection"
+  ],
+  "next_pass": "Implement fleeing and forced-movement validation, action interruption, combat participant transition, threat cleanup, and room-exit handoff using evidence-gated policies."
+}

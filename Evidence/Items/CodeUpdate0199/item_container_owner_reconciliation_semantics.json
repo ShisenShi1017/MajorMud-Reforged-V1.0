@@ -1,0 +1,20 @@
+{
+  "code_update": "0199",
+  "subsystem": "Items",
+  "finding": "container_parent_owner_reconciliation",
+  "confidence": "strongly_correlated",
+  "runtime_active": true,
+  "supporting_evidence": [
+    "Portable-container validation already requires contained-item owner identity to match the parent container owner.",
+    "All implemented container insertion and ownership-transfer paths recursively preserve a single owner across the container subtree.",
+    "A valid parent container with an explicit owner provides one authoritative owner for its descendants."
+  ],
+  "assumptions": [
+    "The valid parent container owner is authoritative for all direct contained items.",
+    "Recursive validation propagates the corrected owner through nested container levels."
+  ],
+  "fallback": "Reject ownerless parents, missing parents, non-container parents, circular hierarchies, and any state that remains invalid after reconciliation.",
+  "runtime_impact": "Adds an explicit deterministic recovery operation; normal container mutation rules remain unchanged.",
+  "character_save_impact": "May normalize stale descendant owner identities to the authoritative parent container owner.",
+  "world_state_impact": "Does not invent owners for ownerless world or corpse containers."
+}

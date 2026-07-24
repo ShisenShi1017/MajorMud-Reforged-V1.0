@@ -1,0 +1,69 @@
+{
+  "authority": "Librarium",
+  "update": "0190",
+  "scope": "rooms_only",
+  "records": [
+    {
+      "id": "interaction.inferred.map12.2227.w.action2.onyx",
+      "object_type": "room_interaction_semantic_reconstruction",
+      "world_scope": [
+        "classic"
+      ],
+      "room_id": "room.map12.2227",
+      "exit_id": "exit.map12.2227.w",
+      "direction": "W",
+      "action_number": 2,
+      "accepted_commands": [
+        "push onyx",
+        "move onyx"
+      ],
+      "runtime_disposition": "active_runtime",
+      "confidence": "strongly_correlated",
+      "evidence": {
+        "source_files": [
+          {
+            "path": "ImportedDatabases/MegaMudMP/WRAIGORU.mp",
+            "record_identifier": "Ancient Ruin route command sequence",
+            "evidence": "route executes the seven gem commands including push onyx"
+          },
+          {
+            "path": "Data/NativeDecodeReports/CodeUpdate0139RoomTextAudit/WCCMSG_strings.tsv",
+            "record_identifier": "offsets 423687-424048",
+            "evidence": "native command and feedback strings for push/move onyx"
+          },
+          {
+            "path": "Data/Classic/room_interactions.json",
+            "record_identifier": "room 12/2227 west actions 1,3,4,5,6",
+            "evidence": "numbered west sequence is ruby, missing #2, emerald, topaz, sapphire, amethyst"
+          },
+          {
+            "path": "Data/Classic/room_interactions.json",
+            "record_identifier": "interaction.map12.2231.e.246",
+            "evidence": "MMExplorer same-room onyx action evidence"
+          }
+        ],
+        "reasoning": [
+          "The west exit requires six specifically ordered actions.",
+          "Recovered west actions are #1 ruby, #3 emerald, #4 topaz, #5 sapphire, and #6 amethyst.",
+          "Onyx is the only independently evidenced puzzle command that completes the sequence without contradiction.",
+          "MegaMUD uses onyx in the same seven-gem route and native WCC messages provide exact onyx strings."
+        ]
+      },
+      "assumptions": [
+        "missing west Action#2 is onyx",
+        "MMExplorer omitted or mis-associated the row"
+      ],
+      "fallback_behavior": "disable this inferred step and keep latch closed if contradicted",
+      "tests": [
+        "ordered sequence ruby, onyx, emerald, topaz, sapphire, amethyst",
+        "onyx maps only to Action #2",
+        "duplicate onyx does not add progress"
+      ],
+      "save_or_world_state_impact": {
+        "save_schema": "none",
+        "world_state": "transient shared edge-latch progress",
+        "migration_required": false
+      }
+    }
+  ]
+}

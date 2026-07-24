@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0138",
+  "codeUpdate": "0139",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
+  "milestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
   "updatePolicy": "Codex updates the local repository unless the user explicitly asks Codex to commit/push. GitHub Actions is the pushed verification gate.",
@@ -15,8 +15,8 @@
     "ImportedDatabases"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
-    "currentCodeUpdate": "0138",
+    "currentMilestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
+    "currentCodeUpdate": "0139",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
       "Milestone 1 - Core Framework",
@@ -24,10 +24,11 @@
       "CodeUpdate0138 - Server Runtime and Host Enablement local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0138 closed locally. Complete runtime verification passed 55/55. GitHub Actions is pending until the pushed commit is confirmed green.",
-    "lastUpdateName": "CodeUpdate0138-ServerRuntimeHostEnablement",
+    "milestone2Status": "CodeUpdate0139 local runtime cohesion, Classic audit, complete Librarium room-text recovery, WCCMP002 1.11p placeholder room-description recovery, WCC exhaustion audit, MMExplorer/OmniVerse reference reconciliation, command abbreviation work, map-qualified live spawn placement repair, folded room/trigger/script/quest semantic material, final room native/passive effect linkage closure, MegaMUD /mp route replay proof, WCCMSG room message decode, generated NPC quest dialogue dispatch, quest/script edge closure, evidence-gated world event recording, final native closure/WCC decode archive intake, verified/strong Librarium activation, compiler unresolved-exit guard, Reforged app Librarium browser/publish output, MegaMUD-style Client terminal-window UX, Telnet character sex-selection repair, room-description catalog resolver repair, generated numeric-string runtime reader repairs, and Bundle G native presentation payload closure are applied and locally verified. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "lastUpdateName": "CodeUpdate0139-TelnetRuntimeCohesion",
     "nextRecommendedWork": [
-      "Push CodeUpdate0138.",
+      "Review CodeUpdate0139 local changes and regenerated Data/Classic output.",
+      "Push CodeUpdate0139 when approved.",
       "Wait for green GitHub Actions.",
       "Begin the next approved public update only after the gate is green or explicitly overridden."
     ]
@@ -50,9 +51,9 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_PASS; CodeUpdate0138 complete runtime verification passed 55/55 at Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md. GitHub Actions remains pending until pushed and confirmed green.",
-  "current_codeupdate": "0138",
-  "last_update": "Server Runtime and Host Enablement local baseline",
+  "buildVerification": "LOCAL_PASS; compiler regenerated Data/Classic with 26,666/26,666 room descriptions, Classic runtime audit loaded 26,666/26,666 descriptions, verified/strong Librarium sidecars are active in generated data where evidence supports it, unresolved exit targets are compiler-blocked, Reforged app Release build passed, Reforged app publish output passed to Release/MajorMudReforged/MajorMudReforged.exe, Reforged app startup smoke passed after the MegaMUD-style terminal-window repair, server Release build passed after the Telnet character sex-selection, generated numeric-string reader repairs, and Bundle G native presentation payload closure, interaction/narrative smoke passed with 83 executable quest entries, Bundle F F10 native payload through F15 audits passed locally, and current-health validator passed 13/13 locally via Tools/validator.py. GitHub Actions remains pending until pushed and confirmed green.",
+  "current_codeupdate": "0139",
+  "last_update": "Telnet Runtime Cohesion local update",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -71,14 +72,24 @@
     "Spell, combat, actors/abilities, interaction/narrative, services/economy, and world/multiplayer runtime smoke surfaces",
     "Host configuration and scheduler audit surfaces",
     "MMExplorer movement promotion through Librarium",
-    "MMExplorer textblock quest-flow fix 0142"
+    "MMExplorer textblock quest-flow fix 0142",
+    "Generated NPC quest dialogue dispatch",
+    "Evidence-gated quest and room world event recording",
+    "Final native closure/WCC decode archive intake",
+    "Verified/strong Librarium runtime activation",
+    "Reforged app Librarium browser with character-foundation class/race gameplay views, nontechnical quest guidance, and Release/MajorMudReforged publish output",
+    "Reforged app MegaMUD-style Client terminal-window UX",
+    "Telnet character sex-selection repair",
+    "Bundle G native presentation payload closure"
   ],
+  "latestRuntimeAudit": "Reports/RuntimeVerification/classic_runtime_audit.md",
+  "latestRuntimeAuditFinding": "Regenerated Data/Classic rooms now contain 26,666/26,666 descriptions and Classic runtime audit loads 26,666/26,666 descriptions. Runtime audit counts: 1,100 NPC definitions, 1,078 monster definitions, 962 spawn records, 1,013 live NPC instances, 626 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers. Librarium contains native-backed room descriptions, lower-priority map-qualified OmniVerse reference gap fills, WCCMP002 binary gap fills, and WCCMP002 placeholder room recoveries. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass; WBBMP002 is secondary comparison evidence only. Live spawn placement requires exact map-qualified room resolution and room.map1.21 audits as one neutral guardsman with no group-candidate leakage. Skipped spawn records are classified: spawn.288.43 points to non-existent room.map1.288, and spawn.2306.213 points to room.map1.2306, which the user verified is a shop with no NPC. Bundle G native presentation payload closure resolves the prior F10 gap with explicit no-output decoded text targets and exact WCCMSG payloads for message 2044 and message 3290; F10 native payload through F15 audits pass. Ground objects remain 0 at runtime while compiler output reports 288 objects; see Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md. Quest dialogue dispatch now generates 182 decoded stage scripts, 83 NPC quest-entry triggers, runtime talk dispatch with atomic mutation/rollback, generated random table execution, world-intent target validation, teleport/summon host commits, remoteaction event recording, room/object interaction event recording, Classic non-repeat quest guard behavior, and exhaustive NPC quest-entry dispatch validation. Verified/native and strongly-correlated sidecars now compile into generated data where evidence supports runtime activation, and unresolved exit targets are compiler-blocked. One-time validation proofs are recorded in ValidationManifest.json.",
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-  "current_milestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
+  "current_milestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
   "librarium_authoritative": true,
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-  "updatedUtc": "2026-07-12T17:27:04Z",
+  "updatedUtc": "2026-07-17T00:00:00Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

@@ -1,0 +1,196 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+Bundle C Completion Audit
+{
+  "Passed": true,
+  "WorldId": "classic",
+  "Subsystems": [
+    {
+      "Phase": "C1",
+      "Subsystem": "Equipment authority",
+      "Passed": true,
+      "RuntimeOwner": "ClassicRuntimeCatalog / RuntimeItemCatalog",
+      "RuntimeConsumer": "RuntimeItemEngine",
+      "PersistenceOwner": "RuntimeItemState \u002B RuntimeCharacterRecord",
+      "EvidenceDisposition": "Verified and strongly corroborated fields only"
+    },
+    {
+      "Phase": "C2",
+      "Subsystem": "Equipment restrictions",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeCharacterBundleCatalog \u002B RuntimeItemCatalog",
+      "RuntimeConsumer": "RuntimeItemEngine.Equip",
+      "PersistenceOwner": "Character conditions/entitlements \u002B item state",
+      "EvidenceDisposition": "Unresolved weapon/armor matrices quarantined"
+    },
+    {
+      "Phase": "C3",
+      "Subsystem": "Equipment runtime",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeEquipmentRuntimeAuthority",
+      "RuntimeConsumer": "equip/wear/wield/remove/restore",
+      "PersistenceOwner": "Character \u002B item atomic commit",
+      "EvidenceDisposition": "Verified and strongly corroborated modifiers"
+    },
+    {
+      "Phase": "C4",
+      "Subsystem": "Items",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeItemCatalog",
+      "RuntimeConsumer": "RuntimeItemEngine",
+      "PersistenceOwner": "RuntimeItemState",
+      "EvidenceDisposition": "Native-only unknowns not promoted"
+    },
+    {
+      "Phase": "C5",
+      "Subsystem": "Inventory",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeBundleCInventoryAuthority",
+      "RuntimeConsumer": "pickup/drop/carry projection",
+      "PersistenceOwner": "Character \u002B item state",
+      "EvidenceDisposition": "Native capacity thresholds remain unknown"
+    },
+    {
+      "Phase": "C6",
+      "Subsystem": "Merchants",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeServiceCatalog",
+      "RuntimeConsumer": "merchant buy/sell/buyback/trainer consumers",
+      "PersistenceOwner": "Merchant stock \u002B character/item state",
+      "EvidenceDisposition": "Generated inventories authoritative"
+    },
+    {
+      "Phase": "C7",
+      "Subsystem": "Economy",
+      "Passed": true,
+      "RuntimeOwner": "RuntimeBundleCEconomyAuthority",
+      "RuntimeConsumer": "commerce/bank/repair settlement",
+      "PersistenceOwner": "Five-denomination character and bank state",
+      "EvidenceDisposition": "Runic follows ordinary currency rules"
+    },
+    {
+      "Phase": "C8",
+      "Subsystem": "Loot",
+      "Passed": true,
+      "RuntimeOwner": "decoded NPC loot records",
+      "RuntimeConsumer": "death/drop/room-ground consumers",
+      "PersistenceOwner": "Room item/currency state",
+      "EvidenceDisposition": "Currency values are amount ranges, not percentages"
+    },
+    {
+      "Phase": "C9",
+      "Subsystem": "Persistence",
+      "Passed": true,
+      "RuntimeOwner": "authoritative save coordinators",
+      "RuntimeConsumer": "save/load/cleanup/search/recovery",
+      "PersistenceOwner": "Atomic primary/backup/integrity state",
+      "EvidenceDisposition": "SEARCH result is transient and rerolled every command"
+    }
+  ],
+  "Checks": [
+    "all_bundle_c_phase_audits_pass",
+    "all_subsystems_have_runtime_owner",
+    "all_subsystems_have_runtime_consumer",
+    "all_subsystems_have_persistence_owner",
+    "search_each_attempt_replaces_prior_result",
+    "search_result_not_persisted",
+    "runic_bank_persistence_consumed",
+    "loot_currency_amount_semantics_enforced",
+    "bundle_c_generated_family_scope_declared",
+    "non_bundle_c_global_families_explicitly_excluded"
+  ],
+  "Failures": [],
+  "Verified": [
+    "All nine Bundle C subsystem audits execute under one completion audit and must pass together.",
+    "Physical copper, silver, gold, platinum and runic currency is preserved through inventory, commerce and banking.",
+    "Every SEARCH rerolls all eligible hidden objects and replaces the prior transient result set.",
+    "Hidden ground objects remain hidden until pickup; pickup then redrop creates a visible room object.",
+    "Generated merchant and NPC loot relationships resolve through canonical runtime catalogs and live consumers."
+  ],
+  "StronglyCorroborated": [
+    "Equipment modifier and restriction relationships promoted by prior phase audits remain active with provenance.",
+    "Atomic save generation, integrity backup and reconciliation remain the authoritative persistence scheme."
+  ],
+  "DecodedButNotMapped": [
+    "No Verified or Strongly Corroborated Bundle C field remains decoded-only after the phase audits pass."
+  ],
+  "Conflicts": [
+    "The prior persisted per-player hidden-discovery interpretation conflicted with user-supplied Classic behavior and is removed in Revision 0011."
+  ],
+  "TrueUnknown": [
+    "Exact native weapon-type/armor-type compatibility relationship matrices remain unresolved.",
+    "Exact native carry-capacity and encumbrance thresholds/penalties remain unresolved.",
+    "No universal decoded temporary-item decay interval is promoted.",
+    "Native-only item effects without a verified decoded consumer remain quarantined for the final native pass."
+  ],
+  "OwnedGeneratedFamilies": [
+    "equipment",
+    "equipment_rules",
+    "equipment_slots",
+    "items",
+    "shops",
+    "banks",
+    "economy_rules",
+    "loot_rules"
+  ],
+  "ExcludedGlobalFamilies": [
+    "abilities",
+    "character_foundation",
+    "classes",
+    "races",
+    "skills",
+    "formulas",
+    "status_effects",
+    "areas",
+    "assets",
+    "exits",
+    "regions",
+    "room_interactions",
+    "room_messages",
+    "rooms",
+    "events",
+    "npcs",
+    "quests",
+    "scripts",
+    "spawns",
+    "triggers",
+    "spells",
+    "world_manifest",
+    "world_overlays",
+    "worlds",
+    "ai_profiles",
+    "client_projection",
+    "client_views",
+    "commands",
+    "compile_manifest",
+    "conflicts",
+    "evidence_records",
+    "validation_rules",
+    "classic_bug_fixes",
+    "guilds"
+  ],
+  "ScopeRule": "Bundle C passes or fails only on Bundle C-owned generated families and the C1-C9 runtime audits. Global Classic families, other-bundle fields, provenance metadata, compiler annotations, and evidence-only fields are excluded from Bundle C failure totals."
+}

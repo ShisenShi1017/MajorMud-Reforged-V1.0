@@ -1,0 +1,36 @@
+{
+  "update": "0158",
+  "catalog": "combat_instance_lifecycle",
+  "status": "active_fixture_and_evidence_gated",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimeCombatInstanceLifecycle.cs",
+  "ownership": {
+    "combat_instance": "per-room runtime state",
+    "participant": "per-combat-instance",
+    "turn_schedule": "temporary action state",
+    "round_counter": "per-combat-instance"
+  },
+  "ordering": [
+    "next_action_tick ascending",
+    "initiative descending",
+    "insertion sequence ascending",
+    "canonical actor ID ascending"
+  ],
+  "transitions": [
+    "Created->Active",
+    "Active->Terminating",
+    "Terminating->Terminated"
+  ],
+  "participant_terminal_states": [
+    "Defeated",
+    "Fled",
+    "Disconnected",
+    "Removed"
+  ],
+  "production_policy": "No initiative or delay constant is activated without proven or strongly correlated evidence. Missing values reject execution.",
+  "native_dependencies": [
+    "exact initiative formula",
+    "weapon/spell speed contribution",
+    "same-tick ordering against effect ticks and cast completion",
+    "disconnect persistence"
+  ]
+}

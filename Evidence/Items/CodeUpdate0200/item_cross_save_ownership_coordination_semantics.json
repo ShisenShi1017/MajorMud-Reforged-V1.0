@@ -1,0 +1,21 @@
+{
+  "code_update": "0200",
+  "subsystem": "Items",
+  "finding": "cross_save_ownership_coordination",
+  "confidence": "strongly_correlated",
+  "runtime_active": true,
+  "supporting_evidence": [
+    "Item ownership is persisted independently from Character, NPC, Economy merchant, Quest, and Event state.",
+    "Existing item validation proves internal ownership consistency but cannot prove that the external owner or referenced lifecycle record still exists.",
+    "Fail-closed cross-save validation prevents orphan acceptance without inventing deletion, transfer, or replacement behavior."
+  ],
+  "assumptions": [
+    "The caller supplies authoritative identity sets from the same coordinated save generation.",
+    "Character-scoped inventory, equipment, trade, and bank ownership must resolve to Character state.",
+    "NPC and merchant ownership must resolve to their respective authoritative subsystem states."
+  ],
+  "fallback": "Reject load or save coordination when any external owner, quest, event, corpse subject, loot owner, or limited-item reservation owner is missing.",
+  "runtime_impact": "Adds explicit cross-save validation and validated repository load/save entry points; it does not mutate ambiguous state.",
+  "character_save_impact": "Prevents accepting item ownership for missing characters and corpse reservations for deleted characters.",
+  "world_state_impact": "Prevents accepting NPC, merchant, quest, or event item references absent from the coordinated world generation."
+}

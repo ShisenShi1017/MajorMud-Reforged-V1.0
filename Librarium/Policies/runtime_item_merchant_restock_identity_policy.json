@@ -1,0 +1,16 @@
+{
+  "id": "runtime-item-merchant-restock-identity",
+  "version": "0181",
+  "scope": "items.runtime.merchant.restock",
+  "classification": "reforged_compatibility_infrastructure",
+  "rules": [
+    "Restock requires an explicit merchant ID, canonical item ID, restock key, and target quantity.",
+    "Matching stock is scoped to merchant owner, merchant location, canonical item, and restock key.",
+    "Restock creates only the missing quantity and is idempotent at the projected target.",
+    "Existing stock identities are preserved; newly required quantities receive new runtime identities.",
+    "Stock above target is never silently deleted by restock.",
+    "Stackable stock obeys projected maximum_stack and ordinary destination reconciliation.",
+    "Classic activation remains fail-closed pending native evidence."
+  ],
+  "classic_activation": "fail_closed_pending_native_evidence"
+}

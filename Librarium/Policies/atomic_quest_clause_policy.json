@@ -1,0 +1,25 @@
+{
+  "id": "policy.atomic_quest_clause_execution.0200",
+  "scope": "MMExplorer textblock-derived quest scripts",
+  "status": "active_strongly_correlated",
+  "rule": "Evaluate every condition on a source line before executing any state-changing, presentation, or branch operation from that line.",
+  "condition_combiner": "all",
+  "condition_order": "source sequence among conditions with short-circuit on first failure",
+  "execution_order": "source sequence among non-condition operations after successful preflight",
+  "reason": [
+    "Four source lines encode prerequisites after item, message, or reward operations.",
+    "Literal token-by-token execution could consume or grant state before a later prerequisite fails.",
+    "Atomic preflight preserves every directive and prevents partial quest-state corruption."
+  ],
+  "fallback": "Abort the entire clause without mutation when a condition, reference, or target cannot be evaluated.",
+  "provenance": [
+    "Data/Classic/scripts.json MMExplorer textblock operations",
+    "Evidence/QuestScriptTrigger0200/atomic_clause_compile_report.json"
+  ],
+  "save_world_state_impact": "Prevents partial inventory, ability, experience, alignment, summon, teleport, and quest-flag mutations.",
+  "tests": [
+    "All 182 quest-stage scripts compile into source-line clauses.",
+    "All 490 clauses preserve non-condition source order.",
+    "Every source-line condition appears in preflight, including four late-position condition clauses."
+  ]
+}

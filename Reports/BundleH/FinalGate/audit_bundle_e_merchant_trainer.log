@@ -1,0 +1,135 @@
+Reforged Server Bootstrap
+ProjectRoot: E:\MajorMud-Reforged Github
+Project: Reforged
+CodeUpdate: 0139
+DatabaseVersion: 0010
+Milestone: CodeUpdate0139 - Telnet Runtime Cohesion
+Checks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit
+Readiness: host-tools-ready; gameplay=disabled
+RequiredDirectories: 6/6 present, 0 missing
+Validation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal
+Directory: present Apps -> E:\MajorMud-Reforged Github\Apps
+Directory: present Core -> E:\MajorMud-Reforged Github\Core
+Directory: present Data -> E:\MajorMud-Reforged Github\Data
+Directory: present Docs -> E:\MajorMud-Reforged Github\Docs
+Directory: present Reports -> E:\MajorMud-Reforged Github\Reports
+Directory: present Bin -> E:\MajorMud-Reforged Github\Bin
+HostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True
+ServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=99911
+WorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True
+GameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0
+ModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1
+HostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True
+SchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False
+SchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False
+ClassicParity: inventory-ready; canonicalFiles=293; importedReferenceFiles=3654; exactNameMatches=1
+Runtime Bundle E Merchant/Trainer Closure Audit
+{
+  "Passed": true,
+  "Checks": [
+    "merchant-stock-smoke-passed",
+    "merchant-stock:merchant-stock-inspection-exposed",
+    "merchant-stock:merchant-stock-exact-mutation-exposed",
+    "merchant-access-smoke-passed",
+    "merchant-access:merchant-access-admission-exposed",
+    "merchant-access:merchant-access-completion-exposed",
+    "merchant-access:merchant-service-admission-integrated",
+    "merchant-access:merchant-service-completion-integrated",
+    "merchant-restock-smoke-passed",
+    "merchant-restock:merchant-restock-exact-admission-exposed",
+    "merchant-restock:merchant-restock-replay-state-persisted",
+    "merchant-gold-settlement-smoke-passed",
+    "merchant-gold-settlement:merchant-gold-settlement-exposed",
+    "merchant-gold-settlement:npc-gold-inspection-integrated",
+    "merchant-gold-settlement:npc-gold-mutation-integrated",
+    "merchant-gold-settlement:npc-service-completion-integrated",
+    "trainer-eligibility-smoke-passed",
+    "trainer-eligibility:trainer-eligibility-admission-exposed",
+    "trainer-eligibility:trainer-offering-admission-integrated",
+    "trainer-offering-ownership-smoke-passed",
+    "trainer-offering-ownership:trainer-offering-inspection-exposed",
+    "trainer-offering-ownership:trainer-offering-exact-mutation-exposed",
+    "trainer-offering-ownership:persistent-trainer-read-exposed",
+    "trainer-offering-ownership:persistent-trainer-transaction-exposed",
+    "trainer-offering-admission-smoke-passed",
+    "trainer-offering-admission:trainer-offering-admission-exposed",
+    "trainer-offering-admission:trainer-offering-completion-exposed",
+    "trainer-offering-admission:trainer-service-admission-integrated",
+    "trainer-offering-admission:trainer-service-completion-integrated",
+    "bundle-c-merchant-lifecycle-coverage-connected",
+    "bundle-c-merchant-lifecycle:merchant-ownership-binding",
+    "bundle-c-merchant-lifecycle:shop-hours-and-overnight-windows",
+    "bundle-c-merchant-lifecycle:visibility-and-customer-restrictions",
+    "bundle-c-merchant-lifecycle:fixed-quantity-restocking",
+    "bundle-c-merchant-lifecycle:fill-to-target-restocking",
+    "bundle-c-merchant-lifecycle:deterministic-weighted-generated-inventory",
+    "bundle-c-merchant-lifecycle:maximum-stock-enforcement",
+    "bundle-c-merchant-lifecycle:elapsed-cycle-catch-up",
+    "bundle-c-merchant-lifecycle:atomic-stock-and-lifecycle-rollback",
+    "bundle-c-merchant-lifecycle:restock-replay-protection",
+    "bundle-c-merchant-lifecycle:versioned-merchant-lifecycle-persistence",
+    "bundle-c-merchant-lifecycle:native-policy-input-boundary",
+    "living-npc-service-admission-connected",
+    "living-npc-service-completion-connected",
+    "persistent-shop-state-read-connected",
+    "persistent-shop-state-transaction-connected",
+    "persistent-trainer-state-read-connected",
+    "persistent-trainer-state-transaction-connected",
+    "evidence-source-present:Data/Classic/shops.json",
+    "evidence-source-present:ImportedDatabases/NativeRuntime/WCCSHOPS.DAT",
+    "evidence-source-present:ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat",
+    "evidence-source-present:ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json",
+    "evidence-source-present:Librarium/Objects/shops/catalog.json",
+    "evidence-source-present:Librarium/Objects/shops/sql_mdb_records_0128.json",
+    "evidence-source-present:Librarium/Runtime/Economy/merchant_lifecycle_catalog_0155.json",
+    "evidence-source-present:Librarium/MajorMUDKnowledgeBase/MechanicsFull/ECON_SHOPS.json",
+    "evidence-source-present:Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_TRAINING.json",
+    "evidence-source-present:Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv",
+    "evidence-source-present:Simulator/DataSimVer/0008/ShopServiceInventory.csv",
+    "evidence-source-present:Simulator/DataSimVer/0008/TrainerRoomRefs.csv",
+    "evidence-source-present:Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_merchant_stock_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_merchant_restock_admission_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_merchant_access_admission_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_merchant_gold_settlement_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_trainer_eligibility_admission_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_trainer_offering_evidence.json",
+    "evidence-source-present:Evidence/NpcAI/npc_ai_trainer_offering_admission_evidence.json",
+    "single-authority:RuntimeNpcMerchantStockOwnership.cs",
+    "single-authority:RuntimeNpcMerchantAccessAdmission.cs",
+    "single-authority:RuntimeNpcMerchantRestockAdmission.cs",
+    "single-authority:RuntimeNpcMerchantGoldSettlement.cs",
+    "single-authority:RuntimeNpcTrainerEligibilityAdmission.cs",
+    "single-authority:RuntimeNpcTrainerOfferingOwnership.cs",
+    "single-authority:RuntimeNpcTrainerOfferingAdmission.cs",
+    "single-authority:RuntimeEconomyMerchantLifecycle.cs"
+  ],
+  "Failures": [],
+  "EvidenceSources": [
+    "Data/Classic/shops.json",
+    "ImportedDatabases/NativeRuntime/WCCSHOPS.DAT",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat",
+    "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json",
+    "Librarium/Objects/shops/catalog.json",
+    "Librarium/Objects/shops/sql_mdb_records_0128.json",
+    "Librarium/Runtime/Economy/merchant_lifecycle_catalog_0155.json",
+    "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ECON_SHOPS.json",
+    "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_TRAINING.json",
+    "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv",
+    "Simulator/DataSimVer/0008/ShopServiceInventory.csv",
+    "Simulator/DataSimVer/0008/TrainerRoomRefs.csv",
+    "Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
+    "Evidence/NpcAI/npc_ai_merchant_stock_evidence.json",
+    "Evidence/NpcAI/npc_ai_merchant_restock_admission_evidence.json",
+    "Evidence/NpcAI/npc_ai_merchant_access_admission_evidence.json",
+    "Evidence/NpcAI/npc_ai_merchant_gold_settlement_evidence.json",
+    "Evidence/NpcAI/npc_ai_trainer_eligibility_admission_evidence.json",
+    "Evidence/NpcAI/npc_ai_trainer_offering_evidence.json",
+    "Evidence/NpcAI/npc_ai_trainer_offering_admission_evidence.json"
+  ],
+  "OwnershipBoundaries": [
+    "Bundle E owns living merchant/trainer NPC behavior, service admission, restock admission, offering admission and completion routing.",
+    "Bundle C remains authoritative for prices, currency, inventory transfer, item identity, merchant gold and economic persistence.",
+    "No parallel shop, trainer, currency or inventory authority is introduced by this closure gate."
+  ]
+}

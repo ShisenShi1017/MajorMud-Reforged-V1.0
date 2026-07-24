@@ -1,0 +1,1184 @@
+{
+  "schema": "majormud.native-host-text-binding.v1",
+  "update": "FinalNativeClosure0018",
+  "generated_utc": "2026-07-16T04:18:00.986843+00:00",
+  "evidence_class": "PROVEN_CALLER_TEXT_BINDING_SHAPE",
+  "method": "Join the proven host-facing ASCII/template records from Update0017 with positional caller-argument evidence from Update0014. Recover per-host-symbol template positions, conversion arities, directive domains, and whether the bounded caller argument positions after the template are sufficient to supply the observed conversions.",
+  "interpretation_limits": [
+    "Sufficient bounded caller argument capacity does not prove exact variadic parameter types or formatter implementation.",
+    "Arguments may be consumed by fixed parameters as well as formatting conversions; this pass records capacity, not an exact formal prototype.",
+    "Runtime-built and indirect templates remain outside this evidence set.",
+    "Worldgroup message routing and terminal rendering still require host implementation evidence."
+  ],
+  "source_evidence": [
+    "Librarium/Evidence/native_host_text_template_contract_0017.json",
+    "Librarium/Evidence/native_host_argument_positions_0014.json"
+  ],
+  "summary": {
+    "host_symbols_with_ascii_arguments": 21,
+    "host_symbols_with_templates": 4,
+    "host_symbols_literal_only": 17,
+    "template_symbols_with_stable_template_position": 4,
+    "template_symbols_with_sufficient_bounded_argument_capacity": 2,
+    "template_binding_observations": 82,
+    "template_occurrences": 164,
+    "literal_occurrences": 464
+  },
+  "records": [
+    {
+      "symbol": "_c2bcpy",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 4,
+      "total_occurrences": 4,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_catastro",
+      "modules": [
+        "wbbmmpls.dll",
+        "wccmmpls.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_findtvar",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_fsdxan",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 12,
+      "template_occurrences": 0,
+      "literal_occurrences": 12,
+      "total_occurrences": 12,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_gmdnam",
+      "modules": [
+        "wbbmmpls.dll",
+        "wccmmpls.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_haskey",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_msgscan",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1,
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 8,
+      "template_occurrences": 0,
+      "literal_occurrences": 8,
+      "total_occurrences": 8,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_opnmsg",
+      "modules": [
+        "wbbmmpls.dll",
+        "wccmmpls.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_prat",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        3
+      ],
+      "template_positions": [
+        3
+      ],
+      "template_position_stable": true,
+      "template_record_count": 2,
+      "literal_record_count": 0,
+      "template_occurrences": 6,
+      "literal_occurrences": 0,
+      "total_occurrences": 6,
+      "observed_conversion_arities": [
+        1
+      ],
+      "conversion_codes": {
+        "d": 6
+      },
+      "binding_capacity_observations": [
+        {
+          "module": "wccmmud.dll",
+          "template_position": 3,
+          "conversion_count": 1,
+          "observed_later_positions": 1,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 3,
+          "conversion_count": 1,
+          "observed_later_positions": 1,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        }
+      ],
+      "all_bounded_capacities_sufficient": true
+    },
+    {
+      "symbol": "_prf",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [
+        1
+      ],
+      "template_position_stable": true,
+      "template_record_count": 32,
+      "literal_record_count": 70,
+      "template_occurrences": 46,
+      "literal_occurrences": 102,
+      "total_occurrences": 148,
+      "observed_conversion_arities": [
+        1,
+        2,
+        3
+      ],
+      "conversion_codes": {
+        "d": 34,
+        "s": 28
+      },
+      "binding_capacity_observations": [
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 3,
+          "observed_later_positions": 2,
+          "capacity_sufficient": false,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 4,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 3,
+          "observed_later_positions": 2,
+          "capacity_sufficient": false,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        }
+      ],
+      "all_bounded_capacities_sufficient": false
+    },
+    {
+      "symbol": "_prfmsg",
+      "modules": [
+        "wbbmmpls.dll",
+        "wccmmpls.dll"
+      ],
+      "ascii_argument_positions": [
+        4
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_sameas",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 20,
+      "template_occurrences": 0,
+      "literal_occurrences": 20,
+      "total_occurrences": 20,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_samepatu",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_sameto",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 28,
+      "template_occurrences": 0,
+      "literal_occurrences": 48,
+      "total_occurrences": 48,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_senddpk",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_shocst",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1,
+        2
+      ],
+      "template_positions": [
+        2
+      ],
+      "template_position_stable": true,
+      "template_record_count": 12,
+      "literal_record_count": 138,
+      "template_occurrences": 12,
+      "literal_occurrences": 200,
+      "total_occurrences": 212,
+      "observed_conversion_arities": [
+        1,
+        2,
+        4
+      ],
+      "conversion_codes": {
+        "d": 14,
+        "s": 4,
+        "u": 2
+      },
+      "binding_capacity_observations": [
+        {
+          "module": "wccmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 2,
+          "conversion_count": 4,
+          "observed_later_positions": 3,
+          "capacity_sufficient": false,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 2,
+          "conversion_count": 2,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 1,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 2,
+          "conversion_count": 4,
+          "observed_later_positions": 3,
+          "capacity_sufficient": false,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 2,
+          "conversion_count": 2,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 3,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 2,
+          "conversion_count": 1,
+          "observed_later_positions": 1,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        }
+      ],
+      "all_bounded_capacities_sufficient": false
+    },
+    {
+      "symbol": "_spr",
+      "modules": [
+        "wbbmmpls.dll",
+        "wbbmmud.dll",
+        "wccmmpls.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1,
+        3
+      ],
+      "template_positions": [
+        1
+      ],
+      "template_position_stable": true,
+      "template_record_count": 36,
+      "literal_record_count": 4,
+      "template_occurrences": 100,
+      "literal_occurrences": 38,
+      "total_occurrences": 138,
+      "observed_conversion_arities": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "conversion_codes": {
+        "d": 42,
+        "s": 66,
+        "u": 36
+      },
+      "binding_capacity_observations": [
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 11
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 4,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 9
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 3,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 4,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wccmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 4
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 11
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 4,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 2,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 9
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 3,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 4,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmud.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 5,
+          "capacity_sufficient": true,
+          "occurrences": 3
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 1
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 2
+        },
+        {
+          "module": "wbbmmpls.dll",
+          "template_position": 1,
+          "conversion_count": 1,
+          "observed_later_positions": 2,
+          "capacity_sufficient": true,
+          "occurrences": 4
+        }
+      ],
+      "all_bounded_capacities_sufficient": true
+    },
+    {
+      "symbol": "_stzcpy",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 4,
+      "template_occurrences": 0,
+      "literal_occurrences": 4,
+      "total_occurrences": 4,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_tfsopn",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        1
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_tokopt",
+      "modules": [
+        "wbbmmud.dll",
+        "wccmmud.dll"
+      ],
+      "ascii_argument_positions": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 8,
+      "template_occurrences": 0,
+      "literal_occurrences": 8,
+      "total_occurrences": 8,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    },
+    {
+      "symbol": "_vdaoff",
+      "modules": [
+        "wbbmmpls.dll",
+        "wccmmpls.dll"
+      ],
+      "ascii_argument_positions": [
+        2
+      ],
+      "template_positions": [],
+      "template_position_stable": true,
+      "template_record_count": 0,
+      "literal_record_count": 2,
+      "template_occurrences": 0,
+      "literal_occurrences": 2,
+      "total_occurrences": 2,
+      "observed_conversion_arities": [],
+      "conversion_codes": {},
+      "binding_capacity_observations": [],
+      "all_bounded_capacities_sufficient": null
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "pass": "RemainingSystems-0001-PartyCoordination",
+  "promotions": [
+    {
+      "behavior": "party membership has one leader and unique members",
+      "classification": "strongly-correlated",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeWorldMultiplayer.cs",
+        "Apps/Source/Reforged.Server/RuntimeMultiplayerCompletion.cs",
+        "Apps/Source/Reforged.Server/RuntimeMultiplayerCompletionSmokeReport.cs"
+      ],
+      "recordIds": [],
+      "byteOffsets": [],
+      "confidence": 0.92,
+      "assumptions": ["existing Reforged party structures reflect intended MajorMUD group coordination"],
+      "tests": ["RuntimePartyCoordinationSmokeReport: invite-accept", "RuntimePartyCoordinationSmokeReport: leadership-and-kick"],
+      "safeFallback": "reject duplicate membership and unauthorized leader operations",
+      "runtimeImpact": "active party lifecycle coordination",
+      "characterSaveImpact": "none in this pass",
+      "worldStateImpact": "in-memory party state only"
+    },
+    {
+      "behavior": "party chat and follow are coordination routes, not formula owners",
+      "classification": "strongly-correlated",
+      "sources": ["Apps/Source/Reforged.Server/RuntimeWorldMultiplayer.cs"],
+      "recordIds": [],
+      "byteOffsets": [],
+      "confidence": 0.86,
+      "assumptions": ["movement and communication subsystems remain authoritative for final delivery and validation"],
+      "tests": ["RuntimePartyCoordinationSmokeReport: party-chat-routing", "RuntimePartyCoordinationSmokeReport: shared-movement-routing"],
+      "safeFallback": "produce no follower movement for nonleaders or non-colocated members",
+      "runtimeImpact": "deterministic routing requests",
+      "characterSaveImpact": "none",
+      "worldStateImpact": "none until downstream subsystem commits"
+    }
+  ],
+  "unknowns": [
+    "Classic party-size constant",
+    "Classic invitation duration",
+    "Classic offline membership behavior",
+    "Classic restart persistence",
+    "Classic shared experience, loot, quest credit, group teleport, and resurrection policy",
+    "exact native messages and command aliases"
+  ]
+}

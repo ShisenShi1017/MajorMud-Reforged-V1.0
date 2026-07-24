@@ -1,0 +1,42 @@
+{
+  "update": "0159",
+  "subject": "physical_attack_execution_phase_1",
+  "confidence": "proven_for_runtime_invariants_fixture_only_for_formula_values",
+  "findings": [
+    {
+      "id": "combat.attack.scheduled_turn_ownership",
+      "status": "proven",
+      "support": [
+        "RuntimeCombatInstanceLifecycle scheduled turn contains combat ID actor ID round tick and sequence",
+        "single-use key prevents duplicate action execution"
+      ],
+      "runtime_impact": "attack requires an issued turn owned by attacker",
+      "safe_fallback": "reject"
+    },
+    {
+      "id": "combat.attack.atomic_hp_mutation",
+      "status": "proven",
+      "support": [
+        "snapshot captured before damage sink apply",
+        "sink restored and turn released on exception"
+      ],
+      "runtime_impact": "failed mutation cannot partially consume HP or scheduled turn",
+      "safe_fallback": "rollback and reject"
+    },
+    {
+      "id": "combat.attack.formula.fixture",
+      "status": "fixture_only",
+      "support": [
+        "deterministic smoke policy"
+      ],
+      "runtime_impact": "tests architecture only; not production semantics",
+      "safe_fallback": "unresolved production profile rejects"
+    }
+  ],
+  "unknowns": [
+    "native hit formula",
+    "native physical damage formula",
+    "critical and fumble",
+    "armor and shield processing"
+  ]
+}

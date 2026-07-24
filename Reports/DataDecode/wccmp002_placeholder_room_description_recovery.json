@@ -1,0 +1,109 @@
+{
+  "generatedUtc": "2026-07-15T05:27:51+00:00",
+  "codeUpdate": "0139",
+  "databaseVersion": "0010",
+  "canonicalRoomRecords": 26666,
+  "knownDescriptionsBeforeRecovery": 26526,
+  "placeholderCandidatesWithoutDescriptions": 140,
+  "recordsPromoted": 140,
+  "unresolvedAfterRecovery": 0,
+  "totalDescriptionsAfterRecovery": 26666,
+  "wbbTitleCorrelated": 140,
+  "wbbFirstDescriptionLineCorrelated": 140,
+  "source": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+  "secondaryComparison": "ImportedDatabases/WCCLabeledWBB/Extracted/WBBMP002.DAT",
+  "output": "Librarium/Objects/room_descriptions/wccmp002_placeholder_room_description_records_0139.json",
+  "unresolvedRooms": [],
+  "sampleRecovered": [
+    {
+      "room_id": "room.map1.2431",
+      "catalog_placeholder_name": "Room 1/2431",
+      "recovered_title": "Arena Practice Room",
+      "first_description_line": "A battle arena has been built here by the local mercenary guild, to"
+    },
+    {
+      "room_id": "room.map1.2432",
+      "catalog_placeholder_name": "Room 1/2432",
+      "recovered_title": "Arena Practice Room",
+      "first_description_line": "A battle arena has been built here by the local mercenary guild, to"
+    },
+    {
+      "room_id": "room.map1.2433",
+      "catalog_placeholder_name": "Room 1/2433",
+      "recovered_title": "Arena Practice Room",
+      "first_description_line": "A battle arena has been built here by the local mercenary guild, to"
+    },
+    {
+      "room_id": "room.map1.2434",
+      "catalog_placeholder_name": "Room 1/2434",
+      "recovered_title": "Aeriana's Apothecary",
+      "first_description_line": "An assundry of vials and beakers full of liquids of all colors and"
+    },
+    {
+      "room_id": "room.map1.2435",
+      "catalog_placeholder_name": "Room 1/2435",
+      "recovered_title": "Aeriana's Apothecary, Back Room",
+      "first_description_line": "An assundry of vials and beakers full of liquids of all colors and"
+    },
+    {
+      "room_id": "room.map1.2603",
+      "catalog_placeholder_name": "Room 1/2603",
+      "recovered_title": "Blackwood Forest",
+      "first_description_line": "This trail leads through a dark forest, thick with trees and brush."
+    },
+    {
+      "room_id": "room.map15.850",
+      "catalog_placeholder_name": "Room 15/850",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.851",
+      "catalog_placeholder_name": "Room 15/851",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.852",
+      "catalog_placeholder_name": "Room 15/852",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.853",
+      "catalog_placeholder_name": "Room 15/853",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.854",
+      "catalog_placeholder_name": "Room 15/854",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.855",
+      "catalog_placeholder_name": "Room 15/855",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.856",
+      "catalog_placeholder_name": "Room 15/856",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.857",
+      "catalog_placeholder_name": "Room 15/857",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    },
+    {
+      "room_id": "room.map15.858",
+      "catalog_placeholder_name": "Room 15/858",
+      "recovered_title": "Scorching Desert",
+      "first_description_line": "White sand dunes sprawl off in all directions here, making navigation"
+    }
+  ]
+}

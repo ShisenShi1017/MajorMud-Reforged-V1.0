@@ -1,0 +1,23 @@
+{
+  "policy_id": "runtime.item.bank_merchant_transfer",
+  "authority": "Librarium",
+  "classification": "strongly_correlated",
+  "status": "active_with_explicit_projection_only",
+  "rules": {
+    "bank_location": "A banked item remains owned by its character and is located at one explicit bank identity.",
+    "merchant_location": "Merchant stock is represented by item instances owned by and located at one merchant identity.",
+    "deposit": "Only carried and unequipped items may be deposited; no_bank rejects atomically.",
+    "withdraw": "Only an item owned by the character and stored in the requested bank may be withdrawn.",
+    "sell": "Only carried and unequipped items may enter merchant stock; no_sell, binding, and quest ownership restrictions apply.",
+    "buy": "Only an item in the requested merchant stock may transfer to the buyer; binding and quest ownership restrictions apply.",
+    "economy_boundary": "Items mutates item identity and ownership only; Economy owns price calculation and currency transfer."
+  },
+  "fallback": "Unknown Classic bank or merchant rules remain inactive; malformed projected metadata fails validation.",
+  "native_dependencies": [
+    "Classic no-bank and no-sell flag bits",
+    "merchant acceptance categories",
+    "finite stock and restock rules",
+    "exact native failure messages",
+    "bank capacity and fees"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "update": "0174",
+  "subsystem": "combat_spells",
+  "topic": "pursuit_opportunity_failed_flee",
+  "runtime_owner": "combat",
+  "ai_boundary": "NPC AI retains pursuit target selection; Combat owns promoted pursuit execution and mutation.",
+  "implemented": [
+    "evidence-gated failed-flee round consumption",
+    "evidence-gated failed-flee resource consumption",
+    "opportunity attacks before room-exit handoff",
+    "defeat-before-exit suppression",
+    "bounded deterministic pursuer handoff",
+    "duplicate resolution rejection",
+    "atomic resource rollback"
+  ],
+  "execution_order": [
+    "validate promoted policy",
+    "resolve failed escape costs or opportunity attacks",
+    "stop on defeat",
+    "execute movement cleanup/handoff",
+    "construct bounded pursuer handoff"
+  ],
+  "unknowns": [
+    "native pursuit selection",
+    "native opportunity eligibility",
+    "native escape coefficients",
+    "native failed-flee costs",
+    "native pursuit distance and termination"
+  ],
+  "relationships": {
+    "movement": "combat_movement_0165",
+    "physical_attacks": "physical_attack_paths_0173",
+    "threat": "combat_threat_ledger_0164"
+  }
+}

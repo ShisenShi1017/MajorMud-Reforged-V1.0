@@ -6,8 +6,13 @@
     <Nullable>enable</Nullable>
     <AssemblyName>Reforged.Server</AssemblyName>
     <RootNamespace>Reforged.Server</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Reforged.Server.Runtime/Reforged.Server.Runtime.csproj" />
     <ProjectReference Include="../../../Core/Source/Reforged.Core/Reforged.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,22 @@
+{
+  "update": "0173",
+  "artifacts": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimePhysicalAttackPaths.cs",
+      "role": "runtime implementation"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimePhysicalAttackPathsSmokeReport.cs",
+      "role": "deterministic smoke vectors"
+    },
+    {
+      "path": "Librarium/CombatSpellReconstruction/physical_attack_paths_0173.json",
+      "role": "authoritative Reforged relationship and ownership catalog"
+    },
+    {
+      "path": "Evidence/CombatSpellReconstruction/physical_attack_paths_evidence_0173.json",
+      "role": "promotion evidence"
+    }
+  ],
+  "fallback": "unresolved production records reject without consuming the parent attack sequence"
+}

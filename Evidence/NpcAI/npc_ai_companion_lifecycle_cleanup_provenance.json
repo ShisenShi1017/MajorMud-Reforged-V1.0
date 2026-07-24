@@ -1,0 +1,23 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update_id": "CodeUpdate0196",
+  "runtime_file": "Apps/Source/Reforged.Server/RuntimeNpcCompanionLifecycleCleanup.cs",
+  "supporting_contracts": [
+    "RuntimeNpcCompanionOwnershipRequest",
+    "RuntimeNpcCompanionFollowRequest",
+    "RuntimeNpcCompanionCombatAssistRequest",
+    "RuntimeLivingNpcState",
+    "RuntimeLivingWorldService"
+  ],
+  "confidence": 1.0,
+  "assumptions": [
+    "The owning subsystem has already resolved that the supplied lifecycle event occurred.",
+    "The exact stored companion owner must authorize cleanup.",
+    "Companion death is admitted only for an already-dead runtime instance."
+  ],
+  "tests": [
+    "companion-lifecycle-cleanup-exposed",
+    "validator owner-match, supported-reason, death-state, target, threat and transient-metadata cleanup tokens"
+  ],
+  "fallback": "fail closed without changing companion state"
+}

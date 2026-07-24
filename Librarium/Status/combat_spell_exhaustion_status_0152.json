@@ -1,0 +1,24 @@
+{
+  "update": "0152",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated spell resource policy model",
+    "canonical spell ID enforcement for resource processing",
+    "reserve-at-start, commit-at-start, and commit-at-completion execution paths",
+    "terminal completion, interruption, validation-failure, and execution-failure handling",
+    "policy-controlled interruption and failure refunds",
+    "atomic resource snapshot rollback on sink errors",
+    "duplicate start and duplicate finish rejection",
+    "spell.1304 unresolved timing fail-closed policy",
+    "deterministic resource lifecycle smoke vectors"
+  ],
+  "not_claimed_complete": [
+    "native spell resource type and exact cost fields",
+    "global native resource consumption timing",
+    "fizzle, invalid-target, resistance, and saving-throw consumption rules",
+    "native concentration and interruption windows",
+    "resource reservation persistence"
+  ],
+  "next_pass": "Implement evidence-gated cast-state and interruption lifecycle with deterministic timer ownership, while leaving unknown native timing constants unresolved."
+}

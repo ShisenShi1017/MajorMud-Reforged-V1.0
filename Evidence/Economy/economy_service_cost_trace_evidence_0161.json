@@ -1,0 +1,48 @@
+{
+  "codeUpdate": "0161",
+  "scope": "trainer-and-service-cost-order-trace",
+  "classificationSummary": {
+    "proven": 7,
+    "stronglyCorrelated": 3,
+    "unknown": 5
+  },
+  "findings": [
+    {
+      "id": "provider-type-8",
+      "classification": "STRONGLY_CORRELATED",
+      "count": 44,
+      "finding": "WCC shop service type 8 consistently projects as trainer providers with level range, class limit, room and markup fields."
+    },
+    {
+      "id": "provider-type-10",
+      "classification": "STRONGLY_CORRELATED",
+      "count": 36,
+      "finding": "WCC shop service type 10 consistently projects as spell-service providers."
+    },
+    {
+      "id": "reforged-transaction-order",
+      "classification": "PROVEN",
+      "finding": "The implemented Economy service runtime validates, calculates, checks funds, debits, applies the external effect, persists, commits replay protection, and rolls back on failure."
+    },
+    {
+      "id": "native-formula-order",
+      "classification": "UNKNOWN",
+      "finding": "The available WCC records expose provider fields but not executable ordering of base cost, level/rank adjustment, markup, discount, and rounding."
+    }
+  ],
+  "sources": [
+    {
+      "path": "ImportedDatabases/NativeRuntime/WCCSHOPS.DAT",
+      "sha256": "1d5d8bd676717b1ffb8e10adf41123cbb3001c1d6750ef297ebffc56b46ed012",
+      "length": 78336
+    },
+    {
+      "path": "Data/Classic/shops.json",
+      "recordCount": 178
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeEconomyValuationServices.cs"
+    }
+  ],
+  "activation": "Native-exact trainer/service formula remains fail-closed; deterministic configured policies remain available."
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "events",
+  "runtimeOwner": "RuntimeWorldEventService",
+  "status": "runtime-active-partially-exhausted",
+  "eventFamilies": [
+    "timed", "recurring", "holiday", "sysop-triggered", "quest", "spawn", "invasion", "boss", "treasure", "world-state", "textblock", "script", "remote-action"
+  ],
+  "lifecycle": [
+    "inactive", "scheduled", "active", "completed", "cancelled", "failed"
+  ],
+  "actionKinds": [
+    "trigger", "script", "spawn", "despawn", "reward", "world-state", "announcement", "cleanup"
+  ],
+  "deterministicOrdering": [
+    "explicit action order", "canonical action id tie-break"
+  ],
+  "integrations": {
+    "clockScheduling": "supplies due-time activation requests",
+    "triggersScripts": "own execution semantics",
+    "npcAi": "owns spawn and despawn execution",
+    "economy": "owns reward value and transfer",
+    "communications": "owns announcement delivery",
+    "globalWorldState": "owns global flag mutation",
+    "worldResetCleanup": "may cancel or clean active events"
+  },
+  "persistence": ["ephemeral", "world-state"],
+  "safeFallback": "reject unknown events, premature activation, capacity overflow, and required-action failures",
+  "nativeDependencies": [
+    "exact Classic event record families and dispatch tables",
+    "start and end conditions",
+    "repeatability and cancellation rules",
+    "participant and reward ownership",
+    "restart recovery and cleanup ordering",
+    "remote-action event behavior",
+    "exact messages and administrative controls"
+  ]
+}

@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T20:33:31.850723+00:00",
+  "merge": {
+    "sourceArchives": [
+      "MajorMUD-Reforged-Combined-Character-Textblock-Command-Ability-Economy-Cumulative.zip",
+      "MajorMUD-Reforged-RemainingSystems-Update0037-Cumulative-Changed-Files-Only.zip"
+    ],
+    "baseFileCount": 433,
+    "addedFileCount": 230,
+    "pathCollisions": 0,
+    "conflictingCollisions": 0,
+    "sourceFileCountAfterMerge": 663
+  },
+  "includedSubsystems": {
+    "character": "managed runtime exhausted; native boundary quarantined",
+    "textblocksCommandsAbilities": "decoded corpus exhausted; native boundary quarantined",
+    "economy": "managed runtime included; native ordering/binding remains",
+    "remainingSystems": "repository-visible inventory closed; 36 partial policy/compatibility shells included"
+  },
+  "remainingDecodeAreas": [
+    {
+      "priority": 1,
+      "area": "Items",
+      "status": "FULL_SUBSYSTEM_NOT_INCLUDED",
+      "detail": "Decode and implement item definitions and runtime instances, ownership, stacking, charges, durability, use behavior, portable containers, limited-item rules, persistence, death/corpse handling, and all cross-subsystem relationships."
+    },
+    {
+      "priority": 2,
+      "area": "NPC & AI",
+      "status": "FULL_SUBSYSTEM_NOT_INCLUDED",
+      "detail": "Decode and implement NPC records, spawn/despawn, AI update loop, perception, hostility, pathing, dialogue, merchants/trainers, inventory, death, respawn, and persistence."
+    },
+    {
+      "priority": 3,
+      "area": "Combat & Spells",
+      "status": "FULL_SUBSYSTEM_NOT_INCLUDED",
+      "detail": "Decode and implement combat lifecycle/timing, hit and damage formulas, casting, targeting, resistance, saving throws, status effects, threat, death, resurrection, summons, and persistence."
+    },
+    {
+      "priority": 4,
+      "area": "Remaining Systems native closure",
+      "status": "36_PARTIAL_POLICY_SHELLS_NATIVE_EVIDENCE_REQUIRED",
+      "detail": "Repository-visible inventory is closed, but all 36 Remaining Systems entries are partially exhausted compatibility/policy shells. Exact Classic records, formulas, commands, messages, persistence, timing, ownership boundaries, and host integration require native evidence."
+    },
+    {
+      "priority": 5,
+      "area": "Character native boundary",
+      "status": "6_NATIVE_DEPENDENCIES",
+      "detail": "Welcome/event ordering; reconnect grace/socket takeover; link-dead combat retention; party leadership succession; trade escrow disposition; offline corpse-decay reconciliation."
+    },
+    {
+      "priority": 6,
+      "area": "Textblocks / Commands / Abilities native boundary",
+      "status": "4_NATIVE_DEPENDENCIES",
+      "detail": "Exact message payload catalog; native textblock payload bodies/branching; remoteaction dispatcher; native player command table and aliases."
+    },
+    {
+      "priority": 7,
+      "area": "Economy native boundary",
+      "status": "2_NATIVE_DEPENDENCY_FAMILIES",
+      "detail": "Exact native service-cost stage ordering and binding remaining native markup/service-cost observations to executable paths and source offsets."
+    },
+    {
+      "priority": 8,
+      "area": "Rooms native boundary",
+      "status": "2_PRESERVED_UNKNOWN_FAMILIES",
+      "detail": "Seven native latch effects and 266 unknown-qualified exits."
+    },
+    {
+      "priority": 9,
+      "area": "Final WCC/WBB/DLL/File exhaustion",
+      "status": "FINAL_PHASE",
+      "detail": "Resolve all remaining native record layouts, flags/masks, save formats, dispatcher paths, exact timing/random behavior, host boundaries, and surviving subsystem dependencies."
+    }
+  ],
+  "remainingSystemsSummary": {
+    "registryEntryCount": 36,
+    "partialEntryCount": 35,
+    "nativeDependencyRecordCountDeduplicated": 40,
+    "registryIds": [
+      "party-coordination",
+      "guild-faction-organization",
+      "communications",
+      "mail-offline-messaging",
+      "doors-locks-access",
+      "traps",
+      "environmental-hazards",
+      "world-containers",
+      "clock-scheduling",
+      "weather-day-night",
+      "world-reset-cleanup",
+      "events",
+      "pvp-policy",
+      "law-bounty-guards",
+      "rest-inn-recovery-policy",
+      "transport-services",
+      "player-transactions",
+      "account-session-ownership",
+      "world-rules-configuration",
+      "administrative-policy",
+      "security-permissions",
+      "logging-diagnostics",
+      "save-coordination",
+      "startup-shutdown",
+      "worldgroup-integration",
+      "global-rng",
+      "global-world-state",
+      "builder-content-editing",
+      "import-export-compatibility",
+      "help-reference",
+      "rankings-statistics",
+      "character-identity-policy",
+      "capacity-resource-limits",
+      "error-handling-recovery",
+      "games-arenas-optional-activities",
+      "reforged-extension-boundaries"
+    ]
+  },
+  "deduplicatedRemainingSystemsNativeDependencies": [
+    {
+      "id": "party-coordination",
+      "questions": [
+        "party member limit",
+        "invitation timeout and timer owner",
+        "logout, disconnect, death, restart, reset, and deletion behavior",
+        "shared experience, loot, quest credit, spell, teleport, and resurrection policy",
+        "exact command permissions and rendered messages"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "rooms",
+      "questions": [
+        "seven unresolved room latch effects"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "communications.classic-range-rendering",
+      "questions": [
+        "exact shout/yell distance and adjacency rules",
+        "exact local/tell/whisper failure and success rendering",
+        "color, language, invisibility, and moderation rules"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "communications.persistence-logging",
+      "questions": [
+        "ignore/mute persistence owner",
+        "communication logging and flood thresholds",
+        "Worldgroup versus MajorMUD moderation boundary"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "organizations.classic-model",
+      "questions": [
+        "which organization categories are native MajorMUD entities",
+        "whether player-created guilds exist",
+        "exact ranks, permissions, commands, titles, and messages"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "organizations.persistence-services",
+      "questions": [
+        "membership persistence and character deletion behavior",
+        "dues, storage, halls, trainers, merchants, quests, reputation, hostility, and alliances",
+        "Worldgroup versus MajorMUD organization ownership"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "doors-locks-access",
+      "questions": [
+        "exact Classic open/close/lock/unlock messages",
+        "native key-consumption semantics",
+        "lockpick and bash success formulas",
+        "door durability and break recovery",
+        "one-way and remote lock encodings",
+        "exact reset persistence",
+        "seven unresolved room latch effects"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "traps",
+      "questions": [
+        "exact trap record families and field encodings",
+        "native detection and disarm formulas",
+        "failed-disarm trigger behavior",
+        "exact trap messages",
+        "charge/reset/rearm semantics",
+        "save and restart persistence",
+        "immunity/protection precedence",
+        "exact door/container/movement/combat/spell/quest/NPC ordering"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "environmental-hazards",
+      "questions": [
+        "exact Classic environmental record families and room-field mappings",
+        "native tick frequency and round conversion",
+        "resistance and protection precedence",
+        "entry/exit/periodic ordering",
+        "NPC eligibility",
+        "exact messages and damage/status formulas",
+        "save and reset behavior",
+        "weather and day/night coupling"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "world-containers",
+      "questions": [
+        "exact Classic container record families",
+        "exact capacity and weight rules",
+        "native lock and trap ordering",
+        "restock and reset semantics",
+        "corpse ownership and decay",
+        "bank and guild storage ownership",
+        "concurrent access behavior",
+        "exact messages"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "clock-scheduling",
+      "questions": [
+        "exact Classic round/tick/minute conversion",
+        "native seed clock and host-time boundary",
+        "restart and missed-timer behavior",
+        "simultaneous timer ordering",
+        "overflow and drift behavior",
+        "day rollover and daylight-saving dependence",
+        "exact schedules for merchants/trainers/spawns/quests/status/events"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "world-reset-cleanup",
+      "questions": [
+        "exact reset category ordering",
+        "hard-reset exception encodings",
+        "active-player and combat handling",
+        "corpse and limited-item survival",
+        "owner-specific reset and persistence semantics",
+        "failure and rollback behavior"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "events",
+      "questions": [
+        "exact Classic event record families and dispatch mappings",
+        "native start/end conditions and scheduling",
+        "repeatability, cancellation, failure, and cleanup behavior",
+        "participant and reward policy",
+        "restart and missed-event recovery",
+        "remote-action event behavior",
+        "exact messages and administrative controls"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "pvp-policy",
+      "questions": [
+        "exact Classic PvP availability and consent model",
+        "safe/restricted zone encodings",
+        "level and alignment restrictions",
+        "criminal and Evil Point interactions",
+        "party and guild restrictions",
+        "kill credit and death penalties",
+        "loot and corpse access",
+        "guard and bounty reactions",
+        "cooldowns and logout restrictions",
+        "exact commands and messages"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "law-bounty-guards",
+      "questions": [
+        "exact crime families and witness rules",
+        "Evil Point and criminal-flag coupling",
+        "bounty arithmetic and limits",
+        "guard alert/summon/hostility behavior",
+        "arrest, jail, fines, confiscation, reputation, and reporting",
+        "crime decay and pardon authority",
+        "exact messages and persistence"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "rest-inn-recovery-policy",
+      "questions": [
+        "exact Classic rest/sleep commands and messages",
+        "native recovery formulas and tick timing",
+        "inn rental persistence",
+        "safe logout room rules",
+        "status cleanup behavior",
+        "login-room behavior",
+        "Worldgroup versus MajorMUD ownership"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "transport-services",
+      "questions": [
+        "exact Classic transport record families",
+        "native schedules and boarding windows",
+        "fare ownership and refund behavior",
+        "disconnect/linkdead behavior",
+        "capacity and party boarding",
+        "combat interruption",
+        "exact messages",
+        "persistence and restart recovery"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "player-transactions",
+      "questions": [
+        "exact Classic give/trade/auction command families",
+        "native escrow and atomicity",
+        "capacity and weight validation ordering",
+        "limited and quest item restrictions",
+        "disconnect rollback",
+        "auction/bid/buyout persistence",
+        "exact messages and logging"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "mail-offline-messaging",
+      "questions": [
+        "MajorMUD versus Worldgroup ownership of player mail, notes, bulletin boards, and announcements",
+        "exact offline tell behavior",
+        "native subject/body limits",
+        "attachment support",
+        "currency and item escrow semantics",
+        "read/delete persistence",
+        "expiration rules",
+        "character deletion behavior",
+        "delivery timing",
+        "exact commands and messages",
+        "host message queue and moderation integration"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "account-session-ownership",
+      "questions": [
+        "Worldgroup account and authentication structures",
+        "native character slot limit",
+        "duplicate login behavior",
+        "session takeover behavior",
+        "linkdead grace period",
+        "idle timeout",
+        "combat logout restrictions",
+        "safe-room restrictions",
+        "character deletion and restoration",
+        "account and character bans",
+        "module access restrictions",
+        "last-login persistence",
+        "exact login/logout messages",
+        "save ordering on disconnect",
+        "party and follower cleanup ordering"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "world-rules-configuration",
+      "questions": [
+        "exact MajorMUD 1.11p configuration record sources",
+        "defaults and allowed ranges",
+        "which settings are runtime mutable",
+        "restart requirements",
+        "world-state and save impact",
+        "maximum users and module capacity ownership",
+        "starting room, gold, and level semantics",
+        "experience, loot, and respawn rate semantics",
+        "PvP and death-penalty settings",
+        "reset intervals",
+        "Evil Point settings",
+        "communications settings",
+        "merchant and trainer settings",
+        "limited-item settings",
+        "quest and event settings",
+        "administrative permission levels",
+        "Worldgroup versus MajorMUD configuration boundary"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "administrative-policy",
+      "questions": [
+        "exact MajorMUD and Worldgroup administrator levels",
+        "exact command names and aliases",
+        "exact confirmation behavior",
+        "visibility to targets and normal players",
+        "native audit logging",
+        "rollback support",
+        "save timing",
+        "world-state mutation ordering",
+        "ban, kick, mute, freeze and module-lock ownership",
+        "builder versus sysop permissions",
+        "native remote-action authority"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "security-permissions",
+      "questions": [
+        "exact MajorMUD player, sysop and builder privilege levels",
+        "Worldgroup authentication and authorization interfaces",
+        "native script and textblock execution privilege",
+        "remote-action authorization and caller identity",
+        "native save and file access boundary",
+        "cross-character and cross-world access rules",
+        "native command sanitization and rendering rules",
+        "audit log destination and retention",
+        "host/module trust handoff",
+        "exact unauthorized-action messages"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "logging-diagnostics",
+      "questions": [
+        "exact MajorMUD and Worldgroup log destinations",
+        "native retention and rotation",
+        "original log formats",
+        "crash log ownership",
+        "player-visible combat log behavior",
+        "native audit visibility and redaction"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "save-coordination",
+      "questions": [],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "startup-shutdown",
+      "questions": [
+        "exact Classic startup ordering",
+        "native DLL initialization and teardown",
+        "Worldgroup admission and shutdown hooks",
+        "crash recovery versus clean shutdown",
+        "pending native action disposition"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "worldgroup-integration",
+      "questions": [
+        "exact Worldgroup terminal-session APIs",
+        "account and billing/access interfaces",
+        "host scheduler and shutdown hooks",
+        "message-system ownership",
+        "WCC/WBB library call boundaries",
+        "native error messages and return codes"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "global-rng.native-contract",
+      "questions": [
+        "exact generator algorithm and integer width",
+        "seed source and stream sharing",
+        "inclusive/exclusive range semantics and bias",
+        "save/restart restoration behavior"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "global-world-state",
+      "questions": [
+        "exact global flag and variable record families",
+        "unknown bit mask counter and latch meanings",
+        "native defaults and mutation call sites",
+        "reset ordering and persistence",
+        "replication and visibility behavior"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "weather-day-night",
+      "questions": [
+        "prove whether MajorMUD 1.11p implements day/night or weather",
+        "identify record families and transition schedules",
+        "resolve effects on visibility rooms spawns NPC behavior spells and hazards",
+        "resolve Worldgroup versus MajorMUD ownership"
+      ],
+      "finalPhase": "WCC-WBB-native"
+    },
+    {
+      "id": "builder-content-editing",
+      "questions": [
+        "whether original MajorMUD exposes builder commands",
+        "exact native builder permissions",
+        "native live-edit and reload support",
+        "original record validation and publish workflow",
+        "Worldgroup editor/module boundaries"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "import-export-compatibility",
+      "questions": [
+        "exact WCC/WBB record versioning",
+        "native import/export commands",
+        "legacy save migrations",
+        "duplicate and missing-reference behavior",
+        "rollback semantics",
+        "binary checksums and packing"
+      ],
+      "finalPhase": "WCC/WBB/native DLL and file exhaustion"
+    },
+    {
+      "id": "help-reference",
+      "questions": [
+        "exact Classic help topic record families",
+        "native HELP command syntax and aliases",
+        "exact formatting and pagination",
+        "textblock linkage",
+        "permission filtering",
+        "Worldgroup versus MajorMUD help ownership",
+        "search matching and ambiguity behavior"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "rankings-statistics",
+      "questions": [
+        "whether Classic exposes rankings or scoreboards",
+        "exact ranking metric families",
+        "update timing and tie-breaking",
+        "privacy and hidden-character behavior",
+        "reset schedules",
+        "administrator exclusion",
+        "native persistence and messages"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "character-identity-policy",
+      "questions": [
+        "exact Classic name length and allowed characters",
+        "reserved-name list and duplicate comparison",
+        "title sources and precedence",
+        "alignment, class, level, guild, and administrative title tables",
+        "hidden and invisible identity rendering",
+        "disguise behavior",
+        "exact validation and failure messages",
+        "Worldgroup versus MajorMUD name ownership"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "capacity-resource-limits",
+      "questions": [
+        "exact Classic limits",
+        "configurable versus static limits",
+        "native integer widths",
+        "allocation failure behavior",
+        "cleanup and admission rejection messages"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "error-handling-recovery",
+      "questions": [
+        "exact Classic failure behavior",
+        "exact native messages",
+        "save corruption recovery",
+        "partial-load tolerance",
+        "script/event/reset recovery",
+        "native subsystem disable behavior"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "games-arenas-optional-activities",
+      "questions": [
+        "feature existence in MajorMUD 1.11p",
+        "exact commands, costs, rewards, rules, persistence, and ownership boundary"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "reforged-extension-boundaries",
+      "questions": [
+        "exact native Classic extension boundary and version markers",
+        "native save and catalog version compatibility",
+        "host module feature flags and Worldgroup policy"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    },
+    {
+      "id": "repository-inventory-closure.final-native-evidence",
+      "questions": [
+        "resolve all dependency groups enumerated by repository_inventory_closure.json against WCC/WBB/native DLLs/executables/save files",
+        "confirm exact native ownership, ordering, formulas, messages, limits, flags, timers, and persistence"
+      ],
+      "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
+    }
+  ],
+  "recommendedOrder": [
+    "Items",
+    "NPC & AI",
+    "Combat & Spells",
+    "Final native closure of Remaining Systems and prior subsystem boundaries",
+    "Final WCC/WBB/DLL/File exhaustion"
+  ]
+}

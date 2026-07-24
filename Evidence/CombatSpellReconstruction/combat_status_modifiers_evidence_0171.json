@@ -1,0 +1,46 @@
+{
+  "update": "0171",
+  "promotions": [
+    {
+      "behavior": "active spell effects may contribute evidence-owned combat modifiers and action restrictions through a deterministic aggregation boundary",
+      "confidence": "strongly_correlated",
+      "sources": [
+        "RuntimeCombatSpellEffectLifecycle.cs",
+        "RuntimeResolvedStatusApplication.cs",
+        "RuntimePhysicalWeaponAttackExecution.cs",
+        "RuntimeCombatMovement.cs",
+        "RuntimeCombatSpellCastLifecycle.cs"
+      ],
+      "record_ids": ["runtime fixture status policies only"],
+      "byte_offsets": [],
+      "supporting_evidence": [
+        "active effects already retain spell identity, magnitude, stack count, target ownership, and application order",
+        "physical attack, spell cast, and movement paths already expose explicit validation boundaries",
+        "status semantics must be policy-bound rather than inferred from effect names"
+      ],
+      "assumptions": [
+        "numeric status contributions are additive only when explicitly encoded by a promoted policy",
+        "action restrictions are evaluated before the owning action mutates state",
+        "hidden break is emitted as a decision signal and remains owned by the character visibility subsystem"
+      ],
+      "tests": [
+        "stable active-effect ordering",
+        "stack-aware modifier scaling",
+        "attack, cast, and movement restriction decisions",
+        "missing and weak policy rejection",
+        "checked-overflow rejection"
+      ],
+      "fallback": "reject",
+      "runtime_impact": "active statuses can now feed deterministic combat inputs and block requested actions",
+      "character_save_impact": "none added; effect persistence remains unresolved",
+      "world_state_impact": "temporary combat calculations and action eligibility only"
+    }
+  ],
+  "unknown": [
+    "production spell-to-status-family bindings",
+    "native additive versus multiplicative modifier ordering",
+    "status caps and floors",
+    "exact hide, invisibility, and detection interactions",
+    "charm and fear ownership transitions"
+  ]
+}

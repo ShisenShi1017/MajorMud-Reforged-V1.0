@@ -1,0 +1,22 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime.item.charge-and-consumption.0165",
+  "classification": "reforged_compatibility_infrastructure",
+  "rules": [
+    "charges are per-instance persisted state and cannot be negative",
+    "charge expenditure requires authoritative ownership and sufficient current charges",
+    "recharge is disabled unless an authoritative maximum_charges value is projected",
+    "consumption quantity must be positive and cannot exceed current stack quantity",
+    "consuming the final quantity destroys the runtime instance",
+    "non-empty portable containers cannot be consumed or destroyed",
+    "all charge and consumption mutations are atomic and roll back on validation failure"
+  ],
+  "classic_unknowns": [
+    "maximum charges by item",
+    "recharge source and timing",
+    "zero-charge retention versus transformation",
+    "consumption on failed or interrupted use",
+    "replacement item creation"
+  ],
+  "fallback": "fail_closed"
+}

@@ -1,0 +1,14 @@
+{
+  "policy_id": "runtime.item.world_persistence.integrity",
+  "version": "0192",
+  "scope": "Reforged world item repository",
+  "rules": [
+    "Validate runtime item and corpse state before writing",
+    "Hash the exact authoritative save bytes with SHA-256",
+    "Write the integrity sidecar through atomic replacement",
+    "Verify the sidecar before deserializing a protected save",
+    "Run complete structural validation after integrity verification",
+    "Reject missing, malformed, or mismatched integrity records without mutating persisted state"
+  ],
+  "classic_native_status": "unknown; final native pass required"
+}

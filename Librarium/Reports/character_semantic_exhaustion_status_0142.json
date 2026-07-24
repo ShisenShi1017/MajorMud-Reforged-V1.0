@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "code_update": "0142",
+  "subsystem": "character",
+  "pass": "statistics_hp_mana",
+  "status": "partial_semantic_exhaustion",
+  "completed": [
+    "canonical six primary-stat identifiers",
+    "creation-time maximum HP calculation order",
+    "signed constitution adjustment and duplicate application",
+    "creation accumulated HP roll seed",
+    "class magic-type maximum mana branches",
+    "overflow and minimum-value fail-safe behavior",
+    "runtime calculator integration into character creation"
+  ],
+  "remaining": [
+    "SP and EP ownership/formulas",
+    "AC, attack, defense, initiative, and speed",
+    "resistances and saving throws",
+    "equipment-derived statistic evaluation order",
+    "level-up HP roll persistence and recalculation",
+    "regeneration and temporary modifier ordering"
+  ],
+  "native_pass_dependencies": [
+    "formula families not yet recovered from native routines or authoritative observations"
+  ]
+}

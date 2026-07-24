@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "traps",
+  "runtimeOwner": "RuntimeTrapService",
+  "persistenceOwner": "world trap state; downstream effects remain owned by their target subsystems",
+  "locations": ["room", "exit", "door", "container", "item", "quest", "script", "spell"],
+  "triggers": ["enter", "exit", "open", "close", "unlock", "take", "use", "search", "script"],
+  "lifecycle": ["hidden", "detected", "armed", "triggered", "charge-depleted", "disarmed", "rearmed", "reset"],
+  "effectRequests": ["damage", "status", "teleport", "summon", "alarm", "door-state", "quest-state"],
+  "ownershipBoundaries": {
+    "combatAndSpells": "resolve damage, saving throws, status effects, teleportation, and summons",
+    "npcAi": "resolve alarms and alert reactions",
+    "doors": "commit requested door-state mutations",
+    "quests": "commit requested quest-state mutations",
+    "traps": "detection, visibility, disarming, triggering, charges, rearming, reset, and routing"
+  },
+  "safeFallbacks": [
+    "unknown trap IDs do not trigger",
+    "unsupported trigger types are rejected",
+    "missing abilities fail closed",
+    "corrupt persisted state falls back to validated catalog defaults",
+    "unproven chance formulas are exposed as evidence-only threshold checks"
+  ],
+  "nativeDependencies": [
+    "exact trap record families and field encodings",
+    "native detection and disarm formulas",
+    "failed-disarm trigger behavior",
+    "exact trap messages",
+    "exact charge, reset, and rearm semantics",
+    "save and restart persistence",
+    "trap immunity and protection precedence",
+    "exact integration ordering with doors, containers, movement, combat, spells, quests, and NPC alerts"
+  ]
+}

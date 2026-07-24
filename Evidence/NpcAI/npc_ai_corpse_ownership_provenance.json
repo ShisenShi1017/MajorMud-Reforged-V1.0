@@ -1,0 +1,9 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "pass": "CodeUpdate0178",
+  "confidence": 1.0,
+  "assumptions": ["The living-world lifecycle supplies the authoritative corpse identity, room and timestamps.", "Gold is accepted only as an explicit upstream value."],
+  "character_save_impact": "None unless a character later loots the item corpse through the item subsystem.",
+  "world_state_impact": "NPC-owned item instances move to a persisted item-runtime corpse.",
+  "native_dependency": false
+}

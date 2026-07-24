@@ -1,0 +1,20 @@
+{
+  "id": "policy.runtime.items.corpse_loot_permission.v1",
+  "authority": "Librarium",
+  "mode": "compatibility_infrastructure",
+  "activation": "explicit_projection_only",
+  "rules": [
+    "A corpse without a projected loot owner is unrestricted.",
+    "An exclusive loot duration requires a non-empty loot owner.",
+    "Before exclusive expiration, only the projected loot owner may loot items or gold.",
+    "At or after expiration, item and gold loot are unrestricted unless another subsystem adds an independently proven restriction.",
+    "Denied loot attempts are atomic and cannot mutate corpse, item, or gold state.",
+    "Exact Classic ownership, party, killer, NPC, and sysop rules remain fail-closed and unassigned."
+  ],
+  "ownership": {
+    "items": "item and gold transfer authorization primitive",
+    "character_npc": "death sequencing and eligible looter identity source",
+    "world_runtime": "clock and corpse decay scheduling",
+    "commands": "parsing and user-facing messages"
+  }
+}

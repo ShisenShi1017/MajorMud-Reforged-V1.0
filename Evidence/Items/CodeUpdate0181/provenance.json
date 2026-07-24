@@ -1,0 +1,13 @@
+{
+  "code_update": "0181",
+  "artifact": "item_merchant_restock_identity",
+  "classification": "reforged_compatibility_infrastructure",
+  "sources": [
+    {"path": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs", "role": "runtime implementation"},
+    {"path": "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs", "role": "deterministic smoke coverage"},
+    {"path": "Librarium/Policies/runtime_item_merchant_restock_identity_policy.json", "role": "authoritative Reforged policy"}
+  ],
+  "record_ids": [],
+  "byte_offsets": [],
+  "unknowns": ["Classic restock scheduling", "Classic finite-stock representation", "Classic restock identity reuse", "Classic messages"]
+}

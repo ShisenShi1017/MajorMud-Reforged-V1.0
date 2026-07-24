@@ -1,0 +1,25 @@
+{
+  "code_update": "0148",
+  "subsystem": "Character flags phase 1",
+  "status": "promoted",
+  "proven": [
+    "dead flag character ownership",
+    "dead flag persistence on defeat",
+    "dead flag explicit clear on respawn",
+    "resting flag persisted read behavior",
+    "typed condition/semantic synchronization",
+    "save versions 1-3 backward compatibility"
+  ],
+  "counts": {
+    "promoted_flags": 2,
+    "fully_recovered_lifecycles": 1,
+    "read_only_recovered_lifecycles": 1
+  },
+  "blocked": [
+    "resting setter and reset rules",
+    "native flag bitfields and masks",
+    "session, quest, combat, area, and world flag families",
+    "unrecovered login/logout reset conditions"
+  ],
+  "next": "Character status effects and timers"
+}

@@ -1,0 +1,224 @@
+{
+  "artifact": "MajorMUD-Reforged-Combined-Character-Textblock-Command-Ability-Economy-Cumulative.zip",
+  "completed_or_closed": [
+    {
+      "latest_evidence": "CodeUpdate0166",
+      "status": "managed runtime semantically exhausted; 6 native-only lifecycle dependencies quarantined",
+      "subsystem": "Character"
+    },
+    {
+      "latest_evidence": "CodeUpdate0160",
+      "status": "closed for current decoded corpus; 4 native-only dependencies quarantined",
+      "subsystem": "Textblocks / Commands / Abilities"
+    },
+    {
+      "latest_evidence": "CodeUpdate0164",
+      "status": "managed economy passes through service-cost finalization included; remaining native ordering/binding retained",
+      "subsystem": "Economy"
+    }
+  ],
+  "merge": {
+    "conflicting_paths": 0,
+    "deduplication_key": "finding.id",
+    "duplicate_findings_emitted": 0,
+    "path_collisions": 0,
+    "unique_file_paths": 401
+  },
+  "recommended_order": [
+    "Items",
+    "NPC & AI",
+    "Combat & Spells",
+    "World Objects / Containers / Doors / Locks / Traps",
+    "World Runtime / Resets / Events / Scheduling",
+    "Parties / Guilds / Factions / Reputation",
+    "Sessions / Accounts / Login / Persistence Coordination",
+    "Communications boundary audit",
+    "Administration / Sysop / Builder / Permissions",
+    "Remaining Systems inventory",
+    "Final WCC/WBB/DLL/File pass"
+  ],
+  "remaining_decode": [
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "native.message_payload_catalog",
+      "needed": "Decode exact message payloads, substitution grammar, color/formatting, pagination and timing.",
+      "scope": "130 message references",
+      "subsystem": "Textblocks/Commands/Abilities"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "native.textblock_payload_catalog",
+      "needed": "Decode native textblock bodies, branch encoding, nested return/termination behavior and embedded expressions.",
+      "scope": "389 invocations / 156 unique targets",
+      "subsystem": "Textblocks/Commands/Abilities"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "native.remoteaction_dispatcher",
+      "needed": "Recover dispatcher entry point, argument decoding, target resolution, mutation order and rollback.",
+      "scope": "remoteaction 1423 66 0 3",
+      "subsystem": "Textblocks/Commands/Abilities"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "native.player_command_table",
+      "needed": "Enumerate native commands, aliases, minimum prefixes, handlers and argument parsers.",
+      "scope": "commands outside 77 managed registrations",
+      "subsystem": "Textblocks/Commands/Abilities"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.welcome_event_ordering",
+      "needed": "Recover exact welcome and event-message ordering.",
+      "scope": "login lifecycle",
+      "subsystem": "Character"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.reconnect_grace_socket_takeover",
+      "needed": "Recover reconnect grace interval and native socket ownership takeover.",
+      "scope": "reconnect lifecycle",
+      "subsystem": "Character"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.link_dead_combat_retention",
+      "needed": "Recover native link-dead combat retention duration and cleanup order.",
+      "scope": "disconnect/combat lifecycle",
+      "subsystem": "Character"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.party_leadership_succession",
+      "needed": "Recover native party leadership succession ordering.",
+      "scope": "party disconnect lifecycle",
+      "subsystem": "Character / Parties"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.trade_escrow_disposition",
+      "needed": "Recover escrow disposition beyond safe cancellation.",
+      "scope": "disconnect during trade",
+      "subsystem": "Character / Trading"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "character.offline_corpse_decay_reconciliation",
+      "needed": "Recover corpse timer reconciliation while owner is offline.",
+      "scope": "offline corpse timers",
+      "subsystem": "Character / World Runtime"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "economy.native_service_cost_stage_order",
+      "needed": "Prove native ordering of minimum price, additive adjustments, multiplier composition and finalization.",
+      "scope": "service-cost finalization",
+      "subsystem": "Economy"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "economy.native_markup_sources",
+      "needed": "Bind remaining native markup/service-cost observations to exact executable paths and source offsets.",
+      "scope": "native markup and observations",
+      "subsystem": "Economy"
+    },
+    {
+      "classification": "UNKNOWN_NATIVE_DEPENDENCY",
+      "id": "rooms.native_latch_effects",
+      "needed": "Resolve the seven tracked native latch effects during final WCC/WBB/DLL pass.",
+      "scope": "7 room latch effects",
+      "subsystem": "Rooms"
+    },
+    {
+      "classification": "PRESERVED_UNKNOWN_DATA",
+      "id": "rooms.unknown_qualified_exits",
+      "needed": "Resolve qualifiers only with authoritative native evidence; preserve current fail-safe routing.",
+      "scope": "266 exits",
+      "subsystem": "Rooms"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "items.complete_runtime",
+      "needed": "Complete item definitions, instances, ownership, stacking, charges, durability, use, containers, limited-item rules, persistence and cross-system integration.",
+      "scope": "full subsystem",
+      "subsystem": "Items"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "npc_ai.complete_runtime",
+      "needed": "Complete NPC records, spawn/despawn, AI loop, perception, hostility, movement, dialogue, merchants/trainers, death, respawn and persistence.",
+      "scope": "full subsystem",
+      "subsystem": "NPC & AI"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "combat_spells.complete_runtime",
+      "needed": "Complete combat lifecycle, timing, hit/damage formulas, casting, targeting, resistance, saves, status, death and resurrection.",
+      "scope": "full subsystem",
+      "subsystem": "Combat & Spells"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "world_objects.complete_runtime",
+      "needed": "Complete shared object ownership, door/lock state, keys, traps, portable/world containers, reset and persistence.",
+      "scope": "full subsystem",
+      "subsystem": "World Objects / Containers / Doors / Locks / Traps"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "world_runtime.complete_runtime",
+      "needed": "Complete authoritative clock, timer ordering, reset lifecycle, events, hard timers, restart restoration and global state.",
+      "scope": "full subsystem",
+      "subsystem": "World Runtime / Resets / Events / Scheduling"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "parties_factions.complete_runtime",
+      "needed": "Complete membership, leadership, shared rewards, faction reactions, reputation, law and organization restrictions.",
+      "scope": "full subsystem",
+      "subsystem": "Parties / Guilds / Factions / Reputation"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "sessions_persistence.complete_runtime",
+      "needed": "Complete session ownership, account boundary, linkdead handling, duplicate sessions, autosave coordination, startup/shutdown and crash recovery.",
+      "scope": "full subsystem",
+      "subsystem": "Sessions / Accounts / Login / Persistence Coordination"
+    },
+    {
+      "classification": "BOUNDARY_AUDIT_REQUIRED",
+      "id": "communications.complete_runtime",
+      "needed": "Determine MajorMUD-owned channels, routing, ignores/mutes, offline messages, moderation and host-platform ownership.",
+      "scope": "MajorMUD vs Worldgroup boundary",
+      "subsystem": "Communications & Social"
+    },
+    {
+      "classification": "SUBSYSTEM_NOT_INCLUDED",
+      "id": "administration.complete_runtime",
+      "needed": "Complete permissions, privileged mutation policy, audit logging, builder lifecycle and security boundaries.",
+      "scope": "full subsystem",
+      "subsystem": "Administration / Sysop / Builder / Permissions"
+    },
+    {
+      "classification": "GAP_AUDIT_REQUIRED",
+      "id": "remaining_systems.inventory",
+      "needed": "Inventory any unassigned runtime service, record family, command family, timer, flag, global variable or host integration.",
+      "scope": "repository-wide",
+      "subsystem": "Remaining Systems"
+    },
+    {
+      "classification": "FINAL_PHASE",
+      "id": "final_native_formats",
+      "needed": "Resolve binary record layouts, save formats, native flags/masks, dispatcher paths, timing/random behavior and all surviving subsystem dependencies.",
+      "scope": "all quarantined dependencies",
+      "subsystem": "Final WCC/WBB/DLL/File Pass"
+    }
+  ],
+  "remaining_decode_count": 25,
+  "schema": "combined_semantic_exhaustion_audit_v1",
+  "source_archives": [
+    "Triggers,Textbolck,Abilities DONE.zip",
+    "Economy DONE.zip",
+    "Character Runtime Done.zip"
+  ]
+}

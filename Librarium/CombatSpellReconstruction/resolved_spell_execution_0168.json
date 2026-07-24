@@ -1,0 +1,32 @@
+{
+  "update": "0168",
+  "subsystem": "combat_spells",
+  "artifact": "resolved_spell_execution",
+  "status": "active_evidence_gated",
+  "runtime_owner": "Combat and Spells",
+  "integrates": [
+    "direct spell execution",
+    "resistance resolution",
+    "saving throws",
+    "secondary-effect duration"
+  ],
+  "ordering": [
+    "resolve resistance",
+    "resolve saving throw",
+    "validate canonical execution identity",
+    "apply immunity or save negation",
+    "apply vulnerability or resistance magnitude adjustment",
+    "convert absorbed damage to restoration",
+    "apply save magnitude reduction",
+    "commit direct mutation atomically",
+    "reduce or suppress secondary effect"
+  ],
+  "fail_closed": [
+    "unbound production resistance policy",
+    "unbound production save policy",
+    "spell/caster/target/combat/tick mismatch",
+    "unresolved absorption ownership",
+    "unresolved production spell.1304 semantics"
+  ],
+  "evidence_policy": "strongly correlated test policies are executable; unresolved production mappings reject"
+}

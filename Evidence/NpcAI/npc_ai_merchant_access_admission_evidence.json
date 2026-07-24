@@ -1,0 +1,30 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "update": "CodeUpdate0190",
+  "finding": "exact host-resolved NPC merchant access admission and completion",
+  "classification": "strongly-correlated-active",
+  "runtime_files": [
+    "Apps/Source/Reforged.Server/RuntimeNpcMerchantAccessAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs"
+  ],
+  "supporting_evidence": [
+    "Existing NPC service admission already owns living same-room merchant interaction requests and exact completion IDs.",
+    "Merchant shop-hours, actor eligibility, and currency policy are separate host-owned decisions and can be supplied explicitly without deriving native rules.",
+    "The new boundary rejects all unresolved policy states before any transaction-owning subsystem is invoked."
+  ],
+  "assumptions": [
+    "ShopOpen, ActorEligible, and CurrencyAuthorized are authoritative decisions supplied by the owning host policy.",
+    "Pricing, stock mutation, item transfer, and currency transfer remain owned by their established subsystems."
+  ],
+  "fallback": "Closed, ineligible, unauthorized, mismatched, stale, or invalid requests reject without transaction mutation.",
+  "tests": [
+    "merchant-access-admission-exposed",
+    "merchant-access-completion-exposed",
+    "merchant-service-admission-integrated",
+    "merchant-service-completion-integrated"
+  ],
+  "runtime_impact": "Adds exact merchant buy, sell, and repair access admission after explicit host policy resolution.",
+  "character_save_impact": "none directly; transaction effects remain owned by Economy and Item runtimes.",
+  "world_state_impact": "persists only the existing NPC active service request and completion audit metadata."
+}

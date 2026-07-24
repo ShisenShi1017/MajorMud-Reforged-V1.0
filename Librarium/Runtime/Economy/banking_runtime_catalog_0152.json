@@ -1,0 +1,66 @@
+{
+  "catalogId": "economy-banking-runtime-0152",
+  "runtimeAuthority": "server",
+  "currencyAuthority": "RuntimeEconomyCurrency",
+  "accountModel": {
+    "canonicalId": "accountId",
+    "bankReference": "bankId",
+    "currencyReference": "currencyId",
+    "ownership": "one-or-more character owner IDs",
+    "sharedAccounts": true,
+    "balanceUnit": "currency base units",
+    "optimisticState": "monotonic version",
+    "replayProtection": "persisted applied transaction IDs"
+  },
+  "operations": {
+    "deposit": [
+      "validate transaction, currency, owner, amount and policy limits",
+      "calculate checked policy fee",
+      "snapshot wallet and account",
+      "debit requested amount from wallet",
+      "credit requested amount less fee to account",
+      "mark transaction applied",
+      "rollback both states on failure"
+    ],
+    "withdrawal": [
+      "validate transaction, currency, owner, amount and policy limits",
+      "calculate checked policy fee",
+      "snapshot account and wallet",
+      "debit requested amount plus fee from account",
+      "credit requested amount to wallet",
+      "mark transaction applied",
+      "rollback both states on failure"
+    ],
+    "accountTransfer": [
+      "require distinct same-currency accounts",
+      "validate source ownership and transaction limit",
+      "lock accounts in canonical ID order",
+      "debit source and credit destination atomically",
+      "rollback both states on failure"
+    ]
+  },
+  "policyFields": [
+    "minimumDepositBaseUnits",
+    "minimumWithdrawalBaseUnits",
+    "maximumAccountBaseUnits",
+    "maximumTransactionBaseUnits",
+    "depositFeeBasisPoints",
+    "withdrawalFeeBasisPoints",
+    "minimumDepositFeeBaseUnits",
+    "minimumWithdrawalFeeBaseUnits",
+    "feeRoundingMode"
+  ],
+  "persistence": {
+    "schemaVersion": 1,
+    "fields": ["accountId", "bankId", "currencyId", "ownerIds", "balanceBaseUnits", "version", "appliedTransactionIds"],
+    "validation": ["unique account IDs", "nonempty canonical references", "one or more unique owners", "nonnegative balance and version", "unique transaction IDs"]
+  },
+  "nativeDependencies": [
+    "MajorMUD bank fee rates",
+    "MajorMUD account and transaction limits",
+    "interest cadence and formula",
+    "cross-bank transfer availability",
+    "bank-specific access restrictions",
+    "exact save and crash-recovery trigger timing"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "update": "0164",
+  "subsystem": "Character Lifecycle Phase 1",
+  "status": "implemented_with_native_unknowns",
+  "classification": "STRONGLY_CORRELATED",
+  "implemented": [
+    "exclusive active Character ownership",
+    "deterministic login and reconnect restoration order",
+    "inventory, equipment, nested-container and corpse ownership validation",
+    "room/world registration after persistent restoration",
+    "deterministic logout and disconnect detachment order",
+    "compensating cleanup for partial transitions",
+    "lifecycle provenance and reconnect markers",
+    "orphaned room/world/combat/session reference validation"
+  ],
+  "unknown_native": [
+    "exact welcome and event-message ordering",
+    "reconnect grace interval and socket takeover",
+    "link-dead combat retention duration",
+    "party leadership succession ordering",
+    "trade escrow disposition beyond cancellation",
+    "offline corpse decay reconciliation"
+  ],
+  "next": "Character Lifecycle Phase 2 or final Character closure assessment"
+}

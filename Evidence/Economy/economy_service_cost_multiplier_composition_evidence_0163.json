@@ -1,0 +1,18 @@
+{
+  "codeUpdate":"0163",
+  "classification":"STRONGLY_CORRELATED",
+  "confidence":0.93,
+  "findings":[
+    {
+      "id":"economy.service-cost.multiplier-commutativity",
+      "finding":"Level/rank, provider markup, and discount/surcharge policy fields are multiplicative factors; exact rational composition is commutative before rounding.",
+      "runtimeActivation":"ACTIVE_POLICY_DRIVEN",
+      "tests":["permutation invariance","single final floor/ceiling/nearest rounding","negative input rejection","overflow rejection"]
+    },
+    {
+      "id":"economy.service-cost.native-intermediate-rounding",
+      "finding":"The original executable's intermediate rounding points are not proven.",
+      "runtimeActivation":"UNKNOWN_FAIL_CLOSED_FOR_NATIVE_EXACT"
+    }
+  ]
+}

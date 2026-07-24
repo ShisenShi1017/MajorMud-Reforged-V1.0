@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "code_update": "0141",
+  "subsystem": "Character",
+  "current_pass": "character_creation",
+  "completed": [
+    "versioned runtime character semantic-state persistence contract",
+    "native user/save source structural inventory",
+    "promoted Classic race catalog and stat limits",
+    "promoted Classic class catalog and creation modifiers",
+    "complete 195-entry race/class creation matrix",
+    "initial level, experience, alignment, gold, inventory, equipment, spells, abilities, and room contract",
+    "runtime creation-contract validation and fail-safe divergence handling"
+  ],
+  "active_runtime_classification": "proven and strongly correlated promoted Librarium evidence",
+  "remaining_character_order": [
+    "statistics and exact recalculation order",
+    "equipment interaction",
+    "abilities",
+    "flags",
+    "status effects",
+    "level progression",
+    "inventory interaction and encumbrance",
+    "death and resurrection",
+    "saving/loading timing and compatibility",
+    "runtime lifecycle"
+  ],
+  "native_final_pass_dependencies": [
+    "interactive ability-generation and point-allocation workflow",
+    "unassigned bytes in native WCCUSERS/WCCUSER2/WBBUSER2 records"
+  ],
+  "next_pass": "Character statistics and derived-stat calculation order"
+}

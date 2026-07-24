@@ -1,0 +1,49 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "pass": "CodeUpdate0158",
+  "subject": "NPC spawn-slot and respawn lifecycle ownership",
+  "classification": "strongly-correlated",
+  "runtime_activation": [
+    "generated spawn ID owns materialized runtime instance slots",
+    "generated respawn_minutes owns the death-to-respawn timer",
+    "home room owns respawn insertion",
+    "due instances are processed by respawn time then stable instance ID",
+    "respawn clears stale target, service request, pending action, claim, failure and quarantine state",
+    "spawn generation is persisted per runtime instance",
+    "unresolved home rooms block insertion without inventing a fallback room"
+  ],
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcModels.cs",
+    "Data/Classic/spawns.json",
+    "Data/Classic/npcs.json",
+    "Generated/NPCReconstruction/npc_ai_runtime_catalog.json"
+  ],
+  "supporting_evidence": [
+    "RuntimeLivingNpcState already persists SpawnId, HomeRoomId, RespawnAtUtc and RespawnMinutes",
+    "RuntimeNpcSpawn binds canonical room identity and generated respawn_minutes",
+    "existing world tick previously restored alive state, home room and maximum hit points when timer elapsed",
+    "existing world persistence serializes the complete NPC runtime state"
+  ],
+  "confidence": 0.94,
+  "assumptions": [
+    "materialized generated instances are the active capacity represented by current Reforged projection",
+    "native population chance and dynamic group selection are not activated by this pass"
+  ],
+  "safe_fallback": "keep the NPC waiting when its canonical home room cannot be resolved",
+  "tests": [
+    "spawn lifecycle contract smoke switch",
+    "stable respawn ordering structural validation",
+    "transient action-state cleanup validation",
+    "catalog ownership and canonical spawn-reference validation"
+  ],
+  "runtime_impact": "centralizes respawn admission and prevents stale AI work from surviving a death/respawn transition",
+  "character_save_impact": "none",
+  "world_state_impact": "persists lifecycle state, respawn schedule, spawn generation and transition audit metadata",
+  "native_dependencies_remaining": [
+    "spawn chance and group roll algorithm",
+    "population maximum beyond materialized projection",
+    "native failed-respawn retry cadence",
+    "hard-reset exceptions"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "update": "0162",
+  "classification": "strongly_correlated",
+  "claims": [
+    {
+      "id": "combat_action_queue_deterministic_order",
+      "claim": "A shared queue can deterministically arbitrate promoted physical attack, spell completion, and periodic effect actions at one world tick.",
+      "support": [
+        "existing physical turn scheduler emits stable sequences",
+        "spell casts expose ready-to-complete state",
+        "effect lifecycle emits exact tick timestamps",
+        "0162 deterministic smoke fixture"
+      ],
+      "assumptions": [
+        "fixture priorities are not asserted as original MajorMUD production constants"
+      ],
+      "tests": [
+        "same_tick_priority_order",
+        "single_terminal_transition",
+        "unresolved_order_fails_closed"
+      ],
+      "fallback": "reject production policies whose priority remains unresolved",
+      "runtime_impact": "enables one auditable claim boundary for cross-subsystem actions",
+      "character_save_impact": "none; queued native-temporary actions are not promoted as persisted state",
+      "world_state_impact": "mutations occur only after a claimed action is executed by its owning runtime"
+    }
+  ],
+  "unknown_native_dependencies": [
+    "exact MajorMUD same-tick precedence",
+    "simultaneous-action semantics",
+    "death cancellation position",
+    "movement and regeneration insertion points"
+  ]
+}

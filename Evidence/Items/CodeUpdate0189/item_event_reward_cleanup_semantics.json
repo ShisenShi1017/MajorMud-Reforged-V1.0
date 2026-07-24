@@ -1,0 +1,32 @@
+{
+  "code_update": "0189",
+  "subsystem": "Items",
+  "behavior": "event_item_reward_and_lifecycle_cleanup_reconciliation",
+  "classification": "strongly_correlated",
+  "runtime_activation": true,
+  "rules": [
+    "An authoritative event, character, item, reward key, and target quantity are required for reward reconciliation.",
+    "Reward reconciliation preserves existing matching identities and creates only the explicit target deficit.",
+    "An authoritative cleanup key, lifecycle reason, and target quantity are required for cleanup.",
+    "Cleanup affects only matching character-owned event items in inventory, equipment, portable containers, or bank storage.",
+    "Cleanup ordering is deterministic by descending runtime instance ID so earlier identities are retained.",
+    "Explicit event_cleanup_protected metadata blocks cleanup and rolls back the complete mutation.",
+    "No event mapping, timing, or reward semantics are inferred from item names or event labels."
+  ],
+  "confidence": 0.86,
+  "assumptions": [
+    "Event orchestration supplies authoritative reward and cleanup mappings.",
+    "Stable deterministic ordering is Reforged compatibility infrastructure until native ordering is recovered."
+  ],
+  "safe_fallback": "No grant or cleanup occurs without explicit authoritative identities and quantities; protected or invalid state fails atomically.",
+  "runtime_impact": "Enables exact event reward, expiration, cancellation, completion, and reset item orchestration without duplicate or orphaned quantities.",
+  "character_save_impact": "Event item metadata, quantities, and runtime identities are persisted through the ordinary item save model.",
+  "world_state_impact": "None unless a future authoritative event mapping explicitly targets world-owned items.",
+  "native_dependencies": [
+    "exact event reward mappings",
+    "event expiration and reset mappings",
+    "party-shared event ownership",
+    "native removal ordering",
+    "exact event item text"
+  ]
+}

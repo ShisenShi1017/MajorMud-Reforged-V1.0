@@ -1,11 +1,40 @@
 # MajorMUD Reforged Version
 
-- Current Code Update: `0138`
+- Current Code Update: `0139`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`
-- Current baseline: CodeUpdate0138 closed locally
-- Local verification: PASS 55/55
-- Latest report: `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`
-- GitHub Actions: pending until pushed and confirmed green
+- Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
+- Current baseline: CodeUpdate0138 green by user report; CodeUpdate0139 local runtime cohesion work in progress
+- Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening. Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
+- Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,666/26,666 descriptions
+- Spawn placement fix: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage into rooms, and renders visible entities by runtime disposition/alignment.
+- Focused room audit: `room.map1.21` currently shows one neutral `guardsman` (`npc.14`) from `spawn.21.5`; user-expected `elite guardsman` requires separate evidence-backed data correction if the generated room source is wrong.
+- Current placement validation classification: `spawn.288.43` points to non-existent `room.map1.288`; `spawn.2306.213` points to `room.map1.2306`, which the user verified is a shop with no NPC. Both are logged and skipped.
+- Folded input material: room audit/semantic and trigger-script-quest material is integrated into the current baseline and recorded in ValidationManifest.json.
+- Current generated Classic counts: 26,666 rooms; 61,976 exits; 291 room interactions; 367 triggers; 183 scripts; 2,183 quests.
+- Room native/passive effect closure: 7 distinct gaps across 12 exit rows resolved as `native_passive_effect_resolved`; MegaMUD `/mp` replay found 0 command hits, so no command was invented.
+- Room message decode: 117 unique native WCCMSG offset-backed records generated for room actions, doors, hidden exits, locks/keys, searches, and failures.
+- Quest dialogue dispatch: 183 script records generated, including 182 decoded textblock stage scripts; 367 triggers generated, including 83 NPC quest-entry triggers and 182 linked stage script references.
+- Runtime quest execution: `talk <npc>` now dispatches to generated NPC quest-entry triggers, executes decoded stage clauses atomically, persists character-side quest flags/items/experience/alignment, and fails closed with rollback.
+- Quest/script edge closure: generated random textblock tables execute through decoded 1..100 threshold bindings; cast/summon/teleport/remoteaction targets validate against generated data; quest teleports update the active session/character; summon intents materialize generated NPCs; remoteaction and room/object commits are recorded as durable living-world events; Classic completed quests cannot repeat on the same character; exhaustive generated NPC quest-entry dispatch validation passes.
+- Final native closure/WCC decode archive: imported as repo evidence, Librarium/reference material, native registries, and active server runtime slices; duplicate runtime contracts were merged/replaced so there is one compiled definition per concept.
+- Verified/strong activation: generated `/Data` now includes verified/native and strongly-correlated Librarium sidecars where evidence supports execution. `room_interactions` compiles from three source files, generated `triggers` contains 367 strong records including 83 NPC quest-entry triggers, and unresolved exit targets are compiler-blocked.
+- App Librarium tab: the Reforged app now has a read-only searchable Classic data browser with Weapons, Armor, Spells, Abilities, Classes, Races, Items, Monsters, Quests, and Rooms tabs, name-only left-side record selection, character-foundation class/race gameplay details, nontechnical quest guidance, and dark readable parchment text.
+- App Client tab: the Play workspace now selects server/session profiles and opens a dedicated MegaMUD-style terminal window with command input, menu tools, status strip, and separate tabbed Client Options instead of showing the old oversized settings dashboard as the play surface.
+- Server/runtime audit repair: compiler room-description loading now recognizes `*_records.json` files, generated quest/item numeric strings are read safely by runtime catalog loaders, and the server smoke no longer crashes on JSON `String` versus `Number` generated values.
+- Current runtime audit counts: 26,668 rooms loaded, 26,668 descriptions loaded, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers.
+- Remaining native decode gaps: `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`
+- Single validator now covers current-health checks; one-time validation proofs live in ValidationManifest.json.
+- WCC exhaustion audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md`
+- Reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md`
+- Room-description reference recovery: `Reports/DataDecode/room_description_reference_recovery.md`
+- WCCMP002 room-description recovery: `Reports/DataDecode/wccmp002_room_description_recovery.md`
+- WCCMP002 placeholder room-description recovery: `Reports/DataDecode/wccmp002_placeholder_room_description_recovery.md`
+- Latest local commands: `dotnet run --project Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj --configuration Release`; `dotnet build Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release`; `dotnet publish Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release --no-restore`; `python Tools\validator.py`
+- Bundle F Revision 0033 and Bundle G Revision 0002 local intake: payloads overlaid into the dirty CodeUpdate0139 repo without commit/push, server Release build PASS, Bundle E zero-disconnect PASS, F10 native payload audit PASS with 0 disconnects, and Bundle F F10 complete through F15 audits PASS.
+- Bundle G native payload closure: verified no-output decoded text targets are evidence-mapped, `message 2044` and `message 3290` resolve through exact WCCMSG payload evidence, and unknown message IDs remain fail-closed.
+- Latest focused placement commands: `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-living-world`; `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-room "room.map1.21"`
+- Latest audit report: `Reports/RuntimeVerification/classic_runtime_audit.md`
+- Latest validator report: `Reports/RuntimeVerification/validator_latest.md`
+- GitHub Actions: pending for CodeUpdate0139 until pushed and confirmed green
 
 See [Docs/PROJECT_STATUS.md](Docs/PROJECT_STATUS.md) for the current verified state and verification commands.

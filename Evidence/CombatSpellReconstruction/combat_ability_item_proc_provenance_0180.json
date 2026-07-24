@@ -1,0 +1,9 @@
+{
+  "update":"0180",
+  "sources":[
+    {"source":"CodeUpdate0179 cumulative runtime","records":["RuntimeCombatActionQueue","RuntimeAttackResourceTransaction","RuntimeCombatStatusIntegration"],"offsets":[],"use":"transaction, ownership, ordering, and fail-closed conventions"},
+    {"source":"canonical Librarium relationships","records":["ability.*","item.*","spell.*","effect.*"],"offsets":[],"use":"identifier domains only; no production semantics inferred from field presence"}
+  ],
+  "assumptions":["proc policies are promoted before activation","NPC target selection remains outside this coordinator"],
+  "tests":["resource and cooldown gate","required path/item gate","stable proc ordering","deterministic seeded roll","reverse rollback","duplicate execution rejection"]
+}

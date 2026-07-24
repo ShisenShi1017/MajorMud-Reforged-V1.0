@@ -1,0 +1,15 @@
+{
+  "update": "0158",
+  "records": [
+    {
+      "artifact": "RuntimeCombatInstanceLifecycle.cs",
+      "sources": [
+        "CodeUpdate0157 cumulative baseline",
+        "combat/spell handoff deterministic architecture requirements"
+      ],
+      "byte_offsets": [],
+      "confidence": "strongly_correlated",
+      "safe_fallback": "reject missing policy values"
+    }
+  ]
+}

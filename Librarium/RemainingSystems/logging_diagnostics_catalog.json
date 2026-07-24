@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "logging-diagnostics",
+  "runtimeOwner": "RuntimeLoggingDiagnosticsService",
+  "categories": [
+    "login",
+    "logout",
+    "death",
+    "combat",
+    "trade",
+    "administrative",
+    "builder",
+    "error",
+    "crash",
+    "quest",
+    "event",
+    "security",
+    "save",
+    "rollback",
+    "validation",
+    "native-dependency"
+  ],
+  "contextFields": [
+    "correlationId",
+    "worldId",
+    "worldTick",
+    "characterId",
+    "npcInstanceId",
+    "commandId"
+  ],
+  "policy": [
+    "bounded in-memory retention",
+    "monotonic event identifiers",
+    "administrator-only administrative and security-sensitive visibility",
+    "structured fields",
+    "JSON-lines export",
+    "unknown or malformed context rejected"
+  ],
+  "safeFallback": "Reject malformed log events and hide administrative or security-sensitive records from non-administrators.",
+  "nativeDependencies": [
+    "exact MajorMUD and Worldgroup log destinations",
+    "native retention and rotation",
+    "original log formats",
+    "crash log ownership",
+    "player-visible combat log behavior",
+    "native audit visibility and redaction"
+  ]
+}

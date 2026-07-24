@@ -1,0 +1,19 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update": "CodeUpdate0190",
+  "behavior": "merchant access admission and exact completion",
+  "confidence": "strongly-correlated",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcServiceAdmission.cs",
+      "record_ids": ["living-same-room-merchant-admission", "exact-service-request-id"]
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcMerchantStockOwnership.cs",
+      "record_ids": ["living-merchant-service-owner", "exact-shop-definition"]
+    }
+  ],
+  "byte_offsets": [],
+  "native_dependency": false,
+  "safe_fallback": "reject without mutation unless shop access policy and exact active request identity are explicitly supplied."
+}

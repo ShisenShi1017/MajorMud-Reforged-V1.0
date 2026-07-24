@@ -1,0 +1,40 @@
+{
+  "update": "0183",
+  "catalog": "combat_spell_persistence",
+  "owners": {
+    "character_snapshot": "Character persistence subsystem",
+    "combat_state_projection": "CombatSpell runtime",
+    "world_owned_state": "World and NPC owners",
+    "policy_and_provenance": "Librarium"
+  },
+  "persistable_when_promoted": [
+    "active spell effects",
+    "cooldowns",
+    "recovery timers",
+    "combat instances",
+    "threat",
+    "pending actions",
+    "casting state",
+    "summon references",
+    "control-effect references"
+  ],
+  "ordering": [
+    "validate canonical references",
+    "apply promoted persistence policy",
+    "convert timers to remaining-tick offsets",
+    "compute integrity hash",
+    "prepare snapshot store",
+    "commit snapshot",
+    "rollback on failure",
+    "validate hash and time on recovery",
+    "emit deterministic cleanup for nonpersistent state"
+  ],
+  "boundaries": ["autosave", "logout", "disconnect", "shutdown", "restart", "crash_recovery"],
+  "unresolved": [
+    "production persistence bindings",
+    "native save format",
+    "combat and threat restart behavior",
+    "pending action and cast restart behavior",
+    "summon and control-effect restart behavior"
+  ]
+}

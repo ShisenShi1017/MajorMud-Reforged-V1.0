@@ -1,0 +1,43 @@
+{
+  "code_update": "0175",
+  "subsystem": "items",
+  "finding": "corpse_loot_permission_and_expiry",
+  "classification": "strongly_correlated_reinforced_compatibility_infrastructure",
+  "runtime_activation": "evidence_gated",
+  "sources": [
+    "existing RuntimeCorpseState ownership and decay lifecycle",
+    "existing atomic corpse item and gold transfer paths",
+    "MajorMUD-compatible corpse ownership requirements retained as unresolved native mapping"
+  ],
+  "semantics": {
+    "loot_owner": "optional corpse-scoped identity",
+    "exclusive_window": "optional absolute expiration derived from a non-negative duration",
+    "item_access": "owner-only before expiration; unrestricted after expiration",
+    "gold_access": "same authorization boundary as item loot",
+    "default": "unrestricted when no owner/window is projected",
+    "rollback": "denied mutations leave item, gold, and corpse state unchanged"
+  },
+  "confidence": 0.89,
+  "assumptions": [
+    "Exact Classic corpse permission sources and durations are not yet decoded.",
+    "Party, guild, killer, NPC, quest, and sysop exceptions are not activated without evidence."
+  ],
+  "safe_fallback": "No loot reservation is applied unless an authoritative caller supplies a loot owner and exclusive duration.",
+  "tests": [
+    "owner authorized during exclusive window",
+    "non-owner item loot rejected during exclusive window",
+    "non-owner gold loot rejected during exclusive window",
+    "non-owner authorized after expiration",
+    "invalid reservation state rejected by validation"
+  ],
+  "runtime_impact": "Corpse item and gold mutations now share one explicit authorization policy.",
+  "character_save_impact": "Loot owner and expiration persist in RuntimeCorpseState.",
+  "world_state_impact": "Corpse reservations survive item engine state export/import with corpse records.",
+  "native_dependencies": [
+    "Classic corpse ownership source",
+    "exclusive duration",
+    "party and killer permissions",
+    "exact denial messages",
+    "NPC corpse policy"
+  ]
+}

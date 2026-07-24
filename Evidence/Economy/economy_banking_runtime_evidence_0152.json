@@ -1,0 +1,61 @@
+{
+  "evidenceId": "economy-banking-runtime-evidence-0152",
+  "scope": "bank account ownership, deposits, withdrawals, account transfers, limits, fees, rollback and persistence",
+  "findings": [
+    {
+      "id": "banking.server-authority",
+      "classification": "PROVEN",
+      "source": "repository architecture authority boundary",
+      "byteOffsets": [],
+      "confidence": 1.0,
+      "assumptions": [],
+      "fallback": "reject mutation outside server runtime",
+      "runtimeImpact": "bank state mutates only in authoritative server runtime",
+      "saveImpact": "account snapshots are server-owned",
+      "worldImpact": "prevents client-authored wealth mutation"
+    },
+    {
+      "id": "banking.atomic-mutation",
+      "classification": "STRONGLY CORRELATED",
+      "source": "existing currency and commerce transaction contracts in CodeUpdates 0150-0151",
+      "byteOffsets": [],
+      "confidence": 0.96,
+      "assumptions": ["banking follows the same no-partial-economic-mutation invariant as commerce"],
+      "fallback": "restore all captured economic states and rethrow",
+      "runtimeImpact": "deposits, withdrawals and transfers are atomic",
+      "saveImpact": "failed transactions do not become persistable partial state",
+      "worldImpact": "prevents duplication and destruction caused by partial failure"
+    },
+    {
+      "id": "banking.policy-driven-fees-limits",
+      "classification": "STRONGLY CORRELATED",
+      "source": "economy runtime requirement plus existing basis-point pricing arithmetic",
+      "byteOffsets": [],
+      "confidence": 0.9,
+      "assumptions": ["native constants remain external policy data until decoded"],
+      "fallback": "use only explicit catalog policy; never infer a rate",
+      "runtimeImpact": "checked arithmetic enforces configured fees and limits",
+      "saveImpact": "policy is referenced, while resulting balances persist",
+      "worldImpact": "supports bank-specific deterministic rules without hardcoded invented constants"
+    },
+    {
+      "id": "banking.native-rates",
+      "classification": "UNKNOWN",
+      "source": "not present in cumulative changed-files-only evidence baseline",
+      "byteOffsets": [],
+      "confidence": 0.0,
+      "assumptions": [],
+      "fallback": "require explicit evidence-backed policy values; no default interest or fees",
+      "runtimeImpact": "native MajorMUD rates are not claimed or auto-activated",
+      "saveImpact": "none until policy is supplied",
+      "worldImpact": "reserved for final WCC/WBB/native DLL exhaustion"
+    }
+  ],
+  "canonicalReferences": {
+    "bankId": "required nonempty external canonical bank identifier",
+    "accountId": "required unique runtime/persistence identifier",
+    "currencyId": "must match RuntimeCurrencyDefinition",
+    "ownerIds": "required nonempty character ownership set",
+    "transactionId": "required replay-protection identifier"
+  }
+}

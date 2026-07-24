@@ -1,0 +1,18 @@
+{
+  "code_update": "0202",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+    "Evidence/Items/CodeUpdate0172/item_owner_quantity_limit_semantics.json",
+    "Evidence/Items/CodeUpdate0176/item_corpse_limited_reservation_semantics.json",
+    "Evidence/Items/CodeUpdate0200/item_cross_save_ownership_semantics.json",
+    "Evidence/Items/CodeUpdate0201/item_coordinated_save_generation_semantics.json"
+  ],
+  "confidence": "strongly_correlated",
+  "assumptions": [
+    "Only explicit positive maximum_owned_quantity and maximum_world_quantity metadata activates reconciliation.",
+    "Active corpse reservations use LimitedItemReservationOwnerId or fall back to the corpse subject.",
+    "Ambiguous excess instances are preserved and rejected rather than deleted."
+  ],
+  "fallback": "fail_closed"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "update": "0165",
+  "records": [
+    {
+      "runtime_behavior": "combat movement validation and handoff",
+      "classification": "strongly_correlated",
+      "source_files": [
+        "Apps/Source/Reforged.Server/RuntimeCombatInstanceLifecycle.cs",
+        "Apps/Source/Reforged.Server/RuntimeCombatActionInvalidation.cs",
+        "Apps/Source/Reforged.Server/RuntimeCombatThreatLedger.cs",
+        "Librarium/Status/combat_spell_exhaustion_status_0164.json"
+      ],
+      "record_ids": ["combat.fixture", "movement.1", "character.1", "room.1", "room.2", "exit.1"],
+      "byte_offsets": [],
+      "confidence": "strongly_correlated",
+      "safe_fallback": "fail closed until an explicit promoted movement policy and escape result are available",
+      "runtime_impact": "interrupts dependent actions, removes threat, transitions the participant, and creates a room-exit handoff",
+      "character_save_impact": "none",
+      "world_state_impact": "handoff only; room mutation remains external"
+    }
+  ]
+}

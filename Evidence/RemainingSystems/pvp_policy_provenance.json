@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "pvp-policy",
+  "updatedByPass": "RemainingSystems-0011-PvpPolicy",
+  "promotions": [
+    {
+      "behavior": "Central fail-closed PvP policy evaluation before Combat execution",
+      "classification": "PROVEN",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimePvpPolicy.cs",
+        "Apps/Source/Reforged.Server/RuntimePvpPolicySmokeReport.cs",
+        "Librarium/RemainingSystems/pvp_policy_catalog.json"
+      ],
+      "confidence": 1.0,
+      "assumptions": ["Reforged coordination semantics only"],
+      "tests": ["--smoke-pvp-policy"],
+      "safeFallback": "deny attacks when actor, room, zone, or policy state is unknown",
+      "runtimeImpact": "prevents Combat from executing attacks that violate world PvP policy",
+      "characterSaveImpact": "none directly; Character remains owner of persistent identity and alignment state",
+      "worldStateImpact": "session cooldown and logout-restriction state may be tracked"
+    },
+    {
+      "behavior": "Safe-zone, consent, level, party, guild, cooldown, and logout checks are evaluated in deterministic order",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimePvpPolicy.cs",
+        "Reports/RemainingSystems/pvp_policy_exhaustion_0011.md"
+      ],
+      "confidence": 0.84,
+      "assumptions": ["exact native precedence and exceptions remain unresolved"],
+      "tests": ["safe-zone-denial", "mutual-consent", "level-range", "same-party-denial", "attack-cooldown", "logout-restriction"],
+      "safeFallback": "apply the most restrictive known rule and reject unknown exceptions",
+      "runtimeImpact": "provides deterministic world-rule enforcement around Combat",
+      "characterSaveImpact": "none directly",
+      "worldStateImpact": "temporary attack and logout restriction timestamps are tracked"
+    },
+    {
+      "behavior": "PvP death produces typed requests for kill credit, law evaluation, and loot policy instead of duplicating owner formulas",
+      "classification": "STRONGLY CORRELATED",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimePvpPolicy.cs",
+        "Librarium/RemainingSystems/pvp_policy_catalog.json"
+      ],
+      "confidence": 0.82,
+      "assumptions": ["native kill-credit, crime, loot, and corpse rules remain unresolved"],
+      "tests": ["consented-attack", "state-invariants"],
+      "safeFallback": "emit only explicit owner requests; do not mutate Combat, Character, Economy, or Law state",
+      "runtimeImpact": "preserves subsystem ownership while enabling coordinated PvP consequences",
+      "characterSaveImpact": "owner subsystems decide persistent changes",
+      "worldStateImpact": "owner subsystems commit requested consequences"
+    }
+  ]
+}

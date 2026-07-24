@@ -1,0 +1,16 @@
+{
+  "authority": "Librarium",
+  "policy_id": "runtime_item_destination_stack_reconciliation_policy",
+  "version": "0171",
+  "rules": {
+    "eligibility": "Only explicitly stackable instances with identical merge identity may reconcile.",
+    "merge_identity": "Canonical definition, owner, location, equipped slot, charges, durability, and metadata must match.",
+    "ordering": "Compatible destination stacks are filled in stable instance-ID order until native ordering is proven.",
+    "capacity": "A projected positive maximum_stack value caps each stack; absent metadata leaves compatibility infrastructure unbounded but does not activate Classic stackability.",
+    "identity": "A fully absorbed transferred instance is removed and the destination identity survives; overflow preserves the transferred identity.",
+    "atomicity": "Split, transfer, merge, overflow, validation, and rollback occur in one item mutation boundary.",
+    "safety": "Malformed maximum_stack metadata or quantities above a projected maximum are invalid persistent state."
+  },
+  "classic_activation": "fail_closed_until_stackability_and_stack_limits_are_projected",
+  "mode": "Reforged compatibility infrastructure"
+}

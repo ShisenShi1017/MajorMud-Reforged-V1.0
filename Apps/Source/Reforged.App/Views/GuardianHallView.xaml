@@ -1,0 +1,267 @@
+<UserControl x:Class="Reforged.App.Views.GuardianHallView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ AllowDrop="True" Drop="OnDrop">
+ <UserControl.Resources>
+  <SolidColorBrush x:Key="GuardianInkBrush" Color="#16110B"/>
+  <SolidColorBrush x:Key="GuardianMutedInkBrush" Color="#3A2A1A"/>
+  <SolidColorBrush x:Key="GuardianFieldBrush" Color="#F6E2AF"/>
+  <SolidColorBrush x:Key="GuardianFieldAltBrush" Color="#E8CC91"/>
+  <SolidColorBrush x:Key="GuardianSelectionBrush" Color="#D49A47"/>
+  <SolidColorBrush x:Key="GuardianButtonBrush" Color="#E7D09A"/>
+  <SolidColorBrush x:Key="GuardianButtonHoverBrush" Color="#F1DBA8"/>
+  <SolidColorBrush x:Key="GuardianButtonPressedBrush" Color="#C88732"/>
+  <Style TargetType="ContentControl">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="Label">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="TextBlock">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="Run">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="Button">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianButtonBrush}"/>
+   <Setter Property="BorderBrush" Value="#74502A"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="10,5"/>
+   <Setter Property="Margin" Value="4"/>
+   <Setter Property="FontWeight" Value="SemiBold"/>
+   <Style.Triggers>
+    <Trigger Property="IsMouseOver" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="{StaticResource GuardianButtonHoverBrush}"/>
+    </Trigger>
+    <Trigger Property="IsPressed" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="{StaticResource GuardianButtonPressedBrush}"/>
+    </Trigger>
+    <Trigger Property="IsEnabled" Value="False">
+     <Setter Property="Foreground" Value="#6A5A45"/>
+     <Setter Property="Background" Value="#C6B08A"/>
+    </Trigger>
+   </Style.Triggers>
+  </Style>
+  <Style x:Key="PrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+   <Setter Property="Background" Value="{StaticResource GuardianSelectionBrush}"/>
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="BorderBrush" Value="#5D3819"/>
+  </Style>
+  <Style TargetType="TextBox">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+   <Setter Property="CaretBrush" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="BorderBrush" Value="#74502A"/>
+   <Setter Property="SelectionBrush" Value="{StaticResource GuardianSelectionBrush}"/>
+  </Style>
+  <Style TargetType="ComboBox">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+   <Setter Property="BorderBrush" Value="#74502A"/>
+  </Style>
+  <Style TargetType="ComboBoxItem">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+  </Style>
+  <Style TargetType="CheckBox">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Margin" Value="5,8"/>
+  </Style>
+  <Style TargetType="RadioButton">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Margin" Value="5,8"/>
+  </Style>
+  <Style TargetType="ItemsControl">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="ListBox">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+   <Setter Property="BorderBrush" Value="#74502A"/>
+  </Style>
+  <Style TargetType="ListBoxItem">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="Transparent"/>
+   <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+   <Style.Triggers>
+    <Trigger Property="IsSelected" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="{StaticResource GuardianSelectionBrush}"/>
+    </Trigger>
+    <Trigger Property="IsMouseOver" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="#EFD39C"/>
+    </Trigger>
+   </Style.Triggers>
+  </Style>
+  <Style TargetType="DataGrid">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+   <Setter Property="RowBackground" Value="{StaticResource GuardianFieldBrush}"/>
+   <Setter Property="AlternatingRowBackground" Value="{StaticResource GuardianFieldAltBrush}"/>
+   <Setter Property="BorderBrush" Value="#74502A"/>
+   <Setter Property="HorizontalGridLinesBrush" Value="#A5793B"/>
+   <Setter Property="VerticalGridLinesBrush" Value="#A5793B"/>
+   <Setter Property="TextElement.Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style TargetType="DataGridRow">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="TextElement.Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Style.Triggers>
+    <Trigger Property="IsSelected" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="{StaticResource GuardianSelectionBrush}"/>
+    </Trigger>
+   </Style.Triggers>
+  </Style>
+  <Style TargetType="DataGridCell">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="TextElement.Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Style.Triggers>
+    <Trigger Property="IsSelected" Value="True">
+     <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+     <Setter Property="Background" Value="{StaticResource GuardianSelectionBrush}"/>
+    </Trigger>
+   </Style.Triggers>
+  </Style>
+  <Style TargetType="DataGridColumnHeader">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldAltBrush}"/>
+   <Setter Property="TextElement.Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style x:Key="GuardianGridTextElement" TargetType="TextBlock">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="TextWrapping" Value="Wrap"/>
+  </Style>
+  <Style x:Key="GuardianGridTextEditor" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+  </Style>
+  <Style x:Key="GuardianGridComboElement" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+   <Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/>
+   <Setter Property="Background" Value="{StaticResource GuardianFieldBrush}"/>
+  </Style>
+  <Style x:Key="ParchmentPanel" TargetType="Border">
+   <Setter Property="Background" Value="#FFF4D6"/><Setter Property="BorderBrush" Value="#8B6A3E"/><Setter Property="BorderThickness" Value="1"/><Setter Property="CornerRadius" Value="8"/><Setter Property="Padding" Value="16"/><Setter Property="TextElement.Foreground" Value="{StaticResource GuardianInkBrush}"/>
+  </Style>
+  <Style x:Key="RealmKeeperPanel" TargetType="Border" BasedOn="{StaticResource ParchmentPanel}"><Setter Property="Background" Value="#F2E2B7"/><Setter Property="BorderBrush" Value="#6E4F2D"/><Setter Property="BorderThickness" Value="2"/></Style>
+  <Style x:Key="WandererPanel" TargetType="Border" BasedOn="{StaticResource ParchmentPanel}"><Setter Property="Background" Value="#E6E3C0"/><Setter Property="BorderBrush" Value="#61714A"/><Setter Property="BorderThickness" Value="2"/></Style>
+  <Style x:Key="AnalystPanel" TargetType="Border" BasedOn="{StaticResource ParchmentPanel}"><Setter Property="Background" Value="#E3E1D7"/><Setter Property="BorderBrush" Value="#58616A"/><Setter Property="BorderThickness" Value="2"/></Style>
+  <Style x:Key="WorldsmithPanel" TargetType="Border" BasedOn="{StaticResource ParchmentPanel}"><Setter Property="Background" Value="#EBD6BA"/><Setter Property="BorderBrush" Value="#8A4E2C"/><Setter Property="BorderThickness" Value="2"/></Style>
+  <Style x:Key="ArchivistPanel" TargetType="Border" BasedOn="{StaticResource ParchmentPanel}"><Setter Property="Background" Value="#E5DCC7"/><Setter Property="BorderBrush" Value="#594A6B"/><Setter Property="BorderThickness" Value="2"/></Style>
+  <Style x:Key="ChamberBadge" TargetType="Border"><Setter Property="HorizontalAlignment" Value="Left"/><Setter Property="CornerRadius" Value="10"/><Setter Property="Padding" Value="9,3"/><Setter Property="Margin" Value="0,4,0,10"/><Setter Property="Background" Value="#493822"/></Style>
+  <Style x:Key="RoomTitle" TargetType="TextBlock"><Setter Property="FontSize" Value="22"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/></Style>
+  <Style x:Key="SectionTitle" TargetType="TextBlock"><Setter Property="FontSize" Value="16"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Margin" Value="0,8,0,6"/><Setter Property="Foreground" Value="{StaticResource GuardianInkBrush}"/></Style>
+  <Style x:Key="FieldLabel" TargetType="TextBlock"><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Margin" Value="0,5,0,2"/></Style>
+ </UserControl.Resources>
+ <Grid Background="#241D18" Margin="12" TextElement.Foreground="{StaticResource GuardianInkBrush}">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+  <Border Style="{StaticResource ParchmentPanel}" Margin="0,0,0,10" Background="#E7D09A">
+   <Grid><StackPanel><TextBlock Text="Guardian Hall" FontSize="30" FontWeight="Bold"/><TextBlock Text="Five distinct chambers for realm stewardship, exploration, analysis, creation, and Librarium evidence."/></StackPanel><Border HorizontalAlignment="Right" VerticalAlignment="Center" Background="#493822" CornerRadius="12" Padding="12,5"><TextBlock Text="{Binding HallStatus}" Foreground="#FFF5D8" FontWeight="SemiBold"/></Border></Grid>
+  </Border>
+  <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="280"/><ColumnDefinition Width="10"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+   <Border Style="{StaticResource ParchmentPanel}" Background="#D8BD82">
+    <DockPanel><TextBlock DockPanel.Dock="Top" Text="The Five Chambers" Style="{StaticResource RoomTitle}" Margin="0,0,0,10"/>
+     <ListBox ItemsSource="{Binding Guardians}" SelectedItem="{Binding SelectedGuardian}" Background="Transparent" BorderThickness="0">
+      <ListBox.ItemContainerStyle><Style TargetType="ListBoxItem"><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Margin" Value="0,2"/><Setter Property="Padding" Value="0"/></Style></ListBox.ItemContainerStyle>
+      <ListBox.ItemTemplate><DataTemplate><Border BorderBrush="#9C7746" BorderThickness="1" CornerRadius="6" Padding="10" Background="#F9EBC5"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="{Binding Icon}" FontSize="28" VerticalAlignment="Center"/><StackPanel Grid.Column="1"><TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="15"/><TextBlock Text="{Binding Title}"/><Border Background="#6B5130" CornerRadius="8" HorizontalAlignment="Left" Padding="7,2" Margin="0,4,0,0"><TextBlock Text="{Binding Status}" Foreground="White" FontSize="10"/></Border></StackPanel></Grid></Border></DataTemplate></ListBox.ItemTemplate>
+     </ListBox>
+    </DockPanel>
+   </Border>
+   <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+    <StackPanel>
+     <Border Style="{StaticResource ParchmentPanel}" Margin="0,0,0,10"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="92" Height="92" Background="#5B4328" CornerRadius="46"><TextBlock Text="{Binding SelectedGuardian.Icon}" FontSize="48" Foreground="#FFE9B4" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="{Binding SelectedIdentity}" Style="{StaticResource RoomTitle}"/><TextBlock Text="{Binding SelectedDescription}" TextWrapping="Wrap" Margin="0,5"/><TextBlock Text="{Binding SelectedPersonality}" FontStyle="Italic" TextWrapping="Wrap"/><TextBlock Text="{Binding SelectedAppearance}" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="#6B5235"/></StackPanel></Grid></Border>
+
+     <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource RealmKeeperPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsRealmKeeper}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+      <StackPanel><TextBlock Text="Realm Keeper War Room" Style="{StaticResource RoomTitle}"/><Border Style="{StaticResource ChamberBadge}"><TextBlock Text="GLOBAL REALM COMMAND" Foreground="#FFF5D8" FontSize="11" FontWeight="Bold"/></Border><TextBlock Text="Global oversight across every connected world. No world or character assignment." Margin="0,0,0,10"/>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <StackPanel><TextBlock Text="Server Scope" Style="{StaticResource SectionTitle}"/><CheckBox Content="Local Host" IsChecked="{Binding RealmKeeper.LocalHost}"/><CheckBox Content="LAN Host" IsChecked="{Binding RealmKeeper.LanHost}"/><CheckBox Content="Internet Host" IsChecked="{Binding RealmKeeper.InternetHost}"/>
+         <TextBlock Text="World Coverage" Style="{StaticResource SectionTitle}"/><CheckBox Content="Classic" IsChecked="{Binding RealmKeeper.Classic}"/><CheckBox Content="Custom" IsChecked="{Binding RealmKeeper.Custom}"/><CheckBox Content="AI Worlds" IsChecked="{Binding RealmKeeper.AiWorlds}"/><CheckBox Content="Test Realms" IsChecked="{Binding RealmKeeper.TestRealms}"/>
+         <TextBlock Text="Alert Thresholds" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding RealmKeeper.AlertThresholds}"/><TextBlock Text="Auto Reports" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding RealmKeeper.AutoReports}"/><TextBlock Text="Maintenance Window" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding RealmKeeper.MaintenanceWindow}"/></StackPanel>
+        <StackPanel Grid.Column="2"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Monitoring" Style="{StaticResource SectionTitle}"/><Button Grid.Column="1" Content="Refresh Telemetry" Command="{Binding RefreshRealmKeeperCommand}" Padding="12,5" Margin="8,4,0,4"/></Grid><WrapPanel><CheckBox Content="Population" IsChecked="{Binding RealmKeeper.Population}" Margin="0,0,14,4"/><CheckBox Content="Economy" IsChecked="{Binding RealmKeeper.Economy}" Margin="0,0,14,4"/><CheckBox Content="Events" IsChecked="{Binding RealmKeeper.Events}" Margin="0,0,14,4"/><CheckBox Content="Server Health" IsChecked="{Binding RealmKeeper.ServerHealth}" Margin="0,0,14,4"/><CheckBox Content="Combat" IsChecked="{Binding RealmKeeper.Combat}" Margin="0,0,14,4"/><CheckBox Content="Crashes" IsChecked="{Binding RealmKeeper.Crashes}" Margin="0,0,14,4"/><CheckBox Content="Scheduler" IsChecked="{Binding RealmKeeper.Scheduler}" Margin="0,0,14,4"/><CheckBox Content="Spawn Timers" IsChecked="{Binding RealmKeeper.SpawnTimers}" Margin="0,0,14,4"/><CheckBox Content="Hard Resets" IsChecked="{Binding RealmKeeper.HardResets}"/></WrapPanel>
+         <WrapPanel Margin="0,8,0,4"><Border Background="#E7D09A" BorderBrush="#8B6A3E" BorderThickness="1" CornerRadius="6" Padding="9" Margin="0,0,6,6"><StackPanel><TextBlock Text="Connected Hosts" FontWeight="Bold"/><TextBlock Text="{Binding RealmKeeper.ConnectedHosts}" FontSize="20"/></StackPanel></Border><Border Background="#E7D09A" BorderBrush="#8B6A3E" BorderThickness="1" CornerRadius="6" Padding="9" Margin="0,0,6,6"><StackPanel><TextBlock Text="World Folders" FontWeight="Bold"/><TextBlock Text="{Binding RealmKeeper.CoveredWorlds}" FontSize="20"/></StackPanel></Border><Border Background="#E7D09A" BorderBrush="#8B6A3E" BorderThickness="1" CornerRadius="6" Padding="9" Margin="0,0,6,6"><StackPanel><TextBlock Text="Generated Records" FontWeight="Bold"/><TextBlock Text="{Binding RealmKeeper.GeneratedRecords}" FontSize="20"/></StackPanel></Border><Border Background="#E7D09A" BorderBrush="#8B6A3E" BorderThickness="1" CornerRadius="6" Padding="9" Margin="0,0,6,6"><StackPanel><TextBlock Text="Save Files" FontWeight="Bold"/><TextBlock Text="{Binding RealmKeeper.ActiveSaveFiles}" FontSize="20"/></StackPanel></Border></WrapPanel>
+         <TextBlock Text="{Binding RealmKeeper.TelemetryStatus}" TextWrapping="Wrap" FontStyle="Italic"/><TextBlock Text="{Binding RealmKeeper.LastRefresh, StringFormat=Last refresh: {0}}" Margin="0,2,0,0"/>
+         <DockPanel Margin="0,8,0,4"><TextBlock Text="Remote Host Telemetry" Style="{StaticResource SectionTitle}"/><StackPanel DockPanel.Dock="Right" Orientation="Horizontal"><Button Content="Add Host" Command="{Binding AddRemoteHostCommand}" Padding="10,4" Margin="4"/><Button Content="Remove" Command="{Binding RemoveRemoteHostCommand}" Padding="10,4" Margin="4"/></StackPanel></DockPanel>
+         <DataGrid ItemsSource="{Binding RealmKeeper.RemoteHosts}" SelectedItem="{Binding SelectedRemoteHost}" AutoGenerateColumns="False" CanUserAddRows="False" Height="150" HeadersVisibility="Column">
+          <DataGrid.Columns><DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="38"/><DataGridTextColumn Header="Name" Binding="{Binding Name}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="90"/><DataGridTextColumn Header="Scope" Binding="{Binding Scope}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="60"/><DataGridTextColumn Header="Base URL" Binding="{Binding BaseUrl}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="160"/><DataGridTextColumn Header="Path" Binding="{Binding TelemetryPath}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="145"/><DataGridTextColumn Header="Token Env Var" Binding="{Binding ApiTokenEnvironmentVariable}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="110"/><DataGridTextColumn Header="Status" Binding="{Binding Status}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" IsReadOnly="True" Width="100"/></DataGrid.Columns>
+         </DataGrid>
+         <TextBlock Text="Credentials are read from the named environment variable and are never stored in Guardian Hall state." TextWrapping="Wrap" FontStyle="Italic" Margin="0,3,0,5"/>
+         <TextBlock Text="Current Realm Health" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding RealmKeeper.CurrentRealmHealth}" Height="72" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"/><TextBlock Text="Live Activity" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding RealmKeeper.LiveActivity}" Height="60" TextWrapping="Wrap" AcceptsReturn="True" IsReadOnly="True"/><TextBlock Text="Realm Timeline" Style="{StaticResource SectionTitle}"/><ListBox ItemsSource="{Binding RealmKeeper.RealmTimeline}" Height="120"/></StackPanel>
+       </Grid>
+      </StackPanel>
+     </Border>
+
+     <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource WandererPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsWanderer}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+      <StackPanel><DockPanel><StackPanel><TextBlock Text="Wanderer Expedition Lodge" Style="{StaticResource RoomTitle}"/><Border Style="{StaticResource ChamberBadge}"><TextBlock Text="LIVE CHARACTER OPERATIONS" Foreground="#FFF5D8" FontSize="11" FontWeight="Bold"/></Border><TextBlock Text="A player-like field agent with a retained character assignment."/></StackPanel><Button DockPanel.Dock="Right" Content="Refresh Session" Command="{Binding RefreshWandererCommand}" Padding="14,7" Margin="12,0,0,0"/></DockPanel><TextBlock Text="{Binding Wanderer.RuntimeStatus}" Margin="0,6,0,0"/><TextBlock Text="{Binding Wanderer.LastRefresh, StringFormat=Last refresh: {0}}" FontStyle="Italic"/><Border Background="#DCE8C8" BorderBrush="#486B38" BorderThickness="3" CornerRadius="8" Padding="14" Margin="0,12,0,12">
+        <StackPanel>
+         <DockPanel>
+          <StackPanel>
+           <TextBlock Text="AUTONOMOUS PLAYER CONTROL" FontSize="20" FontWeight="Bold" Foreground="#24451E"/>
+           <TextBlock Text="Wanderer will repeatedly read the connected Play session and choose safe actions until paused." TextWrapping="Wrap"/>
+          </StackPanel>
+          <Border DockPanel.Dock="Right" Background="#24451E" CornerRadius="10" Padding="10,4" VerticalAlignment="Center"><TextBlock Text="{Binding Wanderer.AutonomousStatus}" Foreground="White" FontWeight="SemiBold" TextWrapping="Wrap" MaxWidth="360"/></Border>
+         </DockPanel>
+         <WrapPanel Margin="0,10,0,4"><CheckBox Content="Explore reported exits" IsChecked="{Binding Wanderer.AutonomousExplore}" Margin="0,0,16,4"/><CheckBox Content="Fight when engaged" IsChecked="{Binding Wanderer.AutonomousCombat}" Margin="0,0,16,4"/><CheckBox Content="Rest to recover" IsChecked="{Binding Wanderer.AutonomousRecovery}" Margin="0,0,16,4"/><CheckBox Content="Loot defeated enemies" IsChecked="{Binding Wanderer.AutonomousLoot}" Margin="0,0,16,4"/></WrapPanel>
+         <WrapPanel Margin="0,5,0,0"><TextBlock Text="Action interval" VerticalAlignment="Center" FontWeight="SemiBold"/><TextBox Text="{Binding Wanderer.AutonomousIntervalSeconds}" Width="50" Margin="7,0,6,0"/><TextBlock Text="seconds   Maximum actions (0 = unlimited)" VerticalAlignment="Center"/><TextBox Text="{Binding Wanderer.AutonomousMaxActions}" Width="65" Margin="7,0,12,0"/><CheckBox Content="Allow guarded commands" IsChecked="{Binding Wanderer.AllowMissionDispatch}" VerticalAlignment="Center"/><TextBlock Text="Permission" VerticalAlignment="Center" Margin="12,0,5,0"/><ComboBox Width="135" ItemsSource="{Binding Permissions}" SelectedItem="{Binding Wanderer.Permission}"/></WrapPanel>
+         <WrapPanel Margin="0,10,0,0"><Button Content="START PLAYING" Command="{Binding StartWandererAutonomyCommand}" FontWeight="Bold" FontSize="15" Padding="18,8" Background="#486B38" Foreground="White"/><Button Content="PAUSE" Command="{Binding PauseWandererAutonomyCommand}" FontWeight="Bold" Padding="16,8" Margin="8,0,0,0"/><Button Content="RUN ONE STEP" Command="{Binding RunWandererAutonomyStepCommand}" Padding="16,8" Margin="8,0,0,0"/><Button Content="Refresh Session" Command="{Binding RefreshWandererCommand}" Padding="16,8" Margin="8,0,0,0"/></WrapPanel>
+         <TextBlock Text="{Binding Wanderer.LastAutonomousAction, StringFormat=Last action: {0}}" TextWrapping="Wrap" FontStyle="Italic" Margin="0,8,0,0"/><TextBlock Text="{Binding Wanderer.AutonomousActionCount, StringFormat=Actions completed: {0:N0}}" FontWeight="SemiBold"/><TextBlock Text="Start requires a connected Play session whose character name matches this Wanderer assignment." TextWrapping="Wrap" Margin="0,4,0,0"/>
+        </StackPanel>
+       </Border>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <StackPanel><TextBlock Text="Server" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding ServerProfiles}" SelectedItem="{Binding Wanderer.Server}"/><TextBlock Text="World" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding Worlds}" SelectedItem="{Binding Wanderer.World}"/><TextBlock Text="Realm" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding Realms}" SelectedItem="{Binding Wanderer.Realm}"/><TextBlock Text="Character" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.Character}"/><TextBlock Text="Mission" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.Mission}" Height="55" TextWrapping="Wrap" AcceptsReturn="True"/><TextBlock Text="Exploration Style" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding ExplorationStyles}" SelectedItem="{Binding Wanderer.ExplorationStyle}"/><TextBlock Text="Session Connection" Style="{StaticResource SectionTitle}"/><TextBlock Text="Connected Play sessions are used automatically. The HTTP connector below is optional for remote Guardian APIs." TextWrapping="Wrap" Margin="0,0,0,6"/><CheckBox Content="Enable optional authenticated HTTP connector" IsChecked="{Binding Wanderer.LiveConnectorEnabled}"/><TextBlock Text="Session Base URL" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.SessionBaseUrl}"/><TextBlock Text="Telemetry Path" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.SessionTelemetryPath}"/><TextBlock Text="Mission Step Path" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.MissionStepPath}"/><TextBlock Text="Token Environment Variable" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.ApiTokenEnvironmentVariable}"/><TextBlock Text="Timeout Seconds" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.SessionTimeoutSeconds}"/></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock Text="Field Policies" Style="{StaticResource SectionTitle}"/><CheckBox Content="Questing" IsChecked="{Binding Wanderer.Questing}"/><CheckBox Content="Map Discovery" IsChecked="{Binding Wanderer.MapDiscovery}"/><CheckBox Content="Auto Journal" IsChecked="{Binding Wanderer.AutoJournal}"/><CheckBox Content="Auto Screenshots" IsChecked="{Binding Wanderer.AutoScreenshots}"/><TextBlock Text="Combat Policy" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.CombatPolicy}"/><TextBlock Text="Retreat Policy" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.RetreatPolicy}"/><TextBlock Text="Loot Policy" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Wanderer.LootPolicy}"/><TextBlock Text="Schedule / Permissions" Style="{StaticResource FieldLabel}"/><StackPanel Orientation="Horizontal"><ComboBox Width="150" ItemsSource="{Binding Schedules}" SelectedItem="{Binding Wanderer.Schedule}"/><ComboBox Width="180" Margin="8,0,0,0" ItemsSource="{Binding Permissions}" SelectedItem="{Binding Wanderer.Permission}"/></StackPanel><CheckBox Content="Allow guarded mission-step dispatch" IsChecked="{Binding Wanderer.AllowMissionDispatch}" Margin="0,10,0,0"/><Button Content="Dispatch One Mission Step" Command="{Binding DispatchWandererMissionCommand}" Margin="0,8,0,0"/><TextBlock Text="{Binding Wanderer.LastMissionDispatch, StringFormat=Last dispatch: {0}}" FontStyle="Italic" Margin="0,4,0,0"/><TextBlock Text="Autonomous controls are located in the highlighted panel above." TextWrapping="Wrap" FontStyle="Italic" Margin="0,12,0,0"/></StackPanel>
+       </Grid><Grid Margin="0,12,0,0"><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Mission Queue" Style="{StaticResource SectionTitle}"/><ListBox ItemsSource="{Binding Wanderer.MissionQueue}" Height="70"/><TextBlock Text="Autonomous History" Style="{StaticResource SectionTitle}"/><ListBox ItemsSource="{Binding Wanderer.AutonomousHistory}" Height="90" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/></StackPanel><StackPanel Grid.Column="1" Margin="10,0"><TextBlock Text="Current Route" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding Wanderer.CurrentRoute}" Height="90" TextWrapping="Wrap"/></StackPanel><StackPanel Grid.Column="2"><TextBlock Text="Inventory / Progress" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding Wanderer.Inventory}" Height="55" TextWrapping="Wrap"/><TextBox Text="{Binding Wanderer.Progress}" Margin="0,5,0,0"/><TextBlock Text="{Binding Wanderer.DiscoveredRooms, StringFormat=Known rooms: {0:N0}}"/><TextBlock Text="{Binding Wanderer.JournalEntries, StringFormat=Journal files: {0}}"/><TextBlock Text="{Binding Wanderer.InventoryFiles, StringFormat=Inventory files: {0}}"/></StackPanel></Grid>
+      </StackPanel>
+     </Border>
+
+     <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource AnalystPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsAnalyst}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+      <StackPanel><TextBlock Text="Analyst Observatory" Style="{StaticResource RoomTitle}"/><Border Style="{StaticResource ChamberBadge}"><TextBlock Text="READ-ONLY DATA OBSERVATORY" Foreground="#FFF5D8" FontSize="11" FontWeight="Bold"/></Border><TextBlock Text="Data-only analysis. Magnus never controls a character."/><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Analysis Target" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding AnalysisTargets}" SelectedItem="{Binding Analyst.AnalysisTarget}"/><TextBlock Text="Scopes" Style="{StaticResource SectionTitle}"/><WrapPanel><CheckBox Content="Combat" IsChecked="{Binding Analyst.Combat}" Margin="0,0,12,4"/><CheckBox Content="Economy" IsChecked="{Binding Analyst.Economy}" Margin="0,0,12,4"/><CheckBox Content="Drops" IsChecked="{Binding Analyst.Drops}" Margin="0,0,12,4"/><CheckBox Content="NPC Balance" IsChecked="{Binding Analyst.NpcBalance}" Margin="0,0,12,4"/><CheckBox Content="Quest Balance" IsChecked="{Binding Analyst.QuestBalance}" Margin="0,0,12,4"/><CheckBox Content="Experience Curve" IsChecked="{Binding Analyst.ExperienceCurve}" Margin="0,0,12,4"/><CheckBox Content="Item Balance" IsChecked="{Binding Analyst.ItemBalance}" Margin="0,0,12,4"/><CheckBox Content="Progression" IsChecked="{Binding Analyst.Progression}"/></WrapPanel><TextBlock Text="Data Sources" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.DataSources}"/><TextBlock Text="Comparison Range" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.ComparisonRange}"/></StackPanel><StackPanel Grid.Column="2"><TextBlock Text="Graphs" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.Graphs}" Height="60" TextWrapping="Wrap"/><TextBlock Text="Historical Trends" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.HistoricalTrends}" Height="70" TextWrapping="Wrap"/><TextBlock Text="Rendered Data Series" Style="{StaticResource FieldLabel}"/><ItemsControl ItemsSource="{Binding Analyst.ChartSeries}" MaxHeight="150"><ItemsControl.ItemTemplate><DataTemplate><StackPanel Margin="0,2"><TextBlock Text="{Binding Display}"/><ProgressBar Minimum="0" Maximum="100" Value="{Binding Percent}" Height="8"/></StackPanel></DataTemplate></ItemsControl.ItemTemplate></ItemsControl><TextBlock Text="{Binding Analyst.ComparisonStatus}" TextWrapping="Wrap" Margin="0,5,0,0"/><TextBlock><Run Text="Persisted snapshots: "/><Run Text="{Binding Analyst.HistorySnapshots}"/></TextBlock><TextBlock Text="Report Frequency" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.ReportFrequency}"/><TextBlock Text="Output Location" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Analyst.OutputLocation}"/><WrapPanel Margin="0,10,0,0"><Button Content="Refresh Analysis Data" Command="{Binding RefreshAnalystCommand}"/><Button Content="Export Analysis Report" Command="{Binding ExportAnalystCommand}"/></WrapPanel><TextBlock Text="{Binding Analyst.RuntimeStatus}" TextWrapping="Wrap" Margin="0,8,0,0"/><TextBlock><Run Text="Last refresh: "/><Run Text="{Binding Analyst.LastRefresh}"/><Run Text=" · Files: "/><Run Text="{Binding Analyst.SourceFiles}"/><Run Text=" · Records: "/><Run Text="{Binding Analyst.SourceRecords}"/><Run Text=" · Reports: "/><Run Text="{Binding Analyst.ReportFiles}"/></TextBlock></StackPanel></Grid></StackPanel>
+     </Border>
+
+     <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource WorldsmithPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsWorldsmith}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+      <StackPanel><TextBlock Text="Worldsmith Design Foundry" Style="{StaticResource RoomTitle}"/><TextBlock Text="Proposal and simulation workspace only. Elara never plays a character."/><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Target Test Realm" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding Realms}" SelectedItem="{Binding Worldsmith.TargetTestRealm}"/><TextBlock Text="Build Project" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.BuildProject}"/><TextBlock Text="Content Type" Style="{StaticResource FieldLabel}"/><ComboBox ItemsSource="{Binding ContentTypes}" SelectedItem="{Binding Worldsmith.ContentType}"/><TextBlock Text="Content" Style="{StaticResource SectionTitle}"/><WrapPanel><CheckBox Content="Rooms" IsChecked="{Binding Worldsmith.Rooms}" Margin="0,0,12,4"/><CheckBox Content="NPCs" IsChecked="{Binding Worldsmith.Npcs}" Margin="0,0,12,4"/><CheckBox Content="Items" IsChecked="{Binding Worldsmith.Items}" Margin="0,0,12,4"/><CheckBox Content="Quests" IsChecked="{Binding Worldsmith.Quests}" Margin="0,0,12,4"/><CheckBox Content="Encounters" IsChecked="{Binding Worldsmith.Encounters}" Margin="0,0,12,4"/><CheckBox Content="Dungeons" IsChecked="{Binding Worldsmith.Dungeons}" Margin="0,0,12,4"/><CheckBox Content="World Events" IsChecked="{Binding Worldsmith.WorldEvents}"/></WrapPanel><TextBlock Text="Constraints" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.Constraints}" Height="65" TextWrapping="Wrap"/></StackPanel><StackPanel Grid.Column="2"><TextBlock Text="Mode and Approval" Style="{StaticResource SectionTitle}"/><CheckBox Content="Classic Safe" IsChecked="{Binding Worldsmith.ClassicSafe}"/><CheckBox Content="Custom" IsChecked="{Binding Worldsmith.Custom}"/><CheckBox Content="AI World" IsChecked="{Binding Worldsmith.AiWorld}"/><CheckBox Content="Approval Required" IsChecked="{Binding Worldsmith.ApprovalRequired}"/><TextBlock Text="Preview" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.Preview}" Height="90" TextWrapping="Wrap" AcceptsReturn="True"/><TextBlock Text="Simulation" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.Simulation}" Height="65" TextWrapping="Wrap"/><TextBlock Text="Generated Approval Code" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.GeneratedApprovalCode}" IsReadOnly="True"/><TextBlock Text="Enter Approval Code" Style="{StaticResource FieldLabel}"/><TextBox Text="{Binding Worldsmith.ApprovalCode}"/><TextBlock Text="{Binding Worldsmith.ApprovalStatus}" TextWrapping="Wrap" Margin="0,4,0,6"/><WrapPanel><Button Content="Inspect Test Realm" Command="{Binding RefreshWorldsmithCommand}"/><Button Content="Generate Proposal" Command="{Binding GenerateProposalCommand}"/><Button Content="Simulate" Command="{Binding SimulateProposalCommand}"/><Button Content="Approve Proposal" Command="{Binding ApproveProposalCommand}"/><Button Content="Apply Approved" Command="{Binding ApplyApprovedProposalCommand}"/></WrapPanel><TextBlock Text="{Binding Worldsmith.RuntimeStatus}" TextWrapping="Wrap" Margin="0,8,0,0"/><TextBlock><Run Text="Last refresh: "/><Run Text="{Binding Worldsmith.LastRefresh}"/><Run Text=" · Baseline files: "/><Run Text="{Binding Worldsmith.BaselineFiles}"/><Run Text=" · Records: "/><Run Text="{Binding Worldsmith.BaselineRecords}"/></TextBlock></StackPanel></Grid></StackPanel>
+     </Border>
+
+     <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource ArchivistPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsArchivist}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+      <StackPanel><TextBlock Text="Archivist Librarium Workbench" Style="{StaticResource RoomTitle}"/><Border Style="{StaticResource ChamberBadge}"><TextBlock Text="PREVIEW-ONLY EVIDENCE WORKBENCH" Foreground="#FFF5D8" FontSize="11" FontWeight="Bold"/></Border><TextBlock Text="Upload, decode, classify, cross-reference, preview, report, and export. Librarium changes remain preview-only."/>
+       <WrapPanel Margin="0,10"><Button Content="Upload Files" Command="{Binding QueueFilesCommand}"/><Button Content="Upload Folder" Command="{Binding QueueFolderCommand}"/><Button Content="Decode Selected" Command="{Binding DecodeSelectedCommand}"/><Button Content="Decode Queue" Command="{Binding DecodeAllCommand}"/><Button Content="Save Evidence" Command="{Binding SaveEvidenceCommand}"/><Border BorderBrush="#8B6A3E" BorderThickness="1" Padding="12,6" Margin="8,0"><TextBlock Text="Drag &amp; Drop evidence anywhere in this chamber"/></Border><TextBlock Text="Supported: WCC · WBB · DLL · JSON · XML · CSV · TXT · MDB · BIN" VerticalAlignment="Center"/></WrapPanel>
+       <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions><StackPanel><TextBlock Text="Decode Queue" Style="{StaticResource SectionTitle}"/><DataGrid ItemsSource="{Binding Archivist.DecodeQueue}" SelectedItem="{Binding SelectedDecodeItem}" AutoGenerateColumns="False" Height="190" CanUserAddRows="False"><DataGrid.Columns><DataGridTextColumn Header="File" Binding="{Binding FileName}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/><DataGridTextColumn Header="Type" Binding="{Binding Type}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="70"/><DataGridTextColumn Header="Status" Binding="{Binding Status}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="100"/><DataGridTextColumn Header="Size" Binding="{Binding SizeBytes}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="90"/><DataGridComboBoxColumn Header="Confidence" SelectedItemBinding="{Binding Confidence}" ElementStyle="{StaticResource GuardianGridComboElement}" EditingElementStyle="{StaticResource GuardianGridComboElement}" Width="140"/></DataGrid.Columns></DataGrid><TextBlock Text="Evidence Tree / Confidence" Style="{StaticResource SectionTitle}"/><DataGrid ItemsSource="{Binding Archivist.EvidenceTree}" AutoGenerateColumns="False" Height="150" CanUserAddRows="True"><DataGrid.Columns><DataGridTextColumn Header="Evidence" Binding="{Binding Name}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/><DataGridTextColumn Header="Source" Binding="{Binding Source}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/><DataGridTextColumn Header="Confidence" Binding="{Binding Confidence}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="140"/><DataGridTextColumn Header="Relationships" Binding="{Binding Relationships}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/></DataGrid.Columns></DataGrid><TextBlock Text="Confidence: Proven · Strongly Correlated · Hypothesis · Unknown" FontWeight="SemiBold" Margin="0,4"/><TextBlock Text="{Binding Archivist.DecodeStatus}" TextWrapping="Wrap"/><TextBlock><Run Text="Decoded: "/><Run Text="{Binding Archivist.DecodedFiles}"/><Run Text=" · Failed: "/><Run Text="{Binding Archivist.FailedFiles}"/></TextBlock></StackPanel>
+        <StackPanel Grid.Column="2"><TextBlock Text="Relationship Viewer" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding Archivist.RelationshipViewer}" Height="55" TextWrapping="Wrap"/><TextBlock Text="Librarium Preview" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding Archivist.LibrariumPreview}" Height="65" TextWrapping="Wrap" AcceptsReturn="True"/><TextBlock Text="Generated Knowledge" Style="{StaticResource SectionTitle}"/><TextBox Text="{Binding Archivist.GeneratedKnowledge}" Height="65" TextWrapping="Wrap"/><TextBlock Text="Indexed Evidence Search" Style="{StaticResource SectionTitle}"/>
+         <DockPanel><Button DockPanel.Dock="Right" Content="Clear" Command="{Binding ClearEvidenceSearchCommand}" Margin="6,0,0,0"/><Button DockPanel.Dock="Right" Content="Search" Command="{Binding SearchEvidenceCommand}" Margin="6,0,0,0"/><TextBox Text="{Binding Archivist.SearchText, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search file names, paths, hashes, findings, confidence, and relationships"/></DockPanel>
+         <TextBlock Text="{Binding Archivist.SearchStatus}" TextWrapping="Wrap" Margin="0,4"/>
+         <DataGrid ItemsSource="{Binding Archivist.SearchResults}" SelectedItem="{Binding SelectedEvidenceResult}" AutoGenerateColumns="False" Height="150" CanUserAddRows="False" IsReadOnly="True">
+          <DataGrid.Columns><DataGridTextColumn Header="Evidence" Binding="{Binding Name}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/><DataGridTextColumn Header="Type" Binding="{Binding Type}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="90"/><DataGridTextColumn Header="Confidence" Binding="{Binding Confidence}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="125"/><DataGridTextColumn Header="Match" Binding="{Binding MatchSummary}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="2*"/></DataGrid.Columns>
+         </DataGrid><TextBlock Text="Reports" Style="{StaticResource SectionTitle}"/><WrapPanel><Button Content="Markdown" Command="{Binding GenerateMarkdownCommand}"/><Button Content="HTML" Command="{Binding GenerateHtmlCommand}"/><Button Content="JSON" Command="{Binding GenerateJsonCommand}"/><Button Content="PDF" Command="{Binding GeneratePdfCommand}"/><Button Content="Export for Codex" Command="{Binding ExportCodexCommand}"/></WrapPanel></StackPanel>
+       </Grid>
+       <TextBlock Text="Editable Local Tool Registry" Style="{StaticResource SectionTitle}"/>
+       <TextBlock Text="Paths are user-managed. Tokens: {file} selected evidence, {folder} its folder, {root} Archivist workspace." TextWrapping="Wrap" Margin="0,0,0,6"/>
+       <DataGrid ItemsSource="{Binding Archivist.LocalTools}" SelectedItem="{Binding SelectedTool}" AutoGenerateColumns="False" Height="180" CanUserAddRows="False">
+        <DataGrid.Columns>
+         <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding Enabled}" Width="70"/>
+         <DataGridTextColumn Header="Tool" Binding="{Binding Name}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="150"/>
+         <DataGridTextColumn Header="Executable Path" Binding="{Binding ExecutablePath}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/>
+         <DataGridTextColumn Header="Arguments" Binding="{Binding Arguments}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="240"/>
+         <DataGridTextColumn Header="Working Directory" Binding="{Binding WorkingDirectory}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="220"/>
+         <DataGridTextColumn Header="Validation / Last Launch" Binding="{Binding ValidationStatus}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="260" IsReadOnly="True"/>
+        </DataGrid.Columns>
+       </DataGrid>
+       <WrapPanel><Button Content="Add Tool" Command="{Binding AddToolCommand}"/><Button Content="Remove Tool" Command="{Binding RemoveToolCommand}"/><Button Content="Browse Executable" Command="{Binding BrowseToolCommand}"/><Button Content="Validate Selected Tool" Command="{Binding ValidateToolCommand}"/><Button Content="Launch Selected Tool" Command="{Binding LaunchToolCommand}"/></WrapPanel>
+       <TextBlock Text="{Binding Archivist.LastToolStatus}" TextWrapping="Wrap" Margin="0,6,0,0"/>
+      </StackPanel>
+     </Border>
+    </StackPanel>
+   </ScrollViewer>
+  </Grid>
+  <Border Grid.Row="2" Style="{StaticResource ParchmentPanel}" Background="#D8BD82" Margin="0,10,0,0" Padding="10">
+   <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel><TextBlock Text="Guardian Activity Center" FontWeight="Bold"/><TextBlock Text="{Binding Orchestration.RuntimeStatus}"/><TextBlock><Run Text="Next run: "/><Run Text="{Binding Orchestration.NextRunUtc}"/><Run Text=" · Last run: "/><Run Text="{Binding Orchestration.LastRunUtc}"/></TextBlock>
+     <DataGrid ItemsSource="{Binding Orchestration.Jobs}" AutoGenerateColumns="False" Height="110" CanUserAddRows="False" Margin="0,6,12,0"><DataGrid.Columns><DataGridTextColumn Header="Guardian" Binding="{Binding Role}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="110"/><DataGridTextColumn Header="Job" Binding="{Binding JobType}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="*"/><DataGridTextColumn Header="Status" Binding="{Binding Status}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="90"/><DataGridTextColumn Header="Attempt" Binding="{Binding Attempt}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="65"/><DataGridTextColumn Header="Message" Binding="{Binding Message}" ElementStyle="{StaticResource GuardianGridTextElement}" EditingElementStyle="{StaticResource GuardianGridTextEditor}" Width="2*"/></DataGrid.Columns></DataGrid></StackPanel>
+    <StackPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"><TextBlock Text="{Binding Diagnostics.OverallStatus}" TextAlignment="Right" TextWrapping="Wrap" MaxWidth="520"/><ItemsControl ItemsSource="{Binding Diagnostics.Results}" MaxHeight="72" Margin="0,4,0,4"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" FontSize="11" TextAlignment="Right"/></DataTemplate></ItemsControl.ItemTemplate></ItemsControl><WrapPanel HorizontalAlignment="Right"><Button Content="Run Hall Self-Test" Command="{Binding RunHardeningChecksCommand}"/><Button Content="Queue Selected" Command="{Binding QueueGuardianJobCommand}"/><Button Content="Run Due Jobs" Command="{Binding RunGuardianJobsCommand}"/><Button Content="Pause Scheduler" Command="{Binding PauseSchedulerCommand}"/><Button Content="Resume" Command="{Binding ResumeSchedulerCommand}"/><Button Content="Cancel Running" Command="{Binding CancelRunningJobsCommand}"/><Button Content="Save Guardian Hall" Command="{Binding SaveCommand}" Style="{StaticResource PrimaryButtonStyle}"/><Button Content="STOP ALL" Command="{Binding StopAllCommand}" Background="#7A2018" Foreground="White"/></WrapPanel></StackPanel>
+   </Grid>
+  </Border>
+ </Grid>
+</UserControl>

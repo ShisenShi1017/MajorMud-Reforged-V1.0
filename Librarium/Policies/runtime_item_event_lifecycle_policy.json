@@ -1,0 +1,45 @@
+{
+  "id": "runtime.item.event.lifecycle.v1",
+  "authority": "Librarium",
+  "code_update": "0189",
+  "classification": "strongly_correlated",
+  "enabled": true,
+  "scope": "character-owned event reward and cleanup item lifecycle",
+  "grant": {
+    "required": [
+      "event_id",
+      "character_id",
+      "canonical_item_id",
+      "reward_key",
+      "target_quantity"
+    ],
+    "identity": "event_id + reward_key + canonical_item_id + owner",
+    "behavior": "create only deficit; preserve existing identities; reject existing quantity above target"
+  },
+  "cleanup": {
+    "required": [
+      "event_id",
+      "character_id",
+      "canonical_item_id",
+      "cleanup_key",
+      "lifecycle_reason",
+      "target_quantity"
+    ],
+    "eligible_locations": [
+      "character",
+      "equipment",
+      "container",
+      "bank"
+    ],
+    "ordering": "descending runtime instance id",
+    "protection_metadata": "event_cleanup_protected",
+    "behavior": "remove only quantity above explicit target; rollback on protected state"
+  },
+  "safe_fallback": "No mutation without explicit authoritative inputs.",
+  "native_dependencies": [
+    "event mappings",
+    "timers",
+    "party credit",
+    "messages"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "doors-locks-access",
+  "pass": "RemainingSystems-0004-DoorAccess",
+  "runtimeOwner": "RuntimeDoorAccessService",
+  "ownership": {
+    "doorDefinition": "world catalog",
+    "openLockedBrokenState": "world door-access runtime",
+    "keyInventory": "Character inventory",
+    "trapResolution": "Traps subsystem",
+    "movement": "Rooms/world movement",
+    "damageAndEffects": "Combat and Spells"
+  },
+  "lifecycleOrdering": [
+    "resolve exit and destination",
+    "evaluate actor access restrictions",
+    "evaluate broken/locked/open door state",
+    "validate key or ability request",
+    "commit synchronized door state",
+    "request trap check",
+    "permit movement"
+  ],
+  "actions": [
+    {
+      "id": "inspect",
+      "status": "implemented"
+    },
+    {
+      "id": "open",
+      "status": "implemented"
+    },
+    {
+      "id": "close",
+      "status": "implemented"
+    },
+    {
+      "id": "lock",
+      "status": "implemented"
+    },
+    {
+      "id": "unlock",
+      "status": "implemented"
+    },
+    {
+      "id": "pick",
+      "status": "evidence-only-request",
+      "fallback": "deny unless definition and ability explicitly permit"
+    },
+    {
+      "id": "bash",
+      "status": "evidence-only-request",
+      "fallback": "deny unless definition and ability explicitly permit"
+    },
+    {
+      "id": "traverse",
+      "status": "implemented"
+    },
+    {
+      "id": "reset",
+      "status": "implemented"
+    }
+  ],
+  "accessRestrictions": [
+    "level",
+    "race",
+    "class",
+    "alignment",
+    "faction",
+    "quest flags",
+    "abilities",
+    "spells",
+    "UTC time window"
+  ],
+  "state": {
+    "fields": [
+      "open",
+      "locked",
+      "broken",
+      "resetAtUtc",
+      "revision"
+    ],
+    "linkedDoorSynchronization": true,
+    "persistenceModes": [
+      "ephemeral",
+      "world-state"
+    ],
+    "atomicWrite": "temporary file then replace"
+  },
+  "keys": {
+    "requiredKeyId": true,
+    "ownershipValidated": true,
+    "consumableKey": "returns consumption request; inventory owner commits consumption",
+    "permanentKey": "no consumption request"
+  },
+  "safeFallbacks": [
+    "missing door denies",
+    "missing key definition denies",
+    "unknown actions deny",
+    "invalid definitions stop construction",
+    "corrupt persistence is ignored in favor of catalog defaults",
+    "unknown native latch effects remain evidence-only"
+  ],
+  "relationships": [
+    {
+      "from": "door",
+      "to": "exit",
+      "kind": "guards"
+    },
+    {
+      "from": "door",
+      "to": "item",
+      "kind": "requires-key"
+    },
+    {
+      "from": "door",
+      "to": "trap",
+      "kind": "requests-check-before-movement"
+    },
+    {
+      "from": "door",
+      "to": "world reset",
+      "kind": "reset-owned-state"
+    },
+    {
+      "from": "door",
+      "to": "character/quest/faction",
+      "kind": "checks-access-only"
+    }
+  ],
+  "nativeDependencies": [
+    "exact Classic open/close/lock/unlock messages",
+    "native key-consumption semantics",
+    "lockpick and bash success formulas",
+    "door durability and break recovery",
+    "one-way and remote lock encodings",
+    "exact reset persistence",
+    "seven unresolved room latch effects"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update_id": "CodeUpdate0172",
+  "artifact": "RuntimeNpcInspection.cs",
+  "sources": [
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+      "role": "authoritative runtime state owner"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcAiScheduler.cs",
+      "role": "pending action and claim metadata contract"
+    },
+    {
+      "path": "Apps/Source/Reforged.Server/RuntimeNpcThreatGeneration.cs",
+      "role": "threat ledger metadata contract"
+    }
+  ],
+  "native_binary_dependency": false
+}

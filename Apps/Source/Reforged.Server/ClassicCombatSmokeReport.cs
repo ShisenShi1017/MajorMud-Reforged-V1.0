@@ -32,7 +32,7 @@ public sealed class ClassicCombatSmokeReport
             5));
         Check(report, "dr-produces-glance", glance.Outcome == ClassicHitOutcome.Glance && glance.FinalDamage == 0);
 
-        var dodge = new ClassicCombatResolver(new SequenceRandom(1, 100, 10, 0)).Resolve(new ClassicAttackRequest(
+        var dodge = new ClassicCombatResolver(new SequenceRandom(1, 100, 10, 1)).Resolve(new ClassicAttackRequest(
             ClassicAttackType.NormalWeapon,
             new ClassicCombatantStats(80, 0, 0, 0, 0, CriticalChance: 0),
             new ClassicCombatantStats(0, 0, 0, 0, 10),

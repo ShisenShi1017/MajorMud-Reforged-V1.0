@@ -1,0 +1,23 @@
+{
+  "policy_id": "runtime_item_container_owner_reconciliation_policy",
+  "code_update": "0199",
+  "subsystem": "Items",
+  "status": "active_strongly_correlated",
+  "rules": [
+    {
+      "id": "parent_owner_authoritative",
+      "description": "A contained item with a stale owner may inherit the explicit owner of its valid parent portable-container instance."
+    },
+    {
+      "id": "ownerless_parent_fail_closed",
+      "description": "An ownerless parent never supplies an inferred owner to a claimed child."
+    },
+    {
+      "id": "post_recovery_validation",
+      "description": "Recovered state must pass the complete item and corpse validator before persistence."
+    }
+  ],
+  "native_dependencies": [
+    "Exact original MajorMUD corruption-repair behavior and messages remain native-dependent."
+  ]
+}

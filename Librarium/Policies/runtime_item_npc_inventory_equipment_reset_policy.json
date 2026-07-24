@@ -1,0 +1,25 @@
+{
+  "id": "policy.runtime.items.npc-inventory-equipment-reset.v1",
+  "title": "NPC Inventory and Equipment Reset Identity Policy",
+  "status": "active_evidence_gated",
+  "classification": "Reforged compatibility infrastructure",
+  "rules": [
+    "NPC item reconciliation requires an authoritative NPC identity, reset key, canonical item, and target quantity.",
+    "Inventory and explicitly slotted equipment are reconciled separately.",
+    "Existing matching instances retain identity and only deficits are created.",
+    "Equipment items require a legal generated equipment relationship and target at most one item per slot.",
+    "Existing quantities above target are never silently removed.",
+    "NPC Runtime or World Runtime owns spawn and reset scheduling."
+  ],
+  "bidirectional_relationships": {
+    "npc_to_items": "NPC identity -> reset key -> canonical inventory/equipment target",
+    "item_to_npc": "runtime item instance -> NPC owner/location -> reset provenance"
+  },
+  "unknowns": [
+    "Classic NPC item record binding",
+    "spawn/reset timers",
+    "equipped-drop rules",
+    "limited-item suppression",
+    "native messages"
+  ]
+}

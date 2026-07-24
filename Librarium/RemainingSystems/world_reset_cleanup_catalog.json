@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "world-reset-cleanup",
+  "runtimeOwner": "RuntimeWorldResetCleanupService",
+  "status": "runtime-active-partially-exhausted",
+  "scopes": [
+    "room",
+    "area",
+    "zone",
+    "world"
+  ],
+  "actionKinds": [
+    "door",
+    "trap",
+    "container",
+    "spawn",
+    "merchant",
+    "quest",
+    "npc",
+    "event",
+    "item",
+    "orphan-cleanup"
+  ],
+  "ordering": [
+    "explicit numeric order",
+    "canonical action id tie-break"
+  ],
+  "failurePolicies": [
+    "stop-and-rollback",
+    "continue-independent"
+  ],
+  "ownershipBoundary": "coordinates reset requests; each subsystem owns its own state mutation and persistence",
+  "safeFallback": "reject unknown plans, preserve owner state, and record required-action failures",
+  "nativeDependencies": [
+    "exact Classic reset order",
+    "hard-reset exceptions",
+    "active-player behavior",
+    "persistence and restart semantics"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "npc-ai-provenance.v1",
+  "update_id": "CodeUpdate0174",
+  "claim": "NPC defensive profiles are derived directly from generated NPC AC, DR, and MR fields without synthesized dodge or generic defense values.",
+  "classification": "proven",
+  "records": {"npc_count": 1100},
+  "sources": [
+    {"path": "Data/Classic/npcs.json", "role": "authoritative generated NPC definitions"},
+    {"path": "Apps/Source/Reforged.Server/RuntimeNpcDefensiveProfiles.cs", "role": "runtime projection and validation"},
+    {"path": "Apps/Source/Reforged.Server/RuntimeLiveCombat.cs", "role": "live combat consumer"},
+    {"path": "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs", "role": "round combat consumer"}
+  ],
+  "native_dependency": false
+}

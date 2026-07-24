@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "catalogId": "classic-party-coordination",
+  "runtimeOwner": "Reforged.Server.RuntimePartyCoordinationService",
+  "modeBoundary": "Classic-safe compatibility infrastructure; unproven Classic constants remain configurable and provenance-tagged",
+  "lifecycle": [
+    "create",
+    "invite",
+    "accept-or-decline",
+    "leadership-transfer",
+    "kick-or-leave",
+    "disconnect-routing",
+    "disband"
+  ],
+  "ownedState": [
+    "party identity",
+    "leader identity",
+    "membership index",
+    "pending invitations",
+    "connected state",
+    "follow state"
+  ],
+  "integrations": {
+    "communications": "returns deterministic connected-recipient routing",
+    "movement": "returns deterministic follower movement requests without bypassing movement validation",
+    "combat": "does not calculate damage, targeting, or shared rewards",
+    "economy": "does not calculate loot or currency distribution",
+    "quests": "does not calculate shared quest credit",
+    "sessions": "accepts connected/disconnected state and preserves policy boundary"
+  },
+  "safeFallbacks": [
+    "unknown party membership rejects the operation",
+    "unknown permissions fail closed",
+    "expired invitations are removed and rejected",
+    "followers move only when connected, opted in, and co-located with the leader",
+    "offline members do not receive party chat delivery"
+  ]
+}

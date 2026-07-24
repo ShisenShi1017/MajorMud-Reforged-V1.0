@@ -1,0 +1,412 @@
+{
+  "schema": "majorMud.worldgroup.characterTargetEffectDispatch.v1",
+  "update": "0017",
+  "module": "wccmmud.dll",
+  "confidence": "PROVEN",
+  "dispatcher": {
+    "start": "0x00444712",
+    "effect_selector_read": "0x004457B1",
+    "effect_map": "0x004457D5",
+    "effect_map_entries": 165,
+    "effect_dispatch_table": "0x0044587A",
+    "dispatch_classes": 33,
+    "direct_effect_id_range": [
+      0,
+      164
+    ]
+  },
+  "record_layout": {
+    "effect_id_array_offset": "0xD8",
+    "element_type": "uint16",
+    "index_source": "current effect-slot index"
+  },
+  "behavior": [
+    "The selected uint16 effect ID is bounded against 0xA4 before direct dispatch.",
+    "A 165-byte compression map converts effect IDs 0..164 into 33 dispatch classes.",
+    "The dispatch class indexes a 33-entry absolute-address jump table.",
+    "Unsupported IDs above 0xA4 bypass the direct effect switch.",
+    "Class 3 contains 21 shared no-op/continue selectors; class 0 contains 113 default selectors."
+  ],
+  "dispatch_classes": [
+    {
+      "class": 0,
+      "target": "0x004458FE",
+      "effect_ids": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        10,
+        13,
+        14,
+        21,
+        22,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        50,
+        51,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        82,
+        83,
+        87,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        96,
+        99,
+        100,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        116,
+        117,
+        118,
+        119,
+        121,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        142,
+        145,
+        146,
+        147,
+        149,
+        152,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        161,
+        162,
+        163
+      ]
+    },
+    {
+      "class": 1,
+      "target": "0x00446E9B",
+      "effect_ids": [
+        164
+      ]
+    },
+    {
+      "class": 2,
+      "target": "0x004468CD",
+      "effect_ids": [
+        160
+      ]
+    },
+    {
+      "class": 3,
+      "target": "0x00446EA1",
+      "effect_ids": [
+        0,
+        23,
+        26,
+        52,
+        80,
+        86,
+        97,
+        98,
+        101,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        120,
+        122,
+        144,
+        153
+      ]
+    },
+    {
+      "class": 4,
+      "target": "0x00446E89",
+      "effect_ids": [
+        151
+      ]
+    },
+    {
+      "class": 5,
+      "target": "0x0044668C",
+      "effect_ids": [
+        150
+      ]
+    },
+    {
+      "class": 6,
+      "target": "0x0044596B",
+      "effect_ids": [
+        148
+      ]
+    },
+    {
+      "class": 7,
+      "target": "0x004459A1",
+      "effect_ids": [
+        143
+      ]
+    },
+    {
+      "class": 8,
+      "target": "0x004459D1",
+      "effect_ids": [
+        141
+      ]
+    },
+    {
+      "class": 9,
+      "target": "0x004459C3",
+      "effect_ids": [
+        140
+      ]
+    },
+    {
+      "class": 10,
+      "target": "0x00445FB8",
+      "effect_ids": [
+        95
+      ]
+    },
+    {
+      "class": 11,
+      "target": "0x0044697C",
+      "effect_ids": [
+        88
+      ]
+    },
+    {
+      "class": 12,
+      "target": "0x004459DE",
+      "effect_ids": [
+        85
+      ]
+    },
+    {
+      "class": 13,
+      "target": "0x00445B19",
+      "effect_ids": [
+        84
+      ]
+    },
+    {
+      "class": 14,
+      "target": "0x00445C31",
+      "effect_ids": [
+        81
+      ]
+    },
+    {
+      "class": 15,
+      "target": "0x00445D6C",
+      "effect_ids": [
+        73
+      ]
+    },
+    {
+      "class": 16,
+      "target": "0x00446DDD",
+      "effect_ids": [
+        49
+      ]
+    },
+    {
+      "class": 17,
+      "target": "0x00446D24",
+      "effect_ids": [
+        48
+      ]
+    },
+    {
+      "class": 18,
+      "target": "0x00446C6B",
+      "effect_ids": [
+        47
+      ]
+    },
+    {
+      "class": 19,
+      "target": "0x00446BB2",
+      "effect_ids": [
+        46
+      ]
+    },
+    {
+      "class": 20,
+      "target": "0x00446AF9",
+      "effect_ids": [
+        45
+      ]
+    },
+    {
+      "class": 21,
+      "target": "0x00446A40",
+      "effect_ids": [
+        44
+      ]
+    },
+    {
+      "class": 22,
+      "target": "0x00446821",
+      "effect_ids": [
+        20
+      ]
+    },
+    {
+      "class": 23,
+      "target": "0x0044675C",
+      "effect_ids": [
+        19
+      ]
+    },
+    {
+      "class": 24,
+      "target": "0x004465CF",
+      "effect_ids": [
+        18
+      ]
+    },
+    {
+      "class": 25,
+      "target": "0x004460C3",
+      "effect_ids": [
+        17
+      ]
+    },
+    {
+      "class": 26,
+      "target": "0x00446565",
+      "effect_ids": [
+        16
+      ]
+    },
+    {
+      "class": 27,
+      "target": "0x004464FB",
+      "effect_ids": [
+        15
+      ]
+    },
+    {
+      "class": 28,
+      "target": "0x0044642C",
+      "effect_ids": [
+        12
+      ]
+    },
+    {
+      "class": 29,
+      "target": "0x0044639F",
+      "effect_ids": [
+        11
+      ]
+    },
+    {
+      "class": 30,
+      "target": "0x00446284",
+      "effect_ids": [
+        8
+      ]
+    },
+    {
+      "class": 31,
+      "target": "0x00446271",
+      "effect_ids": [
+        6
+      ]
+    },
+    {
+      "class": 32,
+      "target": "0x00445EA5",
+      "effect_ids": [
+        1
+      ]
+    }
+  ],
+  "boundaries": {
+    "not_yet_proven": [
+      "semantic name of every effect ID",
+      "resource deduction ordering for every branch",
+      "textblock invocation below individual effect handlers"
+    ]
+  },
+  "provenance": {
+    "binary": "Worldgroup Server(4).zip/wccmmud.dll",
+    "instructions": [
+      "0x004457B1-0x004457CE"
+    ],
+    "tables": [
+      "0x004457D5-0x00445879",
+      "0x0044587A-0x004458FD"
+    ]
+  }
+}

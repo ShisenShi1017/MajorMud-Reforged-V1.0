@@ -1,0 +1,20 @@
+{
+  "schema_version": "npc-ai-evidence.v1",
+  "code_update": "CodeUpdate0200",
+  "behavior": "exact world-owned NPC gold balance inspection and mutation",
+  "classification": "proven",
+  "sources": [
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcGoldOwnership.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcCorpseOwnership.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcMerchantStockOwnership.cs"
+  ],
+  "runtime_contract": {
+    "owner": "RuntimeLivingWorldService materialized NPC instance",
+    "default_balance": 0,
+    "admission": ["existing instance", "explicit nonblank authority", "nonnegative resulting balance", "checked arithmetic"],
+    "persistence": ["npc_gold", "npc_gold_authority", "npc_gold_updated_at_utc", "npc_gold_last_operation", "npc_gold_last_delta"],
+    "safe_fallback": "reject without mutation"
+  },
+  "not_inferred": ["spawn gold", "merchant funding", "pricing", "reward allocation", "loot allocation", "currency denomination", "native gold limits"]
+}

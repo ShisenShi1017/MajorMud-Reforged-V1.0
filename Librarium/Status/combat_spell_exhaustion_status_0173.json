@@ -1,0 +1,21 @@
+{
+  "update": "0173",
+  "subsystem": "combat_spells",
+  "status": "in_progress",
+  "implemented_this_pass": [
+    "evidence-gated physical attack path dispatcher",
+    "dual-wield and bounded extra-strike sequencing",
+    "ranged and thrown readiness gates",
+    "natural, shield, two-handed, one-handed, and special path validation",
+    "per-strike deterministic damage scaling and tracing"
+  ],
+  "not_claimed_complete": [
+    "production weapon-to-path catalog",
+    "native off-hand and extra-attack coefficients",
+    "exact ammunition and thrown-item consumption timing",
+    "native multi-strike rollback",
+    "pursuit and opportunity attacks",
+    "spell.1304 semantics"
+  ],
+  "next_pass": "Implement pursuit and opportunity-attack execution with movement ordering, interruption, and threat ownership."
+}

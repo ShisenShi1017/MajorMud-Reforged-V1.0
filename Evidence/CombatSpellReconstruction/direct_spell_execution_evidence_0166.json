@@ -1,0 +1,47 @@
+{
+  "update": "0166",
+  "finding_id": "combat-spell-direct-execution-0166",
+  "classification": "strongly_correlated",
+  "implemented": {
+    "formula_kinds": [
+      "fixed",
+      "random_range",
+      "level_scaled",
+      "attribute_scaled",
+      "percentage_of_target_maximum",
+      "drain",
+      "resource_restoration"
+    ],
+    "resources": [
+      "hit_points",
+      "mana",
+      "energy"
+    ],
+    "ordering": [
+      "base magnitude",
+      "level contribution",
+      "attribute contribution",
+      "percentage contribution",
+      "resistance reduction",
+      "saving throw reduction",
+      "final clamp",
+      "target capacity clamp",
+      "atomic mutation",
+      "optional drain restoration"
+    ],
+    "rollback": "restore caster and target snapshots on any mutation failure"
+  },
+  "not_promoted": [
+    "production coefficients",
+    "spell critical behavior",
+    "native resistance formulas",
+    "native saving throw formulas",
+    "spell.1304 direct formula"
+  ],
+  "tests": [
+    "deterministic drain vector",
+    "target damage mutation",
+    "caster restoration",
+    "unresolved policy rejection"
+  ]
+}

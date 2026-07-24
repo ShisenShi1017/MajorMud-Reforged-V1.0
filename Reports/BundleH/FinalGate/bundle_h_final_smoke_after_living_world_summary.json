@@ -1,0 +1,247 @@
+[
+    {
+        "command":  "--smoke-logging-diagnostics",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_logging_diagnostics.log"
+    },
+    {
+        "command":  "--smoke-multiplayer-completion",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_multiplayer_completion.log"
+    },
+    {
+        "command":  "--smoke-npc-administration",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_administration.log"
+    },
+    {
+        "command":  "--smoke-npc-ai-decision",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_ai_decision.log"
+    },
+    {
+        "command":  "--smoke-npc-ai-scheduler",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_ai_scheduler.log"
+    },
+    {
+        "command":  "--smoke-npc-ammunition",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_ammunition.log"
+    },
+    {
+        "command":  "--smoke-npc-assist",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_assist.log"
+    },
+    {
+        "command":  "--smoke-npc-companion-combat-assist",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_companion_combat_assist.log"
+    },
+    {
+        "command":  "--smoke-npc-companion-command",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_companion_command.log"
+    },
+    {
+        "command":  "--smoke-npc-companion-follow",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_companion_follow.log"
+    },
+    {
+        "command":  "--smoke-npc-companion-lifecycle-cleanup",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_companion_lifecycle_cleanup.log"
+    },
+    {
+        "command":  "--smoke-npc-companion-ownership",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_companion_ownership.log"
+    },
+    {
+        "command":  "--smoke-npc-corpse-access",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_corpse_access.log"
+    },
+    {
+        "command":  "--smoke-npc-corpse-ownership",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_corpse_ownership.log"
+    },
+    {
+        "command":  "--smoke-npc-defensive-profile",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_defensive_profile.log"
+    },
+    {
+        "command":  "--smoke-npc-equipment-ownership",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_equipment_ownership.log"
+    },
+    {
+        "command":  "--smoke-npc-equipment-selection",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_equipment_selection.log"
+    },
+    {
+        "command":  "--smoke-npc-explicit-route",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_explicit_route.log"
+    },
+    {
+        "command":  "--smoke-npc-flee",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_flee.log"
+    },
+    {
+        "command":  "--smoke-npc-flee-movement",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_flee_movement.log"
+    },
+    {
+        "command":  "--smoke-npc-inspection",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_inspection.log"
+    },
+    {
+        "command":  "--smoke-npc-inventory-ownership",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_inventory_ownership.log"
+    },
+    {
+        "command":  "--smoke-npc-item-effect",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_item_effect.log"
+    },
+    {
+        "command":  "--smoke-npc-item-use",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_item_use.log"
+    },
+    {
+        "command":  "--smoke-npc-loot-materialization",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_loot_materialization.log"
+    },
+    {
+        "command":  "--smoke-npc-merchant-access-admission",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_merchant_access_admission.log"
+    },
+    {
+        "command":  "--smoke-npc-merchant-gold-settlement",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_merchant_gold_settlement.log"
+    },
+    {
+        "command":  "--smoke-npc-merchant-restock-admission",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_merchant_restock_admission.log"
+    },
+    {
+        "command":  "--smoke-npc-merchant-stock",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_merchant_stock.log"
+    },
+    {
+        "command":  "--smoke-npc-perception",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_perception.log"
+    },
+    {
+        "command":  "--smoke-npc-persistence-validation",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_persistence_validation.log"
+    },
+    {
+        "command":  "--smoke-npc-return-home",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_return_home.log"
+    },
+    {
+        "command":  "--smoke-npcs",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npcs.log"
+    },
+    {
+        "command":  "--smoke-npc-service-refusal-dialogue",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_service_refusal_dialogue.log"
+    },
+    {
+        "command":  "--smoke-npc-spawn-inventory",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_spawn_inventory.log"
+    },
+    {
+        "command":  "--smoke-npc-spawn-lifecycle",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_spawn_lifecycle.log"
+    },
+    {
+        "command":  "--smoke-npc-threat",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_threat.log"
+    },
+    {
+        "command":  "--smoke-npc-threat-decay",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_threat_decay.log"
+    },
+    {
+        "command":  "--smoke-npc-threat-generation",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_threat_generation.log"
+    },
+    {
+        "command":  "--smoke-npc-threat-memory",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_threat_memory.log"
+    },
+    {
+        "command":  "--smoke-npc-threat-taunt",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_threat_taunt.log"
+    },
+    {
+        "command":  "--smoke-npc-trainer-eligibility-admission",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_trainer_eligibility_admission.log"
+    },
+    {
+        "command":  "--smoke-npc-trainer-offering-admission",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_trainer_offering_admission.log"
+    },
+    {
+        "command":  "--smoke-npc-trainer-offerings",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_npc_trainer_offerings.log"
+    },
+    {
+        "command":  "--smoke-offline-messaging",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_offline_messaging.log"
+    },
+    {
+        "command":  "--smoke-optional-activities",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_optional_activities.log"
+    },
+    {
+        "command":  "--smoke-organizations",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_organizations.log"
+    },
+    {
+        "command":  "--smoke-party-coordination",
+        "exitCode":  0,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_party_coordination.log"
+    },
+    {
+        "command":  "--smoke-player-combat-profile",
+        "exitCode":  24,
+        "log":  "Reports\\BundleH\\FinalGate\\smoke_player_combat_profile.log"
+    }
+]

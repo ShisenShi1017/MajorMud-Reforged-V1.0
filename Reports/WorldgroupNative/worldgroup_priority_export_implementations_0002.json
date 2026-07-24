@@ -1,0 +1,139 @@
+{
+  "schema": "majorMud.worldgroup.exportImplementation.v1",
+  "update": "WorldgroupNativeClosureUpdate0002",
+  "generated_utc": "2026-07-16T06:39:10.035263+00:00",
+  "wgserver_sha256": "4da28d718cf99701aa63c1889770f293bb3ec828aea5e8bea500473d2698c73f",
+  "architecture": "x86",
+  "evidence_class": "proven",
+  "exports": [
+    {
+      "symbol": "_sameas",
+      "ordinal": 1134,
+      "rva": "0x0003DAE4",
+      "size": 68,
+      "args": [
+        "const char* left",
+        "const char* right"
+      ],
+      "ret": "int16/bool",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "Returns 1 only when both NUL-terminated strings have identical length and each byte compares equal after the host character-fold helper; otherwise returns 0.",
+      "globals": [],
+      "calls": [
+        "0x0044BF22 character-fold helper"
+      ]
+    },
+    {
+      "symbol": "_genrdn",
+      "ordinal": 1452,
+      "rva": "0x0000738C",
+      "size": 82,
+      "args": [
+        "int32 minimum",
+        "int32 exclusiveMaximum"
+      ],
+      "ret": "int32",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "If exclusiveMaximum is 0 returns 0. If exclusiveMaximum <= minimum returns minimum. Otherwise repeatedly draws from the shared host PRNG and accumulates bounded remainders until the result is at least minimum; result remains below exclusiveMaximum.",
+      "globals": [],
+      "calls": [
+        "0x0044BE08 shared host PRNG"
+      ]
+    },
+    {
+      "symbol": "_lngrnd",
+      "ordinal": 1453,
+      "rva": "0x000073DE",
+      "size": 82,
+      "args": [
+        "int32 minimum",
+        "int32 exclusiveMaximum"
+      ],
+      "ret": "int32",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "Instruction-equivalent range routine to _genrdn with the same edge cases and shared host PRNG dependency.",
+      "globals": [],
+      "calls": [
+        "0x0044BE08 shared host PRNG"
+      ]
+    },
+    {
+      "symbol": "_tfsopn",
+      "ordinal": 1275,
+      "rva": "0x0003E7DC",
+      "size": 250,
+      "args": [
+        "const char* filePattern"
+      ],
+      "ret": "int16 count",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "Normalizes and bounds a file pattern into the TFS global buffer, derives its path component, enumerates matching files with _fnd1st/_fndnxt, stores the first search result, sets TFS state to 1 when a match exists or 0 otherwise, and returns the number of matches.",
+      "globals": [
+        "0x00463F7C pattern buffer",
+        "0x00464084 derived path pointer",
+        "0x00463E68 find data",
+        "0x00463DDC TFS state"
+      ],
+      "calls": [
+        "_stzcpy",
+        "_fileparts",
+        "_fnd1st",
+        "_fndnxt",
+        "_catastro"
+      ]
+    },
+    {
+      "symbol": "_tfspfx",
+      "ordinal": 1276,
+      "rva": "0x0003E9D8",
+      "size": 82,
+      "args": [
+        "const char* prefix"
+      ],
+      "ret": "int16/bool",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "Checks whether the supplied prefix matches the beginning of the active TFS text buffer using _sameto. On match it advances by strlen(prefix), skips whitespace, stores the suffix pointer globally, and returns 1 only when the remaining suffix is non-empty.",
+      "globals": [
+        "0x00463DE0 active TFS text buffer",
+        "0x00463E64 suffix pointer"
+      ],
+      "calls": [
+        "_sameto",
+        "strlen helper",
+        "_skpwht"
+      ]
+    },
+    {
+      "symbol": "_tfsabt",
+      "ordinal": 1271,
+      "rva": "0x0003EA3E",
+      "size": 30,
+      "args": [],
+      "ret": "void/int32 zeroed side effect",
+      "calling": "cdecl",
+      "confidence": "proven",
+      "semantics": "If TFS state equals 3, closes/releases the global TFS handle through the host close helper, then unconditionally resets TFS state to 0.",
+      "globals": [
+        "0x00463DDC TFS state",
+        "0x00463F78 TFS handle"
+      ],
+      "calls": [
+        "0x0044BE50 close helper"
+      ]
+    }
+  ],
+  "conclusions": [
+    "Six priority Worldgroup exports now have implementation-level bodies, cdecl ABI evidence, argument positions, return behavior, global-state effects, and direct callee ownership.",
+    "_genrdn and _lngrnd are implementation-equivalent and consume the same shared host PRNG routine at VA 0x0044BE08.",
+    "The TFS functions form a shared state machine around globals 0x00463DDC, 0x00463F78, 0x00463F7C, 0x00463E68, 0x00463DE0, and 0x00463E64."
+  ],
+  "limitations": [
+    "The internal algorithm and seed lifecycle of the shared PRNG callee at 0x0044BE08 remain for the next pass.",
+    "Exact structure layout of the find-data block at 0x00463E68 remains partially unresolved."
+  ]
+}

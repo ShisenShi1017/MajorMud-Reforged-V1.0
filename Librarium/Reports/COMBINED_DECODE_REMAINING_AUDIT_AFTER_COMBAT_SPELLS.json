@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "generatedUtc": "2026-07-15T20:37:49.809436+00:00",
+  "merge": {
+    "sourceArchives": [
+      "MajorMUD-Reforged-Combined-Character-TCA-Economy-RemainingSystems-Cumulative.zip",
+      "Combat and Spells DONE.zip"
+    ],
+    "baseFileCount": 666,
+    "combatSpellFileCount": 526,
+    "pathCollisions": 0,
+    "conflictingCollisions": 0,
+    "sourceFileCountAfterMerge": 1192
+  },
+  "includedSubsystems": {
+    "character": "managed runtime exhausted; native boundary quarantined",
+    "textblocksCommandsAbilities": "decoded corpus exhausted; native boundary quarantined",
+    "economy": "managed runtime included; native ordering/binding remains",
+    "remainingSystems": "repository-visible inventory closed; native policy/compatibility shells included",
+    "combatSpells": "non-native evidence exhausted through Update0185; canonical identity coverage complete; native execution semantics remain gated"
+  },
+  "combatSpellClosure": {
+    "status": "NON_NATIVE_EXHAUSTED",
+    "canonicalRecordCount": 1930,
+    "canonicalIdentityOnly": 1927,
+    "nativeBlocked": 1,
+    "promotedTestExecution": 1,
+    "promotedDefinitionBinding": 1,
+    "specificNativeBlockedRecord": "spell.1304",
+    "remainingNativeFamilies": [
+      "raw enum meanings",
+      "native timing",
+      "flags and masks",
+      "formulas",
+      "random ranges",
+      "save and restart behavior",
+      "spell.1304 target/resistance/timing/resource/effect semantics"
+    ]
+  },
+  "remainingDecodeAreas": [
+    {
+      "priority": 1,
+      "area": "Items",
+      "status": "FULL_SUBSYSTEM_NOT_INCLUDED",
+      "detail": "Decode item definitions and runtime instances, ownership, transfer, stacking, charges, durability, use behavior, portable containers, limited-item rules, persistence, death/corpse handling, reset/restock behavior, and cross-subsystem relationships."
+    },
+    {
+      "priority": 2,
+      "area": "NPC & AI",
+      "status": "FULL_SUBSYSTEM_NOT_INCLUDED",
+      "detail": "Decode NPC definitions and instances, spawn/despawn/respawn, AI update loop, perception, hostility, threat selection, pathing, dialogue, merchants/trainers, inventory, death, and persistence."
+    },
+    {
+      "priority": 3,
+      "area": "Combat & Spells native boundary",
+      "status": "NON_NATIVE_EXHAUSTED_NATIVE_EVIDENCE_REQUIRED",
+      "detail": "Non-native classification is complete for 1,930 canonical records. Resolve native enum meanings, timing, flags/masks, formulas, random ranges, save/restart behavior, and spell.1304. The 1,927 identity-only records remain fail-closed until record-specific native execution evidence exists."
+    },
+    {
+      "priority": 4,
+      "area": "Remaining Systems native closure",
+      "status": "36_REGISTERED_SYSTEMS_NATIVE_EVIDENCE_REQUIRED",
+      "detail": "Repository-visible inventory is closed, but exact Classic records, formulas, commands, messages, persistence, timing, ownership boundaries, and host integration still require native evidence."
+    },
+    {
+      "priority": 5,
+      "area": "Character native boundary",
+      "status": "6_NATIVE_DEPENDENCIES",
+      "detail": "Welcome/event ordering; reconnect grace/socket takeover; link-dead combat retention; party leadership succession; trade escrow disposition; offline corpse-decay reconciliation."
+    },
+    {
+      "priority": 6,
+      "area": "Textblocks / Commands / Abilities native boundary",
+      "status": "4_NATIVE_DEPENDENCIES",
+      "detail": "Exact message payload catalog; native textblock payload bodies/branching; remoteaction dispatcher; native player-command table, aliases, prefixes, and parsers."
+    },
+    {
+      "priority": 7,
+      "area": "Economy native boundary",
+      "status": "2_NATIVE_DEPENDENCY_FAMILIES",
+      "detail": "Exact native service-cost stage ordering and binding remaining markup/service-cost observations to executable paths and source offsets."
+    },
+    {
+      "priority": 8,
+      "area": "Rooms native boundary",
+      "status": "2_PRESERVED_UNKNOWN_FAMILIES",
+      "detail": "Seven native latch effects and 266 unknown-qualified exits."
+    },
+    {
+      "priority": 9,
+      "area": "Final WCC/WBB/DLL/File exhaustion",
+      "status": "FINAL_PHASE",
+      "detail": "Resolve all surviving native record layouts, flags/masks, save formats, dispatcher paths, timing/random behavior, host boundaries, and subsystem-specific native dependencies."
+    }
+  ],
+  "recommendedOrder": [
+    "Items",
+    "NPC & AI",
+    "Final native closure across Combat & Spells, Remaining Systems, Character, Textblocks/Commands/Abilities, Economy, and Rooms",
+    "Final WCC/WBB/DLL/File exhaustion"
+  ]
+}
