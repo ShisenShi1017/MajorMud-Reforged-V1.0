@@ -4,13 +4,14 @@
 - Current Database Version: `0010`
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
 - Current baseline: CodeUpdate0138 green by user report; CodeUpdate0139 local runtime cohesion work in progress
+- CI bootstrap policy: generated `Data/Classic` is not tracked; clean validation regenerates it from Librarium before server bootstrap diagnostics.
 - Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening. Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
-- Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,666/26,666 descriptions
+- Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,668/26,668 descriptions
 - Spawn placement fix: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage into rooms, and renders visible entities by runtime disposition/alignment.
 - Focused room audit: `room.map1.21` currently shows one neutral `guardsman` (`npc.14`) from `spawn.21.5`; user-expected `elite guardsman` requires separate evidence-backed data correction if the generated room source is wrong.
 - Current placement validation classification: `spawn.288.43` points to non-existent `room.map1.288`; `spawn.2306.213` points to `room.map1.2306`, which the user verified is a shop with no NPC. Both are logged and skipped.
 - Folded input material: room audit/semantic and trigger-script-quest material is integrated into the current baseline and recorded in ValidationManifest.json.
-- Current generated Classic counts: 26,666 rooms; 61,976 exits; 291 room interactions; 367 triggers; 183 scripts; 2,183 quests.
+- Current generated Classic counts: 26,668 rooms; 61,976 exits; 291 room interactions; 367 triggers; 183 scripts; 2,183 quests.
 - Room native/passive effect closure: 7 distinct gaps across 12 exit rows resolved as `native_passive_effect_resolved`; MegaMUD `/mp` replay found 0 command hits, so no command was invented.
 - Room message decode: 117 unique native WCCMSG offset-backed records generated for room actions, doors, hidden exits, locks/keys, searches, and failures.
 - Quest dialogue dispatch: 183 script records generated, including 182 decoded textblock stage scripts; 367 triggers generated, including 83 NPC quest-entry triggers and 182 linked stage script references.

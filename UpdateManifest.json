@@ -11,6 +11,7 @@
   "runtimeGameplayChanged": true,
   "serverSourceChanged": true,
   "generatedClassicDataChanged": true,
+  "generatedClassicDataTrackedInGit": false,
   "purpose": "Connect Telnet/MegaMUD session gameplay surfaces to shared authoritative living-world runtime state, add Classic data diagnostics, promote room text into Librarium, complete WCCMP002 1.11p placeholder room-description recovery, regenerate Classic room descriptions, audit WCC source coverage, reconcile MMExplorer/OmniVerse reference data into Librarium, centralize command abbreviation parsing, repair map-qualified live spawn placement/rendering, fold current room semantic plus trigger/script/quest evidence into CodeUpdate0139, connect generated NPC quest dialogue dispatch to runtime talk commands, close the remaining generated quest/script edge behaviors, record evidence-gated quest/room world events durably, import final native closure/WCC decode evidence into the repo, activate verified/native and strongly-correlated Librarium sidecars in generated runtime data where evidence supports it, expose a readable read-only Librarium dashboard tab in the Reforged app, repair the Client play UX into a MegaMUD-style server/session launcher with a dedicated terminal window, require persisted Male/Female selection during Telnet character creation, repair room-description catalog discovery, repair generated numeric-string runtime readers, close the Bundle G native presentation payload mapping gap, and harden the desktop app EXE startup/logging path.",
   "includedSlices": [
     "CodeUpdate0139-TelnetRuntimeDispatcherCohesion",
@@ -67,7 +68,7 @@
     "dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-classic-data",
     "dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-classic-runtime"
   ],
-  "evidencePolicy": "Librarium remains authoritative. /Data is generated runtime output. ImportedDatabases remains untouched. Classic is immutable/evidence-locked. Unknown Classic behavior must not be guessed.",
+  "evidencePolicy": "Librarium remains authoritative. /Data is generated runtime output and is not committed as source. Clean validation environments must regenerate /Data from Librarium before server bootstrap. ImportedDatabases remains untouched. Classic is immutable/evidence-locked. Unknown Classic behavior must not be guessed.",
   "validationStatus": "LOCAL_BUNDLE_H_FINAL_PASS_WITH_PYTHON_UNAVAILABLE",
   "dotnetSdkAvailableHere": true,
   "requiredCodexCommands": [
@@ -89,7 +90,7 @@
     "ValidationManifest.json"
   ],
   "knownLimitations": [
-    "GitHub Actions remains pending until CodeUpdate0139 is pushed and confirmed green.",
+    "GitHub Actions must regenerate generated Data/Classic before server bootstrap because generated data is intentionally not tracked.",
     "WBBMP002 is secondary comparison evidence only for the WCCMP002 1.11p room/map placeholder recovery.",
     "ImportedDatabases remains preserved and reference-only unless explicitly approved for cleanup.",
     "CodeUpdate0139 does not finish all gameplay systems; it repairs runtime cohesion for connected Telnet sessions.",
@@ -116,7 +117,7 @@
     "questDialogueDispatch": "PASS: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-interaction-narrative; includes random table execution, cast/summon/remoteaction coverage, world-intent target validation, Classic non-repeat quest guard, and exhaustive NPC quest-entry dispatch validation",
     "worldEventRecording": "PASS: python Tools\\validator.py; includes quest remoteaction event recording and generated room/object interaction event recording",
     "finalNativeClosureArchiveIntake": "PASS: archive copied into repo; Native* registries compile; server implementation slices were merged into active runtime code with duplicate contracts consolidated; see Reports\\PackageIntake\\final_native_closure_update0022_intake.json",
-        "serverNativeRuntimeAuditRepair": "PASS: Classic compiler/runtime audits report 26,666/26,666 room descriptions; runtime audit reports 1,013 live NPC instances and 626 live monster instances with hard map-qualified spawn validation; interaction/narrative smoke and full current-health validator pass after generated numeric-string reader repairs.",
+        "serverNativeRuntimeAuditRepair": "PASS: Classic compiler/runtime audits report 26,668/26,668 room descriptions; runtime audit reports 1,015 live NPC instances and 628 live monster instances with hard map-qualified spawn validation; interaction/narrative smoke and full current-health validator pass after generated numeric-string reader repairs.",
         "bundleGNativePresentationPayloadClosure": "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; --audit-bundle-f-phase-f10-native-payloads reports 0 disconnects; --audit-bundle-f-phase-f10-complete through --audit-bundle-f-phase-f15-persistence pass.",
     "reforgedAppExeStartupHardening": "PASS: dotnet build MajorMud.Reforged.sln --configuration Release --no-restore -warnaserror; dotnet publish Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release --runtime win-x64 --self-contained false --output Release\\MajorMudReforgedApp; published MajorMudReforged.exe --smoke-shell/--smoke-settings-layout/--smoke-cleanup-schedule pass; brief GUI launch stayed running with no startup-failure log.",
     "acceptedOneTimeValidations": "Recorded in ValidationManifest.json",

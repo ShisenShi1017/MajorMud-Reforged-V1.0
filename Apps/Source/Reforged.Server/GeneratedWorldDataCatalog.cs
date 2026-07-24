@@ -14,8 +14,13 @@ public sealed class GeneratedWorldDataCatalog
     {
         "commands", "abilities", "character_foundation", "classes", "races", "skills",
         "equipment", "equipment_rules", "equipment_slots", "status_effects",
-        "npc_ai_runtime", "loot_rules", "economy_rules", "room_interactions", "room_messages", "scripts",
+        "loot_rules", "economy_rules", "room_interactions", "room_messages", "scripts",
         "gang_houses"
+    };
+
+    private static readonly string[] ClassicParityOptionalFamilies =
+    {
+        "npc_ai_runtime"
     };
 
     public string WorldId { get; init; } = string.Empty;
@@ -59,6 +64,25 @@ public sealed class GeneratedWorldDataCatalog
             if (!exists)
             {
                 diagnostics.Add($"Required generated data file missing for world '{definition.Id}': {fileName}");
+            }
+        }
+
+        if (definition.ClassicProtected)
+        {
+            foreach (var family in ClassicParityOptionalFamilies)
+            {
+                if (families.ContainsKey(family)) continue;
+                var path = Path.Combine(dataRoot, $"{family}.json");
+                var exists = File.Exists(path);
+                if (!exists) continue;
+                families[family] = new GeneratedWorldFamilyStatus
+                {
+                    Family = family,
+                    Path = path,
+                    Exists = true,
+                    RecordCount = CountRecords(path, diagnostics),
+                    Sha256 = ComputeSha256(path)
+                };
             }
         }
 

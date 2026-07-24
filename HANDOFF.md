@@ -12,6 +12,8 @@ Important rules:
 - Librarium is authoritative.
 - `/Data` is generated runtime output.
 - Runtime consumes generated `/Data` only.
+- Generated `Data/Classic` is not committed; clean CI/local validation must run the Librarium compiler before server bootstrap.
+- Current clean-checkout repair also covers chunked generated data, `textblock_command_ability_contracts` compiler output, and derived NPC AI spawn relationships when optional `npc_ai_runtime.json` is absent.
 - Classic remains immutable and evidence-locked.
 - `ImportedDatabases/` remains reference-only unless the user explicitly approves cleanup.
 - Preserve real `Saves/`; do not commit smoke-save artifacts.
@@ -27,7 +29,7 @@ Latest focused runtime repair:
 
 Folded semantic material:
 
-- Current Classic generated counts are 26,666 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
+- Current Classic generated counts are 26,668 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
 - One-time room semantic and trigger/script/quest validation is accepted and recorded in `ValidationManifest.json`.
 - Quest dialogue dispatch intake is loaded into Librarium source records: 182 decoded textblock stage scripts, 83 NPC quest-entry triggers, and 182 linked stage script references.
 - Runtime `talk <npc>` resolves room-scoped live NPCs and executes decoded NPC quest dialogue with atomic mutation/rollback.
@@ -49,7 +51,7 @@ Room-description recovery:
 - WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for the final placeholder room-description recovery.
 - WBBMP002 is secondary comparison evidence only.
 - The final 140 placeholder-named rooms were recovered from decoded WCCMP002 native offsets and WBB-corroborated by title and first description line.
-- Regenerated `Data/Classic` now audits with 26,666 rooms with descriptions and 0 rooms without descriptions.
+- Regenerated `Data/Classic` now audits with 26,668 rooms with descriptions and 0 rooms without descriptions.
 
 Focused audit result:
 

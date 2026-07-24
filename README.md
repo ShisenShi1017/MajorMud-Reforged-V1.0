@@ -11,11 +11,13 @@ Short version:
 - Current Code Update: `0139`.
 - Current Database Version: `0010`.
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`.
-- Local verification: PASS current-health validator 13/13, Classic compiler/runtime audits with 26,666/26,666 room descriptions, interaction/narrative smoke with 83 executable quest entries, Reforged app Release build, and Reforged app publish to `Release/MajorMudReforged`.
+- Local verification: PASS current-health validator 13/13, Classic compiler/runtime audits with 26,668/26,668 room descriptions, interaction/narrative smoke with 83 executable quest entries, Reforged app Release build, and Reforged app publish to `Release/MajorMudReforged`.
 - CodeUpdate0138 is green by user report.
 - GitHub Actions is pending for CodeUpdate0139 until the pushed commit is confirmed green.
 - Librarium is authoritative.
 - `/Data` is generated runtime output.
+- Clean CI/local checkouts regenerate `/Data` from Librarium before server bootstrap; generated `Data/Classic` is not committed as source.
+- Generated runtime readers support compiler chunk manifests; optional NPC AI runtime relationships can be derived from generated spawns.
 - Classic is evidence-locked.
 - `ImportedDatabases/` and real `Saves/` must be preserved.
 
@@ -29,7 +31,7 @@ Short version:
 - Librarium data promotion: map-qualified movement records and 0142 textblock quest-flow records are promoted through Librarium, then generated into `/Data`.
 - Telnet runtime cohesion: connected live combat targeting, combat damage, spell/ability NPC effects, and movement guards to shared authoritative living-world runtime state.
 - Classic runtime audit: diagnostic commands prove where generated data, runtime loading, live-world materialization, room inspection, and spawn materialization succeed or fail.
-- Current audit finding: regenerated live `Data/Classic` has 26,666/26,666 room descriptions; runtime loads 26,666/26,666 descriptions, 1,013 live NPC instances, and 626 live monster instances with hard map-qualified placement validation.
+- Current audit finding: regenerated live `Data/Classic` has 26,668/26,668 room descriptions; runtime loads 26,668/26,668 descriptions, 1,015 live NPC instances, and 628 live monster instances with hard map-qualified placement validation.
 - Room-text recovery: Librarium contains 2,417 clean native-backed room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, 23,309 WCCMP002 default-install binary gap fills, and 140 WCCMP002 placeholder room recoveries. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass, with WBBMP002 as secondary corroboration only.
 - WCC exhaustion audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md` records available local WCC/WBB evidence against active Librarium coverage.
 - Reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md` records MMExplorer SQL/MDB and OmniVerse public codex gap fills promoted into Librarium with provenance.

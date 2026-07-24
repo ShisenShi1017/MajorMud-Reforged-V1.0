@@ -193,22 +193,17 @@ public static class RuntimeBundleBExhaustionAudit
                      "npcs.json", "spells.json", "status_effects.json", "rooms.json", "spawns.json" })
             Require(File.Exists(Path.Combine(dataRoot, file)), "generated-data:" + file, checks, failures);
 
-        using (var npcDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "npcs.json"))))
-        {
-            var npcs = npcDoc.RootElement.GetProperty("records").EnumerateArray().Select(RuntimeNpcDefinition.FromJson).ToArray();
-            Require(npcs.Length > 0 && npcs.All(x => x.HitPoints > 0), "npc-hp-live-consumer", checks, failures);
-            Require(npcs.Any(x => x.CharmResistance > 0), "npc-charm-resistance-live-consumer", checks, failures);
-        }
+        var npcs = ReadGeneratedRecords(Path.Combine(dataRoot, "npcs.json")).Select(RuntimeNpcDefinition.FromJson).ToArray();
+        Require(npcs.Length > 0 && npcs.All(x => x.HitPoints > 0), "npc-hp-live-consumer", checks, failures);
+        Require(npcs.Any(x => x.CharmResistance > 0), "npc-charm-resistance-live-consumer", checks, failures);
 
         try
         {
-            using var roomsDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "rooms.json")));
-            var roomIds = roomsDoc.RootElement.GetProperty("records").EnumerateArray()
+            var roomIds = ReadGeneratedRecords(Path.Combine(dataRoot, "rooms.json"))
                 .Select(x => JsonValueReader.ReadString(x, "id", string.Empty)).ToHashSet(StringComparer.OrdinalIgnoreCase);
-            using var spawnDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "spawns.json")));
             foreach (var spawnId in new[] { "spawn.288.43", "spawn.2306.213" })
             {
-                var spawn = spawnDoc.RootElement.GetProperty("records").EnumerateArray().Single(x =>
+                var spawn = ReadGeneratedRecords(Path.Combine(dataRoot, "spawns.json")).Single(x =>
                     JsonValueReader.ReadString(x, "id", string.Empty).Equals(spawnId, StringComparison.OrdinalIgnoreCase));
                 var roomRef = JsonValueReader.ReadString(spawn, "qualified_room_ref", string.Empty);
                 Require(roomIds.Contains(roomRef), "spawn-resolved:" + spawnId, checks, failures, roomRef);
@@ -218,6 +213,38 @@ public static class RuntimeBundleBExhaustionAudit
         {
             failures.Add("spawn-validation:" + ex.Message);
         }
+    }
+
+    private static IReadOnlyList<JsonElement> ReadGeneratedRecords(string path)
+    {
+        if (!File.Exists(path)) return Array.Empty<JsonElement>();
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            var output = new List<JsonElement>();
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                output.AddRange(ReadGeneratedRecords(partPath));
+            }
+
+            return output;
+        }
+
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("records", out var records) &&
+            records.ValueKind == JsonValueKind.Array)
+            return records.EnumerateArray().Select(x => x.Clone()).ToArray();
+
+        if (root.ValueKind == JsonValueKind.Array)
+            return root.EnumerateArray().Select(x => x.Clone()).ToArray();
+
+        return Array.Empty<JsonElement>();
     }
 
     private static bool ContainsAny(string value, params string[] terms) =>

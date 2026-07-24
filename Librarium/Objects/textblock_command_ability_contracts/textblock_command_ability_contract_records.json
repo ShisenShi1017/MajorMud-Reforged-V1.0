@@ -1,0 +1,70 @@
+{
+  "schema": "librarium_textblock_command_ability_contract_records_v1",
+  "authority": "Librarium",
+  "family": "textblock_command_ability_contracts",
+  "records": [
+    {
+      "id": "contract.textblock.opcode_execution",
+      "object_type": "semantic_contract",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode_count": 25,
+      "operation_count": 2616,
+      "unknown_opcode_policy": "fail_closed",
+      "atomicity": "condition_preflight_then_ordered_effects",
+      "clause_execution_order": [
+        "read source line",
+        "evaluate command/dialogue gate",
+        "evaluate condition opcode sequence",
+        "reject on failed condition",
+        "buffer output references",
+        "apply effect opcode sequence",
+        "commit character/world state",
+        "publish runtime result"
+      ],
+      "opcodes": [
+        { "opcode": "addability", "phase": "effect", "count": 5, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "addevil", "phase": "effect", "count": 3, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "addexp", "phase": "effect", "count": 43, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "cast", "phase": "effect", "count": 11, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "check", "phase": "condition", "count": 16, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "checkability", "phase": "condition", "count": 300, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "checkitem", "phase": "condition", "count": 54, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "class", "phase": "condition", "count": 128, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "evilaligned", "phase": "condition", "count": 117, "allowed_arities": [0], "parameters": [] },
+        { "opcode": "failability", "phase": "condition", "count": 541, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "failitem", "phase": "condition", "count": 53, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "giveability", "phase": "effect", "count": 146, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "giveitem", "phase": "effect", "count": 118, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "goodaligned", "phase": "condition", "count": 162, "allowed_arities": [0], "parameters": [] },
+        { "opcode": "maxlevel", "phase": "condition", "count": 7, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "message", "phase": "effect", "count": 130, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "minlevel", "phase": "condition", "count": 63, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "price", "phase": "condition", "count": 4, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "random", "phase": "condition", "count": 2, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "remoteaction", "phase": "effect", "count": 1, "allowed_arities": [3, 4], "parameters": [] },
+        { "opcode": "summon", "phase": "effect", "count": 3, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "takeitem", "phase": "effect", "count": 60, "allowed_arities": [1], "parameters": [] },
+        { "opcode": "teleport", "phase": "effect", "count": 2, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "testability", "phase": "condition", "count": 258, "allowed_arities": [2], "parameters": [] },
+        { "opcode": "text", "phase": "effect", "count": 389, "allowed_arities": [1], "parameters": [] }
+      ],
+      "evidence_refs": [
+        {
+          "source": "Librarium/BehaviorGraph/textblock_opcode_execution_graph_0152.json",
+          "classification": "authoritative_behavior_graph_opcode_contract"
+        },
+        {
+          "source": "Librarium/BehaviorGraph/textblock_command_ability_semantic_graph_0150.json",
+          "classification": "authoritative_semantic_operation_counts"
+        }
+      ],
+      "confidence": "verified",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/textblock_command_ability_contracts.json",
+        "runtime_reads_generated_data": true
+      }
+    }
+  ]
+}

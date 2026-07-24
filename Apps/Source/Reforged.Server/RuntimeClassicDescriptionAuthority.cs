@@ -55,9 +55,7 @@ public sealed class RuntimeClassicDescriptionAuthority
     private static Dictionary<string,string> LoadDirectDescriptions(string path)
     {
         var result = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array) return result;
-        foreach (var row in records.EnumerateArray())
+        foreach (var row in ReadRecords(path))
         {
             var id = Text(row,"id");
             var description = FirstDescription(row);
@@ -66,6 +64,31 @@ public sealed class RuntimeClassicDescriptionAuthority
             if (legacy > 0 && description.Length > 0) result[legacy.ToString()] = description;
         }
         return result;
+    }
+
+    private static IReadOnlyList<JsonElement> ReadRecords(string path)
+    {
+        var rows = new List<JsonElement>();
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        if (document.RootElement.ValueKind == JsonValueKind.Object &&
+            document.RootElement.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                if (part.ValueKind != JsonValueKind.String) continue;
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, relative.Replace('/', Path.DirectorySeparatorChar)));
+                rows.AddRange(ReadRecords(partPath));
+            }
+
+            return rows;
+        }
+
+        if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array) return rows;
+        rows.AddRange(records.EnumerateArray().Select(row => row.Clone()));
+        return rows;
     }
 
     private static string FirstDescription(JsonElement row)

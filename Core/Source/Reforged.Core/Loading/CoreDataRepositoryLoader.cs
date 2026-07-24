@@ -39,9 +39,7 @@ public sealed class CoreDataRepositoryLoader
 
         try
         {
-            using var stream = File.OpenRead(filePath);
-            using var document = JsonDocument.Parse(stream, DocumentOptions);
-            foreach (var record in ReadRecords(document.RootElement, descriptor, filePath))
+            foreach (var record in ReadRecordsFromFile(filePath, descriptor))
             {
                 repository.Upsert(record);
             }
@@ -63,6 +61,35 @@ public sealed class CoreDataRepositoryLoader
         }
 
         return Path.Combine(projectRootOrDataFolder, "Data", fileName);
+    }
+
+    private static IEnumerable<CanonicalDataRecord> ReadRecordsFromFile(string filePath, DataCategoryDescriptor descriptor)
+    {
+        using var stream = File.OpenRead(filePath);
+        using var document = JsonDocument.Parse(stream, DocumentOptions);
+        if (document.RootElement.ValueKind == JsonValueKind.Object &&
+            document.RootElement.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                if (part.ValueKind != JsonValueKind.String) continue;
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(filePath)!, relative.Replace('/', Path.DirectorySeparatorChar)));
+                foreach (var record in ReadRecordsFromFile(partPath, descriptor))
+                {
+                    yield return record;
+                }
+            }
+
+            yield break;
+        }
+
+        foreach (var record in ReadRecords(document.RootElement, descriptor, filePath))
+        {
+            yield return record;
+        }
     }
 
     private static IEnumerable<CanonicalDataRecord> ReadRecords(JsonElement root, DataCategoryDescriptor descriptor, string sourceFile)

@@ -15,6 +15,13 @@
 
 ## CodeUpdate0139 - Telnet Runtime Cohesion
 
+### GitHub Actions Generated Data Bootstrap Repair
+
+- Kept generated `Data/Classic` out of Git tracking; Librarium remains the committed gameplay authority.
+- Updated the GitHub Actions server workflow to restore/build the Librarium compiler and regenerate Classic runtime data before server bootstrap diagnostics.
+- Added compiler/runtime chunked-record support for oversized Librarium source catalogs while keeping generated `/Data` local.
+- Added the missing Librarium `textblock_command_ability_contracts` source family and allowed NPC AI relationship derivation from generated spawns when the optional derivative `npc_ai_runtime.json` is absent.
+
 ### Bundle H Final Gate Repair
 
 - Repaired runtime item ownership validation so bank vault location IDs remain valid while owner identity is still enforced.
@@ -86,7 +93,7 @@ Known limitation:
 - Added `public_reference` and `mmexplorer_sql_reference` blocks to matched item, spell, NPC, and shop records.
 - Added unmatched MMExplorer supplement files for item, spell, and NPC rows that do not map to active canonical records.
 - Added OmniVerse-backed ability records under `Librarium/Objects/abilities/ability_records.json`.
-- Verified required room-description probes for `room.map1.2141`, `room.map1.2140`, `room.map1.488`, and `room.map1.348`; regenerated live `Data/Classic` now audits with 26,666 rooms with descriptions and 0 rooms without descriptions.
+- Verified required room-description probes for `room.map1.2141`, `room.map1.2140`, `room.map1.488`, and `room.map1.348`; regenerated live `Data/Classic` now audits with 26,668 rooms with descriptions and 0 rooms without descriptions.
 - Added centralized command abbreviation resolution with exact aliases, unique-prefix matching, and ambiguity rejection for unsafe prefixes.
 - Repaired live spawn materialization so grouped spawn candidates no longer explode into every room occupant; live NPC instances now require exact map-qualified spawn room resolution.
 - Removed legacy room-number fallback from spawn placement and added hard placement validation for unresolved spawns.
@@ -126,7 +133,7 @@ Known limitation:
 - Reworked the Client play surface toward the MegaMUD-style flow: the Play tab now selects server/session profiles, `Open Terminal` launches a dedicated black terminal window, and client settings live in a separate tabbed options window behind menu/actions instead of dominating the main play screen.
 - Added required Male/Female selection during Telnet character creation and persisted the selected sex on `RuntimeCharacterRecord` while keeping existing saves readable.
 - Fixed the compiler room-description source matcher so plain `*_records.json` Librarium room-description catalogs, including the WCCMP002 1.11p corpus, are included in generated `Data/Classic`.
-- Regenerated Classic data and verified compiler/runtime audits now report 26,666 rooms with descriptions and 0 rooms without descriptions.
+- Regenerated Classic data and verified compiler/runtime audits now report 26,668 rooms with descriptions and 0 rooms without descriptions.
 - Fixed generated numeric-string handling in runtime quest dialogue arguments and item catalog numeric fields, removing the server smoke crash that reported a JSON `String` where a `Number` was expected.
 - Added `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md` to track the remaining native decode work after the current server/runtime audit.
 - Fixed `GuardianServices.cs` missing `System.IO` import so the full solution build passes.
@@ -184,11 +191,11 @@ Verification:
 - Latest validator PASS also includes `server_interaction_narrative`.
 - Latest `server_interaction_narrative` PASS includes generated random textblock execution, world-intent target validation, cast/summon/remoteaction coverage, Classic non-repeat quest guard coverage, and exhaustive NPC quest-entry dispatch validation.
 - Latest living-world smoke PASS includes quest remoteaction event recording and generated room/object interaction event recording.
-- Final native closure archive intake verification: server Release build PASS, test Release build PASS, Classic compiler/runtime audits PASS with 26,666/26,666 room descriptions, interaction/narrative smoke PASS with 83 executable quest entries, and `python Tools\validator.py` PASS 13/13 after import and runtime audit repair.
+- Final native closure archive intake verification: server Release build PASS, test Release build PASS, Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions, interaction/narrative smoke PASS with 83 executable quest entries, and `python Tools\validator.py` PASS 13/13 after import and runtime audit repair.
 
 Known limitation:
 
-- Room-description coverage is 26,666/26,666 after WCCMP002 placeholder recovery and compiler regeneration.
+- Room-description coverage is 26,668/26,668 after WCCMP002 placeholder recovery and compiler regeneration.
 - WBBMP002 is retained as secondary comparison evidence only and does not override WCCMP002 room/map source records.
 - Spawn placement validation now skips and reports unresolved map-qualified spawns instead of attaching them to fallback rooms. Current unresolved placement records are `spawn.288.43` (`room.map1.288`) and `spawn.2306.213` (`room.map1.2306`).
 - The 7 repaired room native/passive effects are closed as linkage classifications, not as discovered player commands. MegaMUD `/mp` evidence did not prove command bindings for those exact exits.

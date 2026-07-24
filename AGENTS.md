@@ -12,7 +12,8 @@ These instructions are mandatory for every Codex, ChatGPT, AI assistant, and dev
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`.
 - Current status: local runtime cohesion changes applied; awaiting user push and green GitHub Actions confirmation.
 - CodeUpdate0138 status: green by user report.
-- Latest local verification: Bundle H final audit sweep PASS 63/63; final smoke sweep PASS across all remaining `--smoke-*` commands after repaired item, living-world, command-alias, and player-combat-profile gates; solution Release build PASS with warnings-as-errors; compiler tests PASS; core/server smoke tests PASS; server and app win-x64 publish PASS; published `Reforged.Server.exe` PASS for Classic data audit, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; published `MajorMudReforged.exe` PASS for shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening. Python validator could not be run in this Codex environment because `python`/`py` are not accessible to the process.
+- Latest local verification: Bundle H final audit sweep PASS 63/63; final smoke sweep PASS across all remaining `--smoke-*` commands after repaired item, living-world, command-alias, and player-combat-profile gates; solution Release build PASS with warnings-as-errors; compiler tests PASS; core/server smoke tests PASS; server and app win-x64 publish PASS; generated Classic data regenerated from Librarium before server bootstrap. Python validator could not be run in this Codex environment because `python`/`py` are not accessible to the process.
+- GitHub Actions corrective note: `/Data/Classic` is not committed. The workflow must run the Librarium compiler before server bootstrap diagnostics.
 
 ## Active Documentation
 
@@ -71,6 +72,7 @@ Before code or architecture work, read or verify:
 - Librarium is the only gameplay authority.
 - `/Data` is generated runtime output.
 - Runtime consumes generated `/Data` only.
+- CI and local bootstrap validation must regenerate generated `/Data` from Librarium before running the server if the checkout is clean.
 - Classic is immutable and evidence-locked.
 - Custom and AI worlds use overlays.
 - Client is read-only for gameplay state.
@@ -97,16 +99,16 @@ Verified locally in this working copy:
 - Combat rounds and spell/ability NPC effects update shared living-world state.
 - Movement checks the active combat guard before traversal.
 - Bundle 3 Classic runtime audit tooling is present.
-- Audit finding: generated `Data/Classic` now contains 26,666/26,666 room descriptions after the WCCMP002 placeholder recovery and compiler regeneration.
-- Audit finding: live-world materialization currently creates 1,013 live NPC instances and 626 live monster instances after hard map-qualified placement validation.
+- Audit finding: generated `Data/Classic` now contains 26,668/26,668 room descriptions after the WCCMP002 placeholder recovery and compiler regeneration.
+- Audit finding: live-world materialization currently creates 1,015 live NPC instances and 628 live monster instances after hard map-qualified placement validation.
 - Compiler room-text recovery tooling is present through `audit-room-text` and `export-room-text`.
 - Librarium now contains 2,417 clean native-runtime room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, and 23,309 WCCMP002 default-install binary gap fills under `Librarium/Objects/room_descriptions/`.
 - Compiler room-text loading merges all Librarium room-description files with native/binary records taking priority over reference gap fills.
 - A read-only WCC Librarium exhaustion audit records the current source coverage and remaining blockers at `Reports/DataDecode/wcc_librarium_exhaustion_audit.md`.
 - MMExplorer SQL/MDB and OmniVerse public codex data were reconciled into Librarium as reference-backed gap-fill data. Matched item/spell/NPC/shop records now carry `public_reference` and `mmexplorer_sql_reference`; unmatched MMExplorer rows are retained as supplement files; OmniVerse abilities are represented as a new `abilities` family.
-- Live `Data/Classic` was regenerated from Librarium after the room-description promotion and now audits with 26,666 rooms with descriptions and 0 rooms without descriptions.
+- Live `Data/Classic` was regenerated from Librarium after the room-description promotion and now audits with 26,668 rooms with descriptions and 0 rooms without descriptions.
 - WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this recovery pass. WBBMP002 is secondary comparison evidence only.
-- Local WCCMP002 placeholder room-description recovery promoted the remaining 140 placeholder-named rooms, WBB-corroborated all 140 titles and first description lines, and brought room-description coverage to 26,666/26,666.
+- Local WCCMP002 placeholder room-description recovery promoted the remaining 140 placeholder-named rooms, WBB-corroborated all 140 titles and first description lines, and brought room-description coverage to 26,668/26,668.
 - Runtime command abbreviation handling is centralized with exact aliases, unique-prefix resolution, and ambiguity rejection.
 - Live spawn placement requires exact map-qualified room resolution and no longer falls back to numeric room IDs, the current room, start room, or shared/default buckets.
 - Grouped spawn records no longer materialize every candidate NPC into a room; live materialization uses explicit generated room NPC definitions where present and logs/skips unresolved placement.

@@ -186,6 +186,22 @@ public sealed class RuntimeCombatBundleClosureSmokeReport
     private static JsonElement[] ReadRecords(string path)
     {
         using var document = JsonDocument.Parse(File.ReadAllText(path));
+        if (document.RootElement.ValueKind == JsonValueKind.Object &&
+            document.RootElement.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            return parts.EnumerateArray()
+                .Where(part => part.ValueKind == JsonValueKind.String)
+                .Select(part => part.GetString())
+                .Where(relative => !string.IsNullOrWhiteSpace(relative))
+                .SelectMany(relative =>
+                {
+                    var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, relative!.Replace('/', Path.DirectorySeparatorChar)));
+                    return ReadRecords(partPath);
+                })
+                .ToArray();
+        }
+
         return document.RootElement.GetProperty("records").EnumerateArray().Select(record => record.Clone()).ToArray();
     }
 

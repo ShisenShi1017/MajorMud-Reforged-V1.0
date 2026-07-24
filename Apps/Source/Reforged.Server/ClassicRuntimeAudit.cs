@@ -217,13 +217,26 @@ public static class ClassicRuntimeAudit
     {
         if (!File.Exists(path)) return Array.Empty<JsonElement>();
         using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
         var records = new List<JsonElement>();
-        if (document.RootElement.ValueKind == JsonValueKind.Array)
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
         {
-            records.AddRange(document.RootElement.EnumerateArray().Select(record => record.Clone()));
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                records.AddRange(ReadRecords(partPath));
+            }
         }
-        else if (document.RootElement.ValueKind == JsonValueKind.Object &&
-                 document.RootElement.TryGetProperty("records", out var nested) &&
+        else if (root.ValueKind == JsonValueKind.Array)
+        {
+            records.AddRange(root.EnumerateArray().Select(record => record.Clone()));
+        }
+        else if (root.ValueKind == JsonValueKind.Object &&
+                 root.TryGetProperty("records", out var nested) &&
                  nested.ValueKind == JsonValueKind.Array)
         {
             records.AddRange(nested.EnumerateArray().Select(record => record.Clone()));

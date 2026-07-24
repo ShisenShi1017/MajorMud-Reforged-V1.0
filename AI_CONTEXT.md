@@ -37,22 +37,22 @@ Read `AGENTS.md` first, then read this file, then read `Docs/PROJECT_STATUS.md`.
 - Spell and ability NPC damage/healing now mutates shared living-world state and keeps active combat encounter HP synchronized.
 - Movement now calls the live combat movement guard before traversal, preventing walk-away movement during active combat.
 - Bundle 3 adds Classic runtime audit tooling for compiler output, runtime load counts, room inspection, and spawn verification.
-- Audit result: regenerated `Data/Classic/rooms.json` contains 26,666 rooms with descriptions and 0 rooms without descriptions after the WCCMP002 placeholder recovery.
-- Audit result: runtime/live-world materialization currently creates 1,013 live NPC instances and 626 live monster instances after hard map-qualified placement validation, so resolved spawns instantiate without global/group leakage.
+- Audit result: regenerated `Data/Classic/rooms.json` contains 26,668 rooms with descriptions and 0 rooms without descriptions after the WCCMP002 placeholder recovery.
+- Audit result: runtime/live-world materialization currently creates 1,015 live NPC instances and 628 live monster instances after hard map-qualified placement validation, so resolved spawns instantiate without global/group leakage.
 - Room-text recovery adds a compiler-side native map DAT resolver plus `audit-room-text` and `export-room-text` commands.
 - Librarium now contains 2,417 binary-backed room-description records in `Librarium/Objects/room_descriptions/native_map_room_description_records.json`.
 - A second lower-priority room-description file, `Librarium/Objects/room_descriptions/reference_room_description_records.json`, adds 800 OmniVerse map-qualified reference gap-fill descriptions for canonical rooms not already covered by native evidence.
 - `Librarium/Objects/room_descriptions/wccmp002_room_description_records.json` adds 23,309 WCC default-install binary-backed gap-fill descriptions from `ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat`.
 - `Librarium/Objects/room_descriptions/wccmp002_placeholder_room_description_records.json` adds the final 140 placeholder-named room descriptions. For this pass, WCCMP002 is treated as the selected MajorMUD 1.11p room/map source and WBBMP002 is secondary corroboration only.
 - Compiler room-text projection now merges all Librarium room-description files and preserves native/binary priority over reference-backed gap fills.
-- The read-only WCC Librarium exhaustion audit reports 2,417/26,666 active room-description coverage, one clean promotable WCCMP map file, one parser-blocked reference-only map file, and 15 locally missing expected WCCMP map files.
+- The read-only WCC Librarium exhaustion audit reports 2,417/26,668 active room-description coverage, one clean promotable WCCMP map file, one parser-blocked reference-only map file, and 15 locally missing expected WCCMP map files.
 - MMExplorer SQL/MDB and OmniVerse public codex reconciliation added reference-backed gap-fill data into Librarium:
   - matched items/spells/NPCs/shops received `public_reference` and `mmexplorer_sql_reference`;
   - unmatched MMExplorer rows are retained as supplement files under the relevant family;
   - OmniVerse ability records created the new `Librarium/Objects/abilities/ability_records.json` family.
 - Latest reconciliation report: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md`.
-- Live `Data/Classic` was regenerated from Librarium after the room-description promotion; server audit now reports 26,666 rooms with descriptions and 0 rooms without descriptions.
-- Compiler smoke output at `Data/CompilerSmokeTest/ClassicRoomDescriptionComplete0139` proves 26,666/26,666 generated room descriptions.
+- Live `Data/Classic` was regenerated from Librarium after the room-description promotion; server audit now reports 26,668 rooms with descriptions and 0 rooms without descriptions.
+- Compiler smoke output at `Data/CompilerSmokeTest/ClassicRoomDescriptionComplete0139` proves 26,668/26,668 generated room descriptions.
 - WCCMP002 placeholder recovery promoted the last 140 placeholder-named rooms, with WBBMP002 title and first-line corroboration hits for all 140 records.
 - Command parsing now uses a central registry for exact aliases, unique-prefix abbreviations, and ambiguity rejection for unsafe prefixes such as `s`, `se`, and `st`.
 - Live spawn placement now requires exact map-qualified `(map_id, room_number)` resolution and no longer falls back to legacy numeric room IDs, the player room, start room, or a shared/default bucket.
@@ -60,7 +60,7 @@ Read `AGENTS.md` first, then read this file, then read `Docs/PROJECT_STATUS.md`.
 - `audit room` now proves each displayed entity's definition ID, spawn ID, source room reference, resolved runtime room, live `RoomId`, alignment, disposition, and combat hostility state.
 - `room.map1.21` placement audit currently shows one neutral `guardsman` (`npc.14`) from `spawn.21.5`; storm giants, woodelf entries, bosses, and unrelated group candidates are not visible. The user-expected `elite guardsman` is not supported by the current generated source field `(Max 1): 14,[5-1-1-1]` and needs a separate evidence-backed data correction if wrong.
 - Hard spawn placement validation currently skips two classified invalid/non-spawn records: `spawn.288.43` points to non-existent `room.map1.288`, and `spawn.2306.213` points to `room.map1.2306`, which the user verified is a shop with no NPC.
-- Current Classic generated counts after the folded material: 26,666 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
+- Current Classic generated counts after the folded material: 26,668 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
 - Room native/passive effect closure resolved the remaining 7 distinct native/passive room-effect linkage gaps across 12 generated exit rows. The affected exits now compile with `native_passive_effect_resolved`, `resolved_without_player_command`, and `player_command_promoted=false`.
 - MegaMUD `/mp` route replay was used against imported route files for those exact map-qualified exits. It found 0 command hits, so no player command binding was invented or promoted.
 - Native WCCMSG room-message strings are cataloged as stable offset IDs in `Librarium/Objects/room_messages/room_message_records_catalog.json` and generated to `Data/Classic/room_messages.json`.
@@ -94,7 +94,7 @@ Read `AGENTS.md` first, then read this file, then read `Docs/PROJECT_STATUS.md`.
 - Telnet character creation now requires a Male/Female selection before the character build is finalized. The selected sex is persisted on `RuntimeCharacterRecord`, existing saves default to `Unspecified`, and character menus display the value when present.
 - Compiler room-description loading now accepts both `*_records.json` and older `*_records_*.json` Librarium room-description files, allowing the WCCMP002 1.11p description corpus to project into generated `Data/Classic`.
 - Runtime quest dialogue and item catalog readers now accept integer-compatible numeric strings from generated Librarium data for quest arguments and item weights/fields; this fixed the Telnet/server smoke crash that reported a JSON `String` where a `Number` was expected.
-- Current runtime audit counts after the repair: 26,666 rooms loaded, 26,666 room descriptions loaded, 1,100 NPC definitions, 1,078 monster definitions, 962 spawn records, 1,013 live NPC instances, 626 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers.
+- Current runtime audit counts after the repair: 26,668 rooms loaded, 26,668 room descriptions loaded, 1,100 NPC definitions, 1,078 monster definitions, 962 spawn records, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers.
 - Remaining native decode report: `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`.
 - Classic completed quests cannot be repeated on the same character. Replaying a completed quest requires starting a new character; same-character quest reset/restart must remain blocked for Classic.
 - Validator now includes `server_interaction_narrative`; latest pass verifies 83 executable quests, 182 stage scripts, 83 NPC quest-entry triggers, item consumption/reward transition, dialogue branch dispatch, random table execution, cast/summon/remoteaction coverage, remoteaction event recording, room/object interaction event recording, world-intent target validation, failure/no-mutation behavior, and exhaustive NPC quest-entry dispatch validation.

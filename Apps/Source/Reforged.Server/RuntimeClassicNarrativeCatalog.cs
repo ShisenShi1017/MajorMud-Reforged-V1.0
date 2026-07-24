@@ -151,7 +151,24 @@ public sealed class RuntimeClassicNarrativeCatalog
     {
         if (!File.Exists(path)) throw new FileNotFoundException("Generated narrative data file was not found.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
-        if (!doc.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
+        var root = doc.RootElement;
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            var output = new List<JsonElement>();
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                output.AddRange(ReadRecords(partPath));
+            }
+
+            return output;
+        }
+
+        if (!root.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
             throw new InvalidOperationException($"Generated narrative data has no records array: {path}");
         return records.EnumerateArray().Select(x => x.Clone()).ToList();
     }

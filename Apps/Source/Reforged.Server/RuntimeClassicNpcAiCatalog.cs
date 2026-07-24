@@ -56,7 +56,7 @@ public sealed class RuntimeClassicNpcAiCatalog
     public static RuntimeClassicNpcAiCatalog Load(string path, IReadOnlyList<RuntimeNpcSpawn> generatedSpawns)
     {
         ArgumentNullException.ThrowIfNull(generatedSpawns);
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated NPC AI runtime catalog was not found.", path);
+        if (!File.Exists(path)) return FromGeneratedSpawns(generatedSpawns);
 
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var root = document.RootElement;
@@ -126,6 +126,57 @@ public sealed class RuntimeClassicNpcAiCatalog
         }
 
         return new(schemaVersion, declaredNpcCount, declaredSpawnCount, relationships, active, blocked, diagnostics);
+    }
+
+    private static RuntimeClassicNpcAiCatalog FromGeneratedSpawns(IReadOnlyList<RuntimeNpcSpawn> generatedSpawns)
+    {
+        var relationships = generatedSpawns.ToDictionary(
+            spawn => spawn.Id,
+            spawn => new RuntimeClassicNpcAiRelationship(
+                spawn.Id,
+                string.IsNullOrWhiteSpace(spawn.ResolvedRuntimeRoomId) ? spawn.RoomId : spawn.ResolvedRuntimeRoomId,
+                ReadGeneratedNpcIds(spawn),
+                spawn.MonsterGroupId,
+                Math.Max(0, spawn.RespawnMinutes),
+                spawn.InteractionModel,
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["source"] = "generated-spawns",
+                    ["authority"] = "Data/Classic/spawns.json",
+                    ["fallback_policy"] = "derived_when_npc_ai_runtime_catalog_absent"
+                }),
+            StringComparer.OrdinalIgnoreCase);
+
+        return new(
+            "derived-from-generated-spawns-v1",
+            relationships.Values.SelectMany(value => value.NpcIds).Distinct(StringComparer.OrdinalIgnoreCase).Count(),
+            generatedSpawns.Count,
+            relationships,
+            [
+                "spawn_relationships",
+                "home_room_identity",
+                "respawn_minutes",
+                "interaction_model"
+            ],
+            [
+                "native_perception_priority",
+                "native_threat_generation",
+                "native_flee_routing",
+                "native_patrol_selection",
+                "native_ability_priority"
+            ],
+            []);
+    }
+
+    private static IReadOnlyList<string> ReadGeneratedNpcIds(RuntimeNpcSpawn spawn)
+    {
+        var ids = new List<string>();
+        if (spawn.BossDefinition is not null && !string.IsNullOrWhiteSpace(spawn.BossDefinition.Id))
+            ids.Add(spawn.BossDefinition.Id);
+        ids.AddRange(spawn.GroupDefinitions
+            .Select(definition => definition.Id)
+            .Where(id => !string.IsNullOrWhiteSpace(id)));
+        return ids.Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(id => id, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     private static int ReadInt(JsonElement value, string property) =>

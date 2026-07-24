@@ -8,15 +8,15 @@ This is the compact roadmap for the current repository. Historical update chains
 - Current Database Version: `0010`
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
 - Status: local runtime cohesion work applied; awaiting user push and GitHub Actions confirmation
-- Verification: current-health validator PASS 13/13; Classic compiler/runtime audits PASS with 26,666/26,666 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforged`
+- Verification: current-health validator PASS 13/13; Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforged`
 
 ## CodeUpdate0139 Active Scope
 
 - Keep Telnet/MegaMUD sessions connected to the authoritative runtime.
 - Use shared living-world NPC instances for room rendering, combat targeting, spell/ability effects, death, and respawn.
 - Add diagnostics to prove where Classic data disappears before gameplay fixes continue.
-- Current audit result: regenerated `Data/Classic` now emits 26,666/26,666 room descriptions.
-- Current runtime audit result: Classic runtime loads 26,666 room descriptions, 1,013 live NPC instances, 626 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers.
+- Current audit result: regenerated `Data/Classic` now emits 26,668/26,668 room descriptions.
+- Current runtime audit result: Classic runtime loads 26,668 room descriptions, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 2,183 quests, and 367 triggers.
 - Current recovery result: Librarium contains 2,417 clean native-backed room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, 23,309 WCCMP002 default-install binary gap fills, and 140 WCCMP002 placeholder room recoveries. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass; WBBMP002 is secondary comparison only.
 - Current decode audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md` inventories available WCC/WBB evidence and active Librarium coverage.
 - Current reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md` records MMExplorer SQL/MDB and OmniVerse public codex gap-fill promotion into Librarium.
@@ -27,7 +27,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Current spawn placement repair: live NPC materialization requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage, and renders visible entities by runtime disposition.
 - Current focused audit: `room.map1.21` renders one neutral `guardsman` from `spawn.21.5`; the user-expected `elite guardsman` is a separate evidence-backed data correction if the generated source is wrong.
 - Current folded data scope: user-provided room audit/semantic and trigger-script-quest material is accepted into the current baseline and recorded in ValidationManifest.json.
-- Current generated semantic counts: 26,666 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
+- Current generated semantic counts: 26,668 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
 - Current room decode closure: the final 7 distinct native/passive room-effect linkage gaps across 12 exit rows are resolved as native/passive effects, with MegaMUD `/mp` replay confirming 0 command hits and no invented player commands.
 - Current room message decode: 117 unique WCCMSG offset-backed room message records are cataloged for room actions, doors, hidden exits, locks/keys, searches, and failures.
 - Current quest/dialogue runtime slice: 182 decoded textblock stage scripts and 83 NPC quest-entry triggers are generated from Librarium, and `talk <npc>` now dispatches to decoded NPC dialogue with atomic condition/effect execution and fail-closed rollback.
@@ -39,6 +39,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Current app shell update: the Librarium workspace is an active read-only Classic data browser with category tabs for weapons, armor, spells, abilities, classes, races, items, monsters, quests, and rooms; search; name-only record lists; character-foundation class/race gameplay details; nontechnical quest guidance; and readable dark parchment text.
 - Current app client update: the Play workspace should remain a MegaMUD-style server/session launcher, with actual gameplay in a dedicated terminal window and settings/tools kept behind menus or a separate tabbed options window.
 - Preserve the Librarium -> generated `/Data` -> runtime boundary.
+- GitHub Actions and clean local validation regenerate generated `Data/Classic` from Librarium before server bootstrap; generated `/Data` is not source-controlled.
 - Keep Classic evidence-locked and avoid custom/editor/multiplayer expansion beyond the approved server runtime path.
 
 ## Architecture Direction

@@ -41,8 +41,7 @@ public sealed class ServerWorldProjectionAudit
 
         try
         {
-            using var roomsDocument = JsonDocument.Parse(File.ReadAllText(roomsPath), DocumentOptions);
-            var canonicalRoomIds = ReadCanonicalRoomIds(roomsDocument.RootElement);
+            var canonicalRoomIds = ReadCanonicalRoomIds(roomsPath);
             using var worldDocument = JsonDocument.Parse(File.ReadAllText(worldPath), DocumentOptions);
             var worldRoomIds = ReadWorldRoomIds(worldDocument.RootElement);
             if (worldRoomIds.Count == 0)
@@ -111,22 +110,10 @@ public sealed class ServerWorldProjectionAudit
             .ToArray();
     }
 
-    private static HashSet<string> ReadCanonicalRoomIds(JsonElement root)
+    private static HashSet<string> ReadCanonicalRoomIds(string path)
     {
         var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var rooms = root.ValueKind switch
-        {
-            JsonValueKind.Array => root.EnumerateArray(),
-            JsonValueKind.Object when root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array => records.EnumerateArray(),
-            _ => default
-        };
-
-        if (rooms.Equals(default(JsonElement.ArrayEnumerator)))
-        {
-            return ids;
-        }
-
-        foreach (var room in rooms)
+        foreach (var room in ReadRecords(path))
         {
             var id = TryGetString(room, "id");
             if (!string.IsNullOrWhiteSpace(id))
@@ -136,6 +123,43 @@ public sealed class ServerWorldProjectionAudit
         }
 
         return ids;
+    }
+
+    private static IReadOnlyList<JsonElement> ReadRecords(string path)
+    {
+        var output = new List<JsonElement>();
+        using var document = JsonDocument.Parse(File.ReadAllText(path), DocumentOptions);
+        if (document.RootElement.ValueKind == JsonValueKind.Object &&
+            document.RootElement.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                if (part.ValueKind != JsonValueKind.String) continue;
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, relative.Replace('/', Path.DirectorySeparatorChar)));
+                output.AddRange(ReadRecords(partPath));
+            }
+
+            return output;
+        }
+
+        var root = document.RootElement;
+        var rooms = root.ValueKind switch
+        {
+            JsonValueKind.Array => root.EnumerateArray(),
+            JsonValueKind.Object when root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array => records.EnumerateArray(),
+            _ => default
+        };
+
+        if (rooms.Equals(default(JsonElement.ArrayEnumerator)))
+        {
+            return output;
+        }
+
+        output.AddRange(rooms.Select(room => room.Clone()));
+        return output;
     }
 
     private static string ResolveDataRoot(string projectRoot)

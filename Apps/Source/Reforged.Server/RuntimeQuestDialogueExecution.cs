@@ -359,9 +359,9 @@ public sealed class RuntimeQuestWorldIntentValidator
         var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         if (!File.Exists(path)) return ids;
         using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array) return ids;
+        var root = document.RootElement;
         var keys = names.Length == 0 ? new[] { "id" } : names;
-        foreach (var record in records.EnumerateArray())
+        foreach (var record in EnumerateRecords(path, root))
         {
             foreach (var key in keys)
             {
@@ -374,6 +374,34 @@ public sealed class RuntimeQuestWorldIntentValidator
             }
         }
         return ids;
+    }
+
+    private static IEnumerable<JsonElement> EnumerateRecords(string path, JsonElement root)
+    {
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                using var partDocument = JsonDocument.Parse(File.ReadAllText(partPath));
+                foreach (var record in EnumerateRecords(partPath, partDocument.RootElement))
+                    yield return record.Clone();
+            }
+
+            yield break;
+        }
+
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("records", out var records) &&
+            records.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var record in records.EnumerateArray())
+                yield return record.Clone();
+        }
     }
 
     private static string RuntimeQuestDialogueCatalogReadText(JsonElement element, string name) =>

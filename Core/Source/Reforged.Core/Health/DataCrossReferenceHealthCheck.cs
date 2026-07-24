@@ -193,14 +193,7 @@ public sealed class DataCrossReferenceHealthCheck
 
             try
             {
-                using var stream = File.OpenRead(path);
-                using var document = JsonDocument.Parse(stream);
-                if (document.RootElement.ValueKind != JsonValueKind.Array)
-                {
-                    return;
-                }
-
-                foreach (var element in document.RootElement.EnumerateArray())
+                foreach (var element in ReadRecordElements(path))
                 {
                     var id = TryGetText(element, "id") ?? TryGetText(element, "legacyId") ?? TryGetText(element, "StableId") ?? TryGetText(element, "LegacyId");
                     if (!string.IsNullOrWhiteSpace(id))
@@ -388,21 +381,50 @@ public sealed class DataCrossReferenceHealthCheck
 
             try
             {
-                using var stream = File.OpenRead(path);
-                using var document = JsonDocument.Parse(stream);
-                if (document.RootElement.ValueKind != JsonValueKind.Array)
-                {
-                    return elements;
-                }
-
-                foreach (var element in document.RootElement.EnumerateArray())
-                {
-                    elements.Add(element.Clone());
-                }
+                elements.AddRange(ReadRecordElements(path));
             }
             catch (Exception ex) when (ex is JsonException or IOException)
             {
                 result.Add(ValidationSeverity.Fatal, code, ex.Message, path);
+            }
+
+            return elements;
+        }
+
+        private static IReadOnlyList<JsonElement> ReadRecordElements(string path)
+        {
+            var elements = new List<JsonElement>();
+            using var stream = File.OpenRead(path);
+            using var document = JsonDocument.Parse(stream);
+            if (document.RootElement.ValueKind == JsonValueKind.Object &&
+                document.RootElement.TryGetProperty("record_parts", out var parts) &&
+                parts.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var part in parts.EnumerateArray())
+                {
+                    if (part.ValueKind != JsonValueKind.String) continue;
+                    var relative = part.GetString();
+                    if (string.IsNullOrWhiteSpace(relative)) continue;
+                    var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path)!, relative.Replace('/', Path.DirectorySeparatorChar)));
+                    elements.AddRange(ReadRecordElements(partPath));
+                }
+
+                return elements;
+            }
+
+            var records = document.RootElement.ValueKind == JsonValueKind.Object &&
+                document.RootElement.TryGetProperty("records", out var nested) &&
+                nested.ValueKind == JsonValueKind.Array
+                    ? nested
+                    : document.RootElement;
+            if (records.ValueKind != JsonValueKind.Array)
+            {
+                return elements;
+            }
+
+            foreach (var element in records.EnumerateArray())
+            {
+                elements.Add(element.Clone());
             }
 
             return elements;

@@ -19,12 +19,14 @@ CodeUpdate0139 is a local Telnet runtime cohesion update.
 
 Highlights:
 
+- Keeps generated `Data/Classic` out of Git and regenerates it from Librarium during GitHub Actions before server bootstrap diagnostics.
+- Adds chunked-record support for oversized Librarium source catalogs so committed authority data stays below GitHub file-size limits without promoting generated `/Data` to source.
 - Keeps connected Telnet/MegaMUD sessions on the authoritative runtime dispatcher.
 - Connects live combat targeting to visible living-world NPC instances.
 - Synchronizes combat damage and spell/ability NPC effects with shared living-world state.
 - Enforces the live combat movement guard before room traversal.
 - Adds Classic runtime audit commands for compiler output, runtime load, room inspection, and spawn verification.
-- Confirms regenerated `Data/Classic` now contains 26,666/26,666 room descriptions.
+- Confirms regenerated `Data/Classic` now contains 26,668/26,668 room descriptions.
 - Adds compiler-side native map room-text recovery diagnostics and export tooling.
 - Promotes 2,417 binary-backed room descriptions into Librarium from clean available native map DAT evidence, including the required Newhaven/Arena/Guild probes.
 - Promotes 800 lower-priority OmniVerse map-qualified reference room descriptions for canonical rooms not already covered by native evidence.
@@ -34,7 +36,7 @@ Highlights:
 - Adds a read-only WCC Librarium exhaustion audit for available source coverage and remaining blockers.
 - Reconciles MMExplorer SQL/MDB and OmniVerse public codex data into Librarium with explicit provenance and no binary-backed field overwrites.
 - Adds unmatched MMExplorer supplements and an OmniVerse-backed abilities family.
-- Regenerates live `Data/Classic` from Librarium so server audit reports 26,666 rooms with descriptions and 0 without descriptions.
+- Regenerates live `Data/Classic` from Librarium so server audit reports 26,668 rooms with descriptions and 0 without descriptions.
 - Centralizes command abbreviation parsing with exact aliases, unique-prefix resolution, and ambiguity rejection.
 - Repairs live spawn placement so grouped spawn candidates cannot appear as a global room occupant list.
 - Requires exact map-qualified spawn room resolution and logs/skips unresolved spawn records instead of falling back to arbitrary rooms.
@@ -71,7 +73,7 @@ Verification:
 - Classic audit commands: PASS.
 - Compiler room-text audit: PASS.
 - Room-description reference recovery: PASS.
-- Compiler smoke output with merged descriptions: PASS, 26,666/26,666 descriptions emitted.
+- Compiler smoke output with merged descriptions: PASS, 26,668/26,668 descriptions emitted.
 - WCCMP002 placeholder room-description validation: PASS.
 - Live gameplay parser smoke: PASS.
 - Living-world spawn placement smoke: PASS.
@@ -81,7 +83,7 @@ Verification:
 - Reforged app publish to `Release/MajorMudReforged/MajorMudReforged.exe`: PASS.
 - Reforged app startup smoke after the MegaMUD-style terminal-window repair: PASS.
 - Complete current-health validator: PASS 13/13.
-- Classic compiler/runtime audits: PASS; 26,666/26,666 generated room descriptions and 26,666/26,666 runtime-loaded descriptions.
+- Classic compiler/runtime audits: PASS; 26,668/26,668 generated room descriptions and 26,668/26,668 runtime-loaded descriptions.
 - Interaction/narrative smoke: PASS; 2,183 quests, 83 executable quest entries, 182 decoded stage scripts, and exhaustive NPC quest-entry dispatch validation.
 - Room native effect/message decode: PASS; 12/12 target exits resolved and 117 unique room message records generated.
 - Quest dialogue dispatch: PASS; 182 decoded stage scripts, 83 NPC quest-entry triggers, 182 linked script references, item consume/reward transition, and failure/no-mutation behavior.
