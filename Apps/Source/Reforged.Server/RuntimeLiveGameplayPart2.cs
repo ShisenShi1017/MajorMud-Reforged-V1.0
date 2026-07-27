@@ -50,6 +50,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         return null;
     }
 
+
+    private static bool IsClassicWeaponSlot(string? slot) => (slot ?? string.Empty).ToUpperInvariant() is
+        "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "HAND" or "WIELD" or "OFF_HAND" or "SECONDARY_HAND";
+
     private static string ClassicEquipmentSlot(RuntimeItemCatalog catalog, RuntimeItemInstance item)
     {
         var relation = catalog.Equipment(item.CanonicalItemId);
@@ -120,12 +124,20 @@ public sealed partial class RuntimeLiveGameplayFacade
                 result = $"You drop {catalog.Require(moved.CanonicalItemId).Name}.";
                 break;
             }
+            case "equip":
             case "wear":
             case "wield":
             {
-                var item = Resolve(engine.Inventory(actor.Id), catalog, command.ArgumentText);
-                var moved = engine.Equip(item.InstanceId, actor.Id, character);
-                result = $"You equip {catalog.Require(moved.CanonicalItemId).Name} in {moved.EquippedSlot}.";
+                var item = ResolveClassicEquipmentCandidate(engine.Inventory(actor.Id), catalog, command.ArgumentText);
+                var forcedSlot = catalog.ResolveClassicEquipmentSlot(item.CanonicalItemId);
+                var relationship = catalog.Equipment(item.CanonicalItemId)
+                    ?? throw new InvalidOperationException("Item has no generated equipment relationship.");
+                if (command.Name.Equals("wield", StringComparison.OrdinalIgnoreCase) && !IsClassicWeaponSlot(forcedSlot ?? relationship.Slot))
+                    throw new InvalidOperationException($"{catalog.Require(item.CanonicalItemId).Name} is worn, not wielded.");
+                if (command.Name.Equals("wear", StringComparison.OrdinalIgnoreCase) && IsClassicWeaponSlot(forcedSlot ?? relationship.Slot))
+                    throw new InvalidOperationException($"{catalog.Require(item.CanonicalItemId).Name} must be wielded.");
+                var moved = engine.Equip(item.InstanceId, actor.Id, character, forcedSlot);
+                result = $"You equip {catalog.Require(moved.CanonicalItemId).Name} ({ClassicEquipmentSlot(catalog, moved)}).";
                 break;
             }
             case "remove":
@@ -391,13 +403,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         var q = query.Trim();
         var candidates = source.Where(item =>
         {
-            var name = catalog.Require(item.CanonicalItemId).Name;
-            var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             return item.InstanceId.Equals(q, StringComparison.OrdinalIgnoreCase)
-                || item.CanonicalItemId.Equals(q, StringComparison.OrdinalIgnoreCase)
-                || name.Equals(q, StringComparison.OrdinalIgnoreCase)
-                || name.StartsWith(q, StringComparison.OrdinalIgnoreCase)
-                || words.Any(word => word.StartsWith(q, StringComparison.OrdinalIgnoreCase));
+                || catalog.Matches(item.CanonicalItemId, q);
         }).ToArray();
         return candidates.Length switch
         {

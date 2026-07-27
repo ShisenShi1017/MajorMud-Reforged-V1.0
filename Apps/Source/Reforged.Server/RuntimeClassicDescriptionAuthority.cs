@@ -34,7 +34,10 @@ public sealed class RuntimeClassicDescriptionAuthority
                 var name = Text(row, "race_name");
                 var description = Text(row, "description");
                 if (name.Length == 0 || description.Length == 0) throw new InvalidOperationException("Race description record is incomplete.");
-                races[name] = new(Text(row,"id"), "race", Text(row,"race_number"), name, description, Text(row,"source_file"), Text(row,"evidence_classification"));
+                var record = new RuntimeClassicDescriptionRecord(Text(row,"id"), "race", Text(row,"race_number"), name, description, Text(row,"source_file"), Text(row,"evidence_classification"));
+                races[NormalizeRace(name)] = record;
+                if (name.Equals("Half-Ogre", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Minotaur")] = record;
+                if (name.Equals("Gaunt One", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Gaunt")] = record;
             }
         }
         return new(races, LoadDirectDescriptions(Path.Combine(root, "npcs.json")), LoadDirectDescriptions(Path.Combine(root, "items.json")), LoadDirectDescriptions(Path.Combine(root, "rooms.json")));

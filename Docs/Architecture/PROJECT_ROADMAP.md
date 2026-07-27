@@ -9,6 +9,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
 - Status: local runtime cohesion work applied; awaiting user push and GitHub Actions confirmation
 - Verification: current-health validator PASS 13/13; Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforged`
+- Guardian Hall engineering direction: Borin's phases 1-10 are implemented as permanent deterministic infrastructure. Current operations remain cumulative-ZIP-only from isolated workspaces; autonomous execution and future live-repository editing are independent operator switches, both default off.
 
 ## CodeUpdate0139 Active Scope
 

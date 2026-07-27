@@ -1,5 +1,6 @@
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Reforged.Server;
 
@@ -32,8 +33,44 @@ public sealed class TelnetConnection : IAsyncDisposable
         }, cancellationToken).ConfigureAwait(false);
     }
 
-    public Task WriteAsync(string text, CancellationToken cancellationToken) =>
-        WriteBytesAsync(Encoding.UTF8.GetBytes(NormalizeNetworkNewLines(text)), cancellationToken);
+    public Task WriteAsync(string text, CancellationToken cancellationToken)
+    {
+        var normalized = NormalizeAnsi(NormalizeNetworkNewLines(text));
+        return WriteBytesAsync(Encoding.UTF8.GetBytes(normalized), cancellationToken);
+    }
+
+    private static readonly Regex OscSequence = new(@"\x1B\].*?(?:\x07|\x1B\\)", RegexOptions.Compiled | RegexOptions.Singleline);
+    private static readonly Regex CsiSequence = new(@"\x1B\[[0-?]*[ -/]*[@-~]", RegexOptions.Compiled);
+
+    private static string NormalizeAnsi(string text)
+    {
+        if (string.IsNullOrEmpty(text)) return text;
+        text = OscSequence.Replace(text, string.Empty);
+
+        var output = new StringBuilder(text.Length + 8);
+        var cursor = 0;
+        foreach (Match match in CsiSequence.Matches(text))
+        {
+            AppendSafeText(output, text.AsSpan(cursor, match.Index - cursor));
+            output.Append(match.Value);
+            cursor = match.Index + match.Length;
+        }
+        AppendSafeText(output, text.AsSpan(cursor));
+
+        var result = output.ToString();
+        if (result.Contains('\u001b') && !result.EndsWith("\u001b[0m", StringComparison.Ordinal))
+            result += "\u001b[0m";
+        return result;
+    }
+
+    private static void AppendSafeText(StringBuilder output, ReadOnlySpan<char> text)
+    {
+        foreach (var ch in text)
+        {
+            if (ch == '\r' || ch == '\n' || ch == '\t' || ch >= ' ')
+                output.Append(ch);
+        }
+    }
 
     private static string NormalizeNetworkNewLines(string text)
     {

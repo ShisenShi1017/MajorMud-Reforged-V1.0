@@ -98,6 +98,7 @@ public sealed class RuntimeWorldLoader
         var narrativeCatalog = RuntimeClassicNarrativeCatalog.Load(projectRoot, definition.Id);
 
         var catalog = GeneratedWorldDataCatalog.Validate(projectRoot, definition);
+        var authoritativeDecodedData = RuntimeAuthoritativeDecodedDataCatalog.Load(Path.Combine(projectRoot, definition.DataRoot));
         var commandCatalog = RuntimeClassicCommandCatalog.Load(Path.Combine(projectRoot, definition.DataRoot, "commands.json"));
         var npcAiCatalog = RuntimeClassicNpcAiCatalog.Load(Path.Combine(projectRoot, definition.DataRoot, "npc_ai_runtime.json"), spawns);
         var statusEffectCatalog = RuntimeClassicStatusEffectCatalog.Load(
@@ -128,7 +129,8 @@ public sealed class RuntimeWorldLoader
             commandCatalog,
             npcAiCatalog,
             statusEffectCatalog,
-            lootRuleCatalog);
+            lootRuleCatalog,
+            authoritativeDecodedData);
     }
 
 
@@ -396,7 +398,8 @@ public sealed class RuntimeWorld
         RuntimeClassicCommandCatalog commandCatalog,
         RuntimeClassicNpcAiCatalog npcAiCatalog,
         RuntimeClassicStatusEffectCatalog statusEffectCatalog,
-        RuntimeClassicLootRuleCatalog lootRuleCatalog )
+        RuntimeClassicLootRuleCatalog lootRuleCatalog,
+        RuntimeAuthoritativeDecodedDataCatalog authoritativeDecodedData )
     {
         Definition = definition;
         _rooms = rooms;
@@ -424,6 +427,7 @@ public sealed class RuntimeWorld
         NpcAiCatalog = npcAiCatalog;
         StatusEffectCatalog = statusEffectCatalog;
         LootRuleCatalog = lootRuleCatalog;
+        AuthoritativeDecodedData = authoritativeDecodedData;
     }
 
     public WorldRuntimeDefinition Definition { get; }
@@ -455,6 +459,7 @@ public sealed class RuntimeWorld
     public RuntimeClassicNpcAiCatalog NpcAiCatalog { get; }
     public RuntimeClassicStatusEffectCatalog StatusEffectCatalog { get; }
     public RuntimeClassicLootRuleCatalog LootRuleCatalog { get; }
+    public RuntimeAuthoritativeDecodedDataCatalog AuthoritativeDecodedData { get; }
     public int RoomCount => _rooms.Count;
 
     public RuntimeRoom? ResolveGeneratedCharacterStartRoom() =>

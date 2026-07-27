@@ -152,8 +152,49 @@ public sealed partial class RuntimeItemCatalog
     }
 
     public RuntimeItemDefinition Require(string id) => _items.TryGetValue(id, out var item) ? item : throw new InvalidOperationException($"Unknown generated item '{id}'.");
+
+    /// <summary>
+    /// Classic noun matching is word-prefix based.  A player may identify an item by
+    /// canonical id, legacy number, full name, leading phrase, or any individual noun
+    /// word (for example "gl" for "leather gloves").  Keep this in the authoritative
+    /// item catalog so inventory, equipment, shops, loot, and quest consumers all use
+    /// the same decoded-data resolver.
+    /// </summary>
+    public bool Matches(string itemId, string query)
+    {
+        if (!_items.TryGetValue(itemId, out var item) || string.IsNullOrWhiteSpace(query)) return false;
+        var q = NormalizeMatchText(query);
+        if (q.Length == 0) return false;
+        if (NormalizeMatchText(item.Id) == q || NormalizeMatchText(item.Id).StartsWith(q, StringComparison.OrdinalIgnoreCase)) return true;
+        var legacy = item.Id[(item.Id.LastIndexOf('.') + 1)..];
+        if (legacy.Equals(q, StringComparison.OrdinalIgnoreCase)) return true;
+        var name = NormalizeMatchText(item.Name);
+        if (name.Equals(q, StringComparison.OrdinalIgnoreCase) || name.StartsWith(q, StringComparison.OrdinalIgnoreCase)) return true;
+        var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (words.Any(word => word.StartsWith(q, StringComparison.OrdinalIgnoreCase))) return true;
+        var queryWords = q.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        return queryWords.Length > 1 && queryWords.Length <= words.Length &&
+               queryWords.Select((word, index) => words[index].StartsWith(word, StringComparison.OrdinalIgnoreCase)).All(value => value);
+    }
+
+    private static string NormalizeMatchText(string value)
+    {
+        var words = value.Trim().ToLowerInvariant()
+            .Split(new[] { ' ', '\t', '-', '_', '.', ',', '\'', '"' }, StringSplitOptions.RemoveEmptyEntries)
+            .Where(word => word is not "a" and not "an" and not "the");
+        return string.Join(' ', words);
+    }
+
     public RuntimeEquipmentDefinition? Equipment(string id) => _equipment.GetValueOrDefault(id);
-    public bool IsLegalSlot(string slot) => _slots.Contains(slot);
+    public bool IsLegalSlot(string slot)
+    {
+        if (string.IsNullOrWhiteSpace(slot)) return false;
+        // Equipment relationships are decoded executable authority. A relationship
+        // slot is legal even when the separate slot projection omitted that native
+        // weapon position (for example WIELD).
+        return _slots.Contains(slot) || _equipment.Values.Any(definition =>
+            definition.Slot.Equals(slot, StringComparison.OrdinalIgnoreCase));
+    }
 
     private void LoadItems(string path)
     {

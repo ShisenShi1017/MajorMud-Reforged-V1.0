@@ -238,14 +238,13 @@ public sealed partial class RuntimeLivingWorldService
 
     public string Interact(RuntimeSession session, RuntimeCommand command, RuntimeItemState? inventory)
     {
-        if (command.Arguments.Count==0) return $"Use: {command.Name} <object>.";
         var query=command.ArgumentText.Trim();
         lock (_gate)
         {
             var matches=_objectDefinitions.Values.Where(x=>x.RoomId.Equals(session.CurrentRoom.Id,StringComparison.OrdinalIgnoreCase)
-                && (x.Id.Equals(query,StringComparison.OrdinalIgnoreCase)
+                && ((query.Length > 0 && (x.Id.Equals(query,StringComparison.OrdinalIgnoreCase)
                     || x.Name.Equals(query,StringComparison.OrdinalIgnoreCase)
-                    || x.Name.Contains(query,StringComparison.OrdinalIgnoreCase)
+                    || x.Name.Contains(query,StringComparison.OrdinalIgnoreCase)))
                     || MatchesAlias(x, command.Name, query))).ToArray();
             if(matches.Length==0)return $"You do not see an interactive object matching '{query}' here.";
             if(matches.Length>1)return $"More than one object matches '{query}'; use its generated ID.";
@@ -259,6 +258,7 @@ public sealed partial class RuntimeLivingWorldService
                     "unlock" => Unlock(definition,before,inventory),
                     "lock" => Lock(definition,before,inventory),
                     "pull" or "push" or "activate" => Activate(definition,before),
+                    _ when MatchesAlias(definition, command.Name, query) => Activate(definition,before),
                     _ => throw new InvalidOperationException("unsupported-world-interaction")
                 };
                 _objects[definition.Id]=after; Save();
@@ -646,7 +646,9 @@ public sealed partial class RuntimeLivingWorldService
         if(!definition.Metadata.TryGetValue("commands",out var encoded)||string.IsNullOrWhiteSpace(encoded))return false;
         var entered=$"{verb} {query}".Trim();
         return encoded.Split('|',StringSplitOptions.RemoveEmptyEntries|StringSplitOptions.TrimEntries)
-            .Any(alias=>alias.Equals(entered,StringComparison.OrdinalIgnoreCase)||alias.Equals(query,StringComparison.OrdinalIgnoreCase));
+            .Any(alias=>alias.Equals(entered,StringComparison.OrdinalIgnoreCase)
+                || (query.Length > 0 && alias.Equals(query,StringComparison.OrdinalIgnoreCase))
+                || (query.Length == 0 && alias.Equals(verb,StringComparison.OrdinalIgnoreCase)));
     }
 
     private static int ParseLegacyNumber(string id)
@@ -665,24 +667,122 @@ public sealed partial class RuntimeLiveGameplayFacade
     public bool CanTraverseLivingWorld(RuntimeSession session,string direction,out string failure)
     {
         var exit = session.World.FindExit(session.CurrentRoom, direction);
-        if (exit is not null && exit.GateKind.Equals("hidden", StringComparison.OrdinalIgnoreCase))
+        if (exit is null)
         {
-            RuntimeBundleDSearchRuntime.EnsureLoaded(_characters.ProjectRoot, session.World.Definition.Id);
-            var discovered = RuntimeBundleDSearchRuntime.Registry.IsDiscovered(session.Actor.Id, exit.Id);
-            var passable = exit.Qualifier.Contains("Passable", StringComparison.OrdinalIgnoreCase);
-            if (!discovered && !passable)
-            {
-                failure = "You cannot find an exit in that direction.";
-                return false;
-            }
-            if (!discovered && passable)
-            {
-                RuntimeBundleDSearchRuntime.Registry.Discover(session.Actor.Id, exit.Id);
-                RuntimeBundleDSearchRuntime.Save(_characters.ProjectRoot, session.World.Definition.Id, new[] { session.Actor.Id });
-            }
+            failure = "You cannot go that way.";
+            return false;
         }
+
+        var context = BuildExitGateContext(session, null);
+
+        var decision = Living(session).EvaluateExitGate(session.CurrentRoom, direction, context);
+        if (!decision.Allowed)
+        {
+            failure = DescribeExitGateFailure(decision.Code);
+            return false;
+        }
+
         return Living(session).CanTraverse(session.CurrentRoom,direction,out failure);
     }
+
+    private RuntimeExitGateContext BuildExitGateContext(RuntimeSession session, string? commandText)
+    {
+        RuntimeBundleDSearchRuntime.EnsureLoaded(_characters.ProjectRoot, session.World.Definition.Id);
+        var discoveredTargets = new HashSet<string>(
+            RuntimeBundleDSearchRuntime.Registry.GetDiscoveredTargets(session.Actor.Id),
+            StringComparer.OrdinalIgnoreCase);
+
+        var itemState = LoadItemState(session);
+        var itemIds = itemState?.Items
+            .Where(item => string.Equals(item.OwnerId, session.Actor.Id, StringComparison.OrdinalIgnoreCase)
+                && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                    || item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)))
+            .Select(item => item.CanonicalItemId)
+            .Where(id => !string.IsNullOrWhiteSpace(id))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase)
+            ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        RuntimeCharacterRecord? character = session.Actor is RuntimeCharacterActor actor
+            ? _characters.LoadCharacter(actor.Id)
+            : null;
+        var abilityValues = new Dictionary<int,long>();
+        if (character is not null)
+        {
+            foreach (var pair in character.Skills)
+            {
+                var abilityId = ParseDecodedLegacyId(pair.Key);
+                if (abilityId > 0) abilityValues[abilityId] = pair.Value;
+            }
+        }
+
+        var completedActions = character?.Conditions
+            .Where(pair => pair.Key.StartsWith("action:", StringComparison.OrdinalIgnoreCase)
+                || pair.Key.StartsWith("remote_action:", StringComparison.OrdinalIgnoreCase))
+            .OrderBy(pair => pair.Value, StringComparer.OrdinalIgnoreCase)
+            .Select(pair => pair.Key[(pair.Key.IndexOf(':') + 1)..])
+            .ToArray() ?? Array.Empty<string>();
+
+        return new RuntimeExitGateContext(
+            itemIds,
+            itemState?.Gold ?? 0,
+            discoveredTargets,
+            commandText)
+        {
+            ClassId = ParseDecodedLegacyId(character?.ClassId),
+            RaceId = ParseDecodedLegacyId(character?.RaceId),
+            AlignmentName = ReadCharacterCondition(character, "alignment", "alignment_name"),
+            AbilityValues = abilityValues,
+            PicklocksValue = ReadCharacterValue(character, "picklocks", "picklock", "locks"),
+            StrengthValue = ReadCharacterValue(character, "strength", "str"),
+            CompletedActions = completedActions
+        };
+    }
+
+    private static int ParseDecodedLegacyId(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return 0;
+        var normalized = value.Trim();
+        var separator = normalized.LastIndexOf('.');
+        if (separator >= 0) normalized = normalized[(separator + 1)..];
+        return int.TryParse(normalized, out var parsed) ? parsed : 0;
+    }
+
+    private static int ReadCharacterValue(RuntimeCharacterRecord? character, params string[] keys)
+    {
+        if (character is null) return 0;
+        foreach (var key in keys)
+        {
+            if (character.Skills.TryGetValue(key, out var skill)) return skill;
+            if (character.BaseStats.TryGetValue(key, out var stat)) return stat;
+        }
+        return 0;
+    }
+
+    private static string ReadCharacterCondition(RuntimeCharacterRecord? character, params string[] keys)
+    {
+        if (character is null) return string.Empty;
+        foreach (var key in keys)
+            if (character.Conditions.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value)) return value;
+        return string.Empty;
+    }
+
+    private static string DescribeExitGateFailure(string code) => code switch
+    {
+        "door-locked" => "The door is locked.",
+        "door-closed" => "The door is closed.",
+        "hidden-undiscovered" => "You cannot find an exit in that direction.",
+        "required-item-missing" => "You do not have the item required to pass.",
+        "toll-insufficient" => "You do not have enough money to pay the toll.",
+        "class-not-allowed" or "class-denied" => "Your class cannot pass this way.",
+        "race-not-allowed" or "race-denied" => "Your race cannot pass this way.",
+        "alignment-below-minimum" or "alignment-above-maximum" => "Your alignment prevents you from passing.",
+        "ability-below-minimum" or "ability-above-maximum" => "You lack the required ability to pass.",
+        "required-actions-incomplete" or "required-action-order" => "You have not completed the required actions.",
+        "picklocks-or-strength-failed" => "You cannot overcome this barrier.",
+        "destination-blocked" => "That route does not currently lead anywhere.",
+        "unsupported-evidence-only" or "qualified-unknown-evidence-only" or "gate-evidence-only" => "The decoded exit condition cannot be executed.",
+        _ => $"You cannot pass ({code})."
+    };
     public bool TryExecuteTeleporterCommand(RuntimeSession session, RuntimeCommand command, out string result)
     {
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
@@ -694,9 +794,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (matches.Length == 0) { result = string.Empty; return false; }
         if (matches.Length > 1) { result = "The decoded command matches more than one teleporter exit."; return true; }
         var gate = matches[0];
-        var decision = living.EvaluateExitGate(session.CurrentRoom, gate.Direction, new RuntimeExitGateContext(
-            new HashSet<string>(StringComparer.OrdinalIgnoreCase), 0,
-            new HashSet<string>(RuntimeBundleDSearchRuntime.Registry.GetDiscoveredTargets(session.Actor.Id), StringComparer.OrdinalIgnoreCase), entered));
+        var decision = living.EvaluateExitGate(session.CurrentRoom, gate.Direction, BuildExitGateContext(session, entered));
         if (!decision.Allowed) { result = $"The teleporter does not activate ({decision.Code})."; return true; }
         var previous = session.CurrentRoom;
         if (!CanMove(session, out var movementFailure)) { result = movementFailure; return true; }
@@ -706,6 +804,21 @@ public sealed partial class RuntimeLiveGameplayFacade
         BroadcastArrival(session);
         Save(session);
         result = RenderRoom(session);
+        return true;
+    }
+
+    public bool TryExecuteDecodedWorldCommand(RuntimeSession session, RuntimeCommand command, out string result)
+    {
+        if (TryExecuteTeleporterCommand(session, command, out result)) return true;
+        var living = Living(session);
+        var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
+        var hasMatch = living.CaptureWorldObjectDefinitions().Any(definition =>
+            definition.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase)
+            && definition.Metadata.TryGetValue("commands", out var encoded)
+            && encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase)));
+        if (!hasMatch) { result = string.Empty; return false; }
+        result = living.Interact(session, command, LoadItemState(session));
         return true;
     }
 

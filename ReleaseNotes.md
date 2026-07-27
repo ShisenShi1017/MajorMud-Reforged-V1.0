@@ -1,5 +1,11 @@
 # Release Notes
 
+## Guardian Hall Engineering Department
+
+Guardian Hall now includes Borin's ten-phase engineering department. The safe default is cumulative candidate ZIP generation inside isolated workspaces. Autonomous engineering and direct live-repository editing are independent, persisted, default-off operator controls.
+
+Candidate ZIPs contain modified/new files only plus a patch, manifest, validation log, README, and `Install-and-Validate.bat`. Enabling autonomy alone does not grant live-edit authority.
+
 ## Guardian Hall Phase 3-0164 — Final Hardening and Self-Test
 
 - Added atomic Guardian Hall state writes through a temporary file and replace operation.

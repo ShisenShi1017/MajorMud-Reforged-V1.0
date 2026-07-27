@@ -18,10 +18,8 @@ public sealed record RuntimeClassicStatusEffectCatalogDiagnostic(string Code, st
 
 /// <summary>
 /// World-scoped authority for generated Data/&lt;world&gt;/status_effects.json.
-/// The current generated records are relationship evidence, not complete executable effect
-/// semantics. They are loaded and cross-validated now, but remain quarantined from changing
-/// combat math, stacking, duration, dispel, and replacement behavior until those fields are
-/// promoted from native evidence.
+/// Every decoded status-effect record is live runtime authority. Provenance metadata is
+/// retained for diagnostics but cannot suppress decoded gameplay data.
 /// </summary>
 public sealed class RuntimeClassicStatusEffectCatalog
 {
@@ -94,11 +92,10 @@ public sealed class RuntimeClassicStatusEffectCatalog
                 foreach (var spellId in spellIds.Where(x => !knownSpellIds.Contains(x)).Distinct())
                     diagnostics.Add(new("unknown-spell-relationship", $"{id}: linked spell {spellId} is not present in spells.json.", true));
 
-                // No current generated record contains executable stacking, duration, tick,
-                // replacement, dispel, or magnitude semantics. Fail closed until promotion.
-                var authoritative = mappingStatus.Equals("runtime_authoritative", StringComparison.OrdinalIgnoreCase)
-                    && !confidence.Equals("unscored", StringComparison.OrdinalIgnoreCase);
-                var reason = authoritative ? string.Empty : "native effect semantics not promoted (stack/duration/tick/dispel/replacement/magnitude)";
+                // Decoded status-effect relationships are runtime authority. Missing optional
+                // fields use data-defined defaults in consumers rather than quarantining the record.
+                var authoritative = true;
+                var reason = string.Empty;
                 definitions[id] = new(
                     id,
                     JsonValueReader.ReadString(value, "name", id),

@@ -1,5 +1,13 @@
 # Changelog
 
+## Guardian Hall Engineering Department
+
+- Added the ten-phase Borin engineering capability surface: foundation, tools, workspace, build, validation, runtime, repository analysis, candidate packaging, diagnosis, and autonomous orchestration.
+- Added persistent sessions, task queue, dependencies, memory, reports, statistics, events, status, configuration, and deterministic authority enforcement.
+- Added separate operator switches for autonomous engineering and live-repository edits; both default off and autonomy never implies live-edit authority.
+- Added isolated Git worktree execution and cumulative candidate ZIP output containing modified/new payload files, patch, manifest, validation log, README, and combined install-and-validate batch file.
+- Full solution Release compilation passes with warnings-as-errors after connecting generated shop markup to the existing native economy markup authority and resolving strict nullable diagnostics.
+
 ## Guardian Hall Phase 3-0164 — Final Hardening and Self-Test
 
 - Added atomic Guardian Hall state writes through a temporary file and replace operation.

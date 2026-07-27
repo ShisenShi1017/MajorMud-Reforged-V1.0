@@ -187,7 +187,7 @@ public interface IRealmKeeperTelemetryService
 
 public sealed class RealmKeeperTelemetryService : IRealmKeeperTelemetryService
 {
-    private static readonly string[] CountedFiles = ["rooms.json", "npcs.json", "items.json", "quests.json", "spells.json", "triggers.json", "scripts.json"];
+    private static readonly string[] CountedFiles = ["rooms.json", "exits.json", "npcs.json", "items.json", "quests.json", "spells.json", "triggers.json", "scripts.json"];
     private readonly string _repositoryRoot;
 
     public RealmKeeperTelemetryService(string repositoryRoot)
@@ -321,13 +321,7 @@ public sealed class RealmKeeperTelemetryService : IRealmKeeperTelemetryService
             if (!File.Exists(path)) continue;
             try
             {
-                using var document = JsonDocument.Parse(File.ReadAllText(path));
-                if (document.RootElement.ValueKind == JsonValueKind.Array)
-                    total += document.RootElement.GetArrayLength();
-                else if (document.RootElement.ValueKind == JsonValueKind.Object &&
-                         document.RootElement.TryGetProperty("records", out var records) &&
-                         records.ValueKind == JsonValueKind.Array)
-                    total += records.GetArrayLength();
+                total += ChunkedGeneratedData.CountRecords(path);
             }
             catch (JsonException)
             {
@@ -972,19 +966,61 @@ public sealed class WandererTelemetryService : IWandererTelemetryService
         var journals = activeFiles.Count(path => Path.GetFileName(path).Contains("journal", StringComparison.OrdinalIgnoreCase) || Path.GetExtension(path).Equals(".log", StringComparison.OrdinalIgnoreCase));
         var inventories = activeFiles.Count(path => Path.GetFileName(path).Contains("inventory", StringComparison.OrdinalIgnoreCase) || Path.GetFileName(path).Contains("character", StringComparison.OrdinalIgnoreCase));
         var roomFiles = Directory.Exists(dataRoot) ? Directory.EnumerateFiles(dataRoot, "rooms.json", SearchOption.AllDirectories).ToList() : [];
-        var discoveredRooms = 0;
-        foreach (var roomFile in roomFiles) try { using var doc = JsonDocument.Parse(File.ReadAllText(roomFile)); discoveredRooms += doc.RootElement.ValueKind == JsonValueKind.Array ? doc.RootElement.GetArrayLength() : doc.RootElement.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array ? records.GetArrayLength() : 0; } catch (JsonException) { }
+        var exitFiles = Directory.Exists(dataRoot) ? Directory.EnumerateFiles(dataRoot, "exits.json", SearchOption.AllDirectories).ToList() : [];
+        var discoveredRooms = roomFiles.Sum(path => ChunkedGeneratedData.CountRecords(path));
+        var knownExits = exitFiles.Sum(path => ChunkedGeneratedData.CountRecords(path));
         var latest = activeFiles.Where(File.Exists).OrderByDescending(File.GetLastWriteTimeUtc).FirstOrDefault();
         var route = latest is null ? "No active character session detected" : $"Latest session evidence: {Path.GetRelativePath(_repositoryRoot, latest)}";
         var inventory = inventories == 0 ? "No character inventory snapshot detected" : $"{inventories} inventory/character persistence file(s) available";
-        var progress = discoveredRooms == 0 ? "No generated room corpus available" : $"{discoveredRooms:N0} rooms available to exploration telemetry";
+        var progress = discoveredRooms == 0 ? "No generated room corpus available" : $"{discoveredRooms:N0} rooms and {knownExits:N0} exits available to exploration telemetry";
         var queue = new List<string>();
         if (latest is null) queue.Add("Connect or create the assigned character session");
-        if (workspace.MapDiscovery && discoveredRooms > 0) queue.Add($"Compare player discovery against {discoveredRooms:N0} known rooms");
+        if (workspace.MapDiscovery && discoveredRooms > 0) queue.Add($"Compare player discovery against {discoveredRooms:N0} known rooms and {knownExits:N0} exits");
         if (workspace.AutoJournal && journals == 0) queue.Add("Create the first expedition journal entry");
         if (queue.Count == 0) queue.Add("Continue current exploration mission");
         return new(DateTime.UtcNow, latest is not null, discoveredRooms, journals, inventories, route, inventory, progress,
-            "Local Saves character/session evidence and generated room records", queue);
+            "Local Saves character/session evidence plus chunk-aware generated room and exit records", queue);
+    }
+}
+
+internal static class ChunkedGeneratedData
+{
+    public static int CountRecords(string manifestOrDataPath)
+    {
+        var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        return CountRecords(manifestOrDataPath, visited);
+    }
+
+    private static int CountRecords(string path, HashSet<string> visited)
+    {
+        path = Path.GetFullPath(path);
+        if (!File.Exists(path) || !visited.Add(path)) return 0;
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllText(path));
+            var root = document.RootElement;
+            if (root.ValueKind == JsonValueKind.Array) return root.GetArrayLength();
+            if (root.ValueKind != JsonValueKind.Object) return 0;
+            if (root.TryGetProperty("record_parts", out var parts) && parts.ValueKind == JsonValueKind.Array)
+            {
+                var baseDirectory = Path.GetDirectoryName(path) ?? string.Empty;
+                var total = 0;
+                foreach (var part in parts.EnumerateArray())
+                {
+                    var relative = part.GetString();
+                    if (string.IsNullOrWhiteSpace(relative)) continue;
+                    total += CountRecords(Path.Combine(baseDirectory, relative.Replace('/', Path.DirectorySeparatorChar)), visited);
+                }
+                return total;
+            }
+            return root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array
+                ? records.GetArrayLength()
+                : 0;
+        }
+        catch (JsonException)
+        {
+            return 0;
+        }
     }
 }
 

@@ -2,7 +2,33 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    public string RenderRoom(RuntimeSession session)
+    public string RenderRoom(RuntimeSession session) => RenderRoomInternal(session, forceDescription: false);
+
+    public string RenderRoomVerbose(RuntimeSession session) => RenderRoomInternal(session, forceDescription: true);
+
+    public string SetRoomDescriptionMode(RuntimeSession session, bool brief)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            ["ui.room_description_mode"] = brief ? "brief" : "verbose"
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return brief
+            ? "Brief mode enabled. Room descriptions will be omitted during normal movement; LOOK still shows the full description."
+            : "Verbose mode enabled. Full room descriptions will be shown during normal movement.";
+    }
+
+    private bool UsesBriefRoomDescriptions(RuntimeSession session)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return false;
+        var character = _characters.LoadCharacter(actor.Id);
+        return character?.Conditions.TryGetValue("ui.room_description_mode", out var mode) == true &&
+               mode.Equals("brief", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string RenderRoomInternal(RuntimeSession session, bool forceDescription)
     {
         const string reset = "\u001b[0m";
         const string brightCyan = "\u001b[1;36m";
@@ -17,9 +43,10 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         var lines = new List<string>
         {
-            $"{brightCyan}{session.CurrentRoom.Name}{reset}",
-            $"{white}{IndentClassicDescription(session.CurrentRoom.Description)}{reset}"
+            $"{brightCyan}{session.CurrentRoom.Name}{reset}"
         };
+        if (forceDescription || !UsesBriefRoomDescriptions(session))
+            lines.Add($"{white}{IndentClassicDescription(session.CurrentRoom.Description)}{reset}");
 
         var living = LivingNpcsInRoom(session).ToArray();
         var hostile = living.Where(npc => ResolveLiveNpcDisposition(npc).Equals("hostile", StringComparison.OrdinalIgnoreCase))
@@ -55,7 +82,6 @@ public sealed partial class RuntimeLiveGameplayFacade
                 .Where(value => !string.IsNullOrWhiteSpace(value))
                 .Select(direction => DescribeClassicExit(session, direction)));
         lines.Add($"{brightGreen}Obvious exits: {exits}{reset}");
-        lines.Add(RenderClassicPrompt(session));
         if (!_liveCombats.ContainsKey(session.Id))
         {
             var aggressive = living.FirstOrDefault(npc => ResolveLiveNpcDisposition(npc).Equals("hostile", StringComparison.OrdinalIgnoreCase));
@@ -141,7 +167,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         "U" => "up", "D" => "down", _ => direction.Trim().ToLowerInvariant()
     };
 
-    private string RenderClassicPrompt(RuntimeSession session)
+    public string RenderClassicPrompt(RuntimeSession session)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return ":";
         var character = _characters.LoadCharacter(actor.Id);

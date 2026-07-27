@@ -57,11 +57,8 @@ public static class RuntimeBundleDRoomAudit
         Check(imported.Any(room => room.Id.Equals("room.map1.2306", StringComparison.OrdinalIgnoreCase) && room.ImportedRoomType == 1 && room.ImportedShopNumber == 65 && room.ImportedLightLevel == 0), "imported_shop_room_metadata_preserved");
 
         var sourcePath = world.EvidencePath;
-        using var document = JsonDocument.Parse(File.ReadAllText(sourcePath));
-        var records = document.RootElement.ValueKind == JsonValueKind.Object && document.RootElement.TryGetProperty("records", out var recordsElement)
-            ? recordsElement.EnumerateArray().ToArray()
-            : document.RootElement.EnumerateArray().ToArray();
-        Check(records.Length == rooms.Count, "generated_room_record_count_matches_runtime");
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(sourcePath);
+        Check(records.Count == rooms.Count, "generated_room_record_count_matches_runtime");
         Check(records.All(record => record.TryGetProperty("relationships", out _)), "room_relationship_metadata_present");
         Check(records.All(record => record.TryGetProperty("runtime_mapping", out _)), "runtime_mapping_provenance_present");
         Check(records.All(record => record.TryGetProperty("generator_mapping", out _)), "generator_mapping_provenance_present");

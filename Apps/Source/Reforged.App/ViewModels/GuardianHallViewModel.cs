@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Win32;
 using Reforged.App.Commands;
+using Reforged.App.Engineering;
 using Reforged.App.Guardians;
 
 namespace Reforged.App.ViewModels;
@@ -23,6 +24,8 @@ public sealed class GuardianHallViewModel : ViewModelBase
     private bool _wandererStepRunning;
     private readonly GuardianOrchestrator _orchestrator = new();
     private readonly GuardianHallHardeningService _hardeningService;
+    private readonly EngineeringPersistence _engineeringPersistence;
+    private readonly EngineeringOrchestrator _engineeringOrchestrator;
     private CancellationTokenSource _orchestrationCancellation = new();
     private GuardianProfile? _selectedGuardian;
     private DecodeQueueItem? _selectedDecodeItem;
@@ -39,6 +42,7 @@ public sealed class GuardianHallViewModel : ViewModelBase
     public ArchivistWorkspace Archivist { get; private set; } = new();
     public GuardianOrchestrationWorkspace Orchestration { get; private set; } = new();
     public GuardianHallDiagnosticsWorkspace Diagnostics { get; private set; } = new();
+    public EngineeringWorkspace Engineering { get; private set; } = new();
     public IReadOnlyList<string> ServerProfiles { get; } = ["Local Reforged Host", "LAN Host", "Internet Host"];
     public IReadOnlyList<string> Worlds { get; } = ["Classic", "Custom", "AI World", "Imported World"];
     public IReadOnlyList<string> Realms { get; } = ["Live Realm", "Test Realm", "Development Realm", "Offline Projection"];
@@ -117,6 +121,11 @@ public sealed class GuardianHallViewModel : ViewModelBase
     public ICommand ResumeSchedulerCommand { get; }
     public ICommand CancelRunningJobsCommand { get; }
     public ICommand RunHardeningChecksCommand { get; }
+    public ICommand StartEngineeringCommand { get; }
+    public ICommand StopEngineeringCommand { get; }
+    public ICommand QueueEngineeringPhasesCommand { get; }
+    public ICommand RunEngineeringStepCommand { get; }
+    public ICommand SaveEngineeringCommand { get; }
 
     public GuardianHallViewModel(IGuardianAssignmentStore store, IGuardianBrainRouter router, Reforged.App.Services.IClientSessionService? clientSessions = null)
     {
@@ -125,6 +134,8 @@ public sealed class GuardianHallViewModel : ViewModelBase
         _archivistService = new ArchivistService(store.RootDirectory);
         _hardeningService = new GuardianHallHardeningService(store);
         var repositoryRoot = Directory.GetParent(store.RootDirectory)?.FullName ?? store.RootDirectory;
+        _engineeringPersistence = new EngineeringPersistence(store.RootDirectory);
+        _engineeringOrchestrator = new EngineeringOrchestrator(repositoryRoot, _engineeringPersistence);
         _realmKeeperTelemetry = new RealmKeeperTelemetryService(repositoryRoot);
         _wandererTelemetry = new WandererTelemetryService(repositoryRoot, clientSessions);
         _analystTelemetry = new AnalystTelemetryService(repositoryRoot);
@@ -178,6 +189,11 @@ public sealed class GuardianHallViewModel : ViewModelBase
         ResumeSchedulerCommand = new RelayCommand(() => { Orchestration.Paused = false; Orchestration.RuntimeStatus = "Scheduler resumed"; HallStatus = Orchestration.RuntimeStatus; });
         CancelRunningJobsCommand = new RelayCommand(CancelRunningJobs);
         RunHardeningChecksCommand = new AsyncRelayCommand(RunHardeningChecksAsync);
+        StartEngineeringCommand = new AsyncRelayCommand(StartEngineeringAsync);
+        StopEngineeringCommand = new AsyncRelayCommand(StopEngineeringAsync);
+        QueueEngineeringPhasesCommand = new AsyncRelayCommand(QueueEngineeringPhasesAsync);
+        RunEngineeringStepCommand = new AsyncRelayCommand(RunEngineeringStepAsync);
+        SaveEngineeringCommand = new AsyncRelayCommand(SaveEngineeringAsync);
     }
 
     public async Task InitializeAsync()
@@ -185,6 +201,12 @@ public sealed class GuardianHallViewModel : ViewModelBase
         GuardianHallState? state = null;
         try { state = await _store.LoadAsync(); } catch { HallStatus = "Previous Guardian state could not be read; defaults loaded"; }
         state ??= new GuardianHallState { Guardians = GuardianCatalog.CreateDefaults() };
+        Engineering = await _engineeringPersistence.LoadAsync();
+        Engineering.Status.Running = false;
+        Engineering.Status.CurrentTaskId = "";
+        Engineering.Status.Summary = Engineering.Configuration.AutonomousEngineeringEnabled
+            ? "Engineering stopped after application start; press Start Working to resume"
+            : "Engineering ready; autonomous engineering is off";
         if (state.Guardians.Count == 0) state.Guardians = GuardianCatalog.CreateDefaults();
         foreach (var profile in state.Guardians) Guardians.Add(profile);
         RealmKeeper = state.RealmKeeper ?? new(); Wanderer = state.Wanderer ?? new(); Analyst = state.Analyst ?? new(); Worldsmith = state.Worldsmith ?? new(); Archivist = state.Archivist ?? new(); Orchestration = state.Orchestration ?? new(); Diagnostics = state.Diagnostics ?? new();
@@ -203,6 +225,40 @@ public sealed class GuardianHallViewModel : ViewModelBase
         Wanderer.AutonomousRunning = false;
         Wanderer.AutonomousStatus = "Autonomous play is stopped after application start; press Start Auto Play to resume";
         RecoverInterruptedJobs();
+    }
+
+    private async Task StartEngineeringAsync()
+    {
+        await _engineeringOrchestrator.StartAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = Engineering.Status.Summary;
+    }
+
+    private async Task StopEngineeringAsync()
+    {
+        await _engineeringOrchestrator.StopAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = Engineering.Status.Summary;
+    }
+
+    private async Task QueueEngineeringPhasesAsync()
+    {
+        await _engineeringOrchestrator.QueueAllPhasesAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = "Guardian Hall engineering phases queued";
+    }
+
+    private async Task RunEngineeringStepAsync()
+    {
+        await _engineeringOrchestrator.RunOneAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = Engineering.Status.Summary;
+    }
+
+    private async Task SaveEngineeringAsync()
+    {
+        await _engineeringPersistence.SaveAsync(Engineering);
+        HallStatus = "Engineering configuration and memory saved";
     }
 
     public void QueueDroppedFiles(IEnumerable<string> paths)
@@ -502,7 +558,8 @@ public sealed class GuardianHallViewModel : ViewModelBase
     private void StopAll()
     {
         foreach (var guardian in Guardians) guardian.Status = GuardianStatus.Paused;
-        HallStatus = "Emergency stop: all Guardians paused";
+        _ = _engineeringOrchestrator.StopAsync(Engineering);
+        HallStatus = "Emergency stop: all Guardians and engineering paused";
         Raise(nameof(Guardians)); RaiseSelection();
     }
 

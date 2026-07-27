@@ -14,8 +14,7 @@ public static class RuntimeBundleDTeleporterAudit
         var checks = new List<string>(); var failures = new List<string>();
         void Check(bool value, string code) { if (value) checks.Add(code); else failures.Add(code); }
         var dataRoot = Path.Combine(projectRoot, "Data", worldId);
-        using var exitsDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "exits.json")));
-        var exits = exitsDoc.RootElement.GetProperty("records").EnumerateArray().ToArray();
+        var exits = RuntimeChunkedClassicCatalog.LoadRecords(Path.Combine(dataRoot, "exits.json"));
         var textTeleporters = exits.Where(e =>
             e.TryGetProperty("gate_kind", out var g) && g.GetString()?.Equals("text_command", StringComparison.OrdinalIgnoreCase) == true &&
             e.TryGetProperty("commands", out var c) && c.ValueKind == JsonValueKind.Array &&

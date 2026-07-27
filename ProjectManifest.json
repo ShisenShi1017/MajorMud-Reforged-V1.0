@@ -6,6 +6,7 @@
   "milestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
+  "guardianEngineeringPolicy": "Guardian Hall engineering phases 1-10 use isolated workspaces and cumulative candidate ZIPs by default. Autonomous execution and live-repository editing are independent persisted controls; both default false and live edits must never be enabled on the user's behalf.",
   "updatePolicy": "Codex updates the local repository unless the user explicitly asks Codex to commit/push. GitHub Actions is the pushed verification gate.",
   "modePolicy": "Each assistant must identify mode first. Codex updates local repository state. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
   "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",

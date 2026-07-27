@@ -101,7 +101,11 @@ public sealed class ServerNetworkHost
                 {
                     foreach (var pending in session.DrainMessages())
                         await telnet.WriteLineAsync(pending, hostCancellationToken).ConfigureAwait(false);
-                    await telnet.WriteAsync("> ", hostCancellationToken).ConfigureAwait(false);
+
+                    // MegaMUD path execution waits for the native MajorMUD-style status prompt.
+                    // Do not append a generic "> " prompt after room output; it prevents the client
+                    // from recognizing that movement completed and stalls imported .mp paths.
+                    await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
                     var input = await telnet.ReadLineAsync(hideInput: false, hostCancellationToken).ConfigureAwait(false);
                     if (input is null) break;
 

@@ -208,19 +208,33 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         var lines = new List<string> { carriedText };
         if (keyNames.Length > 0) lines.Add("You have the following keys:  " + string.Join(", ", keyNames) + ".");
-        lines.Add($"Wealth: {state.Gold} copper farthings");
 
         var character = _characters.LoadCharacter(session.Actor.Id);
         var projection = character is null
             ? null
             : RuntimeBundleCInventoryAuthority.Project(character, catalog);
-        if (projection is not null)
+        if (projection is null)
         {
-            lines[^1] = $"Wealth: {RuntimeBundleCInventoryAuthority.FormatCurrency(projection.Currency)}";
-            lines.Add($"Carried weight: {projection.TotalCarriedWeight} ({projection.ItemWeight} items + {projection.CurrencyWeight} currency)");
-            lines.Add("Encumbrance capacity and penalty bands: unresolved native relationship; no guessed cap is enforced.");
+            lines.Add($"Wealth: {state.Gold} copper farthings");
+            lines.Add("Encumbrance: 0/0 - None [0%]");
+            return string.Join(Environment.NewLine, lines);
         }
+
+        lines.Add($"Wealth: {projection.Currency.CopperValue} copper farthings");
+        var strength = ReadClassicStrength(character!);
+        var capacity = checked(Math.Max(0L, strength) * 48L);
+        var percent = capacity <= 0 ? 0 : (int)Math.Min(999L, projection.TotalCarriedWeight * 100L / capacity);
+        var band = percent >= 86 ? "Heavy" : percent >= 67 ? "Medium" : percent >= 34 ? "Light" : "None";
+        lines.Add($"Encumbrance: {projection.TotalCarriedWeight}/{capacity} - {band} [{percent}%]");
         return string.Join(Environment.NewLine, lines);
+    }
+
+    private static int ReadClassicStrength(RuntimeCharacterRecord character)
+    {
+        foreach (var key in new[] { "strength", "str" })
+            if (character.BaseStats.TryGetValue(key, out var value))
+                return Math.Max(0, value + RuntimeClassicStatusProjection.Numeric(character, "strength"));
+        return 0;
     }
 
     private static string ClassicDisplaySlot(RuntimeItemCatalog catalog, RuntimeItemInstance item)

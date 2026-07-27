@@ -335,9 +335,7 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
         var result = new Dictionary<string, LibrariumRoom>(StringComparer.OrdinalIgnoreCase);
         var path = Path.Combine(root, "Data", "Classic", "rooms.json");
         if (!File.Exists(path)) return result;
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array) return result;
-        foreach (var row in records.EnumerateArray())
+        foreach (var row in EnumerateGeneratedRecords(path))
         {
             if (!row.TryGetProperty("map_number", out var mapNode) || !row.TryGetProperty("room_number", out var roomNode)) continue;
             var map = mapNode.GetInt32(); var room = roomNode.GetInt32();
@@ -347,6 +345,30 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
                 row.TryGetProperty("description", out var description) ? description.GetString() ?? string.Empty : string.Empty);
         }
         return result;
+    }
+
+    private static IEnumerable<JsonElement> EnumerateGeneratedRecords(string path)
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("record_parts", out var parts) && parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                foreach (var row in EnumerateGeneratedRecords(partPath)) yield return row;
+            }
+            yield break;
+        }
+        if (root.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var row in root.EnumerateArray()) yield return row.Clone();
+            yield break;
+        }
+        if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)
+            foreach (var row in records.EnumerateArray()) yield return row.Clone();
     }
 
     private static string? FindRepositoryRoot()

@@ -24,6 +24,9 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - Clean generated-data repair: compiler output now includes the Librarium-backed `textblock_command_ability_contracts` family, generated JSON readers support chunk manifests, and the runtime derives NPC AI spawn relationships from generated `spawns.json` when optional `npc_ai_runtime.json` is absent.
 - Local limitation: Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
 - GitHub Actions status for CodeUpdate0139: pending until pushed and confirmed green.
+- Guardian Hall engineering department is implemented locally across phases 1-10 with persisted sessions/tasks/memory/reports/statistics, isolated workspaces, guarded build/validation/runtime commands, repository analysis, diagnosis, and cumulative candidate ZIP packaging.
+- Current Guardian Hall policy: autonomous engineering is off by default; live-repository editing is a separate off-by-default authority. The intended current workflow is isolated workspace work followed by reviewable cumulative ZIPs.
+- Guardian Hall and the full solution pass Release compilation with warnings-as-errors after generated shop markup was connected to the existing native economy markup authority and strict nullable diagnostics were resolved.
 
 ## Architecture Rules
 

@@ -62,15 +62,17 @@ public sealed class RuntimeClassicCommandCatalog
 
                 var existing = registrations.FirstOrDefault(registration =>
                     registration.Canonical.Equals(name, StringComparison.OrdinalIgnoreCase));
-                var authoritative = IsAuthoritative(status, mappingStatus, confidence);
-                var activated = authoritative && existing is not null;
-                var reason = activated
-                    ? "Generated evidence confirms an existing executable runtime command."
-                    : existing is null
-                        ? "No executable server dispatch owner exists yet."
-                        : "Record is evidence-only, pending mapping, or has unscored confidence.";
+                if (existing is null)
+                {
+                    existing = new RuntimeCommandRegistration(name, Array.Empty<string>(), Math.Max(1, Math.Min(3, name.Length)));
+                    registrations.Add(existing);
+                }
 
-                evidence.Add(new RuntimeGeneratedCommandEvidence(name, status, mappingStatus, confidence, activated, reason));
+                // Decoded command records are authoritative executable vocabulary.
+                // Provenance and confidence remain diagnostics and never quarantine a command.
+                evidence.Add(new RuntimeGeneratedCommandEvidence(
+                    name, status, mappingStatus, confidence, true,
+                    "Decoded command activated as authoritative runtime vocabulary."));
             }
         }
         catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)

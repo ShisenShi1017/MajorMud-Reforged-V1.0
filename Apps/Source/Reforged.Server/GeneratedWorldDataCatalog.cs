@@ -43,12 +43,25 @@ public sealed class GeneratedWorldDataCatalog
         }
 
         var families = new Dictionary<string, GeneratedWorldFamilyStatus>(StringComparer.OrdinalIgnoreCase);
-        var requiredFamilies = definition.ClassicProtected
+        var configuredFamilies = definition.ClassicProtected
             ? BaselineRequiredFamilies.Concat(ClassicParityRequiredFamilies).Distinct(StringComparer.OrdinalIgnoreCase)
             : BaselineRequiredFamilies;
+        // Every generated gameplay family in the world data root is authoritative.
+        // Discover it automatically so newly decoded WCC/Worldgroup families cannot exist
+        // outside runtime validation merely because a hand-maintained allow-list was not updated.
+        var discoveredFamilies = Directory.Exists(dataRoot)
+            ? Directory.EnumerateFiles(dataRoot, "*.json", SearchOption.TopDirectoryOnly)
+                .Select(Path.GetFileNameWithoutExtension)
+                .Where(name => !string.IsNullOrWhiteSpace(name))
+                .Select(name => name!)
+                .Select(name => name!)
+            : Array.Empty<string>();
+        var requiredFamilies = configuredFamilies.Concat(discoveredFamilies)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase);
         foreach (var family in requiredFamilies)
         {
-            var fileName = family.EndsWith("_manifest", StringComparison.OrdinalIgnoreCase) ? $"{family}.json" : $"{family}.json";
+            var fileName = $"{family}.json";
             var path = Path.Combine(dataRoot, fileName);
             var exists = File.Exists(path);
             var recordCount = exists ? CountRecords(path, diagnostics) : -1;

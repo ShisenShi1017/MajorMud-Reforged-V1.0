@@ -14,8 +14,7 @@ public static class RuntimeBundleDHiddenObjectAudit
         var checks = new List<string>(); var failures = new List<string>();
         void Check(bool condition, string code) { if (condition) checks.Add(code); else failures.Add(code); }
         var exitsPath = Path.Combine(projectRoot, "Data", worldId, "exits.json");
-        using var doc = JsonDocument.Parse(File.ReadAllText(exitsPath));
-        var records = doc.RootElement.GetProperty("records").EnumerateArray().ToArray();
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(exitsPath);
         var hidden = records.Where(x => x.TryGetProperty("gate_kind", out var g) && g.GetString()?.Equals("hidden", StringComparison.OrdinalIgnoreCase) == true).ToArray();
         var searchable = hidden.Where(x => x.TryGetProperty("qualifier", out var q) && (q.GetString() ?? "").Contains("Searchable", StringComparison.OrdinalIgnoreCase)).ToArray();
         var passable = hidden.Where(x => x.TryGetProperty("qualifier", out var q) && (q.GetString() ?? "").Contains("Passable", StringComparison.OrdinalIgnoreCase)).ToArray();

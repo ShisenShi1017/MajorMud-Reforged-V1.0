@@ -9,6 +9,7 @@ public partial class MainWindow : Window
 {
     private readonly ILayoutPersistenceService _layouts;
     private readonly IWorkspaceManager _workspaces;
+    private bool _shutdownRequested;
 
     public MainWindow(
         ViewModels.MainWindowViewModel viewModel,
@@ -52,14 +53,33 @@ public partial class MainWindow : Window
 
     private async void OnClosing(object? sender, CancelEventArgs e)
     {
-        await _layouts.SaveAsync(new LayoutState
+        if (_shutdownRequested)
+            return;
+
+        e.Cancel = true;
+        _shutdownRequested = true;
+        IsEnabled = false;
+
+        try
         {
-            ActiveWorkspaceId = _workspaces.ActiveWorkspace?.Id ?? "home",
-            Width = Width,
-            Height = Height,
-            Left = double.IsFinite(Left) ? Left : null,
-            Top = double.IsFinite(Top) ? Top : null,
-        });
+            await _layouts.SaveAsync(new LayoutState
+            {
+                ActiveWorkspaceId = _workspaces.ActiveWorkspace?.Id ?? "home",
+                Width = Width,
+                Height = Height,
+                Left = double.IsFinite(Left) ? Left : null,
+                Top = double.IsFinite(Top) ? Top : null,
+            });
+        }
+        catch
+        {
+            // Shutdown must continue even when layout persistence fails.
+        }
+
+        if (Application.Current is App app)
+            await app.ShutdownApplicationAsync();
+        else
+            Application.Current.Shutdown();
     }
 
     private static double FiniteOrDefault(double value, double fallback) =>

@@ -20,6 +20,7 @@ Short version:
 - Generated runtime readers support compiler chunk manifests; optional NPC AI runtime relationships can be derived from generated spawns.
 - Classic is evidence-locked.
 - `ImportedDatabases/` and real `Saves/` must be preserved.
+- Guardian Hall Engineering exposes all ten engineering phases through a guarded queue. Autonomous engineering and live-repository editing are separate persisted controls and both default off; the current operating mode produces reviewable cumulative candidate ZIPs from isolated workspaces.
 
 ## Verified Runtime Scope
 

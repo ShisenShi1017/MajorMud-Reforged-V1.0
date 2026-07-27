@@ -14,6 +14,7 @@ These instructions are mandatory for every Codex, ChatGPT, AI assistant, and dev
 - CodeUpdate0138 status: green by user report.
 - Latest local verification: Bundle H final audit sweep PASS 63/63; final smoke sweep PASS across all remaining `--smoke-*` commands after repaired item, living-world, command-alias, and player-combat-profile gates; solution Release build PASS with warnings-as-errors; compiler tests PASS; core/server smoke tests PASS; server and app win-x64 publish PASS; generated Classic data regenerated from Librarium before server bootstrap. Python validator could not be run in this Codex environment because `python`/`py` are not accessible to the process.
 - GitHub Actions corrective note: `/Data/Classic` is not committed. The workflow must run the Librarium compiler before server bootstrap diagnostics.
+- Guardian Hall engineering note: phases 1-10 are implemented locally with cumulative candidate ZIPs as the current operating mode. Autonomous engineering and live-repository editing are separate persisted controls and both default off. Do not enable live edits on the user's behalf.
 
 ## Active Documentation
 

@@ -15,7 +15,7 @@
     <PublishTrimmed>false</PublishTrimmed>
     <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
     <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
-    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\MajorMudReforged\</PublishDir>
+    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\MajorMudReforgedApp\</PublishDir>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Reforged.Server.Runtime/Reforged.Server.Runtime.csproj" />

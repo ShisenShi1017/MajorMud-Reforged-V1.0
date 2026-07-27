@@ -77,16 +77,25 @@ public sealed partial class RuntimeLiveGameplayFacade
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
             var matching = engine.Inventory(before.CharacterId)
                 .Where(x => MerchantItemMatches(x, items, request.Query))
-                .Take(request.Quantity + 1)
+                .OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
-            if (matching.Length < request.Quantity) throw new InvalidOperationException($"You do not carry {request.Quantity} matching items.");
-            var selected = matching.Take(request.Quantity).ToArray();
-            var canonicalId = selected[0].CanonicalItemId;
-            if (selected.Any(x => !x.CanonicalItemId.Equals(canonicalId, StringComparison.OrdinalIgnoreCase)))
-                throw new InvalidOperationException("A merchant sale quantity must resolve to one canonical item type.");
+            if (matching.Length == 0) throw new InvalidOperationException($"You do not carry an item matching '{request.Query}'.");
+            var canonicalIds = matching.Select(x => x.CanonicalItemId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+            if (canonicalIds.Length != 1)
+                throw new InvalidOperationException($"Multiple carried item types match '{request.Query}'; use a longer name.");
+            var canonicalId = canonicalIds[0];
+            if (matching.Sum(x => x.StackQuantity) < request.Quantity)
+                throw new InvalidOperationException($"You do not carry {request.Quantity} {items.Require(canonicalId).Name}.");
             var value = ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, canonicalId));
             if (value <= 0) throw new InvalidOperationException("That item has no generated economy value.");
-            foreach (var item in selected) engine.SellToMerchant(item.InstanceId, before.CharacterId, shop.Id, 1);
+            var remaining = request.Quantity;
+            foreach (var item in matching)
+            {
+                if (remaining == 0) break;
+                var quantity = Math.Min(remaining, item.StackQuantity);
+                engine.SellToMerchant(item.InstanceId, before.CharacterId, shop.Id, quantity);
+                remaining -= quantity;
+            }
             var totalValueGold = checked(value * request.Quantity);
             var totalValueCopper = checked(totalValueGold * 100L);
             var settledState = RuntimeBundleCEconomyAuthority.CreditCopperValue(state, totalValueCopper);
@@ -118,10 +127,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     private static bool MerchantItemMatches(RuntimeItemInstance item, RuntimeItemCatalog catalog, string query)
     {
         var definition = catalog.Require(item.CanonicalItemId);
-        return item.CanonicalItemId.Equals(query, StringComparison.OrdinalIgnoreCase)
-            || item.CanonicalItemId.StartsWith(query, StringComparison.OrdinalIgnoreCase)
-            || definition.Name.Equals(query, StringComparison.OrdinalIgnoreCase)
-            || definition.Name.StartsWith(query, StringComparison.OrdinalIgnoreCase);
+        return catalog.Matches(item.CanonicalItemId, query);
     }
 
     private string RepairGeneratedItem(RuntimeCharacterRecord character, IReadOnlyList<RuntimeServiceDefinition> services, string query)
@@ -207,10 +213,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             "talk" => ExecuteGeneratedNpcDialogue(session, character, command.ArgumentText),
             "journal" or "quest" when command.Arguments.Count == 0 => RenderGeneratedQuestJournal(character),
-            "quest" when command.Arguments.Count > 0 && command.Arguments[0].Equals("reset", StringComparison.OrdinalIgnoreCase) => MarkQuestState(character, string.Join(" ", command.Arguments.Skip(1)), "reset"),
-            "accept" => MarkQuestState(character, command.ArgumentText, "active"),
-            "abandon" => MarkQuestState(character, command.ArgumentText, "abandoned"),
-            "complete" => MarkQuestState(character, command.ArgumentText, "completed"),
+            // Classic quest state is mutated only by decoded dialogue/script execution.  The old
+            // ACCEPT/ABANDON/COMPLETE shortcuts allowed arbitrary player-authored quest ids and
+            // bypassed decoded prerequisites, ordering, one-time policy, and reward transactions.
+            "accept" or "abandon" or "complete" => throw new InvalidOperationException(
+                "Classic quest progression is controlled by decoded NPC dialogue and script operations; use TALK and JOURNAL."),
+            "quest" when command.Arguments.Count > 0 => throw new InvalidOperationException(
+                "Classic quest state cannot be edited manually; use TALK and JOURNAL."),
             _ => _policyGateway.Execute(session, command)
         };
     }
@@ -247,19 +256,33 @@ public sealed partial class RuntimeLiveGameplayFacade
         _characters.SaveCharacter(updatedCharacter);
         if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, result.ClauseId ?? result.ScriptId ?? "matched"))
             throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
-        var events = result.Events.Count == 0
-            ? "No state changes."
-            : string.Join("; ", result.Events.Select(e => e.SubjectId is null ? e.EventType : $"{e.EventType}:{e.SubjectId}"));
-        var lines = result.Lines.Count == 0 ? "No generated response text was emitted." : string.Join(Environment.NewLine, result.Lines);
-        return string.Join(Environment.NewLine, new[]
+        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var renderedLines = result.Lines
+            .Select(line => ResolveDecodedNarrativeLine(line, payloads))
+            .Where(line => !string.IsNullOrWhiteSpace(line))
+            .ToArray();
+        var lines = renderedLines.Length == 0
+            ? string.Empty
+            : string.Join(Environment.NewLine, renderedLines);
+        // Trigger/script/clause identifiers are provenance, not player-facing Classic dialogue.
+        // World-intent diagnostics are likewise retained in host state and logs rather than sent
+        // to the player.  Only decoded presentation payloads are rendered here.
+        return string.IsNullOrWhiteSpace(lines) ? $"{npc.Name} has nothing to say." : $"{npc.Name}:{Environment.NewLine}{lines}";
+    }
+
+
+    private static string ResolveDecodedNarrativeLine(string line, RuntimeClassicNativeTextblockPayloadAuthority payloads)
+    {
+        if (string.IsNullOrWhiteSpace(line)) return string.Empty;
+        var trimmed = line.Trim();
+        foreach (var prefix in new[] { "message.", "textblock." })
         {
-            $"{npc.Name}:",
-            lines,
-            $"Trigger: {result.TriggerId}",
-            $"Script: {result.ScriptId}",
-            $"Clause: {result.ClauseId}",
-            $"Events: {events}"
-        }.Concat(hostIntents.Lines));
+            if (!trimmed.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!int.TryParse(trimmed[prefix.Length..], NumberStyles.Integer, CultureInfo.InvariantCulture, out var id) || id <= 0)
+                throw new InvalidOperationException($"Decoded narrative reference '{line}' is malformed.");
+            return payloads.Require(id);
+        }
+        return trimmed;
     }
 
     private (RuntimeCharacterRecord Character, IReadOnlyList<string> Lines) ApplyQuestWorldIntents(
@@ -393,6 +416,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (item.TryGetProperty("economy", out var economy) && economy.ValueKind == JsonValueKind.Object) return ReadLong(economy, "cost");
         return ReadLong(item, "cost", "value", "price");
     }
+    private static int ReadShopMarkupPercent(JsonElement service)
+    {
+        var percent = ReadInt(service, "markup_percent");
+        return percent < 0 ? throw new InvalidOperationException("Generated shop markup cannot be negative.") : percent;
+    }
+    private static long ApplyShopMarkup(long itemCost, int markupPercent) =>
+        RuntimeEconomyNativeMarkup.Apply(itemCost, markupPercent, RuntimeEconomyRoundingPolicy.Floor);
+
     private static JsonElement ResolveOffering(JsonElement service, string arrayName, string query, RuntimeItemCatalog items)
     {
         if (!service.TryGetProperty(arrayName, out var array) || array.ValueKind != JsonValueKind.Array)
@@ -408,9 +439,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             {
                 try { catalogName = items.Require(itemRef).Name; } catch { }
             }
-            return new[] { itemRef, generatedName, catalogName }.Any(value =>
-                !string.IsNullOrWhiteSpace(value) &&
-                (value.Equals(q, StringComparison.OrdinalIgnoreCase) || value.StartsWith(q, StringComparison.OrdinalIgnoreCase)));
+            return (!string.IsNullOrWhiteSpace(itemRef) && items.Matches(itemRef, q)) ||
+                   new[] { itemRef, generatedName, catalogName }.Any(value =>
+                       !string.IsNullOrWhiteSpace(value) &&
+                       (value.Equals(q, StringComparison.OrdinalIgnoreCase) || value.StartsWith(q, StringComparison.OrdinalIgnoreCase) ||
+                        value.Split(' ', StringSplitOptions.RemoveEmptyEntries).Any(word => word.StartsWith(q, StringComparison.OrdinalIgnoreCase))));
         }).Take(2).ToArray();
         return matches.Length == 1 ? matches[0] : throw new InvalidOperationException(matches.Length == 0
             ? $"No shop item matches '{q}'."

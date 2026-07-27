@@ -533,7 +533,7 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("runtime_npc_model", "RuntimeNpcModels.cs", "decoded denomination amounts retained independently"),
                     new RuntimeFormulaEvidenceSource("live_combat_completion", "RuntimeCombatCompletion.cs", "exact standard denominations placed on room ground; zero values remain zero")
                 },
-                "Decoded monster currency fields are denomination amounts rather than drop percentages. The live death consumer preserves copper, silver, gold, and platinum independently, creates no fabricated fallback money for zero-value NPCs, and leaves decoded runic handling quarantined until its wallet/value contract is resolved."),
+                "Decoded monster currency fields are denomination amounts rather than drop percentages. The live death consumer preserves copper, silver, gold, platinum, and runic independently, creates no fabricated fallback money for zero-value NPCs, and routes all five physical denominations through the shared room, inventory, banking, weight, pickup, drop, spending, persistence, and cleanup authorities."),
             new(
                 ClassicCombatResolver.NpcAttackSelectionWeightFormulaId,
                 "combat_npc",

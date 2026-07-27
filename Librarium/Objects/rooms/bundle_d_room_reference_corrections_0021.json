@@ -1,0 +1,413 @@
+{
+  "authority": "Librarium",
+  "world_id": "Classic",
+  "family": "bundle_d_room_reference_corrections",
+  "revision": "0021",
+  "records": [
+    {
+      "id": "room.map1.164",
+      "legacy_id": "164",
+      "name": "Sysop Support Chamber",
+      "object_type": "room",
+      "world_scope": [
+        "classic"
+      ],
+      "map_number": 1,
+      "room_number": 164,
+      "relationships": {
+        "exits": []
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "",
+        "imported_room_type": 1,
+        "imported_shop_number": 85,
+        "imported_light_level": 0,
+        "imported_exit_records": [
+          {
+            "dir": "U",
+            "to_room": 2779,
+            "exit_type": null
+          },
+          {
+            "dir": "N",
+            "to_room": 3343,
+            "exit_type": null
+          },
+          {
+            "dir": "W",
+            "to_room": 3344,
+            "exit_type": null
+          },
+          {
+            "dir": "E",
+            "to_room": 3345,
+            "exit_type": null
+          },
+          {
+            "dir": "S",
+            "to_room": 3346,
+            "exit_type": null
+          },
+          {
+            "dir": "D",
+            "to_room": 3437,
+            "exit_type": null
+          }
+        ],
+        "room_item_ids": [
+          658
+        ],
+        "hidden_item_ids": [
+          1976,
+          1977,
+          1978,
+          1985,
+          1488,
+          1489
+        ],
+        "gang_house": 0
+      },
+      "description": "This wide, white-painted room is filled with all sort of plush furniture for the lounging of tired sysops. The only interesting feature is the huge bulletin tacked to the wall. Exits lead to the north, south, east, west and up, but the only way to get out is via teleportation.",
+      "evidence_refs": [
+        {
+          "source": "Uploaded ImportedDatabases WCC room record",
+          "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room164.json",
+          "classification": "direct_imported_database_anchor"
+        }
+      ],
+      "confidence": "verified_imported_room_record",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium compiler imported-room closure",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "canonical_map_qualified_record",
+        "exports_to": "/Data/<world>/rooms.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "rooms",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_map_qualified_id",
+        "map_number_required",
+        "room_number_required",
+        "evidence_required_for_classic",
+        "imported_room_reference_closure_0020"
+      ]
+    }
+  ],
+  "exit_corrections": [
+    {
+      "id": "exit.map1.62.u",
+      "object_type": "exit",
+      "world_scope": [
+        "classic"
+      ],
+      "direction": "U",
+      "relationships": {
+        "from_room": "room.map1.62",
+        "to_room": "room.map1.164"
+      },
+      "from_map_number": 1,
+      "from_room_number": 62,
+      "to_map_number": 1,
+      "to_room_number": 164,
+      "gate_kind": "open",
+      "qualifier": "",
+      "prerequisites": {},
+      "commands": [],
+      "effects": {},
+      "raw_value": "1/164",
+      "runtime_disposition": "active_runtime",
+      "evidence_refs": [
+        {
+          "source": "MMUD-Explorer",
+          "path": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "owner_table_page": 1664,
+          "page": 1701,
+          "row_index_on_page": 2,
+          "offset": 3627,
+          "classification": "direct_mdb_table_decode"
+        }
+      ],
+      "confidence": "high_direction_and_destination; qualifier_preserved",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "blocked_unresolved_destination",
+        "exports_to": "/Data/<world>/exits.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "exits",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_id",
+        "source_room_required",
+        "direction_required",
+        "destination_reference_validated",
+        "unknown_prerequisites_not_invented",
+        "invalid_destination_must_be_blocked"
+      ],
+      "semantic_status": "blocked_unresolved_destination",
+      "semantic_confidence": "strongly_correlated",
+      "evaluation_semantics": {
+        "order": "destination traversal after source/destination validation",
+        "range_bounds": "inclusive when a range is explicit",
+        "command_aliases": "alternatives_not_sequence",
+        "item_consumption": "not_consumed_without_explicit_evidence"
+      },
+      "fallback_behavior": "deny traversal because generated target room is not present",
+      "state_impact": {
+        "save_impact": "none for static gate definition; runtime state may affect door/discovery/timed state",
+        "world_state_impact": "trap, toll, door, hidden discovery, and cast effects may mutate transient or persisted world/player state",
+        "migration_required": false
+      },
+      "semantic_provenance": [
+        "MMExplorer Rooms-table destination and qualifier text",
+        "repeated qualifier grammar across independent room records",
+        "native-compatible fail-safe policy retaining raw qualifier and identifiers",
+        "Bundle D Revision 0020 imported-room closure verified destination exists"
+      ],
+      "assumptions": [
+        "explicit numeric ranges are inclusive",
+        "listed key/skill/strength alternatives are OR branches",
+        "items are not consumed unless separate evidence explicitly requires consumption"
+      ],
+      "validation_tests": [
+        "qualifier reparses to the same gate family and numeric operands",
+        "destination identity remains unchanged",
+        "fallback does not invent missing currency, flags, spells, or item consumption"
+      ],
+      "generator_validation": {
+        "status": "blocked_unresolved_destination",
+        "target_room_id": "room.map1.164",
+        "policy": "compiler cross-family validation prevents unresolved exits from becoming executable traversal"
+      }
+    },
+    {
+      "id": "exit.map1.1809.d",
+      "object_type": "exit",
+      "world_scope": [
+        "classic"
+      ],
+      "direction": "D",
+      "relationships": {
+        "from_room": "room.map1.1809",
+        "to_room": "room.map1.164"
+      },
+      "from_map_number": 1,
+      "from_room_number": 1809,
+      "to_map_number": 1,
+      "to_room_number": 164,
+      "gate_kind": "open",
+      "qualifier": "",
+      "prerequisites": {},
+      "commands": [],
+      "effects": {},
+      "raw_value": "1/164",
+      "runtime_disposition": "active_runtime",
+      "evidence_refs": [
+        {
+          "source": "MMUD-Explorer",
+          "path": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "owner_table_page": 1664,
+          "page": 2289,
+          "row_index_on_page": 4,
+          "offset": 3340,
+          "classification": "direct_mdb_table_decode"
+        }
+      ],
+      "confidence": "high_direction_and_destination; qualifier_preserved",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "blocked_unresolved_destination",
+        "exports_to": "/Data/<world>/exits.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "exits",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_id",
+        "source_room_required",
+        "direction_required",
+        "destination_reference_validated",
+        "unknown_prerequisites_not_invented",
+        "invalid_destination_must_be_blocked"
+      ],
+      "semantic_status": "blocked_unresolved_destination",
+      "semantic_confidence": "strongly_correlated",
+      "evaluation_semantics": {
+        "order": "destination traversal after source/destination validation",
+        "range_bounds": "inclusive when a range is explicit",
+        "command_aliases": "alternatives_not_sequence",
+        "item_consumption": "not_consumed_without_explicit_evidence"
+      },
+      "fallback_behavior": "deny traversal because generated target room is not present",
+      "state_impact": {
+        "save_impact": "none for static gate definition; runtime state may affect door/discovery/timed state",
+        "world_state_impact": "trap, toll, door, hidden discovery, and cast effects may mutate transient or persisted world/player state",
+        "migration_required": false
+      },
+      "semantic_provenance": [
+        "MMExplorer Rooms-table destination and qualifier text",
+        "repeated qualifier grammar across independent room records",
+        "native-compatible fail-safe policy retaining raw qualifier and identifiers",
+        "Bundle D Revision 0020 imported-room closure verified destination exists"
+      ],
+      "assumptions": [
+        "explicit numeric ranges are inclusive",
+        "listed key/skill/strength alternatives are OR branches",
+        "items are not consumed unless separate evidence explicitly requires consumption"
+      ],
+      "validation_tests": [
+        "qualifier reparses to the same gate family and numeric operands",
+        "destination identity remains unchanged",
+        "fallback does not invent missing currency, flags, spells, or item consumption"
+      ],
+      "generator_validation": {
+        "status": "blocked_unresolved_destination",
+        "target_room_id": "room.map1.164",
+        "policy": "compiler cross-family validation prevents unresolved exits from becoming executable traversal"
+      }
+    },
+    {
+      "id": "exit.map17.2838.ne",
+      "object_type": "exit",
+      "world_scope": [
+        "classic"
+      ],
+      "direction": "NE",
+      "relationships": {
+        "from_room": "room.map17.2838",
+        "to_room": "room.map17.2779"
+      },
+      "from_map_number": 17,
+      "from_room_number": 2838,
+      "to_map_number": 17,
+      "to_room_number": 2779,
+      "gate_kind": "open",
+      "qualifier": "",
+      "prerequisites": {},
+      "commands": [],
+      "effects": {},
+      "raw_value": "17/2779",
+      "runtime_disposition": "active_runtime",
+      "evidence_refs": [
+        {
+          "source": "MMUD-Explorer",
+          "path": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
+          "source_file": "ImportedDatabases/data-v1.11n.mdb",
+          "owner_table_page": 1664,
+          "page": 2508,
+          "row_index_on_page": 15,
+          "offset": 2096,
+          "classification": "direct_mdb_table_decode"
+        }
+      ],
+      "confidence": "high_direction_and_destination; qualifier_preserved",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "blocked_unresolved_destination",
+        "exports_to": "/Data/<world>/exits.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "exits",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_id",
+        "source_room_required",
+        "direction_required",
+        "destination_reference_validated",
+        "unknown_prerequisites_not_invented",
+        "invalid_destination_must_be_blocked"
+      ],
+      "semantic_status": "verified_corrected_active",
+      "semantic_confidence": "verified_cross_source_correction",
+      "evaluation_semantics": {
+        "order": "destination traversal after source/destination validation",
+        "range_bounds": "inclusive when a range is explicit",
+        "command_aliases": "alternatives_not_sequence",
+        "item_consumption": "not_consumed_without_explicit_evidence"
+      },
+      "fallback_behavior": "allow traversal to verified module destination room.map17.2779",
+      "state_impact": {
+        "save_impact": "none for static gate definition; runtime state may affect door/discovery/timed state",
+        "world_state_impact": "trap, toll, door, hidden discovery, and cast effects may mutate transient or persisted world/player state",
+        "migration_required": false
+      },
+      "semantic_provenance": [
+        "MMExplorer Rooms-table destination and qualifier text",
+        "repeated qualifier grammar across independent room records",
+        "native-compatible fail-safe policy retaining raw qualifier and identifiers",
+        "source room is Module Test Room on map17",
+        "only canonical room 2779 matching module destination is room.map17.2779 (Dying Fields)",
+        "room.map1.2779 is absent from MMExplorer, imported WCC, Librarium, and generated room catalogs",
+        "source room description/native record adjacency links Module Test Room to Dying Fields module content"
+      ],
+      "assumptions": [
+        "explicit numeric ranges are inclusive",
+        "listed key/skill/strength alternatives are OR branches",
+        "items are not consumed unless separate evidence explicitly requires consumption"
+      ],
+      "validation_tests": [
+        "qualifier reparses to the same gate family and numeric operands",
+        "destination identity remains unchanged",
+        "fallback does not invent missing currency, flags, spells, or item consumption",
+        "destination room.map17.2779 exists",
+        "no synthetic room.map1.2779 created",
+        "module-test transition remains within map17"
+      ],
+      "generator_validation": {
+        "status": "blocked_unresolved_destination",
+        "target_room_id": "room.map1.2779",
+        "policy": "compiler cross-family validation prevents unresolved exits from becoming executable traversal"
+      },
+      "to_room_id": "room.map17.2779"
+    }
+  ],
+  "chunk_targets": {
+    "rooms": [
+      "Data/Classic/rooms.parts/rooms.part0006.json"
+    ],
+    "exits": [
+      "Data/Classic/exits.parts/exits.part0001.json",
+      "Data/Classic/exits.parts/exits.part0013.json"
+    ],
+    "librarium_exits": [
+      "Librarium/Objects/exits/mmexplorer_exit_records_0140.parts/mmexplorer_exit_records_0140.part0001.json",
+      "Librarium/Objects/exits/mmexplorer_exit_records_0140.parts/mmexplorer_exit_records_0140.part0008.json",
+      "Librarium/Objects/exits/mmexplorer_exit_records_0140.parts/mmexplorer_exit_records_0140.part0122.json"
+    ]
+  }
+}

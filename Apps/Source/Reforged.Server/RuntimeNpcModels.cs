@@ -113,7 +113,7 @@ public sealed class RuntimeNpcDefinition
             LootKnown = rewards.ValueKind == JsonValueKind.Object && bool.TryParse(JsonValueReader.ReadString(rewards, "loot_known", "false"), out var lootKnown) && lootKnown,
             LootTableEntries = rewards.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(rewards, "loot_table_entries", 0) : 0,
             Loot = ReadLoot(publicFields),
-            Attacks = ReadAttacks(element)
+            Attacks = ReadAttacks(element, combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "attack_count", 0) : 0)
         };
     }
 
@@ -162,24 +162,38 @@ public sealed class RuntimeNpcDefinition
         }).ToArray();
     }
 
-    private static IReadOnlyList<RuntimeNpcAttackDefinition> ReadAttacks(JsonElement element)
+    private static IReadOnlyList<RuntimeNpcAttackDefinition> ReadAttacks(JsonElement element, int declaredAttackCount)
     {
-        if (!element.TryGetProperty("attacks", out var attacks) || attacks.ValueKind != JsonValueKind.Array)
+        if (declaredAttackCount <= 0 || !element.TryGetProperty("attacks", out var attacks) || attacks.ValueKind != JsonValueKind.Array)
             return Array.Empty<RuntimeNpcAttackDefinition>();
 
-        return attacks.EnumerateArray().Select(attack => new RuntimeNpcAttackDefinition(
-            JsonValueReader.ReadInt(attack, "slot", 0),
-            JsonValueReader.ReadInt(attack, "type", 0),
-            JsonValueReader.ReadInt(attack, "minimum_damage", 0),
-            JsonValueReader.ReadInt(attack, "maximum_damage", 0),
-            JsonValueReader.ReadInt(attack, "selection_percent", 0),
-            JsonValueReader.ReadInt(attack, "accuracy", 0),
-            JsonValueReader.ReadInt(attack, "hit_spell_legacy_id", 0),
-            JsonValueReader.ReadInt(attack, "energy_cost", 0),
-            JsonValueReader.ReadInt(attack, "hit_message_legacy_id", 0),
-            JsonValueReader.ReadInt(attack, "miss_message_legacy_id", 0),
-            JsonValueReader.ReadInt(attack, "dodge_message_legacy_id", 0))).ToArray();
+        // attack_count is the decoded executable row count. WCC records can retain fixed-width
+        // trailing rows (including type 229 sentinels) and can expose more physical rows than the
+        // authored count. Those rows are evidence, not additional live attacks.
+        return attacks.EnumerateArray()
+            .Select(attack => new RuntimeNpcAttackDefinition(
+                JsonValueReader.ReadInt(attack, "slot", 0),
+                JsonValueReader.ReadInt(attack, "type", 0),
+                JsonValueReader.ReadInt(attack, "minimum_damage", 0),
+                JsonValueReader.ReadInt(attack, "maximum_damage", 0),
+                JsonValueReader.ReadInt(attack, "selection_percent", 0),
+                JsonValueReader.ReadInt(attack, "accuracy", 0),
+                JsonValueReader.ReadInt(attack, "hit_spell_legacy_id", 0),
+                JsonValueReader.ReadInt(attack, "energy_cost", 0),
+                JsonValueReader.ReadInt(attack, "hit_message_legacy_id", 0),
+                JsonValueReader.ReadInt(attack, "miss_message_legacy_id", 0),
+                JsonValueReader.ReadInt(attack, "dodge_message_legacy_id", 0)))
+            .Where(IsExecutableAttackRow)
+            .OrderBy(attack => attack.Slot)
+            .Take(declaredAttackCount)
+            .ToArray();
     }
+
+    private static bool IsExecutableAttackRow(RuntimeNpcAttackDefinition attack) =>
+        attack.Slot > 0 &&
+        (attack.MinimumDamage != 0 || attack.MaximumDamage != 0 || attack.SelectionPercent != 0 ||
+         attack.Accuracy != 0 || attack.HitSpellLegacyId != 0 || attack.EnergyCost != 0 ||
+         attack.HitMessageLegacyId != 0 || attack.MissMessageLegacyId != 0 || attack.DodgeMessageLegacyId != 0);
 }
 
 public sealed class RuntimeNpcSpawn

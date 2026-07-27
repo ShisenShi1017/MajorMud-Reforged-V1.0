@@ -238,7 +238,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             else if (delivery.PoisonImmune)
                                 messages.Add($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}.");
                             else
-                                messages.Add($"{encounter.NpcName}'s hit invokes {hitSpell.SpellName} [{hitSpell.CanonicalSpellId}].");
+                                messages.Add($"{encounter.NpcName}'s {hitSpell.SpellName} has no applicable effect on {actor.DisplayName}.");
                         }
                     }
                 }
@@ -716,8 +716,8 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "poison", 0, true) == 0, "npc-hit-spell-poison-immunity"); report.Checks.Add("npc-hit-spell-poison-immunity");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "acid", 75, false) == 100, "npc-hit-spell-acid-unmapped-resistance-fallback"); report.Checks.Add("npc-hit-spell-acid-unmapped-resistance-fallback");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "untyped", 75, false) == 100, "npc-hit-spell-untyped-resistance-bypass"); report.Checks.Add("npc-hit-spell-untyped-resistance-bypass");
-            var quarantinedSpell = immediateDamageSpell with { SpellTypeRaw = 3, Classification = RuntimeLiveGameplayFacade.ClassifyNpcHitSpell(3, immediateDamageSpell.TargetTypeRaw, immediateDamageSpell.AttackTypeRaw, immediateDamageSpell.ResistTypeRaw) };
-            Require(!RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(quarantinedSpell, quarantinedSpell.EffectRange.RollMinimum).Executable, "npc-hit-spell-status-effect-quarantined"); report.Checks.Add("npc-hit-spell-status-effect-quarantined");
+            var lifecycleSpell = immediateDamageSpell with { SpellTypeRaw = 3, Classification = RuntimeLiveGameplayFacade.ClassifyNpcHitSpell(3, immediateDamageSpell.TargetTypeRaw, immediateDamageSpell.AttackTypeRaw, immediateDamageSpell.ResistTypeRaw) };
+            Require(!RuntimeLiveGameplayFacade.ResolveNpcHitSpellEffectForAudit(lifecycleSpell, lifecycleSpell.EffectRange.RollMinimum).Executable, "npc-hit-spell-status-effect-not-direct-damage"); report.Checks.Add("npc-hit-spell-status-effect-not-direct-damage");
             RuntimeNpcHitSpellSelection? poisonStatusSpell = null;
             RuntimeNpcHitSpellSelection? generalStatusSpell = null;
             foreach (var candidate in npcs.SelectMany(x => x.Attacks).Where(x => x.HitSpellLegacyId > 0))

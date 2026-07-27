@@ -52,9 +52,7 @@ public sealed class ClientDataService(IApplicationSettingsService settings) : IC
             var path = Path.Combine(_dataRoot, definition.File);
             if (File.Exists(path))
             {
-                await using var stream = File.OpenRead(path);
-                using var document = await JsonDocument.ParseAsync(stream, cancellationToken: token);
-                foreach (var recordElement in EnumerateRecords(document.RootElement))
+                foreach (var recordElement in EnumerateRecords(path))
                 {
                     var record = CreateRecord(definition.Name, recordElement);
                     if (_overrides.TryGetValue(record.Id, out var local))
@@ -85,16 +83,32 @@ public sealed class ClientDataService(IApplicationSettingsService settings) : IC
         await PersistOverridesAsync(token);
     }
 
-    private static IEnumerable<JsonElement> EnumerateRecords(JsonElement root)
+    private static IEnumerable<JsonElement> EnumerateRecords(string path)
     {
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar));
+                foreach (var item in EnumerateRecords(partPath)) yield return item;
+            }
+            yield break;
+        }
+
         if (root.ValueKind == JsonValueKind.Array)
         {
-            foreach (var item in root.EnumerateArray()) yield return item;
+            foreach (var item in root.EnumerateArray()) yield return item.Clone();
             yield break;
         }
         if (root.ValueKind == JsonValueKind.Object && root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)
         {
-            foreach (var item in records.EnumerateArray()) yield return item;
+            foreach (var item in records.EnumerateArray()) yield return item.Clone();
         }
     }
 

@@ -90,7 +90,8 @@ public sealed class LibrariumBrowserModel : INotifyPropertyChanged
             new LibrariumCategory("items", "Items"),
             new LibrariumCategory("monsters", "Monsters"),
             new LibrariumCategory("quests", "Quests"),
-            new LibrariumCategory("rooms", "Rooms")
+            new LibrariumCategory("rooms", "Rooms"),
+            new LibrariumCategory("exits", "Exits / Paths")
         ];
 
         _selectedCategory = Categories[0];
@@ -171,6 +172,7 @@ public sealed class LibrariumBrowserModel : INotifyPropertyChanged
         LibrariumRecordRow.QuestGuides = questGuides;
         var quests = BuildQuestSummaries(questFlows, questGuides);
         var rooms = LoadRecords(dataRoot, "rooms.json", "rooms");
+        var exits = LoadRecords(dataRoot, "exits.json", "exits");
 
         _recordsByCategory["items"] = items;
         _recordsByCategory["weapons"] = items.Where(IsWeapon).ToList();
@@ -182,6 +184,7 @@ public sealed class LibrariumBrowserModel : INotifyPropertyChanged
         _recordsByCategory["monsters"] = monsters;
         _recordsByCategory["quests"] = quests;
         _recordsByCategory["rooms"] = rooms;
+        _recordsByCategory["exits"] = exits;
 
         foreach (var category in Categories)
         {
@@ -198,19 +201,59 @@ public sealed class LibrariumBrowserModel : INotifyPropertyChanged
         var path = Path.Combine(dataRoot, fileName);
         if (!File.Exists(path)) return [];
 
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (!document.RootElement.TryGetProperty("records", out var recordsElement) ||
-            recordsElement.ValueKind != JsonValueKind.Array)
-        {
-            return [];
-        }
-
-        return recordsElement
-            .EnumerateArray()
+        return EnumerateGeneratedRecords(path)
             .Select(record => LibrariumRecordRow.FromJson(category, fileName, record))
             .OrderBy(row => row.DisplayName, StringComparer.OrdinalIgnoreCase)
             .ThenBy(row => row.Id, StringComparer.OrdinalIgnoreCase)
             .ToList();
+    }
+
+    private static IEnumerable<JsonElement> EnumerateGeneratedRecords(string path)
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("record_parts", out var parts) &&
+            parts.ValueKind == JsonValueKind.Array)
+        {
+            var expectedCount = root.TryGetProperty("record_count", out var recordCountElement) && recordCountElement.TryGetInt32(out var declaredCount)
+                ? declaredCount
+                : (int?)null;
+            var loadedCount = 0;
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.GetString();
+                if (string.IsNullOrWhiteSpace(relative)) continue;
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(path) ?? string.Empty, relative.Replace('/', Path.DirectorySeparatorChar)));
+                if (!File.Exists(partPath))
+                {
+                    throw new FileNotFoundException($"Generated chunk listed by '{Path.GetFileName(path)}' was not found.", partPath);
+                }
+                foreach (var record in EnumerateGeneratedRecords(partPath))
+                {
+                    loadedCount++;
+                    yield return record;
+                }
+            }
+            if (expectedCount.HasValue && loadedCount != expectedCount.Value)
+            {
+                throw new InvalidDataException($"Generated chunk manifest '{Path.GetFileName(path)}' declares {expectedCount.Value:N0} records but loaded {loadedCount:N0}.");
+            }
+            yield break;
+        }
+
+        if (root.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var item in root.EnumerateArray()) yield return item.Clone();
+            yield break;
+        }
+
+        if (root.ValueKind == JsonValueKind.Object &&
+            root.TryGetProperty("records", out var recordsElement) &&
+            recordsElement.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var item in recordsElement.EnumerateArray()) yield return item.Clone();
+        }
     }
 
     private static List<LibrariumRecordRow> BuildQuestSummaries(IReadOnlyList<LibrariumRecordRow> questFlows, IReadOnlyList<QuestWalkthroughGuide> guides)
@@ -755,6 +798,16 @@ public sealed class LibrariumRecordRow
         if (category.Equals("quests", StringComparison.OrdinalIgnoreCase))
         {
             name = BuildQuestDisplayName(clone, name);
+        }
+        else if (category.Equals("exits", StringComparison.OrdinalIgnoreCase))
+        {
+            var direction = FirstValue(clone, "direction");
+            var fromRoom = FirstPathValue(clone, ["relationships", "from_room"]);
+            var toRoom = FirstPathValue(clone, ["relationships", "to_room"]);
+            name = !string.IsNullOrWhiteSpace(direction) && !string.IsNullOrWhiteSpace(fromRoom) && !string.IsNullOrWhiteSpace(toRoom)
+                ? $"{fromRoom} {direction} → {toRoom}"
+                : name;
+            preview = FirstValue(clone, "door_name", "action", "command", "description");
         }
 
         if (string.IsNullOrWhiteSpace(kind)) kind = category;
@@ -1302,6 +1355,19 @@ public sealed class LibrariumRecordRow
                 AddFirst(fields, added, "Exits", root, ["exits"]);
                 AddFirst(fields, added, "Doors", root, ["doors"]);
                 AddFirst(fields, added, "Services", root, ["services"]);
+                break;
+            case "exits":
+                AddFirst(fields, added, "Direction", root, ["direction"]);
+                AddFirst(fields, added, "From Room", root, ["relationships", "from_room"]);
+                AddFirst(fields, added, "To Room", root, ["relationships", "to_room"]);
+                AddFirst(fields, added, "From Map", root, ["from_map_number"]);
+                AddFirst(fields, added, "From Room Number", root, ["from_room_number"]);
+                AddFirst(fields, added, "To Map", root, ["to_map_number"]);
+                AddFirst(fields, added, "To Room Number", root, ["to_room_number"]);
+                AddFirst(fields, added, "Door", root, ["door"]);
+                AddFirst(fields, added, "Door Name", root, ["door_name"]);
+                AddFirst(fields, added, "Flags", root, ["flags"]);
+                AddFirst(fields, added, "Requirements", root, ["requirements"]);
                 break;
             case "spells":
                 AddFirst(fields, added, "Description", root, ["description"], ["public_reference_0139", "fields", "descriptions"], ["notes"]);

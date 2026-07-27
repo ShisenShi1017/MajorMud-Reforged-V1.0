@@ -729,7 +729,7 @@ public static class RuntimeCharacterQuestSpellTurnInResolver
         var completionFlag = $"quest_complete:level40:{candidate.ClassName.ToLowerInvariant()}";
 
         if (!candidate.TurnInScriptResolved)
-            return new(false, "The decoded gnome-merchant turn-in root is not connected yet.", character, Array.Empty<string>(), null, null);
+            return new(false, "The decoded gnome-merchant turn-in authority is unavailable.", character, Array.Empty<string>(), null, null);
         if (!npcId.Equals(candidate.NpcId, StringComparison.OrdinalIgnoreCase))
             return new(false, "This NPC does not complete your class spell quest.", character, Array.Empty<string>(), null, null);
         if (character.Conditions.ContainsKey(completionFlag))

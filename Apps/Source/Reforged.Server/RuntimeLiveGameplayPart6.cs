@@ -5,11 +5,34 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
+    public string RenderCharacterMenu(RuntimeSession session)
+    {
+        return string.Join(Environment.NewLine, new[]
+        {
+            "Character:",
+            RenderScore(session),
+            RenderExperience(session),
+            RenderWealth(session),
+            RenderEquipment(session)
+        });
+    }
+
+    public string RenderWealth(RuntimeSession session)
+    {
+        var character = _characters.LoadCharacter(session.Actor.Id);
+        if (character is null) return "Wealth: unavailable.";
+        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var projection = RuntimeBundleCInventoryAuthority.Project(character, catalog);
+        return $"Wealth: {projection.Currency.CopperValue} copper farthings";
+    }
+
     public string ExecuteLiveServicesBundleCommand(RuntimeSession session, RuntimeCommand command)
     {
         return command.Name switch
         {
             "services" => RenderServicesHere(session),
+            "character" => RenderCharacterMenu(session),
+            "wealth" => RenderWealth(session),
             "list" => RenderServiceInventory(session),
             "trade" => ExecuteDirectTrade(session, command),
             "buy" or "sell" or "repair" or "train" or "tat" or "stats" => ExecuteGeneratedServiceTransaction(session, command),
@@ -55,7 +78,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             var name = itemCatalog.Require(itemRef).Name;
             var quantity = runtimeState.Stock.TryGetValue(itemRef, out var stock) ? stock.Quantity : 0;
             var generated = RequireGeneratedItemRecord(_characters.ProjectRoot, session.World.Definition.Id, itemRef);
-            var cost = ReadItemCost(generated);
+            var cost = ApplyShopMarkup(ReadItemCost(generated), ReadShopMarkupPercent(service.GeneratedRecord));
             var price = cost <= 0 ? "Free" : cost == 1 ? "1 gold crown" : $"{cost} gold crowns";
             lines.Add($"{name,-30}{quantity,-12}{price}");
         }

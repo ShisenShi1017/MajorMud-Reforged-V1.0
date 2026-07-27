@@ -69,6 +69,11 @@ Documentation/local_generated_artifacts_manifest.json
 # but generated runtime save folders are local artifacts.
 Saves/Runtime*/
 Saves/Worlds/
+Saves/classic/
+
+# Local verification/publish output and safety snapshots
+/Build/
+/Backups/
 
 # OS/editor noise
 .vscode/

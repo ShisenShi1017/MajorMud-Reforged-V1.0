@@ -4,6 +4,8 @@
 - Current Database Version: `0010`
 - Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
 - Current baseline: CodeUpdate0138 green by user report; CodeUpdate0139 local runtime cohesion work in progress
+- Guardian Hall engineering: all ten phased capabilities implemented locally; cumulative candidate ZIP mode is the default; autonomous engineering and live-repository editing are independent persisted switches and both default off.
+- Guardian Hall verification: full solution Release build PASS with warnings-as-errors after generated shop markup was connected to the native economy markup authority and strict nullable diagnostics were resolved.
 - CI bootstrap policy: generated `Data/Classic` is not tracked; clean validation regenerates it from Librarium before server bootstrap diagnostics.
 - Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening. Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
 - Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,668/26,668 descriptions

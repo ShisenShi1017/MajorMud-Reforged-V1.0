@@ -25,7 +25,7 @@ public static class RuntimeBundleDMapAudit
         var definition = options.Worlds.First(x => x.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));
         var dataRoot = Path.Combine(projectRoot, definition.DataRoot);
         using var topology = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "map_topology.json")));
-        using var exitsDoc = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "exits.json")));
+        var exitRecords = RuntimeChunkedClassicCatalog.LoadRecords(Path.Combine(dataRoot, "exits.json"));
         var root = topology.RootElement;
         var world = new RuntimeWorldLoader().Load(projectRoot, definition);
         var rooms = world.AllRooms();
@@ -35,7 +35,7 @@ public static class RuntimeBundleDMapAudit
         var exitCount = root.GetProperty("exit_count").GetInt32();
         var crossMapCount = root.GetProperty("cross_map_transition_count").GetInt32();
         var missingDestinations = root.GetProperty("missing_destination_rooms").EnumerateArray().Select(x => x.GetString() ?? string.Empty).Where(x => x.Length > 0).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var blockedMissing = exitsDoc.RootElement.GetProperty("records").EnumerateArray().Count(exit =>
+        var blockedMissing = exitRecords.Count(exit =>
             missingDestinations.Contains(exit.GetProperty("id").GetString() ?? string.Empty) &&
             exit.TryGetProperty("runtime_disposition", out var disposition) &&
             string.Equals(disposition.GetString(), "invalid_destination_blocked", StringComparison.OrdinalIgnoreCase));

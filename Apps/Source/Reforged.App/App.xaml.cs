@@ -11,6 +11,8 @@ namespace Reforged.App;
 public partial class App : Application
 {
     private ServiceRegistry? _services;
+    private int _shutdownStarted;
+    private readonly CancellationTokenSource _applicationLifetime = new();
 
     protected override async void OnStartup(StartupEventArgs e)
     {
@@ -150,24 +152,103 @@ public partial class App : Application
         }
     }
 
-    protected override void OnExit(ExitEventArgs e)
+    public async Task ShutdownApplicationAsync(int exitCode = 0)
     {
-        if (_services is not null)
+        if (Interlocked.Exchange(ref _shutdownStarted, 1) != 0)
+            return;
+
+        _applicationLifetime.Cancel();
+
+        try
         {
-            try
+            if (_services is not null)
             {
-                using var shutdownCts = new CancellationTokenSource(TimeSpan.FromSeconds(20));
-                _services.Get<IApplicationSettingsService>().SaveAsync().GetAwaiter().GetResult();
-                _services.Get<IReforgedHostController>().StopAsync(shutdownCts.Token).GetAwaiter().GetResult();
-                _services.Get<IHostCleanupScheduler>().DisposeAsync().AsTask().GetAwaiter().GetResult();
-                _services.Get<IClientSessionService>().DisposeAsync().AsTask().GetAwaiter().GetResult();
-            }
-            catch (Exception exception)
-            {
-                _services.Get<IAppLogger>().Error("Application shutdown failed", exception);
+                var logger = _services.Get<IAppLogger>();
+                using var shutdownCts = new CancellationTokenSource(TimeSpan.FromSeconds(8));
+
+                try
+                {
+                    await _services.Get<IHostCleanupScheduler>().DisposeAsync().AsTask();
+                }
+                catch (Exception exception)
+                {
+                    logger.Error("Cleanup scheduler shutdown failed", exception);
+                }
+
+                var shutdownTasks = new[]
+                {
+                    StopHostSafelyAsync(shutdownCts.Token, logger),
+                    StopClientSessionsSafelyAsync(logger),
+                    SaveSettingsSafelyAsync(logger),
+                };
+
+                try
+                {
+                    await Task.WhenAll(shutdownTasks).WaitAsync(TimeSpan.FromSeconds(9));
+                }
+                catch (Exception exception)
+                {
+                    logger.Error("Graceful shutdown timed out; forcing process termination", exception);
+                }
             }
         }
+        finally
+        {
+            Dispatcher.Invoke(() => Shutdown(exitCode));
 
+            // WPF shutdown can still be held open by a non-background worker or native socket.
+            // Force termination after the coordinated cleanup window so Exit and X always finish.
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(1500);
+                Environment.Exit(exitCode);
+            });
+        }
+    }
+
+    private async Task StopHostSafelyAsync(CancellationToken token, IAppLogger logger)
+    {
+        try
+        {
+            if (_services is not null)
+                await _services.Get<IReforgedHostController>().StopAsync(token);
+        }
+        catch (Exception exception)
+        {
+            logger.Error("Host shutdown failed", exception);
+        }
+    }
+
+    private async Task StopClientSessionsSafelyAsync(IAppLogger logger)
+    {
+        try
+        {
+            if (_services is not null)
+                await _services.Get<IClientSessionService>().DisposeAsync();
+        }
+        catch (Exception exception)
+        {
+            logger.Error("Client session shutdown failed", exception);
+        }
+    }
+
+    private async Task SaveSettingsSafelyAsync(IAppLogger logger)
+    {
+        try
+        {
+            if (_services is not null)
+                await _services.Get<IApplicationSettingsService>().SaveAsync();
+        }
+        catch (Exception exception)
+        {
+            logger.Error("Settings save during shutdown failed", exception);
+        }
+    }
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        _applicationLifetime.Cancel();
+        _applicationLifetime.Dispose();
         base.OnExit(e);
     }
 

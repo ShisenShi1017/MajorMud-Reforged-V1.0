@@ -143,9 +143,9 @@ public static class RuntimeBundleDWorldAuthorityAudit
 
     private static void Inventory(string path, string source, IReadOnlyDictionary<string, Mapping> mappings, ICollection<RuntimeBundleDFieldAuthority> output)
     {
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(path);
         var properties = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        CollectProperties(document.RootElement, properties);
+        foreach (var record in records) CollectProperties(record, properties);
         foreach (var property in properties)
         {
             if (mappings.TryGetValue(property, out var mapping))

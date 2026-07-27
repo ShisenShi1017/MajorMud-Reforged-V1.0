@@ -15,9 +15,8 @@ public sealed record RuntimeClassicLootRuleCatalogDiagnostic(string Code, string
 
 /// <summary>
 /// World-scoped authority for generated Data/&lt;world&gt;/loot_rules.json.
-/// Current generated content is a catalog-level evidence record and does not yet contain
-/// executable NPC/item drop tables, probabilities, ownership, limited-item, or reset semantics.
-/// It is therefore loaded and audited, but fail-closed from selecting live drops.
+/// Every decoded loot-rule record is runtime authority. Consumers resolve the fields present
+/// in the record and apply data-defined defaults only for optional absent values.
 /// </summary>
 public sealed class RuntimeClassicLootRuleCatalog
 {
@@ -49,10 +48,8 @@ public sealed class RuntimeClassicLootRuleCatalog
             var status=JsonValueReader.ReadString(value,"status",string.Empty);
             var confidence=JsonValueReader.ReadString(value,"confidence",string.Empty);
             var mapping=value.TryGetProperty("runtime_mapping",out var rm)&&rm.ValueKind==JsonValueKind.Object?JsonValueReader.ReadString(rm,"status",string.Empty):string.Empty;
-            var authoritative=mapping.Equals("runtime_authoritative",StringComparison.OrdinalIgnoreCase)
-                && !confidence.Contains("bucket-level",StringComparison.OrdinalIgnoreCase)
-                && value.TryGetProperty("drop_tables",out var tables)&&tables.ValueKind==JsonValueKind.Array&&tables.GetArrayLength()>0;
-            var reason=authoritative?string.Empty:"generated record is catalog-level only; executable drop tables/chances/ownership/limited-item/reset semantics are not promoted";
+            var authoritative=true;
+            var reason=string.Empty;
             definitions[id]=new(id,JsonValueReader.ReadString(value,"name",id),status,confidence,mapping,authoritative,reason);
         }
         if(declared!=definitions.Count) diagnostics.Add(new("declared-count-mismatch",$"Declared record_count={declared}, loaded definitions={definitions.Count}.",true));

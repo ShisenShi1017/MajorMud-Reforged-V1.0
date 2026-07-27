@@ -29,31 +29,110 @@ public sealed class RuntimeClassicExitTrapCatalog
 
     public static RuntimeClassicExitTrapCatalog Load(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "exit_traps.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic exit trap catalog was not found.", path);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (document.RootElement.ValueKind != JsonValueKind.Array) throw new InvalidOperationException("Classic exit trap catalog must be a JSON array.");
+        // Exit traps are generated as authoritative effects on the chunked exits catalog.
+        // Do not require a second, independently generated exit_traps.json file.
+        var exitsPath = Path.Combine(projectRoot, "Data", "Classic", "exits.json");
+        if (!File.Exists(exitsPath))
+            throw new FileNotFoundException("Generated Classic exits catalog was not found.", exitsPath);
+
         var definitions = new Dictionary<string, RuntimeClassicExitTrapDefinition>(StringComparer.OrdinalIgnoreCase);
-        foreach (var value in document.RootElement.EnumerateArray())
+        ForEachGeneratedRecord(exitsPath, value =>
         {
+            if (!value.TryGetProperty("effects", out var effects) || effects.ValueKind != JsonValueKind.Object)
+                return;
+
+            var damage = JsonValueReader.ReadInt(effects, "damage", 0);
+            var spellId = JsonValueReader.ReadInt(effects, "spell_id", 0);
+            if (damage <= 0 && spellId <= 0)
+                return; // pre/post transition casts are not exit traps.
+
+            var exitId = JsonValueReader.ReadString(value, "id", string.Empty);
+            var fromMap = JsonValueReader.ReadInt(value, "from_map_number", 0);
+            var fromRoom = JsonValueReader.ReadInt(value, "from_room_number", 0);
+            var toMap = JsonValueReader.ReadInt(value, "to_map_number", 0);
+            var toRoom = JsonValueReader.ReadInt(value, "to_room_number", 0);
+            var sourceRecord = ReadSourceExitRecord(value);
+
             var definition = new RuntimeClassicExitTrapDefinition(
-                JsonValueReader.ReadString(value, "trap_id", string.Empty),
-                JsonValueReader.ReadString(value, "exit_id", string.Empty),
-                JsonValueReader.ReadString(value, "from_room_id", string.Empty),
-                JsonValueReader.ReadString(value, "to_room_id", string.Empty),
-                JsonValueReader.ReadString(value, "direction", string.Empty),
-                JsonValueReader.ReadString(value, "trap_kind", string.Empty),
-                JsonValueReader.ReadInt(value, "damage", 0),
-                JsonValueReader.ReadInt(value, "spell_id", 0),
+                $"exit-trap.{exitId}",
+                exitId,
+                $"room.map{fromMap}.{fromRoom}",
+                $"room.map{toMap}.{toRoom}",
+                JsonValueReader.ReadString(value, "direction", string.Empty).ToUpperInvariant(),
+                damage > 0 ? "damage_trap" : "spell_trap",
+                damage,
+                spellId,
                 JsonValueReader.ReadString(value, "qualifier", string.Empty),
                 JsonValueReader.ReadString(value, "raw_value", string.Empty),
                 JsonValueReader.ReadString(value, "runtime_disposition", string.Empty),
                 JsonValueReader.ReadString(value, "semantic_status", string.Empty),
-                JsonValueReader.ReadString(value, "source_exit_record", string.Empty));
+                sourceRecord);
+
             Validate(definition);
-            if (!definitions.TryAdd(definition.ExitId, definition)) throw new InvalidOperationException($"Duplicate Classic exit trap owner: {definition.ExitId}");
-        }
+            if (!definitions.TryAdd(definition.ExitId, definition))
+                throw new InvalidOperationException($"Duplicate Classic exit trap owner: {definition.ExitId}");
+        });
+
+        if (definitions.Count == 0)
+            throw new InvalidOperationException("Generated Classic exits catalog did not contain any live exit-trap effects.");
+
         return new RuntimeClassicExitTrapCatalog(definitions);
+    }
+
+    private static void ForEachGeneratedRecord(string path, Action<JsonElement> visitor)
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+
+        if (root.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var value in root.EnumerateArray()) visitor(value);
+            return;
+        }
+
+        if (root.ValueKind != JsonValueKind.Object)
+            throw new InvalidOperationException($"Generated catalog must contain an array, records array, or record_parts manifest: {path}");
+
+        if (root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var value in records.EnumerateArray()) visitor(value);
+            return;
+        }
+
+        if (root.TryGetProperty("record_parts", out var parts) && parts.ValueKind == JsonValueKind.Array)
+        {
+            var directory = Path.GetDirectoryName(path) ?? string.Empty;
+            foreach (var part in parts.EnumerateArray())
+            {
+                var relative = part.ValueKind == JsonValueKind.String
+                    ? part.GetString()
+                    : part.TryGetProperty("path", out var pathValue) ? pathValue.GetString() : null;
+                if (string.IsNullOrWhiteSpace(relative))
+                    throw new InvalidOperationException($"Generated catalog contains an invalid record part: {path}");
+                var partPath = Path.GetFullPath(Path.Combine(directory, relative.Replace('/', Path.DirectorySeparatorChar)));
+                if (!File.Exists(partPath))
+                    throw new FileNotFoundException("Generated Classic exit chunk was not found.", partPath);
+                ForEachGeneratedRecord(partPath, visitor);
+            }
+            return;
+        }
+
+        throw new InvalidOperationException($"Generated catalog must contain an array, records array, or record_parts manifest: {path}");
+    }
+
+    private static string ReadSourceExitRecord(JsonElement value)
+    {
+        if (value.TryGetProperty("evidence_refs", out var evidence) && evidence.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var reference in evidence.EnumerateArray())
+            {
+                var path = JsonValueReader.ReadString(reference, "path", string.Empty);
+                if (!string.IsNullOrWhiteSpace(path)) return path;
+                var sourceFile = JsonValueReader.ReadString(reference, "source_file", string.Empty);
+                if (!string.IsNullOrWhiteSpace(sourceFile)) return sourceFile;
+            }
+        }
+        return "Data/Classic/exits.json";
     }
 
     private static void Validate(RuntimeClassicExitTrapDefinition definition)
@@ -82,6 +161,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         var exit = session.World.FindExit(sourceRoom, direction);
         if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap)) return string.Empty;
+        if (!trap.FromRoomId.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase) ||
+            !trap.ToRoomId.Equals(exit.TargetRoomId, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException($"Decoded exit trap endpoint mismatch: {trap.ExitId}");
         if (session.Actor is not RuntimeCharacterActor actor) return string.Empty;
         return trap.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase)
             ? ApplyDecodedDamageExitTrap(session, actor, trap)
