@@ -139,6 +139,7 @@ public sealed class RuntimeRoom
         }
 
         var sourceFields = element.TryGetProperty("source_fields", out var sf) && sf.ValueKind == JsonValueKind.Object ? sf : default;
+        var environment = element.TryGetProperty("environment", out var env) && env.ValueKind == JsonValueKind.Object ? env : default;
         return new RuntimeRoom
         {
             Id = id,
@@ -155,6 +156,18 @@ public sealed class RuntimeRoom
             ImportedRoomType = sourceFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadNullableInt(sourceFields, "imported_room_type") : null,
             ImportedShopNumber = sourceFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadNullableInt(sourceFields, "imported_shop_number") : null,
             ImportedLightLevel = sourceFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadNullableInt(sourceFields, "imported_light_level") : null,
+            EnvironmentLightLevel = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "light_level", 0) : 0,
+            EnvironmentRoomSpellId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_spell_id", 0) : 0,
+            EnvironmentLairId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_lair_id", 0) : 0,
+            EnvironmentDelay = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_delay", 0) : 0,
+            EnvironmentRoomType = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_type", 0) : 0,
+            EnvironmentAttributes = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "attributes", 0) : 0,
+            EnvironmentDeathRoomId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "death_room_id", 0) : 0,
+            EnvironmentGangHouseId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "gang_house", 0) : 0,
+            EnvironmentRespawnMinutes = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "respawn_minutes", 0) : 0,
+            EnvironmentMaxAreaCap = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "max_area_cap", 0) : 0,
+            EnvironmentLinkedSpawnRoom = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "linked_spawn_room", 0) : 0,
+            EnvironmentEvidence = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(environment, "source_classification", string.Empty) : string.Empty,
             Confidence = JsonValueReader.ReadString(element, "confidence", string.Empty),
             ClassicLocked = ReadClassicLock(element),
             RuntimeMappingStatus = ReadObjectStatus(element, "runtime_mapping"),

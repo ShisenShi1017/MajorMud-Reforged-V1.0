@@ -696,13 +696,6 @@ public interface IWandererTelemetryService
 
 public sealed class WandererTelemetryService : IWandererTelemetryService
 {
-    private static readonly HashSet<string> SafeLocalCommands = new(StringComparer.OrdinalIgnoreCase)
-    {
-        "n", "s", "e", "w", "ne", "nw", "se", "sw", "u", "d",
-        "north", "south", "east", "west", "northeast", "northwest", "southeast", "southwest", "up", "down",
-        "look", "l", "inventory", "inv", "i", "score", "status", "rest"
-    };
-
     private readonly string _repositoryRoot;
     private readonly IClientSessionService? _sessions;
     public WandererTelemetryService(string repositoryRoot, IClientSessionService? sessions = null)
@@ -736,12 +729,12 @@ public sealed class WandererTelemetryService : IWandererTelemetryService
         var session = FindInProcessSession(workspace, connectedOnly: true);
         if (session is not null && _sessions is not null)
         {
-            var command = ExtractSafeLocalCommand(workspace.Mission);
+            var command = ExtractUserDirectedLocalCommand(workspace.Mission);
             if (command is null)
-                throw new InvalidOperationException("The local Wanderer session is connected, but Mission must contain one guarded command such as look, inventory, rest, or a movement direction before dispatch.");
+                throw new InvalidOperationException("The local Wanderer session is connected, but Mission must contain one single-line game command before dispatch.");
             await _sessions.SendCommandAsync(session.SessionId, command, token);
             workspace.LastMissionDispatch = DateTime.UtcNow.ToString("O");
-            return $"Wanderer sent guarded local mission step '{command}' to {session.DisplayName}";
+            return $"Wanderer sent user-directed local mission step '{command}' to {session.DisplayName}";
         }
 
         if (!workspace.LiveConnectorEnabled)
@@ -893,13 +886,12 @@ public sealed class WandererTelemetryService : IWandererTelemetryService
             .FirstOrDefault(x => string.IsNullOrWhiteSpace(character) || string.Equals(x.CharacterName, character, StringComparison.OrdinalIgnoreCase) || string.Equals(x.DisplayName, character, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static string? ExtractSafeLocalCommand(string mission)
+    private static string? ExtractUserDirectedLocalCommand(string mission)
     {
         if (string.IsNullOrWhiteSpace(mission)) return null;
         var firstLine = mission.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.Trim();
         if (string.IsNullOrWhiteSpace(firstLine)) return null;
-        var command = firstLine.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
-        return SafeLocalCommands.Contains(command) ? firstLine : null;
+        return firstLine.IndexOfAny(['\0', '\u001b']) >= 0 ? null : firstLine;
     }
 
     private static string DescribeConnectorFailure(Exception ex)

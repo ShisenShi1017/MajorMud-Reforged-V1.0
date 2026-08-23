@@ -4,6 +4,14 @@ public sealed partial class RuntimeLiveGameplayFacade
 {
     private readonly RuntimeCharacterService _characters;
     private readonly RuntimeSessionManager _sessions;
+    private readonly RuntimeMajorMudPlusService _majorMudPlus;
+    private readonly RuntimeWccSysopService _wccSysop;
+    private readonly RuntimeWccInvasionService _wccInvasions;
+    private readonly RuntimeClassicGangGameplayService _gangGameplay;
+    private readonly RuntimePartyCoordinationService _partyGameplay;
+    private readonly RuntimeClassicNativeTextblockPayloadAuthority _nativePayloads;
+    private readonly RuntimeSpellCatalog _npcSpellCatalog;
+    private readonly RuntimeNpcAttackArgumentRecoveryCatalog _npcAttackArguments;
     private readonly Dictionary<string, RuntimeGameplayCompletionStateStore> _gameplayStores = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gameplayStoreGate = new();
 
@@ -11,7 +19,79 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         _characters = characters;
         _sessions = sessions;
+        _majorMudPlus = new RuntimeMajorMudPlusService(characters, sessions);
+        _wccSysop = new RuntimeWccSysopService(characters, sessions);
+        _wccInvasions = new RuntimeWccInvasionService(characters);
+        _gangGameplay = new RuntimeClassicGangGameplayService(characters, sessions);
+        _partyGameplay = new RuntimePartyCoordinationService();
+        _sessions.SessionsChanged += (_, _) => SynchronizeClassicPartyConnections();
+        _nativePayloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(characters.ProjectRoot);
+        _npcSpellCatalog = RuntimeSpellCatalog.Load(characters.ProjectRoot, "Classic");
+        _npcAttackArguments = RuntimeNpcAttackArgumentRecoveryCatalog.Load(characters.ProjectRoot);
     }
+
+    public string ExecuteMajorMudPlusCommand(RuntimeSession session, RuntimeCommand command) =>
+        _majorMudPlus.Execute(session, command, Living(session));
+
+    public string ExecuteWccSysopCommand(RuntimeSession session, RuntimeCommand command) =>
+        _wccSysop.Execute(session, command, Living(session));
+
+    public string RenderClassicParty(RuntimeSession session)
+    {
+        var party = _partyGameplay.FindByMember(session.Actor.Id);
+        if (party is null) return "You are not in a party at the present time.";
+        var rows = new List<string> { "The following people are in your travel party:" };
+        foreach (var member in party.Members.OrderBy(member => member.ActorId, StringComparer.OrdinalIgnoreCase))
+        {
+            var active = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(member.ActorId, StringComparison.OrdinalIgnoreCase));
+            var character = _characters.LoadCharacter(member.ActorId);
+            var name = active?.Actor.DisplayName ?? character?.DisplayName ?? member.ActorId;
+            var className = (active?.Actor as RuntimeCharacterActor)?.CharacterClass ?? character?.ClassName ?? "Unknown";
+            var hp = character is { MaximumHitPoints: > 0 } ? Math.Clamp(character.HitPoints * 100 / character.MaximumHitPoints, 0, 100) : 0;
+            var resource = character is { MaximumMana: > 0 } ? Math.Clamp(character.Mana * 100 / character.MaximumMana, 0, 100) : (int?)null;
+            var resourceKind = character is not null && RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId).Magic?.Type == 5 ? "K" : "M";
+            var resourceText = resource is { } percent ? $"[{resourceKind}:{percent,3}%] " : string.Empty;
+            rows.Add($"   {name} ({className}) {resourceText}[H:{hp,3}%] - {member.Rank}");
+        }
+        return string.Join(Environment.NewLine, rows);
+    }
+
+    public IReadOnlyList<RuntimeSession> ResolveClassicPartyFollowers(RuntimeSession leader, string originRoomId)
+    {
+        SynchronizeClassicPartyConnections();
+        return _partyGameplay.ResolveFollowerMoves(leader.Actor.Id, originRoomId, leader.CurrentRoom.Id)
+            .Select(move => _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(move.ActorId, StringComparison.OrdinalIgnoreCase)))
+            .Where(candidate => candidate is not null)
+            .Cast<RuntimeSession>()
+            .ToArray();
+    }
+
+    private IReadOnlyList<RuntimeSpellTarget> ResolveClassicPartySpellTargets(RuntimeSession caster)
+    {
+        SynchronizeClassicPartyConnections();
+        var party = _partyGameplay.FindByMember(caster.Actor.Id);
+        if (party is null) return [new RuntimeSpellTarget("character", caster.Actor.Id)];
+        return party.Members.Where(member => member.Connected)
+            .Select(member => _sessions.ActiveSessions.FirstOrDefault(active => active.Actor.Id.Equals(member.ActorId, StringComparison.OrdinalIgnoreCase)))
+            .Where(active => active is not null && active.World.Definition.Id.Equals(caster.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+                && active.CurrentRoom.Id.Equals(caster.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
+            .Select(active => new RuntimeSpellTarget("character", active!.Actor.Id))
+            .OrderBy(target => target.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private void SynchronizeClassicPartyConnections()
+    {
+        var active = _sessions.ActiveSessions.ToDictionary(current => current.Actor.Id, StringComparer.OrdinalIgnoreCase);
+        foreach (var member in _partyGameplay.CaptureAll().SelectMany(party => party.Members).DistinctBy(member => member.ActorId, StringComparer.OrdinalIgnoreCase))
+            _partyGameplay.SynchronizeConnection(member.ActorId, active.ContainsKey(member.ActorId),
+                active.TryGetValue(member.ActorId, out var current) ? current.CurrentRoom.Id : member.RoomId);
+    }
+
+    public string ExecuteGangCommand(RuntimeSession session, RuntimeCommand command) => _gangGameplay.Execute(session, command);
+
+    public bool TryExecuteMajorMudPlusAction(RuntimeSession session, RuntimeCommand command, out string result) =>
+        _majorMudPlus.TryExecuteAction(session, command, out result, Living(session));
 
     private RuntimeGameplayCompletionStateStore GameplayStore(string worldId)
     {
@@ -107,6 +187,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             Compose(intHealth.Plain, intHealth.Colored, ColoredField("Martial Arts: ", Read(skills, "martial_arts", "martialarts", "ma")), rightColumn),
             Compose(willCharm.Plain, willCharm.Colored, ColoredField("MagicRes: ", Read(resistances, "magic", "magicres", "magic_resistance")), rightColumn)
         };
+        var activeDescriptions = ActiveSpellStatusMessages(session, actor.Id);
+        if (activeDescriptions.Count > 0)
+        {
+            lines.Add(string.Empty);
+            lines.AddRange(activeDescriptions);
+        }
         return string.Join(Environment.NewLine, lines);
     }
 
@@ -272,7 +358,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         return $"{session.Actor.DisplayName} saved at {session.CurrentRoom.Name}.";
     }
 
-    public string RenderWho() => _sessions.RenderStatus();
+    public string RenderWho() => _sessions.RenderWho();
 
     public string RenderIntegrationStatus(RuntimeSession session)
     {
@@ -366,8 +452,16 @@ public sealed class RuntimeLiveGameplaySmokeReport
             Require(RuntimeCommand.Parse("inv").Name == "inventory", "inventory-inv-alias");
             report.Checks.Add("command-alias");
 
+            Require(RuntimeCommand.Parse("g silver coin").Name == "get", "get-g-alias");
+            Require(RuntimeCommand.Parse("g silver coin").ArgumentText == "silver coin", "get-g-arguments");
+            report.Checks.Add("get-g-alias");
+
             Require(RuntimeCommand.Parse("eq").Name == "equipment", "equipment-alias");
             report.Checks.Add("equipment-alias");
+            Require(RuntimeCommand.Parse("eq longsword").Name == "equipment" && RuntimeCommand.Parse("eq longsword").ArgumentText == "longsword", "equipment-equip-context-alias");
+            Require(RuntimeCommand.Parse("equip longsword").Name == "equip" && RuntimeCommand.Parse("equip longsword").ArgumentText == "longsword", "equip-command-route");
+            report.Checks.Add("equipment-equip-context-alias");
+            report.Checks.Add("equip-command-route");
 
             Require(RuntimeCommand.Parse("stat").Name == "score", "stat-alias");
             Require(RuntimeCommand.Parse("stats").Name == "score", "stats-alias");
@@ -387,12 +481,19 @@ public sealed class RuntimeLiveGameplaySmokeReport
             Require(save.Name == "save", "save-command");
             report.Checks.Add("save-command");
 
+            Require(RuntimeCommand.Parse("qui").Name == "quit", "quit-prefix");
+            Require(RuntimeCommand.Parse("logout").Name == "quit", "logout-alias");
+            Require(RuntimeCommand.Parse("exit").Name == "quit", "exit-alias");
+            report.Checks.Add("session-exit-command-routing");
+
             var audit = RuntimeCommand.Parse("audit room Village Entrance");
             Require(audit.Name == "audit" && audit.ArgumentText == "room Village Entrance", "audit-command");
             report.Checks.Add("audit-command");
 
-            Require(RuntimeCommand.SupportedCommands.Contains("score"), "supported-command-catalog");
+            Require(RuntimeCommand.SupportedCommands.SetEquals(RuntimeCommand.DefaultRegistrations.Select(registration => registration.Canonical)), "supported-command-catalog");
+            Require(RuntimeCommandRuntimeRouteCatalog.Definitions.Count == RuntimeCommand.DefaultRegistrations.Count, "runtime-route-catalog-count");
             report.Checks.Add("supported-command-catalog");
+            report.Checks.Add("runtime-route-catalog-count");
         }
         catch (Exception ex)
         {

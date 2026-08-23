@@ -257,6 +257,7 @@ public sealed partial class RuntimeLivingWorldService
         var metadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase);
         ClearTransientNpcExecutionMetadata(metadata);
         ClearRespawnBlockMetadata(metadata);
+        ClearNpcTimedStatuses(metadata);
         var suppressed = IsSpawnSlotDisabled(metadata);
         var due = suppressed ? (DateTimeOffset?)null : nowUtc.AddMinutes(Math.Max(0, current.RespawnMinutes));
         metadata["npc_lifecycle_state"] = suppressed ? "respawn_suppressed" : "waiting_to_respawn";

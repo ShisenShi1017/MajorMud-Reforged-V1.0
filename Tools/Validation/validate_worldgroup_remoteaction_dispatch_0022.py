@@ -4,7 +4,7 @@ import json
 root=Path(__file__).resolve().parents[2]
 e=json.loads((root/'Librarium/Evidence/worldgroup_remoteaction_dispatch_0022.json').read_text())
 assert e['entry']=='0x0046C573' and e['end']=='0x0046CC0B'
-assert e['arguments']==['roomActionRecord','actionIndex','selector','mode']
+assert e['arguments']==['roomActionRecord','optionalMessageRecordId','selector','actionSlot']
 classes=e['typeDispatch']['classes']
 assert classes[0]['types']==[7,11]
 assert classes[1]['types']==[9,24]

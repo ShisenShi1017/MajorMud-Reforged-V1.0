@@ -18,8 +18,8 @@ public static class RuntimeClassicResolvedTextblockOutput
         RuntimeClassicNativeTextblockPayloadAuthority nativePayloads) =>
         reference.Kind switch
         {
-            RuntimeTextblockOutputReferenceKind.Message => nativePayloads.Require(reference.CanonicalId),
-            RuntimeTextblockOutputReferenceKind.Textblock => nativePayloads.Require(reference.CanonicalId),
+            RuntimeTextblockOutputReferenceKind.Message => nativePayloads.RequireMessage(reference.CanonicalId),
+            RuntimeTextblockOutputReferenceKind.Textblock => nativePayloads.RequireTextblock(reference.CanonicalId),
             _ => throw new InvalidOperationException($"Unsupported textblock output kind {reference.Kind}.")
         };
 

@@ -21,6 +21,7 @@ public sealed class RuntimeClassicCommandCatalog
             .ToDictionary(group => group.Key, group => group.First().registration, StringComparer.OrdinalIgnoreCase);
     }
 
+    internal IReadOnlyList<RuntimeCommandRegistration> Registrations => _registrations;
     public IReadOnlyList<RuntimeGeneratedCommandEvidence> GeneratedEvidence { get; }
     public IReadOnlyList<string> Diagnostics { get; }
     public int ActiveCommandCount => _registrations.Count;
@@ -62,17 +63,18 @@ public sealed class RuntimeClassicCommandCatalog
 
                 var existing = registrations.FirstOrDefault(registration =>
                     registration.Canonical.Equals(name, StringComparison.OrdinalIgnoreCase));
-                if (existing is null)
+                var authoritative = IsAuthoritative(status, mappingStatus, confidence);
+                if (authoritative && existing is null)
                 {
                     existing = new RuntimeCommandRegistration(name, Array.Empty<string>(), Math.Max(1, Math.Min(3, name.Length)));
                     registrations.Add(existing);
                 }
 
-                // Decoded command records are authoritative executable vocabulary.
-                // Provenance and confidence remain diagnostics and never quarantine a command.
                 evidence.Add(new RuntimeGeneratedCommandEvidence(
-                    name, status, mappingStatus, confidence, true,
-                    "Decoded command activated as authoritative runtime vocabulary."));
+                    name, status, mappingStatus, confidence, authoritative,
+                    authoritative
+                        ? "Evidence-backed command activated as authoritative runtime vocabulary."
+                        : "Candidate command remains quarantined until parser evidence is confirmed."));
             }
         }
         catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
@@ -122,6 +124,9 @@ public sealed class RuntimeClassicCommandCatalog
             _ => new RuntimeCommandResolution(token, $"Ambiguous command '{token}': {string.Join(", ", eligibleMatches)}.")
         };
     }
+
+    public bool IsRegistered(string canonical) =>
+        _registrations.Any(registration => registration.Canonical.Equals(canonical, StringComparison.OrdinalIgnoreCase));
 
     public bool IsMovement(string canonical) =>
         _registrations.Any(registration => registration.IsMovement && registration.Canonical.Equals(canonical, StringComparison.OrdinalIgnoreCase));

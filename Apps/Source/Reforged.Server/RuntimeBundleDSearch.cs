@@ -57,8 +57,16 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeBundleDSearchRuntime.EnsureLoaded(_characters.ProjectRoot, session.World.Definition.Id);
         var character = _characters.LoadCharacter(actor.Id);
         if (character is null) return "Your character record is unavailable.";
+        if (RuntimeClassicStatusProjection.IsVisionBlocked(character))
+            return RuntimeClassicCombatAnsi.Warning("You are blind.");
 
         var targets = new Dictionary<string, RuntimeClassicHiddenTarget>(StringComparer.OrdinalIgnoreCase);
+        foreach(var item in Living(session).GroundItems(session.CurrentRoom.Id).Where(RuntimeClassicHiddenSearchService.IsHidden))
+        {
+            var difficulty=ReadMetadataInt(item.Metadata,"concealment_difficulty",100);
+            targets[item.InstanceId]=new(item.InstanceId,session.CurrentRoom.Id,"item",difficulty,true,
+                ReadMetadataBool(item.Metadata,"delete_at_cleanup"),item.Metadata);
+        }
         foreach (var active in _sessions.ActiveSessions.Where(x => x.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)))
         {
             if (active.Actor is not RuntimeCharacterActor activeActor) continue;
@@ -90,7 +98,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ReadMetadataInt(npc.Metadata, "concealment_difficulty", 100), false, false, npc.Metadata);
         }
 
-        var perception = Read(character.Skills, "perception", "per");
+        var perception = ResolveEffectiveSearchPerception(character);
         var abilityAuthority = RuntimeCharacterQuestAbilityCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var capability = abilityAuthority.ResolveSearchCapability(character);
         // Ability 57 See Hidden is verified for character/NPC concealment detection in Bundle A/B.
@@ -113,6 +121,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         foreach (var key in keys) if (values.TryGetValue(key, out var value)) return value;
         return 0;
     }
+
+    internal static int ResolveEffectiveSearchPerception(RuntimeCharacterRecord character) =>
+        checked(Read(character.Skills, "perception", "per") +
+            (character.SemanticState?.DerivedStats.TryGetValue("perception_bonus", out var equipmentPerception) == true ? equipmentPerception : 0) +
+            RuntimeClassicStatusProjection.Numeric(character, "perception"));
 
     private static int ReadMetadataInt(IReadOnlyDictionary<string, string>? metadata, string key, int fallback) =>
         metadata is not null && metadata.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? parsed : fallback;

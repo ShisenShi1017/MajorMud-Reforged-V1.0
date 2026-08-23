@@ -16,6 +16,11 @@ This document describes how Reforged should be engineered. `AGENTS.md` describes
 10. Documentation must change with the code so handoffs stay accurate.
 11. Treat all WCC data as reference-only unless the user explicitly approves a reviewed import or reconciliation update.
 12. Treat game logic as data-driven by default; keep rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior in data unless a behavior is truly engine-internal.
+13. Every structurally decoded MajorMUD gameplay field must have a verified Librarium-to-generated-Data-to-runtime-consumer path. Required decoded data may fail closed when exact behavior is unproven, but it must not be silently dropped.
+14. Use decoded Worldgroup behavior only when MajorMUD depends on it for gameplay, module/session dispatch, scheduling, persistence, recovery, or client protocol compatibility. Do not reproduce unrelated BBS menus, boards, mail, chat, accounting, modem/dial-up, door-management, or host-administration behavior.
+15. Classic has no generated AI-profile or guild subsystem. App AI is tooling outside gameplay authority; NPC behavior comes from decoded NPC, spawn, ability, and world data. Candidate `ai_profiles` and `guilds` Librarium evidence must not be emitted as Classic runtime families.
+16. Candidate `events` records marked `pending_generator_export` are Librarium evidence, not a parallel runtime authority. Spawn/monster timing is generated and consumed from canonical room, spawn, and NPC data; live events are produced by the authoritative runtime event and scheduling services.
+17. Catalog summaries, evidence bookkeeping, editor/client views, conflicts, validation policy, and Custom/AI overlay definitions remain in Librarium tooling. They are not Classic runtime families unless they contain concrete MajorMUD gameplay records with a verified live consumer.
 
 ## Server development principles
 
@@ -25,6 +30,7 @@ This document describes how Reforged should be engineered. `AGENTS.md` describes
 - Every server slice should add smoke-test coverage or explain why it cannot.
 - Startup should fail clearly when repository identity, configuration, data, or required folders are invalid.
 - Server code should provide reusable engine systems, validation, execution, and enforcement rather than hardcoded game-specific behavior.
+- Runtime validation must distinguish MajorMUD-required Worldgroup dependencies from BBS-only evidence. BBS-only evidence may remain as provenance, but it must not become a generated runtime dependency.
 
 ## Update discipline
 

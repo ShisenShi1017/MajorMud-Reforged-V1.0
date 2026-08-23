@@ -29,7 +29,7 @@ Latest focused runtime repair:
 
 Folded semantic material:
 
-- Current Classic generated counts are 26,668 rooms, 61,976 exits, 291 room interactions, 367 triggers, 183 scripts, and 2,183 quests.
+- Current compact Classic generated counts are 26,668 rooms, 61,976 exits, 397 room interactions, 83 live quest-entry triggers, 182 executable stage scripts, and 83 executable quests.
 - One-time room semantic and trigger/script/quest validation is accepted and recorded in `ValidationManifest.json`.
 - Quest dialogue dispatch intake is loaded into Librarium source records: 182 decoded textblock stage scripts, 83 NPC quest-entry triggers, and 182 linked stage script references.
 - Runtime `talk <npc>` resolves room-scoped live NPCs and executes decoded NPC quest dialogue with atomic mutation/rollback.

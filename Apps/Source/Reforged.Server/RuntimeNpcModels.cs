@@ -19,7 +19,54 @@ public sealed record RuntimeNpcAttackDefinition(
     int EnergyCost,
     int HitMessageLegacyId,
     int MissMessageLegacyId,
-    int DodgeMessageLegacyId);
+    int DodgeMessageLegacyId,
+    string AttackVerb = "",
+    string MissVerb = "",
+    string WeaponName = "")
+{
+    public int EffectiveSpellLegacyId => HitSpellLegacyId > 0 ? HitSpellLegacyId : Type == 2 ? Accuracy : 0;
+}
+
+public sealed class RuntimeNpcAttackArgumentRecoveryCatalog
+{
+    private readonly IReadOnlyDictionary<string, string> _verbs;
+    private readonly IReadOnlyDictionary<string, string> _weapons;
+
+    private RuntimeNpcAttackArgumentRecoveryCatalog(IReadOnlyDictionary<string, string> verbs, IReadOnlyDictionary<string, string> weapons)
+    {
+        _verbs = verbs;
+        _weapons = weapons;
+    }
+
+    public static RuntimeNpcAttackArgumentRecoveryCatalog Load(string projectRoot)
+    {
+        var path = Path.Combine(projectRoot, "Data", "Classic", "npcs.json");
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var npcs = document.RootElement.GetProperty("records").EnumerateArray().Select(RuntimeNpcDefinition.FromJson).ToArray();
+        var rows = npcs.SelectMany(npc => npc.Attacks.Select(attack => (npc.Name, Attack: attack))).ToArray();
+        static string Key(string name, RuntimeNpcAttackDefinition attack) =>
+            $"{name.Trim().ToUpperInvariant()}|{attack.Slot}|{attack.HitMessageLegacyId}";
+        static Dictionary<string, string> Consensus(
+            IEnumerable<(string Name, RuntimeNpcAttackDefinition Attack)> source,
+            Func<RuntimeNpcAttackDefinition, string> selector) => source
+            .Where(row => !string.IsNullOrWhiteSpace(selector(row.Attack)))
+            .GroupBy(row => Key(row.Name, row.Attack), StringComparer.Ordinal)
+            .Select(group => (group.Key, Values: group.Select(row => selector(row.Attack).Trim()).Distinct(StringComparer.OrdinalIgnoreCase).ToArray()))
+            .Where(group => group.Values.Length == 1)
+            .ToDictionary(group => group.Key, group => group.Values[0], StringComparer.Ordinal);
+        return new(Consensus(rows, attack => attack.MissVerb), Consensus(rows, attack => attack.WeaponName));
+    }
+
+    public RuntimeNpcAttackDefinition Complete(string npcName, RuntimeNpcAttackDefinition attack)
+    {
+        var key = $"{npcName.Trim().ToUpperInvariant()}|{attack.Slot}|{attack.HitMessageLegacyId}";
+        var verb = attack.MissVerb;
+        var weapon = attack.WeaponName;
+        if (string.IsNullOrWhiteSpace(verb) && _verbs.TryGetValue(key, out var recoveredVerb)) verb = recoveredVerb;
+        if (string.IsNullOrWhiteSpace(weapon) && _weapons.TryGetValue(key, out var recoveredWeapon)) weapon = recoveredWeapon;
+        return attack with { MissVerb = verb, WeaponName = weapon };
+    }
+}
 
 public sealed class RuntimeNpcDefinition
 {
@@ -40,6 +87,7 @@ public sealed class RuntimeNpcDefinition
     public int RegenTime { get; init; }
     public int RespawnHours { get; init; }
     public bool Undead { get; init; }
+    public bool NonLiving { get; init; }
     public int HitPointRegen { get; init; }
     public int GameLimit { get; init; }
     public int Gender { get; init; }
@@ -47,6 +95,14 @@ public sealed class RuntimeNpcDefinition
     public decimal ExperienceMultiplier { get; init; } = 1m;
     public int BackstabDefense { get; init; }
     public bool SeeHidden { get; init; }
+    public bool Animal { get; init; }
+    public IReadOnlyList<int> NegatedAbilityIds { get; init; } = Array.Empty<int>();
+    public IReadOnlyList<int> GuardedNpcLegacyIds { get; init; } = Array.Empty<int>();
+    public int WaterResistance { get; init; }
+    public int SpellImmunityLevel { get; init; }
+    public int MagicalRequirement { get; init; }
+    public int RequiredToHitCode { get; init; }
+    public int NonAttackItemLegacyId { get; init; }
     public int AttackCount { get; init; }
     public long ExperienceReward { get; init; }
     public long CopperReward { get; init; }
@@ -95,7 +151,8 @@ public sealed class RuntimeNpcDefinition
             FollowValue = behavior.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(behavior, "follow", 0) : 0,
             RegenTime = behavior.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(behavior, "regen_time", 0) : 0,
             RespawnHours = behavior.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(behavior, "respawn_hours", 0) : 0,
-            Undead = behavior.ValueKind == JsonValueKind.Object && JsonValueReader.ReadString(behavior, "undead", "false").Equals("true", StringComparison.OrdinalIgnoreCase),
+            Undead = behavior.ValueKind == JsonValueKind.Object && JsonValueReader.ReadBool(behavior, "undead", false),
+            NonLiving = HasAbility(element, 109),
             HitPointRegen = publicFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(publicFields, "hp_regen", 0) : 0,
             GameLimit = publicFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(publicFields, "game_limit", 0) : 0,
             Gender = publicFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(publicFields, "gender", 0) : 0,
@@ -103,6 +160,14 @@ public sealed class RuntimeNpcDefinition
             ExperienceMultiplier = ReadDecimal(publicFields, "experience_multiplier", 1m),
             BackstabDefense = publicFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(publicFields, "backstab_defense", 0) : 0,
             SeeHidden = HasAbility(element, 57),
+            Animal = HasAbility(element, 78),
+            NegatedAbilityIds = ReadAbilityValues(element, 124).Where(value => value > 0).Distinct().OrderBy(value => value).ToArray(),
+            GuardedNpcLegacyIds = ReadAbilityValues(element, 146).Where(value => value > 0).Distinct().OrderBy(value => value).ToArray(),
+            WaterResistance = ReadAbilityValues(element, 147).Where(value => value > 0).DefaultIfEmpty(0).Max(),
+            SpellImmunityLevel = ReadAbilityValues(element, 139).Where(value => value > 0).DefaultIfEmpty(0).Max(),
+            MagicalRequirement = ReadAbilityValue(element, 28),
+            RequiredToHitCode = ReadAbilityValue(element, 158),
+            NonAttackItemLegacyId = ReadAbilityValue(element, 185),
             AttackCount = combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "attack_count", 0) : 0,
             ExperienceReward = rewards.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(rewards, "xp_base", 0) : 0,
             CopperReward = rewards.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(rewards, "copper", 0) : 0,
@@ -113,8 +178,20 @@ public sealed class RuntimeNpcDefinition
             LootKnown = rewards.ValueKind == JsonValueKind.Object && bool.TryParse(JsonValueReader.ReadString(rewards, "loot_known", "false"), out var lootKnown) && lootKnown,
             LootTableEntries = rewards.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(rewards, "loot_table_entries", 0) : 0,
             Loot = ReadLoot(publicFields),
-            Attacks = ReadAttacks(element, combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "attack_count", 0) : 0)
+            Attacks = ReadAttacks(element, publicFields, combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "attack_count", 0) : 0)
         };
+    }
+
+    private static IReadOnlyList<int> ReadAbilityValues(JsonElement element, int abilityId)
+    {
+        if (!element.TryGetProperty("public_reference_0139", out var reference)
+            || !reference.TryGetProperty("fields", out var fields)
+            || !fields.TryGetProperty("abilities_named", out var abilities)
+            || abilities.ValueKind != JsonValueKind.Array) return Array.Empty<int>();
+        return abilities.EnumerateArray()
+            .Where(ability => JsonValueReader.ReadInt(ability, "ability_id", 0) == abilityId)
+            .Select(ability => JsonValueReader.ReadInt(ability, "value", 0))
+            .ToArray();
     }
 
 
@@ -141,6 +218,18 @@ public sealed class RuntimeNpcDefinition
         return false;
     }
 
+    private static int ReadAbilityValue(JsonElement element, int legacyAbilityId)
+    {
+        if (!element.TryGetProperty("abilities", out var abilities) || abilities.ValueKind != JsonValueKind.Array) return 0;
+        var total = 0;
+        foreach (var ability in abilities.EnumerateArray())
+        {
+            if (JsonValueReader.ReadInt(ability, "ability_id", 0) != legacyAbilityId) continue;
+            total = checked(total + JsonValueReader.ReadInt(ability, "value", 0));
+        }
+        return total;
+    }
+
     private static IReadOnlyList<RuntimeNpcLootDefinition> ReadLoot(JsonElement publicFields)
     {
         if (publicFields.ValueKind != JsonValueKind.Object
@@ -162,7 +251,7 @@ public sealed class RuntimeNpcDefinition
         }).ToArray();
     }
 
-    private static IReadOnlyList<RuntimeNpcAttackDefinition> ReadAttacks(JsonElement element, int declaredAttackCount)
+    private static IReadOnlyList<RuntimeNpcAttackDefinition> ReadAttacks(JsonElement element, JsonElement publicFields, int declaredAttackCount)
     {
         if (declaredAttackCount <= 0 || !element.TryGetProperty("attacks", out var attacks) || attacks.ValueKind != JsonValueKind.Array)
             return Array.Empty<RuntimeNpcAttackDefinition>();
@@ -170,9 +259,17 @@ public sealed class RuntimeNpcDefinition
         // attack_count is the decoded executable row count. WCC records can retain fixed-width
         // trailing rows (including type 229 sentinels) and can expose more physical rows than the
         // authored count. Those rows are evidence, not additional live attacks.
+        var publicAttacks = publicFields.ValueKind == JsonValueKind.Object &&
+            publicFields.TryGetProperty("attacks", out var publicAttackArray) && publicAttackArray.ValueKind == JsonValueKind.Array
+            ? publicAttackArray.EnumerateArray().ToArray()
+            : Array.Empty<JsonElement>();
         return attacks.EnumerateArray()
-            .Select(attack => new RuntimeNpcAttackDefinition(
-                JsonValueReader.ReadInt(attack, "slot", 0),
+            .Select(attack =>
+            {
+                var slot = JsonValueReader.ReadInt(attack, "slot", 0);
+                var publicAttack = slot > 0 && slot <= publicAttacks.Length ? publicAttacks[slot - 1] : default;
+                return new RuntimeNpcAttackDefinition(
+                slot,
                 JsonValueReader.ReadInt(attack, "type", 0),
                 JsonValueReader.ReadInt(attack, "minimum_damage", 0),
                 JsonValueReader.ReadInt(attack, "maximum_damage", 0),
@@ -182,7 +279,11 @@ public sealed class RuntimeNpcDefinition
                 JsonValueReader.ReadInt(attack, "energy_cost", 0),
                 JsonValueReader.ReadInt(attack, "hit_message_legacy_id", 0),
                 JsonValueReader.ReadInt(attack, "miss_message_legacy_id", 0),
-                JsonValueReader.ReadInt(attack, "dodge_message_legacy_id", 0)))
+                JsonValueReader.ReadInt(attack, "dodge_message_legacy_id", 0),
+                publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "atk_verb3", string.Empty) : string.Empty,
+                publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "miss_verb3", string.Empty) : string.Empty,
+                publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "weapon_name", string.Empty) : string.Empty);
+            })
             .Where(IsExecutableAttackRow)
             .OrderBy(attack => attack.Slot)
             .Take(declaredAttackCount)

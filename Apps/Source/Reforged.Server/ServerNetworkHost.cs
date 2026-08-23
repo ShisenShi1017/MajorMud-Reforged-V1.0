@@ -97,6 +97,7 @@ public sealed class ServerNetworkHost
             {
                 await telnet.WriteLineAsync(selectedWorld.Definition.Motd, hostCancellationToken).ConfigureAwait(false);
                 await telnet.WriteLineAsync(_commands.Dispatch(session, "look"), hostCancellationToken).ConfigureAwait(false);
+                Task<string?>? pendingInput = null;
                 while (!hostCancellationToken.IsCancellationRequested && connection.Connected)
                 {
                     foreach (var pending in session.DrainMessages())
@@ -105,13 +106,31 @@ public sealed class ServerNetworkHost
                     // MegaMUD path execution waits for the native MajorMUD-style status prompt.
                     // Do not append a generic "> " prompt after room output; it prevents the client
                     // from recognizing that movement completed and stalls imported .mp paths.
-                    await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
-                    var input = await telnet.ReadLineAsync(hideInput: false, hostCancellationToken).ConfigureAwait(false);
+                    if (pendingInput is null)
+                    {
+                        await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
+                        pendingInput = telnet.ReadLineAsync(hideInput: false, hostCancellationToken);
+                    }
+
+                    var completed = await Task.WhenAny(pendingInput, Task.Delay(100, hostCancellationToken)).ConfigureAwait(false);
+                    if (!ReferenceEquals(completed, pendingInput))
+                    {
+                        var liveMessages = session.DrainMessages();
+                        if (liveMessages.Count > 0)
+                        {
+                            await telnet.WriteLineAsync(hostCancellationToken).ConfigureAwait(false);
+                            foreach (var pending in liveMessages)
+                                await telnet.WriteLineAsync(pending, hostCancellationToken).ConfigureAwait(false);
+                            await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
+                        }
+                        continue;
+                    }
+
+                    var input = await pendingInput.ConfigureAwait(false);
+                    pendingInput = null;
                     if (input is null) break;
 
-                    if (string.Equals(input.Trim(), "quit", StringComparison.OrdinalIgnoreCase)
-                        || string.Equals(input.Trim(), "exit", StringComparison.OrdinalIgnoreCase)
-                        || string.Equals(input.Trim(), "logout", StringComparison.OrdinalIgnoreCase))
+                    if (_commands.RequestsSessionExit(session, input))
                     {
                         await telnet.WriteLineAsync("Goodbye.", hostCancellationToken).ConfigureAwait(false);
                         break;
@@ -375,7 +394,16 @@ public sealed class ServerNetworkHost
 
             var catalog = _characters.GetCatalog(world.Definition.Id);
             var races = catalog.Races.ToArray();
-            var race = await SelectNumberedAsync(telnet, "Choose a race:", races.Select(value => value.Name).ToArray(), cancellationToken).ConfigureAwait(false);
+            IReadOnlyList<string>? raceHelp = null;
+            var raceDescriptionPath = Path.Combine(_characters.ProjectRoot, "Data", world.Definition.Id, "race_descriptions.json");
+            if (File.Exists(raceDescriptionPath))
+            {
+                var raceDescriptions = RuntimeClassicDescriptionAuthority.Load(_characters.ProjectRoot, world.Definition.Id);
+                raceHelp = races.Select(value => raceDescriptions.TryRaceDescription(value.Name, out var description)
+                    ? description
+                    : $"No decoded description is available for {value.Name}.").ToArray();
+            }
+            var race = await SelectNumberedAsync(telnet, "Choose a race:", races.Select(value => value.Name).ToArray(), cancellationToken, raceHelp).ConfigureAwait(false);
             if (race is null) return null;
 
             var classes = catalog.Classes.ToArray();
@@ -522,28 +550,28 @@ public sealed class ServerNetworkHost
         {
             var remaining = pool - Spent();
             await telnet.WriteAsync("\u001b[?25l\u001b[2J\u001b[H", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White}   .------------------------------------------.---.      .---------------------------.{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White}  / {Cyan}M A J O R  M U D Character Creation{White} /   \\    / {Magenta}Point Cost Chart{White}          \\{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} |                                          |    | |                           |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Given Name  {White}{GivenDisplay()} {Red}«{White} |    | | {Magenta}1st 10 points: 1 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Family Name {White}{FieldText(2, string.IsNullOrWhiteSpace(family) ? "<none>" : family, 18)} {Red}«{White} |    | | {Magenta}2nd 10 points: 2 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Race        {White}{race.Name,-18} {Red}«{White} |    | | {Magenta}3rd 10 points: 3 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Class       {White}{characterClass.Name,-18} {Red}«{White} |    | |       ... and so on ...     |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} |                                          |    | |                           |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White}   .------------------------------------------.---.        .---------------------------.{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White}  / {Cyan}M A J O R  M U D Character Creation{White} /   \\      / {Magenta}Point Cost Chart{White}          \\{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} |                                          |    |   |                           |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Given Name  {White}{GivenDisplay()} {Red}«{White} |    |   | {Magenta}1st 10 points: 1 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Family Name {White}{FieldText(2, string.IsNullOrWhiteSpace(family) ? "<none>" : family, 18)} {Red}«{White} |    |   | {Magenta}2nd 10 points: 2 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Race        {White}{race.Name,-18} {Red}«{White} |    |   | {Magenta}3rd 10 points: 3 CP each{White} |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Class       {White}{characterClass.Name,-18} {Red}«{White} |    |   |       ... and so on ...     |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} |                                          |    |   |                           |{Reset}", cancellationToken).ConfigureAwait(false);
             for (var i = 0; i < statOrder.Length; i++)
             {
                 var key = statOrder[i];
                 var field = i + 3;
                 var valueText = FieldText(field, stats[key].ToString(), 3);
-                await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} {labels[key],-11}{White}( {MinimumFor(key),3} to {MaximumFor(key),3}) {valueText} {Red}«{White} |    | | {Magenta}+{(i + 1) * 10,2} to base stat: {CostFromBase((i + 1) * 10),3} CP{White} |{Reset}", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} {labels[key],-11}{White}( {MinimumFor(key),3} to {MaximumFor(key),3}) {valueText} {Red}«{White} |    |   | {Magenta}+{(i + 1) * 10,2} to base stat: {CostFromBase((i + 1) * 10),3} CP{White} |{Reset}", cancellationToken).ConfigureAwait(false);
             }
-            await telnet.WriteLineAsync($"{White} |                                          |    | |       ... and so on ...     |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Hair Length {White}{FieldText(9, hairLengths[hairLengthIndex], 18)} {Red}«{White} |    | '---------------------------'{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Hair Colour {White}{FieldText(10, hairColors[hairColorIndex], 18)} {Red}«{White} |    |  {Cyan}Use the Space Bar to{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Eye Colour  {White}{FieldText(11, eyeColors[eyeColorIndex], 18)} {Red}«{White} |    |  {Cyan}toggle between choices for{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Sex         {White}{FieldText(12, sex, 18)} {Red}«{White} |    |  {Cyan}your physical description{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} |                                          |    |   |       ... and so on ...     |{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Hair Length {White}{FieldText(9, hairLengths[hairLengthIndex], 18)} {Red}«{White} |    |   '---------------------------'{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Hair Colour {White}{FieldText(10, hairColors[hairColorIndex], 18)} {Red}«{White} |    |    {Cyan}Use the Space Bar to{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Eye Colour  {White}{FieldText(11, eyeColors[eyeColorIndex], 18)} {Red}«{White} |    |    {Cyan}toggle between choices for{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Sex         {White}{FieldText(12, sex, 18)} {Red}«{White} |    |    {Cyan}your physical description{Reset}", cancellationToken).ConfigureAwait(false);
             await telnet.WriteLineAsync($"{White} |                                          |    |{Reset}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Exit: {White}{FieldText(13, exitChoice, 4)} {Red}«  »{Cyan} CP Left: {White}{remaining,3} {Red}«{White} |    |  SAVE your character or EXIT{Reset}", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync($"{White} | {Red}»{Cyan} Exit: {White}{FieldText(13, exitChoice, 4)} {Red}«  »{Cyan} CP Left: {White}{remaining,3} {Red}«{White} |    |    SAVE your character or EXIT{Reset}", cancellationToken).ConfigureAwait(false);
             await telnet.WriteLineAsync($"{White} '------------------------------------------'---'{Reset}", cancellationToken).ConfigureAwait(false);
             if (!string.IsNullOrWhiteSpace(message))
                 await telnet.WriteLineAsync($"{Yellow}{message}{Reset}", cancellationToken).ConfigureAwait(false);
@@ -613,6 +641,39 @@ public sealed class ServerNetworkHost
             message = string.Empty;
         }
 
+        async Task<ClassicCharacterCreationResult?> SaveAsync()
+        {
+            if (!CommitEditing()) return null;
+            if (string.IsNullOrWhiteSpace(given))
+            {
+                selected = 1;
+                message = "You must enter a Given Name before saving.";
+                return null;
+            }
+            try
+            {
+                RuntimeIdentity.ValidateCharacterName(given.Trim());
+                if (!string.IsNullOrWhiteSpace(family))
+                    RuntimeIdentity.ValidateCharacterName(family.Trim());
+            }
+            catch (InvalidOperationException exception)
+            {
+                selected = string.IsNullOrWhiteSpace(given) ? 1 : 2;
+                message = exception.Message;
+                return null;
+            }
+            if (Spent() > pool)
+            {
+                message = "You do not have enough CP for those stat values.";
+                return null;
+            }
+            var display = string.IsNullOrWhiteSpace(family) ? given.Trim() : $"{given.Trim()} {family.Trim()}";
+            await telnet.WriteAsync("\u001b[?25h\u001b[0m", cancellationToken).ConfigureAwait(false);
+            return new(display, given.Trim(), family.Trim(), sex,
+                new Dictionary<string, int>(stats, StringComparer.OrdinalIgnoreCase),
+                hairLengths[hairLengthIndex], hairColors[hairColorIndex], eyeColors[eyeColorIndex], pool - Spent());
+        }
+
         while (true)
         {
             await DrawAsync().ConfigureAwait(false);
@@ -622,6 +683,12 @@ public sealed class ServerNetworkHost
             if (key == "UP") { MoveSelection(-1); continue; }
             if (key == "DOWN") { MoveSelection(1); continue; }
             if (key == "ESC") return null;
+            if (!editing && string.Equals(key, "s", StringComparison.OrdinalIgnoreCase))
+            {
+                var saved = await SaveAsync().ConfigureAwait(false);
+                if (saved is not null) return saved;
+                continue;
+            }
 
             if (key == "BACKSPACE")
             {
@@ -651,33 +718,9 @@ public sealed class ServerNetworkHost
                 if (selected == 13)
                 {
                     if (exitChoice == "EXIT") return null;
-                    // SAVE must commit and validate names before leaving this screen.
-                    // Recoverable validation errors remain in-place with all selections preserved.
-                    if (!CommitEditing()) continue;
-                    if (string.IsNullOrWhiteSpace(given))
-                    {
-                        selected = 1;
-                        message = "You must enter a Given Name before saving.";
-                        continue;
-                    }
-                    try
-                    {
-                        RuntimeIdentity.ValidateCharacterName(given.Trim());
-                        if (!string.IsNullOrWhiteSpace(family))
-                            RuntimeIdentity.ValidateCharacterName(family.Trim());
-                    }
-                    catch (InvalidOperationException exception)
-                    {
-                        selected = string.IsNullOrWhiteSpace(given) ? 1 : 2;
-                        message = exception.Message;
-                        continue;
-                    }
-                    if (Spent() > pool) { message = "You do not have enough CP for those stat values."; continue; }
-                    var display = string.IsNullOrWhiteSpace(family) ? given.Trim() : $"{given.Trim()} {family.Trim()}";
-                    await telnet.WriteAsync("\u001b[?25h\u001b[0m", cancellationToken).ConfigureAwait(false);
-                    return new(display, given.Trim(), family.Trim(), sex,
-                        new Dictionary<string, int>(stats, StringComparer.OrdinalIgnoreCase),
-                        hairLengths[hairLengthIndex], hairColors[hairColorIndex], eyeColors[eyeColorIndex], pool - Spent());
+                    var saved = await SaveAsync().ConfigureAwait(false);
+                    if (saved is not null) return saved;
+                    continue;
                 }
                 if (IsTextField(selected)) { BeginEditing(false); continue; }
                 if (selected == 9) hairLengthIndex = (hairLengthIndex + 1) % hairLengths.Length;
@@ -702,7 +745,8 @@ public sealed class ServerNetworkHost
         TelnetConnection telnet,
         string heading,
         IReadOnlyList<string> options,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        IReadOnlyList<string>? descriptions = null)
     {
         if (options.Count == 0)
         {
@@ -715,12 +759,30 @@ public sealed class ServerNetworkHost
             await telnet.WriteLineAsync(heading, cancellationToken).ConfigureAwait(false);
             for (var index = 0; index < options.Count; index++)
                 await telnet.WriteLineAsync($"  {index + 1}) {options[index]}", cancellationToken).ConfigureAwait(false);
-            await telnet.WriteAsync($"Enter 1-{options.Count}: ", cancellationToken).ConfigureAwait(false);
+            var supportsDescriptions = descriptions is not null && descriptions.Count == options.Count;
+            await telnet.WriteAsync(supportsDescriptions
+                ? $"Enter 1-{options.Count}, or ? <number> for details: "
+                : $"Enter 1-{options.Count}: ", cancellationToken).ConfigureAwait(false);
             var response = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
             if (response is null) return null;
-            if (int.TryParse(response.Trim(), out var selected) && selected >= 1 && selected <= options.Count)
+            var entered = response.Trim();
+            if (supportsDescriptions && entered.StartsWith("?", StringComparison.Ordinal))
+            {
+                var requested = entered[1..].Trim();
+                if (int.TryParse(requested, out var descriptionIndex) && descriptionIndex >= 1 && descriptionIndex <= options.Count)
+                {
+                    await telnet.WriteLineAsync(cancellationToken).ConfigureAwait(false);
+                    await telnet.WriteLineAsync($"{options[descriptionIndex - 1]}:", cancellationToken).ConfigureAwait(false);
+                    await telnet.WriteLineAsync(descriptions![descriptionIndex - 1], cancellationToken).ConfigureAwait(false);
+                    await telnet.WriteLineAsync(cancellationToken).ConfigureAwait(false);
+                    continue;
+                }
+            }
+            if (int.TryParse(entered, out var selected) && selected >= 1 && selected <= options.Count)
                 return options[selected - 1];
-            await telnet.WriteLineAsync("Invalid selection.", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteLineAsync(supportsDescriptions
+                ? $"Invalid selection. Enter 1-{options.Count}, or ? <number> for details."
+                : "Invalid selection.", cancellationToken).ConfigureAwait(false);
         }
     }
 

@@ -11,23 +11,52 @@ public partial class PlayView : UserControl
 {
     private void OpenTerminalClicked(object sender, RoutedEventArgs e)
     {
+        if (DataContext is not PlayViewModel vm || vm.SelectedLiveSession is null)
+            return;
+
+        ClientTerminalWindow.ShowForSession(
+            vm,
+            vm.SelectedLiveSession,
+            Window.GetWindow(this));
+    }
+
+    private void OpenCharacterProfilesClicked(object sender, RoutedEventArgs e)
+    {
         if (DataContext is not PlayViewModel vm) return;
-        var window = new ClientTerminalWindow
+        var owner = Window.GetWindow(this);
+        var existing = owner?.OwnedWindows.OfType<ClientProfileWindow>().FirstOrDefault();
+        if (existing is not null)
         {
-            Owner = Window.GetWindow(this),
+            existing.Activate();
+            return;
+        }
+
+        var window = new ClientProfileWindow
+        {
+            Owner = owner,
             DataContext = vm
         };
         window.Show();
     }
 
+    private async void SaveConnectionProfileClicked(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is PlayViewModel vm)
+            await vm.SaveCurrentConnectionProfileAsync();
+    }
+
     private void OpenOptionsClicked(object sender, RoutedEventArgs e)
     {
-        if (DataContext is not PlayViewModel vm) return;
+        if (DataContext is not PlayViewModel vm || vm.SelectedLiveSession is null)
+            return;
+
+        var context = new ClientTerminalWindowContext(vm, vm.SelectedLiveSession);
         var window = new ClientOptionsWindow
         {
             Owner = Window.GetWindow(this),
-            DataContext = vm
+            DataContext = context
         };
+        window.Closed += (_, _) => context.Dispose();
         window.Show();
     }
 

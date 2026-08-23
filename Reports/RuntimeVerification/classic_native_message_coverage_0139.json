@@ -1,0 +1,32 @@
+{
+  "Passed": true,
+  "NativeMessageCount": 3869,
+  "VerifiedPlayerNoOutputCount": 444,
+  "InteractionSuccessReferenceCount": 14,
+  "InteractionFailureReferenceCount": 19,
+  "DistinctInteractionMessageCount": 15,
+  "Checks": [
+    "ordered-pedestal-message-ids:interaction.decoded.map17.3037.diamond-pedestal",
+    "exact-pedestal-item-payload:3318",
+    "ordered-pedestal-message-ids:interaction.decoded.map17.3039.pearl-pedestal",
+    "exact-pedestal-item-payload:3319",
+    "ordered-pedestal-message-ids:interaction.decoded.map17.3041.moonstone-pedestal",
+    "exact-pedestal-item-payload:3320",
+    "ordered-pedestal-message-ids:interaction.decoded.map17.3043.marble-pedestal",
+    "exact-pedestal-item-payload:3321",
+    "exact-pedestal-completion-payload:3322",
+    "observer-only-message-player-no-output:1479",
+    "observer-only-message-player-no-output:1685",
+    "observer-only-message-player-no-output:1686",
+    "boulder-failure-message-3309-executed",
+    "boulder-failure-cast-1324-executed",
+    "boulder-failure-native-output-exact",
+    "boulder-failure-level-scaled-fire-damage-applied",
+    "all-3869-logical-wccmsg2-records-loaded",
+    "all-14-generated-interaction-success-message-references-resolved",
+    "all-19-interaction-failure-textblock-references-audited",
+    "all-11-distinct-interaction-success-message-payloads-resolved",
+    "zero-native-message-output-disconnects"
+  ],
+  "Failures": []
+}

@@ -27,30 +27,53 @@ public sealed class RuntimeClassicDescriptionAuthority
     {
         var root = Path.Combine(projectRoot, "Data", worldId);
         var races = new Dictionary<string, RuntimeClassicDescriptionRecord>(StringComparer.OrdinalIgnoreCase);
-        using (var document = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "race_descriptions.json"))))
+        var raceDescriptionPath = Path.Combine(root, "race_descriptions.json");
+        if (File.Exists(raceDescriptionPath))
         {
-            foreach (var row in document.RootElement.GetProperty("records").EnumerateArray())
+            using var document = JsonDocument.Parse(File.ReadAllText(raceDescriptionPath));
+            if (document.RootElement.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)
             {
-                var name = Text(row, "race_name");
-                var description = Text(row, "description");
-                if (name.Length == 0 || description.Length == 0) throw new InvalidOperationException("Race description record is incomplete.");
-                var record = new RuntimeClassicDescriptionRecord(Text(row,"id"), "race", Text(row,"race_number"), name, description, Text(row,"source_file"), Text(row,"evidence_classification"));
-                races[NormalizeRace(name)] = record;
-                if (name.Equals("Half-Ogre", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Minotaur")] = record;
-                if (name.Equals("Gaunt One", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Gaunt")] = record;
+                foreach (var row in records.EnumerateArray())
+                {
+                    var name = Text(row, "race_name");
+                    var description = Text(row, "description");
+                    if (name.Length == 0 || description.Length == 0) continue;
+                    var raceNumber = Text(row,"race_number");
+                    var record = new RuntimeClassicDescriptionRecord(Text(row,"id"), "race", raceNumber, name, description, Text(row,"source_file"), Text(row,"evidence_classification"));
+                    races[NormalizeRace(name)] = record;
+                    if (raceNumber.Length > 0)
+                    {
+                        races[NormalizeRace(raceNumber)] = record;
+                        races[NormalizeRace($"race.{raceNumber}")] = record;
+                        races[NormalizeRace($"mmud_sql_race_{raceNumber}")] = record;
+                    }
+                    if (name.Equals("Half-Ogre", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Minotaur")] = record;
+                    if (name.Equals("Gaunt One", StringComparison.OrdinalIgnoreCase)) races[NormalizeRace("Gaunt")] = record;
+                }
             }
         }
         return new(races, LoadDirectDescriptions(Path.Combine(root, "npcs.json")), LoadDirectDescriptions(Path.Combine(root, "items.json")), LoadDirectDescriptions(Path.Combine(root, "rooms.json")));
     }
 
-    public string RequireRaceDescription(string race) => _raceByName.TryGetValue(NormalizeRace(race), out var record)
-        ? record.Description
+    public bool TryRaceDescription(string race, out string description)
+    {
+        if (_raceByName.TryGetValue(NormalizeRace(race), out var record))
+        {
+            description = record.Description;
+            return true;
+        }
+        description = string.Empty;
+        return false;
+    }
+
+    public string RequireRaceDescription(string race) => TryRaceDescription(race, out var description)
+        ? description
         : throw new KeyNotFoundException($"No authoritative decoded race description exists for '{race}'.");
 
     public bool TryNpcDescription(string npcId, out string description) => _npcById.TryGetValue(npcId, out description!);
     public bool TryItemDescription(string itemId, out string description) => _itemById.TryGetValue(itemId, out description!);
     public bool TryRoomDescription(string roomId, out string description) => _roomById.TryGetValue(roomId, out description!);
-    public int RaceDescriptionCount => _raceByName.Count;
+    public int RaceDescriptionCount => _raceByName.Values.Select(record => record.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count();
     public int NpcDirectDescriptionCount => _npcById.Count;
     public int ItemDirectDescriptionCount => _itemById.Count;
     public int RoomDirectDescriptionCount => _roomById.Count;
@@ -160,7 +183,7 @@ public sealed class RuntimeClassicDescriptionAuthority
 
     private static int NestedNumber(JsonElement row, string parent, string child) => row.TryGetProperty(parent,out var p) && p.ValueKind == JsonValueKind.Object && p.TryGetProperty(child,out var c) && c.TryGetInt32(out var n) ? n : 0;
     private static string Text(JsonElement row, string key) => row.ValueKind == JsonValueKind.Object && row.TryGetProperty(key,out var v) ? v.ValueKind == JsonValueKind.String ? v.GetString()?.Trim() ?? "" : v.ToString() : "";
-    private static string NormalizeRace(string race) => race.Trim().Replace(" ", "-", StringComparison.Ordinal);
+    private static string NormalizeRace(string race) => new string(race.Trim().Where(char.IsLetterOrDigit).Select(char.ToLowerInvariant).ToArray());
 }
 
 public sealed record RuntimeBundleFPhaseF2AStaticDescriptionAuditReport(bool Passed, int RaceDescriptions, int NpcDirectDescriptions, int ItemDirectDescriptions, int RoomDirectDescriptions, int VerifiedDisconnectCount, IReadOnlyList<string> Checks, IReadOnlyList<string> Failures)
@@ -176,10 +199,15 @@ public static class RuntimeBundleFPhaseF2AStaticDescriptionAudit
         void Check(bool ok,string name){if(ok)checks.Add(name);else failures.Add(name);}
         var authority = RuntimeClassicDescriptionAuthority.Load(projectRoot,worldId);
         Check(authority.RaceDescriptionCount == 13, "all-13-classic-race-descriptions-promoted");
-        foreach(var race in new[]{"Human","Dwarf","Gnome","Halfling","Elf","Half-Elf","Dark-Elf","Half-Orc","Goblin","Minotaur","Kang","Nekojin","Gaunt"})
+        foreach(var race in new[]{"Human","Dwarf","Gnome","Halfling","Elf","Half-Elf","Dark-Elf","Half-Orc","Goblin","Half-Ogre","Kang","Nekojin","Gaunt One"})
             Check(authority.RequireRaceDescription(race).Length > 80, "race-description-live:"+race);
+        Check(authority.TryRaceDescription("Half Ogre", out _), "race-name-space-normalization");
+        Check(authority.TryRaceDescription("race.10", out _), "race-id-normalization");
         var source = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","RuntimeLiveWorld.cs"));
-        Check(source.Contains("RequireRaceDescription",StringComparison.Ordinal), "player-examine-consumes-race-authority");
+        Check(!source.Contains("TryRaceDescription",StringComparison.Ordinal), "normal-character-look-does-not-render-race-lore");
+        var networkSource = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","ServerNetworkHost.cs"));
+        Check(networkSource.Contains("? <number> for details",StringComparison.Ordinal), "race-selection-advertises-numbered-description-help");
+        Check(networkSource.Contains("raceDescriptions.TryRaceDescription",StringComparison.Ordinal), "race-selection-consumes-race-description-authority");
         Check(source.Contains("TryNpcDescription",StringComparison.Ordinal), "npc-examine-consumes-direct-description");
         Check(source.Contains("TryItemDescription",StringComparison.Ordinal), "item-examine-consumes-direct-description");
         Check(source.Contains("session.CurrentRoom.Description",StringComparison.Ordinal), "room-look-consumes-authoritative-direct-description");

@@ -122,17 +122,9 @@ public sealed class RuntimeClassicExitTrapCatalog
 
     private static string ReadSourceExitRecord(JsonElement value)
     {
-        if (value.TryGetProperty("evidence_refs", out var evidence) && evidence.ValueKind == JsonValueKind.Array)
-        {
-            foreach (var reference in evidence.EnumerateArray())
-            {
-                var path = JsonValueReader.ReadString(reference, "path", string.Empty);
-                if (!string.IsNullOrWhiteSpace(path)) return path;
-                var sourceFile = JsonValueReader.ReadString(reference, "source_file", string.Empty);
-                if (!string.IsNullOrWhiteSpace(sourceFile)) return sourceFile;
-            }
-        }
-        return "Data/Classic/exits.json";
+        // The canonical generated exit is the trap owner. Evidence paths remain
+        // attached to that exit record and are not a second runtime identity.
+        return JsonValueReader.ReadString(value, "id", string.Empty);
     }
 
     private static void Validate(RuntimeClassicExitTrapDefinition definition)

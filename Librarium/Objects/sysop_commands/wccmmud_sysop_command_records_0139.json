@@ -1,0 +1,37 @@
+{
+  "schema": "majormud.reforged.wccmmud-sysop-commands.v1",
+  "source_files": [
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.msg",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.RLN",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMSYS.NOT",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMSYS.REL"
+  ],
+  "authorization": {
+    "legacy_setting": "SYSOPKEY",
+    "user_confirmed_configured_value": "code_of_twinks_78",
+    "runtime_authority": "authenticated_account_role_and_explicit_capabilities",
+    "plaintext_key_command_allowed": false
+  },
+  "records": [
+    {"id":"sysop.buffers","command":"buffers","gameop_allowed":true,"owner":"host_diagnostics","permission":"inspect_runtime","forms":["SYSOP BUFFERS","SYSOP BUFFERS CLEAR","SYSOP BUFFERS SAVE"],"runtime_disposition":"executable"},
+    {"id":"sysop.status","command":"status","gameop_allowed":true,"owner":"character_and_room_diagnostics","permission":"inspect","forms":["SYSOP STATUS","SYSOP STATUS <character-id>","SYSOP STATUS ROOM <room> [map]"],"runtime_disposition":"executable"},
+    {"id":"sysop.map","command":"map","gameop_allowed":true,"owner":"room_diagnostics","permission":"inspect","forms":["SYSOP MAP"],"runtime_disposition":"executable"},
+    {"id":"sysop.god","command":"god","gameop_allowed":true,"owner":"character_administration","permission":"set_flags","forms":["INVENTORY","PROFILE","POWERS","SPELLS","STATUS","INFO","ADD LIFE","ADD EVIL <amount>","GOOD","SAINT","NEUTRAL","LAWFUL","UNLAWFUL","CLEAR SUICIDE","SPEAK <message>","CHANGE NAME <name>","CHANGE SEX","DISABLE TOPTEN","ENABLE TOPTEN","RETRAIN","ABILITIES","VERIFY ABILITIES","JAIL"],"runtime_disposition":"partially_executable_authoritative_character_state_legacy_only_effects_fail_closed"},
+    {"id":"sysop.list","command":"list","gameop_allowed":true,"owner":"host_reporting","permission":"inspect","forms":["USERS","EVIL","GANG <gangname>","LIMITED"],"runtime_disposition":"executable_authoritative_users_evil_gang_limited_presence_index"},
+    {"id":"sysop.report","command":"report","gameop_allowed":true,"owner":"host_reporting","permission":"inspect_runtime","forms":["USERS [mask]","NOTOPTEN"],"runtime_disposition":"executable"},
+    {"id":"sysop.lightning","command":"lightning","gameop_allowed":true,"owner":"combat","permission":"kill","forms":["SYSOP LIGHTNING <character-id>"],"runtime_disposition":"executable_native_fiend_lightning_contract","alignment_effect":"none","allow_all_targets":true,"damage_minimum_maximum_hp_percent":25,"damage_maximum_maximum_hp_percent":50,"native_message_id":2842,"target_policy_note":"Decoded LIGHTEVY is YES, so SYSOP LIGHTNING may target all active players; it never grants or removes evil points","user_confirmed_semantics":"SYSOP LIGHTNING is an administrative attack command and has no good/evil point mutation","native_binary_evidence":"WCCMMUD.DLL _cmd_sysop 0x463811-0x463945: target maximum HP at +0xAE, integer-truncated 25%-50% inclusive roll, subtract current HP at +0xB0, native death path","native_presentation_evidence":"WCCMSG2 message 2842 supplies administrator, target, and observer payloads"},
+    {"id":"sysop.disband","command":"disband","gameop_allowed":false,"owner":"gang_state","permission":"moderate","forms":["SYSOP DISBAND <gangname>"],"runtime_disposition":"executable_persistent_gang_state"},
+    {"id":"sysop.disable","command":"disable","gameop_allowed":false,"owner":"gang_rankings","permission":"moderate","forms":["SYSOP DISABLE <gangname>"],"runtime_disposition":"executable_persistent_gang_state"},
+    {"id":"sysop.enable","command":"enable","gameop_allowed":false,"owner":"gang_rankings","permission":"moderate","forms":["SYSOP ENABLE <gangname>"],"runtime_disposition":"executable_persistent_gang_state"},
+    {"id":"sysop.gangsize","command":"gangsize","gameop_allowed":false,"owner":"gang_state","permission":"moderate","forms":["SYSOP GANGSIZE <newsize> <gangname>"],"runtime_disposition":"executable_persistent_gang_state"},
+    {"id":"sysop.unwrap","command":"unwrap","gameop_allowed":false,"owner":"gang_progression","permission":"set_flags","forms":["SYSOP UNWRAP <gangname>"],"runtime_disposition":"not_applicable_current_reforged_gang_state_requires_no_legacy_unwrap","user_confirmed_semantics":"UNWRAP is not required for the current standalone Reforged runtime"},
+    {"id":"sysop.goto","command":"goto","gameop_allowed":true,"owner":"rooms","permission":"teleport","forms":["SYSOP GOTO NewHaven|SilverMere|Rhudaur|Khazarad|Lost City|Support"],"runtime_disposition":"active_runtime","targets":{"newhaven":"room.map1.2150","silvermere":"room.map1.2189","rhudaur":"room.map2.2519","khazarad":"room.map6.1249","lost_city":"room.map16.426","support":"room.map1.164"},"evidence_note":"WCCMMSYS.NOT identifies the native named GOTO destinations. User-confirmed exact map-qualified destinations close SilverMere, Rhudaur, Khazarad, and Lost City; all six targets resolve in generated Classic rooms."},
+    {"id":"sysop.initialize","command":"initialize","gameop_allowed":false,"owner":"world_initialization","permission":"reset","forms":["SYSOP INITIALIZE","SYSOP INITIALIZE -1","SYSOP INITIALIZE <rate>","SYSOP INITIALIZE <rate> RECOVER"],"runtime_disposition":"executable_standalone_spawn_reinitialization"},
+    {"id":"sysop.configure","command":"configure","gameop_allowed":false,"owner":"host_configuration","permission":"reload_data","forms":["SYSOP CONFIGURE SHOW","SYSOP CONFIGURE MAXUSERS <n>"],"runtime_disposition":"partially_executable_show_maxusers_not_applicable_standalone_app_owns_realm_capacity","user_confirmed_semantics":"Legacy MAXUSERS set the realm user limit; Reforged owns this through its standalone application configuration"},
+    {"id":"sysop.reset","command":"reset","gameop_allowed":false,"owner":"living_world","permission":"reset","forms":["SYSOP RESET","SYSOP RESET ROOM","SYSOP RESET AREA","SYSOP RESET ROOM <room>","SYSOP RESET ROOM <room> <map>"],"runtime_disposition":"executable"},
+    {"id":"sysop.reload","command":"reload","gameop_allowed":true,"owner":"host_configuration","permission":"reload_data","forms":["SYSOP RELOAD"],"runtime_disposition":"not_applicable_no_wccmud_ini_in_standalone_reforged","user_confirmed_semantics":"Legacy RELOAD reread WCCMUD.INI; the standalone Reforged application has no WCCMUD.INI runtime dependency"},
+    {"id":"sysop.speak","command":"speak","gameop_allowed":true,"owner":"communications","permission":"broadcast","forms":["SYSOP SPEAK <message>"],"runtime_disposition":"executable"},
+    {"id":"sysop.arena","command":"arena","gameop_allowed":false,"owner":"arena_world_state","permission":"event_control","forms":["SYSOP ARENA STATUS","SYSOP ARENA NORMAL","SYSOP ARENA COMBAT"],"runtime_disposition":"executable"},
+    {"id":"sysop.invasion","command":"invasion","gameop_allowed":false,"owner":"decoded_support_room_textblock","permission":"event_control","forms":["orc invasion","cult invasion","red invasion","green invasion","duergar invasion","saracen invasion"],"runtime_disposition":"active_room_scoped_decoded_trigger","support_room_id":"room.map1.164","textblock_id":2454,"cleanup_semantics":"hidden room items 1976,1977,1978,1985,1488,1489 gate each trigger once per cleanup; surviving generated invasion monsters are removed by offline recovery","evidence_path":"Librarium/Objects/native_textblock_payloads/native_textblock_payload_records.json","child_evidence_path":"Librarium/Objects/invasion_scripts/wcc_update_invasion_script_records_0139.json"}
+  ]
+}

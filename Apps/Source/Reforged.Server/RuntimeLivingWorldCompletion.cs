@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 namespace Reforged.Server;
@@ -14,6 +15,10 @@ public sealed record RuntimeExitGateDefinition(string ExitId,string RoomId,strin
     public bool SaveWorldStateRisk { get; init; }
     public int RequiredActionCount { get; init; }
     public IReadOnlyList<string> RequiredActionOrder { get; init; } = Array.Empty<string>();
+    public IReadOnlyList<string> BoundActionIds { get; init; } = Array.Empty<string>();
+    public bool RequiresSpecificActionOrder { get; init; }
+    public bool NativePassiveEffect { get; init; }
+    public string NativePassiveEffectClassification { get; init; } = string.Empty;
     public int? AllowedClassId { get; init; }
     public int? DeniedClassId { get; init; }
     public int? AllowedRaceId { get; init; }
@@ -28,6 +33,8 @@ public sealed record RuntimeExitGateDefinition(string ExitId,string RoomId,strin
     public bool AnyPicklocks { get; init; }
     public bool AnyPicklocksOrStrength { get; init; }
     public int? StrengthAlternative { get; init; }
+    public int? MinimumLevel { get; init; }
+    public int? MaximumLevel { get; init; }
     public double TimeMultiplier { get; init; } = 1d;
     public bool AutomaticRouting { get; init; }
     public string FallbackBehavior { get; init; } = string.Empty;
@@ -35,6 +42,7 @@ public sealed record RuntimeExitGateDefinition(string ExitId,string RoomId,strin
 
 public sealed record RuntimeExitGateContext(IReadOnlySet<string> ItemIds,long AvailableGold,IReadOnlySet<string> DiscoveredExitIds,string? EnteredCommand)
 {
+    public int Level { get; init; }
     public int? ClassId { get; init; }
     public int? RaceId { get; init; }
     public string AlignmentName { get; init; } = string.Empty;
@@ -45,16 +53,19 @@ public sealed record RuntimeExitGateContext(IReadOnlySet<string> ItemIds,long Av
 }
 
 public sealed record RuntimeExitGateDecision(bool Allowed,bool EvidenceOnly,string Code,long TollCharged,int Damage,int SpellId,int PreSpellId,int PostSpellId);
-public sealed record RuntimeLivingWorldCompletionSnapshot(string WorldId,long EventSequence,IReadOnlyList<RuntimeNpcAiState> AiStates,IReadOnlyList<RuntimeLivingCorpseState> Corpses,IReadOnlyList<RuntimeLivingWorldEvent> RecentEvents,DateTimeOffset SavedAtUtc);
+public sealed record RuntimeLivingWorldCompletionSnapshot(string WorldId,long EventSequence,IReadOnlyList<RuntimeNpcAiState> AiStates,IReadOnlyList<RuntimeLivingCorpseState> Corpses,IReadOnlyList<RuntimeLivingWorldEvent> RecentEvents,IReadOnlyDictionary<string,int>? NativeActionStates,DateTimeOffset SavedAtUtc);
+public sealed record RuntimeRemoteActionMutationDefinition(string Signature,string SourceExitId,string ReciprocalExitId,string StateEffect,string NativeStateKey,int InitialNativeState,int Selector);
 
 public sealed partial class RuntimeLivingWorldService
 {
     private readonly Dictionary<string,RuntimeNpcAiState> _npcAi = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeLivingCorpseState> _corpses = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeExitGateDefinition> _gates = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string,RuntimeRemoteActionMutationDefinition> _remoteActionMutations = new(StringComparer.Ordinal);
+    private readonly Dictionary<string,int> _nativeActionStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Queue<RuntimeLivingWorldEvent> _recentEvents = new();
     private long _eventSequence;
-    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","hidden","required_item","cast_transition","spell_trap","damage_trap","text_command","toll","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
+    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","hidden","required_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
 
     public int CorpseCount { get { lock(_gate) return _corpses.Count; } }
     public int GateCount { get { lock(_gate) return _gates.Count; } }
@@ -67,15 +78,68 @@ public sealed partial class RuntimeLivingWorldService
     {
         if(string.IsNullOrWhiteSpace(remoteActionId))throw new ArgumentException("remote-action-id-required",nameof(remoteActionId));
         if(string.IsNullOrWhiteSpace(roomId))throw new ArgumentException("room-id-required",nameof(roomId));
+        var intent=RuntimeNativeRemoteActionIntent.Parse(remoteActionId);
         lock(_gate)
         {
             if(_world.FindRoomById(roomId) is null)throw new InvalidOperationException($"remote-action room {roomId} is not generated");
+            var mutated=false;
+            var resultingNativeState=string.Empty;
+            if(_remoteActionMutations.TryGetValue(intent.Signature,out var mutation))
+            {
+                if(mutation.StateEffect.Equals("toggle_paired_door_state",StringComparison.Ordinal))
+                {
+                    if(!_objects.TryGetValue(mutation.SourceExitId,out var sourceState)
+                    ||!_objects.TryGetValue(mutation.ReciprocalExitId,out var reciprocalState)
+                    ||!_objectDefinitions.TryGetValue(mutation.SourceExitId,out var sourceDefinition)
+                    ||!_objectDefinitions.TryGetValue(mutation.ReciprocalExitId,out var reciprocalDefinition)
+                    ||!sourceDefinition.Kind.Equals("door",StringComparison.OrdinalIgnoreCase)
+                    ||!reciprocalDefinition.Kind.Equals("door",StringComparison.OrdinalIgnoreCase))
+                        throw new InvalidOperationException($"remote-action {intent.Signature} paired generated doors are unavailable");
+                    var open=!sourceState.Open;
+                    var now=DateTimeOffset.UtcNow;
+                    _objects[mutation.SourceExitId]=sourceState with{Open=open,UpdatedAtUtc=now};
+                    _objects[mutation.ReciprocalExitId]=reciprocalState with{Open=open,UpdatedAtUtc=now};
+                    _nativeActionStates[mutation.NativeStateKey]=open?0:2;
+                    mutated=true;
+                    resultingNativeState=open?"0":"2";
+                    Save();
+                }
+                else if(mutation.StateEffect.Equals("clear_native_state_bit",StringComparison.Ordinal))
+                {
+                    var current=_nativeActionStates.GetValueOrDefault(mutation.NativeStateKey,mutation.InitialNativeState);
+                    var mask=WorldgroupRemoteActionDispatchRegistry.ModeClearedMasks[mutation.Selector];
+                    var next=current&~mask;
+                    if((next&WorldgroupRemoteActionDispatchRegistry.ModeClearedMasks[0])==0)next=8;
+                    _nativeActionStates[mutation.NativeStateKey]=next;
+                    mutated=true;
+                    resultingNativeState=next.ToString(CultureInfo.InvariantCulture);
+                }
+                else if(mutation.StateEffect.Equals("native_common_finalization",StringComparison.Ordinal))
+                {
+                    mutated=true;
+                    resultingNativeState=_nativeActionStates.GetValueOrDefault(mutation.NativeStateKey,mutation.InitialNativeState).ToString(CultureInfo.InvariantCulture);
+                }
+                else throw new InvalidOperationException($"remote-action {intent.Signature} has unsupported generated state effect");
+            }
             var eventMetadata=new Dictionary<string,string>(metadata??new Dictionary<string,string>(),StringComparer.OrdinalIgnoreCase)
             {
                 ["source"] = string.IsNullOrWhiteSpace(source) ? "quest-dialogue" : source,
-                ["native_behavior"] = "evidence_gated_not_mutated"
+                ["native_behavior"] = mutated ? _remoteActionMutations[intent.Signature].StateEffect : "evidence_gated_not_mutated",
+                ["action_record_id"] = intent.ActionRecordId.ToString(),
+                ["optional_message_id"] = intent.OptionalMessageId.ToString(),
+                ["selector"] = intent.Selector.ToString(),
+                ["action_slot"] = intent.ActionSlot.ToString(),
+                ["dispatcher_entry"] = $"0x{WorldgroupRemoteActionDispatchRegistry.Entry:X8}"
             };
-            PublishLivingWorldEventLocked("quest-remote-action",remoteActionId.Trim(),roomId,DateTimeOffset.UtcNow,eventMetadata);
+            if(mutated)
+            {
+                eventMetadata["resulting_native_state"]=resultingNativeState;
+                if(!string.IsNullOrWhiteSpace(_remoteActionMutations[intent.Signature].SourceExitId))
+                    eventMetadata["source_exit_id"]=_remoteActionMutations[intent.Signature].SourceExitId;
+                if(!string.IsNullOrWhiteSpace(_remoteActionMutations[intent.Signature].ReciprocalExitId))
+                    eventMetadata["reciprocal_exit_id"]=_remoteActionMutations[intent.Signature].ReciprocalExitId;
+            }
+            PublishLivingWorldEventLocked("quest-remote-action",intent.Signature,roomId,DateTimeOffset.UtcNow,eventMetadata);
             SaveLivingWorldCompletionLocked();
         }
     }
@@ -83,8 +147,39 @@ public sealed partial class RuntimeLivingWorldService
     private void InitializeLivingWorldCompletion()
     {
         LoadGeneratedGateDefinitions();
+        LoadGeneratedRemoteActionMutations();
         foreach(var npc in _npcs.Values)
             _npcAi[npc.InstanceId]=new(npc.InstanceId,"idle",null,npc.HomeRoomId,npc.RoomId,0,DateTimeOffset.UtcNow);
+    }
+
+    private void LoadGeneratedRemoteActionMutations()
+    {
+        var path=Path.Combine(_projectRoot,_world.Definition.DataRoot,"room_interactions.json");
+        if(!File.Exists(path))return;
+        foreach(var value in RuntimeChunkedClassicCatalog.LoadRecords(path))
+        {
+            if(!JsonValueReader.ReadString(value,"interaction_kind",string.Empty).Equals("remote_action_mutation",StringComparison.OrdinalIgnoreCase))continue;
+            var signature=JsonValueReader.ReadString(value,"remote_action_signature",string.Empty);
+            var sourceExit=JsonValueReader.ReadString(value,"source_exit_id",string.Empty);
+            var reciprocalExit=JsonValueReader.ReadString(value,"reciprocal_exit_id",string.Empty);
+            var nativeStateKey=JsonValueReader.ReadString(value,"native_state_key",string.Empty);
+            var initialNativeState=JsonValueReader.ReadInt(value,"initial_native_state",0);
+            var stateEffect=string.Empty;
+            if(value.TryGetProperty("command_semantics",out var semantics)&&semantics.ValueKind==JsonValueKind.Object)
+                stateEffect=JsonValueReader.ReadString(semantics,"state_effect",string.Empty);
+            var selector=semantics.ValueKind==JsonValueKind.Object?JsonValueReader.ReadInt(semantics,"selector",0):0;
+            if(string.IsNullOrWhiteSpace(signature)||string.IsNullOrWhiteSpace(nativeStateKey)||string.IsNullOrWhiteSpace(stateEffect))
+                throw new InvalidOperationException("generated remote-action mutation contract is incomplete");
+            if(stateEffect.Equals("toggle_paired_door_state",StringComparison.Ordinal)
+               &&(string.IsNullOrWhiteSpace(sourceExit)||string.IsNullOrWhiteSpace(reciprocalExit)))
+                throw new InvalidOperationException("generated paired remote-action mutation contract is incomplete");
+            if(selector<0||selector>=WorldgroupRemoteActionDispatchRegistry.ModeClearedMasks.Length)
+                throw new InvalidOperationException("generated remote-action selector is outside the native mode table");
+            _=RuntimeNativeRemoteActionIntent.Parse(signature);
+            if(!_remoteActionMutations.TryAdd(signature,new(signature,sourceExit,reciprocalExit,stateEffect,nativeStateKey,initialNativeState,selector)))
+                throw new InvalidOperationException($"duplicate generated remote-action mutation {signature}");
+            _nativeActionStates.TryAdd(nativeStateKey,initialNativeState);
+        }
     }
 
     public RuntimeExitGateDecision EvaluateExitGate(RuntimeRoom room,string direction,RuntimeExitGateContext context)
@@ -100,6 +195,8 @@ public sealed partial class RuntimeLivingWorldService
             if (gate.DeniedClassId is int deniedClass && context.ClassId == deniedClass) return new(false,false,"class-denied",0,0,0,0,0);
             if (gate.AllowedRaceId is int allowedRace && context.RaceId != allowedRace) return new(false,false,"race-not-allowed",0,0,0,0,0);
             if (gate.DeniedRaceId is int deniedRace && context.RaceId == deniedRace) return new(false,false,"race-denied",0,0,0,0,0);
+            if (gate.MinimumLevel is int minimumLevel && context.Level < minimumLevel) return new(false,false,"level-below-minimum",0,0,0,0,0);
+            if (gate.MaximumLevel is int maximumLevel && maximumLevel > 0 && context.Level > maximumLevel) return new(false,false,"level-above-maximum",0,0,0,0,0);
             if (!string.IsNullOrWhiteSpace(gate.MinimumAlignmentName) && CompareAlignment(context.AlignmentName, gate.MinimumAlignmentName) < 0) return new(false,false,"alignment-below-minimum",0,0,0,0,0);
             if (!string.IsNullOrWhiteSpace(gate.MaximumAlignmentName) && CompareAlignment(context.AlignmentName, gate.MaximumAlignmentName) > 0) return new(false,false,"alignment-above-maximum",0,0,0,0,0);
             if (gate.AbilityId is int abilityId)
@@ -108,10 +205,28 @@ public sealed partial class RuntimeLivingWorldService
                 if (gate.MinimumValue is long minimum && value < minimum) return new(false,false,"ability-below-minimum",0,0,0,0,0);
                 if (gate.MaximumValue is long maximum && value > maximum) return new(false,false,"ability-above-maximum",0,0,0,0,0);
             }
+            var requiredActionsComplete=false;
             if (gate.RequiredActionCount > 0)
             {
-                if (context.CompletedActions.Count < gate.RequiredActionCount) return new(false,false,"required-actions-incomplete",0,0,0,0,0);
-                for (var i=0;i<gate.RequiredActionOrder.Count;i++) if (i>=context.CompletedActions.Count || !gate.RequiredActionOrder[i].Equals(context.CompletedActions[i],StringComparison.OrdinalIgnoreCase)) return new(false,false,"required-action-order",0,0,0,0,0);
+                if (gate.BoundActionIds.Count < gate.RequiredActionCount)
+                    return gate.NativePassiveEffect
+                        ? new(false,true,"native-passive-event-pending",0,0,0,0,0)
+                        : new(false,true,"required-actions-unbound-evidence-only",0,0,0,0,0);
+                var completed = gate.BoundActionIds
+                    .Select(id => _objects.TryGetValue(id, out var state) && state.Activated ? state : null)
+                    .Where(state => state is not null)
+                    .Cast<RuntimeLivingWorldObjectState>()
+                    .ToArray();
+                if (completed.Length < gate.RequiredActionCount)
+                    return new(false,false,"required-actions-incomplete",0,0,0,0,0);
+                if (gate.RequiresSpecificActionOrder)
+                {
+                    var actualOrder = completed.OrderBy(state => state.UpdatedAtUtc).Select(state => state.Id).ToArray();
+                    var requiredOrder = gate.BoundActionIds.Take(gate.RequiredActionCount).ToArray();
+                    if (!actualOrder.Take(requiredOrder.Length).SequenceEqual(requiredOrder, StringComparer.OrdinalIgnoreCase))
+                        return new(false,false,"required-action-order",0,0,0,0,0);
+                }
+                requiredActionsComplete=true;
             }
             if (gate.PicklocksDifficulty is int difficulty && context.PicklocksValue < difficulty)
             {
@@ -125,10 +240,13 @@ public sealed partial class RuntimeLivingWorldService
                 case "door":
                     if(!_objects.TryGetValue(gate.ExitId,out var door))return new(false,true,"door-state-unavailable",0,0,0,0,0);
                     return door.Locked?new(false,false,"door-locked",0,0,0,0,0):!door.Open?new(false,false,"door-closed",0,0,0,0,0):new(true,false,"door-open",0,0,0,0,0);
-                case "hidden": return gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)||context.DiscoveredExitIds.Contains(gate.ExitId)?new(true,false,gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)?"hidden-passable":"hidden-discovered",0,0,0,0,0):new(false,false,"hidden-undiscovered",0,0,0,0,0);
+                case "hidden": return requiredActionsComplete||gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)||context.DiscoveredExitIds.Contains(gate.ExitId)
+                    ? new(true,false,requiredActionsComplete?"hidden-action-open":gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)?"hidden-passable":"hidden-discovered",0,0,0,0,0)
+                    : new(false,false,"hidden-undiscovered",0,0,0,0,0);
                 case "required_item": return !string.IsNullOrWhiteSpace(gate.RequiredItemId)&&context.ItemIds.Contains(gate.RequiredItemId)?new(true,false,"required-item-present",0,0,0,0,0):new(false,false,"required-item-missing",0,0,0,0,0);
                 case "text_command": return gate.Commands.Any(x=>x.Equals(context.EnteredCommand,StringComparison.OrdinalIgnoreCase))?new(true,false,"text-command-matched",0,0,0,0,0):new(false,false,"text-command-required",0,0,0,0,0);
                 case "toll": return context.AvailableGold>=gate.TollAmount?new(true,false,"toll-paid",gate.TollAmount,0,0,0,0):new(false,false,"toll-insufficient",0,0,0,0,0);
+                case "level_range": return new(true,false,"level-range-allowed",0,0,0,0,0);
                 case "damage_trap": return new(true,false,"damage-trap",0,gate.Damage,0,0,0);
                 case "spell_trap": return gate.SpellId>0?new(true,false,"spell-trap",0,0,gate.SpellId,0,0):new(false,true,"spell-trap-evidence-only",0,0,0,0,0);
                 case "cast_transition": return gate.PreSpellId>0||gate.PostSpellId>0?new(true,false,"cast-transition",0,0,0,gate.PreSpellId,gate.PostSpellId):new(false,true,"cast-transition-evidence-only",0,0,0,0,0);
@@ -203,10 +321,21 @@ public sealed partial class RuntimeLivingWorldService
     private void LoadGeneratedGateDefinitions()
     {
         var path=Path.Combine(_projectRoot,_world.Definition.DataRoot,_world.Definition.ExitsFile); if(!File.Exists(path))return;
-        using var document=JsonDocument.Parse(File.ReadAllText(path));
-        var records=document.RootElement.ValueKind==JsonValueKind.Array?document.RootElement:document.RootElement.TryGetProperty("records",out var r)&&r.ValueKind==JsonValueKind.Array?r:default;
-        if(records.ValueKind!=JsonValueKind.Array)return;
-        foreach(var value in records.EnumerateArray())
+        var actionsByExit = new Dictionary<string,List<(int Order,string Id)>>(StringComparer.OrdinalIgnoreCase);
+        var actionsByEdge = new Dictionary<string,List<(int Order,string Id)>>(StringComparer.OrdinalIgnoreCase);
+        var interactionsPath=Path.Combine(_projectRoot,_world.Definition.DataRoot,"room_interactions.json");
+        if(File.Exists(interactionsPath))
+        {
+            foreach(var interaction in RuntimeChunkedClassicCatalog.LoadRecords(interactionsPath))
+            {
+                var actionId=JsonValueReader.ReadString(interaction,"id",string.Empty);
+                if(string.IsNullOrWhiteSpace(actionId))continue;
+                var order=(int)ReadLong(interaction,"action_number");
+                AddActionBinding(actionsByExit,JsonValueReader.ReadString(interaction,"bound_exit_id",string.Empty),order,actionId);
+                AddActionBinding(actionsByEdge,JsonValueReader.ReadString(interaction,"bound_edge_state_id",string.Empty),order,actionId);
+            }
+        }
+        foreach(var value in RuntimeChunkedClassicCatalog.LoadRecords(path))
         {
             var id=JsonValueReader.ReadString(value,"id",string.Empty); if(string.IsNullOrWhiteSpace(id))continue;
             var kind=JsonValueReader.ReadString(value,"gate_kind","open"); var room=ReadRelationship(value,"from_room_id","from_room"); var direction=JsonValueReader.ReadString(value,"direction",string.Empty);
@@ -217,15 +346,39 @@ public sealed partial class RuntimeLivingWorldService
             if(value.TryGetProperty("effects",out var effects)&&effects.ValueKind==JsonValueKind.Object){damage=(int)ReadLong(effects,"damage");spell=(int)ReadLong(effects,"spell_id");pre=(int)ReadLong(effects,"pre_spell_id");post=(int)ReadLong(effects,"post_spell_id");}
             JsonElement edge=default;
             value.TryGetProperty("edge_state_semantics",out edge);
+            var stateIdentity=edge.ValueKind==JsonValueKind.Object ? ReadScalarString(edge,"state_identity") ?? string.Empty : string.Empty;
+            var boundActions=new List<(int Order,string Id)>();
+            if(actionsByExit.TryGetValue(id,out var directActions))boundActions.AddRange(directActions);
+            if(!string.IsNullOrWhiteSpace(stateIdentity)&&actionsByEdge.TryGetValue(stateIdentity,out var edgeActions))boundActions.AddRange(edgeActions);
+            var boundActionIds=boundActions
+                .GroupBy(action=>action.Id,StringComparer.OrdinalIgnoreCase)
+                .Select(group=>group.OrderBy(action=>action.Order).First())
+                .OrderBy(action=>action.Order)
+                .ThenBy(action=>action.Id,StringComparer.OrdinalIgnoreCase)
+                .Select(action=>action.Id)
+                .ToArray();
+            var actionOrder=prerequisites.ValueKind==JsonValueKind.Object ? ReadScalarString(prerequisites,"action_order") ?? string.Empty : string.Empty;
+            JsonElement actionBinding=default;
+            if(edge.ValueKind==JsonValueKind.Object)edge.TryGetProperty("action_binding",out actionBinding);
+            var passiveClassification=actionBinding.ValueKind==JsonValueKind.Object
+                ? ReadScalarString(actionBinding,"classification") ?? string.Empty
+                : string.Empty;
+            var nativePassiveEffect=passiveClassification.Equals("native_or_passive_room_effect",StringComparison.OrdinalIgnoreCase)
+                && actionBinding.ValueKind==JsonValueKind.Object
+                && !ReadBool(actionBinding,"player_command_promoted");
             var gate=new RuntimeExitGateDefinition(id,room,direction,kind,qualifier,item,toll,damage,spell,pre,post,ReadStringArray(value,"commands"),disposition)
             {
                 ReciprocalExitId = edge.ValueKind==JsonValueKind.Object ? ReadScalarString(edge,"reciprocal_exit_id") : null,
-                StateIdentity = edge.ValueKind==JsonValueKind.Object ? ReadScalarString(edge,"state_identity") ?? string.Empty : string.Empty,
+                StateIdentity = stateIdentity,
                 OwnerScope = edge.ValueKind==JsonValueKind.Object ? ReadScalarString(edge,"owner_scope") ?? string.Empty : string.Empty,
                 ReciprocalStateLink = edge.ValueKind==JsonValueKind.Object && ReadBool(edge,"reciprocal_state_link"),
                 SaveWorldStateRisk = edge.ValueKind==JsonValueKind.Object && ReadBool(edge,"save_world_state_risk"),
                 RequiredActionCount = prerequisites.ValueKind==JsonValueKind.Object ? (int)ReadLong(prerequisites,"required_action_count") : 0,
                 RequiredActionOrder = prerequisites.ValueKind==JsonValueKind.Object ? ReadStringArray(prerequisites,"action_order") : Array.Empty<string>(),
+                BoundActionIds = boundActionIds,
+                RequiresSpecificActionOrder = actionOrder.Equals("specific",StringComparison.OrdinalIgnoreCase),
+                NativePassiveEffect = nativePassiveEffect,
+                NativePassiveEffectClassification = passiveClassification,
                 AllowedClassId = ReadNullableInt(prerequisites,"allowed_class_id"), DeniedClassId = ReadNullableInt(prerequisites,"denied_class_id"),
                 AllowedRaceId = ReadNullableInt(prerequisites,"allowed_race_id"), DeniedRaceId = ReadNullableInt(prerequisites,"denied_race_id"),
                 MinimumAlignmentName = ReadScalarString(prerequisites,"minimum_alignment_name") ?? string.Empty,
@@ -233,11 +386,19 @@ public sealed partial class RuntimeLivingWorldService
                 AbilityId = ReadNullableInt(prerequisites,"ability_id"), MinimumValue = ReadNullableLong(prerequisites,"minimum_value"), MaximumValue = ReadNullableLong(prerequisites,"maximum_value"),
                 PicklocksDifficulty = ReadNullableInt(prerequisites,"picklocks_difficulty"), PicklocksOrStrength = ReadNullableInt(prerequisites,"picklocks_or_strength"),
                 AnyPicklocks = ReadBool(prerequisites,"any_picklocks"), AnyPicklocksOrStrength = ReadBool(prerequisites,"any_picklocks_or_strength"), StrengthAlternative = ReadNullableInt(prerequisites,"strength_alternative"),
+                MinimumLevel = ReadNullableInt(prerequisites,"minimum_level"), MaximumLevel = ReadNullableInt(prerequisites,"maximum_level"),
                 TimeMultiplier = ReadDouble(prerequisites,"time_multiplier",1d), AutomaticRouting = edge.ValueKind==JsonValueKind.Object && ReadBool(edge,"automatic_routing"),
                 FallbackBehavior = JsonValueReader.ReadString(value,"fallback_behavior",string.Empty)
             };
             _gates[id]=gate;
         }
+    }
+
+    private static void AddActionBinding(Dictionary<string,List<(int Order,string Id)>> bindings,string key,int order,string id)
+    {
+        if(string.IsNullOrWhiteSpace(key))return;
+        if(!bindings.TryGetValue(key,out var values))bindings[key]=values=[];
+        values.Add((order,id));
     }
 
     private static bool ReadBool(JsonElement element,string name)=>element.ValueKind==JsonValueKind.Object&&element.TryGetProperty(name,out var value)&&value.ValueKind switch{JsonValueKind.True=>true,JsonValueKind.False=>false,JsonValueKind.Number when value.TryGetInt32(out var n)=>n!=0,JsonValueKind.String when bool.TryParse(value.GetString(),out var b)=>b,JsonValueKind.String when int.TryParse(value.GetString(),out var n)=>n!=0,_=>false};
@@ -248,6 +409,6 @@ public sealed partial class RuntimeLivingWorldService
     private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
     private string CompletionPersistencePath=>Path.Combine(_persistenceRoot,WorldId,"living-world-completion.json");
-    private void SaveLivingWorldCompletionLocked(){var path=CompletionPersistencePath;Directory.CreateDirectory(Path.GetDirectoryName(path)!);var snapshot=new RuntimeLivingWorldCompletionSnapshot(WorldId,_eventSequence,_npcAi.Values.ToArray(),_corpses.Values.ToArray(),_recentEvents.ToArray(),DateTimeOffset.UtcNow);var temp=path+".tmp";File.WriteAllText(temp,JsonSerializer.Serialize(snapshot,new JsonSerializerOptions{WriteIndented=true}));File.Move(temp,path,true);}
-    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);}catch(JsonException){}}}
+    private void SaveLivingWorldCompletionLocked(){var path=CompletionPersistencePath;Directory.CreateDirectory(Path.GetDirectoryName(path)!);var snapshot=new RuntimeLivingWorldCompletionSnapshot(WorldId,_eventSequence,_npcAi.Values.ToArray(),_corpses.Values.ToArray(),_recentEvents.ToArray(),new Dictionary<string,int>(_nativeActionStates,StringComparer.OrdinalIgnoreCase),DateTimeOffset.UtcNow);var temp=path+".tmp";File.WriteAllText(temp,JsonSerializer.Serialize(snapshot,new JsonSerializerOptions{WriteIndented=true}));File.Move(temp,path,true);}
+    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);if(x.NativeActionStates is not null)foreach(var state in x.NativeActionStates)if(_nativeActionStates.ContainsKey(state.Key))_nativeActionStates[state.Key]=state.Value;}catch(JsonException){}}}
 }

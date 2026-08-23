@@ -170,6 +170,7 @@ public sealed record RuntimeCharacterItemRequirement(
     int LegacyItemNumber,
     string ItemName,
     int MinimumLevel,
+    int MaximumLevel,
     IReadOnlyList<int> AllowedClasses,
     IReadOnlyList<int> AllowedRaces,
     IReadOnlyDictionary<string, int> MinimumStats,
@@ -209,6 +210,7 @@ public sealed class RuntimeCharacterItemRequirementCatalog
         var classNumber = LegacyNumber(character.ClassId);
         var raceNumber = LegacyNumber(character.RaceId);
         if (character.Level < item.MinimumLevel) return new(false, $"Requires level {item.MinimumLevel}.", item);
+        if (item.MaximumLevel > 0 && character.Level > item.MaximumLevel) return new(false, $"Maximum eligible level is {item.MaximumLevel}.", item);
         if (item.AllowedClasses.Count > 0 && !item.AllowedClasses.Contains(classNumber)) return new(false, "Character class is not permitted by the decoded item class list.", item);
         if (item.AllowedRaces.Count > 0 && !item.AllowedRaces.Contains(raceNumber)) return new(false, "Character race is not permitted by the decoded item race list.", item);
         foreach (var requirement in item.MinimumStats)
@@ -226,10 +228,15 @@ public sealed class RuntimeCharacterItemRequirementCatalog
         var fields = PublicFields(record);
         var abilities = fields.ValueKind == JsonValueKind.Object && fields.TryGetProperty("abilities_named", out var a) && a.ValueKind == JsonValueKind.Array ? a : default;
         var minimumLevel = 0;
+        var maximumLevel = 0;
         if (abilities.ValueKind == JsonValueKind.Array)
             foreach (var ability in abilities.EnumerateArray())
+            {
                 if (ReadInt(ability, "ability_id") == 135 || ReadString(ability, "name").Equals("MinLevel", StringComparison.OrdinalIgnoreCase))
                     int.TryParse(ReadString(ability, "value"), out minimumLevel);
+                if (ReadInt(ability, "ability_id") == 136 || ReadString(ability, "name").Equals("MaxLevel", StringComparison.OrdinalIgnoreCase))
+                    int.TryParse(ReadString(ability, "value"), out maximumLevel);
+            }
 
         var classes = ReadIntArray(fields, "class_restrictions");
         var races = ReadIntArray(fields, "race_restrictions");
@@ -238,7 +245,7 @@ public sealed class RuntimeCharacterItemRequirementCatalog
             foreach (var property in statFields.EnumerateObject()) if (property.Value.TryGetInt32(out var value) && value > 0) stats[property.Name] = value;
         var properties = fields.ValueKind == JsonValueKind.Object && fields.TryGetProperty("properties", out var p) ? p : default;
         var legacy = int.TryParse(ReadString(record, "legacy_id"), out var parsed) ? parsed : ReadInt(fields, "legacy_number");
-        _items[id] = new RuntimeCharacterItemRequirement(id, legacy, ReadString(record, "name"), minimumLevel, classes, races, stats,
+        _items[id] = new RuntimeCharacterItemRequirement(id, legacy, ReadString(record, "name"), minimumLevel, maximumLevel, classes, races, stats,
             ReadInt(properties, "weapon_type"), ReadInt(properties, "armor_type"), "verified", "items.json public_reference_0139.fields");
     }
 

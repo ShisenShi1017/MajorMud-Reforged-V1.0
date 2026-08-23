@@ -28,8 +28,8 @@ public static class RuntimeInteractionNarrativeSmokeReport
         try
         {
             var quests=RuntimeNarrativeCatalog.Load(root,world,"quests");
-            var texts=RuntimeNarrativeCatalog.Load(root,world,"events");
-            if(quests.Count>=2100)checks.Add("quest-catalog");else failures.Add("quest-catalog");
+            var texts=RuntimeNarrativeCatalog.Load(root,world,"scripts");
+            if(quests.Count==83)checks.Add("compact-executable-quest-catalog");else failures.Add("compact-executable-quest-catalog");
             if(quests.ExecutableCount>=57)checks.Add("decoded-executable-quests");else failures.Add($"decoded-executable-quests:{quests.ExecutableCount}");
             if(texts.Count>0)checks.Add("text-catalog");else failures.Add("text-catalog");
 
@@ -140,6 +140,24 @@ public static class RuntimeInteractionNarrativeSmokeReport
                 intentValidator.Validate("teleport", "room.map1.155");
                 intentValidator.Validate("remoteaction", "1423.66.0.3");
                 checks.Add("quest-world-intent-target-validation");
+                try
+                {
+                    intentValidator.Validate("remoteaction", "1423.66.0");
+                    failures.Add("quest-remoteaction-arity-validation");
+                }
+                catch (InvalidOperationException)
+                {
+                    checks.Add("quest-remoteaction-arity-validation");
+                }
+                try
+                {
+                    intentValidator.Validate("remoteaction", "1423.66.0.11");
+                    failures.Add("quest-remoteaction-action-slot-validation");
+                }
+                catch (InvalidOperationException)
+                {
+                    checks.Add("quest-remoteaction-action-slot-validation");
+                }
             }
             catch (Exception ex)
             {

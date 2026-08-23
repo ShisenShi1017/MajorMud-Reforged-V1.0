@@ -12,6 +12,9 @@ public interface IClientAutomationService
     Task LoadAsync();
     Task SaveAsync();
     IReadOnlyList<ClientAutomationCommandRequest> Evaluate(ClientAutomationContext context);
+    IReadOnlyList<ClientAutomationCommandRequest> EvaluateTimedEvents(ClientAutomationContext context, bool connected);
+    bool TryResolveHumanInput(string input, out IReadOnlyList<string> commands);
+    bool CanContinueInputAutomation { get; }
     void SetMasterEnabled(bool enabled);
     void StopAll();
 }
@@ -19,37 +22,49 @@ public interface IClientAutomationService
 public sealed class ClientAutomationService : IClientAutomationService
 {
     private readonly IApplicationSettingsService _settings;
-    private DateTimeOffset _lastCommandAt = DateTimeOffset.MinValue;
+    private readonly Dictionary<string, DateTimeOffset> _lastCommandAtBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly Dictionary<string, DateTimeOffset> _ruleLastRun = new(StringComparer.OrdinalIgnoreCase);
 
     public ClientAutomationProfile Profile { get; private set; } = CreateDefaultProfile();
     public ClientAutomationPolicy Policy { get; } = new();
     public event EventHandler<ClientAutomationCommandRequest>? CommandRequested;
+    public bool CanContinueInputAutomation => ClientMegaMudAutomationGate.IsEnabled
+        && Profile.Enabled
+        && !Profile.PauseAll
+        && !Profile.Capabilities.EmergencyStop
+        && Policy.AutomationAllowed;
 
     public ClientAutomationService(IApplicationSettingsService settings) => _settings = settings;
 
     public async Task LoadAsync()
     {
         var path = GetPath();
-        if (!File.Exists(path)) return;
-        try
+        if (File.Exists(path))
         {
-            var loaded = JsonSerializer.Deserialize<ClientAutomationProfile>(await File.ReadAllTextAsync(path), _json);
-            if (loaded is not null)
+            try
             {
-                Profile = loaded;
-                EnsureProfileDefaults(Profile);
+                var loaded = JsonSerializer.Deserialize<ClientAutomationProfile>(await File.ReadAllTextAsync(path), _json);
+                if (loaded is not null)
+                {
+                    Profile = loaded;
+                    EnsureProfileDefaults(Profile);
+                }
+            }
+            catch
+            {
+                Profile = CreateDefaultProfile();
             }
         }
-        catch
-        {
-            Profile = CreateDefaultProfile();
-        }
+
+        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
+        _ruleLastRun.Clear();
+        _lastCommandAtBySession.Clear();
     }
 
     public async Task SaveAsync()
     {
+        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
         SynchronizeRulesFromOptions(Profile);
         var path = GetPath();
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -58,43 +73,119 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     public IReadOnlyList<ClientAutomationCommandRequest> Evaluate(ClientAutomationContext context)
     {
-        if (!Profile.Enabled || Profile.PauseAll || !Policy.AutomationAllowed) return [];
+        if (!ClientMegaMudAutomationGate.IsEnabled) return [];
+        if (!Profile.Enabled || Profile.PauseAll || Profile.Capabilities.EmergencyStop || !Policy.AutomationAllowed) return [];
         SynchronizeRulesFromOptions(Profile);
         var delay = Math.Max(Profile.MinimumCommandDelayMs, Policy.MinimumCommandDelayMs);
-        if ((context.Timestamp - _lastCommandAt).TotalMilliseconds < delay) return [];
+        if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
+            && (context.Timestamp - lastCommandAt).TotalMilliseconds < delay) return [];
 
         var ruleMatches = Profile.Rules
-            .Where(r => r.Enabled && IsPermitted(r) && ContextAllowed(r, context) && CooldownReady(r, context.Timestamp) && Matches(r, context) && !string.IsNullOrWhiteSpace(r.Command))
+            .Where(r => Profile.Capabilities.TextTriggersEnabled && r.Enabled && IsPermitted(r) && ContextAllowed(r, context) && CooldownReady(r, context.Timestamp, context.SessionId) && Matches(r, context) && !string.IsNullOrWhiteSpace(r.Command))
             .OrderBy(r => r.Priority)
-            .Select(r => new ClientAutomationCommandRequest(r.Id, r.Name, r.Command.Trim(), r.Area, context.Timestamp));
+            .Select(r => new ClientAutomationCommandRequest(r.Id, r.Name, r.Command.Trim(), r.Area, context.Timestamp, context.SessionId));
 
-        var scheduledMatches = Profile.Options.Events.ScheduledEvents
-            .Where(e => e.Enabled && !string.IsNullOrWhiteSpace(e.Command))
-            .Where(e => !e.OnlyOutOfCombat || !context.InCombat)
-            .Where(e => !_ruleLastRun.TryGetValue(e.Id, out var last) || (context.Timestamp - last).TotalMinutes >= Math.Max(1, e.IntervalMinutes))
-            .Select(e => new ClientAutomationCommandRequest(e.Id, e.Name, e.Command.Trim(), AutomationArea.Events, context.Timestamp));
+        var customTextMatches = Profile.Capabilities.TextTriggers
+            .Where(trigger => Profile.Capabilities.TextTriggersEnabled
+                && !string.IsNullOrWhiteSpace(trigger.MatchText)
+                && !string.IsNullOrWhiteSpace(trigger.Command)
+                && context.LastLine.Contains(trigger.MatchText.Trim(), StringComparison.OrdinalIgnoreCase)
+                && (!_ruleLastRun.TryGetValue(RunKey(context.SessionId, trigger.Id), out var last)
+                    || (context.Timestamp - last).TotalSeconds >= Math.Max(0, trigger.CooldownSeconds)))
+            .Select(trigger => new ClientAutomationCommandRequest(
+                trigger.Id,
+                $"Text trigger: {trigger.MatchText.Trim()}",
+                trigger.Command.Trim(),
+                AutomationArea.Utility,
+                context.Timestamp,
+                context.SessionId));
 
-        var matches = ruleMatches.Concat(scheduledMatches).Take(1).ToArray();
+        var matches = customTextMatches.Concat(ruleMatches).Take(1).ToArray();
 
         foreach (var request in matches)
         {
-            _lastCommandAt = context.Timestamp;
-            _ruleLastRun[request.RuleId] = context.Timestamp;
+            _lastCommandAtBySession[context.SessionId] = context.Timestamp;
+            _ruleLastRun[RunKey(context.SessionId, request.RuleId)] = context.Timestamp;
             CommandRequested?.Invoke(this, request);
         }
         return matches;
     }
 
+    public IReadOnlyList<ClientAutomationCommandRequest> EvaluateTimedEvents(ClientAutomationContext context, bool connected)
+    {
+        if (!CanContinueInputAutomation || !Profile.Capabilities.TimedEventsEnabled || !connected) return [];
+        if (Profile.Options.Events.PauseEventsInCombat && context.InCombat) return [];
+        var delay = Math.Max(Profile.MinimumCommandDelayMs, Policy.MinimumCommandDelayMs);
+        if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
+            && (context.Timestamp - lastCommandAt).TotalMilliseconds < delay) return [];
+
+        foreach (var scheduledEvent in Profile.Options.Events.ScheduledEvents.Where(item => item.Enabled && !string.IsNullOrWhiteSpace(item.Command)))
+        {
+            if (scheduledEvent.OnlyOutOfCombat && context.InCombat) continue;
+            var runKey = RunKey(context.SessionId, scheduledEvent.Id);
+            if (!_ruleLastRun.TryGetValue(runKey, out var lastRun))
+            {
+                _ruleLastRun[runKey] = context.Timestamp;
+                continue;
+            }
+            if ((context.Timestamp - lastRun).TotalMinutes < Math.Max(1, scheduledEvent.IntervalMinutes)) continue;
+            var request = new ClientAutomationCommandRequest(
+                scheduledEvent.Id, scheduledEvent.Name, scheduledEvent.Command.Trim(), AutomationArea.Events,
+                context.Timestamp, context.SessionId);
+            _lastCommandAtBySession[context.SessionId] = context.Timestamp;
+            _ruleLastRun[runKey] = context.Timestamp;
+            CommandRequested?.Invoke(this, request);
+            return [request];
+        }
+        return [];
+    }
+
+    public bool TryResolveHumanInput(string input, out IReadOnlyList<string> commands)
+    {
+        commands = [];
+        var text = input.Trim();
+        if (!CanContinueInputAutomation || text.Length == 0) return false;
+
+        const string macroPrefix = "/macro ";
+        if (Profile.Capabilities.MacrosEnabled && text.StartsWith(macroPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            var name = text[macroPrefix.Length..].Trim();
+            var macro = Profile.Capabilities.Macros.FirstOrDefault(candidate => candidate.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (macro is null) return false;
+            commands = macro.Commands.Select(command => command.Trim()).Where(command => command.Length > 0).ToArray();
+            return commands.Count > 0;
+        }
+
+        if (!Profile.Capabilities.AliasesEnabled) return false;
+        var separator = text.IndexOf(' ');
+        var namePart = separator < 0 ? text : text[..separator];
+        var arguments = separator < 0 ? string.Empty : text[(separator + 1)..].Trim();
+        var alias = Profile.Capabilities.Aliases.FirstOrDefault(candidate => candidate.Name.Equals(namePart, StringComparison.OrdinalIgnoreCase));
+        if (alias is null || string.IsNullOrWhiteSpace(alias.Command)) return false;
+        var expanded = alias.Command.Trim();
+        if (arguments.Length > 0) expanded = $"{expanded} {arguments}";
+        commands = [expanded];
+        return true;
+    }
+
     public void SetMasterEnabled(bool enabled)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled)
+        {
+            ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
+            return;
+        }
+
         Profile.Enabled = enabled;
-        if (enabled) Profile.PauseAll = false;
+        if (enabled && !Profile.Capabilities.EmergencyStop) Profile.PauseAll = false;
     }
 
     public void StopAll()
     {
-        Profile.PauseAll = true;
-        Profile.Enabled = false;
+        Profile.Capabilities.EmergencyStop = true;
+        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
+        _ruleLastRun.Clear();
+        _lastCommandAtBySession.Clear();
     }
 
     private bool IsPermitted(ClientAutomationRule rule) => rule.Area switch
@@ -106,8 +197,10 @@ public sealed class ClientAutomationService : IClientAutomationService
         _ => true
     };
 
-    private bool CooldownReady(ClientAutomationRule rule, DateTimeOffset now)
-        => !_ruleLastRun.TryGetValue(rule.Id, out var last) || (now - last).TotalSeconds >= Math.Max(0, rule.CooldownSeconds);
+    private bool CooldownReady(ClientAutomationRule rule, DateTimeOffset now, string sessionId)
+        => !_ruleLastRun.TryGetValue(RunKey(sessionId, rule.Id), out var last) || (now - last).TotalSeconds >= Math.Max(0, rule.CooldownSeconds);
+
+    private static string RunKey(string sessionId, string ruleId) => $"{sessionId}\u001f{ruleId}";
 
     private static bool ContextAllowed(ClientAutomationRule rule, ClientAutomationContext context)
         => (!rule.OnlyOutOfCombat || !context.InCombat)
@@ -305,6 +398,12 @@ public sealed class ClientAutomationService : IClientAutomationService
     private static void EnsureProfileDefaults(ClientAutomationProfile profile)
     {
         profile.Options ??= new ClientAutomationOptions();
+        profile.Capabilities ??= new ClientAutomationCapabilities();
+        profile.Capabilities.Aliases ??= [];
+        profile.Capabilities.Macros ??= [];
+        profile.Capabilities.TextTriggers ??= [];
+        foreach (var macro in profile.Capabilities.Macros)
+            macro.Commands ??= [];
         profile.Options.Health ??= new HealthAutomationOptions();
         profile.Options.Spells ??= new SpellAutomationOptions();
         profile.Options.Combat ??= new CombatAutomationOptions();

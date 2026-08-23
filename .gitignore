@@ -88,3 +88,10 @@ Thumbs.db
 !/Data/README.md
 !/Librarium/RuntimeDefinitions/
 !/Librarium/WorldOverrides/
+
+# Local Reforged AI models and generated memory
+/AI/Models/*
+!/AI/Models/.gitkeep
+!/AI/Models/README.txt
+/AI/Memory/*
+!/AI/Memory/.gitkeep

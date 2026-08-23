@@ -140,10 +140,9 @@ public static class RuntimeBundleEExhaustionAudit
         }
         Check(duplicatePaths.Count == 0, "no_duplicate_authoritative_creature_source_paths");
 
-        var generatedCatalog = Path.Combine(projectRoot, "Generated", "NPCReconstruction", "npc_ai_runtime_catalog.json");
-        var relationshipIndex = Path.Combine(projectRoot, "Generated", "NPCReconstruction", "npc_relationship_index.json");
-        Check(File.Exists(generatedCatalog), "generated_npc_ai_runtime_catalog_present");
-        Check(File.Exists(relationshipIndex), "generated_npc_relationship_index_present");
+        Check(world.NpcAiCatalog.Passed, "spawn_derived_npc_ai_runtime_catalog_passed");
+        Check(world.NpcAiCatalog.RelationshipCount == world.SpawnCount, "spawn_derived_npc_relationship_index_complete");
+        Check(world.NpcAiCatalog.Diagnostics.All(diagnostic => !diagnostic.Fatal), "spawn_derived_npc_ai_runtime_catalog_has_no_fatal_diagnostics");
 
         return new(
             failures.Count == 0,

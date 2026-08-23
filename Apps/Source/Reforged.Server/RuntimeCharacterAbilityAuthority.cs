@@ -121,8 +121,33 @@ public sealed class RuntimeCharacterQuestAbilityCatalog
     public const int SpellcastingAbilityId = 70;
     public const int BackstabMinimumAbilityId = 117;
     public const int BackstabMaximumAbilityId = 118;
+    public const int IceSorceressQuestAbilityId = 125;
+    public const int GoodQuestAbilityId = 126;
+    public const int NeutralQuestAbilityId = 127;
+    public const int EvilQuestAbilityId = 128;
+    public const int DarkDruidQuestAbilityId = 129;
+    public const int BloodChampionQuestAbilityId = 130;
+    public const int SheDragonQuestAbilityId = 131;
+    public const int WereratQuestAbilityId = 132;
+    public const int PhoenixQuestAbilityId = 133;
+    public const int DaoLordQuestAbilityId = 134;
     public const int PerfectStealthAbilityId = 186;
     public const int MeditateAbilityId = 187;
+
+    public static IReadOnlyDictionary<int, string> QuestProgressionAbilities { get; } =
+        new Dictionary<int, string>
+        {
+            [IceSorceressQuestAbilityId] = "IceSorcQuest",
+            [GoodQuestAbilityId] = "GoodQuest",
+            [NeutralQuestAbilityId] = "NeutralQuest",
+            [EvilQuestAbilityId] = "EvilQuest",
+            [DarkDruidQuestAbilityId] = "DarkDruidQuest",
+            [BloodChampionQuestAbilityId] = "BloodChampQuest",
+            [SheDragonQuestAbilityId] = "SheDragonQuest",
+            [WereratQuestAbilityId] = "WereratQuest",
+            [PhoenixQuestAbilityId] = "PhoenixQuest",
+            [DaoLordQuestAbilityId] = "DaoLordQuest"
+        };
 
     private static readonly HashSet<int> ExecutableQuestCapabilityIds = new()
     {
@@ -163,6 +188,19 @@ public sealed class RuntimeCharacterQuestAbilityCatalog
 
     public bool HasUnlockedCapability(RuntimeCharacterRecord character, int abilityId) =>
         RuntimeCharacterAbilityValues.Read(RuntimeCharacterAbilityValues.Restore(character.Conditions), abilityId) > 0;
+
+    public bool CanUseCapability(
+        RuntimeCharacterRecord character,
+        int abilityId,
+        RuntimeCharacterWorldRewardCatalog gates)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        ArgumentNullException.ThrowIfNull(gates);
+        return HasUnlockedCapability(character, abilityId)
+            && gates.MeetsClassAbilityGate(abilityId, character.ClassName, character.Level);
+    }
+
+    public static bool IsQuestProgressionAbility(int abilityId) => QuestProgressionAbilities.ContainsKey(abilityId);
 
     public bool TryGetAbilityName(int abilityId, out string abilityName) =>
         _abilityNames.TryGetValue(abilityId, out abilityName!);

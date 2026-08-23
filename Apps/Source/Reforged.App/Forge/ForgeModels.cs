@@ -8,9 +8,11 @@ public sealed class ForgeConfiguration
     public string RepositoryPath { get; set; } = string.Empty;
     public ForgeInternetMode InternetMode { get; set; } = ForgeInternetMode.Offline;
     public ForgePermissionMode PermissionMode { get; set; } = ForgePermissionMode.ApplyWithApproval;
-    public string ProviderName { get; set; } = "LM Studio (Local)";
-    public string ApiEndpoint { get; set; } = "http://127.0.0.1:1234/v1/chat/completions";
-    public string ModelsEndpoint { get; set; } = "http://127.0.0.1:1234/v1/models";
+    public string ProviderName { get; set; } = "Reforged Direct GGUF";
+    public Reforged.App.Brains.BorinBrainMode BrainMode { get; set; } = Reforged.App.Brains.BorinBrainMode.Hybrid;
+    public bool AutomaticallyEscalateDifficultTasks { get; set; } = true;
+    public string ApiEndpoint { get; set; } = string.Empty;
+    public string ModelsEndpoint { get; set; } = string.Empty;
     public string ModelName { get; set; } = string.Empty;
     public bool RequireApiKey { get; set; } = false;
     public string ApiKeyEnvironmentVariable { get; set; } = "REFORGED_FORGE_API_KEY";
@@ -20,10 +22,10 @@ public sealed class ForgeConfiguration
     public bool AllowWorkspaceEdits { get; set; } = true;
     public bool AllowLocalProgramLaunch { get; set; } = true;
     public bool RequireApprovalBeforeMainApply { get; set; } = true;
-    public bool UseMasterBrainForGeneralConversation { get; set; } = false;
+    public bool UseMasterBrainForGeneralConversation { get; set; } = true;
     public int LocalModelMaxContextCharacters { get; set; } = 14000;
     public string PortraitPath { get; set; } = "pack://application:,,,/Assets/Borin/BorinIronbeard.png";
-    public bool AutoReconnectMasterBrain { get; set; } = true;
+    public bool AutoReconnectMasterBrain { get; set; } = false;
     public int AutoReconnectSeconds { get; set; } = 30;
     public int MasterBrainMaxOutputTokens { get; set; } = 2048;
     public bool EnableOfflineStudyMode { get; set; } = true;

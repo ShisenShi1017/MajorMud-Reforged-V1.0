@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using Microsoft.Win32;
 using Reforged.App.Commands;
 using Reforged.App.Engineering;
+using Reforged.App.Forge;
 using Reforged.App.Guardians;
 
 namespace Reforged.App.ViewModels;
@@ -123,19 +124,33 @@ public sealed class GuardianHallViewModel : ViewModelBase
     public ICommand RunHardeningChecksCommand { get; }
     public ICommand StartEngineeringCommand { get; }
     public ICommand StopEngineeringCommand { get; }
+    public ICommand EmergencyStopEngineeringCommand { get; }
     public ICommand QueueEngineeringPhasesCommand { get; }
     public ICommand RunEngineeringStepCommand { get; }
     public ICommand SaveEngineeringCommand { get; }
+    public ICommand QueueRuntimeDisconnectObjectiveCommand { get; }
 
-    public GuardianHallViewModel(IGuardianAssignmentStore store, IGuardianBrainRouter router, Reforged.App.Services.IClientSessionService? clientSessions = null)
+    public GuardianHallViewModel(
+        IGuardianAssignmentStore store,
+        IGuardianBrainRouter router,
+        Reforged.App.Services.IClientSessionService? clientSessions = null,
+        IForgeStateStore? forgeStore = null,
+        IForgeRepositoryService? forgeRepository = null,
+        IForgeBrain? forgeBrain = null,
+        IForgeDeveloperTools? forgeTools = null)
     {
         _store = store;
         _router = router;
         _archivistService = new ArchivistService(store.RootDirectory);
         _hardeningService = new GuardianHallHardeningService(store);
-        var repositoryRoot = Directory.GetParent(store.RootDirectory)?.FullName ?? store.RootDirectory;
+        var repositoryRoot = forgeRepository?.DiscoverRepositoryRoot()
+            ?? Directory.GetParent(store.RootDirectory)?.FullName
+            ?? store.RootDirectory;
         _engineeringPersistence = new EngineeringPersistence(store.RootDirectory);
-        _engineeringOrchestrator = new EngineeringOrchestrator(repositoryRoot, _engineeringPersistence);
+        var repairEngine = forgeStore is not null && forgeRepository is not null && forgeBrain is not null && forgeTools is not null
+            ? new BorinAutonomousRepairEngine(forgeStore, forgeRepository, forgeBrain, forgeTools)
+            : null;
+        _engineeringOrchestrator = new EngineeringOrchestrator(repositoryRoot, _engineeringPersistence, repairEngine);
         _realmKeeperTelemetry = new RealmKeeperTelemetryService(repositoryRoot);
         _wandererTelemetry = new WandererTelemetryService(repositoryRoot, clientSessions);
         _analystTelemetry = new AnalystTelemetryService(repositoryRoot);
@@ -191,9 +206,11 @@ public sealed class GuardianHallViewModel : ViewModelBase
         RunHardeningChecksCommand = new AsyncRelayCommand(RunHardeningChecksAsync);
         StartEngineeringCommand = new AsyncRelayCommand(StartEngineeringAsync);
         StopEngineeringCommand = new AsyncRelayCommand(StopEngineeringAsync);
+        EmergencyStopEngineeringCommand = new AsyncRelayCommand(EmergencyStopEngineeringAsync);
         QueueEngineeringPhasesCommand = new AsyncRelayCommand(QueueEngineeringPhasesAsync);
         RunEngineeringStepCommand = new AsyncRelayCommand(RunEngineeringStepAsync);
         SaveEngineeringCommand = new AsyncRelayCommand(SaveEngineeringAsync);
+        QueueRuntimeDisconnectObjectiveCommand = new AsyncRelayCommand(QueueRuntimeDisconnectObjectiveAsync);
     }
 
     public async Task InitializeAsync()
@@ -204,9 +221,7 @@ public sealed class GuardianHallViewModel : ViewModelBase
         Engineering = await _engineeringPersistence.LoadAsync();
         Engineering.Status.Running = false;
         Engineering.Status.CurrentTaskId = "";
-        Engineering.Status.Summary = Engineering.Configuration.AutonomousEngineeringEnabled
-            ? "Engineering stopped after application start; press Start Working to resume"
-            : "Engineering ready; autonomous engineering is off";
+        Engineering.Status.Summary = "Engineering stopped after application start; configure Borin capabilities and press Start Working";
         if (state.Guardians.Count == 0) state.Guardians = GuardianCatalog.CreateDefaults();
         foreach (var profile in state.Guardians) Guardians.Add(profile);
         RealmKeeper = state.RealmKeeper ?? new(); Wanderer = state.Wanderer ?? new(); Analyst = state.Analyst ?? new(); Worldsmith = state.Worldsmith ?? new(); Archivist = state.Archivist ?? new(); Orchestration = state.Orchestration ?? new(); Diagnostics = state.Diagnostics ?? new();
@@ -241,6 +256,13 @@ public sealed class GuardianHallViewModel : ViewModelBase
         HallStatus = Engineering.Status.Summary;
     }
 
+    private async Task EmergencyStopEngineeringAsync()
+    {
+        await _engineeringOrchestrator.EmergencyStopAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = Engineering.Status.Summary;
+    }
+
     private async Task QueueEngineeringPhasesAsync()
     {
         await _engineeringOrchestrator.QueueAllPhasesAsync(Engineering);
@@ -259,6 +281,13 @@ public sealed class GuardianHallViewModel : ViewModelBase
     {
         await _engineeringPersistence.SaveAsync(Engineering);
         HallStatus = "Engineering configuration and memory saved";
+    }
+
+    private async Task QueueRuntimeDisconnectObjectiveAsync()
+    {
+        await _engineeringOrchestrator.QueueRuntimeDisconnectObjectiveAsync(Engineering);
+        Raise(nameof(Engineering));
+        HallStatus = "Borin assigned: find and fix runtime disconnects";
     }
 
     public void QueueDroppedFiles(IEnumerable<string> paths)

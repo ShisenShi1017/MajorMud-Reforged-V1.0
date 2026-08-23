@@ -291,6 +291,8 @@ public static class ClassicRuntimeAudit
     private static int CountGeneratedGroundObjects(string projectRoot, string worldId)
     {
         var dataRoot = ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot;
+        var placements=Path.Combine(dataRoot,"room_item_placements.json");
+        if(File.Exists(placements))return ReadRecords(placements).Count;
         return ReadRecords(Path.Combine(dataRoot, "items.json")).Count(record =>
             HasAnyProperty(record, "room_id", "room_ref", "room_number", "location_room", "spawn_room"));
     }

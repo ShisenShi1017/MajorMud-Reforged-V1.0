@@ -52,6 +52,8 @@ internal static class RuntimeItemProjectionWriter
 
             var itemType = ReadString(classification, "type") ?? "misc";
             var wornOn = ReadInt(equipmentData, "worn_on");
+            var weaponType = ReadWeaponType(sourceRecord);
+            if (wornOn == 0 && itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)) wornOn = 12;
             var slot = Slots.TryGetValue(wornOn, out var mappedSlot) ? mappedSlot : "UNKNOWN";
             if (slotOverrides.TryGetValue(id, out var overrideSlot))
             {
@@ -67,6 +69,8 @@ internal static class RuntimeItemProjectionWriter
             projected["default_charges"] = ReadInt(sourceRecord, "charges");
             projected["authority"] = "Librarium";
             projected["runtime_projection"] = "item_definition_v1";
+            if (projected["economy"] is JsonObject economy)
+                economy["cost_type"] = ReadPublicCostType(sourceRecord);
 
             if (slotOverrides.ContainsKey(id))
             {
@@ -83,6 +87,11 @@ internal static class RuntimeItemProjectionWriter
                 projected["use_effect"] = new JsonObject { ["spell_ref"] = spellRef };
             }
 
+            projected.Remove("equipment");
+            projected.Remove("equipment_projection");
+            projected.Remove("classic_bug_fixes_0135");
+            LibrariumDataWriter.StripNonRuntimeMetadata(projected, "items");
+
             items.Add(projected);
 
             if (wornOn == 0) continue;
@@ -90,11 +99,11 @@ internal static class RuntimeItemProjectionWriter
             {
                 ["item_id"] = id,
                 ["slot"] = slot,
-                ["worn_on"] = wornOn,
-                ["two_handed"] = ReadBool(equipmentData, "two_handed"),
+                ["two_handed"] = ReadBool(equipmentData, "two_handed") || itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase) && weaponType is 1 or 3,
                 ["class_restricted"] = ReadBool(equipmentData, "class_restricted"),
                 ["race_restricted"] = ReadBool(equipmentData, "race_restricted"),
-                ["minimum_level"] = ReadInt(equipmentData, "level_requirement"),
+                ["minimum_level"] = Math.Max(ReadInt(equipmentData, "level_requirement"), ReadAbilityValue(sourceRecord, 135)),
+                ["maximum_level"] = ReadAbilityValue(sourceRecord, 136),
                 ["minimum_strength"] = ReadInt(equipmentData, "str_requirement"),
                 ["alignment"] = JsonValue.Create(ReadString(equipmentData, "alignment")),
                 ["gender"] = JsonValue.Create(ReadString(equipmentData, "gender")),
@@ -150,6 +159,34 @@ internal static class RuntimeItemProjectionWriter
             }
         }
         return result;
+    }
+
+    private static int ReadWeaponType(JsonObject sourceRecord)
+    {
+        if (sourceRecord["public_reference_0139"] is not JsonObject reference ||
+            reference["fields"] is not JsonObject fields ||
+            fields["properties"] is not JsonObject properties) return 0;
+        return ReadInt(properties, "weapon_type");
+    }
+
+    private static int ReadPublicCostType(JsonObject sourceRecord)
+    {
+        if (sourceRecord["public_reference_0139"] is not JsonObject reference ||
+            reference["fields"] is not JsonObject fields) return 0;
+        return ReadInt(fields, "cost_type");
+    }
+
+    private static int ReadAbilityValue(JsonObject sourceRecord, int abilityId)
+    {
+        if (sourceRecord["public_reference_0139"] is not JsonObject reference ||
+            reference["fields"] is not JsonObject fields ||
+            fields["abilities_named"] is not JsonArray abilities) return 0;
+        foreach (var node in abilities)
+        {
+            if (node is not JsonObject ability || ReadInt(ability, "ability_id") != abilityId) continue;
+            return ReadInt(ability, "value");
+        }
+        return 0;
     }
 
     private static Dictionary<string, string> ReadUseEffects(LibrariumFamily? family)

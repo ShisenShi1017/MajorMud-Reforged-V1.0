@@ -4,7 +4,7 @@ public interface IWorkspace { string Id { get; } string Title { get; } object Vi
 public interface IWorkspaceManager { IReadOnlyCollection<IWorkspace> Workspaces { get; } IWorkspace? ActiveWorkspace { get; } event EventHandler? ActiveWorkspaceChanged; void Register(IWorkspace workspace); Task ActivateAsync(string id, CancellationToken token=default); Task CloseAsync(string id, CancellationToken token=default); }
 public interface IApplicationSettingsService { ApplicationSettings Current { get; } Task LoadAsync(); Task SaveAsync(); string RootPath { get; } }
 public interface ILayoutPersistenceService { Task<LayoutState> LoadAsync(); Task SaveAsync(LayoutState state); }
-public interface IReforgedHostController { HostControllerState State { get; } string StatusMessage { get; } int ConnectedSessionCount { get; } event EventHandler? StateChanged; Task StartAsync(HostLaunchOptions options, CancellationToken cancellationToken); Task StopAsync(CancellationToken cancellationToken); Task RestartAsync(HostLaunchOptions options, CancellationToken cancellationToken); }
+public interface IReforgedHostController { HostControllerState State { get; } string StatusMessage { get; } int ConnectedSessionCount { get; } IReadOnlyList<HostSessionSnapshot> ActiveSessions { get; } event EventHandler? StateChanged; Task StartAsync(HostLaunchOptions options, CancellationToken cancellationToken); Task StopAsync(CancellationToken cancellationToken); Task RestartAsync(HostLaunchOptions options, CancellationToken cancellationToken); }
 public interface IHostCleanupScheduler : IAsyncDisposable
 {
     HostCleanupSchedule Schedule { get; }

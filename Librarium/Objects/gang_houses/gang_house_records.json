@@ -9,6 +9,9 @@
                         "color":  "red",
                         "name":  "Red Gang House",
                         "deed_item_id":  "item.1008",
+                        "activation_textblock_id":  9000,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.844", "item.1018", "item.843", "item.2021"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_red.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -48,6 +51,9 @@
                         "color":  "orange",
                         "name":  "Orange Gang House",
                         "deed_item_id":  "item.1009",
+                        "activation_textblock_id":  9001,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1020", "item.1021", "item.1022", "item.2022"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_orange.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -87,6 +93,9 @@
                         "color":  "yellow",
                         "name":  "Yellow Gang House",
                         "deed_item_id":  "item.1010",
+                        "activation_textblock_id":  9002,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1024", "item.1025", "item.1026", "item.2023"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_yellow.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -126,6 +135,9 @@
                         "color":  "green",
                         "name":  "Green Gang House",
                         "deed_item_id":  "item.1011",
+                        "activation_textblock_id":  9003,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1028", "item.1029", "item.1030", "item.2024"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_green.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -165,6 +177,9 @@
                         "color":  "blue",
                         "name":  "Blue Gang House",
                         "deed_item_id":  "item.1012",
+                        "activation_textblock_id":  9004,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1032", "item.1033", "item.1034", "item.2025"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_blue.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -204,6 +219,9 @@
                         "color":  "violet",
                         "name":  "Violet Gang House",
                         "deed_item_id":  "item.1013",
+                        "activation_textblock_id":  9005,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1036", "item.1037", "item.1038", "item.2026"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_violet.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -243,6 +261,9 @@
                         "color":  "black",
                         "name":  "Black Gang House",
                         "deed_item_id":  "item.1014",
+                        "activation_textblock_id":  9006,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1040", "item.1041", "item.1042", "item.2027"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_black.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -282,6 +303,9 @@
                         "color":  "silver",
                         "name":  "Silver Gang House",
                         "deed_item_id":  "item.1015",
+                        "activation_textblock_id":  9007,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1044", "item.1045", "item.1046", "item.2028"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_silver.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -321,6 +345,9 @@
                         "color":  "gold",
                         "name":  "Gold Gang House",
                         "deed_item_id":  "item.1016",
+                        "activation_textblock_id":  9008,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1048", "item.1049", "item.1050", "item.2029"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_gold.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [
@@ -360,6 +387,9 @@
                         "color":  "white",
                         "name":  "White Gang House",
                         "deed_item_id":  "item.1017",
+                        "activation_textblock_id":  9009,
+                        "activation_message_id":  2629,
+                        "activation_grant_item_ids":  ["item.1052", "item.1053", "item.1054", "item.2030"],
                         "map_reference":  "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_white.html",
                         "source_classification":  "wcc_shop_api_reference_backed_service_locations",
                         "locations":  [

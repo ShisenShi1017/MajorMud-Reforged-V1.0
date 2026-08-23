@@ -11,8 +11,8 @@ public static class WorldgroupSpecialCommandKeywordRegistry
     public const uint RoomTextExecutor = 0x0043BE15;
     public const uint RemoteActionExecutor = 0x0046C573;
     public const int RemoteActionArgumentCount = 4;
-    public const int RemoteActionMinimumMode = 0;
-    public const int RemoteActionMaximumMode = 10;
+    public const int RemoteActionMinimumActionSlot = 0;
+    public const int RemoteActionMaximumActionSlot = 10;
     public const int PlayerRoomXOffset = 0xC4;
     public const int PlayerRoomYOffset = 0xC8;
     public const int ActionTypeArrayOffset = 0x360;

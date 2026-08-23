@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "purpose": "Generic Classic parity trace order; it is not proof that any specific stage is connected.",
+  "stages": [
+    { "order": 1, "name": "Decoded source", "typicalRoots": ["SourceData", "DataDecodeCheckpoints", "Librarium"], "question": "What raw record/field and provenance prove the behavior?" },
+    { "order": 2, "name": "Librarium identity", "typicalRoots": ["Librarium"], "question": "What canonical identity and normalized semantics were produced?" },
+    { "order": 3, "name": "Generated Classic data", "typicalRoots": ["Data/Classic"], "question": "What generated artifact carries the identity into runtime input?" },
+    { "order": 4, "name": "Runtime catalog/loader", "typicalRoots": ["Core/Source", "Apps/Source", "Runtime"], "question": "Where is the generated data loaded and rejected if invalid?" },
+    { "order": 5, "name": "Live runtime consumer", "typicalRoots": ["Apps/Source/Reforged.Server.Runtime", "Core/Source", "Runtime"], "question": "What live command, service, tick, combat, room, NPC, or economy path consumes it?" },
+    { "order": 6, "name": "Persistence/reset/cleanup", "typicalRoots": ["Apps/Source", "Core/Source", "Runtime", "Saves"], "question": "How does the behavior survive or respond to save, reset, cleanup, reconnect, and restart?" },
+    { "order": 7, "name": "Parity validation", "typicalRoots": ["Tests", "Tools", "Reports", "Evidence"], "question": "What test or live evidence proves the expected Classic result?" }
+  ],
+  "rule": "A match at one stage never proves another stage. Missing stages remain disconnected until evidence closes them."
+}

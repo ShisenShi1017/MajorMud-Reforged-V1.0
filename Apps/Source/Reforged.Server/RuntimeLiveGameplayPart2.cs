@@ -112,6 +112,20 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             case "get":
             {
+                var livingGround=Living(session).GroundItems(session.CurrentRoom.Id)
+                    .Where(item=>RuntimeBundleDSearchRuntime.CanCharacterSeeGroundItem(actor.Id,item)).ToArray();
+                if(livingGround.Length>0)
+                {
+                    var livingItem=Resolve(livingGround,catalog,command.ArgumentText);
+                    var nativeContestItem = livingItem.Metadata?.TryGetValue("native_contest_item", out var contestValue) == true
+                        && bool.TryParse(contestValue, out var isContestItem) && isContestItem;
+                    if(!catalog.Require(livingItem.CanonicalItemId).Gettable && !nativeContestItem)
+                        throw new InvalidOperationException($"{catalog.Require(livingItem.CanonicalItemId).Name} cannot be taken.");
+                    var movedLiving=Living(session).TakeGroundItem(livingItem.InstanceId,actor.Id);
+                    var updatedItems=state.Items.Concat(new[]{movedLiving}).ToArray();
+                    _characters.SaveCharacter(character with{ItemState=state with{Items=updatedItems},UpdatedAtUtc=DateTimeOffset.UtcNow});
+                    return $"You get {catalog.Require(movedLiving.CanonicalItemId).Name}.";
+                }
                 var item = Resolve(engine.Ground(session.CurrentRoom.Id), catalog, command.ArgumentText);
                 var moved = engine.Get(item.InstanceId, actor.Id);
                 result = $"You get {catalog.Require(moved.CanonicalItemId).Name}.";
@@ -121,6 +135,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             {
                 var item = Resolve(engine.Inventory(actor.Id), catalog, command.ArgumentText);
                 var moved = engine.Drop(item.InstanceId, actor.Id, session.CurrentRoom.Id);
+                engine.AdministrativeRemove(moved.InstanceId);
+                Living(session).DropGroundItem(moved,session.CurrentRoom.Id);
                 result = $"You drop {catalog.Require(moved.CanonicalItemId).Name}.";
                 break;
             }
@@ -171,29 +187,30 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         try
         {
-            return command.Name is "hide" or "sneak"
-                ? ExecuteStealthCommand(session, command)
-                : command.Name is "attack" or "kill" or "bash" or "smash" or "backstab" or "flee" or "combat" or "round"
-                    ? ExecuteLiveCombatCommand(session, command)
-                : command.Name is "cast" or "use" or "abilities" or "skills" or "prepare" or "dispel"
-                    ? ExecuteLivePowerCommand(session, command)
-                    : command.Name is "bank" or "deposit" or "withdraw"
-                        ? ExecuteBankCommand(session, command)
-                        : command.Name is "services" or "list" or "trade" or "train" or "buy" or "sell" or "repair"
-                            ? ExecuteLiveServicesBundleCommand(session, command)
-                            : command.Name is "quest" or "accept" or "abandon" or "complete" or "journal" or "talk"
-                                ? ExecuteWorldNarrativeCommand(session, command)
-                                : command.Name == "respawn"
-                                    ? RespawnCharacter(session)
-                                    : command.Name == "recover"
-                                        ? RecoverCorpse(session)
-                                        : _policyGateway.Execute(session, command);
+            if (!RuntimeCommandRuntimeRouteCatalog.TryGet(command.Name, out var route))
+                return _policyGateway.Execute(session, command);
+
+            return route.Kind switch
+            {
+                RuntimeCommandRouteKind.CombatRuntime => command.Name is "hide" or "sneak"
+                    ? ExecuteStealthCommand(session, command)
+                    : ExecuteLiveCombatCommand(session, command),
+                RuntimeCommandRouteKind.PowerRuntime => ExecuteLivePowerCommand(session, command),
+                RuntimeCommandRouteKind.BankRuntime => ExecuteBankCommand(session, command),
+                RuntimeCommandRouteKind.ServiceRuntime => ExecuteLiveServicesBundleCommand(session, command),
+                RuntimeCommandRouteKind.NarrativeRuntime => ExecuteWorldNarrativeCommand(session, command),
+                RuntimeCommandRouteKind.RecoveryRuntime => command.Name == "respawn"
+                    ? RespawnCharacter(session)
+                    : RecoverCorpse(session),
+                _ => _policyGateway.Execute(session, command)
+            };
         }
         catch (Exception ex)
         {
             return ex.Message;
         }
     }
+
 
 
 
@@ -226,7 +243,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             return "Your concealment fails; " + seeHiddenOpponent.Name + " sees hidden characters and continues tracking you." + Environment.NewLine + detectionEngagement;
         }
 
-        if (RuntimeCharacterAbilityValues.Read(values, RuntimeCharacterQuestAbilityCatalog.PerfectStealthAbilityId) > 0)
+        var capabilityCatalog = RuntimeCharacterQuestAbilityCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var capabilityGates = new RuntimeCharacterWorldRewardCatalog();
+        if (capabilityCatalog.CanUseCapability(character, RuntimeCharacterQuestAbilityCatalog.PerfectStealthAbilityId, capabilityGates))
         {
             var perfect = ApplyPerfectStealth(character, command.Name);
             _characters.SaveCharacter(perfect);
@@ -437,6 +456,9 @@ public sealed class RuntimeLiveGameplayPart2SmokeReport
             Require(RuntimeCommand.Parse("wear sword").Name == "wear", "wear-route"); report.Checks.Add("wear-route");
             Require(RuntimeCommand.Parse("cast fireball goblin").ArgumentText == "fireball goblin", "policy-arguments"); report.Checks.Add("policy-arguments");
             Require(RuntimeCommand.SupportedCommands.Contains("train"), "service-route"); report.Checks.Add("service-route");
+            Require(RuntimeCommandDispatcher.RoutesToPolicy("tat"), "tat-policy-route");
+            Require(RuntimeCommandRuntimeRouteCatalog.Require("tat").Kind == RuntimeCommandRouteKind.ServiceRuntime, "tat-service-runtime-route");
+            report.Checks.Add("tat-policy-route");
             Require(RuntimeCommand.SupportedCommands.Contains("quest"), "quest-route"); report.Checks.Add("quest-route");
             Require(RuntimeCommand.SupportedCommands.Contains("attack"), "combat-route"); report.Checks.Add("combat-route");
         }

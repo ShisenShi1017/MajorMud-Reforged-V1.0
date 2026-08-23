@@ -63,6 +63,9 @@ public sealed class ClientCoordinationService : IClientCoordinationService
 
     public CoordinationParseResult ParseChatCommand(string sender, string message)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled)
+            return new(false, sender, string.Empty, string.Empty, ClientMegaMudAutomationGate.DisabledReason);
+
         message = NormalizeCompatibilityMessage(message);
         if (!Profile.Enabled || !Profile.AcceptChatCommands)
             return new(false, sender, string.Empty, string.Empty, "Chat coordination is disabled.");
@@ -105,7 +108,9 @@ public sealed class ClientCoordinationService : IClientCoordinationService
     }
 
     public IReadOnlyList<CoordinatedCommandRequest> DispatchLocal(string target, string command, string source = "Local leader")
-        => Dispatch(new CoordinationInstruction(source, target, command, true, DateTimeOffset.UtcNow));
+        => ClientMegaMudAutomationGate.IsEnabled
+            ? Dispatch(new CoordinationInstruction(source, target, command, true, DateTimeOffset.UtcNow))
+            : [];
 
     public IReadOnlyList<CoordinatedCommandRequest> DispatchChat(string sender, string message)
     {
@@ -121,6 +126,12 @@ public sealed class ClientCoordinationService : IClientCoordinationService
 
     public void ResumeAll()
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled)
+        {
+            StopAll();
+            return;
+        }
+
         foreach (var session in Profile.Sessions.Where(s => s.Enabled)) session.Paused = false;
     }
 
@@ -162,6 +173,8 @@ public sealed class ClientCoordinationService : IClientCoordinationService
 
     public bool TryHandleControlCommand(string sourceSessionId, string sender, string message)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled) return false;
+
         var normalized = NormalizeCompatibilityMessage(message).Trim();
         var parsed = ParseChatCommand(sender, normalized);
         if (!parsed.Recognized || parsed.Error.Length > 0) return false;
@@ -188,12 +201,15 @@ public sealed class ClientCoordinationService : IClientCoordinationService
 
     public void SendResponse(string sourceSessionId, string recipient, CoordinationResponseKind kind, string message)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled) return;
         if (string.IsNullOrWhiteSpace(recipient) || string.IsNullOrWhiteSpace(message)) return;
         ResponseRequested?.Invoke(this, new CoordinationResponse(sourceSessionId, recipient.Trim(), kind, message.Trim(), DateTimeOffset.UtcNow));
     }
 
     public bool TryCreateQuery(string sourceSessionId, string sender, string message)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled) return false;
+
         var parsed = ParseChatCommand(sender, message);
         if (!parsed.Recognized || parsed.Error.Length > 0) return false;
         var query = parsed.Command.Trim().ToLowerInvariant();
@@ -217,6 +233,7 @@ public sealed class ClientCoordinationService : IClientCoordinationService
 
     private IReadOnlyList<CoordinatedCommandRequest> Dispatch(CoordinationInstruction instruction)
     {
+        if (!ClientMegaMudAutomationGate.IsEnabled) return [];
         if (!Profile.Enabled || string.IsNullOrWhiteSpace(instruction.Command)) return [];
 
         var now = instruction.CreatedAt;

@@ -35,6 +35,10 @@ public sealed record RuntimePlayerCombatProfile(
     bool WeaponIsTwoHanded,
     bool WeaponSupportsBackstab,
     int EquippedWeaponType,
+    int WeaponMagicalRank,
+    int WeaponRequiredToHitCode,
+    int HitMagicBypassRank,
+    IReadOnlyList<RuntimeWeaponOnHitSpell> WeaponOnHitSpells,
     IReadOnlyList<string> EquippedCombatItems,
     IReadOnlyList<string> Blockers)
 {
@@ -58,7 +62,7 @@ public sealed class RuntimePlayerCombatProfileResolver
         var attackValue = checked(CombatValue(character, "combat.attack_value", DerivedAttackValue(character)) + RuntimeClassicStatusProjection.Numeric(character, "accuracy"));
         var conditionBackstabAccuracyBonus = Optional(character.Conditions, "combat.backstab_accuracy_bonus");
         var defenseValue = CombatValue(character, "combat.defense_value", DerivedDefenseValue(character));
-        var dodgeBonus = checked(CombatValue(character, "combat.dodge_bonus", DerivedDodgeBonus(character)) + RuntimeClassicStatusProjection.Numeric(character, "dodge"));
+        var dodgeBonus = checked(CombatValue(character, "combat.dodge_bonus", DerivedDodgeBonus(character)) + RuntimeClassicStatusProjection.Numeric(character, "dodge") + Derived(character, "dodge_bonus"));
         var naturalCriticalChance = RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(
             character.Level,
             AdjustedStat(character, "intellect", "int"),
@@ -75,7 +79,11 @@ public sealed class RuntimePlayerCombatProfileResolver
         var weaponIsTwoHanded = false;
         var weaponSupportsBackstab = false;
         var equippedWeaponType = 0;
+        var weaponMagicalRank = 0;
+        var weaponRequiredToHitCode = 0;
+        var equipmentHitMagicRank = 0;
         var weaponSpeed = 0;
+        IReadOnlyList<RuntimeWeaponOnHitSpell> weaponOnHitSpells = Array.Empty<RuntimeWeaponOnHitSpell>();
         var classCombatAccuracy = ResolveClassCombatAccuracy(character);
         var questBonuses = ResolveQuestCombatBonuses(character);
         var abilityAccuracy = questBonuses.AccuracyPercentBonus;
@@ -96,8 +104,11 @@ public sealed class RuntimePlayerCombatProfileResolver
             damageResistance = checked(damageResistance + profile.DamageResistanceBonus);
             criticalChance = checked(criticalChance + profile.CriticalChanceBonus);
             equippedBackstabAccuracyBonus = checked(equippedBackstabAccuracyBonus + profile.BackstabAccuracyBonus);
+            equipmentHitMagicRank = checked(equipmentHitMagicRank + profile.HitMagicRank);
             if (profile.MaximumDamage > 0) weaponProfiles.Add(profile);
         }
+        damageResistance = ApplyDamageResistancePercent(
+            damageResistance, RuntimeClassicStatusProjection.Numeric(character, "damage_resistance_percent"));
 
         if (weaponProfiles.Count > 1)
         {
@@ -113,7 +124,10 @@ public sealed class RuntimePlayerCombatProfileResolver
             weaponIsTwoHanded = weapon.IsTwoHanded;
             weaponSupportsBackstab = weapon.SupportsBackstab;
             equippedWeaponType = weapon.WeaponType;
+            weaponMagicalRank = weapon.MagicalRank;
+            weaponRequiredToHitCode = weapon.RequiredToHitCode;
             weaponSpeed = weapon.Speed;
+            weaponOnHitSpells = weapon.OnHitSpells;
         }
         else if (maximumDamage <= 0 || minimumDamage < 0 || maximumDamage < minimumDamage)
         {
@@ -125,18 +139,19 @@ public sealed class RuntimePlayerCombatProfileResolver
         var backstabAttackValue = RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabAccuracy(
             ResolveModifiedStealth(character),
             AdjustedStat(character, "agility", "agi", "agl"),
-            checked(conditionBackstabAccuracyBonus + equippedBackstabAccuracyBonus),
+            checked(conditionBackstabAccuracyBonus + equippedBackstabAccuracyBonus + RuntimeClassicStatusProjection.Numeric(character, "backstab_accuracy")),
             HasClassStealth(character),
             checked(abilityAccuracy + weaponAccuracy));
 
         var strengthMaximumDamageBonus = RuntimeClassicPhysicalFormulaCalculator.CalculateStrengthMaximumDamageBonus(AdjustedStat(character, "strength", "str"));
-        maximumDamage = checked(maximumDamage + strengthMaximumDamageBonus + questBonuses.MaximumDamageBonus + RuntimeClassicStatusProjection.Numeric(character, "maximum_damage"));
+        maximumDamage = checked(maximumDamage + strengthMaximumDamageBonus + questBonuses.MaximumDamageBonus + RuntimeClassicStatusProjection.Numeric(character, "maximum_damage") + Derived(character, "maximum_damage_bonus"));
         if (maximumDamage < minimumDamage) maximumDamage = minimumDamage;
         var attackEnergyCost = barehanded || weaponSpeed <= 0
             ? 0
             : RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(
                 ResolveClassCombatCode(character), character.Level, weaponSpeed, AdjustedStat(character, "agility", "agi", "agl"));
-        var encumbrancePercent = Math.Max(0, Optional(character.Conditions, "combat.encumbrance_percent"));
+        var encumbrancePercent = Math.Max(0, checked(Optional(character.Conditions, "combat.encumbrance_percent") +
+            Derived(character, "encumbrance_modifier_percent") + RuntimeClassicStatusProjection.Numeric(character, "encumbrance")));
         var quickAndDeadlyCriticalBonus = barehanded || weaponSpeed <= 0
             ? 0
             : RuntimeClassicPhysicalFormulaCalculator.CalculateQuickAndDeadlyCriticalBonus(
@@ -168,14 +183,19 @@ public sealed class RuntimePlayerCombatProfileResolver
             attackEnergyCost,
             quickAndDeadlyCriticalBonus,
             encumbrancePercent,
-            questBonuses.BackstabMinimumBonus,
-            questBonuses.BackstabMaximumBonus,
+            checked(questBonuses.BackstabMinimumBonus + Derived(character, "backstab_minimum_damage_bonus") + RuntimeClassicStatusProjection.Numeric(character, "backstab_minimum_damage")),
+            checked(questBonuses.BackstabMaximumBonus + Derived(character, "backstab_maximum_damage_bonus") + RuntimeClassicStatusProjection.Numeric(character, "backstab_maximum_damage")),
             equippedBackstabAccuracyBonus,
             RuntimeCharacterAbilityValues.Read(RuntimeCharacterAbilityValues.Restore(character.Conditions), RuntimeCharacterQuestAbilityCatalog.SmashAbilityId) > 0,
             barehanded,
             weaponIsTwoHanded,
             weaponSupportsBackstab,
             equippedWeaponType,
+            weaponMagicalRank,
+            weaponRequiredToHitCode,
+            checked(RuntimeCharacterAbilityValues.Read(RuntimeCharacterAbilityValues.Restore(character.Conditions), 142)
+                + equipmentHitMagicRank + RuntimeClassicStatusProjection.Numeric(character, "hit_magic")),
+            weaponOnHitSpells,
             equipped,
             blockers.Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
     }
@@ -183,8 +203,8 @@ public sealed class RuntimePlayerCombatProfileResolver
     internal static int ResolveModifiedStealth(RuntimeCharacterRecord character)
     {
         ArgumentNullException.ThrowIfNull(character);
-        if (RuntimeClassicStealthResolver.TryReadModifiedStealth(character, out var decoded)) return checked(decoded + RuntimeClassicStatusProjection.Numeric(character, "stealth"));
-        return checked(CombatValue(character, "combat.stealth_rating", AdjustedStat(character, "stealth", "stl")) + RuntimeClassicStatusProjection.Numeric(character, "stealth"));
+        if (RuntimeClassicStealthResolver.TryReadModifiedStealth(character, out var decoded)) return checked(decoded + RuntimeClassicStatusProjection.Numeric(character, "stealth") + Derived(character, "stealth_bonus"));
+        return checked(CombatValue(character, "combat.stealth_rating", AdjustedStat(character, "stealth", "stl")) + RuntimeClassicStatusProjection.Numeric(character, "stealth") + Derived(character, "stealth_bonus"));
     }
 
     internal static bool HasClassStealth(RuntimeCharacterRecord character)
@@ -192,6 +212,9 @@ public sealed class RuntimePlayerCombatProfileResolver
         ArgumentNullException.ThrowIfNull(character);
         return ReadConditionBool(character.Conditions, "class.stealth_capable", "combat.class_stealth", "stealth.class");
     }
+
+    internal static int ApplyDamageResistancePercent(int damageResistance, int percent) =>
+        Math.Max(0, checked(damageResistance + checked((damageResistance * percent) / 100)));
 
     private static bool ReadConditionBool(IReadOnlyDictionary<string, string> values, params string[] keys)
     {
@@ -205,7 +228,8 @@ public sealed class RuntimePlayerCombatProfileResolver
     internal static bool IsAvoidanceSuppressed(RuntimeCharacterRecord character)
     {
         ArgumentNullException.ThrowIfNull(character);
-        if (RuntimeClassicStatusProjection.Flag(character, "paralyzed")) return true;
+        if (RuntimeClassicStatusProjection.Flag(character, "paralyzed")
+            || RuntimeClassicStatusProjection.Flag(character, "immobilized")) return true;
         foreach (var key in new[] { "combat.stunned", "state.stunned", "stunned", "combat.paralyzed", "state.paralyzed", "paralyzed", "combat.immobilized", "state.immobilized", "immobilized", "combat.sleeping", "state.sleeping", "sleeping" })
         {
             if (!character.Conditions.TryGetValue(key, out var raw)) continue;
@@ -306,6 +330,9 @@ public sealed class RuntimePlayerCombatProfileResolver
 
     private static int Optional(IReadOnlyDictionary<string, string> values, string key)
         => values.TryGetValue(key, out var raw) && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
+
+    private static int Derived(RuntimeCharacterRecord character, string key)
+        => character.SemanticState?.DerivedStats.TryGetValue(key, out var value) == true ? value : 0;
 }
 
 public sealed class RuntimePlayerCombatProfileSmokeReport
@@ -334,7 +361,8 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
                     ["quest.ability.4"] = "3",
                     ["quest.ability.22"] = "4",
                     ["quest.ability.34"] = "5",
-                    ["quest.ability.58"] = "6"
+                    ["quest.ability.58"] = "6",
+                    ["combat.status.backstab_accuracy"] = "10"
                 }, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow,
                 ItemState: new RuntimeItemState(new[]
                 {
@@ -346,7 +374,7 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             var expectedBackstabAttackValue = RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabAccuracy(
                 RuntimePlayerCombatProfileResolver.ResolveModifiedStealth(character),
                 0,
-                profile.EquippedBackstabAccuracyBonus,
+                profile.EquippedBackstabAccuracyBonus + 10,
                 RuntimePlayerCombatProfileResolver.HasClassStealth(character),
                 profile.AbilityAccuracyModifier + profile.WeaponAccuracyModifier);
             Require(profile.BackstabAttackValue == expectedBackstabAttackValue, "backstab-accuracy-formula-consumer"); report.Checks.Add("backstab-accuracy-formula-consumer");
@@ -357,7 +385,62 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             Require(profile.ClassCombatAccuracy == 0 && profile.AbilityAccuracyModifier == 4, "ability-22-live-consumer"); report.Checks.Add("ability-22-live-consumer");
             Require(profile.NaturalCriticalChance == 1, "natural-critical-live-consumer"); report.Checks.Add("natural-critical-live-consumer");
             Require(profile.QuestMaximumDamageBonus == 3 && profile.QuestArmorClassBonus == 2 && profile.QuestDodgeBonus == 5 && profile.QuestCriticalBonus == 6, "quest-combat-bonus-consumers"); report.Checks.Add("quest-combat-bonus-consumers");
+            var equipmentDerived = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["maximum_damage_bonus"] = 7,
+                ["dodge_bonus"] = 11,
+                ["stealth_bonus"] = 13,
+                ["backstab_minimum_damage_bonus"] = 17,
+                ["backstab_maximum_damage_bonus"] = 19
+            };
+            var equipmentCharacter = character with
+            {
+                SemanticState = RuntimeCharacterSemanticState.Empty with { DerivedStats = equipmentDerived }
+            };
+            var equipmentProfile = new RuntimePlayerCombatProfileResolver(catalog).Resolve(equipmentCharacter);
+            Require(equipmentProfile.MaximumDamage == profile.MaximumDamage + 7, "equipment-ability-4-maximum-damage-consumer"); report.Checks.Add("equipment-ability-4-maximum-damage-consumer");
+            Require(equipmentProfile.DodgeBonus == profile.DodgeBonus + 11, "equipment-ability-34-dodge-consumer"); report.Checks.Add("equipment-ability-34-dodge-consumer");
+            Require(RuntimePlayerCombatProfileResolver.ResolveModifiedStealth(equipmentCharacter) == RuntimePlayerCombatProfileResolver.ResolveModifiedStealth(character) + 13, "equipment-ability-27-stealth-consumer"); report.Checks.Add("equipment-ability-27-stealth-consumer");
+            Require(equipmentProfile.BackstabMinimumBonus == profile.BackstabMinimumBonus + 17 && equipmentProfile.BackstabMaximumBonus == profile.BackstabMaximumBonus + 19, "equipment-abilities-117-118-backstab-damage-consumers"); report.Checks.Add("equipment-abilities-117-118-backstab-damage-consumers");
+            var hitMagicConditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                ["combat.status.hit_magic"] = "10"
+            };
+            var hitMagicProfile = new RuntimePlayerCombatProfileResolver(catalog).Resolve(character with { Conditions = hitMagicConditions });
+            Require(hitMagicProfile.HitMagicBypassRank == profile.HitMagicBypassRank + 10, "spell-hitmagic-live-profile-consumer"); report.Checks.Add("spell-hitmagic-live-profile-consumer");
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, "Classic");
+            Require(statusCatalog.Definitions.Count(definition => definition.Abilities.Any(ability => ability.AbilityId == 142 && ability.Value == 10)) == 2,
+                "spell-hitmagic-owner-count"); report.Checks.Add("spell-hitmagic-two-value-10-owners");
             Require(!profile.Barehanded && profile.WeaponIsTwoHanded == weapon.IsTwoHanded && profile.WeaponSupportsBackstab == weapon.SupportsBackstab && profile.EquippedWeaponType == weapon.WeaponType, "weapon-backstab-metadata-consumer"); report.Checks.Add("weapon-backstab-metadata-consumer");
+            Require(RuntimePlayerCombatProfileResolver.ApplyDamageResistancePercent(40, -25) == 30
+                && RuntimePlayerCombatProfileResolver.ApplyDamageResistancePercent(40, 50) == 60
+                && RuntimePlayerCombatProfileResolver.ApplyDamageResistancePercent(40, -500) == 0,
+                "alter-dr-percent-live-consumer"); report.Checks.Add("alter-dr-percent-live-consumer");
+            var magicalCreature = new RuntimeNpcDefinition { Id = "npc.magical", Name = "magical target", MagicalRequirement = 5 };
+            var exactCombined = RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                magicalCreature, profile with { HitMagicBypassRank = 2, WeaponMagicalRank = 3 }, usesWieldedWeapon: true);
+            Require(exactCombined.Allowed && exactCombined.RemainingMagicalRequirement == 3, "hitmagic-reduces-before-weapon-magical-check"); report.Checks.Add("hitmagic-reduces-before-weapon-magical-check");
+            Require(!RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                magicalCreature, profile with { HitMagicBypassRank = 1, WeaponMagicalRank = 3 }, usesWieldedWeapon: true).Allowed,
+                "insufficient-magical-weapon-rejected"); report.Checks.Add("insufficient-magical-weapon-rejected");
+            Require(RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                magicalCreature, profile with { HitMagicBypassRank = 5, WeaponMagicalRank = 0 }, usesWieldedWeapon: false).Allowed,
+                "hitmagic-full-bypass-allows-unarmed"); report.Checks.Add("hitmagic-full-bypass-allows-unarmed");
+            var codedCreature = new RuntimeNpcDefinition
+            {
+                Id = "npc.coded",
+                Name = "coded target",
+                MagicalRequirement = magicalCreature.MagicalRequirement,
+                RequiredToHitCode = 2
+            };
+            Require(RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                codedCreature, profile with { HitMagicBypassRank = 5, WeaponRequiredToHitCode = 2 }, usesWieldedWeapon: true).Allowed,
+                "required-to-hit-exact-code"); report.Checks.Add("required-to-hit-exact-code");
+            Require(!RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                codedCreature, profile with { HitMagicBypassRank = 5, WeaponRequiredToHitCode = 3 }, usesWieldedWeapon: true).Allowed &&
+                !RuntimeMagicalCreatureWeaponAdmission.Evaluate(
+                    codedCreature, profile with { HitMagicBypassRank = 5, WeaponRequiredToHitCode = 2 }, usesWieldedWeapon: false).Allowed,
+                "required-to-hit-mismatch-and-unarmed-rejected"); report.Checks.Add("required-to-hit-mismatch-and-unarmed-rejected");
             var stunnedConditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase) { ["combat.stunned"] = "true" };
             var stunned = new RuntimePlayerCombatProfileResolver(catalog).Resolve(character with { Conditions = stunnedConditions });
             Require(stunned.DodgeBonus == 0, "stunned-dodge-suppression"); report.Checks.Add("stunned-dodge-suppression");

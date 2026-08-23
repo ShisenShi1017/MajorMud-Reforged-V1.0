@@ -1,25 +1,25 @@
 {
   "pass": "DataSimVer0013",
-  "objective": "Register sysop/GM placeholder-room hypothesis and user-requested custom Synopsis Room / code_of_twinks_78 command without modifying legacy /Data.",
+  "objective": "Register sysop/GM placeholder-room hypothesis and the originally reported code_of_twinks_78 value without modifying legacy /Data; later user correction classifies it as the WCCMMUD SYSOP unlock/key.",
   "data_changed": false,
   "room_endpoints_promoted": 0,
   "special_exit_semantics_promoted": 0,
   "custom_additions": {
     "rooms_added_to_overlay": 1,
-    "commands_added_to_overlay": 1
+    "commands_added_to_overlay": 0
   },
   "behavior_model": [
     {
       "actor": "normal_player",
-      "action": "code_of_twinks_78",
+      "action": "submit code_of_twinks_78 as a player command",
       "expected": "fail",
-      "reason": "requires sysop/gm access"
+      "reason": "the value is a legacy WCCMMUD SYSOP unlock/key, not a player command"
     },
     {
       "actor": "sysop_or_gm",
-      "action": "code_of_twinks_78",
-      "expected": "success-model",
-      "reason": "custom command routes to custom_sysop_synopsis_room; runtime implementation pending"
+      "action": "use authenticated sysop command surface",
+      "expected": "capability-gated",
+      "reason": "Reforged maps legacy key authorization to authenticated account roles and explicit sysop capabilities"
     }
   ]
 }

@@ -38,10 +38,60 @@ public partial class ForgeGuardianView : UserControl
 
     private void ScrollToLatest()
     {
-        Dispatcher.BeginInvoke(() =>
+        Dispatcher.BeginInvoke(() => ChatScrollViewer.ScrollToEnd());
+    }
+
+    private async void SaveBorinPasswordClicked(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ForgeGuardianViewModel viewModel)
+            return;
+
+        await viewModel.SavePlayerPasswordFromUiAsync(BorinPlayerPasswordBox.Password);
+        BorinPlayerPasswordBox.Clear();
+    }
+
+    private async void ClearBorinPasswordClicked(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ForgeGuardianViewModel viewModel)
+            return;
+
+        await viewModel.ClearPlayerPasswordFromUiAsync();
+        BorinPlayerPasswordBox.Clear();
+    }
+
+    private void OpenBorinAssignmentClicked(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ForgeGuardianViewModel viewModel)
+            return;
+
+        var assignmentWindow = new BorinPlayerAssignmentWindow(viewModel)
         {
-            if (ChatList.Items.Count > 0)
-                ChatList.ScrollIntoView(ChatList.Items[ChatList.Items.Count - 1]);
-        });
+            Owner = Window.GetWindow(this),
+        };
+        assignmentWindow.Show();
+    }
+
+    private void OpenBorinTerminalClicked(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not ForgeGuardianViewModel viewModel)
+            return;
+
+        try
+        {
+            viewModel.PreparePlayerTerminal();
+            var terminalViewModel = viewModel.PlayerTerminalViewModel;
+            var session = terminalViewModel.SelectedLiveSession
+                ?? throw new InvalidOperationException(
+                    "Borin's saved client session was not selected. Press Save Profile once, then open the terminal again.");
+
+            ClientTerminalWindow.ShowForSession(
+                terminalViewModel,
+                session,
+                Window.GetWindow(this));
+        }
+        catch (Exception exception)
+        {
+            MessageBox.Show(exception.Message, "Open Borin Terminal", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

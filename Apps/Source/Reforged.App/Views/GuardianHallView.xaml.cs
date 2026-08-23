@@ -7,6 +7,7 @@ namespace Reforged.App.Views;
 public partial class GuardianHallView : UserControl
 {
     public GuardianHallView() => InitializeComponent();
+
     private void OnDrop(object sender, DragEventArgs e)
     {
         if (DataContext is not GuardianHallViewModel vm || !e.Data.GetDataPresent(DataFormats.FileDrop)) return;

@@ -1,6 +1,0 @@
-source,path,used_for
-Patch0079 cumulative ZIP,/mnt/data/MajorMUD-Reforged-Patch0079-TargetedBlockerResolution-Cumulative.zip,Cumulative Data folder and Patch 0079 remaining issue baseline
-Data/rooms.json,Data/rooms.json,Room map/room IDs and raw exit fields
-Data/room_graph.json,Data/room_graph.json,Graph edge and coordinate endpoint evidence
-Reports/room_exit_endpoint_remaining_0079.csv,Reports/room_exit_endpoint_remaining_0079.csv,Patch 0080 room-exit endpoint recovery worklist
-Reports/runtime_parity_issues_remaining_0079.csv,Reports/runtime_parity_issues_remaining_0079.csv,Cumulative blocker carry-forward and reclassification

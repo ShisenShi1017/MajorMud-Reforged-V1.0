@@ -47,6 +47,14 @@ public static class RuntimeBundleCEconomyAuthority
         return state with { ActiveItemState = active };
     }
 
+    public static RuntimeItemState DebitBankGold(RuntimeItemState state, long gold)
+    {
+        if (gold < 0) throw new ArgumentOutOfRangeException(nameof(gold));
+        var bank = ReadBank(state.ActiveItemState);
+        if (bank.Gold < gold) throw new InvalidOperationException("The Silvermere bank account does not contain sufficient gold.");
+        return WriteBank(state, bank with { Gold = bank.Gold - gold });
+    }
+
     public static RuntimeItemState Deposit(RuntimeItemState state, string argument, out RuntimeClassicInventoryCurrency moved)
     {
         var carried = RuntimeBundleCInventoryAuthority.ReadCurrency(state);

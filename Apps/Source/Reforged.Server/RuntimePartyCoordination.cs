@@ -26,7 +26,7 @@ public sealed record RuntimePartyPolicy(
         PersistAcrossRestart: false);
 }
 
-public sealed record RuntimePartyMemberState(string ActorId, bool Connected, string? RoomId, bool FollowingLeader);
+public sealed record RuntimePartyMemberState(string ActorId, bool Connected, string? RoomId, bool FollowingLeader, string Rank = "Midrank");
 public sealed record RuntimePartyCoordinationSnapshot(
     string PartyId,
     string LeaderId,
@@ -89,7 +89,7 @@ public sealed class RuntimePartyCoordinationService
             if (_membership.ContainsKey(targetId)) return Fail("actor-already-in-party");
             var party = GetParty(invitation.PartyId);
             if (party.Members.Count >= party.Policy.MaximumMembers) return Fail("party-full");
-            party.Members.Add(targetId, new RuntimePartyMemberState(targetId, true, null, false));
+            party.Members.Add(targetId, new RuntimePartyMemberState(targetId, true, null, true));
             _membership.Add(targetId, party.PartyId);
             _invites.Remove(inviteId);
             return Success(party);
@@ -184,6 +184,48 @@ public sealed class RuntimePartyCoordinationService
         }
     }
 
+    public RuntimePartyOperationResult AcceptFromLeader(string targetId, string leaderId, DateTimeOffset nowUtc)
+    {
+        lock (_gate)
+        {
+            var invitation = _invites.Values
+                .Where(invite => invite.TargetId.Equals(targetId, StringComparison.OrdinalIgnoreCase)
+                    && invite.InviterId.Equals(leaderId, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(invite => invite.ExpiresAtUtc)
+                .FirstOrDefault();
+            if (invitation is null) return Fail("party-invite-not-found");
+            return Accept(invitation.InviteId, targetId, nowUtc);
+        }
+    }
+
+    public RuntimePartyOperationResult SetRank(string actorId, string rank)
+    {
+        lock (_gate)
+        {
+            if (!_membership.TryGetValue(actorId, out var partyId)) return Fail("actor-not-in-party");
+            var party = GetParty(partyId);
+            if (party.LeaderId.Equals(actorId, StringComparison.OrdinalIgnoreCase)) return Fail("party-leader-rank-fixed");
+            var normalized = rank.ToLowerInvariant() switch
+            {
+                "frontrank" => "Frontrank", "midrank" => "Midrank", "backrank" => "Backrank",
+                _ => throw new ArgumentOutOfRangeException(nameof(rank))
+            };
+            party.Members[actorId] = party.Members[actorId] with { Rank = normalized };
+            return Success(party);
+        }
+    }
+
+    public bool CancelInvite(string leaderId, string targetId)
+    {
+        lock (_gate)
+        {
+            var invitation = _invites.Values.FirstOrDefault(invite =>
+                invite.InviterId.Equals(leaderId, StringComparison.OrdinalIgnoreCase) &&
+                invite.TargetId.Equals(targetId, StringComparison.OrdinalIgnoreCase));
+            return invitation is not null && _invites.Remove(invitation.InviteId);
+        }
+    }
+
     public RuntimePartyRouteResult RoutePartyMessage(string senderId)
     {
         lock (_gate)
@@ -213,6 +255,26 @@ public sealed class RuntimePartyCoordinationService
     public IReadOnlyList<RuntimePartyCoordinationSnapshot> CaptureAll()
     {
         lock (_gate) return _parties.Values.OrderBy(x => x.PartyId, StringComparer.OrdinalIgnoreCase).Select(Capture).ToArray();
+    }
+
+    public RuntimePartyCoordinationSnapshot? FindByMember(string actorId)
+    {
+        lock (_gate)
+        {
+            if (!_membership.TryGetValue(actorId, out var partyId) || !_parties.TryGetValue(partyId, out var party)) return null;
+            return Capture(party);
+        }
+    }
+
+    public RuntimePartyOperationResult SynchronizeConnection(string actorId, bool connected, string? roomId)
+    {
+        lock (_gate)
+        {
+            if (!_membership.TryGetValue(actorId, out var partyId)) return Fail("actor-not-in-party");
+            var party = GetParty(partyId);
+            party.Members[actorId] = party.Members[actorId] with { Connected = connected, RoomId = roomId };
+            return Success(party);
+        }
     }
 
     public IReadOnlyList<string> Validate()
@@ -271,7 +333,7 @@ public sealed class RuntimePartyCoordinationService
         public PartyState(string partyId, string leaderId, RuntimePartyPolicy policy)
         {
             PartyId = partyId; LeaderId = leaderId; Policy = policy;
-            Members.Add(leaderId, new RuntimePartyMemberState(leaderId, true, null, false));
+            Members.Add(leaderId, new RuntimePartyMemberState(leaderId, true, null, false, "Frontrank"));
         }
         public string PartyId { get; }
         public string LeaderId { get; set; }

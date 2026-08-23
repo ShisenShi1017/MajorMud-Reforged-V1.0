@@ -10,18 +10,21 @@ public partial class ClientOptionsWindow : Window
         InitializeComponent();
     }
 
-    private PlayViewModel? ViewModel => DataContext as PlayViewModel;
+    private ClientTerminalWindowContext? Context =>
+        DataContext as ClientTerminalWindowContext;
 
     private async void SaveProfilesClicked(object sender, RoutedEventArgs e)
     {
-        if (ViewModel is null) return;
-        await ViewModel.SaveParsingProfileAsync();
-        await ViewModel.SaveAutomationAsync();
+        if (Context is null) return;
+        await Context.Host.SaveConnectionProfileAsync(Context.Session);
+        await Context.Host.SaveParsingProfileAsync();
+        await Context.Host.SaveAutomationAsync();
     }
 
     private async void SelectParsingProfileClicked(object sender, RoutedEventArgs e)
     {
-        if (ViewModel is not null) await ViewModel.SelectParsingProfileFromListAsync();
+        if (Context is not null)
+            await Context.Host.SelectParsingProfileFromListAsync();
     }
 
     private void CloseClicked(object sender, RoutedEventArgs e) => Close();

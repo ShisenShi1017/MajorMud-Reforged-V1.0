@@ -7,14 +7,14 @@
   "callingConvention": "cdecl",
   "arguments": [
     "roomActionRecord",
-    "actionIndex",
+    "optionalMessageRecordId",
     "selector",
-    "mode"
+    "actionSlot"
   ],
   "prelude": {
     "playerResolution": "current Worldgroup session index is resolved to the active MajorMUD player record",
     "optionalOutput": "action metadata may emit local and room-scoped output before mutation",
-    "actionType": "word at record + 0x360 + actionIndex*2",
+    "actionType": "word at record + 0x360 + actionSlot*2",
     "directDomain": [
       6,
       24
@@ -58,7 +58,7 @@
         ],
         "entry": "0x0046C7DD",
         "guard": "word at +0x39C must equal 2",
-        "behavior": "iterate all active sessions in the same room and dispatch local helper 0x00417692(session, actionIndex, 7); then process up to 15 nonzero room object identifiers at +0x400 through 0x004252F3(id, actionIndex, -1, 1), re-resolving the room record after possible movement"
+        "behavior": "iterate all active sessions in the same room and dispatch local helper 0x00417692(session, actionSlot, 7); then process up to 15 nonzero room object identifiers at +0x400 through 0x004252F3(id, actionSlot, -1, 1), re-resolving the room record after possible movement"
       },
       {
         "types": [
@@ -91,10 +91,28 @@
   },
   "commonFinalization": [
     "mark room/action record dirty at +0x5F8 when state is written",
-    "store resulting action state at +0x374 + actionIndex*4",
+    "store resulting action state at +0x374 + actionSlot*4",
     "optionally invoke 0x0043BBA3 with the resulting state when the active host slot is enabled",
     "run session/action cleanup 0x004733F4 and output flush 0x0046B170",
     "run host output finalization 0x00478B62 and optional status refresh 0x00431184"
   ],
+  "parserArgumentProof": {
+    "branch": "wccmmud.dll 0x00471605",
+    "pushOrder": [
+      "actionSlot",
+      "selector",
+      "optionalMessageRecordId",
+      "resolvedRoomActionRecord"
+    ],
+    "calleeFrameUse": {
+      "ebp+0x0C": "optionalMessageRecordId used by 0x00433678 before mutation",
+      "ebp+0x10": "selector used by the type-6 state-bit branch",
+      "ebp+0x14": "actionSlot used for all +0x360/+0x374/+0x39C/+0x3B0 indexed fields"
+    },
+    "actionSlotRangeInclusive": [
+      0,
+      10
+    ]
+  },
   "semanticPolicy": "Numeric action-type names remain unassigned unless independently correlated with source records or UI text."
 }

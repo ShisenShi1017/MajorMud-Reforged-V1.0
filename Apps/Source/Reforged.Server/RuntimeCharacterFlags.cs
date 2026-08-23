@@ -4,6 +4,7 @@ public static class RuntimeCharacterFlagIds
 {
     public const string Dead = "dead";
     public const string Resting = "resting";
+    public const string ToptenDisabled = "sysop.topten.disabled";
 }
 
 public static class RuntimeCharacterFlagResolver
@@ -35,7 +36,7 @@ public static class RuntimeCharacterFlagResolver
     {
         ArgumentNullException.ThrowIfNull(character);
         var result = character;
-        foreach (var flagId in new[] { RuntimeCharacterFlagIds.Dead, RuntimeCharacterFlagIds.Resting })
+        foreach (var flagId in new[] { RuntimeCharacterFlagIds.Dead, RuntimeCharacterFlagIds.Resting, RuntimeCharacterFlagIds.ToptenDisabled })
         {
             var value = IsSet(result, flagId);
             result = Mutate(result, flagId, value, "runtime.character.flag.normalize", preserveConditionFalse: false);
@@ -81,5 +82,6 @@ public static class RuntimeCharacterFlagResolver
 
     private static bool IsSupported(string flagId) =>
         flagId.Equals(RuntimeCharacterFlagIds.Dead, StringComparison.OrdinalIgnoreCase)
-        || flagId.Equals(RuntimeCharacterFlagIds.Resting, StringComparison.OrdinalIgnoreCase);
+        || flagId.Equals(RuntimeCharacterFlagIds.Resting, StringComparison.OrdinalIgnoreCase)
+        || flagId.Equals(RuntimeCharacterFlagIds.ToptenDisabled, StringComparison.OrdinalIgnoreCase);
 }

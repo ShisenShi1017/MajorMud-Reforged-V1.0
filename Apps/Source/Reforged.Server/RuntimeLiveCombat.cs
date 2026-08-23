@@ -33,7 +33,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             var character = _characters.LoadCharacter(actor.Id);
             if (character is not null && RuntimeClassicStatusProjection.IsMovementBlocked(character))
             {
-                message = "You cannot move while paralyzed.";
+                message = RuntimeClassicStatusProjection.Flag(character, "paralyzed")
+                    ? "You cannot move while paralyzed."
+                    : "You are held in place and cannot leave the room.";
                 return false;
             }
         }
@@ -47,6 +49,32 @@ public sealed partial class RuntimeLiveGameplayFacade
         return true;
     }
 
+    public bool CanEnterGangHouse(RuntimeSession session, string direction, out string message)
+    {
+        message = string.Empty;
+        if (!session.World.TryResolveExit(session.CurrentRoom, direction, out _, out var target, out _) || target is null)
+            return true;
+        var catalog = RuntimeClassicGangHouseCatalog.Load(Path.Combine(
+            _characters.ProjectRoot, "Data", session.World.Definition.Id, "gang_houses.json"));
+        var location = catalog.Locations.SingleOrDefault(value =>
+            value.RoomId.Equals(target.Id, StringComparison.OrdinalIgnoreCase));
+        if (location is null) return true;
+        if (session.Actor is not RuntimeCharacterActor actor)
+        {
+            message = "The gang-house guardians bar your way.";
+            return false;
+        }
+        var gang = new RuntimeClassicGangStateService(_characters.ProjectRoot).FindByMember(actor.Id);
+        var house = catalog.Records.Single(record => record.Locations.Any(value =>
+            value.LocationId.Equals(location.LocationId, StringComparison.OrdinalIgnoreCase)));
+        if (gang is null || !string.Equals(gang.GangHouseId, house.HouseId, StringComparison.OrdinalIgnoreCase))
+        {
+            message = "The gang-house guardians bar non-members from entering.";
+            return false;
+        }
+        return true;
+    }
+
     public string ExecuteLiveCombatCommand(RuntimeSession session, RuntimeCommand command)
     {
         return command.Name switch
@@ -55,6 +83,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             "bash" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Bash),
             "smash" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Smash),
             "backstab" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Backstab),
+            "punch" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Punch),
+            "kick" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Kick),
+            "jumpkick" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.JumpKick),
             "flee" => FleeLiveCombat(session),
             "combat" => RenderLiveCombatStatus(session),
             "round" => ExecuteLiveCombatRound(session),
@@ -107,6 +138,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (string.IsNullOrWhiteSpace(query)) return "Attack what?";
         if (_liveCombats.TryGetValue(session.Id, out var current))
             return $"You are already fighting {current.NpcName}.";
+        if (session.Actor is RuntimeCharacterActor restingActor) CancelFocusedRegeneration(restingActor.Id);
 
         var target = ResolveCombatTarget(session, query.Trim());
         var protection = RuntimeNpcProtectionAdmission.Admit(
@@ -138,6 +170,34 @@ public sealed partial class RuntimeLiveGameplayFacade
             var smashValues = RuntimeCharacterAbilityValues.Restore(smashCharacter.Conditions);
             if (RuntimeCharacterAbilityValues.Read(smashValues, RuntimeCharacterQuestAbilityCatalog.SmashAbilityId) <= 0)
                 return "You have not learned Smash.";
+        }
+        if (attackType is ClassicAttackType.Punch or ClassicAttackType.Kick or ClassicAttackType.JumpKick)
+        {
+            if (session.Actor is not RuntimeCharacterActor martialActor) return "A persistent character is required for martial attacks.";
+            var martialCharacter = _characters.LoadCharacter(martialActor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+            if (RuntimeClassicStatusProjection.IsKaiPowerBlocked(martialCharacter))
+                return "Your Kai powers are bound.";
+            var abilityId = attackType switch
+            {
+                ClassicAttackType.Punch => 29,
+                ClassicAttackType.Kick => 30,
+                ClassicAttackType.JumpKick => 35,
+                _ => 0
+            };
+            var values = RuntimeCharacterAbilityValues.Restore(martialCharacter.Conditions);
+            if (RuntimeCharacterAbilityValues.Read(values, abilityId) <= 0)
+                return $"You have not learned {attackType}.";
+        }
+
+        if (session.Actor is RuntimeCharacterActor admissionActor)
+        {
+            var admissionCharacter = _characters.LoadCharacter(admissionActor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+            var admissionProfile = new RuntimePlayerCombatProfileResolver(
+                RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(admissionCharacter);
+            if (!admissionProfile.Ready) return "Attack blocked: " + string.Join(", ", admissionProfile.Blockers);
+            var usesWieldedWeapon = attackType is not (ClassicAttackType.Punch or ClassicAttackType.Kick or ClassicAttackType.JumpKick) && !admissionProfile.Barehanded;
+            var admission = RuntimeMagicalCreatureWeaponAdmission.Evaluate(target.Definition, admissionProfile, usesWieldedWeapon);
+            if (!admission.Allowed) return admission.Reason;
         }
 
         if (session.Actor is RuntimeCharacterActor combatActor)
@@ -171,7 +231,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         AuthorizeOwnedCompanionAssistance(session, encounter);
         AuthorizeExplicitNpcAssistance(session, encounter);
         _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} attacks {target.Definition.Name}.");
-        var engaged = $"*Combat Engaged*\nYou attack {target.Definition.Name}.";
+        var engaged = RuntimeClassicCombatAnsi.Engagement(target.Definition.Name);
         return string.IsNullOrWhiteSpace(preparationMessage) ? engaged : preparationMessage + Environment.NewLine + engaged;
     }
 
@@ -286,6 +346,10 @@ public sealed class RuntimeLiveCombatSmokeReport
             Require(revealed.Conditions["combat.hidden"] == "0" && revealed.Conditions["combat.sneaking"] == "0", "physical-attack-breaks-concealment"); report.Checks.Add("physical-attack-breaks-concealment");
             Require(RuntimeCommand.Parse("combat").Name == "combat", "combat-status-route"); report.Checks.Add("combat-status-route");
             Require(RuntimeCommand.Parse("flee").Name == "flee", "flee-route"); report.Checks.Add("flee-route");
+            Require(RuntimeClassicCombatAnsi.Engagement("rat").Contains("\u001b[1;33m", StringComparison.Ordinal), "combat-engagement-ansi"); report.Checks.Add("combat-engagement-ansi");
+            Require(RuntimeClassicCombatAnsi.RoundSummary(5, 10, "rat", 2, 10).Contains("\u001b[1;31m", StringComparison.Ordinal), "combat-health-ansi"); report.Checks.Add("combat-health-ansi");
+            var networkSource = File.ReadAllText(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "ServerNetworkHost.cs"));
+            Require(networkSource.Contains("Task.WhenAny(pendingInput", StringComparison.Ordinal) && networkSource.Contains("session.DrainMessages()", StringComparison.Ordinal), "automatic-round-output-wakes-telnet"); report.Checks.Add("automatic-round-output-wakes-telnet");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.ExecuteLiveCombatCommand)) is not null, "live-combat-admission"); report.Checks.Add("live-combat-admission");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.CanMove)) is not null, "combat-movement-guard"); report.Checks.Add("combat-movement-guard");
         }

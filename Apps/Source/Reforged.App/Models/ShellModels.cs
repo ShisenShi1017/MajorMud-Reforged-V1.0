@@ -90,3 +90,14 @@ public sealed class LayoutState
 
     public double? Top { get; set; }
 }
+
+public sealed record HostSessionSnapshot(
+    string SessionId,
+    string CharacterId,
+    string CharacterName,
+    string AccountId,
+    string WorldId,
+    string RoomId,
+    string RoomName,
+    DateTimeOffset ConnectedAtUtc,
+    string Access);

@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 
 namespace Reforged.Server;
@@ -135,10 +137,14 @@ public sealed class RuntimeGameplayCompletionStateStore
             if (string.IsNullOrWhiteSpace(itemId) || !stock.TryGetValue(itemId, out var current)) continue;
             var max = Math.Max(ReadInt(generated, "max_qty"), ReadInt(generated, "normal_qty"));
             var regen = Math.Max(0, ReadInt(generated, "regen_qty"));
+            var percent = Math.Clamp(ReadInt(generated, "regen_percent"), 0, 100);
             var next = current.NextRestockUtc;
-            while (regen > 0 && current.Quantity < max && next <= now)
+            while (regen > 0 && percent > 0 && current.Quantity < max && next <= now)
             {
-                current = current with { Quantity = Math.Min(max, checked(current.Quantity + regen)), NextRestockUtc = NextRestock(generated, next) };
+                var quantity = StableRestockRoll(shop.Id,itemId,next)<=percent
+                    ? Math.Min(max,checked(current.Quantity+regen))
+                    : current.Quantity;
+                current = current with { Quantity = quantity, NextRestockUtc = NextRestock(generated, next) };
                 next = current.NextRestockUtc;
                 changed = true;
             }
@@ -149,8 +155,16 @@ public sealed class RuntimeGameplayCompletionStateStore
 
     private static DateTimeOffset NextRestock(JsonElement generated, DateTimeOffset from)
     {
-        var rounds = Math.Max(1, ReadInt(generated, "regen_time"));
+        var rounds = ReadInt(generated, "regen_time");
+        if(rounds<=0||ReadInt(generated,"regen_qty")<=0||ReadInt(generated,"regen_percent")<=0)
+            return DateTimeOffset.MaxValue;
         return from.AddSeconds(checked(rounds * 6L));
+    }
+
+    internal static int StableRestockRoll(string shopId,string itemId,DateTimeOffset cycle)
+    {
+        var bytes=SHA256.HashData(Encoding.UTF8.GetBytes($"{shopId}|{itemId}|{cycle.UtcDateTime.Ticks}"));
+        return (BitConverter.ToUInt32(bytes,0)%100)+1 is var roll ? checked((int)roll) : 1;
     }
 
     private void Save(RuntimeShopState state)

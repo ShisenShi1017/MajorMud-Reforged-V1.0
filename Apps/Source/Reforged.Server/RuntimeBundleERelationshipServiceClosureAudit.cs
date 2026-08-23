@@ -70,8 +70,7 @@ public static class RuntimeBundleERelationshipServiceClosureAudit
             var evidence = new[]
             {
                 Path.Combine(projectRoot, "Data", "Classic", "npcs.json"),
-                Path.Combine(projectRoot, "Generated", "NPCReconstruction", "npc_ai_runtime_catalog.json"),
-                Path.Combine(projectRoot, "Generated", "NPCReconstruction", "npc_relationship_index.json"),
+                Path.Combine(projectRoot, "Data", "Classic", "spawns.json"),
                 Path.Combine(projectRoot, "Librarium", "Objects", "npcs"),
                 Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData"),
                 Path.Combine(projectRoot, "ImportedDatabases", "data-v1.11n.mdb"),

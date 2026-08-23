@@ -10,6 +10,8 @@ public sealed class RuntimeSessionManager
     private readonly RuntimeDevelopmentOptions _development;
     private readonly RuntimeCharacterService? _characters;
 
+    public event EventHandler? SessionsChanged;
+
     public RuntimeSessionManager() => _development = new RuntimeDevelopmentOptions();
 
     public RuntimeSessionManager(RuntimeStateStore state, RuntimeEventDispatcher events, RuntimeDevelopmentOptions development, RuntimeCharacterService? characters = null)
@@ -69,10 +71,16 @@ public sealed class RuntimeSessionManager
             return false;
         }
         if (!_sessions.TryAdd(session.Id, session)) { message = $"Session '{session.Id}' is already active."; return false; }
+        if (session.Actor.IsPersistentCharacter && _characters is not null)
+        {
+            foreach (var gangName in new RuntimeClassicGangStateService(_characters.ProjectRoot).ConsumeDisbandNotifications(session.Actor.Id))
+                session.EnqueueMessage($"Your gang '{gangName}' has been disbanded by a SYSOP or its leader.");
+        }
         _state?.TrackSession(session);
         _events?.Publish("session", "started", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
         BroadcastRoom(session, $"{session.Actor.DisplayName} enters the world.");
         message = "accepted";
+        SessionsChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
 
@@ -86,6 +94,7 @@ public sealed class RuntimeSessionManager
         _characters?.SaveSession(session);
         _state?.RemoveSession(sessionId);
         _events?.Publish("session", "ended", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
+        SessionsChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
 
@@ -140,6 +149,20 @@ public sealed class RuntimeSessionManager
         ? "No active sessions."
         : string.Join(Environment.NewLine, _sessions.Values.OrderBy(s => s.ConnectedAtUtc)
             .Select(s => $"{s.Id}: actor={s.Actor.DisplayName}; kind={s.Actor.Kind}; world={s.World.Definition.Id}; room={s.CurrentRoom.Id}; connectedUtc={s.ConnectedAtUtc:O}"));
+
+    public string RenderWho()
+    {
+        var users = _sessions.Values
+            .Select(session => session.Actor)
+            .OfType<RuntimeCharacterActor>()
+            .OrderBy(actor => actor.DisplayName, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        var lines = new List<string> { "Who's in the Realm", "Name | Class | Level" };
+        lines.AddRange(users.Select(actor =>
+            $"{actor.DisplayName} | {actor.CharacterClass} | {actor.Level}"));
+        lines.Add($"{users.Length} {(users.Length == 1 ? "user" : "users")} in the Realm.");
+        return string.Join(Environment.NewLine, lines);
+    }
 }
 
 public static class RuntimeCharacterIds

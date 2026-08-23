@@ -23,6 +23,14 @@ public static class RuntimeServicesEconomySmokeReport
         Try("shop-sell", () => { var result = engine.Execute(account, new("request.sell", shop.Id, account.AccountId, "sell", "item.test"), DateTimeOffset.UtcNow); if (!result.Succeeded || account.Carried != 950) throw new InvalidOperationException(); }, checks, failures);
         Try("trainer-contract", () => { var result = engine.Execute(account, new("request.train", shop.Id, account.AccountId, "train", "skill.test"), DateTimeOffset.UtcNow); if (!result.Succeeded) throw new InvalidOperationException(); }, checks, failures);
         Try("bank-deposit-withdraw", () => { account.Deposit(200); account.Withdraw(100); if (account.Carried != 850 || account.Banked != 600) throw new InvalidOperationException(); }, checks, failures);
+        Try("gang-house-tax-exact-bank-gold", () =>
+        {
+            var state = RuntimeBundleCInventoryAuthority.WriteCurrency(new RuntimeItemState([], 0, new Dictionary<string,string>(), []), new RuntimeClassicInventoryCurrency(0, 0, 0, 0, 0));
+            state = RuntimeBundleCEconomyAuthority.WriteBank(state, new RuntimeClassicBankCurrency(2, 3, 500, 7, 9));
+            var debited = RuntimeBundleCEconomyAuthority.DebitBankGold(state, 150);
+            var after = RuntimeBundleCEconomyAuthority.ReadBank(debited.ActiveItemState);
+            if (after.Runic != 2 || after.Platinum != 3 || after.Gold != 350 || after.Silver != 7 || after.Copper != 9) throw new InvalidOperationException();
+        }, checks, failures);
         Try("ledger-persistence", () => { var snapshot = ledger.Capture(); var restored = new RuntimeEconomyLedger(); restored.Restore(snapshot); if (restored.Entries.Count != ledger.Entries.Count) throw new InvalidOperationException(); }, checks, failures);
         var trade = new RuntimeTradeSession("trade.1", "actor.1", "actor.2", DateTimeOffset.UtcNow);
         Try("trade-confirmation", () => { trade.SetOffer("actor.1", 10, new[] { "instance.1" }); trade.SetOffer("actor.2", 20, new[] { "instance.2" }); trade.Confirm("actor.1"); trade.Confirm("actor.2"); trade.MarkCompleted(); if (!trade.Capture().Completed) throw new InvalidOperationException(); }, checks, failures);

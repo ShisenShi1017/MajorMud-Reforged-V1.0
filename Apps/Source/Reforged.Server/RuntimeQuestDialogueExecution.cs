@@ -165,7 +165,11 @@ public sealed class RuntimeQuestDialogueCatalog
             case "cast": context.ValidateWorldIntent("cast", $"spell.{Arg(op,0)}"); events.Add(Event("world_intent.cast_spell", $"spell.{Arg(op,0)}", Arg(op,0), op)); break;
             case "summon": context.ValidateWorldIntent("summon", $"npc.{Arg(op,0)}"); events.Add(Event("world_intent.summon_npc", $"npc.{Arg(op,0)}", Arg(op,0), op)); break;
             case "teleport": var roomId=$"room.map{Arg(op,1)}.{Arg(op,0)}"; context.ValidateWorldIntent("teleport",roomId); events.Add(Event("world_intent.teleport_character",roomId,Arg(op,0),op)); break;
-            case "remoteaction": context.ValidateWorldIntent("remoteaction", string.Join(".", op.Arguments)); events.Add(Event("world_intent.remote_action", null, 0, op)); break;
+            case "remoteaction":
+                var remoteActionSignature=string.Join(".",op.Arguments);
+                context.ValidateWorldIntent("remoteaction",remoteActionSignature);
+                events.Add(Event("world_intent.remote_action",remoteActionSignature,0,op));
+                break;
             case "random": ExecuteRandomTable(op, script, context, lines, events); break;
             default: throw new InvalidOperationException($"unsupported execution opcode {op.Opcode}");
         }
@@ -347,7 +351,7 @@ public sealed class RuntimeQuestWorldIntentValidator
                 if (!_rooms.Contains(target)) throw new InvalidOperationException($"teleport target {target} is not generated");
                 break;
             case "remoteaction":
-                if (string.IsNullOrWhiteSpace(target)) throw new InvalidOperationException("remoteaction arguments are missing");
+                _ = RuntimeNativeRemoteActionIntent.Parse(target);
                 break;
             default:
                 throw new InvalidOperationException($"unsupported world intent {intent}");

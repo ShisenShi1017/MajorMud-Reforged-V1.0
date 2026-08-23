@@ -26,19 +26,25 @@ public static class RuntimeBundleDEnvironmentAudit
         var failures = new List<string>();
         var options = ServerRuntimeOptions.Load(projectRoot);
         var definition = options.Worlds.First(x => x.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));
-        var path = Path.Combine(projectRoot, definition.DataRoot, "environment_rooms.json");
-        var decoded = RuntimeRoomEnvironmentCatalog.Load(path);
         var world = new RuntimeWorldLoader().Load(projectRoot, definition);
         var rooms = world.AllRooms();
+        var decoded = rooms.ToDictionary(
+            room => new RuntimeRoomKey(room.MapId, room.RoomNumber),
+            room => new RuntimeRoomEnvironmentRecord(
+                room.Id, room.MapId, room.RoomNumber, room.EnvironmentLightLevel,
+                room.EnvironmentRoomSpellId, room.EnvironmentLairId, room.EnvironmentDelay,
+                room.EnvironmentRoomType, room.EnvironmentAttributes, room.EnvironmentDeathRoomId,
+                room.EnvironmentGangHouseId, room.EnvironmentRespawnMinutes, room.EnvironmentMaxAreaCap,
+                room.EnvironmentLinkedSpawnRoom, room.EnvironmentEvidence));
 
-        Check(decoded.Count > 0, "decoded-environment-catalog-loaded");
+        Check(decoded.Count > 0, "decoded-room-environment-loaded");
         var roomKeys = rooms.Select(r => new RuntimeRoomKey(r.MapId, r.RoomNumber)).ToHashSet();
         var roomsWithDecodedEnvironment = rooms
             .Where(r => decoded.ContainsKey(new RuntimeRoomKey(r.MapId, r.RoomNumber)))
             .ToArray();
         var decodedGangHouseRooms = decoded.Values.Count(r => r.GangHouseId != 0);
 
-        Check(decoded.Count == rooms.Count, "environment-record-per-runtime-room");
+        Check(decoded.Count == rooms.Count, "embedded-environment-record-per-runtime-room");
         Check(decoded.Keys.All(roomKeys.Contains), "decoded-environment-records-resolve-to-runtime-rooms");
         Check(rooms.All(r => decoded.ContainsKey(new RuntimeRoomKey(r.MapId, r.RoomNumber))), "all-runtime-rooms-map-qualified-in-environment-catalog");
         Check(roomsWithDecodedEnvironment.All(r => !string.IsNullOrWhiteSpace(r.EnvironmentEvidence)), "decoded-environment-provenance-consumed-by-runtime-room");

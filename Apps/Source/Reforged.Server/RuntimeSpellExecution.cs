@@ -16,7 +16,8 @@ public sealed record RuntimeSpellExecutionResult(
     string? FailureCode,
     string? FailureMessage,
     RuntimeSpellCastResult Cast,
-    IReadOnlyList<RuntimeSpellExecutionEvent> Events);
+    IReadOnlyList<RuntimeSpellExecutionEvent> Events,
+    IReadOnlyList<RuntimeActiveSpellEffect>? AppliedEffects = null);
 
 public interface IRuntimeSpellTargetPolicy
 {
@@ -95,6 +96,47 @@ public sealed class RuntimeSpellExecutionEngine
                 {
                     try { _sink.Revert(applied[index]); } catch { }
                 }
+                _spells.RestoreSnapshot(before);
+                throw;
+            }
+        }
+    }
+
+    public RuntimeSpellExecutionResult CastMany(string casterId, string spellId, IReadOnlyList<RuntimeSpellTarget> targets, DateTimeOffset nowUtc)
+    {
+        lock (_gate)
+        {
+            if (targets.Count == 0) throw new InvalidOperationException("SPELL_TARGET_SET_EMPTY");
+            var spell = _catalog.Require(spellId);
+            var requests = targets.DistinctBy(target => (target.Kind, target.Id)).Select(target => new RuntimeSpellCastRequest(casterId, spellId, target, nowUtc)).ToArray();
+            foreach (var request in requests)
+                foreach (var policy in _targetPolicies)
+                    if (policy.ValidateTarget(spell, request) is { } issue)
+                        return new RuntimeSpellExecutionResult(false, issue.Code, issue.Message,
+                            new RuntimeSpellCastResult(false, issue.Code, issue.Message, _spells.Snapshot().Resources.GetValueOrDefault(casterId, new RuntimeSpellResources(0, 0)), null), [], []);
+
+            var before = _spells.Snapshot();
+            var primary = _spells.Cast(requests[0]);
+            if (!primary.Succeeded || primary.Effect is null) return new(false, primary.FailureCode, primary.FailureMessage, primary, [], []);
+            var effects = new List<RuntimeActiveSpellEffect> { primary.Effect };
+            var events = new List<RuntimeSpellExecutionEvent>();
+            var applied = new List<RuntimeSpellExecutionEvent>();
+            try
+            {
+                for (var index = 0; index < requests.Length; index++)
+                {
+                    var effect = index == 0 ? primary.Effect : _spells.AddAdditionalTarget(requests[index]);
+                    if (index > 0) effects.Add(effect);
+                    foreach (var spellEvent in _operations.ResolveOperations(spell, requests[index], effect))
+                    {
+                        _sink.Apply(spellEvent); applied.Add(spellEvent); events.Add(spellEvent);
+                    }
+                }
+                return new(true, null, null, primary, events, effects);
+            }
+            catch
+            {
+                for (var index = applied.Count - 1; index >= 0; index--) try { _sink.Revert(applied[index]); } catch { }
                 _spells.RestoreSnapshot(before);
                 throw;
             }

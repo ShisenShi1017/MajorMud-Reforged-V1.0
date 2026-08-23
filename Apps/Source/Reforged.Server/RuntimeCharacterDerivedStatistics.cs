@@ -175,6 +175,36 @@ public static class RuntimeCharacterCombatStatisticProjector
         derived[CanonicalDerivedKeys[3]] = checked(equipment.SpeedBonus + RuntimeCharacterAbilityValues.Read(abilities, SpeedAbilityId));
         derived["hit_point_regeneration_percent"] = RuntimeCharacterAbilityValues.Read(abilities, HitPointRegenerationAbilityId);
         derived["mana_regeneration_percent"] = RuntimeCharacterAbilityValues.Read(abilities, ManaRegenerationAbilityId);
+        var previousMaximumHitPointBonus = semantic.DerivedStats.GetValueOrDefault("maximum_hit_points_bonus");
+        var previousMaximumManaBonus = semantic.DerivedStats.GetValueOrDefault("maximum_mana_bonus");
+        var maximumHitPointBonus = equipment.AbilityModifiers.GetValueOrDefault(88);
+        var maximumManaBonus = equipment.AbilityModifiers.GetValueOrDefault(69);
+        derived["maximum_hit_points_bonus"] = maximumHitPointBonus;
+        derived["maximum_mana_bonus"] = maximumManaBonus;
+        derived["encumbrance_modifier_percent"] = equipment.AbilityModifiers.GetValueOrDefault(96);
+        derived["stealth_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 27);
+        derived["maximum_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 4);
+        derived["dodge_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 34);
+        derived["critical_chance_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 58);
+        derived["magic_resistance_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 36);
+        derived["anti_magic_rank"] = equipment.AbilityModifiers.ContainsKey(51) ? Math.Max(1, RuntimeCharacterAbilityValues.Read(abilities, 51)) : 0;
+        derived["poison_immunity_rank"] = equipment.AbilityModifiers.ContainsKey(21) ? Math.Max(1, RuntimeCharacterAbilityValues.Read(abilities, 21)) : 0;
+        derived["protection_from_evil_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 24);
+        derived["protection_from_good_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 25);
+        derived["damage_shield_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 72);
+        derived["punch_accuracy_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 89);
+        derived["kick_accuracy_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 90);
+        derived["jumpkick_accuracy_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 91);
+        derived["punch_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 92);
+        derived["kick_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 93);
+        derived["jumpkick_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 94);
+        derived["perception_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 77);
+        derived["backstab_accuracy_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 116);
+        derived["backstab_minimum_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 117);
+        derived["backstab_maximum_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 118);
+        derived["find_traps_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 179);
+        derived["picklocks_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 180);
+        derived["shadowform_textblock"] = equipment.AbilityModifiers.GetValueOrDefault(178);
 
         var resistances = new Dictionary<string, int>(NormalizeCanonicalMap(semantic.Resistances, "resistance"), StringComparer.OrdinalIgnoreCase)
         {
@@ -198,9 +228,18 @@ public static class RuntimeCharacterCombatStatisticProjector
                 string.Join(",", orderedSources))
         };
 
+        var baseMaximumHitPoints = checked(character.MaximumHitPoints - previousMaximumHitPointBonus);
+        var baseMaximumMana = checked(character.MaximumMana - previousMaximumManaBonus);
+        var projectedMaximumHitPoints = Math.Max(1, checked(baseMaximumHitPoints + maximumHitPointBonus));
+        var projectedMaximumMana = Math.Max(0, checked(baseMaximumMana + maximumManaBonus));
+
         return character with
         {
             SaveVersion = RuntimeCharacterRecordValidator.CurrentSaveVersion,
+            HitPoints = Math.Min(character.HitPoints, projectedMaximumHitPoints),
+            MaximumHitPoints = projectedMaximumHitPoints,
+            Mana = Math.Min(character.Mana, projectedMaximumMana),
+            MaximumMana = projectedMaximumMana,
             SemanticState = semantic with
             {
                 DerivedStats = derived.OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)

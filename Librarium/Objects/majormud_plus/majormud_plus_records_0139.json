@@ -1,0 +1,1315 @@
+{
+  "schema": "majormud.reforged.majormud-plus.v1",
+  "source_files": [
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.DOC",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.msg",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.REL",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.mcv",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.MDF",
+    "ImportedDatabases/WCCDefaultInstall/wcc default/wccacts2.dat"
+  ],
+  "records": [
+    {
+      "id": "majormud_plus.entertainment_edition",
+      "object_type": "majormud_plus_contract",
+      "world_scope": [
+        "classic"
+      ],
+      "classic_lock": "evidence_backed_immutable",
+      "product_name": "MajorMUD Plus - Entertainment Edition",
+      "settings": {
+        "description_credit_cost": 3600,
+        "description_copper_cost": 0,
+        "description_membership_day_cost": 0,
+        "life_credit_cost": 28800,
+        "life_copper_cost": 10000,
+        "life_membership_day_cost": 0,
+        "life_purchase_enabled": true,
+        "maximum_lives": 9,
+        "minutes_per_age_year": 1000,
+        "starting_age": 17,
+        "maximum_description_lines": 6,
+        "description_approval_required": true,
+        "approval_notification_user": "Sysop",
+        "registry_value_ansi": "\u001b[0;36;40m",
+        "global_registry_command": "/mudreg"
+      },
+      "player_features": [
+        "character_descriptions",
+        "character_registry_create_edit_search_lookup",
+        "purchase_additional_life",
+        "global_mudreg_lookup"
+      ],
+      "sysop_features": [
+        "approve_description",
+        "view_description",
+        "delete_description",
+        "list_pending_descriptions",
+        "delete_registry",
+        "offline_action_editor",
+        "clear_plus_data",
+        "rune_contest_start_finish"
+      ],
+      "action_editor_fields": [
+        "action_name",
+        "board_specific",
+        "single_actor_message",
+        "single_room_message",
+        "user_actor_message",
+        "user_target_message",
+        "user_room_message",
+        "monster_actor_message",
+        "monster_room_message",
+        "inventory_item_actor_message",
+        "inventory_item_room_message",
+        "floor_item_actor_message",
+        "floor_item_room_message"
+      ],
+      "action_variables": [
+        "%i",
+        "%p",
+        "%P",
+        "%t",
+        "%f0",
+        "%f1",
+        "%f2",
+        "%f3",
+        "%f4",
+        "%f5",
+        "%f6",
+        "%f7",
+        "%b0",
+        "%b1",
+        "%b2",
+        "%b3",
+        "%b4",
+        "%b5",
+        "%b6",
+        "%b7",
+        "%B",
+        "%N",
+        "%U",
+        "%L",
+        "%R"
+      ],
+      "contest_modes": [
+        "visible",
+        "hidden"
+      ],
+      "contest_contract": {
+        "canonical_item_id": "item.965",
+        "legacy_item_number": 965,
+        "maximum_attempts_per_item": 50,
+        "excluded_room_attribute_mask": 16,
+        "visible_room_capacity": 17,
+        "hidden_room_capacity": 15,
+        "placement_ranges": [
+          {
+            "map": 1,
+            "minimum_room": 547,
+            "maximum_room": 815,
+            "quantity": 1
+          },
+          {
+            "map": 1,
+            "minimum_room": 869,
+            "maximum_room": 1009,
+            "quantity": 1
+          },
+          {
+            "map": 1,
+            "minimum_room": 1451,
+            "maximum_room": 1633,
+            "quantity": 1
+          },
+          {
+            "map": 1,
+            "minimum_room": 1640,
+            "maximum_room": 1794,
+            "quantity": 1
+          },
+          {
+            "map": 1,
+            "minimum_room": 1833,
+            "maximum_room": 2117,
+            "quantity": 1
+          },
+          {
+            "map": 2,
+            "minimum_room": 41,
+            "maximum_room": 1122,
+            "quantity": 4
+          },
+          {
+            "map": 2,
+            "minimum_room": 1124,
+            "maximum_room": 2514,
+            "quantity": 6
+          },
+          {
+            "map": 3,
+            "minimum_room": 1,
+            "maximum_room": 785,
+            "quantity": 3
+          },
+          {
+            "map": 6,
+            "minimum_room": 134,
+            "maximum_room": 548,
+            "quantity": 2
+          },
+          {
+            "map": 6,
+            "minimum_room": 751,
+            "maximum_room": 832,
+            "quantity": 1
+          },
+          {
+            "map": 6,
+            "minimum_room": 836,
+            "maximum_room": 994,
+            "quantity": 1
+          },
+          {
+            "map": 6,
+            "minimum_room": 996,
+            "maximum_room": 1243,
+            "quantity": 1
+          },
+          {
+            "map": 6,
+            "minimum_room": 1407,
+            "maximum_room": 1566,
+            "quantity": 1
+          },
+          {
+            "map": 6,
+            "minimum_room": 1626,
+            "maximum_room": 3107,
+            "quantity": 4
+          },
+          {
+            "map": 7,
+            "minimum_room": 1,
+            "maximum_room": 1358,
+            "quantity": 6
+          },
+          {
+            "map": 8,
+            "minimum_room": 1,
+            "maximum_room": 955,
+            "quantity": 5
+          },
+          {
+            "map": 10,
+            "minimum_room": 1,
+            "maximum_room": 274,
+            "quantity": 1
+          }
+        ],
+        "native_evidence": {
+          "utility": "WCCMMUTL.EXE",
+          "placement_routine": "0x00404D80-0x00404FA1",
+          "room_admission_and_insert": "0x00404CC4-0x00404D7F",
+          "result_scan": "0x00404FA2-0x0040521C",
+          "classification": "native_executable_exact"
+        }
+      },
+      "persistence_authority": "server_host",
+      "source_classification": "native_module_configuration_and_release_contract",
+      "default_actions": [
+        {
+          "name": "yawn",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You yawn.",
+            "single_room_message": "%i yawns loudly.",
+            "user_actor_message": "You yawn at %t.",
+            "user_target_message": "%i yawns at you.",
+            "user_room_message": "%i yawns at %t.",
+            "monster_actor_message": "You yawn at %t.",
+            "monster_room_message": "%i yawns at %t.",
+            "inventory_item_actor_message": "You yawn at your %t.",
+            "inventory_item_room_message": "%i yawns at %p %t.",
+            "floor_item_actor_message": "You yawn at the %t.",
+            "floor_item_room_message": "%i yawns at the %t."
+          },
+          "native_page": 6,
+          "native_slot": 0
+        },
+        {
+          "name": "wink",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You wink.",
+            "single_room_message": "%i winks slyly.",
+            "user_actor_message": "You wink at %t.",
+            "user_target_message": "%i winks at you!",
+            "user_room_message": "%i winks at %t!",
+            "monster_actor_message": "You wink at %t!",
+            "monster_room_message": "%i winks at %t!"
+          },
+          "native_page": 6,
+          "native_slot": 1
+        },
+        {
+          "name": "nudge",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You nudge %t.",
+            "user_target_message": "%i nudges you.",
+            "user_room_message": "%i nudges %t.",
+            "monster_actor_message": "You nudge %t.",
+            "monster_room_message": "%i nudges %t."
+          },
+          "native_page": 6,
+          "native_slot": 2
+        },
+        {
+          "name": "smirk",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You smirk wryly.",
+            "single_room_message": "%i smirks wryly.",
+            "user_actor_message": "You smirk at %t.",
+            "user_target_message": "%i smirks at you.",
+            "user_room_message": "%i smirks at %t.",
+            "monster_actor_message": "You smirk at %t.",
+            "monster_room_message": "%i smirks at %t."
+          },
+          "native_page": 6,
+          "native_slot": 3
+        },
+        {
+          "name": "shake",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You shake your head.",
+            "single_room_message": "%i shakes %p head.",
+            "user_actor_message": "You shake your head at %t.",
+            "user_target_message": "%i shakes %p head at you.",
+            "user_room_message": "%i shakes %p head at %t.",
+            "monster_actor_message": "You shake your head at %t.",
+            "monster_room_message": "%i shakes %p head at %t.",
+            "inventory_item_actor_message": "You shake your head at your %t.",
+            "inventory_item_room_message": "%i shakes %p head at %t.",
+            "floor_item_actor_message": "You shake your head at the %t.",
+            "floor_item_room_message": "%i shakes at the %t."
+          },
+          "native_page": 7,
+          "native_slot": 0
+        },
+        {
+          "name": "cough",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You cough your lungs out.",
+            "single_room_message": "%i coughs quietly.",
+            "user_actor_message": "You cough towards %t.",
+            "user_target_message": "%i coughs at you.",
+            "user_room_message": "%i coughs at %t.",
+            "monster_actor_message": "You cough at %t.",
+            "monster_room_message": "%i coughs at %t.",
+            "inventory_item_actor_message": "You cough at your %t.",
+            "inventory_item_room_message": "%i coughs at %p %t.",
+            "floor_item_actor_message": "You cough at the %t.",
+            "floor_item_room_message": "%i coughs at the %t."
+          },
+          "native_page": 7,
+          "native_slot": 1
+        },
+        {
+          "name": "shrug",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You shrug your shoulders.",
+            "single_room_message": "%i is shrugging %p shoulders.",
+            "user_actor_message": "You shrug at %t.",
+            "user_target_message": "%i shrugs at you.",
+            "user_room_message": "%i shrugs at %t.",
+            "monster_actor_message": "You shrug at %t.",
+            "monster_room_message": "%i shrugs at %t.",
+            "inventory_item_actor_message": "You shrug at your %t.",
+            "inventory_item_room_message": "%i shrugs at %p %t.",
+            "floor_item_actor_message": "You shrug at the %t.",
+            "floor_item_room_message": "%i shrugs at the %t."
+          },
+          "native_page": 7,
+          "native_slot": 2
+        },
+        {
+          "name": "growl",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You growl.",
+            "single_room_message": "%i growls ominously.",
+            "user_actor_message": "You growl at %t!",
+            "user_target_message": "%i growls angrily at you!",
+            "user_room_message": "%i growls angrily at %t!",
+            "monster_actor_message": "You growl at %t!",
+            "monster_room_message": "%i growls angrily at %t!",
+            "inventory_item_actor_message": "You growl at your %t.",
+            "inventory_item_room_message": "%i growls angrily at %p %t!",
+            "floor_item_actor_message": "You growl at the %t.",
+            "floor_item_room_message": "%i growls angrily at the %t!"
+          },
+          "native_page": 7,
+          "native_slot": 3
+        },
+        {
+          "name": "hug",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You hug %t close!",
+            "user_target_message": "%i hugs you close!",
+            "user_room_message": "%i hugs %t close!",
+            "monster_actor_message": "You hug %t!",
+            "monster_room_message": "%i hugs %t close!",
+            "inventory_item_actor_message": "You hug your %t!",
+            "inventory_item_room_message": "%i hugs %p %t!",
+            "floor_item_actor_message": "You hug the %t!",
+            "floor_item_room_message": "%i hugs the %t!"
+          },
+          "native_page": 8,
+          "native_slot": 0
+        },
+        {
+          "name": "kiss",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You pucker up looking for a kiss.",
+            "single_room_message": "%i is puckering up, looking for a kiss.",
+            "user_actor_message": "You kiss %t.",
+            "user_target_message": "%i kisses you!",
+            "user_room_message": "%i kisses %t!",
+            "monster_actor_message": "You kiss %t!",
+            "monster_room_message": "%i kisses %t!",
+            "inventory_item_actor_message": "You kiss your %t!",
+            "inventory_item_room_message": "%i kisses %p %t!",
+            "floor_item_actor_message": "You kiss the %t!",
+            "floor_item_room_message": "%i kisses the %t!"
+          },
+          "native_page": 8,
+          "native_slot": 1
+        },
+        {
+          "name": "wave",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You wave farewell!",
+            "single_room_message": "%i waves!",
+            "user_actor_message": "You wave to %t!",
+            "user_target_message": "%i waves to you!",
+            "user_room_message": "%i waves to %t!",
+            "monster_actor_message": "You wave to %t!",
+            "monster_room_message": "%i waves to %t!"
+          },
+          "native_page": 8,
+          "native_slot": 2
+        },
+        {
+          "name": "grin",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You grin slyly.",
+            "single_room_message": "%i breaks into a wide grin.",
+            "user_actor_message": "You grin at %t.",
+            "user_target_message": "%i grins slyly at you.",
+            "user_room_message": "%i grins slyly at %t.",
+            "monster_actor_message": "You grin at %t.",
+            "monster_room_message": "%i grins slyly at %t.",
+            "inventory_item_actor_message": "You grin at your %t.",
+            "inventory_item_room_message": "%i grins slyly at %p %t.",
+            "floor_item_actor_message": "You grin at the %t.",
+            "floor_item_room_message": "%i grins slyly at the %t."
+          },
+          "native_page": 8,
+          "native_slot": 3
+        },
+        {
+          "name": "smooch",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You smooch with %t!",
+            "user_target_message": "%i smooches with you!",
+            "user_room_message": "%i smooches with %t!",
+            "monster_actor_message": "You smooch with %t!",
+            "monster_room_message": "%i smooches with %t!",
+            "inventory_item_actor_message": "You smooch your %t!",
+            "inventory_item_room_message": "%i smooches %p %t!",
+            "floor_item_actor_message": "You smooch the %t!",
+            "floor_item_room_message": "%i smooches the %t!"
+          },
+          "native_page": 9,
+          "native_slot": 0
+        },
+        {
+          "name": "sigh",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You sigh wistfully.",
+            "single_room_message": "%i sighs wistfully.",
+            "user_actor_message": "You sigh at %t.",
+            "user_target_message": "%i sighs at you.",
+            "user_room_message": "%i sighs at %t.",
+            "monster_actor_message": "You sigh at %t.",
+            "monster_room_message": "%i sighs at %t.",
+            "inventory_item_actor_message": "You sigh at your %t.",
+            "inventory_item_room_message": "%i sighs at %p %t.",
+            "floor_item_actor_message": "You sigh at the %t.",
+            "floor_item_room_message": "%i sighs at the %t."
+          },
+          "native_page": 9,
+          "native_slot": 1
+        },
+        {
+          "name": "highfive",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You leap in the air!",
+            "single_room_message": "%i leaps in the air foolishly!",
+            "user_actor_message": "You highfive %t!",
+            "user_target_message": "%i highfives you!",
+            "user_room_message": "%i highfives %t!"
+          },
+          "native_page": 9,
+          "native_slot": 2
+        },
+        {
+          "name": "greet",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You greet everyone.",
+            "single_room_message": "%i greets everyone.",
+            "user_actor_message": "You greet %t.",
+            "user_target_message": "%i greets you.",
+            "user_room_message": "%i greets %t."
+          },
+          "native_page": 9,
+          "native_slot": 3
+        },
+        {
+          "name": "bow",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You bow deeply.",
+            "single_room_message": "%i bows deeply.",
+            "user_actor_message": "You bow to %t.",
+            "user_target_message": "%i bows to you.",
+            "user_room_message": "%i bows to %t.",
+            "monster_actor_message": "You bow to %t.",
+            "monster_room_message": "%i bows to %t."
+          },
+          "native_page": 10,
+          "native_slot": 0
+        },
+        {
+          "name": "bleed",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You bleed all over the place!",
+            "single_room_message": "%i is bleeding all over the place!",
+            "user_actor_message": "You bleed all over %t!",
+            "user_target_message": "%i is bleeding all over you!",
+            "user_room_message": "%i is bleeding all over %t!",
+            "monster_actor_message": "You bleed all over %t!",
+            "monster_room_message": "%i is bleeding all over %t!",
+            "inventory_item_actor_message": "You bleed all over your %t!",
+            "inventory_item_room_message": "%i is bleeding all over %p %t!",
+            "floor_item_actor_message": "You bleed all over the %t!",
+            "floor_item_room_message": "%i bleeds all over the %t!"
+          },
+          "native_page": 10,
+          "native_slot": 1
+        },
+        {
+          "name": "nod",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You nod affirmatively.",
+            "single_room_message": "%i nods affirmatively.",
+            "user_actor_message": "You nod to %t.",
+            "user_target_message": "%i nods to you.",
+            "user_room_message": "%i nods towards %t.",
+            "monster_actor_message": "You nod to %t.",
+            "monster_room_message": "%i nods to %t."
+          },
+          "native_page": 10,
+          "native_slot": 2
+        },
+        {
+          "name": "laugh",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You laugh!",
+            "single_room_message": "%i laughs!",
+            "user_actor_message": "You laugh at %t!",
+            "user_target_message": "%i laughs at you!",
+            "user_room_message": "%i laughs at %t!",
+            "monster_actor_message": "You laugh at %t!",
+            "monster_room_message": "%i laughs at %t!"
+          },
+          "native_page": 10,
+          "native_slot": 3
+        },
+        {
+          "name": "cuff",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You cuff %t!",
+            "user_target_message": "%i cuffs you!",
+            "user_room_message": "%i cuffs %t!",
+            "monster_actor_message": "You cuff %t!",
+            "monster_room_message": "%i cuffs %t!",
+            "inventory_item_actor_message": "You cuff your %t!",
+            "inventory_item_room_message": "%i cuffs %p %t!",
+            "floor_item_actor_message": "You cuff the %t!",
+            "floor_item_room_message": "%i cuffs the %t!"
+          },
+          "native_page": 11,
+          "native_slot": 0
+        },
+        {
+          "name": "slap",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You slap yourself!",
+            "single_room_message": "%i slaps %p face!",
+            "user_actor_message": "You slap %t!",
+            "user_target_message": "%i slaps you!",
+            "user_room_message": "%i slaps %t!",
+            "monster_actor_message": "You slap %t!",
+            "monster_room_message": "%i slaps %t!",
+            "inventory_item_actor_message": "You slap your %t!",
+            "inventory_item_room_message": "%i slaps %p %t!",
+            "floor_item_actor_message": "You slap the %t!",
+            "floor_item_room_message": "%i slaps the %t!"
+          },
+          "native_page": 11,
+          "native_slot": 1
+        },
+        {
+          "name": "jump",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You jump up and down!",
+            "single_room_message": "%i jumps up and down!",
+            "user_actor_message": "You jump on %t!",
+            "user_target_message": "%i jumps on you!",
+            "user_room_message": "%i jumps on %t!"
+          },
+          "native_page": 11,
+          "native_slot": 2
+        },
+        {
+          "name": "snicker",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You snicker.",
+            "single_room_message": "%i snickers.",
+            "user_actor_message": "You snicker at %t.",
+            "user_target_message": "%i snickers at you.",
+            "user_room_message": "%i snickers at %t.",
+            "monster_actor_message": "You snicker at %t.",
+            "monster_room_message": "%i snickers at %t.",
+            "inventory_item_actor_message": "You snicker at your %t.",
+            "inventory_item_room_message": "%i snickers at %p %t.",
+            "floor_item_actor_message": "You snicker at the %t.",
+            "floor_item_room_message": "%i snickers at the %t."
+          },
+          "native_page": 11,
+          "native_slot": 3
+        },
+        {
+          "name": "moan",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You moan softly.",
+            "single_room_message": "%i moans softly.",
+            "user_actor_message": "You moan at %t.",
+            "user_target_message": "%i moans at you.",
+            "user_room_message": "%i moans at %t.",
+            "monster_actor_message": "You moan at %t.",
+            "monster_room_message": "%i moans at %t."
+          },
+          "native_page": 12,
+          "native_slot": 0
+        },
+        {
+          "name": "dance",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You dance a little jig!",
+            "single_room_message": "%i dances a little jig!",
+            "user_actor_message": "You dance with %t.",
+            "user_target_message": "%i dances with you!",
+            "user_room_message": "%i dances with %t!",
+            "monster_actor_message": "You dance with %t!",
+            "monster_room_message": "%i dances with %t!"
+          },
+          "native_page": 12,
+          "native_slot": 1
+        },
+        {
+          "name": "sneeze",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You sneeze.",
+            "single_room_message": "%i sneezes.",
+            "user_actor_message": "You sneeze on %t.",
+            "user_target_message": "%i sneezes on you.",
+            "user_room_message": "%i sneezes on %t.",
+            "monster_actor_message": "You sneeze on %t.",
+            "monster_room_message": "%i sneezes on %t.",
+            "inventory_item_actor_message": "You sneeze on your %t.",
+            "inventory_item_room_message": "%i sneezes on %p %t.",
+            "floor_item_actor_message": "You sneeze on the %t.",
+            "floor_item_room_message": "%i sneezes on the %t."
+          },
+          "native_page": 12,
+          "native_slot": 2
+        },
+        {
+          "name": "tease",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You tease %t!",
+            "user_target_message": "%i teases you!",
+            "user_room_message": "%i teases %t!",
+            "monster_actor_message": "You tease %t!",
+            "monster_room_message": "%i teases %t!"
+          },
+          "native_page": 12,
+          "native_slot": 3
+        },
+        {
+          "name": "frown",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You frown darkly.",
+            "single_room_message": "%i frowns darkly.",
+            "user_actor_message": "You frown darkly at %t.",
+            "user_target_message": "%i frowns darkly at you.",
+            "user_room_message": "%i frowns darkly at %t.",
+            "monster_actor_message": "You frown darkly at %t.",
+            "monster_room_message": "%i frowns darkly at %t.",
+            "inventory_item_actor_message": "You frown darkly at your %t.",
+            "inventory_item_room_message": "%i frowns darkly at %p %t.",
+            "floor_item_actor_message": "You frown darkly at the %t.",
+            "floor_item_room_message": "%i frowns darkly at the %t."
+          },
+          "native_page": 13,
+          "native_slot": 0
+        },
+        {
+          "name": "giggle",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You giggle loudly!",
+            "single_room_message": "%i giggles loudly!",
+            "user_actor_message": "You giggle at %t!",
+            "user_target_message": "%i giggles loudly at you!",
+            "user_room_message": "%i giggles loudly at %t!",
+            "monster_actor_message": "You giggle at %t!",
+            "monster_room_message": "%i giggles loudly at %t!",
+            "inventory_item_actor_message": "You giggle at your %t!",
+            "inventory_item_room_message": "%i giggles loudly at %p %t!",
+            "floor_item_actor_message": "You giggle at the %t!",
+            "floor_item_room_message": "%i giggles loudly at the %t!"
+          },
+          "native_page": 13,
+          "native_slot": 1
+        },
+        {
+          "name": "pinch",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You pinch %t.",
+            "user_target_message": "%i pinches you!",
+            "user_room_message": "%i pinches %t!",
+            "monster_actor_message": "You pinch %t.",
+            "monster_room_message": "%i pinches %t!",
+            "inventory_item_actor_message": "You pinch your %t.",
+            "inventory_item_room_message": "%i pinches %p %t.",
+            "floor_item_actor_message": "You pinch the %t.",
+            "floor_item_room_message": "%i pinches the %t."
+          },
+          "native_page": 13,
+          "native_slot": 2
+        },
+        {
+          "name": "bearhug",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You give %t a bearhug!",
+            "user_target_message": "%i gives you a bone-crushing bearhug!",
+            "user_room_message": "%i gives %t a bone-crushing bearhug!"
+          },
+          "native_page": 13,
+          "native_slot": 3
+        },
+        {
+          "name": "blink",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You blink in disbelief!",
+            "single_room_message": "%i blinks in disbelief!",
+            "user_actor_message": "You blink at %t in disbelief!",
+            "user_target_message": "%i blinks at you in disbelief!",
+            "user_room_message": "%i blinks at %t in disbelief!",
+            "monster_actor_message": "You blink at %t in disbelief!",
+            "monster_room_message": "%i blinks at %t in disbelief!",
+            "inventory_item_actor_message": "You blink at your %t in disbelief!",
+            "inventory_item_room_message": "%i blinks at %p %t in disbelief!",
+            "floor_item_actor_message": "You blink at the %t in disbelief!",
+            "floor_item_room_message": "%i blinks at the %t in disbelief!"
+          },
+          "native_page": 14,
+          "native_slot": 0
+        },
+        {
+          "name": "blush",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You blush.",
+            "single_room_message": "%i blushes a lovely shade of red."
+          },
+          "native_page": 14,
+          "native_slot": 1
+        },
+        {
+          "name": "burp",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You burp loudly!",
+            "single_room_message": "%i burps loudly!",
+            "user_actor_message": "You burp at %t!",
+            "user_target_message": "%i burps loudly at you!",
+            "user_room_message": "%i burps loudly at %t!",
+            "monster_actor_message": "You burp at %t!",
+            "monster_room_message": "%i burps loudly at %t!",
+            "inventory_item_actor_message": "You burp at your %t!",
+            "inventory_item_room_message": "%i burps loudly at %p %t!",
+            "floor_item_actor_message": "You burp at the %t!",
+            "floor_item_room_message": "%i burps loudly at the %t!"
+          },
+          "native_page": 14,
+          "native_slot": 2
+        },
+        {
+          "name": "caress",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You caress %t gently.",
+            "user_target_message": "%i caresses you gently.",
+            "user_room_message": "%i caresses %t gently.",
+            "monster_actor_message": "You caress %t gently.",
+            "monster_room_message": "%i caresses %t gently.",
+            "inventory_item_actor_message": "You caress your %t gently.",
+            "inventory_item_room_message": "%i caresses %p %t gently.",
+            "floor_item_actor_message": "You caress the %t.",
+            "floor_item_room_message": "%i caresses the %t gently."
+          },
+          "native_page": 14,
+          "native_slot": 3
+        },
+        {
+          "name": "cheer",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You cheer loudly!",
+            "single_room_message": "%i cheers loudly!",
+            "user_actor_message": "You cheer %t on!",
+            "user_target_message": "%i cheers you on!",
+            "user_room_message": "%i cheers %t on!"
+          },
+          "native_page": 15,
+          "native_slot": 0
+        },
+        {
+          "name": "chuckle",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You chuckle softly.",
+            "single_room_message": "%i is chuckling under %p breath.",
+            "user_actor_message": "You chuckle at %t.",
+            "user_target_message": "%i chuckles softly at you.",
+            "user_room_message": "%i chuckles softly at %t.",
+            "monster_actor_message": "You chuckle at %t.",
+            "monster_room_message": "%i chuckles softly at %t.",
+            "inventory_item_actor_message": "You chuckle at your %t.",
+            "inventory_item_room_message": "%i chuckles softly at %p %t.",
+            "floor_item_actor_message": "You chuckle at the %t.",
+            "floor_item_room_message": "%i chuckles softly at the %t."
+          },
+          "native_page": 15,
+          "native_slot": 1
+        },
+        {
+          "name": "clap",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You clap wildly!",
+            "single_room_message": "%i claps wildly!",
+            "user_actor_message": "You clap wildly for %t!",
+            "user_target_message": "%i is clapping wildly for you!",
+            "user_room_message": "%i claps wildly for %t!"
+          },
+          "native_page": 15,
+          "native_slot": 2
+        },
+        {
+          "name": "comfort",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You comfort %t.",
+            "user_target_message": "%i comforts you.",
+            "user_room_message": "%i comforts %t."
+          },
+          "native_page": 15,
+          "native_slot": 3
+        },
+        {
+          "name": "curtsy",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You curtsy gracefully.",
+            "single_room_message": "%i curtsies gracefully.",
+            "user_actor_message": "You curtsy to %t.",
+            "user_target_message": "%i curtsies to you.",
+            "user_room_message": "%i curtsies to %t.",
+            "monster_actor_message": "You curtsy to %t.",
+            "monster_room_message": "%i curtsies to %t."
+          },
+          "native_page": 16,
+          "native_slot": 0
+        },
+        {
+          "name": "egrin",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You grin evilly.",
+            "single_room_message": "%i grins evilly.",
+            "user_actor_message": "You grin evilly at %t!",
+            "user_target_message": "%i grins evilly at you!",
+            "user_room_message": "%i grins evilly at %t!",
+            "monster_actor_message": "You grin evilly at %t!",
+            "monster_room_message": "%i grins evilly at %t!",
+            "inventory_item_actor_message": "You grin evilly at your %t!",
+            "inventory_item_room_message": "%i grins evilly at %p %t!",
+            "floor_item_actor_message": "You grin evilly at the %t!",
+            "floor_item_room_message": "%i grins evilly at the %t!"
+          },
+          "native_page": 16,
+          "native_slot": 1
+        },
+        {
+          "name": "embrace",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You give %t a warm embrace.",
+            "user_target_message": "%i gives you a warm embrace.",
+            "user_room_message": "%i gives %t a warm embrace."
+          },
+          "native_page": 16,
+          "native_slot": 2
+        },
+        {
+          "name": "gasp",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You gasp loudly!",
+            "single_room_message": "%i is gasping with %p mouth wide open!",
+            "user_actor_message": "You gasp at %t!",
+            "user_target_message": "%i gasps at you in amazement!",
+            "user_room_message": "%i gasps at %t in amazement!",
+            "monster_actor_message": "You gasp at %t!",
+            "monster_room_message": "%i gasps at %t in amazement!",
+            "inventory_item_actor_message": "You gasp at your %t!",
+            "inventory_item_room_message": "%i gasps at %p %t in amazement!",
+            "floor_item_actor_message": "You gasp at the %t!",
+            "floor_item_room_message": "%i gasps at the %t in amazement!"
+          },
+          "native_page": 16,
+          "native_slot": 3
+        },
+        {
+          "name": "glare",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You glare angrily.",
+            "single_room_message": "%i is glaring around angrily.",
+            "user_actor_message": "You glare at %t angrily.",
+            "user_target_message": "%i glares at you angrily.",
+            "user_room_message": "%i glares at %t angrily.",
+            "monster_actor_message": "You glare at %t angrily.",
+            "monster_room_message": "%i glares at %t angrily.",
+            "inventory_item_actor_message": "You glare at your %t.",
+            "inventory_item_room_message": "%i glares at %p %t angrily.",
+            "floor_item_actor_message": "You glare at the %t.",
+            "floor_item_room_message": "%i glares at the %t angrily."
+          },
+          "native_page": 17,
+          "native_slot": 0
+        },
+        {
+          "name": "groan",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You groan miserably.",
+            "single_room_message": "%i groans miserably."
+          },
+          "native_page": 17,
+          "native_slot": 1
+        },
+        {
+          "name": "grumble",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You grumble unhappily.",
+            "single_room_message": "%i grumbles unhappily."
+          },
+          "native_page": 17,
+          "native_slot": 2
+        },
+        {
+          "name": "handshake",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You give %t a hearty handshake.",
+            "user_target_message": "%i gives you a hearty handshake.",
+            "user_room_message": "%i gives %t a hearty handshake."
+          },
+          "native_page": 17,
+          "native_slot": 3
+        },
+        {
+          "name": "hum",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You hum a little tune.",
+            "single_room_message": "%i hums a little tune."
+          },
+          "native_page": 18,
+          "native_slot": 0
+        },
+        {
+          "name": "pout",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You pout.",
+            "single_room_message": "%i pouts.",
+            "user_actor_message": "You pout at %t.",
+            "user_target_message": "%i pouts at you.",
+            "user_room_message": "%i pouts at %t."
+          },
+          "native_page": 18,
+          "native_slot": 1
+        },
+        {
+          "name": "smack",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You smack %t across the face!",
+            "user_target_message": "%i smacks you across the face!",
+            "user_room_message": "%i smacks %t across the face!",
+            "monster_actor_message": "You smack %t across the face!",
+            "monster_room_message": "%i smacks %t across the face!"
+          },
+          "native_page": 18,
+          "native_slot": 2
+        },
+        {
+          "name": "smile",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You smile happily!",
+            "single_room_message": "%i smiles happily!",
+            "user_actor_message": "You smile happily at %t!",
+            "user_target_message": "%i smiles happily at you!",
+            "user_room_message": "%i smiles happily at %t!",
+            "monster_actor_message": "You smile happily at %t!",
+            "monster_room_message": "%i smiles happily at %t!",
+            "inventory_item_actor_message": "You smile at your %t!",
+            "inventory_item_room_message": "%i smiles at %p %t!",
+            "floor_item_actor_message": "You smile at the %t!",
+            "floor_item_room_message": "%i smiles at the %t!"
+          },
+          "native_page": 18,
+          "native_slot": 3
+        },
+        {
+          "name": "sniff",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You sniff the air.",
+            "single_room_message": "%i sniffs the air.",
+            "user_actor_message": "You sniff %t.",
+            "user_target_message": "%i sniffs you.",
+            "user_room_message": "%i sniffs %t.",
+            "monster_actor_message": "You sniff %t.",
+            "monster_room_message": "%i sniffs %t.",
+            "inventory_item_actor_message": "You sniff your %t.",
+            "inventory_item_room_message": "%i sniffs %p %t.",
+            "floor_item_actor_message": "You sniff the %t.",
+            "floor_item_room_message": "%i sniffs the %t."
+          },
+          "native_page": 19,
+          "native_slot": 0
+        },
+        {
+          "name": "sob",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You sob quietly.",
+            "single_room_message": "%i sobs quietly.",
+            "user_actor_message": "You sob quietly at %t.",
+            "user_target_message": "%i sobs quietly at you.",
+            "user_room_message": "%i sobs quietly at %t.",
+            "monster_actor_message": "You sob at %t.",
+            "monster_room_message": "%i sobs quietly at %t."
+          },
+          "native_page": 19,
+          "native_slot": 1
+        },
+        {
+          "name": "spit",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You spit.",
+            "single_room_message": "%i spits.",
+            "user_actor_message": "You spit at %t!",
+            "user_target_message": "%i spits at you!",
+            "user_room_message": "%i spits at %t!",
+            "monster_actor_message": "You spit at %t!",
+            "monster_room_message": "%i spits at %t!",
+            "inventory_item_actor_message": "You spit on your %t!",
+            "inventory_item_room_message": "%i spits on %p %t!",
+            "floor_item_actor_message": "You spit on the %t!",
+            "floor_item_room_message": "%i spits on the %t!"
+          },
+          "native_page": 19,
+          "native_slot": 2
+        },
+        {
+          "name": "squeeze",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "user_actor_message": "You squeeze %t with all your might.",
+            "user_target_message": "%i squeezes you mightily!",
+            "user_room_message": "%i squeezes %t mightily!",
+            "inventory_item_actor_message": "You squeeze your %t!",
+            "inventory_item_room_message": "%i squeezes %p %t!",
+            "floor_item_actor_message": "You squeeze the %t!",
+            "floor_item_room_message": "%i squeezes the %t!"
+          },
+          "native_page": 19,
+          "native_slot": 3
+        },
+        {
+          "name": "whimper",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You whimper softly.",
+            "single_room_message": "%i whimpers softly.",
+            "user_actor_message": "You whimper to %t.",
+            "user_target_message": "%i whimpers to you.",
+            "user_room_message": "%i whimpers to %t.",
+            "monster_actor_message": "You whimper to %t.",
+            "monster_room_message": "%i whimpers to %t."
+          },
+          "native_page": 20,
+          "native_slot": 0
+        },
+        {
+          "name": "whistle",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You whistle a little tune.",
+            "single_room_message": "%i whistles a little tune.",
+            "user_actor_message": "You whistle at %t appreciatively!",
+            "user_target_message": "%i whistles at you appreciatively!",
+            "user_room_message": "%i whistles at %t appreciatively!",
+            "monster_actor_message": "You whistle at %t appreciatively!",
+            "monster_room_message": "%i whistles at %t appreciatively!"
+          },
+          "native_page": 20,
+          "native_slot": 1
+        },
+        {
+          "name": "cackle",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You lean your head back and cackle with insane glee!",
+            "single_room_message": "%i leans their head back and cackkles with insane glee!",
+            "user_actor_message": "You cackle at %t insanely!",
+            "user_target_message": "%i cackles insanely at you!",
+            "user_room_message": "%i cackles insanely at %t!",
+            "monster_actor_message": "You cackle insanely at %t!",
+            "monster_room_message": "%i cackles insanely at %t!"
+          },
+          "native_page": 20,
+          "native_slot": 2
+        },
+        {
+          "name": "elaugh",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You laugh ominously.",
+            "single_room_message": "%i laughs ominously.",
+            "user_actor_message": "You laugh ominously at %t.",
+            "user_target_message": "%i looks at you with an evil eye and laughs ominously!",
+            "user_room_message": "%i looks at %t with an evil eye and laughs ominously!",
+            "monster_actor_message": "You give %t an evil eye and laugh ominously!",
+            "monster_room_message": "%i gives %t an evil eye and laughs ominously!"
+          },
+          "native_page": 20,
+          "native_slot": 3
+        },
+        {
+          "name": "flex",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You flex your muscles proudly! You're soooo strong!",
+            "single_room_message": "%i flexes their muscles proudly! What a panzy!",
+            "user_actor_message": "You flex your muscles at %t! You're soooo strong!",
+            "user_target_message": "%i flexes their muscles at you! What a panzy!",
+            "user_room_message": "%i flexes their muscles at %t! What a panzy!",
+            "monster_actor_message": "You flex your muscles at %t!",
+            "monster_room_message": "%i flexes their muscles at %t, shouldn't they be attacking?"
+          },
+          "native_page": 21,
+          "native_slot": 0
+        },
+        {
+          "name": "girn",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You girn stupidly, drooling on yourself.",
+            "single_room_message": "%i breaks into a stupid girn.",
+            "user_actor_message": "You girn at %t stupidly.",
+            "user_target_message": "%i girns dumbly at you.",
+            "user_room_message": "%i girns dumbly at %t.",
+            "monster_actor_message": "You dumbly girn at %t.",
+            "monster_room_message": "%i grins dumbly at %t.",
+            "inventory_item_actor_message": "You girn dumbly at your %t.",
+            "inventory_item_room_message": "%i girns dubmly at %p %t.",
+            "floor_item_actor_message": "You girn at the %t.",
+            "floor_item_room_message": "%i girns dumbly at the %t."
+          },
+          "native_page": 21,
+          "native_slot": 1
+        },
+        {
+          "name": "howl",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You howl in utter frustration!",
+            "single_room_message": "%i howls in frustration!",
+            "user_actor_message": "You let your inner animal out and howl at %t.",
+            "user_target_message": "%i howls at you like an animal. What a weirdo.",
+            "user_room_message": "%i howls at %t. Huh?",
+            "monster_actor_message": "You howl at %t trying to scare them away!",
+            "monster_room_message": "%i howls at %t trying to scare them away!"
+          },
+          "native_page": 21,
+          "native_slot": 2
+        },
+        {
+          "name": "tickle",
+          "board_specific": false,
+          "wcc_origin": true,
+          "messages": {
+            "single_actor_message": "You look around looking for someone to tickle.",
+            "single_room_message": "%i is looking for someone to tickle, you may be next!",
+            "user_actor_message": "You tickle %t, and they laugh hysterically!",
+            "user_target_message": "%i tickles you, you suddenly can't stop laughing!",
+            "user_room_message": "%i tickles %t making them laugh hysterically!",
+            "monster_actor_message": "You tickle %t, but they don't seem to like it.",
+            "monster_room_message": "%i tickles %t, but they don't seem to like it."
+          },
+          "native_page": 21,
+          "native_slot": 3
+        }
+      ],
+      "default_action_evidence": {
+        "source": "ImportedDatabases/WCCDefaultInstall/wcc default/wccacts2.dat",
+        "record_count": 64,
+        "page_range_inclusive": [
+          6,
+          21
+        ],
+        "page_size": 4096,
+        "records_per_page": 4,
+        "record_stride": 1012,
+        "action_name_bytes": 30,
+        "message_slot_bytes": 80,
+        "message_slot_count": 11,
+        "classification": "native_fixed_record_exact"
+      }
+    }
+  ]
+}

@@ -795,9 +795,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("decoded_cures", "Data/Classic/spells.json", "Ability 20 Cure Poison, Ability 73 DispellMagic, and Ability 122 RemovesSpell"),
-                    new RuntimeFormulaEvidenceSource("runtime_consumer", "Apps/Source/Reforged.Server/RuntimeClassicLiveStatusEffects.cs", "Decoded poison cures, explicit spell removals, and general magical dispel")
+                    new RuntimeFormulaEvidenceSource("runtime_consumer", "Apps/Source/Reforged.Server/RuntimeClassicLiveStatusEffects.cs", "Decoded poison cures, ability-scoped dispels, explicit spell removals, and value-zero general magical dispel")
                 },
-                "Cure Poison removes all active poison effects. RemovesSpell removes the authored linked spell. General DispellMagic removes magical effects while preserving effects marked NonMagical."),
+                "Cure Poison removes all active poison effects. Nonzero DispellMagic values remove active spells containing that exact ability ID. RemovesSpell removes the authored linked spell. Value-zero DispellMagic removes magical effects while preserving effects marked NonMagical."),
             new(
                 ClassicCombatResolver.StatusDeathCleanupFormulaId,
                 "combat_status",
@@ -963,9 +963,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimePlayerCombatProfileResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("movement_blocker_contract", "Apps/Source/Reforged.Server/RuntimeCombatMovement.cs", "Stunned, Sleeping, and Paralyzed are explicit incapacitating movement blockers"),
+                    new RuntimeFormulaEvidenceSource("movement_blocker_contract", "Apps/Source/Reforged.Server/RuntimeClassicLiveStatusEffects.cs", "HoldPerson projects as immobilized movement-only state, distinct from paralysis"),
                     new RuntimeFormulaEvidenceSource("decoded_status_ability", "Data/Classic/abilities.json", "Ability 71 Confusion at +100 is documented as causing 100 percent fumble for stun spells"),
-                    new RuntimeFormulaEvidenceSource("decoded_hold_status", "Data/Classic/spells.json", "Ability 74 HoldPerson relationships identify immobilizing combat statuses"),
+                    new RuntimeFormulaEvidenceSource("decoded_hold_status", "Data/Classic/abilities.json", "Ability 74 HoldPerson says it holds the target in the room and is used by Entangle and Hold Person"),
                     new RuntimeFormulaEvidenceSource("live_profile_consumer", "RuntimePlayerCombatProfiles.cs", "IsAvoidanceSuppressed zeros the final DodgeBonus")
                 },
                 "Characters explicitly marked stunned, paralyzed, immobilized, or sleeping cannot perform the active Dodge avoidance check. Armor Class and damage resistance remain intact; only the final dodge input is suppressed."),

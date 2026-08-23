@@ -127,6 +127,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var caller = living.InspectNpc(encounter.NpcInstanceId);
         if (caller is null) return;
         caller.Metadata.TryGetValue("assist_group_id", out var callerGroup);
+        caller.Metadata.TryGetValue("npc_legacy_id", out var callerLegacyId);
         foreach (var candidate in LivingNpcsInRoom(session))
         {
             if (candidate.InstanceId.Equals(encounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase)) continue;
@@ -139,6 +140,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 && !string.IsNullOrWhiteSpace(callerGroup)
                 && candidate.Metadata.TryGetValue("assist_group_id", out var candidateGroup)
                 && candidateGroup.Equals(callerGroup, StringComparison.OrdinalIgnoreCase))
+                explicitlyLinked = true;
+            if (!explicitlyLinked && !string.IsNullOrWhiteSpace(callerLegacyId)
+                && candidate.Metadata.TryGetValue("guarded_npc_legacy_ids", out var guardedIds)
+                && guardedIds.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    .Contains(callerLegacyId, StringComparer.OrdinalIgnoreCase))
                 explicitlyLinked = true;
             if (!explicitlyLinked) continue;
 

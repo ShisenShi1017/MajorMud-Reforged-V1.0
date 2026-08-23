@@ -224,7 +224,7 @@ public sealed class ServerRuntimeHost
             {
                 Console.Write("> ");
                 var input = Console.ReadLine();
-                if (input is null || string.Equals(input.Trim(), "quit", StringComparison.OrdinalIgnoreCase) || string.Equals(input.Trim(), "exit", StringComparison.OrdinalIgnoreCase))
+                if (input is null || _commands.RequestsSessionExit(session, input))
                 {
                     break;
                 }

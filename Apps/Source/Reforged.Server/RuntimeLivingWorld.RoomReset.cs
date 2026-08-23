@@ -52,6 +52,8 @@ public sealed partial class RuntimeLivingWorldService
         {
             var matchingDefinitions = _objectDefinitions.Values
                 .Where(definition => roomIdSet.Contains(definition.RoomId))
+                .Where(definition => !definition.Metadata.TryGetValue("reset_timing", out var resetTiming)
+                    || resetTiming.Equals("completion clears on room-area reset with owning edge latch", StringComparison.OrdinalIgnoreCase))
                 .OrderBy(definition => definition.Id, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
 

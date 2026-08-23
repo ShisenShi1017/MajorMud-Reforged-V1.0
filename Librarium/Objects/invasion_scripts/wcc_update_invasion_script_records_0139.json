@@ -1,0 +1,410 @@
+{
+  "schema": "majormud.reforged.invasion-scripts.v1",
+  "source_file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccupda2.dat",
+  "record_count": 31,
+  "records": [
+    {
+      "id": "invasion-script.4368",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4368,
+      "script": "5:summon 1108:summon 1109:summon 1109:summon 1109:summon 1109\n10:summon 1110:summon 1110:summon 1109:summon 1109:summon 1109\n15:summon 1108:summon 1109:summon 1109:summon 1109:summon 1109\n20:summon 1108\n25:summon 1109:summon 1110:summon 1110:summon 1110\n30:summon 1109:summon 1109:summon 1109:summon 1109:summon 1109\n35:summon 1109:summon 1109:summon 1109:summon 1108:summon 1109\n40:summon 1108:summon 1109:summon 1109:summon 1109:summon 1109\n45:summon 1109:summon 1110:summon 1109\n50:summon 1109:summon 1109:summon 1109:summon 1109:summon 1109\n55:summon 1108:summon 1110:summon 1109:summon 1109:summon 1109\n60:summon 1110:summon 1109:summon 1109:summon 1109:summon 1109\n65:summon 1109:summon 1109:summon 1109:summon 1109:summon 1109\n70:summon 1109:summon 1109:summon 1109:summon 1109\n75:summon 1108:summon 1108:summon 1108:summon 1108\n80:summon 1108:summon 1109:summon 1109:summon 1109:summon 1109\n90:summon 1109:summon 1109:summon 1109:summon 1109:summon 1109\n95:summon 1109:summon 1110:summon 1110:summon 1110:summon 1109\n100:summon 1108:summon 1110:summon 1110:summon 1110:summon 1110",
+      "source_page": 6004,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4369",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4369,
+      "script": "100:teleport 1382 1:random 4368:teleport 1383 1:random 4368:teleport 1388 1:random 4368:teleport 1400 1:random 4368:teleport 1390 1:random 4368",
+      "source_page": 6005,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4370",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4370,
+      "script": "100:teleport 1402 1:random 4368:teleport 1392 1:random 4368:teleport 2447 1:random 4368:teleport 2470 1:random 4368:teleport 2448 1:random 4368",
+      "source_page": 6006,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4371",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4371,
+      "script": "100:teleport 2446 1:random 4368:teleport 2495 1:random 4368:teleport 2513 1:random 4368:teleport 1394 1:random 4368:teleport 1396 1:random 4368",
+      "source_page": 6007,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4372",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4372,
+      "script": "100:teleport 1398 1:random 4368:teleport 1680 1:random 4368:teleport 1682 1:random 4368:teleport 1685 1:random 4368:teleport 1749 1:random 4368",
+      "source_page": 6008,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4646",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4646,
+      "script": "25:summon 569:summon 569:summon 569:summon 569:summon 570\n50:summon 569:summon 569:summon 569:summon 577:summon 577\n75:summon 577:summon 577:summon 577\n100:summon 570:summon 577:summon 577:summon 577:summon 577",
+      "source_page": 6286,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4647",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4647,
+      "script": "100:teleport 2 12:random 4646:teleport 4 12:random 4646:teleport  5 12:random 4646:teleport 6 12:random 4646:teleport 7 12:random 4646",
+      "source_page": 6287,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4648",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4648,
+      "script": "100:teleport 1045 12:random 4646:teleport 896 12:random 4646:teleport  895 12:random 4646:teleport 894 12:random 4646:teleport 893 12:random 4646",
+      "source_page": 6288,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4649",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4649,
+      "script": "100:teleport 1046 12:random 4646:teleport 750 12:random 4646:teleport 749 12:random 4646:teleport 748 12:random 4646:teleport 751 12:random 4646",
+      "source_page": 6289,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4650",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4650,
+      "script": "100:teleport 1047 12:random 4646:teleport 714 12:random 4646:teleport 713 12:random 4646:teleport 861 12:random 4646:teleport 860 12:random 4646",
+      "source_page": 6290,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4651",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4651,
+      "script": "100:teleport 1617 6:random 4656:teleport 1600 6:random 4656:teleport 1599 6:random 4656:teleport 1598 6:random 4656:teleport 1597 6:random 4656:teleport 1596 6:random 4656",
+      "source_page": 6291,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4652",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4652,
+      "script": "100:teleport 1595 6:random 4656:teleport 1594 6:random 4656:teleport 1593 6:random 4656:teleport 1592 6:random 4656:teleport 1591 6:random 4656:teleport 1590 6:random 4656",
+      "source_page": 6292,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4653",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4653,
+      "script": "100:teleport 1589 6:random 4656:teleport 1588 6:random 4656:teleport 1587 6:random 4656:teleport 1586 6:random 4656:teleport 1585 6:random 4656:teleport 1569 6:random 4656",
+      "source_page": 6293,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4654",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4654,
+      "script": "100:teleport 1576 6:random 4656:teleport 1577 6:random 4656:teleport 1578 6:random 4656:teleport 1579 6:random 4656:teleport 1580  6:random 4656:teleport 1581 6:random 4656",
+      "source_page": 6294,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4655",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4655,
+      "script": "100:teleport 1570 6:random 4656:teleport 1571 6:random 4656:teleport 1572 6:random 4656:teleport 1573 6:random 4656:teleport 1574  6:random 4656:teleport 1575 6:random 4656",
+      "source_page": 6295,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4656",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4656,
+      "script": "25:summon 1111:summon 1111:summon 1111\n50:summon 1111:summon 1111\n75:summon 1112:summon 1112:summon 1112:summon 1112:summon 1112\n100:summon 1111",
+      "source_page": 6296,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4658",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4658,
+      "script": "5:summon 1093:summon 1094:summon 1094:summon 1096:summon 1096 \n10:summon 1097:summon 1097:summon 1097:summon 1097:summon 1097\n15:summon 1094:summon 1096:summon 1096:summon 1097:summon 1097\n20:summon 1097:summon 1097:summon 1097:summon 1097:summon 1097\n25:summon 1098:summon 1098:summon 1098:summon 1098:summon 1098\n30:summon 1098:summon 1098:summon 1098:summon 1098:summon 1098\n35:summon 1096:summon 1097:summon 1097:summon 1099:summon 1099\n40:summon 1099:summon 1099:summon 1099:summon 1099:summon 1099\n45:summon 1094:summon 1096:summon 1096:summon 1096:summon 1098\n50:summon 1098:summon 1098:summon 1098:summon 1098:summon 1098\n55:summon 1094:summon 1094:summon 1094:summon 1097:summon 1097\n60:summon 1097:summon 1097:summon 1097:summon 1097:summon 1097\n65:summon 1095:summon 1095:summon 1095:summon 1095:summon 1095\n70:summon 1095:summon 1095:summon 1095:summon 1095:summon 1095\n75:summon 1093:summon 1094:summon 1094:summon 1094:summon 1094\n80:summon 1094:summon 1096:summon 1096:summon 1096:summon 1096\n90:summon 1096:summon 1095:summon 1095:summon 1095:summon 1095\n95:summon 1095:summon 1095:summon 1095:summon 1095:summon 1095\n100:summon 1098:summon 1098:summon 1098:summon 1098:summon 1098",
+      "source_page": 6298,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4659",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4659,
+      "script": "100:teleport 1382 1:random 4658:teleport 1383 1:random 4658:teleport 1388 1:random 4658:teleport 1400 1:random 4658:teleport 1390 1:random 4658",
+      "source_page": 6299,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4660",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4660,
+      "script": "100:teleport 1402 1:random 4658:teleport 1392 1:random 4658:teleport 2447 1:random 4658:teleport 2470 1:random 4658:teleport 2448 1:random 4658",
+      "source_page": 6300,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4661",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4661,
+      "script": "100:teleport 2446 1:random 4658:teleport 2495 1:random 4658:teleport 2513 1:random 4658:teleport 1394 1:random 4658:teleport 1396 1:random 4658",
+      "source_page": 6301,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4662",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4662,
+      "script": "100:teleport 1398 1:random 4658:teleport 1680 1:random 4658:teleport 1682 1:random 4658:teleport 1685 1:random 4658:teleport 1749 1:random 4658",
+      "source_page": 6302,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4663",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4663,
+      "script": "100:teleport 1076 1:random 4667:teleport 1209 1:random 4667:teleport 1206 1:random 4667:teleport 1183 1:random 4667:teleport 1185 1:random 4667",
+      "source_page": 6303,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4664",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4664,
+      "script": "100:teleport 1204 1:random 4667:teleport 1218 1:random 4667:teleport 1220 1:random 4667:teleport 1224 1:random 4667:teleport 1199 1:random 4667",
+      "source_page": 6304,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4665",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4665,
+      "script": "100:teleport 1072 1:random 4667:teleport 1073 1:random 4667:teleport 1074 1:random 4667:teleport 1075 1:random 4667:teleport 1210 1:random 4667",
+      "source_page": 6305,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4666",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4666,
+      "script": "100:teleport 1077 1:random 4667:teleport 1186 1:random 4667:teleport 1187 1:random 4667:teleport 1120 1:random 4667:teleport 69 1:random 4667",
+      "source_page": 6306,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4667",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4667,
+      "script": "5:summon 1099:summon 1100:summon 1100:summon 1104:summon 1104\n10:summon 1102:summon 1102:summon 1104:summon 1104:summon 1104\n15:summon 1099:summon 1100:summon 1104:summon 1104:summon 1104\n20:summon 1103:summon 1103:summon 1103:summon 1103:summon 1103\n25:summon 1104:summon 1103:summon 1102:summon 1102:summon 1102\n30:summon 1104:summon 1104:summon 1101:summon 1101:summon 1101\n35:summon 1101:summon 1101:summon 1101:summon 1099:summon 1104\n40:summon 1099:summon 1100:summon 1100:summon 1100:summon 1100\n45:summon 1103:summon 1101:summon 1102:summon 1103:summon 1100\n50:summon 1100:summon 1104:summon 1104:summon 1104:summon 1104\n55:summon 1099:summon 1102:summon 1100:summon 1100:summon 1100\n60:summon 1102:summon 1104:summon 1104:summon 1100:summon 1100\n65:summon 1100:summon 1100:summon 1100:summon 1101:summon 1101\n70:summon 1101:summon 1100:summon 1103:summon 1100:summon 1101\n75:summon 1099:summon 1099:summon 1099:summon 1099\n80:summon 1099:summon 1104:summon 1104:summon 1104:summon 1104\n90:summon 1104:summon 1104:summon 1104:summon 1104:summon 1100\n95:summon 1101:summon 1102:summon 1102:summon 1102:summon 1101\n100:summon 1099:summon 1102:summon 1102:summon 1102:summon 1102",
+      "source_page": 6307,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4668",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4668,
+      "script": "5:summon 1105:summon 1106:summon 1106:summon 1106:summon 1106\n10:summon 1107:summon 1107:summon 1106:summon 1106:summon 1106\n15:summon 1105:summon 1106:summon 1106:summon 1106:summon 1106\n20:summon 1105:summon 1105:summon 1106:summon 1106\n25:summon 1106:summon 1107:summon 1107:summon 1107\n30:summon 1106:summon 1106:summon 1106:summon 1106:summon 1106\n35:summon 1106:summon 1106:summon 1106:summon 1105:summon 1106\n40:summon 1105:summon 1106:summon 1106:summon 1106:summon 1106\n45:summon 1106:summon 1107:summon 1106\n50:summon 1106:summon 1106:summon 1106:summon 1106:summon 1106\n55:summon 1105:summon 1107:summon 1106:summon 1106:summon 1106\n60:summon 1107:summon 1106:summon 1106:summon 1106:summon 1106\n65:summon 1106:summon 1106:summon 1106:summon 1106:summon 1106\n70:summon 1106:summon 1106:summon 1106:summon 1106\n75:summon 1105:summon 1105:summon 1105:summon 1105\n80:summon 1105:summon 1106:summon 1106:summon 1106:summon 1106\n90:summon 1106:summon 1106:summon 1106:summon 1106:summon 1106\n95:summon 1106:summon 1107:summon 1107:summon 1107:summon 1106\n100:summon 1105:summon 1107:summon 1107:summon 1107:summon 1107",
+      "source_page": 6308,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4669",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4669,
+      "script": "100:teleport 1076 1:random 4668:teleport 1209 1:random 4668:teleport 1206 1:random 4668:teleport 1183 1:random 4668:teleport 1185 1:random 4668",
+      "source_page": 6309,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4670",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4670,
+      "script": "100:teleport 1204 1:random 4668:teleport 1218 1:random 4668:teleport 1220 1:random 4668:teleport 1224 1:random 4668:teleport 1199 1:random 4668",
+      "source_page": 6310,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4671",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4671,
+      "script": "100:teleport 1072 1:random 4668:teleport 1073 1:random 4668:teleport 1074 1:random 4668:teleport 1075 1:random 4668:teleport 1210 1:random 4668",
+      "source_page": 6311,
+      "payload_offset": 10,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    },
+    {
+      "id": "invasion-script.4672",
+      "object_type": "invasion_script",
+      "world_scope": [
+        "classic"
+      ],
+      "textblock_id": 4672,
+      "script": "100:teleport 1077 1:random 4668:teleport 1186 1:random 4668:teleport 1187 1:random 4668:teleport 1120 1:random 4668:teleport 69 1:random 4668",
+      "source_page": 6312,
+      "payload_offset": 38,
+      "decode": "byte_plus_0xE0_mod_256",
+      "evidence_state": "verified_wcc_update_database"
+    }
+  ]
+}

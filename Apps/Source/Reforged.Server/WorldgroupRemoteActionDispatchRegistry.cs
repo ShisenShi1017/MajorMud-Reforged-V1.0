@@ -15,8 +15,8 @@ public static class WorldgroupRemoteActionDispatchRegistry
     public const int DirtyFlagOffset = 0x5F8;
     public const int MinimumDirectType = 6;
     public const int MaximumDirectType = 24;
-    public const int MinimumMode = 0;
-    public const int MaximumMode = 10;
+    public const int MinimumActionSlot = 0;
+    public const int MaximumActionSlot = 10;
 
     public static readonly ushort[] PairedToggleTypes = { 7, 11 };
     public static readonly ushort[] RoomWideDispatchTypes = { 9, 24 };

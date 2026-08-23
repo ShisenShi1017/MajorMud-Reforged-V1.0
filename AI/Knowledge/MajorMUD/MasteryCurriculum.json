@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "mission": "Train Borin as an evidence-driven MajorMUD player and Reforged Classic parity researcher.",
+  "masteryGates": [
+    "explain",
+    "predict",
+    "perform",
+    "retain",
+    "contradiction"
+  ],
+  "classifications": [
+    "Observed",
+    "Verified",
+    "Strategy",
+    "Inferred",
+    "SuspectedDefect",
+    "Unknown"
+  ],
+  "skills": [
+    { "id": "commands", "category": "Foundation", "name": "Commands", "order": 10 },
+    { "id": "communication", "category": "Foundation", "name": "Communication", "order": 20 },
+    { "id": "movement", "category": "Foundation", "name": "Movement", "order": 30 },
+    { "id": "rooms-mapping", "category": "Foundation", "name": "Rooms and mapping", "order": 40 },
+    { "id": "inventory", "category": "Player systems", "name": "Inventory", "order": 50 },
+    { "id": "equipment", "category": "Player systems", "name": "Equipment", "order": 60 },
+    { "id": "shops", "category": "Player systems", "name": "Shops", "order": 70 },
+    { "id": "currency", "category": "Player systems", "name": "Currency", "order": 80 },
+    { "id": "search-perception", "category": "Player systems", "name": "Search and perception", "order": 90 },
+    { "id": "combat", "category": "Player systems", "name": "Combat", "order": 100 },
+    { "id": "spells-abilities", "category": "Player systems", "name": "Spells and abilities", "order": 110 },
+    { "id": "npc-behavior", "category": "World systems", "name": "NPC behavior", "order": 120 },
+    { "id": "quests-scripts", "category": "World systems", "name": "Quests, triggers, and scripts", "order": 130 },
+    { "id": "cleanup-resets", "category": "World systems", "name": "Cleanup and resets", "order": 140 },
+    { "id": "persistence", "category": "World systems", "name": "Persistence", "order": 150 },
+    { "id": "megamud-compatibility", "category": "Expert play", "name": "MegaMUD compatibility", "order": 160 },
+    { "id": "failure-recovery", "category": "Expert play", "name": "Failure recovery", "order": 170 },
+    { "id": "safety-compliance", "category": "Research discipline", "name": "Safety compliance", "order": 180 },
+    { "id": "uncertainty", "category": "Research discipline", "name": "Uncertainty handling", "order": 190 },
+    { "id": "parity-research", "category": "Research discipline", "name": "Reforged parity research", "order": 200 }
+  ]
+}

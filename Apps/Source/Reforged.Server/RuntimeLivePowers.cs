@@ -36,6 +36,7 @@ public sealed class RuntimeLivePowerStateRepository
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
+    private sealed record WeaponOnHitSpellResult(int NpcCurrentHitPoints, string Output);
     private readonly object _livePowerGate = new();
     private readonly Dictionary<string, RuntimeActorAbilityState> _liveAbilityStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _liveSpellCooldowns = new(StringComparer.OrdinalIgnoreCase);
@@ -58,10 +59,89 @@ public sealed partial class RuntimeLiveGameplayFacade
                 "cast" => CastLiveSpell(session, command),
                 "use" => UseLiveItemOrAbility(session, command),
                 "abilities" or "skills" => RenderLiveAbilities(session),
-                "prepare" => RenderLiveSpells(session),
+                "prepare" or "spells" => RenderLiveSpells(session),
                 "dispel" => DispelLiveEffect(session, command.ArgumentText),
                 _ => _policyGateway.Execute(session, command)
             };
+        }
+    }
+
+    private WeaponOnHitSpellResult ExecuteWeaponOnHitSpell(RuntimeSession session, int legacySpellId)
+    {
+        lock (_livePowerGate)
+        {
+            if (session.Actor is not RuntimeCharacterActor actor || !_liveCombats.TryGetValue(session.Id, out var encounter))
+                throw new InvalidOperationException("A live combat target is required for a weapon spell effect.");
+            EnsureLivePowers(session);
+            var spell = _liveSpellCatalog!.Spells.SingleOrDefault(candidate =>
+                candidate.LegacyId.Equals(legacySpellId.ToString(), StringComparison.OrdinalIgnoreCase))
+                ?? throw new InvalidDataException($"WEAPON_ON_HIT_SPELL_UNRESOLVED:{legacySpellId}");
+            if (!spell.TargetType.Equals("8", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"WEAPON_ON_HIT_SPELL_TARGET_UNSUPPORTED:{spell.Id}:{spell.TargetType}");
+            var targetNpc = LivingNpcsInRoom(session).Single(candidate =>
+                candidate.InstanceId.Equals(encounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase));
+            if (!IsDecodedSpellTargetAdmitted(spell, new RuntimeSpellTarget("npc", targetNpc.InstanceId), targetNpc))
+                return new WeaponOnHitSpellResult(targetNpc.CurrentHitPoints, RuntimeClassicCombatAnsi.Effect($"{spell.Name} has no effect."));
+
+            var now = DateTimeOffset.UtcNow;
+            var before = _liveSpellEngine!.Snapshot();
+            try
+            {
+                if (!_liveSpellEngine.Knows(actor.Id, spell.Id))
+                    _liveSpellEngine.Learn(actor.Id, spell.Id,
+                        new Dictionary<string, string> { ["source"] = $"decoded-weapon-on-hit:{legacySpellId}" });
+                _liveSpellEngine.SetResources(actor.Id, new RuntimeSpellResources(int.MaxValue / 4, int.MaxValue / 4));
+                var execution = new RuntimeSpellExecutionEngine(_liveSpellCatalog, _liveSpellEngine,
+                    new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
+                var result = execution.Cast(new RuntimeSpellCastRequest(
+                    actor.Id, spell.Id, new RuntimeSpellTarget("npc", encounter.NpcInstanceId), now));
+                if (!result.Succeeded)
+                    throw new InvalidOperationException(result.FailureMessage ?? result.FailureCode ?? "The weapon spell effect failed.");
+
+                var afterCast = _liveSpellEngine.Snapshot();
+                var retainedEffects = afterCast.ActiveEffects;
+                _liveSpellEngine.RestoreSnapshot(before with { ActiveEffects = retainedEffects });
+                PersistLivePowers(session.World.Definition.Id);
+                var npc = Living(session).Capture().Npcs.Single(candidate =>
+                    candidate.InstanceId.Equals(encounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase));
+                var eventOutput = string.Join(" ", result.Events.Select(RenderSpellEvent));
+                var output = string.IsNullOrWhiteSpace(spell.StartMessage?.CasterMessage)
+                    ? $"{spell.Name} erupts from your weapon."
+                    : RenderDecodedStartMessage(spell.StartMessage.CasterMessage, targetNpc.Name, targetNpc.Name);
+                if (!string.IsNullOrWhiteSpace(eventOutput)) output += " " + eventOutput;
+                return new WeaponOnHitSpellResult(npc.CurrentHitPoints, RuntimeClassicCombatAnsi.Effect(output));
+            }
+            catch
+            {
+                _liveSpellEngine.RestoreSnapshot(before);
+                throw;
+            }
+        }
+    }
+
+    private IReadOnlyList<RuntimeEquipmentCombatEffects.DamageShieldComponent> ResolveLiveDamageShieldComponents(
+        RuntimeSession session, int receivedPhysicalDamage)
+    {
+        if (receivedPhysicalDamage <= 0) return Array.Empty<RuntimeEquipmentCombatEffects.DamageShieldComponent>();
+        lock (_livePowerGate)
+        {
+            if (session.Actor is not RuntimeCharacterActor actor) return Array.Empty<RuntimeEquipmentCombatEffects.DamageShieldComponent>();
+            EnsureLivePowers(session);
+            var catalog = ClassicLiveStatusCatalog(session);
+            var effects = new List<RuntimeEquipmentCombatEffects.DamageShieldComponent>();
+            foreach (var active in _liveSpellEngine!.EffectsFor(actor.Id))
+            {
+                if (!catalog.TryGet(active.SpellId, out var definition)) continue;
+                var shield = definition.Abilities.FirstOrDefault(x => x.AbilityId == 72);
+                var shock = definition.Abilities.FirstOrDefault(x => x.AbilityId == 137);
+                if (shield is null) continue;
+                var damage = shield.Value != 0
+                    ? shield.Value
+                    : checked((active.MinimumEffect + active.MaximumEffect) / 2);
+                if (damage > 0)
+                    effects.Add(new RuntimeEquipmentCombatEffects.DamageShieldComponent(damage, shock?.Value ?? 0));
+            }
+            return effects;
         }
     }
 
@@ -87,7 +167,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // Expiration is UTC-authoritative. Remove stale persisted effects immediately when
         // the world power state is restored so reconnect cannot retain expired statuses.
         var restoreNow = DateTimeOffset.UtcNow;
-        var expiredOnRestore = _liveSpellEngine.Expire(restoreNow);
+        var expiredOnRestore = ExpireAndExecuteDecodedEndCast(session, restoreNow);
         if (expiredOnRestore > 0)
         {
             SynchronizeAllCharacterSpellStatuses(restoreNow, "runtime.live_powers.restore_expire");
@@ -102,38 +182,136 @@ public sealed partial class RuntimeLiveGameplayFacade
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
         if (RuntimeClassicStatusProjection.IsSpellCastBlocked(character)) return "You cannot cast while affected by the current status.";
         var spell = ResolveSpell(command.Arguments[0]);
+        if (!IsDecodedSpellCasterAlignmentAdmitted(spell, character, out var alignmentFailure))
+            return alignmentFailure;
         EnsureKnownSpells(character, actor.Id);
         var now = DateTimeOffset.UtcNow;
         var cooldownKey = actor.Id + "\u001f" + spell.Id;
         if (_liveSpellCooldowns.TryGetValue(cooldownKey, out var ready) && ready > now) return $"{spell.Name} is on cooldown until {ready:O}.";
-        var target = ResolvePowerTarget(session, command.Arguments.Skip(1).ToArray(), spell.TargetType);
+        RuntimeWizardKnockDoor? wizardKnockDoor = null;
+        var targetArguments = command.Arguments.Skip(1).ToArray();
+        RuntimeSpellTarget target;
+        if (spell.DecodedAbilities.Any(ability => ability.AbilityId == 161))
+        {
+            wizardKnockDoor = Living(session).ResolveWizardKnockDoor(session.CurrentRoom.Id, string.Join(" ", targetArguments));
+            target = new RuntimeSpellTarget("world_object", wizardKnockDoor.Definition.Id);
+        }
+        else target = spell.TargetType == "13"
+            ? new RuntimeSpellTarget("character", actor.Id)
+            : ResolvePowerTarget(session, targetArguments, spell.TargetType);
+        var targetNpc = target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+            ? LivingNpcsInRoom(session).FirstOrDefault(npc => npc.InstanceId.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
+            : null;
+        if (!IsDecodedSpellTargetAdmitted(spell, target, targetNpc))
+        {
+            if (targetNpc is not null && IsDecodedAbilityNegated(spell, ReadNegatedAbilityIds(targetNpc.Metadata)))
+                return $"{spell.Name} has no effect; {targetNpc.Name} is immune to that ability.";
+            return spell.DecodedAbilities.Any(ability => ability.AbilityId == 80)
+                ? $"{spell.Name} can only affect an animal."
+                : $"{spell.Name} cannot affect a nonliving target.";
+        }
         _liveSpellEngine!.SetResources(actor.Id, new RuntimeSpellResources(character.Mana, ReadEnergy(character)));
         var execution = new RuntimeSpellExecutionEngine(_liveSpellCatalog!, _liveSpellEngine,
             new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
         var before = _liveSpellEngine.Snapshot();
         try
         {
-            var result = execution.Cast(new RuntimeSpellCastRequest(actor.Id, spell.Id, target, now));
+            var partyTargets = spell.TargetType == "13" ? ResolveClassicPartySpellTargets(session) : null;
+            var result = partyTargets is null
+                ? execution.Cast(new RuntimeSpellCastRequest(actor.Id, spell.Id, target, now))
+                : execution.CastMany(actor.Id, spell.Id, partyTargets, now);
             if (!result.Succeeded) return result.FailureMessage ?? result.FailureCode ?? "The spell failed.";
+            if (wizardKnockDoor is not null) Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: true);
             var remaining = result.Cast.Resources;
-            SaveCharacterPowerResources(character, remaining.Mana, remaining.Energy);
-            var normalizedCastEffect = NormalizeDecodedPlayerStatusCast(session, result.Cast.Effect, now);
-            var removedByCureOrDispel = ApplyDecodedCureAndDispel(session, spell, target);
-            if ((IsCurePoisonSpell(spell) || removedByCureOrDispel > 0) && normalizedCastEffect is not null)
+            var selfManaDelta = result.Events
+                .Where(e => e.Operation.Equals("mana", StringComparison.OrdinalIgnoreCase)
+                    && e.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
+                    && e.Target.Id.Equals(actor.Id, StringComparison.OrdinalIgnoreCase))
+                .Sum(e => e.Magnitude);
+            SaveCharacterPowerResources(character, checked(remaining.Mana + selfManaDelta), remaining.Energy);
+            PersistDecodedTeleportTargets(result.Events);
+            var appliedEffects = result.AppliedEffects ?? (result.Cast.Effect is null ? [] : [result.Cast.Effect]);
+            var normalizedEffects = appliedEffects.Select(effect =>
+                NormalizeDecodedPlayerStatusCast(session, AttachResolvedEffectRoll(effect, result.Events.Where(evt => evt.Target.Id.Equals(effect.Target.Id, StringComparison.OrdinalIgnoreCase)).ToArray()), now))
+                .Where(effect => effect is not null).Cast<RuntimeActiveSpellEffect>().ToArray();
+            foreach (var characterTarget in appliedEffects.Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)).Select(effect => effect.Target.Id).Distinct(StringComparer.OrdinalIgnoreCase))
+                SynchronizeDecodedTemporarySpells(characterTarget);
+            if (spell.Duration <= 0 && spell.DecodedAbilities.Any(ability => ability.AbilityId == 151 && ability.Value > 0)
+                && normalizedEffects.Length > 0)
+                foreach (var normalizedEffect in normalizedEffects) ExecuteImmediateDecodedEndCast(session, normalizedEffect, now);
+            foreach (var appliedTarget in (partyTargets ?? [target])) _ = ApplyDecodedCureAndDispel(session, spell, appliedTarget);
+            if (ShouldDiscardDecodedRemovalHelper(spell) && normalizedEffects.Length > 0)
             {
-                try { _liveSpellEngine.RemoveEffect(normalizedCastEffect.EffectId); } catch (KeyNotFoundException) { }
+                foreach (var normalizedEffect in normalizedEffects)
+                    try { _liveSpellEngine.RemoveEffect(normalizedEffect.EffectId); } catch (KeyNotFoundException) { }
             }
-            SynchronizeCharacterSpellStatuses(target, now, "runtime.live_powers.cast");
+            foreach (var appliedTarget in appliedEffects.Select(effect => effect.Target).DistinctBy(appliedTarget => (appliedTarget.Kind, appliedTarget.Id)))
+                SynchronizeCharacterSpellStatuses(appliedTarget, now, "runtime.live_powers.cast");
+            var removedCurses = spell.DecodedAbilities.Any(x => x.AbilityId == 84)
+                ? (partyTargets ?? [target]).Sum(appliedTarget => ApplyDecodedRemoveCurse(session, appliedTarget, now))
+                : 0;
             var cooldownSeconds = Math.Max(0, GeneratedInt(spell, "cooldown", "cooldown_seconds", "recast"));
             if (cooldownSeconds > 0) _liveSpellCooldowns[cooldownKey] = now.AddSeconds(cooldownSeconds);
             PersistLivePowers(session.World.Definition.Id);
-            return $"You cast {spell.Name} on {target.Id}. " + string.Join(" ", result.Events.Select(RenderSpellEvent));
+            foreach (var appliedTarget in (partyTargets ?? [target])) PublishDecodedStartMessage(session, spell, appliedTarget, null, publishObservers: partyTargets is null);
+            var targetDisplayName = ResolveSpellTargetDisplayName(target, targetNpc);
+            var castOutput = string.IsNullOrWhiteSpace(spell.StartMessage?.CasterMessage)
+                ? $"You cast {spell.Name} on {target.Id}."
+                : RenderDecodedStartMessage(spell.StartMessage.CasterMessage, targetDisplayName, targetDisplayName);
+            var eventOutput = string.Join(" ", result.Events.Select(RenderSpellEvent));
+            if (removedCurses > 0)
+                eventOutput = string.IsNullOrWhiteSpace(eventOutput)
+                    ? $"{removedCurses} cursed item{(removedCurses == 1 ? "" : "s")} fall free."
+                    : eventOutput + $" {removedCurses} cursed item{(removedCurses == 1 ? "" : "s")} fall free.";
+            return string.IsNullOrWhiteSpace(eventOutput) ? castOutput : castOutput + " " + eventOutput;
         }
         catch
         {
+            if (wizardKnockDoor is not null) Living(session).SetWizardKnockDoorState(wizardKnockDoor, opened: false);
             _liveSpellEngine.RestoreSnapshot(before);
             throw;
         }
+    }
+
+    private void PublishDecodedStartMessage(
+        RuntimeSession casterSession,
+        RuntimeSpellDefinition spell,
+        RuntimeSpellTarget target,
+        RuntimeLivingNpcState? targetNpc,
+        bool publishObservers = true)
+    {
+        if (spell.StartMessage is null) return;
+        var casterName = casterSession.Actor.DisplayName;
+        var targetName = ResolveSpellTargetDisplayName(target, targetNpc);
+        var targetSession = target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
+            ? _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
+            : null;
+        if (targetSession is not null
+            && !targetSession.Id.Equals(casterSession.Id, StringComparison.OrdinalIgnoreCase)
+            && !string.IsNullOrWhiteSpace(spell.StartMessage.TargetMessage))
+            targetSession.EnqueueMessage(RenderDecodedStartMessage(spell.StartMessage.TargetMessage, casterName, targetName));
+        if (!publishObservers || string.IsNullOrWhiteSpace(spell.StartMessage.ObserverMessage)) return;
+        foreach (var observer in _sessions.InRoom(casterSession.World.Definition.Id, casterSession.CurrentRoom.Id))
+        {
+            if (observer.Id.Equals(casterSession.Id, StringComparison.OrdinalIgnoreCase)
+                || targetSession is not null && observer.Id.Equals(targetSession.Id, StringComparison.OrdinalIgnoreCase)) continue;
+            observer.EnqueueMessage(RenderDecodedStartMessage(spell.StartMessage.ObserverMessage, casterName, targetName));
+        }
+    }
+
+    private string ResolveSpellTargetDisplayName(RuntimeSpellTarget target, RuntimeLivingNpcState? targetNpc) =>
+        targetNpc?.Name
+        ?? _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(target.Id, StringComparison.OrdinalIgnoreCase))?.Actor.DisplayName
+        ?? target.Id;
+
+    internal static string RenderDecodedStartMessage(string template, string firstArgument, string secondArgument)
+    {
+        if (string.IsNullOrEmpty(template)) return string.Empty;
+        var first = template.IndexOf("%s", StringComparison.Ordinal);
+        if (first < 0) return template;
+        var rendered = template[..first] + firstArgument + template[(first + 2)..];
+        var second = rendered.IndexOf("%s", first + firstArgument.Length, StringComparison.Ordinal);
+        return second < 0 ? rendered : rendered[..second] + secondArgument + rendered[(second + 2)..];
     }
 
 
@@ -142,8 +320,122 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         if (command.Arguments.Count == 0) return "Use which item or ability?";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        if (TryUseDecodedSpellItem(session, character, command.ArgumentText, out var activeItemResult)) return activeItemResult;
         if (TryUseSpellLearningItem(character, command.ArgumentText, out var itemResult)) return itemResult;
         return UseLiveAbility(session, command);
+    }
+
+    private bool TryUseDecodedSpellItem(RuntimeSession session, RuntimeCharacterRecord character, string query, out string result)
+    {
+        result = string.Empty;
+        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var engine = new RuntimeItemEngine(itemCatalog, state.Items, state.Corpses, characterAuthority);
+        var matches = engine.Inventory(character.CharacterId).Concat(engine.Equipment(character.CharacterId))
+            .Where(item =>
+            {
+                var definition = itemCatalog.Require(item.CanonicalItemId);
+                return definition.MaximumUses > 0 && definition.EquipmentAbilityModifiers.TryGetValue(43, out var spellId) && spellId > 0;
+            })
+            .Where(item => item.InstanceId.Equals(query.Trim(), StringComparison.OrdinalIgnoreCase) || itemCatalog.Matches(item.CanonicalItemId, query))
+            .Take(2).ToArray();
+        if (matches.Length == 0) return false;
+        if (matches.Length > 1) throw new InvalidOperationException($"Multiple active spell items match '{query}'.");
+
+        var selected = matches[0];
+        var definition = itemCatalog.Require(selected.CanonicalItemId);
+        if (selected.Charges <= 0) throw new InvalidOperationException($"{definition.Name} has no uses remaining.");
+        if (definition.EquipmentAbilityModifiers.GetValueOrDefault(181) > 0)
+        {
+            result = ActivateGangHouseDeed(character, state, itemCatalog, engine, selected, definition);
+            return true;
+        }
+        var legacySpellId = definition.EquipmentAbilityModifiers[43];
+        var spell = _liveSpellCatalog!.Spells.SingleOrDefault(candidate => candidate.LegacyId.Equals(legacySpellId.ToString(), StringComparison.OrdinalIgnoreCase))
+            ?? throw new InvalidDataException($"ITEM_CAST_SPELL_UNRESOLVED:{selected.CanonicalItemId}:{legacySpellId}");
+        if (!spell.TargetType.Equals("1", StringComparison.OrdinalIgnoreCase) && !spell.TargetType.Equals("self", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidDataException($"ITEM_CAST_NON_SELF_TARGET_UNSUPPORTED:{selected.CanonicalItemId}:{spell.Id}");
+
+        var now = DateTimeOffset.UtcNow;
+        var target = new RuntimeSpellTarget("character", character.CharacterId);
+        _liveSpellEngine!.SetResources(character.CharacterId, new RuntimeSpellResources(character.Mana, ReadEnergy(character)));
+        var execution = new RuntimeSpellExecutionEngine(_liveSpellCatalog, _liveSpellEngine,
+            new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
+        var powerBefore = _liveSpellEngine.Snapshot();
+        try
+        {
+            var temporarilyLearned = !_liveSpellEngine.Knows(character.CharacterId, spell.Id);
+            if (temporarilyLearned)
+                _liveSpellEngine.Learn(character.CharacterId, spell.Id,
+                    new Dictionary<string, string> { ["source"] = $"decoded-item-cast:{selected.CanonicalItemId}" });
+            var cast = execution.Cast(new RuntimeSpellCastRequest(character.CharacterId, spell.Id, target, now));
+            if (!cast.Succeeded) throw new InvalidOperationException(cast.FailureMessage ?? cast.FailureCode ?? "The item spell failed.");
+            if (temporarilyLearned) _liveSpellEngine.Forget(character.CharacterId, spell.Id);
+            _ = NormalizeDecodedPlayerStatusCast(session, cast.Cast.Effect, now);
+            var spent = engine.SpendCharges(selected.InstanceId, character.CharacterId);
+            var effects = _liveSpellEngine.EffectsFor(character.CharacterId);
+            var synchronized = RuntimeCharacterStatusEffectResolver.Synchronize(character, effects, now,
+                $"runtime.item_cast:{selected.CanonicalItemId}:{spell.Id}");
+            synchronized = RuntimeClassicStatusProjection.Apply(synchronized, effects, ClassicLiveStatusCatalog(session), now,
+                $"runtime.item_cast:{selected.CanonicalItemId}:{spell.Id}");
+            synchronized = synchronized with
+            {
+                ItemState = engine.Snapshot(state.Gold, state.ActiveItemState),
+                UpdatedAtUtc = now
+            };
+            _characters.SaveCharacter(synchronized, $"use-decoded-spell-item:{selected.CanonicalItemId}");
+            PersistLivePowers(character.WorldId);
+            result = $"You use {definition.Name}. {spell.Name} takes effect. Uses remaining: {spent.Charges}.";
+            return true;
+        }
+        catch
+        {
+            _liveSpellEngine.RestoreSnapshot(powerBefore);
+            throw;
+        }
+    }
+
+    private string ActivateGangHouseDeed(
+        RuntimeCharacterRecord character,
+        RuntimeItemState state,
+        RuntimeItemCatalog itemCatalog,
+        RuntimeItemEngine engine,
+        RuntimeItemInstance deed,
+        RuntimeItemDefinition deedDefinition)
+    {
+        var houses = RuntimeClassicGangHouseCatalog.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId, "gang_houses.json"));
+        var house = houses.Records.SingleOrDefault(record => record.DeedItemId.Equals(deed.CanonicalItemId, StringComparison.OrdinalIgnoreCase))
+            ?? throw new InvalidDataException($"GANG_HOUSE_DEED_UNRESOLVED:{deed.CanonicalItemId}");
+        var gangs = new RuntimeClassicGangStateService(_characters.ProjectRoot);
+        var gang = gangs.FindByMember(character.CharacterId)
+            ?? throw new InvalidOperationException("You must lead an active gang to activate a gang-house deed.");
+        if (!gang.LeaderCharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Only the gang leader may activate a gang-house deed.");
+
+        foreach (var itemId in house.ActivationGrantItemIds)
+        {
+            _ = itemCatalog.Require(itemId);
+            engine.Create(itemId, RuntimeItemLocations.Character, character.CharacterId, ownerId: character.CharacterId);
+        }
+        var spent = engine.SpendCharges(deed.InstanceId, character.CharacterId);
+        var updated = character with
+        {
+            ItemState = engine.Snapshot(state.Gold, state.ActiveItemState),
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
+        var assigned = gangs.AssignHouse(gang, character.CharacterId, house.HouseId);
+        try
+        {
+            _characters.SaveCharacter(updated, $"decoded-gang-house-deed:textblock.{house.ActivationTextblockId}");
+        }
+        catch
+        {
+            gangs.Save(assigned with { GangHouseId = null });
+            throw;
+        }
+        var message = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot).RequireMessage(house.ActivationMessageId);
+        return $"{message}{Environment.NewLine}{gang.Name} now owns {house.Name}. Four decoded house items were granted. Uses remaining: {spent.Charges}.";
     }
 
     private bool TryUseSpellLearningItem(RuntimeCharacterRecord character, string query, out string result)
@@ -224,6 +516,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             _liveLearningCatalog.RequireSpell(id);
             if (!_liveSpellEngine!.Knows(actorId, id) && TryResolveSpell(id, out var spell)) _liveSpellEngine.Learn(actorId, spell.Id);
         }
+        SynchronizeDecodedTemporarySpells(actorId);
     }
 
     private RuntimeActorAbilityState GetAbilityState(string actorId, RuntimeCharacterRecord character)
@@ -254,12 +547,167 @@ public sealed partial class RuntimeLiveGameplayFacade
             .Select(effect => effect.Target.Id)
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
-        _liveSpellEngine.Expire(now);
+        var expiredForActor = _liveSpellEngine.Snapshot().ActiveEffects
+            .Where(effect => effect.ExpiresAtUtc is not null && effect.ExpiresAtUtc <= now)
+            .Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
+                && effect.Target.Id.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase))
+            .Select(effect => _liveSpellCatalog!.Require(effect.SpellId))
+            .SelectMany(spell => spell.DescriptionMessages ?? Array.Empty<RuntimeSpellDescriptionMessage>())
+            .Select(message => message.WearOffMessage)
+            .Where(message => !string.IsNullOrWhiteSpace(message))
+            .ToArray();
+        ExpireAndExecuteDecodedEndCast(session, now);
+        foreach (var message in expiredForActor) session.EnqueueMessage(message);
         foreach (var characterId in affectedCharacterIds)
             SynchronizeCharacterSpellStatuses(new RuntimeSpellTarget("character", characterId), now, "runtime.live_powers.expire");
         foreach (var key in _liveSpellCooldowns.Where(x => x.Value <= now).Select(x => x.Key).ToArray()) _liveSpellCooldowns.Remove(key);
         foreach (var state in _liveAbilityStates.Values) state.ClearExpiredCooldowns(now);
         PersistLivePowers(session.World.Definition.Id);
+    }
+
+    private IReadOnlyList<string> ActiveSpellStatusMessages(RuntimeSession session, string characterId)
+    {
+        lock (_livePowerGate)
+        {
+            EnsureLivePowers(session);
+            return _liveSpellEngine!.EffectsFor(characterId)
+                .SelectMany(effect => _liveSpellCatalog!.Require(effect.SpellId).DescriptionMessages ?? Array.Empty<RuntimeSpellDescriptionMessage>())
+                .Select(message => message.StatusMessage)
+                .Where(message => !string.IsNullOrWhiteSpace(message))
+                .Distinct(StringComparer.Ordinal)
+                .ToArray();
+        }
+    }
+
+    private int ExpireAndExecuteDecodedEndCast(RuntimeSession session, DateTimeOffset nowUtc)
+    {
+        var due = _liveSpellEngine!.Snapshot().ActiveEffects
+            .Where(effect => effect.ExpiresAtUtc is not null && effect.ExpiresAtUtc <= nowUtc)
+            .OrderBy(effect => effect.ExpiresAtUtc).ThenBy(effect => effect.EffectId, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (due.Length == 0) return 0;
+        var before = _liveSpellEngine.Snapshot();
+        var sink = new LiveSpellEventSink(this, session);
+        var applied = new List<RuntimeSpellExecutionEvent>();
+        try
+        {
+            _liveSpellEngine.Expire(nowUtc);
+            foreach (var expired in due) ExecuteDecodedEndCastChain(session, expired, nowUtc, sink, applied, 0);
+            foreach (var characterId in due.Where(effect => effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+                         .Select(effect => effect.Target.Id).Distinct(StringComparer.OrdinalIgnoreCase))
+                SynchronizeDecodedTemporarySpells(characterId);
+            return due.Length;
+        }
+        catch
+        {
+            for (var index = applied.Count - 1; index >= 0; index--)
+                try { sink.Revert(applied[index]); } catch { }
+            _liveSpellEngine.RestoreSnapshot(before);
+            throw;
+        }
+    }
+
+    private void ExecuteDecodedEndCastChain(RuntimeSession session, RuntimeActiveSpellEffect expired, DateTimeOffset nowUtc,
+        LiveSpellEventSink sink, List<RuntimeSpellExecutionEvent> applied, int depth)
+    {
+        if (depth >= 32) throw new InvalidOperationException("Decoded EndCast chain exceeded the safe maximum depth.");
+        var source = _liveSpellCatalog!.Require(expired.SpellId);
+        var castOnEndChance = source.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 164)?.Value ?? 100;
+        if (!ShouldExecuteCastOnEnd(castOnEndChance, Random.Shared.Next(1, 101))) return;
+        var endCastIds = source.DecodedAbilities.Where(ability => ability.AbilityId == 151 && ability.Value > 0)
+            .Select(ability => ability.Value).Distinct().ToArray();
+        foreach (var legacyId in endCastIds)
+        {
+            var followup = _liveSpellCatalog.Spells.SingleOrDefault(spell => spell.LegacyId.Equals(legacyId.ToString(), StringComparison.OrdinalIgnoreCase))
+                ?? throw new InvalidOperationException($"Decoded EndCast target spell {legacyId} is unavailable.");
+            var request = new RuntimeSpellCastRequest(expired.CasterId, followup.Id, expired.Target, nowUtc);
+            var effect = new GeneratedSpellEffectResolver().Resolve(followup, request);
+            var snapshot = _liveSpellEngine!.Snapshot();
+            _liveSpellEngine.RestoreSnapshot(snapshot with { ActiveEffects = snapshot.ActiveEffects.Append(effect).ToArray() });
+            var events = new GeneratedLiveSpellOperationPolicy(this, session).ResolveOperations(followup, request, effect).ToArray();
+            foreach (var spellEvent in events) { sink.Apply(spellEvent); applied.Add(spellEvent); }
+            if (followup.Duration <= 0)
+            {
+                try { _liveSpellEngine.RemoveEffect(effect.EffectId); } catch (InvalidOperationException) { }
+                ExecuteDecodedEndCastChain(session, effect, nowUtc, sink, applied, depth + 1);
+            }
+        }
+    }
+
+    private void ExecuteImmediateDecodedEndCast(RuntimeSession session, RuntimeActiveSpellEffect sourceEffect, DateTimeOffset nowUtc)
+    {
+        var before = _liveSpellEngine!.Snapshot();
+        var sink = new LiveSpellEventSink(this, session);
+        var applied = new List<RuntimeSpellExecutionEvent>();
+        try
+        {
+            try { _liveSpellEngine.RemoveEffect(sourceEffect.EffectId); } catch (InvalidOperationException) { }
+            ExecuteDecodedEndCastChain(session, sourceEffect, nowUtc, sink, applied, 0);
+        }
+        catch
+        {
+            for (var index = applied.Count - 1; index >= 0; index--)
+                try { sink.Revert(applied[index]); } catch { }
+            _liveSpellEngine.RestoreSnapshot(before);
+            throw;
+        }
+    }
+
+    internal static bool ShouldExecuteCastOnEnd(int chancePercent, int roll) =>
+        chancePercent is >= 1 and <= 100 && roll is >= 1 and <= 100 && roll <= chancePercent;
+
+    private void SynchronizeDecodedTemporarySpells(string characterId)
+    {
+        var character = _characters.LoadCharacter(characterId);
+        if (character is null) return;
+        var permanent = character.Spells.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var desired = ResolveDecodedTemporarySpellIds(
+            _liveSpellEngine!.EffectsFor(characterId), _liveSpellCatalog!);
+        var temporary = _liveSpellEngine.Spellbook(characterId)
+            .Where(known => known.Metadata?.TryGetValue("source", out var source) == true
+                && source.Equals("decoded-give-temp-spell", StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        foreach (var known in temporary.Where(known => !desired.Contains(known.SpellId) && !permanent.Contains(known.SpellId)))
+            _liveSpellEngine.Forget(characterId, known.SpellId);
+        foreach (var spellId in desired.Where(spellId => !permanent.Contains(spellId) && !_liveSpellEngine.Knows(characterId, spellId)))
+            _liveSpellEngine.Learn(characterId, spellId, new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["source"] = "decoded-give-temp-spell"
+            });
+    }
+
+    internal static IReadOnlySet<string> ResolveDecodedTemporarySpellIds(
+        IReadOnlyList<RuntimeActiveSpellEffect> effects, RuntimeSpellCatalog catalog)
+    {
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var effect in effects)
+        {
+            var source = catalog.Require(effect.SpellId);
+            foreach (var legacyId in source.DecodedAbilities.Where(ability => ability.AbilityId == 160 && ability.Value > 0)
+                         .Select(ability => ability.Value).Distinct())
+            {
+                var granted = catalog.Spells.SingleOrDefault(spell =>
+                    spell.LegacyId.Equals(legacyId.ToString(), StringComparison.OrdinalIgnoreCase))
+                    ?? throw new InvalidOperationException($"Decoded GiveTempSpell target spell {legacyId} is unavailable.");
+                result.Add(granted.Id);
+            }
+        }
+        return result;
+    }
+
+    private IReadOnlyList<string> ActiveSpellLookMessages(RuntimeSession session, string characterId, string displayName)
+    {
+        lock (_livePowerGate)
+        {
+            EnsureLivePowers(session);
+            return _liveSpellEngine!.EffectsFor(characterId)
+                .SelectMany(effect => _liveSpellCatalog!.Require(effect.SpellId).DescriptionMessages ?? Array.Empty<RuntimeSpellDescriptionMessage>())
+                .Select(message => message.LookMessage)
+                .Where(message => !string.IsNullOrWhiteSpace(message))
+                .Select(message => message.Replace("%s", displayName, StringComparison.Ordinal))
+                .Distinct(StringComparer.Ordinal)
+                .ToArray();
+        }
     }
 
     private string DispelLiveEffect(RuntimeSession session, string effectId)
@@ -348,6 +796,124 @@ public sealed partial class RuntimeLiveGameplayFacade
         throw new InvalidOperationException($"No valid live target uniquely matches '{query}'.");
     }
 
+    internal static bool IsDecodedSpellTargetAdmitted(
+        RuntimeSpellDefinition spell,
+        RuntimeSpellTarget target,
+        RuntimeLivingNpcState? targetNpc)
+    {
+        if (target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+            && IsDecodedAbilityNegated(spell, ReadNegatedAbilityIds(targetNpc?.Metadata))) return false;
+        if (spell.DecodedAbilities.Any(ability => ability.AbilityId == 80))
+        {
+            if (!target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+                || targetNpc is null
+                || !MetadataFlag(targetNpc.Metadata, "animal")) return false;
+        }
+        if (spell.DecodedAbilities.Any(ability => ability.AbilityId == 108))
+        {
+            if (target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)) return true;
+            if (!target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
+                || targetNpc is null
+                || MetadataFlag(targetNpc.Metadata, "non_living")) return false;
+        }
+        return true;
+    }
+
+    private static bool IsDecodedAbilityNegated(RuntimeSpellDefinition spell, IReadOnlySet<int> negatedAbilityIds) =>
+        spell.DecodedAbilities.Any(ability => negatedAbilityIds.Contains(ability.AbilityId));
+
+    private static IReadOnlySet<int> ReadNegatedAbilityIds(RuntimeCharacterRecord? character)
+    {
+        if (character is null) return new HashSet<int>();
+        const string prefix = RuntimeClassicStatusProjection.Prefix + "negate_ability.";
+        return character.Conditions.Keys
+            .Where(key => key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            .Select(key => int.TryParse(key[prefix.Length..], out var id) ? id : 0)
+            .Where(id => id > 0)
+            .ToHashSet();
+    }
+
+    private static IReadOnlySet<int> ReadNegatedAbilityIds(IReadOnlyDictionary<string, string>? metadata)
+    {
+        if (metadata is null || !metadata.TryGetValue("negated_ability_ids", out var raw)) return new HashSet<int>();
+        return raw.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            .Select(value => int.TryParse(value, out var id) ? id : 0)
+            .Where(id => id > 0)
+            .ToHashSet();
+    }
+
+    private static bool MetadataFlag(IReadOnlyDictionary<string, string> metadata, string key) =>
+        metadata.TryGetValue(key, out var raw)
+        && (raw.Equals("1", StringComparison.OrdinalIgnoreCase)
+            || raw.Equals("true", StringComparison.OrdinalIgnoreCase)
+            || raw.Equals("yes", StringComparison.OrdinalIgnoreCase));
+
+    internal static bool IsDecodedSpellCasterAlignmentAdmitted(
+        RuntimeSpellDefinition spell,
+        RuntimeCharacterRecord character,
+        out string failure)
+    {
+        var requiresGood = spell.DecodedAbilities.Any(ability => ability.AbilityId == 97);
+        var requiresEvil = spell.DecodedAbilities.Any(ability => ability.AbilityId == 98);
+        var excludesGood = spell.DecodedAbilities.Any(ability => ability.AbilityId == 110);
+        var excludesEvil = spell.DecodedAbilities.Any(ability => ability.AbilityId == 111);
+        var requiresNeutral = spell.DecodedAbilities.Any(ability => ability.AbilityId == 112);
+        var excludesNeutral = spell.DecodedAbilities.Any(ability => ability.AbilityId == 113);
+        if (!requiresGood && !requiresEvil && !excludesGood && !excludesEvil && !requiresNeutral && !excludesNeutral)
+        {
+            failure = string.Empty;
+            return true;
+        }
+        var reputation = character.SemanticState?.Alignment?.Reputation;
+        if (string.IsNullOrWhiteSpace(reputation) && character.Conditions.TryGetValue("alignment", out var legacyAlignment))
+            reputation = legacyAlignment;
+        var good = reputation is not null && (reputation.Equals("Lawful", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Saint", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Good", StringComparison.OrdinalIgnoreCase));
+        var evil = reputation is not null && (reputation.Equals("Outlaw", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Criminal", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Villain", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Evil", StringComparison.OrdinalIgnoreCase));
+        var neutral = reputation is not null && (reputation.Equals("Neutral", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Seedy", StringComparison.OrdinalIgnoreCase));
+        if (!good && !neutral && !evil)
+        {
+            failure = string.IsNullOrWhiteSpace(reputation)
+                ? $"{spell.Name} cannot be cast because the character has no authoritative alignment."
+                : $"{spell.Name} cannot be cast with unknown alignment '{reputation}'.";
+            return false;
+        }
+        if (requiresGood && !good) failure = $"{spell.Name} may only be cast by a Good-aligned character.";
+        else if (requiresEvil && !evil) failure = $"{spell.Name} may only be cast by an Evil-aligned character.";
+        else if (requiresNeutral && !neutral) failure = $"{spell.Name} may only be cast by a Neutral-aligned character.";
+        else if (excludesGood && good) failure = $"{spell.Name} cannot be cast by a Good-aligned character.";
+        else if (excludesEvil && evil) failure = $"{spell.Name} cannot be cast by an Evil-aligned character.";
+        else if (excludesNeutral && neutral) failure = $"{spell.Name} cannot be cast by a Neutral-aligned character.";
+        else
+        {
+            failure = string.Empty;
+            return true;
+        }
+        return false;
+    }
+
+    private int ApplyDecodedRemoveCurse(RuntimeSession session, RuntimeSpellTarget target, DateTimeOffset now)
+    {
+        if (!target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)) return 0;
+        var character = _characters.LoadCharacter(target.Id)
+            ?? throw new InvalidOperationException("Remove curse target character was not found.");
+        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var authority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, character.WorldId);
+        var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, authority);
+        var removed = engine.RemoveCurse(character.CharacterId);
+        if (removed.Count == 0) return 0;
+        var commit = RuntimeEquipmentRuntimeAuthority.Commit(character, engine, state.Gold, state.ActiveItemState, now);
+        _characters.SaveCharacter(commit.Character, $"decoded-remove-curse:{session.World.Definition.Id}");
+        return removed.Count;
+    }
+
     internal RuntimeNpcHitSpellStatusDeliveryResolution ApplyNpcHitSpellStatusDelivery(
         RuntimeSession session,
         RuntimeCharacterRecord character,
@@ -362,12 +928,16 @@ public sealed partial class RuntimeLiveGameplayFacade
             var existing = _liveSpellEngine!.EffectsFor(character.CharacterId)
                 .Where(effect => effect.SpellId.Equals(spell.CanonicalSpellId, StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-            var resolution = ResolveNpcHitSpellStatusDelivery(spell, poisonImmune, existing.Length > 0);
-            if (!resolution.Applied) return resolution;
-
             var catalog = ClassicLiveStatusCatalog(session);
             if (!catalog.TryGet(spell.CanonicalSpellId, out var definition))
                 throw new InvalidOperationException($"Decoded status spell '{spell.CanonicalSpellId}' is missing from the Classic status catalog.");
+            var incomingSpell = _liveSpellCatalog!.Require(spell.CanonicalSpellId);
+            if (IsDecodedAbilityNegated(incomingSpell, ReadNegatedAbilityIds(character)))
+                return new RuntimeNpcHitSpellStatusDeliveryResolution(
+                    false, false, false, "negated", spell.CanonicalSpellId,
+                    0, spell.MinimumEffect, spell.MaximumEffect, "negate-ability-immunity");
+            var resolution = ResolveNpcHitSpellStatusDelivery(spell, poisonImmune, existing.Length > 0, definition.HasCombatModifiers);
+            if (!resolution.Applied) return resolution;
             var snapshot = _liveSpellEngine.Snapshot();
             var active = snapshot.ActiveEffects
                 .Where(effect => !existing.Any(old => old.EffectId.Equals(effect.EffectId, StringComparison.OrdinalIgnoreCase)))
@@ -383,7 +953,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                         spell.DurationRaw,
                         nowUtc,
                         nowUtc.AddSeconds(checked((long)spell.DurationRaw * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds)),
-                        BuildClassicStatusMetadata(definition, spell, nowUtc))
+                        BuildClassicStatusMetadata(definition, spell, nowUtc,
+                            spell.MinimumEffect == spell.MaximumEffect
+                                ? spell.MinimumEffect
+                                : Random.Shared.Next(Math.Min(spell.MinimumEffect, spell.MaximumEffect), checked(Math.Max(spell.MinimumEffect, spell.MaximumEffect) + 1))))
                 }).ToArray();
             _liveSpellEngine.RestoreSnapshot(snapshot with { ActiveEffects = active });
             SynchronizeCharacterSpellStatuses(new RuntimeSpellTarget("character", character.CharacterId), nowUtc, "runtime.live_combat.npc_hit_spell");
@@ -404,7 +977,24 @@ public sealed partial class RuntimeLiveGameplayFacade
     private static string RenderSpellEvent(RuntimeSpellExecutionEvent e) =>
         e.Operation.Equals("cure_poison", StringComparison.OrdinalIgnoreCase)
             ? "poison removed."
+            : e.Operation.Equals("immune", StringComparison.OrdinalIgnoreCase)
+                ? "The target is immune."
+            : e.Operation.Equals("teleport", StringComparison.OrdinalIgnoreCase)
+                ? "You are teleported."
             : $"{e.Operation} {e.Magnitude}.";
+
+    private static RuntimeActiveSpellEffect? AttachResolvedEffectRoll(
+        RuntimeActiveSpellEffect? effect, IReadOnlyList<RuntimeSpellExecutionEvent> events)
+    {
+        if (effect is null) return null;
+        var source = events.FirstOrDefault(x => x.Metadata is not null && x.Metadata.ContainsKey("effect_roll"));
+        if (source?.Metadata is null) return effect;
+        var metadata = new Dictionary<string, string>(effect.Metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase)
+        {
+            ["effect_roll"] = source.Metadata["effect_roll"]
+        };
+        return effect with { Metadata = metadata };
+    }
 
     internal static bool IsCurePoisonSpell(RuntimeSpellDefinition spell)
     {
@@ -413,6 +1003,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             || spell.LegacyId.Equals("222", StringComparison.OrdinalIgnoreCase)
             || spell.Name.Equals("antidote", StringComparison.OrdinalIgnoreCase)
             || spell.Name.Equals("cure poison", StringComparison.OrdinalIgnoreCase);
+    }
+
+    internal static bool ShouldDiscardDecodedRemovalHelper(RuntimeSpellDefinition spell)
+    {
+        ArgumentNullException.ThrowIfNull(spell);
+        return spell.Duration <= 0
+            && (IsCurePoisonSpell(spell)
+                || spell.DecodedAbilities.Any(ability => ability.AbilityId is 73 or 81 or 84 or 122 or 140 or 141 or 153 or 161));
     }
 
     internal static bool IsPoisonEffect(RuntimeActiveSpellEffect effect)
@@ -447,25 +1045,72 @@ public sealed partial class RuntimeLiveGameplayFacade
         public GeneratedLiveSpellOperationPolicy(RuntimeLiveGameplayFacade owner, RuntimeSession session) { _owner = owner; _session = session; }
         public IReadOnlyList<RuntimeSpellExecutionEvent> ResolveOperations(RuntimeSpellDefinition spell, RuntimeSpellCastRequest request, RuntimeActiveSpellEffect effect)
         {
+            var immunityLevel = _owner.ResolveLiveSpellImmunityThreshold(_session, request.Target, effect.EffectId);
+            if (immunityLevel > 0 && spell.SpellLevel <= immunityLevel)
+            {
+                _owner._liveSpellEngine!.RemoveEffect(effect.EffectId);
+                return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "immune", 0, request.RequestedAtUtc, null,
+                    new Dictionary<string, string> { ["spell_level"] = spell.SpellLevel.ToString(), ["spell_immunity_level"] = immunityLevel.ToString() }) };
+            }
             if (IsCurePoisonSpell(spell))
                 return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "cure_poison", 0, request.RequestedAtUtc, effect.EffectId, effect.Metadata) };
+            var teleportRoom = spell.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 140)?.Value ?? 0;
+            var teleportMap = spell.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 141)?.Value ?? 0;
+            if (teleportRoom > 0 && teleportMap > 0)
+            {
+                if (!request.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException("Decoded fixed teleport requires a character target.");
+                var destinationId = $"room.map{teleportMap}.{teleportRoom}";
+                if (_session.World.FindRoomById(destinationId) is null)
+                    throw new InvalidOperationException($"Decoded fixed teleport destination '{destinationId}' is absent from generated Classic rooms.");
+                var targetSession = request.Target.Id.Equals(_session.Actor.Id, StringComparison.OrdinalIgnoreCase)
+                    ? _session
+                    : _owner._sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(request.Target.Id, StringComparison.OrdinalIgnoreCase));
+                if (targetSession is null) throw new InvalidOperationException("Decoded fixed teleport target session is unavailable.");
+                return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "teleport", 0, request.RequestedAtUtc, effect.EffectId,
+                    new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        ["source_room_id"] = targetSession.CurrentRoom.Id,
+                        ["destination_room_id"] = destinationId,
+                        ["teleport_map"] = teleportMap.ToString(),
+                        ["teleport_room"] = teleportRoom.ToString(),
+                        ["operation_authority"] = "decoded_abilities_140_141"
+                    }) };
+            }
             var targetMr = 0;
             if (request.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase) && _owner._liveCombats.TryGetValue(_session.Id, out var encounter))
                 targetMr = ResolveEncounterNpc(_session, encounter).MagicResistance;
             else if (request.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase) && _owner._characters.LoadCharacter(request.Target.Id) is { } targetCharacter)
                 targetMr = ReadMagicResistance(targetCharacter);
-            var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false, Random.Shared);
+            var casterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
+            var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false, Random.Shared, casterLevel);
+            var hasDecodedDamage=spell.DecodedAbilities.Any(x=>x.AbilityId is 1 or 17);
+            var hasDecodedHeal=spell.DecodedAbilities.Any(x=>x.AbilityId==18);
+            var healMana = spell.DecodedAbilities.FirstOrDefault(x => x.AbilityId == 150);
+            var decodedOperation=hasDecodedDamage?"damage":hasDecodedHeal?"heal":resolution.Operation;
             var metadata = new Dictionary<string,string>(effect.Metadata ?? new Dictionary<string,string>(), StringComparer.OrdinalIgnoreCase)
             {
                 ["element"] = resolution.Element,
                 ["resistance_chance"] = resolution.ResistanceChancePercent.ToString(),
                 ["resistance_roll"] = resolution.ResistanceRoll.ToString(),
                 ["resisted"] = resolution.Resisted.ToString(),
+                ["effect_roll"] = resolution.EffectRoll.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["reflection"] = "absent-from-uploaded-classic-decode",
                 ["absorption"] = "absent-from-uploaded-classic-decode",
                 ["damage_shield"] = "absent-from-uploaded-classic-decode"
             };
-            return new[] { new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, resolution.Operation, resolution.Magnitude, request.RequestedAtUtc, effect.EffectId, metadata) };
+            metadata["operation_authority"]=(hasDecodedDamage||hasDecodedHeal)?"decoded_ability_vector":"decoded_target_and_attack_type";
+            var events = new List<RuntimeSpellExecutionEvent>();
+            if (hasDecodedDamage || hasDecodedHeal || spell.DecodedAbilities.Count == 0)
+                events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, decodedOperation, resolution.Magnitude, request.RequestedAtUtc, effect.EffectId, metadata));
+            else if (healMana is null)
+                events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "modifier", 0, request.RequestedAtUtc, effect.EffectId, metadata));
+            if (healMana is not null)
+            {
+                var manaMagnitude = ResolveHealManaMagnitude(healMana.Value, resolution);
+                events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "mana", manaMagnitude, request.RequestedAtUtc, effect.EffectId, metadata));
+            }
+            return events;
         }
     }
 
@@ -473,8 +1118,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         private readonly RuntimeLiveGameplayFacade _owner; private readonly RuntimeSession _session;
         public LiveSpellEventSink(RuntimeLiveGameplayFacade owner, RuntimeSession session) { _owner = owner; _session = session; }
-        public void Apply(RuntimeSpellExecutionEvent e) => _owner.ApplyPowerMagnitude(_session, e.Target, e.Operation, e.Magnitude);
-        public void Revert(RuntimeSpellExecutionEvent e) => _owner.ApplyPowerMagnitude(_session, e.Target, e.Operation, -e.Magnitude);
+        public void Apply(RuntimeSpellExecutionEvent e) => _owner.ApplySpellEvent(_session, e, false);
+        public void Revert(RuntimeSpellExecutionEvent e) => _owner.ApplySpellEvent(_session, e, true);
     }
 
     private sealed record LiveAbilityResources(RuntimeCharacterRecord Character, int InitialEnergy) { public int Energy { get; set; } = InitialEnergy; }
@@ -498,9 +1143,82 @@ public sealed partial class RuntimeLiveGameplayFacade
         public void Revert(RuntimeAbilityEvent e) { _owner.ApplyPowerMagnitude(_session, new RuntimeSpellTarget(e.TargetId == _session.Actor.Id ? "character" : "npc", e.TargetId ?? _session.Actor.Id), e.EventType, checked(-(int)e.Magnitude)); _resources.Energy = _resources.InitialEnergy; }
     }
 
+    private void ApplySpellEvent(RuntimeSession source, RuntimeSpellExecutionEvent e, bool revert)
+    {
+        if (e.Operation.Equals("scatter_items", StringComparison.OrdinalIgnoreCase))
+        {
+            if (e.Metadata is null
+                || !e.Metadata.TryGetValue(revert ? "source_room_id" : "destination_room_id", out var scatterRoomId)
+                || !e.Metadata.TryGetValue("item_instance_ids", out var encoded))
+                throw new InvalidOperationException("Decoded ScatterItems event is missing authoritative movement metadata.");
+            var ids = encoded.Split('\u001f', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            Living(source).MoveGroundItems(ids, scatterRoomId);
+            return;
+        }
+        if (!e.Operation.Equals("teleport", StringComparison.OrdinalIgnoreCase))
+        {
+            ApplyPowerMagnitude(source, e.Target, e.Operation, revert ? -e.Magnitude : e.Magnitude);
+            return;
+        }
+        var key = revert ? "source_room_id" : "destination_room_id";
+        if (e.Metadata is null || !e.Metadata.TryGetValue(key, out var roomId))
+            throw new InvalidOperationException("Decoded teleport event is missing its authoritative room identity.");
+        var targetSession = e.Target.Id.Equals(source.Actor.Id, StringComparison.OrdinalIgnoreCase)
+            ? source
+            : _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(e.Target.Id, StringComparison.OrdinalIgnoreCase));
+        var room = targetSession?.World.FindRoomById(roomId)
+            ?? throw new InvalidOperationException($"Decoded teleport room '{roomId}' is unavailable.");
+        targetSession.MoveToWorld(targetSession.World, room, revert ? "decoded-spell-teleport-rollback" : "decoded-spell-teleport");
+    }
+
+    private void PersistDecodedTeleportTargets(IReadOnlyList<RuntimeSpellExecutionEvent> events)
+    {
+        foreach (var e in events.Where(e => e.Operation.Equals("teleport", StringComparison.OrdinalIgnoreCase)))
+        {
+            var targetSession = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(e.Target.Id, StringComparison.OrdinalIgnoreCase));
+            if (targetSession?.Actor is not RuntimeCharacterActor targetActor) continue;
+            var target = _characters.LoadCharacter(targetActor.Id) ?? throw new InvalidOperationException("Teleport target character save was not found.");
+            _characters.SaveCharacter(target with
+            {
+                WorldId = targetSession.World.Definition.Id,
+                RoomId = targetSession.CurrentRoom.Id,
+                RoomNumber = targetSession.CurrentRoom.RoomNumber,
+                UpdatedAtUtc = DateTimeOffset.UtcNow
+            });
+        }
+    }
+
     private void ApplyPowerMagnitude(RuntimeSession source, RuntimeSpellTarget target, string operation, int magnitude)
     {
         if (operation.Equals("modifier", StringComparison.OrdinalIgnoreCase) || magnitude == 0) return;
+        if (operation.Equals("mana", StringComparison.OrdinalIgnoreCase))
+        {
+            if (target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase))
+            {
+                if (!_liveCombats.TryGetValue(source.Id, out var manaEncounter)
+                    || !manaEncounter.NpcInstanceId.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidOperationException("Live NPC mana target is unavailable.");
+                _liveCombats[source.Id] = manaEncounter with
+                {
+                    NpcCurrentEnergy = ResolveNpcManaEnergy(
+                        manaEncounter.NpcCurrentEnergy, manaEncounter.NpcMaximumEnergy, magnitude)
+                };
+                return;
+            }
+            var manaSession = target.Id.Equals(source.Actor.Id, StringComparison.OrdinalIgnoreCase)
+                ? source
+                : _sessions.ActiveSessions.FirstOrDefault(x => x.Actor.Id.Equals(target.Id, StringComparison.OrdinalIgnoreCase));
+            if (manaSession?.Actor is not RuntimeCharacterActor manaActor)
+                throw new InvalidOperationException("Live character mana target is unavailable.");
+            var manaCharacter = _characters.LoadCharacter(manaActor.Id)
+                ?? throw new InvalidOperationException("Mana target character save was not found.");
+            _characters.SaveCharacter(manaCharacter with
+            {
+                Mana = Math.Clamp(checked(manaCharacter.Mana + magnitude), 0, manaCharacter.MaximumMana),
+                UpdatedAtUtc = DateTimeOffset.UtcNow
+            });
+            return;
+        }
         if (magnitude < 0)
         {
             var inverseOperation = operation.Equals("heal", StringComparison.OrdinalIgnoreCase) ? "damage" : "heal";
@@ -531,6 +1249,20 @@ public sealed partial class RuntimeLiveGameplayFacade
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Target character save was not found.");
         var hp2 = operation.Equals("heal", StringComparison.OrdinalIgnoreCase) ? Math.Min(character.MaximumHitPoints, character.HitPoints + magnitude) : Math.Clamp(character.HitPoints - magnitude, 0, character.MaximumHitPoints);
         _characters.SaveCharacter(character with { HitPoints = hp2, UpdatedAtUtc = DateTimeOffset.UtcNow });
+    }
+
+    internal static int ResolveHealManaMagnitude(int decodedValue, RuntimeClassicPlayerSpellResolution resolution)
+    {
+        ArgumentNullException.ThrowIfNull(resolution);
+        if (resolution.Resisted || resolution.Reflected || resolution.Absorbed) return 0;
+        return decodedValue != 0 ? decodedValue : resolution.EffectRoll;
+    }
+
+    internal static int ResolveNpcManaEnergy(int currentEnergy, int maximumEnergy, int manaMagnitude)
+    {
+        if (currentEnergy < 0 || maximumEnergy < 0 || currentEnergy > maximumEnergy)
+            throw new InvalidDataException("NPC_MANA_ENERGY_STATE_INVALID");
+        return Math.Clamp(checked(currentEnergy + manaMagnitude), 0, maximumEnergy);
     }
 
     private static bool MatchesPowerTarget(string query, RuntimeLiveCombatEncounter encounter) =>
@@ -564,10 +1296,109 @@ public sealed class RuntimeLivePowersSmokeReport
             var curePoison = spells.Spells.Single(x => x.LegacyId == "222");
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(antidote), "cure-poison-antidote-classification", r);
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(curePoison), "cure-poison-healer-classification", r);
+            var cureDisease = spells.Require("spell.150");
+            var bless = spells.Require("spell.14");
+            Check(RuntimeLiveGameplayFacade.ShouldDiscardDecodedRemovalHelper(cureDisease), "instant-removes-spell-helper-discarded-even-without-match", r);
+            Check(!RuntimeLiveGameplayFacade.ShouldDiscardDecodedRemovalHelper(bless), "duration-removes-spell-replacement-effect-retained", r);
+            Check(RuntimeLiveGameplayFacade.ResolveNpcSpellImmunityLevel("10", 0) == 10, "npc-inherent-spell-immunity-threshold", r);
+            Check(RuntimeLiveGameplayFacade.ResolveNpcSpellImmunityLevel("10", 20) == 20, "npc-active-spell-immunity-stacks-by-maximum", r);
+            Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 20) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(20, 21), "cast-on-end-inclusive-percent-boundary", r);
+            Check(RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(100, 100) && !RuntimeLiveGameplayFacade.ShouldExecuteCastOnEnd(0, 1), "cast-on-end-default-and-zero-boundaries", r);
             var poisonEffect = new RuntimeActiveSpellEffect("poison", "spell.poison", "npc.1", new RuntimeSpellTarget("character", "character.1"), 1, 2, 10, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow.AddSeconds(10), new Dictionary<string,string> { ["effect_kind"] = "poison" });
             var statusEffect = poisonEffect with { EffectId = "status", Metadata = new Dictionary<string,string> { ["effect_kind"] = "status" } };
             Check(RuntimeLiveGameplayFacade.IsPoisonEffect(poisonEffect), "cure-poison-removes-poison", r);
             Check(!RuntimeLiveGameplayFacade.IsPoisonEffect(statusEffect), "cure-poison-preserves-non-poison", r);
+            var bcns = spells.Require("spell.1055");
+            Check(bcns.CastMessageId == 2520 && bcns.CastMessage == "You pull your cloak tight about you!", "bcns-native-cast-message", r);
+            Check(spells.Spells.Count(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 120)) == 229, "startmsg-decoded-owner-count-229", r);
+            var startMessages = spells.Spells.Select(spell => spell.StartMessage).Where(message => message is not null).Select(message => message!).ToArray();
+            Check(startMessages.Length == 230, "startmsg-runtime-selector-count-230-including-bcns-correction", r);
+            Check(startMessages.Count(message => !string.IsNullOrEmpty(message.CasterMessage)) == 164, "startmsg-caster-message-count-164", r);
+            Check(startMessages.Count(message => !string.IsNullOrEmpty(message.TargetMessage)) == 208, "startmsg-target-message-count-208", r);
+            Check(startMessages.Count(message => !string.IsNullOrEmpty(message.ObserverMessage)) == 189, "startmsg-observer-message-count-189", r);
+            var boulderStart = spells.Require("spell.1047").StartMessage ?? throw new InvalidOperationException("Boulder StartMsg was not projected.");
+            Check(RuntimeLiveGameplayFacade.RenderDecodedStartMessage(boulderStart.CasterMessage, "a goblin", "a goblin") == "You point your finger at a goblin and clench your fist.", "startmsg-caster-target-substitution", r);
+            Check(RuntimeLiveGameplayFacade.RenderDecodedStartMessage(boulderStart.TargetMessage, "Borin", "a goblin") == "Borin points a finger at you and clenches a fist.", "startmsg-target-caster-substitution", r);
+            Check(RuntimeLiveGameplayFacade.RenderDecodedStartMessage(boulderStart.ObserverMessage, "Borin", "a goblin") == "Borin points a finger at a goblin and clenches a fist.", "startmsg-observer-caster-target-substitution", r);
+            Check(bcns.DescriptionMessageId == 2531 && bcns.DescriptionMessage == "The battle song fades!", "bcns-native-expiration-message", r);
+            Check(bcns.DescriptionLookMessage.Length == 0 && bcns.DescriptionStatusMessage == "The dance of battle fills your mind!", "bcns-native-description-presentation-slots", r);
+            Check(spells.Spells.Count(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 115)) == 539, "descmsg-decoded-owner-count-539", r);
+            var descriptionMessages = spells.Spells.SelectMany(spell => spell.DescriptionMessages ?? Array.Empty<RuntimeSpellDescriptionMessage>()).ToArray();
+            Check(descriptionMessages.Length == 540, "descmsg-runtime-selector-count-540", r);
+            Check(descriptionMessages.Count(message => !string.IsNullOrEmpty(message.LookMessage)) == 18, "descmsg-look-message-count-18", r);
+            Check(descriptionMessages.Count(message => !string.IsNullOrEmpty(message.StatusMessage)) == 435, "descmsg-status-message-count-435", r);
+            Check(descriptionMessages.Count(message => !string.IsNullOrEmpty(message.WearOffMessage)) == 432, "descmsg-wearoff-message-count-432", r);
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(root, worldId);
+            var nativeMessages = RuntimeClassicNativeTextblockPayloadAuthority.Load(root);
+            var shieldSpells = statusCatalog.Definitions
+                .Where(definition => definition.Abilities.Any(ability => ability.AbilityId == 72))
+                .ToArray();
+            var resolvedShieldSpells = shieldSpells.Where(definition =>
+            {
+                var selector = definition.Abilities.SingleOrDefault(ability => ability.AbilityId == 137);
+                return selector is not null && selector.Value > 0 && nativeMessages.TryResolveMessage(selector.Value, out _)
+                    && nativeMessages.TryResolveTertiaryMessage(selector.Value, out _);
+            }).ToArray();
+            Check(shieldSpells.Length == 6 && resolvedShieldSpells.Length == 5
+                && shieldSpells.Single(definition => !resolvedShieldSpells.Contains(definition)).SpellId == "spell.405",
+                "damage-shield-spell-native-message-selectors", r);
+            Check(statusCatalog.Definitions.Count(x => x.GrantsFreedom) == 8,
+                "freedom-spell-count-8", r);
+            Check(statusCatalog.Definitions.Any(x => x.RemovedByFreedom && x.Abilities.Any(a => a.AbilityId == 74))
+                && statusCatalog.Definitions.Any(x => x.RemovedByFreedom && x.Abilities.Any(a => a.AbilityId == 68))
+                && statusCatalog.Definitions.Any(x => x.RemovedByFreedom && x.Abilities.Any(a => a.AbilityId == 87)),
+                "freedom-removes-hold-and-speed-families", r);
+            Check(statusCatalog.Definitions.Count(x => x.Abilities.Any(a => a.AbilityId == 99)) == 2,
+                "alter-dr-percent-spell-count-2", r);
+            var healManaSpells = spells.Spells.Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 150)).ToArray();
+            var castOnEndSpells = spells.Spells.Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 164)).ToArray();
+            var giveTempSpellOwners = spells.Spells.Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 160)).ToArray();
+            var openDoorOwners = spells.Spells.Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 161)).ToArray();
+            var scatterOwners = spells.Spells.Where(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 157)).ToArray();
+            Check(castOnEndSpells.Length == 3
+                && castOnEndSpells.SelectMany(spell => spell.DecodedAbilities.Where(ability => ability.AbilityId == 164)).Select(ability => ability.Value).Order().SequenceEqual(new[] { 20, 25, 33 })
+                && castOnEndSpells.All(spell => spell.DecodedAbilities.Any(ability => ability.AbilityId == 151 && ability.Value > 0)),
+                "cast-on-end-three-decoded-chance-gated-followups", r);
+            Check(giveTempSpellOwners.Length == 1 && giveTempSpellOwners[0].Id == "spell.747"
+                && giveTempSpellOwners[0].Duration == 30
+                && giveTempSpellOwners[0].DecodedAbilities.Single(ability => ability.AbilityId == 160).Value == 13,
+                "give-temp-spell-single-exact-owner-and-target", r);
+            var temporaryGrantEffect = new GeneratedSpellEffectResolver().Resolve(giveTempSpellOwners[0],
+                new RuntimeSpellCastRequest("caster", giveTempSpellOwners[0].Id,
+                    new RuntimeSpellTarget("character", "target"), DateTimeOffset.UtcNow));
+            Check(RuntimeLiveGameplayFacade.ResolveDecodedTemporarySpellIds(new[] { temporaryGrantEffect }, spells)
+                    .SetEquals(new[] { "spell.13" }),
+                "give-temp-spell-resolves-exact-generated-spell-13", r);
+            Check(openDoorOwners.Length == 1 && openDoorOwners[0].Id == "spell.750"
+                && openDoorOwners[0].Name == "wizard knock" && openDoorOwners[0].TargetType == "11"
+                && openDoorOwners[0].DecodedAbilities.Single(ability => ability.AbilityId == 161).Value == 0
+                && RuntimeLiveGameplayFacade.ShouldDiscardDecodedRemovalHelper(openDoorOwners[0]),
+                "open-door-single-exact-room-targeted-owner", r);
+            var scatterValues = scatterOwners.SelectMany(spell => spell.DecodedAbilities.Where(ability => ability.AbilityId == 157))
+                .Select(ability => ability.Value).ToArray();
+            Check(scatterOwners.Length == 12 && scatterValues.Count(value => value == 0) == 9
+                && scatterValues.Where(value => value > 0).Order().SequenceEqual(new[] { 1076, 2371, 2379 }),
+                "scatter-items-twelve-owners-nine-markers-three-destinations", r);
+            Check(healManaSpells.Length == 26, "heal-mana-spell-count-26", r);
+            var goldenVial = spells.Require("spell.459");
+            var goldenResolution = RuntimeClassicPlayerSpellCombat.Resolve(goldenVial, 0, false, false, false, new Random(1));
+            Check(RuntimeLiveGameplayFacade.ResolveHealManaMagnitude(0, goldenResolution) == 250,
+                "heal-mana-zero-value-uses-effect-roll", r);
+            var globe = spells.Require("spell.307");
+            Check(globe.DecodedAbilities.Single(ability => ability.AbilityId == 158).Value == 9
+                && RuntimeLiveGameplayFacade.IsRequiredStrikeCodeSatisfied(9, 9)
+                && !RuntimeLiveGameplayFacade.IsRequiredStrikeCodeSatisfied(9, 0)
+                && RuntimeLiveGameplayFacade.IsRequiredStrikeCodeSatisfied(0, 0),
+                "spell-required-to-hit-defensive-code-9-admission", r);
+            var globeResolution = RuntimeClassicPlayerSpellCombat.Resolve(globe, 0, false, false, false, new Random(1));
+            Check(RuntimeLiveGameplayFacade.ResolveHealManaMagnitude(9999, globeResolution) == 9999,
+                "heal-mana-fixed-value-precedence", r);
+            Check(RuntimeLiveGameplayFacade.ResolveHealManaMagnitude(-50, goldenResolution) == -50,
+                "heal-mana-negative-drain-preserved", r);
+            Check(RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(60, 100, -20) == 40
+                && RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(60, 100, 9999) == 100
+                && RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(10, 100, -9999) == 0,
+                "heal-mana-npc-casting-energy-consumer", r);
             foreach (var name in new[] { "mana-deduction", "energy-deduction", "cooldowns", "buff-application", "debuff-application" }) Check(true, name, r);
         }
         catch (Exception ex) { r.Failures.Add(ex.ToString()); }
@@ -601,15 +1432,19 @@ public static class RuntimeClassicPlayerSpellCombat
         bool reflectionDecoded,
         bool absorptionDecoded,
         bool damageShieldDecoded,
-        Random random)
+        Random random,
+        int casterLevel = 0)
     {
         ArgumentNullException.ThrowIfNull(spell);
         ArgumentNullException.ThrowIfNull(random);
         var targetType = Parse(spell.TargetType);
         var attackType = Parse(spell.AttackType);
         var hostile = targetType is 0 or 8 or 12;
-        var min = Math.Min(spell.MinimumEffect, spell.MaximumEffect);
-        var max = Math.Max(spell.MinimumEffect, spell.MaximumEffect);
+        var effectiveLevel = spell.LevelCap > 0 ? Math.Min(Math.Max(0, casterLevel), spell.LevelCap) : Math.Max(0, casterLevel);
+        var scaledMinimum = Scale(spell.MinimumEffect, effectiveLevel, spell.LevelsForMinimumIncrease, spell.MinimumIncrease);
+        var scaledMaximum = Scale(spell.MaximumEffect, effectiveLevel, spell.LevelsForMaximumIncrease, spell.MaximumIncrease);
+        var min = Math.Min(scaledMinimum, scaledMaximum);
+        var max = Math.Max(scaledMinimum, scaledMaximum);
         var effectRoll = min == max ? min : random.Next(min, checked(max + 1));
         var resistanceChance = hostile ? Math.Clamp(Math.Max(0, targetMagicResistance) / 2, 0, 97) : 0;
         var resistanceRoll = random.Next(1, 101);
@@ -623,6 +1458,8 @@ public static class RuntimeClassicPlayerSpellCombat
     }
 
     private static int Parse(string raw) => int.TryParse(raw, out var value) ? value : 0;
+    private static int Scale(int basis, int level, int levelsPerIncrease, int increase) =>
+        levelsPerIncrease > 0 && level > 0 ? checked(basis + (level / levelsPerIncrease) * increase) : basis;
     private static string ResolveElement(int raw) => raw switch
     {
         0 => "cold", 1 => "fire", 2 => "stone", 3 => "lightning", 4 => "untyped", 5 => "acid", 6 => "poison", _ => $"attack-type-{raw}"

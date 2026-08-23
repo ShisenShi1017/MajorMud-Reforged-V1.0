@@ -14,8 +14,9 @@ public sealed record RuntimeClassicNpcAiRelationship(
 public sealed record RuntimeClassicNpcAiCatalogDiagnostic(string Code, string Message, bool Fatal);
 
 /// <summary>
-/// Typed, world-scoped authority for generated Data/&lt;world&gt;/npc_ai_runtime.json.
-/// This catalog connects only decoded ownership and spawn relationship facts. Native-only
+/// Typed, world-scoped projection of NPC behavior ownership from canonical generated spawns.
+/// A legacy relationship sidecar can still be validated when supplied, but Classic normally
+/// derives these relationships directly from Data/&lt;world&gt;/spawns.json. Native-only
 /// perception, threat generation, flee routing, patrol selection, and ability priority are
 /// intentionally not inferred here.
 /// </summary>
@@ -143,7 +144,7 @@ public sealed class RuntimeClassicNpcAiCatalog
                 {
                     ["source"] = "generated-spawns",
                     ["authority"] = "Data/Classic/spawns.json",
-                    ["fallback_policy"] = "derived_when_npc_ai_runtime_catalog_absent"
+                    ["projection_policy"] = "derived_from_canonical_generated_spawns"
                 }),
             StringComparer.OrdinalIgnoreCase);
 

@@ -1,0 +1,155 @@
+<Window x:Class="Reforged.App.Views.ClientProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MegaMUD Character Profiles"
+        Width="980"
+        Height="680"
+        MinWidth="820"
+        MinHeight="560"
+        Background="{StaticResource ParchmentBrush}"
+        TextElement.Foreground="{StaticResource ParchmentTextBrush}"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Padding="10" Margin="0,0,0,10" Background="#FFF4D6" BorderBrush="#C79A3B" BorderThickness="1" CornerRadius="4">
+            <StackPanel>
+                <TextBlock Text="Saved BBS, world, character, session, and terminal settings" FontSize="17" FontWeight="SemiBold"/>
+                <TextBlock Margin="0,4,0,0" Text="Passwords and automatic login commands are never stored in these profiles. Applying a profile never connects or sends text." TextWrapping="Wrap"/>
+                <TextBlock Margin="0,4,0,0" TextWrapping="Wrap"><Run Text="Selected session: "/><Run Text="{Binding SelectedLiveSession.DisplayName}" FontWeight="SemiBold"/></TextBlock>
+                <TextBlock Margin="0,2,0,0" TextWrapping="Wrap"><Run Text="Selected profile: "/><Run Text="{Binding SelectedConnectionProfile.DisplaySummary}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding SelectedConnectionProfile.EndpointSummary}"/></TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="330"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Saved character profiles" Padding="8">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
+                        <Button Content="New" Width="82" Margin="3" Click="NewClicked"/>
+                        <Button Content="Duplicate" Width="82" Margin="3" Click="DuplicateClicked"/>
+                        <Button Content="Delete" Width="82" Margin="3" Click="DeleteClicked"/>
+                    </StackPanel>
+                    <ListBox ItemsSource="{Binding ConnectionProfiles}"
+                             SelectedItem="{Binding SelectedConnectionProfile, Mode=TwoWay}"
+                             HorizontalContentAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="7" Margin="0,0,0,5" BorderBrush="#B9AA91" BorderThickness="0,0,0,1">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding ProfileName}" FontWeight="SemiBold" FontSize="14"/>
+                                        <TextBlock Text="{Binding CharacterName}" Foreground="#5B4631"/>
+                                        <TextBlock Text="{Binding ServerProfileName}" FontSize="12"/>
+                                        <TextBlock Text="{Binding EndpointSummary}" FontSize="12" Foreground="#6C5A44"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </GroupBox>
+
+            <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+                <StackPanel DataContext="{Binding SelectedConnectionProfile}">
+                    <GroupBox Header="Identity and destination" Padding="10" Margin="0,0,0,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="170"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Profile name" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Margin="0,3" Text="{Binding ProfileName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="1" Text="Session display name" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" Text="{Binding SessionDisplayName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="2" Text="Character" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="3" Text="Server / BBS" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" Text="{Binding ServerProfileName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="4" Text="World" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Margin="0,3" Text="{Binding WorldName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="5" Text="Host" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="5" Grid.Column="1" Margin="0,3" Text="{Binding HostName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Grid.Row="6" Text="Port" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="6" Grid.Column="1" Margin="0,3" Width="110" HorizontalAlignment="Left" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Session and terminal" Padding="10" Margin="0,0,0,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="210"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Interface" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="1" Width="210" HorizontalAlignment="Left" Margin="0,3"
+                                      ItemsSource="{Binding DataContext.TerminalViewModes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                      SelectedItem="{Binding TerminalViewMode, Mode=TwoWay}"/>
+                            <CheckBox Grid.Row="1" Grid.ColumnSpan="2" Content="Automatically reconnect transport after a dropped connection" IsChecked="{Binding AutoReconnect}" Margin="0,4"/>
+                            <TextBlock Grid.Row="2" Text="Reconnect delay (seconds)" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Width="110" HorizontalAlignment="Left" Margin="0,3" Text="{Binding ReconnectDelaySeconds, UpdateSourceTrigger=PropertyChanged}"/>
+                            <CheckBox Grid.Row="3" Grid.ColumnSpan="2" Content="Enable Telnet negotiation" IsChecked="{Binding EnableTelnetNegotiation}" Margin="0,4"/>
+                            <TextBlock Grid.Row="4" Text="Terminal type" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Width="160" HorizontalAlignment="Left" Margin="0,3" Text="{Binding TerminalType, UpdateSourceTrigger=PropertyChanged}"/>
+                            <CheckBox Grid.Row="5" Grid.ColumnSpan="2" Content="Use IBM CP437" IsChecked="{Binding UseCodePage437}" Margin="0,4"/>
+                            <CheckBox Grid.Row="6" Grid.ColumnSpan="2" Content="Capture diagnostic Telnet traffic" IsChecked="{Binding CaptureTelnetTraffic}" Margin="0,4"/>
+                            <CheckBox Grid.Row="7" Grid.ColumnSpan="2" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}" Margin="0,4"/>
+                            <TextBlock Grid.Row="8" Text="Terminal columns / rows" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="0,3">
+                                <TextBox Width="80" Text="{Binding TerminalColumns, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text=" × " VerticalAlignment="Center"/>
+                                <TextBox Width="80" Text="{Binding TerminalRows, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <TextBlock Grid.Row="9" Text="Back-scroll line limit" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="9" Grid.Column="1" Width="120" HorizontalAlignment="Left" Margin="0,3" Text="{Binding MaximumScrollbackLines, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Notes" Padding="8">
+                        <TextBox Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
+                                 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" VerticalScrollBarVisibility="Auto"/>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <DockPanel Grid.Row="2" Margin="0,12,0,0">
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Save Profile" Margin="4" Padding="14,7" Click="SaveClicked"/>
+                <Button Content="Save Session As New" Margin="4" Padding="14,7" Click="SaveSessionAsClicked"/>
+                <Button Content="Apply to Selected Session" Margin="4" Padding="14,7" Click="ApplyClicked"/>
+                <Button Content="Close" Margin="4" Padding="14,7" Click="CloseClicked"/>
+            </StackPanel>
+            <TextBlock Text="Profiles are stored under LocalAppData\MajorMUD Reforged\Client\ConnectionProfiles." VerticalAlignment="Center" Foreground="#6C5A44" TextWrapping="Wrap"/>
+        </DockPanel>
+    </Grid>
+</Window>

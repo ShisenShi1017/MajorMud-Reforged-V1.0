@@ -99,7 +99,7 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
     {
         if (!Recording.IsRecording || !string.Equals(Recording.SessionId, sessionId, StringComparison.OrdinalIgnoreCase)) return;
         var text = command.Trim();
-        if (text.Length == 0 || text.StartsWith('@')) return;
+        if (text.Length == 0 || text.StartsWith('@') || text.Equals("[hidden]", StringComparison.OrdinalIgnoreCase)) return;
         Recording.Commands.Add(text);
     }
 

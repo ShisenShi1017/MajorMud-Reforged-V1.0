@@ -25,10 +25,595 @@ public static class RuntimeItemSmokeReport
         var other = "smoke:other";
         var room = "smoke:room";
         const string merchantId = "smoke:merchant";
-        var gettable = catalog.Items.First(x => x.Gettable && !x.Container);
+        var gettable = catalog.Items.First(x => x.Gettable && !x.Container && !x.RetainedOnDeath);
         var containerDef = catalog.Items.FirstOrDefault(x => x.Container && x.Gettable);
         var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender));
         var character = SmokeCharacter(owner, worldId);
+
+        Check("decoded-curse-remove-and-death-retention", () =>
+        {
+            var curseEngine = new RuntimeItemEngine(catalog);
+            var ordinaryCurse = curseEngine.Create("item.1521", RuntimeItemLocations.Character, owner, ownerId: owner);
+            var deathRetainedCurse = curseEngine.Create("item.657", RuntimeItemLocations.Character, owner, ownerId: owner);
+            curseEngine.Equip(ordinaryCurse.InstanceId, owner, character);
+            curseEngine.Equip(deathRetainedCurse.InstanceId, owner, character);
+            try
+            {
+                curseEngine.Unequip(ordinaryCurse.InstanceId, owner);
+                throw new InvalidOperationException("Decoded Curse ability 82 allowed ordinary unequip.");
+            }
+            catch (InvalidOperationException ex) when (ex.Message.Contains("cannot be removed", StringComparison.OrdinalIgnoreCase)) { }
+
+            var removed = curseEngine.RemoveCurse(owner);
+            if (removed.Count != 2 || removed.Any(item => item.EquippedSlot is not null))
+                throw new InvalidOperationException("Decoded Rcrs did not remove every equipped cursed item.");
+
+            curseEngine.Equip(ordinaryCurse.InstanceId, owner, character);
+            curseEngine.Equip(deathRetainedCurse.InstanceId, owner, character);
+            var corpse = curseEngine.CreateCorpse(owner, room, 0);
+            var retained = curseEngine.Find(deathRetainedCurse.InstanceId);
+            var dropped = curseEngine.Find(ordinaryCurse.InstanceId);
+            if (retained is null || !string.Equals(retained.OwnerId, owner, StringComparison.OrdinalIgnoreCase) || retained.EquippedSlot is null ||
+                dropped is null || !dropped.LocationKind.Equals(RuntimeItemLocations.Corpse, StringComparison.OrdinalIgnoreCase) ||
+                !dropped.LocationId.Equals(corpse.CorpseId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Decoded CURSED ability 83 death retention is disconnected from corpse creation.");
+        });
+
+        Check("decoded-loyal-item-death-retention", () =>
+        {
+            if (catalog.Items.Count(item => item.EquipmentAbilityModifiers.ContainsKey(100)) != 101 ||
+                catalog.Items.Count(item => item.RetainedOnDeath) != 103)
+                throw new InvalidOperationException("Decoded LoyalItem/CURSED death-retention inventory is incomplete.");
+            var loyalEngine = new RuntimeItemEngine(catalog);
+            var loyal = loyalEngine.Create("item.1554", RuntimeItemLocations.Character, owner, ownerId: owner);
+            var ordinaryDefinition = catalog.Items.First(item => item.Gettable && !item.RetainedOnDeath);
+            var ordinary = loyalEngine.Create(ordinaryDefinition.Id, RuntimeItemLocations.Character, owner, ownerId: owner);
+            var corpse = loyalEngine.CreateCorpse(owner, room, 0);
+            var retained = loyalEngine.Find(loyal.InstanceId);
+            var dropped = loyalEngine.Find(ordinary.InstanceId);
+            if (retained is null || !string.Equals(retained.OwnerId, owner, StringComparison.OrdinalIgnoreCase) ||
+                !retained.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase) ||
+                dropped is null || !dropped.LocationKind.Equals(RuntimeItemLocations.Corpse, StringComparison.OrdinalIgnoreCase) ||
+                !dropped.LocationId.Equals(corpse.CorpseId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Decoded LoyalItem did not remain with its owner through death.");
+        });
+
+        Check("blacknight-decoded-active-item", () =>
+        {
+            var blacknight = catalog.Require("item.1316");
+            if (blacknight.Name != "blacknight" || blacknight.MaximumUses != 5 || blacknight.DefaultCharges != 5 ||
+                !blacknight.RetainAfterUses || blacknight.UsesConsumedOnUse ||
+                blacknight.EquipmentAbilityModifiers.GetValueOrDefault(43) != 1220 ||
+                blacknight.EquipmentAbilityModifiers.GetValueOrDefault(180) != 20 ||
+                blacknight.EquipmentAbilityModifiers.GetValueOrDefault(179) != 20 ||
+                blacknight.EquipmentAbilityModifiers.GetValueOrDefault(27) != 10)
+                throw new InvalidDataException("Blacknight active/passive decoded item contract is incomplete.");
+            var blacknightEngine = new RuntimeItemEngine(catalog);
+            var instance = blacknightEngine.Create(blacknight.Id, RuntimeItemLocations.Character, owner, ownerId: owner);
+            if (instance.Charges != 5 || blacknightEngine.SpendCharges(instance.InstanceId, owner).Charges != 4 ||
+                blacknightEngine.Find(instance.InstanceId) is null)
+                throw new InvalidOperationException("Blacknight use charge did not decrement while retaining the cloak.");
+        });
+
+        Check("decoded-shadowform-equipment-selector", () =>
+        {
+            var shroud = catalog.Require("item.1579");
+            if (shroud.EquipmentAbilityModifiers.GetValueOrDefault(178) != 9652)
+                throw new InvalidDataException("Death shroud lost decoded Shadowform textblock selector 9652.");
+            var projected = RuntimeCharacterCombatStatisticProjector.Recalculate(character,
+                new RuntimeEquipmentModifierTotals(0, 0, 0, 0, new[] { "instance.death-shroud" })
+                {
+                    AbilityModifiers = new Dictionary<int, int> { [178] = 9652 }
+                }, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            if (projected.SemanticState?.DerivedStats.GetValueOrDefault("shadowform_textblock") != 9652)
+                throw new InvalidOperationException("Decoded Shadowform equipment selector did not reach character projection.");
+            var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+            if (RuntimeClassicCharacterAppearance.TryResolveShadowformOverride(projected, native, out _))
+                throw new InvalidOperationException("Unresolved native Shadowform textblock 9652 must fail closed.");
+        });
+
+        Check("universal-defensive-equipment-ability-projection", () =>
+        {
+            var modifiers = new RuntimeEquipmentModifierTotals(0, 0, 0, 0, new[] { "instance.defensive" })
+            {
+                AbilityModifiers = new Dictionary<int, int> { [21] = 100, [36] = 20, [51] = 0 }
+            };
+            var projected = RuntimeCharacterCombatStatisticProjector.Recalculate(character, modifiers, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            var derived = projected.SemanticState!.DerivedStats;
+            if (derived.GetValueOrDefault("magic_resistance_bonus") != 20 ||
+                derived.GetValueOrDefault("anti_magic_rank") != 1 ||
+                derived.GetValueOrDefault("poison_immunity_rank") != 100 ||
+                !RuntimeClassicStatusProjection.IsPoisonImmune(projected))
+                throw new InvalidOperationException("Decoded defensive equipment abilities did not reach their shared runtime projection.");
+        });
+
+        Check("universal-resource-equipment-ability-projection-and-removal", () =>
+        {
+            var resourceCharacter = character with { HitPoints = 90, MaximumHitPoints = 100, Mana = 45, MaximumMana = 50 };
+            var equippedModifiers = new RuntimeEquipmentModifierTotals(0, 0, 0, 0, new[] { "instance.resource" })
+            {
+                AbilityModifiers = new Dictionary<int, int> { [69] = 20, [88] = 25, [96] = 10, [123] = 35, [145] = 15 }
+            };
+            var equippedProjection = RuntimeCharacterCombatStatisticProjector.Recalculate(resourceCharacter, equippedModifiers, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            var derived = equippedProjection.SemanticState!.DerivedStats;
+            if (equippedProjection.MaximumHitPoints != 125 || equippedProjection.HitPoints != 90 ||
+                equippedProjection.MaximumMana != 70 || equippedProjection.Mana != 45 ||
+                derived.GetValueOrDefault("encumbrance_modifier_percent") != 10 ||
+                derived.GetValueOrDefault("hit_point_regeneration_percent") != 35 ||
+                derived.GetValueOrDefault("mana_regeneration_percent") != 15)
+                throw new InvalidOperationException("Decoded resource equipment abilities did not project correctly.");
+
+            var removedProjection = RuntimeCharacterCombatStatisticProjector.Recalculate(
+                equippedProjection with { HitPoints = 125, Mana = 70 },
+                new RuntimeEquipmentModifierTotals(0, 0, 0, 0, Array.Empty<string>()),
+                projectedAtUtc: DateTimeOffset.UnixEpoch.AddSeconds(1));
+            if (removedProjection.MaximumHitPoints != 100 || removedProjection.HitPoints != 100 ||
+                removedProjection.MaximumMana != 50 || removedProjection.Mana != 50)
+                throw new InvalidOperationException("Removing resource equipment did not restore base maxima and clamp current resources.");
+        });
+
+        Check("decoded-passive-regeneration-cadence-and-equipment-percentages", () =>
+        {
+            if (RuntimeCharacterRegenerationAuthority.PassiveCadence != TimeSpan.FromSeconds(30))
+                throw new InvalidOperationException("Decoded passive regeneration cadence is not 30 seconds.");
+            var regenerationCharacter = character with
+            {
+                Level = 10,
+                HitPoints = 10,
+                MaximumHitPoints = 100,
+                Mana = 5,
+                MaximumMana = 100,
+                BaseStats = new Dictionary<string, int> { ["hea"] = 50, ["int"] = 50, ["wil"] = 50, ["cha"] = 50 },
+                SemanticState = RuntimeCharacterSemanticState.Empty with
+                {
+                    DerivedStats = new Dictionary<string, int>
+                    {
+                        ["hit_point_regeneration_percent"] = 50,
+                        ["mana_regeneration_percent"] = 100
+                    }
+                }
+            };
+            var caster = new RuntimeCharacterDefinition(
+                "class.regen", "Regen", "test", "class",
+                new Dictionary<string, int>(), new Dictionary<string, int>(),
+                0, 0, 0, Array.Empty<RuntimeAbilityGrant>(), null, new RuntimeMagicDefinition(1, 3),
+                0, 0, 0, 0, 0, 0, string.Empty, string.Empty, 0, "test");
+            var tick = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(regenerationCharacter, caster, DateTimeOffset.UnixEpoch);
+            if (tick.HitPointRate != 3 || tick.ManaRate != 8 || tick.HitPointsRestored != 3 || tick.ManaRestored != 8)
+                throw new InvalidOperationException($"Decoded regeneration formula mismatch: HP {tick.HitPointRate}, mana {tick.ManaRate}.");
+            var spellModifiedConditions = new Dictionary<string, string>(regenerationCharacter.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                [RuntimeClassicStatusProjection.Prefix + "mana_regeneration"] = "25"
+            };
+            var spellModified = regenerationCharacter with { Conditions = spellModifiedConditions };
+            var spellModifiedTick = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(spellModified, caster, DateTimeOffset.UnixEpoch);
+            if (RuntimeCharacterRegenerationAuthority.ResolveManaRegenerationPercent(spellModified) != 125 || spellModifiedTick.ManaRate != 9)
+                throw new InvalidOperationException("Decoded spell ManaRgn percentage is not combined with equipment regeneration.");
+            var suppressedConditions = new Dictionary<string, string>(regenerationCharacter.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                [RuntimeClassicStatusProjection.Prefix + "mana_regeneration"] = "-300"
+            };
+            if (RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(
+                    regenerationCharacter with { Conditions = suppressedConditions }, caster, DateTimeOffset.UnixEpoch).ManaRate != 0)
+                throw new InvalidOperationException("Decoded negative spell ManaRgn percentage did not clamp regeneration at zero.");
+            var rest = RuntimeCharacterRegenerationAuthority.ApplyRestTick(regenerationCharacter, caster, DateTimeOffset.UnixEpoch);
+            var meditate = RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(regenerationCharacter, caster, DateTimeOffset.UnixEpoch);
+            if (RuntimeCharacterRegenerationAuthority.FocusActivationDelay != TimeSpan.FromSeconds(20) ||
+                RuntimeCharacterRegenerationAuthority.RestCadence != TimeSpan.FromSeconds(20) ||
+                RuntimeCharacterRegenerationAuthority.MeditateCadence != TimeSpan.FromSeconds(10) ||
+                rest.HitPointRate != 4 || meditate.ManaRate != 8 ||
+                RuntimeCommand.Parse("rest").Name != "rest" || RuntimeCommand.Parse("meditate").Name != "meditate")
+                throw new InvalidOperationException("Decoded REST/MEDITATE activation, cadence, formulas, or command routes are incomplete.");
+        });
+
+        Check("decoded-timed-maximum-resource-and-encumbrance-effects", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var effects = new[]
+            {
+                new RuntimeActiveSpellEffect("max-mana", "spell.491", owner, new RuntimeSpellTarget("character", owner), 0, 0, 2400, now, now.AddHours(1)),
+                new RuntimeActiveSpellEffect("max-hp", "spell.746", owner, new RuntimeSpellTarget("character", owner), 25, 25, 10, now, now.AddMinutes(1)),
+                new RuntimeActiveSpellEffect("encumbrance", "spell.1236", owner, new RuntimeSpellTarget("character", owner), 100, 100, 1, now, now.AddMinutes(1))
+            };
+            var projected = RuntimeClassicStatusProjection.Apply(character, effects, statusCatalog, now, "smoke.resource-status");
+            if (projected.MaximumMana != character.MaximumMana + 10 ||
+                projected.MaximumHitPoints != character.MaximumHitPoints + 25 ||
+                RuntimeClassicStatusProjection.Numeric(projected, "encumbrance") != 100)
+                throw new InvalidOperationException("Timed maximum-resource or encumbrance projection is disconnected.");
+            var restored = RuntimeClassicStatusProjection.Clear(projected, now.AddMinutes(2), "smoke.resource-status-clear");
+            if (restored.MaximumMana != character.MaximumMana || restored.MaximumHitPoints != character.MaximumHitPoints)
+                throw new InvalidOperationException("Timed maximum-resource removal did not restore base maxima.");
+        });
+
+        Check("decoded-rolled-status-effect-persistence", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var frail = new RuntimeActiveSpellEffect(
+                "frail-roll", "spell.949", "npc.808", new RuntimeSpellTarget("character", owner),
+                -500, -50, 15, now, now.AddSeconds(90),
+                new Dictionary<string, string> { ["effect_roll"] = "-125" });
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { frail }, statusCatalog, now, "smoke.frail-roll");
+            if (RuntimeClassicStatusProjection.Numeric(projected, "damage_resistance_percent") != -125)
+                throw new InvalidOperationException("Rolled AlterDRpercent value was not retained in status projection.");
+        });
+
+        Check("decoded-confusion-chance-and-native-message", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var confusion = new RuntimeActiveSpellEffect(
+                "confusion-roll", "spell.63", "npc.808", new RuntimeSpellTarget("character", owner),
+                25, 25, 10, now, now.AddSeconds(60),
+                new Dictionary<string, string> { ["effect_roll"] = "25" });
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { confusion }, statusCatalog, now, "smoke.confusion-roll");
+            if (RuntimeClassicStatusProjection.Numeric(projected, "confusion_chance") != 25 ||
+                RuntimeClassicStatusProjection.Numeric(projected, "confusion_message_id") != 8489 ||
+                !RuntimeClassicStatusProjection.ConfusionFumbles(projected, 25) ||
+                RuntimeClassicStatusProjection.ConfusionFumbles(projected, 26) ||
+                RuntimeClassicStatusProjection.IsPhysicalAttackBlocked(projected) ||
+                RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot).RequireMessage(8489) != "You fumble in confusion!")
+                throw new InvalidOperationException("Decoded confusion percentage, fumble boundary, or native message is disconnected.");
+        });
+
+        Check("decoded-regeneration-and-negate-ability-coverage", () =>
+        {
+            if (catalog.Items.Count(item => item.EquipmentAbilityModifiers.ContainsKey(123)) != 25)
+                throw new InvalidOperationException("Decoded item HPRegen owner count drifted from 25.");
+
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var immunity = new RuntimeActiveSpellEffect(
+                "confusion-immunity", "spell.745", owner, new RuntimeSpellTarget("character", owner),
+                1, 1, 20, now, now.AddMinutes(2));
+            var confusion = new RuntimeActiveSpellEffect(
+                "confusion", "spell.63", "npc.808", new RuntimeSpellTarget("character", owner),
+                25, 25, 10, now, now.AddMinutes(1),
+                new Dictionary<string, string> { ["effect_roll"] = "25" });
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { confusion, immunity }, statusCatalog, now, "smoke.negate-ability");
+            if (!projected.Conditions.ContainsKey(RuntimeClassicStatusProjection.Prefix + "negate_ability.71") ||
+                RuntimeClassicStatusProjection.Numeric(projected, "confusion_chance") != 0)
+                throw new InvalidOperationException("Decoded NegateAbility 71 did not suppress Confusion while preserving its immunity marker.");
+
+            using var npcDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(projectRoot, "Data", worldId, "npcs.json")));
+            var negatingNpcs = npcDocument.RootElement.GetProperty("records").EnumerateArray()
+                .Select(RuntimeNpcDefinition.FromJson)
+                .Where(npc => npc.NegatedAbilityIds.Count > 0)
+                .ToArray();
+            if (negatingNpcs.Length != 2 || negatingNpcs.Any(npc => !npc.NegatedAbilityIds.SequenceEqual(new[] { 71 })))
+                throw new InvalidOperationException("Decoded NPC NegateAbility owners did not resolve to both Tyrannosaur Confusion immunities.");
+
+            var spells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+            var confusionSpell = spells.Require("spell.63");
+            var immuneNpc = new RuntimeLivingNpcState(
+                "npc.negate", "spawn.negate", negatingNpcs[0].Id, negatingNpcs[0].Name, room, room,
+                10, 10, true, null, "hostile", 5,
+                new Dictionary<string, string> { ["negated_ability_ids"] = "71" });
+            if (RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(
+                    confusionSpell, new RuntimeSpellTarget("npc", immuneNpc.InstanceId), immuneNpc))
+                throw new InvalidOperationException("Decoded NPC NegateAbility 71 admitted a Confusion spell.");
+        });
+
+        Check("decoded-fear-forces-combat-flee", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var fear = new RuntimeActiveSpellEffect(
+                "fear", "spell.60", "npc.808", new RuntimeSpellTarget("character", owner),
+                35, 90, 10, now, now.AddSeconds(60),
+                new Dictionary<string, string> { ["effect_roll"] = "50" });
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { fear }, statusCatalog, now, "smoke.fear");
+            if (!RuntimeClassicStatusProjection.MustFleeCombat(projected) ||
+                RuntimeClassicStatusProjection.IsPhysicalAttackBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsMovementBlocked(projected))
+                throw new InvalidOperationException("Decoded Fear did not force combat flee through the existing flee path.");
+        });
+
+        Check("decoded-hold-person-immobilizes-without-paralyzing", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var hold = new RuntimeActiveSpellEffect(
+                "hold", "spell.66", "npc.808", new RuntimeSpellTarget("character", owner),
+                1, 1, 4, now, now.AddSeconds(24));
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { hold }, statusCatalog, now, "smoke.hold-person");
+            if (!RuntimeClassicStatusProjection.Flag(projected, "immobilized") ||
+                RuntimeClassicStatusProjection.Flag(projected, "paralyzed") ||
+                !RuntimeClassicStatusProjection.IsMovementBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsPhysicalAttackBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsSpellCastBlocked(projected) ||
+                RuntimePlayerCombatProfileResolver.IsPhysicalAttackSuppressed(projected) ||
+                !RuntimePlayerCombatProfileResolver.IsAvoidanceSuppressed(projected))
+                throw new InvalidOperationException("Decoded HoldPerson did not remain a movement-only immobilization status.");
+        });
+
+        Check("decoded-perception-status-feeds-hidden-search", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            RuntimeActiveSpellEffect Effect(string id, string spellId, int roll) => new(
+                id, spellId, owner, new RuntimeSpellTarget("character", owner),
+                roll, roll, 40, now, now.AddSeconds(240),
+                new Dictionary<string, string> { ["effect_roll"] = roll.ToString(System.Globalization.CultureInfo.InvariantCulture) });
+            var baseline = RuntimeLiveGameplayFacade.ResolveEffectiveSearchPerception(character);
+            var alert = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("alert", "spell.91", 10) }, statusCatalog, now, "smoke.perception-alert");
+            var feeblemind = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("feeblemind", "spell.423", -15) }, statusCatalog, now, "smoke.perception-feeblemind");
+            if (RuntimeClassicStatusProjection.Numeric(alert, "perception") != 10 ||
+                RuntimeLiveGameplayFacade.ResolveEffectiveSearchPerception(alert) != checked(baseline + 10) ||
+                RuntimeClassicStatusProjection.Numeric(feeblemind, "perception") != -20 ||
+                RuntimeLiveGameplayFacade.ResolveEffectiveSearchPerception(feeblemind) != checked(baseline - 20))
+                throw new InvalidOperationException("Decoded Percep values are disconnected from effective hidden-search Perception.");
+        });
+
+        Check("decoded-affects-animals-target-admission", () =>
+        {
+            var spells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+            var charmAnimal = spells.Require("spell.92");
+            var animal = new RuntimeLivingNpcState(
+                "npc.animal", "spawn.animal", "npc.786", "black cat", room, room,
+                10, 10, true, null, "hostile", 5,
+                new Dictionary<string, string> { ["animal"] = "1" });
+            var nonAnimal = animal with
+            {
+                InstanceId = "npc.non-animal",
+                NpcId = "npc.1",
+                Name = "non-animal",
+                Metadata = new Dictionary<string, string> { ["animal"] = "0" }
+            };
+            if (!RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(charmAnimal, new RuntimeSpellTarget("npc", animal.InstanceId), animal) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(charmAnimal, new RuntimeSpellTarget("npc", nonAnimal.InstanceId), nonAnimal) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(charmAnimal, new RuntimeSpellTarget("character", owner), null))
+                throw new InvalidOperationException("AffectsAnimals did not enforce the decoded Animal-only target boundary.");
+        });
+
+        Check("decoded-spell-alignment-admission", () =>
+        {
+            var spells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+            var goodSpell = spells.Require("spell.107");
+            var evilSpell = spells.Require("spell.108");
+            var notGoodSpell = spells.Require("spell.111");
+            var notEvilSpell = spells.Require("spell.110");
+            var neutralSpell = spells.Require("spell.1099");
+            RuntimeCharacterRecord Aligned(string alignment) => character with
+            {
+                Conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+                {
+                    ["alignment"] = alignment
+                }
+            };
+            if (!RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(goodSpell, Aligned("Good"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(goodSpell, Aligned("Neutral"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(goodSpell, Aligned("Fiend"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(evilSpell, Aligned("Fiend"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(evilSpell, Aligned("Neutral"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(evilSpell, Aligned("Saint"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notGoodSpell, Aligned("Saint"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notGoodSpell, Aligned("Seedy"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notGoodSpell, Aligned("Fiend"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notEvilSpell, Aligned("Villain"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notEvilSpell, Aligned("Lawful"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(notEvilSpell, Aligned("Neutral"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(neutralSpell, Aligned("Neutral"), out _) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(neutralSpell, Aligned("Seedy"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(neutralSpell, Aligned("Good"), out _) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellCasterAlignmentAdmitted(neutralSpell, Aligned("Fiend"), out _))
+                throw new InvalidOperationException("Decoded Good/Evil spell requirements are disconnected from caster admission.");
+        });
+
+        Check("decoded-affects-living-target-admission", () =>
+        {
+            var spells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+            var affectsLiving = spells.Require("spell.22");
+            using var npcDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(projectRoot, "Data", worldId, "npcs.json")));
+            var npcDefinitions = npcDocument.RootElement.GetProperty("records").EnumerateArray()
+                .Select(RuntimeNpcDefinition.FromJson)
+                .ToArray();
+            var nonLivingCount = npcDefinitions.Count(npc => npc.NonLiving);
+            var nonLivingNotUndeadCount = npcDefinitions.Count(npc => npc.NonLiving && !npc.Undead);
+            if (nonLivingCount != 184 || nonLivingNotUndeadCount != 83)
+                throw new InvalidOperationException(
+                    $"Decoded NonLiving NPC classification drifted from its authoritative ability relationships: " +
+                    $"nonliving={nonLivingCount}, nonliving-not-undead={nonLivingNotUndeadCount}.");
+            var living = new RuntimeLivingNpcState(
+                "npc.living", "spawn.living", "npc.1", "living target", room, room,
+                10, 10, true, null, "hostile", 5,
+                new Dictionary<string, string> { ["non_living"] = "0" });
+            var nonLiving = living with
+            {
+                InstanceId = "npc.non-living",
+                NpcId = "npc.5",
+                Name = "acid slime",
+                Metadata = new Dictionary<string, string> { ["non_living"] = "1" }
+            };
+            if (!RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(affectsLiving, new RuntimeSpellTarget("character", owner), null) ||
+                !RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(affectsLiving, new RuntimeSpellTarget("npc", living.InstanceId), living) ||
+                RuntimeLiveGameplayFacade.IsDecodedSpellTargetAdmitted(affectsLiving, new RuntimeSpellTarget("npc", nonLiving.InstanceId), nonLiving))
+                throw new InvalidOperationException("AffectsLiving did not enforce the decoded NonLiving target boundary.");
+        });
+
+        Check("decoded-spell-backstab-accuracy-projection", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var camouflage = new RuntimeActiveSpellEffect(
+                "camouflage", "spell.1314", owner, new RuntimeSpellTarget("character", owner),
+                1, 1, 10, now, now.AddSeconds(60));
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { camouflage }, statusCatalog, now, "smoke.backstab-accuracy");
+            if (RuntimeClassicStatusProjection.Numeric(projected, "backstab_accuracy") != 10)
+                throw new InvalidOperationException("Decoded camouflage BSAccu +10 is disconnected from live status projection.");
+        });
+
+        Check("decoded-spell-backstab-damage-range-projection", () =>
+        {
+            using var itemDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(projectRoot, "Data", worldId, "items.json")));
+            static int[] AbilityValues(JsonElement root, int abilityId) => root.GetProperty("records").EnumerateArray()
+                .Where(item => item.TryGetProperty("public_reference_0139", out var reference)
+                    && reference.TryGetProperty("fields", out var fields)
+                    && fields.TryGetProperty("abilities_named", out var abilities)
+                    && abilities.ValueKind == JsonValueKind.Array)
+                .SelectMany(item => item.GetProperty("public_reference_0139").GetProperty("fields").GetProperty("abilities_named").EnumerateArray())
+                .Where(ability => ability.GetProperty("ability_id").GetInt32() == abilityId)
+                .Select(ability => int.Parse(ability.GetProperty("value").GetString()!, System.Globalization.CultureInfo.InvariantCulture))
+                .ToArray();
+            var minimumValues = AbilityValues(itemDocument.RootElement, 117);
+            var maximumValues = AbilityValues(itemDocument.RootElement, 118);
+            if (minimumValues.Length != 47 || minimumValues.Count(value => value < 0) != 4 || minimumValues.Count(value => value > 0) != 43 ||
+                maximumValues.Length != 35 || maximumValues.Count(value => value < 0) != 2 || maximumValues.Count(value => value > 0) != 33)
+                throw new InvalidOperationException("Decoded item backstab damage relationship distribution drifted.");
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            RuntimeActiveSpellEffect Effect(string id, string spellId, int roll) => new(
+                id, spellId, owner, new RuntimeSpellTarget("character", owner),
+                roll, roll, 10, now, now.AddSeconds(60),
+                new Dictionary<string, string> { ["effect_roll"] = roll.ToString(System.Globalization.CultureInfo.InvariantCulture) });
+            var mantle = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("mantle", "spell.869", 25) }, statusCatalog, now, "smoke.backstab-range");
+            var zeroPair = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("cat", "spell.39", 0) }, statusCatalog, now, "smoke.backstab-zero-range");
+            if (RuntimeClassicStatusProjection.Numeric(mantle, "backstab_minimum_damage") != 25 ||
+                RuntimeClassicStatusProjection.Numeric(mantle, "backstab_maximum_damage") != 25 ||
+                RuntimeClassicStatusProjection.Numeric(zeroPair, "backstab_minimum_damage") != 0 ||
+                RuntimeClassicStatusProjection.Numeric(zeroPair, "backstab_maximum_damage") != 0)
+                throw new InvalidOperationException("Decoded spell backstab minimum/maximum damage projection is disconnected.");
+        });
+
+        Check("decoded-mute-and-mage-bind-separation", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            RuntimeActiveSpellEffect Effect(string id, string spellId) => new(
+                id, spellId, "npc.808", new RuntimeSpellTarget("character", owner),
+                1, 1, 10, now, now.AddSeconds(60));
+            var muted = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("mute", "spell.68") }, statusCatalog, now, "smoke.mute");
+            var mageBound = RuntimeClassicStatusProjection.Apply(character, new[] { Effect("bind", "spell.860") }, statusCatalog, now, "smoke.mage-bind");
+            if (!RuntimeClassicStatusProjection.IsSpeechBlocked(muted) || RuntimeClassicStatusProjection.IsSpellCastBlocked(muted) ||
+                RuntimeClassicStatusProjection.IsSpeechBlocked(mageBound) || RuntimeClassicStatusProjection.IsSpellCastBlocked(mageBound) ||
+                !RuntimeClassicStatusProjection.Flag(mageBound, "mage_bind_evidence"))
+                throw new InvalidOperationException("Decoded Mute and unresolved MageBind evidence were incorrectly merged.");
+        });
+
+        Check("decoded-blind-user-presentation-boundary", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var blind = new RuntimeActiveSpellEffect(
+                "blind", "spell.77", "npc.808", new RuntimeSpellTarget("character", owner),
+                1, 1, 10, now, now.AddSeconds(60));
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { blind }, statusCatalog, now, "smoke.blind");
+            if (!RuntimeClassicStatusProjection.IsVisionBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsMovementBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsPhysicalAttackBlocked(projected) ||
+                RuntimeClassicStatusProjection.IsSpellCastBlocked(projected))
+                throw new InvalidOperationException("Decoded BlindUser was not isolated to its visual-presentation boundary.");
+        });
+
+        Check("decoded-spell-immunity-inclusive-level-boundary", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var now = DateTimeOffset.UnixEpoch;
+            var globe = new RuntimeActiveSpellEffect(
+                "globe", "spell.307", owner, new RuntimeSpellTarget("character", owner),
+                100, 100, 500, now, now.AddSeconds(3000));
+            var projected = RuntimeClassicStatusProjection.Apply(character, new[] { globe }, statusCatalog, now, "smoke.spell-immunity");
+            if (RuntimeClassicStatusProjection.Numeric(projected, "spell_immunity_level") != 9999 ||
+                RuntimeClassicStatusProjection.Numeric(projected, "hit_magic") != 10 ||
+                !RuntimeClassicStatusProjection.IsSpellImmune(projected, 0) ||
+                !RuntimeClassicStatusProjection.IsSpellImmune(projected, 9999) ||
+                RuntimeClassicStatusProjection.IsSpellImmune(projected, 10000))
+                throw new InvalidOperationException("Decoded SpellImmu inclusive spell-level boundary is disconnected.");
+        });
+
+        Check("decoded-ability-scoped-and-general-dispel-classification", () =>
+        {
+            var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(projectRoot, worldId);
+            var cureBlindness = statusCatalog.Definitions.Single(x => x.SpellId == "spell.87");
+            var dispelMagic = statusCatalog.Definitions.Single(x => x.SpellId == "spell.65");
+            var antidote = statusCatalog.Definitions.Single(x => x.SpellId == "spell.31");
+            if (cureBlindness.GeneralMagicDispel || !cureBlindness.DispelledAbilityIds.SequenceEqual(new[] { 107 }) ||
+                !dispelMagic.GeneralMagicDispel || dispelMagic.DispelledAbilityIds.Count != 0 ||
+                antidote.GeneralMagicDispel || !antidote.DispelledAbilityIds.SequenceEqual(new[] { 19 }))
+                throw new InvalidOperationException("Decoded DispellMagic ability targeting was collapsed into a broad dispel.");
+        });
+
+        Check("decoded-alignment-equipment-and-retaliation-effects", () =>
+        {
+            var modifiers = new RuntimeEquipmentModifierTotals(0, 0, 0, 0, new[] { "instance.alignment-defense" })
+            {
+                AbilityModifiers = new Dictionary<int, int> { [24] = 15, [25] = 9, [72] = 6 }
+            };
+            var projected = RuntimeCharacterCombatStatisticProjector.Recalculate(character, modifiers, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            if (RuntimeEquipmentCombatEffects.ResolveAlignmentProtection(projected, "Evil") != 15 ||
+                RuntimeEquipmentCombatEffects.ResolveAlignmentProtection(projected, "Good") != 9 ||
+                RuntimeEquipmentCombatEffects.ResolveAlignmentProtection(projected, "Neutral") != 0 ||
+                RuntimeEquipmentCombatEffects.ResolveDamageShieldRetaliation(projected, 1) != 6 ||
+                RuntimeEquipmentCombatEffects.ResolveDamageShieldRetaliation(projected, 0) != 0)
+                throw new InvalidOperationException("Decoded alignment protection or hit-only damage-shield timing is disconnected.");
+
+            var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+            var shockIds = catalog.Items
+                .Where(item => item.EquipmentAbilityModifiers.GetValueOrDefault(72) > 0)
+                .Select(item => item.EquipmentAbilityModifiers.GetValueOrDefault(137))
+                .ToArray();
+            if (shockIds.Length != 8 || shockIds.Any(id => id <= 0 || !native.TryResolveMessage(id, out _)))
+                throw new InvalidOperationException("Decoded equipment damage-shield message selectors are incomplete.");
+            var visibleAtMaintenance = catalog.Items.Where(item => item.VisibleAtCleanup).ToArray();
+            if (visibleAtMaintenance.Length != 16 || visibleAtMaintenance.Any(item => item.Gettable))
+                throw new InvalidOperationException("Decoded Visible@Maint fixtures are disconnected or include a gettable item.");
+            if (RuntimeEquipmentCombatEffects.FormatDamageShieldMessage(
+                    native.RequireMessage(3051), "a goblin", 6) != "The shield spike stabs a goblin for 6 damage!")
+                throw new InvalidOperationException("Decoded damage-shield native message formatting is disconnected.");
+
+            var goodCharacter = character with
+            {
+                SemanticState = RuntimeCharacterSemanticState.Empty with
+                {
+                    Alignment = RuntimeCharacterAlignmentResolver.CreateInitial() with { Reputation = "Saint" }
+                }
+            };
+            var goodOnly = catalog.Items.First(x => x.EquipmentAbilityModifiers.ContainsKey(97));
+            RuntimeItemEngine.EnforceAlignmentAbilityRequirements(goodOnly, goodCharacter);
+            var rejected = false;
+            try
+            {
+                RuntimeItemEngine.EnforceAlignmentAbilityRequirements(
+                    goodOnly,
+                    goodCharacter with { SemanticState = goodCharacter.SemanticState! with { Alignment = goodCharacter.SemanticState.Alignment! with { Reputation = "Outlaw" } } });
+            }
+            catch (InvalidOperationException) { rejected = true; }
+            if (!rejected) throw new InvalidOperationException("Good-only decoded item accepted an Evil-aligned character.");
+
+            var requiredIds = new[] { 97, 98, 110, 111, 112, 113 };
+            if (requiredIds.Any(id => !catalog.Items.Any(item => item.EquipmentAbilityModifiers.ContainsKey(id))))
+                throw new InvalidDataException("One or more decoded alignment restriction ability families are absent from generated items.");
+        });
+
+        Check("decoded-martial-equipment-modifiers", () =>
+        {
+            var modifiers = new RuntimeEquipmentModifierTotals(0, 0, 0, 0, new[] { "instance.martial" })
+            {
+                AbilityModifiers = new Dictionary<int, int>
+                {
+                    [89] = 3, [90] = 4, [91] = 5,
+                    [92] = 6, [93] = 7, [94] = 8
+                }
+            };
+            var projected = RuntimeCharacterCombatStatisticProjector.Recalculate(character, modifiers, projectedAtUtc: DateTimeOffset.UnixEpoch);
+            if (RuntimeEquipmentCombatEffects.ResolveMartialAccuracy(projected, ClassicAttackType.Punch) != 3 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialAccuracy(projected, ClassicAttackType.Kick) != 4 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialAccuracy(projected, ClassicAttackType.JumpKick) != 5 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialDamage(projected, ClassicAttackType.Punch) != 6 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialDamage(projected, ClassicAttackType.Kick) != 7 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialDamage(projected, ClassicAttackType.JumpKick) != 8 ||
+                RuntimeEquipmentCombatEffects.ResolveMartialDamage(projected, ClassicAttackType.NormalWeapon) != 0)
+                throw new InvalidOperationException("Decoded martial modifiers did not remain scoped to their matching attack family.");
+            if (RuntimeCommand.Parse("punch target").Name != "punch" ||
+                RuntimeCommand.Parse("kick target").Name != "kick" ||
+                RuntimeCommand.Parse("jumpkick target").Name != "jumpkick" ||
+                RuntimeCommand.Parse("jk target").Name != "jumpkick")
+                throw new InvalidOperationException("Classic martial command routes are incomplete.");
+            var requiredIds = new[] { 89, 90, 91, 92, 93, 94 };
+            if (requiredIds.Any(id => !catalog.Items.Any(item => item.EquipmentAbilityModifiers.ContainsKey(id))))
+                throw new InvalidDataException("One or more decoded martial equipment modifier families are absent from generated items.");
+        });
 
         RuntimeItemInstance? item = null;
         Check("create-ground", () => item = engine.Create(gettable.Id, RuntimeItemLocations.Room, room));
@@ -66,6 +651,17 @@ public static class RuntimeItemSmokeReport
             RuntimeItemInstance? container = null;
             Check("container-put-get", () => { container = engine.Create(containerDef.Id, RuntimeItemLocations.Character, owner, ownerId: owner, metadata: new Dictionary<string, string> { ["open"] = "true", ["capacity"] = "2" }); engine.Put(item!.InstanceId, owner, container.InstanceId); engine.GetFromContainer(item.InstanceId, owner, container.InstanceId); });
             Check("container-open-close", () => { engine.Close(container!.InstanceId, owner); engine.Open(container.InstanceId, owner); });
+            Check("classic-cleanup-container-subtree-delete", () =>
+            {
+                var cleanupEngine = new RuntimeItemEngine(catalog);
+                var root = cleanupEngine.Create(containerDef.Id, RuntimeItemLocations.Room, room, metadata: new Dictionary<string, string> { ["open"] = "true" });
+                var child = cleanupEngine.Create(gettable.Id, RuntimeItemLocations.Container, root.InstanceId);
+                cleanupEngine.RemoveForClassicCleanup(root.InstanceId);
+                if (cleanupEngine.Find(root.InstanceId) is not null || cleanupEngine.Find(child.InstanceId) is not null)
+                    throw new InvalidOperationException("Classic maintenance deletion orphaned container contents.");
+                if (!cleanupEngine.Validate().Passed)
+                    throw new InvalidOperationException("Classic maintenance subtree deletion left invalid item state.");
+            });
         }
 
         RuntimeCorpseState? corpse = null;
@@ -111,6 +707,25 @@ public static class RuntimeItemSmokeReport
                 if (quantity == 1 && (!result.Destroyed || engine.Find(consumedItem.InstanceId) is not null)) throw new InvalidOperationException("consumable destruction failed");
                 if (quantity == 2 && (result.Destroyed || engine.RequireInstance(consumedItem.InstanceId).StackQuantity != 1)) throw new InvalidOperationException("consumable decrement failed");
             }
+        });
+        Check("decoded-cleanup-recharge-ability-121-cap-and-cadence", () =>
+        {
+            var rechargeDefinitions = catalog.Items.Where(definition => definition.RechargeAtCleanup > 0).ToArray();
+            if (rechargeDefinitions.Length != 78
+                || rechargeDefinitions.Count(definition => definition.MaximumUses > 0) != 77
+                || rechargeDefinitions.Single(definition => definition.MaximumUses <= 0).Id != "item.1851")
+                throw new InvalidOperationException("Decoded Recharge ability 121 ownership or fail-closed capacity boundary drifted.");
+            var boneNecklace = catalog.Require("item.1187");
+            if (boneNecklace.MaximumUses != 10 || boneNecklace.RechargeAtCleanup != 5)
+                throw new InvalidOperationException("Bone necklace recharge/capacity evidence drifted.");
+            var rechargeEngine = new RuntimeItemEngine(catalog);
+            var charged = rechargeEngine.Create(boneNecklace.Id, RuntimeItemLocations.Character, owner, ownerId: owner);
+            rechargeEngine.SpendCharges(charged.InstanceId, owner, 7);
+            var firstCleanup = DateTimeOffset.UnixEpoch;
+            if (rechargeEngine.RechargeForClassicCleanup(charged.InstanceId, firstCleanup).Charges != 8
+                || rechargeEngine.RechargeForClassicCleanup(charged.InstanceId, firstCleanup).Charges != 8
+                || rechargeEngine.RechargeForClassicCleanup(charged.InstanceId, firstCleanup.AddDays(1)).Charges != 10)
+                throw new InvalidOperationException("Classic cleanup recharge did not add the decoded amount and cap at maximum uses.");
         });
 
         Check("durability-damage-break-and-repair", () =>

@@ -14,7 +14,7 @@ public sealed class GeneratedWorldDataCatalog
     {
         "commands", "abilities", "character_foundation", "classes", "races", "skills",
         "equipment", "equipment_rules", "equipment_slots", "status_effects",
-        "loot_rules", "economy_rules", "room_interactions", "room_messages", "scripts",
+        "loot_rules", "economy_rules", "room_interactions", "scripts",
         "gang_houses"
     };
 

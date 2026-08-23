@@ -535,6 +535,25 @@ public sealed class RuntimeCharacterRepository
             .ToArray();
     }
 
+
+    public IReadOnlyList<RuntimeCharacterRecord> ListAllCharacters()
+    {
+        lock (_gate)
+        {
+            var directory = Path.Combine(_root, "characters");
+            if (!Directory.Exists(directory)) return Array.Empty<RuntimeCharacterRecord>();
+            var result = new List<RuntimeCharacterRecord>();
+            foreach (var path in Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly)
+                         .OrderBy(value => value, StringComparer.OrdinalIgnoreCase))
+            {
+                var loaded = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
+                if (loaded.Source == "missing") continue;
+                result.Add(RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_projectRoot, loaded.Character));
+            }
+            return result.OrderBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase).ToArray();
+        }
+    }
+
     public RuntimeCharacterRecord CreateCharacter(RuntimeAccountRecord account, RuntimeCharacterRecord character)
     {
         lock (_gate)
@@ -740,6 +759,7 @@ public sealed class RuntimeCharacterService
     public bool AccountExists(string accountName) => _repository.AccountExists(accountName);
     public RuntimeCharacterCatalog GetCatalog(string worldId) => RuntimeCharacterCatalog.Load(_projectRoot, worldId);
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId) => _repository.ListCharacters(accountId);
+    public IReadOnlyList<RuntimeCharacterRecord> ListAllCharacters() => _repository.ListAllCharacters();
     public RuntimeCharacterRecord? LoadCharacter(string id) => _repository.TryLoadCharacter(id);
     public RuntimeCharacterRecord LoginCharacter(string characterId, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool reconnect = false) =>
         _lifecycle.Login(characterId, sessionId, _repository.TryLoadCharacter, hooks, DateTimeOffset.UtcNow, reconnect);

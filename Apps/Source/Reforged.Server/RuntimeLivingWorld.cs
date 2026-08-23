@@ -37,17 +37,42 @@ public sealed record RuntimeLivingWorldObjectState(
     bool Activated,
     DateTimeOffset UpdatedAtUtc);
 
+public sealed record RuntimeWizardKnockDoor(
+    RuntimeLivingWorldObjectDefinition Definition,
+    RuntimeLivingWorldObjectState State,
+    RuntimeLivingWorldObjectDefinition? ReciprocalDefinition,
+    RuntimeLivingWorldObjectState? ReciprocalState);
+
 public sealed record RuntimeLivingWorldSnapshot(
     string WorldId,
     IReadOnlyList<RuntimeLivingNpcState> Npcs,
     IReadOnlyList<RuntimeLivingWorldObjectState> Objects,
-    DateTimeOffset SavedAtUtc);
+    DateTimeOffset SavedAtUtc,
+    IReadOnlyList<RuntimeItemInstance>? Items = null);
 
 public sealed record RuntimeSpawnPlacementIssue(
     string SpawnId,
     string SourceRoomReference,
     string ResolvedRuntimeRoomId,
     string Reason);
+
+public sealed record RuntimeStaticRoomItemResetResult(
+    int DefinitionCount,
+    int ExistingCount,
+    int GameLimitBlockedCount,
+    int RestoredCount,
+    IReadOnlyList<string> RestoredPlacementIds);
+
+public static class RuntimeClassicSkillTest
+{
+    public static int SuccessChance(int skillValue,int modifier) => Math.Clamp(checked(skillValue + modifier),0,100);
+
+    public static bool Passes(int skillValue,int modifier,int roll)
+    {
+        if(roll<1||roll>100)throw new ArgumentOutOfRangeException(nameof(roll));
+        return roll<=SuccessChance(skillValue,modifier);
+    }
+}
 
 /// <summary>
 /// Authoritative shared runtime state for generated NPC spawns and generated world interaction objects.
@@ -70,19 +95,24 @@ public sealed partial class RuntimeLivingWorldService
     private readonly object _gate = new();
     private readonly string _projectRoot;
     private readonly RuntimeWorld _world;
+    private readonly RuntimeItemCatalog _itemCatalog;
     private readonly string _persistenceRoot;
     private readonly Dictionary<string,RuntimeLivingNpcState> _npcs = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeLivingWorldObjectDefinition> _objectDefinitions = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeLivingWorldObjectState> _objects = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string,RuntimeItemInstance> _items = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string,RuntimeItemInstance> _staticRoomItemDefinitions = new(StringComparer.OrdinalIgnoreCase);
     private readonly List<RuntimeSpawnPlacementIssue> _spawnPlacementIssues = [];
 
     public RuntimeLivingWorldService(string projectRoot, RuntimeWorld world, string? persistenceRoot = null)
     {
         _projectRoot = projectRoot;
         _world = world;
+        _itemCatalog=RuntimeItemCatalog.Load(projectRoot,world.Definition.Id);
         _persistenceRoot = string.IsNullOrWhiteSpace(persistenceRoot) ? Path.Combine(projectRoot,"Saves","Worlds") : persistenceRoot;
         LoadGeneratedNpcInstances();
         LoadGeneratedWorldObjects();
+        LoadGeneratedRoomItems();
         InitializeLivingWorldCompletion();
         Restore();
         RestoreLivingWorldCompletion();
@@ -91,6 +121,165 @@ public sealed partial class RuntimeLivingWorldService
     public string WorldId => _world.Definition.Id;
     public int NpcInstanceCount { get { lock (_gate) return _npcs.Count; } }
     public int WorldObjectCount { get { lock (_gate) return _objectDefinitions.Count; } }
+    public int GroundItemCount { get { lock (_gate) return _items.Count; } }
+    public IReadOnlyList<RuntimeRoom> ContestRooms(int mapId, int minimumRoom, int maximumRoom, int excludedAttributeMask)
+    {
+        lock (_gate) return _world.AllRooms().Where(room => room.MapId == mapId
+            && room.RoomNumber >= minimumRoom && room.RoomNumber <= maximumRoom
+            && (room.EnvironmentAttributes & excludedAttributeMask) == 0).ToArray();
+    }
+    public bool TryPlaceContestItem(string canonicalItemId, string roomId, bool hidden, int roomCapacity, string contestId)
+    {
+        lock (_gate)
+        {
+            var occupied = _items.Values.Count(item => item.LocationKind.Equals(RuntimeItemLocations.Room, StringComparison.OrdinalIgnoreCase)
+                && item.LocationId.Equals(roomId, StringComparison.OrdinalIgnoreCase)
+                && RuntimeClassicHiddenSearchService.IsHidden(item) == hidden);
+            if (occupied >= roomCapacity || _world.FindRoomById(roomId) is null) return false;
+            var definition = _itemCatalog.Require(canonicalItemId);
+            var metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["majormud_plus_contest"] = contestId,
+                ["native_contest_item"] = "true"
+            };
+            if (hidden) metadata["hidden_at_cleanup"] = "true";
+            var item = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, null,
+                RuntimeItemLocations.Room, roomId, null, definition.DefaultCharges, 1, null, metadata);
+            _items.Add(item.InstanceId, item);
+            Save();
+            return true;
+        }
+    }
+    public int RemoveGroundItems(string canonicalItemId)
+    {
+        lock (_gate)
+        {
+            var ids = _items.Values.Where(item => item.CanonicalItemId.Equals(canonicalItemId, StringComparison.OrdinalIgnoreCase))
+                .Select(item => item.InstanceId).ToArray();
+            foreach (var id in ids) _items.Remove(id);
+            if (ids.Length > 0) Save();
+            return ids.Length;
+        }
+    }
+    public IReadOnlyList<RuntimeItemInstance> GroundItems(string roomId)
+    {
+        lock (_gate) return _items.Values.Where(item=>
+            item.LocationKind.Equals(RuntimeItemLocations.Room,StringComparison.OrdinalIgnoreCase)
+            &&item.LocationId.Equals(roomId,StringComparison.OrdinalIgnoreCase)).ToArray();
+    }
+    public RuntimeItemInstance TakeGroundItem(string instanceId,string characterId)
+    {
+        lock(_gate)
+        {
+            if(!_items.Remove(instanceId,out var item))throw new InvalidOperationException("The room item is no longer present.");
+            var moved=item with{OwnerId=characterId,LocationKind=RuntimeItemLocations.Character,LocationId=characterId};
+            Save();
+            return moved;
+        }
+    }
+    public void DropGroundItem(RuntimeItemInstance item,string roomId)
+    {
+        lock(_gate)
+        {
+            var metadata=item.Metadata is null
+                ? new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+                : item.Metadata.ToDictionary(pair=>pair.Key,pair=>pair.Value,StringComparer.OrdinalIgnoreCase);
+            metadata.Remove("hidden_at_cleanup");
+            metadata.Remove("hidden_at_cleanup_utc");
+            metadata.Remove("revealed_by_pickup");
+            _items[item.InstanceId]=item with{OwnerId=null,LocationKind=RuntimeItemLocations.Room,LocationId=roomId,EquippedSlot=null,Metadata=metadata};
+            Save();
+        }
+    }
+    public void DropGroundItemTree(IReadOnlyList<RuntimeItemInstance> items, string rootInstanceId, string roomId)
+    {
+        lock (_gate)
+        {
+            var byContainer = items
+                .Where(item => item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase))
+                .GroupBy(item => item.LocationId, StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.OrdinalIgnoreCase);
+            var pending = new Stack<string>();
+            var included = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            pending.Push(rootInstanceId);
+            while (pending.Count > 0)
+            {
+                var id = pending.Pop();
+                if (!included.Add(id)) continue;
+                if (byContainer.TryGetValue(id, out var children))
+                    foreach (var child in children) pending.Push(child.InstanceId);
+            }
+            foreach (var item in items.Where(item => included.Contains(item.InstanceId)))
+            {
+                var metadata = item.Metadata is null
+                    ? new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+                    : item.Metadata.ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+                metadata["character_death_scatter"] = "decoded_room_spell_ability_157";
+                _items[item.InstanceId] = item.InstanceId.Equals(rootInstanceId, StringComparison.OrdinalIgnoreCase)
+                    ? item with { OwnerId = null, LocationKind = RuntimeItemLocations.Room, LocationId = roomId, EquippedSlot = null, Metadata = metadata }
+                    : item with { OwnerId = null, EquippedSlot = null, Metadata = metadata };
+            }
+            Save();
+        }
+    }
+    public void MoveGroundItems(IReadOnlyList<string> instanceIds, string destinationRoomId)
+    {
+        lock (_gate)
+        {
+            foreach (var instanceId in instanceIds)
+            {
+                if (!_items.TryGetValue(instanceId, out var item))
+                    throw new InvalidOperationException($"Scatter item '{instanceId}' is unavailable.");
+                _items[instanceId] = item with { OwnerId = null, LocationKind = RuntimeItemLocations.Room,
+                    LocationId = destinationRoomId, EquippedSlot = null };
+            }
+            Save();
+        }
+    }
+    public bool TryConsumeGroundItem(string roomId,string canonicalItemId)
+    {
+        lock(_gate)
+        {
+            var item=_items.Values.FirstOrDefault(value=>value.LocationKind.Equals(RuntimeItemLocations.Room,StringComparison.OrdinalIgnoreCase)&&value.LocationId.Equals(roomId,StringComparison.OrdinalIgnoreCase)&&value.CanonicalItemId.Equals(canonicalItemId,StringComparison.OrdinalIgnoreCase));
+            if(item is null)return false;
+            _items.Remove(item.InstanceId);Save();return true;
+        }
+    }
+    public RuntimeStaticRoomItemResetResult ResetGeneratedRoomItems(
+        IReadOnlyDictionary<string,int>? externallyOwnedItemQuantities=null,
+        bool? unlimitedItemsEnabled=null)
+    {
+        lock(_gate)
+        {
+            externallyOwnedItemQuantities??=new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase);
+            var unlimitedItems=unlimitedItemsEnabled
+                ?? RuntimeClassicAdministrationPolicyStore.Load(_projectRoot,_world.Definition.Id).UnlimitedItemsEnabled;
+            var invasionNpcIds=_npcs.Values
+                .Where(npc=>npc.Metadata.TryGetValue("summoned_by",out var source)&&source.StartsWith("wcc-invasion:",StringComparison.OrdinalIgnoreCase))
+                .Select(npc=>npc.InstanceId).ToArray();
+            foreach(var instanceId in invasionNpcIds)
+            {
+                _npcs.Remove(instanceId);
+                _npcAi.Remove(instanceId);
+            }
+            var existing=0;
+            var limited=0;
+            var restored=new List<string>();
+            foreach(var definition in _staticRoomItemDefinitions.Values)
+            {
+                if(_items.ContainsKey(definition.InstanceId)){existing++;continue;}
+                var itemDefinition=_itemCatalog.Require(definition.CanonicalItemId);
+                var externalQuantity=externallyOwnedItemQuantities.TryGetValue(definition.CanonicalItemId,out var quantity)?Math.Max(0,quantity):0;
+                var worldQuantity=_items.Values.Where(item=>item.CanonicalItemId.Equals(definition.CanonicalItemId,StringComparison.OrdinalIgnoreCase))
+                    .Sum(item=>item.StackQuantity);
+                if(!unlimitedItems&&itemDefinition.GameLimit>0&&checked(worldQuantity+externalQuantity)>=itemDefinition.GameLimit){limited++;continue;}
+                _items[definition.InstanceId]=definition;
+                restored.Add(definition.InstanceId);
+            }
+            if(restored.Count>0||invasionNpcIds.Length>0)Save();
+            return new(_staticRoomItemDefinitions.Count,existing,limited,restored.Count,restored);
+        }
+    }
     public IReadOnlyList<RuntimeLivingWorldObjectDefinition> CaptureWorldObjectDefinitions()
     {
         lock (_gate) return _objectDefinitions.Values.OrderBy(x => x.Id, StringComparer.OrdinalIgnoreCase).ToArray();
@@ -138,6 +327,13 @@ public sealed partial class RuntimeLivingWorldService
                 ["hp_regen"] = definition.HitPointRegen.ToString(),
                 ["respawn_hours"] = definition.RespawnHours.ToString(),
                 ["undead"] = definition.Undead ? "1" : "0",
+                ["non_living"] = definition.NonLiving ? "1" : "0",
+                ["negated_ability_ids"] = string.Join(",", definition.NegatedAbilityIds),
+                ["npc_legacy_id"] = definition.LegacyId.ToString(),
+                ["guarded_npc_legacy_ids"] = string.Join(",", definition.GuardedNpcLegacyIds),
+                ["resist_water"] = definition.WaterResistance.ToString(),
+                ["spell_immunity_level"] = definition.SpellImmunityLevel.ToString(),
+                ["non_attack_item_legacy_id"] = definition.NonAttackItemLegacyId.ToString(),
                 ["game_limit"] = definition.GameLimit.ToString(),
                 ["gender"] = definition.Gender.ToString(),
                 ["monster_type"] = definition.MonsterType.ToString(),
@@ -182,6 +378,52 @@ public sealed partial class RuntimeLivingWorldService
             return _objectDefinitions.Values.Where(x=>x.RoomId.Equals(roomId,StringComparison.OrdinalIgnoreCase))
                 .OrderBy(x=>x.Name,StringComparer.OrdinalIgnoreCase).ToArray();
     }
+
+    public RuntimeWizardKnockDoor ResolveWizardKnockDoor(string roomId, string query)
+    {
+        lock (_gate)
+        {
+            var normalized = NormalizeDirection(query);
+            var matches = _objectDefinitions.Values.Where(definition =>
+                    definition.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase)
+                    && definition.Kind.Equals("door", StringComparison.OrdinalIgnoreCase)
+                    && _objects.TryGetValue(definition.Id, out var state)
+                    && (!state.Open || state.Locked)
+                    && (string.IsNullOrWhiteSpace(query)
+                        || definition.Id.Equals(query, StringComparison.OrdinalIgnoreCase)
+                        || definition.Name.Contains(query, StringComparison.OrdinalIgnoreCase)
+                        || NormalizeDirection(definition.Direction ?? string.Empty).Equals(normalized, StringComparison.OrdinalIgnoreCase)))
+                .ToArray();
+            if (matches.Length == 0) throw new InvalidOperationException("There is no closed door here matching that target.");
+            if (matches.Length > 1) throw new InvalidOperationException("More than one closed door matches; specify its direction or generated ID.");
+            var definition = matches[0];
+            var reciprocal = _objectDefinitions.Values.SingleOrDefault(candidate =>
+                candidate.Kind.Equals("door", StringComparison.OrdinalIgnoreCase)
+                && candidate.RoomId.Equals(definition.TargetRoomId, StringComparison.OrdinalIgnoreCase)
+                && candidate.TargetRoomId?.Equals(definition.RoomId, StringComparison.OrdinalIgnoreCase) == true
+                && NormalizeDirection(candidate.Direction ?? string.Empty).Equals(OppositeDirection(definition.Direction), StringComparison.OrdinalIgnoreCase));
+            return new RuntimeWizardKnockDoor(definition, _objects[definition.Id], reciprocal,
+                reciprocal is not null && _objects.TryGetValue(reciprocal.Id, out var reciprocalState) ? reciprocalState : null);
+        }
+    }
+
+    public void SetWizardKnockDoorState(RuntimeWizardKnockDoor door, bool opened)
+    {
+        lock (_gate)
+        {
+            var now = DateTimeOffset.UtcNow;
+            _objects[door.Definition.Id] = door.State with { Open = opened ? true : door.State.Open, Locked = opened ? false : door.State.Locked, UpdatedAtUtc = now };
+            if (door.ReciprocalDefinition is not null && door.ReciprocalState is not null)
+                _objects[door.ReciprocalDefinition.Id] = door.ReciprocalState with { Open = opened ? true : door.ReciprocalState.Open, Locked = opened ? false : door.ReciprocalState.Locked, UpdatedAtUtc = now };
+            Save();
+            SaveLivingWorldCompletionLocked();
+        }
+    }
+
+    private static string OppositeDirection(string? direction) => NormalizeDirection(direction ?? string.Empty) switch
+    {
+        "N" => "S", "S" => "N", "E" => "W", "W" => "E", "U" => "D", "D" => "U", _ => string.Empty
+    };
 
     public bool CanTraverse(RuntimeRoom room, string direction, out string failure)
     {
@@ -251,6 +493,20 @@ public sealed partial class RuntimeLivingWorldService
             var definition=matches[0]; var before=_objects[definition.Id];
             try
             {
+                string? successOutput = null;
+                if (definition.Metadata.TryGetValue("success_message_ids", out var encodedMessageIds))
+                {
+                    var messageIds = encodedMessageIds
+                        .Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                        .Select(value => int.TryParse(value, out var id) && id > 0
+                            ? id
+                            : throw new InvalidOperationException($"Decoded interaction {definition.Id} has an invalid success message ID '{value}'."))
+                        .ToArray();
+                    if (messageIds.Length == 0)
+                        throw new InvalidOperationException($"Decoded interaction {definition.Id} has no valid success message IDs.");
+                    var messages = RuntimeClassicNativeTextblockPayloadAuthority.Load(_projectRoot);
+                    successOutput = string.Join(Environment.NewLine, messageIds.Select(messages.RequireMessage));
+                }
                 var after=command.Name switch
                 {
                     "open" => Open(definition,before),
@@ -262,6 +518,7 @@ public sealed partial class RuntimeLivingWorldService
                     _ => throw new InvalidOperationException("unsupported-world-interaction")
                 };
                 _objects[definition.Id]=after; Save();
+                if (successOutput is not null) return successOutput;
                 return $"You {command.Name} {definition.Name}.";
             }
             catch { _objects[definition.Id]=before; throw; }
@@ -275,6 +532,7 @@ public sealed partial class RuntimeLivingWorldService
         {
             events.AddRange(TickNpcSpawnLifecycleLocked(nowUtc, null).Transitions.Select(x => x.EventCode));
             events.AddRange(TickLivingWorldCompletionLocked(nowUtc));
+            events.AddRange(TickNpcTimedStatusesLocked(nowUtc));
             if(events.Count>0){ Save(); SaveLivingWorldCompletionLocked(); }
         }
         return events;
@@ -316,7 +574,7 @@ public sealed partial class RuntimeLivingWorldService
 
     public RuntimeLivingWorldSnapshot Capture()
     {
-        lock(_gate)return new(WorldId,_npcs.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),_objects.Values.OrderBy(x=>x.Id,StringComparer.OrdinalIgnoreCase).ToArray(),DateTimeOffset.UtcNow);
+        lock(_gate)return new(WorldId,_npcs.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),_objects.Values.OrderBy(x=>x.Id,StringComparer.OrdinalIgnoreCase).ToArray(),DateTimeOffset.UtcNow,_items.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray());
     }
 
     public IReadOnlyList<string> Validate()
@@ -370,13 +628,14 @@ public sealed partial class RuntimeLivingWorldService
                     ["alignment"] = npc.Alignment,
                     ["disposition"] = ResolveDisposition(npc, spawn),
                     ["combat_hostility_state"] = "idle",
-                    ["npc_ai_authority"] = "generated:npc_ai_runtime.json",
+                    ["npc_ai_authority"] = "generated:spawns.json",
                     ["npc_ai_schema_version"] = _world.NpcAiCatalog.SchemaVersion,
                     ["npc_ai_room_reference"] = aiRelationship.RoomReference,
                     ["npc_ai_monster_group_id"] = aiRelationship.MonsterGroupId.ToString(),
                     ["npc_ai_respawn_minutes"] = aiRelationship.RespawnMinutes.ToString(),
                     ["npc_ai_interaction_model"] = aiRelationship.InteractionModel,
                     ["see_hidden"] = npc.SeeHidden ? "1" : "0",
+                    ["animal"] = npc.Animal ? "1" : "0",
                     ["charm_level"] = npc.CharmLevel.ToString(),
                     ["charm_resistance"] = npc.CharmResistance.ToString(),
                     ["follow_value"] = npc.FollowValue.ToString(),
@@ -384,6 +643,13 @@ public sealed partial class RuntimeLivingWorldService
                     ["hp_regen"] = npc.HitPointRegen.ToString(),
                     ["respawn_hours"] = npc.RespawnHours.ToString(),
                     ["undead"] = npc.Undead ? "1" : "0",
+                    ["non_living"] = npc.NonLiving ? "1" : "0",
+                    ["negated_ability_ids"] = string.Join(",", npc.NegatedAbilityIds),
+                    ["npc_legacy_id"] = npc.LegacyId.ToString(),
+                    ["guarded_npc_legacy_ids"] = string.Join(",", npc.GuardedNpcLegacyIds),
+                    ["resist_water"] = npc.WaterResistance.ToString(),
+                    ["spell_immunity_level"] = npc.SpellImmunityLevel.ToString(),
+                    ["non_attack_item_legacy_id"] = npc.NonAttackItemLegacyId.ToString(),
                     ["game_limit"] = npc.GameLimit.ToString(),
                     ["gender"] = npc.Gender.ToString(),
                     ["monster_type"] = npc.MonsterType.ToString(),
@@ -519,19 +785,36 @@ public sealed partial class RuntimeLivingWorldService
         LoadDecodedRoomInteractions();
     }
 
+    private void LoadGeneratedRoomItems()
+    {
+        var path=Path.Combine(_projectRoot,_world.Definition.DataRoot,"room_item_placements.json");
+        if(!File.Exists(path))return;
+        foreach(var value in RuntimeChunkedClassicCatalog.LoadRecords(path))
+        {
+            var placementId=JsonValueReader.ReadString(value,"id",string.Empty);
+            var roomId=JsonValueReader.ReadString(value,"room_id",string.Empty);
+            var itemId=JsonValueReader.ReadString(value,"item_id",string.Empty);
+            var quantity=Math.Max(1,JsonValueReader.ReadInt(value,"quantity",1));
+            if(string.IsNullOrWhiteSpace(placementId)||_world.FindRoomById(roomId) is null||string.IsNullOrWhiteSpace(itemId))continue;
+            _=_itemCatalog.Require(itemId);
+            var metadata=new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["static_placement_id"]=placementId,
+                ["generated_static_room_item"]="true"
+            };
+            if(JsonValueReader.ReadString(value,"visibility","visible").Equals("hidden_searchable",StringComparison.OrdinalIgnoreCase))
+                metadata["hidden_at_cleanup"]="true";
+            var definition=new RuntimeItemInstance(placementId,itemId,null,RuntimeItemLocations.Room,roomId,null,0,quantity,null,metadata);
+            _staticRoomItemDefinitions[placementId]=definition;
+            _items[placementId]=definition;
+        }
+    }
+
     private void LoadDecodedExitObjects()
     {
         var exitsPath = Path.Combine(_projectRoot, _world.Definition.DataRoot, _world.Definition.ExitsFile);
         if (!File.Exists(exitsPath)) return;
-        using var document = JsonDocument.Parse(File.ReadAllText(exitsPath));
-        var records = document.RootElement.ValueKind == JsonValueKind.Array
-            ? document.RootElement
-            : document.RootElement.TryGetProperty("records", out var generated) && generated.ValueKind == JsonValueKind.Array
-                ? generated
-                : default;
-        if (records.ValueKind != JsonValueKind.Array) return;
-
-        foreach (var value in records.EnumerateArray())
+        foreach (var value in RuntimeChunkedClassicCatalog.LoadRecords(exitsPath))
         {
             var gateKind = JsonValueReader.ReadString(value, "gate_kind", string.Empty);
             if (!gateKind.Equals("door", StringComparison.OrdinalIgnoreCase)) continue;
@@ -554,17 +837,9 @@ public sealed partial class RuntimeLivingWorldService
 
     private void LoadDecodedRoomInteractions()
     {
-        var path = Path.Combine(_projectRoot, _world.Definition.DataRoot, _world.Definition.TriggersFile);
+        var path = Path.Combine(_projectRoot, _world.Definition.DataRoot, "room_interactions.json");
         if (!File.Exists(path)) return;
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var records = document.RootElement.ValueKind == JsonValueKind.Array
-            ? document.RootElement
-            : document.RootElement.TryGetProperty("records", out var generated) && generated.ValueKind == JsonValueKind.Array
-                ? generated
-                : default;
-        if (records.ValueKind != JsonValueKind.Array) return;
-
-        foreach (var value in records.EnumerateArray())
+        foreach (var value in RuntimeChunkedClassicCatalog.LoadRecords(path))
         {
             var id = JsonValueReader.ReadString(value, "id", string.Empty);
             var roomId = ReadRelationship(value, "from_room_id", "from_room");
@@ -602,6 +877,12 @@ public sealed partial class RuntimeLivingWorldService
                 };
             }
             foreach(var state in snapshot.Objects)if(_objects.ContainsKey(state.Id))_objects[state.Id]=state;
+            if(snapshot.Items is not null)
+            {
+                _items.Clear();
+                foreach(var item in snapshot.Items.Where(item=>item.LocationKind.Equals(RuntimeItemLocations.Room,StringComparison.OrdinalIgnoreCase)))
+                    _items[item.InstanceId]=item;
+            }
         }
         catch(JsonException){ }
     }
@@ -617,7 +898,17 @@ public sealed partial class RuntimeLivingWorldService
     private static RuntimeLivingWorldObjectState Close(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s)=>s with{Open=false,UpdatedAtUtc=DateTimeOffset.UtcNow};
     private static RuntimeLivingWorldObjectState Unlock(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s,RuntimeItemState? i){RequireKey(d,i);return s with{Locked=false,UpdatedAtUtc=DateTimeOffset.UtcNow};}
     private static RuntimeLivingWorldObjectState Lock(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s,RuntimeItemState? i){RequireKey(d,i);if(s.Open)throw new InvalidOperationException($"Close {d.Name} first.");return s with{Locked=true,UpdatedAtUtc=DateTimeOffset.UtcNow};}
-    private static RuntimeLivingWorldObjectState Activate(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s)=>s with{Activated=!s.Activated,UpdatedAtUtc=DateTimeOffset.UtcNow};
+    private static RuntimeLivingWorldObjectState Activate(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s)
+    {
+        if(d.Metadata.TryGetValue("repeatability",out var repeatability))
+        {
+            if(repeatability.Equals("does_not_increment_progress",StringComparison.OrdinalIgnoreCase))return s;
+            if(repeatability.Contains("idempotent_per_latch_cycle",StringComparison.OrdinalIgnoreCase)&&s.Activated)return s;
+        }
+        var latchStep=d.Metadata.TryGetValue("runtime_disposition",out var disposition)
+            && disposition.Equals("active_bound_action_latch_step",StringComparison.OrdinalIgnoreCase);
+        return s with{Activated=latchStep||!s.Activated,UpdatedAtUtc=DateTimeOffset.UtcNow};
+    }
     private static void RequireKey(RuntimeLivingWorldObjectDefinition d,RuntimeItemState? inventory){if(string.IsNullOrWhiteSpace(d.KeyItemId))return;if(inventory is null||!inventory.Items.Any(x=>x.CanonicalItemId.Equals(d.KeyItemId,StringComparison.OrdinalIgnoreCase)))throw new InvalidOperationException($"You need {d.KeyItemId}.");}
     private static string NormalizeDirection(string value)=>value.Trim().ToUpperInvariant() switch{"NORTH"=>"N","SOUTH"=>"S","EAST"=>"E","WEST"=>"W","NORTHEAST"=>"NE","NORTHWEST"=>"NW","SOUTHEAST"=>"SE","SOUTHWEST"=>"SW","UP"=>"U","DOWN"=>"D",var x=>x};
     private static bool ReadBool(JsonElement e,string name,bool fallback)=>e.TryGetProperty(name,out var v)?v.ValueKind==JsonValueKind.True||v.ValueKind==JsonValueKind.String&&bool.TryParse(v.GetString(),out var b)&&b:fallback;
@@ -638,7 +929,29 @@ public sealed partial class RuntimeLivingWorldService
         var metadata=new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
         var disposition=JsonValueReader.ReadString(element,"runtime_disposition",string.Empty);
         if(!string.IsNullOrWhiteSpace(disposition))metadata["runtime_disposition"]=disposition;
+        foreach(var property in new[]{"bound_exit_id","bound_edge_state_id","action_number"})
+        {
+            var value=JsonValueReader.ReadString(element,property,string.Empty);
+            if(!string.IsNullOrWhiteSpace(value))metadata[property]=value;
+        }
         if(commands is not null&&commands.Count>0)metadata["commands"]=string.Join("|",commands);
+        if(element.TryGetProperty("command_semantics",out var semantics)&&semantics.ValueKind==JsonValueKind.Object)
+        {
+            foreach(var property in new[]{"required_skill","skill_modifier","delay_seconds","failure_textblock_id","skill_test_model",
+                         "required_room_item_id","room_item_failure_textblock_id","required_inventory_item_id",
+                         "inventory_item_failure_textblock_id","consume_inventory_item","native_textblock_id",
+                         "consume_room_item","return_room_id","repeatability","reset_timing","native_action_type","native_spell_id"})
+            {
+                if(!semantics.TryGetProperty(property,out var value)||value.ValueKind==JsonValueKind.Null)continue;
+                metadata[property]=value.ToString();
+            }
+            if(semantics.TryGetProperty("success_remote_action",out var remote)&&remote.ValueKind==JsonValueKind.Array)
+                metadata["success_remote_action"]=string.Join("|",remote.EnumerateArray().Select(value=>value.ToString()));
+            if(semantics.TryGetProperty("success_message_ids",out var messages)&&messages.ValueKind==JsonValueKind.Array)
+                metadata["success_message_ids"]=string.Join("|",messages.EnumerateArray().Select(value=>value.ToString()));
+            if(semantics.TryGetProperty("random_textblock_ids",out var randoms)&&randoms.ValueKind==JsonValueKind.Array)
+                metadata["random_textblock_ids"]=string.Join("|",randoms.EnumerateArray().Select(value=>value.ToString()));
+        }
         return metadata;
     }
     private static bool MatchesAlias(RuntimeLivingWorldObjectDefinition definition,string verb,string query)
@@ -728,6 +1041,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             discoveredTargets,
             commandText)
         {
+            Level = character?.Level ?? (session.Actor is RuntimeCharacterActor characterActor ? characterActor.Level : 1),
             ClassId = ParseDecodedLegacyId(character?.ClassId),
             RaceId = ParseDecodedLegacyId(character?.RaceId),
             AlignmentName = ReadCharacterCondition(character, "alignment", "alignment_name"),
@@ -750,12 +1064,18 @@ public sealed partial class RuntimeLiveGameplayFacade
     private static int ReadCharacterValue(RuntimeCharacterRecord? character, params string[] keys)
     {
         if (character is null) return 0;
+        var value = 0;
         foreach (var key in keys)
         {
-            if (character.Skills.TryGetValue(key, out var skill)) return skill;
-            if (character.BaseStats.TryGetValue(key, out var stat)) return stat;
+            if (character.Skills.TryGetValue(key, out var skill)) { value = skill; break; }
+            if (character.BaseStats.TryGetValue(key, out var stat)) { value = stat; break; }
         }
-        return 0;
+        if (keys.Any(key => key.Equals("picklocks", StringComparison.OrdinalIgnoreCase) || key.Equals("picklock", StringComparison.OrdinalIgnoreCase)))
+        {
+            value = checked(value + (character.SemanticState?.DerivedStats.TryGetValue("picklocks_bonus", out var equipmentBonus) == true ? equipmentBonus : 0));
+            value = checked(value + RuntimeClassicStatusProjection.Numeric(character, "picklocks"));
+        }
+        return value;
     }
 
     private static string ReadCharacterCondition(RuntimeCharacterRecord? character, params string[] keys)
@@ -775,12 +1095,15 @@ public sealed partial class RuntimeLiveGameplayFacade
         "toll-insufficient" => "You do not have enough money to pay the toll.",
         "class-not-allowed" or "class-denied" => "Your class cannot pass this way.",
         "race-not-allowed" or "race-denied" => "Your race cannot pass this way.",
+        "level-below-minimum" => "You are not experienced enough to pass this way.",
+        "level-above-maximum" => "You can no longer pass this way.",
         "alignment-below-minimum" or "alignment-above-maximum" => "Your alignment prevents you from passing.",
         "ability-below-minimum" or "ability-above-maximum" => "You lack the required ability to pass.",
         "required-actions-incomplete" or "required-action-order" => "You have not completed the required actions.",
         "picklocks-or-strength-failed" => "You cannot overcome this barrier.",
         "destination-blocked" => "That route does not currently lead anywhere.",
-        "unsupported-evidence-only" or "qualified-unknown-evidence-only" or "gate-evidence-only" => "The decoded exit condition cannot be executed.",
+        "unsupported-evidence-only" or "qualified-unknown-evidence-only" or "gate-evidence-only" or "required-actions-unbound-evidence-only" => "The decoded exit condition cannot be executed.",
+        "native-passive-event-pending" => "This hidden route is controlled by a native room event that has not occurred.",
         _ => $"You cannot pass ({code})."
     };
     public bool TryExecuteTeleporterCommand(RuntimeSession session, RuntimeCommand command, out string result)
@@ -798,7 +1121,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!decision.Allowed) { result = $"The teleporter does not activate ({decision.Code})."; return true; }
         var previous = session.CurrentRoom;
         if (!CanMove(session, out var movementFailure)) { result = movementFailure; return true; }
-        if (!CanTraverseLivingWorld(session, gate.Direction, out var traversalFailure)) { result = traversalFailure; return true; }
+        // The exact entered phrase was already evaluated above. Re-evaluating this
+        // text-command gate through direction-only traversal drops that phrase and
+        // incorrectly rejects a valid decoded command.
         if (!session.TryMove(gate.Direction, out var movementResult)) { result = movementResult; return true; }
         BroadcastDeparture(session, previous.Id, gate.Direction);
         BroadcastArrival(session);
@@ -812,18 +1137,122 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (TryExecuteTeleporterCommand(session, command, out result)) return true;
         var living = Living(session);
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
-        var hasMatch = living.CaptureWorldObjectDefinitions().Any(definition =>
+        var matches = living.CaptureWorldObjectDefinitions().Where(definition =>
             definition.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase)
             && definition.Metadata.TryGetValue("commands", out var encoded)
             && encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase)));
-        if (!hasMatch) { result = string.Empty; return false; }
+                .Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase))).ToArray();
+        if (matches.Length == 0) { result = string.Empty; return false; }
+        if (matches.Length > 1) { result = "The decoded command matches more than one room interaction."; return true; }
+        if (matches[0].Kind.Equals("native_support_invasion", StringComparison.OrdinalIgnoreCase))
+        {
+            result=_wccInvasions.Execute(session,entered,living);return true;
+        }
+        if (matches[0].Metadata.TryGetValue("required_skill",out var requiredSkill))
+        {
+            result=ExecuteDecodedSkillInteraction(session,command,matches[0],requiredSkill);
+            return true;
+        }
+        if (matches[0].Metadata.ContainsKey("required_inventory_item_id"))
+        {
+            result=ExecuteDecodedItemInteraction(session,command,matches[0]);
+            return true;
+        }
         result = living.Interact(session, command, LoadItemState(session));
         return true;
     }
 
+    private string ExecuteDecodedItemInteraction(
+        RuntimeSession session,
+        RuntimeCommand command,
+        RuntimeLivingWorldObjectDefinition definition)
+    {
+        if(session.Actor is not RuntimeCharacterActor actor)throw new InvalidOperationException("A persistent character is required for the decoded item action.");
+        var before=_characters.LoadCharacter(actor.Id)??throw new InvalidOperationException("Character save was not found for the decoded item action.");
+        var state=before.ItemState??new RuntimeItemState(Array.Empty<RuntimeItemInstance>(),0,new Dictionary<string,string>(),Array.Empty<RuntimeCorpseState>());
+        var requiredId=definition.Metadata["required_inventory_item_id"];
+        var item=state.Items.FirstOrDefault(candidate=>
+            candidate.CanonicalItemId.Equals(requiredId,StringComparison.OrdinalIgnoreCase)
+            &&candidate.OwnerId?.Equals(actor.Id,StringComparison.OrdinalIgnoreCase)==true
+            &&(candidate.LocationKind.Equals(RuntimeItemLocations.Character,StringComparison.OrdinalIgnoreCase)
+               ||candidate.LocationKind.Equals(RuntimeItemLocations.Equipment,StringComparison.OrdinalIgnoreCase)));
+        if(item is null)throw new InvalidOperationException($"You need {requiredId}.");
+        var consume=!definition.Metadata.TryGetValue("consume_inventory_item",out var consumeText)
+            ||!bool.TryParse(consumeText,out var parsedConsume)||parsedConsume;
+        var items=consume
+            ? state.Items.SelectMany(candidate=>candidate.InstanceId.Equals(item.InstanceId,StringComparison.OrdinalIgnoreCase)
+                ? candidate.StackQuantity>1 ? new[]{candidate with{StackQuantity=candidate.StackQuantity-1}} : Array.Empty<RuntimeItemInstance>()
+                : new[]{candidate}).ToArray()
+            : state.Items;
+        var updated=before with{ItemState=state with{Items=items},UpdatedAtUtc=DateTimeOffset.UtcNow};
+        _characters.SaveCharacter(updated,$"decoded-room-item-action:{definition.Id}");
+        try{return Living(session).Interact(session,command,updated.ItemState);}
+        catch{_characters.SaveCharacter(before,$"decoded-room-item-action-rollback:{definition.Id}");throw;}
+    }
+
+    private string ExecuteDecodedSkillInteraction(
+        RuntimeSession session,
+        RuntimeCommand command,
+        RuntimeLivingWorldObjectDefinition definition,
+        string requiredSkill)
+    {
+        if(session.Actor is not RuntimeCharacterActor actor)throw new InvalidOperationException("A persistent character is required for the decoded skill test.");
+        var character=_characters.LoadCharacter(actor.Id)??throw new InvalidOperationException("Character save was not found for the decoded skill test.");
+        var skillValue=ReadCharacterSkillValue(character,requiredSkill);
+        var modifier=definition.Metadata.TryGetValue("skill_modifier",out var modifierText)&&int.TryParse(modifierText,out var parsedModifier)?parsedModifier:0;
+        var roll=Random.Shared.Next(1,101);
+        if(!RuntimeClassicSkillTest.Passes(skillValue,modifier,roll))
+        {
+            if(!definition.Metadata.TryGetValue("failure_textblock_id",out var failureText)||!int.TryParse(failureText,out var failureTextblockId))
+                throw new InvalidOperationException("Decoded skill-test failure textblock is unavailable.");
+            var nativePayloadPath=Path.Combine(_characters.ProjectRoot,"Data","Classic","native_textblock_payloads.json");
+            if(File.Exists(nativePayloadPath))
+            {
+                var payloads=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+                if(payloads.TryResolveTextblock(failureTextblockId,out var directPayload))return directPayload;
+                var graph=RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot);
+                var failureNode=graph.Require(failureTextblockId);
+                var failure=RuntimeClassicDecodedFailureBranch.Execute(
+                    failureNode,character,payloads,
+                    RuntimeSpellCatalog.Load(_characters.ProjectRoot,character.WorldId),
+                    Random.Shared);
+                if(failure.Character != character)
+                    _characters.SaveCharacter(failure.Character,$"decoded-skill-test-failure:{definition.Id}:textblock.{failureTextblockId}");
+                if(failure.Output.Count>0)return string.Join(Environment.NewLine,failure.Output);
+                throw new InvalidOperationException($"Decoded skill-test failure textblock {failureTextblockId} has no renderable presentation operation.");
+            }
+            return "You strain against the rubble, but it does not move.";
+        }
+        return Living(session).Interact(session,command,LoadItemState(session));
+    }
+
+    private static int ReadCharacterSkillValue(RuntimeCharacterRecord character,string skill)
+    {
+        var keys=skill.Trim().ToLowerInvariant() switch
+        {
+            "strength"=>new[]{"strength","str"},
+            "agility"=>new[]{"agility","agi","agl"},
+            "intellect"=>new[]{"intellect","int"},
+            "wisdom"=>new[]{"wisdom","wil","willpower"},
+            "health"=>new[]{"health","hea"},
+            "charm"=>new[]{"charm","cha"},
+            var other=>new[]{other}
+        };
+        foreach(var key in keys)
+        {
+            if(character.Skills.TryGetValue(key,out var skillValue))return skillValue;
+            if(character.BaseStats.TryGetValue(key,out var statValue))return statValue;
+        }
+        return 0;
+    }
+
     public string DescribeLivingExit(RuntimeSession session,string direction)=>Living(session).DescribeExit(session.CurrentRoom,direction);
-    public string ExecuteLivingWorldCommand(RuntimeSession session,RuntimeCommand command)=>Living(session).Interact(session,command,LoadItemState(session));
+    public string ExecuteLivingWorldCommand(RuntimeSession session,RuntimeCommand command)
+    {
+        return TryExecuteDecodedWorldCommand(session,command,out var decoded)
+            ? decoded
+            : Living(session).Interact(session,command,LoadItemState(session));
+    }
     public string RenderLivingWorldState(RuntimeSession session)
     {
         var world=Living(session);var snapshot=world.Capture();
@@ -833,6 +1262,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     public Task TickLivingWorldsAsync(CancellationToken cancellationToken)
     {
         var now=DateTimeOffset.UtcNow;
+        TickActiveCharacterRegeneration(now);
         foreach(var world in _livingWorlds.Values)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -869,11 +1299,11 @@ public sealed class RuntimeLivingWorldSmokeReport
             var service=new RuntimeLivingWorldService(projectRoot,world,smokeRoot);
             report.GeneratedSpawnCount=world.SpawnCount;
             report.GeneratedExitCount=world.ExitCount;
-            report.GeneratedInteractionCount=CountGeneratedRecords(Path.Combine(projectRoot,definition.DataRoot,definition.TriggersFile));
+            report.GeneratedInteractionCount=CountGeneratedRecords(Path.Combine(projectRoot,definition.DataRoot,"room_interactions.json"));
             report.LegacyMovementTriggerCount=world.TriggerCount;
             report.RuntimeNpcInstanceCount=service.NpcInstanceCount;
             report.GeneratedWorldObjectCount=service.WorldObjectCount;
-            report.GateKinds=service.CaptureGates().Select(x=>x.GateKind).Where(x=>!string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(x=>x,StringComparer.OrdinalIgnoreCase).ToArray();
+            report.GateKinds=world.AllRooms().SelectMany(room=>room.Exits).Select(x=>x.GateKind).Where(x=>!string.IsNullOrWhiteSpace(x)).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(x=>x,StringComparer.OrdinalIgnoreCase).ToArray();
 
             Check(report,world.SpawnCount>0,"generated-spawn-loading");
             Check(report,world.RoomCount==CountGeneratedRecords(Path.Combine(projectRoot,definition.DataRoot,definition.RoomsFile)),"map-qualified-room-loading");
@@ -891,8 +1321,85 @@ public sealed class RuntimeLivingWorldSmokeReport
             }
 
             Check(report,report.GeneratedInteractionCount>0,"generated-room-interaction-loading");
+            var phoenixRoom=world.FindRoom(9,1423);
+            var phoenixPairedRoom=world.FindRoom(9,1425);
+            Check(report,phoenixRoom is not null&&phoenixPairedRoom is not null,"decoded-phoenix-remoteaction-rooms");
+            if(phoenixRoom is not null&&phoenixPairedRoom is not null)
+            {
+                Check(report,!service.CanTraverse(phoenixRoom,"w",out _),"decoded-phoenix-paired-door-initially-closed");
+                service.RecordQuestRemoteAction("1423.66.0.3",phoenixRoom.Id,"living-world-smoke");
+                Check(report,service.CanTraverse(phoenixRoom,"w",out _)
+                    &&service.CanTraverse(phoenixPairedRoom,"e",out _),"decoded-phoenix-remoteaction-opens-paired-door");
+                var remoteEvent=service.EventsAfter(0).LastOrDefault(value=>value.Kind=="quest-remote-action"&&value.EntityId=="1423.66.0.3");
+                Check(report,remoteEvent is not null
+                    &&remoteEvent.Metadata.GetValueOrDefault("native_behavior")=="toggle_paired_door_state"
+                    &&remoteEvent.Metadata.GetValueOrDefault("resulting_native_state")=="0","decoded-phoenix-remoteaction-event-proof");
+                service.RecordQuestRemoteAction("1423.66.0.3",phoenixRoom.Id,"living-world-smoke");
+                Check(report,!service.CanTraverse(phoenixRoom,"w",out _)
+                    &&!service.CanTraverse(phoenixPairedRoom,"e",out _),"decoded-phoenix-remoteaction-native-repeat-toggle");
+                var wizardKnockDoor=service.ResolveWizardKnockDoor(phoenixRoom.Id,"w");
+                service.SetWizardKnockDoorState(wizardKnockDoor,opened:true);
+                Check(report,service.CanTraverse(phoenixRoom,"w",out _)
+                    &&service.CanTraverse(phoenixPairedRoom,"e",out _),"decoded-wizard-knock-opens-and-unlocks-paired-door");
+                service.SetWizardKnockDoorState(wizardKnockDoor,opened:false);
+                Check(report,!service.CanTraverse(phoenixRoom,"w",out _)
+                    &&!service.CanTraverse(phoenixPairedRoom,"e",out _),"decoded-wizard-knock-transactional-state-restore");
+                var stateBitResults=new List<string>();
+                foreach(var signature in new[]{"3042.0.1.0","3042.0.2.0","3042.0.3.0","3042.0.4.0"})
+                {
+                    service.RecordQuestRemoteAction(signature,phoenixRoom.Id,"living-world-smoke");
+                    stateBitResults.Add(service.EventsAfter(0).Last(value=>value.Kind=="quest-remote-action"&&value.EntityId==signature)
+                        .Metadata.GetValueOrDefault("resulting_native_state",string.Empty));
+                }
+                Check(report,stateBitResults.SequenceEqual(new[]{"224","192","128","8"}),"decoded-type6-native-state-bit-sequence");
+            }
+            var generatedRoomItemCount=CountGeneratedRecords(Path.Combine(projectRoot,definition.DataRoot,"room_item_placements.json"));
+            var generatedRoomItems=service.Capture().Items??Array.Empty<RuntimeItemInstance>();
+            Check(report,generatedRoomItemCount==363&&service.GroundItemCount==363&&generatedRoomItems.Count==363,
+                "generated-room-item-placement-materialization");
+            Check(report,generatedRoomItems.Count(RuntimeClassicHiddenSearchService.IsHidden)==261
+                &&generatedRoomItems.Count(item=>!RuntimeClassicHiddenSearchService.IsHidden(item))==102,
+                "generated-room-item-visibility-classification");
+            Check(report,generatedRoomItems.All(item=>world.FindRoomById(item.LocationId) is not null),
+                "generated-room-item-map-qualified-placement");
+            var resetCatalog=RuntimeItemCatalog.Load(projectRoot,worldId);
+            var resetProbe=generatedRoomItems.First(item=>!RuntimeClassicHiddenSearchService.IsHidden(item)
+                &&resetCatalog.Require(item.CanonicalItemId).GameLimit<=0);
+            var takenProbe=service.TakeGroundItem(resetProbe.InstanceId,"room-item-reset-smoke");
+            var maintenanceReset=service.ResetGeneratedRoomItems(new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
+                {[resetProbe.CanonicalItemId]=1});
+            Check(report,takenProbe.OwnerId=="room-item-reset-smoke"&&maintenanceReset.RestoredCount==1
+                &&maintenanceReset.GameLimitBlockedCount==0&&service.GroundItemCount==363,
+                "generated-room-item-maintenance-reset-restores-normal-owned-item");
+            var limitedGroups=generatedRoomItems.GroupBy(item=>item.CanonicalItemId,StringComparer.OrdinalIgnoreCase)
+                .Select(group=>new{Items=group.ToArray(),Definition=resetCatalog.Require(group.Key)})
+                .Where(group=>group.Definition.GameLimit>0&&group.Items.Sum(item=>item.StackQuantity)<=group.Definition.GameLimit)
+                .ToArray();
+            var limitedProbe=limitedGroups.First().Items[0];
+            _=service.TakeGroundItem(limitedProbe.InstanceId,"room-item-limit-smoke");
+            var limitedReset=service.ResetGeneratedRoomItems(
+                new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
+                    {[limitedProbe.CanonicalItemId]=limitedGroups.First().Definition.GameLimit},
+                unlimitedItemsEnabled:false);
+            Check(report,limitedReset.RestoredCount==0&&limitedReset.GameLimitBlockedCount>=1
+                &&service.GroundItemCount==362,"generated-room-item-reset-honors-game-limit-when-unlimited-disabled");
+            var restoringReset=service.ResetGeneratedRoomItems(
+                new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
+                    {[limitedProbe.CanonicalItemId]=limitedGroups.First().Definition.GameLimit},
+                unlimitedItemsEnabled:true);
+            Check(report,restoringReset.RestoredCount==1&&restoringReset.GameLimitBlockedCount==0
+                &&service.GroundItemCount==363,"generated-room-item-reset-bypasses-game-limit-when-unlimited-enabled");
+            var idempotentReset=service.ResetGeneratedRoomItems();
+            Check(report,idempotentReset.RestoredCount==0&&idempotentReset.ExistingCount==363,
+                "generated-room-item-reset-idempotent-restoration");
             Check(report,world.ExitCount>world.TriggerCount,"movement-authority-from-map-qualified-exits");
-            Check(report,world.AllRooms().SelectMany(room=>room.Exits).Count(exit=>exit.HasBlockedDestination)==5,"invalid-destination-exit-enforcement-5");
+            var generatedBlockedDestinations = RuntimeChunkedClassicCatalog
+                .LoadRecords(Path.Combine(projectRoot,definition.DataRoot,definition.ExitsFile))
+                .Select(RuntimeExit.FromGeneratedRecord)
+                .Count(exit=>exit.HasBlockedDestination);
+            Check(report,
+                world.AllRooms().SelectMany(room=>room.Exits).Count(exit=>exit.HasBlockedDestination)==generatedBlockedDestinations,
+                "invalid-destination-exit-enforcement");
 
             var expandedCandidateCount=world.Spawns.Where(spawn=>spawn.PrimaryRoomAvailable&&spawn.FullyResolved)
                 .Sum(spawn=>spawn.BossDefinition is not null ? 1 : spawn.GroupDefinitions.Count);
@@ -900,6 +1407,117 @@ public sealed class RuntimeLivingWorldSmokeReport
             Check(report,service.NpcInstanceCount>0&&service.NpcInstanceCount<expandedCandidateCount,"persistent-npc-instantiation");
             Check(report,service.GateCount==world.ExitCount,"generated-exit-gate-catalog");
             Check(report,report.GateKinds.Count>0&&report.GateKinds.All(x=>!string.IsNullOrWhiteSpace(x)),"generated-gate-kind-classification");
+            var candleRoom=world.FindRoom(1,2252);
+            var candleGate=candleRoom is null ? null : service.CaptureGates().SingleOrDefault(gate=>
+                gate.ExitId.Equals("exit.map1.2252.n",StringComparison.OrdinalIgnoreCase));
+            if(candleRoom is null||candleGate is null)report.Failures.Add("decoded-candle-exit-unavailable");
+            else
+            {
+                var expectedCandleAliases=new[]{"turn right candle left","twist right candle left","turn right candlestick left"};
+                Check(report,candleGate.RoomId=="room.map1.2252"&&candleGate.Direction.Equals("n",StringComparison.OrdinalIgnoreCase)
+                    &&candleGate.Commands.ToHashSet(StringComparer.OrdinalIgnoreCase).SetEquals(expectedCandleAliases),
+                    "decoded-candle-exit-source-and-aliases");
+                foreach(var alias in expectedCandleAliases)
+                {
+                    var candleSession=new RuntimeSession("candle-smoke-"+Guid.NewGuid().ToString("N"),world,candleRoom,
+                        new RuntimeDeveloperAvatar("candle-smoke","Candle Smoke"),"smoke");
+                    var facade=new RuntimeLiveGameplayFacade(new RuntimeCharacterService(projectRoot),new RuntimeSessionManager());
+                    var handled=facade.TryExecuteDecodedWorldCommand(candleSession,RuntimeCommand.Parse(alias,world.CommandCatalog),out _);
+                    Check(report,handled&&candleSession.CurrentRoom.Id.Equals("room.map1.2254",StringComparison.OrdinalIgnoreCase),
+                        "decoded-candle-command-traversal:"+alias);
+                }
+            }
+            var levelGateRoom=world.FindRoomById("room.map1.2146");
+            var levelGate=levelGateRoom is null ? null : world.FindExit(levelGateRoom,"W");
+            if(levelGateRoom is null||levelGate is null)report.Failures.Add("newhaven-level-range-gate-unavailable");
+            else
+            {
+                var levelOneDecision=service.EvaluateExitGate(levelGateRoom,levelGate.Direction,new RuntimeExitGateContext(
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase),0,new HashSet<string>(StringComparer.OrdinalIgnoreCase),null){Level=1});
+                var levelThreeDecision=service.EvaluateExitGate(levelGateRoom,levelGate.Direction,new RuntimeExitGateContext(
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase),0,new HashSet<string>(StringComparer.OrdinalIgnoreCase),null){Level=3});
+                var levelFourDecision=service.EvaluateExitGate(levelGateRoom,levelGate.Direction,new RuntimeExitGateContext(
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase),0,new HashSet<string>(StringComparer.OrdinalIgnoreCase),null){Level=4});
+                Check(report,levelGate.GateKind.Equals("level_range",StringComparison.OrdinalIgnoreCase)
+                    &&levelGate.Qualifier.Equals("Level: 1 to 3",StringComparison.OrdinalIgnoreCase)
+                    &&levelOneDecision.Allowed
+                    &&levelThreeDecision.Allowed
+                    &&!levelFourDecision.Allowed
+                    &&levelFourDecision.Code=="level-above-maximum",
+                    "newhaven-2146-west-level-range-inclusive");
+            }
+            var actionGates=service.CaptureGates().Where(gate=>gate.RequiredActionCount>0).ToArray();
+            var boundActionGates=actionGates.Where(gate=>gate.BoundActionIds.Count>=gate.RequiredActionCount).ToArray();
+            var evidenceOnlyActionGates=actionGates.Where(gate=>gate.BoundActionIds.Count<gate.RequiredActionCount).ToArray();
+            var nativePassiveActionGates=evidenceOnlyActionGates.Where(gate=>gate.NativePassiveEffect).ToArray();
+            var unresolvedActionGates=evidenceOnlyActionGates.Where(gate=>!gate.NativePassiveEffect).ToArray();
+            Check(report,actionGates.Length==206,"generated-action-gate-count");
+            Check(report,boundActionGates.Length==206,"generated-action-gate-specific-bindings");
+            Check(report,evidenceOnlyActionGates.Length==0,"unbound-action-gates-fail-closed");
+            Check(report,nativePassiveActionGates.Length==0,"native-passive-action-gates-classified");
+            Check(report,unresolvedActionGates.Length==0,"ordinary-action-semantics-gaps-closed");
+            var rubbleGate=boundActionGates.SingleOrDefault(gate=>gate.ExitId=="exit.map9.1012.n");
+            var rubbleAction=rubbleGate is null ? null : service.CaptureWorldObjectDefinitions().SingleOrDefault(definition=>
+                rubbleGate.BoundActionIds.Contains(definition.Id,StringComparer.OrdinalIgnoreCase));
+            Check(report,rubbleGate is not null&&rubbleAction is not null
+                &&rubbleAction.Metadata.GetValueOrDefault("required_skill")=="strength"
+                &&rubbleAction.Metadata.GetValueOrDefault("skill_modifier")=="0"
+                &&rubbleAction.Metadata.GetValueOrDefault("failure_textblock_id")=="1423"
+                &&rubbleAction.Metadata.GetValueOrDefault("success_remote_action")=="1012|1840|0|0",
+                "decoded-rubble-strength-action-bound");
+            Check(report,RuntimeClassicSkillTest.SuccessChance(40,0)==40
+                &&RuntimeClassicSkillTest.SuccessChance(100,10)==100
+                &&RuntimeClassicSkillTest.SuccessChance(5,-10)==0
+                &&RuntimeClassicSkillTest.Passes(40,0,40)
+                &&!RuntimeClassicSkillTest.Passes(40,0,41),
+                "decoded-skill-test-roll-boundaries");
+            var rubbleRoom=rubbleGate is null ? null : world.FindRoomById(rubbleGate.RoomId);
+            if(rubbleRoom is null)report.Failures.Add("decoded-rubble-room-unavailable");
+            else
+            {
+                var rubbleSession=new RuntimeSession("rubble-smoke",world,rubbleRoom,new RuntimeDeveloperAvatar("rubble-smoke","Rubble Smoke"),"smoke");
+                _=service.Interact(rubbleSession,RuntimeCommand.Parse("clear rubble"),null);
+                var rubbleDecision=service.EvaluateExitGate(rubbleRoom,rubbleGate!.Direction,new RuntimeExitGateContext(
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase),0,new HashSet<string>(StringComparer.OrdinalIgnoreCase),null));
+                Check(report,rubbleDecision is {Allowed:true,Code:"hidden-action-open"},"decoded-rubble-success-opens-hidden-exit");
+            }
+            Check(report,nativePassiveActionGates.Length==0,"native-passive-action-gates-fully-linked");
+            Check(report,new[]{"exit.map12.1920.u","exit.map12.2001.u"}.All(exitId=>
+                boundActionGates.Any(gate=>gate.ExitId.Equals(exitId,StringComparison.OrdinalIgnoreCase)
+                    && gate.BoundActionIds.Count==1)),"decoded-sphinx-action-gates-bound");
+            Check(report,boundActionGates.Any(gate=>gate.ExitId=="exit.map12.2051.u"
+                &&gate.BoundActionIds.Count==1),"decoded-stars-sphinx-action-gate-bound");
+            var decodedBoulderExitIds=new[]{
+                "exit.map17.2946.s","exit.map17.2947.n",
+                "exit.map17.2949.e","exit.map17.2950.w",
+                "exit.map17.2956.n","exit.map17.2957.s",
+                "exit.map17.2958.n","exit.map17.2972.s",
+                "exit.map17.2970.s","exit.map17.2971.n"};
+            var decodedBoulderActions=service.CaptureWorldObjectDefinitions().Where(definition=>
+                decodedBoulderExitIds.Contains(definition.Metadata.GetValueOrDefault("bound_exit_id"),StringComparer.OrdinalIgnoreCase)).ToArray();
+            Check(report,decodedBoulderExitIds.All(exitId=>
+                    boundActionGates.Any(gate=>gate.ExitId.Equals(exitId,StringComparison.OrdinalIgnoreCase)
+                        &&gate.BoundActionIds.Count>=1))
+                &&decodedBoulderActions.Length==10
+                &&decodedBoulderActions.All(action=>
+                    action.Metadata.GetValueOrDefault("required_skill")=="strength"
+                    &&action.Metadata.GetValueOrDefault("skill_modifier")=="60"
+                    &&action.Metadata.GetValueOrDefault("delay_seconds")=="5"
+                    &&action.Metadata.GetValueOrDefault("failure_textblock_id")=="4235"
+                    &&action.Metadata.ContainsKey("success_remote_action")),
+                "decoded-map17-boulder-actions-bound");
+            var pedestalGate=boundActionGates.SingleOrDefault(gate=>gate.ExitId=="exit.map17.3042.n");
+            var pedestalActions=service.CaptureWorldObjectDefinitions().Where(definition=>
+                definition.Metadata.GetValueOrDefault("bound_exit_id")=="exit.map17.3042.n").ToArray();
+            Check(report,pedestalGate is not null&&pedestalGate.RequiredActionCount==4
+                &&pedestalGate.BoundActionIds.Count==4&&pedestalActions.Length==4
+                &&pedestalActions.Select(action=>action.Metadata.GetValueOrDefault("required_inventory_item_id"))
+                    .OrderBy(value=>value,StringComparer.OrdinalIgnoreCase)
+                    .SequenceEqual(new[]{"item.1921","item.1922","item.1923","item.1924"},StringComparer.OrdinalIgnoreCase)
+                &&pedestalActions.All(action=>action.Metadata.GetValueOrDefault("consume_inventory_item")=="True"),
+                "decoded-map17-pedestal-actions-bound");
+            Check(report,nativePassiveActionGates.All(gate=>gate.BoundActionIds.Count<gate.RequiredActionCount),
+                "unrelated-actions-cannot-open-native-passive-gate");
             Check(report,service.CaptureNpcAi().Count==service.NpcInstanceCount,"npc-ai-state-instantiation");
             var validation=service.Validate();
             report.ValidationSignals=validation.OrderBy(x=>x,StringComparer.OrdinalIgnoreCase).ToArray();
@@ -957,8 +1575,6 @@ public sealed class RuntimeLivingWorldSmokeReport
         || signal.Equals("loot-rule-catalog-invalid",StringComparison.OrdinalIgnoreCase);
     private static int CountGeneratedRecords(string path)
     {
-        using var document=JsonDocument.Parse(File.ReadAllText(path));
-        if(document.RootElement.ValueKind==JsonValueKind.Array)return document.RootElement.GetArrayLength();
-        return document.RootElement.TryGetProperty("records",out var records)&&records.ValueKind==JsonValueKind.Array?records.GetArrayLength():0;
+        return RuntimeChunkedClassicCatalog.LoadRecords(path).Count;
     }
 }

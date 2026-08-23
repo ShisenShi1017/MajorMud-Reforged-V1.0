@@ -2,7 +2,7 @@
 
 ## Proven boundary
 
-`wccmmud.dll!0x0046C573` is the four-argument MajorMUD room-action executor reached by the special-command `remoteaction` keyword. It reads the action type from `record + 0x360 + actionIndex*2` and directly switches on types 6 through 24.
+`wccmmud.dll!0x0046C573` is the four-argument MajorMUD room-action executor reached by the special-command `remoteaction` keyword. The decoded syntax is `remoteaction <actionRecordId> <optionalMessageRecordId> <selector> <actionSlot>`. It reads the action type from `record + 0x360 + actionSlot*2` and directly switches on types 6 through 24. Earlier evidence labels incorrectly called the second argument the action index; callee frame use proves the fourth argument owns every indexed action field.
 
 ## Proven action classes
 

@@ -33,8 +33,9 @@ public sealed record RuntimeItemDefinition(
     int AccuracyBonus = 0,
     int SpeedBonus = 0,
     bool CursedWhenEquipped = false,
-    bool RetainedOnDeathCurse = false,
-    bool DeleteAtCleanup = false)
+    bool RetainedOnDeath = false,
+    bool DeleteAtCleanup = false,
+    bool VisibleAtCleanup = false)
 {
     public long Cost { get; init; }
     public int MinimumDamage { get; init; }
@@ -46,6 +47,7 @@ public sealed record RuntimeItemDefinition(
     public bool RetainAfterUses { get; init; }
     public bool UsesConsumedOnUse { get; init; }
     public int MaximumUses { get; init; }
+    public int RechargeAtCleanup { get; init; }
     public int GameLimit { get; init; }
     public int CurrentInstances { get; init; }
     public bool Robable { get; init; }
@@ -54,7 +56,7 @@ public sealed record RuntimeItemDefinition(
     public IReadOnlyDictionary<int, int> EquipmentAbilityModifiers { get; init; } = new Dictionary<int, int>();
 }
 
-public sealed record RuntimeEquipmentDefinition(string ItemId, string Slot, bool TwoHanded, bool ClassRestricted, bool RaceRestricted, int MinimumLevel, int MinimumStrength, string? Alignment, string? Gender);
+public sealed record RuntimeEquipmentDefinition(string ItemId, string Slot, bool TwoHanded, bool ClassRestricted, bool RaceRestricted, int MinimumLevel, int MaximumLevel, int MinimumStrength, string? Alignment, string? Gender);
 public sealed record RuntimeItemInstance(
     string InstanceId,
     string CanonicalItemId,
@@ -130,11 +132,15 @@ public sealed record RuntimeCorpseRestorationResult(
 
 public sealed partial class RuntimeItemCatalog
 {
+    private string _projectRoot = string.Empty;
+    private string _worldId = string.Empty;
     private readonly Dictionary<string, RuntimeItemDefinition> _items = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeEquipmentDefinition> _equipment = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _slots = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _rules = new(StringComparer.OrdinalIgnoreCase);
 
+    internal string ProjectRoot => _projectRoot;
+    internal string WorldId => _worldId;
     public IReadOnlyCollection<string> Slots => _slots.OrderBy(x => x).ToArray();
     public IReadOnlyCollection<RuntimeItemDefinition> Items => _items.Values.ToArray();
     public IReadOnlyCollection<RuntimeEquipmentDefinition> EquipmentDefinitions => _equipment.Values.ToArray();
@@ -142,7 +148,11 @@ public sealed partial class RuntimeItemCatalog
 
     public static RuntimeItemCatalog Load(string root, string worldId)
     {
-        var catalog = new RuntimeItemCatalog();
+        var catalog = new RuntimeItemCatalog
+        {
+            _projectRoot = Path.GetFullPath(root),
+            _worldId = RuntimeIdentity.Normalize(worldId, "world")
+        };
         var folder = Path.Combine(root, "Data", worldId);
         catalog.LoadItems(Path.Combine(folder, "items.json"));
         catalog.LoadEquipment(Path.Combine(folder, "equipment.json"));
@@ -212,15 +222,16 @@ public sealed partial class RuntimeItemCatalog
                 B(x, "container"),
                 B(x, "consumable"),
                 B(x, "stackable"),
-                I(x, "default_charges"),
+                Math.Max(I(x, "default_charges"), Math.Max(0, ReadPublicInt(x, "max_uses"))),
                 EconomyWeight(x),
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "armor_class_bonus") : 0,
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "damage_resistance_bonus") : 0,
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "accuracy") : 0,
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "speed") : 0,
                 HasAbility(x, 82) || HasAbility(x, 83),
-                HasAbility(x, 83),
-                HasAbility(x, 119))
+                HasAbility(x, 83) || HasAbility(x, 100),
+                HasAbility(x, 119),
+                HasAbility(x, 154))
             {
                 Cost = ReadPublicLong(x, "cost"),
                 MinimumDamage = ReadPublicInt(x, "min_hit"),
@@ -232,6 +243,7 @@ public sealed partial class RuntimeItemCatalog
                 RetainAfterUses = ReadPublicBool(x, "retain_after_uses"),
                 UsesConsumedOnUse = ReadPublicBool(x, "uses_consumed_on_use"),
                 MaximumUses = ReadPublicInt(x, "max_uses"),
+                RechargeAtCleanup = ReadAbilities(x).GetValueOrDefault(121),
                 GameLimit = ReadPublicInt(x, "game_limit"),
                 CurrentInstances = ReadPublicInt(x, "current_instances"),
                 Robable = ReadPublicPropertyBool(x, "robable"),
@@ -249,7 +261,7 @@ public sealed partial class RuntimeItemCatalog
         {
             var id = S(x, "item_id");
             if (string.IsNullOrWhiteSpace(id)) throw new InvalidOperationException("Generated equipment projection contains a record without item_id.");
-            _equipment[id] = new(id, S(x, "slot") ?? "NONE", B(x, "two_handed"), B(x, "class_restricted"), B(x, "race_restricted"), I(x, "minimum_level"), I(x, "minimum_strength"), S(x, "alignment"), S(x, "gender"));
+            _equipment[id] = new(id, S(x, "slot") ?? "NONE", B(x, "two_handed"), B(x, "class_restricted"), B(x, "race_restricted"), I(x, "minimum_level"), I(x, "maximum_level"), I(x, "minimum_strength"), S(x, "alignment"), S(x, "gender"));
         }
     }
 
@@ -374,6 +386,7 @@ public sealed partial class RuntimeItemEngine
     private Dictionary<string, RuntimeItemInstance> _items = new(StringComparer.OrdinalIgnoreCase);
     private Dictionary<string, RuntimeCorpseState> _corpses = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gate = new();
+    private Dictionary<string, int> _createdQuantities = new(StringComparer.OrdinalIgnoreCase);
 
     public RuntimeItemEngine(RuntimeItemCatalog catalog, IEnumerable<RuntimeItemInstance>? initial = null, IEnumerable<RuntimeCorpseState>? corpses = null, RuntimeCharacterBundleCatalog? characterAuthority = null)
     {
@@ -404,7 +417,7 @@ public sealed partial class RuntimeItemEngine
             if (quantity < 1 || (!definition.Stackable && quantity != 1)) throw new InvalidOperationException("Invalid stack quantity for generated item definition.");
             var item = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, ownerId, locationKind, locationId, null, definition.DefaultCharges, quantity, null, metadata);
             EnforceOwnerQuantityLimit(item, ownerId, quantity, null);
-            AddUnique(item);
+            AddCreatedUnique(item);
             if (locationKind.Equals(RuntimeItemLocations.Room, StringComparison.OrdinalIgnoreCase) && definition.Stackable)
                 item = MergeIntoDestinationCore(item);
             EnsureValid();
@@ -556,7 +569,7 @@ public sealed partial class RuntimeItemEngine
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
             EnforceOwnerQuantityLimit(candidate, characterId, quantity, null);
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -686,7 +699,7 @@ public sealed partial class RuntimeItemEngine
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
             EnforceOwnerQuantityLimit(candidate, characterId, quantity, null);
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -772,7 +785,7 @@ public sealed partial class RuntimeItemEngine
             var candidate = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, merchantId, RuntimeItemLocations.Merchant, merchantId, null, definition.DefaultCharges, quantity, null, projected);
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -818,7 +831,7 @@ public sealed partial class RuntimeItemEngine
             var candidate = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, null, RuntimeItemLocations.Room, roomId, null, definition.DefaultCharges, quantity, null, projected);
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -861,7 +874,7 @@ public sealed partial class RuntimeItemEngine
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
             if (!definition.Stackable || !_items.Values.Any(x => CanMerge(x, candidate) && x.StackQuantity < MaximumStack(x))) EnforceCapacity(container);
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -904,7 +917,7 @@ public sealed partial class RuntimeItemEngine
             var candidate = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, npcId, locationKind, npcId, equippedSlot, definition.DefaultCharges, quantity, null, projected);
             if (definition.Stackable && string.IsNullOrWhiteSpace(equippedSlot)) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = string.IsNullOrWhiteSpace(equippedSlot) ? MergeIntoDestinationCore(candidate) : candidate;
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -974,7 +987,7 @@ public sealed partial class RuntimeItemEngine
             var candidate = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, null, RuntimeItemLocations.Corpse, corpseId, null, definition.DefaultCharges, quantity, null, projected);
             if (definition.Stackable) quantity = Math.Min(quantity, MaximumStack(candidate));
             candidate = candidate with { StackQuantity = quantity };
-            AddUnique(candidate);
+            AddCreatedUnique(candidate);
             var reconciled = MergeIntoDestinationCore(candidate);
             createdIds.Add(reconciled.InstanceId);
             missing -= quantity;
@@ -1139,6 +1152,7 @@ public sealed partial class RuntimeItemEngine
                     ? shortStrengthValue
                     : character.BaseStats.GetValueOrDefault("STR");
             if (relationship.MinimumStrength > strength) throw new InvalidOperationException("Strength restriction failed.");
+            EnforceAlignmentAbilityRequirements(_catalog.Require(item.CanonicalItemId), character);
             if (!string.IsNullOrWhiteSpace(relationship.Alignment) && (!character.Conditions.TryGetValue("alignment", out var alignment) || !Same(alignment, relationship.Alignment))) throw new InvalidOperationException("Alignment restriction failed.");
             if (!string.IsNullOrWhiteSpace(relationship.Gender) && (!character.Conditions.TryGetValue("gender", out var gender) || !Same(gender, relationship.Gender))) throw new InvalidOperationException("Gender restriction failed.");
             if (_items.Values.Any(x => Same(x.OwnerId, characterId) && x.EquippedSlot is not null && Same(x.EquippedSlot, slot) && !Same(x.InstanceId, item.InstanceId))) throw new InvalidOperationException("Equipment slot is occupied.");
@@ -1147,9 +1161,43 @@ public sealed partial class RuntimeItemEngine
         });
     }
 
+    internal static void EnforceAlignmentAbilityRequirements(RuntimeItemDefinition definition, RuntimeCharacterRecord character)
+    {
+        var abilities = definition.EquipmentAbilityModifiers;
+        if (!abilities.ContainsKey(97) && !abilities.ContainsKey(98) && !abilities.ContainsKey(110) &&
+            !abilities.ContainsKey(111) && !abilities.ContainsKey(112) && !abilities.ContainsKey(113)) return;
+
+        var reputation = character.SemanticState?.Alignment?.Reputation;
+        if (string.IsNullOrWhiteSpace(reputation) && character.Conditions.TryGetValue("alignment", out var legacyAlignment))
+            reputation = legacyAlignment;
+        if (string.IsNullOrWhiteSpace(reputation))
+            throw new InvalidOperationException("Alignment restriction cannot be evaluated because the character has no authoritative reputation.");
+
+        var good = reputation.Equals("Lawful", StringComparison.OrdinalIgnoreCase) ||
+                   reputation.Equals("Saint", StringComparison.OrdinalIgnoreCase) ||
+                   reputation.Equals("Good", StringComparison.OrdinalIgnoreCase);
+        var neutral = reputation.Equals("Neutral", StringComparison.OrdinalIgnoreCase) ||
+                      reputation.Equals("Seedy", StringComparison.OrdinalIgnoreCase);
+        var evil = reputation.Equals("Outlaw", StringComparison.OrdinalIgnoreCase) ||
+                   reputation.Equals("Criminal", StringComparison.OrdinalIgnoreCase) ||
+                   reputation.Equals("Villain", StringComparison.OrdinalIgnoreCase) ||
+                   reputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase);
+        if (!good && !neutral && !evil)
+            throw new InvalidOperationException($"Unknown decoded alignment reputation '{reputation}'.");
+
+        if (abilities.ContainsKey(97) && !good) throw new InvalidOperationException("Item is usable only by Good-aligned characters.");
+        if (abilities.ContainsKey(98) && !evil) throw new InvalidOperationException("Item is usable only by Evil-aligned characters.");
+        if (abilities.ContainsKey(112) && !neutral) throw new InvalidOperationException("Item is usable only by Neutral-aligned characters.");
+        if (abilities.ContainsKey(110) && good) throw new InvalidOperationException("Item cannot be used by Good-aligned characters.");
+        if (abilities.ContainsKey(111) && evil) throw new InvalidOperationException("Item cannot be used by Evil-aligned characters.");
+        if (abilities.ContainsKey(113) && neutral) throw new InvalidOperationException("Item cannot be used by Neutral-aligned characters.");
+    }
+
 
     private void EnforceAuthoritativeCharacterRequirements(RuntimeItemInstance item, RuntimeCharacterRecord character, RuntimeEquipmentDefinition relationship)
     {
+        if (relationship.MinimumLevel > character.Level) throw new InvalidOperationException($"Requires level {relationship.MinimumLevel}.");
+        if (relationship.MaximumLevel > 0 && character.Level > relationship.MaximumLevel) throw new InvalidOperationException($"Maximum eligible level is {relationship.MaximumLevel}.");
         if (_characterAuthority is not null)
         {
             var decision = _characterAuthority.ItemRequirements.EvaluateCharacterInputs(character, item.CanonicalItemId);
@@ -1173,11 +1221,11 @@ public sealed partial class RuntimeItemEngine
 
         // Compatibility fallback for isolated tests and non-Classic callers that do not
         // supply the authoritative Bundle A catalog. Live Classic gameplay always does.
-        if (relationship.MinimumLevel > character.Level) throw new InvalidOperationException("Level restriction failed.");
+        // The decoded level range was already enforced above.
     }
 
     public RuntimeItemInstance Wear(string instanceId, string characterId, RuntimeCharacterRecord character, string? requestedSlot = null) => Equip(instanceId, characterId, character, requestedSlot);
-    public RuntimeItemInstance Unequip(string instanceId, string characterId) => Atomic(() => { var item = RequireOwned(instanceId, characterId); if (item.EquippedSlot is null) throw new InvalidOperationException("Item is not equipped."); if (IsMetadataTrue(item, "no_remove") || IsMetadataTrue(item, "cursed_no_remove")) throw new InvalidOperationException("Item cannot be removed according to projected instance restrictions."); return TransferCore(instanceId, RuntimeItemLocations.Character, characterId, characterId, null, false); });
+    public RuntimeItemInstance Unequip(string instanceId, string characterId) => Atomic(() => { var item = RequireOwned(instanceId, characterId); if (item.EquippedSlot is null) throw new InvalidOperationException("Item is not equipped."); if (_catalog.Require(item.CanonicalItemId).CursedWhenEquipped || IsMetadataTrue(item, "no_remove") || IsMetadataTrue(item, "cursed_no_remove")) throw new InvalidOperationException("Item cannot be removed according to projected instance restrictions."); return TransferCore(instanceId, RuntimeItemLocations.Character, characterId, characterId, null, false); });
     public RuntimeItemInstance RemoveEquipped(string instanceId, string characterId) => Unequip(instanceId, characterId);
 
     public RuntimeCorpseState CreateCorpse(string characterId, string roomId, long gold, TimeSpan? decayAfter = null) =>
@@ -1652,7 +1700,8 @@ public sealed partial class RuntimeItemEngine
         return item;
     }
 
-    private static bool IsDeathProtected(RuntimeItemInstance item) =>
+    private bool IsDeathProtected(RuntimeItemInstance item) =>
+        _catalog.Require(item.CanonicalItemId).RetainedOnDeath ||
         IsMetadataTrue(item, "death_protected") || IsMetadataTrue(item, "no_drop_on_death");
 
     private static bool IsMetadataTrue(RuntimeItemInstance item, string key) =>
@@ -1713,10 +1762,23 @@ public sealed partial class RuntimeItemEngine
 
     private RuntimeCorpseState RequireCorpse(string id) => _corpses.TryGetValue(id, out var corpse) && !corpse.CleanedUp ? corpse : throw new InvalidOperationException("Unknown or expired corpse.");
     private RuntimeItemInstance RequireOwned(string id, string owner) { var item = Require(id); if (!Same(item.OwnerId, owner)) throw new InvalidOperationException("Item ownership check failed."); return item; }
+    private void AddCreatedUnique(RuntimeItemInstance item)
+    {
+        var createdBeforeThisOperation = _createdQuantities.GetValueOrDefault(item.CanonicalItemId);
+        RuntimeClassicItemLimitCoordinator.EnsureCanCreate(
+            _catalog.ProjectRoot,
+            _catalog.WorldId,
+            _catalog.Require(item.CanonicalItemId),
+            item.StackQuantity,
+            createdBeforeThisOperation);
+        AddUnique(item);
+        _createdQuantities[item.CanonicalItemId] = checked(createdBeforeThisOperation + item.StackQuantity);
+    }
+
     private void AddUnique(RuntimeItemInstance item) { if (!_items.TryAdd(item.InstanceId, item)) throw new InvalidOperationException("Duplicate item instance ID."); }
     private RuntimeItemInstance Replace(RuntimeItemInstance item) { _items[item.InstanceId] = item; return item; }
     private void EnsureValid() { var report = RuntimeItemValidator.Validate(_catalog, _items.Values, _corpses.Values); if (!report.Passed) throw new InvalidOperationException(string.Join("; ", report.Issues.Select(x => x.Message))); }
-    private T Atomic<T>(Func<T> operation) { lock (_gate) { var beforeItems = new Dictionary<string, RuntimeItemInstance>(_items, StringComparer.OrdinalIgnoreCase); var beforeCorpses = new Dictionary<string, RuntimeCorpseState>(_corpses, StringComparer.OrdinalIgnoreCase); try { var result = operation(); EnsureValid(); return result; } catch { _items = beforeItems; _corpses = beforeCorpses; throw; } } }
+    private T Atomic<T>(Func<T> operation) { lock (_gate) { var beforeItems = new Dictionary<string, RuntimeItemInstance>(_items, StringComparer.OrdinalIgnoreCase); var beforeCorpses = new Dictionary<string, RuntimeCorpseState>(_corpses, StringComparer.OrdinalIgnoreCase); var beforeCreated = new Dictionary<string, int>(_createdQuantities, StringComparer.OrdinalIgnoreCase); try { var result = operation(); EnsureValid(); return result; } catch { _items = beforeItems; _corpses = beforeCorpses; _createdQuantities = beforeCreated; throw; } } }
     private static bool Same(string? left, string? right) => string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 }
 
@@ -2714,7 +2776,7 @@ public sealed partial class RuntimeItemEngine
         var definition = _catalog.Require(canonicalId);
         if (quantity < 1 || (!definition.Stackable && quantity != 1)) throw new InvalidOperationException("Invalid corpse item quantity.");
         var item = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, null, RuntimeItemLocations.Corpse, corpseId, null, definition.DefaultCharges, quantity, null, metadata);
-        AddUnique(item);
+        AddCreatedUnique(item);
         return item;
     });
 

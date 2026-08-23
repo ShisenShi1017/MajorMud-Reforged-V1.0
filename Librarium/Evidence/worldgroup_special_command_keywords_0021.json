@@ -198,11 +198,11 @@
     "argumentCount": 4,
     "parsedArguments": [
       "actionRecordId",
-      "actionIndex",
+      "optionalMessageRecordId",
       "selector",
-      "mode"
+      "actionSlot"
     ],
-    "modeRangeInclusive": [
+    "actionSlotRangeInclusive": [
       0,
       10
     ],
@@ -210,13 +210,13 @@
     "executor": "0x0046C573",
     "executorArguments": [
       "resolvedRoomRecord",
-      "actionIndex",
+      "optionalMessageRecordId",
       "selector",
-      "mode"
+      "actionSlot"
     ],
     "executorContract": {
       "entry": "0x0046C573",
-      "switchField": "word at resolvedRoomRecord + 0x360 + actionIndex*2",
+      "switchField": "word at resolvedRoomRecord + 0x360 + actionSlot*2",
       "switchDomain": "observed 6..24 before default",
       "preOutput": "optional local and room broadcast text from action metadata",
       "ownership": "MajorMUD-local action executor; uses Worldgroup session/output services through existing local wrappers"

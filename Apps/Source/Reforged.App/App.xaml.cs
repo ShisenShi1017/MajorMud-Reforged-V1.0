@@ -1,5 +1,7 @@
 using System.IO;
+using System.Net.Http;
 using System.Windows;
+using Reforged.App.Brains;
 using Reforged.App.Services;
 using Reforged.App.Forge;
 using Reforged.App.Guardians;
@@ -11,6 +13,8 @@ namespace Reforged.App;
 public partial class App : Application
 {
     private ServiceRegistry? _services;
+    private IAsyncDisposable? _brainLifetime;
+    private IAsyncDisposable? _playerLifetime;
     private int _shutdownStarted;
     private readonly CancellationTokenSource _applicationLifetime = new();
 
@@ -70,15 +74,146 @@ public partial class App : Application
             await playViewModel.InitializeAsync();
             var forgeStore = new ForgeStateStore(settings.RootPath);
             var forgeRepository = new ForgeRepositoryService();
+            var repositoryRoot = forgeRepository.DiscoverRepositoryRoot();
+            var borinMemory = new BorinMemoryStore(repositoryRoot, logger);
+            var borinLivingCharacter = new BorinLivingCharacterStore(repositoryRoot, logger);
+            var borinSocialMemory = new BorinSocialMemoryStore(repositoryRoot, logger);
+            var borinEpisodicMemory = new BorinEpisodicMemoryStore(repositoryRoot, logger);
+            var borinMemoryConsolidation = new BorinMemoryConsolidationStore(repositoryRoot, logger);
+            var borinTemporalContinuity = new BorinTemporalContinuityStore(repositoryRoot, logger);
+            var borinCharacterGrowth = new BorinCharacterGrowthStore(repositoryRoot, logger);
+            var borinInitiative = new BorinInitiativeStore(repositoryRoot, logger);
+            var borinVoice = new BorinVoiceStore(repositoryRoot, logger);
+            var borinConversationRepair = new BorinConversationRepairStore(repositoryRoot, logger);
+            var borinSituationalAwareness = new BorinSituationalAwarenessStore(repositoryRoot, logger);
+            var borinGroupConversation = new BorinGroupConversationAwarenessStore(repositoryRoot, logger);
+            var borinNaturalInitiative = new BorinNaturalInitiativeStore(repositoryRoot, logger);
+            var borinGameplayLearning = new BorinGameplayLearningStore(repositoryRoot, logger);
+            var borinSelfKnowledge = new BorinSelfKnowledgeStore();
+            var borinConversationDirector = new BorinConversationDirector();
+            var borinReadOnlyAccess = new BorinReadOnlyAccess();
+            var borinClassicTraceAccess = new BorinClassicTraceAccess();
+            var borinMajorMudKnowledge = new BorinMajorMudKnowledgeCatalog();
+            var borinVerifiedLearning = new BorinVerifiedKnowledgeLearning(repositoryRoot);
+            var borinKnowledgeIndex = new BorinKnowledgeCore(new BorinKnowledgeIndex(), borinMajorMudKnowledge, borinVerifiedLearning);
+            var borinAcademy = new BorinAcademy(borinKnowledgeIndex, borinVerifiedLearning);
+            var borinKnowledgeBootstrap = new BorinReforgedKnowledgeBootstrap();
+            var borinMajorMudMastery = new BorinMajorMudMastery();
+            var borinEngineeringWorkspace = new BorinEngineeringWorkspace();
+            var borinEngineeringOrchestrator = new BorinEngineeringOrchestrator(borinEngineeringWorkspace);
+            var borinEngineeringCorrectionLoop = new BorinEngineeringCorrectionLoop(borinEngineeringWorkspace);
+            var borinCredentialStore = new WindowsBorinSecureCredentialStore();
+            var lightningCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Lightning);
+            var ultraCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Ultra);
             var forgeCommands = new ForgeCommandRunner();
             var forgeBrain = new ForgeBrain(forgeRepository, forgeCommands);
+            var localGgufBrain = new LocalGgufBrain(
+                new NullBrain(),
+                logger,
+                borinLivingCharacter,
+                borinSocialMemory,
+                borinEpisodicMemory,
+                borinMemoryConsolidation,
+                borinTemporalContinuity,
+                borinCharacterGrowth,
+                borinInitiative,
+                borinVoice,
+                borinConversationRepair,
+                borinSituationalAwareness,
+                borinGroupConversation,
+                borinGameplayLearning,
+                borinSelfKnowledge,
+                borinConversationDirector);
+            var overallNvidiaBudget = new SlidingWindowAiRateBudget();
+            var lightningRateBudget = new SlidingWindowAiRateBudget();
+            var ultraRateBudget = new SlidingWindowAiRateBudget(new AiRateBudgetOptions
+            {
+                NormalRequestsPerWindow = 8,
+                HardRequestsPerWindow = 10
+            });
+            var rawLightningProvider = new NvidiaNimProvider(new HttpClient(), lightningCredentialStore);
+            var rawUltraProvider = new NvidiaNimProvider(new HttpClient(), ultraCredentialStore, new NvidiaNimOptions
+            {
+                Model = "nvidia/nemotron-3-ultra-550b-a55b",
+                Timeout = TimeSpan.FromMinutes(4),
+                MaximumOutputTokens = 4096,
+                Temperature = 0.15
+            });
+            var lightningProvider = new RateLimitedAiProvider(
+                new RateLimitedAiProvider(
+                    rawLightningProvider,
+                    lightningRateBudget,
+                    AiRatePriority.InteractiveBurst),
+                overallNvidiaBudget,
+                AiRatePriority.InteractiveBurst);
+            var ultraProvider = new RateLimitedAiProvider(
+                new RateLimitedAiProvider(
+                    rawUltraProvider,
+                    ultraRateBudget,
+                    AiRatePriority.InteractiveBurst),
+                overallNvidiaBudget,
+                AiRatePriority.InteractiveBurst);
+            var aiRoutingSettings = new BorinAiRoutingSettings();
+            var aiProviderRouter = new TieredBorinAiProviderRouter(
+                new LocalAiProvider(localGgufBrain),
+                lightningProvider,
+                ultraProvider,
+                aiRoutingSettings);
+            IBrain borinBrain = new AiProviderBrainAdapter(aiProviderRouter);
+            _brainLifetime = localGgufBrain;
+            var borinPlayerResearch = new BorinPlayerResearch(
+                clientSessions,
+                borinBrain,
+                logger,
+                borinCredentialStore,
+                borinNaturalInitiative,
+                borinGameplayLearning);
+            _playerLifetime = borinPlayerResearch;
             var forgeBrainManager = new ForgeBrainManager();
             var forgeTools = new ForgeDeveloperTools();
-            var forgeViewModel = new ForgeGuardianViewModel(forgeStore, forgeRepository, forgeBrain, forgeTools, forgeBrainManager);
+            var forgeViewModel = new ForgeGuardianViewModel(
+                forgeStore,
+                forgeRepository,
+                borinBrain,
+                borinMemory,
+                borinReadOnlyAccess,
+                borinClassicTraceAccess,
+                borinKnowledgeIndex,
+                borinKnowledgeBootstrap,
+                borinEngineeringWorkspace,
+                borinEngineeringOrchestrator,
+                borinEngineeringCorrectionLoop,
+                borinPlayerResearch,
+                borinVerifiedLearning,
+                borinMajorMudKnowledge,
+                borinAcademy,
+                borinNaturalInitiative,
+                playViewModel,
+                forgeTools,
+                forgeBrainManager,
+                lightningCredentialStore,
+                ultraCredentialStore,
+                lightningProvider,
+                ultraProvider,
+                lightningRateBudget,
+                ultraRateBudget,
+                overallNvidiaBudget,
+                aiProviderRouter,
+                rawLightningProvider,
+                rawUltraProvider,
+                aiRoutingSettings,
+                localGgufBrain);
             await forgeViewModel.InitializeAsync();
             var guardianStore = new GuardianAssignmentStore(settings.RootPath);
             var guardianRouter = new GuardianBrainRouter();
-            var guardianHallViewModel = new GuardianHallViewModel(guardianStore, guardianRouter, clientSessions);
+            var guardianHallViewModel = new GuardianHallViewModel(
+                guardianStore,
+                guardianRouter,
+                clientSessions,
+                forgeStore,
+                forgeRepository,
+                forgeBrain,
+                forgeTools);
             await guardianHallViewModel.InitializeAsync();
 
             manager.Register(new Workspace("home", "Dashboard", new DashboardView { DataContext = dashboardViewModel }));
@@ -117,6 +252,42 @@ public partial class App : Application
                 .Add<IForgeRepositoryService>(forgeRepository)
                 .Add<IForgeCommandRunner>(forgeCommands)
                 .Add<IForgeBrain>(forgeBrain)
+                .Add<LocalGgufBrain>(localGgufBrain)
+                .Add<IBrain>(borinBrain)
+                .Add<IBorinMemoryStore>(borinMemory)
+                .Add<IBorinLivingCharacterStore>(borinLivingCharacter)
+                .Add<IBorinSocialMemoryStore>(borinSocialMemory)
+                .Add<IBorinEpisodicMemoryStore>(borinEpisodicMemory)
+                .Add<IBorinMemoryConsolidationStore>(borinMemoryConsolidation)
+                .Add<IBorinTemporalContinuityStore>(borinTemporalContinuity)
+                .Add<IBorinCharacterGrowthStore>(borinCharacterGrowth)
+                .Add<IBorinInitiativeStore>(borinInitiative)
+                .Add<IBorinVoiceStore>(borinVoice)
+                .Add<IBorinConversationRepairStore>(borinConversationRepair)
+                .Add<IBorinSituationalAwarenessStore>(borinSituationalAwareness)
+                .Add<IBorinGroupConversationAwarenessStore>(borinGroupConversation)
+                .Add<IBorinNaturalInitiativeStore>(borinNaturalInitiative)
+                .Add<IBorinGameplayLearningStore>(borinGameplayLearning)
+                .Add<IBorinSelfKnowledgeStore>(borinSelfKnowledge)
+                .Add<IBorinConversationDirector>(borinConversationDirector)
+                .Add<IBorinReadOnlyAccess>(borinReadOnlyAccess)
+                .Add<IBorinClassicTraceAccess>(borinClassicTraceAccess)
+                .Add<IBorinKnowledgeIndex>(borinKnowledgeIndex)
+                .Add<IBorinKnowledgeCore>(borinKnowledgeIndex)
+                .Add<IBorinMajorMudKnowledgeCatalog>(borinMajorMudKnowledge)
+                .Add<IBorinVerifiedKnowledgeLearning>(borinVerifiedLearning)
+                .Add<IBorinAcademy>(borinAcademy)
+                .Add<IBorinReforgedKnowledgeBootstrap>(borinKnowledgeBootstrap)
+                .Add<IBorinMajorMudMastery>(borinMajorMudMastery)
+                .Add<IBorinEngineeringWorkspace>(borinEngineeringWorkspace)
+                .Add<IBorinEngineeringOrchestrator>(borinEngineeringOrchestrator)
+                .Add<IBorinEngineeringCorrectionLoop>(borinEngineeringCorrectionLoop)
+                .Add<IBorinSecureCredentialStore>(borinCredentialStore)
+                .Add<INvidiaNimCredentialStore>(lightningCredentialStore)
+                .Add<IAiRateBudget>(overallNvidiaBudget)
+                .Add<IBorinAiRouteTelemetry>(aiProviderRouter)
+                .Add<IAiProvider>(aiProviderRouter)
+                .Add<IBorinPlayerResearch>(borinPlayerResearch)
                 .Add<IForgeBrainManager>(forgeBrainManager)
                 .Add<IForgeDeveloperTools>(forgeTools)
                 .Add<IGuardianAssignmentStore>(guardianStore)
@@ -179,6 +350,7 @@ public partial class App : Application
                 {
                     StopHostSafelyAsync(shutdownCts.Token, logger),
                     StopClientSessionsSafelyAsync(logger),
+                    DisposeBrainSafelyAsync(logger),
                     SaveSettingsSafelyAsync(logger),
                 };
 
@@ -242,6 +414,36 @@ public partial class App : Application
         catch (Exception exception)
         {
             logger.Error("Settings save during shutdown failed", exception);
+        }
+    }
+
+
+    private async Task DisposeBrainSafelyAsync(IAppLogger logger)
+    {
+        if (_playerLifetime is not null)
+        {
+            try
+            {
+                await _playerLifetime.DisposeAsync();
+                _playerLifetime = null;
+            }
+            catch (Exception exception)
+            {
+                logger.Error("Borin external-player shutdown failed", exception);
+            }
+        }
+
+        if (_brainLifetime is null)
+            return;
+
+        try
+        {
+            await _brainLifetime.DisposeAsync();
+            _brainLifetime = null;
+        }
+        catch (Exception exception)
+        {
+            logger.Error("Direct GGUF brain shutdown failed", exception);
         }
     }
 

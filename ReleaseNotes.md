@@ -1,10 +1,28 @@
 # Release Notes
 
+## Classic economy and service closure
+
+All generated Classic shops, banks, trainers, inventory links, item economy records, and economy rules now have explicit runtime coverage. Live purchases apply decoded shop markup, and persistent restocking honors decoded timing, quantity, probability, and stock limits.
+
+## Classic spell and status closure
+
+All 1,350 generated Classic spells and 111 generated status effects now have explicit decoded execution-family coverage. All 105 decoded ability IDs are classified, damage/healing uses decoded ability vectors first, and the corpus audit reports zero unclassified records.
+
+## Full decoded remoteaction closure
+
+All 139 decoded textblock invocations (85 distinct signatures) now resolve to generated runtime contracts: 62 paired exit toggles, 22 persisted native state-bit controllers, and one common-finalization action. The contracts remain consolidated in `room_interactions.json`; no extra runtime data file was added. Local audit and living-world plus interaction/narrative smoke gates pass with zero evidence-gated signatures.
+
 ## Guardian Hall Engineering Department
 
 Guardian Hall now includes Borin's ten-phase engineering department. The safe default is cumulative candidate ZIP generation inside isolated workspaces. Autonomous engineering and direct live-repository editing are independent, persisted, default-off operator controls.
 
 Candidate ZIPs contain modified/new files only plus a patch, manifest, validation log, README, and `Install-and-Validate.bat`. Enabling autonomy alone does not grant live-edit authority.
+
+Borin now exposes independent switches for planning, engineering, build, validation, runtime testing, gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and continuous overnight mode. Emergency Stop immediately cancels active execution and pauses queued work without changing those saved switches.
+
+An Engineering Objective field and **Assign: Fix Runtime Disconnects** preset provide the missing problem assignment surface. The preset queues only the investigation and repair stages authorized by the enabled switches.
+
+Autonomous Engineering now calls Borin's selected Forge/LM Studio coding model with captured diagnostic evidence, requires a unified Git diff, validates and applies it only inside the isolated worktree, and exposes the latest cumulative candidate ZIP path for next-day operator review.
 
 ## Guardian Hall Phase 3-0164 — Final Hardening and Self-Test
 
@@ -90,13 +108,14 @@ Verification:
 - Reforged app startup smoke after the MegaMUD-style terminal-window repair: PASS.
 - Complete current-health validator: PASS 13/13.
 - Classic compiler/runtime audits: PASS; 26,668/26,668 generated room descriptions and 26,668/26,668 runtime-loaded descriptions.
-- Interaction/narrative smoke: PASS; 2,183 quests, 83 executable quest entries, 182 decoded stage scripts, and exhaustive NPC quest-entry dispatch validation.
+- Interaction/narrative smoke: PASS; compact runtime contains 83/83 executable quest entries, 182 decoded stage scripts, zero pending quest candidates, and exhaustive NPC quest-entry dispatch validation.
 - Room native effect/message decode: PASS; 12/12 target exits resolved and 117 unique room message records generated.
 - Quest dialogue dispatch: PASS; 182 decoded stage scripts, 83 NPC quest-entry triggers, 182 linked script references, item consume/reward transition, and failure/no-mutation behavior.
 - Quest/script edge closure: PASS; random table execution, cast/summon/remoteaction coverage, world-intent target validation, Classic non-repeat quest guard, and exhaustive NPC quest-entry dispatch validation.
 - Remoteaction and room/object event recording: PASS.
 - Final native closure archive intake: PASS; server/test builds and full validator pass after import and runtime audit repair.
 - Bundle G native payload closure: PASS; F10 native payload audit reports 0 disconnects, and F10 complete through F15 persistence audits pass.
+- Native payload reproducibility: PASS; all 3,467 verified WCCTEXT2 payloads now survive a clean Librarium compile as one generated runtime file.
 - Latest validator report: `Reports/RuntimeVerification/validator_latest.md`.
 
 Known limitation:
@@ -189,3 +208,4 @@ Brother Caelum can now search decoded evidence by file identity, findings, confi
 
 ## Guardian Hall Phase 3-0163 — Chamber Visual Identity
 Each Guardian room now has a unique parchment palette, accent border, and role-purpose badge for faster visual orientation.
+CodeUpdate0139 now includes the complete decoded WCCMMUD SYSOP/GAMEOP command catalog, authenticated role enforcement, six safely executable native command roots, and explicit fail-closed reporting for commands still awaiting exact native evidence or an owning runtime subsystem.

@@ -16,7 +16,7 @@
 
         <TabControl>
             <TabItem Header="Server">
-                <Grid Margin="12" DataContext="{Binding SelectedLiveSession}">
+                <Grid Margin="12" DataContext="{Binding Session}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition/>
@@ -45,7 +45,7 @@
             </TabItem>
 
             <TabItem Header="Terminal">
-                <Grid Margin="12" DataContext="{Binding SelectedLiveSession.TerminalPreferences}">
+                <Grid Margin="12" DataContext="{Binding Session.TerminalPreferences}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition/>
@@ -56,13 +56,23 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <CheckBox Content="Enable Telnet negotiation" IsChecked="{Binding EnableTelnetNegotiation}"/>
-                    <CheckBox Grid.Row="1" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}"/>
-                    <CheckBox Grid.Row="2" Content="Show timestamps" IsChecked="{Binding ShowTimestamps}"/>
-                    <CheckBox Grid.Row="3" Content="Log terminal output" IsChecked="{Binding LoggingEnabled}"/>
-                    <TextBlock Grid.Row="4" Text="Scrollback lines" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding MaximumScrollbackLines, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="1" Text="Terminal type" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Width="180" HorizontalAlignment="Left"
+                             Text="{Binding TerminalType, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Row="2" Content="Use IBM CP437 character set" IsChecked="{Binding UseCodePage437}"/>
+                    <CheckBox Grid.Row="3" Content="Capture raw Telnet traffic" IsChecked="{Binding CaptureTelnetTraffic}"
+                              ToolTip="Writes diagnostic traffic to LocalAppData\MajorMudReforged\TelnetLogs."/>
+                    <CheckBox Grid.Row="4" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}"/>
+                    <CheckBox Grid.Row="5" Content="Show timestamps" IsChecked="{Binding ShowTimestamps}"/>
+                    <CheckBox Grid.Row="6" Content="Log terminal output" IsChecked="{Binding LoggingEnabled}"/>
+                    <TextBlock Grid.Row="7" Text="Scrollback lines" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Width="120" HorizontalAlignment="Left"
+                             Text="{Binding MaximumScrollbackLines, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
             </TabItem>
 
@@ -78,11 +88,11 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <CheckBox Content="Automation enabled" IsChecked="{Binding AutomationProfile.Enabled}"/>
+                        <CheckBox Content="Automation enabled" IsChecked="{Binding Host.AutomationProfile.Enabled}"/>
                         <TextBlock Grid.Row="1" Text="Profile name" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding AutomationProfile.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Host.AutomationProfile.Name, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Grid.Row="2" Text="Minimum command delay" VerticalAlignment="Center"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding AutomationProfile.MinimumCommandDelayMs, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding Host.AutomationProfile.MinimumCommandDelayMs, UpdateSourceTrigger=PropertyChanged}"/>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
@@ -95,10 +105,10 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Profile:" VerticalAlignment="Center"/>
-                        <ComboBox Width="320" Margin="8,0" ItemsSource="{Binding AvailableParsingProfiles}" SelectedItem="{Binding SelectedParsingProfileSummary}" DisplayMemberPath="DisplayName"/>
+                        <ComboBox Width="320" Margin="8,0" ItemsSource="{Binding Host.AvailableParsingProfiles}" SelectedItem="{Binding Host.SelectedParsingProfileSummary}" DisplayMemberPath="DisplayName"/>
                         <Button Content="Open" Padding="12,5" Click="SelectParsingProfileClicked"/>
                     </StackPanel>
-                    <DataGrid Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding ParsingProfile.Rules}" SelectedItem="{Binding SelectedParsingRule}" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding Host.ParsingProfile.Rules}" SelectedItem="{Binding Host.SelectedParsingRule}" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="55"/>
                             <DataGridTextColumn Header="Type" Binding="{Binding Kind}" Width="150"/>

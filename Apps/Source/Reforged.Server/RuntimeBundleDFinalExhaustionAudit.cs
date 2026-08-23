@@ -83,9 +83,6 @@ public static class RuntimeBundleDFinalExhaustionAudit
         {
             "Data/Classic/rooms.json",
             "Data/Classic/exits.json",
-            "Data/Classic/environment_rooms.json",
-            "Data/Classic/exit_traps.json",
-            "Data/Classic/map_topology.json",
             "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/rooms_decoded.json",
             "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
             "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",

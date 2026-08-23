@@ -1,0 +1,75 @@
+{
+  "authority": "Librarium",
+  "update": "0139",
+  "scope": "classic_map17_decoded_pedestal_actions",
+  "records": [
+    {
+      "id": "interaction.decoded.map17.3037.diamond-pedestal",
+      "object_type": "room_interaction",
+      "world_scope": ["classic"],
+      "interaction_kind": "exit_action",
+      "from_room_id": "room.map17.3037",
+      "bound_exit_id": "exit.map17.3042.n",
+      "bound_edge_state_id": "edge-state.map17.3042.n",
+      "action_number": 1,
+      "commands": ["put diamond in hole", "put diamond on pedestal", "place diamond on pedestal", "place diamond in hole"],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_item_action",
+      "command_semantics": {
+        "required_room_item_id": "item.1917",
+        "room_item_failure_textblock_id": 1373,
+        "required_inventory_item_id": "item.1921",
+        "inventory_item_failure_textblock_id": 1094,
+        "consume_inventory_item": true,
+        "success_message_ids": [3318, 3322],
+        "success_remote_action": [3042, 0, 1, 0]
+      },
+      "evidence_refs": [{"path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "record": "textblock.4252"}]
+    },
+    {
+      "id": "interaction.decoded.map17.3039.pearl-pedestal",
+      "object_type": "room_interaction",
+      "world_scope": ["classic"],
+      "interaction_kind": "exit_action",
+      "from_room_id": "room.map17.3039",
+      "bound_exit_id": "exit.map17.3042.n",
+      "bound_edge_state_id": "edge-state.map17.3042.n",
+      "action_number": 2,
+      "commands": ["put pearl in hole", "put pearl on pedestal", "place pearl on pedestal", "place pearl in hole"],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_item_action",
+      "command_semantics": {"required_room_item_id":"item.1918","room_item_failure_textblock_id":1373,"required_inventory_item_id":"item.1923","inventory_item_failure_textblock_id":1094,"consume_inventory_item":true,"success_message_ids":[3319,3322],"success_remote_action":[3042,0,2,0]},
+      "evidence_refs": [{"path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "record": "textblock.4253"}]
+    },
+    {
+      "id": "interaction.decoded.map17.3041.moonstone-pedestal",
+      "object_type": "room_interaction",
+      "world_scope": ["classic"],
+      "interaction_kind": "exit_action",
+      "from_room_id": "room.map17.3041",
+      "bound_exit_id": "exit.map17.3042.n",
+      "bound_edge_state_id": "edge-state.map17.3042.n",
+      "action_number": 3,
+      "commands": ["put moonstone in hole", "put moonstone on pedestal", "place moonstone on pedestal", "place moonstone in hole"],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_item_action",
+      "command_semantics": {"required_room_item_id":"item.1919","room_item_failure_textblock_id":1373,"required_inventory_item_id":"item.1922","inventory_item_failure_textblock_id":1094,"consume_inventory_item":true,"success_message_ids":[3320,3322],"success_remote_action":[3042,0,3,0]},
+      "evidence_refs": [{"path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "record": "textblock.4254"}]
+    },
+    {
+      "id": "interaction.decoded.map17.3043.marble-pedestal",
+      "object_type": "room_interaction",
+      "world_scope": ["classic"],
+      "interaction_kind": "exit_action",
+      "from_room_id": "room.map17.3043",
+      "bound_exit_id": "exit.map17.3042.n",
+      "bound_edge_state_id": "edge-state.map17.3042.n",
+      "action_number": 4,
+      "commands": ["put marble in hole", "put marble on pedestal", "place marble on pedestal", "place marble in hole"],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_item_action",
+      "command_semantics": {"required_room_item_id":"item.1920","room_item_failure_textblock_id":1373,"required_inventory_item_id":"item.1924","inventory_item_failure_textblock_id":1094,"consume_inventory_item":true,"success_message_ids":[3321,3322],"success_remote_action":[3042,0,4,0]},
+      "evidence_refs": [{"path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "record": "textblock.4255"}]
+    }
+  ]
+}

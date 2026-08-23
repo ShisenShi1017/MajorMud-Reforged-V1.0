@@ -1,0 +1,48 @@
+{
+  "schema": "majormud.librarium.npc-hit-spell-textblock.v1",
+  "record_count": 1,
+  "records": [
+    {
+      "id": "script.npc_hit_spell.spell686.textblock2510",
+      "name": "Pyramid sphinx fall transition",
+      "object_type": "script",
+      "world_scope": ["classic"],
+      "script_type": "npc_hit_spell_textblock_chain",
+      "spell_id": 686,
+      "root_textblock_id": 2510,
+      "source_script": "random 2511",
+      "random_table": {
+        "textblock_id": 2511,
+        "roll_minimum": 1,
+        "roll_maximum": 100,
+        "branches": [
+          {"threshold": 25, "textblock_id": 2512, "operations": ["message 1960", "teleport 1857 12", "message 1961", "message 1962", "teleport 1278 12", "message 1963", "cast 689", "cast 688"]},
+          {"threshold": 50, "textblock_id": 2513, "operations": ["message 1960", "teleport 1867 12", "message 1961", "message 1962", "teleport 1263 12", "message 1963", "cast 689", "cast 688"]},
+          {"threshold": 75, "textblock_id": 2514, "operations": ["message 1960", "teleport 1901 12", "message 1961", "message 1962", "teleport 1255 12", "message 1963", "cast 689", "cast 688"]},
+          {"threshold": 100, "textblock_id": 2515, "operations": ["message 1960", "teleport 1800 12", "message 1961", "message 1962", "teleport 1239 12", "message 1963", "cast 689", "cast 688"]}
+        ]
+      },
+      "evidence_refs": [
+        {
+          "source": "MMExplorerSQLData",
+          "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+          "textblock_ids": [2510, 2511, 2512, 2513, 2514, 2515],
+          "classification": "structured_mdb_decode"
+        },
+        {
+          "source": "OmniVerseCodexApi",
+          "path": "Librarium/Objects/spells/spell_records_0122.json",
+          "spell_id": 686,
+          "classification": "spell_textblock_relationship"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "runtime_authoritative",
+        "exports_to": "/Data/<world>/scripts.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "classic_lock": "decoded_mdb_textblock_chain"
+    }
+  ]
+}

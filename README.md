@@ -1,5 +1,15 @@
 # MajorMUD Reforged
 
+Decoded Map 17 boulder failures execute their complete native chain: message 3309 followed by level-scaled self-damage spell 1324 with persistent HP mutation.
+
+CodeUpdate0139 includes reproducible WCCMSG2 output: 3,869 logical messages retain all three native channels, `message` and `text` namespaces are distinct, and decoded pedestal/boulder output is evidence-bound.
+
+Classic commerce is fully data-connected across generated shops, banks, trainers, item prices, markup, persistent stock, and decoded regeneration rules.
+
+The Classic runtime now has exhaustive spell/status family coverage: all 1,350 generated spells, 105 decoded ability IDs, and 111 status effects are mapped to explicit runtime consumers or structural control behavior.
+
+CodeUpdate0139 includes complete decoded `remoteaction` runtime coverage: all 85 signatures from 139 textblock invocations compile into the existing consolidated Classic room-interaction data.
+
 MajorMUD Reforged is a standalone, data-driven game engine and toolset.
 
 ## Current Status
@@ -20,7 +30,9 @@ Short version:
 - Generated runtime readers support compiler chunk manifests; optional NPC AI runtime relationships can be derived from generated spawns.
 - Classic is evidence-locked.
 - `ImportedDatabases/` and real `Saves/` must be preserved.
-- Guardian Hall Engineering exposes all ten engineering phases through a guarded queue. Autonomous engineering and live-repository editing are separate persisted controls and both default off; the current operating mode produces reviewable cumulative candidate ZIPs from isolated workspaces.
+- Guardian Hall Engineering exposes all ten engineering phases through a guarded queue with independent controls for planning, engineering, builds, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight operation. Candidate ZIP generation defaults on; autonomous and live-update capabilities default off, and Emergency Stop cancels execution without changing saved preferences.
+- Borin accepts a persisted Engineering Objective and includes a one-click **Fix Runtime Disconnects** assignment preset.
+- With Autonomous Engineering enabled and a Forge coding model selected, Borin can author and safely apply repair diffs inside the isolated worktree; later enabled gates test them and Candidate ZIP Generation packages the actual changed files.
 
 ## Verified Runtime Scope
 
@@ -39,7 +51,7 @@ Short version:
 - Command parsing: runtime commands now use centralized exact alias, unique-prefix, and ambiguity-rejection rules for Telnet/MegaMUD input.
 - Spawn placement: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, and room rendering displays only room-scoped living NPC instances with disposition-based color.
 - Placement audit: `room.map1.21` currently proves one neutral `guardsman` from `spawn.21.5`; the user-expected `elite guardsman` is a separate data correction if the generated source field is wrong.
-- Room decode closure: the final 7 distinct native/passive room-effect linkage gaps across 12 exit rows are resolved without invented commands; MegaMUD `/mp` route replay found 0 command hits for those exact exits.
+- Room decode closure: exact decoded evidence promotes the sphinx, rubble, ten Map 17 boulder, four pedestal-item, and final `stars` sphinx chains. Runtime now binds all 206/206 action gates with zero native/passive placeholders.
 - Room message catalog: 117 unique native WCCMSG offset-backed records now cover room actions, doors, hidden exits, lock/key failures, search successes, and generic failures.
 - Quest dialogue dispatch: Librarium now generates 182 decoded textblock stage scripts and 83 NPC quest-entry triggers; `talk <npc>` dispatches through room-scoped live NPCs and applies decoded quest flags, item consumption/rewards, experience/alignment, and response branches atomically.
 - Quest/script edge closure: generated random textblock tables execute through decoded threshold bindings; generated cast/summon/teleport/remoteaction targets validate before commit; quest teleports update the active session/character; summon intents materialize generated NPCs; remoteaction and room/object commits are recorded as durable living-world events; exhaustive generated NPC quest-entry dispatch validation passes.
@@ -47,6 +59,7 @@ Short version:
 - Verified/strong Librarium activation: strongly-correlated sidecar records now compile into generated runtime data, generated triggers contain 367 strong records, and unresolved exit targets are blocked by compiler cross-family validation.
 - Server/native-runtime audit repair: compiler room-description catalog discovery now includes plain `*_records.json` files, generated quest/item numeric strings are read safely by runtime catalog loaders, and remaining native decode gaps are tracked in `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`.
 - Bundle G native presentation closure: prior F10 native payload disconnects are resolved with explicit no-output decoded text mappings and exact WCCMSG payload evidence for `message 2044` and `message 3290`; F10 native payload through F15 persistence audits pass locally.
+- Native presentation reproducibility closure promotes all 3,467 verified WCCTEXT2 payloads into Librarium; clean compilation now regenerates the single payload runtime file instead of deleting an ignored prerequisite.
 - Reforged app Librarium tab: the app now exposes a read-only searchable Classic data browser with tabs for Weapons, Armor, Spells, Abilities, Classes, Races, Items, Monsters, Quests, and Rooms. The left list shows names only. Classes and races use the richer character-foundation gameplay projection for abilities, magic/armor/combat info, and race min/max stats. Quests show nontechnical Host guidance such as who to talk to, what to say, needed items, and plain-language steps. The published EXE is `Release/MajorMudReforged/MajorMudReforged.exe`.
 - Reforged app Client tab: the Play workspace now behaves as a server/session launcher. The play surface opens in a dedicated MegaMUD-style terminal window with black terminal output, command input, menu tools, and a separate tabbed Client Options window.
 
@@ -59,3 +72,4 @@ Librarium -> generated /Data/<world> -> Server runtime -> read-only client view
 Do not hand-edit generated `/Data` as canonical source. Update Librarium/source compilers, regenerate data, then verify.
 
 One-time validation proofs are recorded in ValidationManifest.json.
+WCCMMUD online administration is exposed through authenticated `SYSOP` dispatch backed by generated Librarium data. The legacy SYSOP unlock value is configuration evidence and is never entered as a gameplay command.

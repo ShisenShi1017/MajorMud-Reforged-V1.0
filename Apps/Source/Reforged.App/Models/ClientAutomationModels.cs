@@ -15,6 +15,42 @@ public sealed class ClientAutomationProfile
     public int MinimumCommandDelayMs { get; set; } = 500;
     public ObservableCollection<ClientAutomationRule> Rules { get; set; } = [];
     public ClientAutomationOptions Options { get; set; } = new();
+    public ClientAutomationCapabilities Capabilities { get; set; } = new();
+}
+
+public sealed class ClientAutomationCapabilities
+{
+    public bool AliasesEnabled { get; set; }
+    public bool MacrosEnabled { get; set; }
+    public bool TextTriggersEnabled { get; set; }
+    public bool TimedEventsEnabled { get; set; }
+    public bool EmergencyStop { get; set; } = true;
+    public bool AwayFromKeyboardEnabled { get; set; }
+    public string AwayFromKeyboardMessage { get; set; } = "I am currently away from the keyboard and will reply when I return.";
+    public int AwayFromKeyboardReplyCooldownSeconds { get; set; } = 300;
+    public ObservableCollection<ClientCommandAlias> Aliases { get; set; } = [];
+    public ObservableCollection<ClientCommandMacro> Macros { get; set; } = [];
+    public ObservableCollection<ClientTextTrigger> TextTriggers { get; set; } = [];
+}
+
+public sealed class ClientCommandAlias
+{
+    public string Name { get; set; } = string.Empty;
+    public string Command { get; set; } = string.Empty;
+}
+
+public sealed class ClientCommandMacro
+{
+    public string Name { get; set; } = string.Empty;
+    public ObservableCollection<string> Commands { get; set; } = [];
+}
+
+public sealed class ClientTextTrigger
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string MatchText { get; set; } = string.Empty;
+    public string Command { get; set; } = string.Empty;
+    public int CooldownSeconds { get; set; } = 5;
 }
 
 public sealed class ClientAutomationOptions
@@ -297,14 +333,16 @@ public sealed record ClientAutomationContext(
     bool IsResting,
     bool IsMoving,
     string LastLine,
-    DateTimeOffset Timestamp);
+    DateTimeOffset Timestamp,
+    string SessionId = "");
 
 public sealed record ClientAutomationCommandRequest(
     string RuleId,
     string RuleName,
     string Command,
     AutomationArea Area,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt,
+    string SessionId = "");
 
 public sealed class ClientAutomationPolicy
 {

@@ -17,6 +17,7 @@ public sealed class TelnetConnection : IAsyncDisposable
     private const byte SuppressGoAhead = 3;
 
     private readonly NetworkStream _stream;
+    private readonly SemaphoreSlim _writeGate = new(1, 1);
     private readonly byte[] _single = new byte[1];
     private bool _skipNextLineFeed;
 
@@ -224,8 +225,16 @@ public sealed class TelnetConnection : IAsyncDisposable
 
     private async Task WriteBytesAsync(byte[] bytes, CancellationToken cancellationToken)
     {
-        await _stream.WriteAsync(bytes, cancellationToken).ConfigureAwait(false);
-        await _stream.FlushAsync(cancellationToken).ConfigureAwait(false);
+        await _writeGate.WaitAsync(cancellationToken).ConfigureAwait(false);
+        try
+        {
+            await _stream.WriteAsync(bytes, cancellationToken).ConfigureAwait(false);
+            await _stream.FlushAsync(cancellationToken).ConfigureAwait(false);
+        }
+        finally
+        {
+            _writeGate.Release();
+        }
     }
 
     public ValueTask DisposeAsync() => ValueTask.CompletedTask;

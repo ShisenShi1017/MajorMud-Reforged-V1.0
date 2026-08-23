@@ -3,7 +3,14 @@ using System.Text.Json;
 namespace Reforged.Server;
 
 public sealed record RuntimeClassicNativeTextblockPayload(int TextblockId, string Payload, long PageOffset, int PageIndex, string EvidenceState);
-public sealed record RuntimeClassicNativeDialogueMessagePayload(int MessageId, int RecordIndex, long RecordOffset, int PayloadOffset, string Payload, string EvidenceState);
+public sealed record RuntimeClassicNativeDialogueMessagePayload(
+    int MessageId,
+    long HeaderOffset,
+    string PlayerPayload,
+    string SecondaryPayload,
+    string TertiaryPayload,
+    int PhysicalOccurrenceCount,
+    string EvidenceState);
 
 public sealed class RuntimeClassicNativeTextblockPayloadAuthority
 {
@@ -81,43 +88,71 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
 
     private static IReadOnlyDictionary<int, RuntimeClassicNativeDialogueMessagePayload> LoadNativeDialogueMessages(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "Evidence", "native_dialogue_message_payload_mapping_0141.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Bundle G native dialogue message mapping evidence is missing.", path);
+        var path = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative WCCMSG2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var rows) || rows.ValueKind != JsonValueKind.Array)
-            throw new InvalidDataException("Bundle G native dialogue message mapping has no records array.");
+            throw new InvalidDataException("WCCMSG2 payload catalog has no records array.");
         var map = new Dictionary<int, RuntimeClassicNativeDialogueMessagePayload>();
         foreach (var row in rows.EnumerateArray())
         {
             var id = row.GetProperty("message_id").GetInt32();
-            var recordIndex = row.GetProperty("record_index").GetInt32();
-            var recordOffset = row.GetProperty("record_offset").GetInt64();
-            var payloadOffset = row.GetProperty("payload_offset").GetInt32();
-            var payload = row.GetProperty("payload").GetString() ?? string.Empty;
+            var headerOffset = row.GetProperty("header_offset").GetInt64();
+            var playerPayload = row.GetProperty("player_payload").GetString() ?? string.Empty;
+            var secondaryPayload = row.GetProperty("secondary_payload").GetString() ?? string.Empty;
+            var tertiaryPayload = row.GetProperty("tertiary_payload").GetString() ?? string.Empty;
+            var slotSize = row.GetProperty("slot_size").GetInt32();
+            var occurrenceCount = row.GetProperty("physical_occurrence_count").GetInt32();
             var evidence = row.GetProperty("evidence_state").GetString() ?? string.Empty;
-            if (id <= 0 || recordIndex < 0 || recordOffset != (long)recordIndex * 256L || payloadOffset < 0 ||
-                string.IsNullOrWhiteSpace(payload) || !evidence.Equals("verified_native_runtime", StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException($"Invalid native dialogue message mapping {id}.");
-            if (!map.TryAdd(id, new(id, recordIndex, recordOffset, payloadOffset, payload, evidence)))
-                throw new InvalidDataException($"Duplicate native dialogue message mapping {id}.");
+            if (id <= 0 || headerOffset < 0 || slotSize != 82 || occurrenceCount <= 0 ||
+                !evidence.Equals("verified_native_runtime", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"Invalid WCCMSG2 payload mapping {id}.");
+            if (!map.TryAdd(id, new(id, headerOffset, playerPayload, secondaryPayload, tertiaryPayload, occurrenceCount, evidence)))
+                throw new InvalidDataException($"Duplicate WCCMSG2 payload mapping {id}.");
         }
-        if (map.Count != 2 || !map.ContainsKey(2044) || !map.ContainsKey(3290))
-            throw new InvalidDataException("Expected exact native dialogue message mappings for 2044 and 3290.");
+        if (map.Count != 3869)
+            throw new InvalidDataException($"Expected 3869 logical WCCMSG2 payloads, found {map.Count}.");
         return map;
     }
 
-    public bool TryResolve(int textblockId, out string payload)
+    public bool TryResolveTextblock(int textblockId, out string payload)
     {
-        if (_messagePayloads.TryGetValue(textblockId, out var message)) { payload = message.Payload; return true; }
         if (_records.TryGetValue(textblockId, out var record)) { payload = record.Payload; return true; }
         if (_verifiedNoOutputTextblocks.Contains(textblockId)) { payload = string.Empty; return true; }
         payload = string.Empty; return false;
     }
 
-    public bool IsVerifiedNoOutput(int textblockId) => _verifiedNoOutputTextblocks.Contains(textblockId);
+    public bool TryResolveMessage(int messageId, out string payload)
+    {
+        if (_messagePayloads.TryGetValue(messageId, out var message)) { payload = message.PlayerPayload; return true; }
+        payload = string.Empty; return false;
+    }
 
-    public string Require(int textblockId) => TryResolve(textblockId, out var payload)
-        ? payload : throw new InvalidOperationException($"Native presentation payload {textblockId} is unresolved.");
+    public bool TryResolveSecondaryMessage(int messageId, out string payload)
+    {
+        if (_messagePayloads.TryGetValue(messageId, out var message)) { payload = message.SecondaryPayload; return true; }
+        payload = string.Empty; return false;
+    }
+
+    public bool TryResolveTertiaryMessage(int messageId, out string payload)
+    {
+        if (_messagePayloads.TryGetValue(messageId, out var message)) { payload = message.TertiaryPayload; return true; }
+        payload = string.Empty; return false;
+    }
+
+    public bool TryResolve(int textblockId, out string payload) => TryResolveTextblock(textblockId, out payload);
+
+    public bool IsVerifiedNoOutput(int textblockId) => _verifiedNoOutputTextblocks.Contains(textblockId);
+    public bool IsVerifiedNoOutputMessage(int messageId) =>
+        _messagePayloads.TryGetValue(messageId, out var message) && string.IsNullOrEmpty(message.PlayerPayload);
+
+    public string RequireTextblock(int textblockId) => TryResolveTextblock(textblockId, out var payload)
+        ? payload : throw new InvalidOperationException($"Native WCCTEXT2 payload {textblockId} is unresolved.");
+
+    public string RequireMessage(int messageId) => TryResolveMessage(messageId, out var payload)
+        ? payload : throw new InvalidOperationException($"Native WCCMSG2 payload {messageId} is unresolved.");
+
+    public string Require(int textblockId) => RequireTextblock(textblockId);
 }
 
 public static class RuntimeBundleFPhaseF10NativePayloadAudit
@@ -135,7 +170,10 @@ public static class RuntimeBundleFPhaseF10NativePayloadAudit
             foreach (var op in node.Operations.Where(x => x.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase) || x.Opcode.Equals("text", StringComparison.OrdinalIgnoreCase)))
             {
                 var target = op.NumericArguments.FirstOrDefault();
-                if (target <= 0 || !native.TryResolve(target, out _))
+                var resolved = op.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase)
+                    ? native.TryResolveMessage(target, out _)
+                    : native.TryResolveTextblock(target, out _);
+                if (target <= 0 || !resolved)
                     failures.Add($"textblock:{nodeId}:opcode:{op.Opcode}:target:{target}:presentation-namespace-unresolved");
             }
         }

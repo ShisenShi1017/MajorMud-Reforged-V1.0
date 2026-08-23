@@ -12,6 +12,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        if ((command.Name is "ask" or "talk")
+            && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
+            return "You are unable to speak.";
         var catalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var services = ResolveServicesAtRoom(catalog, session.CurrentRoom.RoomNumber).ToArray();
         if (services.Length == 0) throw new InvalidOperationException("There is no generated service in this room.");
@@ -42,7 +45,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         var entry = ResolveOffering(shop.GeneratedRecord, "inventory", request.Query, items);
         var itemId = ReadText(entry, "item_ref") ?? throw new InvalidOperationException("Generated shop entry has no item reference.");
         var definition = items.Require(itemId);
-        var cost = Math.Max(0, ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, character.WorldId, definition.Id)));
+        var itemRecord = RequireGeneratedItemRecord(_characters.ProjectRoot, character.WorldId, definition.Id);
+        var cost = Math.Max(0, ReadItemCost(itemRecord));
+        var costMultiplier = CostTypeCopperMultiplier(ReadItemCostType(itemRecord));
 
         return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
         {
@@ -50,8 +55,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 throw new InvalidOperationException($"{definition.Name} does not have {request.Quantity} in stock.");
             var before = _characters.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Character save was not found.");
             var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
-            var totalCostGold = checked(cost * request.Quantity);
-            var totalCostCopper = checked(totalCostGold * 100L);
+            var markedUnitCost=ApplyShopMarkup(cost,ReadShopMarkupPercent(shop.GeneratedRecord));
+            var totalCostCopper = checked(checked(markedUnitCost * request.Quantity) * costMultiplier);
             var settledState = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, totalCostCopper);
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
             RuntimeItemInstance? created = null;
@@ -86,7 +91,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             var canonicalId = canonicalIds[0];
             if (matching.Sum(x => x.StackQuantity) < request.Quantity)
                 throw new InvalidOperationException($"You do not carry {request.Quantity} {items.Require(canonicalId).Name}.");
-            var value = ReadItemCost(RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, canonicalId));
+            var itemRecord = RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, canonicalId);
+            var value = ReadItemCost(itemRecord);
             if (value <= 0) throw new InvalidOperationException("That item has no generated economy value.");
             var remaining = request.Quantity;
             foreach (var item in matching)
@@ -96,8 +102,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 engine.SellToMerchant(item.InstanceId, before.CharacterId, shop.Id, quantity);
                 remaining -= quantity;
             }
-            var totalValueGold = checked(value * request.Quantity);
-            var totalValueCopper = checked(totalValueGold * 100L);
+            var totalValueCopper = checked(checked(value * request.Quantity) * CostTypeCopperMultiplier(ReadItemCostType(itemRecord)));
             var settledState = RuntimeBundleCEconomyAuthority.CreditCopperValue(state, totalValueCopper);
             _characters.SaveCharacter(before with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
             if (stock.TryGetValue(canonicalId, out var current))
@@ -209,8 +214,11 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        if ((command.Name is "ask" or "talk") && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
+            return "You are unable to speak.";
         return command.Name switch
         {
+            "ask" => ExecuteDecodedNpcAsk(session, character, command.ArgumentText),
             "talk" => ExecuteGeneratedNpcDialogue(session, character, command.ArgumentText),
             "journal" or "quest" when command.Arguments.Count == 0 => RenderGeneratedQuestJournal(character),
             // Classic quest state is mutated only by decoded dialogue/script execution.  The old
@@ -224,9 +232,66 @@ public sealed partial class RuntimeLiveGameplayFacade
         };
     }
 
+    private string ExecuteDecodedNpcAsk(RuntimeSession session, RuntimeCharacterRecord character, string query)
+    {
+        var (npc, keyword) = ResolveAskNpcAndKeyword(session, query);
+        if (IsLiveNpcAffectedByAbility(session, npc.InstanceId, 76)) return $"{npc.Name} is unable to speak.";
+        var admission = AdmitLivingNpcDialogue(session, npc, character.CharacterId);
+        if (!admission.Admitted || string.IsNullOrWhiteSpace(admission.RequestId))
+            throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
+        try
+        {
+            var authority = RuntimeClassicAbilityAcquisitionAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
+            if (!authority.HasRoute(ParseLegacyId(npc.NpcId), keyword))
+            {
+                CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "ask-keyword-unresolved");
+                return $"{npc.Name} does not respond to that question.";
+            }
+            var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+            var context = new RuntimeQuestDialogueContext(character, items);
+            var result = authority.Execute(ParseLegacyId(npc.NpcId), keyword, context);
+            _characters.SaveCharacter(result.Character);
+            AwardCommittedGangExperience(character, result.Character);
+            if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"ability.{result.AbilityId}"))
+                throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
+            var lines = result.Lines.Count == 0 ? string.Empty : Environment.NewLine + string.Join(Environment.NewLine, result.Lines);
+            return $"{npc.Name}:{lines}";
+        }
+        catch
+        {
+            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "ask-execution-failed");
+            throw;
+        }
+    }
+
+    private (RuntimeLivingNpcState Npc, string Keyword) ResolveAskNpcAndKeyword(RuntimeSession session, string query)
+    {
+        var normalized = string.Join(' ', (query ?? string.Empty).Trim().Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
+        if (normalized.Length == 0) throw new InvalidOperationException("Usage: ASK <npc> <keyword>");
+        var candidates = LivingNpcsInRoom(session).Where(x => x.Alive)
+            .SelectMany(npc => new[] { npc.Name, npc.NpcId, npc.InstanceId }
+                .Where(label => !string.IsNullOrWhiteSpace(label))
+                .Select(label => (Npc: npc, Label: label.Trim())))
+            .Where(x => normalized.StartsWith(x.Label + " ", StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(x => x.Label.Length)
+            .ToArray();
+        if (candidates.Length == 0) throw new InvalidOperationException("No visible NPC and ASK keyword matched that request.");
+        var best = candidates[0];
+        return (best.Npc, normalized[(best.Label.Length + 1)..].Trim());
+    }
+
+    private static int ParseLegacyId(string value)
+    {
+        var dot = value.LastIndexOf('.');
+        return int.TryParse(dot >= 0 ? value[(dot + 1)..] : value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var id)
+            ? id : throw new InvalidOperationException($"NPC identity '{value}' is not a decoded legacy id.");
+    }
+
     private string ExecuteGeneratedNpcDialogue(RuntimeSession session, RuntimeCharacterRecord character, string query)
     {
         var npc = ResolveDialogueNpc(session, query);
+        if (IsLiveNpcAffectedByAbility(session, npc.InstanceId, 76))
+            return $"{npc.Name} is unable to speak.";
         var admission = AdmitLivingNpcDialogue(session, npc, character.CharacterId);
         if (!admission.Admitted || string.IsNullOrWhiteSpace(admission.RequestId))
             throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
@@ -254,6 +319,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var hostIntents = ApplyQuestWorldIntents(session, updatedCharacter, result.Events, result.TriggerId, result.ScriptId);
         updatedCharacter = hostIntents.Character;
         _characters.SaveCharacter(updatedCharacter);
+        AwardCommittedGangExperience(character, updatedCharacter);
         if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, result.ClauseId ?? result.ScriptId ?? "matched"))
             throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
         var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
@@ -270,17 +336,33 @@ public sealed partial class RuntimeLiveGameplayFacade
         return string.IsNullOrWhiteSpace(lines) ? $"{npc.Name} has nothing to say." : $"{npc.Name}:{Environment.NewLine}{lines}";
     }
 
+    private void AwardCommittedGangExperience(RuntimeCharacterRecord before, RuntimeCharacterRecord after)
+    {
+        var earned = checked(after.Experience - before.Experience);
+        if (earned <= 0) return;
+        var gangs = new RuntimeClassicGangStateService(_characters.ProjectRoot);
+        if (gangs.FindByMember(after.CharacterId) is not null)
+            gangs.AwardMemberExperience(after.CharacterId, earned);
+    }
+
 
     private static string ResolveDecodedNarrativeLine(string line, RuntimeClassicNativeTextblockPayloadAuthority payloads)
     {
         if (string.IsNullOrWhiteSpace(line)) return string.Empty;
         var trimmed = line.Trim();
-        foreach (var prefix in new[] { "message.", "textblock." })
+        const string messagePrefix = "message.";
+        if (trimmed.StartsWith(messagePrefix, StringComparison.OrdinalIgnoreCase))
         {
-            if (!trimmed.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
-            if (!int.TryParse(trimmed[prefix.Length..], NumberStyles.Integer, CultureInfo.InvariantCulture, out var id) || id <= 0)
+            if (!int.TryParse(trimmed[messagePrefix.Length..], NumberStyles.Integer, CultureInfo.InvariantCulture, out var id) || id <= 0)
                 throw new InvalidOperationException($"Decoded narrative reference '{line}' is malformed.");
-            return payloads.Require(id);
+            return payloads.RequireMessage(id);
+        }
+        const string textblockPrefix = "textblock.";
+        if (trimmed.StartsWith(textblockPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            if (!int.TryParse(trimmed[textblockPrefix.Length..], NumberStyles.Integer, CultureInfo.InvariantCulture, out var id) || id <= 0)
+                throw new InvalidOperationException($"Decoded narrative reference '{line}' is malformed.");
+            return payloads.RequireTextblock(id);
         }
         return trimmed;
     }
@@ -321,7 +403,14 @@ public sealed partial class RuntimeLiveGameplayFacade
                     lines.Add($"Host intent validated: cast_spell:{questEvent.SubjectId}");
                     break;
                 case "world_intent.remote_action":
-                    lines.Add($"Host intent preserved: remote_action:{questEvent.Metadata.GetValueOrDefault("raw", string.Empty)}");
+                    if(string.IsNullOrWhiteSpace(questEvent.SubjectId))
+                        throw new InvalidOperationException("Generated remoteaction intent has no signature.");
+                    Living(session).RecordQuestRemoteAction(
+                        questEvent.SubjectId,
+                        session.CurrentRoom.Id,
+                        scriptId ?? triggerId ?? "quest-dialogue",
+                        questEvent.Metadata);
+                    lines.Add($"Host intent applied: remote_action:{questEvent.SubjectId}");
                     break;
             }
         }
@@ -416,6 +505,21 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (item.TryGetProperty("economy", out var economy) && economy.ValueKind == JsonValueKind.Object) return ReadLong(economy, "cost");
         return ReadLong(item, "cost", "value", "price");
     }
+    private static int ReadItemCostType(JsonElement item)
+    {
+        if (item.TryGetProperty("economy", out var economy) && economy.ValueKind == JsonValueKind.Object)
+            return ReadInt(economy, "cost_type");
+        throw new InvalidDataException("Generated item economy is missing decoded cost_type.");
+    }
+    internal static long CostTypeCopperMultiplier(int costType) => costType switch
+    {
+        0 => 1L,
+        1 => 10L,
+        2 => 100L,
+        3 => 10_000L,
+        4 => 1_000_000L,
+        _ => throw new InvalidDataException($"Unknown decoded item cost_type {costType}.")
+    };
     private static int ReadShopMarkupPercent(JsonElement service)
     {
         var percent = ReadInt(service, "markup_percent");
@@ -474,7 +578,12 @@ public sealed class RuntimeWorldSystemsBundleSmokeReport
             Check(r,trainers.All(x=>x.GeneratedRecord.TryGetProperty("class_limit",out _)),"trainer-class-restrictions");
             Check(r,RuntimeCommand.SupportedCommands.Contains("train"),"train-routing");
             Check(r,RuntimeCommand.SupportedCommands.Contains("buy"),"buy-routing");
-            Check(r,RuntimeCommand.SupportedCommands.Contains("tat")&&RuntimeCommand.SupportedCommands.Contains("stats"),"tat-cp-spend-routing");
+            Check(r,RuntimeLiveGameplayFacade.CostTypeCopperMultiplier(0)==1L
+                && RuntimeLiveGameplayFacade.CostTypeCopperMultiplier(1)==10L
+                && RuntimeLiveGameplayFacade.CostTypeCopperMultiplier(2)==100L
+                && RuntimeLiveGameplayFacade.CostTypeCopperMultiplier(3)==10_000L
+                && RuntimeLiveGameplayFacade.CostTypeCopperMultiplier(4)==1_000_000L,"decoded-item-cost-type-denominations");
+            Check(r,RuntimeCommand.SupportedCommands.Contains("tat")&&RuntimeCommand.Parse("stats").Name.Equals("score",StringComparison.OrdinalIgnoreCase),"tat-cp-spend-routing");
             Check(r,TatCost(0)==1&&TatCost(9)==1&&TatCost(10)==2&&TatCost(19)==2&&TatCost(20)==3&&TatCost(29)==3&&TatCost(30)==4&&TatCost(39)==4&&TatCost(40)==5,"tat-tiered-costs");
             Check(r,TotalTatCost(0,40)==100,"tat-forty-point-total-cost");
             Check(r,typeof(RuntimeGameplayCompletionStateStore).GetMethod("ExecuteShopTransaction") is not null,"persistent-shop-stock-transaction");
@@ -482,6 +591,14 @@ public sealed class RuntimeWorldSystemsBundleSmokeReport
             var stockedShop=services.Services.First(x=>x.GeneratedRecord.TryGetProperty("inventory",out var inv)&&inv.ValueKind==JsonValueKind.Array&&inv.GetArrayLength()>0);
             var generatedEntry=stockedShop.GeneratedRecord.GetProperty("inventory")[0];
             Check(r,generatedEntry.TryGetProperty("normal_qty",out _)&&generatedEntry.TryGetProperty("max_qty",out _)&&generatedEntry.TryGetProperty("regen_qty",out _)&&generatedEntry.TryGetProperty("regen_time",out _),"generated-shop-restock-contract");
+            var cycle=DateTimeOffset.Parse("2026-07-29T00:00:00Z",CultureInfo.InvariantCulture);
+            var rollA=RuntimeGameplayCompletionStateStore.StableRestockRoll("shop.65","item.317",cycle);
+            var rollB=RuntimeGameplayCompletionStateStore.StableRestockRoll("shop.65","item.317",cycle);
+            Check(r,rollA==rollB&&rollA is >=1 and <=100,"deterministic-decoded-restock-percent-roll");
+            Check(r,RuntimeEconomyNativeMarkup.Apply(100,100,RuntimeEconomyRoundingPolicy.Floor)==100
+                &&RuntimeEconomyNativeMarkup.Apply(100,500,RuntimeEconomyRoundingPolicy.Floor)==500
+                &&RuntimeEconomyNativeMarkup.Apply(100,0,RuntimeEconomyRoundingPolicy.Floor)==0,
+                "decoded-native-markup-live-pricing");
         }
         catch(Exception ex){r.Failures.Add(ex.GetType().Name+":"+ex.Message);} return r;
     }

@@ -5,19 +5,33 @@
   "records": [
     {
       "id": "interaction.inferred.map12.2227.w.action2.onyx",
-      "object_type": "room_interaction_semantic_reconstruction",
+      "object_type": "room_interaction",
       "world_scope": [
         "classic"
       ],
-      "room_id": "room.map12.2227",
-      "exit_id": "exit.map12.2227.w",
+      "interaction_kind": "exit_action",
+      "from_map_number": 12,
+      "from_room_number": 2227,
+      "from_room_id": "room.map12.2227",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 2227,
+      "bound_exit_id": "exit.map12.2227.w",
+      "bound_edge_state_id": "edge-state.map12.2227.w",
       "direction": "W",
       "action_number": 2,
-      "accepted_commands": [
+      "commands": [
         "push onyx",
         "move onyx"
       ],
-      "runtime_disposition": "active_runtime",
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_strongly_correlated_action",
+      "command_semantics": {
+        "state_effect": "complete_bound_hidden_exit_action_step",
+        "repeatability": "idempotent_per_latch_cycle",
+        "reset_timing": "completion clears on room-area reset with owning edge latch",
+        "success_message": "native_message_lookup_pending; use neutral configured runtime acknowledgement only when no native message is available",
+        "failure_message": "native_message_lookup_pending; fail safely without changing latch progress"
+      },
       "confidence": "strongly_correlated",
       "evidence": {
         "source_files": [
@@ -59,6 +73,251 @@
         "onyx maps only to Action #2",
         "duplicate onyx does not add progress"
       ],
+      "save_or_world_state_impact": {
+        "save_schema": "none",
+        "world_state": "transient shared edge-latch progress",
+        "migration_required": false
+      }
+    },
+    {
+      "id": "interaction.decoded.map12.1920.u.sphinx-fire",
+      "object_type": "room_interaction",
+      "world_scope": [
+        "classic"
+      ],
+      "interaction_kind": "exit_action",
+      "from_map_number": 12,
+      "from_room_number": 1920,
+      "from_room_id": "room.map12.1920",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 1920,
+      "bound_exit_id": "exit.map12.1920.u",
+      "bound_edge_state_id": "edge-state.map12.1920.u",
+      "direction": "U",
+      "action_number": 1,
+      "commands": [
+        "ask sphinx fire",
+        "ask sphinx flame"
+      ],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_action",
+      "command_semantics": {
+        "state_effect": "complete_bound_exit_action_step",
+        "repeatability": "idempotent_per_latch_cycle",
+        "reset_timing": "completion clears on room-area reset with owning edge latch",
+        "decoded_chain": "textblock.2516 fire/flame -> textblock.2517 -> textblock.2518 cast 687 + remoteaction 1920 0 0 8",
+        "native_spell_id": 687,
+        "native_remote_action": [
+          1920,
+          0,
+          0,
+          8
+        ]
+      },
+      "confidence": "exact_decoded_and_route_correlated",
+      "evidence": {
+        "source_files": [
+          {
+            "path": "Librarium/Objects/textblocks",
+            "record_identifier": "textblock.2516,textblock.2517,textblock.2518",
+            "evidence": "Monster #548 command map binds fire/flame to the decoded spell and room remote-action chain."
+          },
+          {
+            "path": "ImportedDatabases/MegaMudMP/Gpssgplf.mp",
+            "record_identifier": "Great Pyramid room 12/1920 route",
+            "evidence": "route issues ask sphinx fire before traversing up"
+          },
+          {
+            "path": "Librarium/Objects/spells",
+            "record_identifier": "spell.687",
+            "evidence": "decoded spell name is pyramid 1 exit"
+          }
+        ]
+      },
+      "fallback_behavior": "keep exit closed when the exact room-scoped command is not issued",
+      "save_or_world_state_impact": {
+        "save_schema": "none",
+        "world_state": "transient shared edge-latch progress",
+        "migration_required": false
+      }
+    },
+    {
+      "id": "interaction.decoded.map12.2001.u.sphinx-sun",
+      "object_type": "room_interaction",
+      "world_scope": [
+        "classic"
+      ],
+      "interaction_kind": "exit_action",
+      "from_map_number": 12,
+      "from_room_number": 2001,
+      "from_room_id": "room.map12.2001",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 2001,
+      "bound_exit_id": "exit.map12.2001.u",
+      "bound_edge_state_id": "edge-state.map12.2001.u",
+      "direction": "U",
+      "action_number": 1,
+      "commands": [
+        "ask sphinx sun",
+        "ask sphinx the sun"
+      ],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_action",
+      "command_semantics": {
+        "state_effect": "complete_bound_exit_action_step",
+        "repeatability": "idempotent_per_latch_cycle",
+        "reset_timing": "completion clears on room-area reset with owning edge latch",
+        "decoded_chain": "textblock.2525 sun/the sun -> textblock.2526 -> textblock.2527 remoteaction 2001 0 0 8",
+        "native_remote_action": [
+          2001,
+          0,
+          0,
+          8
+        ]
+      },
+      "confidence": "exact_decoded_owner_and_remote_action",
+      "evidence": {
+        "source_files": [
+          {
+            "path": "Librarium/Objects/textblocks",
+            "record_identifier": "textblock.2525,textblock.2526,textblock.2527",
+            "evidence": "Monster #549 command map binds sun/the sun to the decoded room 2001 remote action."
+          },
+          {
+            "path": "Librarium/Objects/npcs",
+            "record_identifier": "npc.549",
+            "evidence": "stone sphinx owner relationship is map-qualified to Great Pyramid room 12/2001"
+          }
+        ]
+      },
+      "fallback_behavior": "keep exit closed when the exact room-scoped command is not issued",
+      "save_or_world_state_impact": {
+        "save_schema": "none",
+        "world_state": "transient shared edge-latch progress",
+        "migration_required": false
+      }
+    },
+    {
+      "id": "interaction.decoded.map12.2051.u.sphinx-stars",
+      "object_type": "room_interaction",
+      "world_scope": [
+        "classic"
+      ],
+      "interaction_kind": "exit_action",
+      "from_map_number": 12,
+      "from_room_number": 2051,
+      "from_room_id": "room.map12.2051",
+      "explicit_source_map_number": 12,
+      "explicit_source_room_number": 2051,
+      "bound_exit_id": "exit.map12.2051.u",
+      "bound_edge_state_id": "edge-state.map12.2051.u",
+      "direction": "U",
+      "action_number": 1,
+      "commands": [
+        "ask sphinx stars",
+        "ask sphinx star",
+        "ask sphinx the stars"
+      ],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_action",
+      "command_semantics": {
+        "state_effect": "complete_bound_exit_action_step",
+        "repeatability": "idempotent_per_latch_cycle",
+        "reset_timing": "completion clears on room-area reset with owning edge latch",
+        "decoded_chain": "npc.550 -> textblock.2530 stars/star/the stars -> textblock.2531 -> textblock.2532 remoteaction 2051 0 0 8",
+        "native_remote_action": [
+          2051,
+          0,
+          0,
+          8
+        ]
+      },
+      "confidence": "exact_decoded_owner_command_and_remote_action",
+      "evidence": {
+        "source_files": [
+          {
+            "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/npc_textblock_links.json",
+            "record_identifier": "npc_textblock.550.2530",
+            "evidence": "NPC 550 stone sphinx owns root command map textblock 2530."
+          },
+          {
+            "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+            "record_identifier": "textblock.2530,textblock.2531,textblock.2532",
+            "evidence": "The exact stars aliases route through the continuation chain to remoteaction 2051 0 0 8."
+          },
+          {
+            "path": "Librarium/Objects/npcs/npc_records_0122.json",
+            "record_identifier": "npc.550",
+            "evidence": "The decoded stone sphinx record is related to Room 12/2051."
+          }
+        ]
+      },
+      "fallback_behavior": "keep exit closed when the exact room-scoped command is not issued",
+      "save_or_world_state_impact": {
+        "save_schema": "none",
+        "world_state": "transient shared edge-latch progress",
+        "migration_required": false
+      }
+    },
+    {
+      "id": "interaction.decoded.map9.1012.n.clear-rubble",
+      "object_type": "room_interaction",
+      "world_scope": [
+        "classic"
+      ],
+      "interaction_kind": "exit_action",
+      "from_map_number": 9,
+      "from_room_number": 1012,
+      "from_room_id": "room.map9.1012",
+      "explicit_source_map_number": 9,
+      "explicit_source_room_number": 1012,
+      "bound_exit_id": "exit.map9.1012.n",
+      "bound_edge_state_id": "edge-state.map9.1012.n",
+      "direction": "N",
+      "action_number": 1,
+      "commands": [
+        "clear rubble",
+        "move rubble",
+        "push rubble",
+        "clear mound",
+        "move mound",
+        "push mound",
+        "clear rock",
+        "move rock",
+        "push rock"
+      ],
+      "runtime_disposition": "active_bound_action_latch_step",
+      "status": "decoded_exact_skill_test_action",
+      "command_semantics": {
+        "state_effect": "complete_bound_exit_action_step_on_skill_test_success",
+        "repeatability": "retryable_until_success_then_idempotent_per_latch_cycle",
+        "required_skill": "strength",
+        "skill_modifier": 0,
+        "failure_textblock_id": 1423,
+        "success_remote_action": [
+          1012,
+          1840,
+          0,
+          0
+        ],
+        "skill_test_model": "roll_1_to_100_lte_skill_plus_modifier"
+      },
+      "confidence": "exact_decoded_script_and_route_correlated",
+      "evidence": {
+        "source_files": [
+          {
+            "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+            "record_identifier": "textblock.1422",
+            "evidence": "Room 9/1012 binds all nine rubble/mound/rock aliases to testskill strength 0 1423 followed by remoteaction 1012 1840 0 0."
+          },
+          {
+            "path": "ImportedDatabases/MegaMudMP/Crumcata.mp",
+            "record_identifier": "Crumbling Ruin room 9/1012 route",
+            "evidence": "route issues clear rubble before traversing north"
+          }
+        ]
+      },
+      "fallback_behavior": "leave the exit closed and render decoded textblock 1423 when the strength test fails",
       "save_or_world_state_impact": {
         "save_schema": "none",
         "world_state": "transient shared edge-latch progress",

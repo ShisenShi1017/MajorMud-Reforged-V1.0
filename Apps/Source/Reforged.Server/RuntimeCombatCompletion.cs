@@ -119,7 +119,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 continue;
             }
             var roll = RollNpcLootPercent(before.CharacterId, npc.Id, loot.CanonicalItemId, before.Experience, session.CurrentRoom.Id);
-            if (!ShouldDropNpcLoot(loot.DropPercent, roll)) continue;
+            if (!session.World.LootRuleCatalog.ShouldDrop(loot.DropPercent, roll)) continue;
             movedItems.Add(new RuntimeItemInstance(
                 $"npc-loot:{npc.LegacyId}:{Guid.NewGuid():N}",
                 loot.CanonicalItemId,
@@ -163,6 +163,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         var moneyStatus = string.IsNullOrWhiteSpace(currencyText) ? string.Empty : $" {currencyText} fall to the ground.";
         var lootStatus = dropped.Count == 0 ? string.Empty : " It also drops " + string.Join(", ", dropped) + ".";
         var awardedXp = awarded.Experience - before.Experience;
+        if (awardedXp > 0)
+        {
+            var gangs = new RuntimeClassicGangStateService(_characters.ProjectRoot);
+            if (gangs.FindByMember(before.CharacterId) is not null) gangs.AwardMemberExperience(before.CharacterId, awardedXp);
+        }
         return $"Reward: {awardedXp} XP.{moneyStatus}{lootStatus}";
     }
 
@@ -184,11 +189,56 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, before.WorldId);
         var nowUtc = DateTimeOffset.UtcNow;
+        _ = RuntimeDecodedDeathTextAuthority.Resolve(before, catalog,
+            RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot));
         RemoveCharacterLiveStatusEffects(before.CharacterId, nowUtc, "runtime.live_status.player_death");
         var cleaned = RuntimeClassicStatusProjection.Clear(before, nowUtc, "runtime.live_status.player_death");
         var transition = RuntimeCharacterDeathResolver.Defeat(cleaned, catalog, session.CurrentRoom.Id, nowUtc);
-        _characters.SaveCharacter(transition.Character);
+        var defeated = ScatterDeathGearFromDecodedRoomSpell(session, transition.Character, transition.Corpse.CorpseId);
+        _characters.SaveCharacter(defeated.Character);
+        if (defeated.ScatteredRootItems > 0)
+            return $"Your dropped gear was scattered from {session.CurrentRoom.Name} into {defeated.DestinationRoomCount} decoded destination room(s). Your corpse ({transition.Corpse.CorpseId}) remains here with any recoverable gold. Use 'respawn'.";
         return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. Use 'respawn', then return and use 'recover'.";
+    }
+
+    private (RuntimeCharacterRecord Character, int ScatteredRootItems, int DestinationRoomCount) ScatterDeathGearFromDecodedRoomSpell(
+        RuntimeSession session, RuntimeCharacterRecord defeated, string corpseId)
+    {
+        if (session.CurrentRoom.EnvironmentRoomSpellId <= 0 || defeated.ItemState is null)
+            return (defeated, 0, 0);
+        var spells = RuntimeSpellCatalog.Load(_characters.ProjectRoot, defeated.WorldId);
+        var roomSpell = spells.Spells.SingleOrDefault(spell =>
+            int.TryParse(spell.LegacyId, out var legacyId) && legacyId == session.CurrentRoom.EnvironmentRoomSpellId);
+        var scatter = roomSpell?.DecodedAbilities.FirstOrDefault(ability => ability.AbilityId == 157);
+        if (roomSpell is null || scatter is null) return (defeated, 0, 0);
+
+        var destinationNumbers = scatter.Value > 0
+            ? new[] { scatter.Value }
+            : Enumerable.Range(roomSpell.MinimumEffect, Math.Max(0, roomSpell.MaximumEffect - roomSpell.MinimumEffect + 1)).ToArray();
+        var destinations = destinationNumbers.Select(number => session.World.FindRoom(session.CurrentRoom.MapId, number))
+            .Where(room => room is not null).Select(room => room!).DistinctBy(room => room.Id).ToArray();
+        if (destinations.Length == 0)
+            throw new InvalidOperationException($"Decoded ScatterItems room spell {roomSpell.LegacyId} has no valid same-map destination rooms.");
+
+        var state = defeated.ItemState;
+        var roots = state.Items.Where(item => item.LocationKind.Equals(RuntimeItemLocations.Corpse, StringComparison.OrdinalIgnoreCase)
+            && item.LocationId.Equals(corpseId, StringComparison.OrdinalIgnoreCase)).OrderBy(item => item.InstanceId, StringComparer.OrdinalIgnoreCase).ToArray();
+        if (roots.Length == 0) return (defeated, 0, destinations.Length);
+        var living = Living(session);
+        for (var index = 0; index < roots.Length; index++)
+            living.DropGroundItemTree(state.Items, roots[index].InstanceId, destinations[index % destinations.Length].Id);
+
+        var scattered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var pending = new Stack<string>(roots.Select(root => root.InstanceId));
+        while (pending.Count > 0)
+        {
+            var id = pending.Pop();
+            if (!scattered.Add(id)) continue;
+            foreach (var child in state.Items.Where(item => item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase)
+                && item.LocationId.Equals(id, StringComparison.OrdinalIgnoreCase))) pending.Push(child.InstanceId);
+        }
+        var remaining = state.Items.Where(item => !scattered.Contains(item.InstanceId)).ToArray();
+        return (defeated with { ItemState = state with { Items = remaining } }, roots.Length, destinations.Length);
     }
 }
 
@@ -235,6 +285,16 @@ public sealed class RuntimeCombatCompletionSmokeReport
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RespawnCharacter)) is not null, "respawn-execution"); report.Checks.Add("respawn-execution");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RecoverCorpse)) is not null, "corpse-recovery"); report.Checks.Add("corpse-recovery");
             var catalog = RuntimeItemCatalog.Load(projectRoot, ServerRuntimeOptions.Load(projectRoot).DefaultWorldId);
+            var deathTextItems = catalog.Items.Where(item => item.EquipmentAbilityModifiers.ContainsKey(155)).ToArray();
+            var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+            Require(deathTextItems.Length == 1 && deathTextItems[0].Id == "item.1097"
+                && deathTextItems[0].EquipmentAbilityModifiers[155] == 1643,
+                "decoded-death-text-single-item-1097-target-1643");
+            report.Checks.Add("decoded-death-text-single-item-1097-target-1643");
+            Require(native.TryResolveTextblock(1643, out var deathTextCandidate)
+                && !RuntimeDecodedDeathTextAuthority.IsDeathPayload(deathTextCandidate),
+                "decoded-death-text-1643-semantic-mismatch-quarantined");
+            report.Checks.Add("decoded-death-text-1643-semantic-mismatch-quarantined");
             var engine = new RuntimeItemEngine(catalog);
             var corpse = engine.CreateCorpse("character.test", "room.test", 5);
             Require(engine.Corpses.Any(x => x.CorpseId == corpse.CorpseId), "corpse-creation"); report.Checks.Add("corpse-creation");

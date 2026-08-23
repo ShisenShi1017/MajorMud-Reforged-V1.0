@@ -172,42 +172,9 @@
      </ListBox>
     </DockPanel>
    </Border>
-   <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+   <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" PanningMode="VerticalOnly">
     <StackPanel>
       <Border Style="{StaticResource ParchmentPanel}" Margin="0,0,0,10"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="110"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="92" Height="92" Background="#5B4328" CornerRadius="46"><TextBlock Text="{Binding SelectedGuardian.Icon}" FontSize="48" Foreground="#FFE9B4" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="{Binding SelectedIdentity}" Style="{StaticResource RoomTitle}"/><TextBlock Text="{Binding SelectedDescription}" TextWrapping="Wrap" Margin="0,5"/><TextBlock Text="{Binding SelectedPersonality}" FontStyle="Italic" TextWrapping="Wrap"/><TextBlock Text="{Binding SelectedAppearance}" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="#6B5235"/></StackPanel></Grid></Border>
-
-      <Expander Header="⚒  BORIN ENGINEERING DEPARTMENT" IsExpanded="True" Margin="0,0,0,10">
-       <Border Style="{StaticResource ParchmentPanel}" Background="#E9D5A4" BorderBrush="#765122" BorderThickness="2">
-        <StackPanel>
-         <DockPanel>
-          <StackPanel><TextBlock Text="Guardian Hall Engineering" Style="{StaticResource RoomTitle}"/><TextBlock Text="Cumulative candidate packages by default. Live repository authority is independently operator controlled." TextWrapping="Wrap"/></StackPanel>
-          <Border DockPanel.Dock="Right" Background="#493822" CornerRadius="10" Padding="12,5" VerticalAlignment="Center"><TextBlock Text="{Binding Engineering.Status.Summary}" Foreground="White" FontWeight="SemiBold" TextWrapping="Wrap" MaxWidth="430"/></Border>
-         </DockPanel>
-         <Grid Margin="0,10,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="1.05*"/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
-          <StackPanel>
-           <TextBlock Text="Operator Controls" Style="{StaticResource SectionTitle}"/>
-           <CheckBox Content="Autonomous engineering ON" IsChecked="{Binding Engineering.Configuration.AutonomousEngineeringEnabled}" FontWeight="Bold"/>
-           <TextBlock Text="When off, Start Working creates a ready session but does not run the queue. When on, Borin works through guarded phases inside an isolated Git workspace." TextWrapping="Wrap" Margin="5,0,0,6"/>
-           <CheckBox Content="ALLOW LIVE REPOSITORY EDITS (future direct-runtime mode)" IsChecked="{Binding Engineering.Configuration.AllowLiveRepositoryEdits}" Foreground="#7A2018" FontWeight="Bold"/>
-           <TextBlock Text="Keep this off for cumulative ZIP workflow. This authority is separate from autonomy; enabling autonomy does not enable live edits." TextWrapping="Wrap" Margin="5,0,0,6"/>
-           <WrapPanel><CheckBox Content="Build" IsChecked="{Binding Engineering.Configuration.RunBuilds}"/><CheckBox Content="Validate" IsChecked="{Binding Engineering.Configuration.RunValidation}"/><CheckBox Content="Runtime smoke" IsChecked="{Binding Engineering.Configuration.RunRuntimeDiagnostics}"/><CheckBox Content="Cumulative ZIP" IsChecked="{Binding Engineering.Configuration.GenerateCandidatePackages}"/></WrapPanel>
-           <WrapPanel Margin="0,8,0,0"><Button Content="START WORKING" Command="{Binding StartEngineeringCommand}" Style="{StaticResource PrimaryButtonStyle}" Padding="18,8"/><Button Content="STOP WORKING" Command="{Binding StopEngineeringCommand}" Background="#7A2018" Foreground="White" Padding="18,8"/><Button Content="Queue All Phases" Command="{Binding QueueEngineeringPhasesCommand}"/><Button Content="Run One Step" Command="{Binding RunEngineeringStepCommand}"/><Button Content="Save Controls" Command="{Binding SaveEngineeringCommand}"/></WrapPanel>
-           <TextBlock Margin="0,8,0,0"><Run Text="Workspace: "/><Run Text="{Binding Engineering.Status.WorkspacePath}"/></TextBlock>
-           <TextBlock><Run Text="Session: "/><Run Text="{Binding Engineering.Status.CurrentSessionId}"/><Run Text=" · Health: "/><Run Text="{Binding Engineering.Status.Health}"/></TextBlock>
-          </StackPanel>
-          <StackPanel Grid.Column="2">
-           <TextBlock Text="Phase Capability Status" Style="{StaticResource SectionTitle}"/>
-           <ItemsControl ItemsSource="{Binding Engineering.CapabilityStatus}"><ItemsControl.ItemTemplate><DataTemplate><TextBlock Text="{Binding}" Margin="0,1"/></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
-           <TextBlock Text="Engineering Queue" Style="{StaticResource SectionTitle}"/>
-           <DataGrid ItemsSource="{Binding Engineering.Tasks}" AutoGenerateColumns="False" Height="145" CanUserAddRows="False" IsReadOnly="True">
-            <DataGrid.Columns><DataGridTextColumn Header="Task" Binding="{Binding Title}" ElementStyle="{StaticResource GuardianGridTextElement}" Width="*"/><DataGridTextColumn Header="Phase" Binding="{Binding Category}" ElementStyle="{StaticResource GuardianGridTextElement}" Width="130"/><DataGridTextColumn Header="Status" Binding="{Binding Status}" ElementStyle="{StaticResource GuardianGridTextElement}" Width="90"/><DataGridTextColumn Header="Result" Binding="{Binding Result}" ElementStyle="{StaticResource GuardianGridTextElement}" Width="1.5*"/></DataGrid.Columns>
-           </DataGrid>
-           <TextBlock><Run Text="Memory entries: "/><Run Text="{Binding Engineering.Memory.Count}"/><Run Text=" · Reports: "/><Run Text="{Binding Engineering.Reports.Count}"/><Run Text=" · Completed: "/><Run Text="{Binding Engineering.Statistics.TasksCompleted}"/><Run Text=" · Failed: "/><Run Text="{Binding Engineering.Statistics.TasksFailed}"/></TextBlock>
-          </StackPanel>
-         </Grid>
-        </StackPanel>
-       </Border>
-      </Expander>
 
       <Border><Border.Style><Style TargetType="Border" BasedOn="{StaticResource RealmKeeperPanel}"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding IsRealmKeeper}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
       <StackPanel><TextBlock Text="Realm Keeper War Room" Style="{StaticResource RoomTitle}"/><Border Style="{StaticResource ChamberBadge}"><TextBlock Text="GLOBAL REALM COMMAND" Foreground="#FFF5D8" FontSize="11" FontWeight="Bold"/></Border><TextBlock Text="Global oversight across every connected world. No world or character assignment." Margin="0,0,0,10"/>

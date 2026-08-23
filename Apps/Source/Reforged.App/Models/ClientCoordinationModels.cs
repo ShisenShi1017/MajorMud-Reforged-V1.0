@@ -52,7 +52,7 @@ public sealed class CoordinatedSession
     public string SessionId { get; set; } = Guid.NewGuid().ToString("N");
     public string DisplayName { get; set; } = "Session";
     public string CharacterName { get; set; } = string.Empty;
-    public ClientTerminalViewMode TerminalViewMode { get; set; } = ClientTerminalViewMode.ClassicMegaMud;
+    public ClientTerminalViewMode TerminalViewMode { get; set; } = ClientTerminalViewMode.Reforged;
     public CoordinationRole Role { get; set; }
     public bool Enabled { get; set; } = true;
     public bool FollowLeader { get; set; } = true;

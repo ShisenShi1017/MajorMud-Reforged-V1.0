@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "cards": [
+    { "id": "project-identity", "subsystem": "General", "path": "ProjectIdentity.md", "always": true, "priority": 100, "terms": [] },
+    { "id": "authority-rules", "subsystem": "General", "path": "AuthorityRules.md", "always": true, "priority": 95, "terms": [] },
+    { "id": "runtime-trace", "subsystem": "RuntimeTrace", "path": "RuntimeTraceMap.json", "always": false, "priority": 90, "terms": ["trace", "parity", "decoded", "runtime", "consumer", "persistence", "cleanup", "validation", "disconnect"] },
+    { "id": "packaging", "subsystem": "Packaging", "path": "PackagingRules.md", "always": false, "priority": 85, "terms": ["zip", "package", "installer", "update", "publish", "rollback"] },
+    { "id": "commands", "subsystem": "Commands", "path": "Subsystems/Commands.md", "always": false, "priority": 80, "terms": ["command", "abbreviation", "say", "brief", "verbose"] },
+    { "id": "rooms", "subsystem": "Rooms", "path": "Subsystems/Rooms.md", "always": false, "priority": 80, "terms": ["room", "exit", "door", "trap", "map"] },
+    { "id": "shops", "subsystem": "Shops", "path": "Subsystems/Shops.md", "always": false, "priority": 80, "terms": ["shop", "merchant", "buy", "sell", "list"] },
+    { "id": "equipment", "subsystem": "Equipment", "path": "Subsystems/Equipment.md", "always": false, "priority": 80, "terms": ["equip", "wield", "weapon", "armor", "slot"] },
+    { "id": "search-cleanup", "subsystem": "SearchCleanup", "path": "Subsystems/SearchCleanup.md", "always": false, "priority": 80, "terms": ["search", "hidden", "conceal", "cleanup", "ground item"] },
+    { "id": "combat", "subsystem": "Combat", "path": "Subsystems/Combat.md", "always": false, "priority": 80, "terms": ["combat", "attack", "damage", "critical", "corpse", "drop"] },
+    { "id": "npcs", "subsystem": "Npcs", "path": "Subsystems/Npcs.md", "always": false, "priority": 80, "terms": ["npc", "monster", "guarded", "faction", "hostile"] },
+    { "id": "quests-scripts-triggers", "subsystem": "QuestsScriptsTriggers", "path": "Subsystems/QuestsScriptsTriggers.md", "always": false, "priority": 80, "terms": ["quest", "script", "trigger", "event"] },
+    { "id": "persistence", "subsystem": "Persistence", "path": "Subsystems/Persistence.md", "always": false, "priority": 80, "terms": ["persist", "save", "reset", "cleanup", "gang house"] },
+    { "id": "active-player", "subsystem": "ActivePlayer", "path": "Subsystems/ActivePlayer.md", "always": false, "priority": 80, "terms": ["player", "omniverse", "login", "terminal", "gryndak", "telepath"] }
+  ]
+}

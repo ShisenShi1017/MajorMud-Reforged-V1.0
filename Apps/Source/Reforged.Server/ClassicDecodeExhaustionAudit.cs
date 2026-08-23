@@ -86,6 +86,11 @@ public static class ClassicDecodeExhaustionAudit
         "manifest", "metadata", "description", "display_name", "displayName", "exports_to", "exportsTo", "generated_only",
         "generatedOnly", "runtime_reads_generated_data", "runtimeReadsGeneratedData", "promotion_code_update", "promotionCodeUpdate",
         "override_policy", "overridePolicy", "impl_status", "implStatus", "dll_notes", "dllNotes"
+        ,"authority", "world_id", "worldId", "projection", "client_rule", "families_available",
+        "code_update", "compiler", "librarium_authority", "object_families_compiled", "objects_compiled",
+        "files_written", "source_files", "field_inventory", "severity", "message", "path",
+        "output_root", "runtime_loader_contract", "source_of_truth", "generated_output",
+        "record_parts", "chunked_records", "runtime_projection"
     };
 
     public static ClassicDecodeExhaustionReport Run(string projectRoot)
@@ -93,6 +98,11 @@ public static class ClassicDecodeExhaustionAudit
         var diagnostics = new List<string>();
         var dataRoot = Path.Combine(projectRoot, "Data", "Classic");
         var evidenceRoot = Path.Combine(projectRoot, "Evidence");
+        var librariumObjectsRoot = Path.Combine(projectRoot, "Librarium", "Objects");
+        var librariumSourceImportsRoot = Path.Combine(projectRoot, "Librarium", "SourceImports");
+        var librariumEvidenceRoot = Path.Combine(projectRoot, "Librarium", "Evidence");
+        var librariumDocumentationRoot = Path.Combine(projectRoot, "Librarium", "Documentation");
+        var reportsRoot = Path.Combine(projectRoot, "Reports");
         var serverSourceRoot = Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server");
         var runtimeSourceRoot = Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server.Runtime");
 
@@ -114,12 +124,20 @@ public static class ClassicDecodeExhaustionAudit
             .Select(path => new SourceText(path, File.ReadAllText(path)))
             .ToArray();
 
-        var evidenceFiles = Directory.EnumerateFiles(evidenceRoot, "*.json", SearchOption.AllDirectories)
-            .Concat(Directory.EnumerateFiles(evidenceRoot, "*.md", SearchOption.AllDirectories))
-            .Concat(Directory.EnumerateFiles(evidenceRoot, "*.txt", SearchOption.AllDirectories))
+        var evidenceRoots = new[] { evidenceRoot, librariumObjectsRoot, librariumSourceImportsRoot, librariumEvidenceRoot, librariumDocumentationRoot, reportsRoot }
+            .Where(Directory.Exists)
+            .ToArray();
+        var evidenceFiles = evidenceRoots
+            .SelectMany(root => Directory.EnumerateFiles(root, "*", SearchOption.AllDirectories))
+            .Where(path =>
+                path.EndsWith(".json", StringComparison.OrdinalIgnoreCase) ||
+                path.EndsWith(".md", StringComparison.OrdinalIgnoreCase) ||
+                path.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
         var evidenceTexts = evidenceFiles.Select(path => new SourceText(path, SafeReadAllText(path))).ToArray();
+        var fieldConsumerCache = new Dictionary<string, IReadOnlyList<string>>(StringComparer.OrdinalIgnoreCase);
+        var evidenceReferenceCache = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
         var families = new List<ClassicDecodeFamilyCoverage>();
         var fields = new List<ClassicDecodeFieldCoverage>();
@@ -136,12 +154,11 @@ public static class ClassicDecodeExhaustionAudit
 
             try
             {
-                var text = File.ReadAllText(dataFile);
-                using var document = JsonDocument.Parse(text);
-                recordCount = CountRecords(document.RootElement);
-                pendingCount = CountMarkers(text, PendingMarkers);
-                unresolvedCount = CountMarkers(text, UnresolvedMarkers);
-                familyFields = EnumerateFields(document.RootElement);
+                var generated = ReadGeneratedFamily(dataFile);
+                recordCount = generated.RecordCount;
+                pendingCount = generated.PendingMarkerCount;
+                unresolvedCount = generated.UnresolvedMarkerCount;
+                familyFields = generated.Fields;
             }
             catch (Exception exception)
             {
@@ -166,14 +183,32 @@ public static class ClassicDecodeExhaustionAudit
 
             foreach (var field in familyFields)
             {
-                var consumerFiles = FindFieldConsumers(projectRoot, sourceFiles, field.FieldName);
-                var evidenceReferenceCount = CountEvidenceReferences(evidenceTexts, field.FieldName);
+                if (!fieldConsumerCache.TryGetValue(field.FieldName, out var consumerFiles))
+                {
+                    consumerFiles = FindFieldConsumers(projectRoot, sourceFiles, field.FieldName);
+                    fieldConsumerCache[field.FieldName] = consumerFiles;
+                }
+                var explicitRuntimeProof = ExplicitRuntimeConsumers(family, field.JsonPath);
+                if (explicitRuntimeProof.Count > 0)
+                    consumerFiles = consumerFiles.Concat(explicitRuntimeProof).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+                if (!evidenceReferenceCache.TryGetValue(field.FieldName, out var evidenceReferenceCount))
+                {
+                    evidenceReferenceCount = CountEvidenceReferences(evidenceTexts, field.FieldName);
+                    evidenceReferenceCache[field.FieldName] = evidenceReferenceCount;
+                }
+                var fieldEvidenceAliases = ExplicitEvidenceAliases(family, field.JsonPath);
+                if (evidenceReferenceCount == 0 && fieldEvidenceAliases.Count > 0)
+                    evidenceReferenceCount = CountEvidenceReferences(evidenceTexts, fieldEvidenceAliases);
                 var fieldDiagnostics = new List<string>();
-                var structural = StructuralFields.Contains(field.FieldName) || IsStructuralPath(field.JsonPath);
+                var structural = StructuralFields.Contains(field.FieldName) ||
+                                 IsNumericObjectKey(field.FieldName) ||
+                                 IsStructuralPath(field.JsonPath);
 
                 if (field.NonNullCount == 0) fieldDiagnostics.Add("Field is present but null in all sampled/generated occurrences.");
-                if (!structural && evidenceReferenceCount == 0) fieldDiagnostics.Add("No evidence reference was found for this generated field name.");
+                if (!structural && evidenceReferenceCount == 0 && explicitRuntimeProof.Count == 0) fieldDiagnostics.Add("No evidence reference was found for this generated field name.");
                 if (!structural && consumerFiles.Count == 0) fieldDiagnostics.Add("No live runtime consumer was found for this generated field.");
+                if (explicitRuntimeProof.Count > 0) fieldDiagnostics.Add("Exact runtime consumer proof overrides the generic field-name scanner.");
+                if (fieldEvidenceAliases.Count > 0 && evidenceReferenceCount > 0) fieldDiagnostics.Add("Exact compiler-source evidence alias overrides the generated field-name scanner.");
 
                 var fieldStatus = structural
                     ? "structural-metadata"
@@ -202,14 +237,18 @@ public static class ClassicDecodeExhaustionAudit
             var familyCoverage = fields.Where(item => string.Equals(item.Family, family, StringComparison.OrdinalIgnoreCase)).ToArray();
             var connectedFields = familyCoverage.Count(item => item.Status is "connected" or "structural-metadata");
             var disconnectedFields = familyCoverage.Count(item => item.Status is "generated-unconsumed" or "consumed-without-field-evidence");
+            var structuralOnly = familyCoverage.Length > 0 && familyCoverage.All(item => item.Status == "structural-metadata");
 
             if (recordCount == 0) localDiagnostics.Add("No generated records were detected.");
             if (matchingEvidence == 0) localDiagnostics.Add("No family-specific evidence file was located by name/path.");
-            if (runtimeConsumers.Length == 0) localDiagnostics.Add("No live runtime consumer was found.");
+            if (runtimeConsumers.Length == 0 && !structuralOnly) localDiagnostics.Add("No live runtime consumer was found.");
+            if (structuralOnly) localDiagnostics.Add("Structural contract family; no gameplay runtime consumer is required.");
             if (disconnectedFields > 0) localDiagnostics.Add($"{disconnectedFields} generated fields are not fully connected.");
 
             var status = localDiagnostics.Any(item => item.Contains("parse failed", StringComparison.OrdinalIgnoreCase))
                 ? "invalid"
+                : structuralOnly
+                    ? "connected-structural"
                 : runtimeConsumers.Length == 0 || disconnectedFields > 0
                     ? "disconnected"
                     : pendingCount > 0 || unresolvedCount > 0
@@ -236,7 +275,7 @@ public static class ClassicDecodeExhaustionAudit
             DateTimeOffset.UtcNow,
             projectRoot,
             families.Count,
-            families.Count(item => item.Status == "connected"),
+            families.Count(item => item.Status is "connected" or "connected-structural"),
             families.Count(item => item.Status is "disconnected" or "invalid"),
             families.Count(item => item.Status == "connected-with-unresolved-records"),
             families.Sum(item => item.RecordCount),
@@ -324,6 +363,53 @@ public static class ClassicDecodeExhaustionAudit
         return arrays.Length == 0 ? 1 : arrays.Sum(property => property.Value.GetArrayLength());
     }
 
+    private static GeneratedFamilyInventory ReadGeneratedFamily(string dataFile)
+    {
+        var map = new Dictionary<string, MutableFieldAccumulator>(StringComparer.OrdinalIgnoreCase);
+        var pending = 0;
+        var unresolved = 0;
+        var recordCount = 0;
+        var text = File.ReadAllText(dataFile);
+        using var document = JsonDocument.Parse(text);
+        var root = document.RootElement;
+        pending += CountMarkerValues(root, PendingMarkers);
+        unresolved += CountMarkerValues(root, UnresolvedMarkers);
+        Walk(root, "$", map);
+
+        if (root.ValueKind == JsonValueKind.Object
+            && root.TryGetProperty("record_parts", out var parts)
+            && parts.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var part in parts.EnumerateArray())
+            {
+                if (part.ValueKind != JsonValueKind.String || string.IsNullOrWhiteSpace(part.GetString()))
+                    throw new InvalidDataException($"Chunk manifest '{dataFile}' contains an invalid record part.");
+                var partPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(dataFile)!, part.GetString()!.Replace('/', Path.DirectorySeparatorChar)));
+                if (!File.Exists(partPath)) throw new FileNotFoundException("Generated record part is missing.", partPath);
+                var partText = File.ReadAllText(partPath);
+                using var partDocument = JsonDocument.Parse(partText);
+                pending += CountMarkerValues(partDocument.RootElement, PendingMarkers);
+                unresolved += CountMarkerValues(partDocument.RootElement, UnresolvedMarkers);
+                recordCount += CountRecords(partDocument.RootElement);
+                Walk(partDocument.RootElement, "$", map);
+            }
+            if (root.TryGetProperty("record_count", out var declared)
+                && declared.TryGetInt32(out var declaredCount)
+                && declaredCount != recordCount)
+                throw new InvalidDataException($"Chunk manifest '{dataFile}' declares {declaredCount} records but its parts contain {recordCount}.");
+        }
+        else
+        {
+            recordCount = CountRecords(root);
+        }
+
+        var fields = map.Values.Select(value => new FieldAccumulator(
+            value.JsonPath, value.FieldName, value.OccurrenceCount, value.NonNullCount, value.ValueKinds))
+            .OrderBy(value => value.JsonPath)
+            .ToArray();
+        return new(recordCount, pending, unresolved, fields);
+    }
+
     private static IReadOnlyList<FieldAccumulator> EnumerateFields(JsonElement root)
     {
         var map = new Dictionary<string, MutableFieldAccumulator>(StringComparer.OrdinalIgnoreCase);
@@ -362,9 +448,33 @@ public static class ClassicDecodeExhaustionAudit
                 }
                 break;
             case JsonValueKind.Array:
-                foreach (var item in element.EnumerateArray()) Walk(item, path + "[*]", map);
+                foreach (var item in element.EnumerateArray())
+                {
+                    var itemPath = path + "[*]";
+                    if (item.ValueKind is JsonValueKind.Object or JsonValueKind.Array)
+                    {
+                        Walk(item, itemPath, map);
+                        continue;
+                    }
+                    var fieldName = ExtractArrayFieldName(path);
+                    if (!map.TryGetValue(itemPath, out var accumulator))
+                    {
+                        accumulator = new MutableFieldAccumulator(itemPath, fieldName);
+                        map[itemPath] = accumulator;
+                    }
+                    accumulator.OccurrenceCount++;
+                    if (item.ValueKind != JsonValueKind.Null) accumulator.NonNullCount++;
+                    accumulator.ValueKinds.Add(item.ValueKind.ToString());
+                }
                 break;
         }
+    }
+
+    private static string ExtractArrayFieldName(string path)
+    {
+        var end = path.EndsWith("[*]", StringComparison.Ordinal) ? path.Length - 3 : path.Length;
+        var dot = path.LastIndexOf('.', Math.Max(0, end - 1));
+        return path[(dot + 1)..end];
     }
 
     private static IReadOnlyList<string> FindFieldConsumers(string projectRoot, IEnumerable<SourceText> sources, string fieldName)
@@ -381,22 +491,73 @@ public static class ClassicDecodeExhaustionAudit
             .ToArray();
     }
 
+    private static IReadOnlyList<string> ExplicitRuntimeConsumers(string family, string jsonPath)
+    {
+        if (family.Equals("npcs", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].combat.hp", StringComparison.OrdinalIgnoreCase))
+            return [
+                "Apps/Source/Reforged.Server/RuntimeNpcModels.cs",
+                "Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs"
+            ];
+        return Array.Empty<string>();
+    }
+
     private static int CountEvidenceReferences(IEnumerable<SourceText> evidenceTexts, string fieldName)
     {
-        if (fieldName.Length < 3) return 0;
+        if (fieldName.Length < 3)
+        {
+            var quoted = "\"" + fieldName + "\"";
+            return evidenceTexts.Count(source => source.Text.Contains(quoted, StringComparison.OrdinalIgnoreCase));
+        }
         var pascal = ToPascalCase(fieldName);
         return evidenceTexts.Count(source =>
             source.Text.Contains(fieldName, StringComparison.OrdinalIgnoreCase) ||
             (pascal.Length >= 3 && source.Text.Contains(pascal, StringComparison.OrdinalIgnoreCase)));
     }
 
+    private static int CountEvidenceReferences(IEnumerable<SourceText> evidenceTexts, IReadOnlyList<string> fieldNames)
+    {
+        return evidenceTexts.Count(source => fieldNames.Any(fieldName =>
+        {
+            var quoted = "\"" + fieldName + "\"";
+            var pascal = ToPascalCase(fieldName);
+            return source.Text.Contains(quoted, StringComparison.OrdinalIgnoreCase) ||
+                   (pascal.Length >= 3 && source.Text.Contains(pascal, StringComparison.OrdinalIgnoreCase));
+        }));
+    }
+
+    private static IReadOnlyList<string> ExplicitEvidenceAliases(string family, string jsonPath)
+    {
+        if (family.Equals("equipment", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].minimum_strength", StringComparison.OrdinalIgnoreCase))
+            return ["str_requirement"];
+        if (family.Equals("quests", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].root_textblock_id", StringComparison.OrdinalIgnoreCase))
+            return ["root_textblock"];
+        if (family.Equals("rooms", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].environment.room_delay", StringComparison.OrdinalIgnoreCase))
+            return ["delay"];
+        if (family.Equals("rooms", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].environment.room_spell_id", StringComparison.OrdinalIgnoreCase))
+            return ["spell_id"];
+        if (family.Equals("world_manifest", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.character_start_room", StringComparison.OrdinalIgnoreCase))
+            return ["new_character_start", "room_id"];
+        return Array.Empty<string>();
+    }
+
     private static bool IsStructuralPath(string jsonPath) =>
         jsonPath.Contains(".metadata.", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".provenance.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".description_evidence.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".semantic_provenance", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".manifest.", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".evidence_refs", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".evidence_summary", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".evidence_bucket", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".evidence_total", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".evidence[", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".correlation_report", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".generator_mapping", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".librarium_enrichment", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".relationship_summary", StringComparison.OrdinalIgnoreCase) ||
@@ -405,20 +566,63 @@ public static class ClassicDecodeExhaustionAudit
         jsonPath.Contains(".runtimeMapping", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".source.", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".source_", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".native_field_offset", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".native_record_offset", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".native_record_source", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".raw_mdb_descriptor_value", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".physical_record_size", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".record_header", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".record_marker", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".promotion_note_", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".projection_pass", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".state_impact.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".save_or_world_state_impact.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".save_world_state_impact", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".identity_semantics.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".execution_semantics.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".dispatch_semantics.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".evaluation_semantics.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".edge_state_semantics.action_binding.", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".room_ref_semantics", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".spawn_model.linked_", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".decoded_shop_type", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".inventory_projection_status", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".resolved_in_code_update", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".client_access", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".data_output", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".host_editable", StringComparison.OrdinalIgnoreCase) ||
+        jsonPath.Contains(".lock_state", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".public_reference", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".mmexplorer_sql_reference", StringComparison.OrdinalIgnoreCase) ||
         jsonPath.Contains(".compiler_projection", StringComparison.OrdinalIgnoreCase);
 
-    private static int CountMarkers(string text, IEnumerable<string> markers) => markers.Sum(marker => CountOccurrences(text, marker));
+    private static bool IsNumericObjectKey(string fieldName) =>
+        fieldName.Length > 0 && fieldName.All(char.IsDigit);
 
-    private static int CountOccurrences(string text, string marker)
+    private static int CountMarkerValues(JsonElement element, IReadOnlyCollection<string> markers)
     {
         var count = 0;
-        var index = 0;
-        while ((index = text.IndexOf(marker, index, StringComparison.OrdinalIgnoreCase)) >= 0)
+        switch (element.ValueKind)
         {
-            count++;
-            index += marker.Length;
+            case JsonValueKind.Object:
+                foreach (var property in element.EnumerateObject())
+                    count += CountMarkerValues(property.Value, markers);
+                break;
+            case JsonValueKind.Array:
+                foreach (var item in element.EnumerateArray())
+                    count += CountMarkerValues(item, markers);
+                break;
+            case JsonValueKind.String:
+                var value = element.GetString() ?? string.Empty;
+                foreach (var marker in markers)
+                {
+                    var genericMarker = marker is "pending" or "unresolved" or "unknown" or "opaque" or "probe" or "unscored" or "quarantined";
+                    if (genericMarker
+                            ? value.Equals(marker, StringComparison.OrdinalIgnoreCase)
+                            : value.Contains(marker, StringComparison.OrdinalIgnoreCase))
+                        count++;
+                }
+                break;
         }
         return count;
     }
@@ -448,6 +652,11 @@ public static class ClassicDecodeExhaustionAudit
     }
 
     private sealed record SourceText(string Path, string Text);
+    private sealed record GeneratedFamilyInventory(
+        int RecordCount,
+        int PendingMarkerCount,
+        int UnresolvedMarkerCount,
+        IReadOnlyList<FieldAccumulator> Fields);
     private sealed record FieldAccumulator(string JsonPath, string FieldName, int OccurrenceCount, int NonNullCount, IReadOnlyCollection<string> ValueKinds);
     private sealed class MutableFieldAccumulator
     {

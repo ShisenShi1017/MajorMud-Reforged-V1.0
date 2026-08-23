@@ -1,0 +1,23 @@
+{
+  "Enabled": true,
+  "ModelPath": "AI/Models/Qwen2.5-14B-Instruct-Q4_K_M.gguf",
+  "AutoDiscoverModel": true,
+  "PerformancePreset": "Auto",
+  "AutoTuneOnFirstLoad": true,
+  "ContextSize": 4096,
+  "GpuLayerCount": 20,
+  "LastSuccessfulGpuLayerCount": 20,
+  "MaxTokens": 384,
+  "PrivateConversationMaxTokens": 320,
+  "ExternalConversationMaxTokens": 128,
+  "NaturalInitiativeMaxTokens": 128,
+  "RepositoryResearchMaxTokens": 768,
+  "EngineeringDraftMaxTokens": 768,
+  "PromptSafetyMarginTokens": 320,
+  "StatusUpdateMilliseconds": 750,
+  "Temperature": 0.62,
+  "TechnicalTemperature": 0.38,
+  "TopP": 0.9,
+  "RepeatPenalty": 1.1,
+  "HistoryMessageLimit": 6
+}

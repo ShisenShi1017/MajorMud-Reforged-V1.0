@@ -2,6 +2,9 @@ using System.Text.Json;
 
 namespace Reforged.Server;
 
+public sealed record RuntimeSpellDescriptionMessage(int MessageId, string WearOffMessage, string LookMessage, string StatusMessage);
+public sealed record RuntimeSpellStartMessage(int MessageId, string CasterMessage, string TargetMessage, string ObserverMessage);
+
 public sealed record RuntimeSpellDefinition(
     string Id,
     string LegacyId,
@@ -16,7 +19,21 @@ public sealed record RuntimeSpellDefinition(
     int MinimumEffect,
     int MaximumEffect,
     int Duration,
-    IReadOnlyList<string> FormulaReferences);
+    IReadOnlyList<string> FormulaReferences,
+    IReadOnlyList<RuntimeClassicLiveStatusAbility> DecodedAbilities,
+    int LevelsForMinimumIncrease = 0,
+    int MinimumIncrease = 0,
+    int LevelsForMaximumIncrease = 0,
+    int MaximumIncrease = 0,
+    int LevelCap = 0,
+    int CastMessageId = 0,
+    string CastMessage = "",
+    int DescriptionMessageId = 0,
+    string DescriptionMessage = "",
+    string DescriptionLookMessage = "",
+    string DescriptionStatusMessage = "",
+    IReadOnlyList<RuntimeSpellDescriptionMessage>? DescriptionMessages = null,
+    RuntimeSpellStartMessage? StartMessage = null);
 
 public sealed record RuntimeKnownSpell(string CharacterId, string SpellId, DateTimeOffset LearnedAtUtc, IReadOnlyDictionary<string, string>? Metadata = null);
 public sealed record RuntimeSpellResources(int Mana, int Energy);
@@ -84,6 +101,7 @@ public sealed class RuntimeSpellCatalog
         if (!root.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
             throw new InvalidOperationException("Generated spell projection has no records array.");
         var catalog = new RuntimeSpellCatalog();
+        RuntimeClassicNativeTextblockPayloadAuthority? nativeMessages = null;
         foreach (var record in records.EnumerateArray())
         {
             var id = String(record, "id") ?? throw new InvalidOperationException("Generated spell is missing id.");
@@ -93,6 +111,88 @@ public sealed class RuntimeSpellCatalog
             var formulas = record.TryGetProperty("formula_refs", out var refs) && refs.ValueKind == JsonValueKind.Array
                 ? refs.EnumerateArray().Select(x => x.GetString()).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x!).ToArray()
                 : Array.Empty<string>();
+            var decodedAbilities = new List<RuntimeClassicLiveStatusAbility>();
+            var levelsForMinimumIncrease = 0;
+            var minimumIncrease = 0;
+            var levelsForMaximumIncrease = 0;
+            var maximumIncrease = 0;
+            var levelCap = 0;
+            var castMessageId = 0;
+            var castMessage = string.Empty;
+            var descriptionMessageId = 0;
+            var descriptionMessage = string.Empty;
+            var descriptionLookMessage = string.Empty;
+            var descriptionStatusMessage = string.Empty;
+            IReadOnlyList<RuntimeSpellDescriptionMessage> descriptionMessages = Array.Empty<RuntimeSpellDescriptionMessage>();
+            RuntimeSpellStartMessage? startMessage = null;
+            if (record.TryGetProperty("messages", out var messages) && messages.ValueKind == JsonValueKind.Object)
+            {
+                castMessageId = Integer(messages, "cast_message_id");
+                descriptionMessageId = Integer(messages, "description_message_id");
+                var castRequired = Boolean(messages, "cast_message_required");
+                var descriptionRequired = Boolean(messages, "description_message_required");
+                if ((castMessageId > 0 || descriptionMessageId > 0) && worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                if (castMessageId > 0 && nativeMessages is not null) castMessage = nativeMessages.RequireMessage(castMessageId);
+                else if (castRequired) throw new InvalidOperationException($"Generated spell '{id}' requires a resolved cast message.");
+                if (descriptionMessageId <= 0 && descriptionRequired) throw new InvalidOperationException($"Generated spell '{id}' requires a resolved description message.");
+            }
+            if (record.TryGetProperty("public_reference_0139", out var publicReference)
+                && publicReference.TryGetProperty("fields", out var publicFields)
+                && publicFields.ValueKind == JsonValueKind.Object)
+            {
+                levelsForMinimumIncrease = Integer(publicFields, "levels_for_min_increase");
+                minimumIncrease = Integer(publicFields, "min_increase");
+                levelsForMaximumIncrease = Integer(publicFields, "levels_for_max_increase");
+                maximumIncrease = Integer(publicFields, "max_increase");
+                levelCap = Integer(publicFields, "level_cap");
+                if (publicFields.TryGetProperty("abilities_named", out var abilityArray)
+                    && abilityArray.ValueKind == JsonValueKind.Array)
+                {
+                    foreach (var ability in abilityArray.EnumerateArray())
+                    {
+                        var abilityId = Integer(ability, "ability_id");
+                        if (abilityId <= 0) continue;
+                        decodedAbilities.Add(new(abilityId, String(ability, "name") ?? $"ability.{abilityId}", Integer(ability, "value")));
+                    }
+                }
+            }
+            var startSelector = castMessageId > 0
+                ? castMessageId
+                : decodedAbilities.FirstOrDefault(ability => ability.AbilityId == 120 && ability.Value > 0)?.Value ?? 0;
+            if (startSelector > 0)
+            {
+                if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                if (nativeMessages is null) throw new InvalidOperationException($"Generated spell '{id}' has a StartMsg selector without a native message authority.");
+                var casterMessage = nativeMessages.RequireMessage(startSelector);
+                nativeMessages.TryResolveSecondaryMessage(startSelector, out var targetMessage);
+                nativeMessages.TryResolveTertiaryMessage(startSelector, out var observerMessage);
+                startMessage = new(startSelector, casterMessage, targetMessage, observerMessage);
+                castMessageId = startSelector;
+                castMessage = casterMessage;
+            }
+            var descriptionSelectors = descriptionMessageId > 0
+                ? new[] { descriptionMessageId }
+                : decodedAbilities.Where(ability => ability.AbilityId == 115 && ability.Value > 0)
+                    .Select(ability => ability.Value).Distinct().ToArray();
+            if (descriptionSelectors.Length > 0)
+            {
+                if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                if (nativeMessages is null) throw new InvalidOperationException($"Generated spell '{id}' has description selectors without a native message authority.");
+                descriptionMessages = descriptionSelectors.Select(selector =>
+                {
+                    var wearOff = nativeMessages.RequireMessage(selector);
+                    nativeMessages.TryResolveSecondaryMessage(selector, out var look);
+                    nativeMessages.TryResolveTertiaryMessage(selector, out var status);
+                    return new RuntimeSpellDescriptionMessage(selector, wearOff, look, status);
+                }).ToArray();
+                descriptionMessageId = descriptionMessages[0].MessageId;
+                descriptionMessage = descriptionMessages[0].WearOffMessage;
+                descriptionLookMessage = descriptionMessages[0].LookMessage;
+                descriptionStatusMessage = descriptionMessages[0].StatusMessage;
+            }
             if (!catalog._spells.TryAdd(id, new RuntimeSpellDefinition(
                 id,
                 String(record, "legacy_id") ?? string.Empty,
@@ -106,7 +206,11 @@ public sealed class RuntimeSpellCatalog
                 Integer(costs, "energy_cost"),
                 Integer(effect, "min_effect"),
                 Integer(effect, "max_effect"),
-                Integer(effect, "duration"), formulas)))
+                Integer(effect, "duration"), formulas, decodedAbilities,
+                levelsForMinimumIncrease, minimumIncrease,
+                levelsForMaximumIncrease, maximumIncrease, levelCap,
+                castMessageId, castMessage, descriptionMessageId, descriptionMessage,
+                descriptionLookMessage, descriptionStatusMessage, descriptionMessages, startMessage)))
                 throw new InvalidOperationException($"Duplicate generated spell id '{id}'.");
         }
         return catalog;
@@ -119,6 +223,12 @@ public sealed class RuntimeSpellCatalog
         if (!element.TryGetProperty(name, out var value)) return 0;
         if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number)) return number;
         return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out number) ? number : 0;
+    }
+    private static bool Boolean(JsonElement element, string name)
+    {
+        if (!element.TryGetProperty(name, out var value)) return false;
+        if (value.ValueKind is JsonValueKind.True or JsonValueKind.False) return value.GetBoolean();
+        return value.ValueKind == JsonValueKind.String && bool.TryParse(value.GetString(), out var parsed) && parsed;
     }
 }
 
@@ -187,6 +297,15 @@ public sealed class RuntimeSpellEngine
         var effect = _resolver.Resolve(spell, request);
         if (!_effects.TryAdd(effect.EffectId, effect)) throw new InvalidOperationException("Duplicate spell effect id.");
         return new RuntimeSpellCastResult(true, null, null, remaining, effect);
+    });
+
+    public RuntimeActiveSpellEffect AddAdditionalTarget(RuntimeSpellCastRequest request) => Atomic(() =>
+    {
+        var spell = _catalog.Require(request.SpellId);
+        if (!Knows(request.CasterId, spell.Id)) throw new InvalidOperationException("SPELL_NOT_KNOWN");
+        var effect = _resolver.Resolve(spell, request);
+        if (!_effects.TryAdd(effect.EffectId, effect)) throw new InvalidOperationException("Duplicate spell effect id.");
+        return effect;
     });
 
     public int Expire(DateTimeOffset nowUtc) => Atomic(() =>

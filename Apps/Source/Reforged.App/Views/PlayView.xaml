@@ -11,6 +11,7 @@
         <Border Padding="14" Margin="0,0,0,12" Background="#242A30" CornerRadius="5" TextElement.Foreground="#F1F6FA">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Content="Character Profiles" Margin="4" Padding="14,7" Click="OpenCharacterProfilesClicked"/>
                     <Button Content="Options" Margin="4" Padding="14,7" Click="OpenOptionsClicked"/>
                     <Button Content="Diagnostics" Margin="4" Padding="14,7" Click="RefreshLibrariumSnapshotClicked"/>
                 </StackPanel>
@@ -94,6 +95,7 @@
                     </Border>
 
                     <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Save Profile" Margin="4" Padding="18,8" Click="SaveConnectionProfileClicked"/>
                         <Button Content="Connect" Margin="4" Padding="18,8" Click="ConnectSessionClicked"/>
                         <Button Content="Open Terminal" Margin="4" Padding="18,8" Click="OpenTerminalClicked"/>
                         <Button Content="Disconnect" Margin="4" Padding="18,8" Click="DisconnectSessionClicked"/>

@@ -1,0 +1,82 @@
+﻿{
+    "update":  "0139",
+    "source_rows":  371,
+    "accepted_records":  363,
+    "visible_records":  102,
+    "hidden_records":  261,
+    "rejected_records":  8,
+    "rejected":  [
+                     {
+                         "source_row":  19,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "658",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  20,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1976",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  21,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1977",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  22,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1978",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  23,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1985",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  24,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1488",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  25,
+                         "room_number":  164,
+                         "room_name":  "Sysop Support Chamber",
+                         "item_legacy_id":  "1489",
+                         "room_match_count":  0,
+                         "item_resolved":  true,
+                         "reason":  "map_qualified_room_not_uniquely_resolved"
+                     },
+                     {
+                         "source_row":  51,
+                         "room_number":  493,
+                         "room_name":  "Adventurer\u0027s Guild, Halls of Training",
+                         "item_legacy_id":  "0",
+                         "room_match_count":  1,
+                         "item_resolved":  false,
+                         "reason":  "item_not_resolved"
+                     }
+                 ]
+}

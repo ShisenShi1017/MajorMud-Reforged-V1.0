@@ -523,6 +523,7 @@ public sealed class ForgeBrain(IForgeRepositoryService repository, IForgeCommand
         var text = request.Trim();
         var lower = text.ToLowerInvariant();
         var root = state.Configuration.RepositoryPath;
+        var explicitMasterBrain = lower.StartsWith("/brain ") || lower.StartsWith("master brain ");
 
         if (IsGreeting(lower))
             return Greeting(state.Configuration);
@@ -533,26 +534,26 @@ public sealed class ForgeBrain(IForgeRepositoryService repository, IForgeCommand
         if (lower.Contains("what files") && lower.Contains("attach"))
             return DescribeAttachments(state);
 
-        if (lower.Contains("scan") || lower.Contains("inspect repository"))
+        if (!explicitMasterBrain && (lower.Contains("scan") || lower.Contains("inspect repository")))
         {
             var scan = await repository.ScanAsync(root, token);
             return $"Aye, I've walked the whole workshop. I found {scan.ProjectCount} projects, {scan.SourceFileCount} source/UI files, {scan.TestProjectCount} test projects, and {scan.LogFileCount} recent logs. Solutions: {(scan.Solutions.Count == 0 ? "none found" : string.Join(", ", scan.Solutions))}. No files were changed.";
         }
 
-        if (lower.StartsWith("search ") || lower.StartsWith("find "))
+        if (!explicitMasterBrain && (lower.StartsWith("search ") || lower.StartsWith("find ")))
         {
             var query = text[(text.IndexOf(' ') + 1)..].Trim(' ', '"');
             var found = await repository.SearchAsync(root, query, token);
             return $"Aye, here's what the stonework says about '{query}':\n\n{found}\n\nRead-only search; nothing was changed.";
         }
 
-        if (lower.Contains("read log") || lower.Contains("latest log") || lower.Contains("server log"))
+        if (!explicitMasterBrain && (lower.Contains("read log") || lower.Contains("latest log") || lower.Contains("server log")))
         {
             var logs = await repository.ReadLatestLogsAsync(root, token);
             return $"I've pulled the freshest ledgers from the cellar. Here they are:\n\n{logs}";
         }
 
-        if (lower is "build" || lower.Contains("build the app") || lower.Contains("build solution"))
+        if (!explicitMasterBrain && (lower is "build" || lower.Contains("build the app") || lower.Contains("build solution")))
         {
             if (!state.Configuration.AllowBuildCommands)
                 return "The build hammer is locked in Settings. Enable approved build commands first.";
@@ -560,7 +561,7 @@ public sealed class ForgeBrain(IForgeRepositoryService repository, IForgeCommand
             return FormatCommand(result);
         }
 
-        if (lower is "test" || lower.Contains("run tests"))
+        if (!explicitMasterBrain && (lower is "test" || lower.Contains("run tests")))
         {
             if (!state.Configuration.AllowTestCommands)
                 return "The testing casks are locked in Settings. Enable approved test commands first.";

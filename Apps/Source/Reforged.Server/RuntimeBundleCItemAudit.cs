@@ -32,6 +32,10 @@ public static class RuntimeBundleCItemAudit
             Require(items.Length > 0, "generated-item-catalog-loaded");
             Require(items.All(x => !string.IsNullOrWhiteSpace(x.Id) && !string.IsNullOrWhiteSpace(x.Name)), "item-identity-complete");
             Require(items.All(x => x.Weight >= 0 && x.DefaultCharges >= 0), "item-weight-charge-domain-valid");
+            Require(items.Count(x => x.DeleteAtCleanup) == 460, "del-maint-ability-119-all-460-owners-projected");
+            Require(items.Count(x => x.RechargeAtCleanup > 0) == 78, "recharge-ability-121-all-78-owners-projected");
+            Require(items.Count(x => x.RechargeAtCleanup > 0 && x.MaximumUses > 0) == 77, "recharge-ability-121-77-capacity-backed-owners");
+            Require(items.Single(x => x.RechargeAtCleanup > 0 && x.MaximumUses <= 0).Id == "item.1851", "recharge-shadowy-ankh-capacity-gap-fails-closed");
 
             var engine = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","RuntimeItemsEquipment.cs"));
             Require(engine.Contains("ConsumeQuantity", StringComparison.Ordinal), "consumable-runtime-consumer");
@@ -50,6 +54,8 @@ public static class RuntimeBundleCItemAudit
 
             var cleanup = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","RuntimeClassicCleanup.cs"));
             Require(cleanup.Contains("DeleteAtCleanup", StringComparison.Ordinal), "del-maint-ability-119-live-consumer");
+            Require(cleanup.Contains("CollectSubtreeIdsCore(instanceId)", StringComparison.Ordinal), "del-maint-container-subtree-cleanup");
+            Require(cleanup.Contains("RechargeForClassicCleanup", StringComparison.Ordinal), "recharge-ability-121-cleanup-consumer");
             var search = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","RuntimeClassicHiddenSearch.cs"));
             Require(search.Contains("hidden", StringComparison.OrdinalIgnoreCase), "hidden-search-live-consumer");
 

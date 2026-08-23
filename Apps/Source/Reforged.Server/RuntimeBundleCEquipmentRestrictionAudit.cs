@@ -46,10 +46,13 @@ public static class RuntimeBundleCEquipmentRestrictionAudit
         Require(character,"relationship_unresolved","weapon/armour matrix quarantine");
         Check(itemRecords.All(x=>x.TryGetProperty("id",out _)),"all item restrictions retain canonical identity");
         Check(equipmentRecords.All(x=>x.TryGetProperty("item_id",out _)&&x.TryGetProperty("slot",out _)),"all equipment restrictions retain item and slot identity");
+        var exactLevel=equipmentRecords.Single(x=>x.GetProperty("item_id").GetString()=="item.1916");
+        Check(exactLevel.GetProperty("minimum_level").GetInt32()==65&&exactLevel.GetProperty("maximum_level").GetInt32()==65,"ability 135/136 exact-level equipment range is generated");
 
         var dispositions=new[]{
             new RuntimeBundleCRestrictionDisposition("slot/two-handed","verified","RuntimeItemCatalog","RuntimeItemEngine.Equip/EnforceHandRules","RuntimeItemInstance.EquippedSlot","enforced",true),
             new("minimum level","verified","RuntimeCharacterItemRequirementCatalog","RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements","RuntimeCharacterRecord.Level + equipped item","enforced",true),
+            new("maximum level","verified","RuntimeCharacterItemRequirementCatalog + RuntimeItemCatalog","RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements","RuntimeCharacterRecord.Level + equipped item","enforced when positive; item 1916 is exact level 65",true),
             new("class allowlist","verified","RuntimeCharacterItemRequirementCatalog","RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements","RuntimeCharacterRecord.ClassId + equipped item","enforced; metadata duplicate is non-authoritative",true),
             new("race allowlist","verified","RuntimeCharacterItemRequirementCatalog","RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements","RuntimeCharacterRecord.RaceId + equipped item","enforced",true),
             new("minimum stats/strength","verified","RuntimeCharacterItemRequirementCatalog + RuntimeItemCatalog","RuntimeItemEngine.Equip","character base stats + equipped item","enforced",true),

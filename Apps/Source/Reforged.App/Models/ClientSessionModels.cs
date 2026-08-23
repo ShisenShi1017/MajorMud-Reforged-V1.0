@@ -5,8 +5,37 @@ using System.Runtime.CompilerServices;
 namespace Reforged.App.Models;
 
 public enum ClientConnectionState { Disconnected, Connecting, Connected, Reconnecting, Faulted }
-public enum ClientTerminalViewMode { ClassicMegaMud, Reforged }
+public enum ClientTerminalViewMode
+{
+    Reforged = 0,
+    // Legacy serialized name. Both values intentionally select the one Reforged client.
+    ClassicMegaMud = Reforged
+}
 public enum RouteExecutionState { Idle, Running, Paused, WaitingForRoom, Completed, Stopped, Faulted }
+public enum ClientCommandOrigin { Human, Borin, RouteAutomation, ClientAutomation, SystemLogin, ClientProtocol }
+
+public sealed record ClientRoomLinkState(string Direction, string RoomKey, string RoomName);
+public sealed record ClientRoomCommandState(string Command, string Source, string InteractionType, string Requirements);
+public sealed record ClientRoomTopologyNode(
+    string RoomKey, string RoomName, int Depth, bool Current, string[] Players, string[] LiveNpcs,
+    string[] ExpectedMonsters, string[] BossNames, bool BossAlive, bool IsBossLair,
+    bool HasShop, bool HasRoomCommand, int RoomType);
+public sealed record ClientRoomTopologyLink(string SourceRoomKey, string TargetRoomKey, string Direction, string GateKind, bool Hidden, bool OneWay, bool Blocked);
+public sealed record ClientRoomTopologySnapshot(ClientRoomTopologyNode[] Nodes, ClientRoomTopologyLink[] Links);
+public sealed record ClientRoomInspectionNpc(
+    string InstanceId, string CanonicalNpcId, int LegacyNpcId, string Name,
+    int CurrentHitPoints, int MaximumHitPoints, bool Alive, DateTimeOffset? RespawnAtUtc,
+    string Disposition, string InteractionModel, int Level, long ExperienceReward);
+public sealed record ClientRoomInspectionExit(string Direction, string RoomKey, string RoomName, string GateKind, bool HasBlockedDestination);
+public sealed record ClientRoomInspectionSpawn(string DisplayName, int RespawnMinutes, int MaximumAreaPopulation);
+public sealed record ClientRoomInspectionSnapshot(
+    string RoomKey, string Name, string Description, ClientRoomInspectionNpc[] Npcs, string[] Players, string[] Items,
+    string Currency, ClientRoomInspectionExit[] Exits, string[] Commands, ClientRoomInspectionSpawn[] ExpectedSpawns,
+    int? ImportedShopNumber, int EnvironmentLightLevel, int EnvironmentRoomType, DateTimeOffset CapturedAt);
+public sealed record ClientMapCatalogEntry(int MapId, int RoomCount)
+{
+    public string DisplayName => $"Map {MapId} — {RoomCount:N0} rooms";
+}
 
 
 public sealed class ClassicPartyAutomationPreferences : INotifyPropertyChanged
@@ -170,10 +199,14 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private int _reconnectDelaySeconds = 5;
     private ClientConnectionState _connectionState;
     private string _connectionMessage = "Disconnected";
-    private ClientTerminalViewMode _terminalViewMode = ClientTerminalViewMode.ClassicMegaMud;
+    private ClientTerminalViewMode _terminalViewMode = ClientTerminalViewMode.Reforged;
     private DateTimeOffset? _connectedAt;
     private string _lastReceivedLine = string.Empty;
     private string _livePromptText = string.Empty;
+    private ClassicTerminalSnapshot _classicScreen = ClassicTerminalSnapshot.Empty;
+    private string _telnetStatus = "Not connected";
+    private int _terminalColumns = 80;
+    private int _terminalRows = 25;
     private int _healthPercent = 100;
     private int _manaPercent = 100;
     private int _healthCurrent;
@@ -181,17 +214,45 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private int _manaCurrent;
     private int _manaMaximum;
     private long _carriedCurrency;
+    private long _carriedWeight;
+    private long _carryingCapacity;
+    private int _encumbrancePercent;
+    private string _encumbranceBand = string.Empty;
+    private DateTimeOffset? _currencyUpdatedAt;
+    private DateTimeOffset? _encumbranceUpdatedAt;
     private long _experienceCurrent;
     private long _experienceNeeded;
+    private long _experienceRemaining;
     private int _characterLevel;
+    private int _lives;
+    private int _characterPoints;
     private DateTimeOffset? _inventoryUpdatedAt;
     private DateTimeOffset? _experienceUpdatedAt;
     private DateTimeOffset? _equipmentUpdatedAt;
+    private DateTimeOffset? _spellbookUpdatedAt;
+    private DateTimeOffset? _activeEffectsUpdatedAt;
+    private DateTimeOffset? _partyUpdatedAt;
+    private DateTimeOffset? _onlinePlayersUpdatedAt;
     private bool _inCombat;
+    private string _lastCombatEvent = "None";
+    private int _lastCombatAmount;
+    private DateTimeOffset? _lastCombatEventAt;
+    private long _sessionExperienceGained;
+    private int _sessionCombatEventCount;
+    private int _sessionRoomsObserved;
     private bool _isResting;
     private bool _isMoving;
     private string _currentRoomName = string.Empty;
     private string _currentRoomKey = string.Empty;
+    private string _currentRoomDescription = string.Empty;
+    private string _currentRoomCurrency = string.Empty;
+    private DateTimeOffset? _roomUpdatedAt;
+    private DateTimeOffset? _exitsUpdatedAt;
+    private DateTimeOffset? _promptUpdatedAt;
+    private DateTimeOffset? _lastServerActivityAt;
+    private string _lastCommandText = string.Empty;
+    private ClientCommandOrigin _lastCommandOrigin = ClientCommandOrigin.Human;
+    private DateTimeOffset? _lastCommandAt;
     private RouteExecutionState _routeState;
     private string _activeRouteName = string.Empty;
     private int _routeStep;
@@ -237,6 +298,11 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<string> CommandHistory { get; set; } = [];
     public string LastReceivedLine { get => _lastReceivedLine; set => Set(ref _lastReceivedLine, value); }
     public string LivePromptText { get => _livePromptText; set => Set(ref _livePromptText, value); }
+    public ClassicTerminalSnapshot ClassicScreen { get => _classicScreen; set => Set(ref _classicScreen, value); }
+    public string TelnetStatus { get => _telnetStatus; set => Set(ref _telnetStatus, value); }
+    public int TerminalColumns { get => _terminalColumns; set { if (Set(ref _terminalColumns, Math.Clamp(value, 20, ushort.MaxValue))) Raise(nameof(TerminalSizeSummary)); } }
+    public int TerminalRows { get => _terminalRows; set { if (Set(ref _terminalRows, Math.Clamp(value, 5, ushort.MaxValue))) Raise(nameof(TerminalSizeSummary)); } }
+    public string TerminalSizeSummary => $"{TerminalColumns}x{TerminalRows}";
     public int HealthPercent { get => _healthPercent; set => Set(ref _healthPercent, Math.Clamp(value, 0, 100)); }
     public int ManaPercent { get => _manaPercent; set => Set(ref _manaPercent, Math.Clamp(value, 0, 100)); }
     public int HealthCurrent { get => _healthCurrent; set => Set(ref _healthCurrent, Math.Max(0, value)); }
@@ -244,19 +310,71 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public int ManaCurrent { get => _manaCurrent; set => Set(ref _manaCurrent, Math.Max(0, value)); }
     public int ManaMaximum { get => _manaMaximum; set => Set(ref _manaMaximum, Math.Max(0, value)); }
     public long CarriedCurrency { get => _carriedCurrency; set => Set(ref _carriedCurrency, Math.Max(0, value)); }
+    public long CarriedWeight { get => _carriedWeight; set => Set(ref _carriedWeight, Math.Max(0, value)); }
+    public long CarryingCapacity { get => _carryingCapacity; set => Set(ref _carryingCapacity, Math.Max(0, value)); }
+    public int EncumbrancePercent { get => _encumbrancePercent; set => Set(ref _encumbrancePercent, Math.Clamp(value, 0, 999)); }
+    public string EncumbranceBand { get => _encumbranceBand; set => Set(ref _encumbranceBand, value?.Trim() ?? string.Empty); }
+    public DateTimeOffset? CurrencyUpdatedAt { get => _currencyUpdatedAt; set => Set(ref _currencyUpdatedAt, value); }
+    public DateTimeOffset? EncumbranceUpdatedAt { get => _encumbranceUpdatedAt; set => Set(ref _encumbranceUpdatedAt, value); }
     public long ExperienceCurrent { get => _experienceCurrent; set { if (Set(ref _experienceCurrent, Math.Max(0, value))) Raise(nameof(ExperienceSummary)); } }
     public long ExperienceNeeded { get => _experienceNeeded; set { if (Set(ref _experienceNeeded, Math.Max(0, value))) Raise(nameof(ExperienceSummary)); } }
+    public long ExperienceRemaining { get => _experienceRemaining; set => Set(ref _experienceRemaining, Math.Max(0, value)); }
     public int CharacterLevel { get => _characterLevel; set { if (Set(ref _characterLevel, Math.Max(0, value))) Raise(nameof(ExperienceSummary)); } }
+    public int Lives { get => _lives; set => Set(ref _lives, Math.Max(0, value)); }
+    public int CharacterPoints { get => _characterPoints; set => Set(ref _characterPoints, Math.Max(0, value)); }
     public DateTimeOffset? InventoryUpdatedAt { get => _inventoryUpdatedAt; set => Set(ref _inventoryUpdatedAt, value); }
     public DateTimeOffset? ExperienceUpdatedAt { get => _experienceUpdatedAt; set => Set(ref _experienceUpdatedAt, value); }
     public DateTimeOffset? EquipmentUpdatedAt { get => _equipmentUpdatedAt; set => Set(ref _equipmentUpdatedAt, value); }
+    public DateTimeOffset? SpellbookUpdatedAt { get => _spellbookUpdatedAt; set => Set(ref _spellbookUpdatedAt, value); }
+    public DateTimeOffset? ActiveEffectsUpdatedAt { get => _activeEffectsUpdatedAt; set => Set(ref _activeEffectsUpdatedAt, value); }
+    public DateTimeOffset? PartyUpdatedAt { get => _partyUpdatedAt; set => Set(ref _partyUpdatedAt, value); }
+    public DateTimeOffset? OnlinePlayersUpdatedAt { get => _onlinePlayersUpdatedAt; set => Set(ref _onlinePlayersUpdatedAt, value); }
     public ObservableCollection<string> InventoryItems { get; } = [];
     public ObservableCollection<string> EquippedItems { get; } = [];
+    public ObservableCollection<string> LearnedSpells { get; } = [];
+    public ObservableCollection<string> ActiveEffects { get; } = [];
+    public ObservableCollection<ClientPartyMemberState> PartyMembers { get; } = [];
+    public ObservableCollection<ClientOnlinePlayerState> OnlinePlayers { get; } = [];
+    public ObservableCollection<ClientBossHomeState> BossHomes { get; } = [];
+    public ObservableCollection<ClientServerCatalogFamily> ServerCatalogFamilies { get; } = [];
+    public string ServerCatalogWorld { get; set; } = string.Empty;
+    public string ServerCatalogCompileHash { get; set; } = string.Empty;
+    public DateTimeOffset? ServerCatalogUpdatedAt { get; set; }
+    public ClientLibrariumPage? LibrariumPage { get; set; }
+    public ObservableCollection<ClientExperienceSample> SessionExperienceSamples { get; } = [];
     public bool InCombat { get => _inCombat; set => Set(ref _inCombat, value); }
+    public string LastCombatEvent { get => _lastCombatEvent; set => Set(ref _lastCombatEvent, value); }
+    public int LastCombatAmount { get => _lastCombatAmount; set => Set(ref _lastCombatAmount, Math.Max(0, value)); }
+    public DateTimeOffset? LastCombatEventAt { get => _lastCombatEventAt; set => Set(ref _lastCombatEventAt, value); }
+    public long SessionExperienceGained { get => _sessionExperienceGained; set => Set(ref _sessionExperienceGained, Math.Max(0, value)); }
+    public int SessionCombatEventCount { get => _sessionCombatEventCount; set => Set(ref _sessionCombatEventCount, Math.Max(0, value)); }
+    public int SessionRoomsObserved { get => _sessionRoomsObserved; set => Set(ref _sessionRoomsObserved, Math.Max(0, value)); }
     public bool IsResting { get => _isResting; set => Set(ref _isResting, value); }
     public bool IsMoving { get => _isMoving; set => Set(ref _isMoving, value); }
     public string CurrentRoomName { get => _currentRoomName; set => Set(ref _currentRoomName, value); }
     public string CurrentRoomKey { get => _currentRoomKey; set => Set(ref _currentRoomKey, value); }
+    public string CurrentRoomDescription { get => _currentRoomDescription; set => Set(ref _currentRoomDescription, value); }
+    public string CurrentRoomCurrency { get => _currentRoomCurrency; set => Set(ref _currentRoomCurrency, value); }
+    public ObservableCollection<string> CurrentRoomExits { get; } = [];
+    public ObservableCollection<string> CurrentRoomNpcs { get; } = [];
+    public ObservableCollection<ClientRoomInspectionNpc> CurrentRoomNpcDetails { get; } = [];
+    public ObservableCollection<string> CurrentRoomPlayers { get; } = [];
+    public ObservableCollection<string> CurrentRoomItems { get; } = [];
+    public ObservableCollection<ClientRoomLinkState> CurrentRoomLinks { get; } = [];
+    public ObservableCollection<string> CurrentRoomCommands { get; } = [];
+    public ObservableCollection<ClientRoomCommandState> CurrentRoomCommandDetails { get; } = [];
+    public ObservableCollection<ClientRoomTopologyNode> CurrentRoomTopologyNodes { get; } = [];
+    public ObservableCollection<ClientRoomTopologyLink> CurrentRoomTopologyLinks { get; } = [];
+    public ClientRoomInspectionSnapshot? InspectedRoom { get; set; }
+    public string RoomInspectionError { get; set; } = string.Empty;
+    public ObservableCollection<ClientMapCatalogEntry> ServerMaps { get; } = [];
+    public DateTimeOffset? RoomUpdatedAt { get => _roomUpdatedAt; set => Set(ref _roomUpdatedAt, value); }
+    public DateTimeOffset? ExitsUpdatedAt { get => _exitsUpdatedAt; set => Set(ref _exitsUpdatedAt, value); }
+    public DateTimeOffset? PromptUpdatedAt { get => _promptUpdatedAt; set => Set(ref _promptUpdatedAt, value); }
+    public DateTimeOffset? LastServerActivityAt { get => _lastServerActivityAt; set => Set(ref _lastServerActivityAt, value); }
+    public string LastCommandText { get => _lastCommandText; set => Set(ref _lastCommandText, value); }
+    public ClientCommandOrigin LastCommandOrigin { get => _lastCommandOrigin; set => Set(ref _lastCommandOrigin, value); }
+    public DateTimeOffset? LastCommandAt { get => _lastCommandAt; set => Set(ref _lastCommandAt, value); }
     public RouteExecutionState RouteState { get => _routeState; set { if (Set(ref _routeState, value)) Raise(nameof(RouteProgress)); } }
     public string ActiveRouteName { get => _activeRouteName; set => Set(ref _activeRouteName, value); }
     public int RouteStep { get => _routeStep; set { if (Set(ref _routeStep, value)) Raise(nameof(RouteProgress)); } }
@@ -295,12 +413,38 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     }
 }
 
-public sealed record ClientCommandSentEvent(string SessionId, string Command, DateTimeOffset Timestamp);
+public sealed record ClientCommandSentEvent(
+    string SessionId,
+    string Command,
+    DateTimeOffset Timestamp,
+    ClientCommandOrigin Origin = ClientCommandOrigin.Human);
 public sealed record ClientTerminalLineEvent(string SessionId, string Line, DateTimeOffset Timestamp);
 public sealed record ClientSessionStateEvent(string SessionId, ClientConnectionState State, string Message);
 public sealed record RouteExecutionEvent(string SessionId, RouteExecutionState State, int Step, int StepCount, string Message);
 
 public sealed record RouteTraceEntry(int Step, string Command, string FromRoom, string ToRoom, string Status, DateTimeOffset Timestamp, string ExpectedRoomKey = "", string ActualRoomKey = "");
+
+public sealed record ClientPartyMemberState(
+    string Name, string ClassName, int HealthPercent, int? ResourcePercent,
+    string ResourceKind, string Rank, string State, bool Poisoned)
+{
+    public string Vitals => ResourcePercent is { } resource
+        ? $"HP {HealthPercent}% · {(ResourceKind == "Kai" ? "KAI" : "MA")} {resource}%"
+        : $"HP {HealthPercent}%";
+}
+
+public sealed record ClientExperienceSample(DateTimeOffset Timestamp, long CumulativeExperience);
+
+public sealed record ClientOnlinePlayerState(string Name, string ClassName, int Level);
+
+public sealed record ClientBossHomeState(string Name, string State, string CurrentRoom, string HomeRoom, DateTimeOffset? RespawnAtUtc);
+
+public sealed record ClientServerCatalogFamily(string Name, int RecordCount, string Sha256);
+public sealed record ClientServerCatalogSnapshot(string World, string CompileHash, IReadOnlyList<ClientServerCatalogFamily> Families, DateTimeOffset CapturedAt);
+public sealed record ClientLibrariumRecord(string Id, string Name, string Summary);
+public sealed record ClientLibrariumPage(string Family, string Query, int Offset, int PageSize, int TotalCount, IReadOnlyList<ClientLibrariumRecord> Records, DateTimeOffset CapturedAt);
+
+public sealed record ClientItemWeightState(string Item, int Quantity, long UnitWeight, long TotalWeight, string Location);
 
 public sealed record RouteRoomConfirmation(string RoomName, string RoomKey, string RecognitionSource = "Room title", bool IsHighConfidence = false);
 

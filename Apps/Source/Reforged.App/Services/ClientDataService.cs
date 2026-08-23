@@ -24,7 +24,6 @@ public sealed class ClientDataService(IApplicationSettingsService settings) : IC
         ("Spells", "spells.json"),
         ("Rooms", "rooms.json"),
         ("Paths", "exits.json"),
-        ("Messages / Responses", "room_messages.json"),
         ("Macros", "commands.json"),
         ("Races", "races.json"),
         ("Classes", "classes.json")

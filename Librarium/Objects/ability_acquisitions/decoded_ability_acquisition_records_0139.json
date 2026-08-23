@@ -1,0 +1,49 @@
+{
+  "object_type": "ability_acquisition",
+  "records": [
+    {
+      "id": "ability_acquisition.perfect_stealth",
+      "object_type": "ability_acquisition",
+      "world_scope": ["classic"],
+      "ability_id": 186,
+      "ability_value": 0,
+      "npc_id": 745,
+      "npc_name": "dying master assassin",
+      "root_textblock_id": 9010,
+      "command_keyword": "secret",
+      "action_textblock_id": 9029,
+      "success_textblock_id": 9013,
+      "success_output_disposition": "verified_empty_inline_text",
+      "success_output_declared_length": 2,
+      "minimum_level_by_class": { "6": 25, "7": 20, "8": 20, "9": 25, "10": 25, "14": 20, "15": 27 },
+      "required_item_id": null,
+      "experience_reward": 0,
+      "message_ids": [],
+      "evidence_refs": [{ "source": "MMExplorer direct MDB textblock decode", "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "textblocks": [9010, 9012, 9029, 9013] }],
+      "runtime_mapping": { "status": "runtime_authoritative", "exports_to": "/Data/<world>/ability_acquisitions.json", "source": "Librarium/Objects", "generated_only": true, "runtime_reads_generated_data": true }
+    },
+    {
+      "id": "ability_acquisition.meditate",
+      "object_type": "ability_acquisition",
+      "world_scope": ["classic"],
+      "ability_id": 187,
+      "ability_value": 1,
+      "npc_id": 132,
+      "npc_name": "Dhelvanen",
+      "root_textblock_id": 177,
+      "command_keyword": "return",
+      "action_textblock_id": 9046,
+      "success_textblock_id": 9026,
+      "success_output_disposition": "verified_empty_inline_text",
+      "success_output_declared_length": 2,
+      "minimum_level_by_class": { "3": 27, "4": 23, "5": 20, "6": 23, "9": 27, "10": 23, "11": 23, "12": 20, "13": 20, "14": 27 },
+      "transaction_minimum_level": 20,
+      "transaction_classes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "required_item_id": 1351,
+      "experience_reward": 5000,
+      "message_ids": [2639, 2640],
+      "evidence_refs": [{ "source": "MMExplorer direct MDB textblock decode", "path": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json", "textblocks": [177, 9050, 9046, 9026] }],
+      "runtime_mapping": { "status": "runtime_authoritative", "exports_to": "/Data/<world>/ability_acquisitions.json", "source": "Librarium/Objects", "generated_only": true, "runtime_reads_generated_data": true }
+    }
+  ]
+}

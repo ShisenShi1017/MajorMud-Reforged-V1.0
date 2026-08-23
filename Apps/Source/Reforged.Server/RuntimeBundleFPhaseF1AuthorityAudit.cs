@@ -34,10 +34,9 @@ public static class RuntimeBundleFPhaseF1AuthorityAudit
     [
         new("Textblocks and scripts", "scripts.json", "ClassicRuntimeCatalog / RuntimeClassicNarrativeCatalog", "RuntimeQuestDialogueExecution", "Bundle A-G mutation owners"),
         new("Quests and missions", "quests.json", "ClassicRuntimeCatalog / RuntimeClassicNarrativeCatalog", "RuntimeQuestDialogueExecution", "Bundle A character quest state / Bundle G storage"),
-        new("Triggers and events", "triggers.json", "ClassicRuntimeCatalog", "RuntimeTextblockInvocation and authoritative Bundle A-E event producers", "Bundle G storage and reset authority"),
+        new("Triggers", "triggers.json", "ClassicRuntimeCatalog", "RuntimeTextblockInvocation and authoritative runtime event producers", "runtime storage and reset authority"),
         new("Commands", "commands.json", "ClassicRuntimeCatalog", "authoritative command router and RuntimeTextblockInvocation", "owning Bundle A-G subsystem"),
-        new("Narrative events", "events.json", "ClassicRuntimeCatalog", "authoritative event execution contract", "Bundle G scheduler/storage"),
-        new("Race descriptions", "races.json", "ClassicRuntimeCatalog race record", "character creation/help/look/examine projection", "Bundle A identity persistence"),
+        new("Race descriptions", "race_descriptions.json", "RuntimeClassicDescriptionAuthority", "character creation numbered help", "Bundle A identity persistence"),
         new("Room descriptions", "rooms.json", "ClassicRuntimeCatalog room record", "Bundle D look/examine projection", "Bundle D world persistence"),
         new("NPC and monster descriptions", "npcs.json", "ClassicRuntimeCatalog NPC record", "Bundle E interaction/look projection", "Bundle E NPC persistence"),
         new("Item and equipment descriptions", "items.json", "ClassicRuntimeCatalog item record", "Bundle C inventory/look/examine projection", "Bundle C item persistence"),
@@ -60,8 +59,8 @@ public static class RuntimeBundleFPhaseF1AuthorityAudit
 
         Require(File.Exists(Path.Combine(dataRoot, "textblock_command_ability_contracts.json")),
             "required-textblock-command-contract-present", "missing:textblock_command_ability_contracts.json");
-        Require(File.Exists(Path.Combine(dataRoot, "npc_ai_runtime.json")),
-            "required-npc-ai-runtime-present", "missing:npc_ai_runtime.json");
+        Require(File.Exists(Path.Combine(dataRoot, "spawns.json")),
+            "required-generated-spawn-behavior-authority-present", "missing:spawns.json");
 
         foreach (var contract in Contracts)
         {
@@ -73,10 +72,7 @@ public static class RuntimeBundleFPhaseF1AuthorityAudit
                 continue;
             }
 
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
-            var count = document.RootElement.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array
-                ? records.GetArrayLength()
-                : 0;
+            var count = RuntimeChunkedClassicCatalog.LoadRecords(path).Count;
             Require(count > 0, "decoded-family-nonempty:" + contract.File, "empty-family:" + contract.File);
             ledger.Add(new(contract.Family, contract.File, count, contract.Owner, contract.Consumer, contract.Persistence,
                 "Verified or Strongly Corroborated records promoted individually", "canonical authority assigned; live-consumer exhaustion continues by phase"));

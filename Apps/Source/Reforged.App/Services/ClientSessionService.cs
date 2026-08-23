@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
 using Reforged.App.Models;
@@ -20,13 +21,20 @@ public interface IClientSessionService : IAsyncDisposable
     Task ConnectAsync(string sessionId, CancellationToken cancellationToken = default);
     Task DisconnectAsync(string sessionId, bool suppressReconnect = true);
     Task SendCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default);
+    Task SendCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default);
     Task SendSensitiveCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default);
+    Task SendSensitiveCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default);
+    Task SendClientProtocolCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default);
+    Task SendKeyAsync(string sessionId, string sequence, CancellationToken cancellationToken = default);
+    void ResizeClassicTerminal(string sessionId, int columns, int rows);
     Task StartRouteAsync(string sessionId, MegaMudPathRecord route, CancellationToken cancellationToken = default);
     void PauseRoute(string sessionId);
     void ResumeRoute(string sessionId);
     void StopRoute(string sessionId, string reason = "Stopped by user");
     void PrepareRouteRecovery(string sessionId);
     void ClearTerminal(string sessionId);
+    void ResetAnsi(string sessionId);
+    void ResetClientInternals(string sessionId);
     Task<string> ExportTerminalLogAsync(string sessionId, string? destinationPath = null, CancellationToken cancellationToken = default);
 }
 
@@ -40,8 +48,23 @@ public sealed partial class ClientSessionService : IClientSessionService
         !string.IsNullOrWhiteSpace(value) &&
         ClassicStatlinePattern.IsMatch(StripAnsiForPromptDetection(value));
 
-    private static string StripAnsiForPromptDetection(string value) =>
-        Regex.Replace(value ?? string.Empty, @"(?:\x1B)?\[[0-9;]*m", string.Empty);
+    private static readonly Regex TerminalControlSequence = new(
+        @"(?:\x1B\][^\a]*(?:\a|\x1B\\)|\x1B\[[0-?]*[ -/]*[@-~]|\x1B[@-_]|\u009B[0-?]*[ -/]*[@-~])",
+        RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+    private static string StripAnsiForPromptDetection(string value)
+    {
+        var withoutSequences = TerminalControlSequence.Replace(
+            value ?? string.Empty,
+            string.Empty);
+
+        return new string(
+            withoutSequences
+                .Where(character =>
+                    character == '\t' ||
+                    !char.IsControl(character))
+                .ToArray());
+    }
 
     // Every route and automation action remains a normal Host command; the Host stays authoritative.
     private const string ConfirmedStatus = "Confirmed";
@@ -49,6 +72,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     private sealed class Runtime
     {
         public TcpClient? Client;
+        public TelnetNegotiationStream? TelnetStream;
         public StreamReader? Reader;
         public StreamWriter? Writer;
         public CancellationTokenSource? ReadCts;
@@ -58,17 +82,28 @@ public sealed partial class ClientSessionService : IClientSessionService
         public string PartialDisplayText = string.Empty;
         public long ReceiveRevision;
         public long ConnectionGeneration;
+        public readonly ClassicTerminalEmulator ClassicTerminal = new(80, 25);
+        public readonly ClassicPromptStreamScanner PromptScanner = new();
+        public readonly ClassicCombatStreamParser CombatParser = new();
+        public readonly ClassicRoomDisplayStreamParser RoomParser = new();
+        public readonly ClassicStatScreenParser StatParser = new();
+        public readonly ClassicInventoryEquipmentParser ItemScreenParser = new();
+        public readonly ClassicSpellbookParser SpellbookParser = new();
+        public readonly ClassicPartyScreenParser PartyParser = new();
+        public readonly ClassicWhoScreenParser WhoParser = new();
+        public readonly ClassicBossHomeParser BossHomeParser = new();
+        public readonly ClassicLibrariumCatalogParser LibrariumParser = new();
+        public readonly ClassicLibrariumPageParser LibrariumPageParser = new();
+        public readonly ReforgedClientProtocolFilter ProtocolFilter = new();
         public Task? RouteTask;
         public bool SuppressReconnect;
         public readonly SemaphoreSlim SendGate = new(1, 1);
+        public readonly SemaphoreSlim TelnetTraceGate = new(1, 1);
+        public string TelnetTracePath = string.Empty;
         public readonly SemaphoreSlim RouteSignal = new(0, 1);
         public TaskCompletionSource<RouteRoomConfirmation>? RoomConfirmation;
         public string ExpectedPreviousRoom = string.Empty;
         public string ExpectedRoomKey = string.Empty;
-        public bool CapturingInventory;
-        public readonly List<string> PendingInventory = [];
-        public bool CapturingEquipment;
-        public readonly List<string> PendingEquipment = [];
     }
 
     private readonly ConcurrentDictionary<string, Runtime> _runtime = new(StringComparer.OrdinalIgnoreCase);
@@ -117,22 +152,72 @@ public sealed partial class ClientSessionService : IClientSessionService
             await client.ConnectAsync(session.HostName, session.Port, cancellationToken);
 
             var stream = client.GetStream();
-            var telnetStream = new TelnetNegotiationStream(stream, session.TerminalPreferences.EnableTelnetNegotiation);
-            var reader = new StreamReader(telnetStream, new UTF8Encoding(false), true, 4096, leaveOpen: true);
-            var writer = new StreamWriter(stream, new UTF8Encoding(false), 4096, leaveOpen: true)
+            var screen = runtime.ClassicTerminal.CreateSnapshot();
+            var encoding = CreateTerminalEncoding(
+                session.TerminalPreferences.UseCodePage437);
+
+            runtime.TelnetTracePath = session.TerminalPreferences.CaptureTelnetTraffic
+                ? CreateTelnetTracePath(session)
+                : string.Empty;
+
+            var telnetStream = new TelnetNegotiationStream(
+                stream,
+                session.TerminalPreferences.EnableTelnetNegotiation,
+                session.TerminalPreferences.TerminalType,
+                screen.Columns,
+                screen.Rows,
+                session.TerminalPreferences.CaptureTelnetTraffic,
+                (message, traffic) =>
+                    HandleTelnetDiagnostic(
+                        session,
+                        runtime,
+                        message,
+                        traffic));
+
+            var reader = new StreamReader(
+                telnetStream,
+                encoding,
+                detectEncodingFromByteOrderMarks: false,
+                bufferSize: 4096,
+                leaveOpen: true);
+
+            var writer = new StreamWriter(
+                telnetStream,
+                encoding,
+                bufferSize: 4096,
+                leaveOpen: true)
             {
                 AutoFlush = true,
                 NewLine = "\r\n"
             };
+
             var readCts = new CancellationTokenSource();
-            var generation = Interlocked.Increment(ref runtime.ConnectionGeneration);
+            var generation = Interlocked.Increment(
+                ref runtime.ConnectionGeneration);
 
             runtime.Client = client;
+            runtime.TelnetStream = telnetStream;
             runtime.Reader = reader;
             runtime.Writer = writer;
             runtime.ReadCts = readCts;
 
+            await OnUiAsync(() =>
+            {
+                session.TerminalColumns = screen.Columns;
+                session.TerminalRows = screen.Rows;
+                session.TelnetStatus =
+                    $"Negotiating {session.TerminalPreferences.TerminalType} "
+                    + $"{screen.Columns}x{screen.Rows}";
+            });
+
+            await telnetStream.InitializeAsync(cancellationToken);
+
             session.ConnectedAt = DateTimeOffset.Now;
+            session.SessionExperienceGained = 0;
+            session.SessionCombatEventCount = 0;
+            session.SessionRoomsObserved = 0;
+            session.SessionExperienceSamples.Clear();
+            session.SessionExperienceSamples.Add(new ClientExperienceSample(session.ConnectedAt.Value, 0));
             await SetStateAsync(session, ClientConnectionState.Connected, $"Connected to {session.HostName}:{session.Port}");
 
             var readTask = ReadLoopAsync(session, runtime, reader, generation, readCts.Token);
@@ -159,12 +244,61 @@ public sealed partial class ClientSessionService : IClientSessionService
     }
 
     public Task SendCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default) =>
-        SendCommandCoreAsync(sessionId, command, echoToTerminal: true, cancellationToken);
+        SendCommandCoreAsync(sessionId, command, echoToTerminal: true, ClientCommandOrigin.Human, cancellationToken);
+
+    public Task SendCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default) =>
+        SendCommandCoreAsync(sessionId, origin == ClientCommandOrigin.Borin ? FormatBorinCommand(command) : command,
+            echoToTerminal: true, origin, cancellationToken);
 
     public Task SendSensitiveCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default) =>
-        SendCommandCoreAsync(sessionId, command, echoToTerminal: false, cancellationToken);
+        SendCommandCoreAsync(sessionId, command, echoToTerminal: false, ClientCommandOrigin.Human, cancellationToken);
 
-    private async Task SendCommandCoreAsync(string sessionId, string command, bool echoToTerminal, CancellationToken cancellationToken)
+    public Task SendSensitiveCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default) =>
+        SendCommandCoreAsync(sessionId, command, echoToTerminal: false, origin, cancellationToken);
+
+    private static string FormatBorinCommand(string command)
+    {
+        var normalized = Regex.Replace(command?.Trim() ?? string.Empty, @"\s+", " ");
+        if (normalized.Length == 0) return normalized;
+        var split = normalized.IndexOf(' ');
+        if (split < 0) return normalized.ToLowerInvariant();
+        var root = normalized[..split].ToLowerInvariant();
+        var arguments = normalized[(split + 1)..];
+        // Preserve Borin's authored speech and character names; ordinary command
+        // targets produced by deterministic planners are rendered naturally.
+        return root is "say" or "tell" or "telepath" or "group" or "party" or "gos" or "gossip" or "broadgang" or "bg"
+            ? $"{root} {arguments}"
+            : $"{root} {arguments.ToLowerInvariant()}";
+    }
+
+    public Task SendClientProtocolCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default) =>
+        SendCommandCoreAsync(sessionId, command, echoToTerminal: false, ClientCommandOrigin.ClientProtocol, cancellationToken);
+
+    public Task SendKeyAsync(string sessionId, string sequence, CancellationToken cancellationToken = default) =>
+        SendRawCoreAsync(sessionId, sequence, cancellationToken);
+
+    public void ResizeClassicTerminal(string sessionId, int columns, int rows)
+    {
+        var session = GetSession(sessionId);
+        var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+        var snapshot = runtime.ClassicTerminal.Resize(columns, rows);
+
+        _ = OnUiAsync(() =>
+        {
+            session.ClassicScreen = snapshot;
+            session.TerminalColumns = snapshot.Columns;
+            session.TerminalRows = snapshot.Rows;
+        });
+
+        if (runtime.TelnetStream is not null)
+            _ = UpdateTelnetWindowSizeAsync(
+                session,
+                runtime,
+                snapshot.Columns,
+                snapshot.Rows);
+    }
+
+    private async Task SendCommandCoreAsync(string sessionId, string command, bool echoToTerminal, ClientCommandOrigin origin, CancellationToken cancellationToken)
     {
         var session = GetSession(sessionId);
         var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
@@ -175,23 +309,77 @@ public sealed partial class ClientSessionService : IClientSessionService
         try
         {
             var text = command?.Trim() ?? string.Empty;
+            if (origin == ClientCommandOrigin.ClientProtocol)
+            {
+                var parserCommand = text.StartsWith("clientdata ", StringComparison.OrdinalIgnoreCase)
+                    ? text["clientdata ".Length..].Trim()
+                    : text;
+                runtime.RoomParser.NoteOutboundCommand(parserCommand);
+                runtime.StatParser.NoteOutboundCommand(parserCommand);
+                runtime.ItemScreenParser.NoteOutboundCommand(parserCommand);
+                runtime.SpellbookParser.NoteOutboundCommand(parserCommand);
+                runtime.PartyParser.NoteOutboundCommand(parserCommand);
+                runtime.WhoParser.NoteOutboundCommand(parserCommand);
+                runtime.BossHomeParser.NoteOutboundCommand(text);
+                runtime.LibrariumParser.NoteOutboundCommand(text);
+                runtime.LibrariumPageParser.NoteOutboundCommand(text);
+            }
+            else
+            {
+                runtime.RoomParser.NoteOutboundCommand(text);
+                runtime.StatParser.NoteOutboundCommand(text);
+                runtime.ItemScreenParser.NoteOutboundCommand(text);
+                runtime.SpellbookParser.NoteOutboundCommand(text);
+                runtime.PartyParser.NoteOutboundCommand(text);
+                runtime.WhoParser.NoteOutboundCommand(text);
+            }
+            using var traceRedaction = echoToTerminal
+                ? null
+                : runtime.TelnetStream?.RedactApplicationDataTrace();
+
             await runtime.Writer.WriteLineAsync(text.AsMemory(), cancellationToken);
             await runtime.Writer.FlushAsync(cancellationToken);
 
             await OnUiAsync(() =>
             {
+                if (origin == ClientCommandOrigin.ClientProtocol)
+                    return;
                 if (echoToTerminal && text.Length > 0)
                     session.CommandHistory.Add(text);
 
                 // The Host owns command echo and the next statline. Do not add
                 // an artificial "> command" line to Classic scrollback.
+                var sentAt = DateTimeOffset.Now;
+                session.LastCommandText = echoToTerminal ? text : "[hidden]";
+                session.LastCommandOrigin = origin;
+                session.LastCommandAt = sentAt;
                 CommandSent?.Invoke(
                     this,
                     new ClientCommandSentEvent(
                         sessionId,
                         echoToTerminal ? text : "[hidden]",
-                        DateTimeOffset.Now));
+                        sentAt,
+                        origin));
             });
+        }
+        finally { runtime.SendGate.Release(); }
+    }
+
+    private async Task SendRawCoreAsync(string sessionId, string sequence, CancellationToken cancellationToken)
+    {
+        var session = GetSession(sessionId);
+        var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
+            throw new InvalidOperationException($"{session.DisplayName} is not connected.");
+
+        if (string.IsNullOrEmpty(sequence))
+            return;
+
+        await runtime.SendGate.WaitAsync(cancellationToken);
+        try
+        {
+            await runtime.Writer.WriteAsync(sequence.AsMemory(), cancellationToken);
+            await runtime.Writer.FlushAsync(cancellationToken);
         }
         finally { runtime.SendGate.Release(); }
     }
@@ -199,8 +387,21 @@ public sealed partial class ClientSessionService : IClientSessionService
     private static async Task ResetSessionTerminalAsync(ClientSessionConnection session, Runtime runtime)
     {
         runtime.ReceiveBuffer.Clear();
+        runtime.PromptScanner.Reset();
+        runtime.CombatParser.Reset();
+        runtime.RoomParser.Reset();
+        runtime.StatParser.Reset();
+        runtime.ItemScreenParser.Reset();
+        runtime.SpellbookParser.Reset();
+        runtime.PartyParser.Reset();
+        runtime.WhoParser.Reset();
+        runtime.BossHomeParser.Reset();
+        runtime.LibrariumParser.Reset();
+        runtime.LibrariumPageParser.Reset();
+        runtime.ProtocolFilter.Reset();
         runtime.PartialDisplayText = string.Empty;
         runtime.ReceiveRevision = 0;
+        var screen = runtime.ClassicTerminal.Reset();
         await OnUiAsync(() =>
         {
             session.TerminalLines.Clear();
@@ -211,8 +412,44 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.TellEntries.Clear();
             session.PartyEntries.Clear();
             session.SystemEntries.Clear();
+            session.OnlinePlayers.Clear();
+            session.BossHomes.Clear();
+            session.ServerCatalogFamilies.Clear();
+            session.ServerCatalogWorld = session.ServerCatalogCompileHash = string.Empty;
+            session.ServerCatalogUpdatedAt = null;
+            session.LibrariumPage = null;
+            session.OnlinePlayersUpdatedAt = null;
             session.LastReceivedLine = string.Empty;
             session.LivePromptText = string.Empty;
+            session.CurrentRoomName = string.Empty;
+            session.CurrentRoomKey = string.Empty;
+            session.CurrentRoomDescription = string.Empty;
+            session.CurrentRoomCurrency = string.Empty;
+            session.CurrentRoomExits.Clear();
+            session.CurrentRoomNpcs.Clear();
+            session.CurrentRoomPlayers.Clear();
+            session.CurrentRoomItems.Clear();
+            session.CurrentRoomLinks.Clear();
+            session.CurrentRoomCommands.Clear();
+            session.CurrentRoomCommandDetails.Clear();
+            session.CurrentRoomTopologyNodes.Clear();
+            session.CurrentRoomTopologyLinks.Clear();
+            session.ServerMaps.Clear();
+            session.RoomUpdatedAt = null;
+            session.ExitsUpdatedAt = null;
+            session.PromptUpdatedAt = null;
+            session.LastServerActivityAt = null;
+            session.InCombat = false;
+            session.LastCombatEvent = "None";
+            session.LastCombatAmount = 0;
+            session.LastCombatEventAt = null;
+            session.LastCommandText = string.Empty;
+            session.LastCommandOrigin = ClientCommandOrigin.Human;
+            session.LastCommandAt = null;
+            session.ClassicScreen = screen;
+            session.TerminalColumns = screen.Columns;
+            session.TerminalRows = screen.Rows;
+            session.TelnetStatus = "Not connected";
         });
     }
 
@@ -293,6 +530,75 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.SystemEntries.Clear();
     }
 
+    public void ResetAnsi(string sessionId)
+    {
+        var session = GetSession(sessionId);
+        var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+        runtime.PartialDisplayText = string.Empty;
+        runtime.PromptScanner.Reset();
+        session.LivePromptText = string.Empty;
+        session.ClassicScreen = runtime.ClassicTerminal.Reset();
+    }
+
+    public void ResetClientInternals(string sessionId)
+    {
+        var session = GetSession(sessionId);
+        var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+        StopRoute(sessionId, "Client internals reset by user");
+        runtime.ReceiveBuffer.Clear();
+        runtime.PartialDisplayText = string.Empty;
+        runtime.PromptScanner.Reset();
+        runtime.CombatParser.Reset();
+        runtime.RoomParser.Reset();
+        runtime.StatParser.Reset();
+        runtime.ItemScreenParser.Reset();
+        runtime.SpellbookParser.Reset();
+        runtime.PartyParser.Reset();
+        runtime.WhoParser.Reset();
+        runtime.BossHomeParser.Reset();
+        runtime.LibrariumParser.Reset();
+        runtime.LibrariumPageParser.Reset();
+        runtime.ProtocolFilter.Reset();
+        session.LivePromptText = string.Empty;
+        session.CurrentRoomName = string.Empty;
+        session.CurrentRoomKey = string.Empty;
+        session.CurrentRoomDescription = string.Empty;
+        session.CurrentRoomCurrency = string.Empty;
+        session.CurrentRoomExits.Clear();
+        session.CurrentRoomNpcs.Clear();
+        session.CurrentRoomPlayers.Clear();
+        session.CurrentRoomItems.Clear();
+        session.CurrentRoomLinks.Clear();
+        session.CurrentRoomCommands.Clear();
+        session.CurrentRoomCommandDetails.Clear();
+        session.CurrentRoomTopologyNodes.Clear();
+        session.CurrentRoomTopologyLinks.Clear();
+        session.ServerMaps.Clear();
+        session.RoomUpdatedAt = null;
+        session.ExitsUpdatedAt = null;
+        session.InCombat = false;
+        session.LastCombatEvent = "None";
+        session.LastCombatAmount = 0;
+        session.LastCombatEventAt = null;
+        session.InventoryItems.Clear();
+        session.EquippedItems.Clear();
+        session.LearnedSpells.Clear();
+        session.ActiveEffects.Clear();
+        session.PartyMembers.Clear();
+        session.OnlinePlayers.Clear();
+        session.BossHomes.Clear();
+        session.ServerCatalogFamilies.Clear();
+        session.ServerCatalogWorld = session.ServerCatalogCompileHash = string.Empty;
+        session.ServerCatalogUpdatedAt = null;
+        session.LibrariumPage = null;
+        session.InventoryUpdatedAt = null;
+        session.EquipmentUpdatedAt = null;
+        session.SpellbookUpdatedAt = null;
+        session.ActiveEffectsUpdatedAt = null;
+        session.PartyUpdatedAt = null;
+        session.OnlinePlayersUpdatedAt = null;
+    }
+
     public async Task<string> ExportTerminalLogAsync(string sessionId, string? destinationPath = null, CancellationToken cancellationToken = default)
     {
         var session = GetSession(sessionId);
@@ -344,7 +650,7 @@ public sealed partial class ClientSessionService : IClientSessionService
                     runtime.RoomConfirmation = new TaskCompletionSource<RouteRoomConfirmation>(TaskCreationOptions.RunContinuationsAsynchronously);
                     session.AwaitingRouteConfirmation = true;
                 }
-                await SendCommandAsync(session.SessionId, step.Command, token);
+                await SendCommandAsAsync(session.SessionId, step.Command, ClientCommandOrigin.RouteAutomation, token);
                 if (step.IsMovement)
                 {
                     SetRoute(session, RouteExecutionState.WaitingForRoom, $"Waiting for room confirmation after {step.FriendlyCommand}");
@@ -424,7 +730,27 @@ public sealed partial class ClientSessionService : IClientSessionService
                 var read = await reader.ReadAsync(chars.AsMemory(), token);
                 if (read == 0) break;
 
-                runtime.ReceiveBuffer.Append(chars, 0, read);
+                var protocolResult = runtime.ProtocolFilter.Process(new string(chars, 0, read));
+                var receivedText = protocolResult.VisibleText;
+                if (protocolResult.Messages.Count > 0)
+                {
+                    await OnUiAsync(() =>
+                    {
+                        foreach (var message in protocolResult.Messages)
+                            ParseClientProtocol(session, message);
+                    });
+                }
+                if (receivedText.Length == 0) continue;
+                var classicScreen = runtime.ClassicTerminal.Process(receivedText);
+                var promptObservations = runtime.PromptScanner.Append(receivedText);
+                await OnUiAsync(() =>
+                {
+                    session.ClassicScreen = classicScreen;
+                    foreach (var observation in promptObservations)
+                        ApplyWirePrompt(session, observation);
+                });
+
+                runtime.ReceiveBuffer.Append(receivedText);
                 var completed = new List<string>();
                 var text = runtime.ReceiveBuffer.ToString();
                 var start = 0;
@@ -443,8 +769,14 @@ public sealed partial class ClientSessionService : IClientSessionService
                 await OnUiAsync(() =>
                 {
                     RemovePartialDisplay(session, runtime);
-                    foreach (var line in completed)
+                    foreach (var rawLine in completed)
                     {
+                        var line = StripAnsiForPromptDetection(rawLine);
+                        if (string.IsNullOrEmpty(line) &&
+                            !string.IsNullOrEmpty(rawLine))
+                            continue;
+
+                        session.LastServerActivityAt = DateTimeOffset.Now;
                         ParseStatus(session, line);
                         if ((_parsing.IsMatch(ClientParsingRuleKind.MovementRejected, line, session.ServerProfileName, session.WorldName) || MovementRejected().IsMatch(line)) && runtime.RoomConfirmation is not null)
                             runtime.RoomConfirmation.TrySetException(new InvalidOperationException($"Host rejected movement: {line}"));
@@ -454,7 +786,8 @@ public sealed partial class ClientSessionService : IClientSessionService
                         if (IsClassicStatline(line))
                         {
                             runtime.PartialDisplayText = line;
-                            session.LivePromptText = StripAnsiForPromptDetection(line);
+                            session.LivePromptText = line;
+                            session.PromptUpdatedAt = DateTimeOffset.Now;
                         }
                         else
                         {
@@ -463,7 +796,10 @@ public sealed partial class ClientSessionService : IClientSessionService
                         }
                     }
 
-                    UpdatePartialDisplay(session, runtime, partial);
+                    UpdatePartialDisplay(
+                        session,
+                        runtime,
+                        StripAnsiForPromptDetection(partial));
                     runtime.ReceiveRevision++;
                 });
             }
@@ -488,7 +824,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         }
     }
 
-    private static void UpdatePartialDisplay(ClientSessionConnection session, Runtime runtime, string partial)
+    private void UpdatePartialDisplay(ClientSessionConnection session, Runtime runtime, string partial)
     {
         var trimmed = StripAnsiForPromptDetection(partial).Trim();
 
@@ -504,11 +840,19 @@ public sealed partial class ClientSessionService : IClientSessionService
         ParsePartialStatus(session, partial);
     }
 
-    private static void ParsePartialStatus(ClientSessionConnection session, string partial)
+    private void ParsePartialStatus(ClientSessionConnection session, string partial)
     {
-        // Prompts and status ticks often arrive without CR/LF. Preserve the exact
-        // text for display and expose it as the latest Host output immediately.
-        session.LastReceivedLine = partial;
+        // Prompts and status ticks often arrive without CR/LF. Preserve and parse
+        // them immediately so Borin sees the same live state as the terminal.
+        var clean = StripAnsiForPromptDetection(partial).Trim();
+        session.LastReceivedLine = clean;
+        session.LastServerActivityAt = DateTimeOffset.Now;
+        if (IsClassicStatline(clean))
+        {
+            session.LivePromptText = clean;
+            session.PromptUpdatedAt = DateTimeOffset.Now;
+            ParseStatus(session, clean);
+        }
     }
 
     private static void RemovePartialDisplay(ClientSessionConnection session, Runtime runtime)
@@ -557,6 +901,35 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         session.LastReceivedLine = line;
         var prepared = _parsing.PrepareLine(line, session.ServerProfileName, session.WorldName);
+        if (_runtime.TryGetValue(session.SessionId, out var statRuntime) &&
+            statRuntime.StatParser.Observe(prepared) is { } stat)
+        {
+            ApplyStatObservation(session, stat);
+        }
+        if (_runtime.TryGetValue(session.SessionId, out var spellRuntime) &&
+            spellRuntime.SpellbookParser.Observe(prepared) is { } spells)
+        {
+            session.LearnedSpells.Clear();
+            foreach (var spell in spells) session.LearnedSpells.Add(spell);
+            session.SpellbookUpdatedAt = DateTimeOffset.Now;
+        }
+        if (_runtime.TryGetValue(session.SessionId, out var partyRuntime) &&
+            partyRuntime.PartyParser.Observe(prepared) is { } party)
+        {
+            session.PartyMembers.Clear();
+            foreach (var member in party)
+                session.PartyMembers.Add(new ClientPartyMemberState(member.Name, member.ClassName,
+                    member.HealthPercent, member.ResourcePercent, member.ResourceKind,
+                    member.Rank, member.State, member.Poisoned));
+            session.PartyUpdatedAt = DateTimeOffset.Now;
+        }
+        if (_runtime.TryGetValue(session.SessionId, out var whoRuntime) &&
+            whoRuntime.WhoParser.Observe(prepared) is { } onlinePlayers)
+        {
+            session.OnlinePlayers.Clear();
+            foreach (var player in onlinePlayers) session.OnlinePlayers.Add(player);
+            session.OnlinePlayersUpdatedAt = DateTimeOffset.Now;
+        }
         var vitals = _parsing.MatchFirst(ClientParsingRuleKind.CombinedVitals, prepared, session.ServerProfileName, session.WorldName) ?? VitalPrompt().Match(prepared);
         if (vitals.Success)
         {
@@ -566,11 +939,15 @@ public sealed partial class ClientSessionService : IClientSessionService
         else
         {
             var hpPair = _parsing.MatchFirst(ClientParsingRuleKind.Health, prepared, session.ServerProfileName, session.WorldName) ?? HealthPair().Match(prepared);
-            if (hpPair.Success) SetVital(session, hpPair.Groups[1].Value, hpPair.Groups[2].Value, true);
-            else
+            if (hpPair.Success)
+            {
+                SetVital(session, hpPair.Groups[1].Value, hpPair.Groups[2].Value, true);
+            }
+            else if (!TryApplyScalarHealthPrompt(session, prepared))
             {
                 var hp = _parsing.MatchFirst(ClientParsingRuleKind.Health, prepared, session.ServerProfileName, session.WorldName) ?? Health().Match(prepared);
-                if (hp.Success && int.TryParse(hp.Groups[1].Value, out var hpValue)) session.HealthPercent = Math.Clamp(hpValue, 0, 100);
+                if (hp.Success && int.TryParse(hp.Groups[1].Value, out var hpValue))
+                    session.HealthPercent = Math.Clamp(hpValue, 0, 100);
             }
             var manaPair = _parsing.MatchFirst(ClientParsingRuleKind.Mana, prepared, session.ServerProfileName, session.WorldName) ?? ManaPair().Match(prepared);
             if (manaPair.Success) SetVital(session, manaPair.Groups[1].Value, manaPair.Groups[2].Value, false);
@@ -580,117 +957,357 @@ public sealed partial class ClientSessionService : IClientSessionService
                 if (mana.Success && int.TryParse(mana.Groups[1].Value, out var manaValue)) session.ManaPercent = Math.Clamp(manaValue, 0, 100);
             }
         }
-        var cash = _parsing.MatchFirst(ClientParsingRuleKind.Currency, prepared, session.ServerProfileName, session.WorldName) ?? CurrencyTotal().Match(prepared);
-        if (cash.Success && long.TryParse(cash.Groups[1].Value.Replace(",", string.Empty), out var cashValue)) session.CarriedCurrency = cashValue;
-
-        var experience = _parsing.MatchFirst(ClientParsingRuleKind.Experience, prepared, session.ServerProfileName, session.WorldName) ?? ExperienceLine().Match(prepared);
-        if (experience.Success)
+        if (_runtime.TryGetValue(session.SessionId, out var inventoryRuntime) &&
+            inventoryRuntime.ItemScreenParser.Observe(prepared) is { } itemScreen)
+            ApplyItemScreenObservation(session, itemScreen);
+        if (_runtime.TryGetValue(session.SessionId, out var combatRuntime))
         {
-            session.ExperienceCurrent = ParseLong(experience.Groups[1].Value);
-            if (experience.Groups[2].Success) session.ExperienceNeeded = ParseLong(experience.Groups[2].Value);
-            session.ExperienceUpdatedAt = DateTimeOffset.Now;
+            var combat = combatRuntime.CombatParser.Observe(prepared);
+            if (combat.Kind is ClassicCombatEventKind.Engaged or ClassicCombatEventKind.Disengaged)
+                session.InCombat = combat.InCombat;
+            if (combat.Kind != ClassicCombatEventKind.None)
+            {
+                session.LastCombatEvent = combat.Kind.ToString();
+                session.LastCombatAmount = combat.Amount;
+                session.LastCombatEventAt = DateTimeOffset.Now;
+                session.SessionCombatEventCount++;
+            }
+            if (combat.Kind == ClassicCombatEventKind.ExperienceReward &&
+                combat.Amount > 0 && session.ExperienceUpdatedAt is not null)
+            {
+                session.ExperienceCurrent = session.ExperienceCurrent > long.MaxValue - combat.Amount
+                    ? long.MaxValue
+                    : session.ExperienceCurrent + combat.Amount;
+                session.SessionExperienceGained = session.SessionExperienceGained > long.MaxValue - combat.Amount
+                    ? long.MaxValue
+                    : session.SessionExperienceGained + combat.Amount;
+                session.SessionExperienceSamples.Add(new ClientExperienceSample(DateTimeOffset.Now, session.SessionExperienceGained));
+                if (session.SessionExperienceSamples.Count > 500)
+                    session.SessionExperienceSamples.RemoveAt(1);
+                session.ExperienceUpdatedAt = DateTimeOffset.Now;
+            }
         }
-        var level = _parsing.MatchFirst(ClientParsingRuleKind.Level, prepared, session.ServerProfileName, session.WorldName) ?? LevelLine().Match(prepared);
-        if (level.Success && int.TryParse(level.Groups[1].Value, out var levelValue))
-        {
-            session.CharacterLevel = levelValue;
-            session.ExperienceUpdatedAt = DateTimeOffset.Now;
-        }
-
-        if (_runtime.TryGetValue(session.SessionId, out var inventoryRuntime))
-            CaptureInventoryAndEquipment(session, inventoryRuntime, prepared);
-        if (_parsing.IsMatch(ClientParsingRuleKind.CombatStart, prepared, session.ServerProfileName, session.WorldName) || CombatStart().IsMatch(prepared)) session.InCombat = true;
-        if (_parsing.IsMatch(ClientParsingRuleKind.CombatEnd, prepared, session.ServerProfileName, session.WorldName) || CombatEnd().IsMatch(prepared)) session.InCombat = false;
         session.IsResting = _parsing.IsMatch(ClientParsingRuleKind.Resting, prepared, session.ServerProfileName, session.WorldName) || Resting().IsMatch(prepared);
-        var roomIdentity = TryParseRoomIdentity(session, prepared);
-        if (roomIdentity is not null)
+
+        var roomIdentity = _runtime.TryGetValue(session.SessionId, out var roomRuntime)
+            ? roomRuntime.RoomParser.Observe(prepared)
+            : null;
+        if (roomIdentity is { } roomDisplay)
         {
             var previousName = session.CurrentRoomName;
             var previousKey = session.CurrentRoomKey;
-            session.CurrentRoomName = roomIdentity.RoomName;
-            if (!string.IsNullOrWhiteSpace(roomIdentity.RoomKey)) session.CurrentRoomKey = roomIdentity.RoomKey;
-            var roomChanged = !string.Equals(roomIdentity.RoomName, previousName, StringComparison.OrdinalIgnoreCase) ||
-                              (!string.IsNullOrWhiteSpace(roomIdentity.RoomKey) && !string.Equals(roomIdentity.RoomKey, previousKey, StringComparison.OrdinalIgnoreCase));
+            var roomChanged = !string.Equals(roomDisplay.RoomName, previousName, StringComparison.OrdinalIgnoreCase) ||
+                              (!string.IsNullOrWhiteSpace(roomDisplay.RoomKey) && !string.Equals(roomDisplay.RoomKey, previousKey, StringComparison.OrdinalIgnoreCase));
+            session.CurrentRoomName = roomDisplay.RoomName;
+            if (!string.IsNullOrWhiteSpace(roomDisplay.RoomKey)) session.CurrentRoomKey = roomDisplay.RoomKey;
+            session.RoomUpdatedAt = DateTimeOffset.Now;
+            if (roomChanged)
+                session.SessionRoomsObserved++;
+            session.CurrentRoomExits.Clear();
+            foreach (var exit in roomDisplay.Exits)
+                session.CurrentRoomExits.Add(exit);
+            session.CurrentRoomDescription = roomDisplay.Description;
+            session.CurrentRoomCurrency = roomDisplay.Currency;
+            ReplaceRoomValues(session.CurrentRoomNpcs, roomDisplay.Npcs);
+            ReplaceRoomValues(session.CurrentRoomPlayers, roomDisplay.Players);
+            ReplaceRoomValues(session.CurrentRoomItems, roomDisplay.Items);
+            session.ExitsUpdatedAt = DateTimeOffset.Now;
             if (_runtime.TryGetValue(session.SessionId, out var runtime) && runtime.RoomConfirmation is not null && roomChanged &&
-                (!string.Equals(roomIdentity.RoomName, runtime.ExpectedPreviousRoom, StringComparison.OrdinalIgnoreCase) ||
-                 !string.IsNullOrWhiteSpace(roomIdentity.RoomKey)))
-                runtime.RoomConfirmation.TrySetResult(roomIdentity);
+                (!string.Equals(roomDisplay.RoomName, runtime.ExpectedPreviousRoom, StringComparison.OrdinalIgnoreCase) ||
+                 !string.IsNullOrWhiteSpace(roomDisplay.RoomKey)))
+                runtime.RoomConfirmation.TrySetResult(new RouteRoomConfirmation(
+                    roomDisplay.RoomName,
+                    roomDisplay.RoomKey,
+                    "Completed MajorMUD room display",
+                    !string.IsNullOrWhiteSpace(roomDisplay.RoomKey)));
         }
     }
 
-    private void CaptureInventoryAndEquipment(ClientSessionConnection session, Runtime runtime, string line)
+    private void ParseClientProtocol(ClientSessionConnection session, ReforgedClientProtocolMessage message)
     {
-        if (_parsing.IsMatch(ClientParsingRuleKind.EquipmentHeader, line, session.ServerProfileName, session.WorldName) || EquipmentHeader().IsMatch(line))
+        if (!_runtime.TryGetValue(session.SessionId, out var runtime)) return;
+        if (message.Channel == "ROOMDATA")
         {
-            CommitInventory(session, runtime);
-            runtime.CapturingEquipment = true;
-            runtime.PendingEquipment.Clear();
+            if (runtime.RoomParser.Observe(message.Payload) is { } room)
+                ApplyClientRoomDataObservation(session, room);
             return;
         }
-        if (_parsing.IsMatch(ClientParsingRuleKind.InventoryHeader, line, session.ServerProfileName, session.WorldName) || InventoryHeader().IsMatch(line))
+        if (message.Channel == "PANELDATA")
         {
-            CommitEquipment(session, runtime);
-            runtime.CapturingInventory = true;
-            runtime.PendingInventory.Clear();
+            ParseStatus(session, message.Payload);
             return;
         }
-
-        if (runtime.CapturingInventory)
+        if (message.Channel == "ROOMLINKS")
         {
-            if (string.IsNullOrWhiteSpace(line) || _parsing.IsMatch(ClientParsingRuleKind.InventoryFooter, line, session.ServerProfileName, session.WorldName) || InventoryFooter().IsMatch(line) || PromptLine().IsMatch(line))
+            try
             {
-                CommitInventory(session, runtime);
-                return;
+                var links = JsonSerializer.Deserialize<ClientRoomLinkState[]>(message.Payload) ?? [];
+                session.CurrentRoomLinks.Clear();
+                foreach (var link in links) session.CurrentRoomLinks.Add(link);
             }
-            AddCapturedItem(runtime.PendingInventory, line, ClientParsingRuleKind.InventoryItem, session);
+            catch (JsonException) { }
             return;
         }
-
-        if (!runtime.CapturingEquipment) return;
-        if (string.IsNullOrWhiteSpace(line) || _parsing.IsMatch(ClientParsingRuleKind.EquipmentFooter, line, session.ServerProfileName, session.WorldName) || EquipmentFooter().IsMatch(line) || PromptLine().IsMatch(line))
+        if (message.Channel == "ROOMNPCS")
         {
-            CommitEquipment(session, runtime);
+            try
+            {
+                var npcs = JsonSerializer.Deserialize<ClientRoomInspectionNpc[]>(message.Payload) ?? [];
+                session.CurrentRoomNpcDetails.Clear();
+                foreach (var npc in npcs) session.CurrentRoomNpcDetails.Add(npc);
+            }
+            catch (JsonException) { }
             return;
         }
-        AddCapturedItem(runtime.PendingEquipment, line, ClientParsingRuleKind.EquipmentItem, session);
+        if (message.Channel == "ROOMCOMMANDS")
+        {
+            try
+            {
+                var commands = JsonSerializer.Deserialize<ClientRoomCommandState[]>(message.Payload) ?? [];
+                session.CurrentRoomCommands.Clear();
+                session.CurrentRoomCommandDetails.Clear();
+                foreach (var command in commands)
+                {
+                    session.CurrentRoomCommands.Add(command.Command);
+                    session.CurrentRoomCommandDetails.Add(command);
+                }
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "ROOMTOPOLOGY")
+        {
+            try
+            {
+                var topology = JsonSerializer.Deserialize<ClientRoomTopologySnapshot>(message.Payload);
+                if (topology is null) return;
+                session.CurrentRoomTopologyNodes.Clear();
+                session.CurrentRoomTopologyLinks.Clear();
+                foreach (var node in topology.Nodes ?? []) session.CurrentRoomTopologyNodes.Add(node);
+                foreach (var link in topology.Links ?? []) session.CurrentRoomTopologyLinks.Add(link);
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "ROOMINSPECTION")
+        {
+            try
+            {
+                session.InspectedRoom = JsonSerializer.Deserialize<ClientRoomInspectionSnapshot>(message.Payload);
+                session.RoomInspectionError = string.Empty;
+            }
+            catch (JsonException) { session.RoomInspectionError = "The server returned invalid room inspection data."; }
+            return;
+        }
+        if (message.Channel == "MAPCATALOG")
+        {
+            try
+            {
+                var maps = JsonSerializer.Deserialize<ClientMapCatalogEntry[]>(message.Payload) ?? [];
+                session.ServerMaps.Clear();
+                foreach (var map in maps) session.ServerMaps.Add(map);
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "ROOMINSPECTERROR")
+        {
+            session.RoomInspectionError = message.Payload;
+            return;
+        }
+        if (message.Channel == "BOSSHOME")
+        {
+            if (runtime.BossHomeParser.Observe(message.Payload) is not { } bosses) return;
+            session.BossHomes.Clear();
+            foreach (var boss in bosses) session.BossHomes.Add(boss);
+            return;
+        }
+        if (message.Channel != "LIBRARIUM") return;
+        if (runtime.LibrariumParser.Observe(message.Payload) is { } catalog)
+        {
+            session.ServerCatalogFamilies.Clear();
+            foreach (var family in catalog.Families) session.ServerCatalogFamilies.Add(family);
+            session.ServerCatalogWorld = catalog.World;
+            session.ServerCatalogCompileHash = catalog.CompileHash;
+            session.ServerCatalogUpdatedAt = catalog.CapturedAt;
+        }
+        if (runtime.LibrariumPageParser.Observe(message.Payload) is { } page)
+            session.LibrariumPage = page;
     }
 
-    private void AddCapturedItem(List<string> target, string line, ClientParsingRuleKind kind, ClientSessionConnection session)
+    private static void ApplyClientRoomDataObservation(ClientSessionConnection session, ClassicRoomDisplayObservation room)
     {
-        var custom = _parsing.MatchFirst(kind, line, session.ServerProfileName, session.WorldName);
-        string name;
-        if (custom is not null)
+        session.CurrentRoomName = room.RoomName;
+        if (!string.IsNullOrWhiteSpace(room.RoomKey)) session.CurrentRoomKey = room.RoomKey;
+        session.CurrentRoomDescription = room.Description;
+        session.CurrentRoomCurrency = room.Currency;
+        ReplaceRoomValues(session.CurrentRoomExits, room.Exits);
+        ReplaceRoomValues(session.CurrentRoomNpcs, room.Npcs);
+        ReplaceRoomValues(session.CurrentRoomPlayers, room.Players);
+        ReplaceRoomValues(session.CurrentRoomItems, room.Items);
+        session.RoomUpdatedAt = DateTimeOffset.Now;
+        session.ExitsUpdatedAt = session.RoomUpdatedAt;
+    }
+
+    private static void ReplaceRoomValues(ObservableCollection<string> target, IEnumerable<string> values)
+    {
+        target.Clear();
+        foreach (var value in values) target.Add(value);
+    }
+
+    private static void ApplyItemScreenObservation(ClientSessionConnection session, ClassicItemScreenObservation observation)
+    {
+        var now = DateTimeOffset.Now;
+        if (observation.Currency is { } currency)
         {
-            name = custom.Groups.Count > 1 ? custom.Groups[^1].Value.Trim() : custom.Value.Trim();
+            session.CarriedCurrency = currency;
+            session.CurrencyUpdatedAt = now;
+        }
+        if (observation.CarriedWeight is { } weight && observation.CarryingCapacity is { } capacity && observation.EncumbrancePercent is { } percent)
+        {
+            session.CarriedWeight = weight;
+            session.CarryingCapacity = capacity;
+            session.EncumbrancePercent = percent;
+            session.EncumbranceBand = observation.EncumbranceBand;
+            session.EncumbranceUpdatedAt = now;
+        }
+        if (observation.Kind == ClassicItemScreenKind.Wealth) return;
+        var target = observation.Kind == ClassicItemScreenKind.Inventory ? session.InventoryItems : session.EquippedItems;
+        target.Clear();
+        foreach (var item in observation.Entries) target.Add(item.DisplayText);
+        if (observation.Kind == ClassicItemScreenKind.Inventory) session.InventoryUpdatedAt = now;
+        else session.EquipmentUpdatedAt = now;
+    }
+
+    internal static bool TryApplyScalarHealthPromptForTest(ClientSessionConnection session, string line) =>
+        TryApplyScalarHealthPrompt(session, line);
+
+    private static bool TryApplyScalarHealthPrompt(ClientSessionConnection session, string line)
+    {
+        var match = HealthScalarPrompt().Match(line ?? string.Empty);
+        if (!match.Success || !int.TryParse(match.Groups[1].Value, out var current))
+            return false;
+
+        session.HealthCurrent = Math.Max(0, current);
+        if (session.HealthMaximum > 0)
+        {
+            session.HealthPercent = Math.Clamp(
+                (int)Math.Round(session.HealthCurrent * 100d / session.HealthMaximum),
+                0,
+                100);
         }
         else
         {
-            var item = InventoryItemLine().Match(line);
-            if (!item.Success) return;
-            name = EquipmentSlotPrefix().Replace(item.Groups[1].Value.Trim(), string.Empty).Trim();
+            // A scalar MajorMUD prompt such as [HP=51]: proves current HP, but
+            // not maximum HP or a safe percentage. Keep percentage unknown so
+            // autonomous play cannot mistake an unverified maximum for full health.
+            session.HealthPercent = 0;
         }
-        name = EquipmentSlotPrefix().Replace(name, string.Empty).Trim();
-        if (!string.IsNullOrWhiteSpace(name) && !InventoryNoise().IsMatch(name)) target.Add(name);
+
+        return true;
     }
 
-    private static void CommitInventory(ClientSessionConnection session, Runtime runtime)
+    private static void ApplyWirePrompt(
+        ClientSessionConnection session,
+        ClassicPromptObservation observation)
     {
-        if (!runtime.CapturingInventory) return;
-        session.InventoryItems.Clear();
-        foreach (var item in runtime.PendingInventory.Distinct(StringComparer.OrdinalIgnoreCase)) session.InventoryItems.Add(item);
-        session.InventoryUpdatedAt = DateTimeOffset.Now;
-        runtime.PendingInventory.Clear();
-        runtime.CapturingInventory = false;
+        session.HealthCurrent = Math.Max(0, observation.Health);
+        if (session.HealthMaximum > 0)
+        {
+            session.HealthPercent = Math.Clamp(
+                (int)Math.Round(session.HealthCurrent * 100d / session.HealthMaximum),
+                0,
+                100);
+        }
+
+        if (!string.IsNullOrEmpty(observation.ResourceKind))
+        {
+            session.ManaCurrent = Math.Max(0, observation.Resource);
+            if (session.ManaMaximum > 0)
+            {
+                session.ManaPercent = Math.Clamp(
+                    (int)Math.Round(session.ManaCurrent * 100d / session.ManaMaximum),
+                    0,
+                    100);
+            }
+        }
+        else
+        {
+            session.ManaCurrent = 0;
+            session.ManaPercent = 0;
+        }
+
+        session.IsResting = observation.IsResting || observation.IsMeditating;
+        session.LivePromptText = observation.ResourceKind.Length == 0
+            ? $"[HP={observation.Health}]:"
+            : $"[HP={observation.Health}/{observation.ResourceKind}={observation.Resource}]:";
+        session.PromptUpdatedAt = DateTimeOffset.Now;
+        session.LastServerActivityAt = DateTimeOffset.Now;
     }
 
-    private static void CommitEquipment(ClientSessionConnection session, Runtime runtime)
+    private static void ApplyStatObservation(
+        ClientSessionConnection session,
+        ClassicStatObservation observation)
     {
-        if (!runtime.CapturingEquipment) return;
-        session.EquippedItems.Clear();
-        foreach (var item in runtime.PendingEquipment.Distinct(StringComparer.OrdinalIgnoreCase)) session.EquippedItems.Add(item);
-        session.EquipmentUpdatedAt = DateTimeOffset.Now;
-        runtime.PendingEquipment.Clear();
-        runtime.CapturingEquipment = false;
+        if (!string.IsNullOrWhiteSpace(observation.CharacterName))
+            session.CharacterName = observation.CharacterName;
+        if (observation.HealthCurrent is { } health) session.HealthCurrent = health;
+        if (observation.HealthMaximum is { } maximumHealth) session.HealthMaximum = maximumHealth;
+        if (observation.ManaCurrent is { } mana) session.ManaCurrent = mana;
+        if (observation.ManaMaximum is { } maximumMana) session.ManaMaximum = maximumMana;
+        if (session.HealthMaximum > 0)
+            session.HealthPercent = Math.Clamp((int)Math.Round(session.HealthCurrent * 100d / session.HealthMaximum), 0, 100);
+        if (session.ManaMaximum > 0)
+            session.ManaPercent = Math.Clamp((int)Math.Round(session.ManaCurrent * 100d / session.ManaMaximum), 0, 100);
+        else if (observation.ManaMaximum == 0)
+            session.ManaPercent = 0;
+        if (observation.Experience is { } experience) session.ExperienceCurrent = experience;
+        if (observation.ExperienceNeeded is { } needed) session.ExperienceNeeded = needed;
+        if (observation.ExperienceRemaining is { } remaining) session.ExperienceRemaining = remaining;
+        if (observation.Level is { } level) session.CharacterLevel = level;
+        if (observation.Lives is { } lives) session.Lives = lives;
+        if (observation.CharacterPoints is { } characterPoints) session.CharacterPoints = characterPoints;
+        if (observation.Experience is not null || observation.ExperienceNeeded is not null || observation.Level is not null)
+            session.ExperienceUpdatedAt = DateTimeOffset.Now;
+        if (observation.ScreenComplete)
+        {
+            session.ActiveEffects.Clear();
+            foreach (var effect in observation.ActiveEffects ?? Array.Empty<string>()) session.ActiveEffects.Add(effect);
+            session.ActiveEffectsUpdatedAt = DateTimeOffset.Now;
+        }
+    }
+
+    internal static IReadOnlyList<string> ParseExits(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return Array.Empty<string>();
+
+        return Regex.Split(value, @"(?:\s+and\s+)|[,;/\s]+", RegexOptions.IgnoreCase)
+            .Select(part => NormalizeExit(part))
+            .Where(part => part.Length > 0 && !part.Equals("none", StringComparison.OrdinalIgnoreCase))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static string NormalizeExit(string value)
+    {
+        var clean = Regex.Replace(value.Trim().Trim('.', ':', ';'), @"[^A-Za-z]", string.Empty).ToLowerInvariant();
+        return clean switch
+        {
+            "n" or "north" => "north",
+            "ne" or "northeast" => "northeast",
+            "e" or "east" => "east",
+            "se" or "southeast" => "southeast",
+            "s" or "south" => "south",
+            "sw" or "southwest" => "southwest",
+            "w" or "west" => "west",
+            "nw" or "northwest" => "northwest",
+            "u" or "up" => "up",
+            "d" or "down" => "down",
+            "in" or "inside" => "in",
+            "out" or "outside" => "out",
+            _ => clean,
+        };
     }
 
     private static long ParseLong(string value) => long.TryParse(value.Replace(",", string.Empty), out var parsed) ? Math.Max(0, parsed) : 0;
@@ -765,11 +1382,11 @@ public sealed partial class ClientSessionService : IClientSessionService
         {
             var roomName = custom.Groups.Count > 2 ? custom.Groups[^1].Value.Trim() : custom.Groups[1].Value.Trim();
             var roomKey = custom.Groups.Count > 2 ? NormalizeRoomKey(custom.Groups[1].Value) : string.Empty;
-            if (!string.IsNullOrWhiteSpace(roomName) && !LooksLikeNonRoomOutput(roomName))
+            if (!string.IsNullOrWhiteSpace(roomName) && LooksLikeRoomTitle(roomName))
                 return new RouteRoomConfirmation(roomName, roomKey, "Server parsing profile", !string.IsNullOrWhiteSpace(roomKey));
         }
 
-        if (LooksLikeNonRoomOutput(clean)) return null;
+        if (!LooksLikeRoomTitle(clean)) return null;
         var room = RoomLine().Match(clean);
         return room.Success ? new RouteRoomConfirmation(room.Groups[1].Value.Trim(), string.Empty, "Room title", false) : null;
     }
@@ -779,6 +1396,33 @@ public sealed partial class ClientSessionService : IClientSessionService
         if (line.Length < 3 || line.Length > 140) return true;
         if (line.EndsWith('.') || line.EndsWith('!') || line.EndsWith('?') || line.Contains(" says ", StringComparison.OrdinalIgnoreCase)) return true;
         return NonRoomPrefix().IsMatch(line) || line.StartsWith('>') || line.Contains("HP:", StringComparison.OrdinalIgnoreCase) || line.Contains("MP:", StringComparison.OrdinalIgnoreCase);
+    }
+
+    internal static bool IsPlausibleRoomTitleForTest(string line) => LooksLikeRoomTitle(line);
+
+    private static bool LooksLikeRoomTitle(string line)
+    {
+        var clean = Regex.Replace(line?.Trim() ?? string.Empty, @"\s+", " ");
+        if (LooksLikeNonRoomOutput(clean))
+            return false;
+
+        var words = Regex.Matches(clean, @"[A-Za-z][A-Za-z'-]*");
+        if (words.Count == 0 || words.Count > 9)
+            return false;
+
+        // Wrapped room prose often arrives as a capitalized fragment without its
+        // final punctuation. Leading articles are valid in room titles, so reject
+        // descriptive verbs and sentence markers rather than blanket-rejecting
+        // titles beginning with A, An, or The.
+        if (Regex.IsMatch(
+                clean,
+                @"\b(?:you|your|there|this|these|those|is|are|was|were|has|have|can|could|would|surrounds?|leads?|stands?|contains?|protects?|against|appears?|seems?|notice|see|hear|feel|winds?|extends?|stretches?|opens?|lies?)\b",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private static string NormalizeRoomKey(string value) => value.Trim().Trim('[', ']', '(', ')').ToUpperInvariant();
@@ -833,10 +1477,12 @@ public sealed partial class ClientSessionService : IClientSessionService
 
         var readCts = runtime.ReadCts;
         var readTask = runtime.ReadTask;
+        var telnetStream = runtime.TelnetStream;
         var reader = runtime.Reader;
         var writer = runtime.Writer;
         var client = runtime.Client;
 
+        runtime.TelnetStream = null;
         runtime.Reader = null;
         runtime.Writer = null;
         runtime.Client = null;
@@ -852,8 +1498,104 @@ public sealed partial class ClientSessionService : IClientSessionService
 
         try { reader?.Dispose(); } catch { }
         try { writer?.Dispose(); } catch { }
+        try { telnetStream?.Dispose(); } catch { }
         try { client?.Dispose(); } catch { }
         try { readCts?.Dispose(); } catch { }
+    }
+
+    private static Encoding CreateTerminalEncoding(bool useCodePage437)
+    {
+        if (!useCodePage437)
+            return new UTF8Encoding(
+                encoderShouldEmitUTF8Identifier: false,
+                throwOnInvalidBytes: false);
+
+        return new CodePage437Encoding();
+    }
+
+    private static string CreateTelnetTracePath(
+        ClientSessionConnection session)
+    {
+        var folder = Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData),
+            "MajorMudReforged",
+            "TelnetLogs");
+
+        Directory.CreateDirectory(folder);
+
+        var sourceName = string.IsNullOrWhiteSpace(session.CharacterName)
+            ? session.DisplayName
+            : session.CharacterName;
+
+        var safeName = string.Concat(
+            sourceName.Select(character =>
+                Path.GetInvalidFileNameChars().Contains(character)
+                    ? '_'
+                    : character));
+
+        return Path.Combine(
+            folder,
+            $"{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.telnet.log");
+    }
+
+    private static void HandleTelnetDiagnostic(
+        ClientSessionConnection session,
+        Runtime runtime,
+        string message,
+        bool traffic)
+    {
+        if (!traffic)
+            _ = OnUiAsync(() => session.TelnetStatus = message);
+
+        if (!string.IsNullOrWhiteSpace(runtime.TelnetTracePath))
+            _ = AppendTelnetTraceAsync(runtime, message);
+    }
+
+    private static async Task AppendTelnetTraceAsync(
+        Runtime runtime,
+        string message)
+    {
+        await runtime.TelnetTraceGate.WaitAsync();
+        try
+        {
+            await File.AppendAllTextAsync(
+                runtime.TelnetTracePath,
+                $"[{DateTimeOffset.Now:O}] {message}"
+                + Environment.NewLine);
+        }
+        catch
+        {
+        }
+        finally
+        {
+            runtime.TelnetTraceGate.Release();
+        }
+    }
+
+    private static async Task UpdateTelnetWindowSizeAsync(
+        ClientSessionConnection session,
+        Runtime runtime,
+        int columns,
+        int rows)
+    {
+        try
+        {
+            var telnetStream = runtime.TelnetStream;
+            if (telnetStream is null)
+                return;
+
+            await telnetStream.SetWindowSizeAsync(columns, rows);
+        }
+        catch (Exception exception)
+            when (exception is IOException
+                or SocketException
+                or ObjectDisposedException)
+        {
+            await OnUiAsync(() =>
+                session.TelnetStatus =
+                    $"NAWS update failed: {exception.Message}");
+        }
     }
 
     private static Task OnUiAsync(Action action)
@@ -873,7 +1615,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     private static ClientTerminalChannel ClassifyTerminalChannel(string line)
     {
         var text = AnsiSequence.Replace(line, string.Empty).Trim();
-        if (Regex.IsMatch(text, @"^(You tell|.+ tells you|From .+:)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Tell;
+        if (Regex.IsMatch(text, @"^(You tell|.+ tells you|From .+:|.+ telepaths(?: to you)?\s*:)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Tell;
         if (Regex.IsMatch(text, @"^(Party|Group|\[Party\]|\[Group\])", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Party;
         if (Regex.IsMatch(text, @"^(You say|.+ says|.+ chats|Chat:)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Chat;
         if (Regex.IsMatch(text, @"(attacks|hits|misses|damage|combat|killed|slain|flee)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Combat;
@@ -925,9 +1667,14 @@ public sealed partial class ClientSessionService : IClientSessionService
     public async ValueTask DisposeAsync()
     {
         foreach (var session in Sessions.ToArray()) await DisconnectAsync(session.SessionId);
-        foreach (var runtime in _runtime.Values) runtime.SendGate.Dispose();
+        foreach (var runtime in _runtime.Values)
+        {
+            runtime.SendGate.Dispose();
+            runtime.TelnetTraceGate.Dispose();
+        }
     }
 
+    [GeneratedRegex(@"^\s*\[(?:HP|H)\s*[=:]\s*(\d+)\]\s*:?\s*$", RegexOptions.IgnoreCase)] private static partial Regex HealthScalarPrompt();
     [GeneratedRegex(@"(?:HP|Health)\s*[:=]?\s*(\d{1,3})%", RegexOptions.IgnoreCase)] private static partial Regex Health();
     [GeneratedRegex(@"(?:HP|Health)\s*[:=]?\s*(\d+)\s*/\s*(\d+)", RegexOptions.IgnoreCase)] private static partial Regex HealthPair();
     [GeneratedRegex(@"(?:HP|H)\s*[:=]?\s*(\d+)\s*/\s*(\d+).*?(?:MP|M|Mana)\s*[:=]?\s*(\d+)\s*/\s*(\d+)", RegexOptions.IgnoreCase)] private static partial Regex VitalPrompt();
@@ -942,6 +1689,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     [GeneratedRegex(@"^(?:End of equipment|Total armor|Armor class|You are wearing nothing)\b", RegexOptions.IgnoreCase)] private static partial Regex EquipmentFooter();
     [GeneratedRegex(@"^\s*(?:<[^>]+>|\[[^\]]+\]|(?:Head|Body|Hands|Feet|Waist|Back|Neck|Finger|Wrist|Weapon|Shield|Held|Light)\s*:)\s*", RegexOptions.IgnoreCase)] private static partial Regex EquipmentSlotPrefix();
     [GeneratedRegex(@"^(?:HP|H)\s*[:=]|^>\s*$|^Command\s*[:>]", RegexOptions.IgnoreCase)] private static partial Regex PromptLine();
+    [GeneratedRegex(@"^(?:Obvious\s+exits?|Exits?)\s*:\s*(.+?)\s*$", RegexOptions.IgnoreCase)] private static partial Regex ExitLine();
     [GeneratedRegex(@"^\s*(?:[-*]\s*)?(?:\d+\s*[xX]\s*)?(.+?)\s*$")] private static partial Regex InventoryItemLine();
     [GeneratedRegex(@"^(?:Inventory|Items carried|You are carrying|Nothing|Total|Weight|Encumbrance|Gold|Coins|Cash)\b", RegexOptions.IgnoreCase)] private static partial Regex InventoryNoise();
     [GeneratedRegex(@"attacks you|you attack|combat begins|engage in combat", RegexOptions.IgnoreCase)] private static partial Regex CombatStart();
@@ -953,7 +1701,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     [GeneratedRegex(@"^(?:Map\s*)?(\d+)\s+(?:Room\s*)?(\d+)\s*[:|\-]\s*(.+)$", RegexOptions.IgnoreCase)] private static partial Regex MapRoomLine();
     [GeneratedRegex(@"^(.+?)\s*[\[(]([0-9A-F]{8}|\d+[:/]\d+)[\])]$", RegexOptions.IgnoreCase)] private static partial Regex RoomKeySuffixLine();
     [GeneratedRegex(@"^(?:Room\s*)?#?(\d+)\s*[:|\-]\s*(.+)$", RegexOptions.IgnoreCase)] private static partial Regex HashRoomLine();
-    [GeneratedRegex(@"^(?:You|Your|A |An |The |He |She |It |They |Someone|Something|There |Exits?[: ]|Obvious exits|Also here|You see|You hear|You feel|You are|Current |Status |Combat |Party |Quest |System )", RegexOptions.IgnoreCase)] private static partial Regex NonRoomPrefix();
+    [GeneratedRegex(@"^(?:You|Your|He |She |It |They |Someone|Something|There |Exits?[: ]|Obvious exits|Also here|You see|You hear|You feel|You are|Current |Status |Combat |Party |Quest |System )", RegexOptions.IgnoreCase)] private static partial Regex NonRoomPrefix();
     [GeneratedRegex(@"\x1B(?:[@-Z\-_]|\[[0-?]*[ -/]*[@-~])")] private static partial Regex StripAnsi();
     [GeneratedRegex(@"can't go|cannot go|no exit|blocked|locked|unable to move|you may not", RegexOptions.IgnoreCase)] private static partial Regex MovementRejected();
 }

@@ -238,13 +238,30 @@ public static class RuntimeCharacterDecodeBundleAudit
         Check(questAbilities.Operations.Count > 0, "quests.decoded_ability_operations");
         Check(questAbilities.Grants.Count > 0, "quests.decoded_ability_grants");
         Check(questAbilities.Operations.All(x => x.AbilityId > 0 && !string.IsNullOrWhiteSpace(x.AbilityName)), "quests.ability_identity_resolution");
+        Check(RuntimeCharacterQuestAbilityCatalog.QuestProgressionAbilities.Count == 10
+            && RuntimeCharacterQuestAbilityCatalog.QuestProgressionAbilities.Keys.SequenceEqual(Enumerable.Range(125, 10)),
+            "quests.progression_ability_family_125_134_complete");
+        var generatedAbilityCatalog = RuntimeAbilityCatalog.Load(projectRoot, worldId);
+        foreach (var progressionAbility in RuntimeCharacterQuestAbilityCatalog.QuestProgressionAbilities)
+        {
+            Check(questAbilities.TryGetAbilityName(progressionAbility.Key, out var progressionName)
+                && progressionName.Equals(progressionAbility.Value, StringComparison.Ordinal),
+                $"quests.progression_ability_{progressionAbility.Key}_identity");
+            var progressionProbe = questAbilities.ApplyGrant(probe, progressionAbility.Key, progressionAbility.Key - 123,
+                $"audit:quest-progression:{progressionAbility.Key}");
+            Check(questAbilities.HasAtLeast(progressionProbe, progressionAbility.Key, progressionAbility.Key - 123)
+                && RuntimeCharacterAbilityValues.Restore(progressionProbe.Conditions).Count == 1,
+                $"runtime.character.quest_progression_{progressionAbility.Key}_persistence");
+            Check(!questAbilities.ResolveExecutablePowerIds(progressionProbe, generatedAbilityCatalog).Any(),
+                $"runtime.character.quest_progression_{progressionAbility.Key}_not_player_power");
+        }
+        connected.Add("runtime.character.quest_progression_abilities_125_134");
         var firstGrant = questAbilities.Grants.First();
         var grantedProbe = questAbilities.ApplyGrant(probe, firstGrant.AbilityId, firstGrant.AbilityValue, $"audit:{firstGrant.QuestId}:{firstGrant.TextblockId}");
         Check(questAbilities.HasAtLeast(grantedProbe, firstGrant.AbilityId, firstGrant.AbilityValue), "runtime.character.quest_ability_persistence_consumer");
         connected.Add("runtime.character.quest_ability_reward_authority");
         var smashProbe = questAbilities.ApplyGrant(probe, RuntimeCharacterQuestAbilityCatalog.SmashAbilityId, 1, "audit:smash-capability");
         var meditateProbe = questAbilities.ApplyGrant(probe, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, 1, "audit:meditate-capability");
-        var generatedAbilityCatalog = RuntimeAbilityCatalog.Load(projectRoot, worldId);
         Check(questAbilities.ResolveExecutablePowerIds(smashProbe, generatedAbilityCatalog).Contains("ability.32", StringComparer.OrdinalIgnoreCase), "runtime.character.quest_flag_unlocks_smash");
         Check(questAbilities.ResolveExecutablePowerIds(meditateProbe, generatedAbilityCatalog).Contains("ability.187", StringComparer.OrdinalIgnoreCase), "runtime.character.quest_flag_unlocks_meditate");
         Check(!questAbilities.ResolveExecutablePowerIds(grantedProbe, generatedAbilityCatalog).Any(), "runtime.character.quest_progress_flags_not_executable_powers");
@@ -269,6 +286,33 @@ public static class RuntimeCharacterDecodeBundleAudit
         Check(worldRewards.MeetsClassAbilityGate(32, 1, 22) && !worldRewards.MeetsClassAbilityGate(32, 1, 21), "character_class_ability_gates.smash_warrior_level22");
         Check(worldRewards.MeetsClassAbilityGate(187, 12, 20) && !worldRewards.MeetsClassAbilityGate(187, 12, 19), "character_class_ability_gates.meditate_mage_level20");
         Check(worldRewards.MeetsClassAbilityGate(186, 15, 27) && !worldRewards.MeetsClassAbilityGate(186, 15, 26), "character_class_ability_gates.perfect_stealth_mystic_level27");
+        var acquisitionAuthority = RuntimeClassicAbilityAcquisitionAuthority.Load(projectRoot, worldId);
+        var perfectContext = new RuntimeQuestDialogueContext(probe with { ClassId = "class.8", ClassName = "Thief", Level = 20 }, RuntimeItemCatalog.Load(projectRoot, worldId));
+        var perfectAcquisition = acquisitionAuthority.Execute(745, "secret", perfectContext);
+        Check(perfectAcquisition.Granted && RuntimeCharacterAbilityValues.Restore(perfectAcquisition.Character.Conditions).ContainsKey(186),
+            "runtime.character.ask_master_assassin_secret_grants_perfect_stealth");
+        var meditateOwner = "audit.meditate-acquisition";
+        var meditateItemState = new RuntimeItemState(
+            [new RuntimeItemInstance("audit-item-1351", "item.1351", meditateOwner, RuntimeItemLocations.Character, meditateOwner, null, 0, 1, null)],
+            0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        var meditateCharacter = probe with { CharacterId = meditateOwner, ClassId = "class.12", ClassName = "Mage", Level = 20, ItemState = meditateItemState };
+        var meditateContext = new RuntimeQuestDialogueContext(meditateCharacter, RuntimeItemCatalog.Load(projectRoot, worldId));
+        var meditateAcquisition = acquisitionAuthority.Execute(132, "return", meditateContext);
+        var meditateValues = RuntimeCharacterAbilityValues.Restore(meditateAcquisition.Character.Conditions);
+        Check(meditateAcquisition.Granted && meditateValues.TryGetValue(187, out var meditateValue) && meditateValue == 1
+            && meditateAcquisition.Character.Experience == meditateCharacter.Experience + 5000
+            && (meditateAcquisition.Character.ItemState?.Items.Any(x => x.CanonicalItemId.Equals("item.1351", StringComparison.OrdinalIgnoreCase)) ?? false) is false,
+            "runtime.character.ask_dhelvanen_return_consumes_item_rewards_xp_and_grants_meditate");
+        connected.Add("runtime.character.decoded_ask_ability_acquisition_authority");
+        var mageMeditate = questAbilities.ApplyGrant(probe with { ClassId = "class.12", ClassName = "Mage", Level = 20 }, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, 1, "audit:meditate-mage");
+        Check(questAbilities.CanUseCapability(mageMeditate, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, worldRewards)
+            && !questAbilities.CanUseCapability(mageMeditate with { Level = 19 }, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, worldRewards)
+            && !questAbilities.CanUseCapability(mageMeditate with { ClassId = "class.1", ClassName = "Warrior" }, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, worldRewards),
+            "runtime.character.meditate_requires_grant_class_and_level");
+        var thiefPerfectStealth = questAbilities.ApplyGrant(probe with { ClassId = "class.8", ClassName = "Thief", Level = 20 }, RuntimeCharacterQuestAbilityCatalog.PerfectStealthAbilityId, 1, "audit:perfect-stealth-thief");
+        Check(questAbilities.CanUseCapability(thiefPerfectStealth, RuntimeCharacterQuestAbilityCatalog.PerfectStealthAbilityId, worldRewards)
+            && !questAbilities.CanUseCapability(thiefPerfectStealth with { Level = 19 }, RuntimeCharacterQuestAbilityCatalog.PerfectStealthAbilityId, worldRewards),
+            "runtime.character.perfect_stealth_requires_grant_class_and_level");
         Check(worldRewards.MeetsClassAbilityGate(32, "Warrior", 22) && !worldRewards.MeetsClassAbilityGate(32, "Warrior", 21), "character_class_ability_gates.name_based_runtime_gate");
         var rewardProbe = questAbilities.ApplyGrant(probe, RuntimeCharacterQuestAbilityCatalog.ArmourClassAbilityId, 1, "audit:ac-bonus");
         rewardProbe = questAbilities.ApplyGrant(rewardProbe, RuntimeCharacterQuestAbilityCatalog.CriticalAbilityId, 1, "audit:critical-bonus");

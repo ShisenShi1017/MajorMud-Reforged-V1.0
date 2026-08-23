@@ -65,8 +65,9 @@ public sealed class RuntimeClassicNpcDialogueRuntime
             return new(false, request.NpcId, resolution.Match.RootTextblockId, resolution.Match.TargetTextblockId, 0, Array.Empty<int>(), Array.Empty<string>(), "dialogue-context-root-mismatch");
 
         var expanded = _randomTables.Expand(resolution.Plan.Operations, out var randomCount);
-        var renderedIds = expanded.Where(IsPresentation).Select(RequireTarget).ToArray();
-        foreach (var id in renderedIds) _ = Render(id);
+        var presentationOperations = expanded.Where(IsPresentation).ToArray();
+        var renderedIds = presentationOperations.Select(RequireTarget).ToArray();
+        foreach (var operation in presentationOperations) _ = Render(operation);
         var plan = resolution.Plan with
         {
             Operations = expanded,
@@ -79,7 +80,12 @@ public sealed class RuntimeClassicNpcDialogueRuntime
 
         // The coordinator remains the mutation boundary. Native rendering is canonicalized here
         // so host presentation bindings cannot fall back to numeric identifiers.
-        var output = renderedIds.Where(id => !_payloads.IsVerifiedNoOutput(id)).Select(Render).ToArray();
+        var output = presentationOperations
+            .Where(operation => operation.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase)
+                ? !_payloads.IsVerifiedNoOutputMessage(RequireTarget(operation))
+                : !_payloads.IsVerifiedNoOutput(RequireTarget(operation)))
+            .Select(Render)
+            .ToArray();
         return new(true, request.NpcId, plan.RootTextblockId, plan.MatchedTextblockId, randomCount, renderedIds, output, null);
     }
 
@@ -91,17 +97,20 @@ public sealed class RuntimeClassicNpcDialogueRuntime
         operation.NumericArguments.FirstOrDefault() is var value && value > 0 ? value :
         throw new InvalidOperationException($"Presentation operation '{operation.Raw}' has no textblock target.");
 
-    private string Render(int textblockId)
+    private string Render(RuntimeClassicTextblockOperation operation)
     {
-        var payload = _payloads.Require(textblockId);
-        var rendered = _substitutions.Resolve(textblockId, payload);
+        var id = RequireTarget(operation);
+        var isMessage = operation.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase);
+        var payload = isMessage ? _payloads.RequireMessage(id) : _payloads.RequireTextblock(id);
+        var rendered = _substitutions.Resolve(id, payload);
         if (string.IsNullOrEmpty(rendered))
         {
-            if (_payloads.IsVerifiedNoOutput(textblockId)) return string.Empty;
-            throw new InvalidOperationException($"Rendered dialogue payload {textblockId} is empty.");
+            if (isMessage && _payloads.IsVerifiedNoOutputMessage(id)) return string.Empty;
+            if (!isMessage && _payloads.IsVerifiedNoOutput(id)) return string.Empty;
+            throw new InvalidOperationException($"Rendered dialogue {operation.Opcode} payload {id} is empty.");
         }
         if (Regex.IsMatch(rendered, @"%s", RegexOptions.CultureInvariant))
-            throw new InvalidOperationException($"Rendered dialogue payload {textblockId} retains unresolved native substitution tokens.");
+            throw new InvalidOperationException($"Rendered dialogue {operation.Opcode} payload {id} retains unresolved native substitution tokens.");
         return rendered;
     }
 }

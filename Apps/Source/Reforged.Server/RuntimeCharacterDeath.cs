@@ -27,6 +27,43 @@ public sealed record RuntimeCharacterDeathTransition(
     string EventId,
     DateTimeOffset OccurredAtUtc);
 
+public sealed record RuntimeDecodedDeathTextEvidence(
+    string ItemId,
+    int ReferencedTextblockId,
+    bool PayloadResolved,
+    bool Executable,
+    string Classification);
+
+public static class RuntimeDecodedDeathTextAuthority
+{
+    public static IReadOnlyList<RuntimeDecodedDeathTextEvidence> Resolve(
+        RuntimeCharacterRecord character, RuntimeItemCatalog items, RuntimeClassicNativeTextblockPayloadAuthority native)
+    {
+        var ownedIds = (character.ItemState?.Items ?? Array.Empty<RuntimeItemInstance>())
+            .Where(item => item.OwnerId?.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase) == true)
+            .Select(item => item.CanonicalItemId).Distinct(StringComparer.OrdinalIgnoreCase);
+        return ownedIds.Select(items.Require)
+            .Where(item => item.EquipmentAbilityModifiers.TryGetValue(155, out _))
+            .Select(item =>
+            {
+                var target = item.EquipmentAbilityModifiers[155];
+                var payload = string.Empty;
+                var resolved = target > 0 && native.TryResolveTextblock(target, out payload);
+                var executable = resolved && IsDeathPayload(payload);
+                return new RuntimeDecodedDeathTextEvidence(item.Id, target, resolved, executable,
+                    executable ? "native_death_payload" : resolved
+                        ? "resolved_payload_semantic_mismatch_quarantined"
+                        : "unresolved_target_quarantined");
+            }).ToArray();
+    }
+
+    internal static bool IsDeathPayload(string payload) =>
+        payload.Contains("die", StringComparison.OrdinalIgnoreCase)
+        || payload.Contains("death", StringComparison.OrdinalIgnoreCase)
+        || payload.Contains("killed", StringComparison.OrdinalIgnoreCase)
+        || payload.Contains("slain", StringComparison.OrdinalIgnoreCase);
+}
+
 public static class RuntimeCharacterDeathResolver
 {
     public const string EvidenceClassification = "STRONGLY CORRELATED";
@@ -55,7 +92,7 @@ public static class RuntimeCharacterDeathResolver
                 && !item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase))
             .ToArray();
         var retainedIds = rootsBefore
-            .Where(item => catalog.Require(item.CanonicalItemId).RetainedOnDeathCurse)
+            .Where(item => catalog.Require(item.CanonicalItemId).RetainedOnDeath)
             .Select(item => item.InstanceId)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 

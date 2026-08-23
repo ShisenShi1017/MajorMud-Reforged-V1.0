@@ -78,6 +78,14 @@ if (!report.Passed)
 
 var projectRoot = report.ProjectRoot!;
 
+if (args.Any(arg => string.Equals(arg, "--audit-classic-native-messages", StringComparison.OrdinalIgnoreCase)))
+{
+    var nativeMessageReport = RuntimeClassicNativeMessageCoverageAudit.Run(projectRoot);
+    Console.WriteLine("Classic Native Message Coverage Audit");
+    Console.WriteLine(nativeMessageReport.ToJson());
+    return nativeMessageReport.Passed ? 0 : 30;
+}
+
 
 
 if (args.Any(arg => string.Equals(arg, "--audit-bundle-d-remaining", StringComparison.OrdinalIgnoreCase)))
@@ -693,6 +701,39 @@ if (args.Any(arg => string.Equals(arg, "--audit-bundle-f-phase-f3-opcodes", Stri
     File.WriteAllText(Path.Combine(outputRoot, "bundle_f_phase_f3_opcode_dispatch_audit.json"), result.ToJson());
     Console.WriteLine(result.ToJson());
     return result.Passed ? 0 : 83;
+}
+
+if (args.Any(arg => string.Equals(arg, "--audit-native-remoteactions", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot run native remoteaction audit because project root was not resolved."); return 2; }
+    var result = RuntimeNativeRemoteActionAudit.Run(report.ProjectRoot);
+    var outputRoot = Path.Combine(report.ProjectRoot, "Reports", "RuntimeVerification");
+    Directory.CreateDirectory(outputRoot);
+    File.WriteAllText(Path.Combine(outputRoot, "native_remoteaction_audit_0139.json"), result.ToJson());
+    Console.WriteLine(result.ToJson());
+    return result.Passed ? 0 : 86;
+}
+
+if (args.Any(arg => string.Equals(arg, "--audit-classic-spell-effects", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot run Classic spell-effect audit because project root was not resolved."); return 2; }
+    var spellEffectReport = RuntimeClassicSpellEffectCoverageAudit.Run(report.ProjectRoot);
+    var spellEffectReportPath = Path.Combine(report.ProjectRoot, "Reports", "RuntimeVerification", "classic_spell_effect_coverage_0139.json");
+    Directory.CreateDirectory(Path.GetDirectoryName(spellEffectReportPath)!);
+    File.WriteAllText(spellEffectReportPath, spellEffectReport.ToJson());
+    Console.WriteLine(spellEffectReport.ToJson());
+    return spellEffectReport.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--audit-classic-economy-services", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot run Classic economy/service audit because project root was not resolved."); return 2; }
+    var economyReport=RuntimeClassicEconomyServiceCoverageAudit.Run(report.ProjectRoot);
+    var economyReportPath=Path.Combine(report.ProjectRoot,"Reports","RuntimeVerification","classic_economy_service_coverage_0139.json");
+    Directory.CreateDirectory(Path.GetDirectoryName(economyReportPath)!);
+    File.WriteAllText(economyReportPath,economyReport.ToJson());
+    Console.WriteLine(economyReport.ToJson());
+    return economyReport.Passed?0:1;
 }
 
 if (args.Any(arg => string.Equals(arg, "--audit-bundle-f-phase-f2-textblocks", StringComparison.OrdinalIgnoreCase)))
@@ -1529,6 +1570,30 @@ if (args.Any(arg => string.Equals(arg, "--smoke-administrative-policy", StringCo
     var smoke = RuntimeAdministrativePolicySmokeReport.Run();
     Console.WriteLine(smoke.ToJson());
     return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-majormud-plus", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeMajorMudPlusSmokeReport.Run(report.ProjectRoot!);
+    Console.WriteLine("Runtime MajorMUD Plus Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 91;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-wcc-sysop", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeWccSysopSmokeReport.Run(report.ProjectRoot!);
+    Console.WriteLine("Runtime WCCMMUD SYSOP Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 92;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-administration", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicAdministrationSmokeReport.Run();
+    Console.WriteLine("Runtime Classic Administration Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 93;
 }
 
 if (args.Any(arg => string.Equals(arg, "--smoke-world-rules-configuration", StringComparison.OrdinalIgnoreCase)))

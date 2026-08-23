@@ -67,7 +67,6 @@ public static class RuntimeBundleHGangHouseAudit
         var samplePath = Path.Combine(projectRoot, "Data", "NativeDecodeReports", "CodeUpdate0139RoomTextAudit", "WCCGANGS_block_samples_1024.json");
         var stringsPath = Path.Combine(projectRoot, "Data", "NativeDecodeReports", "CodeUpdate0139RoomTextAudit", "WCCGANGS_strings.tsv");
         var mapsRoot = Path.Combine(projectRoot, "ImportedDatabases", "OmniVerseReference", "CodeUpdate0046", "MudInfoMaps", "Extracted", "maps");
-        var environmentPath = Path.Combine(projectRoot, "Data", "Classic", "environment_rooms.json");
         var gangHousesPath = Path.Combine(projectRoot, "Data", "Classic", "gang_houses.json");
         var librariumGangHousesPath = Path.Combine(projectRoot, "Librarium", "Objects", "gang_houses", "gang_house_records.json");
         var itemsPath = Path.Combine(projectRoot, "Data", "Classic", "items.json");
@@ -84,7 +83,6 @@ public static class RuntimeBundleHGangHouseAudit
         Check(ExpectedMapFiles.All(file => File.Exists(Path.Combine(mapsRoot, file))), "all-ten-gang-house-map-references-present");
         Check(File.Exists(itemsPath), "generated-items-present");
         Check(File.Exists(shopsPath), "generated-shops-present");
-        Check(File.Exists(environmentPath), "generated-environment-rooms-present");
         Check(File.Exists(librariumGangHousesPath), "librarium-gang-house-catalog-present");
         Check(File.Exists(gangHousesPath), "generated-gang-house-catalog-present");
         Check(File.Exists(protectionPath), "runtime-gang-house-protection-service-present");
@@ -105,54 +103,107 @@ public static class RuntimeBundleHGangHouseAudit
 
         var deedItemCount = CountMatchingNames(itemsPath, ExpectedDeedNames);
         var gangShopCount = CountRecordsByNamePattern(shopsPath, "gang house|gang shop|deed office");
-        var environmentGangRows = CountEnvironmentGangRows(environmentPath);
         var catalog = File.Exists(gangHousesPath)
             ? RuntimeClassicGangHouseCatalog.Load(gangHousesPath)
             : new RuntimeClassicGangHouseCatalog(Array.Empty<RuntimeClassicGangHouseRecord>());
+        var itemCatalog = RuntimeItemCatalog.Load(projectRoot, worldId);
+        var itemRelationships = RuntimeClassicGangHouseAbilityAuthority.Resolve(itemCatalog, catalog);
         var options = ServerRuntimeOptions.Load(projectRoot);
         var definition = options.Worlds.First(x => x.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));
         var world = new RuntimeWorldLoader().Load(projectRoot, definition);
+        var environmentGangRows = world.AllRooms().Count(room => room.EnvironmentGangHouseId != 0);
         Check(deedItemCount == ExpectedDeedNames.Length, "all-ten-gang-deed-items-present");
         Check(gangShopCount >= 21, "gang-house-vault-supply-and-deed-shops-present");
         Check(catalog.Records.Count == 10, "generated-gang-house-catalog-has-ten-houses");
-        Check(catalog.Records.All(x => x.Locations.Count == 2), "generated-gang-house-catalog-has-vault-and-supply-locations");
-        Check(catalog.Locations.Count == 20, "generated-gang-house-catalog-has-twenty-service-locations");
+        Check(catalog.Records.All(x => x.Locations.Count >= 4), "generated-gang-house-catalog-has-native-interiors-and-services");
+        Check(catalog.Records.Select(x => x.ActivationTextblockId).Order().SequenceEqual(Enumerable.Range(9000, 10)),
+            "decoded-deed-activation-textblocks-9000-through-9009");
+        Check(catalog.Records.All(x => x.ActivationMessageId == 2629 && x.ActivationGrantItemIds.Count == 4),
+            "decoded-deed-activation-message-and-four-item-grants");
+        var gangStateSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicGangState.cs"));
+        var livePowerSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeLivePowers.cs"));
+        var liveCombatSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeLiveCombat.cs"));
+        var commandSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeCommandSystem.cs"));
+        Check(gangStateSource.Contains("AssignHouse", StringComparison.Ordinal) && gangStateSource.Contains("already owned by another active gang", StringComparison.Ordinal),
+            "persistent-exclusive-gang-house-assignment");
+        Check(livePowerSource.Contains("ActivateGangHouseDeed", StringComparison.Ordinal)
+            && livePowerSource.Contains("ActivationGrantItemIds", StringComparison.Ordinal)
+            && livePowerSource.Contains("ActivationMessageId", StringComparison.Ordinal),
+            "live-deed-activation-consumes-generated-contract");
+        Check(liveCombatSource.Contains("CanEnterGangHouse", StringComparison.Ordinal)
+            && liveCombatSource.Contains("FindByMember", StringComparison.Ordinal)
+            && liveCombatSource.Contains("GangHouseId", StringComparison.Ordinal)
+            && commandSource.Contains("CanEnterGangHouse", StringComparison.Ordinal),
+            "native-gang-house-guardian-member-entry-gate");
+        var upkeepSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicGangHouseUpkeep.cs"));
+        var worldTimeSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicWorldTimeEvents.cs"));
+        Check(upkeepSource.Contains("ProcessSundown", StringComparison.Ordinal)
+            && upkeepSource.Contains("DebitBankGold", StringComparison.Ordinal)
+            && upkeepSource.Contains("RepossessHouse", StringComparison.Ordinal),
+            "decoded-sundown-bank-gold-tax-and-repossession-boundary");
+        Check(worldTimeSource.Contains("RuntimeClassicWorldTimePhase.Sundown", StringComparison.Ordinal)
+            && worldTimeSource.Contains("_gangHouseUpkeep.ProcessSundown", StringComparison.Ordinal)
+            && worldTimeSource.Contains("does not", StringComparison.OrdinalIgnoreCase)
+            && worldTimeSource.Contains("infer a sunrise/sunset cadence", StringComparison.OrdinalIgnoreCase),
+            "authoritative-sundown-event-consumer-without-invented-clock");
+        Check(catalog.Locations.Count == 57, "generated-gang-house-catalog-has-fifty-seven-native-and-service-locations");
         Check(catalog.Locations.All(x => world.FindRoom(x.MapId, x.RoomNumber) is not null), "gang-house-service-locations-resolve-to-runtime-rooms");
-        Check(catalog.Locations.Count(x => x.IsVault) == 10, "gang-house-catalog-has-ten-vault-locations");
+        Check(catalog.Locations.Count(x => x.LocationKind == "entrance") == 10, "gang-house-catalog-has-ten-native-entrances");
+        Check(catalog.Locations.Count(x => x.LocationKind == "interior") == 10, "gang-house-catalog-has-ten-native-normal-interiors");
+        Check(catalog.Locations.Count(x => x.LocationKind == "rest_room") == 8, "gang-house-catalog-has-eight-native-rest-rooms");
+        Check(catalog.Locations.Count(x => x.IsVault) == 19, "gang-house-catalog-has-native-and-service-vault-locations");
         Check(catalog.Locations.Count(x => x.IsGangHouseShop) == 10, "gang-house-catalog-has-ten-supply-shop-locations");
+        Check(itemRelationships.Count(x => x.IsDeed) == 10, "decoded-ghouse-deed-ten-owners");
+        Check(itemRelationships.Count(x => x.IsHouseItem) == 59, "decoded-ghouse-item-fifty-nine-owners");
+        Check(itemRelationships.Count(x => x.IsShopController) == 11, "decoded-gshop-item-eleven-owners");
+        Check(itemRelationships.Where(x => x.IsDeed).All(x => x.TaxValue > 0), "decoded-ghouse-tax-ten-positive-values");
+        Check(itemRelationships.All(x => catalog.Records.Any(house => house.HouseId.Equals(x.HouseId, StringComparison.OrdinalIgnoreCase))),
+            "decoded-gang-item-selectors-resolve-generated-houses");
         Check(environmentGangRows == 0, "environment-catalog-still-has-no-native-gang-house-flags");
-        Check(Read(protectionPath).Contains("matching-deed-and-upkeep-current", StringComparison.Ordinal), "runtime-protection-requires-deed-and-upkeep");
+        Check(Read(protectionPath).Contains("active-persistent-gang-house-assignment", StringComparison.Ordinal)
+            && Read(protectionPath).Contains("new RuntimeClassicGangStateService(projectRoot).List()", StringComparison.Ordinal)
+            && Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicCleanup.cs"))
+                .Contains("new RuntimeClassicGangHouseProtectionService(projectRoot, worldId)", StringComparison.Ordinal),
+            "runtime-protection-consumes-persistent-gang-house-assignment");
+        var now = DateTimeOffset.UtcNow;
+        RuntimeClassicGangRecord Gang(string id, string houseId, bool disbanded = false) => new(
+            id, id, "character.audit", [new RuntimeClassicGangMember("character.audit", "Audit", "Leader", now)],
+            1, 0, true, disbanded, [], houseId, 0, now)
+        {
+            GangHouseDeedHolderCharacterId = "character.audit",
+            LastGangHouseSundownCycleId = "sundown.audit",
+            LastGangHouseUpkeepPaidAtUtc = now
+        };
         var protection = new RuntimeClassicGangHouseProtectionService(
             catalog.ToProtectionLocations(),
-            new[]
-            {
-                new RuntimeClassicDeedState("character.audit", "item.1008", "gang_house.red", DateTimeOffset.MaxValue),
-                new RuntimeClassicDeedState("character.expired", "item.1008", "gang_house.red", DateTimeOffset.MinValue)
-            });
+            new[] { Gang("gang.audit", "gang_house.red") });
         var item = new RuntimeItemInstance("audit.item", "item.audit", null, RuntimeItemLocations.Room, "room.map15.908", null, 0, 1, null, null);
-        Check(protection.Evaluate(item, "character.audit", DateTimeOffset.UtcNow).Protected, "runtime-protection-catalog-allows-current-deed");
-        Check(!protection.Evaluate(item, "character.expired", DateTimeOffset.UtcNow).Protected, "runtime-protection-catalog-rejects-expired-deed");
-        Check(!protection.Evaluate(item with { LocationId = "room.map1.2140" }, "character.audit", DateTimeOffset.UtcNow).Protected, "runtime-protection-catalog-rejects-non-gang-room");
+        Check(protection.Evaluate(item, now).Protected, "runtime-protection-allows-active-persistent-house");
+        Check(!new RuntimeClassicGangHouseProtectionService(catalog.ToProtectionLocations(), Array.Empty<RuntimeClassicGangRecord>()).Evaluate(item, now).Protected,
+            "runtime-protection-rejects-unowned-or-repossessed-house");
+        Check(!new RuntimeClassicGangHouseProtectionService(catalog.ToProtectionLocations(), new[] { Gang("gang.disbanded", "gang_house.red", true) }).Evaluate(item, now).Protected,
+            "runtime-protection-rejects-disbanded-owner");
+        Check(!protection.Evaluate(item with { LocationId = "room.map1.2140" }, now).Protected, "runtime-protection-rejects-non-gang-room");
 
         return new(
             failures.Count == 0,
-            RuntimeGameplayReady: catalog.Records.Count == 10 && catalog.Locations.Count == 20,
+            RuntimeGameplayReady: catalog.Records.Count == 10 && catalog.Locations.Count == 57,
             checks,
             failures,
             new[]
             {
                 "Native WCCGANGS.DAT, default-install wccgang2.dat, decode summary/sample/string outputs, and all ten MudInfo gang-house reference maps are present.",
                 "Generated Classic data contains the ten parchment deed items and the gang-house vault/supply/deed shop family.",
-                "Librarium and generated Classic gang-house catalogs bind ten house records to twenty WCC shop API service locations.",
-                "RuntimeClassicGangHouseProtectionService consumes the generated service-location catalog and protects cleanup only when a matching deed exists and upkeep is current."
+                "Generated Classic gang-house authority binds ten houses to 57 locations: 20 service locations plus 37 additional native WCC .HSE interiors.",
+                "RuntimeClassicGangHouseProtectionService consumes generated service locations plus persistent active gang-house assignments; repossession or disbanding removes cleanup protection."
             },
             new[]
             {
-                "Generated Data/Classic/environment_rooms.json still contains zero native gang_house flags; active gang-house service locations are supplied by Data/Classic/gang_houses.json.",
-                "Only WCC shop API service rooms are promoted in this pass; ordinary interior house rooms remain blocked until exact map-qualified ownership/location evidence is recovered.",
+                "Authoritative generated room records contain zero native gang_house flags; active gang-house service locations are supplied by Data/Classic/gang_houses.json.",
+                "Native WCC .HSE files recover 47 map-qualified customization rooms; ten overlap stronger service bindings and 37 add entrances, normal interiors, rest rooms, and vaults without overriding conflicts.",
                 "The listed LibrariumLocal/core_graph.json and LibrariumLocal/runtime_index.json handoff files are not present in the repository.",
                 "Gang-house maps are reference evidence for layout/legend only; this audit does not promote room IDs from map art.",
-                "Persistent deed acquisition/upkeep mutation is still not a complete live gameplay flow; this pass wires cleanup protection consumption of the generated catalog."
+                "Decoded sundown tax processing is connected to an explicit, idempotent Classic world-time event consumer. Automatic event production remains disabled until native cadence evidence is recovered; no UTC hour is invented. Repossessed house contents become unprotected for the authoritative cleanup boundary."
             },
             nativeLength,
             defaultLength,

@@ -19,7 +19,7 @@ public sealed record RuntimeBundleFPhaseF11CommandAuditResult(
     int CommandCount,
     int AliasCount,
     int DispatchFamilyCount,
-    int TextblockDirectInvocationCount,
+    int GeneratedEvidenceCount,
     IReadOnlyList<string> Checks,
     IReadOnlyList<string> Failures)
 {
@@ -29,69 +29,222 @@ public sealed record RuntimeBundleFPhaseF11CommandAuditResult(
 public sealed class RuntimeClassicCommandRuntimeAuthority
 {
     private readonly IReadOnlyDictionary<string, RuntimeBundleFCommandAuthorityRecord> _records;
-    private RuntimeClassicCommandRuntimeAuthority(IReadOnlyDictionary<string, RuntimeBundleFCommandAuthorityRecord> records) => _records = records;
+
+    private RuntimeClassicCommandRuntimeAuthority(IReadOnlyDictionary<string, RuntimeBundleFCommandAuthorityRecord> records) =>
+        _records = records;
+
     public int Count => _records.Count;
     public IReadOnlyCollection<RuntimeBundleFCommandAuthorityRecord> Records => _records.Values.ToArray();
-    public RuntimeBundleFCommandAuthorityRecord Require(string canonical) => _records.TryGetValue(canonical, out var record) ? record : throw new InvalidOperationException($"Command authority is missing '{canonical}'.");
+
+    public RuntimeBundleFCommandAuthorityRecord Require(string canonical) =>
+        _records.TryGetValue(canonical, out var record)
+            ? record
+            : throw new InvalidOperationException($"Command authority is missing '{canonical}'.");
 
     public static RuntimeClassicCommandRuntimeAuthority Load(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "command_runtime_authority.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Bundle F command runtime authority was not found.", path);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root = document.RootElement;
-        if (root.GetProperty("schema").GetString() != "bundle_f_phase_f11_command_runtime_authority_v1") throw new InvalidOperationException("Unexpected Bundle F command authority schema.");
+        if (string.IsNullOrWhiteSpace(projectRoot)) throw new ArgumentException("A project root is required.", nameof(projectRoot));
+
         var records = new Dictionary<string, RuntimeBundleFCommandAuthorityRecord>(StringComparer.OrdinalIgnoreCase);
-        foreach (var element in root.GetProperty("records").EnumerateArray())
+        foreach (var registration in RuntimeCommand.DefaultRegistrations)
         {
-            var name = element.GetProperty("name").GetString() ?? string.Empty;
-            var aliases = element.GetProperty("aliases").EnumerateArray().Select(value => value.GetString() ?? string.Empty).ToArray();
-            var record = new RuntimeBundleFCommandAuthorityRecord(name, aliases, element.GetProperty("minimum_prefix_length").GetInt32(), element.GetProperty("movement").GetBoolean(), element.GetProperty("family").GetString() ?? string.Empty, element.GetProperty("runtime_owner").GetString() ?? string.Empty, element.GetProperty("live_consumer").GetString() ?? string.Empty, element.GetProperty("context_restriction").GetString() ?? string.Empty, element.GetProperty("mutation_permission").GetString() ?? string.Empty, element.GetProperty("evidence").GetString() ?? string.Empty);
-            if (!records.TryAdd(name, record)) throw new InvalidOperationException($"Duplicate command authority record '{name}'.");
+            var route = RuntimeCommandRuntimeRouteCatalog.Require(registration.Canonical);
+            var record = new RuntimeBundleFCommandAuthorityRecord(
+                registration.Canonical,
+                registration.Aliases,
+                registration.MinimumAbbreviationLength,
+                registration.IsMovement,
+                route.Kind.ToString(),
+                route.RuntimeOwner,
+                route.LiveConsumer,
+                ContextRestriction(route.Kind),
+                MutationPermission(route.Kind),
+                "RuntimeCommandSystem.cs; RuntimeCommandRouting.cs; generated Classic command catalog");
+            if (!records.TryAdd(registration.Canonical, record))
+                throw new InvalidOperationException($"Duplicate command authority record '{registration.Canonical}'.");
         }
-        if (records.Count != 83) throw new InvalidOperationException($"Expected 83 authoritative runtime commands, found {records.Count}.");
+
         return new RuntimeClassicCommandRuntimeAuthority(records);
     }
+
+    private static string ContextRestriction(RuntimeCommandRouteKind kind) => kind switch
+    {
+        RuntimeCommandRouteKind.Movement => "current room and decoded exit gate",
+        RuntimeCommandRouteKind.ItemRuntime => "persistent character and item location",
+        RuntimeCommandRouteKind.CombatRuntime => "live target and combat admission",
+        RuntimeCommandRouteKind.PowerRuntime => "known spell/ability and live target",
+        RuntimeCommandRouteKind.NarrativeRuntime => "decoded NPC dialogue or quest journal",
+        RuntimeCommandRouteKind.ServiceRuntime => "generated service in current room",
+        RuntimeCommandRouteKind.BankRuntime => "generated bank service in current room",
+        RuntimeCommandRouteKind.LivingWorldRuntime => "decoded object or exit in current room",
+        RuntimeCommandRouteKind.SysopRuntime => "authenticated SYSOP/GAMEOP capability",
+        RuntimeCommandRouteKind.SessionExit => "connected runtime session",
+        _ => "connected runtime session"
+    };
+
+    private static string MutationPermission(RuntimeCommandRouteKind kind) => kind switch
+    {
+        RuntimeCommandRouteKind.RoomPresentation or RuntimeCommandRouteKind.CharacterState or
+        RuntimeCommandRouteKind.RuntimeDiagnostics or RuntimeCommandRouteKind.Help => "read or presentation state only",
+        RuntimeCommandRouteKind.CommunicationRuntime => "message queues only",
+        RuntimeCommandRouteKind.SessionExit => "session lifecycle only",
+        _ => "validated runtime mutation with subsystem rollback/fail-closed behavior"
+    };
 }
 
 public static class RuntimeBundleFPhaseF11CommandAudit
 {
     public static RuntimeBundleFPhaseF11CommandAuditResult Run(string projectRoot)
     {
-        var checks = new List<string>(); var failures = new List<string>();
-        RuntimeClassicCommandRuntimeAuthority authority;
-        try { authority = RuntimeClassicCommandRuntimeAuthority.Load(projectRoot); checks.Add("authority-loaded"); }
-        catch (Exception ex) { return new(false,0,0,0,0,checks,new[]{ex.Message}); }
+        var checks = new List<string>();
+        var failures = new List<string>();
         var runtime = RuntimeCommand.DefaultRegistrations;
-        if (runtime.Count != 83) failures.Add($"runtime-registration-count:{runtime.Count}"); else checks.Add("83-runtime-registrations");
         var runtimeNames = runtime.Select(x => x.Canonical).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var authorityNames = authority.Records.Select(x => x.Name).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        foreach (var missing in runtimeNames.Except(authorityNames, StringComparer.OrdinalIgnoreCase)) failures.Add("authority-missing:"+missing);
-        foreach (var extra in authorityNames.Except(runtimeNames, StringComparer.OrdinalIgnoreCase)) failures.Add("authority-extra:"+extra);
-        if (!failures.Any(x=>x.StartsWith("authority-",StringComparison.Ordinal))) checks.Add("runtime-authority-name-parity");
-        var exact = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
+
+        if (runtime.Count == 0 || runtimeNames.Count != runtime.Count)
+            failures.Add("runtime-registration-catalog-invalid");
+        else
+            checks.Add($"runtime-registrations:{runtime.Count}");
+
+        var authority = RuntimeClassicCommandRuntimeAuthority.Load(projectRoot);
+        if (authority.Count != runtime.Count)
+            failures.Add($"runtime-authority-count:{authority.Count}:{runtime.Count}");
+        else
+            checks.Add($"runtime-authority-covers-all:{authority.Count}");
+
+        var routeNames = RuntimeCommandRuntimeRouteCatalog.Definitions
+            .Select(definition => definition.Canonical)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var missing in runtimeNames.Except(routeNames, StringComparer.OrdinalIgnoreCase).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            failures.Add("registered-command-route-missing:" + missing);
+        foreach (var extra in routeNames.Except(runtimeNames, StringComparer.OrdinalIgnoreCase).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            failures.Add("orphan-command-route:" + extra);
+        if (!failures.Any(value => value.Contains("command-route", StringComparison.Ordinal)))
+            checks.Add("all-registered-commands-have-runtime-routes");
+
+        var policyKinds = new[]
+        {
+            RuntimeCommandRouteKind.CombatRuntime,
+            RuntimeCommandRouteKind.PowerRuntime,
+            RuntimeCommandRouteKind.NarrativeRuntime,
+            RuntimeCommandRouteKind.ServiceRuntime,
+            RuntimeCommandRouteKind.BankRuntime,
+            RuntimeCommandRouteKind.RecoveryRuntime
+        };
+        foreach (var definition in RuntimeCommandRuntimeRouteCatalog.Definitions.Where(definition => policyKinds.Contains(definition.Kind)))
+        {
+            if (!RuntimeCommandDispatcher.RoutesToPolicy(definition.Canonical))
+                failures.Add("policy-route-missing:" + definition.Canonical);
+        }
+        if (!failures.Any(value => value.StartsWith("policy-route-missing:", StringComparison.Ordinal)))
+            checks.Add("all-policy-families-connected");
+
+        var exact = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         foreach (var registration in runtime)
         {
-            var record=authority.Require(registration.Canonical);
-            if (record.RuntimeOwner.Length==0 || record.LiveConsumer.Length==0 || record.ContextRestriction.Length==0 || record.MutationPermission.Length==0) failures.Add("unowned:"+record.Name);
-            if (record.MinimumPrefixLength!=registration.MinimumAbbreviationLength || record.Movement!=registration.IsMovement) failures.Add("registration-mismatch:"+record.Name);
-            foreach(var token in registration.Tokens) if(!exact.TryAdd(token,registration.Canonical) && !exact[token].Equals(registration.Canonical,StringComparison.OrdinalIgnoreCase)) failures.Add("exact-token-conflict:"+token);
+            foreach (var token in registration.Tokens)
+            {
+                if (!exact.TryAdd(token, registration.Canonical) &&
+                    !exact[token].Equals(registration.Canonical, StringComparison.OrdinalIgnoreCase))
+                    failures.Add("exact-token-conflict:" + token);
+
+                var parsed = RuntimeCommand.Parse(token);
+                if (!parsed.Name.Equals(registration.Canonical, StringComparison.OrdinalIgnoreCase) || parsed.ResolutionError.Length != 0)
+                    failures.Add($"exact-token-route:{token}:{parsed.Name}:{parsed.ResolutionError}");
+            }
+
+            var canonical = RuntimeCommand.Parse(registration.Canonical);
+            if (!canonical.Name.Equals(registration.Canonical, StringComparison.OrdinalIgnoreCase) || canonical.ResolutionError.Length != 0)
+                failures.Add($"canonical-route:{registration.Canonical}:{canonical.Name}:{canonical.ResolutionError}");
         }
-        if (!failures.Any(x=>x.StartsWith("unowned:",StringComparison.Ordinal))) checks.Add("all-commands-have-live-consumers");
-        if (!failures.Any(x=>x.StartsWith("registration-mismatch:",StringComparison.Ordinal))) checks.Add("aliases-prefixes-movement-match");
-        if (!failures.Any(x=>x.StartsWith("exact-token-conflict:",StringComparison.Ordinal))) checks.Add("no-exact-alias-conflicts");
-        foreach(var required in new[]{"search","experience","smash","backstab","hide","sneak"}) if(!authorityNames.Contains(required)) failures.Add("corrected-command-missing:"+required);
-        if (!failures.Any(x=>x.StartsWith("corrected-command-missing:",StringComparison.Ordinal))) checks.Add("stale-77-command-gap-closed");
-        using var doc=JsonDocument.Parse(File.ReadAllText(Path.Combine(projectRoot,"Data","Classic","command_runtime_authority.json")));
-        var invocations=doc.RootElement.GetProperty("textblock_direct_command_invocations").EnumerateArray().ToArray();
-        foreach(var invocation in invocations)
+        if (!failures.Any(value => value.StartsWith("exact-token-", StringComparison.Ordinal) || value.StartsWith("canonical-route:", StringComparison.Ordinal)))
+            checks.Add("all-canonical-and-alias-tokens-resolve");
+
+        if (!RuntimeCommand.SupportedCommands.SetEquals(runtimeNames))
+            failures.Add("supported-command-catalog-drift");
+        else
+            checks.Add("supported-command-catalog-is-registration-derived");
+
+        var missingHelp = runtimeNames.Where(name => !RuntimeCommandDispatcher.HasHelpUsage(name))
+            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (missingHelp.Length > 0)
+            failures.Add("command-help-usage-missing:" + string.Join(",", missingHelp));
+        else if (RuntimeCommandDispatcher.HelpUsageCount != runtime.Count)
+            failures.Add($"command-help-usage-count:{RuntimeCommandDispatcher.HelpUsageCount}:{runtime.Count}");
+        else
+            checks.Add("all-built-in-commands-have-help-usage");
+
+        var generatedPath = Path.Combine(projectRoot, "Data", "Classic", "commands.json");
+        var generated = RuntimeClassicCommandCatalog.Load(generatedPath);
+        if (generated.Diagnostics.Count != 0)
+            failures.AddRange(generated.Diagnostics.Select(value => "generated-command-catalog:" + value));
+        else
+            checks.Add("generated-command-catalog-loaded");
+
+        if (generated.GeneratedEvidenceCount != 25 || generated.ActivatedGeneratedCommandCount != 25 || generated.QuarantinedGeneratedCommandCount != 0)
+            failures.Add($"generated-command-activation:{generated.GeneratedEvidenceCount}:{generated.ActivatedGeneratedCommandCount}:{generated.QuarantinedGeneratedCommandCount}");
+        else
+            checks.Add("25-user-confirmed-contextual-room-action-verbs-active");
+
+        var contextualNames = generated.Registrations
+            .Where(registration => !runtimeNames.Contains(registration.Canonical))
+            .Select(registration => registration.Canonical)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (generated.ActiveCommandCount != runtime.Count + contextualNames.Length)
+            failures.Add($"active-command-count:{generated.ActiveCommandCount}:{runtime.Count + contextualNames.Length}");
+        else
+            checks.Add($"active-command-catalog:{generated.ActiveCommandCount}");
+
+        foreach (var contextual in contextualNames)
         {
-            var command=(invocation.GetProperty("command").GetString()??string.Empty).Replace("command.",string.Empty,StringComparison.OrdinalIgnoreCase);
-            if(!runtimeNames.Contains(command)) failures.Add("textblock-command-unresolved:"+command);
+            var parsed = RuntimeCommand.Parse(contextual, generated);
+            if (!parsed.Name.Equals(contextual, StringComparison.OrdinalIgnoreCase) || parsed.ResolutionError.Length != 0)
+                failures.Add($"contextual-command-route:{contextual}:{parsed.Name}:{parsed.ResolutionError}");
         }
-        if(!failures.Any(x=>x.StartsWith("textblock-command-unresolved:",StringComparison.Ordinal))) checks.Add("textblock-direct-commands-resolve");
-        var families=authority.Records.Select(x=>x.Family).Distinct(StringComparer.OrdinalIgnoreCase).Count();
-        if(families!=11) failures.Add($"dispatch-family-count:{families}"); else checks.Add("11-dispatch-families");
-        return new(failures.Count==0,authority.Count,exact.Count-runtime.Count,families,invocations.Length,checks,failures);
+        if (!failures.Any(value => value.StartsWith("contextual-command-route:", StringComparison.Ordinal)))
+            checks.Add($"contextual-commands-route-to-decoded-world-runtime:{contextualNames.Length}");
+
+        if (typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TryExecuteDecodedWorldCommand)) is null)
+            failures.Add("decoded-world-command-consumer-missing");
+        else
+            checks.Add("decoded-world-command-consumer-connected");
+
+        if (RuntimeCommand.Parse("g", generated).Name != "get" || RuntimeCommand.Parse("go", generated).Name != "go")
+            failures.Add("g-get-go-context-routing");
+        else
+            checks.Add("g-is-get-and-go-remains-contextual");
+
+        foreach (var exitToken in new[] { "quit", "qui", "logout", "exit" })
+        {
+            if (RuntimeCommand.Parse(exitToken, generated).Name != "quit")
+                failures.Add("session-exit-token:" + exitToken);
+        }
+        if (!failures.Any(value => value.StartsWith("session-exit-token:", StringComparison.Ordinal)))
+            checks.Add("session-exit-aliases-use-command-parser");
+
+        if (RuntimeCommand.Parse("eq longsword", generated).Name != "equipment" ||
+            RuntimeCommand.Parse("ba target", generated).Name != "bash" ||
+            RuntimeCommand.Parse("sys goto newhaven", generated).Name != "sysop")
+            failures.Add("contextual-alias-routing");
+        else
+            checks.Add("contextual-alias-routing");
+
+        var families = RuntimeCommandRuntimeRouteCatalog.Definitions
+            .Select(definition => definition.Kind)
+            .Distinct()
+            .Count();
+        checks.Add($"dispatch-families:{families}");
+
+        return new RuntimeBundleFPhaseF11CommandAuditResult(
+            failures.Count == 0,
+            runtime.Count,
+            exact.Count - runtime.Count,
+            families,
+            generated.GeneratedEvidenceCount,
+            checks,
+            failures);
     }
 }

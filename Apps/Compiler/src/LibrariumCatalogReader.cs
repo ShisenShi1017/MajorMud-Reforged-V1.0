@@ -56,7 +56,16 @@ public sealed class LibrariumCatalogReader
                 }
                 if (familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase))
                 {
+                    EnrichRoomsWithDecodedEnvironment(librariumRoot, records, recordsById, diagnostics);
                     AppendImportedClassicRoomAnchors(librariumRoot, records, recordsById, diagnostics);
+                }
+                if (familyName.Equals("race_descriptions", StringComparison.OrdinalIgnoreCase))
+                {
+                    AttachNativeRaceDescriptionPayloads(librariumRoot, records, diagnostics);
+                }
+                if (familyName.Equals("gang_houses", StringComparison.OrdinalIgnoreCase))
+                {
+                    AttachNativeGangHouseInteriorLocations(librariumRoot, records, diagnostics);
                 }
                 families.Add(new LibrariumFamily(familyName, selectedFiles[0], records, selectedFiles));
             }
@@ -67,6 +76,196 @@ public sealed class LibrariumCatalogReader
         }
 
         return families;
+    }
+
+    private static void AttachNativeGangHouseInteriorLocations(
+        string librariumRoot,
+        IReadOnlyList<JsonObject> records,
+        List<CompilerDiagnostic> diagnostics)
+    {
+        var sourceRoot = Path.Combine(Directory.GetParent(librariumRoot)!.FullName,
+            "ImportedDatabases", "WCCDefaultInstall", "wcc default");
+        var paths = Directory.Exists(sourceRoot)
+            ? Directory.EnumerateFiles(sourceRoot, "WCC*.HSE", SearchOption.TopDirectoryOnly).OrderBy(Path.GetFileName).ToArray()
+            : [];
+        if (paths.Length == 0)
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBGANGHOUSE",
+                "Native WCC gang-house interior description files were not found.", sourceRoot));
+            return;
+        }
+
+        var byColor = records.Where(record => record["color"] is not null)
+            .ToDictionary(record => record["color"]!.GetValue<string>(), StringComparer.OrdinalIgnoreCase);
+        var occupied = records.SelectMany(record => (record["locations"] as JsonArray)?.OfType<JsonObject>() ?? [])
+            .Select(location => location["location_id"]?.GetValue<string>() ?? string.Empty)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var attached = 0;
+        foreach (var path in paths)
+        {
+            var stem = Path.GetFileNameWithoutExtension(path);
+            if (stem.Length < 7 || !int.TryParse(stem[3..^2], out var roomNumber) || !int.TryParse(stem[^2..], out var mapId))
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Warning, "LIBGANGHOUSE",
+                    $"Native gang-house filename could not be decoded: {Path.GetFileName(path)}", path));
+                continue;
+            }
+            var title = File.ReadLines(path).FirstOrDefault()?.Trim() ?? string.Empty;
+            var words = title.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var houseIndex = Array.FindIndex(words, word => word.Equals("House", StringComparison.OrdinalIgnoreCase));
+            if (houseIndex < 1 || !byColor.TryGetValue(words[houseIndex - 1], out var owner))
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Warning, "LIBGANGHOUSE",
+                    $"Native gang-house title could not be assigned: {title}", path));
+                continue;
+            }
+            var locationId = $"room.map{mapId}.{roomNumber}";
+            if (!occupied.Add(locationId)) continue;
+            var kind = words.Length == 0 ? "interior" : words[0].ToLowerInvariant() switch
+            {
+                "entrance" => "entrance",
+                "normal" => "interior",
+                "rest" => "rest_room",
+                "vault" => "vault",
+                "shop" => "supply_shop",
+                _ => "interior"
+            };
+            var locations = owner["locations"] as JsonArray ?? new JsonArray();
+            owner["locations"] = locations;
+            locations.Add(new JsonObject
+            {
+                ["location_id"] = locationId,
+                ["room_id"] = locationId,
+                ["map_id"] = mapId,
+                ["room_number"] = roomNumber,
+                ["room_name"] = title,
+                ["location_kind"] = kind,
+                ["shop_id"] = string.Empty,
+                ["legacy_shop_number"] = 0,
+                ["is_gang_house"] = true,
+                ["is_vault"] = kind == "vault",
+                ["is_gang_house_shop"] = kind == "supply_shop",
+                ["evidence"] = $"ImportedDatabases/WCCDefaultInstall/wcc default/{Path.GetFileName(path)}"
+            });
+            attached++;
+        }
+        if (attached == 0)
+            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBGANGHOUSE",
+                "No native WCC gang-house interior locations were attached.", sourceRoot));
+    }
+
+    private static void AttachNativeRaceDescriptionPayloads(
+        string librariumRoot,
+        IReadOnlyList<JsonObject> records,
+        List<CompilerDiagnostic> diagnostics)
+    {
+        var evidencePath = Path.Combine(librariumRoot, "Evidence", "native_message_catalog_correlation_0022.json");
+        if (!File.Exists(evidencePath))
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
+                "Required native race-description evidence was not found.", evidencePath));
+            return;
+        }
+
+        using var document = JsonDocument.Parse(File.ReadAllText(evidencePath));
+        var entries = document.RootElement.GetProperty("catalogs").EnumerateArray()
+            .Where(catalog => string.Equals(catalog.GetProperty("mcv_file").GetString(), "WCCMMHLP.mcv", StringComparison.OrdinalIgnoreCase))
+            .SelectMany(catalog => catalog.GetProperty("entries").EnumerateArray())
+            .ToDictionary(entry => entry.GetProperty("symbol").GetString() ?? string.Empty, entry => entry.Clone(), StringComparer.OrdinalIgnoreCase);
+
+        foreach (var record in records)
+        {
+            var symbol = record["native_symbol"]?.GetValue<string>() ?? string.Empty;
+            if (!entries.TryGetValue(symbol, out var entry))
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
+                    $"Native race-description symbol '{symbol}' was not found.", evidencePath));
+                continue;
+            }
+
+            var expectedNumber = record["native_message_number"]?.GetValue<int>() ?? -1;
+            var actualNumber = entry.GetProperty("message_number").GetInt32();
+            var expectedHash = record["native_sha256"]?.GetValue<string>() ?? string.Empty;
+            var actualHash = entry.GetProperty("sha256").GetString() ?? string.Empty;
+            if (expectedNumber != actualNumber ||
+                (expectedHash.Length > 0 && !string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase)))
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
+                    $"Native race-description evidence mismatch for '{symbol}'.", evidencePath));
+                continue;
+            }
+
+            record["description"] = entry.GetProperty("decoded_cp437").GetString() ?? string.Empty;
+            record["source_file"] = "WCCMMHLP.mcv";
+            record["native_sha256"] = actualHash;
+        }
+    }
+
+    private static void EnrichRoomsWithDecodedEnvironment(
+        string librariumRoot,
+        List<JsonObject> records,
+        Dictionary<string, JsonObject> recordsById,
+        List<CompilerDiagnostic> diagnostics)
+    {
+        var path = Path.Combine(
+            librariumRoot, "SourceImports", "MMExplorerSQLData", "DecodedRooms0138", "rooms_decoded.json");
+        if (!File.Exists(path))
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBROOMENV",
+                "Required decoded Classic room environment source was not found.", path));
+            return;
+        }
+
+        var enriched = 0;
+        foreach (var source in ReadJsonCatalogParts(path).SelectMany(ExtractRecords))
+        {
+            var id = source["id"]?.GetValue<string>();
+            if (string.IsNullOrWhiteSpace(id) || !recordsById.TryGetValue(id, out var room)) continue;
+
+            room["environment"] = new JsonObject
+            {
+                ["light_level"] = source["light"]?.DeepClone() ?? 0,
+                ["shop_id"] = source["shop_id"]?.DeepClone() ?? 0,
+                ["room_spell_id"] = source["spell_id"]?.DeepClone() ?? 0,
+                ["room_lair_id"] = source["lair_id"]?.DeepClone() ?? 0,
+                ["room_delay"] = source["delay"]?.DeepClone() ?? 0,
+                ["source_classification"] = "decoded_mmexplorer_room_record"
+            };
+            enriched++;
+        }
+
+        var promotedPath = Path.Combine(
+            librariumRoot, "Objects", "rooms", "wcc_room_environment_records_0139.json");
+        if (!File.Exists(promotedPath))
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBWCCROOMENV",
+                "Promoted decoded WCC room environment records were not found.", promotedPath));
+            return;
+        }
+
+        foreach (var source in ReadJsonCatalogParts(promotedPath).SelectMany(ExtractRecords))
+        {
+            var id = source["id"]?.GetValue<string>();
+            if (string.IsNullOrWhiteSpace(id) || !recordsById.TryGetValue(id, out var room)) continue;
+            var environment = room["environment"] as JsonObject ?? new JsonObject();
+            room["environment"] = environment;
+            foreach (var field in new[]
+                     {
+                         "room_type", "light_level", "room_lair_id", "attributes", "death_room_id",
+                         "gang_house", "respawn_minutes", "max_area_cap", "linked_spawn_room",
+                         "source_classification", "evidence_path"
+                     })
+            {
+                if (source[field] is not null) environment[field] = source[field]!.DeepClone();
+            }
+        }
+
+        if (enriched != recordsById.Count)
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Warning, "LIBROOMENVCOVERAGE",
+                $"Decoded room environment enriched {enriched:N0}/{recordsById.Count:N0} canonical rooms; imported WCC anchors are handled separately.",
+                path));
+        }
     }
 
     private static void MergeRecords(
@@ -153,6 +352,22 @@ public sealed class LibrariumCatalogReader
                     ["imported_room_type"] = raw["room_type"]?.DeepClone(),
                     ["imported_shop_number"] = raw["shop_number"]?.DeepClone(),
                     ["imported_light_level"] = raw["light_level"]?.DeepClone()
+                },
+                ["environment"] = new JsonObject
+                {
+                    ["light_level"] = raw["light_level"]?.DeepClone() ?? 0,
+                    ["shop_id"] = raw["shop_number"]?.DeepClone() ?? 0,
+                    ["room_spell_id"] = 0,
+                    ["room_lair_id"] = raw["monster_type"]?.DeepClone() ?? 0,
+                    ["room_delay"] = 0,
+                    ["room_type"] = raw["room_type"]?.DeepClone() ?? 0,
+                    ["attributes"] = raw["attributes"]?.DeepClone() ?? 0,
+                    ["death_room_id"] = raw["death_room_id"]?.DeepClone() ?? 0,
+                    ["gang_house"] = raw["gang_house"]?.DeepClone() ?? 0,
+                    ["respawn_minutes"] = raw["respawn_minutes"]?.DeepClone() ?? 0,
+                    ["max_area_cap"] = raw["max_area_cap"]?.DeepClone() ?? 0,
+                    ["linked_spawn_room"] = raw["linked_spawn_room"]?.DeepClone() ?? 0,
+                    ["source_classification"] = "decoded_imported_wcc_room_record_anchor"
                 },
                 ["description"] = string.Join(" ", Enumerable.Range(1, 7)
                     .Select(index => raw[$"desc{index}"]?.GetValue<string>())
@@ -254,6 +469,17 @@ public sealed class LibrariumCatalogReader
 
     private static IReadOnlyList<string> SelectSourceFiles(string familyDirectory, string familyName)
     {
+        // NPCs retain MMExplorer SQL/MDB rows as reference evidence beside the
+        // executable canonical projection. Worktree checkout timestamps are not
+        // a valid authority signal, so always select the canonical NPC records.
+        if (familyName.Equals("npcs", StringComparison.OrdinalIgnoreCase))
+        {
+            var executable = Directory.GetFiles(familyDirectory, "npc_records_*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (executable is not null) return [executable];
+        }
+
         // Shops have both raw SQL/MDB imports and the executable Librarium projection.
         // The raw import is newer on disk, but it is evidence input rather than runtime authority.
         if (familyName.Equals("shops", StringComparison.OrdinalIgnoreCase))
@@ -262,6 +488,21 @@ public sealed class LibrariumCatalogReader
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
             if (executable is not null) return [executable];
+        }
+
+        if (familyName.Equals("loot_rules", StringComparison.OrdinalIgnoreCase))
+        {
+            // Preserve the broad evidence catalog and the later verified Classic
+            // drop-roll contract. Selecting only the timestamp-preferred catalog
+            // silently omitted the executable 1..100 rule from generated data.
+            var selected = new[]
+                {
+                    Path.Combine(familyDirectory, "loot_rule_catalog_0121.json"),
+                    Path.Combine(familyDirectory, "classic_drop_roll_rule_0136.json")
+                }
+                .Where(File.Exists)
+                .ToArray();
+            if (selected.Length > 0) return selected;
         }
 
         // MMExplorer movement evidence is promoted through Librarium/Objects before generation.
@@ -301,6 +542,10 @@ public sealed class LibrariumCatalogReader
 
             selected.AddRange(Directory.GetFiles(familyDirectory, "strongly_correlated_*_records.json")
                 .OrderBy(Path.GetFileName));
+            selected.AddRange(Directory.GetFiles(familyDirectory, "decoded_*_action_records_*.json")
+                .OrderBy(Path.GetFileName));
+            selected.AddRange(Directory.GetFiles(familyDirectory, "wccmmud_*_records_*.json")
+                .OrderBy(Path.GetFileName));
 
             if (selected.Count > 0) return selected.Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         }
@@ -321,6 +566,18 @@ public sealed class LibrariumCatalogReader
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
             if (executable is not null) return [executable];
+        }
+
+        if (familyName.Equals("scripts", StringComparison.OrdinalIgnoreCase))
+        {
+            var selected = new List<string>();
+            var questStages = Directory.GetFiles(familyDirectory, "mmexplorer_textblock_stage_records*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (questStages is not null) selected.Add(questStages);
+            selected.AddRange(Directory.GetFiles(familyDirectory, "npc_hit_spell_textblock_records_*.json")
+                .OrderBy(Path.GetFileName));
+            if (selected.Count > 0) return selected;
         }
 
         foreach (var pattern in PreferredRecordNames)

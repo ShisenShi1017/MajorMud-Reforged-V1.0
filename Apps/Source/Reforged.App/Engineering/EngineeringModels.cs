@@ -5,29 +5,46 @@ namespace Reforged.App.Engineering;
 
 public enum EngineeringTaskStatus { Pending, Queued, Running, Paused, Completed, Failed, Cancelled, Blocked }
 public enum EngineeringTaskPriority { Low, Normal, High, Critical }
-public enum EngineeringTaskCategory { Foundation, Tooling, Workspace, Build, Validation, Runtime, RepositoryAnalysis, CandidatePatch, Diagnosis, AutonomousEngineering }
+public enum EngineeringTaskCategory { Foundation, Tooling, Workspace, Planning, Build, Validation, Runtime, RuntimeDisconnect, GameplayTesting, RepositoryAnalysis, CandidatePatch, Diagnosis, Optimization, Documentation, RepositoryUpdate, AutonomousEngineering }
 public enum EngineeringHealth { Ready, Working, Warning, Failed, Stopped }
 public enum EngineeringAuthority { ReadRepository, WriteWorkspace, RunBuild, RunValidation, RunRuntime, CreateCandidatePackage, WriteLiveRepository, GitWrite, Publish, Install, Delete }
 
 public sealed class EngineeringConfiguration : ObservableModel
 {
-    private bool _autonomousEngineeringEnabled;
-    private bool _allowLiveRepositoryEdits;
+    private bool _autonomousPlanning;
+    private bool _autonomousEngineering;
+    private bool _autonomousBuild;
+    private bool _autonomousValidation;
+    private bool _autonomousRuntimeTesting;
+    private bool _autonomousGameplayTesting;
+    private bool _autonomousOptimization;
+    private bool _autonomousDocumentation;
+    private bool _candidateZipGeneration = true;
+    private bool _repositoryUpdates;
+    private bool _continuousOvernightMode;
+    private string _engineeringObjective = "Review repository health and prepare a cumulative candidate update.";
     private int _maximumTasksPerSession = 25;
     private int _cycleDelaySeconds = 5;
-    public bool AutonomousEngineeringEnabled { get => _autonomousEngineeringEnabled; set => Set(ref _autonomousEngineeringEnabled, value); }
-    public bool AllowLiveRepositoryEdits { get => _allowLiveRepositoryEdits; set => Set(ref _allowLiveRepositoryEdits, value); }
+    public bool AutonomousPlanning { get => _autonomousPlanning; set => Set(ref _autonomousPlanning, value); }
+    public bool AutonomousEngineering { get => _autonomousEngineering; set => Set(ref _autonomousEngineering, value); }
+    public bool AutonomousBuild { get => _autonomousBuild; set => Set(ref _autonomousBuild, value); }
+    public bool AutonomousValidation { get => _autonomousValidation; set => Set(ref _autonomousValidation, value); }
+    public bool AutonomousRuntimeTesting { get => _autonomousRuntimeTesting; set => Set(ref _autonomousRuntimeTesting, value); }
+    public bool AutonomousGameplayTesting { get => _autonomousGameplayTesting; set => Set(ref _autonomousGameplayTesting, value); }
+    public bool AutonomousOptimization { get => _autonomousOptimization; set => Set(ref _autonomousOptimization, value); }
+    public bool AutonomousDocumentation { get => _autonomousDocumentation; set => Set(ref _autonomousDocumentation, value); }
+    public bool CandidateZipGeneration { get => _candidateZipGeneration; set => Set(ref _candidateZipGeneration, value); }
+    public bool RepositoryUpdates { get => _repositoryUpdates; set => Set(ref _repositoryUpdates, value); }
+    public bool ContinuousOvernightMode { get => _continuousOvernightMode; set => Set(ref _continuousOvernightMode, value); }
+    public string EngineeringObjective { get => _engineeringObjective; set => Set(ref _engineeringObjective, value); }
     public bool CreateIsolatedWorkspace { get; set; } = true;
-    public bool RunBuilds { get; set; } = true;
-    public bool RunValidation { get; set; } = true;
-    public bool RunRuntimeDiagnostics { get; set; } = true;
-    public bool GenerateCandidatePackages { get; set; } = true;
     public bool RequireApprovalForLiveApply { get; set; } = true;
     public int MaximumTasksPerSession { get => _maximumTasksPerSession; set => Set(ref _maximumTasksPerSession, Math.Clamp(value, 1, 500)); }
     public int CycleDelaySeconds { get => _cycleDelaySeconds; set => Set(ref _cycleDelaySeconds, Math.Clamp(value, 1, 300)); }
-    public string BuildCommand { get; set; } = "dotnet build MajorMud.Reforged.sln --configuration Release --no-restore";
-    public string ValidationCommand { get; set; } = "dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build";
-    public string RuntimeCommand { get; set; } = "dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-core";
+    public string BuildCommand { get; set; } = "dotnet build MajorMud.Reforged.sln --configuration Release";
+    public string ValidationCommand { get; set; } = "dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release";
+    public string RuntimeCommand { get; set; } = "dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release -- --smoke-core";
+    public string GameplayTestingCommand { get; set; } = "dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release -- --smoke-live-gameplay";
 }
 
 public sealed class EngineeringTask : ObservableModel
@@ -107,6 +124,7 @@ public sealed class EngineeringStatus : ObservableModel
     public string CurrentSessionId { get; set; } = "";
     public string CurrentTaskId { get; set; } = "";
     public string WorkspacePath { get; set; } = "";
+    public string LastCandidateZipPath { get; set; } = "";
     public string LastActivityUtc { get; set; } = "Never";
 }
 

@@ -38,6 +38,7 @@ public static class RuntimeBundleCEquipmentAuthorityAudit
         new("class_restricted", "equipment.json:class_restricted + character_foundation item requirements", "RuntimeCharacterBundleCatalog.ItemRequirements", "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements", "character class id + equipped item state", "strongly_correlated", "generated boolean is compatibility marker only"),
         new("race_restricted", "equipment.json:race_restricted + character_foundation item requirements", "RuntimeCharacterBundleCatalog.ItemRequirements", "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements", "character race id + equipped item state", "strongly_correlated", "generated boolean is compatibility marker only"),
         new("minimum_level", "equipment.json:minimum_level + items runtime_projection", "RuntimeCharacterBundleCatalog.ItemRequirements", "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements", "RuntimeCharacterRecord.Level + RuntimeItemInstance", "verified", "Bundle A authority supersedes relationship fallback"),
+        new("maximum_level", "equipment.json:maximum_level + item ability 136", "RuntimeCharacterBundleCatalog.ItemRequirements + RuntimeItemCatalog._equipment", "RuntimeItemEngine.EnforceAuthoritativeCharacterRequirements", "RuntimeCharacterRecord.Level + RuntimeItemInstance", "verified", "zero means uncapped; positive decoded caps fail closed"),
         new("minimum_strength", "equipment.json:minimum_strength", "RuntimeItemCatalog._equipment", "RuntimeItemEngine.Equip", "RuntimeCharacterRecord.BaseStats + RuntimeItemInstance", "verified", "single live equip check"),
         new("alignment", "equipment.json:alignment", "RuntimeItemCatalog._equipment", "RuntimeItemEngine.Equip", "RuntimeCharacterRecord.Conditions + RuntimeItemInstance", "strongly_correlated", "single live equip check"),
         new("gender", "equipment.json:gender", "RuntimeItemCatalog._equipment", "RuntimeItemEngine.Equip", "RuntimeCharacterRecord.Conditions + RuntimeItemInstance", "strongly_correlated", "single live equip check"),
@@ -75,6 +76,8 @@ public static class RuntimeBundleCEquipmentAuthorityAudit
         Check(equipmentRecords.All(x => x.TryGetProperty("item_id", out var id) && id.GetString() is { } value && itemIds.Contains(value)), "every equipment relationship resolves an item");
         Check(equipmentRecords.All(x => x.TryGetProperty("slot", out var slot) && slot.GetString() is { } value && slotIds.Contains(value)), "every equipment relationship resolves a legal slot");
         Check(equipmentRecords.Select(x => x.GetProperty("item_id").GetString()).Distinct(StringComparer.OrdinalIgnoreCase).Count() == equipmentRecords.Length, "equipment relationship identity is unique");
+        var multicolouredStaff = equipmentRecords.Single(x => x.GetProperty("item_id").GetString() == "item.1916");
+        Check(multicolouredStaff.GetProperty("minimum_level").GetInt32() == 65 && multicolouredStaff.GetProperty("maximum_level").GetInt32() == 65, "item 1916 preserves decoded exact-level-65 equipment gate");
 
         var runtime = File.ReadAllText(runtimePath);
         var live = File.ReadAllText(livePath);
