@@ -22,6 +22,32 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly HashSet<string> _autoRoamRestarting = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, CancellationTokenSource> _manualBatchCancellation = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _lastAwayReplyBySessionAndSender = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextCombatAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _combatAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _combatSpellCooldowns = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, (string Command, string Target, DateTimeOffset ExpiresAt)> _pendingCombatSpellFallback = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _combatObservedSessions = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _manualRetargetBlockedRoomBySession = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _survivalAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextSurvivalAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _pendingRecoveryPostCommand = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _roamingProcessedRoomBySession = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _roamingAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextObstacleRetryAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _lootAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextLootAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _lastLootSnapshotBySession = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _partyAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextPartyAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _partyWaitingForLeader = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _partyFollowingLeader = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _spellMaintenanceInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextSpellMaintenanceAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _lightedRoomBySession = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, (string Command, DateTimeOffset ExpiresAt)> _pendingMaintainedCast = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextPvpActionAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, (string Attacker, DateTimeOffset ObservedAt)> _pvpAttackers = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _pvpActionInFlight = new(StringComparer.OrdinalIgnoreCase);
     private ClientDataCategory? _selectedCategory;
     private ClientDataRecord? _selectedRecord;
     private ClientAutomationRule? _selectedRule;
@@ -170,11 +196,9 @@ public sealed class PlayViewModel : ViewModelBase
     public string PathSourceDescription => _paths.SourceDescription;
     public string Status { get => _status; private set => Set(ref _status, value); }
     public string ScopeLabel => "Server: Local Host   •   World: Classic   •   Changes: Client only";
-    public string AutomationPolicyLabel => ClientMegaMudAutomationGate.IsEnabled
-        ? (_automation.Policy.AutomationAllowed
-            ? "Client automation is available. Every generated action is sent as a normal Host command."
-            : "This Host profile currently disallows Client automation.")
-        : ClientMegaMudAutomationGate.DisabledReason;
+    public string AutomationPolicyLabel => AutomationProfile.Capabilities.EmergencyStop
+        ? "Emergency Stop is active. Every automatic command is blocked."
+        : "Independent client automation switches are active. Every generated action is sent as a normal Host command.";
 
     public PlayViewModel(IClientDataService data, IClientAutomationService automation, IClientCoordinationService coordination, IMegaMudPathService paths, IClientSessionService sessions, IClientParsingProfileService parsing, IClientLibrariumBridgeService librariumBridge, IClientSysGotoService sysGoto, IClientMapProfileService mapProfiles, IClientWorkspaceProfileService workspaceProfiles)
     {
@@ -190,12 +214,90 @@ public sealed class PlayViewModel : ViewModelBase
         _workspaceProfiles = workspaceProfiles;
         _sessions.LineReceived += SessionLineReceived;
         _sessions.CommandSent += SessionCommandSent;
-        _sessions.StateChanged += (_, e) => Status = e.Message;
+        _sessions.StateChanged += SessionStateChanged;
         _sessions.RouteChanged += SessionRouteChanged;
         _coordination.CommandRequested += CoordinationCommandRequested;
         _coordination.ResponseRequested += CoordinationResponseRequested;
         _coordination.QueryRequested += CoordinationQueryRequested;
         _automation.CommandRequested += AutomationCommandRequested;
+    }
+
+    private void SessionStateChanged(object? sender, ClientSessionStateEvent e)
+    {
+        Status = e.Message;
+        var session = _sessions.Sessions.FirstOrDefault(candidate =>
+            candidate.SessionId.Equals(e.SessionId, StringComparison.OrdinalIgnoreCase));
+        if (session is null) return;
+
+        if (e.State is ClientConnectionState.Disconnected or ClientConnectionState.Faulted or ClientConnectionState.Reconnecting)
+        {
+            ClearTransientAutomationState(session.SessionId);
+            session.CombatAutomationStatus = "Waiting for a verified live connection.";
+            session.PartyAutomationStatus = "Waiting for a fresh party roster after reconnect.";
+            session.PvpAutomationStatus = "Waiting for fresh room and PvP state after reconnect.";
+            session.SpellAutomationStatus = "Waiting for fresh spell and effect state after reconnect.";
+            session.LootAutomationStatus = "Waiting for fresh room inventory after reconnect.";
+            session.RoamingAutomationStatus = "Waiting for a verified room after reconnect.";
+            return;
+        }
+
+        if (e.State != ClientConnectionState.Connected) return;
+        var coordinated = CoordinationProfile.Sessions.FirstOrDefault(candidate =>
+            candidate.SessionId.Equals(session.SessionId, StringComparison.OrdinalIgnoreCase));
+        if (coordinated is not null && CoordinationProfile.AutoResyncOnReconnect)
+        {
+            coordinated.PendingCommands = 0;
+            coordinated.LastAcknowledgedSequence = coordinated.LastSequence;
+            coordinated.LastAcknowledgedAt = DateTimeOffset.UtcNow;
+            coordinated.NeedsResync = false;
+            coordinated.LastResult = "Resynchronized after reconnect";
+        }
+        _ = RefreshAuthoritativeClientStateAsync(session);
+    }
+
+    private void ClearTransientAutomationState(string sessionId)
+    {
+        _combatAutomationInFlight.Remove(sessionId);
+        _combatObservedSessions.Remove(sessionId);
+        _combatSpellCooldowns.Remove(sessionId);
+        _pendingCombatSpellFallback.Remove(sessionId);
+        _manualRetargetBlockedRoomBySession.Remove(sessionId);
+        _survivalAutomationInFlight.Remove(sessionId);
+        _nextSurvivalAutomationAt.Remove(sessionId);
+        _pendingRecoveryPostCommand.Remove(sessionId);
+        _roamingProcessedRoomBySession.Remove(sessionId);
+        _roamingAutomationInFlight.Remove(sessionId);
+        _nextObstacleRetryAt.Remove(sessionId);
+        _lootAutomationInFlight.Remove(sessionId);
+        _nextLootAutomationAt.Remove(sessionId);
+        _lastLootSnapshotBySession.Remove(sessionId);
+        _partyAutomationInFlight.Remove(sessionId);
+        _nextPartyAutomationAt.Remove(sessionId);
+        _partyWaitingForLeader.Remove(sessionId);
+        _partyFollowingLeader.Remove(sessionId);
+        _spellMaintenanceInFlight.Remove(sessionId);
+        _nextSpellMaintenanceAt.Remove(sessionId);
+        _lightedRoomBySession.Remove(sessionId);
+        _pendingMaintainedCast.Remove(sessionId);
+        _nextPvpActionAt.Remove(sessionId);
+        _pvpAttackers.Remove(sessionId);
+        _pvpActionInFlight.Remove(sessionId);
+    }
+
+    private async Task RefreshAuthoritativeClientStateAsync(ClientSessionConnection session)
+    {
+        try
+        {
+            foreach (var command in new[] { "clientdata stats", "clientdata spells", "clientdata party", "clientdata pvp", "roomdata" })
+            {
+                if (session.ConnectionState != ClientConnectionState.Connected) return;
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, command);
+            }
+        }
+        catch (Exception exception)
+        {
+            Status = $"Connected, but the private client-state refresh stopped safely: {exception.Message}";
+        }
     }
 
     public async Task InitializeAsync()
@@ -236,7 +338,7 @@ public sealed class PlayViewModel : ViewModelBase
         RefreshPaths();
         SelectedLocalPath = LocalPaths.FirstOrDefault();
         Raise(nameof(PathSourceDescription));
-        Status = $"{_data.SourceDescription} • manual terminal mode • {ClientMegaMudAutomationGate.DisabledReason}";
+        Status = $"{_data.SourceDescription} • Reforged client ready • Emergency Stop is active by default.";
     }
 
 
@@ -425,7 +527,7 @@ public sealed class PlayViewModel : ViewModelBase
     {
         await SelectParsingProfileForSessionAsync(session);
         await _sysGoto.SelectProfileAsync(session.ServerProfileName, session.WorldName);
-        await _mapProfiles.SelectProfileAsync(session.ServerProfileName, session.WorldName);
+        await _mapProfiles.SelectProfileAsync(session.ServerProfileName, session.WorldName, session.CharacterName);
         Raise(nameof(SysGotoProfile));
         Raise(nameof(MapProfile));
         RefreshMapRooms();
@@ -570,9 +672,7 @@ public sealed class PlayViewModel : ViewModelBase
         _automation.SetMasterEnabled(enabled);
         Raise(nameof(AutomationProfile));
         await _automation.SaveAsync();
-        Status = ClientMegaMudAutomationGate.IsEnabled
-            ? (enabled ? "Character automation enabled." : "Character automation paused.")
-            : ClientMegaMudAutomationGate.DisabledReason;
+        Status = enabled ? "Emergency Stop cleared; individually selected automation switches may run." : "Emergency Stop applied; every automatic command is blocked.";
     }
 
     public async Task StopAllAutomationAsync()
@@ -740,33 +840,45 @@ public sealed class PlayViewModel : ViewModelBase
     public async Task SaveAutomationOptionsAsync()
     {
         await _automation.SaveAsync();
-        Status = "Saved MegaMUD-compatible Client options. Host and world data were not changed.";
+        Status = "Saved Reforged client options. Host and world data were not changed.";
     }
 
     public async Task SetQuickAutomationOptionAsync(string option, bool enabled)
     {
         switch (option.Trim().ToLowerInvariant())
         {
-            case "combat": AutomationOptions.Combat.AutoAttack = enabled; break;
-            case "restheal": AutomationOptions.Health.AutoHeal = enabled; AutomationOptions.Health.AutoRest = enabled; break;
-            case "bless": AutomationOptions.Spells.MaintainBless = enabled; break;
-            case "light": AutomationOptions.Spells.MaintainRoomLight = enabled; break;
-            case "getitems": AutomationOptions.LootAndCash.GetItems = enabled; break;
-            case "getcash": AutomationOptions.LootAndCash.GetCash = enabled; break;
-            case "sneak": AutomationOptions.Roaming.AutoSneak = enabled; break;
-            case "hide": AutomationOptions.Utility.AutoHide = enabled; break;
-            case "search": AutomationOptions.Roaming.AutoSearch = enabled; break;
-            case "track": AutomationOptions.Roaming.AutoTrack = enabled; break;
+            case "combat": AutomationOptions.Combat.AutoAttack = enabled; AutomationProfile.Capabilities.CombatEnabled = enabled; break;
+            case "preattack": AutomationOptions.Combat.AutoPreAttack = enabled; break;
+            case "nuke": AutomationOptions.Spells.AutoNuke = enabled; break;
+            case "restheal": AutomationOptions.Health.AutoHeal = enabled; AutomationOptions.Health.AutoRest = enabled; AutomationProfile.Capabilities.HealthRecoveryEnabled = enabled; break;
+            case "bless":
+                AutomationOptions.Spells.MaintainBless = enabled;
+                AutomationProfile.Capabilities.SpellMaintenanceEnabled = enabled || AutomationOptions.Spells.MaintainArmor || AutomationOptions.Spells.MaintainRoomLight;
+                break;
+            case "light":
+                AutomationOptions.Spells.MaintainRoomLight = enabled;
+                AutomationProfile.Capabilities.SpellMaintenanceEnabled = enabled || AutomationOptions.Spells.MaintainBless || AutomationOptions.Spells.MaintainArmor;
+                break;
+            case "getitems": AutomationOptions.LootAndCash.GetItems = enabled; AutomationProfile.Capabilities.LootAutomationEnabled = enabled || AutomationOptions.LootAndCash.GetCash; break;
+            case "getcash": AutomationOptions.LootAndCash.GetCash = enabled; AutomationProfile.Capabilities.LootAutomationEnabled = enabled || AutomationOptions.LootAndCash.GetItems; break;
+            case "sneak": AutomationOptions.Roaming.AutoSneak = enabled; SynchronizeRoamingCapability(enabled); break;
+            case "hide": AutomationOptions.Utility.AutoHide = enabled; SynchronizeRoamingCapability(enabled); break;
+            case "search": AutomationOptions.Roaming.AutoSearch = enabled; SynchronizeRoamingCapability(enabled); break;
+            case "track": AutomationOptions.Roaming.AutoTrack = enabled; SynchronizeRoamingCapability(enabled); break;
             case "events": AutomationProfile.Capabilities.TimedEventsEnabled = enabled; break;
             default: Status = $"Unknown automation option '{option}'."; return;
         }
         await _automation.SaveAsync();
         Raise(nameof(AutomationOptions));
         Raise(nameof(AutomationProfile));
-        Status = ClientMegaMudAutomationGate.IsEnabled
-            ? $"{option} automation {(enabled ? "enabled" : "disabled")} in the saved client profile."
-            : $"{option} automation {(enabled ? "enabled" : "disabled")} in the saved client profile. {ClientMegaMudAutomationGate.DisabledReason}";
+        Status = option.Equals("combat", StringComparison.OrdinalIgnoreCase)
+            ? $"Verified combat automation {(enabled ? "enabled" : "disabled")}. Emergency Stop remains authoritative."
+            : $"{option} automation {(enabled ? "enabled" : "disabled")} in the saved client profile. Emergency Stop remains authoritative.";
     }
+
+    private void SynchronizeRoamingCapability(bool enabled) =>
+        AutomationProfile.Capabilities.RoamingAutomationEnabled = enabled || AutomationOptions.Roaming.AutoSneak ||
+            AutomationOptions.Roaming.AutoSearch || AutomationOptions.Roaming.AutoTrack || AutomationOptions.Utility.AutoHide;
 
     public async Task SaveCoordinationAsync()
     {
@@ -867,11 +979,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void SendCoordinationCommand()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanContinueCommunications()) { Status = "Enable trusted communication and clear Emergency Stop first."; return; }
 
         var sent = _coordination.DispatchLocal(CoordinationTarget, CoordinationCommand);
         Status = sent.Count == 0 ? "No eligible follower session accepted the command." : $"Queued '{CoordinationCommand}' for {sent.Count} session(s).";
@@ -883,11 +991,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void TestChatCommand()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanContinueCommunications()) { Status = "Enable trusted communication and clear Emergency Stop first."; return; }
 
         var parsed = _coordination.ParseChatCommand(ChatSender, ChatMessage);
         if (!parsed.Recognized)
@@ -920,11 +1024,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void ResumeCoordination()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanContinueCommunications()) { Status = "Enable trusted communication and clear Emergency Stop first."; return; }
 
         _coordination.ResumeAll();
         Status = "All enabled coordinated sessions resumed.";
@@ -957,7 +1057,7 @@ public sealed class PlayViewModel : ViewModelBase
         if (SelectedPath is null) return;
         await _paths.ImportAsync(SelectedPath);
         Raise(nameof(SelectedPath));
-        Status = $"Imported {SelectedPath.FileName} into the Local Host / Classic Client path profile. Source and Librarium data were not changed.";
+        Status = $"Imported {SelectedPath.FileName} into the Reforged client path profile. Source and Librarium data were not changed.";
     }
 
     public async Task RemoveSelectedPathAsync()
@@ -1010,6 +1110,11 @@ public sealed class PlayViewModel : ViewModelBase
         if (session is null) return;
 
         var normalized = command?.Trim() ?? string.Empty;
+        if (normalized.Equals("attack", StringComparison.OrdinalIgnoreCase) ||
+            normalized.StartsWith("attack ", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("backstab", StringComparison.OrdinalIgnoreCase) ||
+            normalized.StartsWith("backstab ", StringComparison.OrdinalIgnoreCase))
+            _manualRetargetBlockedRoomBySession.Remove(session.SessionId);
         try
         {
             if (_automation.TryResolveHumanInput(normalized, out var automatedCommands))
@@ -1094,7 +1199,7 @@ public sealed class PlayViewModel : ViewModelBase
     {
         if (session is null) return;
         await SaveTerminalViewModeAsync(session);
-        Status = $"Classic party configuration saved for {session.DisplayName}. Automation execution remains frozen.";
+        Status = $"Reforged party configuration saved for {session.DisplayName}. Enabled party capabilities now apply independently.";
         Raise(nameof(SelectedLiveSession));
     }
 
@@ -1104,11 +1209,12 @@ public sealed class PlayViewModel : ViewModelBase
     public async Task SaveClassicCombatPreferencesAsync(ClientSessionConnection? session)
     {
         if (session is null) return;
-        AutomationProfile.Enabled = ClientMegaMudAutomationGate.IsEnabled && session.ClassicCombatPreferences.AutoCombat;
-        await SaveTerminalViewModeAsync(session);
-        Status = ClientMegaMudAutomationGate.IsEnabled
-            ? $"Classic combat configuration saved for {session.DisplayName}."
-            : ClientMegaMudAutomationGate.DisabledReason;
+        AutomationOptions.Combat.AutoAttack = session.ClassicCombatPreferences.AutoCombat;
+        AutomationProfile.Capabilities.CombatEnabled = session.ClassicCombatPreferences.AutoCombat;
+        await Task.WhenAll(SaveTerminalViewModeAsync(session), _automation.SaveAsync());
+        Status = session.ClassicCombatPreferences.AutoCombat
+            ? $"Verified combat automation enabled for {session.DisplayName}. Emergency Stop remains authoritative."
+            : $"Combat automation disabled for {session.DisplayName}.";
         Raise(nameof(AutomationProfile));
         Raise(nameof(SelectedLiveSession));
     }
@@ -1119,14 +1225,30 @@ public sealed class PlayViewModel : ViewModelBase
     public async Task SaveClassicHealthPreferencesAsync(ClientSessionConnection? session)
     {
         if (session is null) return;
-        await SaveTerminalViewModeAsync(session);
-        Status = $"Classic health, rest, and healing configuration saved for {session.DisplayName}. Automation execution remains frozen.";
+        var preferences = session.ClassicHealthPreferences;
+        var health = AutomationOptions.Health;
+        health.AutoHeal = preferences.AutoRestHeal;
+        health.AutoRest = preferences.AutoRestHeal;
+        health.AutoMeditate = preferences.AutoRestHeal && (preferences.UseMeditateAbility || preferences.MeditateBeforeResting);
+        health.MinorHealAtPercent = preferences.HealMinorHealthPercent;
+        health.MajorHealAtPercent = preferences.HealMajorHealthPercent;
+        health.RestManaAtPercent = preferences.RestManaBelowPercent;
+        health.StopRestingManaPercent = preferences.RestManaMaximumPercent;
+        AutomationOptions.Combat.AutoFlee = preferences.AutoRestHeal && preferences.RunHealthBelowPercent > 0;
+        AutomationOptions.Combat.FleeAtPercent = preferences.RunHealthBelowPercent;
+        AutomationProfile.Capabilities.HealthRecoveryEnabled = preferences.AutoRestHeal;
+        await Task.WhenAll(SaveTerminalViewModeAsync(session), _automation.SaveAsync());
+        Status = preferences.AutoRestHeal
+            ? $"Health, healing and recovery automation enabled for {session.DisplayName}."
+            : $"Health, healing and recovery automation disabled for {session.DisplayName}.";
+        Raise(nameof(AutomationProfile));
+        Raise(nameof(AutomationOptions));
         Raise(nameof(SelectedLiveSession));
     }
 
     private void ApplyClassicPartyDirective(ClientSessionConnection session, string line)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return;
+        if (!AutomationProfile.Capabilities.PartyAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop) return;
 
         var prefs = session.ClassicPartyPreferences;
         if (line.Contains(prefs.PartyWaitCommand, StringComparison.OrdinalIgnoreCase))
@@ -1259,11 +1381,12 @@ public sealed class PlayViewModel : ViewModelBase
         {
             MapProfile.ServerName = SelectedLiveSession.ServerProfileName;
             MapProfile.WorldName = SelectedLiveSession.WorldName;
+            MapProfile.CharacterName = string.IsNullOrWhiteSpace(SelectedLiveSession.CharacterName) ? SelectedLiveSession.DisplayName : SelectedLiveSession.CharacterName;
         }
         await _mapProfiles.SaveAsync();
         RefreshMapRooms();
         Raise(nameof(MapProfile));
-        Status = $"Saved Client-only map settings for {MapProfile.ServerName} / {MapProfile.WorldName}.";
+        Status = $"Saved Client-only map settings for {MapProfile.CharacterName} on {MapProfile.ServerName} / {MapProfile.WorldName}.";
     }
 
     public void SelectCurrentMapRoom()
@@ -1350,11 +1473,8 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void TravelGroupWithSysGoto()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanContinueCommunications() || !AutomationProfile.Capabilities.NavigationEnabled)
+        { Status = "Enable trusted communication and verified navigation, and clear Emergency Stop first."; return; }
 
         if (SelectedSysGotoDestination is null || !SysGotoProfile.Enabled)
         {
@@ -1372,11 +1492,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task StartSelectedRouteAsync()
     {
-        if (!_automation.CanContinueInputAutomation)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanRunVerifiedNavigation()) return;
 
         if (SelectedLiveSession is null || SelectedPath is null) return;
         try { await _sessions.StartRouteAsync(SelectedLiveSession.SessionId, SelectedPath); Status = $"Started {SelectedPath.DisplayName}."; }
@@ -1386,11 +1502,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task StartRouteToDestinationAsync(ClientSessionConnection? session, MegaMudPathRecord destination, bool requireExactStart)
     {
-        if (!_automation.CanContinueInputAutomation)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanRunVerifiedNavigation()) return;
         if (session is null || session.ConnectionState != ClientConnectionState.Connected)
         {
             Status = "Connect this character before starting a route.";
@@ -1431,6 +1543,29 @@ public sealed class PlayViewModel : ViewModelBase
         Raise(nameof(SelectedLiveSession));
     }
 
+    public async Task StartRouteToRoomAsync(ClientSessionConnection? session, string destinationRoomKey)
+    {
+        if (!CanRunVerifiedNavigation()) return;
+        if (session is null || session.ConnectionState != ClientConnectionState.Connected)
+        { Status = "Connect this character before using click-to-walk."; return; }
+        var start = session.CurrentRoomKey.Trim();
+        var destination = destinationRoomKey.Trim();
+        if (start.Length == 0 || destination.Length == 0)
+        { Status = "Click-to-walk requires confirmed current and destination room keys."; return; }
+        if (start.Equals(destination, StringComparison.OrdinalIgnoreCase))
+        { Status = "The character is already in that room."; return; }
+        var route = _paths.CalculateReplacementRoute(start, destination);
+        if (route is null || route.Steps.Count == 0)
+        { Status = $"No verified route connects {start} to {destination}. Nothing was sent."; return; }
+        try
+        {
+            await _sessions.StartRouteAsync(session.SessionId, route);
+            Status = $"Click-to-walk started a verified {route.Steps.Count}-step route to {destination}.";
+        }
+        catch (Exception exception) { Status = $"Click-to-walk stopped safely: {exception.Message}"; }
+        Raise(nameof(SelectedLiveSession));
+    }
+
     public void PauseSelectedRoute()
     {
         if (SelectedLiveSession is null) return;
@@ -1440,7 +1575,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task StartBackTrackAsync(ClientSessionConnection? session)
     {
-        if (!_automation.CanContinueInputAutomation) { Status = ClientMegaMudAutomationGate.DisabledReason; return; }
+        if (!CanRunVerifiedNavigation()) return;
         if (session is null || session.ConnectionState != ClientConnectionState.Connected) { Status = "Connect this character before backtracking."; return; }
         if (session.RouteState is RouteExecutionState.Running or RouteExecutionState.Paused or RouteExecutionState.WaitingForRoom)
         { Status = "Stop the active route before backtracking."; return; }
@@ -1491,11 +1626,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void ResumeSelectedRoute()
     {
-        if (!_automation.CanContinueInputAutomation)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanRunVerifiedNavigation()) return;
 
         if (SelectedLiveSession is null) return;
         _sessions.ResumeRoute(SelectedLiveSession.SessionId);
@@ -1510,9 +1641,15 @@ public sealed class PlayViewModel : ViewModelBase
         Raise(nameof(SelectedLiveSession));
     }
 
+    public void StopRoute(ClientSessionConnection session)
+    {
+        _autoRoamRoutes.Remove(session.SessionId);
+        _sessions.StopRoute(session.SessionId, "Verified navigation disabled");
+    }
+
     public async Task StartAutoRoamAsync(ClientSessionConnection? session, MegaMudPathRecord loop)
     {
-        if (!_automation.CanContinueInputAutomation) { Status = ClientMegaMudAutomationGate.DisabledReason; return; }
+        if (!CanRunVerifiedNavigation()) return;
         if (session is null || session.ConnectionState != ClientConnectionState.Connected) { Status = "Connect this character before auto-roaming."; return; }
         var startKey = loop.NativeStartKey.Trim();
         var endKey = loop.NativeEndKey.Trim();
@@ -1521,6 +1658,12 @@ public sealed class PlayViewModel : ViewModelBase
         var finalKey = loop.Steps.LastOrDefault(step => step.IsMovement)?.ExpectedNativeRoomKey?.Trim() ?? string.Empty;
         if (!endKey.Equals(startKey, StringComparison.OrdinalIgnoreCase) && !finalKey.Equals(startKey, StringComparison.OrdinalIgnoreCase))
         { Status = $"'{loop.DisplayName}' does not return to its exact decoded start room, so it cannot repeat safely."; return; }
+        if (!AutomationProfile.Capabilities.NavigationEnabled)
+        {
+            AutomationProfile.Capabilities.NavigationEnabled = true;
+            await _automation.SaveAsync();
+            Raise(nameof(AutomationProfile));
+        }
         _autoRoamRoutes[session.SessionId] = loop;
         SelectedLiveSession = session;
         try { await _sessions.StartRouteAsync(session.SessionId, loop); Status = $"Auto-Roam started: {loop.DisplayName}."; }
@@ -1531,7 +1674,7 @@ public sealed class PlayViewModel : ViewModelBase
     {
         Status = e.Message;
         if (e.State != RouteExecutionState.Completed || !_autoRoamRoutes.TryGetValue(e.SessionId, out var loop)
-            || !_automation.CanContinueInputAutomation || !_autoRoamRestarting.Add(e.SessionId)) return;
+            || !AutomationProfile.Capabilities.NavigationEnabled || AutomationProfile.Capabilities.EmergencyStop || !_autoRoamRestarting.Add(e.SessionId)) return;
         try
         {
             await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
@@ -1556,11 +1699,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task CalculateAndRunRouteRecoveryAsync()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanRunVerifiedNavigation()) return;
 
         if (SelectedLiveSession is null) return;
         var session = SelectedLiveSession;
@@ -1580,6 +1719,18 @@ public sealed class PlayViewModel : ViewModelBase
         }
         catch (Exception exception) { Status = exception.Message; }
         Raise(nameof(SelectedLiveSession));
+    }
+
+    private bool CanRunVerifiedNavigation()
+    {
+        if (AutomationProfile.Capabilities.EmergencyStop)
+        {
+            Status = "Emergency Stop is active. No navigation command was sent.";
+            return false;
+        }
+        // An explicit Goto, Loop, or Back Track click authorizes that route.
+        // The automation toggle governs unsolicited navigation decisions.
+        return true;
     }
 
     public void StartRouteRecording() => StartRouteRecording(SelectedLiveSession);
@@ -1747,11 +1898,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task RunLocalPathAsync()
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            Status = ClientMegaMudAutomationGate.DisabledReason;
-            return;
-        }
+        if (!CanRunVerifiedNavigation()) return;
 
         if (SelectedLiveSession is null || SelectedLocalPath is null) return;
         var route = new MegaMudPathRecord
@@ -1779,7 +1926,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async void CoordinationCommandRequested(object? sender, CoordinatedCommandRequest request)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return;
+        if (!CanContinueCommunications()) return;
 
         try
         {
@@ -1802,7 +1949,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async void CoordinationResponseRequested(object? sender, CoordinationResponse response)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return;
+        if (!CanContinueCommunications()) return;
 
         try
         {
@@ -1820,7 +1967,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     private void CoordinationQueryRequested(object? sender, CoordinationQueryRequest query)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return;
+        if (!CanContinueCommunications()) return;
 
         var session = _sessions.Sessions.FirstOrDefault(s => s.SessionId.Equals(query.SourceSessionId, StringComparison.OrdinalIgnoreCase));
         if (session is null) return;
@@ -1844,7 +1991,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async void AutomationCommandRequested(object? sender, ClientAutomationCommandRequest request)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return;
+        if (AutomationProfile.Capabilities.EmergencyStop) return;
         var session = _sessions.Sessions.FirstOrDefault(candidate => candidate.SessionId.Equals(request.SessionId, StringComparison.OrdinalIgnoreCase))
             ?? SelectedLiveSession;
         if (session is null || session.ConnectionState != ClientConnectionState.Connected) return;
@@ -1864,11 +2011,797 @@ public sealed class PlayViewModel : ViewModelBase
 
     public void TickTimedEvents(ClientSessionConnection? session, DateTimeOffset timestamp)
     {
-        if (session is null || !ClientMegaMudAutomationGate.IsEnabled) return;
+        if (session is null) return;
         var context = new ClientAutomationContext(
             session.HealthPercent, session.ManaPercent, session.InCombat, session.IsResting,
             session.IsMoving, string.Empty, timestamp, session.SessionId);
         _automation.EvaluateTimedEvents(context, session.ConnectionState == ClientConnectionState.Connected);
+        _ = TickAutomationClockAsync(session, timestamp);
+    }
+
+    private async Task TickAutomationClockAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (await TickSafeSurvivalAutomationAsync(session, timestamp)) return;
+        if (await TickSafeSpellMaintenanceAsync(session, timestamp)) return;
+        if (await TickSafePartyAutomationAsync(session, timestamp)) return;
+        if (await TickSafeLootAutomationAsync(session, timestamp)) return;
+        if (await TickSafeRoamingAutomationAsync(session, timestamp)) return;
+        await TickSafeCombatAutomationAsync(session, timestamp);
+    }
+
+    private async Task<bool> TickSafeSpellMaintenanceAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        var options = AutomationOptions.Spells;
+        if (!AutomationProfile.Capabilities.SpellMaintenanceEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected || (!options.MaintainBless && !options.MaintainArmor && !options.MaintainRoomLight)) return false;
+        if (options.CastMaintainedSpellsOnlyOutOfCombat && session.InCombat)
+        { session.SpellAutomationStatus = "Maintained spells are waiting for combat to end."; return false; }
+        if (session.IsMoving || session.IsResting) return false;
+        if (_nextSpellMaintenanceAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return false;
+        if (!_spellMaintenanceInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            if (session.ActiveEffectsUpdatedAt is not { } effectsAt || timestamp - effectsAt > TimeSpan.FromSeconds(30))
+            {
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+                _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(2);
+                session.SpellAutomationStatus = "Refreshing authoritative active effects privately; no spell was guessed.";
+                return true;
+            }
+            if (session.SpellbookUpdatedAt is not { } spellbookAt || timestamp - spellbookAt > TimeSpan.FromMinutes(10))
+            {
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata spells");
+                _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(2);
+                session.SpellAutomationStatus = "Refreshing the learned spellbook privately; no spell was guessed.";
+                return true;
+            }
+            if (options.MaintainRoomLight)
+            {
+                if (session.CurrentRoomEnvironmentUpdatedAt is not { } environmentAt || timestamp - environmentAt > TimeSpan.FromSeconds(30))
+                {
+                    await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+                    _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(2);
+                    session.SpellAutomationStatus = "Refreshing decoded room lighting privately; no light spell was guessed.";
+                    return true;
+                }
+                var roomKey = session.CurrentRoomKey.Trim();
+                if (session.CurrentRoomLightLevel < 0 && roomKey.Length > 0 &&
+                    (!_lightedRoomBySession.TryGetValue(session.SessionId, out var lighted) || !lighted.Equals(roomKey, StringComparison.OrdinalIgnoreCase)))
+                {
+                    var lightSpell = ResolveLearnedSpellForCommand(session, options.LightCommand);
+                    if (lightSpell is not null && CanAffordMaintainedSpell(session, lightSpell, options.ReserveManaPercent))
+                    {
+                        await _sessions.SendCommandAsAsync(session.SessionId, options.LightCommand.Trim(), ClientCommandOrigin.ClientAutomation);
+                        _lightedRoomBySession[session.SessionId] = roomKey;
+                        _pendingMaintainedCast[session.SessionId] = (options.LightCommand.Trim(), timestamp.AddSeconds(8));
+                        _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(Math.Max(5, options.MaintainedSpellCooldownSeconds));
+                        session.SpellAutomationStatus = $"Decoded room light is {session.CurrentRoomLightLevel}; casting learned light spell {lightSpell.Name} once for this room.";
+                        return true;
+                    }
+                }
+            }
+            var candidates = new[]
+            {
+                (options.MaintainBless, options.BlessCommand, "blessing"),
+                (options.MaintainArmor, options.ArmorCommand, "armor")
+            };
+            foreach (var candidate in candidates.Where(candidate => candidate.Item1 && !string.IsNullOrWhiteSpace(candidate.Item2)))
+            {
+                var command = candidate.Item2.Trim();
+                var learned = ResolveLearnedSpellForCommand(session, command);
+                if (learned is null) continue;
+                if (session.ActiveEffectDetails.Any(effect => effect.SpellId.Equals(learned.CanonicalId, StringComparison.OrdinalIgnoreCase) ||
+                    effect.Name.Equals(learned.Name, StringComparison.OrdinalIgnoreCase))) continue;
+                if (!CanAffordMaintainedSpell(session, learned, options.ReserveManaPercent))
+                { session.SpellAutomationStatus = $"Waiting for enough mana to maintain {learned.Name} without breaking reserve."; return false; }
+                await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+                _pendingMaintainedCast[session.SessionId] = (command, timestamp.AddSeconds(8));
+                _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(Math.Max(5, options.MaintainedSpellCooldownSeconds));
+                session.SpellAutomationStatus = $"Maintaining {learned.Name}; its exact effect was absent from the authoritative effect list.";
+                return true;
+            }
+            session.SpellAutomationStatus = "Configured maintained effects are active, or their commands do not resolve to learned spells.";
+            _nextSpellMaintenanceAt[session.SessionId] = timestamp.AddSeconds(5);
+            return false;
+        }
+        catch (Exception exception) { session.SpellAutomationStatus = $"Spell maintenance stopped safely: {exception.Message}"; return true; }
+        finally { _spellMaintenanceInFlight.Remove(session.SessionId); }
+    }
+
+    private static ClientLearnedSpellState? ResolveLearnedSpellForCommand(ClientSessionConnection session, string command) =>
+        session.LearnedSpellDetails.Where(spell => command.Contains(spell.Name, StringComparison.OrdinalIgnoreCase) ||
+            command.Contains(spell.CanonicalId, StringComparison.OrdinalIgnoreCase)).OrderByDescending(spell => spell.Name.Length).FirstOrDefault();
+
+    private static bool CanAffordMaintainedSpell(ClientSessionConnection session, ClientLearnedSpellState spell, int reservePercent)
+    {
+        var reserve = session.ManaMaximum <= 0 ? 0 : (int)Math.Ceiling(session.ManaMaximum * reservePercent / 100d);
+        return session.ManaCurrent >= spell.ManaCost && session.ManaCurrent - spell.ManaCost >= reserve;
+    }
+
+    private async Task<bool> TickSafePartyAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.PartyAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected) return false;
+        var options = AutomationOptions.Party;
+        if (!options.AutoAssistLeader && !options.AutoFollowLeader && !options.AutoAcceptTrustedInvites &&
+            !options.RegroupWhenSeparated && !options.WaitWhenLeaderMissing && !options.ResumeWhenLeaderReturns) return false;
+        if (_nextPartyAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return false;
+        if (!_partyAutomationInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            var leaderName = options.LeaderName.Trim();
+            if (leaderName.Length == 0)
+            { session.PartyAutomationStatus = "Party coordination paused until an explicit leader name is configured."; return false; }
+            if (session.PartyUpdatedAt is not { } captured || timestamp - captured > TimeSpan.FromSeconds(options.PartyStateMaximumAgeSeconds))
+            {
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
+                _nextPartyAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+                session.PartyAutomationStatus = "Refreshing the authoritative party roster; no party action was guessed.";
+                return true;
+            }
+            var leaderPresent = session.PartyMembers.Any(member => member.Name.Equals(leaderName, StringComparison.OrdinalIgnoreCase));
+            if (!leaderPresent)
+            {
+                _partyFollowingLeader.Remove(session.SessionId);
+                if (options.WaitWhenLeaderMissing && _partyWaitingForLeader.Add(session.SessionId))
+                {
+                    _sessions.PauseRoute(session.SessionId);
+                    return await SendPartyCommandAsync(session, options.WaitCommand, $"Leader {leaderName} is absent; waiting and pausing this session's route.", timestamp);
+                }
+                if (options.RegroupWhenSeparated)
+                    return await SendPartyCommandAsync(session, options.RegroupCommand, $"Leader {leaderName} is absent; requesting regroup information.", timestamp);
+                session.PartyAutomationStatus = $"Leader {leaderName} is not in the fresh party roster; no assist or follow command was sent.";
+                return false;
+            }
+            if (_partyWaitingForLeader.Remove(session.SessionId) && options.ResumeWhenLeaderReturns)
+            {
+                _sessions.ResumeRoute(session.SessionId);
+                return await SendPartyCommandAsync(session, AppendPartyTarget(options.ResumeCommand, leaderName), $"Leader {leaderName} returned; resuming follow and this session's route.", timestamp);
+            }
+            if (options.AutoFollowLeader && _partyFollowingLeader.Add(session.SessionId))
+                return await SendPartyCommandAsync(session, AppendPartyTarget(options.FollowCommand, leaderName), $"Following configured leader {leaderName}.", timestamp);
+            if (options.AutoAssistLeader && session.InCombat)
+                return await SendPartyCommandAsync(session, AppendPartyTarget(options.AssistCommand, leaderName), $"Assisting configured leader {leaderName} in combat.", timestamp);
+            session.PartyAutomationStatus = $"Leader {leaderName} is present; no coordination action is currently required.";
+            return false;
+        }
+        catch (Exception exception) { session.PartyAutomationStatus = $"Party coordination stopped safely: {exception.Message}"; return true; }
+        finally { _partyAutomationInFlight.Remove(session.SessionId); }
+    }
+
+    private async Task<bool> SendPartyCommandAsync(ClientSessionConnection session, string command, string reason, DateTimeOffset timestamp)
+    {
+        if (!CanContinuePartyAutomation(session)) return false;
+        if (string.IsNullOrWhiteSpace(command)) { session.PartyAutomationStatus = "Party action paused because its command is blank."; return false; }
+        await _sessions.SendCommandAsAsync(session.SessionId, command.Trim(), ClientCommandOrigin.ClientAutomation);
+        _nextPartyAutomationAt[session.SessionId] = timestamp.AddSeconds(AutomationOptions.Party.CommandCooldownSeconds);
+        session.PartyAutomationStatus = reason;
+        return true;
+    }
+
+    private bool CanContinuePartyAutomation(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.PartyAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop &&
+        session.ConnectionState == ClientConnectionState.Connected;
+
+    private static string AppendPartyTarget(string command, string target)
+    {
+        var normalized = command.Trim();
+        if (normalized.Contains("{leader}", StringComparison.OrdinalIgnoreCase))
+            return normalized.Replace("{leader}", target, StringComparison.OrdinalIgnoreCase);
+        return $"{normalized} {target}".Trim();
+    }
+
+    private async Task<bool> TickSafeLootAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.LootAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected || session.InCombat || session.IsResting || session.IsMoving)
+            return false;
+        var options = AutomationOptions.LootAndCash;
+        if (_nextLootAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return true;
+        if (session.CurrentRoomNpcDetailsUpdatedAt is not { } roomDataAt ||
+            session.RoomUpdatedAt is { } observedAt && roomDataAt < observedAt)
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+            session.LootAutomationStatus = "Refreshing authoritative room items and services.";
+            return true;
+        }
+        if (!_lootAutomationInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            if (session.EncumbrancePercent >= options.StopLootingAtWeightPercent)
+            {
+                if (options.DropWhenOverweight)
+                    return await SendLootCommandsAsync(session, [options.DropOverweightCommand], "Dropping the configured overweight item.");
+                session.LootAutomationStatus = $"Looting stopped at {session.EncumbrancePercent}% encumbrance.";
+                return false;
+            }
+
+            var atBank = session.CurrentRoomServices.Any(service => service.Kind.Equals("bank", StringComparison.OrdinalIgnoreCase));
+            if (atBank && options.DepositAtBank && session.CarriedCurrency >= options.DepositWhenCarrying)
+            {
+                if (options.KeepOnCharacter > 0)
+                {
+                    session.LootAutomationStatus = "Deposit paused: exact denomination data cannot preserve the configured keep amount safely.";
+                    return false;
+                }
+                return await SendLootCommandsAsync(session, [options.DepositCommand], "Depositing currency at the decoded bank.");
+            }
+            if (atBank && options.ConvertCurrencyAtBank)
+            {
+                session.LootAutomationStatus = "Currency conversion is unavailable because the server has no exchange command.";
+                return false;
+            }
+
+            var atShop = session.CurrentRoomServices.Any(service => service.Kind.Equals("shop", StringComparison.OrdinalIgnoreCase));
+            if (atShop && options.AutoSellAtShop && session.InventoryItems.Count > 0)
+            {
+                if (string.IsNullOrWhiteSpace(options.SellIncludeWords))
+                { session.LootAutomationStatus = "Auto Sell paused until explicit sell include words are configured."; return false; }
+                var sellable = FilterNames(session.InventoryItems, options.SellIncludeWords, options.SellExcludeWords).ToArray();
+                var sellCommands = BuildItemTemplateCommands(options.SellCommand, "sell", sellable).Take(100).ToArray();
+                if (sellCommands.Length > 0)
+                    return await SendLootCommandsAsync(session, sellCommands, $"Selling {sellCommands.Length} filtered inventory item(s) at the decoded shop.");
+            }
+
+            var fingerprint = $"{session.CurrentRoomKey}|{session.CurrentRoomCurrency}|{string.Join('|', session.CurrentRoomItemDetails.Select(item => item.InstanceId))}|" +
+                              $"{options.GetCash}:{options.GetItems}:{options.LootCorpses}:{options.IncludeWords}:{options.ExcludeWords}:{options.IgnoreHeavyItems}:{options.MaximumItemWeight}";
+            if (_lastLootSnapshotBySession.TryGetValue(session.SessionId, out var previous) && previous == fingerprint) return false;
+
+            var commands = new List<string>();
+            if (options.GetCash && !string.IsNullOrWhiteSpace(session.CurrentRoomCurrency))
+            {
+                foreach (var rule in options.CurrencyRules.Where(rule => rule.Enabled && rule.PickUp).OrderBy(rule => rule.SortOrder))
+                {
+                    var words = SplitWords(rule.RecognitionWords);
+                    var matched = words.FirstOrDefault(word => session.CurrentRoomCurrency.Contains(word, StringComparison.OrdinalIgnoreCase));
+                    if (!string.IsNullOrWhiteSpace(matched)) commands.Add($"get {matched}");
+                }
+            }
+            if (options.LootCorpses && session.CurrentRoomItems.Any(item => item.Contains("corpse", StringComparison.OrdinalIgnoreCase)))
+                commands.Add(options.LootCorpseCommand);
+            if (options.GetItems)
+            {
+                var candidates = session.CurrentRoomItemDetails
+                    .Where(item => item.Gettable && !item.Hidden)
+                    .Where(item => !options.IgnoreHeavyItems || item.Weight <= options.MaximumItemWeight)
+                    .Select(item => item.Name);
+                commands.AddRange(BuildItemTemplateCommands(options.GetItemsCommand, "get", FilterLootNames(candidates, options)).Take(100));
+            }
+            _lastLootSnapshotBySession[session.SessionId] = fingerprint;
+            if (commands.Count == 0)
+            { session.LootAutomationStatus = "No enabled currency or filtered gettable items are present."; return false; }
+            return await SendLootCommandsAsync(session, commands.Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+                $"Collecting {commands.Distinct(StringComparer.OrdinalIgnoreCase).Count()} approved loot action(s).");
+        }
+        catch (Exception exception) { session.LootAutomationStatus = $"Loot automation stopped safely: {exception.Message}"; return true; }
+        finally { _lootAutomationInFlight.Remove(session.SessionId); }
+    }
+
+    private async Task<bool> SendLootCommandsAsync(ClientSessionConnection session, IReadOnlyList<string> commands, string reason)
+    {
+        var sent = 0;
+        foreach (var command in commands.Where(command => !string.IsNullOrWhiteSpace(command)))
+        {
+            if (!CanContinueLootAutomation(session)) break;
+            await _sessions.SendCommandAsAsync(session.SessionId, command.Trim(), ClientCommandOrigin.ClientAutomation);
+            sent++;
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            if (!CanContinueLootAutomation(session)) break;
+        }
+        if (CanContinueLootAutomation(session))
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata inventory");
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+        }
+        _nextLootAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(4);
+        session.LootAutomationStatus = sent == 0 ? "No valid loot command was sent." : reason;
+        return sent > 0;
+    }
+
+    private bool CanContinueLootAutomation(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.LootAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop &&
+        session.ConnectionState == ClientConnectionState.Connected && !session.InCombat && !session.IsResting && !session.IsMoving;
+
+    private static IEnumerable<string> FilterLootNames(IEnumerable<string> names, LootCashAutomationOptions options)
+        => FilterNames(names, options.IncludeWords, options.ExcludeWords);
+
+    private static IEnumerable<string> FilterNames(IEnumerable<string> names, string includeWords, string excludeWords)
+    {
+        var includes = SplitWords(includeWords);
+        var excludes = SplitWords(excludeWords);
+        return names.Select(name => name.Trim()).Where(name => name.Length > 0)
+            .Where(name => includes.Length == 0 || includes.Any(word => name.Contains(word, StringComparison.OrdinalIgnoreCase)))
+            .Where(name => !excludes.Any(word => name.Contains(word, StringComparison.OrdinalIgnoreCase)));
+    }
+
+    private static string[] SplitWords(string value) => value.Split([',', ';', '|'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+    private static IReadOnlyList<string> BuildItemTemplateCommands(string template, string fallbackVerb, IEnumerable<string> names)
+    {
+        var normalizedTemplate = string.IsNullOrWhiteSpace(template) ? $"{fallbackVerb} {{item}}" : template.Trim();
+        return BuildItemCommands(fallbackVerb, names)
+            .Select(command => command[(fallbackVerb.Length + 1)..])
+            .Select(item => normalizedTemplate.Contains("{item}", StringComparison.OrdinalIgnoreCase)
+                ? normalizedTemplate.Replace("{item}", item, StringComparison.OrdinalIgnoreCase)
+                : $"{fallbackVerb} {item}")
+            .ToArray();
+    }
+
+    private async Task<bool> TickSafeSurvivalAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.HealthRecoveryEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected) return false;
+        if (session.PromptUpdatedAt is not { } vitalsAt || timestamp - vitalsAt > TimeSpan.FromSeconds(10))
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+            _nextSurvivalAutomationAt[session.SessionId] = timestamp.AddSeconds(3);
+            session.SurvivalAutomationStatus = "Refreshing current health, mana/Kai and effects privately.";
+            return true;
+        }
+        if (_nextSurvivalAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return true;
+        if (!_survivalAutomationInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            var health = AutomationOptions.Health;
+            var utility = AutomationOptions.Utility;
+            var effects = string.Join(' ', session.ActiveEffects);
+            var incapacitated = (session.HealthMaximum > 0 && session.HealthCurrent <= 0) ||
+                                effects.Contains("incapacitat", StringComparison.OrdinalIgnoreCase) ||
+                                effects.Contains("unconscious", StringComparison.OrdinalIgnoreCase);
+            if (incapacitated && utility.AutoRecover)
+                return await SendSurvivalCommandAsync(session, utility.RecoverCommand, "Recovering from incapacitation.", 5);
+            if ((effects.Contains("asleep", StringComparison.OrdinalIgnoreCase) || effects.Contains("sleeping", StringComparison.OrdinalIgnoreCase)) && health.AutoWake)
+                return await SendSurvivalCommandAsync(session, health.WakeCommand, "Waking the character.", 3);
+            if (session.IsMoving) { session.SurvivalAutomationStatus = "Waiting for movement to finish."; return false; }
+
+            if (session.InCombat)
+            {
+                if (health.AutoRecallAtCriticalHealth && session.HealthPercent <= health.RecallAtPercent)
+                    return await SendSurvivalCommandAsync(session, health.RecallCommand, "Emergency recall threshold reached.", 5);
+                if (AutomationOptions.Combat.AutoFlee && session.HealthPercent <= AutomationOptions.Combat.FleeAtPercent)
+                    return await SendSurvivalCommandAsync(session, "flee", "Emergency flee threshold reached.", 3);
+            }
+
+            if (health.CurePoison && effects.Contains("poison", StringComparison.OrdinalIgnoreCase) &&
+                await TrySendSurvivalSpellAsync(session, health.CurePoisonCommand, "Curing poison.")) return true;
+            if (health.CureDisease && effects.Contains("disease", StringComparison.OrdinalIgnoreCase) &&
+                await TrySendSurvivalSpellAsync(session, health.CureDiseaseCommand, "Curing disease.")) return true;
+            if (health.CureBlindness && effects.Contains("blind", StringComparison.OrdinalIgnoreCase) &&
+                await TrySendSurvivalSpellAsync(session, health.CureBlindnessCommand, "Curing blindness.")) return true;
+            if (health.CureSilence && effects.Contains("silenc", StringComparison.OrdinalIgnoreCase) &&
+                !health.CureSilenceCommand.TrimStart().StartsWith("cast ", StringComparison.OrdinalIgnoreCase))
+                return await SendSurvivalCommandAsync(session, health.CureSilenceCommand, "Removing silence with a non-spell action.", 5);
+
+            if (health.AutoUseHealingItem && session.HealthPercent <= health.HealingItemAtPercent)
+                return await SendSurvivalCommandAsync(session, health.HealingItemCommand, "Using the configured emergency healing item.", 5);
+
+            if (health.AutoHeal)
+            {
+                var healCommand = session.HealthPercent <= health.MajorHealAtPercent
+                    ? AutomationOptions.Spells.MajorHealCommand
+                    : session.HealthPercent <= health.MinorHealAtPercent ? AutomationOptions.Spells.MinorHealCommand : string.Empty;
+                if (!string.IsNullOrWhiteSpace(healCommand) && await TrySendSurvivalSpellAsync(session, healCommand, "Casting an affordable learned healing spell.")) return true;
+            }
+
+            var woundedParty = session.PartyMembers.Where(member => member.HealthPercent < AutomationOptions.Party.HealPartyBelowPercent)
+                .OrderBy(member => member.HealthPercent).FirstOrDefault();
+            if (woundedParty is not null && session.InCombat && AutomationOptions.Combat.AutoRescueParty)
+                return await SendSurvivalCommandAsync(session, $"{AutomationOptions.Combat.RescueCommand} {woundedParty.Name}", $"Rescuing {woundedParty.Name}.", 5);
+            if (woundedParty is not null && AutomationOptions.Party.AutoHealParty &&
+                await TrySendSurvivalSpellAsync(session, $"{AutomationOptions.Party.HealPartyCommand} {woundedParty.Name}", $"Healing party member {woundedParty.Name}.")) return true;
+
+            if (session.InCombat) { session.SurvivalAutomationStatus = "Combat active; no survival threshold requires action."; return false; }
+            var recovery = session.ClassicHealthPreferences;
+            if (session.IsResting && health.StopRestingWhenRecovered && session.ManaPercent >= health.StopRestingManaPercent &&
+                session.HealthPercent >= recovery.HealRestHealthPercent)
+                return await FinishRecoveryAsync(session, utility.StandCommand);
+            var needsRecovery = session.ManaPercent <= health.RestManaAtPercent ||
+                                (health.AutoRest && session.HealthPercent <= recovery.RestHealthBelowPercent);
+            if (!session.IsResting && needsRecovery && (health.AutoMeditate || health.AutoRest))
+            {
+                var meditate = health.AutoMeditate || recovery.UseMeditateAbility || recovery.MeditateBeforeResting;
+                return await BeginRecoveryAsync(session, meditate ? "meditate" : "rest");
+            }
+            session.SurvivalAutomationStatus = "Vitals are within configured survival limits.";
+            return false;
+        }
+        catch (Exception exception) { session.SurvivalAutomationStatus = $"Survival action stopped safely: {exception.Message}"; return true; }
+        finally { _survivalAutomationInFlight.Remove(session.SessionId); }
+    }
+
+    private async Task<bool> TickSafeRoamingAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.RoamingAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected || session.InCombat || session.IsResting || session.IsMoving)
+            return false;
+        var options = AutomationOptions.Roaming;
+        if (session.CurrentRoomNpcDetailsUpdatedAt is not { } roomDataAt ||
+            session.RoomUpdatedAt is { } roomObservedAt && roomDataAt < roomObservedAt)
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+            session.RoamingAutomationStatus = "Refreshing decoded room commands and obstacle data.";
+            return true;
+        }
+        if (AutomationProfile.Capabilities.NavigationEnabled && options.AutoRecoverDesynchronizedRoute && session.RouteRecoveryAvailable &&
+            session.RouteState is RouteExecutionState.Paused or RouteExecutionState.Faulted)
+        {
+            var replacement = _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
+            if (replacement is null || replacement.Steps.Count == 0)
+            { session.RoamingAutomationStatus = "Route recovery stopped: no verified replacement route exists."; return false; }
+            await _sessions.StartRouteAsync(session.SessionId, replacement);
+            session.RoamingAutomationStatus = $"Started verified {replacement.Steps.Count}-step route recovery.";
+            return true;
+        }
+
+        var roomIdentity = string.IsNullOrWhiteSpace(session.CurrentRoomKey) ? session.CurrentRoomName : session.CurrentRoomKey;
+        if (string.IsNullOrWhiteSpace(roomIdentity) ||
+            (_roamingProcessedRoomBySession.TryGetValue(session.SessionId, out var processed) && processed.Equals(roomIdentity, StringComparison.OrdinalIgnoreCase)))
+            return false;
+        if (!_roamingAutomationInFlight.Add(session.SessionId)) return true;
+        _roamingProcessedRoomBySession[session.SessionId] = roomIdentity;
+        var pausedRoute = session.RouteState == RouteExecutionState.Running;
+        try
+        {
+            if (pausedRoute) _sessions.PauseRoute(session.SessionId);
+            var knownTrapCommand = session.CurrentRoomCommandDetails.Any(command =>
+                command.Command.Contains("trap", StringComparison.OrdinalIgnoreCase) ||
+                command.Command.Contains("disarm", StringComparison.OrdinalIgnoreCase) ||
+                command.InteractionType.Contains("trap", StringComparison.OrdinalIgnoreCase));
+            var commands = new List<(bool Enabled, string Command, string Label)>
+            {
+                (options.DetectTraps && knownTrapCommand, options.DetectTrapCommand, "detect traps"),
+                (options.AutoSearch, options.SearchCommand, "search"),
+                (options.DisarmTraps && knownTrapCommand, options.DisarmTrapCommand, "disarm trap"),
+                (options.AutoSneak, options.SneakCommand, "sneak"),
+                (AutomationOptions.Utility.AutoHide, AutomationOptions.Utility.HideCommand, "hide"),
+                (options.AutoTrack, options.TrackCommand, "track"),
+                (AutomationOptions.Utility.AutoLook, AutomationOptions.Utility.LookCommand, "look")
+            };
+            var sent = new List<string>();
+            foreach (var action in commands.Where(action => action.Enabled && !string.IsNullOrWhiteSpace(action.Command)))
+            {
+                if (!CanContinueRoamingAutomation(session)) break;
+                await _sessions.SendCommandAsAsync(session.SessionId, action.Command.Trim(), ClientCommandOrigin.ClientAutomation);
+                sent.Add(action.Label);
+                await Task.Delay(Math.Clamp(options.RoomActionDelayMilliseconds, 500, 10000));
+                if (!CanContinueRoamingAutomation(session)) break;
+            }
+            session.RoamingAutomationStatus = sent.Count == 0
+                ? "Room confirmed; no enabled room-entry action applied."
+                : $"Room-entry actions: {string.Join(", ", sent)}.";
+            return sent.Count > 0;
+        }
+        catch (Exception exception)
+        {
+            session.RoamingAutomationStatus = $"Room-entry automation stopped safely: {exception.Message}";
+            return true;
+        }
+        finally
+        {
+            if (pausedRoute && session.RouteState == RouteExecutionState.Paused && CanContinueRoamingAutomation(session) &&
+                AutomationProfile.Capabilities.NavigationEnabled)
+                _sessions.ResumeRoute(session.SessionId);
+            _roamingAutomationInFlight.Remove(session.SessionId);
+        }
+    }
+
+    private bool CanContinueRoamingAutomation(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.RoamingAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop &&
+        session.ConnectionState == ClientConnectionState.Connected && !session.InCombat && !session.IsResting && !session.IsMoving;
+
+    private async Task<bool> TrySendSurvivalSpellAsync(ClientSessionConnection session, string command, string reason)
+    {
+        var normalized = command.Trim();
+        if (normalized.Length == 0) return false;
+        if (!normalized.StartsWith("cast ", StringComparison.OrdinalIgnoreCase))
+            return await SendSurvivalCommandAsync(session, normalized, reason, 4);
+        if (session.ActiveEffects.Any(effect => effect.Contains("silenc", StringComparison.OrdinalIgnoreCase)))
+        { session.SurvivalAutomationStatus = "A configured survival spell is blocked by silence."; return false; }
+        var learned = ResolveLearnedSpell(session, normalized);
+        if (learned is null)
+        { session.SurvivalAutomationStatus = "A configured survival spell is not in the captured learned-spell list."; return false; }
+        if (session.ManaCurrent < learned.ManaCost)
+        { session.SurvivalAutomationStatus = $"Not enough mana for {learned.Name}; no spell sent."; return false; }
+        return await SendSurvivalCommandAsync(session, normalized, reason, 4);
+    }
+
+    private async Task<bool> SendSurvivalCommandAsync(
+        ClientSessionConnection session, string command, string reason, int cooldownSeconds)
+    {
+        if (string.IsNullOrWhiteSpace(command)) return false;
+        await _sessions.SendCommandAsAsync(session.SessionId, command.Trim(), ClientCommandOrigin.ClientAutomation);
+        _nextSurvivalAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(Math.Max(1, cooldownSeconds));
+        session.SurvivalAutomationStatus = reason;
+        return true;
+    }
+
+    private async Task<bool> BeginRecoveryAsync(ClientSessionConnection session, string mode)
+    {
+        var preferences = session.ClassicHealthPreferences;
+        var meditate = mode.Equals("meditate", StringComparison.OrdinalIgnoreCase);
+        var pre = meditate ? preferences.PreMeditateCommand : preferences.PreRestCommand;
+        var post = meditate ? preferences.PostMeditateCommand : preferences.PostRestCommand;
+        if (!string.IsNullOrWhiteSpace(pre))
+        {
+            await _sessions.SendCommandAsAsync(session.SessionId, pre.Trim(), ClientCommandOrigin.ClientAutomation);
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            if (!CanContinueHealthRecovery(session)) return false;
+        }
+        await _sessions.SendCommandAsAsync(session.SessionId, mode, ClientCommandOrigin.ClientAutomation);
+        if (!string.IsNullOrWhiteSpace(post)) _pendingRecoveryPostCommand[session.SessionId] = post.Trim();
+        _nextSurvivalAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(4);
+        session.SurvivalAutomationStatus = $"Beginning {mode}.";
+        return true;
+    }
+
+    private async Task<bool> FinishRecoveryAsync(ClientSessionConnection session, string standCommand)
+    {
+        await _sessions.SendCommandAsAsync(session.SessionId,
+            string.IsNullOrWhiteSpace(standCommand) ? "stand" : standCommand.Trim(), ClientCommandOrigin.ClientAutomation);
+        if (_pendingRecoveryPostCommand.Remove(session.SessionId, out var post))
+        {
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            if (!CanContinueHealthRecovery(session)) return false;
+            await _sessions.SendCommandAsAsync(session.SessionId, post, ClientCommandOrigin.ClientAutomation);
+        }
+        _nextSurvivalAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(3);
+        session.SurvivalAutomationStatus = "Recovery complete; standing.";
+        return true;
+    }
+
+    private bool CanContinueHealthRecovery(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.HealthRecoveryEnabled &&
+        !AutomationProfile.Capabilities.EmergencyStop &&
+        session.ConnectionState == ClientConnectionState.Connected;
+
+    private static ClientLearnedSpellState? ResolveLearnedSpell(ClientSessionConnection session, string command) =>
+        session.LearnedSpellDetails
+            .Where(spell => command.Contains(spell.Name, StringComparison.OrdinalIgnoreCase) ||
+                            command.Contains(spell.CanonicalId, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(spell => spell.Name.Length).FirstOrDefault();
+
+    private async Task TickSafeCombatAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        var options = AutomationOptions.Combat;
+        if (!AutomationProfile.Capabilities.CombatEnabled || AutomationProfile.Capabilities.EmergencyStop || !options.AutoAttack)
+        { session.CombatAutomationStatus = "Verified combat automation is off."; return; }
+        if (session.ConnectionState != ClientConnectionState.Connected)
+        { session.CombatAutomationStatus = "Waiting for a connected session."; return; }
+        if (session.CurrentRoomNpcDetailsUpdatedAt is not { } npcCapturedAt ||
+            (timestamp - npcCapturedAt).TotalSeconds > 2)
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+            session.CombatAutomationStatus = "Refreshing authoritative hostile-target data.";
+            return;
+        }
+        if (ResolveCombatAutomationBlocker(session) is { } blocker)
+        { session.CombatAutomationStatus = blocker; return; }
+        if (session.InCombat && options.AutoFlee && session.HealthPercent <= options.FleeAtPercent)
+        {
+            if (_nextCombatAutomationAt.TryGetValue(session.SessionId, out var fleeReady) && timestamp < fleeReady) return;
+            await _sessions.SendCommandAsAsync(session.SessionId, "flee", ClientCommandOrigin.ClientAutomation);
+            _nextCombatAutomationAt[session.SessionId] = timestamp.AddSeconds(3);
+            session.CombatAutomationStatus = $"Fleeing at {session.HealthPercent}% health.";
+            return;
+        }
+        if (session.InCombat && options.EscapeAtLowMana && session.ManaPercent <= options.LowManaEscapeAtPercent)
+        {
+            if (_nextCombatAutomationAt.TryGetValue(session.SessionId, out var manaReady) && timestamp < manaReady) return;
+            var escape = string.IsNullOrWhiteSpace(options.LowManaEscapeCommand) ? "flee" : options.LowManaEscapeCommand.Trim();
+            await _sessions.SendCommandAsAsync(session.SessionId, escape, ClientCommandOrigin.ClientAutomation);
+            _nextCombatAutomationAt[session.SessionId] = timestamp.AddSeconds(3);
+            session.CombatAutomationStatus = $"Using the configured low-mana escape at {session.ManaPercent}% mana/Kai.";
+            return;
+        }
+        if (session.InCombat)
+        {
+            _combatObservedSessions.Add(session.SessionId);
+            await TickCombatRoundActionAsync(session, timestamp);
+            return;
+        }
+        if (session.IsResting || session.IsMoving)
+        { session.CombatAutomationStatus = session.IsResting ? "Waiting while resting." : "Waiting for movement to finish."; return; }
+        var retargeting = _combatObservedSessions.Remove(session.SessionId);
+        if (_manualRetargetBlockedRoomBySession.TryGetValue(session.SessionId, out var blockedRoom) &&
+            !blockedRoom.Equals(session.CurrentRoomKey, StringComparison.OrdinalIgnoreCase))
+            _manualRetargetBlockedRoomBySession.Remove(session.SessionId);
+        if (retargeting && !options.AutoRetarget)
+        {
+            _manualRetargetBlockedRoomBySession[session.SessionId] = session.CurrentRoomKey;
+            session.CombatAutomationStatus = "Combat ended; automatic retargeting is disabled.";
+            return;
+        }
+        if (_manualRetargetBlockedRoomBySession.ContainsKey(session.SessionId))
+        { session.CombatAutomationStatus = "Waiting for a manual target or room change."; return; }
+        if (_nextCombatAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return;
+        if (!_combatAutomationInFlight.Add(session.SessionId)) return;
+        try
+        {
+            var hostiles = session.CurrentRoomNpcDetails
+                .Where(npc => npc.Alive && npc.Disposition.Equals("hostile", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
+            var preferences = session.ClassicCombatPreferences;
+            if (hostiles.Length < preferences.MinimumMobsPerRoom || hostiles.Length > preferences.MaximumMobsPerRoom)
+            { session.CombatAutomationStatus = $"Stopped: {hostiles.Length} hostile NPCs are outside the configured room limit."; return; }
+            if (hostiles.Sum(npc => Math.Max(0L, npc.ExperienceReward)) > preferences.MaxTotalExperiencePerRoom)
+            { session.CombatAutomationStatus = "Stopped: decoded room experience exceeds the configured limit."; return; }
+            var target = hostiles.FirstOrDefault();
+            if (target is null || string.IsNullOrWhiteSpace(target.Name))
+            { session.CombatAutomationStatus = "Waiting: no living decoded hostile target is present."; return; }
+
+            if (AutomationOptions.Spells.AutoNuke && session.ManaPercent > AutomationOptions.Spells.ReserveManaPercent)
+            {
+                var spellOptions = AutomationOptions.Spells;
+                var debuff = SelectCombatSpellAction(spellOptions.DebuffPriorityActions, session, hostiles.Length, timestamp, spellOptions.AreaNukeMinimumTargets);
+                var nuke = SelectCombatSpellAction(spellOptions.NukePriorityActions, session, hostiles.Length, timestamp, spellOptions.AreaNukeMinimumTargets);
+                var spellAction = debuff ?? nuke;
+                if (spellAction is not null)
+                {
+                    await SendCombatSpellAsync(session, spellAction, target.Name, spellOptions.NukeCooldownSeconds);
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                    if (session.ConnectionState != ClientConnectionState.Connected || session.InCombat) return;
+                }
+            }
+
+            if (options.AutoPreAttack && !string.IsNullOrWhiteSpace(options.PreAttackCommand))
+            {
+                await _sessions.SendCommandAsAsync(session.SessionId,
+                    ExpandCombatTarget(options.PreAttackCommand, target.Name), ClientCommandOrigin.ClientAutomation);
+                await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                if (session.ConnectionState != ClientConnectionState.Connected || session.InCombat) return;
+            }
+
+            if (!retargeting && preferences.DoBackstabAttacks && !(preferences.DontBackstabIfMultiAttack && hostiles.Length > 1))
+            {
+                if (!string.IsNullOrWhiteSpace(preferences.BackstabWeapon))
+                {
+                    await _sessions.SendCommandAsAsync(session.SessionId, $"equip {preferences.BackstabWeapon}", ClientCommandOrigin.ClientAutomation);
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                    if (!CanContinueVerifiedCombat(session)) return;
+                }
+                if (!string.IsNullOrWhiteSpace(preferences.PreBackstabCommand))
+                {
+                    await _sessions.SendCommandAsAsync(session.SessionId, preferences.PreBackstabCommand.Trim(), ClientCommandOrigin.ClientAutomation);
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                    if (!CanContinueVerifiedCombat(session)) return;
+                }
+                await _sessions.SendCommandAsAsync(session.SessionId, $"backstab {target.Name}", ClientCommandOrigin.ClientAutomation);
+                if (!string.IsNullOrWhiteSpace(preferences.PostBackstabCommand))
+                {
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                    if (!CanContinueVerifiedCombat(session)) return;
+                    await _sessions.SendCommandAsAsync(session.SessionId, preferences.PostBackstabCommand.Trim(), ClientCommandOrigin.ClientAutomation);
+                }
+                if (!string.IsNullOrWhiteSpace(preferences.NormalWeapon))
+                {
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+                    if (!CanContinueVerifiedCombat(session)) return;
+                    await _sessions.SendCommandAsAsync(session.SessionId, $"equip {preferences.NormalWeapon}", ClientCommandOrigin.ClientAutomation);
+                }
+                _nextCombatAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(3);
+                session.CombatAutomationStatus = $"Backstab engagement requested against {target.Name}.";
+                return;
+            }
+
+            var configuredAttack = retargeting ? options.RetargetCommand : options.PrimaryAttackCommand;
+            var attack = string.IsNullOrWhiteSpace(configuredAttack) ? "attack" : configuredAttack.Trim();
+            await _sessions.SendCommandAsAsync(session.SessionId,
+                ExpandCombatTarget(attack, target.Name), ClientCommandOrigin.ClientAutomation);
+            _nextCombatAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(3);
+            session.CombatAutomationStatus = $"Engagement requested against {target.Name}.";
+            Status = $"Auto Combat engaged decoded hostile target {target.Name}.";
+        }
+        catch (Exception exception)
+        {
+            _nextCombatAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(5);
+            Status = $"Auto Combat stopped safely: {exception.Message}";
+            session.CombatAutomationStatus = Status;
+        }
+        finally { _combatAutomationInFlight.Remove(session.SessionId); }
+    }
+
+    private async Task TickCombatRoundActionAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (_nextCombatAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return;
+        if (!_combatAutomationInFlight.Add(session.SessionId)) return;
+        try
+        {
+            var target = session.CurrentRoomNpcDetails.FirstOrDefault(npc => npc.Alive &&
+                npc.Disposition.Equals("hostile", StringComparison.OrdinalIgnoreCase));
+            if (target is null)
+            { session.CombatAutomationStatus = "Combat is active, but no authoritative hostile target is visible; no command sent."; return; }
+            var action = AutomationOptions.Combat.PriorityActions
+                .Where(candidate => candidate.Enabled && candidate.OnlyInCombat && !string.IsNullOrWhiteSpace(candidate.Command))
+                .Where(candidate => session.HealthPercent >= candidate.MinimumHealthPercent && session.ManaPercent >= candidate.MinimumManaPercent)
+                .Where(candidate => CanUseCombatRoundAction(candidate, session))
+                .Where(candidate => !_combatSpellCooldowns.TryGetValue($"{session.SessionId}:{candidate.Id}", out var readyAt) || timestamp >= readyAt)
+                .OrderBy(candidate => candidate.Priority).FirstOrDefault();
+            if (action is null)
+            { session.CombatAutomationStatus = "Combat active; waiting for a configured round action cooldown."; return; }
+            var command = action.AppendTarget ? ExpandCombatTarget(action.Command, target.Name) : action.Command.Trim();
+            await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+            _combatSpellCooldowns[$"{session.SessionId}:{action.Id}"] = DateTimeOffset.Now.AddSeconds(3);
+            _nextCombatAutomationAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(1);
+            session.CombatAutomationStatus = $"Combat priority: {action.Name} against {target.Name}.";
+        }
+        catch (Exception exception) { session.CombatAutomationStatus = $"Round action stopped safely: {exception.Message}"; }
+        finally { _combatAutomationInFlight.Remove(session.SessionId); }
+    }
+
+    private static string? ResolveCombatAutomationBlocker(ClientSessionConnection session)
+    {
+        if (session.HealthMaximum > 0 && session.HealthCurrent <= 0) return "Stopped: character is incapacitated.";
+        var effects = string.Join(' ', session.ActiveEffects);
+        if (effects.Contains("incapacitat", StringComparison.OrdinalIgnoreCase) || effects.Contains("unconscious", StringComparison.OrdinalIgnoreCase))
+            return "Stopped: character is incapacitated.";
+        if (effects.Contains("blind", StringComparison.OrdinalIgnoreCase)) return "Stopped: blindness blocks safe targeting.";
+        return null;
+    }
+
+    private bool CanContinueVerifiedCombat(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.CombatEnabled &&
+        !AutomationProfile.Capabilities.EmergencyStop &&
+        session.ConnectionState == ClientConnectionState.Connected;
+
+    private bool CanUseCombatRoundAction(ClientPriorityAction action, ClientSessionConnection session)
+    {
+        var effects = string.Join(' ', session.ActiveEffects);
+        var command = action.Command.Trim();
+        if ((effects.Contains("kai bound", StringComparison.OrdinalIgnoreCase) || effects.Contains("kai-bind", StringComparison.OrdinalIgnoreCase)) &&
+            (command.StartsWith("punch", StringComparison.OrdinalIgnoreCase) || command.StartsWith("kick", StringComparison.OrdinalIgnoreCase) ||
+             command.StartsWith("jumpkick", StringComparison.OrdinalIgnoreCase) || command.Contains("kai", StringComparison.OrdinalIgnoreCase)))
+            return false;
+        return !command.StartsWith("cast ", StringComparison.OrdinalIgnoreCase) || CanUseLearnedCombatSpell(action, session);
+    }
+
+    private ClientPriorityAction? SelectCombatSpellAction(
+        IEnumerable<ClientPriorityAction> actions, ClientSessionConnection session, int targetCount,
+        DateTimeOffset timestamp, int areaMinimumTargets) =>
+        actions.Where(action => action.Enabled && !string.IsNullOrWhiteSpace(action.Command))
+            .Where(action => !action.OnlyInCombat)
+            .Where(action => session.HealthPercent >= action.MinimumHealthPercent && session.ManaPercent >= action.MinimumManaPercent)
+            .Where(action => CanUseLearnedCombatSpell(action, session))
+            .Where(action => targetCount >= Math.Max(1, action.IsAreaAction ? Math.Max(areaMinimumTargets, action.MinimumTargetCount) : action.MinimumTargetCount) &&
+                             targetCount <= Math.Max(1, action.MaximumTargetCount))
+            .Where(action => !_combatSpellCooldowns.TryGetValue($"{session.SessionId}:{action.Id}", out var readyAt) || timestamp >= readyAt)
+            .OrderBy(action => action.Priority)
+            .FirstOrDefault();
+
+    private async Task SendCombatSpellAsync(
+        ClientSessionConnection session, ClientPriorityAction action, string targetName, int cooldownSeconds)
+    {
+        await _sessions.SendCommandAsAsync(session.SessionId,
+            action.AppendTarget ? ExpandCombatTarget(action.Command, targetName) : action.Command.Trim(),
+            ClientCommandOrigin.ClientAutomation);
+        _combatSpellCooldowns[$"{session.SessionId}:{action.Id}"] =
+            DateTimeOffset.Now.AddSeconds(Math.Max(1, cooldownSeconds));
+        if (!string.IsNullOrWhiteSpace(action.FallbackCommand))
+            _pendingCombatSpellFallback[session.SessionId] =
+                (action.FallbackCommand.Trim(), targetName, DateTimeOffset.Now.AddSeconds(8));
+        Status = $"Auto Nuke used {action.Name} on decoded hostile target {targetName}.";
+    }
+
+    private bool CanUseLearnedCombatSpell(ClientPriorityAction action, ClientSessionConnection session)
+    {
+        var effects = string.Join(' ', session.ActiveEffects);
+        if (effects.Contains("silenc", StringComparison.OrdinalIgnoreCase)) return false;
+        if ((effects.Contains("kai bound", StringComparison.OrdinalIgnoreCase) || effects.Contains("kai-bind", StringComparison.OrdinalIgnoreCase)) &&
+            action.Command.Contains("kai", StringComparison.OrdinalIgnoreCase)) return false;
+        var learned = session.LearnedSpellDetails
+            .Where(spell => action.Command.Contains(spell.Name, StringComparison.OrdinalIgnoreCase) ||
+                            action.Command.Contains(spell.CanonicalId, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(spell => spell.Name.Length).FirstOrDefault();
+        if (learned is null || session.ManaMaximum <= 0) return false;
+        var reserve = (int)Math.Ceiling(session.ManaMaximum * AutomationOptions.Spells.ReserveManaPercent / 100d);
+        return session.ManaCurrent >= learned.ManaCost && session.ManaCurrent - learned.ManaCost >= reserve;
+    }
+
+    private static string ExpandCombatTarget(string command, string targetName)
+    {
+        var trimmed = command.Trim();
+        return trimmed.Contains("{target}", StringComparison.OrdinalIgnoreCase)
+            ? trimmed.Replace("{target}", targetName, StringComparison.OrdinalIgnoreCase)
+            : $"{trimmed} {targetName}";
     }
 
 
@@ -1891,15 +2824,17 @@ public sealed class PlayViewModel : ViewModelBase
     {
         var session = _sessions.Sessions.FirstOrDefault(s => s.SessionId == e.SessionId);
         if (session is null) return;
+        _ = TryHandleCombatAutomationOutcomeAsync(session, e.Line, e.Timestamp);
+        _ = TryHandleRoamingObstacleAsync(session, e.Line, e.Timestamp);
+        _ = TryHandleTrustedPartyInviteAsync(session, e.Line, e.Timestamp);
+        _ = TryHandleMaintainedSpellOutcomeAsync(session, e.Line, e.Timestamp);
+        _ = TryHandlePvpSafetyAsync(session, e.Line, e.Timestamp);
         TrySendAwayReply(session, e.Line, e.Timestamp);
-        if (ClientMegaMudAutomationGate.IsEnabled)
-        {
-            var context = new ClientAutomationContext(session.HealthPercent, session.ManaPercent, session.InCombat, session.IsResting, session.IsMoving, e.Line, e.Timestamp, session.SessionId);
-            _automation.Evaluate(context);
-            ApplyClassicPartyDirective(session, e.Line);
-        }
+        var context = new ClientAutomationContext(session.HealthPercent, session.ManaPercent, session.InCombat, session.IsResting, session.IsMoving, e.Line, e.Timestamp, session.SessionId);
+        _automation.Evaluate(context);
+        ApplyClassicPartyDirective(session, e.Line);
 
-        if (ClientMegaMudAutomationGate.IsEnabled && CoordinationProfile.AcceptChatCommands && e.Line.Contains('@'))
+        if (CanContinueCommunications() && CoordinationProfile.AcceptChatCommands && e.Line.Contains('@'))
         {
             var separator = e.Line.IndexOf(':');
             var senderName = separator > 0 ? e.Line[..separator].Trim(' ', '[', ']') : string.Empty;
@@ -1917,13 +2852,15 @@ public sealed class PlayViewModel : ViewModelBase
                 }
             }
         }
-        if (!string.IsNullOrWhiteSpace(session.CurrentRoomName) || !string.IsNullOrWhiteSpace(session.CurrentRoomKey))
+        if (SelectedLiveSession?.SessionId.Equals(session.SessionId, StringComparison.OrdinalIgnoreCase) == true &&
+            (!string.IsNullOrWhiteSpace(session.CurrentRoomName) || !string.IsNullOrWhiteSpace(session.CurrentRoomKey)))
         {
             var roomSignature = $"{session.CurrentRoomKey}|{session.CurrentRoomName}";
             if (!_lastRecordedMapRoomBySession.TryGetValue(session.SessionId, out var previous) || !string.Equals(previous, roomSignature, StringComparison.OrdinalIgnoreCase))
             {
                 _lastRecordedMapRoomBySession[session.SessionId] = roomSignature;
                 SelectedMapRoom = _mapProfiles.RecordVisit(session.CurrentRoomName, session.CurrentRoomKey);
+                _ = _mapProfiles.SaveAsync();
                 RefreshMapRooms();
                 Raise(nameof(MapProfile));
             }
@@ -1931,10 +2868,237 @@ public sealed class PlayViewModel : ViewModelBase
         Raise(nameof(SelectedLiveSession));
     }
 
+    private async Task TryHandleCombatAutomationOutcomeAsync(
+        ClientSessionConnection session, string line, DateTimeOffset timestamp)
+    {
+        if (!CanContinueVerifiedCombat(session)) return;
+        var text = line.Trim();
+        if (_pendingCombatSpellFallback.TryGetValue(session.SessionId, out var pending))
+        {
+            if (timestamp > pending.ExpiresAt) _pendingCombatSpellFallback.Remove(session.SessionId);
+            else if (text.Contains("failed to cast", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("do not know", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("not enough mana", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("cannot cast", StringComparison.OrdinalIgnoreCase))
+            {
+                _pendingCombatSpellFallback.Remove(session.SessionId);
+                var fallback = new ClientPriorityAction { Command = pending.Command };
+                if (CanUseLearnedCombatSpell(fallback, session))
+                {
+                    await _sessions.SendCommandAsAsync(session.SessionId,
+                        ExpandCombatTarget(pending.Command, pending.Target), ClientCommandOrigin.ClientAutomation);
+                    session.CombatAutomationStatus = $"Primary spell failed; auxiliary spell sent against {pending.Target}.";
+                }
+                else session.CombatAutomationStatus = "Primary spell failed; auxiliary spell was not learned or would break the mana reserve.";
+            }
+        }
+        var backstabFailed = (text.Contains("backstab", StringComparison.OrdinalIgnoreCase) &&
+                              (text.Contains("fail", StringComparison.OrdinalIgnoreCase) || text.Contains("miss", StringComparison.OrdinalIgnoreCase)));
+        if (backstabFailed && session.ClassicCombatPreferences.RunIfBackstabFails)
+        {
+            await _sessions.SendCommandAsAsync(session.SessionId, "flee", ClientCommandOrigin.ClientAutomation);
+            session.CombatAutomationStatus = "Backstab failed; configured flee response sent.";
+        }
+    }
+
+    private async Task TryHandleTrustedPartyInviteAsync(ClientSessionConnection session, string line, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.PartyAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            !AutomationOptions.Party.AutoAcceptTrustedInvites) return;
+        const string marker = " has invited you to follow ";
+        var markerAt = line.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
+        if (markerAt <= 0) return;
+        var inviter = line[..markerAt].Trim(' ', '[', ']');
+        var explicitLeader = inviter.Equals(AutomationOptions.Party.LeaderName.Trim(), StringComparison.OrdinalIgnoreCase);
+        var trustedInvite = CoordinationProfile.TrustedControllers.Any(controller => controller.Enabled &&
+            controller.PlayerName.Equals(inviter, StringComparison.OrdinalIgnoreCase) && controller.Permissions.HasFlag(RemoteControlPermission.Invite));
+        if (!explicitLeader && !trustedInvite)
+        { session.PartyAutomationStatus = $"Invitation from {inviter} was not accepted because that player is not trusted for invitations."; return; }
+        await SendPartyCommandAsync(session, AppendPartyTarget(AutomationOptions.Party.AcceptInviteCommand, inviter),
+            $"Accepted an exact party invitation from trusted player {inviter}.", timestamp);
+    }
+
+    private async Task TryHandleMaintainedSpellOutcomeAsync(ClientSessionConnection session, string line, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.SpellMaintenanceEnabled || AutomationProfile.Capabilities.EmergencyStop) return;
+        var text = line.Trim();
+        if (AutomationOptions.Spells.RecastAfterDispel &&
+            (text.Contains("dispel", StringComparison.OrdinalIgnoreCase) || text.Contains("fades", StringComparison.OrdinalIgnoreCase) ||
+             text.Contains("wears off", StringComparison.OrdinalIgnoreCase)))
+        {
+            session.ActiveEffectsUpdatedAt = null;
+            _nextSpellMaintenanceAt.Remove(session.SessionId);
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+            session.SpellAutomationStatus = "A spell-loss message was observed; refreshing exact active effects before deciding whether to recast.";
+            return;
+        }
+        if (!_pendingMaintainedCast.TryGetValue(session.SessionId, out var pending)) return;
+        if (timestamp > pending.ExpiresAt) { _pendingMaintainedCast.Remove(session.SessionId); return; }
+        var failed = text.Equals("The spell failed.", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("failed to cast", StringComparison.OrdinalIgnoreCase);
+        if (!failed) return;
+        _pendingMaintainedCast.Remove(session.SessionId);
+        _lightedRoomBySession.Remove(session.SessionId);
+        if (!AutomationOptions.Spells.RetryFailedCast)
+        { session.SpellAutomationStatus = "Maintained cast failed; automatic retry is disabled."; return; }
+        await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+        if (!AutomationProfile.Capabilities.SpellMaintenanceEnabled || AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected || session.InCombat || session.IsMoving) return;
+        await _sessions.SendCommandAsAsync(session.SessionId, pending.Command, ClientCommandOrigin.ClientAutomation);
+        _nextSpellMaintenanceAt[session.SessionId] = DateTimeOffset.Now.AddSeconds(Math.Max(5, AutomationOptions.Spells.MaintainedSpellCooldownSeconds));
+        session.SpellAutomationStatus = "Maintained cast failed; the same verified command was retried once and will not loop.";
+    }
+
+    private async Task TryHandlePvpSafetyAsync(ClientSessionConnection session, string line, DateTimeOffset timestamp)
+    {
+        var options = AutomationOptions.PvP;
+        if (!AutomationProfile.Capabilities.PvpAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop || !options.Enabled ||
+            session.ConnectionState != ClientConnectionState.Connected) return;
+        if (_nextPvpActionAt.TryGetValue(session.SessionId, out var readyAt) && timestamp < readyAt) return;
+        if (session.PvpStateUpdatedAt is not { } pvpAt || timestamp - pvpAt > TimeSpan.FromSeconds(10))
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata pvp");
+            _nextPvpActionAt[session.SessionId] = timestamp.AddSeconds(5);
+            session.PvpAutomationStatus = "Refreshing SYSOP-controlled PvP state privately.";
+            return;
+        }
+        if (session.PvpState is not { WorldPvpEnabled: true, SafeRoom: false })
+        {
+            session.PvpAutomationStatus = session.PvpState?.SafeRoom == true
+                ? "PvP responses are disabled in this proven safe room."
+                : "PvP responses are disabled because the SYSOP has disabled realm PvP.";
+            return;
+        }
+        if (session.RoomUpdatedAt is not { } roomAt || timestamp - roomAt > TimeSpan.FromSeconds(options.AttackerStateMaximumAgeSeconds))
+        { session.PvpAutomationStatus = "PvP response withheld because same-room player data is stale."; return; }
+
+        var attacker = session.CurrentRoomPlayers.OrderByDescending(name => name.Length).FirstOrDefault(name =>
+            line.StartsWith(name + " ", StringComparison.OrdinalIgnoreCase) &&
+            (line.Contains(" attacks you", StringComparison.OrdinalIgnoreCase) || line.Contains(" hits you", StringComparison.OrdinalIgnoreCase) ||
+             line.Contains(" strikes you", StringComparison.OrdinalIgnoreCase) || line.Contains(" misses you", StringComparison.OrdinalIgnoreCase)));
+        var defendedPartyMember = attacker is null ? null : string.Empty;
+        if (attacker is null && options.DefendPartyMembers)
+        {
+            attacker = session.CurrentRoomPlayers.OrderByDescending(name => name.Length).FirstOrDefault(name =>
+                line.StartsWith(name + " ", StringComparison.OrdinalIgnoreCase));
+            if (attacker is not null)
+                defendedPartyMember = session.PartyMembers.OrderByDescending(member => member.Name.Length)
+                    .FirstOrDefault(member => line.Contains($" attacks {member.Name}", StringComparison.OrdinalIgnoreCase) ||
+                                              line.Contains($" hits {member.Name}", StringComparison.OrdinalIgnoreCase) ||
+                                              line.Contains($" strikes {member.Name}", StringComparison.OrdinalIgnoreCase) ||
+                                              line.Contains($" misses {member.Name}", StringComparison.OrdinalIgnoreCase))?.Name;
+            if (string.IsNullOrWhiteSpace(defendedPartyMember)) attacker = null;
+        }
+        var fleeing = false;
+        if (attacker is null && _pvpAttackers.TryGetValue(session.SessionId, out var previous) &&
+            timestamp - previous.ObservedAt <= TimeSpan.FromSeconds(options.AttackerStateMaximumAgeSeconds) &&
+            line.StartsWith(previous.Attacker + " ", StringComparison.OrdinalIgnoreCase) && line.Contains("flees from you", StringComparison.OrdinalIgnoreCase))
+        { attacker = previous.Attacker; fleeing = true; }
+        if (attacker is null) return;
+
+        var trusted = CoordinationProfile.TrustedControllers.Any(controller => controller.Enabled &&
+            controller.PlayerName.Equals(attacker, StringComparison.OrdinalIgnoreCase));
+        if (options.IgnoreTrustedPlayers && trusted)
+        { session.PvpAutomationStatus = $"Ignored PvP event from explicitly trusted player {attacker}."; return; }
+        _pvpAttackers[session.SessionId] = (attacker, timestamp);
+        if (options.AlertWhenAttacked)
+            session.PvpAutomationStatus = $"PvP alert: authoritative same-room player {attacker} attacked this character.";
+        if (!_pvpActionInFlight.Add(session.SessionId)) return;
+        try
+        {
+            string? command = null;
+            string reason;
+            if (fleeing)
+            {
+                if (!options.ChaseFleeingAttacker) return;
+                // Reforged does not presently advertise a live CHASE command. Preserve
+                // the option without emitting a command the connected server lacks.
+                session.PvpAutomationStatus = $"{attacker} fled; chase is withheld until the server exposes an authoritative chase route.";
+                return;
+            }
+            if (options.AutoFlee && session.HealthPercent <= options.FleeAtPercent)
+            { command = options.ReactionCommand; reason = $"Fleeing from player attacker {attacker} at {session.HealthPercent}% health."; }
+            else if (!string.IsNullOrWhiteSpace(defendedPartyMember))
+            { command = AppendPvpTarget(options.ReturnAttackCommand, attacker); reason = $"Defending party member {defendedPartyMember} from verified aggressor {attacker}."; }
+            else if (options.UseDefensiveAction)
+            { session.PvpAutomationStatus = "Legacy defensive-command response is unavailable; MegaMUD Defend is party protection."; return; }
+            else if (options.AutoReturnAttack && session.HealthPercent >= options.ReturnAttackAtOrAbovePercent)
+            { command = AppendPvpTarget(options.ReturnAttackCommand, attacker); reason = $"Returning the verified same-room attack from {attacker}."; }
+            else return;
+            if (string.IsNullOrWhiteSpace(command))
+            { session.PvpAutomationStatus = "PvP action withheld because its configured command is blank."; return; }
+            if (!CanContinuePvpAutomation(session)) return;
+            await _sessions.SendCommandAsAsync(session.SessionId, command.Trim(), ClientCommandOrigin.ClientAutomation);
+            _nextPvpActionAt[session.SessionId] = timestamp.AddSeconds(options.CommandCooldownSeconds);
+            session.PvpAutomationStatus = reason;
+        }
+        catch (Exception exception) { session.PvpAutomationStatus = $"PvP response stopped safely: {exception.Message}"; }
+        finally { _pvpActionInFlight.Remove(session.SessionId); }
+    }
+
+    private static string AppendPvpTarget(string command, string attacker)
+    {
+        var normalized = command.Trim();
+        if (normalized.Contains("{target}", StringComparison.OrdinalIgnoreCase))
+            return normalized.Replace("{target}", attacker, StringComparison.OrdinalIgnoreCase);
+        return $"{normalized} {attacker}".Trim();
+    }
+
+    private bool CanContinuePvpAutomation(ClientSessionConnection session) =>
+        AutomationProfile.Capabilities.PvpAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop &&
+        AutomationOptions.PvP.Enabled && session.ConnectionState == ClientConnectionState.Connected;
+
+    private async Task TryHandleRoamingObstacleAsync(
+        ClientSessionConnection session, string line, DateTimeOffset timestamp)
+    {
+        if (!AutomationProfile.Capabilities.RoamingAutomationEnabled || !AutomationProfile.Capabilities.NavigationEnabled ||
+            AutomationProfile.Capabilities.EmergencyStop || session.LastCommandOrigin != ClientCommandOrigin.RouteAutomation ||
+            session.RouteState != RouteExecutionState.WaitingForRoom) return;
+        if (_nextObstacleRetryAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return;
+        var direction = NormalizeRouteDirection(session.LastCommandText);
+        if (direction.Length == 0) return;
+        var text = line.Trim();
+        var options = AutomationOptions.Roaming;
+        string command;
+        if ((text.Contains("locked", StringComparison.OrdinalIgnoreCase) || text.Contains("lock blocks", StringComparison.OrdinalIgnoreCase)) && options.PickLockedDoors)
+            command = ExpandDirection(options.PickLockCommand, direction);
+        else if ((text.Contains("locked", StringComparison.OrdinalIgnoreCase) || text.Contains("blocked", StringComparison.OrdinalIgnoreCase)) && options.BashBlockedDoors)
+            command = ExpandDirection(options.BashDoorCommand, direction);
+        else if ((text.Contains("closed", StringComparison.OrdinalIgnoreCase) || text.Contains("shut", StringComparison.OrdinalIgnoreCase)) && options.OpenClosedDoors)
+            command = ExpandDirection(options.OpenDoorCommand, direction);
+        else return;
+        _nextObstacleRetryAt[session.SessionId] = timestamp.AddSeconds(4);
+        try
+        {
+            await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            if (!CanContinueRoamingAutomation(session) || !AutomationProfile.Capabilities.NavigationEnabled) return;
+            await _sessions.SendCommandAsAsync(session.SessionId, direction, ClientCommandOrigin.RouteAutomation);
+            session.RoamingAutomationStatus = $"Handled route obstacle with '{command}' and retried {direction}.";
+        }
+        catch (Exception exception) { session.RoamingAutomationStatus = $"Obstacle handling stopped safely: {exception.Message}"; }
+    }
+
+    private static string ExpandDirection(string command, string direction)
+    {
+        var trimmed = command.Trim();
+        return trimmed.Contains("{direction}", StringComparison.OrdinalIgnoreCase)
+            ? trimmed.Replace("{direction}", direction, StringComparison.OrdinalIgnoreCase)
+            : $"{trimmed} {direction}";
+    }
+
+    private static string NormalizeRouteDirection(string command) => command.Trim().ToLowerInvariant() switch
+    {
+        "n" or "north" => "north", "ne" or "northeast" => "northeast", "e" or "east" => "east",
+        "se" or "southeast" => "southeast", "s" or "south" => "south", "sw" or "southwest" => "southwest",
+        "w" or "west" => "west", "nw" or "northwest" => "northwest", "u" or "up" => "up", "d" or "down" => "down",
+        _ => string.Empty
+    };
+
     private void TrySendAwayReply(ClientSessionConnection session, string line, DateTimeOffset timestamp)
     {
         var capabilities = AutomationProfile.Capabilities;
-        if (!capabilities.AwayFromKeyboardEnabled || !_automation.CanContinueInputAutomation
+        if (!capabilities.CommunicationsAutomationEnabled || !capabilities.AwayFromKeyboardEnabled || capabilities.EmergencyStop
             || session.ConnectionState != ClientConnectionState.Connected) return;
         var match = System.Text.RegularExpressions.Regex.Match(
             line.Trim(), @"^(?<sender>[A-Za-z0-9_'\-]{1,40}) tells you,\s*'(?<message>.*)'$",
@@ -1956,11 +3120,15 @@ public sealed class PlayViewModel : ViewModelBase
     {
         try
         {
+            if (!CanContinueCommunications() || session.ConnectionState != ClientConnectionState.Connected) return;
             await _sessions.SendCommandAsAsync(session.SessionId, $"tell {senderName} [AFK] {message}", ClientCommandOrigin.ClientAutomation);
             Status = $"AFK reply sent to {senderName}.";
         }
         catch (Exception exception) { Status = $"AFK reply failed: {exception.Message}"; }
     }
+
+    private bool CanContinueCommunications() =>
+        AutomationProfile.Capabilities.CommunicationsAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop;
 
     private void RefreshPaths()
     {

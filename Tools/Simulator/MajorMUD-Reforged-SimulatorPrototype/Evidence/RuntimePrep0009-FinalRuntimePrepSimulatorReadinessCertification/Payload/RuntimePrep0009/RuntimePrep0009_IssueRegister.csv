@@ -1,4 +1,0 @@
-issue_id,status,issue,handling
-RP0009-I001,OPEN,No live Worldgroup runtime evidence has been captured.,Carry forward to RuntimeValidation0001.
-RP0009-I002,OPEN,NPC/quest trigger order and state mutation are not certified.,Simulator may model expected references but must flag runtime-only behaviors.
-RP0009-I003,OPEN,"Combat formulas, AI priorities, and timing are not certified.",Implement as configurable/unknown until runtime evidence exists.

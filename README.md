@@ -18,18 +18,19 @@ Read [Docs/PROJECT_STATUS.md](Docs/PROJECT_STATUS.md) for the live project hando
 
 Short version:
 
-- Current Code Update: `0139`.
+- Current Code Update: `0140`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`.
-- Local verification: PASS current-health validator 13/13, Classic compiler/runtime audits with 26,668/26,668 room descriptions, interaction/narrative smoke with 83 executable quest entries, Reforged app Release build, and Reforged app publish to `Release/MajorMudReforged`.
-- CodeUpdate0138 is green by user report.
-- GitHub Actions is pending for CodeUpdate0139 until the pushed commit is confirmed green.
+- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`.
+- Local verification: PASS current-health validator 15/15, Classic compiler/runtime audits with 26,668/26,668 room descriptions, interaction/narrative smoke with 83 executable quest entries, Reforged app Release build, and Reforged app publish to `Release/MajorMudReforgedApp`.
+- CodeUpdate0139 runtime cohesion is closed in the local baseline.
+- GitHub Actions is pending for CodeUpdate0140 until the pushed commit is confirmed green.
 - Librarium is authoritative.
 - `/Data` is generated runtime output.
 - Clean CI/local checkouts regenerate `/Data` from Librarium before server bootstrap; generated `Data/Classic` is not committed as source.
 - Generated runtime readers support compiler chunk manifests; optional NPC AI runtime relationships can be derived from generated spawns.
 - Classic is evidence-locked.
-- `ImportedDatabases/` and real `Saves/` must be preserved.
+- Real `Saves/` must be preserved. Imported/reference databases and raw evidence are local-only archives, not committed source.
+- Runtime saves are realm-scoped: Classic saves live under `Saves/Classic`, custom realm saves live under `Saves/Custom/<realm>`, and one login may keep up to three characters per world.
 - Guardian Hall Engineering exposes all ten engineering phases through a guarded queue with independent controls for planning, engineering, builds, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight operation. Candidate ZIP generation defaults on; autonomous and live-update capabilities default off, and Emergency Stop cancels execution without changing saved preferences.
 - Borin accepts a persisted Engineering Objective and includes a one-click **Fix Runtime Disconnects** assignment preset.
 - With Autonomous Engineering enabled and a Forge coding model selected, Borin can author and safely apply repair diffs inside the isolated worktree; later enabled gates test them and Candidate ZIP Generation packages the actual changed files.
@@ -46,8 +47,7 @@ Short version:
 - Classic runtime audit: diagnostic commands prove where generated data, runtime loading, live-world materialization, room inspection, and spawn materialization succeed or fail.
 - Current audit finding: regenerated live `Data/Classic` has 26,668/26,668 room descriptions; runtime loads 26,668/26,668 descriptions, 1,015 live NPC instances, and 628 live monster instances with hard map-qualified placement validation.
 - Room-text recovery: Librarium contains 2,417 clean native-backed room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, 23,309 WCCMP002 default-install binary gap fills, and 140 WCCMP002 placeholder room recoveries. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass, with WBBMP002 as secondary corroboration only.
-- WCC exhaustion audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md` records available local WCC/WBB evidence against active Librarium coverage.
-- Reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md` records MMExplorer SQL/MDB and OmniVerse public codex gap fills promoted into Librarium with provenance.
+- Decoded data evidence summary: `Reports/DataDecode/decoded_data_evidence_summary.md` records WCC/WBB exhaustion, room-description recovery, room native effects/messages, MMExplorer/OmniVerse reconciliation, item boundaries, and remaining native/host boundaries.
 - Command parsing: runtime commands now use centralized exact alias, unique-prefix, and ambiguity-rejection rules for Telnet/MegaMUD input.
 - Spawn placement: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, and room rendering displays only room-scoped living NPC instances with disposition-based color.
 - Placement audit: `room.map1.21` currently proves one neutral `guardsman` from `spawn.21.5`; the user-expected `elite guardsman` is a separate data correction if the generated source field is wrong.
@@ -60,7 +60,7 @@ Short version:
 - Server/native-runtime audit repair: compiler room-description catalog discovery now includes plain `*_records.json` files, generated quest/item numeric strings are read safely by runtime catalog loaders, and remaining native decode gaps are tracked in `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`.
 - Bundle G native presentation closure: prior F10 native payload disconnects are resolved with explicit no-output decoded text mappings and exact WCCMSG payload evidence for `message 2044` and `message 3290`; F10 native payload through F15 persistence audits pass locally.
 - Native presentation reproducibility closure promotes all 3,467 verified WCCTEXT2 payloads into Librarium; clean compilation now regenerates the single payload runtime file instead of deleting an ignored prerequisite.
-- Reforged app Librarium tab: the app now exposes a read-only searchable Classic data browser with tabs for Weapons, Armor, Spells, Abilities, Classes, Races, Items, Monsters, Quests, and Rooms. The left list shows names only. Classes and races use the richer character-foundation gameplay projection for abilities, magic/armor/combat info, and race min/max stats. Quests show nontechnical Host guidance such as who to talk to, what to say, needed items, and plain-language steps. The published EXE is `Release/MajorMudReforged/MajorMudReforged.exe`.
+- Reforged app Librarium tab: the app now exposes a read-only searchable Classic data browser with tabs for Weapons, Armor, Spells, Abilities, Classes, Races, Items, Monsters, Quests, and Rooms. The left list shows names only. Classes and races use the richer character-foundation gameplay projection for abilities, magic/armor/combat info, and race min/max stats. Quests show nontechnical Host guidance such as who to talk to, what to say, needed items, and plain-language steps. The published EXE is `Release/MajorMudReforgedAppApp/MajorMudReforged.exe`.
 - Reforged app Client tab: the Play workspace now behaves as a server/session launcher. The play surface opens in a dedicated MegaMUD-style terminal window with black terminal output, command input, menu tools, and a separate tabbed Client Options window.
 
 ## Development Flow
@@ -73,3 +73,5 @@ Do not hand-edit generated `/Data` as canonical source. Update Librarium/source 
 
 One-time validation proofs are recorded in ValidationManifest.json.
 WCCMMUD online administration is exposed through authenticated `SYSOP` dispatch backed by generated Librarium data. The legacy SYSOP unlock value is configuration evidence and is never entered as a gameplay command.
+
+

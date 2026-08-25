@@ -9,6 +9,7 @@ public enum AutomationArea
 
 public sealed class ClientAutomationProfile
 {
+    public int SchemaVersion { get; set; }
     public string Name { get; set; } = "Default";
     public bool Enabled { get; set; }
     public bool PauseAll { get; set; }
@@ -24,6 +25,15 @@ public sealed class ClientAutomationCapabilities
     public bool MacrosEnabled { get; set; }
     public bool TextTriggersEnabled { get; set; }
     public bool TimedEventsEnabled { get; set; }
+    public bool NavigationEnabled { get; set; }
+    public bool CombatEnabled { get; set; }
+    public bool HealthRecoveryEnabled { get; set; }
+    public bool SpellMaintenanceEnabled { get; set; }
+    public bool PartyAutomationEnabled { get; set; }
+    public bool LootAutomationEnabled { get; set; }
+    public bool RoamingAutomationEnabled { get; set; }
+    public bool PvpAutomationEnabled { get; set; }
+    public bool CommunicationsAutomationEnabled { get; set; }
     public bool EmergencyStop { get; set; } = true;
     public bool AwayFromKeyboardEnabled { get; set; }
     public string AwayFromKeyboardMessage { get; set; } = "I am currently away from the keyboard and will reply when I return.";
@@ -79,7 +89,9 @@ public sealed class HealthAutomationOptions
     public int RestManaAtPercent { get; set; } = 25;
     public bool AutoMeditate { get; set; }
     public bool CurePoison { get; set; }
+    public string CurePoisonCommand { get; set; } = "cast cure poison";
     public bool CureDisease { get; set; }
+    public string CureDiseaseCommand { get; set; } = "cast cure disease";
     public bool CureBlindness { get; set; }
     public string CureBlindnessCommand { get; set; } = "cast cure blindness";
     public bool AutoUseHealingItem { get; set; }
@@ -99,6 +111,8 @@ public sealed class HealthAutomationOptions
 public sealed class SpellAutomationOptions
 {
     public ObservableCollection<ClientPriorityAction> PriorityActions { get; set; } = [];
+    public ObservableCollection<ClientPriorityAction> DebuffPriorityActions { get; set; } = [];
+    public ObservableCollection<ClientPriorityAction> NukePriorityActions { get; set; } = [];
     public string MinorHealCommand { get; set; } = "cast minor heal";
     public string MajorHealCommand { get; set; } = "cast major heal";
     public string BlessCommand { get; set; } = "cast bless";
@@ -108,6 +122,9 @@ public sealed class SpellAutomationOptions
     public bool MaintainArmor { get; set; }
     public bool MaintainRoomLight { get; set; }
     public int ReserveManaPercent { get; set; } = 20;
+    public bool AutoNuke { get; set; }
+    public int NukeCooldownSeconds { get; set; } = 3;
+    public int AreaNukeMinimumTargets { get; set; } = 2;
     public bool CastMaintainedSpellsOnlyOutOfCombat { get; set; } = true;
     public int MaintainedSpellCooldownSeconds { get; set; } = 120;
     public bool RetryFailedCast { get; set; }
@@ -120,6 +137,8 @@ public sealed class CombatAutomationOptions
 {
     public ObservableCollection<ClientPriorityAction> PriorityActions { get; set; } = [];
     public bool AutoAttack { get; set; }
+    public bool AutoPreAttack { get; set; }
+    public string PreAttackCommand { get; set; } = string.Empty;
     public string PrimaryAttackCommand { get; set; } = "attack";
     public string SecondaryAttackCommand { get; set; } = "bash";
     public bool UseSecondaryAttack { get; set; }
@@ -144,12 +163,19 @@ public sealed class PvpAutomationOptions
     public bool Enabled { get; set; }
     public bool AlertWhenAttacked { get; set; } = true;
     public bool AutoFlee { get; set; }
-    public bool AutoReturnAttack { get; set; }
+      public bool AutoReturnAttack { get; set; }
+      public bool DefendPartyMembers { get; set; }
     public string ReactionCommand { get; set; } = "flee";
     public bool IgnoreTrustedPlayers { get; set; } = true;
     public string ReturnAttackCommand { get; set; } = "attack";
     public bool ChaseFleeingAttacker { get; set; }
     public string ChaseCommand { get; set; } = "chase";
+    public int FleeAtPercent { get; set; } = 35;
+    public int ReturnAttackAtOrAbovePercent { get; set; } = 50;
+    public int CommandCooldownSeconds { get; set; } = 3;
+    public int AttackerStateMaximumAgeSeconds { get; set; } = 10;
+      public bool UseDefensiveAction { get; set; }
+    public string DefensiveActionCommand { get; set; } = "defend";
 }
 
 public sealed class PartyAutomationOptions
@@ -162,7 +188,7 @@ public sealed class PartyAutomationOptions
     public string LeaderName { get; set; } = string.Empty;
     public string AssistCommand { get; set; } = "assist";
     public string FollowCommand { get; set; } = "follow";
-    public string AcceptInviteCommand { get; set; } = "join";
+    public string AcceptInviteCommand { get; set; } = "follow";
     public string HealPartyCommand { get; set; } = "cast heal";
     public bool RegroupWhenSeparated { get; set; }
     public string RegroupCommand { get; set; } = "where";
@@ -170,6 +196,8 @@ public sealed class PartyAutomationOptions
     public string WaitCommand { get; set; } = "wait";
     public bool ResumeWhenLeaderReturns { get; set; }
     public string ResumeCommand { get; set; } = "follow";
+    public int PartyStateMaximumAgeSeconds { get; set; } = 30;
+    public int CommandCooldownSeconds { get; set; } = 5;
 }
 
 public sealed class LootCashAutomationOptions
@@ -186,14 +214,16 @@ public sealed class LootCashAutomationOptions
     public string IncludeWords { get; set; } = string.Empty;
     public string ExcludeWords { get; set; } = string.Empty;
     public string GetCashCommand { get; set; } = "get coins";
-    public string GetItemsCommand { get; set; } = "get all";
+    public string GetItemsCommand { get; set; } = "get {item}";
     public string LootCorpseCommand { get; set; } = "get all corpse";
     public string DepositCommand { get; set; } = "deposit all";
     public bool ConvertCurrencyAtBank { get; set; }
     public string ConvertCurrencyCommand { get; set; } = "exchange all";
     public int StopLootingAtWeightPercent { get; set; } = 90;
     public bool AutoSellAtShop { get; set; }
-    public string SellCommand { get; set; } = "sell all";
+    public string SellCommand { get; set; } = "sell {item}";
+    public string SellIncludeWords { get; set; } = string.Empty;
+    public string SellExcludeWords { get; set; } = string.Empty;
     public bool DropWhenOverweight { get; set; }
     public string DropOverweightCommand { get; set; } = "drop heavy";
 }
@@ -207,6 +237,11 @@ public sealed class ClientPriorityAction
     public string Command { get; set; } = string.Empty;
     public int MinimumHealthPercent { get; set; }
     public int MinimumManaPercent { get; set; }
+    public int MinimumTargetCount { get; set; } = 1;
+    public int MaximumTargetCount { get; set; } = 99;
+    public bool IsAreaAction { get; set; }
+    public bool AppendTarget { get; set; } = true;
+    public string FallbackCommand { get; set; } = string.Empty;
     public bool OnlyInCombat { get; set; }
     public bool OnlyOutOfCombat { get; set; }
 }
@@ -233,15 +268,17 @@ public sealed class RoamingAutomationOptions
     public bool AutoTrack { get; set; }
     public string TrackCommand { get; set; } = "track";
     public bool OpenClosedDoors { get; set; }
-    public string OpenDoorCommand { get; set; } = "open door";
+    public string OpenDoorCommand { get; set; } = "open {direction}";
     public bool PickLockedDoors { get; set; }
-    public string PickLockCommand { get; set; } = "pick lock";
+    public string PickLockCommand { get; set; } = "pick {direction}";
     public bool BashBlockedDoors { get; set; }
-    public string BashDoorCommand { get; set; } = "bash door";
+    public string BashDoorCommand { get; set; } = "bash {direction}";
     public bool DetectTraps { get; set; }
     public string DetectTrapCommand { get; set; } = "detect traps";
     public bool DisarmTraps { get; set; }
     public string DisarmTrapCommand { get; set; } = "disarm trap";
+    public bool AutoRecoverDesynchronizedRoute { get; set; }
+    public int RoomActionDelayMilliseconds { get; set; } = 750;
 }
 
 public sealed class UtilityAutomationOptions

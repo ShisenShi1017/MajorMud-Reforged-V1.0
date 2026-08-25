@@ -1,9 +1,0 @@
-{
-  "code_update": "0190",
-  "sources": [
-    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
-    "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
-    "Librarium/Policies/runtime_item_world_persistence_validation_policy.json"
-  ],
-  "native_dependency": "Exact WCC/WBB/native item serialization, crash recovery, and version migration remain unresolved."
-}

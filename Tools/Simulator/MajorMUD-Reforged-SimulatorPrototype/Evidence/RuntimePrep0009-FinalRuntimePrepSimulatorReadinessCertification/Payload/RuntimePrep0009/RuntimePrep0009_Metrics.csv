@@ -1,8 +1,0 @@
-metric,value,notes
-static_decode_status,complete,DataDecode0101-0110 inherited from certified chain
-runtime_prep_completed_passes,9,RuntimePrep0001 through RuntimePrep0009 now complete
-worldgroup_runtime_used,0,No Worldgroup live runtime observations used
-runtime_observations_used,0,This remains preparation/certification only
-simulator_readiness,prototype_ready,Ready to begin simulator architecture and data-loader implementation
-gameplay_equivalence_certified,false,Requires live runtime validation
-authoritative_data_source,MDB plus verified mdbtools CSV chain,WBB/WCC corroborating; quest wiki supporting only

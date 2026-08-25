@@ -724,7 +724,7 @@ public sealed class RuntimeMajorMudPlusService
     }
 
     private string StatePath(string worldId) =>
-        Path.Combine(_characters.ProjectRoot, "Saves", "Runtime0137", "majormud_plus", RuntimeIdentity.Normalize(worldId, "world") + ".json");
+        Path.Combine(RuntimeSavePaths.RealmRoot(_characters.ProjectRoot, worldId), "majormud_plus", RuntimeIdentity.Normalize(worldId, "world") + ".json");
 
     private static RuntimeMajorMudPlusDescription ResolveDescription(RuntimeMajorMudPlusState state, string query)
     {

@@ -11,6 +11,7 @@ public sealed class ForgeConfiguration
     public string ProviderName { get; set; } = "Reforged Direct GGUF";
     public Reforged.App.Brains.BorinBrainMode BrainMode { get; set; } = Reforged.App.Brains.BorinBrainMode.Hybrid;
     public bool AutomaticallyEscalateDifficultTasks { get; set; } = true;
+    public bool VerifyCriticalTasks { get; set; } = true;
     public string ApiEndpoint { get; set; } = string.Empty;
     public string ModelsEndpoint { get; set; } = string.Empty;
     public string ModelName { get; set; } = string.Empty;

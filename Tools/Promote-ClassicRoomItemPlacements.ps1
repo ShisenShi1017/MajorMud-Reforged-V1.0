@@ -8,7 +8,7 @@ $roomsRoot = Join-Path $ProjectRoot 'Data\Classic\rooms.parts'
 $itemsPath = Join-Path $ProjectRoot 'Data\Classic\items.json'
 $outputRoot = Join-Path $ProjectRoot 'Librarium\Objects\room_item_placements'
 $outputPath = Join-Path $outputRoot 'room_item_placement_records_0139.json'
-$reportPath = Join-Path $ProjectRoot 'Reports\RuntimeVerification\room_item_placement_promotion_0139.json'
+$reportPath = Join-Path $ProjectRoot 'Reports\RuntimeVerification\room_item_placement_promotion.json'
 
 $roomIndex = @{}
 Get-ChildItem -LiteralPath $roomsRoot -Filter '*.json' | ForEach-Object {

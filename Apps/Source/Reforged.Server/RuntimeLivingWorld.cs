@@ -77,7 +77,7 @@ public static class RuntimeClassicSkillTest
 /// <summary>
 /// Authoritative shared runtime state for generated NPC spawns and generated world interaction objects.
 /// The service never invents NPCs, routes, doors, keys, hazards, or triggers: all definitions are loaded
-/// from generated Data/&lt;world&gt; files. Runtime state is persisted separately under Saves/Worlds.
+/// from generated Data/&lt;world&gt; files. Runtime state is persisted separately under the realm save root.
 /// </summary>
 public sealed partial class RuntimeLivingWorldService
 {
@@ -109,7 +109,9 @@ public sealed partial class RuntimeLivingWorldService
         _projectRoot = projectRoot;
         _world = world;
         _itemCatalog=RuntimeItemCatalog.Load(projectRoot,world.Definition.Id);
-        _persistenceRoot = string.IsNullOrWhiteSpace(persistenceRoot) ? Path.Combine(projectRoot,"Saves","Worlds") : persistenceRoot;
+        _persistenceRoot = string.IsNullOrWhiteSpace(persistenceRoot)
+            ? Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, world.Definition.Id), "WorldState")
+            : persistenceRoot;
         LoadGeneratedNpcInstances();
         LoadGeneratedWorldObjects();
         LoadGeneratedRoomItems();
@@ -893,7 +895,7 @@ public sealed partial class RuntimeLivingWorldService
         var temp=path+".tmp"; File.WriteAllText(temp,JsonSerializer.Serialize(Capture(),new JsonSerializerOptions{WriteIndented=true})); File.Move(temp,path,true);
     }
 
-    private string PersistencePath=>Path.Combine(_persistenceRoot,WorldId,"living-world.json");
+    private string PersistencePath=>Path.Combine(_persistenceRoot,"living-world.json");
     private static RuntimeLivingWorldObjectState Open(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s){if(s.Locked)throw new InvalidOperationException($"{d.Name} is locked.");return s with{Open=true,UpdatedAtUtc=DateTimeOffset.UtcNow};}
     private static RuntimeLivingWorldObjectState Close(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s)=>s with{Open=false,UpdatedAtUtc=DateTimeOffset.UtcNow};
     private static RuntimeLivingWorldObjectState Unlock(RuntimeLivingWorldObjectDefinition d,RuntimeLivingWorldObjectState s,RuntimeItemState? i){RequireKey(d,i);return s with{Locked=false,UpdatedAtUtc=DateTimeOffset.UtcNow};}

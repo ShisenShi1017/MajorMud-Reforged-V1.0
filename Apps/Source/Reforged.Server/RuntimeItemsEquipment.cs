@@ -2282,7 +2282,7 @@ public sealed class RuntimeItemWorldRepository
     private readonly string _path;
     private string TemporaryPath => _path + ".tmp";
     private string BackupPath => _path + ".bak";
-    public RuntimeItemWorldRepository(string projectRoot, string worldId) { var folder = Path.Combine(projectRoot, "Saves", "Runtime0137", "worlds"); Directory.CreateDirectory(folder); _path = Path.Combine(folder, RuntimeIdentity.Normalize(worldId, "world") + ".items.json"); }
+    public RuntimeItemWorldRepository(string projectRoot, string worldId) { var folder = Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "worlds"); Directory.CreateDirectory(folder); _path = Path.Combine(folder, RuntimeIdentity.Normalize(worldId, "world") + ".items.json"); }
     public RuntimeItemState Load() => File.Exists(_path) ? Deserialize(_path) : Empty();
     public RuntimeItemDuplicateReconciliationResult ReconcileExactDuplicateRecords(RuntimeItemCatalog catalog)
     {

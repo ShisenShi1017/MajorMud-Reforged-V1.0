@@ -1,0 +1,150 @@
+{
+  "schema": "librarium_room_anchor_records_v1",
+  "source_of_truth": "promoted_imported_wcc_anchor_records",
+  "record_count": 2,
+  "records": [
+    {
+      "id": "room.map1.288",
+      "legacy_id": "288",
+      "name": "The Silver River",
+      "object_type": "room",
+      "world_scope": [
+        "classic"
+      ],
+      "map_number": 1,
+      "room_number": 288,
+      "relationships": {
+        "exits": [
+          "exit.map1.288.s",
+          "exit.map1.288.n",
+          "exit.map1.288.e",
+          "exit.map1.288.w"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "",
+        "imported_room_type": 0,
+        "imported_shop_number": 0,
+        "imported_light_level": 0
+      },
+      "environment": {
+        "light_level": 0,
+        "shop_id": 0,
+        "room_spell_id": 0,
+        "room_lair_id": 21,
+        "room_delay": 0,
+        "room_type": 0,
+        "attributes": 0,
+        "death_room_id": 0,
+        "gang_house": 0,
+        "respawn_minutes": 5,
+        "max_area_cap": 0,
+        "linked_spawn_room": 2342,
+        "source_classification": "decoded_imported_wcc_room_record_anchor"
+      },
+      "description": "The rippling surface of the river appears to be molten silver, shimmering mysteriously in the mist. Occasionally a loud splash can be heard, quickly followed by strange shadows moving within the water. Looming above you to the south are the rocky walls of the Dragon's Teeth hills, the mazelike mountains west of Silvermere. To the north, a forbidding mass of dark trees block entrance to a shadowy wood. There is no place to land on either shore.",
+      "evidence_refs": [
+        {
+          "source": "Uploaded ImportedDatabases WCC room record",
+          "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room288.json",
+          "classification": "direct_imported_database_anchor"
+        }
+      ],
+      "confidence": "verified_imported_room_record",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium compiler imported-room closure",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "canonical_map_qualified_record",
+        "exports_to": "/Data/<world>/rooms.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "rooms",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_map_qualified_id",
+        "map_number_required",
+        "room_number_required",
+        "evidence_required_for_classic",
+        "imported_spawn_room_anchor"
+      ]
+    },
+    {
+      "id": "room.map1.2306",
+      "legacy_id": "2306",
+      "name": "Small House, Attic",
+      "object_type": "room",
+      "world_scope": [
+        "classic"
+      ],
+      "map_number": 1,
+      "room_number": 2306,
+      "relationships": {
+        "exits": [
+          "exit.map1.2306.d"
+        ]
+      },
+      "source_fields": {
+        "npc_definition": "",
+        "command_definition": "",
+        "imported_room_type": 1,
+        "imported_shop_number": 65,
+        "imported_light_level": 0
+      },
+      "environment": {
+        "light_level": 0,
+        "shop_id": 65,
+        "room_spell_id": 0,
+        "room_lair_id": 10,
+        "room_delay": 0,
+        "room_type": 1,
+        "attributes": 0,
+        "death_room_id": 0,
+        "gang_house": 0,
+        "respawn_minutes": 5,
+        "max_area_cap": 0,
+        "linked_spawn_room": 0,
+        "source_classification": "decoded_imported_wcc_room_record_anchor"
+      },
+      "description": "This cramped room is packed full of chests and piles of dusty scrolls of all descriptions. Rooting about, you find many items of interest to spellcasters of all disciplines.",
+      "evidence_refs": [
+        {
+          "source": "Uploaded ImportedDatabases WCC room record",
+          "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room2306.json",
+          "classification": "direct_imported_database_anchor"
+        }
+      ],
+      "confidence": "verified_imported_room_record",
+      "classic_lock": "evidence_backed_immutable",
+      "runtime_mapping": {
+        "source": "Librarium compiler imported-room closure",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "canonical_map_qualified_record",
+        "exports_to": "/Data/<world>/rooms.json"
+      },
+      "generator_mapping": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "rooms",
+        "requires_validation": true
+      },
+      "validation": [
+        "unique_map_qualified_id",
+        "map_number_required",
+        "room_number_required",
+        "evidence_required_for_classic",
+        "imported_spawn_room_anchor"
+      ]
+    }
+  ]
+}

@@ -149,7 +149,7 @@ def audit(repo: Path) -> dict[str, object]:
     room_records = count_librarium_records(repo, "rooms")["records"]
 
     return {
-        "code_update": "0139",
+        "audit_scope": "current",
         "mode": "read_only_wcc_librarium_gap_audit",
         "repo": str(repo),
         "families": families,
@@ -166,7 +166,7 @@ def audit(repo: Path) -> dict[str, object]:
 
 def write_markdown(report: dict[str, object], output: Path) -> None:
     lines = [
-        "# CodeUpdate0139 WCC Librarium Exhaustion Audit",
+        "# WCC Librarium Exhaustion Audit",
         "",
         "This read-only audit inventories the local WCC/WBB evidence currently available to complete Classic Librarium coverage.",
         "",
@@ -221,8 +221,8 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     report = audit(repo)
-    json_path = out_dir / "wcc_librarium_exhaustion_audit_0139.json"
-    md_path = out_dir / "wcc_librarium_exhaustion_audit_0139.md"
+    json_path = out_dir / "wcc_librarium_exhaustion_audit.json"
+    md_path = out_dir / "wcc_librarium_exhaustion_audit.md"
     json_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     write_markdown(report, md_path)
 

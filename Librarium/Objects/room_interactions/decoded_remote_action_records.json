@@ -1,0 +1,2642 @@
+{
+    "authority":  "Librarium",
+    "update":  "0139",
+    "scope":  "complete_decoded_remoteaction_corpus",
+    "records":  [
+                    {
+                        "id":  "interaction.decoded.remoteaction.1012.1840.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1012.1840.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  9,
+                        "from_room_number":  1012,
+                        "from_room_id":  "room.map9.1012",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map9.1012.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.1104.55.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1104.55.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  1,
+                        "from_room_number":  1104,
+                        "from_room_id":  "room.map1.1104",
+                        "source_exit_id":  "exit.map1.1104.n",
+                        "reciprocal_exit_id":  "exit.map1.1327.s",
+                        "native_state_key":  "room.map1.1104.action.0",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.1188.2008.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1188.2008.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  1188,
+                        "from_room_id":  "room.map12.1188",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.1188.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.1398.1693.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1398.1693.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  6,
+                        "from_room_number":  1398,
+                        "from_room_id":  "room.map6.1398",
+                        "source_exit_id":  "exit.map6.1398.e",
+                        "reciprocal_exit_id":  "exit.map6.1397.w",
+                        "native_state_key":  "room.map6.1398.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.1423.66.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1423.66.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  9,
+                        "from_room_number":  1423,
+                        "from_room_id":  "room.map9.1423",
+                        "source_exit_id":  "exit.map9.1423.w",
+                        "reciprocal_exit_id":  "exit.map9.1425.e",
+                        "native_state_key":  "room.map9.1423.action.3",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Phoenix quest textblock 1436 is reached from NPC 503 and room.map9.1423."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.1920.0.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "1920.0.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  1920,
+                        "from_room_id":  "room.map12.1920",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.1920.action.8",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2001.0.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2001.0.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2001,
+                        "from_room_id":  "room.map12.2001",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.2001.action.8",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2002.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2002.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2002,
+                        "from_room_id":  "room.map12.2002",
+                        "source_exit_id":  "exit.map12.2002.s",
+                        "reciprocal_exit_id":  "exit.map12.2046.n",
+                        "native_state_key":  "room.map12.2002.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2002.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2002.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2002,
+                        "from_room_id":  "room.map12.2002",
+                        "source_exit_id":  "exit.map12.2002.e",
+                        "reciprocal_exit_id":  "exit.map12.2003.w",
+                        "native_state_key":  "room.map12.2002.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2003.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2003.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2003,
+                        "from_room_id":  "room.map12.2003",
+                        "source_exit_id":  "exit.map12.2003.e",
+                        "reciprocal_exit_id":  "exit.map12.2004.w",
+                        "native_state_key":  "room.map12.2003.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2005.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2005.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2005,
+                        "from_room_id":  "room.map12.2005",
+                        "source_exit_id":  "exit.map12.2005.e",
+                        "reciprocal_exit_id":  "exit.map12.2032.w",
+                        "native_state_key":  "room.map12.2005.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2006.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2006.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2006,
+                        "from_room_id":  "room.map12.2006",
+                        "source_exit_id":  "exit.map12.2006.s",
+                        "reciprocal_exit_id":  "exit.map12.2004.n",
+                        "native_state_key":  "room.map12.2006.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2006.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2006.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2006,
+                        "from_room_id":  "room.map12.2006",
+                        "source_exit_id":  "exit.map12.2006.e",
+                        "reciprocal_exit_id":  "exit.map12.2007.w",
+                        "native_state_key":  "room.map12.2006.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2008.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2008.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2008,
+                        "from_room_id":  "room.map12.2008",
+                        "source_exit_id":  "exit.map12.2008.s",
+                        "reciprocal_exit_id":  "exit.map12.2007.n",
+                        "native_state_key":  "room.map12.2008.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2009.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2009.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2009,
+                        "from_room_id":  "room.map12.2009",
+                        "source_exit_id":  "exit.map12.2009.e",
+                        "reciprocal_exit_id":  "exit.map12.2008.w",
+                        "native_state_key":  "room.map12.2009.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2010.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2010.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2010,
+                        "from_room_id":  "room.map12.2010",
+                        "source_exit_id":  "exit.map12.2010.e",
+                        "reciprocal_exit_id":  "exit.map12.2009.w",
+                        "native_state_key":  "room.map12.2010.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2011.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2011.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2011,
+                        "from_room_id":  "room.map12.2011",
+                        "source_exit_id":  "exit.map12.2011.s",
+                        "reciprocal_exit_id":  "exit.map12.2012.n",
+                        "native_state_key":  "room.map12.2011.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2011.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2011.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2011,
+                        "from_room_id":  "room.map12.2011",
+                        "source_exit_id":  "exit.map12.2011.e",
+                        "reciprocal_exit_id":  "exit.map12.2010.w",
+                        "native_state_key":  "room.map12.2011.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2012.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2012.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2012,
+                        "from_room_id":  "room.map12.2012",
+                        "source_exit_id":  "exit.map12.2012.e",
+                        "reciprocal_exit_id":  "exit.map12.2013.w",
+                        "native_state_key":  "room.map12.2012.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2013.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2013.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2013,
+                        "from_room_id":  "room.map12.2013",
+                        "source_exit_id":  "exit.map12.2013.e",
+                        "reciprocal_exit_id":  "exit.map12.2006.w",
+                        "native_state_key":  "room.map12.2013.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2014.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2014.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2014,
+                        "from_room_id":  "room.map12.2014",
+                        "source_exit_id":  "exit.map12.2014.s",
+                        "reciprocal_exit_id":  "exit.map12.2011.n",
+                        "native_state_key":  "room.map12.2014.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2014.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2014.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2014,
+                        "from_room_id":  "room.map12.2014",
+                        "source_exit_id":  "exit.map12.2014.e",
+                        "reciprocal_exit_id":  "exit.map12.2015.w",
+                        "native_state_key":  "room.map12.2014.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2015.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2015.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2015,
+                        "from_room_id":  "room.map12.2015",
+                        "source_exit_id":  "exit.map12.2015.e",
+                        "reciprocal_exit_id":  "exit.map12.2016.w",
+                        "native_state_key":  "room.map12.2015.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2016.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2016.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2016,
+                        "from_room_id":  "room.map12.2016",
+                        "source_exit_id":  "exit.map12.2016.s",
+                        "reciprocal_exit_id":  "exit.map12.2009.n",
+                        "native_state_key":  "room.map12.2016.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2016.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2016.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2016,
+                        "from_room_id":  "room.map12.2016",
+                        "source_exit_id":  "exit.map12.2016.e",
+                        "reciprocal_exit_id":  "exit.map12.2017.w",
+                        "native_state_key":  "room.map12.2016.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2017.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2017.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2017,
+                        "from_room_id":  "room.map12.2017",
+                        "source_exit_id":  "exit.map12.2017.e",
+                        "reciprocal_exit_id":  "exit.map12.2018.w",
+                        "native_state_key":  "room.map12.2017.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2018.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2018.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2018,
+                        "from_room_id":  "room.map12.2018",
+                        "source_exit_id":  "exit.map12.2018.s",
+                        "reciprocal_exit_id":  "exit.map12.2019.n",
+                        "native_state_key":  "room.map12.2018.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2018.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2018.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2018,
+                        "from_room_id":  "room.map12.2018",
+                        "source_exit_id":  "exit.map12.2018.e",
+                        "reciprocal_exit_id":  "exit.map12.2023.w",
+                        "native_state_key":  "room.map12.2018.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2019.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2019.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2019,
+                        "from_room_id":  "room.map12.2019",
+                        "source_exit_id":  "exit.map12.2019.e",
+                        "reciprocal_exit_id":  "exit.map12.2020.w",
+                        "native_state_key":  "room.map12.2019.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2020.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2020.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2020,
+                        "from_room_id":  "room.map12.2020",
+                        "source_exit_id":  "exit.map12.2020.s",
+                        "reciprocal_exit_id":  "exit.map12.2024.n",
+                        "native_state_key":  "room.map12.2020.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2020.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2020.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2020,
+                        "from_room_id":  "room.map12.2020",
+                        "source_exit_id":  "exit.map12.2020.e",
+                        "reciprocal_exit_id":  "exit.map12.2021.w",
+                        "native_state_key":  "room.map12.2020.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2022.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2022.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2022,
+                        "from_room_id":  "room.map12.2022",
+                        "source_exit_id":  "exit.map12.2022.s",
+                        "reciprocal_exit_id":  "exit.map12.2021.n",
+                        "native_state_key":  "room.map12.2022.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2023.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2023.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2023,
+                        "from_room_id":  "room.map12.2023",
+                        "source_exit_id":  "exit.map12.2023.e",
+                        "reciprocal_exit_id":  "exit.map12.2022.w",
+                        "native_state_key":  "room.map12.2023.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2024.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2024.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2024,
+                        "from_room_id":  "room.map12.2024",
+                        "source_exit_id":  "exit.map12.2024.s",
+                        "reciprocal_exit_id":  "exit.map12.2031.n",
+                        "native_state_key":  "room.map12.2024.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2024.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2024.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2024,
+                        "from_room_id":  "room.map12.2024",
+                        "source_exit_id":  "exit.map12.2024.e",
+                        "reciprocal_exit_id":  "exit.map12.2025.w",
+                        "native_state_key":  "room.map12.2024.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2025.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2025.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2025,
+                        "from_room_id":  "room.map12.2025",
+                        "source_exit_id":  "exit.map12.2025.s",
+                        "reciprocal_exit_id":  "exit.map12.2026.n",
+                        "native_state_key":  "room.map12.2025.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2026.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2026.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2026,
+                        "from_room_id":  "room.map12.2026",
+                        "source_exit_id":  "exit.map12.2026.s",
+                        "reciprocal_exit_id":  "exit.map12.2027.n",
+                        "native_state_key":  "room.map12.2026.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2027.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2027.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2027,
+                        "from_room_id":  "room.map12.2027",
+                        "source_exit_id":  "exit.map12.2027.s",
+                        "reciprocal_exit_id":  "exit.map12.2028.n",
+                        "native_state_key":  "room.map12.2027.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2028.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2028.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2028,
+                        "from_room_id":  "room.map12.2028",
+                        "source_exit_id":  "exit.map12.2028.s",
+                        "reciprocal_exit_id":  "exit.map12.2036.n",
+                        "native_state_key":  "room.map12.2028.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2029.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2029.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2029,
+                        "from_room_id":  "room.map12.2029",
+                        "source_exit_id":  "exit.map12.2029.e",
+                        "reciprocal_exit_id":  "exit.map12.2028.w",
+                        "native_state_key":  "room.map12.2029.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2030.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2030.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2030,
+                        "from_room_id":  "room.map12.2030",
+                        "source_exit_id":  "exit.map12.2030.s",
+                        "reciprocal_exit_id":  "exit.map12.2029.n",
+                        "native_state_key":  "room.map12.2030.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2031.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2031.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2031,
+                        "from_room_id":  "room.map12.2031",
+                        "source_exit_id":  "exit.map12.2031.s",
+                        "reciprocal_exit_id":  "exit.map12.2030.n",
+                        "native_state_key":  "room.map12.2031.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2032.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2032.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2032,
+                        "from_room_id":  "room.map12.2032",
+                        "source_exit_id":  "exit.map12.2032.s",
+                        "reciprocal_exit_id":  "exit.map12.2034.n",
+                        "native_state_key":  "room.map12.2032.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2032.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2032.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2032,
+                        "from_room_id":  "room.map12.2032",
+                        "source_exit_id":  "exit.map12.2032.e",
+                        "reciprocal_exit_id":  "exit.map12.2031.w",
+                        "native_state_key":  "room.map12.2032.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2033.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2033.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2033,
+                        "from_room_id":  "room.map12.2033",
+                        "source_exit_id":  "exit.map12.2033.s",
+                        "reciprocal_exit_id":  "exit.map12.2032.n",
+                        "native_state_key":  "room.map12.2033.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2034.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2034.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2034,
+                        "from_room_id":  "room.map12.2034",
+                        "source_exit_id":  "exit.map12.2034.s",
+                        "reciprocal_exit_id":  "exit.map12.2035.n",
+                        "native_state_key":  "room.map12.2034.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2037.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2037.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2037,
+                        "from_room_id":  "room.map12.2037",
+                        "source_exit_id":  "exit.map12.2037.e",
+                        "reciprocal_exit_id":  "exit.map12.2036.w",
+                        "native_state_key":  "room.map12.2037.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2038.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2038.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2038,
+                        "from_room_id":  "room.map12.2038",
+                        "source_exit_id":  "exit.map12.2038.e",
+                        "reciprocal_exit_id":  "exit.map12.2037.w",
+                        "native_state_key":  "room.map12.2038.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2039.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2039.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2039,
+                        "from_room_id":  "room.map12.2039",
+                        "source_exit_id":  "exit.map12.2039.e",
+                        "reciprocal_exit_id":  "exit.map12.2038.w",
+                        "native_state_key":  "room.map12.2039.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2040.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2040.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2040,
+                        "from_room_id":  "room.map12.2040",
+                        "source_exit_id":  "exit.map12.2040.e",
+                        "reciprocal_exit_id":  "exit.map12.2039.w",
+                        "native_state_key":  "room.map12.2040.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2041.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2041.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2041,
+                        "from_room_id":  "room.map12.2041",
+                        "source_exit_id":  "exit.map12.2041.e",
+                        "reciprocal_exit_id":  "exit.map12.2040.w",
+                        "native_state_key":  "room.map12.2041.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2042.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2042.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2042,
+                        "from_room_id":  "room.map12.2042",
+                        "source_exit_id":  "exit.map12.2042.e",
+                        "reciprocal_exit_id":  "exit.map12.2041.w",
+                        "native_state_key":  "room.map12.2042.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2044.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2044.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2044,
+                        "from_room_id":  "room.map12.2044",
+                        "source_exit_id":  "exit.map12.2044.s",
+                        "reciprocal_exit_id":  "exit.map12.2041.n",
+                        "native_state_key":  "room.map12.2044.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2045.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2045.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2045,
+                        "from_room_id":  "room.map12.2045",
+                        "source_exit_id":  "exit.map12.2045.s",
+                        "reciprocal_exit_id":  "exit.map12.2044.n",
+                        "native_state_key":  "room.map12.2045.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2046.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2046.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2046,
+                        "from_room_id":  "room.map12.2046",
+                        "source_exit_id":  "exit.map12.2046.s",
+                        "reciprocal_exit_id":  "exit.map12.2047.n",
+                        "native_state_key":  "room.map12.2046.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2046.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2046.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2046,
+                        "from_room_id":  "room.map12.2046",
+                        "source_exit_id":  "exit.map12.2046.e",
+                        "reciprocal_exit_id":  "exit.map12.2045.w",
+                        "native_state_key":  "room.map12.2046.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2049.0.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2049.0.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2049,
+                        "from_room_id":  "room.map12.2049",
+                        "source_exit_id":  "exit.map12.2049.s",
+                        "reciprocal_exit_id":  "exit.map12.2050.n",
+                        "native_state_key":  "room.map12.2049.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2049.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2049.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2049,
+                        "from_room_id":  "room.map12.2049",
+                        "source_exit_id":  "exit.map12.2049.e",
+                        "reciprocal_exit_id":  "exit.map12.2048.w",
+                        "native_state_key":  "room.map12.2049.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2050.0.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2050.0.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2050,
+                        "from_room_id":  "room.map12.2050",
+                        "source_exit_id":  "exit.map12.2050.e",
+                        "reciprocal_exit_id":  "exit.map12.2051.w",
+                        "native_state_key":  "room.map12.2050.action.2",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+                                                         "Spell 700 cleanup 3 invokes textblock 2529; its native effect room range 1239..1278 resolves only on map 12."
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2051.0.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2051.0.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2051,
+                        "from_room_id":  "room.map12.2051",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.2051.action.8",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2085.0.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2085.0.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2085,
+                        "from_room_id":  "room.map12.2085",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.2085.action.8",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2099.1982.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2099.1982.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2099,
+                        "from_room_id":  "room.map12.2099",
+                        "source_exit_id":  "exit.map12.2099.w",
+                        "reciprocal_exit_id":  "exit.map12.1041.e",
+                        "native_state_key":  "room.map12.2099.action.3",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  11,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2122.1982.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2122.1982.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2122,
+                        "from_room_id":  "room.map12.2122",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.2122.action.2",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2123.1982.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2123.1982.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2123,
+                        "from_room_id":  "room.map12.2123",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map12.2123.action.3",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2247.2002.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2247.2002.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  12,
+                        "from_room_number":  2247,
+                        "from_room_id":  "room.map12.2247",
+                        "source_exit_id":  "exit.map12.2247.n",
+                        "reciprocal_exit_id":  "exit.map12.2248.s",
+                        "native_state_key":  "room.map12.2247.action.0",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2619.1642.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2619.1642.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  6,
+                        "from_room_number":  2619,
+                        "from_room_id":  "room.map6.2619",
+                        "source_exit_id":  "exit.map6.2619.s",
+                        "reciprocal_exit_id":  "exit.map6.2620.n",
+                        "native_state_key":  "room.map6.2619.action.1",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2946.3306.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2946.3306.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2946,
+                        "from_room_id":  "room.map17.2946",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2946.action.1",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2947.3306.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2947.3306.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2947,
+                        "from_room_id":  "room.map17.2947",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2947.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2949.3306.0.2",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2949.3306.0.2",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2949,
+                        "from_room_id":  "room.map17.2949",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2949.action.2",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2950.3306.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2950.3306.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2950,
+                        "from_room_id":  "room.map17.2950",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2950.action.3",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2956.3306.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2956.3306.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2956,
+                        "from_room_id":  "room.map17.2956",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2956.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2957.3306.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2957.3306.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2957,
+                        "from_room_id":  "room.map17.2957",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2957.action.1",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2958.3306.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2958.3306.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2958,
+                        "from_room_id":  "room.map17.2958",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2958.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2970.3306.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2970.3306.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2970,
+                        "from_room_id":  "room.map17.2970",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2970.action.1",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2971.3306.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2971.3306.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2971,
+                        "from_room_id":  "room.map17.2971",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2971.action.0",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.2972.3306.0.1",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "2972.3306.0.1",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  2972,
+                        "from_room_id":  "room.map17.2972",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.2972.action.1",
+                        "initial_native_state":  16,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.3042.0.1.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "3042.0.1.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  3042,
+                        "from_room_id":  "room.map17.3042",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.3042.action.0",
+                        "initial_native_state":  240,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  1
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.3042.0.2.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "3042.0.2.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  3042,
+                        "from_room_id":  "room.map17.3042",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.3042.action.0",
+                        "initial_native_state":  240,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  2
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.3042.0.3.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "3042.0.3.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  3042,
+                        "from_room_id":  "room.map17.3042",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.3042.action.0",
+                        "initial_native_state":  240,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  3
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.3042.0.4.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "3042.0.4.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  17,
+                        "from_room_number":  3042,
+                        "from_room_id":  "room.map17.3042",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map17.3042.action.0",
+                        "initial_native_state":  240,
+                        "command_semantics":  {
+                                                  "state_effect":  "clear_native_state_bit",
+                                                  "native_action_type":  6,
+                                                  "selector":  4
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.560.0.0.0",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "560.0.0.0",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  8,
+                        "from_room_number":  560,
+                        "from_room_id":  "room.map8.560",
+                        "source_exit_id":  "exit.map8.560.n",
+                        "reciprocal_exit_id":  "exit.map8.559.s",
+                        "native_state_key":  "room.map8.560.action.0",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  11,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.705.1381.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "705.1381.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  8,
+                        "from_room_number":  705,
+                        "from_room_id":  "room.map8.705",
+                        "source_exit_id":  "exit.map8.705.u",
+                        "reciprocal_exit_id":  "exit.map8.706.d",
+                        "native_state_key":  "room.map8.705.action.8",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.909.1360.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "909.1360.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  8,
+                        "from_room_number":  909,
+                        "from_room_id":  "room.map8.909",
+                        "source_exit_id":  "exit.map8.909.w",
+                        "reciprocal_exit_id":  "exit.map8.910.e",
+                        "native_state_key":  "room.map8.909.action.3",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  11,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.951.1365.0.3",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "951.1365.0.3",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  8,
+                        "from_room_number":  951,
+                        "from_room_id":  "room.map8.951",
+                        "source_exit_id":  "exit.map8.951.w",
+                        "reciprocal_exit_id":  "exit.map8.955.e",
+                        "native_state_key":  "room.map8.951.action.3",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "toggle_paired_door_state",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    },
+                    {
+                        "id":  "interaction.decoded.remoteaction.994.1538.0.8",
+                        "object_type":  "room_interaction",
+                        "world_scope":  [
+                                            "classic"
+                                        ],
+                        "interaction_kind":  "remote_action_mutation",
+                        "remote_action_signature":  "994.1538.0.8",
+                        "runtime_disposition":  "active_decoded_native_dispatch",
+                        "from_map_number":  6,
+                        "from_room_number":  994,
+                        "from_room_id":  "room.map6.994",
+                        "source_exit_id":  "",
+                        "reciprocal_exit_id":  "",
+                        "native_state_key":  "room.map6.994.action.8",
+                        "initial_native_state":  2,
+                        "command_semantics":  {
+                                                  "state_effect":  "native_common_finalization",
+                                                  "native_action_type":  7,
+                                                  "selector":  0
+                                              },
+                        "evidence":  {
+                                         "correlation_report":  "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+                                         "native_source":  "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+                                         "context":  [
+
+                                                     ]
+                                     },
+                        "confidence":  "proven_binary_layout_and_decoded_script",
+                        "fallback_behavior":  "fail closed when the generated native mutation contract cannot be applied"
+                    }
+                ]
+}

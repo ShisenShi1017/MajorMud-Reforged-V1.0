@@ -1,3 +1,0 @@
-issue_id,description,status
-RP0006-ISSUE-001:repository_quests_json_empty,Repository Data/quests.json is empty; no canonical quest object table was available from repository JSON in this pass. Quest candidates were preserved from WBB/message text only.,preserved_unresolved
-RP0006-ISSUE-002:unmatched_message_blocks,9 parsed WBB message blocks did not have matching #define entries in extracted .h files.,preserved_unresolved

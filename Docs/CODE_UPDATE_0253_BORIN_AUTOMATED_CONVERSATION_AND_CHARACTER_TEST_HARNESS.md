@@ -32,7 +32,7 @@ The update adds:
 - `Apps\Source\Reforged.App\Brains\BorinCharacterTestHarness.cs`
 - `Apps\Source\Reforged.App\Brains\BorinDialogueSafety.cs`
 
-The runner returns exit code `0` only when every scenario passes and writes a JSON report under `Release\Logs`.
+The runner returns exit code `0` only when every scenario passes and writes a JSON report under `Reports\BorinBrain\RuntimeLogs`.
 
 Manual command from the repository root:
 
@@ -50,3 +50,4 @@ The cumulative installer restores and builds the real application, runs this har
 - No network or gameplay command is sent.
 - No AI folder, GGUF file, configuration, credentials, binaries, or saved runtime memory is included in the payload.
 - Direct llama.cpp/LLamaSharp inference remains unchanged.
+

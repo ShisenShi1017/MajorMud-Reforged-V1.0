@@ -247,11 +247,15 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
         var warnings = new ObservableCollection<string>();
         var headerValues = lines.Count > 0 ? BracketValues().Matches(lines[0]).Cast<Match>().Select(m => m.Groups[1].Value.Trim()).ToArray() : [];
         var author = headerValues.Length > 1 ? headerValues[1] : string.Empty;
-        var start = lines.Count > 1 ? ParseEndpoint(lines[1], rooms) : null;
+        var start = lines.Count > 1 && lines[1].StartsWith('[') ? ParseEndpoint(lines[1], rooms) : null;
         MegaMudPathEndpoint? end = null;
-        var dataIndex = 2;
-        if (lines.Count > 2 && lines[2].StartsWith('[')) { end = ParseEndpoint(lines[2], rooms); dataIndex = 3; }
-        if (start is null) warnings.Add("The starting room header could not be decoded.");
+        var dataIndex = start is null ? 1 : 2;
+        if (lines.Count > dataIndex && lines[dataIndex].StartsWith('['))
+        {
+            end = ParseEndpoint(lines[dataIndex], rooms);
+            dataIndex++;
+        }
+        if (start is null) warnings.Add("This compact MegaMUD path has no descriptive starting-room header; native room keys remain authoritative.");
 
         string nativeStart = string.Empty, nativeEnd = string.Empty;
         var declared = 0;

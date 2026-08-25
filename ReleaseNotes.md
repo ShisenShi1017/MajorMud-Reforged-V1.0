@@ -37,6 +37,26 @@ Autonomous Engineering now calls Borin's selected Forge/LM Studio coding model w
 - Release compilation remains pending in environments without the .NET 8 SDK.
 
 
+## CodeUpdate0140
+
+CodeUpdate0140 is the repository cleanup and imported/reference evidence archive baseline after CodeUpdate0139 runtime cohesion.
+
+Highlights:
+
+- Retires loose `ImportedDatabases/` and `Evidence/` content from Git after approved cleanup.
+- Preserves imported/reference/raw evidence locally in `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`.
+- Keeps Librarium as committed gameplay authority and generated `Data/Classic` as untracked runtime output.
+- Keeps required promoted proof anchors in Librarium so clean validation does not depend on loose imported files.
+- Moves runtime persistence away from update-numbered save folders into realm-scoped roots: Classic, Custom, and Host.
+- Allows one login to keep up to three characters per world.
+
+Verification:
+
+- `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore`: PASS with 0 warnings and 0 errors.
+- `python Tools\validator.py`: PASS 15/15.
+
+GitHub Actions is pending until CodeUpdate0140 is pushed and confirmed green.
+
 ## CodeUpdate0139
 
 CodeUpdate0139 is a local Telnet runtime cohesion update.
@@ -130,7 +150,7 @@ Known limitation:
 - Ground objects still audit as 0 at runtime while compiler output reports 288 objects; static room-object placement/materialization remains a native decode/runtime integration gap.
 - Five room references and two spawn placements remain unresolved and fail closed instead of falling back to arbitrary rooms.
 
-GitHub Actions is pending until CodeUpdate0139 is pushed and confirmed green.
+GitHub Actions is pending until CodeUpdate0140 is pushed and confirmed green.
 
 ## CodeUpdate0138
 

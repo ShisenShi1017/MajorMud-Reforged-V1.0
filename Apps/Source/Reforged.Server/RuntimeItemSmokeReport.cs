@@ -1256,7 +1256,7 @@ public static class RuntimeItemSmokeReport
             var current = engine.Snapshot() with { ActiveItemState = new Dictionary<string, string> { ["recovery_generation"] = "current" } };
             repository.SaveValidated(catalog, baseline);
             repository.SaveValidatedWithBackup(catalog, current);
-            var savePath = Directory.GetFiles(Path.Combine(folder, "Saves", "Runtime0137", "worlds"), "*.items.json").Single();
+            var savePath = Directory.GetFiles(Path.Combine(RuntimeSavePaths.RealmRoot(folder, "classic"), "worlds"), "*.items.json").Single();
             File.WriteAllText(savePath, "{corrupt-primary");
             var recovered = repository.LoadValidatedWithRecovery(catalog);
             if (!recovered.RecoveredPrimary || recovered.Source != "backup") throw new InvalidOperationException("validated backup was not selected after primary corruption");
@@ -1273,7 +1273,7 @@ public static class RuntimeItemSmokeReport
             repository.SaveValidatedWithIntegrity(catalog, state);
             var loaded = repository.LoadValidatedWithIntegrity(catalog);
             if (loaded.Items.Count != state.Items.Count) throw new InvalidOperationException("integrity-validated load changed item count");
-            var savePath = Directory.GetFiles(Path.Combine(folder, "Saves", "Runtime0137", "worlds"), "*.items.json").Single();
+            var savePath = Directory.GetFiles(Path.Combine(RuntimeSavePaths.RealmRoot(folder, "classic"), "worlds"), "*.items.json").Single();
             File.AppendAllText(savePath, " ");
             try { repository.LoadValidatedWithIntegrity(catalog); throw new InvalidOperationException("tampered item state passed integrity verification"); }
             catch (InvalidDataException ex) when (ex.Message.Contains("integrity", StringComparison.OrdinalIgnoreCase)) { }
@@ -1287,7 +1287,7 @@ public static class RuntimeItemSmokeReport
             var current = engine.Snapshot() with { ActiveItemState = new Dictionary<string, string> { ["integrity_generation"] = "current" } };
             repository.SaveValidatedWithIntegrity(catalog, baseline);
             repository.SaveValidatedWithIntegrityBackup(catalog, current);
-            var savePath = Directory.GetFiles(Path.Combine(folder, "Saves", "Runtime0137", "worlds"), "*.items.json").Single(x => !x.EndsWith(".bak", StringComparison.OrdinalIgnoreCase));
+            var savePath = Directory.GetFiles(Path.Combine(RuntimeSavePaths.RealmRoot(folder, "classic"), "worlds"), "*.items.json").Single(x => !x.EndsWith(".bak", StringComparison.OrdinalIgnoreCase));
             File.AppendAllText(savePath, "tamper");
             var recovered = repository.LoadValidatedWithIntegrityRecovery(catalog);
             if (!recovered.RecoveredPrimary || recovered.Source != "integrity-backup") throw new InvalidOperationException("integrity backup was not selected after primary tampering");

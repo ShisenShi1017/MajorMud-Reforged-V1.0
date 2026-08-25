@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 
 
-CODE_UPDATE = "0139"
+PROMOTION_SCOPE = "mmexplorer_omniverse_librarium_reconciliation"
 OMNI_ROOT = Path("ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc")
 MMX_SQL_ROOT = Path("Librarium/SourceImports/MMExplorerSQLData")
 
@@ -77,7 +77,7 @@ def public_reference(source_file: str, row: dict[str, Any], classification: str)
         "source": source_file.replace("\\", "/"),
         "source_kind": "OmniVerse public codex snapshot",
         "classification": classification,
-        "promotion_code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "confidence": "reference_fill_public_snapshot",
         "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
         "fields": row,
@@ -89,7 +89,7 @@ def mmexplorer_reference(source_file: str, row: dict[str, Any]) -> dict[str, Any
         "source": source_file.replace("\\", "/"),
         "source_kind": "MMExplorer SQL/MDB extracted row",
         "classification": "structured_reference_fill",
-        "promotion_code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "confidence": row.get("confidence", "sql_mdb_extracted_identity_and_relationships"),
         "override_policy": "does_not_override_binary_or_higher_priority_librarium_fields",
         "source_numbers": row.get("sourceNumbers", {}),
@@ -122,7 +122,7 @@ def promote_omni_family(
         if record is None:
             unmatched += 1
             continue
-        record["public_reference_0139"] = public_reference(str(OMNI_ROOT / omni_file), row, classification)
+        record["public_reference"] = public_reference(str(OMNI_ROOT / omni_file), row, classification)
         refs = record.setdefault("evidence_refs", [])
         if isinstance(refs, list) and not any(ref.get("source") == "OmniVerseCodexApi" and ref.get("row_key") == key for ref in refs if isinstance(ref, dict)):
             refs.append({
@@ -130,7 +130,7 @@ def promote_omni_family(
                 "path": str(OMNI_ROOT / omni_file).replace("\\", "/"),
                 "row_key": key,
                 "classification": classification,
-                "promotion_code_update": CODE_UPDATE,
+                "promotion_scope": PROMOTION_SCOPE,
             })
         matched += 1
 
@@ -158,11 +158,11 @@ def promote_mmx_family(repo: Path, family: str, librarium_file: str, sql_file: s
             promoted = dict(row)
             promoted["id"] = f"mmexplorer_unmatched_{family}.{key or row.get('id', len(unmatched_records) + 1)}"
             promoted["object_type"] = family[:-1] if family.endswith("s") else family
-            promoted["canonical_status_0139"] = "reference_supplement_unmatched_to_active_librarium_record"
-            promoted["promotion_code_update"] = CODE_UPDATE
+            promoted["canonical_status"] = "reference_supplement_unmatched_to_active_librarium_record"
+            promoted["promotion_scope"] = PROMOTION_SCOPE
             unmatched_records.append(promoted)
             continue
-        record["mmexplorer_sql_reference_0139"] = mmexplorer_reference(
+        record["mmexplorer_sql_reference"] = mmexplorer_reference(
             f"Librarium/Objects/{family}/{sql_file}",
             row,
         )
@@ -171,13 +171,13 @@ def promote_mmx_family(repo: Path, family: str, librarium_file: str, sql_file: s
     if unmatched_records:
         supplement = {
             "schema": "mmexplorer_unmatched_reference_supplement_v1",
-            "code_update": CODE_UPDATE,
+            "promotion_scope": PROMOTION_SCOPE,
             "family": family,
             "source": f"Librarium/Objects/{family}/{sql_file}",
             "record_count": len(unmatched_records),
             "records": unmatched_records,
         }
-        write_json(repo / "Librarium" / "Objects" / family / f"mmexplorer_unmatched_{family}_supplement_0139.json", supplement)
+        write_json(repo / "Librarium" / "Objects" / family / f"mmexplorer_unmatched_{family}_supplement.json", supplement)
 
     write_json(path, root)
     return {"matched": matched, "unmatched": len(unmatched_records), "librarium_records": len(records), "source_records": len(sql_rows)}
@@ -195,14 +195,14 @@ def promote_character_foundation(repo: Path) -> dict[str, int]:
     for race in root.get("races", []):
         row = race_by_id.get(str(race.get("number")))
         if row:
-            race["public_reference_0139"] = public_reference(str(OMNI_ROOT / "codex-race-wcc.json"), row, "race_public_reference")
+            race["public_reference"] = public_reference(str(OMNI_ROOT / "codex-race-wcc.json"), row, "race_public_reference")
             race_matches += 1
 
     class_matches = 0
     for klass in root.get("classes", []):
         row = class_by_id.get(str(klass.get("number")))
         if row:
-            klass["public_reference_0139"] = public_reference(str(OMNI_ROOT / "codex-class-wcc.json"), row, "class_public_reference")
+            klass["public_reference"] = public_reference(str(OMNI_ROOT / "codex-class-wcc.json"), row, "class_public_reference")
             class_matches += 1
 
     write_json(path, root)
@@ -220,13 +220,13 @@ def promote_abilities(repo: Path) -> dict[str, int]:
             "name": row.get("name", ""),
             "object_type": "ability",
             "world_scope": ["classic"],
-            "public_reference_0139": public_reference(str(OMNI_ROOT / "codex-ability-wcc.json"), row, "ability_public_reference"),
+            "public_reference": public_reference(str(OMNI_ROOT / "codex-ability-wcc.json"), row, "ability_public_reference"),
             "evidence_refs": [{
                 "source": "OmniVerseCodexApi",
                 "path": str(OMNI_ROOT / "codex-ability-wcc.json").replace("\\", "/"),
                 "row_key": legacy,
                 "classification": "ability_public_reference",
-                "promotion_code_update": CODE_UPDATE,
+                "promotion_scope": PROMOTION_SCOPE,
             }],
             "runtime_mapping": {
                 "exports_to": "/Data/<world>/abilities.json",
@@ -240,12 +240,12 @@ def promote_abilities(repo: Path) -> dict[str, int]:
 
     root = {
         "schema": "librarium_ability_records_v1",
-        "code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "source": str(OMNI_ROOT / "codex-ability-wcc.json").replace("\\", "/"),
         "record_count": len(records),
         "records": records,
     }
-    write_json(repo / "Librarium" / "Objects" / "abilities" / "ability_records_0139.json", root)
+    write_json(repo / "Librarium" / "Objects" / "abilities" / "ability_records.json", root)
     return {"records": len(records)}
 
 
@@ -256,7 +256,7 @@ def main() -> int:
     repo = Path(args.repo).resolve()
 
     report: dict[str, Any] = {
-        "code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "mode": "mmexplorer_omniverse_librarium_reconciliation",
         "policy": "gap-fill/reference promotion; no binary-backed field overwrites",
         "omni_promotions": {},
@@ -282,11 +282,11 @@ def main() -> int:
     report["character_foundation"] = promote_character_foundation(repo)
     report["abilities"] = promote_abilities(repo)
 
-    report_path = repo / "Reports" / "DataDecode" / "mmexplorer_omniverse_librarium_reconciliation_0139.json"
+    report_path = repo / "Reports" / "Generated" / "mmexplorer_omniverse_librarium_reconciliation.json"
     write_json(report_path, report)
 
     md_lines = [
-        "# CodeUpdate0139 MMExplorer and OmniVerse Librarium Reconciliation",
+        "# MMExplorer and OmniVerse Librarium Reconciliation",
         "",
         "This report records structured reference promotion into Librarium.",
         "",
@@ -316,7 +316,7 @@ def main() -> int:
         f"- Character foundation class matches: {report['character_foundation']['classes_matched']}.",
         f"- Ability records created: {report['abilities']['records']}.",
         "",
-        "Raw details: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation_0139.json`",
+        "Raw details: `Reports/Generated/mmexplorer_omniverse_librarium_reconciliation.json`",
         "",
     ])
     report_path.with_suffix(".md").write_text("\n".join(md_lines), encoding="utf-8")

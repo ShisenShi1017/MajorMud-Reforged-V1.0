@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Reforged.App.Brains;
 using Reforged.App.Forge;
-using Reforged.App.Guardians;
+using Reforged.App.BorinCapabilities;
 
 var tests = new (string Name, Func<Task> Run)[]
 {
@@ -41,20 +41,24 @@ var tests = new (string Name, Func<Task> Run)[]
     ("Controlled executor validates before dispatch", ValidationBeforeDispatchAsync),
     ("Controlled executor dispatches developer reads without shell access", DeveloperDispatchAsync),
     ("Unregistered Sysop tools fail closed", UnboundSysopAsync),
-    ("Worldsmith Sysop gateway inspects only isolated realms", SysopTestRealmAsync),
-    ("Worldsmith Sysop gateway blocks live realm targets", SysopLiveRealmBlockedAsync),
+    ("Worldsmith Sysop gateway remains fully withheld", SysopTestRealmAsync),
+    ("Worldsmith remains withheld regardless of target realm", SysopLiveRealmBlockedAsync),
     ("Autonomous player gateway accepts ordinary full-game commands", FullPlayerCommandAsync),
     ("Autonomous player gateway blocks protected control commands", ProtectedPlayerCommandAsync),
     ("Developer may apply patches to the isolated workspace without main incorporation", WorkspacePatchAuthorityAsync),
     ("Main repository incorporation remains human-only", MainIncorporationHeldAsync)
     ,("Verified engineering job can incorporate only through the explicit local orchestrator action", VerifiedIncorporationAsync),
-    ("Lightning and Ultra use distinct secure credential targets", IndependentCredentialSlotsAsync),
+    ("All NVIDIA tiers use the shared secure credential target", SharedCredentialSlotAsync),
     ("Tier router selects Local, Lightning, and Ultra from task metadata", TierSelectionAsync),
     ("Low-confidence Lightning result escalates to Ultra only once", LowConfidenceEscalationAsync),
     ("Unavailable Ultra falls back with the same task context", UltraFallbackAsync),
     ("Unavailable Lightning does not consume Ultra for an ordinary task", LightningFailureIsolationAsync),
     ("Lightning and Ultra rate budgets account independently", IndependentRateAccountingAsync),
-    ("Automatic escalation configuration persists", EscalationConfigurationPersistenceAsync)
+    ("Critical Ultra work receives one bounded Super verification", CriticalSuperVerificationAsync),
+    ("Super disagreement lowers confidence without replacing Ultra", SuperDisagreementAsync),
+    ("Automatic escalation configuration persists", EscalationConfigurationPersistenceAsync),
+    ("Borin routes explicit capabilities without hijacking ordinary chat", GuardianCapabilityRoutingAsync),
+    ("Retired Hall state migrates into Borin capability storage", BorinCapabilityMigrationAsync)
 };
 
 var failures = 0;
@@ -618,8 +622,9 @@ static async Task SysopTestRealmAsync()
     var executor = new BorinControlledToolExecutor(new BorinActionValidator(), sysop: new BorinWorldsmithSysopToolGateway(service, workspace));
     var result = await executor.ExecuteAsync(
         new BorinAiDecision(null, BorinAiIntent.MonitorWorld, null, .9, "Inspect", package.StateFingerprint), package, context);
-    True(result.Succeeded, "Test Realm inspection was not dispatched.");
-    Equal(1, service.InspectCount);
+    False(result.Succeeded, "Withheld Worldsmith inspection was dispatched.");
+    Equal("worldsmith-withheld", result.Code);
+    Equal(0, service.InspectCount);
 }
 
 static async Task SysopLiveRealmBlockedAsync()
@@ -632,7 +637,7 @@ static async Task SysopLiveRealmBlockedAsync()
     var result = await executor.ExecuteAsync(
         new BorinAiDecision(null, BorinAiIntent.MonitorWorld, null, .9, "Inspect", package.StateFingerprint), package, context);
     False(result.Succeeded, "Live Realm Sysop target was accepted.");
-    Equal("tool-failed", result.Code);
+    Equal("worldsmith-withheld", result.Code);
     Equal(0, service.InspectCount);
 }
 
@@ -732,13 +737,15 @@ diff --git a/Example.cs b/Example.cs
     }
 }
 
-static Task IndependentCredentialSlotsAsync()
+static Task SharedCredentialSlotAsync()
 {
+    var shared = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Shared);
     var lightning = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Lightning);
     var ultra = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Ultra);
     Equal(NvidiaNimKeySlot.Lightning, lightning.Slot);
     Equal(NvidiaNimKeySlot.Ultra, ultra.Slot);
-    False(lightning.CredentialTargetName.Equals(ultra.CredentialTargetName, StringComparison.OrdinalIgnoreCase), "Credential targets were shared.");
+    Equal(shared.CredentialTargetName, lightning.CredentialTargetName);
+    False(shared.CredentialTargetName.Equals(ultra.CredentialTargetName, StringComparison.OrdinalIgnoreCase), "Legacy Ultra target was not retained for safe migration.");
     return Task.CompletedTask;
 }
 
@@ -800,6 +807,34 @@ static async Task IndependentRateAccountingAsync()
     await lightning.AcquireAsync(); await lightning.AcquireAsync(); await ultra.AcquireAsync();
     Equal(2, lightning.Snapshot.RequestsInWindow);
     Equal(1, ultra.Snapshot.RequestsInWindow);
+}
+
+static async Task CriticalSuperVerificationAsync()
+{
+    var decision = new BorinAiDecision("verified", BorinAiIntent.ProposePatch, "fix.patch", .9, "evidence", new string('a', 64));
+    var local = new StubAiProvider("local", _ => new("local", "local", "local"));
+    var lightning = new StubAiProvider("lightning", _ => new("lightning", "lightning", "lightning"));
+    var ultra = new StubAiProvider("ultra", _ => new("primary", "ultra", "ultra", Decision: decision));
+    var super = new StubAiProvider("super", _ => new("verification", "super", "super", Decision: decision));
+    var router = new TieredBorinAiProviderRouter(local, lightning, ultra, new BorinAiRoutingSettings(), super: super);
+    var result = await router.ThinkAsync(DeepDeveloperContext());
+    Equal("primary", result.Text);
+    Equal(1, super.CallCount);
+    True(router.LastRoute.Reason.Contains("verified by Super", StringComparison.OrdinalIgnoreCase), "Verification was not recorded.");
+}
+
+static async Task SuperDisagreementAsync()
+{
+    var primary = new BorinAiDecision("patch", BorinAiIntent.ProposePatch, "fix.patch", .95, "evidence", new string('a', 64));
+    var dissent = primary with { Intent = BorinAiIntent.SearchCode, Target = "different" };
+    var local = new StubAiProvider("local", _ => new("local", "local", "local"));
+    var lightning = new StubAiProvider("lightning", _ => new("lightning", "lightning", "lightning"));
+    var ultra = new StubAiProvider("ultra", _ => new("primary", "ultra", "ultra", Decision: primary));
+    var super = new StubAiProvider("super", _ => new("dissent", "super", "super", Decision: dissent));
+    var router = new TieredBorinAiProviderRouter(local, lightning, ultra, new BorinAiRoutingSettings(), super: super);
+    var result = await router.ThinkAsync(DeepDeveloperContext());
+    True(result.UsedFallback, "Verifier disagreement was not surfaced.");
+    True(result.Decision?.Confidence <= .5, "Disagreement did not lower action confidence.");
 }
 
 static Task EscalationConfigurationPersistenceAsync()
@@ -891,6 +926,51 @@ static void Equal<T>(T expected, T actual)
 
 static void True(bool value, string message) { if (!value) throw new InvalidOperationException(message); }
 static void False(bool value, string message) => True(!value, message);
+
+static Task GuardianCapabilityRoutingAsync()
+{
+    Equal(BorinCapabilityOperation.RealmMonitoring,
+        BorinCapabilityRequestRouter.Route("Borin, check the realm health").Capability);
+    var analysis = BorinCapabilityRequestRouter.Route("Analyze the economy and show current trends");
+    Equal(BorinCapabilityOperation.Analysis, analysis.Capability);
+    Equal("Economy", analysis.Argument);
+    var evidence = BorinCapabilityRequestRouter.Route("Search Librarium evidence for Sys Goto persistence");
+    Equal(BorinCapabilityOperation.EvidenceSearch, evidence.Capability);
+    Equal("Sys Goto persistence", evidence.Argument);
+    Equal(BorinCapabilityOperation.WorldsmithWithheld,
+        BorinCapabilityRequestRouter.Route("Use Worldsmith to create a room").Capability);
+    Equal(BorinCapabilityOperation.None,
+        BorinCapabilityRequestRouter.Route("How are you doing today, Borin?").Capability);
+    Equal(BorinCapabilityOperation.None,
+        BorinCapabilityRequestRouter.Route("Look at your inventory").Capability);
+    return Task.CompletedTask;
+}
+
+static async Task BorinCapabilityMigrationAsync()
+{
+    var root = Path.Combine(Path.GetTempPath(), "BorinCapabilityMigrationTests", Guid.NewGuid().ToString("N"));
+    var retired = Path.Combine(root, "GuardianHall");
+    Directory.CreateDirectory(retired);
+    try
+    {
+        await File.WriteAllTextAsync(Path.Combine(retired, "guardian-hall-state.json"),
+            """{"SchemaVersion":7,"Analyst":{"AnalysisTarget":"Economy"}}""");
+        var store = new BorinCapabilityStateStore(root);
+        var state = await store.LoadAsync();
+        True(state is not null, "Legacy capability state was not loaded.");
+        Equal("Economy", state!.Analyst.AnalysisTarget);
+        True(File.Exists(Path.Combine(root, "Borin", "Capabilities", "borin-capabilities-state.json")),
+            "Migrated Borin capability state was not created.");
+        True(File.Exists(Path.Combine(retired, "guardian-hall-state.json.retired-backup")),
+            "Legacy backup was not preserved.");
+        True(BorinCapabilityProfileCatalog.CreateDefaults().All(profile => profile.Name == "Borin Ironbeard"),
+            "A retired Guardian identity remains in the capability profiles.");
+    }
+    finally
+    {
+        if (Directory.Exists(root)) Directory.Delete(root, true);
+    }
+}
 
 sealed class StubCredentialStore(string? key) : INvidiaNimCredentialStore
 {

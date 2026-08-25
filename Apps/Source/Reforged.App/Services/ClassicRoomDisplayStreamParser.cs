@@ -80,8 +80,11 @@ internal sealed partial class ClassicRoomDisplayStreamParser
         var boundary = -1;
         for (var index = _buffer.Count - 1; index >= 0; index--)
         {
-            if (string.IsNullOrWhiteSpace(_buffer[index]) ||
-                MovementTransition().IsMatch(_buffer[index]) ||
+            // Blank lines are normal inside MajorMUD room displays, including
+            // immediately before "Obvious exits". They must not detach the exit
+            // line from the room title. Only actual transition/chat boundaries
+            // end the candidate display.
+            if (MovementTransition().IsMatch(_buffer[index]) ||
                 ChatBoundary().IsMatch(_buffer[index]))
             {
                 boundary = index;

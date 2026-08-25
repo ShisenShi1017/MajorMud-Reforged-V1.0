@@ -17,14 +17,14 @@ from pathlib import Path
 from typing import Any
 
 
-CODE_UPDATE = "0139"
+PROMOTION_SCOPE = "wccmp002_placeholder_room_description_recovery"
 DATABASE_VERSION = "0010"
 ROOMS_FILE = Path("Librarium/Objects/rooms/mmexplorer_room_records_0140.json")
 WCC_SOURCE_FILE = Path("ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat")
 WBB_REFERENCE_FILE = Path("ImportedDatabases/WCCLabeledWBB/Extracted/WBBMP002.DAT")
-OUTPUT_FILE = Path("Librarium/Objects/room_descriptions/wccmp002_placeholder_room_description_records_0139.json")
-REPORT_JSON = Path("Reports/DataDecode/wccmp002_placeholder_room_description_recovery_0139.json")
-REPORT_MD = Path("Reports/DataDecode/wccmp002_placeholder_room_description_recovery_0139.md")
+OUTPUT_FILE = Path("Librarium/Objects/room_descriptions/wccmp002_placeholder_room_description_records.json")
+REPORT_JSON = Path("Reports/Generated/wccmp002_placeholder_room_description_recovery.json")
+REPORT_MD = Path("Reports/Generated/wccmp002_placeholder_room_description_recovery.md")
 KNOWN_DESCRIPTION_GLOB = Path("Librarium/Objects/room_descriptions")
 TITLE_SEARCH_BACK_BYTES = 4096
 DESCRIPTION_OFFSETS = (53, 124, 195, 266, 337, 408, 479)
@@ -267,7 +267,7 @@ def recover(repo: Path) -> dict[str, Any]:
                         "candidate_count": recovered["candidate_count"],
                         "candidate_titles": recovered["candidate_titles"],
                         "classification": "placeholder_name_native_offset_room_description",
-                        "promotion_code_update": CODE_UPDATE,
+                        "promotion_scope": PROMOTION_SCOPE,
                         "validation_policy": (
                             "Accepted because the placeholder catalog room has a decoded WCCMP002 "
                             "native_record_offset and the nearest native text block yields a "
@@ -293,7 +293,7 @@ def recover(repo: Path) -> dict[str, Any]:
 
     output = {
         "schema": "librarium_room_description_records_v1",
-        "code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "database_version": DATABASE_VERSION,
         "source_of_truth": "wccmp002_1_11p_native_record_offset_gap_fill",
         "priority": "same_as_wccmp002_binary_gap_fill_higher_than_public_reference",
@@ -304,7 +304,7 @@ def recover(repo: Path) -> dict[str, Any]:
 
     summary = {
         "generatedUtc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "codeUpdate": CODE_UPDATE,
+        "promotionScope": PROMOTION_SCOPE,
         "databaseVersion": DATABASE_VERSION,
         "canonicalRoomRecords": len(rooms),
         "knownDescriptionsBeforeRecovery": len(known),
@@ -333,7 +333,7 @@ def recover(repo: Path) -> dict[str, Any]:
     (repo / REPORT_MD).write_text(
         "\n".join(
             [
-                "# WCCMP002 Placeholder Room Description Recovery 0139",
+                "# WCCMP002 Placeholder Room Description Recovery",
                 "",
                 "## Result",
                 "",

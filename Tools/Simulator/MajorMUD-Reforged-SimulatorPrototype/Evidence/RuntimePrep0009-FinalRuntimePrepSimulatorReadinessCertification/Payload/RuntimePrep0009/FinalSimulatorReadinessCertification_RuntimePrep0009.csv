@@ -1,9 +1,0 @@
-domain,status,simulator_scope,runtime_boundary
-Data loading,READY,Load cumulative expected model artifacts and repository/static evidence,Must not claim gameplay equivalence
-Rooms and navigation,READY_FOR_PROTOTYPE,"Room graph, movement, area transitions, one-way/special candidates as flagged",Hidden/scripted exits require live confirmation
-World population,READY_FOR_PROTOTYPE,"Expected room populations, monster placement, spawn groups, boss/unique placement, configured respawn fields",Actual timing/lair behavior requires runtime
-Shops/items,READY_FOR_PROTOTYPE,"Shop catalogs, item availability, ownership links",Transaction quirks and dynamic scripting require runtime
-Loot/rewards,READY_FOR_PROTOTYPE,"Monster drops, currency ranges/relationships, container/open reward candidates",Actual probability and event order require runtime
-NPC/dialogue/quests,PARTIAL,Dialogue/progression candidates and quest checklist references,"Trigger order, state mutation, and quest completion need runtime"
-Combat/systems,PARTIAL,Expected stat/equipment/spell/skill/class matrices and verification checklist,"Formulas, AI priorities, timing, status effects require runtime"
-Validation harness,READY,Generate expected-vs-observed checklist outputs for future Worldgroup comparison,Observed column remains empty until runtime

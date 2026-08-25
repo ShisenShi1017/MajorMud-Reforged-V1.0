@@ -310,6 +310,16 @@
 - Release compilation remains pending in environments without the .NET 8 SDK.
 
 
+## CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive
+
+- Retired loose `ImportedDatabases/` and `Evidence/` content from the Git worktree after approved cleanup, leaving README placeholders and preserving the local-only archive `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`.
+- Reaffirmed Librarium as committed gameplay authority and generated `/Data` as runtime output that clean validation regenerates rather than source-controls.
+- Preserved required promoted proof anchors in Librarium before archive cleanup, including room environment anchors and gang-house service-location authority.
+- Converted runtime save paths from update-numbered folders to realm-scoped roots: `Saves/Classic`, `Saves/Custom/<realm>`, and host account state under `Saves/Host`.
+- Enforced the current account/character direction that one login may keep up to three characters per world.
+- Local verification after cleanup: `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` PASS with 0 warnings/errors; `python Tools\validator.py` PASS 15/15.
+- GitHub Actions remains pending until CodeUpdate0140 is pushed and confirmed green.
+
 ## CodeUpdate0139 - Telnet Runtime Cohesion
 
 - Closed the generated quest-stage remoteaction corpus: its sole signature, `1423.66.0.3`, is executable with zero evidence-gated signatures. Corrected the native argument map so the fourth value is action slot 3 and the second is optional message record 66; WCCMP002 proves reciprocal type-7/state-2 slots in rooms `9/1423` and `9/1425`. Added Librarium-backed paired-door mutation, host execution, persistence, exact result-state journaling, malformed-intent checks, and `--audit-native-remoteactions`.
@@ -361,10 +371,24 @@ Verification:
 
 Known limitation:
 
-- Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
-- GitHub Actions remains pending until CodeUpdate0139 is pushed and confirmed green.
+- GitHub Actions remains pending until CodeUpdate0140 is pushed and confirmed green.
 
-- Added Bundle H baseline runtime consolidation report at `Reports/BundleH/BASELINE_RUNTIME_CONSOLIDATION_AUDIT.md`.
+### Imported Reference Archive Cleanup
+
+- Created local-only archive `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar` for imported/reference databases and raw evidence.
+- Removed loose `ImportedDatabases/` and `Evidence/` contents from the Git worktree, leaving README placeholders only.
+- Updated `.gitignore` so the loose imported/evidence folders remain local-only and the archive is not committed.
+- Promoted the two required imported WCC room anchors, `room.map1.288` and `room.map1.2306`, into Librarium so clean Classic generation no longer depends on loose imported files.
+- Promoted gang-house location authority into Librarium so archived local WCC `.HSE` files are not required during normal compile.
+- Updated active continuity/manifests to state that Librarium is committed gameplay authority, `/Data` is generated runtime output, and imported/raw evidence is local-only archive material.
+
+Verification:
+
+- RAR integrity test PASS with WinRAR.
+- `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` PASS with 0 warnings and 0 errors.
+- `python Tools\validator.py` PASS 15/15.
+
+- Summarized Bundle H baseline runtime consolidation in active continuity documentation; historical raw logs are retired during repository cleanup.
 - Added `search` to the supported runtime command catalog; dispatch was already routed to the live Classic search handler.
 - Updated Bundle D search audit semantics to verify Classic transient search reroll/replace behavior instead of the older persisted-discovery expectation.
 - Scoped Bundle D door audit validation to door/world-object failures so unrelated living-world categories do not fail the door gate.
@@ -378,7 +402,7 @@ Known limitation:
 - Verified Bundle D final PASS with `AuditPassed=true` and `BundleDComplete=true`.
 - Verified Bundle E focused closure audits PASS for companion lifecycle, merchant/trainer, boss/death/respawn, NPC item/control/persistence, and relationship/service.
 - Verified `--audit-bundle-e-zero-disconnects` PASS with `BundleEComplete=true`, 1,100 NPC definitions, 962 spawn records, all 13 NPC/creature subsystems passed, and no duplicate authoritative creature source paths.
-- Recorded Bundle H current gate logs under `Reports/BundleH/CurrentGate/`; compiler build, server build, the seven focused Bundle H runtime audits, and the gang-house service-location audit pass locally.
+- Recorded Bundle H current gate summary in active continuity documentation; historical raw logs are retired during repository cleanup. Compiler build, server build, the seven focused Bundle H runtime audits, and the gang-house service-location audit pass locally.
 - Removed the stale Bundle D corrective/final audit limitation that claimed decoded room environment fields did not reach generated Classic records.
 - Added `--audit-bundle-h-gang-houses` to verify native/default WCC gang-house source files, ten MudInfo gang-house maps, ten generated deed items, 22 generated gang-house/deed shop records, and the runtime deed/upkeep protection service.
 - Promoted a WCC shop API reference-backed gang-house service-location catalog into `Librarium/Objects/gang_houses/gang_house_records.json` and generated `Data/Classic/gang_houses.json`.
@@ -405,7 +429,7 @@ Known limitation:
 - Added exhaustive WCCMP002 default-install binary room-description recovery for 23,309 additional canonical rooms, including the user-approved repeated-room rule that same-title duplicate rooms share one description.
 - Added WCCMP002 placeholder room-description recovery for the final 140 placeholder-named rooms. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass, and WBBMP002 corroborates all 140 recovered titles and first description lines.
 - Updated compiler room-description loading to merge all Librarium room-description files while keeping native/binary records ahead of reference gap fills.
-- Added a read-only WCC Librarium exhaustion audit at `Reports/DataDecode/wcc_librarium_exhaustion_audit.md`.
+- Consolidated the read-only WCC Librarium exhaustion audit into `Reports/DataDecode/decoded_data_evidence_summary.md`.
 - Reconciled MMExplorer SQL/MDB and OmniVerse public codex data into Librarium as reference-backed gap fills.
 - Added `public_reference` and `mmexplorer_sql_reference` blocks to matched item, spell, NPC, and shop records.
 - Added unmatched MMExplorer supplement files for item, spell, and NPC rows that do not map to active canonical records.
@@ -423,7 +447,7 @@ Known limitation:
 - Added MegaMUD `/mp` route replay to the room native effect resolver; replay found 0 command hits for the affected map-qualified exits, so all repaired rows remain `resolved_without_player_command`.
 - Added `Librarium/Objects/room_messages/room_message_records_catalog.json` and generated `Data/Classic/room_messages.json` with 117 unique native WCCMSG offset-backed room message records.
 - Decoded room message categories for room action aliases/success text, doors, hidden exits, locks/keys, searches, and generic failures.
-- Added room native effect/message decode reports at `Reports/DataDecode/room_native_effect_linkage_and_message_decode.md` and `.json`.
+- Consolidated room native effect/message decode reporting into `Reports/DataDecode/decoded_data_evidence_summary.md`.
 - Updated the Librarium compiler catalog reader to recognize plain `*_records.json` catalog files and avoid treating source-only `room_descriptions` files as a compiled family.
 - Loaded `MajorMUD_Reforged_Cumulative_Update_0206.zip` into Librarium as current quest dialogue dispatch source, without copying package cache files or treating package `/Data` as canonical authority.
 - Added 183 script records to `Librarium/Objects/scripts/mmexplorer_textblock_stage_records.json`, including 182 decoded MMExplorer textblock stage scripts.
@@ -464,7 +488,7 @@ Known limitation:
 - Installed Decode Exhaustion Bundle G Revision 0002 into the local dirty CodeUpdate0139 repository without commit or push.
 - Closed the F10 native presentation payload gap with evidence-backed mappings for verified no-output decoded text nodes and exact WCCMSG message payloads for `message 2044` and `message 3290`; unknown message IDs still fail closed.
 - Verified Bundle F through F15 locally after Bundle G: F10 native payload audit reports 0 disconnects, and F10 complete, F11 commands, F12 random tables, F13 events/missions, F14 rewards, and F15 persistence all pass.
-- Preserved `Saves/`, `ImportedDatabases/`, and generated `/Data` authority boundaries.
+- Preserved `Saves/` and generated `/Data` authority boundaries. Imported/reference databases and raw evidence are retained as the local-only archive `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`.
 
 Verification:
 
@@ -503,12 +527,12 @@ Verification:
 - `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-bundle-f-phase-f13-events-missions`
 - `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-bundle-f-phase-f14-rewards`
 - `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-bundle-f-phase-f15-persistence`
-- Single validator PASS 13/13 at `Reports/RuntimeVerification/validator_latest.md`
+- Single validator PASS 15/15 at `Reports/RuntimeVerification/validator_latest.md`
 - Latest validator PASS includes `librarium_catalog`, `generation_readiness`, solution restore/build, compiler tests, core smoke, Classic data audit, server generated data, server room exits, server NPCs, and server live gameplay checks.
 - Latest validator PASS also includes `server_interaction_narrative`.
 - Latest `server_interaction_narrative` PASS includes generated random textblock execution, world-intent target validation, cast/summon/remoteaction coverage, Classic non-repeat quest guard coverage, and exhaustive NPC quest-entry dispatch validation.
 - Latest living-world smoke PASS includes quest remoteaction event recording and generated room/object interaction event recording.
-- Final native closure archive intake verification: server Release build PASS, test Release build PASS, Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions, interaction/narrative smoke PASS with 83 executable quest entries, and `python Tools\validator.py` PASS 13/13 after import and runtime audit repair.
+- Final native closure archive intake verification: server Release build PASS, test Release build PASS, Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions, interaction/narrative smoke PASS with 83 executable quest entries, and `python Tools\validator.py` PASS 15/15 after import, runtime audit repair, and imported/evidence archival cleanup.
 
 Known limitation:
 
@@ -519,7 +543,7 @@ Known limitation:
 - `remoteaction` is recorded as a durable host event with exact decoded metadata; its native remote mutation is not guessed without additional evidence.
 - Native closure implementation slices are now active runtime code after merge/replace cleanup; remaining limitations are compile warnings and GitHub Actions pending after push.
 
-GitHub Actions is pending until CodeUpdate0139 is pushed and confirmed green.
+GitHub Actions is pending until CodeUpdate0140 is pushed and confirmed green.
 
 ## CodeUpdate0138 - Server Runtime and Host Enablement
 

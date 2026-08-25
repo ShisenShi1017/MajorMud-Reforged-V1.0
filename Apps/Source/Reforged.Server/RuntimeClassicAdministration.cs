@@ -94,7 +94,7 @@ public static class RuntimeClassicAdministrationPolicyStore
     }
 
     public static string PathFor(string projectRoot, string worldId) =>
-        Path.Combine(projectRoot, "Saves", "Runtime0137", "administration",
+        Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "administration",
             RuntimeIdentity.Normalize(worldId, "world") + ".classic-policy.json");
 }
 
@@ -136,7 +136,7 @@ public static class RuntimeClassicItemLimitCoordinator
     private static int CountPersisted(string projectRoot, string worldId, string canonicalItemId)
     {
         var total = 0;
-        var runtimeRoot = Path.Combine(projectRoot, "Saves", "Runtime0137");
+        var runtimeRoot = RuntimeSavePaths.RealmRoot(projectRoot, worldId);
         var normalizedWorld = RuntimeIdentity.Normalize(worldId, "world");
 
         var characters = Path.Combine(runtimeRoot, "characters");
@@ -172,8 +172,8 @@ public static class RuntimeClassicItemLimitCoordinator
         }
 
         // Generated/static room items are owned by the living-world save rather than the
-        // Runtime0137 item repository. Include them so GameLimit is world-wide.
-        var livingWorldPath = Path.Combine(projectRoot, "Saves", "Worlds", normalizedWorld, "living-world.json");
+        // Runtime item repository. Include them so GameLimit is world-wide.
+        var livingWorldPath = Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "WorldState", "living-world.json");
         if (File.Exists(livingWorldPath))
         {
             try

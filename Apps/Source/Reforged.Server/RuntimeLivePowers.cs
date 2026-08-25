@@ -12,7 +12,7 @@ public sealed class RuntimeLivePowerStateRepository
 {
     private readonly string _path;
     public RuntimeLivePowerStateRepository(string projectRoot, string worldId) =>
-        _path = Path.Combine(projectRoot, "Saves", worldId, "runtime-live-powers.json");
+        _path = Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "LivePowers", "runtime-live-powers.json");
 
     public RuntimeLivePowerState Load()
     {

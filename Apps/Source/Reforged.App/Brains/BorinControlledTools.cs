@@ -1,7 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using Reforged.App.Forge;
-using Reforged.App.Guardians;
+using Reforged.App.BorinCapabilities;
 
 namespace Reforged.App.Brains;
 
@@ -92,8 +92,8 @@ public interface IBorinSysopToolGateway
 }
 
 /// <summary>
-/// Binds the currently available Sysop Test Realm workflow to Guardian Hall's existing
-/// Worldsmith service. It cannot approve a proposal and cannot target a live realm.
+/// Retains the Worldsmith adapter contract while the entire capability is withheld.
+/// No model or autonomous route may inspect, propose, approve, or apply through it.
 /// </summary>
 public sealed class BorinWorldsmithSysopToolGateway(
     IWorldsmithRuntimeService worldsmith,
@@ -102,42 +102,17 @@ public sealed class BorinWorldsmithSysopToolGateway(
     private readonly IWorldsmithRuntimeService _worldsmith = worldsmith ?? throw new ArgumentNullException(nameof(worldsmith));
     private readonly WorldsmithWorkspace _workspace = workspace ?? throw new ArgumentNullException(nameof(workspace));
 
-    public async Task<BorinToolObservation> ExecuteAsync(BorinAiIntent intent, string? target, CancellationToken cancellationToken = default)
+    public Task<BorinToolObservation> ExecuteAsync(BorinAiIntent intent, string? target, CancellationToken cancellationToken = default)
     {
-        EnsureSafeTarget();
-        switch (intent)
-        {
-            case BorinAiIntent.MonitorWorld:
-            case BorinAiIntent.InspectRuntime:
-                var snapshot = await _worldsmith.InspectAsync(_workspace, cancellationToken).ConfigureAwait(false);
-                return Result(true, "test-realm-inspected", intent, target, JsonSerializer.Serialize(snapshot), false);
-            case BorinAiIntent.ProposeWorldChange:
-                _workspace.Constraints = target?.Trim() ?? _workspace.Constraints;
-                var proposal = await _worldsmith.GenerateProposalAsync(_workspace, cancellationToken).ConfigureAwait(false);
-                _workspace.LastProposalPath = proposal;
-                _workspace.ApprovedProposalPath = string.Empty;
-                return Result(true, "test-realm-proposal-created", intent, target, $"Proposal created for human approval: {proposal}", true);
-            case BorinAiIntent.ApplyTestWorldChange:
-                var applied = await _worldsmith.ApplyApprovedProposalAsync(_workspace, cancellationToken).ConfigureAwait(false);
-                return Result(true, "test-realm-staging-applied", intent, target, $"Staged: {applied.AppliedPath}\nReceipt: {applied.ReceiptPath}\nBackup: {applied.BackupPath}", true);
-            default:
-                return Result(false, "tool-not-bound", intent, target, "This Sysop capability has no controlled Worldsmith adapter yet.", false);
-        }
-    }
-
-    private void EnsureSafeTarget()
-    {
-        var target = _workspace.TargetTestRealm ?? string.Empty;
-        if (!target.Contains("Test", StringComparison.OrdinalIgnoreCase) &&
-            !target.Contains("Development", StringComparison.OrdinalIgnoreCase) &&
-            !target.Contains("Offline", StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException("Borin Sysop tools are restricted to Test, Development, or Offline Projection realms.");
-        if (!_workspace.ApprovalRequired)
-            throw new InvalidOperationException("Worldsmith approval must remain required.");
+        cancellationToken.ThrowIfCancellationRequested();
+        _ = _worldsmith;
+        _ = _workspace;
+        return Task.FromResult(Result(false, "worldsmith-withheld", intent, target,
+            "Worldsmith is installed but withheld by William. No operation was performed.", false));
     }
 
     private static BorinToolObservation Result(bool success, string code, BorinAiIntent intent, string? target, string output, bool changed) =>
-        new(success, code, intent, target ?? string.Empty, "Guardian Hall Worldsmith Test Realm service", AiSecretRedactor.Redact(output), changed, DateTimeOffset.Now);
+        new(success, code, intent, target ?? string.Empty, "Withheld Worldsmith Test Realm service", AiSecretRedactor.Redact(output), changed, DateTimeOffset.Now);
 }
 
 public interface IBorinRepositoryReadTools

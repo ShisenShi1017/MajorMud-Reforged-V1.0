@@ -18,7 +18,7 @@ public sealed class RuntimeGameplayCompletionStateStore
 
     public RuntimeGameplayCompletionStateStore(string projectRoot, string worldId)
     {
-        _root = Path.Combine(projectRoot, "Saves", "Runtime0138", "GameplayCompletion", RuntimeIdentity.Normalize(worldId, "world"));
+        _root = Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "GameplayCompletion");
         Directory.CreateDirectory(Path.Combine(_root, "shops"));
         Directory.CreateDirectory(Path.Combine(_root, "trainers"));
     }

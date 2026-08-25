@@ -107,7 +107,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     public string ExecuteRegenerationStateCommand(RuntimeSession session, RuntimeCommand command)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
-        if (_liveCombats.ContainsKey(session.Id)) return "You cannot rest or meditate while in combat.";
+        if (_liveCombats.ContainsKey(session.Id) || _livePvpEncounterBySession.ContainsKey(session.Id)) return "You cannot rest or meditate while in combat.";
         var mode = command.Name.Equals("rest", StringComparison.OrdinalIgnoreCase) ? "rest" : "meditate";
         if (mode == "meditate")
         {

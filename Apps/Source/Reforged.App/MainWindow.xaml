@@ -30,8 +30,7 @@
             <Button Content="Host" Command="{Binding NavigateCommand}" CommandParameter="host" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Editor" Command="{Binding NavigateCommand}" CommandParameter="editor" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Librarium" Command="{Binding NavigateCommand}" CommandParameter="librarium" Style="{StaticResource NavigationButtonStyle}"/>
-            <Button Content="The Forge" Command="{Binding NavigateCommand}" CommandParameter="forge" Style="{StaticResource NavigationButtonStyle}" ToolTip="Talk with the Reforged development Guardian"/>
-            <Button Content="Guardian Hall" Command="{Binding NavigateCommand}" CommandParameter="guardians" Style="{StaticResource NavigationButtonStyle}" ToolTip="Assign and manage the Five AI Guardians"/>
+            <Button Content="Borin" Command="{Binding NavigateCommand}" CommandParameter="forge" Style="{StaticResource NavigationButtonStyle}" ToolTip="Borin's player, sysop, developer, knowledge, and Guardian capabilities"/>
             <Button Content="Characters" Command="{Binding NavigateCommand}" CommandParameter="characters" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Server" Command="{Binding NavigateCommand}" CommandParameter="server" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Tools" Command="{Binding NavigateCommand}" CommandParameter="tools" Style="{StaticResource NavigationButtonStyle}"/>

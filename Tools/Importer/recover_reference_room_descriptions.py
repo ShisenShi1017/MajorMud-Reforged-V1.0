@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 
-CODE_UPDATE = "0139"
+PROMOTION_SCOPE = "reference_room_description_recovery"
 DATABASE_VERSION = "0010"
 OMNI_ROOM_ROOT = Path(
     "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms"
@@ -25,13 +25,13 @@ OMNI_SUMMARY = Path(
 )
 MMX_ROOM_FILE = Path("Librarium/Objects/rooms/mmexplorer_room_records_0140.json")
 NATIVE_DESCRIPTION_FILE = Path(
-    "Librarium/Objects/room_descriptions/native_map_room_description_records_0139.json"
+    "Librarium/Objects/room_descriptions/native_map_room_description_records.json"
 )
 OUTPUT_DESCRIPTION_FILE = Path(
-    "Librarium/Objects/room_descriptions/reference_room_description_records_0139.json"
+    "Librarium/Objects/room_descriptions/reference_room_description_records.json"
 )
-REPORT_JSON = Path("Reports/DataDecode/room_description_reference_recovery_0139.json")
-REPORT_MD = Path("Reports/DataDecode/room_description_reference_recovery_0139.md")
+REPORT_JSON = Path("Reports/Generated/room_description_reference_recovery.json")
+REPORT_MD = Path("Reports/Generated/room_description_reference_recovery.md")
 
 
 def load_json(path: Path) -> Any:
@@ -165,7 +165,7 @@ def recover(repo: Path) -> dict[str, Any]:
                             if str(row.get(f"desc{index}") or "").strip()
                         ],
                         "classification": "map_qualified_reference_room_description_gap_fill",
-                        "promotion_code_update": CODE_UPDATE,
+                        "promotion_scope": PROMOTION_SCOPE,
                         "override_policy": "fills_only_rooms_without_native_binary_backed_description",
                     }
                 ],
@@ -183,7 +183,7 @@ def recover(repo: Path) -> dict[str, Any]:
     records.sort(key=lambda row: (int(row["map_number"]), int(row["room_number"])))
     output = {
         "schema": "librarium_room_description_records_v1",
-        "code_update": CODE_UPDATE,
+        "promotion_scope": PROMOTION_SCOPE,
         "database_version": DATABASE_VERSION,
         "source_of_truth": "map_qualified_reference_gap_fill",
         "priority": "lower_than_native_binary_room_descriptions",
@@ -194,7 +194,7 @@ def recover(repo: Path) -> dict[str, Any]:
 
     summary = {
         "generatedUtc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "codeUpdate": CODE_UPDATE,
+        "promotionScope": PROMOTION_SCOPE,
         "databaseVersion": DATABASE_VERSION,
         "canonicalRoomRecords": len(rooms),
         "nativeBinaryDescriptionRecords": len(native_records),
@@ -214,7 +214,7 @@ def recover(repo: Path) -> dict[str, Any]:
     (repo / REPORT_MD).write_text(
         "\n".join(
             [
-                "# Room Description Reference Recovery 0139",
+                "# Room Description Reference Recovery",
                 "",
                 "## Result",
                 "",

@@ -1,5 +1,26 @@
 # Manifest
 
+## CodeUpdate0140
+
+Scope:
+
+- Repository cleanup and imported/reference evidence archival after the CodeUpdate0139 runtime baseline.
+- Loose `ImportedDatabases/` and `Evidence/` content retired from Git, with local-only archive preservation.
+- Librarium remains committed gameplay authority; generated `Data/Classic` remains untracked runtime output.
+- Runtime saves use realm-scoped roots: `Saves/Classic`, `Saves/Custom/<realm>`, and `Saves/Host`.
+- Character creation allows up to three characters per login per world.
+- Active continuity/manifests updated to identify CodeUpdate0140 as the current push baseline.
+
+Verification:
+
+- `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore`: PASS locally with 0 warnings and 0 errors.
+- `python Tools\validator.py`: PASS locally with 15/15 current-health checks.
+- GitHub Actions: pending until pushed and confirmed green.
+
+Known limitation:
+
+- CodeUpdate0140 does not add gameplay systems; it is a cleanup/archive baseline.
+
 ## CodeUpdate0139
 
 Scope:
@@ -60,9 +81,9 @@ Verification:
 - Compiler room-text audit: PASS locally.
 - Room-description reference recovery: PASS locally; 800 gap-fill records promoted.
 - WCCMP002 placeholder recovery: PASS locally; 140 additional WCCMP002 1.11p room/map records promoted and WBBMP002-corroborated.
-- Compiler smoke output: PASS locally; 26,666/26,666 room descriptions emitted to `Data/CompilerSmokeTest/ClassicRoomDescriptionComplete0139`.
+- Compiler smoke output: PASS locally; 26,668/26,668 room descriptions emitted during current Classic generation checks.
 - WCC Librarium exhaustion audit: PASS locally.
-- Server Classic data audit: PASS locally; 26,666 rooms with descriptions and 0 without descriptions.
+- Server Classic data audit: PASS locally; 26,668 rooms with descriptions and 0 without descriptions.
 - Complete runtime verification: PASS 69/69 at `Reports/RuntimeVerification/validator_latest.md`.
 - Quest dialogue dispatch smoke: PASS locally; 182 decoded stage scripts, 83 NPC quest-entry triggers, 182 linked script refs, item consume/reward transition, and failure/no-mutation behavior.
 - Quest/script edge closure: PASS locally; random table execution, cast/summon/remoteaction coverage, remoteaction event recording, room/object event recording, world-intent target validation, repeatability guard coverage, and exhaustive generated NPC quest-entry dispatch validation.

@@ -1,20 +1,20 @@
 # Reforged Roadmap
 
-- Evidence disposition is archive-only, never deletion. After 100% MajorMUD gameplay, board/Sysop/MajorMUD Plus, and MegaMUD emulation parity is proven, decoded/imported material not required by the live server will be packaged into a local server evidence ZIP and excluded from Git. Until then it remains available in place.
+- Evidence disposition is archive-only, not source deletion. Imported/reference databases and raw evidence now live in the local-only archive `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`; committed gameplay authority is Librarium plus generated-data tooling.
 - The user-supplied MudPlay 3.18.8 archive is now an approved MIT-licensed implementation reference for MegaMUD automation and MMExplorer-style client browsing. Its Avalonia/.NET 10 UI is not embedded into the WPF/.NET 8 client; headless engines and tests are ported by capability and bound to authoritative generated Classic data under the acceptance gates in `Docs/Audits/MUDPLAY_CLIENT_PARITY_IMPORT_0140.md`.
 
 This is the compact roadmap for the current repository. Historical update chains should not be recreated here.
 
 ## Current Milestone
 
-- Current Code Update: `0139`
+- Current Code Update: `0140`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
-- Status: local runtime cohesion work applied; awaiting user push and GitHub Actions confirmation
-- Verification: current-health validator PASS 13/13; Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforged`
+- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
+- Status: local repository cleanup/imported-reference archival applied; awaiting push and GitHub Actions confirmation
+- Verification: current-health validator PASS 15/15; Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforgedApp`
 - Guardian Hall engineering direction: Borin's phases 1-10 are permanent deterministic infrastructure with independent planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP, repository-update, and overnight controls. Candidate ZIP generation defaults on; autonomous and repository-update controls default off.
 
-## CodeUpdate0139 Active Scope
+## CodeUpdate0139 Runtime Scope
 
 - Keep Telnet/MegaMUD sessions connected to the authoritative runtime.
 - Use shared living-world NPC instances for room rendering, combat targeting, spell/ability effects, death, and respawn.
@@ -22,11 +22,11 @@ This is the compact roadmap for the current repository. Historical update chains
 - Current audit result: regenerated `Data/Classic` now emits 26,668/26,668 room descriptions.
 - Current runtime audit result: Classic runtime loads 26,668 room descriptions, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 83 executable quests, 83 live quest-entry triggers, and 182 executable stage scripts.
 - Current recovery result: Librarium contains 2,417 clean native-backed room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, 23,309 WCCMP002 default-install binary gap fills, and 140 WCCMP002 placeholder room recoveries. WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this pass; WBBMP002 is secondary comparison only.
-- Current decode audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md` inventories available WCC/WBB evidence and active Librarium coverage.
-- Current reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md` records MMExplorer SQL/MDB and OmniVerse public codex gap-fill promotion into Librarium.
-- Current room-description reference recovery: `Reports/DataDecode/room_description_reference_recovery.md`.
-- Current WCCMP002 room-description recovery: `Reports/DataDecode/wccmp002_room_description_recovery.md`.
-- Current WCCMP002 placeholder room-description recovery: `Reports/DataDecode/wccmp002_placeholder_room_description_recovery.md`.
+- Current decode audit: `Reports/DataDecode/decoded_data_evidence_summary.md` inventories available WCC/WBB evidence and active Librarium coverage.
+- Current reference reconciliation: `Reports/DataDecode/decoded_data_evidence_summary.md` records MMExplorer SQL/MDB and OmniVerse public codex gap-fill promotion into Librarium.
+- Current room-description reference recovery: `Reports/DataDecode/decoded_data_evidence_summary.md`.
+- Current WCCMP002 room-description recovery: `Reports/DataDecode/decoded_data_evidence_summary.md`.
+- Current WCCMP002 placeholder room-description recovery: `Reports/DataDecode/decoded_data_evidence_summary.md`.
 - Centralize command abbreviation handling so Telnet/MegaMUD input resolves through exact aliases, unique prefixes, and ambiguity rejection instead of socket-loop aliases.
 - Current spawn placement repair: live NPC materialization requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage, and renders visible entities by runtime disposition.
 - Current focused audit: `room.map1.21` renders one neutral `guardsman` from `spawn.21.5`; the user-expected `elite guardsman` is a separate evidence-backed data correction if the generated source is wrong.
@@ -58,7 +58,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Custom and AI worlds use overlays.
 - Client is read-only for gameplay state.
 - Host/server is authoritative.
-- Imported/reference material remains untouched unless the user explicitly approves cleanup.
+- Imported/reference databases and raw evidence are local-only archive material after the approved cleanup; do not recommit loose `ImportedDatabases/` or `Evidence/` contents.
 
 ## Server Direction
 
@@ -75,8 +75,9 @@ Classic is the first target because it is the verified baseline. The design must
 ## Planned Public Updates
 
 - `0139`: Telnet/MegaMUD runtime cohesion on top of the authoritative server runtime.
-- `0140`: Custom/AI overlay-world support.
-- `0141`: Host editor.
+- `0140`: Repository cleanup and imported/reference evidence archival.
+- `0141`: Custom/AI overlay-world support.
+- `0142`: Host editor.
 
 Numbers may shift only if the user explicitly approves a renumbering.
 
@@ -94,3 +95,6 @@ Do not restore large historical doc trees unless the user asks.
 The generated authenticated command catalog and safe dispatch boundary are complete. Next recover exact invasion syntax/payload and GOTO room targets, then implement remaining command-owner services. Native gang commands require a data-backed MajorMUD gang runtime; do not substitute a generic guild subsystem.
 Latest local continuation: grouped ability audit 123-124 is complete. HPRegen reuses the authoritative cadence; NegateAbility now suppresses only its evidence-backed target ability for spell and NPC owners, with zero-valued evidence kept fail-closed.
 Latest local continuation: grouped ability audit 125-134 is complete. The ten consecutive quest-progress fields are canonical persistent character state, not combat or command abilities; runtime regression enforces both persistence and the non-power boundary.
+
+
+

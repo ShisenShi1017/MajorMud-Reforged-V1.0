@@ -1,7 +1,0 @@
-decision_area,decision,basis
-phase_status,RUNTIME_PREP_0002_COMPLETE_FOR_EXPECTED_WORLD_POPULATION_MODEL,Used ImportedDatabases WCC room JSON and codex-monster WCC JSON; no live runtime observations.
-room_population,ROOM_MONSTER_TYPE_TREATED_AS_CONFIGURED_SPAWN_GROUP_ID,room.monster_type values cross-match monster.group_id values; unresolved live spawn behavior remains runtime-only.
-boss_respawn,BOSS_TYPE_ID_JOINED_TO_MONSTER_LEGACY_NUMBER_WHEN_PRESENT,boss_type_id nonzero values match monster legacy_number identifiers; room respawn_minutes and monster regen_time retained separately.
-authority,MDB_CSV_STATIC_CERTIFICATION_PRESERVED_WCC_USED_AS_CORROBORATING_RUNTIME_PREP_SOURCE,DataDecode0110/RuntimePrep0001 evidence model preserved.
-runtime_claims,NO_TRUE_RUNTIME_VALIDATION_CLAIMS,Worldgroup was not executed; no logs or live observations were used.
-next_pass,RuntimePrep0003_NavigationAndExitExtraction,World population extraction completed; exits and special transitions are next static runtime-prep target.

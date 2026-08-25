@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Reforged.App.Brains;
 
-public enum NvidiaNimKeySlot { Lightning, Ultra }
+public enum NvidiaNimKeySlot { Shared, Lightning, Ultra }
 
 public interface INvidiaNimCredentialStore
 {
@@ -26,7 +26,7 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
     private const int ErrorNotFound = 1168;
     private const int MaximumCredentialBlobBytes = 5 * 512;
 
-    public WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot slot = NvidiaNimKeySlot.Lightning)
+    public WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot slot = NvidiaNimKeySlot.Shared)
     {
         Slot = slot;
         _targetName = slot == NvidiaNimKeySlot.Ultra
@@ -173,4 +173,26 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
 
     [DllImport("Advapi32.dll", SetLastError = false)]
     private static extern void CredFree([In] IntPtr buffer);
+}
+
+public static class NvidiaNimCredentialMigration
+{
+    /// <summary>Copies a legacy tier credential into the shared slot only when the shared slot is empty.</summary>
+    public static async Task<bool> EnsureSharedCredentialAsync(
+        INvidiaNimCredentialStore shared,
+        INvidiaNimCredentialStore legacyUltra,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(shared);
+        ArgumentNullException.ThrowIfNull(legacyUltra);
+        if (await shared.IsConfiguredAsync(cancellationToken).ConfigureAwait(false))
+            return false;
+
+        var legacyKey = await legacyUltra.ReadApiKeyAsync(cancellationToken).ConfigureAwait(false);
+        if (string.IsNullOrWhiteSpace(legacyKey))
+            return false;
+
+        await shared.SaveApiKeyAsync(legacyKey, cancellationToken).ConfigureAwait(false);
+        return true;
+    }
 }

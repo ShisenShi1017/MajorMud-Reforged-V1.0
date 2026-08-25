@@ -28,6 +28,13 @@ public sealed record ClientRoomInspectionNpc(
     string Disposition, string InteractionModel, int Level, long ExperienceReward);
 public sealed record ClientRoomInspectionExit(string Direction, string RoomKey, string RoomName, string GateKind, bool HasBlockedDestination);
 public sealed record ClientRoomInspectionSpawn(string DisplayName, int RespawnMinutes, int MaximumAreaPopulation);
+public sealed record ClientRoomServiceState(string Id, string Kind, string Name);
+public sealed record ClientRoomItemState(string InstanceId, string CanonicalItemId, string Name, int Weight, bool Gettable, int Quantity, bool Hidden);
+public sealed record ClientLearnedSpellState(string CanonicalId, string Name, int ManaCost, int EnergyCost);
+public sealed record ClientActiveEffectState(string EffectId, string SpellId, string Name, DateTimeOffset AppliedAtUtc, DateTimeOffset? ExpiresAtUtc);
+public sealed record ClientRoomEnvironmentState(string RoomKey, int EnvironmentLightLevel, int EnvironmentRoomType);
+public sealed record ClientPvpState(bool Active, bool WorldPvpEnabled, bool SafeRoom, string EncounterId, string OpponentCharacterId, string OpponentName,
+    string RoomId, int RoundNumber, DateTimeOffset? StartedAtUtc);
 public sealed record ClientRoomInspectionSnapshot(
     string RoomKey, string Name, string Description, ClientRoomInspectionNpc[] Npcs, string[] Players, string[] Items,
     string Currency, ClientRoomInspectionExit[] Exits, string[] Commands, ClientRoomInspectionSpawn[] ExpectedSpawns,
@@ -233,8 +240,17 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private DateTimeOffset? _activeEffectsUpdatedAt;
     private DateTimeOffset? _partyUpdatedAt;
     private DateTimeOffset? _onlinePlayersUpdatedAt;
+    private ClientPvpState? _pvpState;
+    private DateTimeOffset? _pvpStateUpdatedAt;
     private bool _inCombat;
     private string _lastCombatEvent = "None";
+    private string _combatAutomationStatus = "Automation safety lock is active.";
+    private string _survivalAutomationStatus = "Automation safety lock is active.";
+    private string _roamingAutomationStatus = "Automation safety lock is active.";
+    private string _lootAutomationStatus = "Automation safety lock is active.";
+    private string _partyAutomationStatus = "Automation safety lock is active.";
+    private string _spellAutomationStatus = "Automation safety lock is active.";
+    private string _pvpAutomationStatus = "Automation safety lock is active.";
     private int _lastCombatAmount;
     private DateTimeOffset? _lastCombatEventAt;
     private long _sessionExperienceGained;
@@ -332,7 +348,26 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<string> InventoryItems { get; } = [];
     public ObservableCollection<string> EquippedItems { get; } = [];
     public ObservableCollection<string> LearnedSpells { get; } = [];
+    public ObservableCollection<ClientLearnedSpellState> LearnedSpellDetails { get; } = [];
     public ObservableCollection<string> ActiveEffects { get; } = [];
+    public ObservableCollection<ClientActiveEffectState> ActiveEffectDetails { get; } = [];
+    public ClientPvpState? PvpState
+    {
+        get => _pvpState;
+        set
+        {
+            if (!Set(ref _pvpState, value)) return;
+            Raise(nameof(PvpRealmSummary));
+            Raise(nameof(PvpCombatSummary));
+        }
+    }
+    public DateTimeOffset? PvpStateUpdatedAt { get => _pvpStateUpdatedAt; set => Set(ref _pvpStateUpdatedAt, value); }
+    public string PvpRealmSummary => PvpState is null ? "PvP: awaiting server" :
+        !PvpState.WorldPvpEnabled ? "PvP: disabled by SYSOP" :
+        PvpState.SafeRoom ? "PvP: safe room" : "PvP: enabled";
+    public string PvpCombatSummary => PvpState?.Active == true
+        ? $"Opponent: {PvpState.OpponentName} · round {PvpState.RoundNumber}"
+        : "No active PvP encounter";
     public ObservableCollection<ClientPartyMemberState> PartyMembers { get; } = [];
     public ObservableCollection<ClientOnlinePlayerState> OnlinePlayers { get; } = [];
     public ObservableCollection<ClientBossHomeState> BossHomes { get; } = [];
@@ -344,6 +379,13 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<ClientExperienceSample> SessionExperienceSamples { get; } = [];
     public bool InCombat { get => _inCombat; set => Set(ref _inCombat, value); }
     public string LastCombatEvent { get => _lastCombatEvent; set => Set(ref _lastCombatEvent, value); }
+    public string CombatAutomationStatus { get => _combatAutomationStatus; set => Set(ref _combatAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string SurvivalAutomationStatus { get => _survivalAutomationStatus; set => Set(ref _survivalAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string RoamingAutomationStatus { get => _roamingAutomationStatus; set => Set(ref _roamingAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string LootAutomationStatus { get => _lootAutomationStatus; set => Set(ref _lootAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string PartyAutomationStatus { get => _partyAutomationStatus; set => Set(ref _partyAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string SpellAutomationStatus { get => _spellAutomationStatus; set => Set(ref _spellAutomationStatus, value?.Trim() ?? string.Empty); }
+    public string PvpAutomationStatus { get => _pvpAutomationStatus; set => Set(ref _pvpAutomationStatus, value?.Trim() ?? string.Empty); }
     public int LastCombatAmount { get => _lastCombatAmount; set => Set(ref _lastCombatAmount, Math.Max(0, value)); }
     public DateTimeOffset? LastCombatEventAt { get => _lastCombatEventAt; set => Set(ref _lastCombatEventAt, value); }
     public long SessionExperienceGained { get => _sessionExperienceGained; set => Set(ref _sessionExperienceGained, Math.Max(0, value)); }
@@ -358,6 +400,11 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<string> CurrentRoomExits { get; } = [];
     public ObservableCollection<string> CurrentRoomNpcs { get; } = [];
     public ObservableCollection<ClientRoomInspectionNpc> CurrentRoomNpcDetails { get; } = [];
+    public ObservableCollection<ClientRoomServiceState> CurrentRoomServices { get; } = [];
+    public ObservableCollection<ClientRoomItemState> CurrentRoomItemDetails { get; } = [];
+    public DateTimeOffset? CurrentRoomNpcDetailsUpdatedAt { get; set; }
+    public int? CurrentRoomLightLevel { get; set; }
+    public DateTimeOffset? CurrentRoomEnvironmentUpdatedAt { get; set; }
     public ObservableCollection<string> CurrentRoomPlayers { get; } = [];
     public ObservableCollection<string> CurrentRoomItems { get; } = [];
     public ObservableCollection<ClientRoomLinkState> CurrentRoomLinks { get; } = [];
@@ -439,10 +486,42 @@ public sealed record ClientOnlinePlayerState(string Name, string ClassName, int 
 
 public sealed record ClientBossHomeState(string Name, string State, string CurrentRoom, string HomeRoom, DateTimeOffset? RespawnAtUtc);
 
-public sealed record ClientServerCatalogFamily(string Name, int RecordCount, string Sha256);
+public sealed record ClientServerCatalogFamily(string Name, int RecordCount, string Sha256)
+{
+    public string DisplayName => LibrariumFriendlyNames.Family(Name);
+}
 public sealed record ClientServerCatalogSnapshot(string World, string CompileHash, IReadOnlyList<ClientServerCatalogFamily> Families, DateTimeOffset CapturedAt);
 public sealed record ClientLibrariumRecord(string Id, string Name, string Summary);
 public sealed record ClientLibrariumPage(string Family, string Query, int Offset, int PageSize, int TotalCount, IReadOnlyList<ClientLibrariumRecord> Records, DateTimeOffset CapturedAt);
+public sealed record ClientLibrariumLink(string Reference, string DisplayName);
+
+public static class LibrariumFriendlyNames
+{
+    public static string Family(string value)
+    {
+        var normalized = (value ?? string.Empty).Trim().ToLowerInvariant().Replace('-', '_');
+        var known = normalized switch
+        {
+            "rooms" or "room" => "Rooms and Areas",
+            "npcs" or "npc" or "monsters" => "Creatures and Bosses",
+            "items" or "item" or "equipment" => "Items and Equipment",
+            "spells" or "spell" or "abilities" => "Spells and Abilities",
+            "quests" or "quest" or "quest_scripts" => "Quests",
+            "trainers" or "trainer" or "training" => "Trainers",
+            "shops" or "shop" or "merchants" => "Shops and Services",
+            "room_commands" or "commands" or "room_actions" => "Things You Can Do in Rooms",
+            "spawns" or "spawn" => "Creature Locations and Return Times",
+            "exits" or "exit" => "Room Connections",
+            _ => string.Empty
+        };
+        if (known.Length > 0) return known;
+        var text = (value ?? string.Empty).Replace('_', ' ').Replace('-', ' ').Trim();
+        if (text.Length == 0) return "Game information";
+        return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLowerInvariant())
+            .Replace("Npcs", "Creatures", StringComparison.Ordinal)
+            .Replace("Npc ", "Creature ", StringComparison.Ordinal);
+    }
+}
 
 public sealed record ClientItemWeightState(string Item, int Quantity, long UnitWeight, long TotalWeight, string Location);
 

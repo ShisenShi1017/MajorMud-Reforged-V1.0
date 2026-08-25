@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 using Reforged.App.Models;
+using Reforged.App.Services;
 using Reforged.App.ViewModels;
 
 namespace Reforged.App.Views;
@@ -26,6 +27,8 @@ public partial class ClientTerminalWindow : Window
     private ClientConnectionState _observedConnectionState;
     private RouteExecutionState _observedRouteState;
     private DateTimeOffset _lastAutomationClockTick = DateTimeOffset.MinValue;
+    private DateTimeOffset _nextPvpStateRefreshAt = DateTimeOffset.MinValue;
+    private bool _pvpStateRefreshInFlight;
 
     public ClientTerminalWindow()
     {
@@ -174,6 +177,19 @@ public partial class ClientTerminalWindow : Window
             _lastAutomationClockTick = now;
             ViewModel?.TickTimedEvents(session, now);
         }
+        if (!_pvpStateRefreshInFlight && ViewModel is not null && session.ConnectionState == ClientConnectionState.Connected &&
+            !string.IsNullOrWhiteSpace(session.CurrentRoomKey) && now >= _nextPvpStateRefreshAt)
+        {
+            _nextPvpStateRefreshAt = now.AddSeconds(5);
+            _pvpStateRefreshInFlight = true;
+            _ = RefreshPvpStateAsync(ViewModel, session);
+        }
+    }
+
+    private async Task RefreshPvpStateAsync(PlayViewModel viewModel, ClientSessionConnection session)
+    {
+        try { await viewModel.SendClientProtocolCommandAsync(session, "clientdata pvp"); }
+        finally { _pvpStateRefreshInFlight = false; }
     }
 
     private void ObserveSoundTransitions(ClientSessionConnection session)
@@ -795,6 +811,12 @@ public partial class ClientTerminalWindow : Window
 
     private async void ClientTerminalWindowPreviewKeyDown(object sender, KeyEventArgs e)
     {
+        if (e.Key == Key.F1 && Keyboard.Modifiers == ModifierKeys.None)
+        {
+            e.Handled = true;
+            ShowHelpCenter();
+            return;
+        }
         if (Keyboard.Modifiers == ModifierKeys.Alt &&
             (e.Key == Key.T || (e.Key == Key.System && e.SystemKey == Key.T)))
         {
@@ -1092,7 +1114,7 @@ public partial class ClientTerminalWindow : Window
         var wg = new Grid(); weapons.Content = wg; left.Children.Add(weapons);
         wg.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(145) });
         wg.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-        for (var i = 0; i < 8; i++) wg.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        for (var i = 0; i < 9; i++) wg.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         TextBox AddWeapon(int row, string label, string value)
         {
             var l = new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 4, 8, 4) };
@@ -1108,6 +1130,7 @@ public partial class ClientTerminalWindow : Window
         var preBs = AddWeapon(5, "Pre-BS", prefs.PreBackstabCommand);
         var postBs = AddWeapon(6, "Post-BS", prefs.PostBackstabCommand);
         var spellReset = AddWeapon(7, "Spell combat", prefs.SpellCombatResetCommand);
+        var preAttack = AddWeapon(8, "Auto pre-attack", ViewModel?.AutomationOptions.Combat.PreAttackCommand ?? string.Empty);
 
         var autoCombat = new CheckBox { Content = "Auto-Combat", IsChecked = prefs.AutoCombat, Margin = new Thickness(3) };
         left.Children.Add(autoCombat);
@@ -1138,7 +1161,7 @@ public partial class ClientTerminalWindow : Window
         var minMobs = AddLimit(1, "Min mobs/room", prefs.MinimumMobsPerRoom);
         var maxMobs = AddLimit(2, "Max mobs/room", prefs.MaximumMobsPerRoom);
 
-        help.Click += (_, _) => MessageBox.Show(dialog, "Reforged combat profile. Values are stored per session and Auto-Combat is synchronized with the shared automation master state.", "Combat automation help", MessageBoxButton.OK, MessageBoxImage.Information);
+        help.Click += (_, _) => MessageBox.Show(dialog, "Auto-Combat uses only living hostile creatures reported by the connected server. It pauses for movement, stops on unknown state, and remains blocked whenever Emergency Stop is active.", "Combat automation help", MessageBoxButton.OK, MessageBoxImage.Information);
         cancel.Click += (_, _) => dialog.Close();
         ok.Click += async (_, _) =>
         {
@@ -1149,6 +1172,7 @@ public partial class ClientTerminalWindow : Window
             prefs.ClearOnceEngaged = clearEngaged.IsChecked == true; prefs.NormalAttackCommand = normalAttack.Text;
             prefs.BackstabWeapon = bsWeapon.Text; prefs.NormalWeapon = normalWeapon.Text; prefs.AlternateWeapon = alternateWeapon.Text;
             prefs.Shield = shield.Text; prefs.PreBackstabCommand = preBs.Text; prefs.PostBackstabCommand = postBs.Text;
+            if (ViewModel is not null) ViewModel.AutomationOptions.Combat.PreAttackCommand = preAttack.Text.Trim();
             prefs.SpellCombatResetCommand = spellReset.Text; prefs.MaxTotalExperiencePerRoom = Parse(maxExp, prefs.MaxTotalExperiencePerRoom);
             prefs.MinimumMobsPerRoom = Parse(minMobs, prefs.MinimumMobsPerRoom); prefs.MaximumMobsPerRoom = Parse(maxMobs, prefs.MaximumMobsPerRoom);
             if (ViewModel is not null) await ViewModel.SaveClassicCombatPreferencesAsync(session); dialog.Close();
@@ -1359,7 +1383,7 @@ public partial class ClientTerminalWindow : Window
         root.Children.Add(new ScrollViewer { Content = content, VerticalScrollBarVisibility = ScrollBarVisibility.Auto });
 
         help.Click += (_, _) => MessageBox.Show(dialog,
-            "Reforged client health thresholds are stored per session. They are consumed by the shared Client automation runtime and never modify Host game data.",
+            "Health automation uses captured HP, mana/Kai, learned spells and active effects. It never guesses an unknown spell and Emergency Stop blocks every automatic recovery command.",
             "Health automation help", MessageBoxButton.OK, MessageBoxImage.Information);
         cancel.Click += (_, _) => dialog.Close();
         ok.Click += async (_, _) =>
@@ -1415,6 +1439,8 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null) return;
         var options = ViewModel.AutomationOptions;
         AutoCombatMenu.IsChecked = options.Combat.AutoAttack;
+        AutoPreAttackMenu.IsChecked = options.Combat.AutoPreAttack;
+        AutoNukeMenu.IsChecked = options.Spells.AutoNuke;
         AutoRestHealMenu.IsChecked = options.Health.AutoHeal && options.Health.AutoRest;
         AutoBlessMenu.IsChecked = options.Spells.MaintainBless;
         AutoLightMenu.IsChecked = options.Spells.MaintainRoomLight;
@@ -1454,6 +1480,7 @@ public partial class ClientTerminalWindow : Window
         save.Click += async (_, _) =>
         {
             capabilities.AwayFromKeyboardEnabled = enabled.IsChecked == true;
+            if (capabilities.AwayFromKeyboardEnabled) capabilities.CommunicationsAutomationEnabled = true;
             capabilities.AwayFromKeyboardMessage = string.Join(" ", message.Text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
             capabilities.AwayFromKeyboardReplyCooldownSeconds = int.TryParse(cooldown.Text, out var seconds) ? Math.Clamp(seconds, 30, 86400) : 300;
             await ViewModel.SaveAutomationAsync();
@@ -1503,15 +1530,89 @@ public partial class ClientTerminalWindow : Window
         });
         root.Children.Add(new TextBlock
         {
-            Text = "These settings are saved per client profile. Command execution remains safety-locked until the full Reforged client parity gate is released.",
+            Text = "These settings are saved per client profile. Each verified command family can be enabled independently, and Emergency Stop overrides all of them.",
             TextWrapping = TextWrapping.Wrap,
             Margin = new Thickness(0, 0, 0, 14)
+        });
+        var enabledNames = new List<string>();
+        if (capabilities.NavigationEnabled) enabledNames.Add("Navigation");
+        if (capabilities.CombatEnabled) enabledNames.Add("Combat");
+        if (capabilities.HealthRecoveryEnabled) enabledNames.Add("Recovery");
+        if (capabilities.SpellMaintenanceEnabled) enabledNames.Add("Maintained spells");
+        if (capabilities.PartyAutomationEnabled) enabledNames.Add("Party");
+        if (capabilities.LootAutomationEnabled) enabledNames.Add("Loot");
+        if (capabilities.RoamingAutomationEnabled) enabledNames.Add("Roaming");
+        if (capabilities.PvpAutomationEnabled) enabledNames.Add("PvP");
+        if (capabilities.CommunicationsAutomationEnabled) enabledNames.Add("Communication");
+        root.Children.Add(new TextBlock
+        {
+            Text = capabilities.EmergencyStop
+                ? "CURRENT STATUS: EMERGENCY STOP — all automatic commands are blocked."
+                : $"CURRENT STATUS: Running switches — {(enabledNames.Count == 0 ? "none" : string.Join(", ", enabledNames))}.",
+            Foreground = capabilities.EmergencyStop ? Brushes.DarkRed : Brushes.DarkGreen,
+            FontWeight = FontWeights.Bold,
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(0, 0, 0, 12)
         });
 
         var aliases = new CheckBox { Content = "Aliases", IsChecked = capabilities.AliasesEnabled, Margin = new Thickness(3) };
         var macros = new CheckBox { Content = "Approved macros", IsChecked = capabilities.MacrosEnabled, Margin = new Thickness(3) };
         var triggers = new CheckBox { Content = "Text triggers", IsChecked = capabilities.TextTriggersEnabled, Margin = new Thickness(3) };
         var eventsEnabled = new CheckBox { Content = "Timed events", IsChecked = capabilities.TimedEventsEnabled, Margin = new Thickness(3) };
+        var navigation = new CheckBox
+        {
+            Content = "Verified navigation (GOTO, loops, backtrack and recovery)",
+            IsChecked = capabilities.NavigationEnabled, Margin = new Thickness(3),
+            ToolTip = "Runs only decoded or calculated routes and stops when the confirmed room does not match."
+        };
+        var combat = new CheckBox
+        {
+            Content = "Verified combat automation",
+            IsChecked = capabilities.CombatEnabled, Margin = new Thickness(3),
+            ToolTip = "Targets only living hostile creatures reported by the connected server."
+        };
+        var healthRecovery = new CheckBox
+        {
+            Content = "Health, healing and recovery",
+            IsChecked = capabilities.HealthRecoveryEnabled, Margin = new Thickness(3),
+            ToolTip = "Uses captured HP, mana/Kai, learned spells and active effects."
+        };
+        var spellMaintenance = new CheckBox
+        {
+            Content = "Buffs and maintained spells",
+            IsChecked = capabilities.SpellMaintenanceEnabled, Margin = new Thickness(3),
+            ToolTip = "Maintains configured blessing, armor and room-light spells only when they are learned, affordable and absent from authoritative live state."
+        };
+        var partyAutomation = new CheckBox
+        {
+            Content = "Party coordination and Defend",
+            IsChecked = capabilities.PartyAutomationEnabled, Margin = new Thickness(3),
+            ToolTip = "Uses the authoritative party roster and only accepts invitations from the configured leader or trusted players."
+        };
+        var lootAutomation = new CheckBox
+        {
+            Content = "Loot, cash, selling and deposits",
+            IsChecked = capabilities.LootAutomationEnabled, Margin = new Thickness(3),
+            ToolTip = "Uses live room items, explicit filters, encumbrance limits and decoded bank/shop services."
+        };
+        var roamingAutomation = new CheckBox
+        {
+            Content = "Room-entry actions and roaming utility",
+            IsChecked = capabilities.RoamingAutomationEnabled, Margin = new Thickness(3),
+            ToolTip = "Runs configured search, sneak, hide, track and proven trap actions after a room is confirmed."
+        };
+        var pvpAutomation = new CheckBox
+        {
+            Content = "PvP responses and party defense",
+            IsChecked = capabilities.PvpAutomationEnabled, Margin = new Thickness(3),
+            ToolTip = "Responds only to verified same-room attackers when SYSOP PvP is enabled and the room is not proven safe."
+        };
+        var communicationsAutomation = new CheckBox
+        {
+            Content = "AFK replies and trusted communication",
+            IsChecked = capabilities.CommunicationsAutomationEnabled, Margin = new Thickness(3),
+            ToolTip = "Allows AFK replies and explicitly authorized coordination commands."
+        };
         var emergency = new CheckBox
         {
             Content = "EMERGENCY STOP — block every automatic command",
@@ -1524,6 +1625,15 @@ public partial class ClientTerminalWindow : Window
         root.Children.Add(macros);
         root.Children.Add(triggers);
         root.Children.Add(eventsEnabled);
+        root.Children.Add(navigation);
+        root.Children.Add(combat);
+        root.Children.Add(healthRecovery);
+        root.Children.Add(spellMaintenance);
+        root.Children.Add(partyAutomation);
+        root.Children.Add(lootAutomation);
+        root.Children.Add(roamingAutomation);
+        root.Children.Add(pvpAutomation);
+        root.Children.Add(communicationsAutomation);
         root.Children.Add(emergency);
 
         root.Children.Add(new TextBlock { Text = "Aliases — one per line: shortcut = command", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 14, 0, 3) });
@@ -1566,6 +1676,15 @@ public partial class ClientTerminalWindow : Window
             capabilities.MacrosEnabled = macros.IsChecked == true;
             capabilities.TextTriggersEnabled = triggers.IsChecked == true;
             capabilities.TimedEventsEnabled = eventsEnabled.IsChecked == true;
+            capabilities.NavigationEnabled = navigation.IsChecked == true;
+            capabilities.CombatEnabled = combat.IsChecked == true;
+            capabilities.HealthRecoveryEnabled = healthRecovery.IsChecked == true;
+            capabilities.SpellMaintenanceEnabled = spellMaintenance.IsChecked == true;
+            capabilities.PartyAutomationEnabled = partyAutomation.IsChecked == true;
+            capabilities.LootAutomationEnabled = lootAutomation.IsChecked == true;
+            capabilities.RoamingAutomationEnabled = roamingAutomation.IsChecked == true;
+            capabilities.PvpAutomationEnabled = pvpAutomation.IsChecked == true;
+            capabilities.CommunicationsAutomationEnabled = communicationsAutomation.IsChecked == true;
             capabilities.EmergencyStop = emergency.IsChecked == true;
             capabilities.Aliases.Clear();
             foreach (var line in aliasEditor.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
@@ -1610,7 +1729,12 @@ public partial class ClientTerminalWindow : Window
             if (capabilities.EmergencyStop)
                 await ViewModel.StopAllAutomationAsync();
             else
+            {
+                if (!capabilities.NavigationEnabled)
+                    foreach (var session in ViewModel.LiveSessions)
+                        ViewModel.StopRoute(session);
                 await ViewModel.SaveAutomationAsync();
+            }
             dialog.Close();
         };
         dialog.Content = new ScrollViewer { Content = root, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
@@ -1645,11 +1769,120 @@ public partial class ClientTerminalWindow : Window
             "• Stop All\n\n" +
             "BBS-only upload, download, and hangup suppression controls are intentionally absent. " +
             "Who Is Home is reserved for the server-backed boss/home tracker. " +
-            "Visible grey automation controls are intentionally unavailable rather than silent placeholders. " +
-            "Automation execution remains frozen until the complete MegaMUD client implementation is ready.",
+            "Automation capabilities are controlled independently in Client Options. Emergency Stop blocks every automatic command without blocking manual play.",
             "Reforged Client Status",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
+    }
+
+    private void HelpCenterClicked(object sender, RoutedEventArgs e) => ShowHelpCenter();
+
+    private void ShowHelpCenter(string initialQuery = "")
+    {
+        var dialog = new Window
+        {
+            Title = "Reforged Help Center",
+            Owner = this,
+            Width = 940,
+            Height = 680,
+            MinWidth = 680,
+            MinHeight = 460,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Background = SystemColors.ControlBrush,
+            Foreground = SystemColors.ControlTextBrush,
+            FontFamily = new FontFamily("Segoe UI"),
+            FontSize = 13
+        };
+        var root = new Grid { Margin = new Thickness(14) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(285) });
+        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(14) });
+        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+        var search = new TextBox
+        {
+            Text = initialQuery,
+            MinHeight = 30,
+            Padding = new Thickness(7, 4, 7, 4),
+            ToolTip = "Search topics, commands, and features",
+            VerticalContentAlignment = VerticalAlignment.Center
+        };
+        System.Windows.Automation.AutomationProperties.SetName(search, "Search Reforged help");
+        Grid.SetColumnSpan(search, 3);
+        root.Children.Add(search);
+
+        var topics = new ListBox
+        {
+            Margin = new Thickness(0, 10, 0, 10),
+            DisplayMemberPath = nameof(ClientHelpTopic.Title),
+            HorizontalContentAlignment = HorizontalAlignment.Stretch
+        };
+        System.Windows.Automation.AutomationProperties.SetName(topics, "Help topics");
+        Grid.SetRow(topics, 1);
+        root.Children.Add(topics);
+
+        var article = new TextBox
+        {
+            Margin = new Thickness(0, 10, 0, 10),
+            IsReadOnly = true,
+            TextWrapping = TextWrapping.Wrap,
+            AcceptsReturn = true,
+            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
+            Padding = new Thickness(14),
+            Background = Brushes.White,
+            Foreground = Brushes.Black,
+            BorderBrush = new SolidColorBrush(Color.FromRgb(180, 180, 180)),
+            FontSize = 14
+        };
+        System.Windows.Automation.AutomationProperties.SetName(article, "Selected help article");
+        Grid.SetRow(article, 1);
+        Grid.SetColumn(article, 2);
+        root.Children.Add(article);
+
+        var resultStatus = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
+        Grid.SetRow(resultStatus, 2);
+        root.Children.Add(resultStatus);
+        var close = NewDialogButton("Close", 84);
+        close.IsDefault = true;
+        close.IsCancel = true;
+        close.HorizontalAlignment = HorizontalAlignment.Right;
+        Grid.SetRow(close, 2);
+        Grid.SetColumn(close, 2);
+        root.Children.Add(close);
+
+        void RenderArticle()
+        {
+            if (topics.SelectedItem is not ClientHelpTopic topic)
+            {
+                article.Text = "No help topic matches this search. Try a command such as EXP, PAR, WHOHOME, GOTO, or EMERGENCY STOP.";
+                return;
+            }
+            article.Text = $"{topic.Title}\r\n{topic.Category}\r\n\r\n{topic.Summary}\r\n\r\n{topic.Content}";
+            article.ScrollToHome();
+        }
+
+        void RefreshTopics()
+        {
+            var selectedId = (topics.SelectedItem as ClientHelpTopic)?.Id;
+            var results = ClientHelpCatalog.Search(search.Text);
+            topics.ItemsSource = results;
+            topics.SelectedItem = results.FirstOrDefault(topic => topic.Id == selectedId) ?? results.FirstOrDefault();
+            resultStatus.Text = results.Count == ClientHelpCatalog.Topics.Count
+                ? $"{results.Count} help topics"
+                : $"{results.Count} matching topic(s)";
+            RenderArticle();
+        }
+
+        search.TextChanged += (_, _) => RefreshTopics();
+        topics.SelectionChanged += (_, _) => RenderArticle();
+        close.Click += (_, _) => dialog.Close();
+        dialog.Content = root;
+        RefreshTopics();
+        dialog.Loaded += (_, _) => { search.Focus(); search.SelectAll(); };
+        dialog.Show();
     }
 
     private void KeyboardHelpClicked(object sender, RoutedEventArgs e)
@@ -1676,7 +1909,7 @@ public partial class ClientTerminalWindow : Window
             this,
             "MajorMUD Reforged Client\n\n" +
             "The single per-session client for MajorMUD Reforged, incorporating the required MegaMUD automation and MMExplorer data features.\n\n" +
-            "This build uses manual terminal mode while incomplete automation remains frozen.",
+            "Manual play, independent automation capabilities, verified routes, live maps, and server-backed Librarium reference tools are integrated in this client.",
             "About Reforged Client",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
@@ -2037,10 +2270,11 @@ public partial class ClientTerminalWindow : Window
                $"Effects captured {FormatTimestamp(session.ActiveEffectsUpdatedAt)}";
     }
 
-    private static string BuildSessionStatistics(ClientSessionConnection session)
+    private string BuildSessionStatistics(ClientSessionConnection session)
     {
         var elapsed = session.ConnectedAt is { } connectedAt ? DateTimeOffset.Now - connectedAt : TimeSpan.Zero;
         var experiencePerHour = elapsed.TotalSeconds > 0 ? session.SessionExperienceGained / elapsed.TotalHours : 0;
+        var activity = BuildAutomationActivity(session);
         return $"State              {session.ConnectionState}\n" +
                $"Connected at       {FormatTimestamp(session.ConnectedAt)}\n" +
                $"Elapsed            {FormatDuration(elapsed)}\n\n" +
@@ -2053,9 +2287,52 @@ public partial class ClientTerminalWindow : Window
                $"Last command       {DisplayOrUnknown(session.LastCommandText)}\n" +
                $"Command origin     {session.LastCommandOrigin}\n" +
                $"Last command at    {FormatTimestamp(session.LastCommandAt)}\n" +
+               $"Automation state   {activity.State}\n" +
+               $"Enabled systems    {activity.EnabledSystems}\n" +
+               $"Last auto action   {activity.LastAction}\n" +
+               $"Action reason      {activity.Reason}\n" +
                $"Last combat event  {session.LastCombatEvent}" + (session.LastCombatAmount > 0 ? $" ({session.LastCombatAmount:N0})" : string.Empty) + "\n" +
                $"Last combat at     {FormatTimestamp(session.LastCombatEventAt)}\n" +
+               $"Combat automation  {DisplayOrUnknown(session.CombatAutomationStatus)}\n" +
+               $"Survival automation {DisplayOrUnknown(session.SurvivalAutomationStatus)}\n" +
+               $"Spell automation    {DisplayOrUnknown(session.SpellAutomationStatus)}\n" +
+               $"Party automation    {DisplayOrUnknown(session.PartyAutomationStatus)}\n" +
+               $"PvP automation      {DisplayOrUnknown(session.PvpAutomationStatus)}\n" +
+               $"Roaming automation  {DisplayOrUnknown(session.RoamingAutomationStatus)}\n" +
+               $"Loot automation     {DisplayOrUnknown(session.LootAutomationStatus)}\n" +
                $"Last server data   {FormatTimestamp(session.LastServerActivityAt)}";
+    }
+
+    private (string State, string EnabledSystems, string LastAction, string Reason) BuildAutomationActivity(ClientSessionConnection session)
+    {
+        var capabilities = ViewModel?.AutomationProfile.Capabilities;
+        if (capabilities is null) return ("Unavailable", "None", "None", "Client profile is unavailable.");
+        var enabled = new List<string>();
+        if (capabilities.NavigationEnabled) enabled.Add("Navigation");
+        if (capabilities.CombatEnabled) enabled.Add("Combat");
+        if (capabilities.HealthRecoveryEnabled) enabled.Add("Recovery");
+        if (capabilities.SpellMaintenanceEnabled) enabled.Add("Spells");
+        if (capabilities.PartyAutomationEnabled) enabled.Add("Party");
+        if (capabilities.LootAutomationEnabled) enabled.Add("Loot");
+        if (capabilities.RoamingAutomationEnabled) enabled.Add("Roaming");
+        if (capabilities.PvpAutomationEnabled) enabled.Add("PvP");
+        if (capabilities.CommunicationsAutomationEnabled) enabled.Add("Communication");
+        if (capabilities.TimedEventsEnabled) enabled.Add("Events");
+        var statuses = new[] { session.CombatAutomationStatus, session.SurvivalAutomationStatus, session.SpellAutomationStatus,
+            session.PartyAutomationStatus, session.PvpAutomationStatus, session.RoamingAutomationStatus, session.LootAutomationStatus }
+            .Where(value => !string.IsNullOrWhiteSpace(value)).ToArray();
+        var reason = statuses.LastOrDefault() ?? "No automatic decision has been recorded for this connection.";
+        var state = session.ConnectionState != ClientConnectionState.Connected ? "Disconnected" :
+            capabilities.EmergencyStop ? "Emergency stopped" :
+            statuses.Any(value => value.Contains("failed", StringComparison.OrdinalIgnoreCase) || value.Contains("stopped safely", StringComparison.OrdinalIgnoreCase)) ? "Failed safely" :
+            statuses.Any(value => value.Contains("waiting", StringComparison.OrdinalIgnoreCase) || value.Contains("paused", StringComparison.OrdinalIgnoreCase)) ? "Waiting" :
+            session.LastCommandOrigin is ClientCommandOrigin.ClientAutomation or ClientCommandOrigin.RouteAutomation &&
+                session.LastCommandAt is { } sentAt && DateTimeOffset.Now - sentAt < TimeSpan.FromSeconds(10) ? "Running" :
+            enabled.Count > 0 ? "Enabled / idle" : "Disabled";
+        var lastAction = session.LastCommandOrigin is ClientCommandOrigin.ClientAutomation or ClientCommandOrigin.RouteAutomation
+            ? $"{DisplayOrUnknown(session.LastCommandText)} at {FormatTimestamp(session.LastCommandAt)}"
+            : "No automatic command captured.";
+        return (state, enabled.Count == 0 ? "None" : string.Join(", ", enabled), lastAction, reason);
     }
 
     private static string DisplayOrUnknown(string? value) => string.IsNullOrWhiteSpace(value) ? "Unknown" : value;
@@ -2387,6 +2664,29 @@ public partial class ClientTerminalWindow : Window
         roomCommands.Columns.Add(new DataGridTextColumn { Header = "Type", Binding = new Binding(nameof(ClientRoomCommandState.InteractionType)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
         roomCommands.Columns.Add(new DataGridTextColumn { Header = "Requirements", Binding = new Binding(nameof(ClientRoomCommandState.Requirements)), Width = new DataGridLength(1.5, DataGridLengthUnitType.Star) });
         sideTabs.Items.Add(new TabItem { Header = "Room commands", Content = roomCommands });
+        var pvpStatus = new TextBlock { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 10), FontWeight = FontWeights.Bold };
+        var pvpPlayers = new ComboBox { ItemsSource = session.CurrentRoomPlayers, Margin = new Thickness(0, 0, 0, 8), ToolTip = "Verified players currently in this room" };
+        var pvpAttack = NewDialogButton("Attack selected", 110);
+        var pvpFlee = NewDialogButton("Flee", 70);
+        var pvpRefresh = NewDialogButton("Refresh PvP", 90);
+        var pvpDefendParty = new CheckBox
+        {
+            Content = "MegaMUD Defend party members",
+            IsChecked = ViewModel.AutomationOptions.PvP.DefendPartyMembers,
+            Margin = new Thickness(0, 2, 0, 10),
+            ToolTip = "Automatically attack a verified same-room player who attacks a current party member. PvP safety and Emergency Stop still apply."
+        };
+        var pvpButtons = new StackPanel { Orientation = Orientation.Horizontal };
+        pvpButtons.Children.Add(pvpAttack);
+        pvpButtons.Children.Add(pvpFlee);
+        pvpButtons.Children.Add(pvpRefresh);
+        var pvpPanel = new StackPanel { Margin = new Thickness(8) };
+        pvpPanel.Children.Add(pvpStatus);
+        pvpPanel.Children.Add(new TextBlock { Text = "Players in this room", Margin = new Thickness(0, 0, 0, 4) });
+        pvpPanel.Children.Add(pvpPlayers);
+        pvpPanel.Children.Add(pvpDefendParty);
+        pvpPanel.Children.Add(pvpButtons);
+        sideTabs.Items.Add(new TabItem { Header = "PvP", Content = pvpPanel });
         var inspectionKey = new TextBox { ToolTip = "Exact map:room key, for example 1:2189", Margin = new Thickness(0, 0, 0, 6) };
         var inspectRoom = NewDialogButton("Inspect live room", 115);
         var inspectionOutput = new TextBox
@@ -2413,6 +2713,8 @@ public partial class ClientTerminalWindow : Window
         var close = NewDialogButton("Close", 70);
         var refresh = NewDialogButton("Refresh room", 95);
         var centerCurrent = NewDialogButton("Select current", 95);
+        var walkSelected = NewDialogButton("Walk to selected", 110);
+        walkSelected.IsEnabled = false;
         var zoomOut = NewDialogButton("−", 34);
         var zoomReset = NewDialogButton("100%", 52);
         var zoomIn = NewDialogButton("+", 34);
@@ -2424,14 +2726,14 @@ public partial class ClientTerminalWindow : Window
         };
         var topologyLegend = new TextBlock
         {
-            Text = "Rooms: gold you · green players · cyan shop · pink boss live · purple lair · lime command · red NPC  |  Links: gray normal · orange one-way · purple hidden · red blocked",
+            Text = "Rooms: gold you · red active PvP · blue party · purple trusted · green players · cyan discovered  |  Links: gray normal · orange one-way · purple hidden · red blocked",
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 12, 0)
         };
         var showHidden = new CheckBox
         {
             Content = "Show hidden objects",
-            IsChecked = false,
+            IsChecked = ViewModel.MapProfile.ShowHiddenObjects,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 12, 0),
             ToolTip = "Map reference only. This does not reveal hidden objects to the character."
@@ -2439,7 +2741,7 @@ public partial class ClientTerminalWindow : Window
         var fogOfWar = new CheckBox
         {
             Content = "Fog of war",
-            IsChecked = true,
+            IsChecked = ViewModel.MapProfile.FogOfWarEnabled,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 12, 0),
             ToolTip = "On: discovered rooms only. Off: reveal decoded undiscovered topology without marking it discovered."
@@ -2453,6 +2755,7 @@ public partial class ClientTerminalWindow : Window
         footer.Children.Add(zoomReset);
         footer.Children.Add(zoomOut);
         footer.Children.Add(centerCurrent);
+        footer.Children.Add(walkSelected);
         footer.Children.Add(mapSelector);
         footer.Children.Add(fogOfWar);
         footer.Children.Add(showHidden);
@@ -2475,9 +2778,11 @@ public partial class ClientTerminalWindow : Window
         {
             var mappedPlayers = session.CurrentRoomTopologyNodes.Sum(node => node.Players.Length);
             var liveBosses = session.CurrentRoomTopologyNodes.Count(node => node.BossAlive);
+            var roomFreshness = session.RoomUpdatedAt is not { } roomAt ? "loading live room" :
+                DateTimeOffset.Now - roomAt > TimeSpan.FromSeconds(15) ? "live room data is stale" : "live now";
             header.Text = $"{DisplayOrUnknown(session.CurrentRoomName)}  [{DisplayOrUnknown(session.CurrentRoomKey)}]  ·  " +
                           $"{mappedPlayers:N0} other player(s) · {liveBosses:N0} boss(es) live · Exits: " +
-                          (session.CurrentRoomExits.Count == 0 ? "none captured" : string.Join(", ", session.CurrentRoomExits));
+                          (session.CurrentRoomExits.Count == 0 ? "none captured" : string.Join(", ", session.CurrentRoomExits)) + $" · {roomFreshness}";
             liveRoom.Text =
                 $"{DisplayOrUnknown(session.CurrentRoomName)}\n" +
                 $"Key: {DisplayOrUnknown(session.CurrentRoomKey)}\n\n" +
@@ -2489,13 +2794,30 @@ public partial class ClientTerminalWindow : Window
                 $"Exits: {(session.CurrentRoomExits.Count == 0 ? "none" : string.Join(", ", session.CurrentRoomExits))}\n\n" +
                 $"Room commands: {(session.CurrentRoomCommands.Count == 0 ? "none decoded" : string.Join(", ", session.CurrentRoomCommands))}\n\n" +
                 $"Observed: {FormatTimestamp(session.RoomUpdatedAt)}";
+            var pvp = session.PvpState;
+            pvpStatus.Text = pvp is null
+                ? "Awaiting private PvP state from the connected server."
+                : $"{session.PvpRealmSummary}\n{session.PvpCombatSummary}\n" +
+                  $"Room: {session.CurrentRoomName} [{session.CurrentRoomKey}]\n" +
+                  $"HP {session.HealthCurrent}/{session.HealthMaximum} ({session.HealthPercent}%) · " +
+                  $"Mana/Kai {session.ManaCurrent}/{session.ManaMaximum} ({session.ManaPercent}%)";
+            var canInitiate = pvp is { WorldPvpEnabled: true, SafeRoom: false, Active: false } && pvpPlayers.SelectedItem is string;
+            pvpAttack.IsEnabled = canInitiate;
+            pvpFlee.IsEnabled = pvp?.Active == true;
+            walkSelected.IsEnabled = selectedMapNodeKey.Length > 0 &&
+                !selectedMapNodeKey.Equals(session.CurrentRoomKey, StringComparison.OrdinalIgnoreCase) &&
+                ViewModel.AutomationProfile.Capabilities.NavigationEnabled &&
+                !ViewModel.AutomationProfile.Capabilities.EmergencyStop;
             RenderLiveMapCanvas(
                 canvas, session, ViewModel.MapProfile, fogOfWar.IsChecked != true, selectedMapNodeKey,
+                session.PartyMembers.Select(member => member.Name).ToHashSet(StringComparer.OrdinalIgnoreCase),
+                ViewModel.CoordinationProfile.TrustedControllers.Where(controller => controller.Enabled)
+                    .Select(controller => controller.PlayerName).ToHashSet(StringComparer.OrdinalIgnoreCase),
                 node =>
                 {
                     selectedMapNodeKey = node.RoomKey;
                     inspectionKey.Text = node.RoomKey;
-                    sideTabs.SelectedIndex = 3;
+                    sideTabs.SelectedIndex = 4;
                     _ = InspectRoomAsync(node.RoomKey);
                     Render();
                 });
@@ -2528,7 +2850,8 @@ public partial class ClientTerminalWindow : Window
                 return;
             }
             inspectionOutput.Text =
-                $"{room.Name} [{room.RoomKey}]\nCaptured: {room.CapturedAt.ToLocalTime():g}\n\n{room.Description}\n\n" +
+                $"{room.Name} [{room.RoomKey}]\nCaptured: {room.CapturedAt.ToLocalTime():g}" +
+                (DateTimeOffset.UtcNow - room.CapturedAt > TimeSpan.FromSeconds(15) ? " · STALE — refreshing" : " · LIVE") + $"\n\n{room.Description}\n\n" +
                 $"Live NPCs: {(room.Npcs.Length == 0 ? "none" : string.Join(", ", room.Npcs.Select(npc => npc.Alive
                     ? $"{npc.Name} ALIVE HP {npc.CurrentHitPoints}/{npc.MaximumHitPoints} · {npc.Disposition} · level {npc.Level} · {npc.ExperienceReward:N0} XP"
                     : $"{npc.Name} DEAD, respawn {(npc.RespawnAtUtc is null ? "unknown" : FormatCountdown(npc.RespawnAtUtc.Value - DateTimeOffset.UtcNow))}")))}\n" +
@@ -2553,7 +2876,7 @@ public partial class ClientTerminalWindow : Window
                 $"Shops: {DisplayOrUnknown(room.KnownShops)}\nNotes: {DisplayOrUnknown(room.Notes)}";
         }
         var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        timer.Tick += (_, _) => RenderInspection();
+        timer.Tick += (_, _) => { Render(); RenderInspection(); RenderDiscoveredRooms(); };
         var liveRefreshInProgress = false;
         int? viewedMapId = null;
         var liveRefresh = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
@@ -2593,6 +2916,7 @@ public partial class ClientTerminalWindow : Window
             try
             {
                 await RefreshRoomDataAsync();
+                await ViewModel.SendClientProtocolCommandAsync(session, "clientdata pvp");
                 var inspectedKey = inspectionKey.Text.Trim();
                 if (inspectedKey.Length > 0)
                     await ViewModel.SendClientProtocolCommandAsync(session, $"roomdata inspect {inspectedKey}" + (showHidden.IsChecked == true ? " hidden" : string.Empty));
@@ -2602,10 +2926,42 @@ public partial class ClientTerminalWindow : Window
             finally { liveRefreshInProgress = false; }
         };
         refresh.Click += async (_, _) => await RefreshRoomDataAsync();
-        showHidden.Checked += async (_, _) => await RefreshRoomDataAsync();
-        showHidden.Unchecked += async (_, _) => await RefreshRoomDataAsync();
-        fogOfWar.Checked += (_, _) => Render();
-        fogOfWar.Unchecked += (_, _) => Render();
+        pvpRefresh.Click += async (_, _) =>
+        {
+            await ViewModel.SendClientProtocolCommandAsync(session, "clientdata pvp");
+            await RefreshRoomDataAsync();
+            Render();
+        };
+        pvpPlayers.SelectionChanged += (_, _) => Render();
+        pvpDefendParty.Checked += async (_, _) =>
+        {
+            ViewModel.AutomationOptions.PvP.DefendPartyMembers = true;
+            ViewModel.AutomationOptions.PvP.Enabled = true;
+            ViewModel.AutomationProfile.Capabilities.PvpAutomationEnabled = true;
+            await ViewModel.SaveAutomationOptionsAsync();
+        };
+        pvpDefendParty.Unchecked += async (_, _) =>
+        {
+            ViewModel.AutomationOptions.PvP.DefendPartyMembers = false;
+            await ViewModel.SaveAutomationOptionsAsync();
+        };
+        pvpAttack.Click += async (_, _) =>
+        {
+            if (pvpPlayers.SelectedItem is not string target || string.IsNullOrWhiteSpace(target)) return;
+            await ViewModel.SendTerminalCommandAsync(session, $"attack {target}");
+            await ViewModel.SendClientProtocolCommandAsync(session, "clientdata pvp");
+            Render();
+        };
+        pvpFlee.Click += async (_, _) =>
+        {
+            await ViewModel.SendTerminalCommandAsync(session, "flee");
+            await ViewModel.SendClientProtocolCommandAsync(session, "clientdata pvp");
+            Render();
+        };
+        showHidden.Checked += async (_, _) => { ViewModel.MapProfile.ShowHiddenObjects = true; await RefreshRoomDataAsync(); };
+        showHidden.Unchecked += async (_, _) => { ViewModel.MapProfile.ShowHiddenObjects = false; await RefreshRoomDataAsync(); };
+        fogOfWar.Checked += (_, _) => { ViewModel.MapProfile.FogOfWarEnabled = true; Render(); };
+        fogOfWar.Unchecked += (_, _) => { ViewModel.MapProfile.FogOfWarEnabled = false; Render(); };
         mapSelector.SelectionChanged += async (_, _) =>
         {
             if (mapSelector.SelectedItem is not ClientMapCatalogEntry selected) return;
@@ -2688,6 +3044,12 @@ public partial class ClientTerminalWindow : Window
             sideTabs.SelectedIndex = 0;
             Render();
         };
+        walkSelected.Click += async (_, _) =>
+        {
+            if (selectedMapNodeKey.Length == 0) return;
+            await ViewModel.StartRouteToRoomAsync(session, selectedMapNodeKey);
+            Render();
+        };
         close.Click += (_, _) => dialog.Close();
         Render();
         RenderDiscoveredRooms();
@@ -2697,6 +3059,7 @@ public partial class ClientTerminalWindow : Window
         liveRefresh.Start();
         dialog.Show();
         _ = RefreshRoomDataAsync();
+        _ = ViewModel.SendClientProtocolCommandAsync(session, "clientdata pvp");
     }
 
     private void WhoIsHomeClicked(object sender, RoutedEventArgs e)
@@ -2774,6 +3137,8 @@ public partial class ClientTerminalWindow : Window
         ClientMapProfile profile,
         bool showUndiscovered,
         string selectedRoomKey,
+        IReadOnlySet<string> partyMembers,
+        IReadOnlySet<string> trustedPlayers,
         Action<ClientRoomTopologyNode>? selectRoom)
     {
         canvas.Children.Clear();
@@ -2832,9 +3197,17 @@ public partial class ClientTerminalWindow : Window
                 foreach (var node in positioned)
                 {
                     var point = positions[node.RoomKey];
+                    var hasActiveOpponent = session.PvpState is { Active: true } pvp &&
+                        node.RoomKey.Equals(pvp.RoomId, StringComparison.OrdinalIgnoreCase) &&
+                        node.Players.Any(player => player.Equals(pvp.OpponentName, StringComparison.OrdinalIgnoreCase));
+                    var hasParty = node.Players.Any(partyMembers.Contains);
+                    var hasTrusted = node.Players.Any(trustedPlayers.Contains);
+                    var fill = hasActiveOpponent ? Brushes.OrangeRed : node.Current ? Brushes.Gold :
+                        hasParty ? Brushes.DodgerBlue : hasTrusted ? Brushes.MediumPurple :
+                        node.Players.Length > 0 ? Brushes.LimeGreen : discovered.Contains(node.RoomKey) ? Brushes.DeepSkyBlue : Brushes.SlateGray;
                     AddTopologyMapRoom(canvas, new Point(X(point.X), Y(point.Y)), node,
-                        node.Current ? Brushes.Gold : node.Players.Length > 0 ? Brushes.LimeGreen : discovered.Contains(node.RoomKey) ? Brushes.DeepSkyBlue : Brushes.SlateGray,
-                        node.RoomKey.Equals(selectedRoomKey, StringComparison.OrdinalIgnoreCase), selectRoom);
+                        fill,
+                        node.RoomKey.Equals(selectedRoomKey, StringComparison.OrdinalIgnoreCase), hasActiveOpponent, hasParty, hasTrusted, selectRoom);
                 }
                 return;
             }
@@ -2908,10 +3281,16 @@ public partial class ClientTerminalWindow : Window
         ClientRoomTopologyNode node,
         Brush fill,
         bool selected,
+        bool hasActiveOpponent,
+        bool hasParty,
+        bool hasTrusted,
         Action<ClientRoomTopologyNode>? selectRoom)
     {
         var facts = new List<string> { $"{node.RoomName} [{node.RoomKey}]" };
         if (node.Current) facts.Add("YOU ARE HERE");
+        if (hasActiveOpponent) facts.Add("ACTIVE PVP OPPONENT HERE");
+        if (hasParty) facts.Add("PARTY MEMBER HERE");
+        if (hasTrusted) facts.Add("TRUSTED PLAYER HERE");
         if (node.Players.Length > 0) facts.Add($"PLAYERS HERE NOW: {string.Join(", ", node.Players)}");
         if (node.BossAlive) facts.Add($"BOSS HERE NOW: {string.Join(", ", node.BossNames)}");
         else if (node.IsBossLair) facts.Add($"BOSS LAIR: {(node.BossNames.Length == 0 ? "decoded lair" : string.Join(", ", node.BossNames))}");
@@ -2962,7 +3341,7 @@ public partial class ClientTerminalWindow : Window
         }
     }
 
-    private static string FormatLibrariumRecord(string rawJson, out string[] references)
+    private static string FormatLibrariumRecord(string rawJson, out ClientLibrariumLink[] references)
     {
         var found = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         try
@@ -2970,7 +3349,8 @@ public partial class ClientTerminalWindow : Window
             using var document = JsonDocument.Parse(rawJson);
             var output = new StringBuilder();
             AppendLibrariumValue(document.RootElement, output, found, 0, string.Empty);
-            references = found.OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
+            references = found.OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+                .Select(value => new ClientLibrariumLink(value, FriendlyLibrariumReference(value))).ToArray();
             return output.ToString().TrimEnd();
         }
         catch (JsonException)
@@ -2980,10 +3360,18 @@ public partial class ClientTerminalWindow : Window
         }
     }
 
+    private static readonly HashSet<string> HiddenLibrariumFields = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "id", "canonical_id", "schema_version", "sha256", "compile_hash", "source_file", "source_files",
+        "source_path", "provenance", "evidence", "evidence_classification", "runtime_disposition", "validation",
+        "native_sha256", "native_symbol", "native_offset", "record_index"
+    };
+
     private static void AppendLibrariumValue(JsonElement value, StringBuilder output, ISet<string> references, int depth, string name)
     {
+        if (HiddenLibrariumFields.Contains(name) || name.EndsWith("_sha256", StringComparison.OrdinalIgnoreCase)) return;
         var indent = new string(' ', depth * 2);
-        var label = string.IsNullOrWhiteSpace(name) ? string.Empty : name == "•" ? "• " : name.Replace('_', ' ') + ": ";
+        var label = string.IsNullOrWhiteSpace(name) ? string.Empty : name == "•" ? "• " : FriendlyLibrariumLabel(name) + ": ";
         switch (value.ValueKind)
         {
             case JsonValueKind.Object:
@@ -2997,17 +3385,57 @@ public partial class ClientTerminalWindow : Window
                     AppendLibrariumValue(item, output, references, depth + 1, "•");
                 break;
             case JsonValueKind.String:
-                var text = value.GetString() ?? string.Empty;
+                var text = StripLibrariumFormatting(value.GetString() ?? string.Empty);
                 output.AppendLine(indent + label + text);
                 if (System.Text.RegularExpressions.Regex.IsMatch(text, @"^[A-Za-z][A-Za-z0-9_-]*\.\d+$")) references.Add(text);
                 break;
             case JsonValueKind.Null:
-                output.AppendLine(indent + label + "—");
+                break;
+            case JsonValueKind.True:
+                output.AppendLine(indent + label + "Yes");
+                break;
+            case JsonValueKind.False:
+                output.AppendLine(indent + label + "No");
                 break;
             default:
                 output.AppendLine(indent + label + value);
                 break;
         }
+    }
+
+    private static string FriendlyLibrariumLabel(string value)
+    {
+        var known = value.ToLowerInvariant() switch
+        {
+            "name" or "title" => "Name", "description" or "desc" => "Description",
+            "map_id" or "map" => "Map", "room_number" => "Room", "level" => "Level",
+            "experience" or "experience_reward" => "Experience reward", "gold" or "gold_reward" => "Gold reward",
+            "minimum_level" or "min_level" => "Minimum level", "maximum_level" or "max_level" => "Maximum level",
+            "mana_cost" => "Mana cost", "energy_cost" or "kai_cost" => "Energy/Kai cost",
+            "hit_points" or "maximum_hit_points" => "Hit points", "armor_class" => "Armor",
+            "damage_minimum" or "minimum_damage" => "Minimum damage", "damage_maximum" or "maximum_damage" => "Maximum damage",
+            "respawn_minutes" or "regen_time" => "Time until return", "requirements" => "Requirements",
+            "rewards" => "Rewards", "drops" or "items" => "Items", "exits" => "Exits",
+            "abilities" => "Abilities", "spells" => "Spells", "classes" => "Classes", "races" => "Races",
+            "room_commands" or "commands" => "Things you can do here", "npcs" or "monsters" => "Creatures",
+            _ => LibrariumFriendlyNames.Family(value)
+        };
+        return known;
+    }
+
+    private static string FriendlyLibrariumReference(string reference)
+    {
+        var separator = reference.IndexOf('.');
+        if (separator < 1) return "Related information";
+        var family = LibrariumFriendlyNames.Family(reference[..separator]);
+        var number = reference[(separator + 1)..];
+        return int.TryParse(number, out _) ? $"Related {family.ToLowerInvariant()} {number}" : $"Related {family.ToLowerInvariant()} information";
+    }
+
+    private static string StripLibrariumFormatting(string value)
+    {
+        var withoutAnsi = System.Text.RegularExpressions.Regex.Replace(value, "\\u001B\\[[0-?]*[ -/]*[@-~]", string.Empty);
+        return withoutAnsi.Replace("_", " ").Trim();
     }
 
     private void QuickToolsClicked(object sender, RoutedEventArgs e)
@@ -3193,8 +3621,8 @@ public partial class ClientTerminalWindow : Window
         controls.ColumnDefinitions.Add(new ColumnDefinition());
         controls.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(72) });
         Grid.SetColumnSpan(controls, 3);
-        var family = new ComboBox { DisplayMemberPath = nameof(ClientServerCatalogFamily.Name) };
-        var search = new TextBox { ToolTip = "Search this server family (80 characters maximum)." };
+        var family = new ComboBox { DisplayMemberPath = nameof(ClientServerCatalogFamily.DisplayName) };
+        var search = new TextBox { ToolTip = "Search names and descriptions." };
         Grid.SetColumn(search, 2);
         var searchButton = NewDialogButton("Search", 68); Grid.SetColumn(searchButton, 3);
         controls.Children.Add(family); controls.Children.Add(search); controls.Children.Add(searchButton); root.Children.Add(controls);
@@ -3202,11 +3630,12 @@ public partial class ClientTerminalWindow : Window
         Grid.SetRow(footer, 2); Grid.SetColumnSpan(footer, 3);
         var previous = NewDialogButton("Previous", 76);
         var next = NewDialogButton("Next", 64);
+        var back = NewDialogButton("Back", 58); back.IsEnabled = false;
         var refresh = NewDialogButton("Refresh catalog", 110);
         var close = NewDialogButton("Close", 70);
-        DockPanel.SetDock(close, Dock.Right); DockPanel.SetDock(next, Dock.Right); DockPanel.SetDock(previous, Dock.Right); DockPanel.SetDock(refresh, Dock.Right);
+        DockPanel.SetDock(close, Dock.Right); DockPanel.SetDock(next, Dock.Right); DockPanel.SetDock(previous, Dock.Right); DockPanel.SetDock(back, Dock.Right); DockPanel.SetDock(refresh, Dock.Right);
         var status = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
-        footer.Children.Add(close); footer.Children.Add(next); footer.Children.Add(previous); footer.Children.Add(refresh); footer.Children.Add(status);
+        footer.Children.Add(close); footer.Children.Add(next); footer.Children.Add(previous); footer.Children.Add(back); footer.Children.Add(refresh); footer.Children.Add(status);
         var records = new ListBox { Background = Brushes.White, Foreground = Brushes.Black, DisplayMemberPath = nameof(ClientLibrariumRecord.Name) };
         Grid.SetRow(records, 1); root.Children.Add(records);
         var details = new TextBox
@@ -3218,7 +3647,8 @@ public partial class ClientTerminalWindow : Window
         var referenceList = new ListBox
         {
             Height = 105, Background = Brushes.White, Foreground = Brushes.Black,
-            ToolTip = "Double-click a decoded reference to open its server family."
+            DisplayMemberPath = nameof(ClientLibrariumLink.DisplayName),
+            ToolTip = "Double-click to open related information."
         };
         var detailPanel = new DockPanel();
         DockPanel.SetDock(referenceList, Dock.Bottom);
@@ -3227,12 +3657,22 @@ public partial class ClientTerminalWindow : Window
         Grid.SetRow(detailPanel, 1); Grid.SetColumn(detailPanel, 2); root.Children.Add(detailPanel); root.Children.Add(footer);
         var requestedOffset = 0;
         string requestedFamily = string.Empty, requestedQuery = string.Empty;
+        var navigationHistory = new Stack<(string Family, string Query, int Offset)>();
 
         void Render()
         {
             var selectedName = (family.SelectedItem as ClientServerCatalogFamily)?.Name;
-            family.ItemsSource = session.ServerCatalogFamilies.ToArray();
+            family.ItemsSource = session.ServerCatalogFamilies.OrderBy(item => item.DisplayName, StringComparer.OrdinalIgnoreCase).ToArray();
             if (selectedName is not null) family.SelectedItem = session.ServerCatalogFamilies.FirstOrDefault(item => item.Name == selectedName);
+            if (session.ConnectionState != ClientConnectionState.Connected)
+            {
+                status.Text = "Disconnected — reconnect to request current server information.";
+                records.IsEnabled = false;
+                searchButton.IsEnabled = false;
+                return;
+            }
+            records.IsEnabled = true;
+            searchButton.IsEnabled = true;
             if (session.ServerCatalogUpdatedAt is null)
             {
                 status.Text = "Waiting for the connected server catalog.";
@@ -3245,7 +3685,9 @@ public partial class ClientTerminalWindow : Window
                 records.ItemsSource = page.Records;
                 previous.IsEnabled = page.Offset > 0;
                 next.IsEnabled = page.Offset + page.Records.Count < page.TotalCount;
-                status.Text = $"{session.ServerCatalogWorld} · showing {page.Offset + 1:N0}-{page.Offset + page.Records.Count:N0} of {page.TotalCount:N0} server records";
+                back.IsEnabled = navigationHistory.Count > 0;
+                var freshness = DateTimeOffset.Now - page.CapturedAt > TimeSpan.FromMinutes(2) ? " · stale; search again to refresh" : " · current server page";
+                status.Text = $"{session.ServerCatalogWorld} · showing {page.Offset + 1:N0}-{page.Offset + page.Records.Count:N0} of {page.TotalCount:N0} server records{freshness}";
             }
             else status.Text = $"{session.ServerCatalogWorld} · select Search to request a server page";
         }
@@ -3274,21 +3716,32 @@ public partial class ClientTerminalWindow : Window
                 return;
             }
             var formatted = FormatLibrariumRecord(record.Summary, out var references);
-            details.Text = $"{record.Name}\n\nID: {record.Id}\nFamily: {requestedFamily}\n\n{formatted}";
-            referenceList.ItemsSource = references.Length == 0 ? new[] { "No decoded cross-references" } : references;
+            details.Text = $"{record.Name}\n{LibrariumFriendlyNames.Family(requestedFamily)}\n\n{formatted}";
+            referenceList.ItemsSource = references;
         };
         referenceList.MouseDoubleClick += async (_, _) =>
         {
-            if (referenceList.SelectedItem is not string reference || !reference.Contains('.')) return;
+            if (referenceList.SelectedItem is not ClientLibrariumLink link || !link.Reference.Contains('.')) return;
+            var reference = link.Reference;
             var prefix = reference[..reference.IndexOf('.')];
             var targetFamily = session.ServerCatalogFamilies.FirstOrDefault(candidate =>
                 candidate.Name.Equals(prefix, StringComparison.OrdinalIgnoreCase) ||
                 candidate.Name.Equals(prefix + "s", StringComparison.OrdinalIgnoreCase) ||
                 candidate.Name.Contains(prefix, StringComparison.OrdinalIgnoreCase));
             if (targetFamily is null) return;
+            if (!string.IsNullOrWhiteSpace(requestedFamily)) navigationHistory.Push((requestedFamily, requestedQuery, requestedOffset));
             family.SelectedItem = targetFamily;
             search.Text = reference;
             await RequestPage(0);
+        };
+        back.Click += async (_, _) =>
+        {
+            if (!navigationHistory.TryPop(out var prior)) return;
+            var targetFamily = session.ServerCatalogFamilies.FirstOrDefault(candidate => candidate.Name.Equals(prior.Family, StringComparison.OrdinalIgnoreCase));
+            if (targetFamily is null) return;
+            family.SelectedItem = targetFamily;
+            search.Text = prior.Query;
+            await RequestPage(prior.Offset);
         };
         close.Click += (_, _) => dialog.Close();
         var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
@@ -3305,7 +3758,7 @@ public partial class ClientTerminalWindow : Window
         var options = ViewModel.AutomationOptions.Events;
         var dialog = new Window
         {
-            Title = "Reforged Events — Inspection Only", Owner = this,
+            Title = "Reforged Scheduled Events", Owner = this,
             Width = 820, Height = 480, MinWidth = 580, MinHeight = 340,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -3320,7 +3773,7 @@ public partial class ClientTerminalWindow : Window
             Margin = new Thickness(0, 0, 0, 8),
             Child = new TextBlock
             {
-                Text = "Scheduled event execution is frozen. This window cannot enable, edit, add, remove, or run events.",
+                Text = "Events run only while Timed Events is enabled and Emergency Stop is off. They pause while disconnected and can also pause during combat.",
                 TextWrapping = TextWrapping.Wrap, FontWeight = FontWeights.Bold
             }
         };
@@ -3335,7 +3788,7 @@ public partial class ClientTerminalWindow : Window
         DockPanel.SetDock(footer, Dock.Bottom);
         var status = new TextBlock
         {
-            Text = $"{options.ScheduledEvents.Count:N0} configured event(s) · Global execution gate: FROZEN",
+            Text = $"{options.ScheduledEvents.Count:N0} configured event(s) · Timed Events: {(ViewModel.AutomationProfile.Capabilities.TimedEventsEnabled ? "ON" : "OFF")}",
             VerticalAlignment = VerticalAlignment.Center
         };
         var close = NewDialogButton("Close", 70);
@@ -3344,8 +3797,8 @@ public partial class ClientTerminalWindow : Window
         footer.Children.Add(status);
         var grid = new DataGrid
         {
-            ItemsSource = options.ScheduledEvents, AutoGenerateColumns = false, IsReadOnly = true,
-            CanUserAddRows = false, CanUserDeleteRows = false,
+            ItemsSource = options.ScheduledEvents, AutoGenerateColumns = false, IsReadOnly = false,
+            CanUserAddRows = true, CanUserDeleteRows = true,
             Background = Brushes.White, Foreground = Brushes.Black
         };
         grid.Columns.Add(new DataGridCheckBoxColumn { Header = "Configured", Binding = new Binding(nameof(ClientScheduledEvent.Enabled)), Width = new DataGridLength(82) });
@@ -3353,7 +3806,7 @@ public partial class ClientTerminalWindow : Window
         grid.Columns.Add(new DataGridTextColumn { Header = "Every (min)", Binding = new Binding(nameof(ClientScheduledEvent.IntervalMinutes)), Width = new DataGridLength(85) });
         grid.Columns.Add(new DataGridCheckBoxColumn { Header = "Out of combat", Binding = new Binding(nameof(ClientScheduledEvent.OnlyOutOfCombat)), Width = new DataGridLength(100) });
         grid.Columns.Add(new DataGridTextColumn { Header = "Command", Binding = new Binding(nameof(ClientScheduledEvent.Command)), Width = new DataGridLength(1.7, DataGridLengthUnitType.Star) });
-        close.Click += (_, _) => dialog.Close();
+        close.Click += async (_, _) => { await ViewModel.SaveAutomationAsync(); dialog.Close(); };
         root.Children.Add(warning);
         root.Children.Add(policy);
         root.Children.Add(footer);

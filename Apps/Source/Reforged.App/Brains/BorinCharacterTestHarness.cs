@@ -173,7 +173,7 @@ public sealed class BorinCharacterTestHarness
             "A disconnected configured server was described as active play.");
         Assert(!state.PromptText.Contains("active character is playing on Omniverse", StringComparison.OrdinalIgnoreCase),
             "The private prompt still told the model it was playing on Omniverse while disconnected.");
-        Assert(ForgeGuardianViewModel.ServerActivityPhrase(state).Contains("disconnected", StringComparison.OrdinalIgnoreCase),
+        Assert(BorinForgeViewModel.ServerActivityPhrase(state).Contains("disconnected", StringComparison.OrdinalIgnoreCase),
             "Forge's direct verified answer still describes a disconnected Omniverse profile as active play.");
         return Task.CompletedTask;
     }
@@ -393,6 +393,17 @@ public sealed class BorinCharacterTestHarness
         var abbreviated = ClientSessionService.ParseExits("n s w se");
         Assert(abbreviated.SequenceEqual(new[] { "north", "south", "west", "southeast" }, StringComparer.OrdinalIgnoreCase),
             "Abbreviated exits were not normalized correctly.");
+
+        var stream = new ClassicRoomDisplayStreamParser();
+        Assert(stream.Observe("Newhaven, Armour Shop") is null, "Room parser committed before the exit boundary.");
+        Assert(stream.Observe("Rows of armour line the walls.") is null, "Room parser committed from prose.");
+        Assert(stream.Observe(string.Empty) is null, "A normal room-display blank line committed an incomplete room.");
+        var observation = stream.Observe("Obvious exits: west, east");
+        Assert(observation is not null && observation.Value.RoomName == "Newhaven, Armour Shop",
+            "A blank line before Obvious exits detached the exits from the room title.");
+        var completed = observation.GetValueOrDefault();
+        Assert(completed.Exits.SequenceEqual(new[] { "west", "east" }, StringComparer.OrdinalIgnoreCase),
+            "Stream room exits were not promoted from the completed live display.");
         return Task.CompletedTask;
     }
 
@@ -1203,21 +1214,21 @@ public sealed class BorinCharacterTestHarness
         var store = new BorinVerifiedKnowledgeLearning(repository);
         await store.RecordObservationAsync(new BorinRuntimeKnowledgeObservation(
             "Room 472 west exit", "You cannot go that way.", "Test Server", "Test Realm", "Borin",
-            "room.map1.472", "Release/Logs/test-realm-exit.json", DateTimeOffset.UtcNow,
+            "room.map1.472", "Reports/BorinBrain/RuntimeLogs/test-realm-exit.json", DateTimeOffset.UtcNow,
             ["room.map1.472", "room.map1.473"]), token);
         var noConflict = await store.RecordComparisonAsync("Room 472 west exit", "blocked", "blocked",
-            "Data/Classic/exits.json", "Release/Logs/test-realm-exit.json", 3, token);
+            "Data/Classic/exits.json", "Reports/BorinBrain/RuntimeLogs/test-realm-exit.json", 3, token);
         Assert(noConflict is null, "Matching expected and observed knowledge created a false conflict.");
         var conflict = await store.RecordComparisonAsync("Room 472 west exit", "leads to room.map1.473", "blocked",
-            "Data/Classic/exits.json", "Release/Logs/test-realm-exit.json", 3, token);
+            "Data/Classic/exits.json", "Reports/BorinBrain/RuntimeLogs/test-realm-exit.json", 3, token);
         Assert(conflict is not null && conflict.Status == "Investigation Required" && conflict.ControlledAttempts == 3,
             "Expected/runtime mismatch did not create a controlled conflict.");
         var firstAutomatic = await store.ObserveComparisonAsync("Room 900 north exit", "leads to room.map1.901", "blocked",
-            "Data/Classic/exits.json", "Release/Logs/runtime-1.json", 3, token);
+            "Data/Classic/exits.json", "Reports/BorinBrain/RuntimeLogs/runtime-1.json", 3, token);
         var secondAutomatic = await store.ObserveComparisonAsync("Room 900 north exit", "leads to room.map1.901", "blocked",
-            "Data/Classic/exits.json", "Release/Logs/runtime-2.json", 3, token);
+            "Data/Classic/exits.json", "Reports/BorinBrain/RuntimeLogs/runtime-2.json", 3, token);
         var thirdAutomatic = await store.ObserveComparisonAsync("Room 900 north exit", "leads to room.map1.901", "blocked",
-            "Data/Classic/exits.json", "Release/Logs/runtime-3.json", 3, token);
+            "Data/Classic/exits.json", "Reports/BorinBrain/RuntimeLogs/runtime-3.json", 3, token);
         Assert(firstAutomatic is null && secondAutomatic is null && thirdAutomatic?.ControlledAttempts == 3,
             "Automatic conflict detection did not enforce the three-observation threshold.");
         var rejected = false;
@@ -1230,7 +1241,7 @@ public sealed class BorinCharacterTestHarness
         await store.PromoteProcedureAsync("Investigate Broken Exit",
             ["Inspect source room", "Inspect destination", "Test in Test Realm"], true, "3/3 controlled verification passed", token);
         var investigation = await store.RecordInvestigationAsync("Repair Room 472 west exit", "Verified movement 3/3",
-            "Release/Logs/fixed-exit.json", true, ["room.map1.472", "room.map1.473"], token);
+            "Reports/BorinBrain/RuntimeLogs/fixed-exit.json", true, ["room.map1.472", "room.map1.473"], token);
         var results = await store.SearchAsync("broken exit room 472", 10, token);
         var status = await store.GetStatusAsync(token);
         Assert(status.Observations == 1 && status.Conflicts == 2 && status.Procedures == 1 && status.Investigations == 1,
@@ -1241,7 +1252,7 @@ public sealed class BorinCharacterTestHarness
             "Conflicts, investigations, and verified procedures were not searchable with authoritative entity links.");
         Assert((await store.GetInvestigationsAsync(token)).Single().Status == "Verified",
             "Verified investigation episodes were not retained separately from conversational memory.");
-        var resolved = await store.ResolveConflictAsync(conflict!.Id, "Reciprocal exit corrected and verified 3/3", "Release/Logs/fixed-exit.json", token);
+        var resolved = await store.ResolveConflictAsync(conflict!.Id, "Reciprocal exit corrected and verified 3/3", "Reports/BorinBrain/RuntimeLogs/fixed-exit.json", token);
         Assert(resolved.Status == "Resolved" && resolved.Expected.Contains("room.map1.473", StringComparison.Ordinal) &&
                resolved.Observed == "blocked" && resolved.ResolutionEvidence.EndsWith("fixed-exit.json", StringComparison.Ordinal),
             "Conflict resolution did not preserve the original claims and verification evidence.");
@@ -1382,3 +1393,4 @@ Message: {message}
             _recent.Add(exception is null ? message : $"{message}: {exception.Message}");
     }
 }
+

@@ -4,7 +4,7 @@ using System.Windows;
 using Reforged.App.Brains;
 using Reforged.App.Services;
 using Reforged.App.Forge;
-using Reforged.App.Guardians;
+using Reforged.App.BorinCapabilities;
 using Reforged.App.ViewModels;
 using Reforged.App.Views;
 
@@ -103,8 +103,9 @@ public partial class App : Application
             var borinEngineeringOrchestrator = new BorinEngineeringOrchestrator(borinEngineeringWorkspace);
             var borinEngineeringCorrectionLoop = new BorinEngineeringCorrectionLoop(borinEngineeringWorkspace);
             var borinCredentialStore = new WindowsBorinSecureCredentialStore();
-            var lightningCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Lightning);
-            var ultraCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Ultra);
+            var sharedNvidiaCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Shared);
+            var legacyUltraCredentialStore = new WindowsNvidiaNimCredentialStore(NvidiaNimKeySlot.Ultra);
+            await NvidiaNimCredentialMigration.EnsureSharedCredentialAsync(sharedNvidiaCredentialStore, legacyUltraCredentialStore);
             var forgeCommands = new ForgeCommandRunner();
             var forgeBrain = new ForgeBrain(forgeRepository, forgeCommands);
             var localGgufBrain = new LocalGgufBrain(
@@ -126,13 +127,25 @@ public partial class App : Application
                 borinConversationDirector);
             var overallNvidiaBudget = new SlidingWindowAiRateBudget();
             var lightningRateBudget = new SlidingWindowAiRateBudget();
+            var superRateBudget = new SlidingWindowAiRateBudget(new AiRateBudgetOptions
+            {
+                NormalRequestsPerWindow = 6,
+                HardRequestsPerWindow = 8
+            });
             var ultraRateBudget = new SlidingWindowAiRateBudget(new AiRateBudgetOptions
             {
                 NormalRequestsPerWindow = 8,
                 HardRequestsPerWindow = 10
             });
-            var rawLightningProvider = new NvidiaNimProvider(new HttpClient(), lightningCredentialStore);
-            var rawUltraProvider = new NvidiaNimProvider(new HttpClient(), ultraCredentialStore, new NvidiaNimOptions
+            var rawLightningProvider = new NvidiaNimProvider(new HttpClient(), sharedNvidiaCredentialStore);
+            var rawSuperProvider = new NvidiaNimProvider(new HttpClient(), sharedNvidiaCredentialStore, new NvidiaNimOptions
+            {
+                Model = "nvidia/nemotron-3-super-120b-a12b",
+                Timeout = TimeSpan.FromMinutes(3),
+                MaximumOutputTokens = 4096,
+                Temperature = 0.12
+            });
+            var rawUltraProvider = new NvidiaNimProvider(new HttpClient(), sharedNvidiaCredentialStore, new NvidiaNimOptions
             {
                 Model = "nvidia/nemotron-3-ultra-550b-a55b",
                 Timeout = TimeSpan.FromMinutes(4),
@@ -153,12 +166,17 @@ public partial class App : Application
                     AiRatePriority.InteractiveBurst),
                 overallNvidiaBudget,
                 AiRatePriority.InteractiveBurst);
+            var superProvider = new RateLimitedAiProvider(
+                new RateLimitedAiProvider(rawSuperProvider, superRateBudget, AiRatePriority.InteractiveBurst),
+                overallNvidiaBudget,
+                AiRatePriority.InteractiveBurst);
             var aiRoutingSettings = new BorinAiRoutingSettings();
             var aiProviderRouter = new TieredBorinAiProviderRouter(
                 new LocalAiProvider(localGgufBrain),
                 lightningProvider,
                 ultraProvider,
-                aiRoutingSettings);
+                aiRoutingSettings,
+                super: superProvider);
             IBrain borinBrain = new AiProviderBrainAdapter(aiProviderRouter);
             _brainLifetime = localGgufBrain;
             var borinPlayerResearch = new BorinPlayerResearch(
@@ -171,7 +189,7 @@ public partial class App : Application
             _playerLifetime = borinPlayerResearch;
             var forgeBrainManager = new ForgeBrainManager();
             var forgeTools = new ForgeDeveloperTools();
-            var forgeViewModel = new ForgeGuardianViewModel(
+            var forgeViewModel = new BorinForgeViewModel(
                 forgeStore,
                 forgeRepository,
                 borinBrain,
@@ -191,38 +209,35 @@ public partial class App : Application
                 playViewModel,
                 forgeTools,
                 forgeBrainManager,
-                lightningCredentialStore,
-                ultraCredentialStore,
+                sharedNvidiaCredentialStore,
                 lightningProvider,
+                superProvider,
                 ultraProvider,
                 lightningRateBudget,
+                superRateBudget,
                 ultraRateBudget,
                 overallNvidiaBudget,
                 aiProviderRouter,
                 rawLightningProvider,
+                rawSuperProvider,
                 rawUltraProvider,
                 aiRoutingSettings,
                 localGgufBrain);
             await forgeViewModel.InitializeAsync();
-            var guardianStore = new GuardianAssignmentStore(settings.RootPath);
-            var guardianRouter = new GuardianBrainRouter();
-            var guardianHallViewModel = new GuardianHallViewModel(
+            var guardianStore = new BorinCapabilityStateStore(settings.RootPath);
+            var borinCapabilities = new BorinCapabilityCoordinator(
                 guardianStore,
-                guardianRouter,
-                clientSessions,
-                forgeStore,
-                forgeRepository,
-                forgeBrain,
-                forgeTools);
-            await guardianHallViewModel.InitializeAsync();
+                forgeRepository.DiscoverRepositoryRoot(),
+                borinPlayerResearch);
+            await borinCapabilities.InitializeAsync();
+            forgeViewModel.AttachGuardianCapabilities(borinCapabilities);
 
             manager.Register(new Workspace("home", "Dashboard", new DashboardView { DataContext = dashboardViewModel }));
             manager.Register(new Workspace("play", "Play", new PlayView { DataContext = playViewModel }, true));
             manager.Register(new Workspace("host", "Host", new HostView { DataContext = hostViewModel }));
             manager.Register(new Workspace("editor", "Editor", new EditorView(), true));
             manager.Register(new Workspace("librarium", "Librarium", new LibrariumView(), true));
-            manager.Register(new Workspace("forge", "The Forge", new ForgeGuardianView { DataContext = forgeViewModel }));
-            manager.Register(new Workspace("guardians", "Guardian Hall", new GuardianHallView { DataContext = guardianHallViewModel }));
+            manager.Register(new Workspace("forge", "Borin", new BorinForgeView { DataContext = forgeViewModel }));
             manager.Register(new Workspace("characters", "Characters", new CharacterView(), true));
             manager.Register(new Workspace("server", "Server", new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
             manager.Register(new Workspace("settings", "Settings", new SettingsView { DataContext = settingsViewModel }));
@@ -283,15 +298,15 @@ public partial class App : Application
                 .Add<IBorinEngineeringOrchestrator>(borinEngineeringOrchestrator)
                 .Add<IBorinEngineeringCorrectionLoop>(borinEngineeringCorrectionLoop)
                 .Add<IBorinSecureCredentialStore>(borinCredentialStore)
-                .Add<INvidiaNimCredentialStore>(lightningCredentialStore)
+                .Add<INvidiaNimCredentialStore>(sharedNvidiaCredentialStore)
                 .Add<IAiRateBudget>(overallNvidiaBudget)
                 .Add<IBorinAiRouteTelemetry>(aiProviderRouter)
                 .Add<IAiProvider>(aiProviderRouter)
                 .Add<IBorinPlayerResearch>(borinPlayerResearch)
                 .Add<IForgeBrainManager>(forgeBrainManager)
                 .Add<IForgeDeveloperTools>(forgeTools)
-                .Add<IGuardianAssignmentStore>(guardianStore)
-                .Add<IGuardianBrainRouter>(guardianRouter);
+                .Add<IBorinCapabilityStateStore>(guardianStore)
+                .Add<IBorinCapabilities>(borinCapabilities);
 
             var viewModel = new MainWindowViewModel(manager, host);
             var window = new MainWindow(viewModel, layouts, manager);

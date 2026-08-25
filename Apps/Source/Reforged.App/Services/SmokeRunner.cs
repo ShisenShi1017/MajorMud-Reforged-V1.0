@@ -29,6 +29,26 @@ public static class SmokeRunner
             return await RunEmbeddedHostSmokeAsync(services);
         }
 
+        if (HasArgument(args, "--smoke-client-automation"))
+        {
+            return await ClientAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-map-librarium"))
+        {
+            return await ClientMapLibrariumRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-batch3"))
+        {
+            return await ClientBatch3RegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-help"))
+        {
+            return ClientHelpRegressionSmoke.Run();
+        }
+
         return null;
     }
 

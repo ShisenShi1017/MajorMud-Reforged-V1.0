@@ -64,7 +64,7 @@ public sealed record LocalGgufBrainRuntimeStatus(
 /// <summary>
 /// Loads Borin's GGUF model directly through LLamaSharp. The model weights live
 /// for the lifetime of the application and requests are serialized so one model
-/// is never driven concurrently by multiple Guardian Hall requests.
+/// is never driven concurrently by multiple Borin capability requests.
 /// </summary>
 public sealed class LocalGgufBrain : IBrain, IAsyncDisposable
 {

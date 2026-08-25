@@ -31,6 +31,12 @@ public sealed record RuntimePvpPolicySmokeReport(bool Passed, IReadOnlyList<stri
         service.UpsertActor(new("a", 10, "lawless", PartyId: "p", PvpEnabled: false));
         service.UpsertActor(new("b", 12, "lawless", PartyId: "p", PvpEnabled: false, IsCriminal: true));
         Check(service.EvaluateAttack("a", "b", now.AddMinutes(4)).Code == RuntimePvpDecisionCode.PartyDenied, "same-party-denial");
+        var evidenceCatalog = new RuntimePvpZoneCatalog(1, [],
+            [new RuntimePvpSafeRoomEvidence("proven-safe", "proven", ["decoded.room.attribute:42"]),
+             new RuntimePvpSafeRoomEvidence("unproven-safe", "candidate", ["room-name-match"])]);
+        Check(evidenceCatalog.IsProvenSafe("proven-safe"), "proven-safe-room-admitted");
+        Check(!evidenceCatalog.IsProvenSafe("unproven-safe") && !evidenceCatalog.IsProvenSafe("ordinary-room"),
+            "unproven-and-ordinary-rooms-remain-open");
         Check(service.ValidateState().Count == 0, "state-invariants");
         return new(failures.Count == 0, checks, failures);
         void Check(bool condition, string name) { checks.Add(name); if (!condition) failures.Add(name); }

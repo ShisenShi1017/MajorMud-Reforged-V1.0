@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0139",
+  "codeUpdate": "0140",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
+  "milestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
   "guardianEngineeringPolicy": "Guardian Hall engineering phases 1-10 use isolated workspaces and independent persisted controls for planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIPs, repository updates, and overnight execution. Candidate ZIP generation defaults true; autonomous and repository-update capabilities default false, and Repository Updates must never be enabled on the user's behalf.",
@@ -13,23 +13,23 @@
   "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
   "preserve": [
     "Saves",
-    "ImportedDatabases"
+    "Archive/ImportedDatabasesAndEvidence.LocalOnly.rar"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
-    "currentCodeUpdate": "0139",
+    "currentMilestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
+    "currentCodeUpdate": "0140",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
       "Milestone 1 - Core Framework",
       "CodeUpdate0137 - Complete Classic Gameplay local baseline",
-      "CodeUpdate0138 - Server Runtime and Host Enablement local baseline"
+      "CodeUpdate0138 - Server Runtime and Host Enablement local baseline",
+      "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0139 local runtime cohesion, Classic audit, complete Librarium room-text recovery, WCCMP002 1.11p placeholder room-description recovery, WCC exhaustion audit, MMExplorer/OmniVerse reference reconciliation, command abbreviation work, map-qualified live spawn placement repair, folded room/trigger/script/quest semantic material, final room native/passive effect linkage closure, MegaMUD /mp route replay proof, WCCMSG room message decode, generated NPC quest dialogue dispatch, quest/script edge closure, evidence-gated world event recording, final native closure/WCC decode archive intake, verified/strong Librarium activation, compiler unresolved-exit guard, Reforged app Librarium browser/publish output, MegaMUD-style Client terminal-window UX, Telnet character sex-selection repair, room-description catalog resolver repair, generated numeric-string runtime reader repairs, and Bundle G native presentation payload closure are applied and locally verified. GitHub Actions is pending until the pushed commit is confirmed green.",
-    "lastUpdateName": "CodeUpdate0139-TelnetRuntimeCohesion",
+    "milestone2Status": "CodeUpdate0139 local runtime cohesion is closed into the local baseline. CodeUpdate0140 repository cleanup and imported/reference evidence archival is applied locally: loose ImportedDatabases/Evidence content is retired from Git, required proof anchors are promoted into Librarium, generated Data/Classic remains untracked, runtime saves are realm-scoped under Classic/Custom/Host roots, and current-health validation passes locally where tooling is available. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "lastUpdateName": "CodeUpdate0140-RepositoryCleanupImportedEvidenceArchive",
     "nextRecommendedWork": [
-      "Review CodeUpdate0139 local changes and regenerated Data/Classic output.",
-      "Push CodeUpdate0139 when approved.",
+      "Push CodeUpdate0140 when approved.",
       "Wait for green GitHub Actions.",
       "Begin the next approved public update only after the gate is green or explicitly overridden."
     ]
@@ -53,8 +53,8 @@
     ]
   },
   "buildVerification": "LOCAL_PASS; remoteactions pass 139/139 invocations and 85/85 signatures; spell/status closure passes 1,350 spells, 105 decoded ability IDs, and 111 status effects; economy/service closure passes 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services; 3,467 verified WCCTEXT2 payloads are canonical Librarium data and cleanly regenerate into one runtime file. Classic compile passes at 30 families / 101,731 objects / 35 files; server build, F10 payload/complete dialogue audits, and interaction/narrative smoke pass. GitHub Actions must regenerate Data/Classic from Librarium because generated data is not tracked.",
-  "current_codeupdate": "0139",
-  "last_update": "Telnet Runtime Cohesion local update",
+  "current_codeupdate": "0140",
+  "last_update": "Repository cleanup and imported evidence archive local update",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -78,19 +78,23 @@
     "Evidence-gated quest and room world event recording",
     "Final native closure/WCC decode archive intake",
     "Verified/strong Librarium runtime activation",
-    "Reforged app Librarium browser with character-foundation class/race gameplay views, nontechnical quest guidance, and Release/MajorMudReforged publish output",
+    "Reforged app Librarium browser with character-foundation class/race gameplay views, nontechnical quest guidance, and Release/MajorMudReforgedApp publish output",
     "Reforged app MegaMUD-style Client terminal-window UX",
     "Telnet character sex-selection repair",
-    "Bundle G native presentation payload closure"
+    "Bundle G native presentation payload closure",
+    "Repository cleanup and imported/reference evidence archival",
+    "Realm-scoped runtime save roots for Classic and Custom worlds"
   ],
   "latestRuntimeAudit": "Reports/RuntimeVerification/classic_runtime_audit.md",
   "latestRuntimeAuditFinding": "Regenerated Data/Classic rooms contain and runtime loads 26,668/26,668 descriptions. Runtime audit counts include 1,100 NPC definitions, 1,078 monster definitions, 962 spawn records, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 83 executable quests, 83 live NPC quest-entry triggers, and 182 executable stage scripts. Duplicate room/exit analysis triggers, the tooling script catalog, pending quest candidates, and formula probes remain Librarium-only. WCCMP002 is the selected MajorMUD 1.11p room/map source for this pass; WBBMP002 is secondary comparison evidence. Live spawn placement requires exact map-qualified room resolution. Bundle G native presentation closure and F10 through F15 audits pass. Quest dialogue dispatch includes atomic mutation/rollback, random tables, validated world intents, native remoteaction execution, room/object event recording, Classic non-repeat quest guards, and exhaustive NPC quest-entry validation. Verified/native and strongly-correlated sidecars compile only where evidence supports runtime activation, unresolved exits are compiler-blocked, and one-time validation proofs are recorded in ValidationManifest.json.",
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-  "current_milestone": "CodeUpdate0139 - Telnet Runtime Cohesion",
+  "current_milestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
   "librarium_authoritative": true,
   "data_generated_from_librarium": true,
-  "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-  "updatedUtc": "2026-07-17T00:00:00Z",
+  "importedDatabasesPolicy": "Imported/reference databases and raw evidence are local-only archival material after approved cleanup. Retain Archive/ImportedDatabasesAndEvidence.LocalOnly.rar locally for future decode, provenance, or source-retirement audits; do not commit loose ImportedDatabases/Evidence contents.",
+  "savePolicy": "Runtime saves are realm-scoped. Classic realm state lives under Saves/Classic, custom realm state lives under Saves/Custom/<realm>, host account credential state lives under Saves/Host, and one login may keep up to three characters per world.",
+  "updatedUtc": "2026-08-25T00:00:00Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited or committed as canonical source. Clean validation environments regenerate /Data from Librarium before runtime bootstrap.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }
+

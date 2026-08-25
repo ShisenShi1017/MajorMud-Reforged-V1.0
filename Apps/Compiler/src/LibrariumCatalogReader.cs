@@ -90,8 +90,18 @@ public sealed class LibrariumCatalogReader
             : [];
         if (paths.Length == 0)
         {
+            var existingLocations = records
+                .SelectMany(record => (record["locations"] as JsonArray)?.OfType<JsonObject>() ?? [])
+                .Count(location => location["is_gang_house"]?.GetValue<bool>() == true);
+            if (existingLocations > 0)
+            {
+                diagnostics.Add(new(DiagnosticSeverity.Info, "LIBGANGHOUSE",
+                    $"Native WCC gang-house HSE files are archived locally; using {existingLocations:N0} promoted Librarium locations.", sourceRoot));
+                return;
+            }
+
             diagnostics.Add(new(DiagnosticSeverity.Error, "LIBGANGHOUSE",
-                "Native WCC gang-house interior description files were not found.", sourceRoot));
+                "Native WCC gang-house interior description files were not found and no promoted Librarium locations exist.", sourceRoot));
             return;
         }
 
@@ -306,6 +316,13 @@ public sealed class LibrariumCatalogReader
         // Two WCC rooms are present in the uploaded imported database and spawn evidence,
         // but were omitted from the MMExplorer room projection. Promote only those exact
         // map-qualified source records so the Classic spawn graph closes without guessing.
+        var promotedAnchorPath = Path.Combine(librariumRoot, "Objects", "rooms", "imported_room_anchor_records.json");
+        if (File.Exists(promotedAnchorPath))
+        {
+            MergeRecords(records, recordsById,
+                ReadJsonCatalogParts(promotedAnchorPath).SelectMany(ExtractRecords));
+        }
+
         foreach (var roomNumber in new[] { 288, 2306 })
         {
             var id = $"room.map1.{roomNumber}";
@@ -535,14 +552,21 @@ public sealed class LibrariumCatalogReader
         if (familyName.Equals("room_interactions", StringComparison.OrdinalIgnoreCase))
         {
             var selected = new List<string>();
-            var primary = Directory.GetFiles(familyDirectory, "room_interaction_records_*.json")
+            var currentPrimary = Path.Combine(familyDirectory, "room_interaction_records.json");
+            var primary = File.Exists(currentPrimary)
+                ? currentPrimary
+                : Directory.GetFiles(familyDirectory, "room_interaction_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
             if (primary is not null) selected.Add(primary);
 
             selected.AddRange(Directory.GetFiles(familyDirectory, "strongly_correlated_*_records.json")
                 .OrderBy(Path.GetFileName));
+            selected.AddRange(Directory.GetFiles(familyDirectory, "decoded_*_action_records.json")
+                .OrderBy(Path.GetFileName));
             selected.AddRange(Directory.GetFiles(familyDirectory, "decoded_*_action_records_*.json")
+                .OrderBy(Path.GetFileName));
+            selected.AddRange(Directory.GetFiles(familyDirectory, "wccmmud_*_records.json")
                 .OrderBy(Path.GetFileName));
             selected.AddRange(Directory.GetFiles(familyDirectory, "wccmmud_*_records_*.json")
                 .OrderBy(Path.GetFileName));

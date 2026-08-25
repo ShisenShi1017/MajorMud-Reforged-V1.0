@@ -24,22 +24,6 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Foreground" Value="#202020"/>
         </Style>
-        <Style x:Key="ClassicUnavailableMenuItem" TargetType="MenuItem">
-            <Setter Property="IsEnabled" Value="False"/>
-            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-            <Setter Property="ToolTip" Value="Not implemented yet; tracked in the formal MegaMUD parity matrix."/>
-        </Style>
-        <Style x:Key="ClassicFrozenAutomationMenuItem" TargetType="MenuItem" BasedOn="{StaticResource ClassicUnavailableMenuItem}">
-            <Setter Property="IsChecked" Value="False"/>
-            <Setter Property="ToolTip" Value="MegaMUD automation execution is frozen until the full client implementation is complete."/>
-        </Style>
-        <Style x:Key="ClassicUnavailableToolbarButton" TargetType="Button" BasedOn="{StaticResource ClassicToolbarButton}">
-            <Setter Property="IsEnabled" Value="False"/>
-            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
-        </Style>
-        <Style x:Key="ClassicFrozenToolbarButton" TargetType="Button" BasedOn="{StaticResource ClassicUnavailableToolbarButton}">
-            <Setter Property="ToolTip" Value="Automation execution is frozen until full MegaMUD implementation."/>
-        </Style>
     </Window.Resources>
     <DockPanel>
         <Grid>
@@ -104,8 +88,8 @@
                             <Separator/>
                             <MenuItem Header="All Auto-Responses Off" Click="StopAllClicked"/>
                             <MenuItem x:Name="AutoCombatMenu" Header="Auto Combat" IsCheckable="True" Tag="combat" Click="QuickAutomationClicked"/>
-                            <MenuItem Header="Auto Pre-Attack" IsCheckable="True" Style="{StaticResource ClassicFrozenAutomationMenuItem}"/>
-                            <MenuItem Header="Auto Nuke" IsCheckable="True" Style="{StaticResource ClassicFrozenAutomationMenuItem}"/>
+                            <MenuItem x:Name="AutoPreAttackMenu" Header="Auto Pre-Attack" IsCheckable="True" Tag="preattack" Click="QuickAutomationClicked" ToolTip="Runs the configured pre-attack command once before engaging a decoded hostile NPC."/>
+                            <MenuItem x:Name="AutoNukeMenu" Header="Auto Nuke" IsCheckable="True" Tag="nuke" Click="QuickAutomationClicked" ToolTip="Uses configured spell priorities against decoded hostile NPCs while preserving the mana reserve."/>
                             <MenuItem x:Name="AutoRestHealMenu" Header="Auto Rest / Heal" IsCheckable="True" Tag="restheal" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoBlessMenu" Header="Auto Bless" IsCheckable="True" Tag="bless" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoLightMenu" Header="Auto Light" IsCheckable="True" Tag="light" Click="QuickAutomationClicked"/>
@@ -118,10 +102,10 @@
                         </MenuItem>
                         <MenuItem Header="_Options">
                             <MenuItem Header="Settings..." Click="OptionsClicked"/>
-                            <MenuItem Header="Automation controls..." Click="AutomationControlsClicked" ToolTip="Configure independent client automation safety switches. Execution remains frozen until client parity is complete."/>
-                            <MenuItem Header="Combat configuration..." Click="CombatOptionsClicked" InputGestureText="Alt+M" ToolTip="Configuration remains editable; execution is frozen."/>
-                            <MenuItem Header="Party configuration..." Click="PartyOptionsClicked" InputGestureText="Alt+P" ToolTip="Configuration remains editable; execution is frozen."/>
-                            <MenuItem Header="Health configuration..." Click="HealthOptionsClicked" ToolTip="Configuration remains editable; execution is frozen."/>
+                            <MenuItem Header="Automation controls..." Click="AutomationControlsClicked" ToolTip="Configure independent client automation safety switches. Emergency Stop overrides every automatic command."/>
+                            <MenuItem Header="Combat configuration..." Click="CombatOptionsClicked" InputGestureText="Alt+M" ToolTip="Configure verified combat actions and safety thresholds."/>
+                            <MenuItem Header="Party configuration..." Click="PartyOptionsClicked" InputGestureText="Alt+P" ToolTip="Configure party following, assisting, healing, and recovery."/>
+                            <MenuItem Header="Health configuration..." Click="HealthOptionsClicked" ToolTip="Configure healing, rest, meditation, cures, and emergency actions."/>
                             <Separator/>
                             <MenuItem Header="Game Data..." Click="GameDataClicked"/>
                             <MenuItem Header="Librarium Reference..." Click="LibrariumReferenceClicked"/>
@@ -138,6 +122,7 @@
                             <MenuItem Header="Who Is Home?" Click="WhoIsHomeClicked"/>
                         </MenuItem>
                         <MenuItem Header="_Help">
+                            <MenuItem Header="Reforged Help Center..." Click="HelpCenterClicked" InputGestureText="F1"/>
                             <MenuItem Header="Reforged client status..." Click="ClientStatusClicked"/>
                             <MenuItem Header="Keyboard and input help..." Click="KeyboardHelpClicked"/>
                             <Separator/>
@@ -154,12 +139,12 @@
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="➜" ToolTip="Browse Goto routes" Click="GotoClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="↻" ToolTip="Browse loop routes" Click="LoopClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="✣" ToolTip="Choose Auto-Roam loop" Click="AutoRoamClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚔" ToolTip="Combat configuration (execution frozen)" Click="CombatOptionsClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♥" ToolTip="Health configuration (execution frozen)" Click="HealthOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚔" ToolTip="Combat configuration" Click="CombatOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♥" ToolTip="Health configuration" Click="HealthOptionsClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="✚" ToolTip="Toggle Auto Bless" Click="BlessToggleClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="☀" ToolTip="Toggle Auto Light" Click="LightToggleClicked"/>
                         <Separator/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♟" ToolTip="Party configuration (execution frozen)" Click="PartyOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♟" ToolTip="Party configuration" Click="PartyOptionsClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⌕" ToolTip="Find in received scrollback" Click="FindClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⚙" ToolTip="Settings" Click="OptionsClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⊘" ToolTip="Stop All" Click="StopAllClicked"/>
@@ -169,7 +154,9 @@
                 <StatusBar DockPanel.Dock="Bottom" Height="23" Padding="2,0" Background="#F0F0F0" Foreground="#111111" TextElement.Foreground="#111111" DataContext="{Binding Session}">
                     <TextBlock Text="●" Foreground="#16A040"/><TextBlock Text="{Binding DisplayName}" MinWidth="110"/><Separator/>
                     <TextBlock Text="{Binding RouteStep}" MinWidth="28"/><Separator/><TextBlock Text="{Binding ConnectionMessage}" MinWidth="105" ToolTip="{Binding TelnetStatus}"/><TextBlock Text="{Binding TerminalSizeSummary}" Margin="8,0,0,0" ToolTip="{Binding TelnetStatus}"/><Separator/>
-                    <TextBlock Text="{Binding RouteProgress}" MinWidth="235"/><Separator/><TextBlock Text="{Binding VitalSummary}"/>
+                    <TextBlock Text="{Binding RouteProgress}" MinWidth="235"/><Separator/>
+                    <TextBlock Text="{Binding PvpRealmSummary}" Margin="4,0" ToolTip="{Binding PvpCombatSummary}"/><Separator/>
+                    <TextBlock Text="{Binding VitalSummary}"/>
                 </StatusBar>
 
                 <Border Background="#02050A"

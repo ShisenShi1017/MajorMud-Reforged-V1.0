@@ -98,6 +98,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         public Task? RouteTask;
         public bool SuppressReconnect;
         public readonly SemaphoreSlim SendGate = new(1, 1);
+        public readonly ClientAutomationCommandDeduplicator AutomationDeduplicator = new();
         public readonly SemaphoreSlim TelnetTraceGate = new(1, 1);
         public string TelnetTracePath = string.Empty;
         public readonly SemaphoreSlim RouteSignal = new(0, 1);
@@ -309,8 +310,10 @@ public sealed partial class ClientSessionService : IClientSessionService
         try
         {
             var text = command?.Trim() ?? string.Empty;
+            if (!runtime.AutomationDeduplicator.ShouldSend(text, origin, DateTimeOffset.UtcNow)) return;
             if (origin == ClientCommandOrigin.ClientProtocol)
             {
+                runtime.ProtocolFilter.NoteOutboundCommand(text);
                 var parserCommand = text.StartsWith("clientdata ", StringComparison.OrdinalIgnoreCase)
                     ? text["clientdata ".Length..].Trim()
                     : text;
@@ -419,6 +422,8 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.ServerCatalogUpdatedAt = null;
             session.LibrariumPage = null;
             session.OnlinePlayersUpdatedAt = null;
+            session.PvpState = null;
+            session.PvpStateUpdatedAt = null;
             session.LastReceivedLine = string.Empty;
             session.LivePromptText = string.Empty;
             session.CurrentRoomName = string.Empty;
@@ -427,11 +432,15 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.CurrentRoomCurrency = string.Empty;
             session.CurrentRoomExits.Clear();
             session.CurrentRoomNpcs.Clear();
+            session.CurrentRoomNpcDetails.Clear();
+            session.CurrentRoomNpcDetailsUpdatedAt = null;
             session.CurrentRoomPlayers.Clear();
             session.CurrentRoomItems.Clear();
+            session.CurrentRoomItemDetails.Clear();
             session.CurrentRoomLinks.Clear();
             session.CurrentRoomCommands.Clear();
             session.CurrentRoomCommandDetails.Clear();
+            session.CurrentRoomServices.Clear();
             session.CurrentRoomTopologyNodes.Clear();
             session.CurrentRoomTopologyLinks.Clear();
             session.ServerMaps.Clear();
@@ -566,11 +575,15 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.CurrentRoomCurrency = string.Empty;
         session.CurrentRoomExits.Clear();
         session.CurrentRoomNpcs.Clear();
+        session.CurrentRoomNpcDetails.Clear();
+        session.CurrentRoomNpcDetailsUpdatedAt = null;
         session.CurrentRoomPlayers.Clear();
         session.CurrentRoomItems.Clear();
+        session.CurrentRoomItemDetails.Clear();
         session.CurrentRoomLinks.Clear();
         session.CurrentRoomCommands.Clear();
         session.CurrentRoomCommandDetails.Clear();
+        session.CurrentRoomServices.Clear();
         session.CurrentRoomTopologyNodes.Clear();
         session.CurrentRoomTopologyLinks.Clear();
         session.ServerMaps.Clear();
@@ -583,6 +596,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.InventoryItems.Clear();
         session.EquippedItems.Clear();
         session.LearnedSpells.Clear();
+        session.LearnedSpellDetails.Clear();
         session.ActiveEffects.Clear();
         session.PartyMembers.Clear();
         session.OnlinePlayers.Clear();
@@ -597,6 +611,8 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.ActiveEffectsUpdatedAt = null;
         session.PartyUpdatedAt = null;
         session.OnlinePlayersUpdatedAt = null;
+        session.PvpState = null;
+        session.PvpStateUpdatedAt = null;
     }
 
     public async Task<string> ExportTerminalLogAsync(string sessionId, string? destinationPath = null, CancellationToken cancellationToken = default)
@@ -691,6 +707,8 @@ public sealed partial class ClientSessionService : IClientSessionService
                     Trim(session.RouteTrace, 250);
                     session.AwaitingRouteConfirmation = false;
                     SetRoute(session, RouteExecutionState.Running, $"Confirmed {confirmed.RoomName}");
+                    session.IsMoving = false;
+                    await Task.Delay(1000, token);
                 }
                 else
                 {
@@ -910,7 +928,12 @@ public sealed partial class ClientSessionService : IClientSessionService
             spellRuntime.SpellbookParser.Observe(prepared) is { } spells)
         {
             session.LearnedSpells.Clear();
-            foreach (var spell in spells) session.LearnedSpells.Add(spell);
+            session.LearnedSpellDetails.Clear();
+            foreach (var spell in spells)
+            {
+                session.LearnedSpells.Add(spell.Name);
+                session.LearnedSpellDetails.Add(spell);
+            }
             session.SpellbookUpdatedAt = DateTimeOffset.Now;
         }
         if (_runtime.TryGetValue(session.SessionId, out var partyRuntime) &&
@@ -1034,7 +1057,35 @@ public sealed partial class ClientSessionService : IClientSessionService
         }
         if (message.Channel == "PANELDATA")
         {
-            ParseStatus(session, message.Payload);
+            // Private panel responses preserve the Classic screen layout inside one
+            // protocol envelope. Feed that layout to the bounded parsers one line at
+            // a time exactly as an ordinary terminal response would arrive. Keeping
+            // this path inside the protocol handler prevents the payload from ever
+            // appearing in player scrollback.
+            foreach (var line in SplitClientPanelLines(message.Payload))
+                ParseStatus(session, line);
+            return;
+        }
+        if (message.Channel == "ACTIVEEFFECTS")
+        {
+            try
+            {
+                var effects = JsonSerializer.Deserialize<ClientActiveEffectState[]>(message.Payload) ?? [];
+                session.ActiveEffectDetails.Clear();
+                foreach (var effect in effects) session.ActiveEffectDetails.Add(effect);
+                session.ActiveEffectsUpdatedAt = DateTimeOffset.Now;
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "PVPSTATE")
+        {
+            try
+            {
+                session.PvpState = JsonSerializer.Deserialize<ClientPvpState>(message.Payload);
+                session.PvpStateUpdatedAt = DateTimeOffset.Now;
+            }
+            catch (JsonException) { }
             return;
         }
         if (message.Channel == "ROOMLINKS")
@@ -1048,6 +1099,21 @@ public sealed partial class ClientSessionService : IClientSessionService
             catch (JsonException) { }
             return;
         }
+        if (message.Channel == "ROOMSTATE")
+        {
+            try
+            {
+                var state = JsonSerializer.Deserialize<ClientRoomEnvironmentState>(message.Payload);
+                if (state is not null && (string.IsNullOrWhiteSpace(session.CurrentRoomKey) ||
+                    state.RoomKey.Equals(session.CurrentRoomKey, StringComparison.OrdinalIgnoreCase)))
+                {
+                    session.CurrentRoomLightLevel = state.EnvironmentLightLevel;
+                    session.CurrentRoomEnvironmentUpdatedAt = DateTimeOffset.Now;
+                }
+            }
+            catch (JsonException) { }
+            return;
+        }
         if (message.Channel == "ROOMNPCS")
         {
             try
@@ -1055,6 +1121,29 @@ public sealed partial class ClientSessionService : IClientSessionService
                 var npcs = JsonSerializer.Deserialize<ClientRoomInspectionNpc[]>(message.Payload) ?? [];
                 session.CurrentRoomNpcDetails.Clear();
                 foreach (var npc in npcs) session.CurrentRoomNpcDetails.Add(npc);
+                session.CurrentRoomNpcDetailsUpdatedAt = DateTimeOffset.Now;
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "ROOMSERVICES")
+        {
+            try
+            {
+                var services = JsonSerializer.Deserialize<ClientRoomServiceState[]>(message.Payload) ?? [];
+                session.CurrentRoomServices.Clear();
+                foreach (var service in services) session.CurrentRoomServices.Add(service);
+            }
+            catch (JsonException) { }
+            return;
+        }
+        if (message.Channel == "ROOMITEMS")
+        {
+            try
+            {
+                var items = JsonSerializer.Deserialize<ClientRoomItemState[]>(message.Payload) ?? [];
+                session.CurrentRoomItemDetails.Clear();
+                foreach (var item in items) session.CurrentRoomItemDetails.Add(item);
             }
             catch (JsonException) { }
             return;
@@ -1135,8 +1224,26 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.LibrariumPage = page;
     }
 
+    private static IEnumerable<string> SplitClientPanelLines(string payload)
+    {
+        using var reader = new StringReader(payload ?? string.Empty);
+        while (reader.ReadLine() is { } line)
+            yield return line;
+    }
+
     private static void ApplyClientRoomDataObservation(ClientSessionConnection session, ClassicRoomDisplayObservation room)
     {
+        var roomChanged = (!string.IsNullOrWhiteSpace(room.RoomKey) &&
+                           !room.RoomKey.Equals(session.CurrentRoomKey, StringComparison.OrdinalIgnoreCase)) ||
+                          (string.IsNullOrWhiteSpace(room.RoomKey) &&
+                           !room.RoomName.Equals(session.CurrentRoomName, StringComparison.OrdinalIgnoreCase));
+        if (roomChanged)
+        {
+            session.CurrentRoomNpcDetails.Clear();
+            session.CurrentRoomServices.Clear();
+            session.CurrentRoomItemDetails.Clear();
+            session.CurrentRoomNpcDetailsUpdatedAt = null;
+        }
         session.CurrentRoomName = room.RoomName;
         if (!string.IsNullOrWhiteSpace(room.RoomKey)) session.CurrentRoomKey = room.RoomKey;
         session.CurrentRoomDescription = room.Description;

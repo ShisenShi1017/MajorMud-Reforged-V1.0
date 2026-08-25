@@ -81,7 +81,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     public string ExecuteItemCommand(RuntimeSession session, RuntimeCommand command)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
-        if (_liveCombats.ContainsKey(session.Id)) return "You cannot hide or sneak while in combat.";
+        if (_liveCombats.ContainsKey(session.Id) || _livePvpEncounterBySession.ContainsKey(session.Id)) return "You cannot hide or sneak while in combat.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
         character = RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_characters.ProjectRoot, character);
         var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());

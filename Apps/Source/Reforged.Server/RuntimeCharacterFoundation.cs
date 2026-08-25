@@ -446,17 +446,18 @@ public sealed class RuntimeCharacterCatalog
 
 public sealed class RuntimeCharacterRepository
 {
+    public const int MaximumCharactersPerAccountPerWorld = 3;
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
-    private readonly string _root;
+    private readonly string _hostRoot;
     private readonly string _projectRoot;
     private readonly object _gate = new();
 
     public RuntimeCharacterRepository(string projectRoot)
     {
         _projectRoot = projectRoot;
-        _root = Path.Combine(projectRoot, "Saves", "Runtime0137");
-        Directory.CreateDirectory(Path.Combine(_root, "accounts"));
-        Directory.CreateDirectory(Path.Combine(_root, "characters"));
+        _hostRoot = RuntimeSavePaths.HostRoot(projectRoot);
+        Directory.CreateDirectory(Path.Combine(_hostRoot, "accounts"));
+        Directory.CreateDirectory(Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, RuntimeSavePaths.ClassicWorldId), "characters"));
         StartupRecoverySweep();
     }
 
@@ -465,8 +466,9 @@ public sealed class RuntimeCharacterRepository
         var recovered = new List<string>();
         lock (_gate)
         {
-            var directory = Path.Combine(_root, "characters");
-            foreach (var path in Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            foreach (var path in CharacterDirectories()
+                         .SelectMany(directory => Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly))
+                         .OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
             {
                 var result = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
                 if (result.Source == "missing") continue;
@@ -540,10 +542,9 @@ public sealed class RuntimeCharacterRepository
     {
         lock (_gate)
         {
-            var directory = Path.Combine(_root, "characters");
-            if (!Directory.Exists(directory)) return Array.Empty<RuntimeCharacterRecord>();
             var result = new List<RuntimeCharacterRecord>();
-            foreach (var path in Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly)
+            foreach (var path in CharacterDirectories()
+                         .SelectMany(directory => Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly))
                          .OrderBy(value => value, StringComparer.OrdinalIgnoreCase))
             {
                 var loaded = RuntimeCharacterPersistencePolicy.Load(path, JsonOptions);
@@ -561,6 +562,16 @@ public sealed class RuntimeCharacterRepository
             if (TryLoadCharacter(character.CharacterId) is not null)
             {
                 throw new InvalidOperationException($"Character '{character.DisplayName}' already exists.");
+            }
+
+            var existingInWorld = account.CharacterIds
+                .Select(TryLoadCharacter)
+                .Where(value => value is not null)
+                .Cast<RuntimeCharacterRecord>()
+                .Count(value => value.WorldId.Equals(character.WorldId, StringComparison.OrdinalIgnoreCase));
+            if (existingInWorld >= MaximumCharactersPerAccountPerWorld)
+            {
+                throw new InvalidOperationException($"Account '{account.DisplayName}' already has {MaximumCharactersPerAccountPerWorld} characters in realm '{character.WorldId}'.");
             }
 
             character = RuntimeCharacterPersistencePolicy.PrepareForSave(character, "create", DateTimeOffset.UtcNow);
@@ -604,11 +615,22 @@ public sealed class RuntimeCharacterRepository
         }
     }
 
-    private string AccountPath(string id) => Path.Combine(_root, "accounts", id + ".json");
+    private string AccountPath(string id) => Path.Combine(_hostRoot, "accounts", id + ".json");
     private string CharacterPath(string id)
     {
         id = CanonicalCharacterId(id);
-        return Path.Combine(_root, "characters", PersistenceFileKey(id) + ".json");
+        return Path.Combine(RuntimeSavePaths.RealmRoot(_projectRoot, RuntimeSavePaths.WorldIdFromCharacterId(id)), "characters", PersistenceFileKey(id) + ".json");
+    }
+
+    private IEnumerable<string> CharacterDirectories()
+    {
+        var classic = Path.Combine(RuntimeSavePaths.RealmRoot(_projectRoot, RuntimeSavePaths.ClassicWorldId), "characters");
+        if (Directory.Exists(classic)) yield return classic;
+
+        var customRoot = Path.Combine(_projectRoot, "Saves", "Custom");
+        if (!Directory.Exists(customRoot)) yield break;
+        foreach (var directory in Directory.EnumerateDirectories(customRoot, "characters", SearchOption.AllDirectories))
+            yield return directory;
     }
 
     private static string CanonicalCharacterId(string characterId)
@@ -759,6 +781,7 @@ public sealed class RuntimeCharacterService
     public bool AccountExists(string accountName) => _repository.AccountExists(accountName);
     public RuntimeCharacterCatalog GetCatalog(string worldId) => RuntimeCharacterCatalog.Load(_projectRoot, worldId);
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId) => _repository.ListCharacters(accountId);
+    public int MaximumCharactersPerAccountPerWorld => RuntimeCharacterRepository.MaximumCharactersPerAccountPerWorld;
     public IReadOnlyList<RuntimeCharacterRecord> ListAllCharacters() => _repository.ListAllCharacters();
     public RuntimeCharacterRecord? LoadCharacter(string id) => _repository.TryLoadCharacter(id);
     public RuntimeCharacterRecord LoginCharacter(string characterId, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool reconnect = false) =>

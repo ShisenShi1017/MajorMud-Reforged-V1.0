@@ -148,6 +148,7 @@ public sealed class BorinAiRoutingSettings
     public BorinBrainMode Mode { get; set; } = BorinBrainMode.Hybrid;
     public bool FallBackToLocal { get; set; } = true;
     public bool AutomaticallyEscalateDifficultTasks { get; set; } = true;
+    public bool VerifyCriticalTasks { get; set; } = true;
 }
 
 public interface ICloudReasoningPolicy
@@ -184,7 +185,7 @@ public sealed class BorinLocalFirstReasoningPolicy : ICloudReasoningPolicy
     }
 }
 
-public enum BorinAiTier { Local, Lightning, Ultra }
+public enum BorinAiTier { Local, Lightning, Super, Ultra }
 
 public sealed record BorinAiRouteSnapshot(
     BorinAiTier Tier,
@@ -239,12 +240,13 @@ public sealed class BorinAiTierSelector : IBorinAiTierSelector
     }
 }
 
-/// <summary>Three-tier local/Lightning/Ultra router. At most one escalation occurs per request.</summary>
+/// <summary>Local authority with Lightning reasoning, Ultra deep analysis, and bounded Super verification.</summary>
 public sealed class TieredBorinAiProviderRouter : IAiProvider, IBorinAiRouteTelemetry
 {
     private readonly IAiProvider _local;
     private readonly IAiProvider _lightning;
     private readonly IAiProvider _ultra;
+    private readonly IAiProvider? _super;
     private readonly BorinAiRoutingSettings _settings;
     private readonly ICloudReasoningPolicy _localPolicy;
     private readonly IBorinAiTierSelector _selector;
@@ -253,11 +255,13 @@ public sealed class TieredBorinAiProviderRouter : IAiProvider, IBorinAiRouteTele
     private BorinAiRouteSnapshot _lastRoute = BorinAiRouteSnapshot.Initial;
 
     public TieredBorinAiProviderRouter(IAiProvider local, IAiProvider lightning, IAiProvider ultra,
-        BorinAiRoutingSettings settings, ICloudReasoningPolicy? localPolicy = null, IBorinAiTierSelector? selector = null)
+        BorinAiRoutingSettings settings, ICloudReasoningPolicy? localPolicy = null, IBorinAiTierSelector? selector = null,
+        IAiProvider? super = null)
     {
         _local = local; _lightning = lightning; _ultra = ultra; _settings = settings;
         _localPolicy = localPolicy ?? new BorinLocalFirstReasoningPolicy();
         _selector = selector ?? new BorinAiTierSelector();
+        _super = super;
     }
 
     public string Name => "Borin Tiered Hybrid AI";
@@ -313,7 +317,34 @@ public sealed class TieredBorinAiProviderRouter : IAiProvider, IBorinAiRouteTele
 
     private async Task<AiResponse> RouteUltraFirstAsync(BrainContext context, CancellationToken token, BorinTaskMetadata metadata)
     {
-        try { return await RouteAsync(_ultra, context, token, BorinAiTier.Ultra, "Ultra", DeepReason(metadata)); }
+        try
+        {
+            var primary = await RouteAsync(_ultra, context, token, BorinAiTier.Ultra, "Shared NVIDIA", DeepReason(metadata));
+            if (!_settings.VerifyCriticalTasks || _super is null || !MetadataWarrantsVerification(metadata))
+                return primary;
+
+            try
+            {
+                var verifier = await _super.ThinkAsync(context, token).ConfigureAwait(false);
+                var agrees = DecisionsAgree(primary.Decision, verifier.Decision);
+                SetRoute(BorinAiTier.Ultra, "Shared NVIDIA", agrees
+                    ? $"{DeepReason(metadata)} Independently verified by Super."
+                    : $"{DeepReason(metadata)} Super disagreed; local validation or human review is required.", true);
+                if (agrees || primary.Decision is null)
+                    return primary;
+                return primary with
+                {
+                    Decision = primary.Decision with { Confidence = Math.Min(primary.Decision.Confidence, 0.5) },
+                    UsedFallback = true,
+                    FallbackReason = "Independent Super verification disagreed"
+                };
+            }
+            catch (Exception verifierException) when (IsProviderFailure(verifierException))
+            {
+                SetRoute(BorinAiTier.Ultra, "Shared NVIDIA", $"{DeepReason(metadata)} Super verification unavailable; retained Ultra result.", true, SafeReason(verifierException));
+                return primary with { UsedFallback = true, FallbackReason = "Super verifier unavailable" };
+            }
+        }
         catch (Exception ultraException) when (IsProviderFailure(ultraException))
         {
             try
@@ -352,6 +383,12 @@ public sealed class TieredBorinAiProviderRouter : IAiProvider, IBorinAiRouteTele
     }
 
     private static bool MetadataWarrantsUltra(BorinTaskMetadata metadata) => metadata.IsCorrection || metadata.IsArchitecture || metadata.EvidenceFiles >= 3 || metadata.HasConflictingEvidence;
+    private static bool MetadataWarrantsVerification(BorinTaskMetadata metadata) => metadata.IsCorrection || metadata.IsArchitecture || metadata.EvidenceFiles >= 4 || metadata.HasConflictingEvidence;
+    private static bool DecisionsAgree(BorinAiDecision? primary, BorinAiDecision? verifier)
+    {
+        if (primary is null || verifier is null) return false;
+        return primary.Intent == verifier.Intent && string.Equals(primary.Target?.Trim(), verifier.Target?.Trim(), StringComparison.OrdinalIgnoreCase);
+    }
     private static string DeepReason(BorinTaskMetadata m) => m.PreviousFailures >= 2 ? "Deep task after repeated Lightning failures." : m.IsArchitecture ? "Architecture-level task metadata." : m.EvidenceFiles >= 4 ? "Cross-file investigation metadata." : "High-complexity task metadata.";
     private static bool IsProviderFailure(Exception exception) => exception is AiProviderException or HttpRequestException or TimeoutException;
     private static string SafeReason(Exception exception) => exception is AiProviderException p ? $"{p.Kind}" : "provider unavailable";

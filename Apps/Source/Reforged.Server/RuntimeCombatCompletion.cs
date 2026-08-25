@@ -32,6 +32,22 @@ public sealed partial class RuntimeLiveGameplayFacade
                 session.EnqueueMessage($"Combat tick blocked: {ex.Message}");
             }
         }
+        foreach (var encounter in _livePvpEncounters.Values.OrderBy(value => value.EncounterId, StringComparer.OrdinalIgnoreCase).ToArray())
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            try
+            {
+                var result = ExecuteLivePvpRound(encounter);
+                var attacker = _sessions.ActiveSessions.FirstOrDefault(session => session.Id.Equals(encounter.AttackerSessionId, StringComparison.OrdinalIgnoreCase));
+                if (attacker is not null && !string.IsNullOrWhiteSpace(result)) attacker.EnqueueMessage(result);
+            }
+            catch (Exception ex)
+            {
+                EndLivePvpEncounter(encounter);
+                foreach (var participant in _sessions.ActiveSessions.Where(session => session.Id.Equals(encounter.AttackerSessionId, StringComparison.OrdinalIgnoreCase) || session.Id.Equals(encounter.DefenderSessionId, StringComparison.OrdinalIgnoreCase)))
+                    participant.EnqueueMessage($"PvP combat tick blocked: {ex.Message}\n*Combat Off*");
+            }
+        }
         await Task.CompletedTask;
     }
 

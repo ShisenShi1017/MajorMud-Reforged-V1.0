@@ -42,6 +42,19 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (playerNames.Length > 0) lines.Add($"Players: {string.Join(", ", playerNames)}");
 
         var items = LoadClientMapGround(session, includeHiddenObjects).ToArray();
+        var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var itemDetails = Living(session).GroundItems(session.CurrentRoom.Id)
+            .Where(item => includeHiddenObjects || !RuntimeClassicHiddenSearchService.IsHidden(item))
+            .GroupBy(item => item.InstanceId, StringComparer.OrdinalIgnoreCase).Select(group => group.First())
+            .Select(item =>
+            {
+                var definition = itemCatalog.Require(item.CanonicalItemId);
+                return new
+                {
+                    item.InstanceId, item.CanonicalItemId, definition.Name, definition.Weight, definition.Gettable,
+                    Quantity = item.StackQuantity, Hidden = RuntimeClassicHiddenSearchService.IsHidden(item)
+                };
+            }).ToArray();
         if (items.Length > 0) lines.Add($"Items: {string.Join(", ", items)}");
         var currency = RuntimeClassicRoomCurrencyStore.Get(_characters.ProjectRoot, session.World.Definition.Id, session.CurrentRoom.Id);
         if (!currency.IsEmpty) lines.Add($"You notice {RuntimeClassicRoomCurrencyStore.Format(currency)} here.");
@@ -89,8 +102,19 @@ public sealed partial class RuntimeLiveGameplayFacade
         var topology = BuildClientRoomTopology(session, session.CurrentRoom, 64);
         var mapCatalog = session.World.AllRooms().GroupBy(room => room.MapId).OrderBy(group => group.Key)
             .Select(group => new { MapId = group.Key, RoomCount = group.Count() }).ToArray();
+        var roomServices = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id).Services
+            .Where(service => TryReadRoomNumber(service.GeneratedRecord, out var roomNumber) && roomNumber == session.CurrentRoom.RoomNumber)
+            .Select(service => new { service.Id, Kind = ReadServiceKind(service), Name = ReadServiceName(service) }).ToArray();
         return ReforgedClientProtocol.Encode("ROOMDATA", string.Join(Environment.NewLine, lines)) + Environment.NewLine +
+               ReforgedClientProtocol.Encode("ROOMSTATE", System.Text.Json.JsonSerializer.Serialize(new
+               {
+                   RoomKey = $"{session.CurrentRoom.MapId}:{session.CurrentRoom.RoomNumber}",
+                   session.CurrentRoom.EnvironmentLightLevel,
+                   session.CurrentRoom.EnvironmentRoomType
+               })) + Environment.NewLine +
                ReforgedClientProtocol.Encode("ROOMNPCS", System.Text.Json.JsonSerializer.Serialize(npcDetails)) + Environment.NewLine +
+               ReforgedClientProtocol.Encode("ROOMSERVICES", System.Text.Json.JsonSerializer.Serialize(roomServices)) + Environment.NewLine +
+               ReforgedClientProtocol.Encode("ROOMITEMS", System.Text.Json.JsonSerializer.Serialize(itemDetails)) + Environment.NewLine +
                ReforgedClientProtocol.Encode("ROOMLINKS", System.Text.Json.JsonSerializer.Serialize(links)) + Environment.NewLine +
                ReforgedClientProtocol.Encode("ROOMCOMMANDS", System.Text.Json.JsonSerializer.Serialize(roomCommands)) + Environment.NewLine +
                ReforgedClientProtocol.Encode("ROOMTOPOLOGY", System.Text.Json.JsonSerializer.Serialize(topology)) + Environment.NewLine +

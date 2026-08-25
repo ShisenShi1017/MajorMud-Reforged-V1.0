@@ -1,4 +1,4 @@
-﻿# Borin Repository Audit
+# Borin Repository Audit
 
 Generated: 2026-08-05T17:06:32.4832537-07:00
 Request: i want you to audit yourself and tell me why you are not seeing the [HP=x]: prompt from your terminal
@@ -326,7 +326,7 @@ state = 'correctly_classified_sysop_command_inventory_and_capability_mapping_req
 
 $reportDirectory = Join-Path $ProjectRoot 'Reports/RuntimeVerification'
 [IO.Directory]::CreateDirectory($reportDirectory) | Out-Null
-$jsonPath = Join-Path $reportDirectory 'classic_parity_retirement_ledger_0139.json'
+$jsonPath = Join-Path $reportDirectory 'classic_parity_retirement_ledger.json'
 [IO.File]::WriteAllText($jsonPath, ($document | ConvertTo-Json -Depth 8) + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
 
 $markdown = @"

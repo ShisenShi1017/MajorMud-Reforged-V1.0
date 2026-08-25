@@ -2,9 +2,9 @@
 
 Current baseline:
 
-- Code Update: `0139`
+- Code Update: `0140`
 - Database Version: `0010`
-- Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
+- Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
 - Status: local repository update; GitHub Actions pending until pushed and confirmed green
 
 Important rules:
@@ -15,7 +15,8 @@ Important rules:
 - Generated `Data/Classic` is not committed; clean CI/local validation must run the Librarium compiler before server bootstrap.
 - Current clean-checkout repair also covers chunked generated data, `textblock_command_ability_contracts` compiler output, and derived NPC AI spawn relationships when optional `npc_ai_runtime.json` is absent.
 - Classic remains immutable and evidence-locked.
-- `ImportedDatabases/` remains reference-only unless the user explicitly approves cleanup.
+- Imported/reference databases and raw evidence are local-only archive material in `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`; do not recommit loose `ImportedDatabases/` or `Evidence/` contents.
+- Runtime saves are realm-scoped: Classic uses `Saves/Classic`, custom realms use `Saves/Custom/<realm>`, host account credentials use `Saves/Host`, and one login may keep up to three characters per world.
 - Preserve real `Saves/`; do not commit smoke-save artifacts.
 
 Latest focused runtime repair:
@@ -76,9 +77,8 @@ Bundle H final gate update:
 - Published server/app win-x64 release folders were regenerated under `Release/`.
 - Published `Reforged.Server.exe` passes Classic data audit, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`.
 - Published `MajorMudReforged.exe` passes shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening.
-- Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
-
-Latest validator: PASS 13/13.
+- `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore`: PASS with 0 warnings/errors after imported/reference archival cleanup.
+- `python Tools\validator.py`: PASS 15/15 after imported/reference archival cleanup.
 
 Latest compiler/app validation:
 
@@ -102,7 +102,7 @@ Latest quest dialogue validation:
 - Exhaustive generated NPC quest-entry dispatch validation: PASS.
 - `remoteaction` is recorded as a validated host event; its native remote mutation remains evidence-gated.
 
-Next step: review and push CodeUpdate0139 when approved, then wait for green GitHub Actions before beginning the next public update.
+Next step: push CodeUpdate0140 when approved, then wait for green GitHub Actions before beginning the next public update.
 - One-time validation proofs are recorded in ValidationManifest.json.
 
 ## Guardian Hall Phase 3-0150

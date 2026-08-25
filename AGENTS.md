@@ -34,7 +34,7 @@ Latest local continuation: leader-only `PROMOTE <player>` and `DEMOTE <player>` 
 
 Latest local continuation: the first player-facing gang lifecycle slice is live with exact native command phrases: `CREATE GANG <name>` (100,000 experience, 1-19 characters), `INVITE MEMBER <character>`, `UNINVITE MEMBER <character>`, `JOIN GANG <name>`, `LEAVE GANG`, `BROADGANG`/`BG [text]`, and leader-only `DISBAND GANG`. Invitations persist for offline characters; leader/lieutenant invitation authority is enforced. CREATE treats 100,000 as an eligibility requirement, not an invented deduction. PROMOTE/DEMOTE, experience accrual, TOPTEN, disband-notification consumption, and deed acquisition remain next.
 
-Latest local continuation: authoritative persistent gang state now owns gang identity/name, leader, roster/roles, theoretical size, experience, TOPTEN visibility, disband status/member login-notification queue, gang-house link, revision, and timestamps under `Saves/Runtime0137/gangs`. `SYSOP LIST GANG`, DISBAND, DISABLE, ENABLE, and GANGSIZE are executable against exact full gang names. UNWRAP remains fail-closed pending the exact pre-1.1w wrapped-experience transformation. Player creation/join/leave and deed-to-house acquisition routes remain required. Clean Classic regeneration emits 34 families / 103,135 objects / 39 files; Release build passes with zero warnings/errors and WCC SYSOP smoke passes 26/26.
+Latest local continuation: authoritative Classic persistent gang state now owns gang identity/name, leader, roster/roles, theoretical size, experience, TOPTEN visibility, disband status/member login-notification queue, gang-house link, revision, and timestamps under `Saves/Classic/gangs`. `SYSOP LIST GANG`, DISBAND, DISABLE, ENABLE, and GANGSIZE are executable against exact full gang names. UNWRAP remains fail-closed pending the exact pre-1.1w wrapped-experience transformation. Player creation/join/leave and deed-to-house acquisition routes remain required. Clean Classic regeneration emits 34 families / 103,135 objects / 39 files; Release build passes with zero warnings/errors and WCC SYSOP smoke passes 26/26.
 
 Latest user-confirmed SYSOP evidence: `SYSOP LIGHTNING` is an administrative lightning attack and never grants or removes good/evil points. `LIGHTEVY` is only a target-eligibility restriction for characters who would normally receive Fiend lightning. Any future implementation must bypass ordinary alignment-changing attack behavior and preserve zero alignment mutation.
 
@@ -244,6 +244,8 @@ Latest local continuation: Map 17 boulder failure textblock 4235 executes native
 
 Latest local continuation: native WCCMSG2 output closure passes with 3,869 logical messages, exact three-slot preservation, ordered pedestal output, correct `message`/`text` namespace separation, and zero focused presentation disconnects.
 
+Latest local continuation: CodeUpdate0140 is the repository cleanup/imported-reference archive baseline after CodeUpdate0139 runtime cohesion. Loose `ImportedDatabases/` and `Evidence/` content is retired from Git, required promoted anchors remain in Librarium, generated `Data/Classic` remains untracked, and local verification passes with `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` at 0 warnings/errors plus `python Tools\validator.py` at 15/15 current-health checks. GitHub Actions is pending until the pushed commit is confirmed green.
+
 These instructions are mandatory for every Codex, ChatGPT, AI assistant, and developer handoff working on this repository.
 
 ## Current Position
@@ -251,12 +253,12 @@ These instructions are mandatory for every Codex, ChatGPT, AI assistant, and dev
 - Mode: Codex local repository work.
 - Repository: `ShisenShi1017/MajorMud-Reforged-V1.0`.
 - Local path: `E:\MajorMud-Reforged Github`.
-- Current Code Update: `0139`.
+- Current Code Update: `0140`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`.
-- Current status: local runtime cohesion changes applied; awaiting user push and green GitHub Actions confirmation.
+- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`.
+- Current status: CodeUpdate0139 runtime cohesion is closed locally; CodeUpdate0140 repository cleanup/imported-reference archival is ready for push and green GitHub Actions confirmation.
 - CodeUpdate0138 status: green by user report.
-- Latest local verification: Bundle H final audit sweep PASS 63/63; final smoke sweep PASS across all remaining `--smoke-*` commands after repaired item, living-world, command-alias, and player-combat-profile gates; solution Release build PASS with warnings-as-errors; compiler tests PASS; core/server smoke tests PASS; server and app win-x64 publish PASS; generated Classic data regenerated from Librarium before server bootstrap. Python validator could not be run in this Codex environment because `python`/`py` are not accessible to the process.
+- Latest local verification: Bundle H final audit sweep PASS 63/63; final smoke sweep PASS across all remaining `--smoke-*` commands after repaired item, living-world, command-alias, and player-combat-profile gates; solution Release build PASS; compiler tests PASS; core/server smoke tests PASS; server and app win-x64 publish PASS; generated Classic data regenerated from Librarium before server bootstrap. After imported/reference archival cleanup, `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` passes with 0 warnings/errors and `python Tools\validator.py` passes 15/15 current-health checks.
 - GitHub Actions corrective note: `/Data/Classic` is not committed. The workflow must run the Librarium compiler before server bootstrap diagnostics.
 - Guardian Hall engineering note: phases 1-10 use independent persisted controls for planning, engineering, build, validation, runtime testing, gameplay testing, optimization, documentation, candidate ZIPs, repository updates, and continuous overnight mode. Candidate ZIP generation defaults on; every autonomous/live-write capability defaults off. Do not enable Repository Updates on the user's behalf.
 - Borin assignments include a persisted Engineering Objective and a capability-gated `Fix Runtime Disconnects` preset that queues reproduction, diagnosis, repair, build, validation, runtime/gameplay regression, documentation, and cumulative ZIP tasks.
@@ -324,8 +326,9 @@ Before code or architecture work, read or verify:
 - Custom and AI worlds use overlays.
 - Client is read-only for gameplay state.
 - Server/Host is authoritative for world state, character state, combat, inventory, NPCs, quests, economy, timers, resets, and permissions.
-- `ImportedDatabases/` must remain untouched unless the user explicitly approves a reviewed cleanup.
+- Imported/reference databases and raw evidence are archived locally in `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`; Librarium is the committed gameplay authority and generated `/Data` remains runtime output.
 - Preserve real `Saves/`; do not commit smoke-save artifacts.
+- Runtime saves are realm-scoped: Classic uses `Saves/Classic`, custom worlds use `Saves/Custom/<realm>`, host account credentials use `Saves/Host`, and one login may have up to three characters per world.
 
 ## CodeUpdate Rules
 
@@ -337,7 +340,7 @@ Every Code Update must:
 - Record verification status and known limitations.
 - Wait for green GitHub Actions before moving to the next public update, unless the user explicitly overrides the gate.
 
-## CodeUpdate0139 State
+## CodeUpdate0139 Runtime State
 
 Verified locally in this working copy:
 
@@ -351,7 +354,7 @@ Verified locally in this working copy:
 - Compiler room-text recovery tooling is present through `audit-room-text` and `export-room-text`.
 - Librarium now contains 2,417 clean native-runtime room descriptions, 800 lower-priority OmniVerse map-qualified reference gap fills, and 23,309 WCCMP002 default-install binary gap fills under `Librarium/Objects/room_descriptions/`.
 - Compiler room-text loading merges all Librarium room-description files with native/binary records taking priority over reference gap fills.
-- A read-only WCC Librarium exhaustion audit records the current source coverage and remaining blockers at `Reports/DataDecode/wcc_librarium_exhaustion_audit.md`.
+- A read-only WCC Librarium exhaustion audit records the current source coverage and remaining blockers at `Reports/DataDecode/decoded_data_evidence_summary.md`.
 - MMExplorer SQL/MDB and OmniVerse public codex data were reconciled into Librarium as reference-backed gap-fill data. Matched item/spell/NPC/shop records now carry `public_reference` and `mmexplorer_sql_reference`; unmatched MMExplorer rows are retained as supplement files; OmniVerse abilities are represented as a new `abilities` family.
 - Live `Data/Classic` was regenerated from Librarium after the room-description promotion and now audits with 26,668 rooms with descriptions and 0 rooms without descriptions.
 - WCCMP002 is treated as the selected MajorMUD 1.11p room/map source for this recovery pass. WBBMP002 is secondary comparison evidence only.
@@ -373,13 +376,13 @@ Verified locally in this working copy:
 - Native WCCMSG room action/door/hidden-exit/lock/search/failure strings are cataloged as 117 unique offset-backed room message records.
 - Decode Exhaustion Bundle G Revision 0002 is installed locally and closes the prior F10 native presentation payload gap. Verified no-output decoded text nodes are explicit, `message 2044` and `message 3290` resolve through exact WCCMSG payload evidence, unknown message IDs fail closed, and local F10 native payload plus F10 complete through F15 audits pass.
 - The previously ignored 3,467-record WCCTEXT2 payload artifact is now a canonical Librarium family and cleanly regenerates as one runtime file. Clean Classic compilation reports 30 families, 101,731 objects, and 35 files; F10 payload and complete dialogue audits pass with zero disconnects.
-- Bundle H baseline report is recorded at `Reports/BundleH/BASELINE_RUNTIME_CONSOLIDATION_AUDIT.md`. Safe repairs added `search` to the supported runtime command catalog, aligned Bundle D search audit semantics with transient reroll/replace behavior, scoped Bundle D door validation to door/object failures, adjusted Bundle A repository-coverage gating to fail on true generated-unconsumed fields while recording evidence-name-only warnings, and promoted the two imported WCC room-anchor environment records that were absent from the MMExplorer-derived environment catalog.
+- Bundle H baseline is summarized in continuity documentation; historical raw logs are retired during repository cleanup. Safe repairs added `search` to the supported runtime command catalog, aligned Bundle D search audit semantics with transient reroll/replace behavior, scoped Bundle D door validation to door/object failures, adjusted Bundle A repository-coverage gating to fail on true generated-unconsumed fields while recording evidence-name-only warnings, and promoted the two imported WCC room-anchor environment records that were absent from the MMExplorer-derived environment catalog.
 - Bundle A character audit now passes with 13 races, 15 classes, no generated-unconsumed Bundle A gameplay fields, and 57 repository-wide evidence-name-only warnings recorded separately from runtime disconnects.
 - Bundle D final now passes locally with `AuditPassed=true` and `BundleDComplete=true`. D9 now reports 26,668 runtime rooms and 26,668 decoded environment records. `room.map1.288` / `The Silver River` and `room.map1.2306` / `Small House, Attic` are backed by imported WCC room records and source-classified as `decoded_imported_wcc_room_record_anchor`. D9 explicitly asserts both anchor records and their decoded values. Neither room is a gang house, so gang-house environment rows remain 0.
 - Bundle E zero-disconnect audit now passes locally with `BundleEComplete=true`, 1,100 NPC definitions, 962 spawn records, all 13 NPC/creature subsystems passed, and no duplicate authoritative creature source paths. Focused companion, merchant/trainer, boss/death/respawn, NPC item/control/persistence, and relationship/service closure audits also pass.
-- Bundle H current gate logs are preserved under `Reports/BundleH/CurrentGate/`; the compiler build, server build, seven focused runtime audits, and the gang-house service-location audit pass locally.
-- Bundle H final gate logs are preserved under `Reports/BundleH/FinalGate/`. Final local gate repairs corrected bank item location validation, isolated owner-limited item smoke state, restored exact `ba` -> `bash` command parsing, refreshed living-world smoke expectations to generated 26,668-room / 367-interaction data, and split player combat stored-field checks from derived backstab/dodge formula consumers.
-- Bundle H gang-house service-location audit is recorded at `Reports/BundleH/CurrentGate/bundle_h_gang_house_audit.json`. Native/default WCC gang files, ten MudInfo gang-house maps, ten deed items, 22 gang-house/deed shops, and deed/upkeep cleanup protection are verified. Librarium now contains `Librarium/Objects/gang_houses/gang_house_records.json`, generated Classic data contains `Data/Classic/gang_houses.json`, and runtime consumes the generated catalog through `RuntimeClassicGangHouseCatalog` and `RuntimeClassicGangHouseProtectionService`.
+- Bundle H current gate summary is preserved in continuity documentation; historical raw logs are retired during repository cleanup; the compiler build, server build, seven focused runtime audits, and the gang-house service-location audit pass locally.
+- Bundle H final gate is summarized in continuity documentation; historical raw logs are retired during repository cleanup. Final local gate repairs corrected bank item location validation, isolated owner-limited item smoke state, restored exact `ba` -> `bash` command parsing, refreshed living-world smoke expectations to generated 26,668-room / 367-interaction data, and split player combat stored-field checks from derived backstab/dodge formula consumers.
+- Bundle H gang-house service-location audit is summarized in continuity documentation. Native/default WCC gang files, ten MudInfo gang-house maps, ten deed items, 22 gang-house/deed shops, and deed/upkeep cleanup protection are verified. Librarium now contains `Librarium/Objects/gang_houses/gang_house_records.json`, generated Classic data contains `Data/Classic/gang_houses.json`, and runtime consumes the generated catalog through `RuntimeClassicGangHouseCatalog` and `RuntimeClassicGangHouseProtectionService`.
 - Gang-house service-location scope is 10 Classic houses, 20 WCC shop API-backed service locations, 10 vault rooms, and 10 supply-shop rooms; all promoted locations resolve to runtime rooms and current/expired/non-gang-room protection checks pass. Normal interior house ownership coverage and live deed acquisition/upkeep mutation remain blocked until exact evidence is recovered. `Data/Classic/environment_rooms.json` still has 0 native gang-house flags, MudInfo maps remain reference-only, and `LibrariumLocal/core_graph.json` plus `LibrariumLocal/runtime_index.json` are absent from the repo.
 - Quest dialogue dispatch package 0206 is loaded into Librarium as current source records: 182 decoded textblock stage scripts and 83 NPC quest-entry triggers now generate into `Data/Classic`.
 - Runtime `talk <npc>` resolves room-scoped live NPCs, dispatches generated NPC quest-entry triggers, evaluates decoded stage scripts atomically, persists character quest flags/items/experience/alignment, and fails closed without mutation when unsupported or unresolved behavior is encountered.
@@ -396,10 +399,12 @@ Verified locally in this working copy:
 - Classic completed quests cannot be repeated on the same character. Replaying a completed quest requires starting a new character; same-character quest reset/restart must remain blocked for Classic.
 - `Tools/validator.py` includes `server_interaction_narrative`; latest PASS includes quest remoteaction event recording and generated room/object interaction event recording.
 - One-time room semantic and trigger/script/quest validations are accepted in ValidationManifest.json.
-- `Saves/` and `ImportedDatabases/` remain preserved.
+- `Saves/` remains preserved. Imported/reference databases and raw evidence are retained locally in `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`, not as committed source.
 
-Next update begins only after CodeUpdate0139 is pushed and GitHub Actions is green.
+Next update begins only after CodeUpdate0140 is pushed and GitHub Actions is green.
 - One-time validation proofs are recorded in ValidationManifest.json.
 - Classic economy/service closure covers 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services. Live buy markup and decoded regeneration time/quantity/percentage are authoritative; absent exact costs fail closed.
 - Classic spell/status/effect closure covers 1,350/1,350 spells, 105/105 decoded ability IDs, and 111/111 runtime-authoritative status effects with zero unclassified records. Exact opaque native branch names/output ordering remain structural evidence boundaries and must not be invented.
 - Full decoded `remoteaction` closure resolves 139/139 invocations and 85/85 signatures. Contracts compile into existing `Data/Classic/room_interactions.json`; native audit, living-world smoke, and interaction/narrative smoke pass locally with zero evidence-gated signatures.
+
+

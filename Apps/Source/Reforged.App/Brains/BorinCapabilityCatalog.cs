@@ -45,14 +45,14 @@ public sealed class BorinCapabilityCatalog : IBorinCapabilityCatalog
         new("game.pathfind", BorinAiIntent.Pathfind, BorinRole.Player, ForgePermissionMode.Observe, "Client route and map services"),
         new("game.command", BorinAiIntent.GameCommand, BorinRole.Player, ForgePermissionMode.Observe, "IBorinPlayerResearch autonomous normal-game command gateway"),
 
-        new("world.monitor", BorinAiIntent.MonitorWorld, BorinRole.Sysop, ForgePermissionMode.Observe, "Guardian Hall and runtime diagnostics"),
+        new("world.monitor", BorinAiIntent.MonitorWorld, BorinRole.Sysop, ForgePermissionMode.Observe, "Borin capability coordinator and runtime diagnostics"),
         new("world.get_room", BorinAiIntent.InspectRoom, BorinRole.Sysop, ForgePermissionMode.Observe, "ClassicAdministrationEditorService/runtime room inspection"),
         new("world.inspect_exit", BorinAiIntent.InspectExit, BorinRole.Sysop, ForgePermissionMode.Observe, "runtime room inspection"),
         new("world.inspect_monster", BorinAiIntent.InspectMonster, BorinRole.Sysop, ForgePermissionMode.Observe, "runtime NPC inspection"),
         new("world.inspect_item", BorinAiIntent.InspectItem, BorinRole.Sysop, ForgePermissionMode.Observe, "runtime item administration"),
         new("world.inspect_script", BorinAiIntent.InspectScript, BorinRole.Sysop, ForgePermissionMode.Observe, "Librarium/editor read services"),
         new("world.inspect_trigger", BorinAiIntent.InspectTrigger, BorinRole.Sysop, ForgePermissionMode.Observe, "Librarium/editor read services"),
-        new("world.inspect_runtime", BorinAiIntent.InspectRuntime, BorinRole.Sysop, ForgePermissionMode.Observe, "Guardian Hall/runtime diagnostics"),
+        new("world.inspect_runtime", BorinAiIntent.InspectRuntime, BorinRole.Sysop, ForgePermissionMode.Observe, "Borin capability coordinator/runtime diagnostics"),
         new("world.report_issue", BorinAiIntent.ReportIssue, BorinRole.Sysop, ForgePermissionMode.Recommend, "Borin issue ledger"),
         new("editor.propose_change", BorinAiIntent.ProposeWorldChange, BorinRole.Sysop, ForgePermissionMode.Draft, "Worldsmith proposal service", TestRealmOnly: true),
         new("editor.apply_test_change", BorinAiIntent.ApplyTestWorldChange, BorinRole.Sysop, ForgePermissionMode.ApplyWithApproval, "Worldsmith approval/apply service", TestRealmOnly: true, RequiresApproval: true),
@@ -93,6 +93,8 @@ public sealed class BorinCapabilityCatalog : IBorinCapabilityCatalog
 
     private static BorinCapabilityAvailability ResolveOne(BorinCapabilityDescriptor capability, ForgeConfiguration configuration)
     {
+        if (capability.Intent is BorinAiIntent.ProposeWorldChange or BorinAiIntent.ApplyTestWorldChange or BorinAiIntent.ResetTestRealm)
+            return new(capability, false, "Worldsmith is installed but currently withheld by William.");
         if (configuration.PermissionMode < capability.MinimumPermission)
             return new(capability, false, $"Requires {capability.MinimumPermission} permission.");
         if (capability.HumanOnly)

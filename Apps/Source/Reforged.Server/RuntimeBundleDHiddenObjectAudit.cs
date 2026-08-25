@@ -31,7 +31,11 @@ public static class RuntimeBundleDHiddenObjectAudit
         Check(RuntimeClassicHiddenSearchService.IsHidden(hiddenItem), "cleanup-hidden-item-state-recognized");
         var serverRoot = Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server");
         Check(File.ReadAllText(Path.Combine(serverRoot, "RuntimeLiveWorld.cs")).Contains("CanCharacterSeeExit", StringComparison.Ordinal), "room-rendering-filters-undiscovered-hidden-exits");
-        Check(File.ReadAllText(Path.Combine(serverRoot, "RuntimeLivingWorld.cs")).Contains("hidden\", StringComparison.OrdinalIgnoreCase", StringComparison.Ordinal), "movement-enforces-hidden-exit-mode");
+        var livingWorld = File.ReadAllText(Path.Combine(serverRoot, "RuntimeLivingWorld.cs"));
+        Check(livingWorld.Contains("CanTraverseLivingWorld", StringComparison.Ordinal) &&
+              livingWorld.Contains("EvaluateExitGate(session.CurrentRoom, direction, context)", StringComparison.Ordinal) &&
+              livingWorld.Contains("Registry.GetDiscoveredTargets(session.Actor.Id)", StringComparison.Ordinal),
+            "movement-enforces-hidden-exit-mode");
         Check(File.ReadAllText(Path.Combine(serverRoot, "RuntimeClassicHiddenSearch.cs")).Contains("DropClassicVisible", StringComparison.Ordinal), "pickup-redrop-visibility-transition-owned");
         return new(failures.Count == 0, checks, failures,
             new[]{"Hidden ground items remain globally hidden and are discovered per character.","Cleanup-hidden items become visible only after pickup and re-drop.","Hidden and visible ground stacks remain separate because hidden metadata is removed only on pickup.","Decoded Hidden/Searchable exits require player discovery.","Decoded Hidden/Passable exits allow explicit traversal but remain absent from obvious exits until discovered."},

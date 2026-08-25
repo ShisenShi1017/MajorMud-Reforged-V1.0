@@ -33,7 +33,7 @@ public sealed class RuntimeAccountSecurityService
 
     public RuntimeAccountSecurityService(string projectRoot)
     {
-        _securityRoot = Path.Combine(projectRoot, "Saves", "Runtime0137", "account_security");
+        _securityRoot = Path.Combine(RuntimeSavePaths.HostRoot(projectRoot), "account_security");
         Directory.CreateDirectory(_securityRoot);
     }
 

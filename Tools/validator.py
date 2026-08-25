@@ -27,6 +27,8 @@ DOTNET_STEPS = [
     ("solution_restore", ["dotnet", "restore", "MajorMud.Reforged.sln"]),
     ("solution_build", ["dotnet", "build", "MajorMud.Reforged.sln", "--configuration", "Release", "--no-restore"]),
     ("compiler_tests", ["dotnet", "test", "Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj", "--configuration", "Release", "--no-build"]),
+    ("core_tests_restore", ["dotnet", "restore", "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj"]),
+    ("core_tests_build", ["dotnet", "build", "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj", "--configuration", "Release", "--no-restore"]),
     ("core_smoke", ["dotnet", "run", "--project", "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj", "--configuration", "Release", "--no-build"]),
     ("classic_data_audit", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--audit-classic-data"]),
     ("server_generated_data", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-generated-data"]),

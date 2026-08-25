@@ -372,14 +372,16 @@ public sealed class ServerNetworkHost
                         : character.Sex + " ";
                     await telnet.WriteLineAsync($"  {index + 1}) {character.DisplayName} [{sexLabel}{character.RaceName} {character.ClassName}, level {character.Level}]", cancellationToken).ConfigureAwait(false);
                 }
-                await telnet.WriteLineAsync($"  {existing.Length + 1}) Create a new character", cancellationToken).ConfigureAwait(false);
-                await telnet.WriteAsync($"Enter 1-{existing.Length + 1}: ", cancellationToken).ConfigureAwait(false);
+                var canCreate = existing.Length < _characters.MaximumCharactersPerAccountPerWorld;
+                if (canCreate)
+                    await telnet.WriteLineAsync($"  {existing.Length + 1}) Create a new character", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteAsync(canCreate ? $"Enter 1-{existing.Length + 1}: " : $"Enter 1-{existing.Length}: ", cancellationToken).ConfigureAwait(false);
                 var selection = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
                 if (selection is null) return null;
                 if (int.TryParse(selection.Trim(), out var selectedIndex))
                 {
                     if (selectedIndex >= 1 && selectedIndex <= existing.Length) return existing[selectedIndex - 1];
-                    if (selectedIndex != existing.Length + 1)
+                    if (!canCreate || selectedIndex != existing.Length + 1)
                     {
                         await telnet.WriteLineAsync("Invalid character selection.", cancellationToken).ConfigureAwait(false);
                         continue;

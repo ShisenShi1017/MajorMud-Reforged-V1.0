@@ -87,7 +87,7 @@ public sealed class ClassicAdministrationEditorService
         }
         catch (Exception exception)
         {
-            warnings.Add("Validated Runtime0137 character loading failed; raw-save discovery was used: " + exception.Message);
+            warnings.Add("Validated runtime character loading failed; raw-save discovery was used: " + exception.Message);
         }
 
         DiscoverRawRuntimeCharacters(characters, warnings);
@@ -104,7 +104,7 @@ public sealed class ClassicAdministrationEditorService
         IDictionary<string, ClassicAdministrationCharacter> characters,
         ICollection<string> warnings)
     {
-        var directory = Path.Combine(_projectRoot, "Saves", "Runtime0137", "characters");
+        var directory = Path.Combine(_projectRoot, "Saves", "Classic", "characters");
         if (!Directory.Exists(directory)) return;
 
         foreach (var path in Directory.EnumerateFiles(directory, "*.json", SearchOption.TopDirectoryOnly)

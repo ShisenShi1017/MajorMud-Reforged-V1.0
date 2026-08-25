@@ -5,7 +5,7 @@ namespace Reforged.App.Brains;
 /// <summary>
 /// Provider-neutral entry point used by Borin's user-facing conversation surface.
 /// A future direct GGUF/Qwen implementation can replace the current adapter without
-/// changing Guardian Hall or the Forge view model.
+/// changing Borin's capability coordinator or the Forge view model.
 /// </summary>
 public interface IBrain
 {

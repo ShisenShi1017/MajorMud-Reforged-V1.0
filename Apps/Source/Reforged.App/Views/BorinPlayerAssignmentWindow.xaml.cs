@@ -5,7 +5,7 @@ namespace Reforged.App.Views;
 
 public partial class BorinPlayerAssignmentWindow : Window
 {
-    public BorinPlayerAssignmentWindow(ForgeGuardianViewModel viewModel)
+    public BorinPlayerAssignmentWindow(BorinForgeViewModel viewModel)
     {
         InitializeComponent();
         DataContext = viewModel ?? throw new ArgumentNullException(nameof(viewModel));

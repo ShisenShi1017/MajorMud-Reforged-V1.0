@@ -66,10 +66,10 @@ $roles = @($records | Group-Object source_role | Sort-Object Name | ForEach-Obje
 })
 $twinksEvidence = @(
     'Evidence/DataSimVer0013-UserRequestedCustomContent.md',
-    'Reports/DataSimVer0013-CustomContentRegistration.md',
+    'Reports/DataDecode/decoded_data_evidence_summary.md',
     'Simulator/DataSimVer/0013/custom_content_registration.json'
 )
-$decodeAuditPath = Join-Path $ProjectRoot 'Build/CombinedUpdate/classic_decode_exhaustion_report.json'
+$decodeAuditPath = Join-Path $ProjectRoot 'Reports/RuntimeVerification/classic_decode_exhaustion_report.json'
 $decodeAudit = $null
 if (Test-Path -LiteralPath $decodeAuditPath) {
     $rawDecodeAudit = Get-Content -LiteralPath $decodeAuditPath -Raw | ConvertFrom-Json
@@ -87,7 +87,7 @@ if (Test-Path -LiteralPath $decodeAuditPath) {
         generated_unconsumed = @($rawDecodeAudit.Fields | Where-Object Status -eq 'generated-unconsumed' | ForEach-Object {
             [ordered]@{ family=$_.Family; json_path=$_.JsonPath; occurrences=$_.OccurrenceCount }
         })
-        report_path = 'Build/CombinedUpdate/classic_decode_exhaustion_report.json'
+        report_path = 'Reports/RuntimeVerification/classic_decode_exhaustion_report.json'
     }
 }
 
@@ -146,7 +146,7 @@ $document = [ordered]@{
 
 $reportDirectory = Join-Path $ProjectRoot 'Reports/RuntimeVerification'
 [IO.Directory]::CreateDirectory($reportDirectory) | Out-Null
-$jsonPath = Join-Path $reportDirectory 'classic_parity_retirement_ledger_0139.json'
+$jsonPath = Join-Path $reportDirectory 'classic_parity_retirement_ledger.json'
 [IO.File]::WriteAllText($jsonPath, ($document | ConvertTo-Json -Depth 8) + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
 
 $markdown = @"
@@ -166,6 +166,7 @@ The older `AVAILABLE_WCC_ARTIFACTS_EXHAUSTED` result proves static file-family c
 
 No source evidence was modified or deleted by this audit.
 "@
-$markdownPath = Join-Path $reportDirectory 'CLASSIC_PARITY_RETIREMENT_BASELINE_0139.md'
+$markdownPath = Join-Path $reportDirectory 'classic_parity_retirement_baseline.md'
 [IO.File]::WriteAllText($markdownPath, $markdown + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
 Write-Host "Inventoried $($records.Count) source files; runtime has $($runtimeFiles.Count) files. Retirement ready: NO."
+

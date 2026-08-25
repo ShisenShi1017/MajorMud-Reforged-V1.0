@@ -134,6 +134,13 @@ public sealed class RuntimeWccSysopService
         }
 
         var verb = command.Arguments[0];
+        var effectiveRole = characterGrant ? RuntimeAccountRole.Sysop : accountRole;
+        if (verb.Equals("pvp", StringComparison.OrdinalIgnoreCase))
+        {
+            if (effectiveRole is not (RuntimeAccountRole.Sysop or RuntimeAccountRole.Administrator))
+                throw new InvalidOperationException("SYSOP authority is required for PVP.");
+            return ExecutePvp(character, command.Arguments.Skip(1).ToArray());
+        }
         if (!catalog.Commands.TryGetValue(verb, out var definition))
             return $"Unknown WCCMMUD SYSOP command '{verb}'. Type SYSOP for the decoded command catalog.";
 
@@ -141,7 +148,6 @@ public sealed class RuntimeWccSysopService
         if (!hasAdministrativeAuthority && !publicGoto)
             throw new InvalidOperationException("WCCMMUD GAMEOP or SYSOP authority is required.");
 
-        var effectiveRole = characterGrant ? RuntimeAccountRole.Sysop : accountRole;
         if (effectiveRole == RuntimeAccountRole.Moderator && !definition.GameopAllowed)
             throw new InvalidOperationException($"SYSOP authority is required for {definition.Command.ToUpperInvariant()}.");
 
@@ -172,6 +178,24 @@ public sealed class RuntimeWccSysopService
         };
     }
 
+    private string ExecutePvp(RuntimeCharacterRecord character, IReadOnlyList<string> arguments)
+    {
+        var store = new RuntimePvpWorldConfigurationStore(_characters.ProjectRoot, character.WorldId);
+        if (arguments.Count == 0 || arguments[0].Equals("status", StringComparison.OrdinalIgnoreCase))
+        {
+            var state = store.Capture();
+            return $"PvP is {(state.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}. " +
+                   "When enabled, PvP is permitted everywhere except rooms carrying proven safe-room evidence.";
+        }
+        var enabled = arguments.Count == 1 && (arguments[0].Equals("enable", StringComparison.OrdinalIgnoreCase) ||
+                                               arguments[0].Equals("on", StringComparison.OrdinalIgnoreCase));
+        var disabled = arguments.Count == 1 && (arguments[0].Equals("disable", StringComparison.OrdinalIgnoreCase) ||
+                                                arguments[0].Equals("off", StringComparison.OrdinalIgnoreCase));
+        if (!enabled && !disabled) return "Usage: SYSOP PVP STATUS|ENABLE|DISABLE";
+        var updated = store.SetEnabled(enabled, character.CharacterId);
+        return $"PvP is now {(updated.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}.";
+    }
+
     private static string RenderHelp(RuntimeWccSysopCatalog catalog, RuntimeAccountRole role, bool gotoOnly)
     {
         var commands = catalog.Commands.Values
@@ -182,6 +206,7 @@ public sealed class RuntimeWccSysopService
         var authority = gotoOnly ? "world policy: SYSOP GOTO enabled for all players" : catalog.RuntimeAuthority;
         return $"WCCMMUD SYSOP control ({authority}; role={role}).{Environment.NewLine}" +
                string.Join(Environment.NewLine, commands) +
+               (gotoOnly ? string.Empty : $"{Environment.NewLine}PVP [STATUS|ENABLE|DISABLE] [Reforged realm authority]") +
                $"{Environment.NewLine}The legacy {catalog.LegacySetting} value is never accepted as a player command.";
     }
 
@@ -676,7 +701,7 @@ public sealed class RuntimeWccSysopService
 
     private string ExecuteArena(string worldId, IReadOnlyList<string> arguments)
     {
-        var path = Path.Combine(_characters.ProjectRoot, "Saves", "Runtime0137", "sysop", $"{RuntimeIdentity.Normalize(worldId, "world")}.arena");
+        var path = Path.Combine(RuntimeSavePaths.RealmRoot(_characters.ProjectRoot, worldId), "sysop", $"{RuntimeIdentity.Normalize(worldId, "world")}.arena");
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         var current = File.Exists(path) ? File.ReadAllText(path).Trim() : "normal";
         if (arguments.Count == 0 || arguments[0].Equals("status", StringComparison.OrdinalIgnoreCase))

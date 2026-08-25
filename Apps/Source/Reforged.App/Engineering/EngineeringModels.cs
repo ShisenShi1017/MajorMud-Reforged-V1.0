@@ -1,5 +1,5 @@
 using System.Collections.ObjectModel;
-using Reforged.App.Guardians;
+using Reforged.App.BorinCapabilities;
 
 namespace Reforged.App.Engineering;
 

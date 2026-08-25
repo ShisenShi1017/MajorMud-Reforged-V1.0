@@ -23,16 +23,16 @@ from pathlib import Path
 from typing import Any
 
 
-CODE_UPDATE = "0139"
+PROMOTION_SCOPE = "wccmp002_room_description_recovery"
 DATABASE_VERSION = "0010"
 ROOMS_FILE = Path("Librarium/Objects/rooms/mmexplorer_room_records_0140.json")
 SOURCE_FILE = Path("ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat")
-OUTPUT_FILE = Path("Librarium/Objects/room_descriptions/wccmp002_room_description_records_0139.json")
-REPORT_JSON = Path("Reports/DataDecode/wccmp002_room_description_recovery_0139.json")
-REPORT_MD = Path("Reports/DataDecode/wccmp002_room_description_recovery_0139.md")
+OUTPUT_FILE = Path("Librarium/Objects/room_descriptions/wccmp002_room_description_records.json")
+REPORT_JSON = Path("Reports/Generated/wccmp002_room_description_recovery.json")
+REPORT_MD = Path("Reports/Generated/wccmp002_room_description_recovery.md")
 KNOWN_DESCRIPTION_FILES = (
-    Path("Librarium/Objects/room_descriptions/native_map_room_description_records_0139.json"),
-    Path("Librarium/Objects/room_descriptions/reference_room_description_records_0139.json"),
+    Path("Librarium/Objects/room_descriptions/native_map_room_description_records.json"),
+    Path("Librarium/Objects/room_descriptions/reference_room_description_records.json"),
 )
 TITLE_MODS = {269, 1815}
 DESCRIPTION_SLOTS = (118, 189, 260, 331, 402, 473, 545)
@@ -253,7 +253,7 @@ def recover(repo: Path) -> dict[str, Any]:
                             "title_offset_mod_2048": offset % 2048,
                             "description_slots": list(DESCRIPTION_SLOTS),
                             "classification": classification,
-                            "promotion_code_update": CODE_UPDATE,
+                            "promotion_scope": PROMOTION_SCOPE,
                             "validation_policy": (
                                 "Accepted because the title was unique, or because duplicate-name "
                                 "file order matched all already-known descriptions in the group."
@@ -321,7 +321,7 @@ def recover(repo: Path) -> dict[str, Any]:
                             "title_offset_mod_2048_values": sorted({offset % 2048 for offset in source_offsets}),
                             "description_slots": list(DESCRIPTION_SLOTS),
                             "classification": "duplicate_title_identical_description_binary_room_description",
-                            "promotion_code_update": CODE_UPDATE,
+                            "promotion_scope": PROMOTION_SCOPE,
                             "validation_policy": (
                                 "Accepted because every extractable WCCMP002 candidate for this unresolved "
                                 "duplicate title had the same normalized description."
@@ -390,7 +390,7 @@ def recover(repo: Path) -> dict[str, Any]:
                             "selected_description_candidate_count": selected_count,
                             "description_slots": list(DESCRIPTION_SLOTS),
                             "classification": "duplicate_title_user_rule_binary_room_description",
-                            "promotion_code_update": CODE_UPDATE,
+                            "promotion_scope": PROMOTION_SCOPE,
                             "validation_policy": (
                                 "Accepted under the user-approved rule that duplicate rooms share one "
                                 "description. The selected description is the most common normalized "
@@ -432,7 +432,7 @@ def recover(repo: Path) -> dict[str, Any]:
         repo / OUTPUT_FILE,
         {
             "schema": "librarium_room_description_records_v1",
-            "code_update": CODE_UPDATE,
+            "promotion_scope": PROMOTION_SCOPE,
             "database_version": DATABASE_VERSION,
             "source_of_truth": "wcc_default_map_binary_gap_fill",
             "priority": "lower_than_native_runtime_binary_descriptions_higher_than_public_reference",
@@ -444,7 +444,7 @@ def recover(repo: Path) -> dict[str, Any]:
     name_counts = Counter(room.get("name") for room in rooms if room.get("name"))
     summary = {
         "generatedUtc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "codeUpdate": CODE_UPDATE,
+        "promotionScope": PROMOTION_SCOPE,
         "databaseVersion": DATABASE_VERSION,
         "canonicalRoomRecords": len(rooms),
         "knownDescriptionsBeforeRecovery": len(known),
@@ -475,7 +475,7 @@ def recover(repo: Path) -> dict[str, Any]:
     (repo / REPORT_MD).write_text(
         "\n".join(
             [
-                "# WCCMP002 Room Description Recovery 0139",
+                "# WCCMP002 Room Description Recovery",
                 "",
                 "## Result",
                 "",

@@ -1,7 +1,0 @@
-phase,target,requires
-RuntimeValidation0001,World Population,Working Worldgroup or equivalent runtime; room inspection/spawn logs
-RuntimeValidation0002,Navigation,"Live movement tests, hidden exits, teleports, area transitions"
-RuntimeValidation0003,Shops and Items,"Live shop interaction, buy/sell behavior, inventory changes"
-RuntimeValidation0004,Monster Behavior,"Combat observations, respawn/lair timing, special attacks"
-RuntimeValidation0005,NPCs and Quests,"Dialogue triggers, quest state mutation, rewards"
-RuntimeValidation0006,Game Systems,"XP, gold, skill/spell/class progression and formula checks"

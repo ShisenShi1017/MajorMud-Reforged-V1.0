@@ -21,6 +21,7 @@ public interface IClientAutomationService
 
 public sealed class ClientAutomationService : IClientAutomationService
 {
+    internal const int CurrentProfileSchemaVersion = 2;
     private readonly IApplicationSettingsService _settings;
     private readonly Dictionary<string, DateTimeOffset> _lastCommandAtBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
@@ -29,10 +30,7 @@ public sealed class ClientAutomationService : IClientAutomationService
     public ClientAutomationProfile Profile { get; private set; } = CreateDefaultProfile();
     public ClientAutomationPolicy Policy { get; } = new();
     public event EventHandler<ClientAutomationCommandRequest>? CommandRequested;
-    public bool CanContinueInputAutomation => ClientMegaMudAutomationGate.IsEnabled
-        && Profile.Enabled
-        && !Profile.PauseAll
-        && !Profile.Capabilities.EmergencyStop
+    public bool CanContinueInputAutomation => !Profile.Capabilities.EmergencyStop
         && Policy.AutomationAllowed;
 
     public ClientAutomationService(IApplicationSettingsService settings) => _settings = settings;
@@ -49,6 +47,7 @@ public sealed class ClientAutomationService : IClientAutomationService
                 {
                     Profile = loaded;
                     EnsureProfileDefaults(Profile);
+                    MigrateLegacyProfile(Profile);
                 }
             }
             catch
@@ -57,14 +56,13 @@ public sealed class ClientAutomationService : IClientAutomationService
             }
         }
 
-        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
         _ruleLastRun.Clear();
         _lastCommandAtBySession.Clear();
     }
 
     public async Task SaveAsync()
     {
-        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
+        Profile.SchemaVersion = CurrentProfileSchemaVersion;
         SynchronizeRulesFromOptions(Profile);
         var path = GetPath();
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
@@ -73,8 +71,7 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     public IReadOnlyList<ClientAutomationCommandRequest> Evaluate(ClientAutomationContext context)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled) return [];
-        if (!Profile.Enabled || Profile.PauseAll || Profile.Capabilities.EmergencyStop || !Policy.AutomationAllowed) return [];
+        if (Profile.Capabilities.EmergencyStop || !Policy.AutomationAllowed) return [];
         SynchronizeRulesFromOptions(Profile);
         var delay = Math.Max(Profile.MinimumCommandDelayMs, Policy.MinimumCommandDelayMs);
         if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
@@ -170,30 +167,28 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     public void SetMasterEnabled(bool enabled)
     {
-        if (!ClientMegaMudAutomationGate.IsEnabled)
-        {
-            ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
-            return;
-        }
-
         Profile.Enabled = enabled;
-        if (enabled && !Profile.Capabilities.EmergencyStop) Profile.PauseAll = false;
+        Profile.PauseAll = !enabled;
+        Profile.Capabilities.EmergencyStop = !enabled;
+        Policy.AutomationAllowed = enabled;
     }
 
     public void StopAll()
     {
         Profile.Capabilities.EmergencyStop = true;
-        ClientMegaMudAutomationGate.ForceDisabled(Profile, Policy);
+        Profile.Enabled = false;
+        Profile.PauseAll = true;
         _ruleLastRun.Clear();
         _lastCommandAtBySession.Clear();
     }
 
     private bool IsPermitted(ClientAutomationRule rule) => rule.Area switch
     {
-        AutomationArea.Roaming => Policy.MovementAllowed,
-        AutomationArea.Combat or AutomationArea.PvP => Policy.CombatAllowed,
-        AutomationArea.Spells or AutomationArea.Health => Policy.SpellcastingAllowed,
-        AutomationArea.LootAndCash or AutomationArea.Utility => Policy.ItemUseAllowed,
+        AutomationArea.Roaming => ClientAutomationCapabilityPolicy.Allows(Profile.Capabilities, rule.Area) && Policy.MovementAllowed,
+        AutomationArea.Combat or AutomationArea.PvP => ClientAutomationCapabilityPolicy.Allows(Profile.Capabilities, rule.Area) && Policy.CombatAllowed,
+        AutomationArea.Spells or AutomationArea.Health => ClientAutomationCapabilityPolicy.Allows(Profile.Capabilities, rule.Area) && Policy.SpellcastingAllowed,
+        AutomationArea.LootAndCash or AutomationArea.Utility => ClientAutomationCapabilityPolicy.Allows(Profile.Capabilities, rule.Area) && Policy.ItemUseAllowed,
+        AutomationArea.Party => ClientAutomationCapabilityPolicy.Allows(Profile.Capabilities, rule.Area),
         _ => true
     };
 
@@ -234,7 +229,7 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     private static ClientAutomationProfile CreateDefaultProfile()
     {
-        var profile = new ClientAutomationProfile();
+        var profile = new ClientAutomationProfile { SchemaVersion = CurrentProfileSchemaVersion };
         EnsureProfileDefaults(profile);
         Add(profile, AutomationArea.Health, "Auto Minor Heal", "Use the configured minor healing command at the first health threshold.", "health-below", "cast minor heal", 80, 10, 8);
         Add(profile, AutomationArea.Health, "Auto Major Heal", "Use the configured major healing command at the emergency threshold.", "health-below", "cast major heal", 55, 1, 5);
@@ -291,6 +286,26 @@ public sealed class ClientAutomationService : IClientAutomationService
         Add(profile, AutomationArea.Utility, "Auto Look", "Refresh the room display after movement.", "room-entered", "look", 0, 90, 3);
         Add(profile, AutomationArea.Events, "Scheduled Event", "User-defined timer or event command.", "always", string.Empty, 0, 100, 60);
         return profile;
+    }
+
+    private static void MigrateLegacyProfile(ClientAutomationProfile profile)
+    {
+        if (profile.SchemaVersion >= CurrentProfileSchemaVersion) return;
+        var options = profile.Options;
+        var capabilities = profile.Capabilities;
+        capabilities.CombatEnabled |= options.Combat.AutoAttack;
+        capabilities.HealthRecoveryEnabled |= options.Health.AutoHeal || options.Health.AutoRest || options.Health.AutoMeditate ||
+            options.Health.AutoUseHealingItem || options.Health.AutoRecallAtCriticalHealth;
+        capabilities.SpellMaintenanceEnabled |= options.Spells.MaintainBless || options.Spells.MaintainArmor || options.Spells.MaintainRoomLight;
+        capabilities.PartyAutomationEnabled |= options.Party.AutoAssistLeader || options.Party.AutoFollowLeader ||
+            options.Party.AutoAcceptTrustedInvites || options.Party.RegroupWhenSeparated;
+        capabilities.LootAutomationEnabled |= options.LootAndCash.GetItems || options.LootAndCash.GetCash ||
+            options.LootAndCash.LootCorpses || options.LootAndCash.AutoSellAtShop || options.LootAndCash.DepositAtBank;
+        capabilities.RoamingAutomationEnabled |= options.Roaming.AutoSneak || options.Roaming.AutoSearch || options.Roaming.AutoTrack ||
+            options.Roaming.DetectTraps || options.Roaming.DisarmTraps || options.Utility.AutoHide || options.Utility.AutoLook;
+        capabilities.PvpAutomationEnabled |= options.PvP.Enabled;
+        capabilities.CommunicationsAutomationEnabled |= capabilities.AwayFromKeyboardEnabled;
+        profile.SchemaVersion = CurrentProfileSchemaVersion;
     }
 
     private static void SynchronizeRulesFromOptions(ClientAutomationProfile profile)
@@ -415,6 +430,26 @@ public sealed class ClientAutomationService : IClientAutomationService
         profile.Options.Events ??= new EventAutomationOptions();
         profile.Options.Presentation ??= new ClientPresentationOptions();
         profile.Options.Sounds ??= new ClientSoundOptions();
+        profile.Options.Health.MinorHealAtPercent = Math.Clamp(profile.Options.Health.MinorHealAtPercent, 0, 100);
+        profile.Options.Health.MajorHealAtPercent = Math.Clamp(profile.Options.Health.MajorHealAtPercent, 0, 100);
+        profile.Options.Health.FleeAtPercent = Math.Clamp(profile.Options.Health.FleeAtPercent, 0, 100);
+        profile.Options.Health.RestManaAtPercent = Math.Clamp(profile.Options.Health.RestManaAtPercent, 0, 100);
+        profile.Options.Health.HealingItemAtPercent = Math.Clamp(profile.Options.Health.HealingItemAtPercent, 0, 100);
+        profile.Options.Health.StopRestingManaPercent = Math.Clamp(profile.Options.Health.StopRestingManaPercent, 0, 100);
+        profile.Options.Health.RecallAtPercent = Math.Clamp(profile.Options.Health.RecallAtPercent, 0, 100);
+        profile.Options.Combat.FleeAtPercent = Math.Clamp(profile.Options.Combat.FleeAtPercent, 0, 100);
+        profile.Options.Party.HealPartyBelowPercent = Math.Clamp(profile.Options.Party.HealPartyBelowPercent, 0, 100);
+        profile.Options.Party.PartyStateMaximumAgeSeconds = Math.Clamp(profile.Options.Party.PartyStateMaximumAgeSeconds, 5, 300);
+        profile.Options.Party.CommandCooldownSeconds = Math.Clamp(profile.Options.Party.CommandCooldownSeconds, 1, 60);
+        profile.Options.PvP.FleeAtPercent = Math.Clamp(profile.Options.PvP.FleeAtPercent, 0, 100);
+        profile.Options.PvP.ReturnAttackAtOrAbovePercent = Math.Clamp(profile.Options.PvP.ReturnAttackAtOrAbovePercent, 0, 100);
+        profile.Options.PvP.CommandCooldownSeconds = Math.Clamp(profile.Options.PvP.CommandCooldownSeconds, 1, 60);
+        profile.Options.PvP.AttackerStateMaximumAgeSeconds = Math.Clamp(profile.Options.PvP.AttackerStateMaximumAgeSeconds, 2, 60);
+        profile.Options.Roaming.RoomActionDelayMilliseconds = Math.Clamp(profile.Options.Roaming.RoomActionDelayMilliseconds, 500, 10000);
+        profile.Options.LootAndCash.DepositWhenCarrying = Math.Max(0, profile.Options.LootAndCash.DepositWhenCarrying);
+        profile.Options.LootAndCash.KeepOnCharacter = Math.Max(0, profile.Options.LootAndCash.KeepOnCharacter);
+        profile.Options.LootAndCash.MaximumItemWeight = Math.Max(0, profile.Options.LootAndCash.MaximumItemWeight);
+        profile.Options.LootAndCash.StopLootingAtWeightPercent = Math.Clamp(profile.Options.LootAndCash.StopLootingAtWeightPercent, 1, 999);
         profile.Options.Toolbar ??= [];
         if (profile.Options.Toolbar.Count == 0)
         {
@@ -424,6 +459,18 @@ public sealed class ClientAutomationService : IClientAutomationService
         }
         profile.Options.Events.ScheduledEvents ??= [];
         profile.Options.Spells.PriorityActions ??= [];
+        profile.Options.Spells.DebuffPriorityActions ??= [];
+        profile.Options.Spells.NukePriorityActions ??= [];
+        profile.Options.Spells.ReserveManaPercent = Math.Clamp(profile.Options.Spells.ReserveManaPercent, 0, 100);
+        profile.Options.Spells.NukeCooldownSeconds = Math.Clamp(profile.Options.Spells.NukeCooldownSeconds, 1, 300);
+        profile.Options.Spells.AreaNukeMinimumTargets = Math.Clamp(profile.Options.Spells.AreaNukeMinimumTargets, 2, 99);
+        foreach (var action in profile.Options.Spells.DebuffPriorityActions.Concat(profile.Options.Spells.NukePriorityActions))
+        {
+            action.MinimumHealthPercent = Math.Clamp(action.MinimumHealthPercent, 0, 100);
+            action.MinimumManaPercent = Math.Clamp(action.MinimumManaPercent, 0, 100);
+            action.MinimumTargetCount = Math.Clamp(action.MinimumTargetCount, 1, 99);
+            action.MaximumTargetCount = Math.Clamp(action.MaximumTargetCount, action.MinimumTargetCount, 99);
+        }
         profile.Options.Combat.PriorityActions ??= [];
         profile.Options.LootAndCash.CurrencyRules ??= [];
         EnsureRule(profile, AutomationArea.Health, "Auto Cure Silence", "text-contains", "cast remove silence", 0, 3, 15, "silenced");
@@ -466,4 +513,38 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     private static void Add(ClientAutomationProfile p, AutomationArea area, string name, string description, string trigger, string command, int threshold, int priority, int cooldownSeconds, string? matchText = null, bool onlyOutOfCombat = false, bool onlyInCombat = false)
         => p.Rules.Add(new ClientAutomationRule { Area = area, Name = name, Description = matchText ?? description, Trigger = trigger, Command = command, Threshold = threshold, Priority = priority, CooldownSeconds = cooldownSeconds, OnlyOutOfCombat = onlyOutOfCombat, OnlyInCombat = onlyInCombat });
+}
+
+internal sealed class ClientAutomationCommandDeduplicator
+{
+    private string _lastCommand = string.Empty;
+    private DateTimeOffset _lastSentAt;
+
+    public bool ShouldSend(string command, ClientCommandOrigin origin, DateTimeOffset now)
+    {
+        if (origin is not (ClientCommandOrigin.ClientAutomation or ClientCommandOrigin.RouteAutomation)) return true;
+        var normalized = string.Join(' ', (command ?? string.Empty).Split((char[]?)null,
+            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)).ToLowerInvariant();
+        if (normalized.Length == 0) return true;
+        if (normalized.Equals(_lastCommand, StringComparison.Ordinal) && now - _lastSentAt < TimeSpan.FromMilliseconds(500)) return false;
+        _lastCommand = normalized;
+        _lastSentAt = now;
+        return true;
+    }
+}
+
+internal static class ClientAutomationCapabilityPolicy
+{
+    public static bool Allows(ClientAutomationCapabilities capabilities, AutomationArea area) => area switch
+    {
+        AutomationArea.Health => capabilities.HealthRecoveryEnabled,
+        AutomationArea.Spells => capabilities.SpellMaintenanceEnabled,
+        AutomationArea.Combat => capabilities.CombatEnabled,
+        AutomationArea.PvP => capabilities.PvpAutomationEnabled,
+        AutomationArea.Party => capabilities.PartyAutomationEnabled,
+        AutomationArea.Roaming or AutomationArea.Utility => capabilities.RoamingAutomationEnabled,
+        AutomationArea.LootAndCash => capabilities.LootAutomationEnabled,
+        AutomationArea.Events => capabilities.TimedEventsEnabled,
+        _ => false
+    };
 }

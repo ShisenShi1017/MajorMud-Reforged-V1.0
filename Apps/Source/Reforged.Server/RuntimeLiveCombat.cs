@@ -39,6 +39,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 return false;
             }
         }
+        if (_livePvpEncounterBySession.ContainsKey(session.Id))
+        {
+            message = FleeLivePvpCombat(session);
+            return true;
+        }
         if (_liveCombats.TryRemove(session.Id, out var encounter))
         {
             _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} runs from {encounter.NpcName}.");
@@ -96,7 +101,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public string RenderLiveCombatStatus(RuntimeSession session)
     {
-        if (!_liveCombats.TryGetValue(session.Id, out var encounter)) return "You are not in combat.";
+        if (!_liveCombats.TryGetValue(session.Id, out var encounter)) return RenderLivePvpStatus(session);
         return string.Join(Environment.NewLine, new[]
         {
             $"Combat target: {encounter.NpcName}",
@@ -136,6 +141,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     private string BeginLiveCombat(RuntimeSession session, string query, ClassicAttackType attackType)
     {
         if (string.IsNullOrWhiteSpace(query)) return "Attack what?";
+        if (TryResolveExactPvpTarget(session, query.Trim(), out var playerTarget) && playerTarget is not null)
+            return BeginLivePvpCombat(session, playerTarget, attackType);
         if (_liveCombats.TryGetValue(session.Id, out var current))
             return $"You are already fighting {current.NpcName}.";
         if (session.Actor is RuntimeCharacterActor restingActor) CancelFocusedRegeneration(restingActor.Id);
@@ -275,6 +282,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private string FleeLiveCombat(RuntimeSession session)
     {
+        if (_livePvpEncounterBySession.ContainsKey(session.Id)) return FleeLivePvpCombat(session);
         if (!_liveCombats.TryRemove(session.Id, out var encounter)) return "You are not in combat.";
         ReleaseCombatEngagement(session, encounter, "player-flee");
         _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} flees from {encounter.NpcName}.");

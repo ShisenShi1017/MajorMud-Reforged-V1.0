@@ -681,7 +681,7 @@ public sealed class EngineeringOrchestrator
         await File.WriteAllTextAsync(Path.Combine(folder, "VALIDATION.log"),
             $"GeneratedUtc={DateTime.UtcNow:O}{Environment.NewLine}Session={state.CurrentSession?.Id}{Environment.NewLine}BuildsPassed={state.Statistics.BuildsPassed}{Environment.NewLine}BuildsFailed={state.Statistics.BuildsFailed}{Environment.NewLine}ValidationsPassed={state.Statistics.ValidationsPassed}{Environment.NewLine}ValidationsFailed={state.Statistics.ValidationsFailed}{Environment.NewLine}", token);
         await File.WriteAllTextAsync(Path.Combine(folder, "README.md"),
-            "# Guardian Hall Cumulative Candidate\n\nThis package contains only modified/new workspace files. Review MANIFEST.txt and VALIDATION.log before installation. The live repository was not changed by package generation.\n", token);
+            "# Borin Cumulative Candidate\n\nThis package contains only modified/new workspace files. Review MANIFEST.txt and VALIDATION.log before installation. The live repository was not changed by package generation.\n", token);
         await File.WriteAllTextAsync(Path.Combine(folder, "Install-and-Validate.bat"),
             "@echo off\r\nsetlocal\r\nset \"ROOT=%~dp0\"\r\nif not exist \"%ROOT%Payload\" (echo Payload missing.& exit /b 2)\r\nrobocopy \"%ROOT%Payload\" \"%CD%\" /E /R:1 /W:1 >nul\r\nif errorlevel 8 exit /b %errorlevel%\r\ndotnet build MajorMud.Reforged.sln --configuration Release\r\nif errorlevel 1 exit /b %errorlevel%\r\ndotnet run --project Tests\\Source\\Reforged.Core.Tests\\Reforged.Core.Tests.csproj --configuration Release --no-build\r\nexit /b %errorlevel%\r\n", token);
         var zip = folder + ".zip";

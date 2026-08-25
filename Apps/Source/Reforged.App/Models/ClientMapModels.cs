@@ -11,6 +11,7 @@ public sealed class ClientMapProfile : INotifyPropertyChanged
 {
     private string _serverName = "Local Host";
     private string _worldName = "Classic";
+    private string _characterName = "Unassigned";
     private ClientMapPolicy _policy = ClientMapPolicy.DiscoveryOnly;
     private bool _hostPermitsFullMap;
     private bool _showSpawnTimers = true;
@@ -21,9 +22,12 @@ public sealed class ClientMapProfile : INotifyPropertyChanged
     private bool _showRoomKeys;
     private bool _animateRouteReplay = true;
     private int _replayStepDelayMilliseconds = 450;
+    private bool _fogOfWarEnabled = true;
+    private bool _showHiddenObjects;
 
     public string ServerName { get => _serverName; set => Set(ref _serverName, value); }
     public string WorldName { get => _worldName; set => Set(ref _worldName, value); }
+    public string CharacterName { get => _characterName; set => Set(ref _characterName, value); }
     public ClientMapPolicy Policy { get => _policy; set => Set(ref _policy, value); }
     public bool HostPermitsFullMap { get => _hostPermitsFullMap; set => Set(ref _hostPermitsFullMap, value); }
     public bool ShowSpawnTimers { get => _showSpawnTimers; set => Set(ref _showSpawnTimers, value); }
@@ -34,6 +38,8 @@ public sealed class ClientMapProfile : INotifyPropertyChanged
     public bool ShowRoomKeys { get => _showRoomKeys; set => Set(ref _showRoomKeys, value); }
     public bool AnimateRouteReplay { get => _animateRouteReplay; set => Set(ref _animateRouteReplay, value); }
     public int ReplayStepDelayMilliseconds { get => _replayStepDelayMilliseconds; set => Set(ref _replayStepDelayMilliseconds, Math.Clamp(value, 100, 5000)); }
+    public bool FogOfWarEnabled { get => _fogOfWarEnabled; set => Set(ref _fogOfWarEnabled, value); }
+    public bool ShowHiddenObjects { get => _showHiddenObjects; set => Set(ref _showHiddenObjects, value); }
     public ObservableCollection<string> Layers { get; set; } = ["Surface", "Upper", "Lower", "Underground", "Special"];
     public ObservableCollection<ClientRoomMetadata> Rooms { get; set; } = [];
     public string EffectivePolicy => Policy == ClientMapPolicy.FullMapWhenHostPermits && HostPermitsFullMap ? "Full map (Host permitted)" : "Discovery only";

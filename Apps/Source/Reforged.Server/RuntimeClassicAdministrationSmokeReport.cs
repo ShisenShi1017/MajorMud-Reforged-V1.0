@@ -50,7 +50,7 @@ public static class RuntimeClassicAdministrationSmokeReport
             RuntimeClassicItemLimitCoordinator.EnsureCanCreate(root, "classic", limitedDefinition, 2, 0);
             Check("native-item-limit-allows-up-to-cap", true, "quantity=2; limit=2");
 
-            var worlds = Path.Combine(root, "Saves", "Runtime0137", "worlds");
+            var worlds = Path.Combine(RuntimeSavePaths.RealmRoot(root, "classic"), "worlds");
             Directory.CreateDirectory(worlds);
             var state = new RuntimeItemState(
                 [new RuntimeItemInstance("limited-stack", limitedDefinition.Id, null, RuntimeItemLocations.Room, "room.1", null, 0, 2, null)],
@@ -73,7 +73,7 @@ public static class RuntimeClassicAdministrationSmokeReport
             Check("native-item-limit-blocks-over-cap", blocked, blocked ? "blocked" : "unexpectedly allowed");
 
             var livingDefinition = limitedDefinition with { Id = "item.9001", Name = "Living World Limited Item", GameLimit = 1 };
-            var livingFolder = Path.Combine(root, "Saves", "Worlds", "classic");
+            var livingFolder = Path.Combine(RuntimeSavePaths.RealmRoot(root, "classic"), "WorldState");
             Directory.CreateDirectory(livingFolder);
             var livingSnapshot = new RuntimeLivingWorldSnapshot(
                 "classic",

@@ -12,8 +12,8 @@ $textblockPath = Join-Path $ProjectRoot 'Librarium/SourceImports/MMExplorerSQLDa
 $roomPartsRoot = Join-Path $ProjectRoot 'Librarium/Objects/rooms/mmexplorer_room_records_0140.parts'
 $exitPartsRoot = Join-Path $ProjectRoot 'Librarium/Objects/exits/mmexplorer_exit_records_0140.parts'
 $nativeMapPath = Join-Path $ProjectRoot 'ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat'
-$reportPath = Join-Path $ProjectRoot 'Reports/RuntimeVerification/full_remoteaction_correlation_0139.json'
-$contractPath = Join-Path $ProjectRoot 'Librarium/Objects/room_interactions/decoded_remote_action_records_0139.json'
+$reportPath = Join-Path $ProjectRoot 'Reports/RuntimeVerification/full_remoteaction_correlation.json'
+$contractPath = Join-Path $ProjectRoot 'Librarium/Objects/room_interactions/decoded_remote_action_records.json'
 
 # These owner chains provide exact map context where the decoded textblock owner
 # is not itself a room. Spell 700 ("cleanup 3") has the native room-effect range
@@ -243,7 +243,7 @@ $contracts = @(
                 selector = $record.signature.Split('.')[2] -as [int]
             }
             evidence = [ordered]@{
-                correlation_report = 'Reports/RuntimeVerification/full_remoteaction_correlation_0139.json'
+                correlation_report = 'Reports/RuntimeVerification/full_remoteaction_correlation.json'
                 native_source = 'ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat'
                 context = $record.context_evidence
             }

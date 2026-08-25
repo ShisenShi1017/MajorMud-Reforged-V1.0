@@ -190,7 +190,7 @@ public static class RuntimeClassicRoomCurrencyStore
     private static bool Matches(string query, params string[] names) => names.Any(name => name.StartsWith(query, StringComparison.OrdinalIgnoreCase));
     private static void AddPart(List<string> parts, long quantity, string singular, string plural) { if (quantity > 0) parts.Add($"{quantity} {(quantity == 1 ? singular : plural)}"); }
     private static string Key(string worldId, string roomId) => worldId + "\u001f" + roomId;
-    private static string StorePath(string projectRoot) => Path.Combine(projectRoot, "Saves", "Runtime0137", "classic-room-currency.json");
+    private static string StorePath(string projectRoot) => Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, "classic"), "classic-room-currency.json");
 
     private static StoreDocument Load(string projectRoot)
     {

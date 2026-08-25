@@ -110,7 +110,7 @@ public static class RuntimeClassicNativeMessageCoverageAudit
             successReferences.Count, failureReferences.Count,
             successReferences.Concat(failureReferences).Distinct().Count(),
             checks, failures.Distinct(StringComparer.Ordinal).OrderBy(x => x, StringComparer.Ordinal).ToArray());
-        var reportPath = Path.Combine(projectRoot, "Reports", "RuntimeVerification", "classic_native_message_coverage_0139.json");
+        var reportPath = Path.Combine(projectRoot, "Reports", "RuntimeVerification", "classic_native_message_coverage.json");
         Directory.CreateDirectory(Path.GetDirectoryName(reportPath)!);
         File.WriteAllText(reportPath, report.ToJson() + Environment.NewLine);
         return report;

@@ -709,7 +709,7 @@ if (args.Any(arg => string.Equals(arg, "--audit-native-remoteactions", StringCom
     var result = RuntimeNativeRemoteActionAudit.Run(report.ProjectRoot);
     var outputRoot = Path.Combine(report.ProjectRoot, "Reports", "RuntimeVerification");
     Directory.CreateDirectory(outputRoot);
-    File.WriteAllText(Path.Combine(outputRoot, "native_remoteaction_audit_0139.json"), result.ToJson());
+    File.WriteAllText(Path.Combine(outputRoot, "native_remoteaction_audit.json"), result.ToJson());
     Console.WriteLine(result.ToJson());
     return result.Passed ? 0 : 86;
 }
@@ -718,7 +718,7 @@ if (args.Any(arg => string.Equals(arg, "--audit-classic-spell-effects", StringCo
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot run Classic spell-effect audit because project root was not resolved."); return 2; }
     var spellEffectReport = RuntimeClassicSpellEffectCoverageAudit.Run(report.ProjectRoot);
-    var spellEffectReportPath = Path.Combine(report.ProjectRoot, "Reports", "RuntimeVerification", "classic_spell_effect_coverage_0139.json");
+    var spellEffectReportPath = Path.Combine(report.ProjectRoot, "Reports", "RuntimeVerification", "classic_spell_effect_coverage.json");
     Directory.CreateDirectory(Path.GetDirectoryName(spellEffectReportPath)!);
     File.WriteAllText(spellEffectReportPath, spellEffectReport.ToJson());
     Console.WriteLine(spellEffectReport.ToJson());
@@ -729,7 +729,7 @@ if (args.Any(arg => string.Equals(arg, "--audit-classic-economy-services", Strin
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot run Classic economy/service audit because project root was not resolved."); return 2; }
     var economyReport=RuntimeClassicEconomyServiceCoverageAudit.Run(report.ProjectRoot);
-    var economyReportPath=Path.Combine(report.ProjectRoot,"Reports","RuntimeVerification","classic_economy_service_coverage_0139.json");
+    var economyReportPath=Path.Combine(report.ProjectRoot,"Reports","RuntimeVerification","classic_economy_service_coverage.json");
     Directory.CreateDirectory(Path.GetDirectoryName(economyReportPath)!);
     File.WriteAllText(economyReportPath,economyReport.ToJson());
     Console.WriteLine(economyReport.ToJson());

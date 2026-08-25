@@ -1,16 +1,16 @@
 # MajorMUD Reforged Version
 
-- Current Code Update: `0139`
+- Current Code Update: `0140`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0139 - Telnet Runtime Cohesion`
-- Current baseline: CodeUpdate0138 green by user report; CodeUpdate0139 local runtime cohesion work in progress
+- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
+- Current baseline: CodeUpdate0139 runtime cohesion is closed locally; CodeUpdate0140 repository cleanup and imported/reference evidence archival is ready for commit/push.
 - Economy/service closure: local PASS for 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services.
 - Spell/status closure: local PASS for 1,350/1,350 spells, 105/105 decoded ability IDs, and 111/111 status effects with zero unclassified records.
 - Remoteaction closure: local PASS for all 139 decoded invocations / 85 signatures; 85 executable generated contracts and 0 unresolved or evidence-gated signatures.
 - Guardian Hall engineering: all ten phased capabilities implemented with independent persisted switches for planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight mode. Candidate ZIP generation defaults on; autonomous and repository-update capabilities default off.
 - Guardian Hall verification: full solution Release build PASS with warnings-as-errors after generated shop markup was connected to the native economy markup authority and strict nullable diagnostics were resolved.
 - CI bootstrap policy: generated `Data/Classic` is not tracked; clean validation regenerates it from Librarium before server bootstrap diagnostics.
-- Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening. Python validator could not be rerun in this Codex process because `python`/`py` are not accessible.
+- Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening; PASS `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` with 0 warnings/errors after imported/evidence archival cleanup; PASS `python Tools\validator.py` 15/15 current-health checks.
 - Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,668/26,668 descriptions
 - Spawn placement fix: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage into rooms, and renders visible entities by runtime disposition/alignment.
 - Focused room audit: `room.map1.21` currently shows one neutral `guardsman` (`npc.14`) from `spawn.21.5`; user-expected `elite guardsman` requires separate evidence-backed data correction if the generated room source is wrong.
@@ -31,11 +31,7 @@
 - Current runtime audit counts: 26,668 rooms loaded, 26,668 descriptions loaded, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 83 executable quests, 83 live quest-entry triggers, and 182 stage scripts.
 - Remaining native decode gaps: `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`
 - Single validator now covers current-health checks; one-time validation proofs live in ValidationManifest.json.
-- WCC exhaustion audit: `Reports/DataDecode/wcc_librarium_exhaustion_audit.md`
-- Reference reconciliation: `Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.md`
-- Room-description reference recovery: `Reports/DataDecode/room_description_reference_recovery.md`
-- WCCMP002 room-description recovery: `Reports/DataDecode/wccmp002_room_description_recovery.md`
-- WCCMP002 placeholder room-description recovery: `Reports/DataDecode/wccmp002_placeholder_room_description_recovery.md`
+- Decoded data evidence summary: `Reports/DataDecode/decoded_data_evidence_summary.md`
 - Latest local commands: `dotnet run --project Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj --configuration Release`; `dotnet build Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release`; `dotnet publish Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release --no-restore`; `python Tools\validator.py`
 - Bundle F Revision 0033 and Bundle G Revision 0002 local intake: payloads overlaid into the dirty CodeUpdate0139 repo without commit/push, server Release build PASS, Bundle E zero-disconnect PASS, F10 native payload audit PASS with 0 disconnects, and Bundle F F10 complete through F15 audits PASS.
 - Bundle G native payload closure: verified no-output decoded text targets are evidence-mapped, `message 2044` and `message 3290` resolve through exact WCCMSG payload evidence, and unknown message IDs remain fail-closed.
@@ -43,6 +39,9 @@
 - Latest focused placement commands: `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-living-world`; `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-room "room.map1.21"`
 - Latest audit report: `Reports/RuntimeVerification/classic_runtime_audit.md`
 - Latest validator report: `Reports/RuntimeVerification/validator_latest.md`
-- GitHub Actions: pending for CodeUpdate0139 until pushed and confirmed green
+- Imported/reference archive: `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar` is local-only and ignored by Git; loose `ImportedDatabases/` and `Evidence/` contents are no longer committed source.
+- Runtime save layout: Classic state uses `Saves/Classic`, custom realm state uses `Saves/Custom/<realm>`, host account credentials use `Saves/Host`, and one login may keep up to three characters per world.
+- GitHub Actions: pending for CodeUpdate0140 until pushed and confirmed green
 
 See [Docs/PROJECT_STATUS.md](Docs/PROJECT_STATUS.md) for the current verified state and verification commands.
+

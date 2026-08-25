@@ -32,7 +32,7 @@ public sealed class RuntimeClassicGangStateService
 
     public RuntimeClassicGangStateService(string projectRoot)
     {
-        _folder = Path.Combine(Path.GetFullPath(projectRoot), "Saves", "Runtime0137", "gangs");
+        _folder = Path.Combine(RuntimeSavePaths.RealmRoot(Path.GetFullPath(projectRoot), "classic"), "gangs");
     }
 
     public IReadOnlyList<RuntimeClassicGangRecord> List() => Directory.Exists(_folder)

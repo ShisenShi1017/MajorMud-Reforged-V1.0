@@ -24,7 +24,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         _wccInvasions = new RuntimeWccInvasionService(characters);
         _gangGameplay = new RuntimeClassicGangGameplayService(characters, sessions);
         _partyGameplay = new RuntimePartyCoordinationService();
-        _sessions.SessionsChanged += (_, _) => SynchronizeClassicPartyConnections();
+        _sessions.SessionsChanged += (_, _) => { SynchronizeClassicPartyConnections(); PruneLivePvpConnections(); };
         _nativePayloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(characters.ProjectRoot);
         _npcSpellCatalog = RuntimeSpellCatalog.Load(characters.ProjectRoot, "Classic");
         _npcAttackArguments = RuntimeNpcAttackArgumentRecoveryCatalog.Load(characters.ProjectRoot);
