@@ -78,6 +78,35 @@ public static class RuntimeClassicCharacterAppearance
         return ClassicVisibilityPolicy.CanDetect(viewer.SeeHidden, target.Hidden, target.Sneaking);
     }
 
+    public const int ShadowAbilityId = 9;
+    public const string ShadowLookPayload = "A shadowy figure!";
+
+    public static bool TryResolveEquippedShadowLookOverride(
+        RuntimeCharacterRecord character,
+        RuntimeItemCatalog catalog,
+        bool isSelf,
+        out string payload)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        ArgumentNullException.ThrowIfNull(catalog);
+        payload = string.Empty;
+        if (isSelf || character.ItemState is null) return false;
+
+        foreach (var item in character.ItemState.Items)
+        {
+            if (item.OwnerId is null
+                || !item.OwnerId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)
+                || item.EquippedSlot is null) continue;
+            RuntimeItemDefinition definition;
+            try { definition = catalog.Require(item.CanonicalItemId); }
+            catch { continue; }
+            if (definition.EquipmentAbilityModifiers.GetValueOrDefault(ShadowAbilityId) <= 0) continue;
+            payload = ShadowLookPayload;
+            return true;
+        }
+        return false;
+    }
+
     public static bool TryResolveShadowformOverride(
         RuntimeCharacterRecord character,
         RuntimeClassicNativeTextblockPayloadAuthority native,
