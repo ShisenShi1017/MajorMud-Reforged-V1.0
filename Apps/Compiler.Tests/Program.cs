@@ -1,5 +1,6 @@
 using MajorMud.Reforged.Compiler;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 static string FindRoot()
 {
@@ -482,6 +483,49 @@ foreach (var (fileName, forbiddenProperties) in new[]
     foreach (var property in forbiddenProperties)
         if (serialized.Contains($"\"{property}\"", StringComparison.Ordinal))
             throw new Exception($"Compact {fileName} projection retained duplicate property '{property}'.");
+}
+
+{
+    var tempRoot = Path.Combine(Path.GetTempPath(), "mmr-world-override-test-" + Guid.NewGuid().ToString("N"));
+    var overrideDirectory = Path.Combine(tempRoot, "Librarium", "WorldOverrides", "Custom1");
+    Directory.CreateDirectory(overrideDirectory);
+    File.WriteAllText(Path.Combine(overrideDirectory, "overrides.json"), """
+    {
+      "schema": "reforged_world_overrides_v1",
+      "world_id": "Custom1",
+      "base_world": "Classic",
+      "overrides": [
+        {
+          "family": "rooms",
+          "target_id": "room.map1.1",
+          "operation": "patch",
+          "fields": {
+            "name": "Custom Town Gate",
+            "environment": { "lighting": "dim" }
+          }
+        }
+      ]
+    }
+    """);
+    var family = new LibrariumFamily("rooms", "rooms.json", new[]
+    {
+        new JsonObject
+        {
+            ["id"] = "room.map1.1",
+            ["name"] = "Town Gate",
+            ["environment"] = new JsonObject { ["lighting"] = "bright", ["indoors"] = false }
+        }
+    });
+    var diagnostics = new List<CompilerDiagnostic>();
+    var applied = new WorldOverrideEngine().Apply(tempRoot, "Custom1", new[] { family }, diagnostics);
+    var room = applied.Single().Records.Single();
+    if (room["name"]?.GetValue<string>() != "Custom Town Gate" ||
+        room["environment"]?["lighting"]?.GetValue<string>() != "dim" ||
+        room["environment"]?["indoors"]?.GetValue<bool>() != false)
+        throw new Exception("Custom world recursive override merge failed.");
+    if (!diagnostics.Any(diagnostic => diagnostic.Code == "WORLDOVR100"))
+        throw new Exception("Custom world override application did not report its applied override count.");
+    Directory.Delete(tempRoot, recursive: true);
 }
 
 Console.WriteLine($"PASS: compiled {result.ObjectsCompiled} records across {result.ObjectFamiliesCompiled} families with authoritative runtime item/equipment projections.");

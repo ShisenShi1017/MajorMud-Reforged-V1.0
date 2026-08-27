@@ -82,7 +82,7 @@ public static class ClassicRuntimeAudit
         text.AppendLine($"Live NPC instances: {live.Npcs.Count}");
         text.AppendLine($"Live monster instances: {live.Npcs.Count(IsLiveMonster)}");
         text.AppendLine($"Ground objects: {CountGeneratedGroundObjects(projectRoot, world.Definition.Id)}");
-        text.AppendLine($"Doors: {gates.Count(gate => gate.GateKind.Equals("door", StringComparison.OrdinalIgnoreCase))}");
+        text.AppendLine($"Doors: {gates.Count(gate => gate.GateKind.Equals("door", StringComparison.OrdinalIgnoreCase) || gate.GateKind.Equals("key", StringComparison.OrdinalIgnoreCase))}");
         text.AppendLine($"Shops: {services?.Services.Count(service => service.ServiceKind.Equals("shop", StringComparison.OrdinalIgnoreCase)) ?? 0}");
         text.AppendLine($"Banks: {services?.Services.Count(service => service.ServiceKind.Equals("bank", StringComparison.OrdinalIgnoreCase)) ?? 0}");
         text.AppendLine($"Trainers: {services?.Services.Count(IsTrainer) ?? 0}");
@@ -158,7 +158,7 @@ public static class ClassicRuntimeAudit
         text.AppendLine($"Description exists in Data\\Classic: {YesNo(!string.IsNullOrWhiteSpace(dataDescription))}");
         text.AppendLine($"Description loaded into runtime: {YesNo(!string.IsNullOrWhiteSpace(room.Description))}");
         text.AppendLine($"Room renderer outputs description: {YesNo(!string.IsNullOrWhiteSpace(room.Description) && effectiveRender.Contains(room.Description, StringComparison.Ordinal))}");
-        text.AppendLine($"Doors: {gates.Count(gate => gate.GateKind.Equals("door", StringComparison.OrdinalIgnoreCase))}");
+        text.AppendLine($"Doors: {gates.Count(gate => gate.GateKind.Equals("door", StringComparison.OrdinalIgnoreCase) || gate.GateKind.Equals("key", StringComparison.OrdinalIgnoreCase))}");
         text.AppendLine("Exit flags:");
         foreach (var exit in room.Exits.OrderBy(exit => exit.Direction, StringComparer.OrdinalIgnoreCase))
             text.AppendLine($"  {exit.Direction}: target={exit.TargetKey}; gate={exit.GateKind}; qualifier={exit.Qualifier}; blocked={exit.HasBlockedDestination}");
@@ -188,6 +188,59 @@ public static class ClassicRuntimeAudit
         foreach (var service in services)
             text.AppendLine($"  {service.Id}: kind={service.ServiceKind}; name={ReadString(service.GeneratedRecord, "name")}");
         text.AppendLine("=================================================");
+        return text.ToString();
+    }
+
+
+    public static string RenderMegaMudCompatibility(RuntimeWorld world)
+    {
+        var rooms = world.AllRooms().ToArray();
+        var allExits = rooms.SelectMany(room => room.Exits).ToArray();
+        var invalidSignatureRooms = new List<string>();
+        var signatureCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        var roomsWithoutObviousExits = 0;
+
+        foreach (var room in rooms)
+        {
+            var visible = room.Exits.Where(RuntimeMajorMudCompatibility.IsObviousExit).ToArray();
+            if (visible.Length == 0) roomsWithoutObviousExits++;
+            var hash = RuntimeMajorMudCompatibility.ComputeMegaMudRoomHash(room.Name);
+            var exitCode = RuntimeMajorMudCompatibility.ComputeMegaMudExitCode(room.Exits);
+            if (hash.Length != 3 || exitCode.Length != 5)
+                invalidSignatureRooms.Add($"{room.Id}: {hash}/{exitCode}");
+            var signature = hash + exitCode;
+            signatureCounts[signature] = signatureCounts.GetValueOrDefault(signature) + 1;
+        }
+
+        var entrance = world.FindRoom(1, 2140);
+        var entranceHash = entrance is null ? "MISSING" : RuntimeMajorMudCompatibility.ComputeMegaMudRoomHash(entrance.Name);
+        var entranceExitCode = entrance is null ? "MISSING" : RuntimeMajorMudCompatibility.ComputeMegaMudExitCode(entrance.Exits);
+        var entrancePass = entrance is not null
+            && entrance.Name.Equals("Newhaven, Village Entrance", StringComparison.Ordinal)
+            && entranceHash.Equals("2D6", StringComparison.Ordinal)
+            && entranceExitCode.Equals("01045", StringComparison.Ordinal);
+
+        var textActionRooms = rooms.Count(room => room.Exits.Any(exit => exit.GateKind.Equals("text_command", StringComparison.OrdinalIgnoreCase)));
+        var hiddenRooms = rooms.Count(room => room.Exits.Any(exit => exit.GateKind.Equals("hidden", StringComparison.OrdinalIgnoreCase)));
+        var doorLikeExits = allExits.Count(RuntimeMajorMudCompatibility.IsDoorLike);
+        var duplicateSignatureGroups = signatureCounts.Count(pair => pair.Value > 1);
+
+        var text = new StringBuilder();
+        text.AppendLine("========== MEGAMUD CLASSIC COMPATIBILITY ==========");
+        text.AppendLine($"World: {world.Definition.Id} [{world.Definition.Type}]");
+        text.AppendLine($"Rooms audited: {rooms.Length}");
+        text.AppendLine($"Exits audited: {allExits.Length}");
+        text.AppendLine($"Door/key/gate exits encoded as door signatures: {doorLikeExits}");
+        text.AppendLine($"Rooms containing text/action exits excluded from Obvious exits: {textActionRooms}");
+        text.AppendLine($"Rooms containing hidden exits excluded from Obvious exits: {hiddenRooms}");
+        text.AppendLine($"Rooms rendering Obvious exits: NONE!!!: {roomsWithoutObviousExits}");
+        text.AppendLine($"Signature format failures: {invalidSignatureRooms.Count}");
+        text.AppendLine($"Duplicate signature groups (informational): {duplicateSignatureGroups}");
+        text.AppendLine($"Newhaven Village Entrance: {entranceHash}/{entranceExitCode} => {(entrancePass ? "PASS" : "FAIL")}");
+        foreach (var failure in invalidSignatureRooms.Take(20)) text.AppendLine($"INVALID: {failure}");
+        if (invalidSignatureRooms.Count > 20) text.AppendLine($"... {invalidSignatureRooms.Count - 20} additional invalid signature room(s)");
+        text.AppendLine("Expected Newhaven Village Entrance signature: 2D6/01045");
+        text.AppendLine("===================================================");
         return text.ToString();
     }
 
@@ -332,7 +385,12 @@ public static class ClassicRuntimeAudit
     }
 
     private static bool HasDescription(JsonElement record) => !string.IsNullOrWhiteSpace(ReadString(record, "description"));
-    private static bool IsDoor(JsonElement record) => ReadString(record, "gate_kind").Equals("door", StringComparison.OrdinalIgnoreCase);
+    private static bool IsDoor(JsonElement record)
+    {
+        var kind = ReadString(record, "gate_kind");
+        return kind.Equals("door", StringComparison.OrdinalIgnoreCase)
+               || kind.Equals("key", StringComparison.OrdinalIgnoreCase);
+    }
     private static bool IsTrainer(JsonElement record) => ReadString(record, "service_kind").Contains("trainer", StringComparison.OrdinalIgnoreCase);
     private static bool IsTrainer(RuntimeServiceDefinition service) => ReadString(service.GeneratedRecord, "service_kind").Contains("trainer", StringComparison.OrdinalIgnoreCase);
     private static bool IsMonsterDefinition(JsonElement record) => ReadNestedInt(record, "combat", "hp") > 1;

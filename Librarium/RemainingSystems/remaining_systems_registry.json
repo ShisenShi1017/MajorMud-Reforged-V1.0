@@ -1,185 +1,154 @@
 {
   "schemaVersion": 1,
   "phase": "remaining-systems",
-  "updatedByPass": "RemainingSystems-0037-RepositoryInventoryClosure",
+  "updatedByPass": "Pass 27 / Update 0298",
   "systems": [
     {
       "id": "party-coordination",
       "classification": "runtime-active-partially-exhausted",
-      "runtimeOwner": "RuntimePartyCoordinationService",
-      "persistenceOwner": "world-session coordination; Classic persistence remains native-dependent",
+      "runtimeOwner": "RuntimeLiveGameplayFacade + RuntimePartyCoordinationService",
+      "persistenceOwner": "runtime session coordination only; exact MajorMUD persistence/linkdead ownership remains native-dependent",
       "recordFamilies": [
-        "runtime party state",
+        "runtime party membership",
         "party invitations",
-        "party member connection state"
+        "movement-follow flag",
+        "front/mid/back rank shell"
       ],
       "commands": [
-        "party create",
-        "party invite",
-        "party accept",
-        "party decline",
-        "party leave",
-        "party kick",
-        "party leader transfer",
-        "party follow",
-        "party chat"
+        "INVITE <username>",
+        "UNINVITE <username>",
+        "JOIN <username>",
+        "FOLLOW <username>",
+        "LEAVE",
+        "PARTY",
+        "FRONTRANK",
+        "MIDRANK",
+        "BACKRANK",
+        "JOIN <n> broadcast group (runtime gated)",
+        "SET FOLLOW BLIND/NORMAL"
       ],
-      "timers": [
-        "party invitation expiration"
-      ],
+      "timers": [],
       "flags": [
-        "connected",
-        "followingLeader"
+        "followingLeader",
+        "follow mode Blind/Normal (room-description behavior proven)",
+        "connected is runtime delivery state only and is not a native disconnect-policy claim"
       ],
-      "status": "implemented-safe-policy-shell",
-      "evidenceClassification": "strongly-correlated",
+      "status": "implemented-evidence-gated-shell",
+      "evidenceClassification": "mixed-pass-strong-unknown",
       "nativeDependencies": [
-        "exact Classic maximum party size",
-        "exact invitation timeout",
-        "exact logout and restart persistence",
-        "exact shared experience and loot formulas",
-        "exact command text and failure messages"
-      ]
+        "leader LEAVE behavior when followers remain",
+        "leader/default rank behavior and exact permission/failure text",
+        "exact Frontrank spot-limit formula beyond the proven front>=back rule",
+        "quest/spell/teleport/resurrection/death interactions",
+        "unexpected linkdead/disconnect behavior",
+        "broadcast-group runtime state, exact upper bound, and rendering",
+        "XP remainder recipient/disposition when monster XP is not evenly divisible"
+      ],
+      "xpSharing0294": {
+        "eligibility": "characters actively fighting the exact NPC at death; party membership irrelevant",
+        "division": "integer quotient of NPC XP by active combatant count",
+        "remainder": "recipient/disposition unresolved; do not award to highest damage, killer, party order, or alphabetical order without proof",
+        "classification": "strong-native-runtime-observation"
+      },
+      "partyCapacity0295": {
+        "maximumMembers": 6,
+        "classification": "STRONG",
+        "scope": "six total characters including leader",
+        "exactFailureText": "UNKNOWN"
+      },
+      "rewardBoundary0295": {
+        "xp": "active exact-NPC combatants at death; party membership irrelevant; integer quotient per recipient; remainder unresolved",
+        "loot": "native-era captures place monster currency on the room floor; no automatic party loot split promoted",
+        "manualCurrencySharing": "SHARE remains the explicit party/room currency distribution command"
+      }
     },
     {
       "id": "guild-faction-organization",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeOrganizationService",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-native-gang-model",
+      "runtimeOwner": "RuntimeClassicGangGameplayService + RuntimeClassicGangStateService + gang-house authorities",
       "persistenceOwner": "world organization coordination; Classic persistence remains native-dependent",
       "recordFamilies": [
-        "runtime organization state",
-        "organization ranks",
-        "organization memberships",
-        "organization invitations"
+        "gang definitions",
+        "gang membership and ranks",
+        "gang house deeds",
+        "gang house upkeep and ownership"
       ],
       "commands": [
-        "organization create (policy gated)",
+        "create gang",
         "invite",
-        "accept",
-        "decline",
+        "uninvite",
+        "leave gang",
+        "disband",
         "promote",
         "demote",
-        "remove",
-        "leave",
-        "transfer leadership",
-        "disband",
-        "guild chat route"
+        "BG/BROADGANG",
+        "TOPTEN GANGS",
+        "TOP <n> GANGS"
       ],
       "timers": [
-        "organization invitation expiration"
+        "sundown gang-house deed tax; production sundown trigger ownership remains timer-world-rule dependent"
       ],
       "flags": [
-        "organization kind",
-        "rank permissions",
-        "player creation enabled",
-        "member may leave"
+        "Leader",
+        "Lieutenant",
+        "Member",
+        "ToptenEnabled",
+        "gang house ownership"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-native-gangs-and-houses",
       "nativeDependencies": [
-        "which organization kinds exist in MajorMUD 1.11p",
-        "whether player-created guilds exist",
-        "exact ranks and permissions",
-        "dues/storage/halls/trainers/merchants/quests",
-        "reputation/hostility/alliance arithmetic",
-        "logout/deletion/reset/restart persistence",
-        "exact commands and messages"
+        "post-disband gang-name reuse after ex-member entry condition",
+        "exact gang-house warning behavior",
+        "repossessed house-content cleanup/reset ordering",
+        "remaining embedded gang-house service edge behavior"
       ]
     },
     {
       "id": "communications",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeCommunicationService",
-      "persistenceOwner": "session communication policy; ignore persistence and native logs remain native-dependent",
+      "status": "implemented-evidence-gated-shell",
+      "runtimeOwner": "RuntimeLiveGameplayFacade for recovered MajorMUD channels; RuntimeCommunicationService remains a compatibility/policy shell for extension channels",
+      "persistenceOwner": "character Conditions currently store Reforged channel toggles/forget state; exact MajorMUD persistence owner remains native-dependent",
       "recordFamilies": [
         "runtime actor communication state",
-        "ignore relationships",
-        "flood-window state",
-        "channel delivery requests"
+        "Reforged compatibility ignore relationships",
+        "extension flood-window state (not promoted as native)",
+        "native channel delivery actions"
       ],
       "commands": [
         "say",
-        "whisper",
-        "tell",
-        "shout",
         "yell",
-        "emote",
-        "pose",
-        "party chat",
-        "guild chat",
-        "global chat",
-        "system message",
-        "administrative broadcast"
+        "/Username <TEXT> telepath",
+        "gossip",
+        "auction",
+        "forget",
+        "whisper (evidence-gated)",
+        "tell (not promoted as native)",
+        "extension communication channels"
       ],
-      "timers": [
-        "per-sender flood-control window"
-      ],
+      "timers": [],
       "flags": [
-        "connected",
-        "deafened",
-        "silenced",
-        "hidden",
-        "administrator"
+        "gossip receive",
+        "auction receive",
+        "telepath ignore sender",
+        "SET TELEPATH polarity unresolved",
+        "SET MESSAGES priority classes proven but per-message classification unresolved",
+        "SET ENTRANCES native toggle proven but exact default/persistence unresolved",
+        "compatibility-shell actor flags"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "native-confirmed-set-toggle-scope",
       "nativeDependencies": [
-        "exact Classic channel availability",
-        "exact shout/yell range",
-        "exact command aliases and failure strings",
-        "exact hidden/invisible presentation",
-        "language/profanity/color formatting",
-        "native logging and moderation persistence"
-      ]
-    },
-    {
-      "id": "mail-offline-messaging",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-host-boundary-shell",
-      "runtimeOwner": "RuntimeOfflineMessagingService",
-      "persistenceOwner": "offline messaging world-state snapshot; asset owners retain attachments",
-      "recordFamilies": [
-        "offline message envelopes",
-        "message state",
-        "attachment metadata"
-      ],
-      "commands": [
-        "mail",
-        "read",
-        "delete",
-        "offline tell",
-        "note",
-        "bulletin"
-      ],
-      "timers": [
-        "message expiration"
-      ],
-      "flags": [
-        "queued",
-        "delivered",
-        "read",
-        "deleted",
-        "expired"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "MajorMUD versus Worldgroup ownership of player mail, notes, bulletin boards, and announcements",
-        "exact offline tell behavior",
-        "native subject/body limits",
-        "attachment support",
-        "currency and item escrow semantics",
-        "read/delete persistence",
-        "expiration rules",
-        "character deletion behavior",
-        "delivery timing",
-        "exact commands and messages",
-        "host message queue and moderation integration"
+        "exact communication setting defaults/persistence",
+        "explicit TELEPATH ON/OFF polarity",
+        "MAXPAGES/flood/page behavior",
+        "remaining exact channel rendering"
       ]
     },
     {
       "id": "doors-locks-access",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-native-door-boundary",
       "runtimeOwner": "RuntimeDoorAccessService",
       "persistenceOwner": "world door state; character inventory remains Character-owned",
       "recordFamilies": [
@@ -195,8 +164,8 @@
         "close",
         "lock",
         "unlock",
-        "pick request",
-        "bash request",
+        "picklock <direction>",
+        "bash <direction>",
         "traverse validation",
         "reset"
       ],
@@ -214,140 +183,98 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact Classic open/close/lock/unlock messages",
+        "exact Classic open/close/lock/unlock and PICKLOCK/BASH messages",
         "native key-consumption semantics",
-        "lockpick and bash success formulas",
+        "exact native success-roll dispatcher after recovered Picklocks/Strength requirement admission; raw positive-vs-negative Para2 arithmetic beyond the display projection",
         "door durability and break recovery",
         "one-way and remote lock encodings",
-        "exact reset persistence",
-        "seven unresolved room latch effects"
-      ]
+        "exact reset persistence"
+      ],
+      "pass25NativeBoundary": {
+        "traversalDoesNotAutoApplyPicklocksOrStrength": true,
+        "picklockAndBashAreExplicitActions": true,
+        "doorPara2Role": "chance/difficulty field for PICKLOCK/BASH; exact live success roll unresolved",
+        "doorPara3Role": "number of 5-minute blocks to remain open",
+        "doorPara4Role": "key requirement"
+      },
+      "pass26NativeRequirementBoundary": {
+        "numericDoorPicklocksOrStrengthCount": 1178,
+        "anyDoorPicklocksOrStrengthCount": 109,
+        "numericKeyPicklocksAndStrengthCount": 83,
+        "numericKeyPicklocksOnlyCount": 61,
+        "keyStrengthAlternativeStoredAsBoolean": true,
+        "picklockUses": "Picklocks",
+        "bashUses": "Strength when strength_alternative or shared picklocks_or_strength is present",
+        "movementDoesNotApplyRequirement": true,
+        "successRoll": "UNKNOWN"
+      }
     },
     {
       "id": "traps",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeTrapService",
-      "persistenceOwner": "world trap state; downstream effects remain owned by target subsystems",
+      "status": "classic-exit-traps-fail-closed-pending-native-state-roll",
+      "runtimeOwner": "RuntimeClassicExitTrapCatalog / RuntimeLiveGameplayFacade (Classic); RuntimeTrapService is Reforged extension only",
+      "persistenceOwner": "Exact Classic trap persistence/reset owner UNKNOWN; generic RuntimeTrapService persistence does not count for Classic parity",
       "recordFamilies": [
-        "trap definitions",
-        "trap runtime state",
-        "trap trigger relationships",
-        "trap effect requests",
-        "trap reset and rearm timers"
+        "RoomRec type 09 Trap exits",
+        "RoomRec type 24 Spell Trap exits",
+        "RoomRec Para1/Para2/Para3/Para4 native fields"
       ],
       "commands": [
-        "search trap",
-        "disarm trap",
-        "trigger trap",
-        "reset trap"
+        "SEARCH",
+        "DISARM TRAP <direction>",
+        "movement/traversal trap admission"
       ],
-      "timers": [
-        "per-trap rearm deadline",
-        "per-trap reset deadline"
-      ],
+      "timers": [],
       "flags": [
-        "armed",
-        "revealed",
-        "charges remaining",
-        "persistence mode"
+        "Para2: 0 Active",
+        "Para2: 1 Inactive",
+        "Para2: 2 Hidden",
+        "Para2: 3 Active movement",
+        "Para2: 4 Inactive movement"
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact trap record families and encodings",
-        "detection and disarm formulas",
+        "per-exit WCCMP002 Para2 values",
+        "exact native SEARCH detection formula",
+        "exact native DISARM formula",
         "failed-disarm trigger behavior",
-        "exact messages",
-        "charge/reset/rearm semantics",
-        "persistence",
-        "protection precedence",
+        "exact Para3/Para4 message ownership and rendering",
+        "trap state transitions and reset/rearm interaction",
         "exact cross-subsystem ordering"
-      ]
-    },
-    {
-      "id": "environmental-hazards",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeEnvironmentalHazardService",
-      "persistenceOwner": "world hazard activation and timer state; downstream effects remain owner-subsystem responsibilities",
-      "recordFamilies": [
-        "hazard definitions",
-        "hazard runtime state",
-        "room occupancy relationships",
-        "environmental effect requests",
-        "periodic hazard timers"
       ],
-      "commands": [
-        "enter hazard evaluation",
-        "exit hazard evaluation",
-        "periodic hazard tick",
-        "enable hazard",
-        "disable hazard"
-      ],
-      "timers": [
-        "per-hazard periodic tick deadline"
-      ],
-      "flags": [
-        "enabled",
-        "affects characters",
-        "affects NPCs",
-        "persistence mode"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact Classic environmental record families and room-field mappings",
-        "tick frequency and round conversion",
-        "resistance/protection precedence",
-        "entry/exit/periodic ordering",
-        "NPC eligibility",
-        "exact messages and formulas",
-        "save/reset behavior",
-        "weather/day-night coupling"
-      ]
-    },
-    {
-      "id": "world-containers",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeWorldContainerService",
-      "persistenceOwner": "world container state; Character inventory and Economy retain owned transfer payloads",
-      "recordFamilies": [
-        "container definitions",
-        "container runtime state",
-        "container item entries",
-        "transfer requests",
-        "reset and decay timers"
-      ],
-      "commands": [
-        "inspect",
-        "unlock",
-        "lock",
-        "deposit request",
-        "withdraw request",
-        "commit transfer",
-        "reset"
-      ],
-      "timers": [
-        "container decay deadline",
-        "container reset deadline"
-      ],
-      "flags": [
-        "locked",
-        "scope",
-        "persistence",
-        "revision"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact Classic container record families",
-        "exact capacity and weight rules",
-        "native lock and trap ordering",
-        "restock and reset semantics",
-        "corpse ownership and decay",
-        "bank and guild storage ownership",
-        "concurrent access behavior",
-        "exact messages"
-      ]
+      "pass25NativeBoundary": {
+        "nativeDisarmSyntax": "DISARM TRAP <direction>",
+        "searchCanRevealTraps": true,
+        "exactDetectionRoll": "UNKNOWN",
+        "exactDisarmRoll": "UNKNOWN",
+        "failedDisarmTrigger": "UNKNOWN"
+      },
+      "pass26TrapStateRecovery": {
+        "publicStock111pMdbLocated": true,
+        "perExitPara2Recovered": false,
+        "reason": "binary MDB unavailable to current text-only connector; do not guess",
+        "status": "UNKNOWN"
+      },
+      "pass27NativeTrapBoundary": {
+        "roomType9": "damage trap",
+        "roomType24": "spell trap",
+        "para2Width": "signed 16-bit",
+        "para2States": {
+          "0": "Active",
+          "1": "Inactive",
+          "2": "Hidden",
+          "3": "Active movement",
+          "4": "Inactive movement"
+        },
+        "anyoneMaySearch": true,
+        "disarmRequiresTrapsSkill": true,
+        "nativeDisarmSyntax": "DISARM TRAP <direction>",
+        "perExitPara2Recovered": false,
+        "requiredRecoverySource": "stock WCCMP002 room records or equivalent native export",
+        "messageFieldOwnership": "UNKNOWN due retained docs/editor conflict",
+        "genericRuntimeTrapServiceCountsForClassic": false
+      }
     },
     {
       "id": "clock-scheduling",
@@ -379,36 +306,11 @@
         "missed-timer policy",
         "revision"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "mixed-strong-unknown",
       "nativeDependencies": [
-        "exact Classic round/tick/minute conversion",
-        "native seed clock and host-time boundary",
-        "restart and missed-timer behavior",
-        "simultaneous timer ordering",
-        "overflow and drift behavior",
-        "day rollover and daylight-saving dependence",
-        "exact schedules for merchants/trainers/spawns/quests/status/events"
-      ]
-    },
-    {
-      "id": "weather-day-night",
-      "classification": "Reforged compatibility infrastructure; Classic native behavior unresolved",
-      "status": "implemented-safe-disabled-classic-shell",
-      "runtimeOwner": "RuntimeWeatherDayNightService",
-      "persistenceOwner": "save-coordination",
-      "timerOwner": "clock-scheduling",
-      "commands": [],
-      "state": [
-        "day-phase",
-        "weather-kind",
-        "custom-weather-id",
-        "revision"
-      ],
-      "nativeDependencies": [
-        "native existence and record families",
-        "sunrise/sunset and weather schedules",
-        "cross-system effects",
-        "exact rendering and ownership boundary"
+        "exact in-game tick/round/minute relationships",
+        "simultaneous gameplay timer ordering",
+        "overflow/drift semantics"
       ]
     },
     {
@@ -455,19 +357,10 @@
       "runtimeOwner": "RuntimeWorldEventService",
       "persistenceOwner": "world event coordination; owner subsystems persist their own mutations",
       "recordFamilies": [
-        "world event definitions",
-        "world event lifecycle state",
-        "event participants",
-        "typed event action requests"
+        "MajorMUD Plus event definitions and active state"
       ],
       "commands": [
-        "schedule event",
-        "start event",
-        "stop event",
-        "cancel event",
-        "join event",
-        "leave event",
-        "inspect event"
+        "SYSOP activation through Reforged editor"
       ],
       "timers": [
         "scheduled event start",
@@ -481,15 +374,12 @@
         "failed",
         "repeatable"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "operator-confirmed-majormud-plus-only",
       "nativeDependencies": [
-        "exact Classic event records",
-        "start/end and repeatability rules",
-        "participant and reward policy",
-        "restart recovery",
-        "cleanup ordering",
-        "remote-action event behavior",
-        "exact commands and messages"
+        "exact MajorMUD Plus event activation prerequisites",
+        "affected rooms/NPCs/items",
+        "duration/reset behavior",
+        "player-visible messages"
       ]
     },
     {
@@ -581,15 +471,11 @@
       "runtimeOwner": "RuntimeRestRecoveryPolicyService",
       "persistenceOwner": "Character/session owners; Classic persistence remains native-dependent",
       "recordFamilies": [
-        "room recovery policy",
-        "runtime rest state",
-        "inn service requests"
+        "rest/meditate character recovery state"
       ],
       "commands": [
         "rest",
-        "sleep",
-        "wake",
-        "safe logout request"
+        "meditate"
       ],
       "timers": [
         "native recovery tick remains external/native-dependent"
@@ -600,43 +486,46 @@
         "inn",
         "safe logout"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "native-confirmed-no-inn-rest",
       "nativeDependencies": [
-        "exact Classic rest/sleep commands and messages",
-        "native recovery formulas and tick timing",
-        "inn rental persistence",
-        "safe logout room rules",
-        "status cleanup behavior",
-        "login-room behavior",
-        "Worldgroup versus MajorMUD ownership"
+        "exact REST/MEDITATE recovery formula",
+        "tick timing",
+        "activation/output messages",
+        "remaining interruption/status cleanup"
       ]
     },
     {
-      "id": "transport-services",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeTransportService",
-      "persistenceOwner": "world transport state; Economy/Rooms/session owners commit typed requests",
+      "id": "paid-room-transfers",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-ticket-pass-and-room-relocation",
+      "runtimeOwner": "RuntimeLivingWorldService exit gates + RuntimeLiveGameplayFacade decoded room action scripts",
+      "persistenceOwner": "Rooms/session location owns immediate movement; Inventory owns ticket/pass possession; no transport persistence exists",
       "commands": [
-        "board",
-        "depart",
-        "travel",
-        "disembark"
+        "native room commands and gated exits"
       ],
-      "timers": [
-        "departure",
-        "arrival"
-      ],
+      "timers": [],
       "nativeDependencies": [
-        "exact Classic transport record families",
-        "native schedules and boarding windows",
-        "fare ownership and refund behavior",
-        "disconnect/linkdead behavior",
-        "capacity and party boarding",
-        "combat interruption",
-        "exact messages",
-        "persistence and restart recovery"
-      ]
+        "exact per-exit ticket/pass requirement where not already decoded",
+        "whether each ticket/pass is consumed or retained",
+        "complex room-action condition and adddelay semantics outside the Pass 23 safe executable subset",
+        "exact observer/room-render ordering around command-triggered relocation",
+        "remaining native failure/success message mappings"
+      ],
+      "explicitlyExcludedAssumptions": [
+        "vehicle state",
+        "boarding state",
+        "departure schedule",
+        "travel timer",
+        "arrival delay",
+        "transport persistence",
+        "transport disconnect policy"
+      ],
+      "recordFamilies": [
+        "ticket/item-gated exits",
+        "pass/access gates",
+        "command-triggered room relocation"
+      ],
+      "evidenceClassification": "strong-native-ticket-pass-and-command-relocation"
     },
     {
       "id": "player-transactions",
@@ -667,53 +556,6 @@
       ]
     },
     {
-      "id": "account-session-ownership",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-session-shell",
-      "runtimeOwner": "RuntimeSessionOwnershipService",
-      "persistenceOwner": "Reforged host session state; Character owns character save; Worldgroup owns account authentication",
-      "recordFamilies": [
-        "account-character relationships",
-        "session state",
-        "linkdead state",
-        "module restrictions"
-      ],
-      "commands": [
-        "character select",
-        "logout",
-        "reconnect"
-      ],
-      "timers": [
-        "idle timeout",
-        "linkdead grace period"
-      ],
-      "flags": [
-        "active",
-        "linkdead",
-        "logged-out",
-        "banned",
-        "deleted"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "Worldgroup account and authentication structures",
-        "native character slot limit",
-        "duplicate login behavior",
-        "session takeover behavior",
-        "linkdead grace period",
-        "idle timeout",
-        "combat logout restrictions",
-        "safe-room restrictions",
-        "character deletion and restoration",
-        "account and character bans",
-        "module access restrictions",
-        "last-login persistence",
-        "exact login/logout messages",
-        "save ordering on disconnect",
-        "party and follower cleanup ordering"
-      ]
-    },
-    {
       "id": "world-rules-configuration",
       "classification": "runtime-active-partially-exhausted",
       "status": "implemented-classic-safe-typed-contract",
@@ -737,140 +579,9 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact MajorMUD 1.11p configuration record sources",
-        "defaults and allowed ranges",
-        "which settings are runtime mutable",
-        "restart requirements",
-        "world-state and save impact",
-        "maximum users and module capacity ownership",
-        "starting room, gold, and level semantics",
-        "experience, loot, and respawn rate semantics",
-        "PvP and death-penalty settings",
-        "reset intervals",
-        "Evil Point settings",
-        "communications settings",
-        "merchant and trainer settings",
-        "limited-item settings",
-        "quest and event settings",
-        "administrative permission levels",
-        "Worldgroup versus MajorMUD configuration boundary"
-      ]
-    },
-    {
-      "id": "administrative-policy",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeAdministrativePolicyService",
-      "persistenceOwner": "administrative audit coordinator",
-      "recordFamilies": [
-        "administrative action definitions",
-        "permission requirements",
-        "audit entries"
-      ],
-      "commands": [
-        "inspection",
-        "teleport/summon",
-        "spawn/despawn",
-        "kill/heal",
-        "grant item/currency/experience",
-        "set level/flags",
-        "reset",
-        "event control",
-        "broadcast/moderation",
-        "kick/ban/freeze",
-        "save/reload",
-        "runtime inspection/tracing"
-      ],
-      "timers": [],
-      "flags": [
-        "host operator",
-        "authority level",
-        "confirmation required",
-        "rollback supported"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact MajorMUD and Worldgroup administrator levels",
-        "exact command names and aliases",
-        "exact confirmation behavior",
-        "visibility to targets and normal players",
-        "native audit logging",
-        "rollback support",
-        "save timing",
-        "world-state mutation ordering",
-        "ban, kick, mute, freeze and module-lock ownership",
-        "builder versus sysop permissions",
-        "native remote-action authority"
-      ]
-    },
-    {
-      "id": "security-permissions",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeSecurityPolicyService",
-      "persistenceOwner": "security audit coordinator",
-      "recordFamilies": [
-        "trust-boundary definitions",
-        "resource policies",
-        "capability grants",
-        "authorization decisions"
-      ],
-      "commands": [
-        "authorize runtime call",
-        "validate resource policy",
-        "sanitize boundary input"
-      ],
-      "timers": [],
-      "flags": [
-        "authenticated",
-        "minimum trust boundary",
-        "audit required"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact MajorMUD player, sysop and builder privilege levels",
-        "Worldgroup authentication and authorization interfaces",
-        "native script and textblock execution privilege",
-        "remote-action authorization and caller identity",
-        "native save and file access boundary",
-        "cross-character and cross-world access rules",
-        "native command sanitization and rendering rules",
-        "audit log destination and retention",
-        "host/module trust handoff",
-        "exact unauthorized-action messages"
-      ]
-    },
-    {
-      "id": "logging-diagnostics",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeLoggingDiagnosticsService",
-      "persistenceOwner": "diagnostic sinks and host logging; exact native persistence remains native-dependent",
-      "recordFamilies": [
-        "structured runtime log events",
-        "correlation context",
-        "diagnostic fields"
-      ],
-      "commands": [
-        "inspect diagnostics",
-        "export diagnostics",
-        "enable tracing"
-      ],
-      "timers": [
-        "retention and rotation remain sink-owned"
-      ],
-      "flags": [
-        "administrative",
-        "security-sensitive"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact MajorMUD and Worldgroup log destinations",
-        "native retention and rotation",
-        "original log formats",
-        "crash log ownership",
-        "player-visible combat log behavior",
-        "native audit visibility and redaction"
+        "exact MajorMUD gameplay configuration sources/defaults/ranges",
+        "runtime-mutable versus fixed gameplay rules",
+        "gameplay world-state/save effects"
       ]
     },
     {
@@ -890,7 +601,7 @@
         "manual save coordination"
       ],
       "timers": [
-        "autosave trigger remains clock-scheduling-owned"
+        "Classic player autosave: native 60-second interval active; other save triggers remain clock-scheduling-owned"
       ],
       "flags": [
         "required",
@@ -898,45 +609,11 @@
         "dirty",
         "generation"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "mixed-pass-strong-unknown",
       "nativeDependencies": [
-        "exact MajorMUD save ordering",
-        "Worldgroup transaction boundary",
-        "autosave interval",
-        "shutdown-save behavior",
-        "crash journal format",
-        "native migration/version compatibility",
-        "partial-save recovery"
-      ]
-    },
-    {
-      "id": "startup-shutdown",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeStartupShutdownService",
-      "persistenceOwner": "save coordination and subsystem owners",
-      "recordFamilies": [
-        "lifecycle step definitions",
-        "runtime lifecycle phase",
-        "admission state"
-      ],
-      "commands": [
-        "startup",
-        "shutdown",
-        "quiesce"
-      ],
-      "timers": [],
-      "flags": [
-        "phase",
-        "admissions open"
-      ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact Classic startup ordering",
-        "native DLL initialization and teardown",
-        "Worldgroup admission and shutdown hooks",
-        "crash recovery versus clean shutdown",
-        "pending native action disposition"
+        "ordinary MajorMUD player/world save participant ordering",
+        "buffer ownership",
+        "normal persistence ordering"
       ]
     },
     {
@@ -1141,40 +818,34 @@
     },
     {
       "id": "rankings-statistics",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeRankingsStatisticsService",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-top-projection",
+      "runtimeOwner": "RuntimeClassicGangGameplayService",
       "persistenceOwner": "RuntimeSaveCoordinationService for ranking snapshots; source subsystems own metric truth",
       "recordFamilies": [
-        "ranking definitions",
-        "metric snapshots",
-        "subject score entries",
-        "reset metadata"
+        "TOP adventurer rankings",
+        "TOP class-filtered rankings",
+        "TOP gang rankings"
       ],
       "commands": [
-        "rankings",
-        "statistics",
-        "--smoke-rankings-statistics"
+        "TOPTEN",
+        "TOP <n>",
+        "TOP <class>",
+        "TOP <n> <class>",
+        "TOPTEN GANGS",
+        "TOP <n> GANGS"
       ],
-      "timers": [
-        "optional daily weekly monthly reset requests delegated to clock scheduling"
-      ],
+      "timers": [],
       "flags": [
-        "visibility",
-        "reset policy",
-        "sort direction",
-        "administrator exclusion",
-        "persistence"
+        "NOTOPTEN character exclusion",
+        "gang ToptenEnabled"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-native-top-runtime",
       "nativeDependencies": [
-        "whether Classic exposes rankings or scoreboards",
-        "exact ranking metric families",
-        "update timing and tie-breaking",
-        "privacy and hidden-character behavior",
-        "reset schedules",
-        "administrator exclusion",
-        "native persistence and messages"
+        "exact native tie ordering",
+        "complete supported TOP category grammar",
+        "refresh/cache behavior if any",
+        "exact output rendering"
       ]
     },
     {
@@ -1203,16 +874,13 @@
         "title visibility",
         "title enabled"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "operator-confirmed-first-name-unique",
       "nativeDependencies": [
-        "exact Classic name length and allowed characters",
-        "reserved-name list and duplicate comparison",
-        "title sources and precedence",
-        "alignment, class, level, guild, and administrative title tables",
-        "hidden and invisible identity rendering",
-        "disguise behavior",
-        "exact validation and failure messages",
-        "Worldgroup versus MajorMUD name ownership"
+        "exact first-name length/allowed characters",
+        "reserved names",
+        "title precedence",
+        "hidden/disguised identity rendering",
+        "exact validation messages"
       ]
     },
     {
@@ -1242,11 +910,10 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact Classic limits",
-        "configurable versus static limits",
+        "exact MajorMUD gameplay/data limits",
+        "configurable versus static gameplay limits",
         "native integer widths",
-        "allocation failure behavior",
-        "cleanup and admission rejection messages"
+        "player-visible allocation/admission failure behavior"
       ]
     },
     {
@@ -1274,31 +941,24 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact native failure classifications",
-        "record skip/default behavior",
-        "corrupt save handling",
-        "partial world load policy",
-        "script/event/reset failure behavior",
-        "disconnect messages",
-        "subsystem disable semantics"
+        "normal MajorMUD malformed/missing reference handling",
+        "in-game failed action rollback behavior",
+        "exact player-visible failure messages"
       ]
     },
     {
       "id": "games-arenas-optional-activities",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-evidence-gated-policy-shell",
-      "runtimeOwner": "RuntimeOptionalActivitiesService",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-native-room-tables",
+      "runtimeOwner": "RuntimeClassicCasinoAuthority + RuntimeLivePvp",
       "persistenceOwner": "activity lifecycle only; exact Classic persistence remains native-dependent",
       "recordFamilies": [
-        "optional activity definitions",
-        "activity participants",
-        "activity lifecycle state"
+        "casino activities",
+        "arena activities"
       ],
       "commands": [
-        "join activity",
-        "leave activity",
-        "start activity",
-        "complete activity"
+        "Lucky Strike decoded casino command aliases",
+        "practice-arena combat through normal ATTACK/PvP commands"
       ],
       "timers": [],
       "flags": [
@@ -1306,14 +966,12 @@
         "Classic evidence confirmed",
         "activity state"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-native-casino-practice-arena",
       "nativeDependencies": [
-        "Classic feature existence",
-        "exact commands and messages",
-        "entry costs and rewards",
-        "matchmaking and rules",
-        "death and item-loss behavior",
-        "persistence and Worldgroup ownership"
+        "native global RNG algorithm/seed/shared stream",
+        "unrecovered casino result text payloads",
+        "room 1/11 adddelay unit/command-delay semantics",
+        "remaining non-practice arena edges if any"
       ]
     },
     {

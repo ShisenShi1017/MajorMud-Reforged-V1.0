@@ -10,7 +10,9 @@ internal readonly record struct ClassicRoomDisplayObservation(
     IReadOnlyList<string> Npcs,
     IReadOnlyList<string> Players,
     IReadOnlyList<string> Items,
-    string Currency);
+    string Currency,
+    bool ExitsVerified,
+    string RawExitText);
 
 /// <summary>
 /// Buffers one server-output block and commits a room only when MajorMUD's
@@ -51,7 +53,9 @@ internal sealed partial class ClassicRoomDisplayStreamParser
         }
 
         var identity = FindIdentity();
-        var directions = ParseExits(exits.Groups["list"].Value);
+        var rawExitText = exits.Groups["list"].Value.Trim();
+        var directions = ParseExits(rawExitText);
+        var exitsVerified = directions.Count > 0 || IsExplicitNoExitList(rawExitText);
         var contents = identity is null ? default : ParseContents(identity.Value.Index);
         _buffer.Clear();
         if (_suppressNextDisplay && DateTimeOffset.UtcNow <= _suppressionExpiresAt)
@@ -65,7 +69,8 @@ internal sealed partial class ClassicRoomDisplayStreamParser
         return identity is null
             ? null
             : new ClassicRoomDisplayObservation(identity.Value.Name, identity.Value.Key, directions,
-                contents.Description, contents.Npcs, contents.Players, contents.Items, contents.Currency);
+                contents.Description, contents.Npcs, contents.Players, contents.Items, contents.Currency,
+                exitsVerified, rawExitText);
     }
 
     public void Reset()
@@ -159,12 +164,17 @@ internal sealed partial class ClassicRoomDisplayStreamParser
 
     private static IReadOnlyList<string> ParseExits(string value)
     {
-        if (value.Trim().TrimEnd('.').Equals("none", StringComparison.OrdinalIgnoreCase))
+        if (IsExplicitNoExitList(value))
             return [];
+
+        // Native MajorMUD servers can decorate exits (for example "open door west",
+        // "north (closed)", or "[east]"). Match direction tokens anywhere in the
+        // exit-list text instead of requiring each whitespace token to be only a
+        // direction. The exit line itself is authoritative; destination prose is not.
         var results = new List<string>();
-        foreach (var token in Regex.Split(value, @"(?:\s+and\s+)|[,;/\s]+", RegexOptions.IgnoreCase))
+        foreach (Match match in DirectionToken().Matches(value ?? string.Empty))
         {
-            var clean = Regex.Replace(token.Trim().Trim('.', ':', ';'), @"[^A-Za-z]", string.Empty).ToLowerInvariant();
+            var clean = match.Groups["dir"].Value.ToLowerInvariant();
             var direction = clean switch
             {
                 "n" or "north" => "north", "ne" or "northeast" => "northeast",
@@ -179,6 +189,13 @@ internal sealed partial class ClassicRoomDisplayStreamParser
         return results;
     }
 
+    private static bool IsExplicitNoExitList(string value) =>
+        ExplicitNoExitList().IsMatch(value?.Trim() ?? string.Empty);
+
+    [GeneratedRegex(@"(?<![A-Za-z])(?<dir>northeast|northwest|southeast|southwest|north|south|east|west|up|down|ne|nw|se|sw|n|s|e|w|u|d)(?![A-Za-z])", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex DirectionToken();
+    [GeneratedRegex(@"^\s*(?:none|no\s+exits?|nowhere)\.?\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private static partial Regex ExplicitNoExitList();
     [GeneratedRegex(@"^\s*(?:Obvious\s+)?exits?\s*:\s*(?<list>.*?)\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
     private static partial Regex ExitLine();
     [GeneratedRegex(@"^\[(?<key>[0-9A-F]{8}|\d+[:/]\d+)\]\s*(?<name>.+)$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]

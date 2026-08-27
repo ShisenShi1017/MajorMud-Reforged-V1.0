@@ -24,7 +24,7 @@ public sealed record RuntimeNpcAttackDefinition(
     string MissVerb = "",
     string WeaponName = "")
 {
-    public int EffectiveSpellLegacyId => HitSpellLegacyId > 0 ? HitSpellLegacyId : Type == 2 ? Accuracy : 0;
+    public int EffectiveSpellLegacyId => Type == 2 ? Accuracy : HitSpellLegacyId;
 }
 
 public sealed class RuntimeNpcAttackArgumentRecoveryCatalog
@@ -133,7 +133,7 @@ public sealed class RuntimeNpcDefinition
             ? publicFieldsElement
             : default;
 
-        return new RuntimeNpcDefinition
+        var definition = new RuntimeNpcDefinition
         {
             Id = JsonValueReader.ReadString(element, "id", string.Empty),
             LegacyId = JsonValueReader.ReadInt(element, "legacy_id", 0),
@@ -180,6 +180,7 @@ public sealed class RuntimeNpcDefinition
             Loot = ReadLoot(publicFields),
             Attacks = ReadAttacks(element, publicFields, combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "attack_count", 0) : 0)
         };
+        return RuntimeClassicNpcNativeFieldContract.Validate(definition);
     }
 
     private static IReadOnlyList<int> ReadAbilityValues(JsonElement element, int abilityId)
@@ -371,19 +372,19 @@ public sealed class RuntimeNpcSpawn
 // Consolidated from RuntimeNpcAttackSelection.cs during Bundle B runtime closure.
 public sealed record RuntimeNpcAttackSelectionResult(
     RuntimeNpcAttackDefinition? Attack,
-    int TotalWeight,
+    bool Affordable,
     int Roll,
-    IReadOnlyList<RuntimeNpcAttackDefinition> EligibleAttacks);
+    IReadOnlyList<RuntimeNpcAttackDefinition> OrderedAttacks);
 
 /// <summary>
-/// Authoritative Classic NPC attack-row selection. Decoded selection_percent values are weights,
-/// not independent percentages: authored NPC rows commonly total above 100. Ineligible or
-/// unaffordable rows are removed first, then the remaining positive weights are normalized by
-/// drawing inclusively from 1 through their total.
+/// Classic NPC attack-row selection recovered from MMUD Explorer and Nightmare Redux. One
+/// inclusive d100 roll is compared against authored Att%-x thresholds in slot order. The first
+/// matching row is selected even when its energy cost cannot currently be paid; native combat
+/// does not remove unaffordable rows and re-normalize the remaining rows.
 /// </summary>
 public static class RuntimeNpcAttackSelector
 {
-    public const string FormulaId = "combat.npc_attack_selection_weight";
+    public const string FormulaId = "combat.npc_attack_selection_threshold";
 
     public static RuntimeNpcAttackSelectionResult Select(
         IReadOnlyList<RuntimeNpcAttackDefinition> attacks,
@@ -392,32 +393,23 @@ public static class RuntimeNpcAttackSelector
     {
         ArgumentNullException.ThrowIfNull(attacks);
         if (currentEnergy < 0) throw new ArgumentOutOfRangeException(nameof(currentEnergy));
+        if (roll is < 1 or > 100)
+            throw new ArgumentOutOfRangeException(nameof(roll), "Roll must be within 1..100.");
         if (attacks.Any(x => x.EnergyCost < 0))
             throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_ENERGY_COST");
         if (attacks.Any(x => x.SelectionPercent < 0))
-            throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_SELECTION_WEIGHT");
+            throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_SELECTION_THRESHOLD");
 
-        var eligible = attacks
-            .Where(x => x.MinimumDamage >= 0 && x.MaximumDamage >= x.MinimumDamage && x.Accuracy > 0 &&
-                        x.SelectionPercent > 0 && x.EnergyCost <= currentEnergy)
+        var ordered = attacks
+            .Where(x => x.Type > 0 && x.SelectionPercent > 0)
             .OrderBy(x => x.Slot)
             .ToArray();
-        if (eligible.Length == 0)
-            return new RuntimeNpcAttackSelectionResult(null, 0, 0, eligible);
-
-        var totalWeight = eligible.Aggregate(0, (sum, attack) => checked(sum + attack.SelectionPercent));
-        if (roll < 1 || roll > totalWeight)
-            throw new ArgumentOutOfRangeException(nameof(roll), $"Roll must be within 1..{totalWeight}.");
-
-        var remaining = roll;
-        foreach (var attack in eligible)
-        {
-            remaining -= attack.SelectionPercent;
-            if (remaining <= 0)
-                return new RuntimeNpcAttackSelectionResult(attack, totalWeight, roll, eligible);
-        }
-
-        throw new InvalidOperationException("NPC_COMBAT_ATTACK_SELECTION_BOUNDARY_FAILURE");
+        var selected = ordered.FirstOrDefault(x => roll <= x.SelectionPercent);
+        return new RuntimeNpcAttackSelectionResult(
+            selected,
+            selected is not null && selected.EnergyCost <= currentEnergy,
+            roll,
+            ordered);
     }
 
     public static RuntimeNpcAttackSelectionResult Select(
@@ -426,15 +418,7 @@ public static class RuntimeNpcAttackSelector
         Random random)
     {
         ArgumentNullException.ThrowIfNull(random);
-        var eligible = attacks
-            .Where(x => x.MinimumDamage >= 0 && x.MaximumDamage >= x.MinimumDamage && x.Accuracy > 0 &&
-                        x.SelectionPercent > 0 && x.EnergyCost <= currentEnergy)
-            .OrderBy(x => x.Slot)
-            .ToArray();
-        if (eligible.Length == 0)
-            return Select(attacks, currentEnergy, 1);
-        var totalWeight = eligible.Aggregate(0, (sum, attack) => checked(sum + attack.SelectionPercent));
-        return Select(attacks, currentEnergy, random.Next(1, checked(totalWeight + 1)));
+        return Select(attacks, currentEnergy, random.Next(1, 101));
     }
 }
 

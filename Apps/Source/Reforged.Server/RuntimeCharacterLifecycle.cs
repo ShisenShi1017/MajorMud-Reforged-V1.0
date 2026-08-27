@@ -83,9 +83,9 @@ public sealed partial class RuntimeCharacterLifecycleCoordinator
                 "native executable message-dispatch trace",
                 "use deterministic Reforged lifecycle completion without asserting native welcome ordering"),
             [RuntimeCharacterNativeDependency.ReconnectGraceAndSocketTakeover] = new(
-                RuntimeCharacterNativeDependency.ReconnectGraceAndSocketTakeover, "UNKNOWN", false,
-                "native transport timeout and ownership-transfer trace",
-                "reject takeover; permit only exact-owner stale-session cleanup followed by a fresh login"),
+                RuntimeCharacterNativeDependency.ReconnectGraceAndSocketTakeover, "EXCLUDED_WORLDGROUP", false,
+                "Worldgroup host_session_user_state ownership is proven by retained native import/callsite evidence",
+                "not scored as MajorMUD parity; raw socket/session takeover remains a Worldgroup host responsibility"),
             [RuntimeCharacterNativeDependency.LinkDeadCombatRetention] = new(
                 RuntimeCharacterNativeDependency.LinkDeadCombatRetention, "UNKNOWN", false,
                 "native combat/world-tick trace across link loss",
@@ -95,9 +95,9 @@ public sealed partial class RuntimeCharacterLifecycleCoordinator
                 "native party dispatcher trace",
                 "detach the Character without electing or inventing a successor"),
             [RuntimeCharacterNativeDependency.TradeEscrowDisposition] = new(
-                RuntimeCharacterNativeDependency.TradeEscrowDisposition, "UNKNOWN", false,
-                "native trade escrow and disconnect trace",
-                "cancel trade and preserve validated persistent ownership; do not redistribute escrow"),
+                RuntimeCharacterNativeDependency.TradeEscrowDisposition, "EXCLUDED_REFORGED_EXTENSION", false,
+                "official MajorMUD command help exposes GIVE and AUCTION-as-chat, not a native escrow TRADE command",
+                "not scored as MajorMUD parity; Reforged trade escrow remains Custom/AI-only"),
             [RuntimeCharacterNativeDependency.OfflineCorpseDecayReconciliation] = new(
                 RuntimeCharacterNativeDependency.OfflineCorpseDecayReconciliation, "UNKNOWN", false,
                 "native corpse timer/world-tick trace while the owner is offline",

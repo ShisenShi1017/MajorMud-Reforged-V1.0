@@ -191,7 +191,7 @@ public sealed class BorinAcademy : IBorinAcademy
     {
         var state = await LoadAsync(root, token);
         var added = 0;
-        var patterns = new[] { "Reports/BorinBrain/RuntimeLogs/**/*.json", "Reports/BorinBrain/RuntimeLogs/**/*.log", "Reports/BorinBrain/RuntimeLogs/**/*.txt", "Reports/**/*.md", "Reports/**/*.json", "AI/Workspaces/Borin/Jobs/**/*.json", "AI/Workspaces/Borin/Jobs/**/*.log" };
+        var patterns = new[] { "Reports/BorinBrain/RuntimeLogs/**/*.json", "Reports/BorinBrain/RuntimeLogs/**/*.log", "Reports/BorinBrain/RuntimeLogs/**/*.txt", "Reports/**/*.md", "Reports/**/*.json", "Release/Logs/**/*.json", "Release/Logs/**/*.log", "Release/Logs/**/*.txt", "AI/Workspaces/Borin/Jobs/**/*.json", "AI/Workspaces/Borin/Jobs/**/*.log" };
         foreach (var pattern in patterns)
         {
             foreach (var file in Glob(root, pattern).Take(500))

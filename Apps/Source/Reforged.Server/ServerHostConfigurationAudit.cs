@@ -18,7 +18,7 @@ public sealed class ServerHostConfigurationAudit
             .AddDefault("server:host:port", "4000")
             .AddDefault("server:host:maxSessions", "64")
             .AddDefault("server:host:worldTickMilliseconds", "1000")
-            .AddDefault("server:host:combatTickMilliseconds", "6000")
+            .AddDefault("server:host:combatTickMilliseconds", "5000")
             .AddDefault("server:host:gameplayEnabled", "true")
             .AddDefault("server:host:networkingEnabled", "true")
             .AddDefault("server:host:worldSimulationEnabled", "true")
@@ -35,7 +35,7 @@ public sealed class ServerHostConfigurationAudit
             Port = configuration.GetInt32("server:host:port", 4000),
             MaxSessions = configuration.GetInt32("server:host:maxSessions", 64),
             WorldTickMilliseconds = configuration.GetInt32("server:host:worldTickMilliseconds", 1000),
-            CombatTickMilliseconds = configuration.GetInt32("server:host:combatTickMilliseconds", 6000),
+            CombatTickMilliseconds = configuration.GetInt32("server:host:combatTickMilliseconds", 5000),
             GameplayEnabled = configuration.GetBoolean("server:host:gameplayEnabled", true),
             NetworkingEnabled = configuration.GetBoolean("server:host:networkingEnabled", true),
             WorldSimulationEnabled = configuration.GetBoolean("server:host:worldSimulationEnabled", true)

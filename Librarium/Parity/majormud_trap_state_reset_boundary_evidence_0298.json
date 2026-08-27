@@ -1,0 +1,94 @@
+{
+  "schema": "majormud.trap-state-reset-boundary.v1",
+  "update": "0298",
+  "pass": 27,
+  "trapRecordContract": {
+    "nativeRoomRecordSource": "Nightmare Redux modFieldmaps.bas / RoomRecType",
+    "roomExitSlots": 10,
+    "fieldWidths": {
+      "RoomType": "signed 16-bit",
+      "Para1": "signed 32-bit",
+      "Para2": "signed 16-bit",
+      "Para3": "signed 32-bit",
+      "Para4": "signed 32-bit"
+    },
+    "trapTypes": {
+      "9": "damage trap",
+      "24": "spell trap"
+    },
+    "para2StateEncoding": {
+      "0": "Active",
+      "1": "Inactive",
+      "2": "Hidden",
+      "3": "Active movement",
+      "4": "Inactive movement"
+    },
+    "runtimeContractOwner": "RuntimeClassicRoomExitNativeFieldContract.TrapState"
+  },
+  "disarmBoundary": {
+    "nativeHelp": "Normally anyone can find a trap by SEARCH; a character with the Traps skill has a much higher chance, and a traps expert can attempt to disarm a trap that was found.",
+    "syntax": "DISARM TRAP <direction>",
+    "abilityIdentity": {
+      "DisarmTraps": 41,
+      "FindTraps": 40,
+      "FindTrapsValue": 179
+    },
+    "runtimeCorrection": "Classic DISARM TRAP now rejects characters without the Traps/DisarmTraps grant before reaching the unresolved native discovery/disarm boundary.",
+    "searchPolicy": "Do not reuse the generic hidden-object SEARCH formula for traps; exact native trap-find probability remains unknown.",
+    "disarmPolicy": "Do not invent the disarm roll, failed-disarm trigger, or Para2 state mutation."
+  },
+  "messageOwnershipConflict": {
+    "status": "UNRESOLVED",
+    "docsRoomsPara": "For type 09/24, docs/roomspara.txt labels Para3 as passage message and Para4 as fail message.",
+    "roomEditorUi": "frmRoom.frm contains tooltip/label variants that reverse fail/passage ownership for trap message fields.",
+    "policy": "Preserve Para3/Para4 raw fields when recovered; do not bind either field to passage/disarm-failure rendering until native caller evidence resolves the conflict."
+  },
+  "perExitStateRecovery": {
+    "status": "UNKNOWN",
+    "incorrectPriorBlocker": "The public MMUD Explorer MDB is not sufficient because its rendered Rooms-table export discarded native trap Para2.",
+    "correctSourceBoundary": "Recover the per-exit signed 16-bit Para2 value from stock WCCMP002 room records (or an equivalent native room-record export).",
+    "nativeArchiveLocated": "syntax53/Nightmare-Redux _fresh dats.7z",
+    "environmentConstraint": "The available GitHub connector exposes source text but cannot materialize the multi-megabyte binary archive in this execution environment.",
+    "fallback": "Classic trap activation remains fail-closed; never infer Active from the presence of damage/spell operands."
+  },
+  "resetBoundary": {
+    "genericReforgedTrapService": "RuntimeTrapService is an extension shell and is not evidence for Classic charges/rearm/reset timers.",
+    "classicTrapReset": "Exact native trap state transitions, rearming, reset interaction, and simultaneous cleanup/reset ordering remain UNKNOWN.",
+    "worldReset": "No generic reset action ordering is promoted from RuntimeWorldResetCleanupService; exact MajorMUD reset category ordering remains evidence-gated."
+  },
+  "scoring": {
+    "pass": 73,
+    "strong": 76,
+    "unknown": 28,
+    "total": 177,
+    "strictPercent": 41.2,
+    "evidenceBackedPercent": 84.2,
+    "action": "No score promotion: this pass corrects ownership and closes provable admission/schema behavior while the executable trap-state/roll requirement remains unresolved."
+  },
+  "sources": [
+    {
+      "kind": "retained-native-help",
+      "path": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "kind": "retained-ability-catalog",
+      "path": "Librarium/Objects/abilities/ability_records.json"
+    },
+    {
+      "kind": "Nightmare-Redux-source",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/modFieldmaps.bas"
+    },
+    {
+      "kind": "Nightmare-Redux-room-parameter-map",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/docs/roomspara.txt"
+    },
+    {
+      "kind": "Nightmare-Redux-room-editor",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/frmRoom.frm"
+    },
+    {
+      "kind": "retained-exit-corpus",
+      "path": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json"
+    }
+  ]
+}

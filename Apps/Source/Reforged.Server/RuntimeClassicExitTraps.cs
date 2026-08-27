@@ -11,6 +11,8 @@ public sealed record RuntimeClassicExitTrapDefinition(
     string TrapKind,
     int Damage,
     int SpellId,
+    bool NativeActivationStateProjected,
+    int? NativeActivationState,
     string Qualifier,
     string RawValue,
     string RuntimeDisposition,
@@ -53,6 +55,15 @@ public sealed class RuntimeClassicExitTrapCatalog
             var toRoom = JsonValueReader.ReadInt(value, "to_room_number", 0);
             var sourceRecord = ReadSourceExitRecord(value);
 
+            // The stock RoomRec layout proves Para2 is the signed 16-bit trap-state field
+            // (0 Active, 1 Inactive, 2 Hidden, 3 Active-move, 4 Inactive-move). MMUD Explorer's
+            // rendered qualifier drops that field. Accept a future explicit WCCMP002 projection,
+            // but never infer the state from the display qualifier.
+            var nativeActivationState = 0;
+            var nativeActivationStateProjected = effects.TryGetProperty("native_trap_state", out var nativeTrapStateElement)
+                && nativeTrapStateElement.ValueKind == JsonValueKind.Number
+                && nativeTrapStateElement.TryGetInt32(out nativeActivationState);
+
             var definition = new RuntimeClassicExitTrapDefinition(
                 $"exit-trap.{exitId}",
                 exitId,
@@ -62,6 +73,8 @@ public sealed class RuntimeClassicExitTrapCatalog
                 damage > 0 ? "damage_trap" : "spell_trap",
                 damage,
                 spellId,
+                nativeActivationStateProjected,
+                nativeActivationStateProjected ? nativeActivationState : null,
                 JsonValueReader.ReadString(value, "qualifier", string.Empty),
                 JsonValueReader.ReadString(value, "raw_value", string.Empty),
                 JsonValueReader.ReadString(value, "runtime_disposition", string.Empty),
@@ -135,6 +148,8 @@ public sealed class RuntimeClassicExitTrapCatalog
         if (definition.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase) && definition.Damage <= 0) throw new InvalidOperationException($"Decoded damage trap has no positive damage: {definition.ExitId}");
         if (definition.TrapKind.Equals("spell_trap", StringComparison.OrdinalIgnoreCase) && definition.SpellId <= 0) throw new InvalidOperationException($"Decoded spell trap has no spell ID: {definition.ExitId}");
         if (!definition.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase) && !definition.TrapKind.Equals("spell_trap", StringComparison.OrdinalIgnoreCase)) throw new InvalidOperationException($"Unsupported generated trap kind: {definition.TrapKind}");
+        if (definition.NativeActivationStateProjected && (definition.NativeActivationState is null || !RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(definition.NativeActivationState.Value)))
+            throw new InvalidOperationException($"Decoded trap has an unsupported native Para2 activation state: {definition.ExitId}");
     }
 }
 
@@ -156,10 +171,22 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!trap.FromRoomId.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase) ||
             !trap.ToRoomId.Equals(exit.TargetRoomId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException($"Decoded exit trap endpoint mismatch: {trap.ExitId}");
-        if (session.Actor is not RuntimeCharacterActor actor) return string.Empty;
+        if (session.Actor is not RuntimeCharacterActor) return string.Empty;
+
+        // Strict Classic fail-closed rule: the MME projection does not preserve the native
+        // WCCMP002 RoomRec Para2 activation mode. Until each exit's value and transition semantics are recovered,
+        // do not guess that every decoded trap is Active. The exact damage/spell operands remain
+        // retained and will execute through the authoritative consumers once activation is proven.
+        if (!trap.NativeActivationStateProjected) return string.Empty;
+
+        // The five native state values are storage-proven, but exact per-state traversal/transition
+        // behavior is not yet executable-proven. A projected value therefore remains fail-closed.
+        return string.Empty;
+
+        /* Activation-state closure will re-enable one of these exact effect consumers:
         return trap.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase)
             ? ApplyDecodedDamageExitTrap(session, actor, trap)
-            : ApplyDecodedSpellExitTrap(session, actor, trap);
+            : ApplyDecodedSpellExitTrap(session, actor, trap); */
     }
 
     private string ApplyDecodedDamageExitTrap(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap)

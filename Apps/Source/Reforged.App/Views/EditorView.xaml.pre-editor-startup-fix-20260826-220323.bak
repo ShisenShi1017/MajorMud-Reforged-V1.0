@@ -1,0 +1,457 @@
+<UserControl x:Class="Reforged.App.Views.EditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <DataTemplate x:Key="SimpleFieldTemplate">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,3,12,0">
+                    <TextBlock Text="{Binding LabelWithRequired}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding HelpText}" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <TextBox Text="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Height="{Binding InputHeight}" MinHeight="30" TextWrapping="Wrap" AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             Visibility="{Binding IsText, Converter={StaticResource BoolToVisibility}}"/>
+                    <ComboBox ItemsSource="{Binding Options}" DisplayMemberPath="Label" SelectedValuePath="Value"
+                              SelectedValue="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              MinHeight="30"
+                              Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}"/>
+                    <CheckBox Content="Yes" IsChecked="{Binding BoolValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              VerticalAlignment="Center"
+                              Visibility="{Binding IsBoolean, Converter={StaticResource BoolToVisibility}}"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Reforged World Editor" FontSize="24" FontWeight="SemiBold"/>
+            <TextBlock Text="Classic stays protected. Create or edit Custom World 1 by filling in normal fields; Reforged generates the structured data automatically."
+                       TextWrapping="Wrap" Margin="0,4,0,12"/>
+        </StackPanel>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Custom World 1">
+                <TabControl Margin="10">
+                    <TabItem Header="World Settings">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Custom1 Identity and Host Settings">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="World name" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                                    <TextBox Grid.Column="1" Text="{Binding CustomWorldName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,8"/>
+                                    <TextBlock Grid.Column="2" Text="Login banner" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                                    <TextBox Grid.Column="3" Text="{Binding CustomLoginBanner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8"/>
+
+                                    <TextBlock Grid.Row="1" Text="Description" VerticalAlignment="Top" Margin="0,0,8,8"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                             Text="{Binding CustomDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap" AcceptsReturn="True" MinHeight="58" Margin="0,0,0,8"/>
+
+                                    <TextBlock Grid.Row="2" Text="MOTD" VerticalAlignment="Top" Margin="0,0,8,8"/>
+                                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                                             Text="{Binding CustomMotd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             TextWrapping="Wrap" AcceptsReturn="True" MinHeight="58" Margin="0,0,0,8"/>
+
+                                    <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                        <CheckBox Content="Runtime enabled" IsChecked="{Binding CustomRuntimeEnabled, Mode=TwoWay}" Margin="0,0,18,0"/>
+                                        <CheckBox Content="Allow Custom-world transfers" IsChecked="{Binding CustomTransfersAllowed, Mode=TwoWay}"
+                                                  ToolTip="Classic can never receive transferred characters. This is reserved for future Custom-to-Custom transfer support."/>
+                                    </StackPanel>
+                                    <Button Grid.Row="3" Grid.Column="3" Content="Save World Settings" Command="{Binding SaveCustomSettingsCommand}"
+                                            Padding="16,7" HorizontalAlignment="Right"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="1" Header="World Isolation" Margin="0,12,0,0">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Base rules: current MajorMUD/Classic runtime profile" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Custom changes: Librarium/WorldOverrides/Custom1/overrides.json" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Runtime projection: Data/Custom1 (generated; never hand-edit)" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Classic protection: Custom1 overrides are never applied to Classic." Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <Grid Grid.Row="3" Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding CustomGeneratedState, StringFormat='Generated runtime: {0}'}" FontSize="11" Opacity="0.8"/>
+                                    <TextBlock Text="{Binding CustomGeneratedDataPath, StringFormat='Data: {0}'}" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="Build / Rebuild Custom1" Command="{Binding BuildCustomWorldCommand}" Padding="18,8" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Create / Edit Content">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Padding="10" Margin="0,0,0,10" BorderBrush="#33000000" BorderThickness="1" CornerRadius="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="190"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Make / edit" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0"/>
+                                    <ComboBox Grid.Column="1" ItemsSource="{Binding SimpleFamilies}" DisplayMemberPath="Label" SelectedValuePath="Value"
+                                              SelectedValue="{Binding SimpleFamily, Mode=TwoWay}" Margin="0,0,12,0"/>
+                                    <TextBlock Grid.Column="2" Text="Search" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                    <TextBox Grid.Column="3" Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,0"
+                                             ToolTip="Search by name or object ID."/>
+                                    <Button Grid.Column="4" Content="Find" Command="{Binding BrowseSimpleObjectsCommand}" Padding="14,6" Margin="0,0,8,0"/>
+                                    <Button Grid.Column="5" Content="New" Command="{Binding NewSimpleObjectCommand}" Padding="18,6" FontWeight="SemiBold"/>
+                                </Grid>
+                            </Border>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.85*" MinWidth="260"/>
+                                    <ColumnDefinition Width="12"/>
+                                    <ColumnDefinition Width="1.65*" MinWidth="440"/>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox Header="Existing Content (Classic + Custom1)">
+                                    <Grid Margin="8">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Pick an existing Classic or Custom1 object to edit, or click New. Classic is never changed; edits become Custom1-only."
+                                                   TextWrapping="Wrap" Margin="0,0,0,8"/>
+                                        <DataGrid Grid.Row="1" ItemsSource="{Binding SimpleObjects}"
+                                                  SelectedItem="{Binding SelectedSimpleObject, Mode=TwoWay}"
+                                                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.25*"/>
+                                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Column="2" Header="{Binding SimpleFormTitle}">
+                                    <Grid Margin="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="{Binding SimpleFormHelp}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+                                        <Grid Grid.Row="1" Margin="0,0,0,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="180"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Text="Object ID" FontWeight="SemiBold"/>
+                                                <TextBlock Text="Optional for new objects" FontSize="11" Opacity="0.7"/>
+                                            </StackPanel>
+                                            <TextBox Grid.Column="1" Text="{Binding SimpleObjectId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     ToolTip="Leave blank on a new object and Reforged will create the ID automatically."/>
+                                        </Grid>
+
+                                        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                            <StackPanel>
+                                                <TextBlock Text="Required" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                                <ItemsControl ItemsSource="{Binding SimpleRequiredFields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
+                                                <TextBlock Text="That is all you need to create it. Reforged fills the rest with safe defaults."
+                                                           TextWrapping="Wrap" Opacity="0.75" Margin="0,0,0,10"/>
+                                                <Expander Header="Optional settings" IsExpanded="False">
+                                                    <StackPanel Margin="0,10,0,0">
+                                                        <TextBlock Text="Open this only when you want more control." TextWrapping="Wrap" Opacity="0.75" Margin="0,0,0,8"/>
+                                                        <ItemsControl ItemsSource="{Binding SimpleOptionalFields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
+                                                    </StackPanel>
+                                                </Expander>
+                                            </StackPanel>
+                                        </ScrollViewer>
+
+                                        <Grid Grid.Row="3" Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="Fill the required fields and click Save &amp; Build. Optional settings can be left alone."
+                                                       TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                            <WrapPanel Grid.Column="1">
+                                                <Button Content="Delete from Custom1" Command="{Binding DeleteSimpleObjectCommand}" Padding="14,7" Margin="0,0,8,0"/>
+                                                <Button Content="Save &amp; Build" Command="{Binding SaveSimpleObjectCommand}" Padding="24,7" FontWeight="SemiBold"/>
+                                            </WrapPanel>
+                                        </Grid>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+
+                            <Grid Grid.Row="2" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="No JSON knowledge is required in this editor. Advanced Overrides is optional." FontSize="11" Opacity="0.75"/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="Build / Rebuild Custom1" Command="{Binding BuildCustomWorldCommand}" Padding="18,8" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Advanced Overrides">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.2*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="0.8*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Browse Librarium / Custom1 Objects">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1.05*"/>
+                                        <ColumnDefinition Width="1.35*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.ColumnSpan="2" Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition Width="190"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Object family" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <ComboBox Grid.Column="1" ItemsSource="{Binding OverrideFamilies}" SelectedItem="{Binding OverrideFamily, Mode=TwoWay}" Margin="0,0,12,0"/>
+                                        <TextBlock Grid.Column="2" Text="Search" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                        <TextBox Grid.Column="3" Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,0"/>
+                                        <Button Grid.Column="4" Content="Browse Objects" Command="{Binding BrowseObjectsCommand}" Padding="14,6"/>
+                                    </Grid>
+
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding BaseObjects}"
+                                              SelectedItem="{Binding SelectedBaseObject, Mode=TwoWay}"
+                                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                              HeadersVisibility="Column" GridLinesVisibility="Horizontal" Margin="0,0,6,0">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.4*"/>
+                                            <DataGridTextColumn Header="Object ID" Binding="{Binding Id}" Width="1.2*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+
+                                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BaseRecordJson}" IsReadOnly="True"
+                                             FontFamily="Consolas" AcceptsReturn="True" TextWrapping="NoWrap"
+                                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="6,0,0,0"/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="1" Header="Custom1 Override" Margin="0,10,0,10">
+                                <Grid Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition Width="140"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="Object ID" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                                    <TextBox Grid.Column="1" Text="{Binding OverrideTargetId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,12,8"
+                                             ToolTip="Select an object above or enter an ID such as room.map1.1, item.1622, or spell.31."/>
+                                    <TextBlock Grid.Column="2" Text="Operation" VerticalAlignment="Center" Margin="0,0,8,8"/>
+                                    <ComboBox Grid.Column="3" ItemsSource="{Binding OverrideOperations}" SelectedItem="{Binding OverrideOperation, Mode=TwoWay}" Margin="0,0,0,8"/>
+
+                                    <TextBlock Grid.Row="1" Text="Changed fields" VerticalAlignment="Top" Margin="0,4,8,0"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                             Text="{Binding OverrideFieldsJson, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             FontFamily="Consolas" AcceptsReturn="True" AcceptsTab="True" TextWrapping="NoWrap"
+                                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MinHeight="90"
+                                             ToolTip="Enter only fields that differ in Custom1. Nested objects merge recursively."/>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Grid.Row="2" Header="Authored Custom1 Overrides">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <DataGrid ItemsSource="{Binding CustomOverrides}"
+                                              SelectedItem="{Binding SelectedOverride, Mode=TwoWay}"
+                                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                                              HeadersVisibility="Column" GridLinesVisibility="Horizontal" MinHeight="100">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Family" Binding="{Binding Family}" Width="1*"/>
+                                            <DataGridTextColumn Header="Object ID" Binding="{Binding TargetId}" Width="2*"/>
+                                            <DataGridTextColumn Header="Operation" Binding="{Binding Operation}" Width="110"/>
+                                            <DataGridTextColumn Header="Fields" Binding="{Binding FieldCount}" Width="80"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="1" Margin="0,8,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Saving changes the Custom1 canonical delta only. Rebuild before testing it in the Host."
+                                                   TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                        <WrapPanel Grid.Column="1">
+                                            <Button Content="New" Command="{Binding NewOverrideCommand}" Padding="14,6" Margin="0,0,8,0"/>
+                                            <Button Content="Remove Selected" Command="{Binding RemoveOverrideCommand}" Padding="14,6" Margin="0,0,8,0"/>
+                                            <Button Content="Save Override" Command="{Binding SaveOverrideCommand}" Padding="14,6"/>
+                                        </WrapPanel>
+                                    </Grid>
+                                </Grid>
+                            </GroupBox>
+
+                            <Grid Grid.Row="3" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding CustomOverridePath, StringFormat='Overrides: {0}'}" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="Build / Rebuild Custom1" Command="{Binding BuildCustomWorldCommand}" Padding="18,8" VerticalAlignment="Top"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <TabItem Header="Classic Administration">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <UniformGrid Columns="2" Margin="0,0,0,12">
+                        <GroupBox Header="Classic Item Limits" Margin="0,0,6,0">
+                            <StackPanel Margin="10">
+                                <CheckBox Content="Unlimited items enabled"
+                                          IsChecked="{Binding UnlimitedItemsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          IsThreeState="False" FontWeight="SemiBold"/>
+                                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap"
+                                           Text="Turn this off to enforce each Classic item's decoded GameLimit when the server creates new items. Existing items are not deleted."/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Global SYS GOTO" Margin="6,0,0,0">
+                            <StackPanel Margin="10">
+                                <CheckBox Content="Allow every logged-in character to use SYSOP GOTO"
+                                          IsChecked="{Binding EveryoneCanUseSysGoto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          IsThreeState="False" FontWeight="SemiBold"/>
+                                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap"
+                                           Text="This grants only the GOTO feature. It does not grant other SYSOP commands or administration authority."/>
+                            </StackPanel>
+                        </GroupBox>
+                    </UniformGrid>
+
+                    <GroupBox Grid.Row="1" Header="Character SYSOP Key Access">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Select the Classic characters that should receive full SYSOP command access. Runtime saves, legacy saves, and active server sessions are all discovered."
+                                       TextWrapping="Wrap" Margin="0,0,0,10"/>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding Characters}" AutoGenerateColumns="False"
+                                      CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="SYSOP Access" Width="120">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding HasSysopAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsThreeState="False" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Character" Binding="{Binding CharacterName}" IsReadOnly="True" Width="1.3*"/>
+                                    <DataGridTextColumn Header="Level" Binding="{Binding Level}" IsReadOnly="True" Width="70"/>
+                                    <DataGridTextColumn Header="Account" Binding="{Binding AccountId}" IsReadOnly="True" Width="1.1*"/>
+                                    <DataGridTextColumn Header="Source" Binding="{Binding Source}" IsReadOnly="True" Width="1.1*"/>
+                                    <DataGridTextColumn Header="Character ID" Binding="{Binding CharacterId}" IsReadOnly="True" Width="1.5*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </GroupBox>
+
+                    <Grid Grid.Row="2" Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="{Binding ClassicStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding PolicyPath, StringFormat='Classic settings: {0}'}" FontSize="11" Opacity="0.75" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <Button Grid.Column="1" Content="Save Classic Settings" Command="{Binding SaveClassicCommand}" Padding="16,7" VerticalAlignment="Top"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding ProjectRoot, StringFormat='Repository: {0}'}" FontSize="11" Opacity="0.75" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="Reload Editor" Command="{Binding ReloadCommand}" Padding="14,6"/>
+        </Grid>
+    </Grid>
+</UserControl>

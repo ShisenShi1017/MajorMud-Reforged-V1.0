@@ -10,7 +10,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             "invite" => InviteToClassicParty(session, command.ArgumentText),
             "uninvite" => UninviteFromClassicParty(session, command.ArgumentText),
             "follow" => FollowClassicPartyLeader(session, command.ArgumentText),
-            "unfollow" => LeaveClassicParty(session),
+            "join" => JoinClassicParty(session, command.ArgumentText),
+            "leave" => LeaveClassicParty(session),
             "frontrank" or "midrank" or "backrank" => SetClassicPartyRank(session, command.Name),
             _ => throw new InvalidOperationException($"Unsupported Classic party command '{command.Name}'.")
         };
@@ -22,7 +23,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         var target = _sessions.FindUniqueInRoom(session, query);
         if (target is null) return $"You don't see {query.Trim()} here!";
         var party = _partyGameplay.FindByMember(session.Actor.Id);
-        if (party is null) party = _partyGameplay.Create($"party.{Guid.NewGuid():N}", session.Actor.Id);
+        if (party is null) party = _partyGameplay.Create(
+            $"party.{Guid.NewGuid():N}",
+            session.Actor.Id,
+            RuntimePartyPolicy.ClassicStrongEvidence);
         if (!party.LeaderId.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase)) return "Only the party leader may invite followers.";
         try
         {
@@ -31,7 +35,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             target.EnqueueMessage($"{session.Actor.DisplayName} has invited you to follow {pronoun}.");
             return $"You have invited {target.Actor.DisplayName} to follow you.";
         }
-        catch (InvalidOperationException exception) { return exception.Message; }
+        catch (InvalidOperationException exception)
+        {
+            return exception.Message == "party-full"
+                ? "Native party-full failure text is not yet recovered."
+                : exception.Message;
+        }
     }
 
     private string FollowClassicPartyLeader(RuntimeSession session, string query)
@@ -39,8 +48,37 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (string.IsNullOrWhiteSpace(query)) return "Follow whom?";
         var leader = _sessions.FindUniqueInRoom(session, query);
         if (leader is null) return $"You don't see {query.Trim()} here!";
-        var result = _partyGameplay.AcceptFromLeader(session.Actor.Id, leader.Actor.Id, DateTimeOffset.UtcNow);
-        if (!result.Succeeded) return result.FailureCode ?? "You cannot follow that character.";
+
+        var existing = _partyGameplay.FindByMember(session.Actor.Id);
+        RuntimePartyOperationResult result;
+        if (existing is not null && existing.LeaderId.Equals(leader.Actor.Id, StringComparison.OrdinalIgnoreCase))
+            result = _partyGameplay.SetFollowing(session.Actor.Id, true);
+        else
+            result = _partyGameplay.AcceptFromLeader(session.Actor.Id, leader.Actor.Id, DateTimeOffset.UtcNow, followingLeader: true);
+
+        if (!result.Succeeded) return result.FailureCode switch
+        {
+            "party-full" => "Native party-full failure text is not yet recovered.",
+            _ => result.FailureCode ?? "You cannot follow that character."
+        };
+        leader.EnqueueMessage($"{session.Actor.DisplayName} started to follow you.");
+        return $"You are now following {leader.Actor.DisplayName}.";
+    }
+
+    private string JoinClassicParty(RuntimeSession session, string query)
+    {
+        if (string.IsNullOrWhiteSpace(query)) return "Join whom?";
+        if (int.TryParse(query.Trim(), out _))
+            return "Native broadcast-group JOIN is recovered, but broadcast-group runtime state is not yet evidence-complete.";
+
+        var leader = _sessions.FindUniqueInRoom(session, query);
+        if (leader is null) return $"You don't see {query.Trim()} here!";
+        var result = _partyGameplay.AcceptFromLeader(session.Actor.Id, leader.Actor.Id, DateTimeOffset.UtcNow, followingLeader: true);
+        if (!result.Succeeded) return result.FailureCode switch
+        {
+            "party-full" => "Native party-full failure text is not yet recovered.",
+            _ => result.FailureCode ?? "You cannot join that character's party."
+        };
         leader.EnqueueMessage($"{session.Actor.DisplayName} started to follow you.");
         return $"You are now following {leader.Actor.DisplayName}.";
     }
@@ -64,6 +102,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         var party = _partyGameplay.FindByMember(session.Actor.Id);
         if (party is null) return "You are not in a party at the present time.";
         var leader = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(party.LeaderId, StringComparison.OrdinalIgnoreCase));
+        if (party.LeaderId.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase) && party.Members.Count > 1)
+            return "Native party-leader LEAVE succession behavior is not yet recovered.";
         _partyGameplay.Leave(session.Actor.Id);
         if (leader is not null && !leader.Actor.Id.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase))
             leader.EnqueueMessage($"{session.Actor.DisplayName} stops following you.");
@@ -75,9 +115,24 @@ public sealed partial class RuntimeLiveGameplayFacade
     private string SetClassicPartyRank(RuntimeSession session, string rank)
     {
         var result = _partyGameplay.SetRank(session.Actor.Id, rank);
-        if (!result.Succeeded) return result.FailureCode == "party-leader-rank-fixed"
-            ? "Party leaders must remain in the Frontrank."
-            : "You are not in a party at the present time.";
+        if (!result.Succeeded) return result.FailureCode switch
+        {
+            "party-leader-rank-native-unknown" => "Native party-leader rank-change behavior is not yet recovered.",
+            "party-backrank-front-balance-required" => "At least as many party members must remain in the Frontrank as the Backrank.",
+            _ => "You are not in a party at the present time."
+        };
         return $"You are now in the {rank switch { "frontrank" => "Frontrank", "backrank" => "Backrank", _ => "Midrank" }}.";
     }
+    /// <summary>
+    /// Native FOLLOW help explicitly says a follower stops following when they exit the
+    /// game. This hook is only for an explicit resolved QUIT/LOGOUT command. Socket loss,
+    /// linkdead handling, and leader-exit succession remain native UNKNOWNs.
+    /// </summary>
+    public void HandleExplicitClassicSessionExit(RuntimeSession session)
+    {
+        var party = _partyGameplay.FindByMember(session.Actor.Id);
+        if (party is null || party.LeaderId.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase)) return;
+        _partyGameplay.Leave(session.Actor.Id);
+    }
+
 }

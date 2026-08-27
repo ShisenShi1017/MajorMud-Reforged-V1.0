@@ -1,0 +1,101 @@
+{
+  "schema": "majormud.classic-door-requirements-container-scope.v1",
+  "update": "0297",
+  "pass": 26,
+  "doorRequirementBoundary": {
+    "operatorCorrection": "Doors that expose PICKLOCK/BASH commonly carry real Picklocks or Strength requirements; these values belong to the explicit action, not ordinary movement.",
+    "projectedCorpus": {
+      "source": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",
+      "doorCount": 1648,
+      "keyExitCount": 166,
+      "doorNumericPicklocksOrStrength": 1178,
+      "doorAnyPicklocksOrStrength": 109,
+      "doorNoProjectedPicklockOrBashAlternative": 361,
+      "keyNumericPicklocksAndStrength": 83,
+      "keyNumericPicklocksOnly": 61,
+      "keyAnyPicklocksOnly": 1,
+      "keyNoProjectedActionAlternative": 21
+    },
+    "runtimeCorrection": {
+      "strengthAlternativeStorage": "Boolean",
+      "previousBug": "RuntimeExitGateDefinition parsed strength_alternative with ReadNullableInt, silently discarding true/false values on Key exits.",
+      "corrected": "ReadBool is now used and the Classic exit-action evidence record retains the Boolean strength alternative.",
+      "picklockValueOwner": "RuntimeClassicCharacterProgressionFormula.PicklocksValue",
+      "bashValueOwner": "character Strength",
+      "numericRequirement": "If the recovered action value is below the projected requirement, the action is rejected before the unresolved success dispatcher.",
+      "anyRequirement": "Any value may reach the unresolved success dispatcher when the qualifier explicitly says any picklocks/strength.",
+      "movement": "Normal traversal never applies the Picklocks/Strength requirement automatically."
+    },
+    "stillUnknown": [
+      "exact native random/success dispatcher after the requirement is met",
+      "positive-vs-negative raw Para2 live-engine arithmetic beyond the recovered display projection",
+      "exact native PICKLOCK/BASH success and failure messages",
+      "door break/durability recovery",
+      "key consumption where not explicitly evidenced"
+    ]
+  },
+  "trapBoundary": {
+    "decodedExitTrapCount": 295,
+    "stateFamily": [
+      "Active",
+      "Inactive",
+      "Hidden",
+      "Active movement",
+      "Inactive movement"
+    ],
+    "perExitPara2": "UNKNOWN because the retained MMExplorer semantic projection discarded native Para2 trap state values",
+    "publicStockDatabaseLocated": "syntax53/MMUD-Explorer data-v1.11p.mdb",
+    "currentToolingConstraint": "The available GitHub text connector cannot decode/download the binary MDB in this environment; no state values were guessed.",
+    "nativeCommand": "DISARM TRAP <direction>",
+    "status": "UNKNOWN"
+  },
+  "classicContainerScope": {
+    "genericWorldContainerService": false,
+    "reason": "No stock RoomType container family or generic native container command surface was recovered. The Reforged RuntimeWorldContainerService is therefore not a standalone Classic parity owner.",
+    "nativeBehaviorsRemainOwnedBy": [
+      "Character/Items: carried/nested item ownership and death piles",
+      "Economy: banks and currency vault services",
+      "Gangs: gang-house vault rooms and house ownership",
+      "NPC/Spawn/Loot: named treasure-chest content such as Chest, Large Chest, and Massive Chest"
+    ],
+    "scoringAction": "Remove native.world-containers as a duplicate generic parity bucket; unresolved behavior remains scored by the actual owning subsystems."
+  },
+  "sources": [
+    {
+      "kind": "operator-observation",
+      "supports": "Picklocks/Strength values are real door-action requirements"
+    },
+    {
+      "kind": "retained-room-schema",
+      "path": "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json"
+    },
+    {
+      "kind": "retained-semantic-room-corpus",
+      "path": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json"
+    },
+    {
+      "kind": "retained-native-help",
+      "path": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "kind": "Nightmare-Redux",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/frmRoom.frm"
+    },
+    {
+      "kind": "Nightmare-Redux-export",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/frmMME_Export.frm"
+    },
+    {
+      "kind": "official-help",
+      "url": "https://www.majormud.com/mudhelp_commands.html"
+    },
+    {
+      "kind": "official-help",
+      "url": "https://www.majormud.com/mudhelp_experience.html"
+    },
+    {
+      "kind": "official-release-history",
+      "url": "https://www.majormud.com/news/archive/newsletter_2003_09_04.html"
+    }
+  ]
+}

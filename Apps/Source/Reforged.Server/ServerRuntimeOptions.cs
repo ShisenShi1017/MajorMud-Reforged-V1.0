@@ -13,7 +13,7 @@ public sealed class ServerRuntimeOptions
     public string HostName { get; init; } = "Reforged Realms Host";
     public string DefaultWorldId { get; init; } = "classic";
     public int WorldTickMilliseconds { get; init; } = 1000;
-    public int CombatTickMilliseconds { get; init; } = 6000;
+    public int CombatTickMilliseconds { get; init; } = 5000;
     public NetworkRuntimeOptions Network { get; init; } = new();
     public RuntimeDevelopmentOptions Development { get; init; } = new();
     public IReadOnlyList<WorldRuntimeDefinition> Worlds { get; init; } = Array.Empty<WorldRuntimeDefinition>();
@@ -70,7 +70,7 @@ public sealed class ServerRuntimeOptions
                 HostName = ReadString(root, "hostName", "Reforged Realms Host"),
                 DefaultWorldId = ReadString(root, "defaultWorldId", worlds[0].Id),
                 WorldTickMilliseconds = ReadInt(root, "worldTickMilliseconds", 1000),
-                CombatTickMilliseconds = ReadInt(root, "combatTickMilliseconds", 6000),
+                CombatTickMilliseconds = ReadInt(root, "combatTickMilliseconds", 5000),
                 Network = ReadNetwork(root),
                 Development = ReadDevelopment(root),
                 Worlds = worlds
@@ -89,7 +89,7 @@ public sealed class ServerRuntimeOptions
             HostName = "Reforged Realms Host",
             DefaultWorldId = "classic",
             WorldTickMilliseconds = 1000,
-            CombatTickMilliseconds = 6000,
+            CombatTickMilliseconds = 5000,
             Network = new NetworkRuntimeOptions(),
             Development = new RuntimeDevelopmentOptions(),
             Worlds = new[]

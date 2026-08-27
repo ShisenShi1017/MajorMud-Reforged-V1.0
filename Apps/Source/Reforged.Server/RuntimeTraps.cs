@@ -55,6 +55,11 @@ public sealed record RuntimeTrapDecision(
 
 public sealed record RuntimeTrapSnapshot(int SchemaVersion, IReadOnlyList<RuntimeTrapState> Traps, DateTimeOffset SavedAtUtc);
 
+/// <summary>
+/// Generic Reforged trap service for Custom/AI/extensible content. This is not the Classic
+/// MajorMUD exit-trap parity authority. Classic type-09/type-24 exits are owned by
+/// RuntimeClassicExitTrapCatalog and fail closed where native WCCMP002 state/roll evidence is absent.
+/// </summary>
 public sealed class RuntimeTrapService
 {
     private readonly object _gate = new();

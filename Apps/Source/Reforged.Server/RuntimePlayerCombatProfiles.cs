@@ -62,7 +62,7 @@ public sealed class RuntimePlayerCombatProfileResolver
         var attackValue = checked(CombatValue(character, "combat.attack_value", DerivedAttackValue(character)) + RuntimeClassicStatusProjection.Numeric(character, "accuracy"));
         var conditionBackstabAccuracyBonus = Optional(character.Conditions, "combat.backstab_accuracy_bonus");
         var defenseValue = CombatValue(character, "combat.defense_value", DerivedDefenseValue(character));
-        var dodgeBonus = checked(CombatValue(character, "combat.dodge_bonus", DerivedDodgeBonus(character)) + RuntimeClassicStatusProjection.Numeric(character, "dodge") + Derived(character, "dodge_bonus"));
+        var dodgeBonus = 0;
         var naturalCriticalChance = RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(
             character.Level,
             AdjustedStat(character, "intellect", "int"),
@@ -83,12 +83,18 @@ public sealed class RuntimePlayerCombatProfileResolver
         var weaponRequiredToHitCode = 0;
         var equipmentHitMagicRank = 0;
         var weaponSpeed = 0;
+        var weaponItemId = string.Empty;
+        var weaponStrengthRequirement = 0;
         IReadOnlyList<RuntimeWeaponOnHitSpell> weaponOnHitSpells = Array.Empty<RuntimeWeaponOnHitSpell>();
         var classCombatAccuracy = ResolveClassCombatAccuracy(character);
         var questBonuses = ResolveQuestCombatBonuses(character);
         var abilityAccuracy = questBonuses.AccuracyPercentBonus;
         armorClass = checked(armorClass + questBonuses.ArmourClassBonus);
-        dodgeBonus = checked(dodgeBonus + questBonuses.DodgeBonus);
+        var encumbrancePercent = ResolveCombatEncumbrancePercent(character);
+        dodgeBonus = character.Conditions.TryGetValue("combat.raw_dodge_override", out var rawDodgeOverride)
+            && int.TryParse(rawDodgeOverride, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedRawDodgeOverride)
+            ? parsedRawDodgeOverride
+            : RuntimeClassicCharacterFormulaCalculator.ResolveRawDodge(character, encumbrancePercent);
         criticalChance = checked(criticalChance + questBonuses.CriticalBonus);
         var incapacitated = IsAvoidanceSuppressed(character);
         if (incapacitated) dodgeBonus = 0;
@@ -127,6 +133,8 @@ public sealed class RuntimePlayerCombatProfileResolver
             weaponMagicalRank = weapon.MagicalRank;
             weaponRequiredToHitCode = weapon.RequiredToHitCode;
             weaponSpeed = weapon.Speed;
+            weaponItemId = weapon.ItemId;
+            weaponStrengthRequirement = ResolveWeaponStrengthRequirement(character, weaponItemId);
             weaponOnHitSpells = weapon.OnHitSpells;
         }
         else if (maximumDamage <= 0 || minimumDamage < 0 || maximumDamage < minimumDamage)
@@ -144,14 +152,20 @@ public sealed class RuntimePlayerCombatProfileResolver
             checked(abilityAccuracy + weaponAccuracy));
 
         var strengthMaximumDamageBonus = RuntimeClassicPhysicalFormulaCalculator.CalculateStrengthMaximumDamageBonus(AdjustedStat(character, "strength", "str"));
-        maximumDamage = checked(maximumDamage + strengthMaximumDamageBonus + questBonuses.MaximumDamageBonus + RuntimeClassicStatusProjection.Numeric(character, "maximum_damage") + Derived(character, "maximum_damage_bonus"));
+        maximumDamage = checked(maximumDamage + strengthMaximumDamageBonus + questBonuses.MaximumDamageBonus + RuntimeClassicStatusProjection.Numeric(character, "maximum_damage") + RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "maximum_damage_bonus", questBonuses.MaximumDamageBonus));
         if (maximumDamage < minimumDamage) maximumDamage = minimumDamage;
         var attackEnergyCost = barehanded || weaponSpeed <= 0
             ? 0
             : RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(
-                ResolveClassCombatCode(character), character.Level, weaponSpeed, AdjustedStat(character, "agility", "agi", "agl"));
-        var encumbrancePercent = Math.Max(0, checked(Optional(character.Conditions, "combat.encumbrance_percent") +
-            Derived(character, "encumbrance_modifier_percent") + RuntimeClassicStatusProjection.Numeric(character, "encumbrance")));
+                ResolveClassCombatCode(character),
+                character.Level,
+                weaponSpeed,
+                AdjustedStat(character, "agility", "agi", "agl"),
+                AdjustedStat(character, "strength", "str"),
+                encumbrancePercent,
+                weaponStrengthRequirement,
+                100,
+                false);
         var quickAndDeadlyCriticalBonus = barehanded || weaponSpeed <= 0
             ? 0
             : RuntimeClassicPhysicalFormulaCalculator.CalculateQuickAndDeadlyCriticalBonus(
@@ -183,8 +197,8 @@ public sealed class RuntimePlayerCombatProfileResolver
             attackEnergyCost,
             quickAndDeadlyCriticalBonus,
             encumbrancePercent,
-            checked(questBonuses.BackstabMinimumBonus + Derived(character, "backstab_minimum_damage_bonus") + RuntimeClassicStatusProjection.Numeric(character, "backstab_minimum_damage")),
-            checked(questBonuses.BackstabMaximumBonus + Derived(character, "backstab_maximum_damage_bonus") + RuntimeClassicStatusProjection.Numeric(character, "backstab_maximum_damage")),
+            checked(questBonuses.BackstabMinimumBonus + RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "backstab_minimum_damage_bonus", questBonuses.BackstabMinimumBonus) + RuntimeClassicStatusProjection.Numeric(character, "backstab_minimum_damage")),
+            checked(questBonuses.BackstabMaximumBonus + RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "backstab_maximum_damage_bonus", questBonuses.BackstabMaximumBonus) + RuntimeClassicStatusProjection.Numeric(character, "backstab_maximum_damage")),
             equippedBackstabAccuracyBonus,
             RuntimeCharacterAbilityValues.Read(RuntimeCharacterAbilityValues.Restore(character.Conditions), RuntimeCharacterQuestAbilityCatalog.SmashAbilityId) > 0,
             barehanded,
@@ -203,7 +217,11 @@ public sealed class RuntimePlayerCombatProfileResolver
     internal static int ResolveModifiedStealth(RuntimeCharacterRecord character)
     {
         ArgumentNullException.ThrowIfNull(character);
-        if (RuntimeClassicStealthResolver.TryReadModifiedStealth(character, out var decoded)) return checked(decoded + RuntimeClassicStatusProjection.Numeric(character, "stealth") + Derived(character, "stealth_bonus"));
+        if (RuntimeClassicStealthResolver.TryReadModifiedStealth(character, out var decoded))
+        {
+            var questStealth = ResolveQuestCombatBonuses(character).StealthBonus;
+            return checked(decoded + RuntimeClassicStatusProjection.Numeric(character, "stealth") + RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "stealth_bonus", questStealth));
+        }
         return checked(CombatValue(character, "combat.stealth_rating", AdjustedStat(character, "stealth", "stl")) + RuntimeClassicStatusProjection.Numeric(character, "stealth") + Derived(character, "stealth_bonus"));
     }
 
@@ -252,6 +270,37 @@ public sealed class RuntimePlayerCombatProfileResolver
         return false;
     }
 
+    private int ResolveWeaponStrengthRequirement(RuntimeCharacterRecord character, string weaponItemId)
+    {
+        if (string.IsNullOrWhiteSpace(_projectRoot) || string.IsNullOrWhiteSpace(weaponItemId)) return 0;
+        var catalog = RuntimeItemCatalog.Load(_projectRoot, character.WorldId);
+        return Math.Max(0, catalog.Equipment(weaponItemId)?.MinimumStrength ?? 0);
+    }
+
+    private int ResolveCombatEncumbrancePercent(RuntimeCharacterRecord character)
+    {
+        // Explicit combat.encumbrance_percent is retained as a deterministic harness/admin
+        // override. Live characters derive the native percentage from actual carried weight.
+        if (character.Conditions.TryGetValue("combat.encumbrance_percent", out var raw)
+            && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var explicitPercent))
+            return Math.Clamp(explicitPercent, 0, 100);
+        if (string.IsNullOrWhiteSpace(_projectRoot)) return 0;
+
+        var itemCatalog = RuntimeItemCatalog.Load(_projectRoot, character.WorldId);
+        var carried = RuntimeBundleCInventoryAuthority.Project(character, itemCatalog).TotalCarriedWeight;
+        var strength = Math.Max(0, AdjustedStat(character, "strength", "str"));
+        var baseCapacity = RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(strength);
+        var characterCatalog = RuntimeCharacterCatalog.Load(_projectRoot, character.WorldId);
+        var permanentCapacityBonus = characterCatalog.RequireRace(character.RaceId).AbilitySlots
+            .Where(grant => grant.AbilityId == 96).Sum(grant => grant.Value)
+            + characterCatalog.RequireClass(character.ClassId).AbilitySlots
+                .Where(grant => grant.AbilityId == 96).Sum(grant => grant.Value);
+        var equipmentCapacityBonus = character.SemanticState?.DerivedStats.GetValueOrDefault("encumbrance_modifier_percent") ?? 0;
+        var maximum = RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(
+            baseCapacity, Math.Max(0, checked(permanentCapacityBonus + equipmentCapacityBonus)));
+        return RuntimeMajorMudCompatibility.CalculateEncumberancePercent(carried, maximum);
+    }
+
     private int ResolveClassCombatAccuracy(RuntimeCharacterRecord character)
         => checked(ResolveClassCombatCode(character) * character.Level);
 
@@ -292,9 +341,6 @@ public sealed class RuntimePlayerCombatProfileResolver
 
     private static int DerivedDefenseValue(RuntimeCharacterRecord character)
         => Math.Max(1, (AdjustedStat(character, "agility", "agi", "agl") + AdjustedStat(character, "health", "hea")) / 2 + character.Level);
-
-    private static int DerivedDodgeBonus(RuntimeCharacterRecord character)
-        => Math.Max(0, AdjustedStat(character, "agility", "agi", "agl") / 10);
 
     private static int AdjustedStat(RuntimeCharacterRecord character, params string[] keys)
     {
@@ -351,12 +397,14 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             var character = new RuntimeCharacterRecord(
                 "character.test", "account.test", "Test", "Classic", "race.test", "Test", "class.test", "Test", 1, 0,
                 10, 10, 0, 0, "room.1", 1,
-                new Dictionary<string, int>(), new Dictionary<string, int>(), Array.Empty<string>(), Array.Empty<string>(), new Dictionary<string, string?>(),
+                new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["str"] = 50, ["agi"] = 50, ["int"] = 50, ["hea"] = 50, ["cha"] = 50, ["wisdom"] = 50
+                }, new Dictionary<string, int>(), Array.Empty<string>(), Array.Empty<string>(), new Dictionary<string, string?>(),
                 new Dictionary<string, string>
                 {
                     ["combat.attack_value"] = "50",
                     ["combat.defense_value"] = "40",
-                    ["combat.dodge_bonus"] = "3",
                     ["quest.ability.2"] = "2",
                     ["quest.ability.4"] = "3",
                     ["quest.ability.22"] = "4",
@@ -385,6 +433,7 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             Require(profile.ClassCombatAccuracy == 0 && profile.AbilityAccuracyModifier == 4, "ability-22-live-consumer"); report.Checks.Add("ability-22-live-consumer");
             Require(profile.NaturalCriticalChance == 1, "natural-critical-live-consumer"); report.Checks.Add("natural-critical-live-consumer");
             Require(profile.QuestMaximumDamageBonus == 3 && profile.QuestArmorClassBonus == 2 && profile.QuestDodgeBonus == 5 && profile.QuestCriticalBonus == 6, "quest-combat-bonus-consumers"); report.Checks.Add("quest-combat-bonus-consumers");
+            Require(profile.DodgeBonus == 15, "stock-character-raw-dodge-consumer"); report.Checks.Add("stock-character-raw-dodge-consumer");
             var equipmentDerived = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
             {
                 ["maximum_damage_bonus"] = 7,
@@ -401,6 +450,24 @@ public sealed class RuntimePlayerCombatProfileSmokeReport
             Require(equipmentProfile.MaximumDamage == profile.MaximumDamage + 7, "equipment-ability-4-maximum-damage-consumer"); report.Checks.Add("equipment-ability-4-maximum-damage-consumer");
             Require(equipmentProfile.DodgeBonus == profile.DodgeBonus + 11, "equipment-ability-34-dodge-consumer"); report.Checks.Add("equipment-ability-34-dodge-consumer");
             Require(RuntimePlayerCombatProfileResolver.ResolveModifiedStealth(equipmentCharacter) == RuntimePlayerCombatProfileResolver.ResolveModifiedStealth(character) + 13, "equipment-ability-27-stealth-consumer"); report.Checks.Add("equipment-ability-27-stealth-consumer");
+            var projectedCombinedCharacter = character with
+            {
+                SemanticState = RuntimeCharacterSemanticState.Empty with
+                {
+                    DerivedStats = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        ["maximum_damage_bonus"] = 10,
+                        ["dodge_bonus"] = 16
+                    },
+                    RuntimeMarkers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                    {
+                        [RuntimeCharacterCombatStatisticProjector.ProjectionMarker] = "test|character.statistics.explicit_modifier_projection_0155|instance.weapon"
+                    }
+                }
+            };
+            var projectedCombinedProfile = new RuntimePlayerCombatProfileResolver(catalog).Resolve(projectedCombinedCharacter);
+            Require(projectedCombinedProfile.MaximumDamage == equipmentProfile.MaximumDamage && projectedCombinedProfile.DodgeBonus == equipmentProfile.DodgeBonus,
+                "projected-ability-equipment-no-double-count"); report.Checks.Add("projected-ability-equipment-no-double-count");
             Require(equipmentProfile.BackstabMinimumBonus == profile.BackstabMinimumBonus + 17 && equipmentProfile.BackstabMaximumBonus == profile.BackstabMaximumBonus + 19, "equipment-abilities-117-118-backstab-damage-consumers"); report.Checks.Add("equipment-abilities-117-118-backstab-damage-consumers");
             var hitMagicConditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
             {

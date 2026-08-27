@@ -28,7 +28,7 @@ public sealed class RuntimeClassicGangGameplayService
             "disband" => Disband(character, command.Arguments),
             "promote" => SetRole(character, command.ArgumentText, "Lieutenant"),
             "demote" => SetRole(character, command.ArgumentText, "Member"),
-            "topten" => RenderTop(command.Arguments),
+            "topten" => RenderTop(character, command.Arguments),
             _ => "Unsupported gang command."
         };
     }
@@ -47,7 +47,8 @@ public sealed class RuntimeClassicGangGameplayService
         var targets = _characters.ListAllCharacters().Where(character => character.CharacterId.Equals(query, StringComparison.OrdinalIgnoreCase) || character.DisplayName.Equals(query, StringComparison.OrdinalIgnoreCase)).Take(2).ToArray();
         if (targets.Length != 1) return "No saved character uniquely matches that exact name or character ID.";
         var gang = _gangs.FindByMember(actor.CharacterId) ?? throw new InvalidOperationException("You do not belong to a gang.");
-        var updated = remove ? _gangs.Uninvite(gang, actor.CharacterId, targets[0].CharacterId) : _gangs.Invite(gang, actor.CharacterId, targets[0].CharacterId);
+        var leaderOnline = _sessions.FindByActor(gang.LeaderCharacterId) is not null;
+        var updated = remove ? _gangs.Uninvite(gang, actor.CharacterId, targets[0].CharacterId, leaderOnline) : _gangs.Invite(gang, actor.CharacterId, targets[0].CharacterId, leaderOnline);
         _sessions.FindByActor(targets[0].CharacterId)?.EnqueueMessage(remove ? $"You are no longer invited to {updated.Name}." : $"You have been invited to join {updated.Name}. Type JOIN GANG {updated.Name}.");
         return remove ? $"{targets[0].DisplayName} was removed or uninvited from {updated.Name}." : $"{targets[0].DisplayName} was invited to {updated.Name}.";
     }
@@ -100,12 +101,48 @@ public sealed class RuntimeClassicGangGameplayService
         return $"{targets[0].DisplayName} is now a {role} in {updated.Name}.";
     }
 
-    private string RenderTop(IReadOnlyList<string> args)
+    private string RenderTop(RuntimeCharacterRecord actor, IReadOnlyList<string> args)
     {
+        // Native help proves TOPTEN adventurers and TOPTEN/TOP <n> GANGS. Operator-confirmed
+        // play proves class-filtered forms such as TOP 10 WITCHHUNTER. Retained WCC setup also
+        // has an "Include experience in topten command?" switch. Experience-descending is
+        // therefore active as STRONG behavior; exact tie order/output remain unresolved.
         int count;
         if (args.Count == 1 && args[0].Equals("gangs", StringComparison.OrdinalIgnoreCase)) count = 10;
         else if (args.Count == 2 && int.TryParse(args[0], out count) && args[1].Equals("gangs", StringComparison.OrdinalIgnoreCase)) { }
-        else return "Usage: TOPTEN GANGS or TOP <n> GANGS";
+        else
+        {
+            count = 10;
+            string? classFilter = null;
+            int parsedCount;
+            if (args.Count == 0) { }
+            else if (args.Count == 1 && int.TryParse(args[0], out parsedCount)) count = parsedCount;
+            else if (args.Count == 1) classFilter = args[0];
+            else if (args.Count == 2 && int.TryParse(args[0], out parsedCount))
+            {
+                count = parsedCount;
+                classFilter = args[1];
+            }
+            else return "Native TOP syntax is recognized, but this form is not yet recovered.";
+
+            if (count < 1) return "TOP count must be at least 1.";
+            var characters = _characters.ListAllCharacters()
+                .Where(character => character.WorldId.Equals(actor.WorldId, StringComparison.OrdinalIgnoreCase))
+                .Where(character => !RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.ToptenDisabled));
+            if (!string.IsNullOrWhiteSpace(classFilter))
+                characters = characters.Where(character =>
+                    character.ClassName.Equals(classFilter, StringComparison.OrdinalIgnoreCase)
+                    || character.ClassId.Equals(classFilter, StringComparison.OrdinalIgnoreCase));
+            var ranked = characters
+                .OrderByDescending(character => character.Experience)
+                .ThenBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase)
+                .Take(Math.Clamp(count, 1, 100))
+                .ToArray();
+            if (ranked.Length == 0) return "No TOPTEN-eligible adventurers match that list.";
+            return string.Join(Environment.NewLine, ranked.Select((character, index) =>
+                $"{index + 1}. {character.DisplayName}; class={character.ClassName}; experience={character.Experience}"));
+        }
+
         if (count < 1) return "TOP count must be at least 1.";
         var gangs = _gangs.Top(count);
         if (gangs.Count == 0) return "No TOPTEN-eligible gangs exist.";

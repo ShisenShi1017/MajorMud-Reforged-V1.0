@@ -615,6 +615,54 @@ public sealed class RuntimeCharacterRepository
         }
     }
 
+    public T ExecuteCharacterBatchTransaction<T>(
+        IReadOnlyCollection<string> characterIds,
+        Func<IReadOnlyDictionary<string, RuntimeCharacterRecord>, (IReadOnlyDictionary<string, RuntimeCharacterRecord> Characters, T Result)> action)
+    {
+        ArgumentNullException.ThrowIfNull(characterIds);
+        ArgumentNullException.ThrowIfNull(action);
+        lock (_gate)
+        {
+            var requested = characterIds
+                .Where(id => !string.IsNullOrWhiteSpace(id))
+                .Select(CanonicalCharacterId)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(id => id, StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+            if (requested.Length == 0) throw new InvalidOperationException("character-transaction-empty");
+
+            var originals = new Dictionary<string, RuntimeCharacterRecord>(StringComparer.OrdinalIgnoreCase);
+            foreach (var id in requested)
+            {
+                var character = TryLoadCharacter(id) ?? throw new InvalidOperationException($"Character '{id}' was not found.");
+                originals[character.CharacterId] = character;
+            }
+
+            var outcome = action(new Dictionary<string, RuntimeCharacterRecord>(originals, StringComparer.OrdinalIgnoreCase));
+            if (outcome.Characters.Count != originals.Count
+                || originals.Keys.Any(id => !outcome.Characters.ContainsKey(id)))
+                throw new InvalidOperationException("character-transaction-set-mismatch");
+
+            var now = DateTimeOffset.UtcNow;
+            var prepared = outcome.Characters.ToDictionary(
+                pair => pair.Key,
+                pair => RuntimeCharacterPersistencePolicy.PrepareForSave(pair.Value, "character-batch-transaction", now),
+                StringComparer.OrdinalIgnoreCase);
+            try
+            {
+                foreach (var id in requested)
+                    WriteAtomic(CharacterPath(id), prepared[id], retainBackup: true);
+                return outcome.Result;
+            }
+            catch
+            {
+                foreach (var id in requested)
+                    WriteAtomic(CharacterPath(id), originals[id], retainBackup: true);
+                throw;
+            }
+        }
+    }
+
     private string AccountPath(string id) => Path.Combine(_hostRoot, "accounts", id + ".json");
     private string CharacterPath(string id)
     {
@@ -812,6 +860,7 @@ public sealed class RuntimeCharacterService
         return saved;
     }
     public T ExecuteCharacterTransaction<T>(string firstCharacterId, string secondCharacterId, Func<RuntimeCharacterRecord, RuntimeCharacterRecord, (RuntimeCharacterRecord First, RuntimeCharacterRecord Second, T Result)> action) => _repository.ExecuteCharacterTransaction(firstCharacterId, secondCharacterId, action);
+    public T ExecuteCharacterBatchTransaction<T>(IReadOnlyCollection<string> characterIds, Func<IReadOnlyDictionary<string, RuntimeCharacterRecord>, (IReadOnlyDictionary<string, RuntimeCharacterRecord> Characters, T Result)> action) => _repository.ExecuteCharacterBatchTransaction(characterIds, action);
 
     public RuntimeCharacterRecord CreateCharacter(RuntimeAccountRecord account, RuntimeWorld world, string name, string sex, string race, string characterClass) =>
         CreateCharacter(account, world, name, sex, race, characterClass, null, name, string.Empty, "short", "brown", "brown", 100);
@@ -925,6 +974,7 @@ public sealed class RuntimeCharacterService
                 ["race_experience_add_percent"] = raceDefinition.ExperienceAddPercent.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["race_base_creation_points"] = raceDefinition.BaseCreationPoints.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["creation_points"] = Math.Max(0, creationPointsRemaining).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["lives"] = RuntimeClassicCharacterProgressionFormula.MaximumLives.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["given_name"] = givenName ?? string.Empty,
                 ["family_name"] = familyName ?? string.Empty,
                 ["hair_length"] = hairLength ?? string.Empty,
@@ -932,7 +982,6 @@ public sealed class RuntimeCharacterService
                 ["eye_color"] = eyeColor ?? string.Empty,
                 ["combat.attack_value"] = Math.Max(1, (ReadStat(baseStats, "strength", "str") + ReadStat(baseStats, "agility", "agi", "agl")) / 2 + startingLevel).ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["combat.defense_value"] = Math.Max(1, (ReadStat(baseStats, "agility", "agi", "agl") + ReadStat(baseStats, "health", "hea")) / 2 + startingLevel).ToString(System.Globalization.CultureInfo.InvariantCulture),
-                ["combat.dodge_bonus"] = Math.Max(0, ReadStat(baseStats, "agility", "agi", "agl") / 10).ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["combat.minimum_damage"] = "1",
                 ["combat.maximum_damage"] = Math.Max(2, 2 + ReadStat(baseStats, "strength", "str") / 25).ToString(System.Globalization.CultureInfo.InvariantCulture)
             },

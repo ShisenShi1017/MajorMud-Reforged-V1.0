@@ -119,11 +119,17 @@ public static class RuntimeCharacterDeathResolver
         markers.Remove(RuntimeCharacterDeathMarkers.RecoveredRootItems);
         markers.Remove(RuntimeCharacterDeathMarkers.RecoveredGold);
 
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
+        var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
+        if (currentLives <= 0) throw new InvalidOperationException("Character has no lives remaining.");
+        conditions["lives"] = Math.Max(0, currentLives - 1).ToString(System.Globalization.CultureInfo.InvariantCulture);
+
         var defeated = RuntimeCharacterFlagResolver.Set(
             character with
             {
                 HitPoints = 0,
                 ItemState = snapshot,
+                Conditions = conditions,
                 SemanticState = semantic with { RuntimeMarkers = markers },
                 UpdatedAtUtc = nowUtc
             },
@@ -139,6 +145,8 @@ public static class RuntimeCharacterDeathResolver
         ArgumentNullException.ThrowIfNull(character);
         if (!RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead) || character.HitPoints != 0)
             throw new InvalidOperationException("Only a dead character can respawn.");
+        if (RuntimeClassicCharacterProgressionFormula.ReadLives(character) <= 0)
+            throw new InvalidOperationException("This character has no lives remaining and cannot respawn.");
         if (string.IsNullOrWhiteSpace(roomId)) throw new ArgumentException("Respawn room id is required.", nameof(roomId));
 
         var semantic = character.SemanticState ?? RuntimeCharacterSemanticState.Empty;

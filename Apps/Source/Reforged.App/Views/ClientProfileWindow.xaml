@@ -20,8 +20,8 @@
             <StackPanel>
                 <TextBlock Text="Saved BBS, world, character, session, and terminal settings" FontSize="17" FontWeight="SemiBold"/>
                 <TextBlock Margin="0,4,0,0" Text="Passwords and automatic login commands are never stored in these profiles. Applying a profile never connects or sends text." TextWrapping="Wrap"/>
-                <TextBlock Margin="0,4,0,0" TextWrapping="Wrap"><Run Text="Selected session: "/><Run Text="{Binding SelectedLiveSession.DisplayName}" FontWeight="SemiBold"/></TextBlock>
-                <TextBlock Margin="0,2,0,0" TextWrapping="Wrap"><Run Text="Selected profile: "/><Run Text="{Binding SelectedConnectionProfile.DisplaySummary}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding SelectedConnectionProfile.EndpointSummary}"/></TextBlock>
+                <TextBlock Margin="0,4,0,0" TextWrapping="Wrap"><Run Text="Selected session: "/><Run Text="{Binding SelectedLiveSession.DisplayName, Mode=OneWay}" FontWeight="SemiBold"/></TextBlock>
+                <TextBlock Margin="0,2,0,0" TextWrapping="Wrap"><Run Text="Selected profile: "/><Run Text="{Binding SelectedConnectionProfile.DisplaySummary, Mode=OneWay}" FontWeight="SemiBold"/><Run Text="  "/><Run Text="{Binding SelectedConnectionProfile.EndpointSummary, Mode=OneWay}"/></TextBlock>
             </StackPanel>
         </Border>
 

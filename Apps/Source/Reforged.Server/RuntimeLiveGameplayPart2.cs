@@ -383,9 +383,26 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeItemCatalog catalog,
         RuntimeCommand command)
     {
-        var parts = SplitAround(command.Arguments, "to");
-        var targetSession = _sessions.FindUniqueInRoom(sourceSession, parts.Right)
-            ?? throw new InvalidOperationException($"No connected character here uniquely matches '{parts.Right}'.");
+        if (command.Arguments.Count < 2)
+            throw new InvalidOperationException("Use: give <item> <player>.");
+
+        string itemQuery;
+        string targetQuery;
+        if (command.Arguments.Count >= 3 && command.Arguments[^2].Equals("to", StringComparison.OrdinalIgnoreCase))
+        {
+            itemQuery = string.Join(" ", command.Arguments.Take(command.Arguments.Count - 2));
+            targetQuery = command.Arguments[^1];
+        }
+        else
+        {
+            itemQuery = string.Join(" ", command.Arguments.Take(command.Arguments.Count - 1));
+            targetQuery = command.Arguments[^1];
+        }
+        if (string.IsNullOrWhiteSpace(itemQuery) || string.IsNullOrWhiteSpace(targetQuery))
+            throw new InvalidOperationException("Use: give <item> <player>.");
+
+        var targetSession = _sessions.FindUniqueInRoom(sourceSession, targetQuery)
+            ?? throw new InvalidOperationException($"No connected character here uniquely matches '{targetQuery}'.");
         if (targetSession.Actor is not RuntimeCharacterActor targetActor)
             throw new InvalidOperationException("The target must be a persistent character.");
         if (sourceActor.Id.Equals(targetActor.Id, StringComparison.OrdinalIgnoreCase))
@@ -396,16 +413,33 @@ public sealed partial class RuntimeLiveGameplayFacade
             var freshSourceState = freshSource.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
             var freshTargetState = freshTarget.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
             var sourceEngine = new RuntimeItemEngine(catalog, freshSourceState.Items, freshSourceState.Corpses);
-            var selected = Resolve(sourceEngine.Inventory(sourceActor.Id), catalog, parts.Left);
-            var removed = sourceEngine.Remove(selected.InstanceId);
+            if (!IsClassicReceiveEnabled(freshTarget))
+                throw new InvalidOperationException($"{targetActor.DisplayName} is not receiving items.");
+
+            var selected = Resolve(sourceEngine.Inventory(sourceActor.Id), catalog, itemQuery);
             var targetEngine = new RuntimeItemEngine(catalog, freshTargetState.Items, freshTargetState.Corpses);
-            var transferred = removed with
-            {
-                OwnerId = targetActor.Id,
-                LocationKind = RuntimeItemLocations.Character,
-                LocationId = targetActor.Id,
-                EquippedSlot = null
-            };
+
+            var targetOwned = freshTargetState.Items
+                .Where(item => string.Equals(item.OwnerId, targetActor.Id, StringComparison.OrdinalIgnoreCase)
+                    && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                        || item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                        || item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase)))
+                .ToArray();
+            var targetWeight = RuntimeBundleCInventoryAuthority.Project(freshTarget, catalog).TotalCarriedWeight;
+            var targetStrength = ReadClassicStrength(freshTarget, targetOwned, catalog);
+            var targetBaseCapacity = RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(targetStrength);
+            var targetCapacityModifier = ReadClassicEncumberanceCapacityBonus(freshTarget, sourceSession.World.Definition.Id);
+            var targetCapacity = RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(targetBaseCapacity, targetCapacityModifier);
+            var incomingWeight = checked((long)Math.Max(0, catalog.Require(selected.CanonicalItemId).Weight) * Math.Max(1, selected.StackQuantity));
+            if (checked(targetWeight + incomingWeight) > targetCapacity)
+                throw new InvalidOperationException($"{targetActor.DisplayName} cannot take that much weight.");
+
+            // Use the item engine's GIVE path first so no_give, bound-owner, quest-owner,
+            // and owner-quantity restrictions are enforced. The two character saves are
+            // separate item-state domains, so remove the validated transferred root from
+            // the source engine and add it to the target engine inside one character transaction.
+            var transferred = sourceEngine.Give(selected.InstanceId, sourceActor.Id, targetActor.Id);
+            sourceEngine.AdministrativeRemove(transferred.InstanceId);
             targetEngine.Add(transferred);
             var sourceUpdated = freshSource with { ItemState = sourceEngine.Snapshot(freshSourceState.Gold, freshSourceState.ActiveItemState) };
             var targetUpdated = freshTarget with { ItemState = targetEngine.Snapshot(freshTargetState.Gold, freshTargetState.ActiveItemState) };

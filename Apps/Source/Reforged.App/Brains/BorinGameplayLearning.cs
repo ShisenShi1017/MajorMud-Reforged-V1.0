@@ -105,6 +105,8 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
     private const int MaximumRecoveries = 60;
     private const int MaximumItems = 120;
     private const int MaximumMilestones = 80;
+    private const int MaximumLevelingAreas = 80;
+    private const int MaximumWorldProfiles = 64;
 
     private static readonly JsonSerializerOptions Json = new()
     {
@@ -345,6 +347,7 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
                 changed |= ObserveRestOutcome(profile, currentRoom, state.HealthPercent, timestamp);
             }
 
+            changed |= ObserveExperienceProgress(profile, currentRoom, state, timestamp);
             changed |= ObserveVitalChange(profile, currentRoom, state, timestamp);
             if (changed)
                 profile.LastLearnedAt = timestamp;
@@ -475,6 +478,21 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
                 $"Verified progression event: {milestone.Detail} Observed {milestone.Observations} time(s) in {NormalizeRoom(milestone.Room)}."));
         }
 
+        foreach (var area in profile.LevelingAreas)
+        {
+            var score = 34 + Math.Min(36, area.Observations * 6) + RecencyScore(area.LastObservedAt);
+            if (MatchesRoom(area.Room, room)) score += 75;
+            if (MatchesTerms($"{area.Room} experience xp leveling level", terms)) score += 60;
+            var average = area.Observations == 0 ? 0 : area.TotalObservedExperienceIncrease / area.Observations;
+            var levelRange = area.MinimumCharacterLevel > 0 && area.MaximumCharacterLevel > 0
+                ? area.MinimumCharacterLevel == area.MaximumCharacterLevel
+                    ? $"level {area.MinimumCharacterLevel}"
+                    : $"levels {area.MinimumCharacterLevel}-{area.MaximumCharacterLevel}"
+                : "an uncaptured level";
+            candidates.Add((score,
+                $"Verified leveling experience: at {levelRange} in {NormalizeRoom(area.Room)}, captured experience increased by {area.TotalObservedExperienceIncrease:N0} across {area.Observations} verified increase event(s) (average {average:N0}, largest {area.MaximumObservedExperienceIncrease:N0}). This is Borin's historical character experience, not a guarantee of future XP or safety."));
+        }
+
         var lessons = candidates
             .OrderByDescending(item => item.Score)
             .ThenBy(item => item.Text, StringComparer.OrdinalIgnoreCase)
@@ -527,6 +545,43 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
         }
 
         return changed;
+    }
+
+    private static bool ObserveExperienceProgress(
+        WorldLearningState profile,
+        string room,
+        BorinGameStateSnapshot state,
+        DateTimeOffset timestamp)
+    {
+        if (!state.HasVerifiedLiveState || state.ExperienceCurrent <= 0 || profile.LastExperienceCurrent <= 0)
+            return false;
+        if (profile.LastCharacterLevel > 0 && state.CharacterLevel > 0 && state.CharacterLevel != profile.LastCharacterLevel)
+            return false;
+
+        var increase = state.ExperienceCurrent - profile.LastExperienceCurrent;
+        if (increase <= 0 || increase > 50_000_000)
+            return false;
+
+        var normalizedRoom = NormalizeRoom(room);
+        var area = profile.LevelingAreas.FirstOrDefault(item => MatchesRoom(item.Room, normalizedRoom));
+        if (area is null)
+        {
+            area = new LevelingAreaObservation { Room = normalizedRoom };
+            profile.LevelingAreas.Add(area);
+        }
+
+        area.Observations++;
+        area.TotalObservedExperienceIncrease += increase;
+        area.MaximumObservedExperienceIncrease = Math.Max(area.MaximumObservedExperienceIncrease, increase);
+        if (state.CharacterLevel > 0)
+        {
+            area.MinimumCharacterLevel = area.MinimumCharacterLevel <= 0
+                ? state.CharacterLevel
+                : Math.Min(area.MinimumCharacterLevel, state.CharacterLevel);
+            area.MaximumCharacterLevel = Math.Max(area.MaximumCharacterLevel, state.CharacterLevel);
+        }
+        area.LastObservedAt = timestamp;
+        return true;
     }
 
     private static bool ObserveVitalChange(
@@ -725,6 +780,10 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
         profile.LastRoomKey = NormalizeText(state.CurrentRoomKey);
         profile.LastHealthPercent = state.HealthPercent;
         profile.LastManaPercent = state.ManaPercent;
+        profile.LastCharacterLevel = state.CharacterLevel;
+        profile.LastExperienceCurrent = state.ExperienceCurrent;
+        profile.LastExperienceNeeded = state.ExperienceNeeded;
+        profile.LastExperienceObservedAt = DateTimeOffset.Now;
     }
 
     private static string ResolvePendingCommand(WorldLearningState profile, string supplied, DateTimeOffset timestamp)
@@ -764,8 +823,31 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
         TrimOldest(profile.Recoveries, MaximumRecoveries, item => item.LastObservedAt);
         TrimOldest(profile.Items, MaximumItems, item => item.LastObservedAt);
         TrimOldest(profile.Milestones, MaximumMilestones, item => item.LastObservedAt);
+        TrimOldest(profile.LevelingAreas, MaximumLevelingAreas, item => item.LastObservedAt);
     }
 
+
+    private static void TrimDocument(GameplayLearningDocument document)
+    {
+        document.Worlds ??= new Dictionary<string, WorldLearningState>(StringComparer.OrdinalIgnoreCase);
+        foreach (var profile in document.Worlds.Values)
+            TrimProfile(profile);
+
+        if (document.Worlds.Count <= MaximumWorldProfiles)
+            return;
+
+        var keep = document.Worlds.Values
+            .OrderByDescending(item => item.LastObservedAt)
+            .ThenBy(item => item.Key, StringComparer.OrdinalIgnoreCase)
+            .Take(MaximumWorldProfiles)
+            .Select(item => item.Key)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var key in document.Worlds.Keys.Where(key => !keep.Contains(key)).ToArray())
+            document.Worlds.Remove(key);
+
+        if (document.LastWorldKey.Length > 0 && !document.Worlds.ContainsKey(document.LastWorldKey))
+            document.LastWorldKey = document.Worlds.Values.OrderByDescending(item => item.LastObservedAt).FirstOrDefault()?.Key ?? string.Empty;
+    }
     private static void TrimOldest<T>(List<T> items, int maximum, Func<T, DateTimeOffset> timestamp)
     {
         if (items.Count <= maximum)
@@ -794,6 +876,7 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
 
     private async Task SaveUnsafeAsync(GameplayLearningDocument document, CancellationToken token)
     {
+        TrimDocument(document);
         Directory.CreateDirectory(Path.GetDirectoryName(StoragePath)!);
         var temporary = StoragePath + ".tmp";
         try
@@ -1002,7 +1085,7 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
 
     private sealed class GameplayLearningDocument
     {
-        public int SchemaVersion { get; set; } = 1;
+        public int SchemaVersion { get; set; } = 2;
         public string LastWorldKey { get; set; } = string.Empty;
         public DateTimeOffset LastUpdatedAt { get; set; }
         public Dictionary<string, WorldLearningState> Worlds { get; set; } = new(StringComparer.OrdinalIgnoreCase);
@@ -1021,6 +1104,10 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
         public string LastRoomKey { get; set; } = string.Empty;
         public int LastHealthPercent { get; set; }
         public int LastManaPercent { get; set; }
+        public int LastCharacterLevel { get; set; }
+        public long LastExperienceCurrent { get; set; }
+        public long LastExperienceNeeded { get; set; }
+        public DateTimeOffset LastExperienceObservedAt { get; set; }
         public string PendingCommand { get; set; } = string.Empty;
         public DateTimeOffset PendingCommandAt { get; set; }
         public string PendingOriginRoom { get; set; } = string.Empty;
@@ -1034,6 +1121,18 @@ public sealed class BorinGameplayLearningStore : IBorinGameplayLearningStore
         public List<RecoveryObservation> Recoveries { get; set; } = [];
         public List<ItemObservation> Items { get; set; } = [];
         public List<MilestoneObservation> Milestones { get; set; } = [];
+        public List<LevelingAreaObservation> LevelingAreas { get; set; } = [];
+    }
+
+    private sealed class LevelingAreaObservation
+    {
+        public string Room { get; set; } = string.Empty;
+        public int Observations { get; set; }
+        public long TotalObservedExperienceIncrease { get; set; }
+        public long MaximumObservedExperienceIncrease { get; set; }
+        public int MinimumCharacterLevel { get; set; }
+        public int MaximumCharacterLevel { get; set; }
+        public DateTimeOffset LastObservedAt { get; set; }
     }
 
     private sealed class RouteObservation

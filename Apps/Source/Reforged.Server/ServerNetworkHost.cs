@@ -132,6 +132,8 @@ public sealed class ServerNetworkHost
 
                     if (_commands.RequestsSessionExit(session, input))
                     {
+                        await telnet.WriteLineAsync($"Exiting MajorMUD in {RuntimeClassicDeathLawPvpAuthority.GracefulExitDelaySeconds} seconds...", hostCancellationToken).ConfigureAwait(false);
+                        await Task.Delay(TimeSpan.FromSeconds(RuntimeClassicDeathLawPvpAuthority.GracefulExitDelaySeconds), hostCancellationToken).ConfigureAwait(false);
                         await telnet.WriteLineAsync("Goodbye.", hostCancellationToken).ConfigureAwait(false);
                         break;
                     }

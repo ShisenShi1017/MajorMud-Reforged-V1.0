@@ -1,0 +1,72 @@
+{
+  "code_update": "0294",
+  "passed": true,
+  "checks": 16,
+  "failures": [],
+  "results": [
+    {
+      "name": "active-combat-participant-resolver",
+      "passed": true
+    },
+    {
+      "name": "exact-npc-instance-eligibility",
+      "passed": true
+    },
+    {
+      "name": "split-by-active-combatant-count",
+      "passed": true
+    },
+    {
+      "name": "integer-quotient-and-remainder",
+      "passed": true
+    },
+    {
+      "name": "direct-share-award",
+      "passed": true
+    },
+    {
+      "name": "remainder-evidence-gate",
+      "passed": true
+    },
+    {
+      "name": "participant-native-xp-message",
+      "passed": true
+    },
+    {
+      "name": "death-handler-receives-encounter",
+      "passed": true
+    },
+    {
+      "name": "no-premature-killer-removal",
+      "passed": true
+    },
+    {
+      "name": "killer-only-full-xp-removed",
+      "passed": true
+    },
+    {
+      "name": "525-two-way-regression",
+      "passed": true
+    },
+    {
+      "name": "125-two-way-regression",
+      "passed": true
+    },
+    {
+      "name": "highest-damage-remainder-disproven-recorded",
+      "passed": true
+    },
+    {
+      "name": "remainder-stays-unknown",
+      "passed": true
+    },
+    {
+      "name": "party-registry-narrowed",
+      "passed": true
+    },
+    {
+      "name": "party-membership-not-xp-authority",
+      "passed": true
+    }
+  ]
+}

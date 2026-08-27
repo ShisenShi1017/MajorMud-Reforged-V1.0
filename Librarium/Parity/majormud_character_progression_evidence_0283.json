@@ -1,0 +1,108 @@
+{
+  "schema": "majormud.character-progression.native-closure.v1",
+  "update": "0283",
+  "scope": "Stock MajorMUD character progression formulas and operator-confirmed life/death boundaries; GreaterMUD branches explicitly excluded.",
+  "sources": [
+    {
+      "id": "mmud-explorer.modMMudFunc.bas.1d7981a0",
+      "kind": "retained-source-recovery",
+      "repository": "syntax53/MMUD-Explorer",
+      "path": "modMMudFunc.bas",
+      "sha": "1d7981a0edcf9312a89f935277541a16fad81b4d",
+      "stock_functions": [
+        "CalcExpNeeded_STOCK",
+        "GetExpModifiers_STOCK",
+        "CalcPicklocks",
+        "CalcCPLevel"
+      ],
+      "notes": "CalcPicklocks contains an explicit bGreaterMUD branch and a separate stock branch preserving the original Pascal formula. Only the stock branch is executable in Classic."
+    },
+    {
+      "id": "mmud-explorer.modMMudDatabase.bas.ea53caeb",
+      "kind": "retained-source-recovery",
+      "repository": "syntax53/MMUD-Explorer",
+      "path": "modMMudDatabase.bas",
+      "sha": "ea53caeb674d79f05a229b592e23fbd6785ffe1c",
+      "stock_functions": [
+        "CalcExpNeededByRaceClass"
+      ],
+      "notes": "Class chart = class ExpTable + 100; race ExpTable is added; the combined chart feeds CalcExpNeeded."
+    },
+    {
+      "id": "nightmare-redux.readme.618866f8",
+      "kind": "external-editor-boundary",
+      "repository": "syntax53/Nightmare-Redux",
+      "path": "README.md",
+      "sha": "618866f87e62a48d7b5fff97c7c9d8709c92ff35",
+      "notes": "Nightmare Redux identifies itself as an editor for MajorMUD, supporting the already-scored external-editor boundary."
+    },
+    {
+      "id": "operator-observation.2026-08-25.lives-death",
+      "kind": "original-runtime-operator-observation",
+      "notes": "Operator reports stock MajorMUD maximum lives 9; normal death costs one life; each level-up restores one life capped at 9; good/non-outlaw respawns at Halls of the Dead and outlaw/evil at Earthen Tomb. Exact death XP penalty remains unresolved."
+    }
+  ],
+  "formulas": {
+    "experience": {
+      "chart": "(class.ExperienceStored + 100) + race.ExperienceAddPercent",
+      "level_1": 0,
+      "level_2": "chart * 10",
+      "level_modifiers": {
+        "3": "40/20",
+        "4-5": "44/24",
+        "6-7": "48/28",
+        "8-9": "52/32",
+        "10-11": "56/36",
+        "12-13": "60/40",
+        "14-15": "65/45",
+        "16-17": "70/50",
+        "18": "75/55",
+        "19-26": "50/40",
+        "27": "23/20",
+        "28-55": "115/100",
+        "56-58": "109/100",
+        "59+": "108/100"
+      },
+      "overflow": "Preserve recovered unsigned-32-bit rollover and billions-tabulation semantics.",
+      "classification": "STRONG"
+    },
+    "character_points": {
+      "promotion_award": "((targetLevel - 1) div 10) * 5 + 10, for targetLevel >= 2",
+      "classification": "STRONG"
+    },
+    "picklocks": {
+      "grant_ability": 37,
+      "bonus_ability": 180,
+      "level_component": "level <= 15 ? level*2 : ((((level-15) div 2)+15)*2)",
+      "base": "(((levelComponent*5)+(AGL+INT))*2) div 7",
+      "classification": "STRONG",
+      "branch_boundary": "The CHA-bearing competing formula is GreaterMUD-only and is not used in Classic."
+    },
+    "lives": {
+      "maximum": 9,
+      "death_cost": 1,
+      "level_up_gain": 1,
+      "level_up_cap": 9,
+      "zero_lives": "permanent death / no respawn",
+      "classification": "mixed PASS/STRONG according to existing ledger evidence policy"
+    }
+  },
+  "runtime_wiring": [
+    "Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterDeath.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeMajorMudPlus.cs"
+  ],
+  "still_unknown": [
+    "Exact native death experience-loss arithmetic, rounding, caps, and ordering.",
+    "Exact native maximum-level/trainer-cap ownership where it is not already encoded by data.",
+    "Cross-category stat/modifier order beyond the individually recovered formulas.",
+    "Native account/login/reconnect/link-dead lifecycle ownership."
+  ]
+}

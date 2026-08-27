@@ -1,20 +1,14 @@
 # Editor
 
-This application will use the shared `Core` contracts introduced in Code Update 0004.
+The active editor is integrated into the Windows `Reforged.App` workspace rather than shipped as a separate editor executable.
 
-Current state: scaffold/documentation only. No compiled executable is claimed by this update.
+## CodeUpdate0279
 
-Future executable location:
+The Editor workspace is now functional and starts with two scopes:
 
-`Bin/Windows/Editor/`
+- **Custom World 1** — edit one isolated Classic-derived custom realm, browse canonical Librarium objects, author world-scoped overrides, and build `Data/Custom1` for Host testing.
+- **Classic Administration** — retain the existing Classic item-limit, SYS GOTO, and character SYSOP controls.
 
-## Core Dependency
+Canonical Custom1 differences live in `Librarium/WorldOverrides/Custom1/overrides.json`. Generated `Data/Custom1` is disposable runtime output and should not be hand-edited. Classic compilation does not consume Custom1 overrides.
 
-This application must use `Core/` for shared models, configuration, logging, validation, serialization, repositories, events, manifest access, versioning, health checks, and utilities.
-
-Do not create app-local duplicate models for Core concepts. Compile-level Core references will be added when this application is promoted from placeholder/documented app folder to a buildable application project.
-
-
-## Core Update 0011
-
-A Milestone 1 source shell for this application now exists at `Apps/Source/Reforged.Editor/` and explicitly references Core. Runtime remains compiled-artifact based from `Bin/`.
+The historical standalone editor scaffold under `Apps/Source/Reforged.Editor/` remains legacy scaffolding; new editor work should target the integrated `Reforged.App` Editor workspace unless the architecture is deliberately split again later.

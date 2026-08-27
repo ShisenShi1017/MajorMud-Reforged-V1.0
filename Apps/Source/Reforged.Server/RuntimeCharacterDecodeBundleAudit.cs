@@ -398,10 +398,10 @@ public static class RuntimeCharacterDecodeBundleAudit
         foreach (var characterClass in catalog.Classes)
         {
             var expected = characterClass.ExperiencePercent + race.ExperienceAddPercent;
-            var actual = RuntimeCharacterProgressionResolver.ApplyDecodedExperienceModifier(100, race, characterClass);
-            if (actual != expected) diagnostics.Add($"XP modifier runtime mismatch for {race.Name}/{characterClass.Name}: expected {expected}, got {actual}.");
+            var actual = RuntimeClassicCharacterProgressionFormula.ExperienceChartPercent(race, characterClass);
+            if (actual != expected) diagnostics.Add($"XP chart runtime mismatch for {race.Name}/{characterClass.Name}: expected {expected}, got {actual}.");
         }
-        if (!diagnostics.Any(x => x.StartsWith("XP modifier runtime mismatch", StringComparison.Ordinal))) connected.Add("runtime.progression.decoded_race_class_experience_modifier");
+        if (!diagnostics.Any(x => x.StartsWith("XP chart runtime mismatch", StringComparison.Ordinal))) connected.Add("runtime.progression.decoded_race_class_experience_chart");
 
         var alignment = RuntimeCharacterAlignmentResolver.CreateInitial(catalog.AlignmentRuleContract);
         Check(alignment.EvilPoints == catalog.AlignmentRuleContract.InitialEvilPoints && alignment.Reputation == catalog.AlignmentRuleContract.InitialReputation, "runtime.alignment.decoded_initial_state");

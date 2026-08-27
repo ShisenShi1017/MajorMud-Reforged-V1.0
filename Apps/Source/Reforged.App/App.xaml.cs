@@ -232,10 +232,15 @@ public partial class App : Application
             await borinCapabilities.InitializeAsync();
             forgeViewModel.AttachGuardianCapabilities(borinCapabilities);
 
+            var editorViewModel = new EditorViewModel(
+                new ClassicAdministrationEditorService(repositoryRoot, host),
+                new CustomWorldEditorService(repositoryRoot));
+            editorViewModel.Load();
+
             manager.Register(new Workspace("home", "Dashboard", new DashboardView { DataContext = dashboardViewModel }));
             manager.Register(new Workspace("play", "Play", new PlayView { DataContext = playViewModel }, true));
             manager.Register(new Workspace("host", "Host", new HostView { DataContext = hostViewModel }));
-            manager.Register(new Workspace("editor", "Editor", new EditorView(), true));
+            manager.Register(new Workspace("editor", "Editor", new EditorView { DataContext = editorViewModel }, true));
             manager.Register(new Workspace("librarium", "Librarium", new LibrariumView(), true));
             manager.Register(new Workspace("forge", "Borin", new BorinForgeView { DataContext = forgeViewModel }));
             manager.Register(new Workspace("characters", "Characters", new CharacterView(), true));

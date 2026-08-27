@@ -9,7 +9,7 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     private string _profileName = "New Character";
     private string _sessionDisplayName = "Session";
     private string _characterName = string.Empty;
-    private string _serverProfileName = "New BBS";
+    private string _serverProfileName = "Local Host";
     private string _worldName = "Classic";
     private string _hostName = "127.0.0.1";
     private int _port = 4000;
@@ -34,7 +34,7 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     public string ProfileName { get => _profileName; set => SetSummary(ref _profileName, Clean(value, "New Character")); }
     public string SessionDisplayName { get => _sessionDisplayName; set => SetSummary(ref _sessionDisplayName, Clean(value, "Session")); }
     public string CharacterName { get => _characterName; set => SetSummary(ref _characterName, value?.Trim() ?? string.Empty); }
-    public string ServerProfileName { get => _serverProfileName; set => SetSummary(ref _serverProfileName, Clean(value, "New BBS")); }
+    public string ServerProfileName { get => _serverProfileName; set => SetSummary(ref _serverProfileName, Clean(value, "Local Host")); }
     public string WorldName { get => _worldName; set => SetSummary(ref _worldName, Clean(value, "Classic")); }
     public string HostName { get => _hostName; set => SetSummary(ref _hostName, Clean(value, "127.0.0.1")); }
     public int Port { get => _port; set => SetSummary(ref _port, Math.Clamp(value, 1, 65535)); }

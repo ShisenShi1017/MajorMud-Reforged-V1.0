@@ -27,7 +27,8 @@ public sealed record RuntimeCommunicationActor(
     bool Silenced,
     bool Hidden,
     bool Administrator,
-    string? GuildId);
+    string? GuildId,
+    IReadOnlySet<string>? AdjacentRoomIds = null);
 
 public sealed record RuntimeCommunicationPolicy(
     int MaximumMessageLength,
@@ -38,7 +39,7 @@ public sealed record RuntimeCommunicationPolicy(
     bool AllowParty,
     bool HiddenSendersRevealToAdministrators)
 {
-    public static RuntimeCommunicationPolicy ClassicSafeDefault { get; } = new(
+    public static RuntimeCommunicationPolicy CompatibilityShellDefault { get; } = new(
         MaximumMessageLength: 512,
         FloodWindowSeconds: 10,
         FloodMaximumMessages: 6,
@@ -77,7 +78,7 @@ public sealed class RuntimeCommunicationService
 
     public RuntimeCommunicationService(RuntimeCommunicationPolicy? policy = null, RuntimePartyCoordinationService? parties = null, RuntimeOrganizationService? organizations = null)
     {
-        _policy = policy ?? RuntimeCommunicationPolicy.ClassicSafeDefault;
+        _policy = policy ?? RuntimeCommunicationPolicy.CompatibilityShellDefault;
         _parties = parties;
         _organizations = organizations;
         if (_policy.MaximumMessageLength < 1) throw new ArgumentOutOfRangeException(nameof(policy));
@@ -123,7 +124,9 @@ public sealed class RuntimeCommunicationService
             if (recipients.FailureCode is not null) return Fail(recipients.FailureCode);
             var deliveries = recipients.ActorIds
                 .Where(id => _actors.TryGetValue(id, out var recipient) && recipient.Connected && !recipient.Deafened)
-                .Where(id => !_ignored.TryGetValue(id, out var set) || !set.Contains(sender.ActorId))
+                .Where(id => request.Channel != RuntimeCommunicationChannel.Tell
+                    || !_ignored.TryGetValue(id, out var set)
+                    || !set.Contains(sender.ActorId))
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .OrderBy(id => id, StringComparer.OrdinalIgnoreCase)
                 .Select(id => BuildDelivery(request.Channel, sender, _actors[id], message))
@@ -158,18 +161,17 @@ public sealed class RuntimeCommunicationService
             case RuntimeCommunicationChannel.Pose:
                 return (_actors.Values.Where(x => string.Equals(x.RoomId, sender.RoomId, StringComparison.OrdinalIgnoreCase)).Select(x => x.ActorId).ToArray(), null);
             case RuntimeCommunicationChannel.Whisper:
-                if (string.IsNullOrWhiteSpace(request.TargetActorId)) return (Array.Empty<string>(), "communication-target-required");
-                if (!_actors.TryGetValue(request.TargetActorId, out var whisperTarget) || !string.Equals(whisperTarget.RoomId, sender.RoomId, StringComparison.OrdinalIgnoreCase))
-                    return (Array.Empty<string>(), "communication-whisper-target-not-present");
-                return (new[] { sender.ActorId, whisperTarget.ActorId }, null);
+                return (Array.Empty<string>(), "communication-whisper-native-unresolved");
             case RuntimeCommunicationChannel.Tell:
-                if (string.IsNullOrWhiteSpace(request.TargetActorId)) return (Array.Empty<string>(), "communication-target-required");
-                if (!_actors.TryGetValue(request.TargetActorId, out var tellTarget) || !tellTarget.Connected)
-                    return (Array.Empty<string>(), "communication-tell-target-unavailable");
-                return (new[] { sender.ActorId, tellTarget.ActorId }, null);
-            case RuntimeCommunicationChannel.Shout:
+                return (Array.Empty<string>(), "communication-tell-native-unresolved");
             case RuntimeCommunicationChannel.Yell:
-                return (_actors.Values.Where(x => x.Connected).Select(x => x.ActorId).ToArray(), null);
+                var adjacent = sender.AdjacentRoomIds ?? new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                return (_actors.Values.Where(x => x.Connected
+                    && (string.Equals(x.RoomId, sender.RoomId, StringComparison.OrdinalIgnoreCase)
+                        || (x.RoomId is not null && adjacent.Contains(x.RoomId))))
+                    .Select(x => x.ActorId).ToArray(), null);
+            case RuntimeCommunicationChannel.Shout:
+                return (Array.Empty<string>(), "communication-shout-native-range-unresolved");
             case RuntimeCommunicationChannel.Party:
                 if (_parties is null) return (Array.Empty<string>(), "communication-party-router-unavailable");
                 var route = _parties.RoutePartyMessage(sender.ActorId);
@@ -201,8 +203,6 @@ public sealed class RuntimeCommunicationService
         {
             RuntimeCommunicationChannel.Emote => $"{presentation} {message}",
             RuntimeCommunicationChannel.Pose => message.Replace("{name}", presentation, StringComparison.OrdinalIgnoreCase),
-            RuntimeCommunicationChannel.Whisper => $"{presentation} whispers, '{message}'",
-            RuntimeCommunicationChannel.Tell => $"{presentation} tells you, '{message}'",
             RuntimeCommunicationChannel.AdministrativeBroadcast => $"[ADMIN] {message}",
             RuntimeCommunicationChannel.System => $"[SYSTEM] {message}",
             _ => $"{presentation}: {message}"

@@ -12,7 +12,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        if ((command.Name is "ask" or "talk")
+        if ((command.Name is "ask" or "greet")
             && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
             return "You are unable to speak.";
         var catalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
@@ -22,12 +22,22 @@ public sealed partial class RuntimeLiveGameplayFacade
             return command.Name == "train" ? SpendTatPoint(character, command.ArgumentText[6..]) : SpendTatPoint(character, command.ArgumentText);
 
         // Classic shops and trainers are room-owned services. A merchant NPC may be present
-        // for atmosphere, but buying, selling, repairing, and training do not require one.
+        // for atmosphere, but buying/selling/training do not require one. REPAIR is a
+        // Reforged extension and is blocked from Classic at the command boundary.
+        // WCCMMHLP proves BUY HEALING at healer/temple rooms heals all wounds for a
+        // price. The generic type-5 healer price formula/order is still native-unknown,
+        // so recognize the service without inventing a debit. Exact scripted healer room
+        // commands are handled earlier by the decoded-room-command authority.
+        if (command.Name.Equals("buy", StringComparison.OrdinalIgnoreCase)
+            && command.ArgumentText.Trim().Equals("healing", StringComparison.OrdinalIgnoreCase)
+            && services.Any(service => ReadServiceKind(service).Equals("healer_or_temple", StringComparison.OrdinalIgnoreCase)))
+            return "BUY HEALING is available here, but the exact native healer price/debit formula is not yet recovered.";
+
         return command.Name switch
         {
             "buy" => BuyGeneratedItem(character, services, command.ArgumentText),
             "sell" => SellGeneratedItem(character, services, command.ArgumentText),
-            "repair" => RepairGeneratedItem(character, services, command.ArgumentText),
+            "repair" when !session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase) => RepairGeneratedItem(character, services, command.ArgumentText),
             "train" => TrainAtGeneratedTrainer(character, services),
             _ => throw new InvalidOperationException("Unsupported generated service transaction.")
         };
@@ -48,6 +58,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var itemRecord = RequireGeneratedItemRecord(_characters.ProjectRoot, character.WorldId, definition.Id);
         var cost = Math.Max(0, ReadItemCost(itemRecord));
         var costMultiplier = CostTypeCopperMultiplier(ReadItemCostType(itemRecord));
+        var baseUnitCopper = checked(cost * costMultiplier);
 
         return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
         {
@@ -55,8 +66,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                 throw new InvalidOperationException($"{definition.Name} does not have {request.Quantity} in stock.");
             var before = _characters.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Character save was not found.");
             var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
-            var markedUnitCost=ApplyShopMarkup(cost,ReadShopMarkupPercent(shop.GeneratedRecord));
-            var totalCostCopper = checked(checked(markedUnitCost * request.Quantity) * costMultiplier);
+            var markedUnitCostCopper = RuntimeClassicEconomyPricing.QuoteBuyCopper(
+                baseUnitCopper, ReadShopMarkupPercent(shop.GeneratedRecord), ResolveEconomyCharm(before));
+            var totalCostCopper = checked(markedUnitCostCopper * request.Quantity);
             var settledState = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, totalCostCopper);
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
             RuntimeItemInstance? created = null;
@@ -102,7 +114,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                 engine.SellToMerchant(item.InstanceId, before.CharacterId, shop.Id, quantity);
                 remaining -= quantity;
             }
-            var totalValueCopper = checked(checked(value * request.Quantity) * CostTypeCopperMultiplier(ReadItemCostType(itemRecord)));
+            var baseUnitCopper = checked(value * CostTypeCopperMultiplier(ReadItemCostType(itemRecord)));
+            var sellUnitCopper = RuntimeClassicEconomyPricing.QuoteSellCopper(baseUnitCopper, ResolveEconomyCharm(before));
+            var totalValueCopper = checked(sellUnitCopper * request.Quantity);
             var settledState = RuntimeBundleCEconomyAuthority.CreditCopperValue(state, totalValueCopper);
             _characters.SaveCharacter(before with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
             if (stock.TryGetValue(canonicalId, out var current))
@@ -162,22 +176,33 @@ public sealed partial class RuntimeLiveGameplayFacade
         var trainerRule = RuntimeCharacterTrainerCatalog.RequireTrainer(services, character, targetLevel);
         var trainer = services.First(service => service.Id.Equals(trainerRule.TrainerId, StringComparison.OrdinalIgnoreCase));
 
-        var schedule = RuntimeCharacterProgressionSchedule.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId));
-        var row = schedule.Require(character, targetLevel);
-        if (character.Experience < row.RequiredExperience) throw new InvalidOperationException($"You need {row.RequiredExperience} total experience to train to level {targetLevel}.");
-
         var foundation = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId);
         var race = foundation.RequireRace(character.RaceId);
         var characterClass = foundation.RequireClass(character.ClassId);
+        var schedule = RuntimeCharacterProgressionSchedule.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId));
+        var row = schedule.Require(character, targetLevel, race, characterClass);
+        if (character.Experience < row.RequiredExperience) throw new InvalidOperationException($"You need {row.RequiredExperience} total experience to train to level {targetLevel}.");
+
+        var trainingCostCopper = RuntimeClassicEconomyPricing.TrainingCostCopper(
+            targetLevel - 1, ReadShopMarkupPercent(trainer.GeneratedRecord));
+        var currentItemState = character.ItemState ?? new RuntimeItemState(
+            Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
+        var settledItemState = RuntimeBundleCEconomyAuthority.DebitCopperValue(currentItemState, trainingCostCopper);
+
         var promoted = RuntimeCharacterProgressionResolver.Promote(
             character,
             targetLevel,
             row.CharacterPointAward,
             race,
             characterClass,
-            $"trainer:{trainer.Id}|progression:{row.RowId}");
+            $"trainer:{trainer.Id}|progression:{row.RowId}") with
+        {
+            ItemState = settledItemState,
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
         _characters.SaveCharacter(promoted);
-        return $"You train to level {targetLevel} and receive {row.CharacterPointAward} CP. Use TRAIN STATS/TAT to spend unallocated CP.";
+        var priceText = trainingCostCopper == 0 ? "free" : RuntimeBundleCEconomyAuthority.FormatCopperValue(trainingCostCopper);
+        return $"You train to level {targetLevel} for {priceText} and receive {row.CharacterPointAward} CP. Use TRAIN STATS/TAT to spend unallocated CP.";
     }
 
 
@@ -214,20 +239,20 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        if ((command.Name is "ask" or "talk") && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
+        if ((command.Name is "ask" or "greet") && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
             return "You are unable to speak.";
         return command.Name switch
         {
             "ask" => ExecuteDecodedNpcAsk(session, character, command.ArgumentText),
-            "talk" => ExecuteGeneratedNpcDialogue(session, character, command.ArgumentText),
+            "greet" => ExecuteGeneratedNpcDialogue(session, character, command.ArgumentText),
             "journal" or "quest" when command.Arguments.Count == 0 => RenderGeneratedQuestJournal(character),
             // Classic quest state is mutated only by decoded dialogue/script execution.  The old
             // ACCEPT/ABANDON/COMPLETE shortcuts allowed arbitrary player-authored quest ids and
             // bypassed decoded prerequisites, ordering, one-time policy, and reward transactions.
             "accept" or "abandon" or "complete" => throw new InvalidOperationException(
-                "Classic quest progression is controlled by decoded NPC dialogue and script operations; use TALK and JOURNAL."),
+                "Classic quest progression is controlled by decoded NPC dialogue and script operations; use GREET/ASK and JOURNAL."),
             "quest" when command.Arguments.Count > 0 => throw new InvalidOperationException(
-                "Classic quest state cannot be edited manually; use TALK and JOURNAL."),
+                "Classic quest state cannot be edited manually; use GREET/ASK and JOURNAL."),
             _ => _policyGateway.Execute(session, command)
         };
     }
@@ -525,8 +550,15 @@ public sealed partial class RuntimeLiveGameplayFacade
         var percent = ReadInt(service, "markup_percent");
         return percent < 0 ? throw new InvalidOperationException("Generated shop markup cannot be negative.") : percent;
     }
-    private static long ApplyShopMarkup(long itemCost, int markupPercent) =>
-        RuntimeEconomyNativeMarkup.Apply(itemCost, markupPercent, RuntimeEconomyRoundingPolicy.Floor);
+    private static int ResolveEconomyCharm(RuntimeCharacterRecord character)
+    {
+        var charm = character.BaseStats.TryGetValue("cha", out var canonical)
+            ? canonical
+            : character.BaseStats.TryGetValue("charm", out var named) ? named : 0;
+        // Status ability 49 is an authoritative live Charm adjustment. Equipment/base-stat
+        // cross-category ordering remains separately gated by the Character parity ledger.
+        return Math.Max(0, checked(charm + RuntimeClassicStatusProjection.Numeric(character, "stat_charm")));
+    }
 
     private static JsonElement ResolveOffering(JsonElement service, string arrayName, string query, RuntimeItemCatalog items)
     {
@@ -595,10 +627,18 @@ public sealed class RuntimeWorldSystemsBundleSmokeReport
             var rollA=RuntimeGameplayCompletionStateStore.StableRestockRoll("shop.65","item.317",cycle);
             var rollB=RuntimeGameplayCompletionStateStore.StableRestockRoll("shop.65","item.317",cycle);
             Check(r,rollA==rollB&&rollA is >=1 and <=100,"deterministic-decoded-restock-percent-roll");
-            Check(r,RuntimeEconomyNativeMarkup.Apply(100,100,RuntimeEconomyRoundingPolicy.Floor)==100
-                &&RuntimeEconomyNativeMarkup.Apply(100,500,RuntimeEconomyRoundingPolicy.Floor)==500
-                &&RuntimeEconomyNativeMarkup.Apply(100,0,RuntimeEconomyRoundingPolicy.Floor)==0,
-                "decoded-native-markup-live-pricing");
+            Check(r,RuntimeEconomyNativeMarkup.Apply(100,0,RuntimeEconomyRoundingPolicy.Floor)==100
+                &&RuntimeEconomyNativeMarkup.Apply(100,100,RuntimeEconomyRoundingPolicy.Floor)==200
+                &&RuntimeEconomyNativeMarkup.Apply(100,500,RuntimeEconomyRoundingPolicy.Floor)==600,
+                "decoded-native-additive-markup-live-pricing");
+            Check(r,RuntimeClassicEconomyPricing.QuoteBuyCopper(100,100,50)==200
+                &&RuntimeClassicEconomyPricing.QuoteBuyCopper(100,100,100)==180
+                &&RuntimeClassicEconomyPricing.QuoteSellCopper(100,50)==50
+                &&RuntimeClassicEconomyPricing.QuoteSellCopper(100,100)==75,
+                "classic-merchandise-charm-pricing");
+            Check(r,RuntimeClassicEconomyPricing.TrainingCostCopper(1,300)==200
+                &&RuntimeClassicEconomyPricing.TrainingCostCopper(9,0)==450,
+                "classic-trainer-money-formula");
         }
         catch(Exception ex){r.Failures.Add(ex.GetType().Name+":"+ex.Message);} return r;
     }

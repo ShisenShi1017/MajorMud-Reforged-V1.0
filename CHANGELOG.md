@@ -1,5 +1,52 @@
 # Changelog
 
+## Pass 27 post-integration compile hotfix
+
+- Fixed the Bundle D remaining-exhaustion audit after `StrengthAlternative` became a non-nullable `bool`; the audit now tests the Boolean directly.
+- Fixed C# local-variable shadowing in `RuntimeLiveWorld.ConfigureCommunicationFlag` by renaming the toggle branch local to `toggledEnabled`.
+- No parity score or runtime behavior change.
+
+## CodeUpdate0298 / Pass 27 — Trap state and reset boundary closure
+
+- Recovered the stock RoomRec trap storage contract from Nightmare Redux: RoomType/Para2 are signed 16-bit fields, with type 09 damage traps, type 24 spell traps, and Para2 states 0 Active, 1 Inactive, 2 Hidden, 3 Active movement, 4 Inactive movement.
+- Enforced the native `DISARM TRAP <direction>` Traps-skill admission rule while keeping SEARCH detection and DISARM success formulas evidence-gated.
+- Corrected the trap recovery target: MMExplorer's Rooms projection is lossy and cannot restore Para2; exact per-exit state requires stock WCCMP002 room records or an equivalent native RoomRec export.
+- Preserved the Para3/Para4 trap-message ownership conflict between retained Nightmare Redux documentation/editor labels instead of guessing which field is passage vs. disarm-failure text.
+- Reclassified generic `RuntimeTrapService` charges/rearm/persistence as Reforged extension behavior, not Classic trap parity evidence; Classic exit traps remain owned by `RuntimeClassicExitTrapCatalog`.
+- Kept trap activation, state transitions, reset/rearm interaction, and world-reset ordering fail-closed where native evidence is incomplete.
+- Active parity remains 73 PASS / 76 STRONG / 28 UNKNOWN = 177 (41.2% strict / 84.2% evidence-backed).
+
+## CodeUpdate0297 / Pass 26 — Door requirements, trap state, and container scope
+
+- Enforced recovered numeric Picklocks/Strength requirements at the explicit `PICKLOCK <direction>` / `BASH <direction>` action boundary without applying them to ordinary movement.
+- Fixed Key-exit `strength_alternative` parsing: the generated field is Boolean, not integer, so keyed exits that permit a Strength/BASH alternative now retain that route.
+- Counted the retained 1.11p-derived exit corpus: 1,178 numeric Door Picklocks/Strength requirements, 109 any-value Door requirements, 83 numeric Key Picklocks+Strength alternatives, and 61 numeric Key Picklocks-only requirements.
+- Preserved exact PICKLOCK/BASH success rolls, native messages, raw Para2 arithmetic beyond the recovered display projection, durability/break behavior, and key-consumption rules as evidence-gated.
+- Kept all 295 decoded exit traps fail-closed where native per-exit Para2 state is unavailable; a public stock 1.11p MDB is located but cannot be decoded with the current binary tooling.
+- Removed the generic `native.world-containers` UNKNOWN as a duplicate synthetic subsystem; death piles, banks, gang-house vaults, portable/nested items, and named chest loot remain with their actual native owners.
+- Active parity is now 73 PASS / 76 STRONG / 28 UNKNOWN = 177 (41.2% strict / 84.2% evidence-backed).
+
+## CodeUpdate0296 / Pass 25 — Doors, locks, traps, and native room-effect scope
+
+- Corrected Door/Gate Para2 ownership: PICKLOCK/BASH is an explicit action boundary, not an automatic movement stat check.
+- Routed `PICKLOCK <direction>` and native `DISARM TRAP <direction>` to the Classic living-world boundary.
+- Routed `BASH <direction>` through the decoded door boundary before retaining `BASH <target>` combat behavior.
+- Kept exact PICKLOCK/BASH and trap detection/disarm rolls evidence-gated rather than inventing formulas or messages.
+- Removed the generic environmental-hazard subsystem from Classic parity scope because the stock RoomType family has no such native record family; actual native effects remain owned by traps, CAST, text/script, remote-action, and other decoded room mechanisms.
+- Promoted doors/locks/access from UNKNOWN to STRONG; traps remain UNKNOWN.
+- Active parity is now 73 PASS / 76 STRONG / 29 UNKNOWN = 178 (41.0% strict / 83.7% evidence-backed).
+
+## CodeUpdate0295 / Pass 24 — Experience charts and party reward boundary
+
+- Corrected race/class EXP semantics: those values define the character progression chart and required accumulated XP per level; they never multiply monster or other earned XP awards.
+- Removed the obsolete race/class XP-award multiplier overload and updated the decoded-character audit to consume `ExperienceChartPercent` instead.
+- Preserved active-combat NPC XP sharing: eligibility is characters fighting that exact NPC at death, with integer-quotient awards and unresolved remainder disposition.
+- Added the STRONG-evidence Classic party maximum of six total characters without inventing the native party-full text.
+- Removed automatic party loot splitting from the parity model; native-era captures show monster currency dropping to the room, while `SHARE` is the explicit voluntary currency distribution command.
+- Active parity remains 73 PASS / 75 STRONG / 31 UNKNOWN = 179; this pass corrects semantics and narrows an existing UNKNOWN rather than inflating classification.
+
+- CodeUpdate0279 starts the integrated world editor and enables isolated Custom1 authoring: world settings, Librarium browse/search, scoped object overrides, Custom1 compilation, Host generation safeguards, and CI generation while Classic remains protected.
+
 - Implemented `SYSOP LIST LIMITED` as an authoritative presence-and-location index that omits limited definitions with no live instances.
 
 - Promoted 37 additional native WCC `.HSE` gang-house interiors into generated Classic data (57 total locations) and enforced owning-gang membership at the movement gateway so guardians bar non-members.

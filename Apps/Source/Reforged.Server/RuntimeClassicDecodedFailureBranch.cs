@@ -45,7 +45,7 @@ public static class RuntimeClassicDecodedFailureBranch
                     var spell = spells.Require($"spell.{target}");
                     spellIds.Add(spell.Id);
                     var resolution = RuntimeClassicPlayerSpellCombat.Resolve(
-                        spell, ReadMagicResistance(updated), false, false, false, random, updated.Level);
+                        spell, RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistance(updated), false, false, false, random, updated.Level);
                     var decodedDamage = spell.DecodedAbilities.Any(x => x.AbilityId is 1 or 17);
                     if (!decodedDamage && !resolution.Operation.Equals("damage", StringComparison.OrdinalIgnoreCase))
                         throw new InvalidOperationException($"Decoded failure spell {spell.Id} did not resolve as damage.");
@@ -65,17 +65,6 @@ public static class RuntimeClassicDecodedFailureBranch
         }
 
         return new(updated, output, messageIds, spellIds, damageApplied);
-    }
-
-    private static int ReadMagicResistance(RuntimeCharacterRecord character)
-    {
-        var equipmentBonus = character.SemanticState?.DerivedStats.TryGetValue("magic_resistance_bonus", out var projected) == true ? projected : 0;
-        foreach (var key in new[] { "magic_resistance", "magicresistance", "magic resist", "mr" })
-        {
-            if (character.Skills.TryGetValue(key, out var skill)) return Math.Max(0, checked(skill + equipmentBonus));
-            if (character.BaseStats.TryGetValue(key, out var stat)) return Math.Max(0, checked(stat + equipmentBonus));
-        }
-        return Math.Max(0, equipmentBonus);
     }
 
     private static void AddOutput(List<string> output, string payload)

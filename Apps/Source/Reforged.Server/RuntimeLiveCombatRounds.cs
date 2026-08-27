@@ -28,6 +28,13 @@ public sealed record RuntimeNpcHitSpellEffectResolution(
     bool PoisonImmune,
     int DirectDamage,
     string QuarantineReason);
+public sealed record RuntimeElementalHitPointResolution(
+    int HitPointsBefore,
+    int MaximumHitPoints,
+    int SignedDamage,
+    int HitPointsAfter,
+    int DamageApplied,
+    int HealingApplied);
 public sealed record RuntimeNpcHitSpellStatusDeliveryResolution(
     bool Eligible,
     bool Applied,
@@ -238,6 +245,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         var npcEnergy = _liveCombats.TryGetValue(session.Id, out var resourceUpdatedEncounter)
             ? resourceUpdatedEncounter.NpcCurrentEnergy
             : encounter.NpcCurrentEnergy;
+        // Native monster Energy is energy gained each combat round. Unused energy carries
+        // forward and is not capped at one round's gain.
+        npcEnergy = RuntimeClassicNpcCombatCadence.AddRoundEnergy(npcEnergy, encounter.NpcEnergyPerRound);
         var forcedMoveByNpcScript = false;
         var roundStartRoom = session.CurrentRoom;
         var alignmentProtection = RuntimeEquipmentCombatEffects.ResolveAlignmentProtection(before, npc.Alignment);
@@ -249,20 +259,42 @@ public sealed partial class RuntimeLiveGameplayFacade
             for (var attackIndex = 0; attackIndex < attacksThisRound && playerHp > 0 && npcHp > 0; attackIndex++)
             {
                 var attack = SelectNpcAttack(encounter.NpcAttacks, npcEnergy);
-                if (attack is null) break;
-                npcEnergy = ResolveNpcEnergyAfterAttack(npcEnergy, attack);
+                if (attack is null) continue;
+                if (!RuntimeClassicNpcCombatCadence.CanAfford(attack, npcEnergy))
+                {
+                    // Native selection does not re-normalize around unaffordable rows. A selected
+                    // physical row can end the round; an unaffordable spell simply consumes this
+                    // attempt slot and allows the next d100 selection attempt.
+                    if (RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection(attack, npcEnergy)) break;
+                    continue;
+                }
+
+                var energyBeforeAttack = npcEnergy;
                 var isDecodedSpellRow = attack.Type == 2 && attack.EffectiveSpellLegacyId > 0;
                 var requiredStrikeCode = RuntimeClassicStatusProjection.Numeric(before, "required_to_hit");
-                var npcResult = isDecodedSpellRow
-                    ? new ClassicAttackResult(ClassicHitOutcome.Hit, 100, 0, 0, 0, 0, false)
-                    : !IsRequiredStrikeCodeSatisfied(requiredStrikeCode, incomingStrikeCode: 0)
+                ClassicAttackResult npcResult;
+                if (isDecodedSpellRow)
+                {
+                    var castSucceeded = RuntimeClassicNpcCombatCadence.SpellCastSucceeds(attack, Random.Shared.Next(1, 101));
+                    npcEnergy = castSucceeded
+                        ? RuntimeClassicNpcCombatCadence.DeductFullAttackCost(npcEnergy, attack)
+                        : RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(npcEnergy, attack);
+                    npcResult = castSucceeded
+                        ? new ClassicAttackResult(ClassicHitOutcome.Hit, attack.MinimumDamage, 0, 0, 0, 0, false)
+                        : new ClassicAttackResult(ClassicHitOutcome.Miss, attack.MinimumDamage, 0, 0, 0, 0, false);
+                }
+                else
+                {
+                    npcEnergy = RuntimeClassicNpcCombatCadence.DeductFullAttackCost(npcEnergy, attack);
+                    npcResult = !IsRequiredStrikeCodeSatisfied(requiredStrikeCode, incomingStrikeCode: 0)
                         ? new ClassicAttackResult(ClassicHitOutcome.Miss, 0, 0, 0, 0, 0, false)
-                    : resolver.Resolve(new ClassicAttackRequest(
-                        ResolveAttackType(attack.Type),
-                        new ClassicCombatantStats(attack.Accuracy, 0, 0, 0, 0),
-                        defendedPlayerStats,
-                        attack.MinimumDamage,
-                        attack.MaximumDamage));
+                        : resolver.Resolve(new ClassicAttackRequest(
+                            ResolveAttackType(attack.Type),
+                            new ClassicCombatantStats(attack.Accuracy, 0, 0, 0, 0),
+                            defendedPlayerStats,
+                            attack.MinimumDamage,
+                            attack.MaximumDamage));
+                }
                 playerHp = Math.Max(0, playerHp - npcResult.FinalDamage);
                 if (!isDecodedSpellRow)
                 {
@@ -300,6 +332,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 }
                 var hitSpell = ResolveNpcHitSpell(attack, npcResult, _characters.ProjectRoot);
                 var nativeSpellDamage = 0;
+                var nativeSpellHealing = false;
                 if (hitSpell is { Triggered: true })
                 {
                     var hitSpellScript = RuntimeNpcHitSpellScriptCatalog.Load(_characters.ProjectRoot, hitSpell.LegacySpellId);
@@ -342,7 +375,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         hitSpell.ResistTypeRaw,
                         ReadBaseStat(before, "wil", "willpower", "will"),
                         ReadBaseStat(before, "int", "intellect", "intelligence"),
-                        ReadMagicResistance(before),
+                        RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
                         ReadAbilityValue(before, 51),
                         Random.Shared.Next(1, 101));
                     if (resistance.Resisted)
@@ -350,8 +383,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                         // A single-target resistance aborts that cast and earns the decoded half-cost refund.
                         // An area cast still executes against the remaining room targets, so one resistant
                         // character cannot refund the shared cast's energy.
-                        if (!IsNpcRoomAreaSpell(hitSpell))
-                            npcEnergy = ResolveNpcEnergyAfterResistedHitSpell(npcEnergy, attack, encounter.NpcMaximumEnergy);
+                        if (attack.Type == 2 && !IsNpcRoomAreaSpell(hitSpell))
+                            npcEnergy = RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(energyBeforeAttack, attack);
                         messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {encounter.NpcName}'s {hitSpell.SpellName}."));
                     }
                     else
@@ -361,12 +394,23 @@ public sealed partial class RuntimeLiveGameplayFacade
                             ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
                             ReadAbilityValue(before, 21) > 0,
                             Random.Shared);
-                        if (effect.Executable && effect.DirectDamage > 0)
+                        if (effect.Executable && effect.DirectDamage != 0)
                         {
-                            nativeSpellDamage = effect.DirectDamage;
-                            playerHp = Math.Max(0, playerHp - effect.DirectDamage);
-                            if (!isDecodedSpellRow)
-                                messages.Add(RuntimeClassicCombatAnsi.NpcAttack($"{encounter.NpcName}'s {hitSpell.SpellName} hits {actor.DisplayName} for {effect.DirectDamage} damage.", ClassicHitOutcome.Hit));
+                            var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
+                            playerHp = hitPointResolution.HitPointsAfter;
+                            if (hitPointResolution.DamageApplied > 0)
+                            {
+                                nativeSpellDamage = hitPointResolution.DamageApplied;
+                                if (!isDecodedSpellRow)
+                                    messages.Add(RuntimeClassicCombatAnsi.NpcAttack($"{encounter.NpcName}'s {hitSpell.SpellName} hits {actor.DisplayName} for {hitPointResolution.DamageApplied} damage.", ClassicHitOutcome.Hit));
+                            }
+                            else
+                            {
+                                nativeSpellHealing = true;
+                                messages.Add(RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
+                                    ? $"{encounter.NpcName}'s {hitSpell.SpellName} heals {actor.DisplayName} for {hitPointResolution.HealingApplied} hit points."
+                                    : $"{encounter.NpcName}'s {hitSpell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health."));
+                            }
                             var durationDelivery = ApplyNpcHitSpellStatusDelivery(
                                 session,
                                 before,
@@ -394,7 +438,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 before = _characters.LoadCharacter(actor.Id) ?? before;
                                 messages.Add(RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds."));
                             }
-                            else if (delivery.PoisonImmune)
+                            else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
                                 messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}."));
                             else
                                 messages.Add(RuntimeClassicCombatAnsi.Warning($"{encounter.NpcName}'s {hitSpell.SpellName} has no applicable effect on {actor.DisplayName}."));
@@ -411,7 +455,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             messages);
                     }
                 }
-                if (isDecodedSpellRow)
+                if (isDecodedSpellRow && !nativeSpellHealing)
                 {
                     var spellMessageResult = npcResult with
                     {
@@ -422,6 +466,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var npcSpellMessage = RenderNpcAttack(encounter.NpcName, actor.DisplayName, attack, spellMessageResult);
                     if (!string.IsNullOrEmpty(npcSpellMessage)) messages.Add(npcSpellMessage);
                 }
+
+                if (RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection(attack, npcEnergy)) break;
             }
         }
         else if (npcHp > 0)
@@ -433,9 +479,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             if (npcHp == 0)
             {
-                _liveCombats.TryRemove(session.Id, out _);
+                // Keep every encounter targeting this exact NPC live until the defeat handler
+                // snapshots death-moment combat participation for native XP distribution.
                 messages.Add(RuntimeClassicCombatAnsi.Victory($"{encounter.NpcName} is defeated."));
-                messages.Add(CompleteNpcDefeat(session, before, npc, playerHp));
+                messages.Add(CompleteNpcDefeat(session, encounter, before, npc, playerHp));
             }
             else if (playerHp == 0)
             {
@@ -573,7 +620,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 spell.ResistTypeRaw,
                 ReadBaseStat(character, "wil", "willpower", "will"),
                 ReadBaseStat(character, "int", "intellect", "intelligence"),
-                ReadMagicResistance(character),
+                RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(character),
                 ReadAbilityValue(character, 51),
                 Random.Shared.Next(1, 101));
             if (resistance.Resisted)
@@ -588,26 +635,41 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ReadElementalResistance(character, ResolveNpcHitSpellAttackElement(spell.AttackTypeRaw)),
                 poisonImmune,
                 Random.Shared);
-            if (effect.Executable && effect.DirectDamage > 0)
+            if (effect.Executable && effect.DirectDamage != 0)
             {
-                var nextHitPoints = Math.Max(0, character.HitPoints - effect.DirectDamage);
-                messages.Add(RuntimeClassicCombatAnsi.NpcAttack(
-                    $"{casterName}'s {spell.SpellName} hits {actor.DisplayName} for {effect.DirectDamage} damage.",
-                    ClassicHitOutcome.Hit));
-                if (nextHitPoints == 0)
+                var hitPointResolution = ApplyElementalSpellHitPoints(character.HitPoints, character.MaximumHitPoints, effect.DirectDamage);
+                var nextHitPoints = hitPointResolution.HitPointsAfter;
+                if (hitPointResolution.DamageApplied > 0)
                 {
-                    if (_liveCombats.TryRemove(target.Id, out var targetEncounter))
-                        ReleaseCombatEngagement(target, targetEncounter, "area-spell-player-defeat");
-                    messages.Add(RuntimeClassicCombatAnsi.Defeat($"{actor.DisplayName} is defeated."));
-                    messages.Add(CompletePlayerDefeat(target, character));
+                    messages.Add(RuntimeClassicCombatAnsi.NpcAttack(
+                        $"{casterName}'s {spell.SpellName} hits {actor.DisplayName} for {hitPointResolution.DamageApplied} damage.",
+                        ClassicHitOutcome.Hit));
+                    if (nextHitPoints == 0)
+                    {
+                        if (_liveCombats.TryRemove(target.Id, out var targetEncounter))
+                            ReleaseCombatEngagement(target, targetEncounter, "area-spell-player-defeat");
+                        messages.Add(RuntimeClassicCombatAnsi.Defeat($"{actor.DisplayName} is defeated."));
+                        messages.Add(CompletePlayerDefeat(target, character));
+                    }
+                    else
+                    {
+                        _characters.SaveCharacter(character with
+                        {
+                            HitPoints = nextHitPoints,
+                            UpdatedAtUtc = nowUtc
+                        }, $"runtime.live_combat.npc_area_spell:{spell.CanonicalSpellId}");
+                    }
                 }
                 else
                 {
-                    _characters.SaveCharacter(character with
+                    messages.Add(RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
+                        ? $"{casterName}'s {spell.SpellName} heals {actor.DisplayName} for {hitPointResolution.HealingApplied} hit points."
+                        : $"{casterName}'s {spell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health."));
+                    if (hitPointResolution.HealingApplied > 0)
                     {
-                        HitPoints = nextHitPoints,
-                        UpdatedAtUtc = nowUtc
-                    }, $"runtime.live_combat.npc_area_spell:{spell.CanonicalSpellId}");
+                        character = character with { HitPoints = nextHitPoints, UpdatedAtUtc = nowUtc };
+                        _characters.SaveCharacter(character, $"runtime.live_combat.npc_area_spell_resistance_heal:{spell.CanonicalSpellId}");
+                    }
                 }
                 if (nextHitPoints > 0)
                 {
@@ -621,7 +683,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc);
             if (delivery.Applied)
                 messages.Add(RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds."));
-            else if (delivery.PoisonImmune)
+            else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
                 messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}."));
             else
                 messages.Add(RuntimeClassicCombatAnsi.Warning($"{casterName}'s {spell.SpellName} has no applicable effect on {actor.DisplayName}."));
@@ -629,44 +691,20 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     internal static int ResolveNpcAttacksPerRound(RuntimeNpcDefinition npc)
-    {
-        ArgumentNullException.ThrowIfNull(npc);
-        if (npc.AttackCount < 0)
-            throw new InvalidDataException($"NPC_COMBAT_ATTACK_COUNT_NEGATIVE:{npc.Id}:{npc.AttackCount}");
-        if (npc.AttackCount == 0)
-            return 0;
-        if (npc.Attacks.Count == 0)
-            throw new InvalidDataException($"NPC_COMBAT_ATTACK_COUNT_WITHOUT_ROWS:{npc.Id}:{npc.AttackCount}");
-        return npc.AttackCount;
-    }
+        => RuntimeClassicNpcCombatCadence.ResolveAttemptSlots(npc);
 
     internal static RuntimeNpcAttackDefinition? SelectNpcAttack(IReadOnlyList<RuntimeNpcAttackDefinition> attacks, int currentEnergy)
         => RuntimeNpcAttackSelector.Select(attacks, currentEnergy, Random.Shared).Attack;
 
     internal static int ResolveNpcEnergyAfterAttack(int currentEnergy, RuntimeNpcAttackDefinition attack)
-    {
-        ArgumentNullException.ThrowIfNull(attack);
-        if (currentEnergy < 0) throw new ArgumentOutOfRangeException(nameof(currentEnergy));
-        if (attack.EnergyCost < 0) throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_ENERGY_COST");
-        if (attack.EnergyCost > currentEnergy) throw new InvalidOperationException("NPC_COMBAT_INSUFFICIENT_ENERGY");
-        return checked(currentEnergy - attack.EnergyCost);
-    }
+        => RuntimeClassicNpcCombatCadence.DeductFullAttackCost(currentEnergy, attack);
 
     internal static int ResolveNpcEnergyAfterResistedHitSpell(
-        int currentEnergyAfterCost, RuntimeNpcAttackDefinition attack, int maximumEnergy)
+        int currentEnergyBeforeAttack, RuntimeNpcAttackDefinition attack, int energyPerRound)
     {
-        ArgumentNullException.ThrowIfNull(attack);
-        if (currentEnergyAfterCost < 0) throw new ArgumentOutOfRangeException(nameof(currentEnergyAfterCost));
-        if (maximumEnergy < 0) throw new ArgumentOutOfRangeException(nameof(maximumEnergy));
-        if (currentEnergyAfterCost > maximumEnergy) throw new InvalidDataException("NPC_COMBAT_ENERGY_EXCEEDS_MAXIMUM");
-        if (attack.EnergyCost < 0) throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_ENERGY_COST");
-
-        // Retained Classic spell records bind formula.npc.spell_half_energy_refund.
-        // Integer division preserves the runtime's truncation for odd authored costs.
-        var refund = attack.EnergyCost / 2;
-        return Math.Min(maximumEnergy, checked(currentEnergyAfterCost + refund));
+        if (energyPerRound < 0) throw new ArgumentOutOfRangeException(nameof(energyPerRound));
+        return RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(currentEnergyBeforeAttack, attack);
     }
-
 
     internal static RuntimeNpcHitSpellSelection? ResolveNpcHitSpell(
         RuntimeNpcAttackDefinition attack, ClassicAttackResult result, string projectRoot)
@@ -686,8 +724,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         var spell = RuntimeCanonicalCombatSpellCatalogLoader.RequireSpell(catalog, canonicalId);
         if (!spell.LegacyId.Equals(spellLegacyId.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException($"NPC_HIT_SPELL_LEGACY_ID_MISMATCH:{spellLegacyId}:{spell.LegacyId}");
+        var effectiveSpellLevel = attack.Type == 2 ? attack.MaximumDamage : spell.SpellLevel;
         return new RuntimeNpcHitSpellSelection(
-            spellLegacyId, spell.Id, spell.Name, true, spell.SpellLevel,
+            spellLegacyId, spell.Id, spell.Name, true, effectiveSpellLevel,
             spell.SpellTypeRaw, spell.TargetTypeRaw, spell.AttackTypeRaw,
             spell.MinimumEffect, spell.MaximumEffect, spell.DurationRaw,
             spell.ResistTypeRaw, spell.ResistAbilityRaw, spell.DifficultyRaw,
@@ -699,7 +738,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         int resistanceTypeRaw, int willpower, int intellect, int magicResistanceBonus, int antiMagicAbility, int roll)
     {
         if (resistanceTypeRaw < 0) throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_TYPE");
-        if (willpower < 0 || intellect < 0 || magicResistanceBonus < 0 || antiMagicAbility < 0)
+        if (willpower < 0 || intellect < 0 || antiMagicAbility < 0)
             throw new InvalidDataException("NPC_HIT_SPELL_NEGATIVE_RESISTANCE_INPUT");
         if (roll is < 1 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
 
@@ -711,7 +750,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             2 => true,
             _ => false
         };
-        var score = checked((willpower + checked(intellect * 3)) / 4 + magicResistanceBonus);
+        var score = RuntimeClassicCharacterFormulaCalculator.CalculateMagicResistance(intellect, willpower, magicResistanceBonus);
         var chance = checkEligible ? Math.Clamp(score / 2, 0, 97) : 0;
         return new RuntimeNpcHitSpellResistanceResolution(
             checkEligible, antiMagicRequired, willpower, intellect, magicResistanceBonus,
@@ -738,15 +777,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     private static int ReadMagicResistance(RuntimeCharacterRecord character)
-    {
-        var values = character.SemanticState?.Resistances;
-        var baseValue = 0;
-        if (values is not null)
-            foreach (var key in new[] { "magic", "magicres", "magic_resistance" })
-                if (values.TryGetValue(key, out var value)) { baseValue = value; break; }
-        var equipmentBonus = character.SemanticState?.DerivedStats.TryGetValue("magic_resistance_bonus", out var projected) == true ? projected : 0;
-        return Math.Max(0, checked(baseValue + equipmentBonus + RuntimeClassicStatusProjection.Numeric(character, "magic_resistance")));
-    }
+        => RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistance(character);
 
     private static int ReadDerivedStat(RuntimeCharacterRecord character, string key)
         => character.SemanticState?.DerivedStats.TryGetValue(key, out var value) == true ? value : 0;
@@ -826,7 +857,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var finalDamage = ResolveElementalSpellDamage(roll, element, elementalResistancePercent, poisonImmune);
         return new RuntimeNpcHitSpellEffectResolution(true, type, scope, element,
             spell.EffectRange.RollMinimum, spell.EffectRange.RollMaximum, roll, roll, elementalResistancePercent, poisonImmune, finalDamage,
-            finalDamage == 0 && (poisonImmune || elementalResistancePercent >= 100) ? "elemental-immunity" : string.Empty);
+            finalDamage == 0 && (poisonImmune || elementalResistancePercent == 100) ? "elemental-immunity" : string.Empty);
     }
 
     internal static RuntimeNpcHitSpellEffectResolution ResolveNpcHitSpellEffectForAudit(
@@ -852,9 +883,36 @@ public sealed partial class RuntimeLiveGameplayFacade
         ArgumentException.ThrowIfNullOrWhiteSpace(attackElement);
         if (attackElement.Equals("poison", StringComparison.OrdinalIgnoreCase) && poisonImmune) return 0;
         if (attackElement is "untyped" or "acid") return rawDamage;
-        if (elementalResistancePercent >= 100) return 0;
+
+        // Classic MMUD Explorer evidence preserves the signed elemental-resistance formula:
+        // Fix(((100 - nBonusResist) * nDamage) / 100). Exactly 100% yields zero damage;
+        // values above 100% yield negative damage, which the live consumer applies as healing.
         var multiplierPercent = checked(100 - elementalResistancePercent);
-        return Math.Max(0, checked(rawDamage * multiplierPercent) / 100);
+        return checked(rawDamage * multiplierPercent) / 100;
+    }
+
+    internal static RuntimeElementalHitPointResolution ApplyElementalSpellHitPoints(
+        int currentHitPoints, int maximumHitPoints, int signedDamage)
+    {
+        if (maximumHitPoints < 1) throw new ArgumentOutOfRangeException(nameof(maximumHitPoints));
+        if (currentHitPoints < 0 || currentHitPoints > maximumHitPoints)
+            throw new ArgumentOutOfRangeException(nameof(currentHitPoints));
+
+        if (signedDamage > 0)
+        {
+            var after = Math.Max(0, currentHitPoints - signedDamage);
+            return new RuntimeElementalHitPointResolution(
+                currentHitPoints, maximumHitPoints, signedDamage, after, currentHitPoints - after, 0);
+        }
+        if (signedDamage < 0)
+        {
+            var requestedHealing = -(long)signedDamage;
+            var after = (int)Math.Min(maximumHitPoints, (long)currentHitPoints + requestedHealing);
+            return new RuntimeElementalHitPointResolution(
+                currentHitPoints, maximumHitPoints, signedDamage, after, 0, after - currentHitPoints);
+        }
+        return new RuntimeElementalHitPointResolution(
+            currentHitPoints, maximumHitPoints, signedDamage, currentHitPoints, 0, 0);
     }
 
     internal static RuntimeNpcHitSpellStatusDeliveryResolution ResolveNpcHitSpellStatusDelivery(
@@ -884,6 +942,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             "fire" => "resist_fire",
             "stone" => "resist_stone",
             "lightning" => "resist_lightning",
+            "water" => "resist_water",
             _ => string.Empty
         };
         return string.IsNullOrWhiteSpace(statusKey) ? baseValue : checked(baseValue + RuntimeClassicStatusProjection.Numeric(character, statusKey));
@@ -1326,20 +1385,21 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(npcs.Any(x => x.Attacks.Any(a => a.Accuracy > 0 && a.MaximumDamage >= a.MinimumDamage && a.SelectionPercent > 0)), "generated-npc-executable-attacks"); report.Checks.Add("generated-npc-executable-attacks");
             var multiAttackNpc = npcs.FirstOrDefault(x => x.AttackCount > 1 && x.Attacks.Any(a => a.Accuracy > 0 && a.MaximumDamage >= a.MinimumDamage && a.SelectionPercent > 0));
             Require(multiAttackNpc is not null, "generated-npc-multi-attack-count"); report.Checks.Add("generated-npc-multi-attack-count");
-            Require(RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(multiAttackNpc!) == multiAttackNpc!.AttackCount, "npc-attack-count-live-consumer"); report.Checks.Add("npc-attack-count-live-consumer");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(multiAttackNpc!) == RuntimeClassicNpcCombatCadence.AttemptsPerRound, "npc-six-attempt-live-consumer"); report.Checks.Add("npc-six-attempt-live-consumer");
             var zeroAttackNpc = npcs.FirstOrDefault(x => x.AttackCount == 0);
             Require(zeroAttackNpc is not null, "generated-npc-zero-attack-count"); report.Checks.Add("generated-npc-zero-attack-count");
             Require(RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(zeroAttackNpc!) == 0, "zero-attack-npc-does-not-attack"); report.Checks.Add("zero-attack-npc-does-not-attack");
             var energyAttack = npcs.SelectMany(x => x.Attacks).FirstOrDefault(x => x.EnergyCost > 0 && x.Accuracy > 0 && x.SelectionPercent > 0);
             Require(energyAttack is not null, "decoded-npc-attack-energy-cost"); report.Checks.Add("decoded-npc-attack-energy-cost");
-            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { energyAttack! }, energyAttack!.EnergyCost - 1) is null, "npc-attack-blocked-without-energy"); report.Checks.Add("npc-attack-blocked-without-energy");
+            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { energyAttack! }, energyAttack!.EnergyCost - 1) == energyAttack, "npc-unaffordable-row-still-selected"); report.Checks.Add("npc-unaffordable-row-still-selected");
             Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { energyAttack! }, energyAttack.EnergyCost) == energyAttack, "npc-affordable-attack-selected"); report.Checks.Add("npc-affordable-attack-selected");
             Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterAttack(energyAttack.EnergyCost + 3, energyAttack) == 3, "npc-attack-energy-deducted"); report.Checks.Add("npc-attack-energy-deducted");
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(3, energyAttack, energyAttack.EnergyCost + 3) == 3 + (energyAttack.EnergyCost / 2), "npc-resisted-spell-half-energy-refund"); report.Checks.Add("npc-resisted-spell-half-energy-refund");
-            var oddCostAttack = energyAttack with { EnergyCost = 125 };
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(10, oddCostAttack, 200) == 72, "npc-resisted-spell-refund-truncates"); report.Checks.Add("npc-resisted-spell-refund-truncates");
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(190, oddCostAttack, 200) == 200, "npc-resisted-spell-refund-capped"); report.Checks.Add("npc-resisted-spell-refund-capped");
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEncounterStartingEnergy(333) == 333, "npc-encounter-energy-reset-to-decoded-maximum"); report.Checks.Add("npc-encounter-energy-reset-to-decoded-maximum");
+            var directSpellEnergyAttack = energyAttack with { Type = 2, EnergyCost = 100 };
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(103, directSpellEnergyAttack, 1000) == 53, "npc-resisted-spell-half-energy-cost"); report.Checks.Add("npc-resisted-spell-half-energy-cost");
+            var oddCostAttack = energyAttack with { Type = 2, EnergyCost = 125 };
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, oddCostAttack, 1000) == 138, "npc-spell-half-cost-bankers-rounding"); report.Checks.Add("npc-spell-half-cost-bankers-rounding");
+            Require(RuntimeClassicNpcCombatCadence.AddRoundEnergy(250, 333) == 583, "npc-energy-carries-across-rounds"); report.Checks.Add("npc-energy-carries-across-rounds");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEncounterStartingEnergy(333) == 0, "npc-encounter-carried-energy-starts-zero"); report.Checks.Add("npc-encounter-carried-energy-starts-zero");
             var invalidAttackCountRejected = false;
             try { _ = RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(new RuntimeNpcDefinition { Id = "npc.invalid", AttackCount = -1 }); }
             catch (InvalidDataException) { invalidAttackCountRejected = true; }
@@ -1510,7 +1570,7 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 new Dictionary<string, string?>(), new Dictionary<string, string>(), plagueNow, plagueNow);
             var plagueActiveEffect = new RuntimeActiveSpellEffect(
                 "effect.plague.audit", "spell.446", "npc.361", new RuntimeSpellTarget("character", plagueCharacter.CharacterId),
-                4, 10, 30, plagueNow, plagueNow.AddSeconds(30 * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds));
+                4, 10, 30, plagueNow, plagueNow.AddSeconds(30 * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds));
             var plagueProjected = RuntimeClassicStatusProjection.Apply(
                 plagueCharacter, new[] { plagueActiveEffect }, liveStatusCatalog, plagueNow, "audit.plague");
             Require(RuntimeClassicStatusProjection.Numeric(plagueProjected, "dodge") == -10 &&
@@ -1565,7 +1625,12 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "fire", 25, false) == 75, "npc-hit-spell-elemental-resistance-reduction"); report.Checks.Add("npc-hit-spell-elemental-resistance-reduction");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "cold", -50, false) == 150, "npc-hit-spell-elemental-vulnerability-increase"); report.Checks.Add("npc-hit-spell-elemental-vulnerability-increase");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "stone", 100, false) == 0, "npc-hit-spell-elemental-immunity-threshold"); report.Checks.Add("npc-hit-spell-elemental-immunity-threshold");
-            Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "lightning", 200, false) == 0, "npc-hit-spell-overcap-resistance-suppression"); report.Checks.Add("npc-hit-spell-overcap-resistance-suppression");
+            Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "fire", 125, false) == -25, "npc-hit-spell-overcap-resistance-partial-healing"); report.Checks.Add("npc-hit-spell-overcap-resistance-partial-healing");
+            Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "lightning", 200, false) == -100, "npc-hit-spell-overcap-resistance-full-healing"); report.Checks.Add("npc-hit-spell-overcap-resistance-full-healing");
+            var elementalHealing = RuntimeLiveGameplayFacade.ApplyElementalSpellHitPoints(40, 100, -100);
+            Require(elementalHealing.HitPointsAfter == 100 && elementalHealing.DamageApplied == 0 && elementalHealing.HealingApplied == 60, "npc-hit-spell-overcap-healing-capped-at-maximum"); report.Checks.Add("npc-hit-spell-overcap-healing-capped-at-maximum");
+            var elementalDamage = RuntimeLiveGameplayFacade.ApplyElementalSpellHitPoints(40, 100, 25);
+            Require(elementalDamage.HitPointsAfter == 15 && elementalDamage.DamageApplied == 25 && elementalDamage.HealingApplied == 0, "npc-hit-spell-signed-damage-consumer"); report.Checks.Add("npc-hit-spell-signed-damage-consumer");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "poison", 0, true) == 0, "npc-hit-spell-poison-immunity"); report.Checks.Add("npc-hit-spell-poison-immunity");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "acid", 75, false) == 100, "npc-hit-spell-acid-unmapped-resistance-fallback"); report.Checks.Add("npc-hit-spell-acid-unmapped-resistance-fallback");
             Require(RuntimeLiveGameplayFacade.ResolveElementalSpellDamage(100, "untyped", 75, false) == 100, "npc-hit-spell-untyped-resistance-bypass"); report.Checks.Add("npc-hit-spell-untyped-resistance-bypass");
@@ -1592,8 +1657,8 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             var generalDelivery = RuntimeLiveGameplayFacade.ResolveNpcHitSpellStatusDelivery(generalStatusSpell!, false, false);
             Require(generalDelivery.Eligible && generalDelivery.Applied && generalDelivery.EffectKind == "status-or-scripted", "npc-hit-spell-general-status-live-consumer"); report.Checks.Add("npc-hit-spell-general-status-live-consumer");
             var mrNormal = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 24);
-            Require(mrNormal.MagicResistanceScore == 62 && mrNormal.ResistanceChancePercent == 31 && mrNormal.Resisted, "npc-hit-spell-mr-equation"); report.Checks.Add("npc-hit-spell-mr-equation");
-            var mrMiss = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 32);
+            Require(mrNormal.MagicResistanceScore == 52 && mrNormal.ResistanceChancePercent == 26 && mrNormal.Resisted, "npc-hit-spell-mr-equation"); report.Checks.Add("npc-hit-spell-mr-equation");
+            var mrMiss = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(2, 40, 60, 7, 0, 27);
             Require(!mrMiss.Resisted, "npc-hit-spell-mr-inclusive-boundary"); report.Checks.Add("npc-hit-spell-mr-inclusive-boundary");
             var mrNever = RuntimeLiveGameplayFacade.ResolveNpcHitSpellResistance(0, 100, 100, 100, 10, 1);
             Require(!mrNever.CheckEligible && !mrNever.Resisted, "npc-hit-spell-never-resisted-gate"); report.Checks.Add("npc-hit-spell-never-resisted-gate");

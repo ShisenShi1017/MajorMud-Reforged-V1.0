@@ -1,0 +1,80 @@
+{
+  "code_update": "0294",
+  "title": "Classic NPC combat XP sharing correction",
+  "target": "MajorMUD 1.11p parity",
+  "classification": "STRONG for active-combat eligibility and integer quotient; UNKNOWN for nonzero remainder disposition",
+  "findings": [
+    {
+      "claim": "NPC kill XP eligibility is based on characters actively in combat with that exact NPC when it dies, not party membership.",
+      "classification": "user-supplied native behavior + runtime-log correlation"
+    },
+    {
+      "claim": "Each observed eligible combatant receives the integer quotient total_npc_xp / active_combatant_count.",
+      "classification": "strong-native-runtime-observation",
+      "example": {
+        "npc": "ju-ju zombie",
+        "legacy_id": 493,
+        "retained_xp": 525,
+        "combatants": 2,
+        "observed_follower_award": 262,
+        "integer_quotient": 262,
+        "remainder": 1
+      }
+    },
+    {
+      "claim": "The leftover point does not go to the highest-damage participant or necessarily to the killing-blow participant.",
+      "classification": "directly disproven candidate",
+      "evidence": "In the retained-era walkthrough, the recorded follower dealt 115+219 damage versus the leader's much smaller physical/scorch damage, landed the fatal blow, and still received 262 from a retained 525-XP ju-ju zombie."
+    },
+    {
+      "claim": "Exact destination/disposition of a nonzero remainder remains unresolved.",
+      "classification": "UNKNOWN",
+      "blocked_candidates": [
+        "highest damage",
+        "killing blow",
+        "alphabetical order",
+        "party membership/order"
+      ],
+      "runtime_policy": "do not allocate the remainder until native recipient/disposition is proven; record it in character audit conditions"
+    },
+    {
+      "claim": "Race/class EXP percentages are experience-cost modifiers and are not multipliers on monster XP earned.",
+      "classification": "STRONG",
+      "evidence": "Official race help describes races as balanced by EXP cost; observed shared monster award matches raw integer division."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "retained_project_record",
+      "path": "Librarium/Objects/npcs/npc_records_0122.json",
+      "record": "npc.493",
+      "field": "rewards.xp_base=525"
+    },
+    {
+      "kind": "native-era-runtime-walkthrough",
+      "url": "https://www.mudcentral.org/quests/module5/m5-walkthrough.html",
+      "observation_lines": "party leader/follower + ju-ju combat + 262 XP"
+    },
+    {
+      "kind": "official_help",
+      "url": "https://www.majormud.com/mudhelp_races.html",
+      "observation": "race EXP is described as EXP cost"
+    },
+    {
+      "kind": "reverse_engineering_crosscheck",
+      "repo": "lucid2310/ReMUD",
+      "symbol": "_distribute_experience",
+      "status": "symbol identified but implementation TODO; not used as formula proof"
+    }
+  ],
+  "runtime_changes": [
+    "snapshot exact-NPC active combatants at death",
+    "split NPC ExperienceReward by active combatant count using integer division",
+    "award quotient directly to each eligible character",
+    "end that NPC combat for every eligible participant",
+    "send native observed You gain N experience / Combat Off form to other participants",
+    "record nonzero remainder as unresolved and leave it unallocated",
+    "remove killer-only XP award from live Classic NPC defeat path"
+  ],
+  "parity_score_change": "none; party-coordination remains a broader UNKNOWN bucket"
+}

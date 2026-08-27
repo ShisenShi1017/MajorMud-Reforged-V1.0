@@ -1,0 +1,51 @@
+{
+  "schema": "majormud.combat-parity-evidence.v1",
+  "update": "0278",
+  "target": "stock MajorMUD / Classic",
+  "sources": [
+    {
+      "source": "MMUD Explorer modMMudFunc.bas",
+      "repository_provenance": "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv",
+      "facts": {
+        "combat_round_seconds": 5,
+        "spell_round_seconds": 3,
+        "stock_hit_minimum_percent": 8,
+        "stock_hit_maximum_percent": 99,
+        "stock_dodge_cap_percent": 95,
+        "stock_max_swings_per_round": 5
+      }
+    },
+    {
+      "source": "MMUD Explorer CalculateAttackDefense / attack simulator",
+      "facts": {
+        "normal_hit_equation": "100 - ((defense*defense) / max(1,(accuracy*accuracy)/140))",
+        "hit_roll": "inclusive d100; roll <= final hit chance succeeds",
+        "dodge_equation_stock": "Fix((rawDodge*10) / (accuracy/8)), capped 95; accuracy <=8 does not dodge",
+        "backstab_dodge": "final dodge chance / 5"
+      }
+    },
+    {
+      "source": "MMUD Explorer stock physical formulas",
+      "facts": {
+        "strength_max_damage": "Fix((STR-50)/10)",
+        "attack_energy": "base energy, below-STR-requirement penalty, optional Speed percentage, then ((Encumbrance/2)+75)%",
+        "quick_and_deadly": "(200-energy)+Fix((AGI-50)/10), cap 20, halve at encumbrance >=33%",
+        "backstab_accuracy": "Fix((Stealth+AGI)/2)+Fix(BSAccu/2)+5 class-stealth or -15 race-only + normal accuracy",
+        "bash": "-15 accuracy, 1.10 pre-roll damage, DR, then x3; critical disabled; doubled attack energy",
+        "smash": "-25 accuracy, 1.20 pre-roll damage, DR, then x5; critical disabled; one full-round action"
+      }
+    }
+  ],
+  "runtime_regressions": [
+    "RuntimeClassicPhysicalFormulaSmokeReport",
+    "RuntimeCombatBundleClosureSmokeReport",
+    "RuntimeMajorMudCombatAudit"
+  ],
+  "remaining_boundaries": [
+    "general backstab damage remains strongly correlated rather than strict",
+    "class-combat accuracy base-stat ordering remains strongly correlated",
+    "the non-default player Speed-adjustment source/value feeding attack energy remains evidence-gated; live normal weapon combat keeps the native default 100% branch",
+    "some native combat narration arguments/order remain unresolved",
+    "death/reward/drop ordering is not declared closed by this pass"
+  ]
+}

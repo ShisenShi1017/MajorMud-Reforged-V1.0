@@ -34,21 +34,25 @@ public sealed record RuntimePartyCoordinationSmokeReport(bool Passed, IReadOnlyL
             if (!route.Succeeded || route.RecipientActorIds.Count != 3) throw new InvalidOperationException("party-chat-routing-failed");
             checks.Add("party-chat-routing");
 
-            var transferred = service.TransferLeadership("actor.leader", "actor.two");
-            if (!transferred.Succeeded || transferred.Snapshot?.LeaderId != "actor.two") throw new InvalidOperationException("leadership-transfer-failed");
-            var kicked = service.Kick("actor.two", "actor.three");
+            var transferBlocked = service.TransferLeadership("actor.leader", "actor.two");
+            if (transferBlocked.Succeeded || transferBlocked.FailureCode != "party-leadership-transfer-disabled") throw new InvalidOperationException("unproven-leadership-transfer-not-gated");
+            var kicked = service.Kick("actor.leader", "actor.three");
             if (!kicked.Succeeded || kicked.Snapshot?.Members.Count != 2) throw new InvalidOperationException("party-kick-failed");
-            checks.Add("leadership-and-kick");
+            checks.Add("native-uninvite-kick-and-leader-transfer-gate");
 
-            var expired = service.Invite("party.alpha", "actor.two", "actor.expired", now);
-            var expiredResult = service.Accept(expired.InviteId, "actor.expired", now.AddMinutes(3));
-            if (expiredResult.Succeeded || expiredResult.FailureCode != "party-invite-expired") throw new InvalidOperationException("invite-expiry-failed");
-            checks.Add("invite-expiry");
+            var longLived = service.Invite("party.alpha", "actor.leader", "actor.no-expiry", now);
+            var acceptedLater = service.Accept(longLived.InviteId, "actor.no-expiry", now.AddDays(30));
+            if (!acceptedLater.Succeeded) throw new InvalidOperationException("invented-invite-expiry-still-active");
+            checks.Add("no-invented-invite-timeout");
+
+            var leaderLeave = service.Leave("actor.leader");
+            if (leaderLeave.Succeeded || leaderLeave.FailureCode != "party-leader-leave-native-unknown") throw new InvalidOperationException("unproven-leader-leave-succession-not-gated");
+            checks.Add("leader-leave-succession-gated");
 
             service.SetConnected("actor.leader", false, "room.1");
             var onlineRoute = service.RoutePartyMessage("actor.two");
             if (onlineRoute.RecipientActorIds.Contains("actor.leader", StringComparer.OrdinalIgnoreCase)) throw new InvalidOperationException("offline-routing-failed");
-            checks.Add("offline-member-routing");
+            checks.Add("compatibility-shell-offline-routing-not-classic-parity");
 
             if (service.Validate().Count != 0) throw new InvalidOperationException("party-validator-failed");
             checks.Add("party-state-validation");

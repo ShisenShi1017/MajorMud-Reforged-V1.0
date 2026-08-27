@@ -1,0 +1,27 @@
+{
+  "schema": "majormud.combat-parity-audit.v1",
+  "update": "0278",
+  "combatRoundMilliseconds": 5000,
+  "spellRoundSeconds": 3,
+  "stockHitMinimum": 8,
+  "stockHitMaximum": 99,
+  "stockDodgeMaximum": 95,
+  "maxSwingsPerRound": 5,
+  "inclusiveBoundaries": {
+    "hit": true,
+    "dodge": true,
+    "critical": true
+  },
+  "formulaSmokeExpected": "PASS",
+  "strictAssertionsAdded": 11,
+  "strongAssertionsAdded": 4,
+  "remainingNativeBoundaries": [
+    "native player/NPC combat narration caller-owned arguments/order",
+    "general Backstab damage remains STRONG",
+    "broad physical damage/DR ordering remains STRONG",
+    "class-combat accuracy base-stat ordering remains STRONG",
+    "non-default player Speed adjustment source/value remains STRONG",
+    "death/reward/drop ordering remains UNKNOWN/native-gated"
+  ],
+  "spellSystemRoundMilliseconds": 3000
+}

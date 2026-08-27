@@ -16,7 +16,7 @@ public static class RuntimeCharacterRegenerationAuthority
     public static readonly TimeSpan PassiveCadence = TimeSpan.FromSeconds(30);
     public static readonly TimeSpan RestCadence = TimeSpan.FromSeconds(20);
     public static readonly TimeSpan MeditateCadence = TimeSpan.FromSeconds(10);
-    public static readonly TimeSpan FocusActivationDelay = TimeSpan.FromSeconds(20);
+    public static readonly TimeSpan FocusActivationDelay = RuntimeClassicTimingAuthority.FocusedRegenerationActivationDelay;
     public const string FormulaId = "character.passive_regeneration.decoded_30_seconds";
 
     public static RuntimeCharacterRegenerationTick ApplyPassiveTick(
@@ -119,15 +119,23 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         var now = DateTimeOffset.UtcNow;
         _focusedRegeneration[actor.Id] = new(mode, now, now + RuntimeCharacterRegenerationAuthority.FocusActivationDelay);
+        if (mode == "rest")
+            return "You are now resting.";
         return mode == "rest"
             ? "You begin resting. Remain uninterrupted for 20 seconds to increase HP regeneration."
             : "You begin meditating. Remain uninterrupted for 20 seconds to increase mana regeneration.";
     }
 
-    public void NotifyCharacterAction(RuntimeSession session, string commandName)
+    /// <summary>
+    /// Native REST/MEDITATE help names only three interruption causes: movement,
+    /// attacking, or being attacked. Actual combat entry paths cancel focused
+    /// regeneration themselves, so ordinary non-movement commands must not silently
+    /// cancel a pending/active rest or meditation state.
+    /// </summary>
+    public void NotifyCharacterAction(RuntimeSession session, string commandName, bool isMovement)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return;
-        if (commandName is "rest" or "meditate") return;
+        if (!isMovement) return;
         _focusedRegeneration.TryRemove(actor.Id, out _);
     }
 

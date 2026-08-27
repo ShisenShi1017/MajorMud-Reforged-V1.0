@@ -4,6 +4,25 @@ var startDirectory = args.FirstOrDefault(arg => !arg.StartsWith("--", StringComp
 var bootstrap = new ServerBootstrap();
 var report = bootstrap.Run(startDirectory ?? Directory.GetCurrentDirectory());
 
+var headlessJsonRequested = args.Any(arg => string.Equals(arg, "--headless-json", StringComparison.OrdinalIgnoreCase));
+if (headlessJsonRequested)
+{
+    if (!report.Passed || report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Headless server bootstrap failed before gameplay startup.");
+        foreach (var issue in report.Validation.Issues)
+            Console.Error.WriteLine($"{issue.Severity}: {issue.Code}: {issue.Message}");
+        return report.ExitCode == 0 ? 2 : report.ExitCode;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    var playerName = TryReadArgumentValue(args, "--player", out var requestedPlayer) ? requestedPlayer : "Borin";
+    await host.RunHeadlessJsonAsync(playerName, CancellationToken.None).ConfigureAwait(false);
+    return 0;
+}
+
 Console.WriteLine("Reforged Server Bootstrap");
 Console.WriteLine($"ProjectRoot: {report.ProjectRoot ?? "<not found>"}");
 Console.WriteLine($"Project: {report.ProjectName ?? "<unknown>"}");
@@ -451,6 +470,32 @@ if (args.Any(arg => string.Equals(arg, "--audit-spawns", StringComparison.Ordina
     var (host, world, living) = CreateAuditRuntime(report.ProjectRoot);
     Console.WriteLine(ClassicRuntimeAudit.RenderSpawnVerification(world, living));
     return 0;
+}
+
+if (args.Any(arg => string.Equals(arg, "--audit-timers", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot audit MajorMUD timers because project root was not resolved."); return 2; }
+    var (host, world, living) = CreateAuditRuntime(report.ProjectRoot);
+    Console.WriteLine(RuntimeMajorMudTimerAudit.Render(RuntimeMajorMudTimerAudit.Run(report.ProjectRoot, living)));
+    return 0;
+}
+
+if (args.Any(arg => string.Equals(arg, "--audit-combat", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot audit MajorMUD combat because project root was not resolved."); return 2; }
+    Console.WriteLine(RuntimeMajorMudCombatAudit.Render(RuntimeMajorMudCombatAudit.Run(report.ProjectRoot)));
+    return 0;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-major-mud-spawn-timing", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate MajorMUD spawn timing because project root was not resolved."); return 2; }
+    var timingReport = RuntimeMajorMudSpawnTimingSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime MajorMUD Spawn Timing Smoke Report");
+    Console.WriteLine($"Passed: {timingReport.Passed}");
+    foreach (var check in timingReport.Checks) Console.WriteLine($"PASS {check}");
+    foreach (var failure in timingReport.Failures) Console.WriteLine($"FAIL {failure}");
+    return timingReport.Passed ? 0 : 77;
 }
 
 if (args.Any(arg => string.Equals(arg, "--smoke-world-systems-bundle", StringComparison.OrdinalIgnoreCase)))

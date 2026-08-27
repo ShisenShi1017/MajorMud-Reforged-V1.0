@@ -1,0 +1,59 @@
+{
+  "schema": "majormud.economy-evidence.v1",
+  "update": "0282",
+  "classification": "STRONG",
+  "sources": [
+    {
+      "kind": "MMUDExplorer",
+      "repository": "syntax53/MMUD-Explorer",
+      "commit": "9b3361fc8b71effc10788b42c91580f5849563e1",
+      "path": "modMMudDatabase.bas",
+      "function": "GetItemValue",
+      "supports": [
+        "currency conversion",
+        "additive shop markup",
+        "stock buy Charm modifier",
+        "stock sell Charm modifier",
+        "final VB Round"
+      ]
+    },
+    {
+      "kind": "MMUDExplorer",
+      "repository": "syntax53/MMUD-Explorer",
+      "commit": "9b3361fc8b71effc10788b42c91580f5849563e1",
+      "path": "modMMudFunc.bas",
+      "function": "CalcMoneyRequiredToTrain",
+      "supports": [
+        "trainer copper cost = Fix((Level*5)*(Markup+100)/100)*10"
+      ]
+    },
+    {
+      "kind": "Librarium",
+      "path": "Librarium/Objects/shops/shop_records_0122.json",
+      "supports": [
+        "178 Classic shop records",
+        "raw markup field preservation"
+      ]
+    }
+  ],
+  "recoveredRules": {
+    "currencyCopperMultipliers": {
+      "0": 1,
+      "1": 10,
+      "2": 100,
+      "3": 10000,
+      "4": 1000000
+    },
+    "buyMarkup": "baseCopper + Fix(baseCopper * markupPercent / 100)",
+    "buyCharm": "if Charm > 0: value *= 1 - ((Fix(Charm/5)-10)/100), then legacy overflow loop, then VB Round",
+    "sellMarkup": "none",
+    "sellCharm": "if Charm > 0: value = Fix(((Fix(Charm/2)+25) * baseCopper) / 100), with retained legacy overflow loop",
+    "training": "Fix((trainingLevelIndex * 5) * (markupPercent + 100) / 100) * 10"
+  },
+  "remainingNativeBoundary": [
+    "final wccmmud.dll callsite proof for commerce/trainer formulas",
+    "exact equipment/permanent-stat contribution order feeding effective Charm",
+    "repair/spell/other service price stage ordering and minimums",
+    "exact native buy/sell failure message and transaction ordering"
+  ]
+}

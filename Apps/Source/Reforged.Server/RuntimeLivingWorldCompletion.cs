@@ -32,7 +32,7 @@ public sealed record RuntimeExitGateDefinition(string ExitId,string RoomId,strin
     public int? PicklocksOrStrength { get; init; }
     public bool AnyPicklocks { get; init; }
     public bool AnyPicklocksOrStrength { get; init; }
-    public int? StrengthAlternative { get; init; }
+    public bool StrengthAlternative { get; init; }
     public int? MinimumLevel { get; init; }
     public int? MaximumLevel { get; init; }
     public double TimeMultiplier { get; init; } = 1d;
@@ -53,6 +53,32 @@ public sealed record RuntimeExitGateContext(IReadOnlySet<string> ItemIds,long Av
 }
 
 public sealed record RuntimeExitGateDecision(bool Allowed,bool EvidenceOnly,string Code,long TollCharged,int Damage,int SpellId,int PreSpellId,int PostSpellId);
+public sealed record RuntimeClassicExitActionEvidence(
+    string ExitId, string Direction, string GateKind, bool Open, bool Locked,
+    int? PicklocksDifficulty, int? PicklocksOrStrength, bool AnyPicklocks,
+    bool AnyPicklocksOrStrength, bool StrengthAlternative)
+{
+    public bool AllowsPicklock => PicklocksDifficulty.HasValue || PicklocksOrStrength.HasValue || AnyPicklocks || AnyPicklocksOrStrength;
+    public bool AllowsBash => PicklocksOrStrength.HasValue || AnyPicklocksOrStrength || StrengthAlternative;
+
+    public int? RequirementFor(string action)
+    {
+        if (action.Equals("picklock", StringComparison.OrdinalIgnoreCase))
+            return PicklocksOrStrength ?? PicklocksDifficulty;
+        if (action.Equals("bash", StringComparison.OrdinalIgnoreCase))
+            return PicklocksOrStrength ?? (StrengthAlternative ? PicklocksDifficulty : null);
+        return null;
+    }
+
+    public bool IsAnyRequirementFor(string action)
+    {
+        if (action.Equals("picklock", StringComparison.OrdinalIgnoreCase))
+            return AnyPicklocksOrStrength || AnyPicklocks;
+        if (action.Equals("bash", StringComparison.OrdinalIgnoreCase))
+            return AnyPicklocksOrStrength;
+        return false;
+    }
+}
 public sealed record RuntimeLivingWorldCompletionSnapshot(string WorldId,long EventSequence,IReadOnlyList<RuntimeNpcAiState> AiStates,IReadOnlyList<RuntimeLivingCorpseState> Corpses,IReadOnlyList<RuntimeLivingWorldEvent> RecentEvents,IReadOnlyDictionary<string,int>? NativeActionStates,DateTimeOffset SavedAtUtc);
 public sealed record RuntimeRemoteActionMutationDefinition(string Signature,string SourceExitId,string ReciprocalExitId,string StateEffect,string NativeStateKey,int InitialNativeState,int Selector);
 
@@ -65,12 +91,39 @@ public sealed partial class RuntimeLivingWorldService
     private readonly Dictionary<string,int> _nativeActionStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Queue<RuntimeLivingWorldEvent> _recentEvents = new();
     private long _eventSequence;
-    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","hidden","required_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
+    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
 
     public int CorpseCount { get { lock(_gate) return _corpses.Count; } }
     public int GateCount { get { lock(_gate) return _gates.Count; } }
     public IReadOnlyList<RuntimeNpcAiState> CaptureNpcAi(){lock(_gate)return _npcAi.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray();}
     public IReadOnlyList<RuntimeExitGateDefinition> CaptureGates(){lock(_gate)return _gates.Values.OrderBy(x=>x.ExitId,StringComparer.OrdinalIgnoreCase).ToArray();}
+    public bool TryGetClassicExitActionEvidence(RuntimeRoom room,string direction,out RuntimeClassicExitActionEvidence evidence)
+    {
+        var normalized=NormalizeDirection(direction);
+        lock(_gate)
+        {
+            var exit=_world.FindExit(room,normalized);
+            if(exit is null||!_gates.TryGetValue(exit.Id,out var gate))
+            {
+                evidence=null!;
+                return false;
+            }
+            if(!gate.GateKind.Equals("door",StringComparison.OrdinalIgnoreCase)
+                &&!gate.GateKind.Equals("key",StringComparison.OrdinalIgnoreCase)
+                &&!gate.GateKind.Equals("damage_trap",StringComparison.OrdinalIgnoreCase)
+                &&!gate.GateKind.Equals("spell_trap",StringComparison.OrdinalIgnoreCase))
+            {
+                evidence=null!;
+                return false;
+            }
+            var open=false; var locked=false;
+            if(_objects.TryGetValue(gate.ExitId,out var state)){open=state.Open;locked=state.Locked;}
+            evidence=new RuntimeClassicExitActionEvidence(
+                gate.ExitId,normalized,gate.GateKind,open,locked,gate.PicklocksDifficulty,
+                gate.PicklocksOrStrength,gate.AnyPicklocks,gate.AnyPicklocksOrStrength,gate.StrengthAlternative);
+            return true;
+        }
+    }
     public IReadOnlyList<RuntimeLivingWorldEvent> EventsAfter(long sequence){lock(_gate)return _recentEvents.Where(x=>x.Sequence>sequence).OrderBy(x=>x.Sequence).ToArray();}
     public IReadOnlyList<RuntimeLivingCorpseState> CorpsesInRoom(string roomId){lock(_gate)return _corpses.Values.Where(x=>x.RoomId.Equals(roomId,StringComparison.OrdinalIgnoreCase)).OrderBy(x=>x.CreatedAtUtc).ToArray();}
 
@@ -228,22 +281,26 @@ public sealed partial class RuntimeLivingWorldService
                 }
                 requiredActionsComplete=true;
             }
-            if (gate.PicklocksDifficulty is int difficulty && context.PicklocksValue < difficulty)
-            {
-                var strengthThreshold = gate.StrengthAlternative ?? gate.PicklocksOrStrength;
-                if (strengthThreshold is null || context.StrengthValue < strengthThreshold.Value) return new(false,false,"picklocks-or-strength-failed",0,0,0,0,0);
-            }
+            // Door/Gate Para2 describes the explicit PICKLOCK/BASH action boundary.
+            // It is not an automatic traversal stat check: walking through an exit only
+            // evaluates the door's resulting open/locked state.
             if(!SupportedGateKinds.Contains(gate.GateKind))return new(false,true,"unsupported-evidence-only",0,0,0,0,0);
             switch(gate.GateKind.ToLowerInvariant())
             {
                 case "open": return new(true,false,"open",0,0,0,0,0);
                 case "door":
+                case "key":
                     if(!_objects.TryGetValue(gate.ExitId,out var door))return new(false,true,"door-state-unavailable",0,0,0,0,0);
                     return door.Locked?new(false,false,"door-locked",0,0,0,0,0):!door.Open?new(false,false,"door-closed",0,0,0,0,0):new(true,false,"door-open",0,0,0,0,0);
                 case "hidden": return requiredActionsComplete||gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)||context.DiscoveredExitIds.Contains(gate.ExitId)
                     ? new(true,false,requiredActionsComplete?"hidden-action-open":gate.Qualifier.Contains("Passable",StringComparison.OrdinalIgnoreCase)?"hidden-passable":"hidden-discovered",0,0,0,0,0)
                     : new(false,false,"hidden-undiscovered",0,0,0,0,0);
                 case "required_item": return !string.IsNullOrWhiteSpace(gate.RequiredItemId)&&context.ItemIds.Contains(gate.RequiredItemId)?new(true,false,"required-item-present",0,0,0,0,0):new(false,false,"required-item-missing",0,0,0,0,0);
+                case "ticket_item":
+                    // Native type 17 identifies an explicit Ticket/Item prerequisite.
+                    // Traversal currently preserves the ticket because consumption has not
+                    // been proven; do not invent ticket destruction at this boundary.
+                    return !string.IsNullOrWhiteSpace(gate.RequiredItemId)&&context.ItemIds.Contains(gate.RequiredItemId)?new(true,false,"ticket-item-present",0,0,0,0,0):new(false,false,"required-item-missing",0,0,0,0,0);
                 case "text_command": return gate.Commands.Any(x=>x.Equals(context.EnteredCommand,StringComparison.OrdinalIgnoreCase))?new(true,false,"text-command-matched",0,0,0,0,0):new(false,false,"text-command-required",0,0,0,0,0);
                 case "toll": return context.AvailableGold>=gate.TollAmount?new(true,false,"toll-paid",gate.TollAmount,0,0,0,0):new(false,false,"toll-insufficient",0,0,0,0,0);
                 case "level_range": return new(true,false,"level-range-allowed",0,0,0,0,0);
@@ -342,7 +399,7 @@ public sealed partial class RuntimeLivingWorldService
             var qualifier=JsonValueReader.ReadString(value,"qualifier",string.Empty); var disposition=JsonValueReader.ReadString(value,"runtime_disposition",string.Empty);
             string? item=null; long toll=0; int damage=0,spell=0,pre=0,post=0;
             JsonElement prerequisites=default;
-            if(value.TryGetProperty("prerequisites",out prerequisites)&&prerequisites.ValueKind==JsonValueKind.Object){item=ReadScalarString(prerequisites,"required_item_id");toll=ReadLong(prerequisites,"toll_amount");}
+            if(value.TryGetProperty("prerequisites",out prerequisites)&&prerequisites.ValueKind==JsonValueKind.Object){item=NormalizeCanonicalItemId(ReadScalarString(prerequisites,"required_item_id") ?? string.Empty);toll=ReadLong(prerequisites,"toll_amount");}
             if(value.TryGetProperty("effects",out var effects)&&effects.ValueKind==JsonValueKind.Object){damage=(int)ReadLong(effects,"damage");spell=(int)ReadLong(effects,"spell_id");pre=(int)ReadLong(effects,"pre_spell_id");post=(int)ReadLong(effects,"post_spell_id");}
             JsonElement edge=default;
             value.TryGetProperty("edge_state_semantics",out edge);
@@ -385,7 +442,7 @@ public sealed partial class RuntimeLivingWorldService
                 MaximumAlignmentName = ReadScalarString(prerequisites,"maximum_alignment_name") ?? string.Empty,
                 AbilityId = ReadNullableInt(prerequisites,"ability_id"), MinimumValue = ReadNullableLong(prerequisites,"minimum_value"), MaximumValue = ReadNullableLong(prerequisites,"maximum_value"),
                 PicklocksDifficulty = ReadNullableInt(prerequisites,"picklocks_difficulty"), PicklocksOrStrength = ReadNullableInt(prerequisites,"picklocks_or_strength"),
-                AnyPicklocks = ReadBool(prerequisites,"any_picklocks"), AnyPicklocksOrStrength = ReadBool(prerequisites,"any_picklocks_or_strength"), StrengthAlternative = ReadNullableInt(prerequisites,"strength_alternative"),
+                AnyPicklocks = ReadBool(prerequisites,"any_picklocks"), AnyPicklocksOrStrength = ReadBool(prerequisites,"any_picklocks_or_strength"), StrengthAlternative = ReadBool(prerequisites,"strength_alternative"),
                 MinimumLevel = ReadNullableInt(prerequisites,"minimum_level"), MaximumLevel = ReadNullableInt(prerequisites,"maximum_level"),
                 TimeMultiplier = ReadDouble(prerequisites,"time_multiplier",1d), AutomaticRouting = edge.ValueKind==JsonValueKind.Object && ReadBool(edge,"automatic_routing"),
                 FallbackBehavior = JsonValueReader.ReadString(value,"fallback_behavior",string.Empty)

@@ -11,18 +11,36 @@ public enum RuntimePartyDisconnectPolicy
 
 public sealed record RuntimePartyPolicy(
     int MaximumMembers,
-    TimeSpan InviteLifetime,
+    TimeSpan? InviteLifetime,
     RuntimePartyDisconnectPolicy DisconnectPolicy,
     bool LeaderMayKick,
     bool LeaderMayTransfer,
     bool PersistAcrossRestart)
 {
-    public static RuntimePartyPolicy ClassicSafeDefault { get; } = new(
-        MaximumMembers: 6,
-        InviteLifetime: TimeSpan.FromMinutes(2),
+    /// <summary>
+    /// Compatibility shell defaults only. Fields whose native values are unresolved are
+    /// deliberately not treated as MajorMUD parity evidence; live Classic code must gate
+    /// any behavior that depends on those unknowns.
+    /// </summary>
+    public static RuntimePartyPolicy CompatibilityShellDefault { get; } = new(
+        MaximumMembers: int.MaxValue,
+        InviteLifetime: null,
         DisconnectPolicy: RuntimePartyDisconnectPolicy.RetainMembership,
         LeaderMayKick: true,
-        LeaderMayTransfer: true,
+        LeaderMayTransfer: false,
+        PersistAcrossRestart: false);
+
+    /// <summary>
+    /// Classic MajorMUD strong-evidence policy. Native-era operator/reverse-engineering
+    /// records consistently identify the original party cap as six total characters.
+    /// Invite lifetime, leader succession, and disconnect persistence remain UNKNOWN.
+    /// </summary>
+    public static RuntimePartyPolicy ClassicStrongEvidence { get; } = new(
+        MaximumMembers: 6,
+        InviteLifetime: null,
+        DisconnectPolicy: RuntimePartyDisconnectPolicy.RetainMembership,
+        LeaderMayKick: true,
+        LeaderMayTransfer: false,
         PersistAcrossRestart: false);
 }
 
@@ -53,7 +71,7 @@ public sealed class RuntimePartyCoordinationService
             Require(leaderId, nameof(leaderId));
             if (_parties.ContainsKey(partyId)) throw new InvalidOperationException("duplicate-party-id");
             if (_membership.ContainsKey(leaderId)) throw new InvalidOperationException("actor-already-in-party");
-            var effective = policy ?? RuntimePartyPolicy.ClassicSafeDefault;
+            var effective = policy ?? RuntimePartyPolicy.CompatibilityShellDefault;
             ValidatePolicy(effective);
             var state = new PartyState(partyId, leaderId, effective);
             _parties.Add(partyId, state);
@@ -72,24 +90,31 @@ public sealed class RuntimePartyCoordinationService
             if (party.Members.Count >= party.Policy.MaximumMembers) throw new InvalidOperationException("party-full");
             foreach (var existing in _invites.Values.Where(x => x.TargetId.Equals(targetId, StringComparison.OrdinalIgnoreCase)).ToArray())
                 _invites.Remove(existing.InviteId);
+            var expiresAtUtc = party.Policy.InviteLifetime is { } lifetime
+                ? nowUtc.Add(lifetime)
+                : DateTimeOffset.MaxValue;
             var invitation = new RuntimePartyInviteSnapshot(
-                $"partyinvite.{Guid.NewGuid():N}", partyId, inviterId, Require(targetId, nameof(targetId)), nowUtc.Add(party.Policy.InviteLifetime));
+                $"partyinvite.{Guid.NewGuid():N}", partyId, inviterId, Require(targetId, nameof(targetId)), expiresAtUtc);
             _invites.Add(invitation.InviteId, invitation);
             return invitation;
         }
     }
 
-    public RuntimePartyOperationResult Accept(string inviteId, string targetId, DateTimeOffset nowUtc)
+    public RuntimePartyOperationResult Accept(string inviteId, string targetId, DateTimeOffset nowUtc, bool followingLeader = true)
     {
         lock (_gate)
         {
             if (!_invites.TryGetValue(inviteId, out var invitation)) return Fail("party-invite-not-found");
             if (!invitation.TargetId.Equals(targetId, StringComparison.OrdinalIgnoreCase)) return Fail("party-invite-target-mismatch");
-            if (invitation.ExpiresAtUtc <= nowUtc) { _invites.Remove(inviteId); return Fail("party-invite-expired"); }
+            if (invitation.ExpiresAtUtc != DateTimeOffset.MaxValue && invitation.ExpiresAtUtc <= nowUtc)
+            {
+                _invites.Remove(inviteId);
+                return Fail("party-invite-expired");
+            }
             if (_membership.ContainsKey(targetId)) return Fail("actor-already-in-party");
             var party = GetParty(invitation.PartyId);
             if (party.Members.Count >= party.Policy.MaximumMembers) return Fail("party-full");
-            party.Members.Add(targetId, new RuntimePartyMemberState(targetId, true, null, true));
+            party.Members.Add(targetId, new RuntimePartyMemberState(targetId, true, null, followingLeader));
             _membership.Add(targetId, party.PartyId);
             _invites.Remove(inviteId);
             return Success(party);
@@ -147,7 +172,10 @@ public sealed class RuntimePartyCoordinationService
                 return new(true, null, null);
             }
             if (party.LeaderId.Equals(actorId, StringComparison.OrdinalIgnoreCase))
+            {
+                if (!party.Policy.LeaderMayTransfer) return Fail("party-leader-leave-native-unknown");
                 party.LeaderId = SelectReplacementLeader(party, actorId);
+            }
             party.Members.Remove(actorId);
             _membership.Remove(actorId);
             return Success(party);
@@ -184,7 +212,7 @@ public sealed class RuntimePartyCoordinationService
         }
     }
 
-    public RuntimePartyOperationResult AcceptFromLeader(string targetId, string leaderId, DateTimeOffset nowUtc)
+    public RuntimePartyOperationResult AcceptFromLeader(string targetId, string leaderId, DateTimeOffset nowUtc, bool followingLeader = true)
     {
         lock (_gate)
         {
@@ -194,7 +222,7 @@ public sealed class RuntimePartyCoordinationService
                 .OrderByDescending(invite => invite.ExpiresAtUtc)
                 .FirstOrDefault();
             if (invitation is null) return Fail("party-invite-not-found");
-            return Accept(invitation.InviteId, targetId, nowUtc);
+            return Accept(invitation.InviteId, targetId, nowUtc, followingLeader);
         }
     }
 
@@ -204,12 +232,24 @@ public sealed class RuntimePartyCoordinationService
         {
             if (!_membership.TryGetValue(actorId, out var partyId)) return Fail("actor-not-in-party");
             var party = GetParty(partyId);
-            if (party.LeaderId.Equals(actorId, StringComparison.OrdinalIgnoreCase)) return Fail("party-leader-rank-fixed");
+            if (party.LeaderId.Equals(actorId, StringComparison.OrdinalIgnoreCase))
+                return Fail("party-leader-rank-native-unknown");
             var normalized = rank.ToLowerInvariant() switch
             {
                 "frontrank" => "Frontrank", "midrank" => "Midrank", "backrank" => "Backrank",
                 _ => throw new ArgumentOutOfRangeException(nameof(rank))
             };
+            if (normalized.Equals("Backrank", StringComparison.OrdinalIgnoreCase))
+            {
+                var frontAfter = party.Members.Values.Count(member =>
+                    !member.ActorId.Equals(actorId, StringComparison.OrdinalIgnoreCase)
+                    && member.Rank.Equals("Frontrank", StringComparison.OrdinalIgnoreCase));
+                var backAfter = party.Members.Values.Count(member =>
+                    !member.ActorId.Equals(actorId, StringComparison.OrdinalIgnoreCase)
+                    && member.Rank.Equals("Backrank", StringComparison.OrdinalIgnoreCase)) + 1;
+                // WCCMMHLP party help: at least as many users must be in the front rank as the back.
+                if (frontAfter < backAfter) return Fail("party-backrank-front-balance-required");
+            }
             party.Members[actorId] = party.Members[actorId] with { Rank = normalized };
             return Success(party);
         }
@@ -325,7 +365,7 @@ public sealed class RuntimePartyCoordinationService
     private static void ValidatePolicy(RuntimePartyPolicy policy)
     {
         if (policy.MaximumMembers < 1) throw new ArgumentOutOfRangeException(nameof(policy.MaximumMembers));
-        if (policy.InviteLifetime <= TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(policy.InviteLifetime));
+        if (policy.InviteLifetime is { } lifetime && lifetime <= TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(policy.InviteLifetime));
     }
 
     private sealed class PartyState

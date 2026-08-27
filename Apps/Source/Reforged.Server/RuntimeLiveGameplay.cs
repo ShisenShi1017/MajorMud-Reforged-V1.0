@@ -24,7 +24,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         _wccInvasions = new RuntimeWccInvasionService(characters);
         _gangGameplay = new RuntimeClassicGangGameplayService(characters, sessions);
         _partyGameplay = new RuntimePartyCoordinationService();
-        _sessions.SessionsChanged += (_, _) => { SynchronizeClassicPartyConnections(); PruneLivePvpConnections(); };
+        _sessions.SessionsChanged += (_, _) => { SynchronizeClassicPartyActiveLocations(); PruneLivePvpConnections(); };
         _nativePayloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(characters.ProjectRoot);
         _npcSpellCatalog = RuntimeSpellCatalog.Load(characters.ProjectRoot, "Classic");
         _npcAttackArguments = RuntimeNpcAttackArgumentRecoveryCatalog.Load(characters.ProjectRoot);
@@ -56,9 +56,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         return string.Join(Environment.NewLine, rows);
     }
 
+
+    public IReadOnlyList<string> AdmitClassicRoomEntryNpcRespawns(RuntimeSession session) =>
+        Living(session).AdmitDueNpcRespawnsForRoom(session.CurrentRoom.Id, DateTimeOffset.UtcNow)
+            .Transitions.Select(transition => transition.EventCode).ToArray();
+
     public IReadOnlyList<RuntimeSession> ResolveClassicPartyFollowers(RuntimeSession leader, string originRoomId)
     {
-        SynchronizeClassicPartyConnections();
+        SynchronizeClassicPartyActiveLocations();
         return _partyGameplay.ResolveFollowerMoves(leader.Actor.Id, originRoomId, leader.CurrentRoom.Id)
             .Select(move => _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(move.ActorId, StringComparison.OrdinalIgnoreCase)))
             .Where(candidate => candidate is not null)
@@ -68,7 +73,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private IReadOnlyList<RuntimeSpellTarget> ResolveClassicPartySpellTargets(RuntimeSession caster)
     {
-        SynchronizeClassicPartyConnections();
+        SynchronizeClassicPartyActiveLocations();
         var party = _partyGameplay.FindByMember(caster.Actor.Id);
         if (party is null) return [new RuntimeSpellTarget("character", caster.Actor.Id)];
         return party.Members.Where(member => member.Connected)
@@ -80,12 +85,17 @@ public sealed partial class RuntimeLiveGameplayFacade
             .ToArray();
     }
 
-    private void SynchronizeClassicPartyConnections()
+    private void SynchronizeClassicPartyActiveLocations()
     {
-        var active = _sessions.ActiveSessions.ToDictionary(current => current.Actor.Id, StringComparer.OrdinalIgnoreCase);
-        foreach (var member in _partyGameplay.CaptureAll().SelectMany(party => party.Members).DistinctBy(member => member.ActorId, StringComparer.OrdinalIgnoreCase))
-            _partyGameplay.SynchronizeConnection(member.ActorId, active.ContainsKey(member.ActorId),
-                active.TryGetValue(member.ActorId, out var current) ? current.CurrentRoom.Id : member.RoomId);
+        // Do not infer MajorMUD linkdead/disconnect membership behavior from session absence.
+        // Only connected sessions can safely refresh their current room. Explicit QUIT for a
+        // follower is handled separately from unexpected socket loss.
+        var memberships = _partyGameplay.CaptureAll()
+            .SelectMany(party => party.Members)
+            .Select(member => member.ActorId)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach (var active in _sessions.ActiveSessions.Where(current => memberships.Contains(current.Actor.Id)))
+            _partyGameplay.SynchronizeConnection(active.Actor.Id, connected: true, active.CurrentRoom.Id);
     }
 
     public string ExecuteGangCommand(RuntimeSession session, RuntimeCommand command) => _gangGameplay.Execute(session, command);
@@ -127,7 +137,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         const string green = "\u001b[1;32m";
         const string cyan = "\u001b[1;36m";
         const string reset = "\u001b[0m";
-        const int rightColumn = 55;
+        const int firstColumnWidth = 18;
+        const int secondColumnWidth = 21;
+        const int rightColumnWidth = 18;
+        const int leftWidth = firstColumnWidth + secondColumnWidth;
 
         static int Read(IReadOnlyDictionary<string, int> values, params string[] keys)
         {
@@ -139,22 +152,40 @@ public sealed partial class RuntimeLiveGameplayFacade
         static string ColoredField(string label, object value) =>
             $"{green}{label}{cyan}{value}{reset}";
 
-        static string Compose(string leftPlain, string leftColored, string rightColored, int column)
+        static (string Plain, string Colored) FixedField(
+            string label,
+            object value,
+            int width,
+            int? valueColumn = null)
         {
-            var spaces = Math.Max(2, column - leftPlain.Length);
-            return leftColored + new string(' ', spaces) + rightColored;
+            var valueText = Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
+            var prefixPad = valueColumn.HasValue
+                ? Math.Max(1, valueColumn.Value - label.Length)
+                : 0;
+            var plain = label + new string(' ', prefixPad) + valueText;
+            var suffixPad = Math.Max(0, width - plain.Length);
+            var colored = green + label + new string(' ', prefixPad) + cyan + valueText + reset + new string(' ', suffixPad);
+            return (plain + new string(' ', suffixPad), colored);
         }
 
-        static (string Plain, string Colored) TwoFields(
-            string label1, object value1, int width1,
-            string label2, object value2)
+        static string RightField(string label, object value)
         {
-            var firstPlain = label1 + value1;
-            var pad = Math.Max(1, width1 - firstPlain.Length);
-            var plain = firstPlain + new string(' ', pad) + label2 + value2;
-            var colored = ColoredField(label1, value1) + new string(' ', pad) + ColoredField(label2, value2);
-            return (plain, colored);
+            var valueText = Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty;
+            var pad = Math.Max(1, rightColumnWidth - label.Length - valueText.Length);
+            return green + label + new string(' ', pad) + cyan + valueText + reset;
         }
+
+        static string ComposeLeft(string leftPlain, string leftColored, string rightColored)
+        {
+            var pad = Math.Max(0, leftWidth - leftPlain.Length);
+            return leftColored + new string(' ', pad) + rightColored;
+        }
+
+        static string ComposeThree(
+            (string Plain, string Colored) first,
+            (string Plain, string Colored) second,
+            string rightColored) =>
+            first.Colored + second.Colored + rightColored;
 
         var stats = character.BaseStats;
         var skills = character.Skills;
@@ -164,29 +195,62 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         var armorPrimary = Read(derived, "armor_class", "armour_class", "armor_class_bonus");
         var armorSecondary = Read(derived, "damage_resistance", "damage_resistance_bonus", "defense_value");
-        var lives = ReadCondition(character.Conditions, "lives", "lives_remaining");
-        var creationPoints = ReadCondition(character.Conditions, "cp", "creation_points");
+        var lives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
+        var creationPoints = ReadCondition(character.Conditions, "character_points", "cp", "creation_points");
 
-        var raceExp = TwoFields("Race: ", character.RaceName, 24, "Exp: ", character.Experience);
-        var classLevel = TwoFields("Class: ", character.ClassName, 30, "Level: ", character.Level);
-        var hitsArmor = TwoFields("Hits: ", $"{character.HitPoints}/{character.MaximumHitPoints}", 24, "Armour Class: ", $"{armorPrimary}/{armorSecondary}");
-        var strAgi = TwoFields("Strength: ", Read(stats, "str", "strength"), 25, "Agility: ", Read(stats, "agl", "agi", "agility"));
-        var intHealth = TwoFields("Intellect: ", Read(stats, "int", "intellect"), 25, "Health: ", Read(stats, "hea", "health"));
-        var willCharm = TwoFields("Willpower: ", Read(stats, "wil", "willpower"), 25, "Charm: ", Read(stats, "cha", "charm"));
+        // Native MajorMUD STATUS uses an 18 / 21 / 18 character three-column grid.
+        // Within the numeric stat rows the first value starts at column 11 and the
+        // second at column 9 of their respective fields; hits/AC have their own
+        // fixed value starts. Keeping these columns stable matters to legacy clients.
+        var race = FixedField("Race: ", character.RaceName, firstColumnWidth);
+        var exp = FixedField("Exp: ", character.Experience, secondColumnWidth);
+        var charClass = FixedField("Class: ", character.ClassName, firstColumnWidth);
+        var level = FixedField("Level: ", character.Level, secondColumnWidth);
+        var hits = FixedField("Hits:", $"{character.HitPoints}/{character.MaximumHitPoints}", firstColumnWidth, 8);
+        var armor = FixedField("Armour Class:", $"{armorPrimary}/{armorSecondary}", secondColumnWidth, 15);
+        var strength = FixedField("Strength:", Read(stats, "str", "strength"), firstColumnWidth, 11);
+        var agility = FixedField("Agility:", Read(stats, "agl", "agi", "agility"), secondColumnWidth, 9);
+        var intellect = FixedField("Intellect:", Read(stats, "int", "intellect"), firstColumnWidth, 11);
+        var health = FixedField("Health:", Read(stats, "hea", "health"), secondColumnWidth, 9);
+        var willpower = FixedField("Willpower:", Read(stats, "wil", "willpower"), firstColumnWidth, 11);
+        var charm = FixedField("Charm:", Read(stats, "cha", "charm"), secondColumnWidth, 9);
 
+        var namePlain = "Name: " + character.DisplayName;
+        var nameColored = ColoredField("Name: ", character.DisplayName);
         var lines = new List<string>
         {
-            Compose("Name: " + character.DisplayName, ColoredField("Name: ", character.DisplayName), ColoredField("Lives/CP: ", $"{lives}/{creationPoints}"), rightColumn),
-            Compose(raceExp.Plain, raceExp.Colored, ColoredField("Perception: ", Read(skills, "perception", "per")), rightColumn),
-            Compose(classLevel.Plain, classLevel.Colored, ColoredField("Stealth: ", Read(skills, "stealth", "sneak")), rightColumn),
-            Compose(hitsArmor.Plain, hitsArmor.Colored, ColoredField("Thievery: ", Read(skills, "thievery", "thief")), rightColumn),
-            new string(' ', rightColumn) + ColoredField("Traps: ", Read(skills, "traps", "trap")),
-            new string(' ', rightColumn) + ColoredField("Picklocks: ", Read(skills, "picklocks", "picklock")),
-            string.Empty,
-            Compose(strAgi.Plain, strAgi.Colored, ColoredField("Tracking: ", Read(skills, "tracking", "track")), rightColumn),
-            Compose(intHealth.Plain, intHealth.Colored, ColoredField("Martial Arts: ", Read(skills, "martial_arts", "martialarts", "ma")), rightColumn),
-            Compose(willCharm.Plain, willCharm.Colored, ColoredField("MagicRes: ", Read(resistances, "magic", "magicres", "magic_resistance")), rightColumn)
+            ComposeLeft(namePlain, nameColored, RightField("Lives/CP: ", $"{lives}/{creationPoints}")),
+            ComposeThree(race, exp, RightField("Perception: ", Read(skills, "perception", "per"))),
+            ComposeThree(charClass, level, RightField("Stealth: ", Read(skills, "stealth", "sneak"))),
+            ComposeThree(hits, armor, RightField("Thievery: ", Read(skills, "thievery", "thief")))
         };
+
+        var classDefinition = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId)
+            .RequireClass(character.ClassId);
+        var usesKai = classDefinition.Magic?.Type == 5;
+        if (character.MaximumMana > 0)
+        {
+            var resourceLabel = usesKai ? "Kai:" : "Mana:";
+            var maximumManaModified = !usesKai &&
+                ((semantic?.DerivedStats.GetValueOrDefault("maximum_mana_bonus") ?? 0) != 0
+                 || RuntimeClassicStatusProjection.Numeric(character, "maximum_mana") != 0);
+            var resource = maximumManaModified
+                ? FixedField(resourceLabel, $"* {character.Mana}/{character.MaximumMana}", firstColumnWidth, 6)
+                : FixedField(resourceLabel, $"{character.Mana}/{character.MaximumMana}", firstColumnWidth, usesKai ? 9 : 8);
+            var casting = usesKai
+                ? (new string(' ', secondColumnWidth), new string(' ', secondColumnWidth))
+                : FixedField("Spellcasting:", Read(skills, "spellcasting", "spell_casting"), secondColumnWidth, 14);
+            lines.Add(ComposeThree(resource, casting, RightField("Traps: ", Read(skills, "traps", "trap"))));
+        }
+        else
+        {
+            lines.Add(new string(' ', leftWidth) + RightField("Traps: ", Read(skills, "traps", "trap")));
+        }
+
+        lines.Add(new string(' ', leftWidth) + RightField("Picklocks: ", RuntimeClassicCharacterProgressionFormula.PicklocksValue(character)));
+        lines.Add(ComposeThree(strength, agility, RightField("Tracking: ", Read(skills, "tracking", "track"))));
+        lines.Add(ComposeThree(intellect, health, RightField("Martial Arts: ", Read(skills, "martial_arts", "martialarts", "ma"))));
+        lines.Add(ComposeThree(willpower, charm, RightField("MagicRes: ", Read(resistances, "magic", "magicres", "magic_resistance"))));
         var activeDescriptions = ActiveSpellStatusMessages(session, actor.Id);
         if (activeDescriptions.Count > 0)
         {
@@ -207,7 +271,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         try
         {
             var schedule = RuntimeCharacterProgressionSchedule.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId));
-            var row = schedule.Require(character, nextLevel);
+            var foundation = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId);
+            var row = schedule.Require(character, nextLevel, foundation.RequireRace(character.RaceId), foundation.RequireClass(character.ClassId));
             var remaining = Math.Max(0L, row.RequiredExperience - character.Experience);
             var percent = row.RequiredExperience <= 0
                 ? 0L
@@ -232,105 +297,137 @@ public sealed partial class RuntimeLiveGameplayFacade
         string.Equals(sex, "Female", StringComparison.OrdinalIgnoreCase) ? "Female" :
         "Unspecified";
 
-    public string RenderInventory(RuntimeSession session)
+    public string RenderInventory(RuntimeSession session) => RenderMajorMudInventorySheet(session);
+
+    // EQUIPMENT is retained as a Reforged convenience command, but its presentation
+    // intentionally uses the same native MajorMUD inventory sheet as INVENTORY.
+    public string RenderEquipment(RuntimeSession session) => RenderMajorMudInventorySheet(session);
+
+    public string RenderKeys(RuntimeSession session)
     {
         var state = LoadItemState(session);
-        if (state is null)
-        {
-            return "You are carrying nothing.";
-        }
-
-        var inventory = state.Items
+        if (state is null) return "You have no keys.";
+        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var keys = state.Items
             .Where(item => string.Equals(item.OwnerId, session.Actor.Id, StringComparison.OrdinalIgnoreCase)
-                && string.Equals(item.LocationKind, RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
-                && item.EquippedSlot is null)
-            .OrderBy(item => item.CanonicalItemId, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(item => item.InstanceId, StringComparer.OrdinalIgnoreCase)
+                && (string.Equals(item.LocationKind, RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(item.LocationKind, RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase))
+                && IsClassicKey(catalog.Require(item.CanonicalItemId)))
+            .Select(item => FormatClassicQuantity(catalog.Require(item.CanonicalItemId).Name, item.StackQuantity))
             .ToArray();
-
-        if (inventory.Length == 0)
-        {
-            return $"You are carrying nothing.\nGold: {state.Gold}";
-        }
-
-        return "Inventory:" + Environment.NewLine
-            + string.Join(Environment.NewLine, inventory.Select(RenderItem))
-            + Environment.NewLine + $"Gold: {state.Gold}";
+        return FormatClassicKeyLine(keys);
     }
 
-    public string RenderEquipment(RuntimeSession session)
+    private string RenderMajorMudInventorySheet(RuntimeSession session)
     {
         var state = LoadItemState(session);
         if (state is null)
-        {
-            return "You are carrying nothing.\nWealth: 0 copper farthings\nEncumbrance: 0/0 - None [0%]";
-        }
+            return "You are carrying nothing.\nYou have no keys.\nWealth: 0 copper farthings\nEncumbrance: 0/0 - None";
 
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var owned = state.Items
             .Where(item => string.Equals(item.OwnerId, session.Actor.Id, StringComparison.OrdinalIgnoreCase)
                 && (string.Equals(item.LocationKind, RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
                     || string.Equals(item.LocationKind, RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)))
-            .OrderBy(item => item.EquippedSlot is null ? 1 : 0)
-            .ThenBy(item => catalog.Require(item.CanonicalItemId).Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        var carriedText = owned.Length == 0
-            ? "You are carrying nothing."
-            : "You are carrying " + string.Join(", ", owned.Select(item =>
-            {
-                var definition = catalog.Require(item.CanonicalItemId);
-                var quantity = item.StackQuantity > 1 ? $"{item.StackQuantity} {definition.Name}" : definition.Name;
-                return item.EquippedSlot is null
-                    ? quantity
-                    : $"{quantity} ({ClassicDisplaySlot(catalog, item)})";
-            }));
+        var currency = RuntimeBundleCInventoryAuthority.ReadCurrency(state);
+        var carriedParts = new List<string>();
+        var currencyText = RuntimeMajorMudCompatibility.FormatInventoryCurrency(currency);
+        if (!string.IsNullOrWhiteSpace(currencyText)) carriedParts.Add(currencyText);
+
+        foreach (var item in owned.Where(item => !IsClassicKey(catalog.Require(item.CanonicalItemId))))
+        {
+            var definition = catalog.Require(item.CanonicalItemId);
+            var quantity = item.StackQuantity > 1 ? $"{item.StackQuantity} {definition.Name}" : definition.Name;
+            carriedParts.Add(item.EquippedSlot is null
+                ? quantity
+                : $"{quantity} ({ClassicDisplaySlot(catalog, item)})");
+        }
+
+        var lines = new List<string>
+        {
+            carriedParts.Count == 0 ? "You are carrying nothing." : "You are carrying " + string.Join(", ", carriedParts)
+        };
 
         var keyNames = owned
-            .Where(item => catalog.Require(item.CanonicalItemId).ItemType.Contains("key", StringComparison.OrdinalIgnoreCase)
-                || catalog.Require(item.CanonicalItemId).Name.Contains(" key", StringComparison.OrdinalIgnoreCase))
-            .Select(item => catalog.Require(item.CanonicalItemId).Name)
+            .Where(item => IsClassicKey(catalog.Require(item.CanonicalItemId)))
+            .Select(item => FormatClassicQuantity(catalog.Require(item.CanonicalItemId).Name, item.StackQuantity))
             .ToArray();
-
-        var lines = new List<string> { carriedText };
-        if (keyNames.Length > 0) lines.Add("You have the following keys:  " + string.Join(", ", keyNames) + ".");
+        lines.Add(FormatClassicKeyLine(keyNames));
 
         var character = _characters.LoadCharacter(session.Actor.Id);
-        var projection = character is null
-            ? null
-            : RuntimeBundleCInventoryAuthority.Project(character, catalog);
-        if (projection is null)
+        if (character is null)
         {
-            lines.Add($"Wealth: {state.Gold} copper farthings");
-            lines.Add("Encumbrance: 0/0 - None [0%]");
+            lines.Add($"Wealth: {currency.CopperValue} copper farthings");
+            lines.Add("Encumbrance: 0/0 - None");
             return string.Join(Environment.NewLine, lines);
         }
 
+        var projection = RuntimeBundleCInventoryAuthority.Project(character, catalog);
         lines.Add($"Wealth: {projection.Currency.CopperValue} copper farthings");
-        var strength = ReadClassicStrength(character!);
-        var capacity = checked(Math.Max(0L, strength) * 48L);
-        var percent = capacity <= 0 ? 0 : (int)Math.Min(999L, projection.TotalCarriedWeight * 100L / capacity);
-        var band = percent >= 86 ? "Heavy" : percent >= 67 ? "Medium" : percent >= 34 ? "Light" : "None";
-        lines.Add($"Encumbrance: {projection.TotalCarriedWeight}/{capacity} - {band} [{percent}%]");
+        var strength = ReadClassicStrength(character, owned, catalog);
+        var baseCapacity = RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(strength);
+        var modifierPercent = ReadClassicEncumberanceCapacityBonus(character, session.World.Definition.Id);
+        var capacity = RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(baseCapacity, modifierPercent);
+        lines.Add(RuntimeMajorMudCompatibility.FormatEncumberanceLine(projection.TotalCarriedWeight, capacity));
         return string.Join(Environment.NewLine, lines);
     }
 
-    private static int ReadClassicStrength(RuntimeCharacterRecord character)
+    private static bool IsClassicKey(RuntimeItemDefinition definition) =>
+        definition.ItemType.Equals("key", StringComparison.OrdinalIgnoreCase);
+
+    private static string FormatClassicQuantity(string name, int quantity) =>
+        Math.Max(1, quantity) > 1 ? $"{Math.Max(1, quantity)} {name}" : name;
+
+    internal static string FormatClassicKeyLine(IReadOnlyList<string> keyNames) =>
+        keyNames.Count == 0
+            ? "You have no keys."
+            : "You have the following keys:  " + string.Join(", ", keyNames) + ".";
+
+    private int ReadClassicEncumberanceCapacityBonus(RuntimeCharacterRecord character, string worldId)
     {
-        foreach (var key in new[] { "strength", "str" })
-            if (character.BaseStats.TryGetValue(key, out var value))
-                return Math.Max(0, value + RuntimeClassicStatusProjection.Numeric(character, "strength"));
-        return 0;
+        var characterCatalog = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, worldId);
+        var permanent = characterCatalog.RequireRace(character.RaceId).AbilitySlots
+            .Where(grant => grant.AbilityId == 96).Sum(grant => grant.Value)
+            + characterCatalog.RequireClass(character.ClassId).AbilitySlots
+                .Where(grant => grant.AbilityId == 96).Sum(grant => grant.Value);
+        var equipment = character.SemanticState?.DerivedStats.GetValueOrDefault("encumbrance_modifier_percent") ?? 0;
+
+        // The recovered maximum-capacity function proves positive permanent and
+        // equipment Ability 96 bonuses here. Timed spell/status effects remain
+        // separate from the displayed maximum until their native interaction is proven.
+        return checked(Math.Max(0, permanent + equipment));
+    }
+
+    private static int ReadClassicStrength(
+        RuntimeCharacterRecord character,
+        IReadOnlyList<RuntimeItemInstance> owned,
+        RuntimeItemCatalog itemCatalog)
+    {
+        var baseStrength = 0;
+        foreach (var key in new[] { "strength", "str", "STR" })
+        {
+            if (!character.BaseStats.TryGetValue(key, out var value)) continue;
+            baseStrength = value;
+            break;
+        }
+
+        var equipmentStrength = owned
+            .Where(item => item.EquippedSlot is not null)
+            .Sum(item => itemCatalog.Require(item.CanonicalItemId).EquipmentAbilityModifiers.GetValueOrDefault(46));
+        var activeStrength = RuntimeClassicStatusProjection.Numeric(character, "stat_strength");
+        return Math.Max(0, checked(baseStrength + equipmentStrength + activeStrength));
     }
 
     private static string ClassicDisplaySlot(RuntimeItemCatalog catalog, RuntimeItemInstance item)
     {
         var relation = catalog.Equipment(item.CanonicalItemId);
-        if (relation?.TwoHanded == true) return "Two handed";
+        if (relation?.TwoHanded == true) return "Weapon Hand";
         return (item.EquippedSlot ?? relation?.Slot ?? "equipped").ToUpperInvariant() switch
         {
-            "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "HAND" or "WIELD" => "One handed",
-            "OFF_HAND" or "SECONDARY_HAND" => "Off hand",
+            "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "WEAPON_HAND" or "HAND" or "WIELD" => "Weapon Hand",
+            "OFF_HAND" or "SECONDARY_HAND" => "Off-Hand",
             "ARMS" => "Arms",
             "TORSO" or "BODY" or "CHEST" => "Torso",
             "BACK" => "Back",
@@ -342,8 +439,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             "HEAD" or "HELM" => "Head",
             "LEGS" => "Legs",
             "NECK" => "Neck",
-            "SHIELD" => "Shield",
-            var slot => slot.Replace('_', ' ').ToLowerInvariant()
+            "EARS" or "EAR" => "Ears",
+            "FACE" => "Face",
+            "EYES" or "EYE" => "Eyes",
+            "WORN" or "WORN_ITEM" => "Worn",
+            "SHIELD" => "Off-Hand",
+            var slot => System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(slot.Replace('_', ' ').ToLowerInvariant())
         };
     }
 
@@ -396,7 +497,27 @@ public sealed partial class RuntimeLiveGameplayFacade
             return ClassicRuntimeAudit.RenderSpawnVerification(session.World, Living(session));
         }
 
-        return "Use: audit, audit room <room>, or audit spawns.";
+        if (command.Arguments[0].Equals("megamud", StringComparison.OrdinalIgnoreCase))
+        {
+            return ClassicRuntimeAudit.RenderMegaMudCompatibility(session.World);
+        }
+
+        if (command.Arguments[0].Equals("parity", StringComparison.OrdinalIgnoreCase))
+        {
+            return RuntimeMajorMudParityAudit.Render(RuntimeMajorMudParityAudit.Run(_characters.ProjectRoot));
+        }
+
+        if (command.Arguments[0].Equals("timers", StringComparison.OrdinalIgnoreCase))
+        {
+            return RuntimeMajorMudTimerAudit.Render(RuntimeMajorMudTimerAudit.Run(_characters.ProjectRoot, Living(session)));
+        }
+
+        if (command.Arguments[0].Equals("combat", StringComparison.OrdinalIgnoreCase))
+        {
+            return RuntimeMajorMudCombatAudit.Render(RuntimeMajorMudCombatAudit.Run(_characters.ProjectRoot));
+        }
+
+        return "Use: audit, audit room <room>, audit spawns, audit megamud, audit parity, audit timers, or audit combat.";
     }
 
     private RuntimeItemState? LoadItemState(RuntimeSession session)
@@ -458,11 +579,15 @@ public sealed class RuntimeLiveGameplaySmokeReport
 
             Require(RuntimeCommand.Parse("eq").Name == "equipment", "equipment-alias");
             report.Checks.Add("equipment-alias");
+            Require(RuntimeCommand.Parse("key").Name == "keys", "keys-prefix");
+            Require(RuntimeCommand.Parse("keys").Name == "keys", "keys-command");
+            report.Checks.Add("keys-command-routing");
             Require(RuntimeCommand.Parse("eq longsword").Name == "equipment" && RuntimeCommand.Parse("eq longsword").ArgumentText == "longsword", "equipment-equip-context-alias");
             Require(RuntimeCommand.Parse("equip longsword").Name == "equip" && RuntimeCommand.Parse("equip longsword").ArgumentText == "longsword", "equip-command-route");
             report.Checks.Add("equipment-equip-context-alias");
             report.Checks.Add("equip-command-route");
 
+            Require(RuntimeCommand.Parse("st").Name == "score", "st-alias");
             Require(RuntimeCommand.Parse("stat").Name == "score", "stat-alias");
             Require(RuntimeCommand.Parse("stats").Name == "score", "stats-alias");
             Require(RuntimeCommand.Parse("status").Name == "score", "status-alias");
@@ -474,8 +599,8 @@ public sealed class RuntimeLiveGameplaySmokeReport
 
             Require(RuntimeCommand.Parse("s").Name.Equals("south", StringComparison.Ordinal), "movement-south-s");
             Require(RuntimeCommand.Parse("se").Name.Equals("southeast", StringComparison.Ordinal), "movement-southeast-se");
-            Require(RuntimeCommand.Parse("st").ResolutionError.StartsWith("Ambiguous command", StringComparison.Ordinal), "ambiguous-st");
-            report.Checks.Add("ambiguous-prefix-rejection");
+            Require(RuntimeCommand.Parse("st").Name == "score", "status-st-alias");
+            report.Checks.Add("native-status-st-alias");
 
             var save = RuntimeCommand.Parse("save");
             Require(save.Name == "save", "save-command");
@@ -488,7 +613,56 @@ public sealed class RuntimeLiveGameplaySmokeReport
 
             var audit = RuntimeCommand.Parse("audit room Village Entrance");
             Require(audit.Name == "audit" && audit.ArgumentText == "room Village Entrance", "audit-command");
+            Require(RuntimeCommand.Parse("audit parity").ArgumentText == "parity", "audit-parity-command");
+            Require(RuntimeCommand.Parse("audit timers").ArgumentText == "timers", "audit-timers-command");
+            Require(RuntimeCommand.Parse("audit combat").ArgumentText == "combat", "audit-combat-command");
+            Require(RuntimeMajorMudParityAudit.Percent(32, 94) == 34.0d, "audit-parity-percent");
             report.Checks.Add("audit-command");
+            report.Checks.Add("audit-parity-command");
+            report.Checks.Add("audit-timers-command");
+            report.Checks.Add("audit-combat-command");
+            report.Checks.Add("audit-parity-percent");
+
+            Require(RuntimeCommand.Parse("statline full").Name == "statline", "classic-statline-command");
+            Require(RuntimeCommand.Parse("set statline full custom [%h/%H]").Name == "set", "classic-set-statline-command");
+            report.Checks.Add("classic-statline-command-routing");
+
+            var megaMudEntranceExits = new[]
+            {
+                new RuntimeExit { Direction = "N", TargetMapId = 1, TargetRoomNumber = 1, GateKind = "open" },
+                new RuntimeExit { Direction = "S", TargetMapId = 1, TargetRoomNumber = 1, GateKind = "open" },
+                new RuntimeExit { Direction = "W", TargetMapId = 1, TargetRoomNumber = 1, GateKind = "open" },
+                new RuntimeExit { Direction = "SE", TargetMapId = 1, TargetRoomNumber = 1, GateKind = "open" },
+                new RuntimeExit { Direction = "E", TargetMapId = 1, TargetRoomNumber = 1, GateKind = "text_command" }
+            };
+            Require(RuntimeMajorMudCompatibility.ComputeMegaMudRoomHash("Newhaven, Village Entrance") == "2D6", "megamud-room-hash");
+            Require(RuntimeMajorMudCompatibility.ComputeMegaMudExitCode(megaMudEntranceExits) == "01045", "megamud-exit-code");
+            Require(RuntimeMajorMudCompatibility.RenderStatlineTemplate("[%h/%H %m/%M]%r", 18, 20, 4, 7, 0, 0, 0, string.Empty) == "[18/20 4/7]", "majormud-custom-statline-template");
+            Require(RuntimeMajorMudCompatibility.FormatDefaultStatlinePlain(328, 270, usesKai: false, resting: false) == "[HP=328/MA=270]:", "majormud-default-mana-statline");
+            Require(RuntimeMajorMudCompatibility.FormatDefaultStatlinePlain(571, 64, usesKai: true, resting: false) == "[HP=571/KAI=64]:", "majormud-default-kai-statline");
+            Require(RuntimeMajorMudCompatibility.FormatDefaultStatlinePlain(182, 274, usesKai: false, resting: true) == "[HP=182/MA=274]: (Resting)", "majormud-resting-statline");
+            Require(RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(100) == 4800, "majormud-encumbrance-base-100");
+            Require(RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(110) == 5640, "majormud-encumbrance-over-100");
+            Require(RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(170) == 10680, "majormud-encumbrance-over-100-slope");
+            Require(RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(5640, 20) == 6768, "majormud-encumbrance-ability-modifier");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(1567, 6768) == "Light", "majormud-encumbrance-light-23");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(1029, 3840) == "Light", "majormud-encumbrance-light-26");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(1875, 4320) == "Medium", "majormud-encumbrance-medium-43");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(1535, 2880) == "Medium", "majormud-encumbrance-medium-53");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(6473, 10680) == "Medium", "majormud-encumbrance-medium-60");
+            Require(RuntimeMajorMudCompatibility.ClassifyEncumberance(7776, 7776) == "Heavy", "majormud-encumbrance-heavy-100");
+            Require(RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(
+                RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(120), 20) == 7776, "majormud-dwarf-paladin-capacity");
+            Require(RuntimeMajorMudCompatibility.FormatEncumberanceLine(1567, 6768) == "Encumbrance: 1567/6768 - Light [23%]", "majormud-encumbrance-line");
+            Require(RuntimeMajorMudCompatibility.FormatInventoryCurrency(new RuntimeClassicInventoryCurrency(1, 41, 41, 0, 0)) == "1 Runic Coins, 41 platinum pieces, 41 gold crowns", "majormud-inventory-currency-line");
+            Require(RuntimeLiveGameplayFacade.FormatClassicKeyLine(new[] { "helmet key", "2 dragon key" }) == "You have the following keys:  helmet key, 2 dragon key.", "majormud-key-ring-line");
+            report.Checks.Add("majormud-native-inventory-encumbrance-format");
+            Require(RuntimeMajorMudCompatibility.FormatRoomOccupants(
+                new[] { (Name: "Night", IsFiend: false), (Name: "Rave", IsFiend: true) },
+                new[] { "ju-ju zombie", "ju-ju zombie" })
+                == "Also here: Night, Rave*, ju-ju zombie, ju-ju zombie.", "majormud-fiend-marker");
+            report.Checks.Add("megamud-room-signature-compatibility");
+            report.Checks.Add("majormud-native-prompt-and-presence-format");
 
             Require(RuntimeCommand.SupportedCommands.SetEquals(RuntimeCommand.DefaultRegistrations.Select(registration => registration.Canonical)), "supported-command-catalog");
             Require(RuntimeCommandRuntimeRouteCatalog.Definitions.Count == RuntimeCommand.DefaultRegistrations.Count, "runtime-route-catalog-count");

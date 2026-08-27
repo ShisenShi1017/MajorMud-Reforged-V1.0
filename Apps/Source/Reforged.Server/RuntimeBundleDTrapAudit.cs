@@ -26,6 +26,7 @@ public static class RuntimeBundleDTrapAudit
         Check(spell.All(x => x.SpellId > 0 && x.Damage == 0), "spell-identifiers-preserved");
         Check(definitions.Select(x => x.ExitId).Distinct(StringComparer.OrdinalIgnoreCase).Count() == definitions.Length, "one-trap-per-canonical-exit");
         Check(definitions.All(x => x.SourceExitRecord.Equals(x.ExitId, StringComparison.OrdinalIgnoreCase)), "source-exit-provenance-preserved");
+        Check(definitions.All(x => !x.NativeActivationStateProjected && x.NativeActivationState is null), "mme-projection-does-not-invent-trap-para2-state");
 
         var options = ServerRuntimeOptions.Load(projectRoot);
         var definition = options.Worlds.First(x => x.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));
@@ -38,7 +39,8 @@ public static class RuntimeBundleDTrapAudit
         Check(File.ReadAllText(dispatcherPath).Contains("ApplyExitTrap(session, previousRoom, command.Name)", StringComparison.Ordinal), "normal-movement-invokes-live-trap-consumer");
         var runtimeText = File.ReadAllText(runtimePath);
         Check(runtimeText.Contains("CompletePlayerDefeat(session, character)", StringComparison.Ordinal), "lethal-damage-uses-authoritative-death-consumer");
-        Check(runtimeText.Contains("RuntimeSpellExecutionEngine", StringComparison.Ordinal), "spell-traps-use-authoritative-spell-engine");
+        Check(runtimeText.Contains("RuntimeSpellExecutionEngine", StringComparison.Ordinal), "spell-traps-retain-authoritative-spell-engine-consumer");
+        Check(runtimeText.Contains("if (!trap.NativeActivationStateProjected) return string.Empty;", StringComparison.Ordinal), "unknown-native-trap-activation-fails-closed");
         Check(!runtimeText.Contains("DetectionDifficulty", StringComparison.Ordinal) && !runtimeText.Contains("DisarmDifficulty", StringComparison.Ordinal), "no-unsupported-detection-or-disarm-values-invented");
         Check(Directory.GetFiles(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server"), "RuntimeClassicExitTraps.cs", SearchOption.TopDirectoryOnly).Length == 1, "single-live-exit-trap-consumer");
 

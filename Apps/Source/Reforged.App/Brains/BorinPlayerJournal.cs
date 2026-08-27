@@ -76,6 +76,10 @@ public sealed record BorinSocialLesson(
 /// </summary>
 internal sealed class BorinPlayerJournalStore : IAsyncDisposable
 {
+    private const int MaximumConversations = 500;
+    private const int MaximumReflections = 250;
+    private const int MaximumSocialLessons = 150;
+    private const int MaximumSpeakerProfiles = 200;
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
         WriteIndented = true,
@@ -166,9 +170,10 @@ internal sealed class BorinPlayerJournalStore : IAsyncDisposable
         try
         {
             _ledger.Conversations.Add(entry);
-            while (_ledger.Conversations.Count > 500)
+            while (_ledger.Conversations.Count > MaximumConversations)
                 _ledger.Conversations.RemoveAt(0);
             UpdateSpeakerProfileLocked(entry);
+            TrimSpeakerProfilesLocked();
             _ledger.UpdatedAt = now;
             await SaveLockedAsync(token);
         }
@@ -204,7 +209,7 @@ internal sealed class BorinPlayerJournalStore : IAsyncDisposable
         try
         {
             _ledger.Reflections.Add(entry);
-            while (_ledger.Reflections.Count > 250)
+            while (_ledger.Reflections.Count > MaximumReflections)
                 _ledger.Reflections.RemoveAt(0);
             _ledger.UpdatedAt = now;
             await SaveLockedAsync(token);
@@ -245,7 +250,7 @@ internal sealed class BorinPlayerJournalStore : IAsyncDisposable
                 if (!duplicate)
                 {
                     _ledger.SocialLessons.Add(lesson);
-                    while (_ledger.SocialLessons.Count > 150)
+                    while (_ledger.SocialLessons.Count > MaximumSocialLessons)
                         _ledger.SocialLessons.RemoveAt(0);
                 }
             }
@@ -300,7 +305,18 @@ internal sealed class BorinPlayerJournalStore : IAsyncDisposable
         var conversations = _ledger.Conversations.TakeLast(Math.Clamp(maximumConversations, 1, 12)).Select(item =>
             $"- {item.Speaker} ({item.Channel}): {item.MessageSummary} -> Borin: {item.BorinResponse} [{item.Rating}]");
         var lessons = _ledger.SocialLessons.TakeLast(8).Select(item => $"- {item.Scope}: {item.Lesson}");
-        return $"Recent conversations:\n{JoinOrNone(conversations)}\nVerified social lessons:\n{JoinOrNone(lessons)}";
+        var reflections = _ledger.Reflections.TakeLast(6).Select(item =>
+            $"- {item.Timestamp:yyyy-MM-dd HH:mm}: {item.Text}");
+        return $"Recent prior reflections (self-authored strategy notes, never gameplay proof):\n{JoinOrNone(reflections)}\nRecent conversations:\n{JoinOrNone(conversations)}\nVerified social lessons:\n{JoinOrNone(lessons)}";
+    }
+
+    public string BuildGameplayReflectionGuidance(int maximumReflections = 6)
+    {
+        ThrowIfDisposed();
+        var reflections = _ledger.Reflections
+            .TakeLast(Math.Clamp(maximumReflections, 1, 12))
+            .Select(item => $"- {item.Timestamp:yyyy-MM-dd HH:mm} • goal {item.Goal} • room {item.Room}: {item.Text}");
+        return $"Earlier Borin reflections are strategy hypotheses and continuity notes, not evidence. Live server state and verified gameplay observations override them.\n{JoinOrNone(reflections)}";
     }
 
     public string BuildVisibleSummary()
@@ -401,8 +417,28 @@ internal sealed class BorinPlayerJournalStore : IAsyncDisposable
         _ledger.Conversations ??= [];
         _ledger.SocialLessons ??= [];
         _ledger.Speakers ??= [];
+
+        if (_ledger.Reflections.Count > MaximumReflections)
+            _ledger.Reflections = _ledger.Reflections.TakeLast(MaximumReflections).ToList();
+        if (_ledger.Conversations.Count > MaximumConversations)
+            _ledger.Conversations = _ledger.Conversations.TakeLast(MaximumConversations).ToList();
+        if (_ledger.SocialLessons.Count > MaximumSocialLessons)
+            _ledger.SocialLessons = _ledger.SocialLessons.TakeLast(MaximumSocialLessons).ToList();
+
         foreach (var speaker in _ledger.Speakers)
             RebuildSpeakerProfileLocked(speaker.Name);
+        TrimSpeakerProfilesLocked();
+    }
+
+    private void TrimSpeakerProfilesLocked()
+    {
+        if (_ledger.Speakers.Count <= MaximumSpeakerProfiles)
+            return;
+
+        _ledger.Speakers = _ledger.Speakers
+            .OrderByDescending(item => item.LastSeen)
+            .Take(MaximumSpeakerProfiles)
+            .ToList();
     }
 
     private void RaiseChanged() => Changed?.Invoke(this, CreateStatus());

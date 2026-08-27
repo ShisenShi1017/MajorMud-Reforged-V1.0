@@ -1,0 +1,164 @@
+{
+  "schema": "majormud.death-law-pvp-lifecycle-evidence.v1",
+  "update": "0285",
+  "classification_policy": "PASS requires exact behavior plus executable regression; STRONG preserves inferred ownership/room mapping/native-order gaps; UNKNOWN never guessed.",
+  "facts": [
+    {
+      "id": "graceful_exit_5s_save",
+      "state": "PASS",
+      "facts": [
+        "EXIT/X begins realm exit",
+        "five-second delay precedes leaving",
+        "character is automatically saved on exit"
+      ],
+      "runtime": [
+        "ServerNetworkHost uses GracefulExitDelaySeconds=5",
+        "session finalizer commits SaveSession"
+      ],
+      "sources": [
+        "native_message_catalog_correlation_0022.json",
+        "https://www.majormud.com/mudhelp_commands.html"
+      ]
+    },
+    {
+      "id": "rest_20s_interrupt",
+      "state": "PASS",
+      "facts": [
+        "REST bonus activates only after 20 seconds",
+        "movement interrupts",
+        "attacking interrupts",
+        "being attacked interrupts"
+      ],
+      "runtime": [
+        "RuntimeCharacterRegenerationAuthority.FocusActivationDelay=20s",
+        "focused regeneration is canceled by non-observational actions and combat"
+      ],
+      "sources": [
+        "native_message_catalog_correlation_0022.json",
+        "https://www.majormud.com/mudhelp_commands.html"
+      ]
+    },
+    {
+      "id": "law_reputation_enforcement",
+      "state": "STRONG",
+      "facts": [
+        "Lawful target attack penalty is tripled",
+        "Outlaw guards attack but spare life",
+        "Criminal guards slay",
+        "higher evil states escalate enforcement",
+        "300+ evil points blocks initiating another attack"
+      ],
+      "runtime": [
+        "RuntimeClassicDeathLawPvpAuthority.ResolveLawConsequence",
+        "RuntimeCharacterAlignmentResolver.ApplyAttack lawful multiplier"
+      ],
+      "sources": [
+        "native_message_catalog_correlation_0022.json",
+        "native_support_catalog_0020.json",
+        "https://www.majormud.com/mudhelp_classes.html",
+        "https://www.mudinfo.net/viewtopic.php?t=2509"
+      ],
+      "remaining": [
+        "exact guard spawn/target cadence",
+        "bounty arithmetic",
+        "arrest/jail/fine ordering",
+        "official help and archived legal text differ in how Villain/Fiend divine intervention is summarized; reputation consequence remains STRONG"
+      ]
+    },
+    {
+      "id": "pvp_level_range",
+      "state": "STRONG",
+      "facts": [
+        "MajorMUD setup exposes Maximum level difference for PVP",
+        "official realms demonstrate disabled, unrestricted, and 2/3/10-level restricted PvP configurations"
+      ],
+      "runtime": [
+        "RuntimePvpWorldConfiguration.MaximumLevelDifference",
+        "BeginLivePvpCombat enforces level difference",
+        "SYSOP PVP RANGE configures Reforged equivalent"
+      ],
+      "sources": [
+        "native_support_catalog_0020.json",
+        "https://wiki.mud.fyi/en/worldgroup/setup",
+        "https://www.majormud.com/mud-games.html"
+      ],
+      "remaining": [
+        "exact legacy persisted CNF field serialization/default enable semantics"
+      ]
+    },
+    {
+      "id": "practice_arena",
+      "state": "STRONG",
+      "facts": [
+        "practice arena PvP gives no evil points",
+        "practice arena death costs no life",
+        "defeated player revives in Halls Of The Dead with HP from last arena entry"
+      ],
+      "decoded_arena_room_ids": [
+        "room.map1.206",
+        "room.map1.2519",
+        "room.map17.2426",
+        "room.map17.2427",
+        "room.map17.2428",
+        "room.map17.2429",
+        "room.map17.2430",
+        "room.map17.2431",
+        "room.map17.2432",
+        "room.map17.2572",
+        "room.map17.2573"
+      ],
+      "runtime": [
+        "movement captures entry HP when entering exact decoded Arena Practice Room",
+        "PvP attack skips alignment penalty in practice arena",
+        "practice defeat restores entry HP in room 1/2189 without normal death transition"
+      ],
+      "sources": [
+        "native_message_catalog_correlation_0022.json",
+        "mmexplorer_room_records_0140",
+        "https://www.majormud.com/mudhelp_commands.html"
+      ],
+      "remaining": [
+        "native arena flag/room discriminator is not traced; exact MDB room-name mapping is STRONG"
+      ]
+    },
+    {
+      "id": "worldgroup_reconnect_takeover",
+      "state": "EXCLUDED_WORLDGROUP",
+      "facts": [
+        "raw socket/session user-state ownership is imported from Worldgroup host services"
+      ],
+      "sources": [
+        "Librarium/Evidence/native_host_service_ownership_0004.json"
+      ],
+      "runtime": [
+        "RuntimeCharacterNativeDependency.ReconnectGraceAndSocketTakeover is marked EXCLUDED_WORLDGROUP"
+      ]
+    },
+    {
+      "id": "normal_death_xp_loss",
+      "state": "UNKNOWN",
+      "facts": [
+        "normal death loses experience per stock/user evidence"
+      ],
+      "remaining": [
+        "exact percentage/value",
+        "rounding",
+        "minimum/maximum",
+        "interaction with current level threshold",
+        "ordering relative to life decrement and deathpile"
+      ],
+      "fail_closed": "no guessed XP penalty is activated"
+    },
+    {
+      "id": "major_mud_disconnect_lifecycle",
+      "state": "UNKNOWN",
+      "remaining": [
+        "linkdead combat retention",
+        "party leadership succession",
+        "trade escrow disposition",
+        "offline corpse decay reconciliation"
+      ],
+      "note": "raw Worldgroup socket takeover is excluded; these MajorMUD-owned character/gameplay effects remain unresolved."
+    }
+  ]
+}

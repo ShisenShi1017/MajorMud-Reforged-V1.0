@@ -36,6 +36,8 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
     public static RuntimeClassicNativeTextblockPayloadAuthority Load(string projectRoot)
     {
         var path = Path.Combine(projectRoot, "Data", "Classic", "native_textblock_payloads.json");
+        if (!File.Exists(path))
+            path = Path.Combine(projectRoot, "Librarium", "Objects", "native_textblock_payloads", "native_textblock_payload_records.json");
         if (!File.Exists(path)) throw new FileNotFoundException("Authoritative WCCTEXT2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
@@ -89,6 +91,8 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
     private static IReadOnlyDictionary<int, RuntimeClassicNativeDialogueMessagePayload> LoadNativeDialogueMessages(string projectRoot)
     {
         var path = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
+        if (!File.Exists(path))
+            path = Path.Combine(projectRoot, "Librarium", "Objects", "native_message_payloads", "native_message_payload_records.json");
         if (!File.Exists(path)) throw new FileNotFoundException("Authoritative WCCMSG2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var rows) || rows.ValueKind != JsonValueKind.Array)

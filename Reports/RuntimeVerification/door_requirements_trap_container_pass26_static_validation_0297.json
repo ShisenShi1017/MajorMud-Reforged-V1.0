@@ -1,0 +1,357 @@
+{
+  "pass": true,
+  "passed": 70,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "gate-strength-alternative-bool",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-strength-alternative-bool",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "strength-alternative-readbool",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "strength-alternative-not-readnullableint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-strength-alternative-hasvalue",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "allows-picklock-helper",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "allows-bash-helper",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "requirement-helper",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "any-requirement-helper",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "picklock-requirement-prefers-shared",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bash-key-strength-alternative-uses-picklock-difficulty",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "picklock-uses-native-progression-picklocks",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bash-uses-character-strength",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "numeric-requirement-pre-gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "any-requirement-branch",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "normal-movement-not-requirement-check",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "action-method-found",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "action-roll-remains-gated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-random-in-action-boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-door-state-mutation-before-roll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-count:doorCount",
+      "pass": true,
+      "detail": "expected=1648 actual=1648"
+    },
+    {
+      "name": "evidence-count:keyExitCount",
+      "pass": true,
+      "detail": "expected=166 actual=166"
+    },
+    {
+      "name": "evidence-count:doorNumericPicklocksOrStrength",
+      "pass": true,
+      "detail": "expected=1178 actual=1178"
+    },
+    {
+      "name": "evidence-count:doorAnyPicklocksOrStrength",
+      "pass": true,
+      "detail": "expected=109 actual=109"
+    },
+    {
+      "name": "evidence-count:doorNoProjectedPicklockOrBashAlternative",
+      "pass": true,
+      "detail": "expected=361 actual=361"
+    },
+    {
+      "name": "evidence-count:keyNumericPicklocksAndStrength",
+      "pass": true,
+      "detail": "expected=83 actual=83"
+    },
+    {
+      "name": "evidence-count:keyNumericPicklocksOnly",
+      "pass": true,
+      "detail": "expected=61 actual=61"
+    },
+    {
+      "name": "evidence-count:keyAnyPicklocksOnly",
+      "pass": true,
+      "detail": "expected=1 actual=1"
+    },
+    {
+      "name": "evidence-count:keyNoProjectedActionAlternative",
+      "pass": true,
+      "detail": "expected=21 actual=21"
+    },
+    {
+      "name": "evidence-strength-storage-boolean",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-picklocks-owner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-bash-owner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-movement-no-auto-check",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-count-295",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-five-state-family",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-para2-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-status-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-mdb-located",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generic-world-container-assertion-removed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "scope-excludes-curated-world-container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "scope-excludes-native-world-container",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "active-registry-world-container-removed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-generic-container-false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "container-owner:Character/Items",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "container-owner:Economy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "container-owner:Gangs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "container-owner:NPC/Spawn/Loot",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-update-0297",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "door-ledger-strong",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "door-ledger-requirements-described",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-ledger-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-pass26-update",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-door-strong",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-pass26-key-bool",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-pass26-success-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-trap-para2-not-recovered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "audit-current-ledger",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "audit-current-scope",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-pass-73",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-strong-76",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-unknown-28",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-total-177",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-strict-41.2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-backed-84.2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "remaining-system-count-27",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_door_requirements_container_scope_evidence_0297.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_ownership_scope_0297.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_parity_assertions_0297.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/RemainingSystems/remaining_systems_registry.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Reports/RuntimeVerification/majormud_parity_scorecard_0297.json",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

@@ -47,6 +47,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
     private readonly INvidiaNimEndpointTelemetry _ultraEndpointTelemetry;
     private readonly BorinAiRoutingSettings _aiRoutingSettings;
     private readonly LocalGgufBrain? _localBrain;
+    private readonly BorinHeadlessTrainingService _headlessTraining = new();
     private IBorinCapabilities? _guardianCapabilities;
     private ForgeConversationState _state = new();
     private ForgeRepositorySnapshot? _snapshot;
@@ -750,6 +751,17 @@ public sealed class BorinForgeViewModel : ViewModelBase
         RaiseCommandStates();
     }
 
+    private async Task<bool> TryHandleHeadlessTrainingAsync(string request)
+    {
+        if (!_headlessTraining.IsTrainingRequest(request)) return false;
+        Status = "Borin headless trainer";
+        var response = await _headlessTraining.HandleAsync(Configuration.RepositoryPath, request, CancellationToken.None);
+        Add("Borin", response);
+        await _memoryStore.RecordTurnAsync(request, response, CancellationToken.None);
+        await PersistAsync();
+        return true;
+    }
+
     private async Task SendAsync()
     {
         var request = Input.Trim();
@@ -775,6 +787,11 @@ public sealed class BorinForgeViewModel : ViewModelBase
         await CaptureAcademyCorrectionCandidateAsync(request);
 
         Add("You", request);
+        if (await TryHandleHeadlessTrainingAsync(request))
+        {
+            RaiseCommandStates();
+            return;
+        }
         if (await TryHandleGuardianCapabilityAsync(request))
         {
             RaiseCommandStates();
@@ -1379,14 +1396,21 @@ public sealed class BorinForgeViewModel : ViewModelBase
         };
     }
 
-    private static string DescribeCommandOwner(ClientCommandOrigin origin) => origin switch
+    private static string DescribeCommandOwner(ClientCommandOrigin origin)
     {
-        ClientCommandOrigin.Human => "William through the terminal",
-        ClientCommandOrigin.Borin => "Borin's player controller",
-        ClientCommandOrigin.RouteAutomation => "the Reforged route automation",
-        ClientCommandOrigin.SystemLogin => "the Reforged login controller",
-        _ => origin.ToString(),
-    };
+        var originName = origin.ToString();
+
+        if (originName.Equals("Borin", StringComparison.OrdinalIgnoreCase))
+            return "Borin's player controller";
+
+        return origin switch
+        {
+            ClientCommandOrigin.Human => "William through the terminal",
+            ClientCommandOrigin.RouteAutomation => "the Reforged route automation",
+            ClientCommandOrigin.SystemLogin => "the Reforged login controller",
+            _ => originName,
+        };
+    }
 
     private static string FormatVerifiedVital(int current, int maximum, int percent) =>
         maximum > 0

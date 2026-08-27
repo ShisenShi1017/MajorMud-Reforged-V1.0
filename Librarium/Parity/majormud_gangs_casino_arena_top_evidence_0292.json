@@ -1,0 +1,101 @@
+{
+  "schema": "majormud-parity-evidence-v1",
+  "update": "0292",
+  "pass": 22,
+  "title": "Gangs / Gang Houses / Casino / Arena / TOP Closure",
+  "claims": [
+    {
+      "id": "casino-room-1-2",
+      "confidence": "STRONG",
+      "claim": "Lucky Strike Casino room 1/2 native textblock 997 maps Dragon's Dice aliases to price 10000 and random table 998, and slot/Crowns-and-Skulls aliases to price 1000 and random table 1020.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json"
+      ]
+    },
+    {
+      "id": "casino-dead-jester",
+      "confidence": "STRONG",
+      "claim": "Lucky Strike Casino room 1/10 textblock 9133 maps DRAW/PLAY Dead Jester/card aliases to price 10000 and random table 9134. Native rules textblock 2994 states a wager of 100 gold and DRAW CARDS to play; 100 gold equals 10000 copper units in the recovered currency authority.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+        "Librarium/Objects/native_textblock_payloads/native_textblock_payload_records.json",
+        "Apps/Source/Reforged.Server/RuntimeBundleCEconomyAuthority.cs"
+      ]
+    },
+    {
+      "id": "casino-room-1-11",
+      "confidence": "STRONG",
+      "claim": "Lucky Strike Casino room 1/11 textblock 9135 supplies exact command-specific prices, random tables 9136/9137 and decoded adddelay 5 operations. The adddelay time unit remains unresolved and is not fabricated.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json"
+      ]
+    },
+    {
+      "id": "casino-threshold-runtime",
+      "confidence": "STRONG",
+      "claim": "RuntimeClassicCasinoAuthority preserves the decoded 1..100 threshold tables and denomination-aware payouts. Random.Shared supplies only the unresolved global 1..100 random source, so global RNG parity remains UNKNOWN.",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeClassicCasino.cs"
+      ]
+    },
+    {
+      "id": "arena-practice",
+      "confidence": "PASS",
+      "claim": "Native help message 135 states that practice-arena PvP causes no evil points or life loss and defeated players revive in Halls Of The Dead with the HP held on last arena entry; the live PvP runtime enforces that contract.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivePvp.cs"
+      ]
+    },
+    {
+      "id": "gang-create",
+      "confidence": "PASS",
+      "claim": "Native gang help requires 100000 experience and a maximum 19-character gang name; live gang creation enforces both.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs"
+      ]
+    },
+    {
+      "id": "gang-lieutenant",
+      "confidence": "STRONG",
+      "claim": "Detailed native help says Promote/Demote are leader-only; Lieutenant may invite/uninvite while the leader is not online. Pass 22 runtime now enforces that online-leader boundary.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangGameplay.cs"
+      ]
+    },
+    {
+      "id": "gang-house-upkeep",
+      "confidence": "STRONG",
+      "claim": "Native help proves Deed Shoppe purchase by the gang leader, sundown tax from the deed holder Silvermere bank, repossession with contents when funds are insufficient, guardians excluding non-members, optional shops/healers, and rubbish rooms. Existing deed/upkeep/protection authorities implement the recovered ownership and payment boundary; exact content cleanup ordering remains gated.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangHouseUpkeep.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangHouseProtection.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangHouseCatalog.cs"
+      ]
+    },
+    {
+      "id": "top-rankings",
+      "confidence": "STRONG",
+      "claim": "Native help proves TOPTEN adventurers and gang TOP forms; native setup retains Include experience in topten command? YES; operator-confirmed play proves class-filtered TOP such as TOP 10 WITCHHUNTER. Runtime now renders character/class lists ordered by experience and excludes NOTOPTEN characters, while tie/output details remain unresolved.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+        "Librarium/Evidence/native_support_catalog_0020.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGangGameplay.cs",
+        "Apps/Source/Reforged.Server/RuntimeCharacterFlags.cs"
+      ]
+    }
+  ],
+  "unresolved": [
+    "MajorMUD global RNG algorithm/seed/shared-stream semantics",
+    "Exact casino outcome message payloads where retained text is unavailable",
+    "Meaning/time unit of decoded adddelay 5 in room 1/11 casino commands",
+    "Exact character/gang TOP tie order and native rendering",
+    "Gang-name reuse rule: day after all ex-members have entered the game",
+    "Exact repossessed gang-house content cleanup/reset ordering and warning behavior"
+  ]
+}

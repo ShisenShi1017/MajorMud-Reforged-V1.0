@@ -469,12 +469,13 @@ public sealed class RuntimeMajorMudPlusService
     {
         if (!catalog.Settings.LifePurchaseEnabled || catalog.Settings.LifeCreditCost < 0)
             throw new InvalidOperationException("Life purchase is disabled.");
-        var lives = ReadConditionInt(character.Conditions, "lives", 0);
-        if (lives >= catalog.Settings.MaximumLives) throw new InvalidOperationException("You may not purchase any more lives.");
+        var lives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
+        var maximumLives = Math.Min(catalog.Settings.MaximumLives, RuntimeClassicCharacterProgressionFormula.MaximumLives);
+        if (lives >= maximumLives) throw new InvalidOperationException("You may not purchase any more lives.");
         var charged = DebitHostAndGameCosts(character, catalog.Settings.LifeCreditCost, catalog.Settings.LifeCopperCost, catalog.Settings.LifeMembershipDayCost);
         var conditions = new Dictionary<string, string>(charged.Conditions, StringComparer.OrdinalIgnoreCase)
         {
-            ["lives"] = checked(lives + 1).ToString(System.Globalization.CultureInfo.InvariantCulture)
+            ["lives"] = Math.Min(maximumLives, checked(lives + 1)).ToString(System.Globalization.CultureInfo.InvariantCulture)
         };
         _characters.SaveCharacter(charged with { Conditions = conditions }, "majormud-plus-life-purchase");
         return "You have purchased an additional life for your character.";

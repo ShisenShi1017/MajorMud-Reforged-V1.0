@@ -2,6 +2,8 @@
 
 ## Result
 
+Message `8480` is a native physical dodge/miss template, **not an assist broadcast**. Its verified player payload is `%s %s %s with his %s, but %s dodges!`.
+
 Native NPC combat presentation is exact for 735 of 736 reachable WCCMSG2 formats. The only partial format is message `8480`, used by five physical attacks on NPC `1006` (`Nahr`).
 
 ## Exhaustive Evidence Check

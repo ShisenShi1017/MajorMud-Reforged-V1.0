@@ -1,0 +1,91 @@
+{
+  "schema": "majormud.experience-party-reward-boundary.v1",
+  "update": "0295",
+  "pass": "Pass 24 \u2014 Experience Charts / Party Reward Boundary",
+  "target": "MajorMUD 1.11p parity",
+  "policy": "Exact/proven behavior is PASS; strong native-era/reverse-engineering correlation is STRONG; unresolved remainder/order/messages stay UNKNOWN.",
+  "findings": [
+    {
+      "id": "experience.race-class-chart-purpose",
+      "state": "PASS",
+      "claim": "Race/class EXP values are inputs to the character experience chart that determines total XP required to train to each level. They do not scale XP earned from monsters, quests, scripts, or other rewards.",
+      "runtime": "RuntimeClassicCharacterProgressionFormula.ExperienceChartPercent + RequiredExperience",
+      "correction": "Removed the legacy AwardExperience overload that multiplied an earned award by race/class EXP percentages. AwardExperience now accepts the already-earned amount unchanged."
+    },
+    {
+      "id": "experience.chart-formula",
+      "state": "STRONG",
+      "claim": "The retained stock calculator combines class ExpTable+100 with race ExpTable and feeds that chart into the stock level-threshold formula.",
+      "runtime": "RuntimeClassicCharacterProgressionFormula.RequiredExperience",
+      "unresolved": "Original executable callsite remains below PASS confidence even though the purpose of the fields is now operator-confirmed."
+    },
+    {
+      "id": "party.maximum-size",
+      "state": "STRONG",
+      "claim": "Classic MajorMUD parties are capped at six total characters, including the leader.",
+      "runtime": "RuntimePartyPolicy.ClassicStrongEvidence.MaximumMembers=6",
+      "unresolved": "Exact native party-full failure text remains unrecovered."
+    },
+    {
+      "id": "party.xp-not-party-shared",
+      "state": "PASS/STRONG mixed",
+      "claim": "NPC XP is divided among characters actively fighting that exact NPC at death; party membership is irrelevant. Each observed recipient receives the integer quotient.",
+      "runtime": "RuntimeLiveGameplayFacade.DistributeNpcDefeatExperience",
+      "unresolved": "Nonzero integer remainder disposition remains UNKNOWN."
+    },
+    {
+      "id": "party.loot-no-automatic-split",
+      "state": "STRONG",
+      "claim": "Monster currency/items materialize in the room rather than being automatically divided by party membership. SHARE is a separate explicit currency-sharing command.",
+      "runtime": "RuntimeCombatCompletion room-drop path + RuntimeClassicShare",
+      "unresolved": "Exact pickup competition/ownership edge behavior remains owned by item/corpse/world-container evidence."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "operator-native-behavior",
+      "date": "2026-08-26",
+      "observation": "Race/class experience is for the EXP charts: it determines how much XP it takes to level."
+    },
+    {
+      "kind": "retained-source-recovery",
+      "path": "Librarium/Parity/majormud_character_progression_evidence_0283.json",
+      "observation": "CalcExpNeededByRaceClass: class chart = class ExpTable + 100; race ExpTable is added; combined chart feeds CalcExpNeeded."
+    },
+    {
+      "kind": "official-help",
+      "url": "https://www.majormud.com/mudhelp_races.html",
+      "observation": "Official race help describes races in terms of EXP chart / EXP cost and notes lower-cost races can be several levels higher."
+    },
+    {
+      "kind": "official-help",
+      "url": "https://www.majormud.com/mudhelp_commands.html",
+      "observation": "Party commands, front>=back rule, FOLLOW behavior, and explicit SHARE currency distribution are documented."
+    },
+    {
+      "kind": "native-era-runtime-walkthrough",
+      "url": "https://www.mudcentral.org/quests/module5/m5-walkthrough.html",
+      "observation": "Combat captures show odd XP quotient awards (125->62, 525->262) while dropped currency appears on the room floor."
+    },
+    {
+      "kind": "community-reverse-engineering",
+      "url": "https://www.mudinfo.net/viewtopic.php?t=2128",
+      "observation": "Discussion explicitly describes increasing the original party limit from 6 and notes disassembly suggesting a fixed-size player-database party array."
+    }
+  ],
+  "score_effect": {
+    "before": {
+      "PASS": 73,
+      "STRONG": 75,
+      "UNKNOWN": 31,
+      "total": 179
+    },
+    "after": {
+      "PASS": 73,
+      "STRONG": 75,
+      "UNKNOWN": 31,
+      "total": 179
+    },
+    "reason": "This pass corrects the semantics of an already-PASS experience requirement and narrows the still-UNKNOWN party bucket without claiming unresolved leader/rank/death/disconnect behavior."
+  }
+}

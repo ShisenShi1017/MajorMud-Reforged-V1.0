@@ -1,0 +1,298 @@
+{
+  "schema": "majormud.commands-communication-party-evidence.v1",
+  "update": "0289",
+  "pass": "Pass 19 \u2014 Commands / Communication / Party Coordination",
+  "policy": "MajorMUD 1.11p native behavior is promoted only when recovered evidence supports it. Operator-mandated Reforged prompt behavior applies to Classic, Custom, and AI. Unproven native details remain evidence-gated or UNKNOWN.",
+  "operator_global_rule": {
+    "source": "2026-08-26 Pass 19 window handoff",
+    "scope": [
+      "Classic",
+      "Custom",
+      "AI"
+    ],
+    "dispatcher_order": [
+      "preserve the entire original prompt input",
+      "resolve a registered command including valid abbreviations",
+      "recognize explicit native speech-prefix actions and evidence-backed data-driven actions",
+      "execute the resolved command/action when valid",
+      "otherwise SAY the entire original input"
+    ],
+    "ambiguity": "An abbreviation that does not resolve to one valid command is not a valid command and therefore falls through to SAY.",
+    "unknown_command_response": "The command prompt does not emit the normal generic unknown-command response for unrecognized text.",
+    "talk_mode_note": "Native help proves FAST/SLOW speech modes, but the project rule intentionally applies command-to-SAY fallback globally in all Reforged world types."
+  },
+  "native_help": {
+    "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "command_summary_message": 3,
+    "communication": {
+      "message_number": 5,
+      "findings": [
+        "the configured talk character sends text to others in the same room",
+        "the configured yell character sends text to the current room and adjacent rooms",
+        "/Username <TEXT> is a one-recipient telepath form",
+        "SAY <MESSAGE> is a native action command",
+        "GOSSIP <MESSAGE> is heard by users whose gossip flag is enabled and GOSSIP alone toggles the flag",
+        "AUCTION is described as the same channel model as GOSSIP and is primarily for trade/sale advertising",
+        "FORGET <Player> toggles ignoring that player's telepaths and FORGET alone lists ignored senders"
+      ]
+    },
+    "party_summary": {
+      "message_number": 27,
+      "findings": [
+        "INVITE <USERNAME> invites a player",
+        "UNINVITE <USERNAME> kicks a player from the adventuring group",
+        "JOIN <USERNAME> requires an existing invite",
+        "LEAVE exits the adventuring group",
+        "PARTY displays the group",
+        "BACKRANK and FRONTRANK are native party positioning commands"
+      ]
+    },
+    "party_follow": {
+      "message_number": 147,
+      "findings": [
+        "FOLLOW <username> after an invitation starts following that person",
+        "a follower moves where the leader moves",
+        "LEAVE or leader UNINVITE stops following",
+        "the native help also mentions exit-from-game as a stop-following event, but exact linkdead/disconnect membership semantics are not inferred from this"
+      ]
+    },
+    "join": {
+      "message_number": 157,
+      "findings": [
+        "JOIN <n> selects a broadcast group",
+        "JOIN <username> joins an invited party",
+        "JOIN GANG <gangname> joins an invited gang",
+        "the decoded help states broadcast groups 1 through 126 and JOIN 0 for the default group"
+      ]
+    },
+    "leave": {
+      "message_number": 217,
+      "findings": [
+        "LEAVE while following leaves the party",
+        "LEAVE while not in a party resets the broadcast group to group 0",
+        "LEAVE GANG leaves a gang"
+      ]
+    },
+    "settings": {
+      "message_number": 117,
+      "findings": [
+        "SET TELEPATH ON/OFF exists, but the compact wording does not prove the blocking polarity safely enough for this pass",
+        "SET FOLLOW BLIND/NORMAL is native",
+        "SET SPEECH FAST/SLOW is native and FAST says otherwise-unrecognized command/action text to the room"
+      ]
+    },
+    "gossip_setting": {
+      "message_number": 175,
+      "finding": "SET GOSSIP ON/OFF and no-argument toggle behavior are directly described."
+    },
+    "auction_setting": {
+      "message_number": 177,
+      "finding": "SET AUCTION ON/OFF and no-argument toggle behavior are directly described."
+    },
+    "share": {
+      "message_number": 227,
+      "findings": [
+        "SHARE <amount> <currency> [WITH <ROOM/PARTY>] is the native syntax",
+        "PARTY is assumed when WITH ROOM or WITH PARTY is omitted",
+        "the requested amount is divided evenly among eligible recipients using whole currency units and the sender retains the remainder",
+        "the sender is not counted as a recipient",
+        "hidden recipients are excluded",
+        "recipients whose RECEIVE setting is off are excluded"
+      ],
+      "runtime_boundary": "Core recipient selection, integer distribution, remainder retention, and exact-denomination preservation are implemented. Exact native validation ordering and success/failure prose remain unresolved."
+    },
+    "follow_mode": {
+      "message_number": 153,
+      "findings": [
+        "SET FOLLOW BLIND and SET FOLLOW NORMAL are native",
+        "BLIND suppresses room descriptions while moving with the party",
+        "NORMAL shows room descriptions normally while moving with the party"
+      ],
+      "runtime_boundary": "The proven room-description distinction is live. Exact default mode and any additional message suppression outside room descriptions remain unresolved."
+    },
+    "broadcasting": {
+      "message_number": 123,
+      "findings": [
+        "BROADCAST <text> sends to the selected broadcast group",
+        "BR is an explicitly documented alias for BROADCAST",
+        "the apostrophe prefix can act as a broadcast shortcut when that global command character is available",
+        "BROADGANG has the explicit BG alias",
+        "message 123 says broadcast groups 1 through 127, while JOIN help message 157 says 1 through 126; the exact upper bound remains evidence-conflicted"
+      ],
+      "runtime_boundary": "BR command resolution is corrected. Broadcast-group state and apostrophe-shortcut ownership remain gated because channel state/global-command-character ownership are not complete."
+    }
+  },
+  "native_support": {
+    "source": "Librarium/Evidence/native_support_catalog_0020.json",
+    "TALKCHAR": 33,
+    "YELLCHAR": 34,
+    "finding": "Native support records preserve dedicated talk/yell character identities; decoded WCCMMHLP identifies the actual configured examples used by the Classic command help."
+  },
+  "command_table_audit": {
+    "recognized_evidence_gated_full_names": [
+      "drag",
+      "go",
+      "health",
+      "map",
+      "profile",
+      "track",
+      "aid",
+      "light",
+      "stash",
+      "mana",
+      "invoke",
+      "read",
+      "suicide",
+      "reroll",
+      "appraise",
+      "eat",
+      "drink",
+      "rob",
+      "exits",
+      "picklock",
+      "page",
+      "broadcast",
+      "scan",
+      "quiet",
+      "stock",
+      "unstock",
+      "markup",
+      "ready"
+    ],
+    "abbreviation_policy": "Newly recovered names that do not yet have exact minimum-prefix evidence are registered only at their full-name length. Existing historical aliases remain under commands.native-player-command-table UNKNOWN until exact native alias/precedence evidence is recovered.",
+    "tell": "No native TELL command identity was promoted. The recovered one-recipient native form is /Username <TEXT>; an unrecognized 'tell ...' prompt therefore follows the global SAY fallback until contrary native evidence is recovered.",
+    "whisper": "A native ABI identity for _cmd_whisper exists, but exact syntax, range, targeting and rendering are not recovered; WHISPER remains UNKNOWN and is not fabricated.",
+    "share": "SHARE is no longer an identity-only evidence gate: WCCMMHLP message 227 proves its core PARTY/ROOM distribution semantics. Exact minimum abbreviation, validation ordering, and messages remain unresolved.",
+    "proven_alias_correction": "WCCMMHLP message 123 explicitly proves BR = BROADCAST. BR was removed from BRIEF and assigned to BROADCAST. BACKSTAB=BS and BROADGANG=BG remain explicit native aliases from help.",
+    "ambiguity_resolution": "The dispatcher only executes a command after one valid catalog resolution. Ambiguous or otherwise unresolved prompt tokens fall through to SAY under the global Reforged rule; exact native precedence among unresolved legacy prefixes remains UNKNOWN."
+  },
+  "communication_runtime_boundary": {
+    "strong": [
+      "SAY is same-room communication",
+      "YELL reaches the source room plus rooms directly adjacent through exits",
+      "/Username <TEXT> addresses one connected recipient",
+      "GOSSIP and AUCTION are same-world global channels filtered by their receive flags",
+      "FORGET toggles a per-sender telepath block"
+    ],
+    "not_promoted": [
+      "exact YELL/telepath/GOSSIP/AUCTION/FORGET rendering",
+      "exact channel default state",
+      "SET TELEPATH ON/OFF blocking polarity",
+      "WHISPER behavior",
+      "native TELL command identity",
+      "language, color, invisibility, moderation and logging effects",
+      "SET MESSAGES LOW/MEDIUM/HIGH per-message priority membership",
+      "SET ENTRANCES default state and exact entry/exit filtering"
+    ]
+  },
+  "party_runtime_boundary": {
+    "implemented_from_evidence": [
+      "INVITE and UNINVITE",
+      "TRACK <user> is the separate tracking-skill action and requires the Track skill",
+      "LEAVE exits an ordinary non-leader party membership",
+      "JOIN GANG and LEAVE GANG continue to route to gang handling",
+      "FRONTRANK/BACKRANK remain party positioning actions",
+      "JOIN <username> accepts an invitation and immediately starts following that leader",
+      "FOLLOW <username> also accepts/uses an invitation and starts following that leader",
+      "BACKRANK is rejected when it would make Backrank outnumber Frontrank, matching the native front>=back rule",
+      "SET FOLLOW BLIND suppresses room descriptions while party-follow movement is occurring; SET FOLLOW NORMAL restores normal room descriptions",
+      "an explicitly resolved follower QUIT stops following; unexpected socket loss/linkdead behavior remains untouched and UNKNOWN"
+    ],
+    "explicitly_not_guessed": [
+      "fixed invite timeout",
+      "automatic successor selection when a multi-member leader leaves",
+      "party maximum size",
+      "exact leader/permission failure text",
+      "XP, loot, quest-credit, assist, spell, teleport or resurrection sharing",
+      "linkdead/disconnect party membership behavior",
+      "restart/death/reset/deletion party behavior",
+      "exact Frontrank spot/slot formula beyond the proven front>=back balance rule",
+      "leader rank-change behavior and initial/default party-rank assignment beyond the compatibility representation",
+      "unexpected disconnect/linkdead removal-versus-retention behavior"
+    ],
+    "broadcast_group_gap": "JOIN <n> and LEAVE-to-group-0 are proven native command semantics, but broadcast-group runtime state is not evidence-complete in this pass and remains gated.",
+    "generic_multiplayer_shell_exclusion": "RuntimeMultiplayerCompletionState is a non-authoritative generic Reforged smoke model. Its equal XP split, invite-expiry, leader-succession, corpse, disconnect, and persistence choices do not feed the Classic live party path and earn no MajorMUD parity credit.",
+    "party_xp_loot_assist_audit": "Classic party XP/loot sharing remains unresolved; the retained PROG-0103 XP-party probe explicitly says the rule is unresolved. ASSIST remains a separate STRONG combat runtime pending native party/assist admission and threat proof. No party loot/XP sharing rule is promoted in Pass 19.",
+    "party_spell_target_audit": "The existing spell target-type 13 party projection remains owned by the prior spell runtime/evidence work; Pass 19 does not promote its exact party targeting semantics. Exact party spell/teleport/resurrection sharing remains UNKNOWN in the party assertion."
+  },
+  "transport_correction": {
+    "runtime_owner": "RuntimePaidRoomTransferService",
+    "native_shape": "source room + recognized command + payment gate + immediate destination move",
+    "excluded": [
+      "vehicle state",
+      "boarding state",
+      "departure schedule",
+      "travel timer",
+      "arrival waiting period",
+      "transport-specific persistence",
+      "transport-specific linkdead/disconnect state"
+    ],
+    "remaining_unknown": [
+      "source room",
+      "command",
+      "destination room",
+      "cost and currency",
+      "exact validation/payment ordering",
+      "insufficient-funds message",
+      "success/movement message"
+    ]
+  },
+  "parity_delta": {
+    "before": {
+      "PASS": 71,
+      "STRONG": 68,
+      "UNKNOWN": 45,
+      "strict_percent": 38.6,
+      "evidence_backed_percent": 75.5
+    },
+    "after": {
+      "PASS": 71,
+      "STRONG": 69,
+      "UNKNOWN": 44,
+      "strict_percent": 38.6,
+      "evidence_backed_percent": 76.1
+    },
+    "promotion": "native.communications.classic-range-rendering moved UNKNOWN -> STRONG because native help/support evidence now establishes the core channel/range semantics without claiming exact rendering."
+  },
+  "share_runtime_boundary": {
+    "implemented_from_message_227": [
+      "default scope PARTY",
+      "optional WITH ROOM / WITH PARTY selector",
+      "sender excluded from recipient count",
+      "hidden recipients excluded",
+      "RECEIVE-off recipients excluded",
+      "whole-unit integer division across eligible recipients",
+      "remainder retained by sender",
+      "one atomic multi-character save transaction for the distribution",
+      "named denomination is preserved rather than silently converted to another denomination"
+    ],
+    "still_unknown": [
+      "exact native minimum abbreviation for SHARE",
+      "exact insufficient-funds validation order and failure text",
+      "exact no-recipient and amount-smaller-than-recipient-count behavior text",
+      "exact sender/recipient success rendering",
+      "linkdead/disconnected party-member treatment"
+    ]
+  },
+  "communication_filter_audit": {
+    "proven": [
+      "FORGET toggles per-sender telepath blocking",
+      "SET GOSSIP ON/OFF and SET AUCTION ON/OFF control receipt of those global channels",
+      "SET MESSAGES LOW/MEDIUM/HIGH is native and controls high/medium/low priority message receipt",
+      "SET ENTRANCES ON/OFF is native and controls realm entrance/exit notices",
+      "SET FOLLOW BLIND/NORMAL is native and controls party-follow room-description output"
+    ],
+    "gated": [
+      "the exhaustive native message-priority classification behind SET MESSAGES",
+      "exact defaults/persistence for SET MESSAGES and SET ENTRANCES",
+      "any SQUELCH command or behavior not proven by retained native evidence"
+    ]
+  },
+  "help_audit": {
+    "runtime_authority": "RuntimeMajorMudNativeHelpCatalog loads decoded WCCMMHLP bodies verbatim and resolves only native main-menu aliases or a single exact title-token match.",
+    "classic_fail_closed": "If retained native evidence does not resolve exactly one HELP topic, Classic no longer falls through to synthetic Reforged command help.",
+    "known_ambiguity_example": "FOLLOW occurs in multiple decoded native title records (SET-related and party-follow topics), so exact native fuzzy/prefix precedence remains UNKNOWN rather than being guessed.",
+    "known_unique_example": "SHARE is a unique decoded title-token and resolves to native WCCMMHLP body 227.",
+    "custom_ai_boundary": "Custom/AI may use Reforged synthetic command help after native help does not resolve; this is an extension and not Classic parity evidence."
+  }
+}

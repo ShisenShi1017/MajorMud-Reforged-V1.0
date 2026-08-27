@@ -48,6 +48,7 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly Dictionary<string, DateTimeOffset> _nextPvpActionAt = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, (string Attacker, DateTimeOffset ObservedAt)> _pvpAttackers = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _pvpActionInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _authoritativeStateBootstrapped = new(StringComparer.OrdinalIgnoreCase);
     private ClientDataCategory? _selectedCategory;
     private ClientDataRecord? _selectedRecord;
     private ClientAutomationRule? _selectedRule;
@@ -252,7 +253,9 @@ public sealed class PlayViewModel : ViewModelBase
             coordinated.NeedsResync = false;
             coordinated.LastResult = "Resynchronized after reconnect";
         }
-        _ = RefreshAuthoritativeClientStateAsync(session);
+        // TCP Connected is intentionally not treated as MajorMUD logged in.
+        // The first authoritative refresh is triggered only after inbound room
+        // or HP-prompt evidence proves the character is actually in-game.
     }
 
     private void ClearTransientAutomationState(string sessionId)
@@ -282,21 +285,40 @@ public sealed class PlayViewModel : ViewModelBase
         _nextPvpActionAt.Remove(sessionId);
         _pvpAttackers.Remove(sessionId);
         _pvpActionInFlight.Remove(sessionId);
+        _authoritativeStateBootstrapped.Remove(sessionId);
+    }
+
+    private void EnsureAuthoritativeStateBootstrap(ClientSessionConnection session)
+    {
+        if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+        if (!_authoritativeStateBootstrapped.Add(session.SessionId)) return;
+        _ = RefreshAuthoritativeClientStateAsync(session);
     }
 
     private async Task RefreshAuthoritativeClientStateAsync(ClientSessionConnection session)
     {
         try
         {
+            if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+
+            if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+            {
+                // Legacy MajorMUD/BBS servers do not implement ROOMDATA or
+                // CLIENTDATA. Ask for the native room display instead; the
+                // Classic room parser extracts the visible exits from LOOK.
+                await _sessions.SendCommandAsAsync(session.SessionId, "look", ClientCommandOrigin.ClientAutomation);
+                return;
+            }
+
             foreach (var command in new[] { "clientdata stats", "clientdata spells", "clientdata party", "clientdata pvp", "roomdata" })
             {
-                if (session.ConnectionState != ClientConnectionState.Connected) return;
+                if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
                 await _sessions.SendClientProtocolCommandAsync(session.SessionId, command);
             }
         }
         catch (Exception exception)
         {
-            Status = $"Connected, but the private client-state refresh stopped safely: {exception.Message}";
+            Status = $"Logged in, but the authoritative client-state refresh stopped safely: {exception.Message}";
         }
     }
 
@@ -2012,11 +2034,15 @@ public sealed class PlayViewModel : ViewModelBase
     public void TickTimedEvents(ClientSessionConnection? session, DateTimeOffset timestamp)
     {
         if (session is null) return;
+        var gameplayReady = ClientCommandIsolationPolicy.HasVerifiedGameplay(session);
+        if (gameplayReady) EnsureAuthoritativeStateBootstrap(session);
+
         var context = new ClientAutomationContext(
             session.HealthPercent, session.ManaPercent, session.InCombat, session.IsResting,
             session.IsMoving, string.Empty, timestamp, session.SessionId);
-        _automation.EvaluateTimedEvents(context, session.ConnectionState == ClientConnectionState.Connected);
-        _ = TickAutomationClockAsync(session, timestamp);
+        _automation.EvaluateTimedEvents(context, gameplayReady);
+        if (gameplayReady)
+            _ = TickAutomationClockAsync(session, timestamp);
     }
 
     private async Task TickAutomationClockAsync(ClientSessionConnection session, DateTimeOffset timestamp)
@@ -2824,6 +2850,7 @@ public sealed class PlayViewModel : ViewModelBase
     {
         var session = _sessions.Sessions.FirstOrDefault(s => s.SessionId == e.SessionId);
         if (session is null) return;
+        EnsureAuthoritativeStateBootstrap(session);
         _ = TryHandleCombatAutomationOutcomeAsync(session, e.Line, e.Timestamp);
         _ = TryHandleRoamingObstacleAsync(session, e.Line, e.Timestamp);
         _ = TryHandleTrustedPartyInviteAsync(session, e.Line, e.Timestamp);

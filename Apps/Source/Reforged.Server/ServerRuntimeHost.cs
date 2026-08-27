@@ -1,6 +1,6 @@
 namespace Reforged.Server;
 
-public sealed class ServerRuntimeHost
+public sealed partial class ServerRuntimeHost
 {
     private readonly string _projectRoot;
     private readonly ServerRuntimeOptions _options;
@@ -191,10 +191,11 @@ public sealed class ServerRuntimeHost
 
         _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), token => _gameplay.TickLivingWorldsAsync(token));
         _scheduler.Register("combat-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.CombatTickMilliseconds)), token => _gameplay.TickLiveCombatsAsync(token));
+        _scheduler.Register("spell-system-tick", TimeSpan.FromMilliseconds(RuntimeLiveGameplayFacade.ClassicSpellSystemRoundMilliseconds), token => _gameplay.TickLiveStatusesAsync(token));
         _scheduler.Register("session-heartbeat", TimeSpan.FromSeconds(30), _ => Task.CompletedTask);
-        _scheduler.Register("character-autosave", TimeSpan.FromMinutes(5), _ =>
+        _scheduler.Register("character-autosave", RuntimeClassicTimingAuthority.PlayerDataSaveInterval, _ =>
         {
-            _characters.AutosaveSessions(_sessions.ActiveSessions, DateTimeOffset.UtcNow, TimeSpan.FromMinutes(5));
+            _characters.AutosaveSessions(_sessions.ActiveSessions, DateTimeOffset.UtcNow, RuntimeClassicTimingAuthority.PlayerDataSaveInterval);
             return Task.CompletedTask;
         });
     }

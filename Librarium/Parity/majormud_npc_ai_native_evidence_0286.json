@@ -1,0 +1,70 @@
+{
+  "schema": "majormud.npc-ai-native-evidence.v1",
+  "update": "0286",
+  "policy": "MajorMUD is a 16-bit legacy target, but widths are proven field-by-field; no global short coercion and no guessed AI order.",
+  "facts": [
+    {
+      "id": "monster_record_mixed_widths",
+      "state": "PASS",
+      "detail": "Nightmare Redux MonsterRecType explicitly mixes VB6 Integer (16-bit), Byte (8-bit), and Long (32-bit) fields; runtime validates decoded Classic NPC definitions against those widths.",
+      "sources": [
+        "Nightmare Redux modFieldmaps.bas",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcNativeFieldContract.cs"
+      ]
+    },
+    {
+      "id": "follow_percent_storage",
+      "state": "PASS",
+      "detail": "Native Follow is a signed 16-bit record field and MMUD Explorer export mapping names it Follow%; all 1100 retained Classic NPC values are 0..100. Exact decision timing for the roll remains unresolved.",
+      "sources": [
+        "Nightmare Redux modFieldmaps.bas",
+        "Nightmare Redux docs/notes.txt",
+        "Librarium/Objects/npcs/npc_records_0122.json"
+      ]
+    },
+    {
+      "id": "attack_percent_byte_width",
+      "state": "PASS",
+      "detail": "Attack selection percent is a native byte. Retained executable rows include values >100, so it must not be clamped to 100; Pass 10 inclusive d100 threshold semantics preserve saturation.",
+      "sources": [
+        "Nightmare Redux modFieldmaps.bas",
+        "Librarium/Objects/npcs/npc_records_0122.json",
+        "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md"
+      ]
+    },
+    {
+      "id": "monsguards_relationship",
+      "state": "STRONG",
+      "detail": "Ability 146 is MonsGuards and carries guarded monster legacy ids. Classic runtime consumes only this relationship for NPC guard admission; exact native timing/propagation/priority remains unresolved.",
+      "sources": [
+        "Librarium/Validation0003/monster_ability_relationships_verified_0003.json",
+        "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs"
+      ]
+    },
+    {
+      "id": "message_8480_identity",
+      "state": "PASS",
+      "detail": "Message 8480 is a physical dodge/miss template, not an assist broadcast.",
+      "sources": [
+        "Librarium/Objects/native_message_payloads/native_message_payload_records.json"
+      ]
+    },
+    {
+      "id": "message_8480_callsite_arguments",
+      "state": "UNKNOWN",
+      "detail": "Four Thrag rows are bound; five Nahr npc.1006 rows still lack exact caller-owned miss verb/weapon arguments.",
+      "sources": [
+        "Librarium/Objects/npcs/npc_records_0122.json",
+        "Reports/RuntimeVerification/native_npc_combat_argument_boundary.md"
+      ]
+    },
+    {
+      "id": "native_ai_dispatch_order",
+      "state": "UNKNOWN",
+      "detail": "Flee/base perception/aggro/target switching/patrol/tracking and exact decision priority/cadence have not been recovered.",
+      "sources": [
+        "Docs/Audits/NPC_AI_SEMANTIC_EXHAUSTION.md"
+      ]
+    }
+  ]
+}

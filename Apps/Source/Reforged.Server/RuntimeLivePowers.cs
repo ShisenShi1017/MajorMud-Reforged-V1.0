@@ -60,6 +60,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 "use" => UseLiveItemOrAbility(session, command),
                 "abilities" or "skills" => RenderLiveAbilities(session),
                 "prepare" or "spells" => RenderLiveSpells(session),
+                "powers" => RenderLivePowers(session),
                 "dispel" => DispelLiveEffect(session, command.ArgumentText),
                 _ => _policyGateway.Execute(session, command)
             };
@@ -743,13 +744,69 @@ public sealed partial class RuntimeLiveGameplayFacade
             SynchronizeCharacterSpellStatuses(new RuntimeSpellTarget("character", targetId), nowUtc, sourceRecordId);
     }
 
-    private string RenderLiveSpells(RuntimeSession session)
+    private string RenderLiveSpells(RuntimeSession session) => RenderMajorMudSpellTable(session, powers: false);
+
+    private string RenderLivePowers(RuntimeSession session) => RenderMajorMudSpellTable(session, powers: true);
+
+    private string RenderMajorMudSpellTable(RuntimeSession session, bool powers)
     {
-        if (session.Actor is not RuntimeCharacterActor actor) return "No spellbook is available.";
+        if (session.Actor is not RuntimeCharacterActor actor) return powers ? "You have no powers." : "You have no spells.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
         EnsureKnownSpells(character, actor.Id);
-        var rows = _liveSpellEngine!.Spellbook(actor.Id).Select(x => _liveSpellCatalog!.Require(x.SpellId)).OrderBy(x => x.Name).Select(x => $"{x.Id}: {x.Name} mana={x.ManaCost} energy={x.EnergyCost} duration={x.Duration}");
-        return rows.Any() ? "Spells:\n" + string.Join("\n", rows) : "You know no generated spells.";
+        var classDefinition = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId);
+        var usesKai = classDefinition.Magic?.Type == 5;
+        if (powers != usesKai) return powers ? "You have no powers." : "You have no spells.";
+
+        var spells = _liveSpellEngine!.Spellbook(actor.Id)
+            .Select(x => _liveSpellCatalog!.Require(x.SpellId))
+            .OrderBy(x => x.SpellLevel)
+            .ThenBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (spells.Length == 0) return powers ? "You have no powers." : "You have no spells.";
+
+        return FormatMajorMudSpellTable(spells, powers);
+    }
+
+    internal static string FormatMajorMudSpellTable(IReadOnlyList<RuntimeSpellDefinition> spells, bool powers)
+    {
+        if (spells.Count == 0) return powers ? "You have no powers." : "You have no spells.";
+        var lines = new List<string>
+        {
+            powers ? "You have the following powers:" : "You have the following spells:",
+            powers ? "Level Kai  Short Spell Name" : "Level Mana Short Spell Name"
+        };
+        foreach (var spell in spells.OrderBy(x => x.SpellLevel).ThenBy(x => x.Name, StringComparer.OrdinalIgnoreCase))
+        {
+            var shortName = string.IsNullOrWhiteSpace(spell.ShortName) ? spell.Name : spell.ShortName;
+            lines.Add($"{spell.SpellLevel,3} {spell.ManaCost,3}    {shortName,-4}  {spell.Name}");
+        }
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    public bool TryExecuteMajorMudPowerShortcut(RuntimeSession session, RuntimeCommand command, out string result)
+    {
+        result = string.Empty;
+        if (session.Actor is not RuntimeCharacterActor actor || string.IsNullOrWhiteSpace(command.Name)) return false;
+        lock (_livePowerGate)
+        {
+            EnsureLivePowers(session);
+            ExpireLivePowers(session, DateTimeOffset.UtcNow);
+            var character = _characters.LoadCharacter(actor.Id);
+            if (character is null) return false;
+            EnsureKnownSpells(character, actor.Id);
+            var matches = _liveSpellEngine!.Spellbook(actor.Id)
+                .Select(x => _liveSpellCatalog!.Require(x.SpellId))
+                .Where(x => !string.IsNullOrWhiteSpace(x.ShortName) && x.ShortName.Equals(command.Name, StringComparison.OrdinalIgnoreCase))
+                .Take(2)
+                .ToArray();
+            if (matches.Length != 1) return false;
+
+            var words = new List<string> { "cast", matches[0].Id };
+            words.AddRange(command.Arguments);
+            var cast = RuntimeCommand.Parse(string.Join(' ', words), session.World.CommandCatalog);
+            result = CastLiveSpell(session, cast);
+            return true;
+        }
     }
 
     private string RenderLiveAbilities(RuntimeSession session)
@@ -952,7 +1009,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         spell.MaximumEffect,
                         spell.DurationRaw,
                         nowUtc,
-                        nowUtc.AddSeconds(checked((long)spell.DurationRaw * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds)),
+                        nowUtc.AddSeconds(checked((long)spell.DurationRaw * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
                         BuildClassicStatusMetadata(definition, spell, nowUtc,
                             spell.MinimumEffect == spell.MaximumEffect
                                 ? spell.MinimumEffect
@@ -1078,10 +1135,14 @@ public sealed partial class RuntimeLiveGameplayFacade
                     }) };
             }
             var targetMr = 0;
+            RuntimeCharacterRecord? targetCharacter = null;
             if (request.Target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase) && _owner._liveCombats.TryGetValue(_session.Id, out var encounter))
                 targetMr = ResolveEncounterNpc(_session, encounter).MagicResistance;
-            else if (request.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase) && _owner._characters.LoadCharacter(request.Target.Id) is { } targetCharacter)
+            else if (request.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase) && _owner._characters.LoadCharacter(request.Target.Id) is { } loadedTargetCharacter)
+            {
+                targetCharacter = loadedTargetCharacter;
                 targetMr = ReadMagicResistance(targetCharacter);
+            }
             var casterLevel = _owner._characters.LoadCharacter(request.CasterId)?.Level ?? 0;
             var resolution = RuntimeClassicPlayerSpellCombat.Resolve(spell, targetMr, false, false, false, Random.Shared, casterLevel);
             var hasDecodedDamage=spell.DecodedAbilities.Any(x=>x.AbilityId is 1 or 17);
@@ -1100,9 +1161,24 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ["damage_shield"] = "absent-from-uploaded-classic-decode"
             };
             metadata["operation_authority"]=(hasDecodedDamage||hasDecodedHeal)?"decoded_ability_vector":"decoded_target_and_attack_type";
+            var finalOperation = decodedOperation;
+            var finalMagnitude = resolution.Magnitude;
+            if (targetCharacter is not null && decodedOperation.Equals("damage", StringComparison.OrdinalIgnoreCase) &&
+                !resolution.Resisted && !resolution.Reflected && !resolution.Absorbed && resolution.Magnitude > 0)
+            {
+                var elementalResistance = ReadElementalResistance(targetCharacter, resolution.Element);
+                var poisonImmune = ReadAbilityValue(targetCharacter, 21) > 0;
+                var signedDamage = ResolveElementalSpellDamage(resolution.Magnitude, resolution.Element, elementalResistance, poisonImmune);
+                finalOperation = signedDamage < 0 ? "heal" : "damage";
+                finalMagnitude = signedDamage < 0 ? checked(-signedDamage) : signedDamage;
+                metadata["elemental_resistance_percent"] = elementalResistance.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                metadata["signed_elemental_damage"] = signedDamage.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                metadata["poison_immune"] = poisonImmune.ToString();
+                metadata["elemental_overresist_healing"] = (signedDamage < 0).ToString();
+            }
             var events = new List<RuntimeSpellExecutionEvent>();
             if (hasDecodedDamage || hasDecodedHeal || spell.DecodedAbilities.Count == 0)
-                events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, decodedOperation, resolution.Magnitude, request.RequestedAtUtc, effect.EffectId, metadata));
+                events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, finalOperation, finalMagnitude, request.RequestedAtUtc, effect.EffectId, metadata));
             else if (healMana is null)
                 events.Add(new RuntimeSpellExecutionEvent(Guid.NewGuid().ToString("N"), spell.Id, request.CasterId, request.Target, "modifier", 0, request.RequestedAtUtc, effect.EffectId, metadata));
             if (healMana is not null)
@@ -1201,7 +1277,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 _liveCombats[source.Id] = manaEncounter with
                 {
                     NpcCurrentEnergy = ResolveNpcManaEnergy(
-                        manaEncounter.NpcCurrentEnergy, manaEncounter.NpcMaximumEnergy, magnitude)
+                        manaEncounter.NpcCurrentEnergy, manaEncounter.NpcEnergyPerRound, magnitude)
                 };
                 return;
             }
@@ -1258,11 +1334,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         return decodedValue != 0 ? decodedValue : resolution.EffectRoll;
     }
 
-    internal static int ResolveNpcManaEnergy(int currentEnergy, int maximumEnergy, int manaMagnitude)
+    internal static int ResolveNpcManaEnergy(int currentEnergy, int energyPerRound, int manaMagnitude)
     {
-        if (currentEnergy < 0 || maximumEnergy < 0 || currentEnergy > maximumEnergy)
+        if (currentEnergy < 0 || energyPerRound < 0)
             throw new InvalidDataException("NPC_MANA_ENERGY_STATE_INVALID");
-        return Math.Clamp(checked(currentEnergy + manaMagnitude), 0, maximumEnergy);
+        // Monster combat energy is carried between rounds and has no one-round upper cap.
+        return Math.Max(0, checked(currentEnergy + manaMagnitude));
     }
 
     private static bool MatchesPowerTarget(string query, RuntimeLiveCombatEncounter encounter) =>
@@ -1285,6 +1362,11 @@ public sealed class RuntimeLivePowersSmokeReport
             var spells = RuntimeSpellCatalog.Load(root, worldId); Check(spells.Spells.Count > 0, "spell-loading", r);
             var abilities = RuntimeAbilityCatalog.Load(root, worldId); Check(abilities.Count > 0, "ability-loading", r);
             Check(RuntimeCommand.Parse("cast test target").Name == "cast", "cast-routing", r); Check(RuntimeCommand.Parse("use test target").Name == "use", "use-routing", r);
+            Check(RuntimeCommand.Parse("sp").Name == "spells", "native-sp-shortcut-routing", r);
+            Check(RuntimeCommand.Parse("pow").Name == "powers", "native-pow-shortcut-routing", r);
+            Check(RuntimeCommand.Parse("greet loremaster").Name == "greet", "native-greet-routing", r);
+            Check(RuntimeCommand.Parse("break").Name == "break", "native-break-routing", r);
+            Check(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TryExecuteMajorMudPowerShortcut)) is not null, "native-learned-spell-short-command-dispatch", r);
             Check(typeof(RuntimeSpellExecutionEngine).GetMethod(nameof(RuntimeSpellExecutionEngine.Cast)) is not null, "combat-spell-execution", r);
             Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "combat-ability-execution", r);
             var repo = new RuntimeLivePowerStateRepository(Path.Combine(Path.GetTempPath(), "mmr-live-powers-" + Guid.NewGuid().ToString("N")), worldId);
@@ -1292,6 +1374,16 @@ public sealed class RuntimeLivePowersSmokeReport
             repo.Save(empty); Check(repo.Load().Spells.ActiveEffects.Count == 0, "persistence", r); Check(repo.Load().Abilities.Count == 0, "reconnect", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Expire)) is not null, "duration-expiration", r); Check(typeof(RuntimeSpellExecutionEngine).GetMethod(nameof(RuntimeSpellExecutionEngine.Dispel)) is not null, "dispel", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
+            var nativeSpellTable = RuntimeLiveGameplayFacade.FormatMajorMudSpellTable(new[]
+            {
+                new RuntimeSpellDefinition("spell.test", "9999", "major healing", "mahe", 8, "", "", "", 6, 0, 0, 0, 0, Array.Empty<string>(), Array.Empty<RuntimeClassicLiveStatusAbility>())
+            }, powers: false);
+            Check(nativeSpellTable == "You have the following spells:" + Environment.NewLine + "Level Mana Short Spell Name" + Environment.NewLine + "  8   6    mahe  major healing", "native-spell-table-format", r);
+            var nativePowerTable = RuntimeLiveGameplayFacade.FormatMajorMudSpellTable(new[]
+            {
+                new RuntimeSpellDefinition("spell.power", "9998", "way of the swan", "swan", 2, "", "", "", 1, 0, 0, 0, 0, Array.Empty<string>(), Array.Empty<RuntimeClassicLiveStatusAbility>())
+            }, powers: true);
+            Check(nativePowerTable == "You have the following powers:" + Environment.NewLine + "Level Kai  Short Spell Name" + Environment.NewLine + "  2   1    swan  way of the swan", "native-power-table-format", r);
             var antidote = spells.Spells.Single(x => x.LegacyId == "31");
             var curePoison = spells.Spells.Single(x => x.LegacyId == "222");
             Check(RuntimeLiveGameplayFacade.IsCurePoisonSpell(antidote), "cure-poison-antidote-classification", r);
@@ -1396,7 +1488,7 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(RuntimeLiveGameplayFacade.ResolveHealManaMagnitude(-50, goldenResolution) == -50,
                 "heal-mana-negative-drain-preserved", r);
             Check(RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(60, 100, -20) == 40
-                && RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(60, 100, 9999) == 100
+                && RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(60, 100, 9999) == 10059
                 && RuntimeLiveGameplayFacade.ResolveNpcManaEnergy(10, 100, -9999) == 0,
                 "heal-mana-npc-casting-energy-consumer", r);
             foreach (var name in new[] { "mana-deduction", "energy-deduction", "cooldowns", "buff-application", "debuff-application" }) Check(true, name, r);

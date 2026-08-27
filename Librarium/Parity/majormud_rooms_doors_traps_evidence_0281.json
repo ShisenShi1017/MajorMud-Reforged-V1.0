@@ -1,0 +1,266 @@
+{
+  "schema": "majormud.rooms-doors-traps-evidence.v1",
+  "update": "0281",
+  "scope": "Classic MajorMUD 1.11p room, door, lock, hidden-exit, and exit-trap parity closure",
+  "policy": {
+    "pass": "Requires exact retained source/native evidence plus connected runtime or generated-data ownership.",
+    "strong": "Requires substantial direct evidence but retains a material native semantic/order gap.",
+    "unknown": "No formula, state mutation, reset rule, or message may be invented."
+  },
+  "room_latch_closure": {
+    "previous_unresolved_edge_state_ids": [
+      "edge-state.map12.2051.u",
+      "edge-state.map17.2946.s",
+      "edge-state.map17.2949.e",
+      "edge-state.map17.2956.n",
+      "edge-state.map17.2958.n",
+      "edge-state.map17.2970.s",
+      "edge-state.map17.3042.n"
+    ],
+    "sphinx": {
+      "edge_state_id": "edge-state.map12.2051.u",
+      "bound_exit_id": "exit.map12.2051.u",
+      "commands": [
+        "ask sphinx stars",
+        "ask sphinx star",
+        "ask sphinx the stars"
+      ],
+      "decoded_chain": "npc.550 -> textblock.2530 -> textblock.2531 -> textblock.2532 -> remoteaction 2051 0 0 8",
+      "native_remote_action": [
+        2051,
+        0,
+        0,
+        8
+      ],
+      "status": "PASS"
+    },
+    "boulders": {
+      "edge_state_ids": [
+        "edge-state.map17.2946.s",
+        "edge-state.map17.2949.e",
+        "edge-state.map17.2956.n",
+        "edge-state.map17.2958.n",
+        "edge-state.map17.2970.s"
+      ],
+      "commands": [
+        "move boulder",
+        "push boulder"
+      ],
+      "required_skill": "strength",
+      "skill_modifier": 60,
+      "delay_seconds": 5,
+      "failure_textblock_id": 4235,
+      "skill_test_model": "roll_1_to_100_lte_skill_plus_modifier",
+      "source_textblocks": [
+        4230,
+        4231,
+        4232,
+        4233,
+        4234,
+        4236,
+        4237,
+        4238,
+        4239,
+        4240
+      ],
+      "status": "PASS"
+    },
+    "pedestals": {
+      "edge_state_id": "edge-state.map17.3042.n",
+      "bound_exit_id": "exit.map17.3042.n",
+      "steps": [
+        {
+          "action": 1,
+          "item": "diamond",
+          "inventory_item_id": "item.1921",
+          "native_remote_action": [
+            3042,
+            0,
+            1,
+            0
+          ],
+          "textblock_id": 4252
+        },
+        {
+          "action": 2,
+          "item": "pearl",
+          "inventory_item_id": "item.1923",
+          "native_remote_action": [
+            3042,
+            0,
+            2,
+            0
+          ],
+          "textblock_id": 4253
+        },
+        {
+          "action": 3,
+          "item": "moonstone",
+          "inventory_item_id": "item.1922",
+          "native_remote_action": [
+            3042,
+            0,
+            3,
+            0
+          ],
+          "textblock_id": 4254
+        },
+        {
+          "action": 4,
+          "item": "marble",
+          "inventory_item_id": "item.1924",
+          "native_remote_action": [
+            3042,
+            0,
+            4,
+            0
+          ],
+          "textblock_id": 4255
+        }
+      ],
+      "consume_inventory_item": true,
+      "status": "PASS"
+    },
+    "aggregate_action_gate_closure": {
+      "action_gate_count": 206,
+      "bound_action_gate_count": 206,
+      "native_passive_placeholder_count": 0,
+      "ordinary_action_semantic_gap_count": 0,
+      "status": "PASS"
+    }
+  },
+  "remote_action_native_executor": {
+    "entry_va": "0x0046C573",
+    "argument_count": 4,
+    "decoded_action_type_range": "6..24",
+    "mode_cleared_masks": [
+      "0x3FF0",
+      "0x10",
+      "0x20",
+      "0x40",
+      "0x80",
+      "0x100",
+      "0x200",
+      "0x400",
+      "0x800",
+      "0x1000",
+      "0x2000"
+    ],
+    "runtime_owner": "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+    "registry": "Apps/Source/Reforged.Server/WorldgroupRemoteActionDispatchRegistry.cs",
+    "status": "PASS"
+  },
+  "semantic_exit_corpus": {
+    "manifest": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",
+    "total_exit_records": 61976,
+    "strongly_correlated_active": 61975,
+    "unknown_preserved_safe_runtime": 1,
+    "gate_kind_counts": {
+      "open": 57605,
+      "door": 1648,
+      "hidden": 1381,
+      "cast_transition": 289,
+      "damage_trap": 273,
+      "text_command": 249,
+      "required_item": 187,
+      "key": 166,
+      "toll": 57,
+      "class": 50,
+      "level_range": 27,
+      "spell_trap": 22,
+      "alignment_range": 13,
+      "ability_range": 5,
+      "race": 2,
+      "timed": 1,
+      "ticket_item": 1
+    },
+    "remaining_unknown": {
+      "exit_id": "exit.map12.2248.d",
+      "edge_state_id": "edge-state.map12.2248.d",
+      "from_room": "room.map12.2248",
+      "to_room": "room.map12.2255",
+      "raw_qualifier": "12/2255 (Hidden/Unknown)",
+      "reciprocal_exit_id": "exit.map12.2255.u",
+      "reciprocal_raw_qualifier": "12/2248 (Hidden/Searchable)",
+      "decoded_activation_commands": [
+        "move rug",
+        "pull rug"
+      ],
+      "known_activation_record": "interaction.map12.2248.e.271",
+      "unresolved": [
+        "native state mutation",
+        "repeatability",
+        "reset timing",
+        "failure message"
+      ],
+      "status": "UNKNOWN",
+      "pass18_operator_observation": "Temporary opening; normal MajorMUD door timer family."
+    },
+    "status": "STRONG_WITH_ONE_EXPLICIT_UNKNOWN",
+    "pass18_operator_observation": "Temporary opening; normal MajorMUD door timer family."
+  },
+  "doors": {
+    "known_live_semantics": [
+      "one live runtime door definition per decoded door exit",
+      "canonical generated exit identity owns door state",
+      "Classic decoded doors begin closed",
+      "key-qualified Classic doors begin locked",
+      "movement blocks locked before closed",
+      "open/close/lock/unlock mutate RuntimeLivingWorldService persisted state",
+      "required generated key item IDs are enforced when present"
+    ],
+    "remaining_unknown": [
+      "exact Classic command messages",
+      "native key-consumption semantics outside explicit evidence",
+      "exact Picklocks formula",
+      "exact bash success formula",
+      "door durability/break recovery",
+      "one-way/remote lock encodings not already decoded",
+      "exact reset persistence for unsupported door variants"
+    ],
+    "status": "PASS_CORE_WITH_NATIVE_BOUNDARY_UNKNOWN"
+  },
+  "classic_exit_traps": {
+    "total": 295,
+    "damage_traps": 273,
+    "spell_traps": 22,
+    "runtime_owner": "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
+    "movement_callsite": "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "lethal_damage_owner": "CompletePlayerDefeat",
+    "spell_owner": "RuntimeSpellExecutionEngine",
+    "unsupported_values_not_invented": [
+      "DetectionDifficulty",
+      "DisarmDifficulty"
+    ],
+    "live_order": "successful movement state/departure -> exit trap -> arrival -> room render",
+    "native_exact_order_status": "STRONG",
+    "status": "PASS_FOR_CATALOG_AND_EXECUTION_PATHS"
+  },
+  "remaining_native_trap_boundary": {
+    "unknown": [
+      "non-exit trap/container/item/room trap record families",
+      "native detection and disarm formulas",
+      "failed-disarm trigger behavior",
+      "exact trap messages",
+      "charge/reset/rearm semantics",
+      "save/restart persistence outside exact exit-trap path",
+      "immunity/protection precedence where not delegated to authoritative spell/death paths",
+      "exact native integration order across door/container/combat/quest/NPC owners"
+    ],
+    "status": "UNKNOWN"
+  },
+  "evidence": [
+    "Docs/PROJECT_STATUS.md",
+    "Docs/Audits/WORLDGROUP_NATIVE_CLOSURE_UPDATE0022.md",
+    "Librarium/Documentation/LIBRARIUM_WORLDGROUP_REMOTEACTION_DISPATCH_0022.md",
+    "Librarium/Objects/room_interactions/decoded_map17_boulder_action_records.json",
+    "Librarium/Objects/room_interactions/decoded_map17_pedestal_action_records.json",
+    "Librarium/Objects/room_interactions/strongly_correlated_room_action_records.json",
+    "Librarium/Objects/triggers/mmexplorer_room_interaction_records_0140.json",
+    "Apps/Source/Reforged.Server/RuntimeBundleDDoorAudit.cs",
+    "Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs"
+  ],
+  "pass18_operator_observation": "Temporary opening; normal MajorMUD door timer family."
+}

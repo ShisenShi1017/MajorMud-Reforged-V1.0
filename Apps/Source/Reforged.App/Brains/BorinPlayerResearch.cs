@@ -74,13 +74,38 @@ public sealed record BorinPlayerSettings
     public bool ObservationEnabled { get; init; }
     public bool ConversationEnabled { get; init; }
     public bool ReflectionJournalEnabled { get; init; } = true;
-    public bool AutomaticReflectionEnabled { get; init; }
+    public bool AutomaticReflectionEnabled { get; init; } = true;
     public bool ConversationLearningEnabled { get; init; } = true;
     public bool NaturalInitiativeEnabled { get; init; } = true;
     public int NaturalInitiativeQuietMinutes { get; init; } = 5;
     public int NaturalInitiativeCooldownMinutes { get; init; } = 20;
     public int MaximumNaturalInitiativesPerHour { get; init; } = 2;
     public bool AutomaticCommandsEnabled { get; init; }
+    public bool LibrariumGuidanceEnabled { get; init; } = true;
+    public bool ProgressionPlannerEnabled { get; init; } = true;
+    public bool EquipmentInventoryPlannerEnabled { get; init; } = true;
+    public bool QuestNpcPlannerEnabled { get; init; } = true;
+    public bool SelfPlayRecoveryEnabled { get; init; } = true;
+    public bool SelfPlayDiagnosticsEnabled { get; init; } = true;
+    public int SelfPlayDiagnosticMaxFileKilobytes { get; init; } = 1024;
+    public int SelfPlayDiagnosticRetentionFiles { get; init; } = 5;
+    public bool CleanupLifecycleEnabled { get; init; } = true;
+    public bool CleanupReconnectEnabled { get; init; } = true;
+    public int CleanupReconnectDelaySeconds { get; init; } = 20;
+    public int RawGameplayJournalRetentionDays { get; init; } = 7;
+    public int RawGameplayJournalMaximumMegabytes { get; init; } = 64;
+    public int RawGameplayJournalMaximumFiles { get; init; } = 48;
+    public bool MemoryRepositorySyncEnabled { get; init; } = true;
+    public bool MemoryRepositoryPullOnStartup { get; init; } = true;
+    public bool MemoryRepositoryPushAfterCleanup { get; init; } = true;
+    public bool MemoryRepositoryRetryEnabled { get; init; } = true;
+    public int MemoryRepositoryRetryDelaySeconds { get; init; } = 300;
+    public int MemoryRepositorySessionSummaryLimit { get; init; } = 180;
+    public bool MemoryRepositoryHistoryCompactionEnabled { get; init; } = true;
+    public int MemoryRepositoryHistoryCompactionIntervalCommits { get; init; } = 50;
+    public string MemoryRepositoryRemoteUrl { get; init; } = "https://github.com/ShisenShi1017/Borin-Memory.git";
+    public string MemoryRepositoryBranch { get; init; } = "main";
+    public string MemoryRepositoryLocalPath { get; init; } = string.Empty;
     public bool AllowSafeCombat { get; init; }
     public string SessionId { get; init; } = "borin-training-01";
     public string DisplayName { get; init; } = "Borin — Omniverse BBS";
@@ -90,6 +115,7 @@ public sealed record BorinPlayerSettings
     public string WorldName { get; init; } = "Classic";
     public string HostName { get; init; } = "omniversebbs.com";
     public int Port { get; init; } = 3237;
+    public string OmniversePostPasswordSelection { get; init; } = "N";
     public string MainMenuSelection { get; init; } = "M";
     public string MajorMudMenuSelection { get; init; } = "E";
     public bool AutoReconnect { get; init; }
@@ -134,6 +160,7 @@ public sealed record BorinPlayerSettings
                 : Port,
             1,
             65535),
+        OmniversePostPasswordSelection = NormalizeMenuSelection(OmniversePostPasswordSelection, "N"),
         MainMenuSelection = NormalizeMenuSelection(MainMenuSelection, "M"),
         MajorMudMenuSelection = NormalizeMenuSelection(MajorMudMenuSelection, "E"),
         PrimaryTeacher = NormalizeText(PrimaryTeacher, "William", 40),
@@ -146,6 +173,18 @@ public sealed record BorinPlayerSettings
         DangerHealthPercent = Math.Clamp(DangerHealthPercent, 1, 90),
         AutomaticReflectionEventInterval = Math.Clamp(AutomaticReflectionEventInterval, 5, 100),
         AutomaticReflectionCooldownMinutes = Math.Clamp(AutomaticReflectionCooldownMinutes, 2, 120),
+        CleanupReconnectDelaySeconds = Math.Clamp(CleanupReconnectDelaySeconds, 5, 300),
+        RawGameplayJournalRetentionDays = Math.Clamp(RawGameplayJournalRetentionDays, 1, 90),
+        RawGameplayJournalMaximumMegabytes = Math.Clamp(RawGameplayJournalMaximumMegabytes, 8, 1024),
+        RawGameplayJournalMaximumFiles = Math.Clamp(RawGameplayJournalMaximumFiles, 4, 500),
+        SelfPlayDiagnosticMaxFileKilobytes = Math.Clamp(SelfPlayDiagnosticMaxFileKilobytes, 128, 4096),
+        SelfPlayDiagnosticRetentionFiles = Math.Clamp(SelfPlayDiagnosticRetentionFiles, 2, 20),
+        MemoryRepositoryRetryDelaySeconds = Math.Clamp(MemoryRepositoryRetryDelaySeconds, 30, 3600),
+        MemoryRepositorySessionSummaryLimit = Math.Clamp(MemoryRepositorySessionSummaryLimit, 25, 1000),
+        MemoryRepositoryHistoryCompactionIntervalCommits = Math.Clamp(MemoryRepositoryHistoryCompactionIntervalCommits, 10, 500),
+        MemoryRepositoryRemoteUrl = NormalizeOptionalText(MemoryRepositoryRemoteUrl, 500),
+        MemoryRepositoryBranch = NormalizeText(MemoryRepositoryBranch, "main", 100),
+        MemoryRepositoryLocalPath = NormalizeOptionalText(MemoryRepositoryLocalPath, 500),
         NaturalInitiativeQuietMinutes = Math.Clamp(NaturalInitiativeQuietMinutes, 2, 60),
         NaturalInitiativeCooldownMinutes = Math.Clamp(NaturalInitiativeCooldownMinutes, 5, 120),
         MaximumNaturalInitiativesPerHour = Math.Clamp(MaximumNaturalInitiativesPerHour, 1, 3),
@@ -165,6 +204,12 @@ public sealed record BorinPlayerSettings
         return candidate[..Math.Min(maximumLength, candidate.Length)];
     }
 
+    private static string NormalizeOptionalText(string? value, int maximumLength)
+    {
+        var candidate = string.IsNullOrWhiteSpace(value) ? string.Empty : value.Trim();
+        return candidate[..Math.Min(maximumLength, candidate.Length)];
+    }
+
     private static string NormalizeMenuSelection(string? value, string fallback)
     {
         var candidate = string.IsNullOrWhiteSpace(value) ? fallback : value.Trim();
@@ -180,6 +225,8 @@ public enum BorinLoginState
     SendingLogin,
     WaitingForPasswordPrompt,
     SendingPassword,
+    WaitingForOmniversePostPasswordAdvance,
+    SelectingOmniversePostPassword,
     WaitingForMainMenu,
     SelectingMajorMud,
     WaitingForMajorMudMenu,
@@ -426,7 +473,7 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
     [
         "LOOK", "L", "ROOM INFORMATION", "RI", "N", "S", "E", "W", "U", "D", "NE", "NW", "SE", "SW",
         "NORTH", "SOUTH", "EAST", "WEST", "UP", "DOWN", "NORTHEAST", "NORTHWEST", "SOUTHEAST", "SOUTHWEST",
-        "LIST", "BUY", "INVENTORY", "INV", "I", "EQUIPMENT", "EQ", "EQUIP", "SEARCH", "REST", "SAY",
+        "LIST", "BUY", "INVENTORY", "INV", "I", "EQUIPMENT", "EQ", "EQUIP", "STATS", "EXP", "SEARCH", "REST", "SAY",
         "TELEPATH", "TELL", "GROUP", "PARTY", "HELP", "GET", "TAKE", "ATTACK", "KILL", "FLEE",
         "CAST", "USE", "DRINK", "EAT", "OPEN", "CLOSE", "UNLOCK", "LOCK", "PUSH", "PULL",
         "DROP", "PUT", "GIVE", "SELL", "TALK", "ASK", "READ", "EXAMINE", "WEAR", "REMOVE",
@@ -444,6 +491,10 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
     private readonly IBorinNaturalInitiativeStore _naturalInitiative;
     private readonly IBorinGameplayLearningStore _gameplayLearning;
     private readonly BorinPlayerJournalStore _reflectionJournal = new();
+    private readonly BorinPlayerSessionLifecycleStore _sessionLifecycle = new();
+    private readonly BorinMemoryRepositorySync _memoryRepositorySync;
+    private readonly BorinSelfPlayRecoveryTracker _selfPlayRecovery = new();
+    private readonly BorinSelfPlayRuntimeDiagnostics _selfPlayDiagnostics = new();
     private readonly SemaphoreSlim _brainGate = new(1, 1);
     private readonly SemaphoreSlim _journalGate = new(1, 1);
     private readonly SemaphoreSlim _settingsGate = new(1, 1);
@@ -481,9 +532,6 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
     private string _lastIncomingTelepathSpeaker = string.Empty;
     private string _lastIncomingTelepathMessage = string.Empty;
     private DateTimeOffset _lastIncomingTelepathAt = DateTimeOffset.MinValue;
-    private string _lastAutonomousCommand = string.Empty;
-    private int _sameAutonomousCommandCount;
-    private readonly Queue<DateTimeOffset> _autonomousCommandTimes = new();
     private int _autonomousPlayRunning;
     private string _lastLoginObservedText = string.Empty;
     private int _evidenceCount;
@@ -494,6 +542,15 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
     private int _automaticReflectionRunning;
     private int _localResearchBusy;
     private int _naturalInitiativeRunning;
+    private int _cleanupConsolidationRunning;
+    private int _cleanupMemorySyncRunning;
+    private int _memoryRepositoryRetryRunning;
+    private int _cleanupReconnectRunning;
+    private int _cleanupResumeRunning;
+    private volatile bool _cleanupExpected;
+    private volatile bool _cleanupBoundaryConfirmed;
+    private volatile bool _resumeAutonomousAfterCleanup;
+    private string _cleanupResumeAssignment = string.Empty;
     private FirstAssignmentLedger _firstAssignment = FirstAssignmentLedger.NotStarted();
     private bool _disposed;
 
@@ -508,6 +565,7 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
         _sessions = sessions;
         _brain = brain;
         _logger = logger;
+        _memoryRepositorySync = new BorinMemoryRepositorySync(_logger);
         _credentialStore = credentialStore;
         _naturalInitiative = naturalInitiative ?? throw new ArgumentNullException(nameof(naturalInitiative));
         _gameplayLearning = gameplayLearning ?? throw new ArgumentNullException(nameof(gameplayLearning));
@@ -601,6 +659,15 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
              _settings.SessionId.Equals(normalized.SessionId, StringComparison.OrdinalIgnoreCase) &&
              sessionConnected);
         _settings = normalized;
+        await _memoryRepositorySync.ConfigureAsync(_repositoryRoot, normalized, token);
+        if (normalized.MemoryRepositorySyncEnabled && normalized.MemoryRepositoryPullOnStartup)
+        {
+            var memoryPull = await _memoryRepositorySync.PullAndRestoreAsync(token);
+            if (memoryPull.Succeeded)
+                _logger.Info($"Borin private memory startup sync: {memoryPull.Detail}");
+            else
+                _logger.Info($"Borin private memory startup sync deferred safely: {memoryPull.Detail}");
+        }
         _conversationState.Configuration.CharacterName = normalized.CharacterName;
         _conversationState.Configuration.CharacterTitle = "MajorMUD parity-research player";
         _conversationState.Configuration.Mission =
@@ -614,6 +681,29 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
 
         _journalPath = GetJournalPath(_repositoryRoot, normalized.SessionId);
         await _reflectionJournal.ConfigureAsync(_repositoryRoot, normalized.SessionId, token);
+        await _sessionLifecycle.ConfigureAsync(_repositoryRoot, normalized.SessionId, token);
+        _selfPlayDiagnostics.Configure(
+            _repositoryRoot,
+            normalized.SessionId,
+            normalized.SelfPlayDiagnosticsEnabled,
+            normalized.SelfPlayDiagnosticMaxFileKilobytes,
+            normalized.SelfPlayDiagnosticRetentionFiles);
+        _selfPlayDiagnostics.Record("Session", "Borin player runtime configured.", CurrentGameState);
+        var pendingCleanup = _sessionLifecycle.Current;
+        if (pendingCleanup.Exists && pendingCleanup.ResumedAt is null)
+        {
+            _cleanupExpected = true;
+            _cleanupBoundaryConfirmed = BorinPlayerSessionLifecycleStore.HasConfirmedCleanupMemoryBoundary(pendingCleanup);
+            _resumeAutonomousAfterCleanup = pendingCleanup.ResumeAutonomousPlay;
+            _cleanupResumeAssignment = string.IsNullOrWhiteSpace(pendingCleanup.Assignment) ? normalized.CurrentGoal : pendingCleanup.Assignment;
+            if (_cleanupBoundaryConfirmed && pendingCleanup.ConsolidatedAt is not null)
+            {
+                // Persist the cleanup snapshot into the local-only outbox before any resume
+                // path can move the lifecycle checkpoint into history. A crash or Git outage
+                // after this point cannot lose the pending private-memory push.
+                await _memoryRepositorySync.StageCleanupSnapshotAsync(BuildMemorySyncMetadata(pendingCleanup), token);
+            }
+        }
         _firstAssignment = await LoadFirstAssignmentAsync(token);
         await SaveSettingsAsync(_repositoryRoot, normalized, token);
         var passwordSaved = await _credentialStore.HasPasswordAsync(normalized.SessionId, token);
@@ -652,6 +742,15 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
             StopLoginMonitor();
 
         StartNaturalInitiativeMonitor();
+        if (_cleanupExpected && normalized.CleanupLifecycleEnabled)
+        {
+            if (_cleanupBoundaryConfirmed && normalized.MemoryRepositoryRetryEnabled)
+                QueueBackground(RetryPendingMemoryRepositorySyncUntilSuccessAsync(_lifetime.Token), "recovered private-memory sync");
+            if (preserveReady)
+                QueueBackground(ResumeAfterCleanupIfReadyAsync(_lifetime.Token), "recovered cleanup resume");
+            else if (!sessionConnected && normalized.CleanupReconnectEnabled)
+                QueueBackground(HandleCleanupDisconnectAsync("Recovered a pending cleanup checkpoint after application restart.", _lifetime.Token), "recovered cleanup reconnect");
+        }
     }
 
     public async Task SavePasswordAsync(string password, CancellationToken token = default)
@@ -687,6 +786,7 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
 
         _paused = false;
         _emergencyStopped = false;
+        _selfPlayRecovery.Reset();
         lock (_stateGate)
             _loginBuffer.Clear();
 
@@ -796,6 +896,30 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
             throw new InvalidOperationException("Configure Borin's external-player profile before writing a reflection.");
 
         var session = GetSessionOrNull();
+        var gameState = CurrentGameState;
+        var gameplayExperience = await _gameplayLearning.PrepareTurnAsync(
+            BrainContext.ForBorin(
+                $"Reflect on verified gameplay relevant to: {SafeValue(focus, _settings.CurrentGoal)}",
+                _conversationState,
+                repositorySnapshot: null,
+                purpose: "Private MajorMUD player reflection memory retrieval",
+                gameState: gameState),
+            token);
+        var librariumGuidance = _settings.LibrariumGuidanceEnabled
+            ? await BorinLibrariumPlayerAdvisor.GatherAsync(_repositoryRoot, _settings.CurrentGoal, gameState, 10, token)
+            : BorinLibrariumPlayerGuidance.Disabled();
+        var progressionPlan = _settings.ProgressionPlannerEnabled
+            ? BorinProgressionPlanner.Build(gameState, gameplayExperience, librariumGuidance, _reflectionJournal.BuildGameplayReflectionGuidance())
+            : BorinProgressionPlan.Disabled();
+        var equipmentPlan = _settings.EquipmentInventoryPlannerEnabled
+            ? BorinEquipmentInventoryPlanner.Build(gameState, gameplayExperience, librariumGuidance)
+            : BorinEquipmentInventoryPlan.Disabled();
+        var questNpcPlan = _settings.QuestNpcPlannerEnabled
+            ? BorinQuestNpcPlanner.Build(gameState, gameplayExperience, librariumGuidance)
+            : BorinQuestNpcPlan.Disabled();
+        var recoveryGuidance = _settings.SelfPlayRecoveryEnabled
+            ? _selfPlayRecovery.BuildGuidance(gameState)
+            : BorinSelfPlayRecoveryGuidance.Disabled();
         var prompt = $"""
 BORIN PRIVATE PLAYER REFLECTION CONTRACT
 Write one concise first-person journal reflection as Borin, an old dwarf playing MajorMUD for Reforged parity research.
@@ -804,6 +928,8 @@ Use exactly these three short headings: Current reflection, Conversation lesson,
 Distinguish observed gameplay from verified rules, strategy, inference, suspected defects, and unknowns.
 Do not claim an action succeeded unless the supplied evidence says it did.
 Keep the whole reflection under 900 characters.
+Use verified personal gameplay experience to judge what actually worked or failed for your character. Compare it with Librarium guidance when useful, but do not turn either source into certainty about the current live state. Previous reflections are strategy hypotheses, not evidence.
+When evidence contradicts an earlier reflection, explicitly revise the strategy instead of repeating it.
 
 Focus requested by William: {SafeValue(focus, "Summarize what I learned and how I can communicate better.")}
 Current goal: {_settings.CurrentGoal}
@@ -812,6 +938,26 @@ HP/Mana: {session?.HealthPercent ?? 100}% / {session?.ManaPercent ?? 100}%
 In combat: {session?.InCombat ?? false}
 Recent meaningful gameplay events:
 {SnapshotRecentEvents(12)}
+
+Verified personal gameplay experience:
+{gameplayExperience.PromptText}
+
+Librarium reference guidance:
+{librariumGuidance.PromptText}
+
+Current autonomous progression plan:
+{progressionPlan.PromptText}
+
+Current equipment/inventory/shop plan:
+{equipmentPlan.PromptText}
+
+Current quest/NPC interaction plan:
+{questNpcPlan.PromptText}
+
+Current autonomous self-play recovery state:
+{recoveryGuidance.PromptText}
+Recovery reflection rule: treat repeated failures, route/economy/dialogue loops, and no-progress streaks as lessons to revise. Do not promote a short-term stuck hypothesis into permanent truth after new verified progress.
+
 {_reflectionJournal.BuildReflectionContext()}
 """;
 
@@ -972,14 +1118,11 @@ Recent meaningful gameplay events:
 
         _paused = false;
         _emergencyStopped = false;
-        _sameAutonomousCommandCount = 0;
-        _lastAutonomousCommand = string.Empty;
-        lock (_stateGate)
-            _autonomousCommandTimes.Clear();
-
+        _selfPlayRecovery.Reset();
         _autonomousPlayCts?.Cancel();
         _autonomousPlayCts?.Dispose();
         _autonomousPlayCts = CancellationTokenSource.CreateLinkedTokenSource(token, _lifetime.Token);
+        _selfPlayDiagnostics.Record("AutonomyStarted", "Continuous autonomous player loop started.", CurrentGameState);
         _autonomousPlayTask = RunAutonomousPlayAsync(_autonomousPlayCts.Token);
         RefreshStatus("Playing by himself", $"Borin is autonomously working on: {_settings.CurrentGoal}");
     }
@@ -1014,51 +1157,86 @@ Recent meaningful gameplay events:
                 var gameState = CurrentGameState;
                 if (!gameState.CanAutonomousPlay)
                 {
+                    _selfPlayDiagnostics.Record("ReadinessBlocked", gameState.AutonomousPlayBlockReason, gameState);
+                    var sessionWhileBlocked = GetSessionOrNull();
+                    if (_settings.SelfPlayRecoveryEnabled &&
+                        sessionWhileBlocked is not null &&
+                        sessionWhileBlocked.ConnectionState == ClientConnectionState.Connected &&
+                        _loginStatus.IsReady)
+                    {
+                        // Moving is a normal temporary game state: wait for the server-owned
+                        // transition. Stale/missing room or prompt evidence is different: Borin
+                        // must actively refresh perception instead of waiting forever for state
+                        // that may not change until LOOK is sent.
+                        if (!gameState.IsMoving &&
+                            (!gameState.HasVerifiedPrompt || !gameState.HasVerifiedRoom))
+                        {
+                            var refreshed = await TryRefreshAutonomousReadinessAsync(sessionWhileBlocked, token);
+                            if (refreshed)
+                                continue;
+                        }
+
+                        await WaitForAutonomousReadinessOrConnectionChangeAsync(sessionWhileBlocked, token);
+                        if (sessionWhileBlocked.ConnectionState == ClientConnectionState.Connected)
+                            continue;
+                    }
                     stopReason = gameState.AutonomousPlayBlockReason;
                     break;
                 }
 
                 var decision = await ProposeNextActionAsync(token);
                 var command = NormalizeCommand(decision.ProposedAction);
+                var commandReason = $"Autonomous assignment action: {decision.Reason}";
+                _selfPlayDiagnostics.Record(
+                    "Decision",
+                    command.Length == 0 ? "The autonomous decision returned no executable action." : "The autonomous decision proposed one ordinary-player command.",
+                    gameState,
+                    command);
+
                 if (command.Length == 0)
                 {
-                    stopReason = !string.IsNullOrWhiteSpace(decision.Question)
-                        ? $"Borin needs guidance: {decision.Question}"
-                        : $"Borin could not choose a verified next action: {decision.Reason}";
-                    break;
+                    _selfPlayRecovery.RecordRejectedDecision(
+                        !string.IsNullOrWhiteSpace(decision.Question)
+                            ? $"Model returned no action and asked: {decision.Question}"
+                            : $"Model returned no executable action: {decision.Reason}",
+                        gameState);
+                    command = _settings.SelfPlayRecoveryEnabled
+                        ? _selfPlayRecovery.ChooseInspectionCommand(gameState)
+                        : string.Empty;
+                    commandReason = "Autonomous recovery inspection after the model returned no executable action.";
+                    if (command.Length == 0)
+                        continue;
+                }
+
+                if (_settings.SelfPlayRecoveryEnabled &&
+                    _selfPlayRecovery.ShouldSuppressAction(command, gameState, out var suppressionReason))
+                {
+                    _selfPlayRecovery.RecordRejectedDecision(suppressionReason, gameState);
+                    _selfPlayDiagnostics.Record("ActionSuppressed", suppressionReason, gameState, command);
+                    await AppendJournalAsync("AutonomousRecovery", "RepeatedActionSuppressed", string.Empty, command, suppressionReason, token);
+                    var alternative = _selfPlayRecovery.ChooseInspectionCommand(gameState);
+                    if (alternative.Length == 0 || alternative.Equals(command, StringComparison.OrdinalIgnoreCase))
+                        continue;
+                    command = alternative;
+                    commandReason = $"Autonomous anti-stuck recovery inspection: {suppressionReason}";
                 }
 
                 var autonomousCheck = CheckAutonomousCommand(command, gameState);
                 if (!autonomousCheck.Allowed)
                 {
-                    stopReason = autonomousCheck.Reason;
-                    break;
-                }
-
-                if (command.Equals(_lastAutonomousCommand, StringComparison.OrdinalIgnoreCase))
-                    _sameAutonomousCommandCount++;
-                else
-                {
-                    _lastAutonomousCommand = command;
-                    _sameAutonomousCommandCount = 1;
-                }
-                if (_sameAutonomousCommandCount > 2)
-                {
-                    stopReason = $"Loop protection stopped repeated command '{command}'.";
-                    break;
-                }
-
-                lock (_stateGate)
-                {
-                    var now = DateTimeOffset.Now;
-                    while (_autonomousCommandTimes.Count > 0 && now - _autonomousCommandTimes.Peek() > TimeSpan.FromMinutes(1))
-                        _autonomousCommandTimes.Dequeue();
-                    if (_autonomousCommandTimes.Count >= 20)
-                    {
-                        stopReason = "Autonomous command rate limit reached.";
-                        break;
-                    }
-                    _autonomousCommandTimes.Enqueue(now);
+                    _selfPlayRecovery.RecordRejectedDecision(autonomousCheck.Reason, gameState);
+                    _selfPlayDiagnostics.Record("GatewayRejected", autonomousCheck.Reason, gameState, command);
+                    await AppendJournalAsync("AutonomousRecovery", "GatewayReplan", string.Empty, command, autonomousCheck.Reason, token);
+                    var alternative = _settings.SelfPlayRecoveryEnabled
+                        ? _selfPlayRecovery.ChooseInspectionCommand(gameState)
+                        : string.Empty;
+                    if (alternative.Length == 0 || alternative.Equals(command, StringComparison.OrdinalIgnoreCase))
+                        continue;
+                    command = alternative;
+                    commandReason = $"Autonomous recovery after a proposed action was not valid in the current live state: {autonomousCheck.Reason}";
+                    autonomousCheck = CheckAutonomousCommand(command, gameState);
+                    if (!autonomousCheck.Allowed)
+                        continue;
                 }
 
                 var session = GetSession();
@@ -1066,31 +1244,64 @@ Recent meaningful gameplay events:
                 var priorRoom = session.RoomUpdatedAt;
                 var priorExits = session.ExitsUpdatedAt;
                 var movementCommand = IsMovementCommand(command);
-                var result = await SendAutonomousCommandAsync(
-                    command,
-                    $"Autonomous assignment action: {decision.Reason}",
-                    token);
+                var sentAt = DateTimeOffset.Now;
+                var beforeState = CurrentGameState;
+                var result = await SendAutonomousCommandAsync(command, commandReason, token);
                 if (!result.Sent)
                 {
-                    stopReason = result.Reason;
-                    break;
+                    _selfPlayRecovery.RecordRejectedDecision(result.Reason, beforeState);
+                    _selfPlayDiagnostics.Record("SendRejected", result.Reason, beforeState, command);
+                    continue;
                 }
+                _selfPlayDiagnostics.Record("CommandSent", "One autonomous ordinary-player command was sent; waiting for server-owned evidence.", beforeState, command);
 
-                if (!await WaitForFreshServerEvidenceAsync(
-                        session,
-                        priorPrompt,
-                        priorRoom,
-                        priorExits,
-                        movementCommand,
-                        token))
+                var freshEvidence = await WaitForFreshServerEvidenceAsync(
+                    session,
+                    priorPrompt,
+                    priorRoom,
+                    priorExits,
+                    movementCommand,
+                    token);
+                var classifications = SnapshotRecentClassificationsSince(sentAt, command);
+                var afterState = CurrentGameState;
+                var outcome = _selfPlayRecovery.RecordOutcome(
+                    command,
+                    beforeState,
+                    afterState,
+                    classifications,
+                    freshEvidence);
+                _selfPlayDiagnostics.Record(
+                    freshEvidence ? "ActionEvaluated" : "EvidenceTimeout",
+                    outcome.Summary,
+                    afterState,
+                    command);
+                if (_settings.SelfPlayRecoveryEnabled &&
+                    _selfPlayRecovery.BuildGuidance(afterState).EscalationLevel >= 2)
+                    ConsiderAutomaticReflection("SelfPlayStuck", session);
+                await AppendJournalAsync(
+                    "AutonomousRecovery",
+                    freshEvidence ? "ActionEvaluated" : "EvidenceTimeout",
+                    string.Empty,
+                    command,
+                    outcome.Summary,
+                    token);
+
+                if (!freshEvidence)
                 {
-                    stopReason = movementCommand
-                        ? "The terminal did not verify a new room, exits, and HP prompt after Borin's movement, so autonomous play stopped safely."
-                        : "The terminal did not verify a fresh HP prompt after Borin's command, so autonomous play stopped safely.";
-                    break;
+                    // Silence is not failure proof and is never permission to resend a state-changing
+                    // action indefinitely. Borin gets one reversible perception recovery attempt and
+                    // then waits for the server's authoritative prompt or a connection-state change.
+                    var recovered = await TryRecoverPerceptionAfterTimeoutAsync(session, priorPrompt, token);
+                    if (!recovered)
+                    {
+                        await WaitForFreshPromptOrConnectionChangeAsync(session, priorPrompt, token);
+                        if (session.ConnectionState != ClientConnectionState.Connected)
+                        {
+                            stopReason = "The game session left the connected state while Borin was waiting for authoritative server evidence.";
+                            break;
+                        }
+                    }
                 }
-
-                await Task.Delay(650, token);
             }
         }
         catch (OperationCanceledException)
@@ -1101,10 +1312,12 @@ Recent meaningful gameplay events:
         {
             _logger.Error("Borin autonomous player loop failed safely", exception);
             stopReason = $"Autonomous play stopped safely: {exception.Message}";
+            _selfPlayDiagnostics.Record("AutonomyFault", "The autonomous loop failed safely with a runtime exception; see application logs for the exception details.", CurrentGameState);
         }
         finally
         {
             Interlocked.Exchange(ref _autonomousPlayRunning, 0);
+            _selfPlayDiagnostics.Record("AutonomyStopped", stopReason, CurrentGameState);
             RefreshStatus("Autonomous play stopped", stopReason);
         }
     }
@@ -1124,9 +1337,13 @@ Recent meaningful gameplay events:
             return new CommandCheck(true, "Verified current exit and command gateway allow this movement.");
         }
 
-        return BorinPlayerCommandPolicy.IsProtectedControlCommand(upper)
-            ? new CommandCheck(false, "Protected account, administration, script, macro, or operating-system commands are not player gameplay.")
-            : new CommandCheck(true, "The normal MajorMUD command is allowed for autonomous play; the game server remains authoritative.");
+        if (BorinPlayerCommandPolicy.IsProtectedControlCommand(upper))
+            return new CommandCheck(false, "Protected account, administration, script, macro, or operating-system commands are not player gameplay.");
+
+        var autonomousSafety = BorinAutonomousSafetyPolicy.Validate(upper, gameState);
+        return autonomousSafety.Allowed
+            ? new CommandCheck(true, autonomousSafety.Reason)
+            : new CommandCheck(false, autonomousSafety.Reason);
     }
 
     private static string NormalizeDirection(string command) => command switch
@@ -1157,20 +1374,11 @@ Recent meaningful gameplay events:
         {
             token.ThrowIfCancellationRequested();
             var promptFresh = IsNewer(session.PromptUpdatedAt, priorPrompt);
-            if (!movementCommand && promptFresh)
+            // The server's next HP prompt is the pacing signal for autonomous play. A movement
+            // command can legitimately fail (locked door, temporary block, etc.) without a new
+            // room title. Once the prompt advances, Borin may observe the result and decide again.
+            if (promptFresh)
                 return true;
-
-            if (movementCommand)
-            {
-                var roomFresh = IsNewer(session.RoomUpdatedAt, priorRoom);
-                var exitsFresh = IsNewer(session.ExitsUpdatedAt, priorExits) &&
-                                 session.ExitsUpdatedAt is not null &&
-                                 session.RoomUpdatedAt is not null &&
-                                 session.ExitsUpdatedAt >= session.RoomUpdatedAt &&
-                                 session.CurrentRoomExits.Count > 0;
-                if (promptFresh && roomFresh && exitsFresh)
-                    return true;
-            }
 
             await Task.Delay(100, token);
         }
@@ -1180,6 +1388,138 @@ Recent meaningful gameplay events:
     private static bool IsNewer(DateTimeOffset? current, DateTimeOffset? previous) =>
         current is not null && (previous is null || current > previous);
 
+    private IReadOnlyList<string> SnapshotRecentClassificationsSince(DateTimeOffset since, string command)
+    {
+        lock (_stateGate)
+        {
+            return _recentEvents
+                .Where(item => item.Timestamp >= since &&
+                               (item.Command.Length == 0 || item.Command.Equals(command, StringComparison.OrdinalIgnoreCase)))
+                .Select(item => item.Classification)
+                .Where(value => !string.IsNullOrWhiteSpace(value))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+        }
+    }
+
+    private async Task<bool> TryRefreshAutonomousReadinessAsync(
+        ClientSessionConnection session,
+        CancellationToken token)
+    {
+        if (session.ConnectionState != ClientConnectionState.Connected || !_loginStatus.IsReady)
+            return false;
+
+        var before = CurrentGameState;
+        if (before.IsMoving)
+            return false;
+
+        var priorPrompt = session.PromptUpdatedAt;
+        var priorRoom = session.RoomUpdatedAt;
+        var priorExits = session.ExitsUpdatedAt;
+        var sentAt = DateTimeOffset.Now;
+        var safety = BorinAutonomousSafetyPolicy.Validate("LOOK", before);
+        if (!safety.Allowed)
+            return false;
+
+        var sent = await SendSupervisedCommandCoreAsync(
+            "LOOK",
+            "Autonomous self-play is refreshing stale or missing live perception before choosing another gameplay action.",
+            allowUnknownHealthForExplicitSequence: true,
+            token: token);
+        if (!sent.Sent)
+            return false;
+
+        var fresh = await WaitForFreshServerEvidenceAsync(
+            session,
+            priorPrompt,
+            priorRoom,
+            priorExits,
+            movementCommand: false,
+            token);
+        var after = CurrentGameState;
+        var classifications = SnapshotRecentClassificationsSince(sentAt, "LOOK");
+        var outcome = _selfPlayRecovery.RecordOutcome("LOOK", before, after, classifications, fresh);
+        await AppendJournalAsync(
+            "AutonomousRecovery",
+            fresh ? "ReadinessRefreshed" : "ReadinessRefreshPending",
+            string.Empty,
+            "LOOK",
+            outcome.Summary,
+            token);
+        return fresh && CurrentGameState.CanAutonomousPlay;
+    }
+
+    private async Task<bool> TryRecoverPerceptionAfterTimeoutAsync(
+        ClientSessionConnection session,
+        DateTimeOffset? priorPrompt,
+        CancellationToken token)
+    {
+        if (!_settings.SelfPlayRecoveryEnabled || session.ConnectionState != ClientConnectionState.Connected)
+            return false;
+        if (IsNewer(session.PromptUpdatedAt, priorPrompt))
+            return true;
+
+        var state = CurrentGameState;
+        var inspection = _selfPlayRecovery.ChooseInspectionCommand(state);
+        if (inspection.Length == 0 ||
+            _selfPlayRecovery.ShouldSuppressAction(inspection, state, out _))
+            return false;
+
+        var before = CurrentGameState;
+        var sentAt = DateTimeOffset.Now;
+        var sent = await SendAutonomousCommandAsync(
+            inspection,
+            "Autonomous self-play recovery is re-establishing authoritative live perception after a response timeout.",
+            token);
+        if (!sent.Sent)
+            return false;
+
+        var recoveryPrompt = session.PromptUpdatedAt;
+        var fresh = await WaitForFreshServerEvidenceAsync(
+            session,
+            recoveryPrompt,
+            session.RoomUpdatedAt,
+            session.ExitsUpdatedAt,
+            IsMovementCommand(inspection),
+            token);
+        var after = CurrentGameState;
+        var classifications = SnapshotRecentClassificationsSince(sentAt, inspection);
+        var outcome = _selfPlayRecovery.RecordOutcome(inspection, before, after, classifications, fresh);
+        await AppendJournalAsync(
+            "AutonomousRecovery",
+            fresh ? "PerceptionRecovered" : "PerceptionRecoveryPending",
+            string.Empty,
+            inspection,
+            outcome.Summary,
+            token);
+        return fresh || IsNewer(session.PromptUpdatedAt, priorPrompt);
+    }
+
+    private async Task WaitForAutonomousReadinessOrConnectionChangeAsync(
+        ClientSessionConnection session,
+        CancellationToken token)
+    {
+        while (!token.IsCancellationRequested && session.ConnectionState == ClientConnectionState.Connected)
+        {
+            if (CurrentGameState.CanAutonomousPlay)
+                return;
+            await Task.Delay(200, token);
+        }
+    }
+
+    private static async Task WaitForFreshPromptOrConnectionChangeAsync(
+        ClientSessionConnection session,
+        DateTimeOffset? priorPrompt,
+        CancellationToken token)
+    {
+        while (!token.IsCancellationRequested && session.ConnectionState == ClientConnectionState.Connected)
+        {
+            if (IsNewer(session.PromptUpdatedAt, priorPrompt))
+                return;
+            await Task.Delay(500, token);
+        }
+    }
+
     public async Task<BorinPlayerDecision> ProposeNextActionAsync(CancellationToken token = default)
     {
         ThrowIfDisposed();
@@ -1187,6 +1527,30 @@ Recent meaningful gameplay events:
         var gameState = CurrentGameState;
         var recent = SnapshotRecentEvents(12);
         var allowed = string.Join(", ", AutonomousCommandPrefixes.Where(value => value.Length > 1).Distinct(StringComparer.OrdinalIgnoreCase));
+        var gameplayExperience = await _gameplayLearning.PrepareTurnAsync(
+            BrainContext.ForBorin(
+                _settings.CurrentGoal,
+                _conversationState,
+                repositorySnapshot: null,
+                purpose: "External MajorMUD autonomous-player experience recall",
+                gameState: gameState),
+            token);
+        var reflectionGuidance = _reflectionJournal.BuildGameplayReflectionGuidance();
+        var librariumGuidance = _settings.LibrariumGuidanceEnabled
+            ? await BorinLibrariumPlayerAdvisor.GatherAsync(_repositoryRoot, _settings.CurrentGoal, gameState, 14, token)
+            : BorinLibrariumPlayerGuidance.Disabled();
+        var progressionPlan = _settings.ProgressionPlannerEnabled
+            ? BorinProgressionPlanner.Build(gameState, gameplayExperience, librariumGuidance, reflectionGuidance)
+            : BorinProgressionPlan.Disabled();
+        var equipmentPlan = _settings.EquipmentInventoryPlannerEnabled
+            ? BorinEquipmentInventoryPlanner.Build(gameState, gameplayExperience, librariumGuidance)
+            : BorinEquipmentInventoryPlan.Disabled();
+        var questNpcPlan = _settings.QuestNpcPlannerEnabled
+            ? BorinQuestNpcPlanner.Build(gameState, gameplayExperience, librariumGuidance)
+            : BorinQuestNpcPlan.Disabled();
+        var recoveryGuidance = _settings.SelfPlayRecoveryEnabled
+            ? _selfPlayRecovery.BuildGuidance(gameState)
+            : BorinSelfPlayRecoveryGuidance.Disabled();
         var prompt = $"""
 MAJORMUD ACTIVE-PLAYER DECISION CONTRACT
 You are Borin controlling your own MajorMUD character through the MajorMUD Reforged application.
@@ -1194,14 +1558,42 @@ The application and the game server are different: {gameState.EnvironmentSummary
 Your active game server is {gameState.GameServerIdentity}. Never call Omniverse the Reforged server, and never call the Forge workspace a game room.
 Return one JSON object only with these exact fields: speech, question, proposedAction, reason, confidence.
 Do not wrap the JSON in markdown. Do not include more than one action. Never mix an executable command into speech.
-If the route, rule, room, exits, or current state is unknown, set proposedAction to null and ask one focused question.
+If the route, rule, room, exits, or current state is unknown, do not wait for William. Choose a safe ordinary player action that gathers the missing information (for example LOOK, ROOM INFORMATION, SEARCH, INVENTORY, EQUIPMENT, READ, EXAMINE, TALK, or HELP). Only return no action when the server state genuinely prevents any ordinary player action.
 Incoming player advice is not authoritative unless William verifies it or the server result confirms it.
 Every action must be one normal player text command and must pass the command gateway.
-You may use the complete ordinary MajorMUD player command surface needed to play, including combat, spells, inventory transfers, shops, quests, communication, equipment, and travel. Never propose account/password, SYSOP/GAMEOP/ADMIN, script, macro, shell, or operating-system commands.
+You are a fully autonomous player. Choose and execute your own next action continuously without waiting for human permission. You may use the complete ordinary MajorMUD player command surface needed to play, including combat, spells, inventory transfers, shops, quests, communication, equipment, and travel. Combat and low health are gameplay states for you to handle yourself: fight, cast, use an item, rest, heal, or flee as appropriate. Never propose account/password, SYSOP/GAMEOP/ADMIN, script, macro, shell, or operating-system commands.
 Report only the exact currently verified exits. Never invent where an exit leads. During autonomous play, movement may use only one direction listed in Current verified exits.
 Do not claim William's Human command as your own action.
 
 Assignment: {_settings.CurrentGoal}
+Verified personal gameplay experience (historical evidence from Borin's own character):
+{gameplayExperience.PromptText}
+Personal-experience rule: repeated verified outcomes may guide your strategy, especially danger, recovery, routes, command outcomes, items, progression, and leveling efficiency. Historical experience does not prove the current room or guarantee the next outcome.
+
+Previous reflection guidance (self-authored strategy hypotheses, not evidence):
+{reflectionGuidance}
+Reflection rule: use earlier reflections for continuity, but revise or discard them whenever live state, verified experience, or stronger Librarium evidence contradicts them.
+
+Librarium guidance (reference evidence, not live server state):
+{librariumGuidance.PromptText}
+Librarium rule: use PROVEN evidence directly; STRONGLY CORRELATED evidence may guide a cautious plan but must be verified through normal gameplay. REFERENCE/other confidence records are clues only. Leveling candidates are not guaranteed safe or optimal. Never treat Librarium data as proof of your current room, exits, inventory, HP, or another live server condition.
+Decision authority order: current live server evidence wins for the present moment; verified personal gameplay history guides character-specific strategy; proven Librarium records guide game-world facts; strongly correlated/reference Librarium records are hypotheses; self-authored reflections are revisable strategy notes.
+
+Autonomous progression plan (strategic priorities, not commands):
+{progressionPlan.PromptText}
+Progression rule: pursue a longer-term objective instead of taking unrelated actions forever. Re-plan after meaningful XP, level, danger, equipment, quest, route, or target-area evidence changes. Never invent a route to satisfy the plan.
+
+Autonomous equipment/inventory/shop plan (decision policy, not commands):
+{equipmentPlan.PromptText}
+Equipment/economy rule: verify inventory/equipment and live shop LIST output before irreversible actions. Never SELL, DROP, GIVE, PUT, REMOVE, or replace an item merely because its name sounds weak or a Librarium clue sounds better. When uncertain whether an item is a quest/key/limited/upgrade resource, keep it. Make purchases one at a time, verify the resulting inventory, equip deliberately, and verify EQUIPMENT before judging the upgrade.
+
+Autonomous quest/NPC interaction plan (decision policy, not commands):
+{questNpcPlan.PromptText}
+Quest/NPC rule: quest autonomously, but verify NPC presence and current dialogue with live server evidence before acting on a Librarium relationship. Decoded dialogue keywords are candidate interaction steps, not proof of your current stage. Try one grounded dialogue/action step at a time, read the resulting server output, and never GIVE, DROP, SELL, PUT, or USE a possible quest item solely because a reference suggests it. Never invent a quest giver, objective, route, reward, completion, or NPC response.
+
+Autonomous self-play recovery state (short-term anti-stuck evidence):
+{recoveryGuidance.PromptText}
+Recovery rule: do not preserve a failing micro-plan merely because you chose it earlier. Retry an uncertain action at most once when justified; after repeated failure or no progress, inspect state, consult verified personal memory and Librarium evidence, choose a different action/route/tactic, and abandon the micro-goal when escalation says to re-plan. Never invent progress to escape a loop.
 Session: {_settings.SessionId}
 Character: {gameState.CharacterName}
 Environment: {gameState.EnvironmentSummary}
@@ -1210,6 +1602,7 @@ Prompt verified: {gameState.HasVerifiedPrompt} ({gameState.PromptFreshness})
 Room verified: {gameState.HasVerifiedRoom} • {gameState.CurrentRoom}
 Current verified exits: {(gameState.HasVerifiedExits ? string.Join(", ", gameState.CurrentExits) : "not verified")}
 HP/Mana: {gameState.HealthPercent}% / {gameState.ManaPercent}%
+Level/experience: {gameState.CharacterLevel} / {gameState.ExperienceCurrent} current, {gameState.ExperienceNeeded} needed
 In combat/resting/moving: {gameState.InCombat}/{gameState.IsResting}/{gameState.IsMoving}
 Last command and owner: {(gameState.LastCommand.Length == 0 ? "none captured" : $"{gameState.LastCommandOrigin}: {gameState.LastCommand}")}
 Autonomous readiness: {gameState.CanAutonomousPlay} • {gameState.AutonomousPlayBlockReason}
@@ -1305,7 +1698,7 @@ Recent command/result evidence:
             return blocked;
         }
 
-        await _sessions.SendCommandAsAsync(_settings.SessionId, normalized, ClientCommandOrigin.Borin, token);
+        await _sessions.SendCommandAsAsync(_settings.SessionId, normalized, ClientCommandOrigin.AutonomousAgent, token);
         _lastSentCommand = normalized;
         _lastSentCommandAt = DateTimeOffset.Now;
         var sent = new BorinCommandGatewayResult(true, true, normalized, reason.Trim(), _lastSentCommandAt);
@@ -1593,6 +1986,8 @@ Recent command/result evidence:
                 eventArgs.State == ClientConnectionState.Faulted ? BorinLoginState.Failed : BorinLoginState.Disconnected,
                 eventArgs.Message,
                 _loginStatus.PasswordSaved);
+            if (_cleanupExpected && _settings.CleanupLifecycleEnabled)
+                QueueBackground(HandleCleanupDisconnectAsync(eventArgs.Message, _lifetime.Token), "cleanup disconnect handling");
         }
 
         RefreshStatus(eventArgs.State.ToString(), eventArgs.Message);
@@ -1647,6 +2042,8 @@ Recent command/result evidence:
             }
 
             var classification = ClassifyLine(line, session);
+            if (_settings.CleanupLifecycleEnabled)
+                await ConsiderCleanupLifecycleSignalAsync(line, classification, token);
             if (_loginStatus.IsReady)
                 await ObserveFirstAssignmentLineAsync(line, classification, session, token);
             if (_settings.ObservationEnabled && _loginStatus.IsReady)
@@ -1806,10 +2203,33 @@ Recent command/result evidence:
                 "LoggedIn",
                 "MajorMUD game prompt detected.",
                 string.Empty,
-                "Dedicated Borin account login completed through User-ID, password, M, and E.",
+                IsOmniverseLoginTarget()
+                    ? "Dedicated Borin account login completed through User-ID, password, N, M, and E."
+                    : "Dedicated Borin account login completed through the verified server login flow.",
                 token);
             RefreshStatus("Ready", "Borin is logged into MajorMUD on his dedicated terminal session.");
+            if (_cleanupExpected && _settings.CleanupLifecycleEnabled)
+                QueueBackground(ResumeAfterCleanupIfReadyAsync(_lifetime.Token), "post-cleanup resume");
             return false;
+        }
+
+        // Omniverse has one additional post-password gate before its main menu.
+        // William verified the native sequence as password -> N -> M -> E.
+        // Wait for any new server output after the password before sending N so
+        // a rejected password can still be detected above and no pre-login input
+        // is blindly flooded into the BBS. Reforged and other servers skip this.
+        if (IsOmniverseLoginTarget() &&
+            _loginStatus.State == BorinLoginState.WaitingForOmniversePostPasswordAdvance)
+        {
+            await SendLoginStepAsync(
+                BorinLoginState.SelectingOmniversePostPassword,
+                BorinLoginState.WaitingForMainMenu,
+                _settings.OmniversePostPasswordSelection,
+                sensitive: false,
+                "Omniverse accepted the password and advanced to its post-login prompt. Sending N before the main menu.",
+                "N sent. Waiting for the Omniverse main menu before selecting MajorMUD.",
+                token);
+            return true;
         }
 
         if (RecognizesMajorMudMenuPrompt(buffered) &&
@@ -1850,13 +2270,20 @@ Recent command/result evidence:
                 return true;
             }
 
+            var postPasswordWaitingState = IsOmniverseLoginTarget()
+                ? BorinLoginState.WaitingForOmniversePostPasswordAdvance
+                : BorinLoginState.WaitingForMainMenu;
+            var postPasswordDetail = IsOmniverseLoginTarget()
+                ? "Password sent securely and intentionally hidden. Waiting for Omniverse to advance before sending N."
+                : "Password sent securely and intentionally hidden. Waiting for the server main menu.";
+
             await SendLoginStepAsync(
                 BorinLoginState.SendingPassword,
-                BorinLoginState.WaitingForMainMenu,
+                postPasswordWaitingState,
                 password,
                 sensitive: true,
                 "The password prompt was detected. Sending Borin's password through the sensitive-command path.",
-                "Password sent securely and intentionally hidden. Waiting for the Omniverse main menu.",
+                postPasswordDetail,
                 token);
             return true;
         }
@@ -1876,6 +2303,21 @@ Recent command/result evidence:
         }
 
         return true;
+    }
+
+    private bool IsOmniverseLoginTarget() =>
+        BorinGameStateSnapshot.ResolveHostKind(_settings.ServerProfileName, _settings.HostName) == BorinGameHostKind.OmniverseBbs;
+
+    internal static IReadOnlyList<string> GetOmniversePostPasswordMenuSequence(BorinPlayerSettings settings)
+    {
+        ArgumentNullException.ThrowIfNull(settings);
+        var normalized = settings.Normalize();
+        return
+        [
+            normalized.OmniversePostPasswordSelection,
+            normalized.MainMenuSelection,
+            normalized.MajorMudMenuSelection,
+        ];
     }
 
     private static bool IsAtOrBefore(BorinLoginState current, BorinLoginState target) =>
@@ -1922,6 +2364,7 @@ Recent command/result evidence:
     {
         BorinLoginState.SendingLogin => BorinLoginState.WaitingForLoginPrompt,
         BorinLoginState.SendingPassword => BorinLoginState.WaitingForPasswordPrompt,
+        BorinLoginState.SelectingOmniversePostPassword => BorinLoginState.WaitingForOmniversePostPasswordAdvance,
         BorinLoginState.SelectingMajorMud => BorinLoginState.WaitingForMainMenu,
         BorinLoginState.EnteringRealm => BorinLoginState.WaitingForMajorMudMenu,
         _ => sendingState,
@@ -1941,7 +2384,7 @@ Recent command/result evidence:
                 RefreshStatus("Human control", "William sent a terminal command, so Play by Himself stopped immediately.");
             }
 
-            if (eventArgs.Origin == ClientCommandOrigin.Borin)
+            if (eventArgs.Origin == ClientCommandOrigin.AutonomousAgent)
             {
                 _lastSentCommand = command;
                 _lastSentCommandAt = eventArgs.Timestamp;
@@ -2192,7 +2635,7 @@ Recent command/result evidence:
             "gossip" => $"GOS {response}",
             _ => $"SAY {response}",
         };
-        await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.Borin, token);
+        await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.AutonomousAgent, token);
         _lastSentSpeech = response;
         if (addressing.PublicChannel)
             RecordPublicReply(DateTimeOffset.Now);
@@ -2438,7 +2881,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
             if (movement)
             {
                 var roomFresh = IsNewer(session.RoomUpdatedAt, priorRoom);
-                var exitsFresh = IsNewer(session.ExitsUpdatedAt, priorExits) && session.CurrentRoomExits.Count > 0;
+                var exitsFresh = IsNewer(session.ExitsUpdatedAt, priorExits);
                 if (promptFresh && roomFresh && exitsFresh)
                     return true;
             }
@@ -2455,7 +2898,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
             else if (look)
             {
                 var roomFresh = IsNewer(session.RoomUpdatedAt, priorRoom);
-                var exitsFresh = IsNewer(session.ExitsUpdatedAt, priorExits) && session.CurrentRoomExits.Count > 0;
+                var exitsFresh = IsNewer(session.ExitsUpdatedAt, priorExits);
                 if (promptFresh && roomFresh && exitsFresh)
                     return true;
             }
@@ -2792,7 +3235,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
         string note,
         CancellationToken token)
     {
-        if (!_settings.ObservationEnabled && kind is not ("Gateway" or "Decision" or "Conversation" or "Session" or "Assignment"))
+        if (!_settings.ObservationEnabled && kind is not ("Gateway" or "Decision" or "Conversation" or "Session" or "Assignment" or "Cleanup"))
             return;
         if (_repositoryRoot.Length == 0)
             return;
@@ -3450,7 +3893,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
 
             response = CleanSpeechResponse(response, BorinGameStateSnapshot.HardInGameReplyCharacterLimit);
             var command = $"TELEPATH {speaker} {response}";
-            await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.Borin, token);
+            await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.AutonomousAgent, token);
             _lastSentSpeech = response;
 
             lock (speakerState.Sync)
@@ -3542,6 +3985,385 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
         }
     }
 
+    private async Task ConsiderCleanupLifecycleSignalAsync(string line, string classification, CancellationToken token)
+    {
+        var signal = BorinPlayerSessionLifecycleStore.DetectCleanupSignal(line, classification);
+        if (signal == BorinCleanupSignalKind.None)
+            return;
+
+        _selfPlayDiagnostics.Record("CleanupSignal", $"Server cleanup lifecycle signal: {signal}.", CurrentGameState);
+
+        if (BorinPlayerSessionLifecycleStore.IsConfirmedCleanupMemoryBoundary(signal))
+        {
+            if (_cleanupExpected)
+            {
+                // A warning may occur minutes before the actual cleanup. Durable local
+                // consolidation can happen early, but the private Git push is intentionally
+                // delayed until the server confirms the cleanup boundary or disconnects.
+                await _sessionLifecycle.MarkBoundaryConfirmedAsync(Redact(line), token);
+                _cleanupBoundaryConfirmed = true;
+                await PushConsolidatedCleanupMemoryAsync("server reported cleanup completion", token);
+                if (_loginStatus.IsReady)
+                    QueueBackground(ResumeAfterCleanupIfReadyAsync(_lifetime.Token), "cleanup completion resume");
+            }
+            return;
+        }
+
+        if (_cleanupExpected)
+            return;
+
+        var wasAutonomous = IsAutonomousPlayActive;
+        _cleanupExpected = true;
+        _cleanupBoundaryConfirmed = false;
+        _resumeAutonomousAfterCleanup = wasAutonomous;
+        _cleanupResumeAssignment = _settings.CurrentGoal;
+        _paused = true;
+        CancelConversation();
+        CancelNaturalInitiativeRequest();
+        try { _autonomousPlayCts?.Cancel(); } catch (ObjectDisposedException) { }
+
+        var state = CurrentGameState;
+        await _sessionLifecycle.BeginCleanupAsync(
+            signal,
+            Redact(line),
+            _cleanupResumeAssignment,
+            wasAutonomous,
+            state,
+            token);
+        await AppendJournalAsync(
+            "Cleanup",
+            signal.ToString(),
+            line,
+            string.Empty,
+            "Borin stopped autonomous actions and checkpointed the current assignment before server cleanup/restart.",
+            token);
+        RefreshStatus("Cleanup checkpointed", "Server cleanup/restart was detected. Borin stopped issuing normal gameplay actions and checkpointed the current assignment before deeper consolidation.");
+        QueueBackground(
+            ConsolidateCleanupSessionAsync(wasAutonomous, _lifetime.Token),
+            "server-cleanup consolidation");
+    }
+
+    private async Task ConsolidateCleanupSessionAsync(bool wasAutonomous, CancellationToken token)
+    {
+        if (Interlocked.CompareExchange(ref _cleanupConsolidationRunning, 1, 0) != 0)
+            return;
+
+        try
+        {
+            string reflectionText = string.Empty;
+            if (_settings.ReflectionJournalEnabled && _settings.AutomaticReflectionEnabled)
+            {
+                try
+                {
+                    var reflection = await WriteReflectionAsync(
+                        "Server cleanup session boundary. Consolidate the most useful verified gameplay lessons from this session, revise any strategy contradicted by direct experience, compare personal experience with Librarium guidance, and preserve the next goal for reconnect. Do not invent events.",
+                        "server-cleanup",
+                        token);
+                    reflectionText = reflection.Text;
+                }
+                catch (Exception exception) when (exception is not OperationCanceledException)
+                {
+                    _logger.Error("Borin cleanup reflection failed; preserving deterministic checkpoint and verified gameplay memory", exception);
+                }
+            }
+
+            var gameplay = await _gameplayLearning.GetSnapshotAsync(token);
+            var checkpoint = await _sessionLifecycle.CompleteConsolidationAsync(gameplay, reflectionText, token);
+            var pruned = await _sessionLifecycle.PruneRawGameplayJournalsAsync(
+                _journalPath,
+                _settings.RawGameplayJournalRetentionDays,
+                _settings.RawGameplayJournalMaximumMegabytes,
+                _settings.RawGameplayJournalMaximumFiles,
+                token);
+            await AppendJournalAsync(
+                "Cleanup",
+                "Consolidated",
+                string.Empty,
+                string.Empty,
+                $"Session checkpoint consolidated with {checkpoint.VerifiedObservationCount} verified observations; pruned {pruned} expired raw journal file(s).",
+                token);
+
+            // Private-repository sync is deliberately not performed on a cleanup warning.
+            // The consolidated local checkpoint is authoritative until the server actually
+            // disconnects or reports cleanup completion.
+
+            var cleanupSession = GetSessionOrNull();
+            if (cleanupSession is null || cleanupSession.ConnectionState is ClientConnectionState.Disconnected or ClientConnectionState.Faulted)
+                _cleanupBoundaryConfirmed = true;
+
+            if (_cleanupBoundaryConfirmed)
+            {
+                QueueBackground(
+                    PushConsolidatedCleanupMemoryAsync("confirmed cleanup boundary after consolidation", _lifetime.Token),
+                    "post-cleanup memory sync");
+                if (_loginStatus.IsReady)
+                    QueueBackground(ResumeAfterCleanupIfReadyAsync(_lifetime.Token), "post-consolidation cleanup resume");
+            }
+
+            RefreshStatus(
+                "Waiting for cleanup restart",
+                wasAutonomous
+                    ? "Borin consolidated the session and will resume the saved autonomous assignment after the server returns and fresh perception is verified."
+                    : "Borin consolidated the session and will remain under human control after the server returns.");
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _cleanupConsolidationRunning, 0);
+        }
+    }
+
+    private async Task PushConsolidatedCleanupMemoryAsync(string boundaryReason, CancellationToken token)
+    {
+        if (!_settings.MemoryRepositorySyncEnabled || !_settings.MemoryRepositoryPushAfterCleanup)
+            return;
+        if (Interlocked.CompareExchange(ref _cleanupMemorySyncRunning, 1, 0) != 0)
+            return;
+
+        try
+        {
+            var checkpoint = _sessionLifecycle.Current;
+            if (checkpoint.Exists)
+            {
+                if (checkpoint.ConsolidatedAt is null)
+                {
+                    await AppendJournalAsync(
+                        "Cleanup",
+                        "MemoryRepositoryAwaitingConsolidation",
+                        string.Empty,
+                        string.Empty,
+                        $"Private-memory push deferred at {boundaryReason}; the durable cleanup checkpoint has not finished consolidation yet.",
+                        token);
+                    return;
+                }
+
+                // Stage first. From this point forward the cleanup snapshot survives app
+                // restarts and can be pushed even if the lifecycle checkpoint is later
+                // moved to history when Borin resumes gameplay.
+                await _memoryRepositorySync.StageCleanupSnapshotAsync(BuildMemorySyncMetadata(checkpoint), token);
+            }
+
+            var memorySync = await _memoryRepositorySync.PushPendingCleanupSnapshotsAsync(token);
+            await AppendJournalAsync(
+                "Cleanup",
+                memorySync.Succeeded ? "MemoryRepositorySynced" : "MemoryRepositoryDeferred",
+                string.Empty,
+                string.Empty,
+                $"{boundaryReason}: {memorySync.Detail}",
+                token);
+            if (memorySync.Succeeded)
+            {
+                _selfPlayDiagnostics.Record("MemorySync", memorySync.Detail, CurrentGameState);
+                _logger.Info($"Borin private memory post-cleanup sync: {memorySync.Detail}");
+            }
+            else
+            {
+                _selfPlayDiagnostics.Record("MemorySyncDeferred", memorySync.Detail, CurrentGameState);
+                _logger.Info($"Borin private memory post-cleanup sync deferred safely: {memorySync.Detail}");
+                if (_settings.MemoryRepositoryRetryEnabled)
+                    QueueBackground(RetryPendingMemoryRepositorySyncUntilSuccessAsync(_lifetime.Token), "private-memory retry loop");
+            }
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _cleanupMemorySyncRunning, 0);
+        }
+    }
+
+    private async Task RetryPendingMemoryRepositorySyncUntilSuccessAsync(CancellationToken token)
+    {
+        if (!_settings.MemoryRepositorySyncEnabled || !_settings.MemoryRepositoryPushAfterCleanup || !_settings.MemoryRepositoryRetryEnabled)
+            return;
+        if (Interlocked.CompareExchange(ref _memoryRepositoryRetryRunning, 1, 0) != 0)
+            return;
+
+        try
+        {
+            while (!token.IsCancellationRequested)
+            {
+                var pending = await _memoryRepositorySync.GetPendingCleanupStatusAsync(token);
+                if (pending.PendingCount == 0)
+                    return;
+
+                var result = await _memoryRepositorySync.PushPendingCleanupSnapshotsAsync(token);
+                if (result.Succeeded)
+                {
+                    _selfPlayDiagnostics.Record("MemorySyncRecovered", result.Detail, CurrentGameState);
+                    _logger.Info($"Borin private memory retry succeeded: {result.Detail}");
+                    return;
+                }
+
+                _selfPlayDiagnostics.Record(
+                    "MemorySyncRetryWaiting",
+                    $"{pending.PendingCount} cleanup snapshot(s) remain local. Retrying in {_settings.MemoryRepositoryRetryDelaySeconds} seconds. {result.Detail}",
+                    CurrentGameState);
+                await Task.Delay(TimeSpan.FromSeconds(_settings.MemoryRepositoryRetryDelaySeconds), token);
+            }
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _memoryRepositoryRetryRunning, 0);
+        }
+    }
+
+    private BorinMemoryRepositorySyncMetadata BuildMemorySyncMetadata(BorinPlayerSessionCheckpoint checkpoint) =>
+        new(
+            checkpoint.Id,
+            checkpoint.ConsolidatedAt ?? checkpoint.UpdatedAt,
+            checkpoint.Server,
+            checkpoint.World,
+            checkpoint.Character,
+            _settings.SessionId,
+            checkpoint.Assignment,
+            checkpoint.Room,
+            checkpoint.CharacterLevel,
+            checkpoint.ExperienceCurrent,
+            checkpoint.VerifiedObservationCount,
+            checkpoint.VerifiedLessons,
+            checkpoint.Reflection,
+            checkpoint.Summary);
+
+    private async Task HandleCleanupDisconnectAsync(string detail, CancellationToken token)
+    {
+        await _sessionLifecycle.MarkDisconnectedAsync(detail, token);
+        _cleanupBoundaryConfirmed = true;
+        QueueBackground(
+            PushConsolidatedCleanupMemoryAsync("cleanup disconnect boundary", _lifetime.Token),
+            "cleanup-disconnect memory sync");
+        if (!_settings.CleanupReconnectEnabled)
+        {
+            RefreshStatus("Cleanup disconnected", "The cleanup checkpoint is safe. Automatic cleanup reconnect is disabled.");
+            return;
+        }
+        if (Interlocked.CompareExchange(ref _cleanupReconnectRunning, 1, 0) != 0)
+            return;
+
+        try
+        {
+            long attempt = 0;
+            while (!token.IsCancellationRequested)
+            {
+                attempt++;
+                await Task.Delay(TimeSpan.FromSeconds(_settings.CleanupReconnectDelaySeconds), token);
+                try
+                {
+                    var session = GetSessionOrNull();
+                    if (session?.ConnectionState != ClientConnectionState.Connected)
+                        await ConnectAsync(token);
+
+                    var readyDeadline = DateTimeOffset.Now.AddSeconds(Math.Max(20, _settings.CleanupReconnectDelaySeconds));
+                    while (DateTimeOffset.Now < readyDeadline && !token.IsCancellationRequested)
+                    {
+                        if (_loginStatus.IsReady)
+                        {
+                            await ResumeAfterCleanupIfReadyAsync(token);
+                            if (!_cleanupExpected)
+                                return;
+                            break;
+                        }
+                        await Task.Delay(500, token);
+                    }
+                }
+                catch (Exception exception) when (exception is not OperationCanceledException)
+                {
+                    _logger.Info($"Borin cleanup reconnect attempt {attempt} did not complete: {exception.Message}");
+                }
+
+                _selfPlayDiagnostics.Record(
+                    "CleanupReconnectRetry",
+                    $"Reconnect attempt {attempt} has not reached a verified MajorMUD prompt yet; retrying after the configured delay.",
+                    CurrentGameState);
+                RefreshStatus(
+                    "Waiting for cleanup restart",
+                    $"Cleanup memory is safe. Reconnect attempt {attempt} has not reached the MajorMUD prompt yet. Borin will keep retrying until login succeeds.");
+            }
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _cleanupReconnectRunning, 0);
+        }
+    }
+
+    private async Task ResumeAfterCleanupIfReadyAsync(CancellationToken token)
+    {
+        if (!_cleanupExpected || !_loginStatus.IsReady)
+            return;
+        if (Interlocked.CompareExchange(ref _cleanupResumeRunning, 1, 0) != 0)
+            return;
+
+        try
+        {
+        var checkpoint = _sessionLifecycle.Current;
+        if (!checkpoint.Exists)
+        {
+            _cleanupExpected = false;
+            _paused = false;
+            return;
+        }
+        if (checkpoint.ConsolidatedAt is null)
+        {
+            RefreshStatus("Cleanup consolidation pending", "The cleanup checkpoint is safe, but Borin is still consolidating verified gameplay memory before reconnect/resume.");
+            return;
+        }
+        if (!_cleanupBoundaryConfirmed && !BorinPlayerSessionLifecycleStore.HasConfirmedCleanupMemoryBoundary(checkpoint))
+        {
+            RefreshStatus("Cleanup boundary pending", "Borin has a safe pre-cleanup checkpoint, but the server has not disconnected for cleanup or reported cleanup completion yet. Autonomous play will not falsely mark the cleanup as finished.");
+            return;
+        }
+        _cleanupBoundaryConfirmed = true;
+
+        _paused = false;
+        var perceived = false;
+        try
+        {
+            perceived = await RefreshPerceptionAsync(token);
+        }
+        catch (Exception exception) when (exception is not OperationCanceledException)
+        {
+            _logger.Info($"Borin post-cleanup perception refresh is not ready yet: {exception.Message}");
+        }
+        if (!perceived)
+        {
+            _paused = true;
+            RefreshStatus("Cleanup resume waiting", "Borin is logged in after cleanup, but fresh room/exits/prompt perception has not been verified yet. The checkpoint remains intact.");
+            return;
+        }
+
+        var resumedState = CurrentGameState;
+        var completed = await _sessionLifecycle.MarkResumedAsync(resumedState, token);
+        _cleanupExpected = false;
+        _cleanupBoundaryConfirmed = false;
+        _paused = false;
+        await AppendJournalAsync(
+            "Cleanup",
+            "Resumed",
+            string.Empty,
+            string.Empty,
+            $"Cleanup lifecycle resumed in {SafeValue(resumedState.CurrentRoom, "Unknown room")}. Saved goal: {SafeValue(completed.Assignment, _settings.CurrentGoal)}",
+            token);
+
+        var resumeAutonomy = _resumeAutonomousAfterCleanup && completed.ResumeAutonomousPlay;
+        _resumeAutonomousAfterCleanup = false;
+        var assignment = string.IsNullOrWhiteSpace(completed.Assignment) ? _cleanupResumeAssignment : completed.Assignment;
+        _cleanupResumeAssignment = string.Empty;
+        if (resumeAutonomy)
+        {
+            _selfPlayDiagnostics.Record("CleanupResumeReady", "Cleanup boundary and fresh post-cleanup perception are verified; resuming the saved autonomous assignment.", resumedState);
+            await StartAutonomousPlayAsync(
+                string.IsNullOrWhiteSpace(assignment) ? _settings.CurrentGoal : assignment,
+                token);
+            RefreshStatus("Playing after cleanup", "Fresh perception was verified after cleanup. Borin resumed the saved autonomous assignment.");
+        }
+        else
+        {
+            RefreshStatus("Ready after cleanup", "Fresh perception was verified after cleanup. The saved session was consolidated and Borin remains under human control.");
+        }
+        }
+        finally
+        {
+            Interlocked.Exchange(ref _cleanupResumeRunning, 0);
+        }
+    }
+
     private void ConsiderAutomaticReflection(string classification, ClientSessionConnection? session)
     {
         if (!_settings.ReflectionJournalEnabled || !_settings.AutomaticReflectionEnabled || _paused || _emergencyStopped)
@@ -3551,7 +4373,8 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
         if (DateTimeOffset.Now - _lastReflectionAt < TimeSpan.FromMinutes(_settings.AutomaticReflectionCooldownMinutes))
             return;
         var count = Interlocked.Increment(ref _meaningfulEventsSinceReflection);
-        if (count < _settings.AutomaticReflectionEventInterval || _brainGate.CurrentCount == 0)
+        var highValueTrigger = classification is "CombatDefeat" or "LevelGained" or "CombatVictory" or "SelfPlayStuck";
+        if ((!highValueTrigger && count < _settings.AutomaticReflectionEventInterval) || _brainGate.CurrentCount == 0)
             return;
         if (Interlocked.CompareExchange(ref _automaticReflectionRunning, 1, 0) != 0)
             return;
@@ -3563,7 +4386,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
     {
         try
         {
-            await WriteReflectionAsync($"Automatic reflection after {trigger}. Focus on what changed, one conversation improvement, and the next safe goal.", "automatic", token);
+            await WriteReflectionAsync($"Automatic reflection after {trigger}. Focus on what the verified gameplay evidence says worked or failed, whether prior strategy should change, how Librarium guidance compares with direct experience, and the next autonomous goal.", "automatic", token);
         }
         catch (OperationCanceledException)
         {

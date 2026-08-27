@@ -1,0 +1,79 @@
+{
+  "schema": "majormud.ownership-scope.v1",
+  "update": "0297",
+  "policy": "MajorMUD 1.11p gameplay parity excludes Worldgroup/host account-session, mail, weather/day-night, native administrative interface, host security handoff, native logging/diagnostics, and crash/startup behavior. Mixed requirements retain only player-visible MajorMUD gameplay semantics. Generic environmental-hazard abstractions are also excluded as Reforged extensions; native room effects remain owned by actual decoded MajorMUD room/exit mechanisms.",
+  "excludedCuratedAssertionIds": [
+    "native.account-session-ownership",
+    "native.administrative-policy",
+    "native.logging-diagnostics",
+    "native.mail-offline-messaging",
+    "native.security-permissions",
+    "native.startup-shutdown",
+    "native.weather-day-night",
+    "worldgroup.semantic-boundary",
+    "native.environmental-hazards",
+    "native.world-containers"
+  ],
+  "excludedNativeDependencyIds": [
+    "account-session-ownership",
+    "administrative-policy",
+    "logging-diagnostics",
+    "mail-offline-messaging",
+    "security-permissions",
+    "startup-shutdown",
+    "weather-day-night",
+    "worldgroup-integration",
+    "environmental-hazards",
+    "world-containers"
+  ],
+  "mixedNativeDependencyOverrides": {
+    "world-rules-configuration": [
+      "exact MajorMUD 1.11p gameplay configuration sources, defaults and allowed ranges",
+      "which MajorMUD gameplay settings are runtime mutable",
+      "MajorMUD world-state/save effects of starting room, starting wealth/level, experience, loot, respawn, PvP, death penalty, reset, Evil Point, communication, merchant/trainer, limited-item, quest and MajorMUD Plus event settings"
+    ],
+    "help-reference": [
+      "exact Classic MajorMUD help topic record families",
+      "native HELP syntax/aliases, formatting and pagination",
+      "MajorMUD textblock/help linkage and permission filtering",
+      "MajorMUD help search matching and ambiguity behavior"
+    ],
+    "reforged-extension-boundaries": [
+      "exact native Classic MajorMUD gameplay extension boundary and version markers",
+      "MajorMUD save/catalog compatibility boundaries",
+      "which remaining gameplay features are stock 1.11p versus Reforged extensions"
+    ]
+  },
+  "evidence": [
+    {
+      "claim": "MajorMUD is installed and entered as a module under Worldgroup; Worldgroup server setup/security exists outside the MajorMUD game module.",
+      "source": "mudinfo.net: Worldgroup + Majormud Setup"
+    },
+    {
+      "claim": "Worldgroup security keys and the WCCMMUD.INI SYS_*_KEY settings form a host-to-module authorization handoff rather than multiple intrinsic MajorMUD administrator levels.",
+      "source": "mudinfo.net: WCCMMUD.INI / SYS_RELOAD_KEY discussions"
+    },
+    {
+      "claim": "Official MajorMUD help documents MajorMUD-owned game commands, parties, gangs, communication, saving-on-exit and other in-realm behavior separately from the surrounding BBS login/menu layer.",
+      "source": "majormud.com: MajorMUD Help - Commands"
+    },
+    {
+      "claim": "Operator-confirmed project scope excludes Worldgroup mail, host login/session/line limits, native logging/diagnostics, weather/day-night, native SYSOP interface parity, and crash/restart behavior.",
+      "source": "Pass 21 operator parity corrections"
+    },
+    {
+      "claim": "Reforged administration is intentionally exposed through the editor while MajorMUD gameplay-visible effects remain subject to parity.",
+      "source": "Pass 21 operator parity corrections"
+    },
+    {
+      "claim": "Stock RoomType 0-24 has no generic environmental-hazard record family; room damage/status effects remain represented by actual trap/cast/text/remote-action/etc. mechanics.",
+      "source": "Pass 25 room schema closure / Nightmare Redux RoomType parameter map"
+    },
+    {
+      "id": "world-container-scope-0297",
+      "classification": "native-scope-correction",
+      "reason": "Generic RuntimeWorldContainerService is not a standalone Classic MajorMUD subsystem. Native death piles, banks/vault currency, gang-house vaults, portable item ownership, and treasure-chest loot remain with their actual gameplay owners.",
+      "source": "Librarium/Parity/majormud_door_requirements_container_scope_evidence_0297.json"
+    }
+  ]
+}

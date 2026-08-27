@@ -67,12 +67,28 @@ public sealed class BorinCharacterTestHarness
             await RunCaseAsync(cases, "Academy request priority cannot consume the interactive burst", () => TestAcademyRatePriorityAsync(token), token);
             await RunCaseAsync(cases, "Verified learning separates observations, conflicts, and procedures", () => TestVerifiedKnowledgeLearningAsync(temporaryRoot, token), token);
             await RunCaseAsync(cases, "Omniverse partial prompts drive the MajorMUD login state", TestOmniversePromptRecognitionAsync, token);
+            await RunCaseAsync(cases, "Omniverse post-password login sequence is N then M then E", TestOmniversePostPasswordLoginSequenceAsync, token);
             await RunCaseAsync(cases, "Omniverse prompt-prefixed speech remains conversational", TestOmniverseConversationParsingAsync, token);
             await RunCaseAsync(cases, "Sensitive telnet commands are redacted from traffic traces", TestSensitiveTelnetTraceRedactionAsync, token);
             await RunCaseAsync(cases, "Visible room exits are parsed exactly", TestVisibleExitParsingAsync, token);
             await RunCaseAsync(cases, "Scalar HP prompts remain honest and safe", TestScalarHealthPromptAsync, token);
             await RunCaseAsync(cases, "Game server identity distinguishes Omniverse and Reforged", TestGameServerIdentityAsync, token);
+            await RunCaseAsync(cases, "Login isolation blocks client leakage and Reforged protocol on Omniverse", TestClientLoginIsolationPolicyAsync, token);
             await RunCaseAsync(cases, "Autonomous play requires fresh verified perception", TestAutonomousPerceptionGateAsync, token);
+            await RunCaseAsync(cases, "Autonomous leveling guidance reads catalog-listed Librarium records", () => TestLibrariumPlayerGuidanceAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Verified gameplay memory retains character-specific leveling experience", () => TestGameplayLevelingExperienceAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Autonomous progression planner prioritizes survival and verified leveling evidence", TestAutonomousProgressionPlannerAsync, token);
+            await RunCaseAsync(cases, "Equipment planner verifies ownership and protects irreversible item actions", TestEquipmentInventoryPlannerAsync, token);
+            await RunCaseAsync(cases, "Quest/NPC planner verifies live context before dialogue and item hand-ins", TestQuestNpcPlannerAsync, token);
+            await RunCaseAsync(cases, "Self-play recovery detects repeats and route loops without permanent bans", TestSelfPlayRecoveryAsync, token);
+            await RunCaseAsync(cases, "Autonomous safety blocks destructive control and stale irreversible inventory actions", TestAutonomousSafetyHardeningAsync, token);
+            await RunCaseAsync(cases, "End-to-end self-play lifecycle composes planning, recovery, cleanup, resume, and diagnostics", () => TestEndToEndSelfPlayLifecycleAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Reflection continuity carries prior strategy without promoting it to evidence", () => TestReflectionContinuityAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Server cleanup signals pause only on server/system evidence", TestCleanupSignalDetectionAsync, token);
+            await RunCaseAsync(cases, "Cleanup checkpoint survives restart and prunes only expired raw journals", () => TestCleanupSessionLifecycleAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Private memory sync allowlists durable memory and rejects credential-bearing remotes", TestPrivateMemoryRepositoryBoundaryAsync, token);
+            await RunCaseAsync(cases, "Private memory sync outbox survives restart, deduplicates cleanup IDs, and clears only acknowledged snapshots", () => TestPrivateMemoryRepositoryOutboxAsync(temporaryRoot, token), token);
+            await RunCaseAsync(cases, "Long-run retention bounds raw journals and schedules private Git history compaction", () => TestLongRunRetentionAsync(temporaryRoot, token), token);
             await RunCaseAsync(cases, "Command ownership and exit destinations remain honest", TestCommandOwnershipAndDestinationBoundaryAsync, token);
             await RunCaseAsync(cases, "Forge connection instructions route to the real login controller", TestForgeConnectionActionRoutingAsync, token);
             await RunCaseAsync(cases, "Omniverse mentions do not hijack unrelated Forge questions", TestOmniverseIntentScopeAsync, token);
@@ -384,6 +400,23 @@ public sealed class BorinCharacterTestHarness
         return Task.CompletedTask;
     }
 
+    private static Task TestOmniversePostPasswordLoginSequenceAsync()
+    {
+        var settings = new BorinPlayerSettings
+        {
+            ServerProfileName = "Omniverse BBS",
+            HostName = "omniversebbs.com",
+        };
+        var sequence = BorinPlayerResearch.GetOmniversePostPasswordMenuSequence(settings);
+        Assert(sequence.SequenceEqual(new[] { "N", "M", "E" }, StringComparer.OrdinalIgnoreCase),
+            $"Omniverse post-password sequence changed unexpectedly: {string.Join(" -> ", sequence)}");
+
+        var normalized = (settings with { OmniversePostPasswordSelection = "n", MainMenuSelection = "m", MajorMudMenuSelection = "e" }).Normalize();
+        Assert(normalized.OmniversePostPasswordSelection == "N" && normalized.MainMenuSelection == "M" && normalized.MajorMudMenuSelection == "E",
+            "Omniverse login menu selections were not normalized to single uppercase commands.");
+        return Task.CompletedTask;
+    }
+
     private static Task TestVisibleExitParsingAsync()
     {
         var exits = ClientSessionService.ParseExits("north, south, west, southeast");
@@ -404,6 +437,30 @@ public sealed class BorinCharacterTestHarness
         var completed = observation.GetValueOrDefault();
         Assert(completed.Exits.SequenceEqual(new[] { "west", "east" }, StringComparer.OrdinalIgnoreCase),
             "Stream room exits were not promoted from the completed live display.");
+        Assert(completed.ExitsVerified, "A normal native exit list was not marked verified.");
+
+        var decorated = new ClassicRoomDisplayStreamParser();
+        Assert(decorated.Observe("A Stone Hall") is null, "Decorated-exit test committed before its exit boundary.");
+        var decoratedObservation = decorated.Observe("Obvious exits: open door west, north (closed), [east]");
+        Assert(decoratedObservation is not null, "Decorated native exits did not complete the room display.");
+        var decoratedRoom = decoratedObservation.GetValueOrDefault();
+        Assert(decoratedRoom.Exits.SequenceEqual(new[] { "west", "north", "east" }, StringComparer.OrdinalIgnoreCase),
+            $"Decorated native exits were not normalized: {string.Join(", ", decoratedRoom.Exits)}");
+        Assert(decoratedRoom.ExitsVerified, "Decorated native exits were not marked verified.");
+
+        var malformed = new ClassicRoomDisplayStreamParser();
+        Assert(malformed.Observe("Another Stone Hall") is null, "Malformed-exit test committed before its exit boundary.");
+        var malformedObservation = malformed.Observe("Obvious exits: ???");
+        Assert(malformedObservation is not null, "Malformed exit text should still close the room display.");
+        var malformedRoom = malformedObservation.GetValueOrDefault();
+        Assert(!malformedRoom.ExitsVerified && malformedRoom.Exits.Count == 0 && malformedRoom.RawExitText == "???",
+            "An unparsed exit line was incorrectly promoted to authoritative no-exit state.");
+
+        var none = new ClassicRoomDisplayStreamParser();
+        Assert(none.Observe("A Sealed Cell") is null, "No-exit test committed before its exit boundary.");
+        var noneObservation = none.Observe("Obvious exits: none");
+        Assert(noneObservation is not null && noneObservation.Value.ExitsVerified && noneObservation.Value.Exits.Count == 0,
+            "An explicit native no-exit room was not preserved as verified zero exits.");
         return Task.CompletedTask;
     }
 
@@ -425,6 +482,48 @@ public sealed class BorinCharacterTestHarness
             "A scalar HP prompt with an unknown maximum was not parsed.");
         Assert(unknownMaximum.HealthCurrent == 51 && unknownMaximum.HealthMaximum == 0 && unknownMaximum.HealthPercent == 0,
             "An unknown maximum HP was incorrectly treated as a verified percentage.");
+        return Task.CompletedTask;
+    }
+
+    private static Task TestClientLoginIsolationPolicyAsync()
+    {
+        var now = DateTimeOffset.Now;
+        var session = new ClientSessionConnection
+        {
+            SessionId = "login-isolation",
+            ServerProfileName = "Omniverse BBS",
+            HostName = "omniversebbs.com",
+            ConnectionState = ClientConnectionState.Connected,
+        };
+
+        Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.Human),
+            "Human login input was incorrectly blocked before the game prompt.");
+        Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.SystemLogin),
+            "The dedicated SystemLogin path was incorrectly blocked before the game prompt.");
+        Assert(!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.AutonomousAgent),
+            "Borin gameplay traffic leaked before MajorMUD login was verified.");
+        Assert(!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientAutomation),
+            "Client automation leaked before MajorMUD login was verified.");
+        Assert(!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol),
+            "Private protocol traffic leaked before MajorMUD login was verified.");
+
+        session.LivePromptText = "[HP=51]:";
+        session.PromptUpdatedAt = now;
+        Assert(ClientCommandIsolationPolicy.HasVerifiedGameplay(session),
+            "A real scalar MajorMUD HP prompt did not unlock verified gameplay.");
+        Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.AutonomousAgent),
+            "Borin gameplay remained blocked after the MajorMUD game prompt was verified.");
+        Assert(!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session),
+            "Omniverse was incorrectly classified as a Reforged private-protocol server.");
+        Assert(!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol),
+            "ROOMDATA/CLIENTDATA would still leak into an Omniverse session after login.");
+
+        session.ServerProfileName = "Reforged Server";
+        session.HostName = "127.0.0.1";
+        Assert(ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session),
+            "The local Reforged server was not recognized as private-protocol capable.");
+        Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol),
+            "Private protocol remained blocked on a verified in-game Reforged session.");
         return Task.CompletedTask;
     }
 
@@ -490,8 +589,8 @@ public sealed class BorinCharacterTestHarness
 
         session.ExitsUpdatedAt = null;
         var noExits = BorinGameStateSnapshot.Capture(settings, login, session);
-        Assert(!noExits.CanAutonomousPlay && !noExits.HasVerifiedExits,
-            "Autonomous play remained enabled without a fresh exit list.");
+        Assert(noExits.CanAutonomousPlay && !noExits.HasVerifiedExits,
+            "Continuous autonomous play was incorrectly blocked just because exits were not fresh.");
 
         session.ExitsUpdatedAt = now;
         session.PromptUpdatedAt = now.Subtract(TimeSpan.FromMinutes(3));
@@ -503,10 +602,632 @@ public sealed class BorinCharacterTestHarness
         session.HealthMaximum = 0;
         session.HealthPercent = 0;
         var unknownMaximum = BorinGameStateSnapshot.Capture(settings, login, session);
-        Assert(!unknownMaximum.CanAutonomousPlay &&
-               unknownMaximum.AutonomousPlayBlockReason.Contains("maximum HP", StringComparison.OrdinalIgnoreCase),
-            "Autonomous play did not remain locked when only scalar current HP was known.");
+        Assert(unknownMaximum.CanAutonomousPlay &&
+               unknownMaximum.AutonomousPlayBlockReason.Contains("scalar HP", StringComparison.OrdinalIgnoreCase),
+            "Continuous autonomous play was incorrectly blocked when only scalar current HP was known.");
+
+        session.HealthMaximum = 51;
+        session.HealthPercent = 20;
+        var lowHealth = BorinGameStateSnapshot.Capture(settings, login, session);
+        Assert(lowHealth.CanAutonomousPlay &&
+               lowHealth.AutonomousPlayBlockReason.Contains("prioritize survival", StringComparison.OrdinalIgnoreCase),
+            "Low health should inform Borin's survival decision instead of stopping autonomous play.");
+
+        session.HealthPercent = 100;
+        session.InCombat = true;
+        var combat = BorinGameStateSnapshot.Capture(settings, login, session);
+        Assert(combat.CanAutonomousPlay && combat.InCombat,
+            "Combat should be handled by Borin's autonomous player loop instead of stopping it.");
         return Task.CompletedTask;
+    }
+
+    private static async Task TestLibrariumPlayerGuidanceAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "LibrariumPlayerGuidance");
+        var npcRoot = Path.Combine(root, "Librarium", "Objects", "npcs");
+        var spawnRoot = Path.Combine(root, "Librarium", "Objects", "spawns");
+        var roomRoot = Path.Combine(root, "Librarium", "Objects", "rooms");
+        var itemRoot = Path.Combine(root, "Librarium", "Objects", "items");
+        var shopRoot = Path.Combine(root, "Librarium", "Objects", "shops");
+        var questRoot = Path.Combine(root, "Librarium", "Objects", "quests");
+        Directory.CreateDirectory(npcRoot);
+        Directory.CreateDirectory(spawnRoot);
+        Directory.CreateDirectory(roomRoot);
+        Directory.CreateDirectory(itemRoot);
+        Directory.CreateDirectory(shopRoot);
+        Directory.CreateDirectory(questRoot);
+
+        await File.WriteAllTextAsync(Path.Combine(npcRoot, "catalog.json"),
+            "{\"records\":[\"npc_records_9999.json\"]}", token);
+        await File.WriteAllTextAsync(Path.Combine(spawnRoot, "catalog.json"),
+            "{\"records\":[\"spawn_records_9999.json\"]}", token);
+        await File.WriteAllTextAsync(Path.Combine(roomRoot, "catalog.json"),
+            "{\"records\":[\"room_records_9999.json\"]}", token);
+        await File.WriteAllTextAsync(Path.Combine(itemRoot, "catalog.json"),
+            "{\"records\":[\"item_records_9999.json\"]}", token);
+        await File.WriteAllTextAsync(Path.Combine(shopRoot, "catalog.json"),
+            "{\"records\":[\"shop_records_9999.json\"]}", token);
+        await File.WriteAllTextAsync(Path.Combine(questRoot, "catalog.json"),
+            "{\"records\":[\"quest_records_9999.json\"]}", token);
+
+        // Deliberately exceed the old 2 MB scanner limit. The structured advisor must still
+        // consume this catalog-listed canonical file instead of silently omitting gameplay data.
+        var padding = new string('x', (2 * 1024 * 1024) + 4096);
+        await File.WriteAllTextAsync(Path.Combine(npcRoot, "npc_records_9999.json"),
+            "{\"padding\":\"" + padding + "\",\"records\":[{\"id\":\"npc.10\",\"name\":\"training goblin\",\"confidence\":\"proven\",\"combat\":{\"level\":\"10\",\"hp\":\"90\"},\"rewards\":{\"xp_base\":\"850\"}}]}", token);
+        await File.WriteAllTextAsync(Path.Combine(spawnRoot, "spawn_records_9999.json"),
+            "{\"records\":[{\"id\":\"spawn.10.1\",\"npc_name\":\"training goblin\",\"qualified_room_ref\":\"room.map1.100\",\"confidence\":\"strongly_correlated\",\"spawn_model\":{\"respawn_minutes\":\"5\"}}]}", token);
+        await File.WriteAllTextAsync(Path.Combine(roomRoot, "room_records_9999.json"),
+            "{\"records\":[{\"id\":\"room.100\",\"name\":\"Training Yard\",\"confidence\":\"proven\"}]}", token);
+        await File.WriteAllTextAsync(Path.Combine(itemRoot, "item_records_9999.json"),
+            "{\"records\":[{\"id\":\"item.1\",\"name\":\"club\",\"confidence\":\"proven\",\"classification\":{\"type\":\"weapon\"},\"economy\":{\"cost\":\"25\"},\"equipment\":{\"str_requirement\":\"5\"},\"combat\":{\"minimum_damage\":\"2\",\"maximum_damage\":\"8\",\"accuracy\":\"1\",\"speed\":\"1000\"}},{\"id\":\"item.2\",\"name\":\"ancient key\",\"confidence\":\"proven\",\"classification\":{\"type\":\"misc\"}}]}", token);
+        await File.WriteAllTextAsync(Path.Combine(shopRoot, "shop_records_9999.json"),
+            "{\"records\":[{\"id\":\"shop.1\",\"name\":\"Training Weapon Shop\",\"confidence\":\"proven\",\"service_kind\":\"weapon_or_armor_shop\",\"room_ref\":\"room.100\",\"level_range\":{\"min\":\"1\",\"max\":\"99\"}}]}", token);
+        await File.WriteAllTextAsync(Path.Combine(questRoot, "quest_records_9999.json"),
+            "{\"records\":[{\"id\":\"quest_flow.TrainingQuest.npc10\",\"name\":\"Training quest flow\",\"confidence\":\"proven\",\"classification\":\"npc_textblock_quest_flow\",\"quest_flag_name\":\"TrainingQuest\",\"relationships\":{\"npc\":\"npc.10\",\"command_keywords\":[\"training\",\"token\"]}},{\"id\":\"quest.key_item_candidate.2\",\"name\":\"Key item gate candidate: ancient key\",\"confidence\":\"strongly_correlated\",\"classification\":\"key_item_or_gate_candidate\",\"relationships\":{\"item\":\"2\"}}]}", token);
+
+        var game = BorinGameStateSnapshot.Empty with
+        {
+            CharacterLevel = 10,
+            CurrentRoom = "Training Yard",
+            CurrentRoomKey = "1:100",
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            InventoryItems = new[] { "club", "ancient key" },
+            EquippedItems = new[] { "club" },
+            InventoryFreshness = "fresh",
+            EquipmentFreshness = "fresh",
+        };
+        var guidance = await BorinLibrariumPlayerAdvisor.GatherAsync(root, "find a place to level and investigate quests", game, 20, token);
+        Assert(guidance.PromptText.Contains("training goblin", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not return the level-matched NPC from the catalog-listed Librarium record.");
+        Assert(guidance.PromptText.Contains("Training Yard", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("room.map1.100", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not connect the leveling NPC spawn to its Librarium room.");
+        Assert(guidance.PromptText.Contains("XP 850", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not expose Librarium XP evidence for leveling decisions.");
+        Assert(guidance.PromptText.Contains("ITEM REFERENCE", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("damage 2-8", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not expose structured Librarium item combat/economy evidence for owned gear.");
+        Assert(guidance.PromptText.Contains("SHOP IN CURRENT ROOM", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("Training Weapon Shop", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not expose the structured shop reference for the verified current room.");
+        Assert(guidance.PromptText.Contains("QUEST/NPC FLOW CANDIDATE", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("TrainingQuest", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("training, token", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not connect the current-room NPC reference to its decoded quest flow and dialogue keywords.");
+        Assert(guidance.PromptText.Contains("QUEST ITEM CLUE", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("ancient key", StringComparison.OrdinalIgnoreCase),
+            "The advisor did not protect an owned item referenced by a structured quest/gate clue.");
+    }
+
+    private static async Task TestGameplayLevelingExperienceAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "GameplayLevelingExperience");
+        Directory.CreateDirectory(root);
+        var store = new BorinGameplayLearningStore(root, new HarnessLogger());
+        var now = DateTimeOffset.Now;
+        var baseline = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedLiveState = true,
+            HasVerifiedRoom = true,
+            CharacterName = "Borin",
+            Server = "Omniverse BBS",
+            World = "Classic",
+            CurrentRoom = "Training Yard",
+            CurrentRoomKey = "1:100",
+            CharacterLevel = 10,
+            ExperienceCurrent = 10_000,
+            ExperienceNeeded = 12_000,
+            HealthPercent = 100,
+            ManaPercent = 100,
+        };
+        await store.ObserveTerminalAsync(
+            baseline.Server, baseline.World, baseline.CharacterName,
+            "RoomEntered", "Training Yard", string.Empty, baseline, now, token);
+
+        var progressed = baseline with { ExperienceCurrent = 10_850, CapturedAt = now.AddSeconds(3) };
+        await store.ObserveTerminalAsync(
+            progressed.Server, progressed.World, progressed.CharacterName,
+            "ExperienceGained", "You gain experience.", "KILL GOBLIN", progressed, now.AddSeconds(3), token);
+
+        var context = CreateContext(
+            "Find the best place to level based on what I have actually experienced.",
+            root,
+            purpose: "Gameplay experience test",
+            gameState: progressed);
+        var snapshot = await store.PrepareTurnAsync(context, token);
+        Assert(snapshot.PromptText.Contains("Verified leveling experience", StringComparison.OrdinalIgnoreCase),
+            "The gameplay store did not expose accumulated leveling experience to Borin's decision context.");
+        Assert(snapshot.PromptText.Contains("Training Yard", StringComparison.OrdinalIgnoreCase) &&
+               snapshot.PromptText.Contains("850", StringComparison.OrdinalIgnoreCase),
+            "The gameplay store did not retain the verified room and experience increase.");
+        Assert(snapshot.PromptText.Contains("not a guarantee", StringComparison.OrdinalIgnoreCase),
+            "The leveling experience was not bounded as historical character evidence.");
+    }
+
+
+    private static Task TestAutonomousProgressionPlannerAsync()
+    {
+        var live = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedPrompt = true,
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            CharacterLevel = 12,
+            ExperienceCurrent = 20_000,
+            ExperienceNeeded = 25_000,
+            HealthPercent = 24,
+            CurrentRoom = "Training Yard",
+            EquippedItems = new[] { "iron sword" },
+        };
+        var personal = new BorinGameplayLearningSnapshot(
+            "Omniverse BBS",
+            "Classic",
+            "ready",
+            new[] { "Verified leveling experience: at level 12 in Training Yard, captured experience increased by 850." },
+            10,
+            DateTimeOffset.Now,
+            string.Empty);
+        var librarium = new BorinLibrariumPlayerGuidance(
+            new[] { "LEVELING/SCOUTING CANDIDATE • PROVEN NPC • training goblin: XP 850; location Training Yard" },
+            "test guidance");
+        var plan = BorinProgressionPlanner.Build(live, personal, librarium, "- Training Yard worked but low HP requires recovery.");
+        Assert(plan.PromptText.Contains("recover", StringComparison.OrdinalIgnoreCase),
+            "The progression planner did not prioritize survival at low verified health.");
+        Assert(plan.PromptText.Contains("Verified leveling experience", StringComparison.OrdinalIgnoreCase),
+            "The progression planner did not carry verified character-specific leveling evidence.");
+        Assert(plan.PromptText.Contains("training goblin", StringComparison.OrdinalIgnoreCase),
+            "The progression planner did not retain the Librarium leveling candidate as planning evidence.");
+        Assert(plan.PromptText.Contains("not permission", StringComparison.OrdinalIgnoreCase),
+            "The progression planner did not preserve the command/route authority boundary.");
+        return Task.CompletedTask;
+    }
+
+    private static Task TestEquipmentInventoryPlannerAsync()
+    {
+        var live = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedPrompt = true,
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            CurrentRoom = "Training Weapon Shop",
+            CharacterLevel = 8,
+            HealthPercent = 100,
+            CarriedCurrency = 100,
+            InventoryItems = new[] { "club", "mysterious key" },
+            EquippedItems = new[] { "club" },
+            InventoryFreshness = "fresh",
+            EquipmentFreshness = "fresh",
+        };
+        var personal = new BorinGameplayLearningSnapshot(
+            "Omniverse BBS", "Classic", "ready",
+            new[] { "Verified item lesson: the club equipped successfully and improved early combat consistency." },
+            4, DateTimeOffset.Now, string.Empty);
+        var librarium = new BorinLibrariumPlayerGuidance(
+            new[]
+            {
+                "ITEM REFERENCE • PROVEN • club: damage 2-8, recorded cost 25",
+                "SHOP IN CURRENT ROOM • PROVEN • Training Weapon Shop: service weapon_or_armor_shop; use live LIST to verify stock/prices",
+            },
+            "test equipment guidance");
+        var plan = BorinEquipmentInventoryPlanner.Build(live, personal, librarium);
+        Assert(plan.PromptText.Contains("LIST", StringComparison.OrdinalIgnoreCase),
+            "The equipment planner did not require live shop verification before a purchase.");
+        Assert(plan.PromptText.Contains("SELL, DROP, GIVE, PUT", StringComparison.OrdinalIgnoreCase),
+            "The equipment planner did not protect irreversible ownership actions.");
+        Assert(plan.PromptText.Contains("quest item", StringComparison.OrdinalIgnoreCase) &&
+               plan.PromptText.Contains("keep", StringComparison.OrdinalIgnoreCase),
+            "The equipment planner did not preserve uncertain important items.");
+        Assert(plan.PromptText.Contains("verify", StringComparison.OrdinalIgnoreCase) &&
+               plan.PromptText.Contains("EQUIPMENT", StringComparison.OrdinalIgnoreCase),
+            "The equipment planner did not require post-equip live verification.");
+        return Task.CompletedTask;
+    }
+
+    private static Task TestQuestNpcPlannerAsync()
+    {
+        var live = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedPrompt = true,
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            CurrentRoom = "Training Yard",
+            HealthPercent = 100,
+            InventoryItems = new[] { "ancient key" },
+            InventoryFreshness = "fresh",
+        };
+        var personal = new BorinGameplayLearningSnapshot(
+            "Omniverse BBS", "Classic", "ready",
+            new[] { "Verified quest lesson: TALK with the trainer produced a new dialogue response; item transfer has not been verified." },
+            3, DateTimeOffset.Now, string.Empty);
+        var librarium = new BorinLibrariumPlayerGuidance(
+            new[]
+            {
+                "NPC SPAWN REFERENCE FOR CURRENT ROOM • PROVEN • trainer [npc.10]; live LOOK/TALK evidence must verify the NPC is actually present now",
+                "QUEST/NPC FLOW CANDIDATE • PROVEN • Training quest flow: NPC trainer [npc.10], quest flag TrainingQuest, decoded dialogue keywords [training, token]",
+                "QUEST ITEM CLUE • STRONGLY CORRELATED • owned item ancient key [item.2] is referenced by Key item gate candidate",
+            },
+            "test quest guidance");
+
+        var plan = BorinQuestNpcPlanner.Build(live, personal, librarium);
+        Assert(plan.PromptText.Contains("LOOK/EXAMINE/TALK", StringComparison.OrdinalIgnoreCase),
+            "The quest planner did not require live NPC verification before acting on a Librarium relationship.");
+        Assert(plan.PromptText.Contains("one", StringComparison.OrdinalIgnoreCase) &&
+               plan.PromptText.Contains("dialogue", StringComparison.OrdinalIgnoreCase),
+            "The quest planner did not constrain autonomous quest dialogue to one verified step at a time.");
+        Assert(plan.PromptText.Contains("GIVE, DROP", StringComparison.OrdinalIgnoreCase) &&
+               plan.PromptText.Contains("ancient key", StringComparison.OrdinalIgnoreCase),
+            "The quest planner did not protect a possible quest item from an evidence-free hand-in or disposal.");
+        Assert(plan.PromptText.Contains("not proof", StringComparison.OrdinalIgnoreCase) ||
+               plan.PromptText.Contains("not as proof", StringComparison.OrdinalIgnoreCase),
+            "The quest planner did not preserve the Librarium-versus-live-state authority boundary.");
+        return Task.CompletedTask;
+    }
+
+    private static Task TestSelfPlayRecoveryAsync()
+    {
+        var tracker = new BorinSelfPlayRecoveryTracker();
+        var yard = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedPrompt = true,
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            Server = "Omniverse BBS",
+            World = "Classic",
+            CurrentRoom = "Training Yard",
+            CharacterLevel = 12,
+            ExperienceCurrent = 20_000,
+            HealthPercent = 100,
+        };
+
+        tracker.RecordOutcome("LOOK", yard, yard, new[] { "Terminal" }, true);
+        Assert(!tracker.ShouldSuppressAction("LOOK", yard, out _),
+            "The recovery tracker blocked the first ordinary retry instead of allowing one justified retry.");
+        tracker.RecordOutcome("LOOK", yard, yard, new[] { "Terminal" }, true);
+        Assert(tracker.ShouldSuppressAction("LOOK", yard, out var repeatReason) &&
+               repeatReason.Contains("twice", StringComparison.OrdinalIgnoreCase),
+            "The recovery tracker did not suppress an exact repeated no-progress action after the allowed retry.");
+
+        var progressed = yard with { ExperienceCurrent = 20_850 };
+        tracker.RecordOutcome("KILL GOBLIN", yard, progressed, new[] { "ExperienceGained", "CombatVictory" }, true);
+        Assert(!tracker.ShouldSuppressAction("LOOK", progressed, out _),
+            "Verified new progress did not clear the short-term repeated-action suppression context.");
+
+        tracker.Reset();
+        var roomA = yard with { CurrentRoom = "East Hall" };
+        var roomB = yard with { CurrentRoom = "West Hall" };
+        tracker.RecordOutcome("W", roomA, roomB, new[] { "RoomEntered" }, true);
+        tracker.RecordOutcome("E", roomB, roomA, new[] { "RoomEntered" }, true);
+        tracker.RecordOutcome("W", roomA, roomB, new[] { "RoomEntered" }, true);
+        tracker.RecordOutcome("E", roomB, roomA, new[] { "RoomEntered" }, true);
+        var guidance = tracker.BuildGuidance(roomA);
+        Assert(guidance.PromptText.Contains("ROUTE LOOP", StringComparison.OrdinalIgnoreCase) &&
+               guidance.PromptText.Contains("oscillation", StringComparison.OrdinalIgnoreCase),
+            "The recovery tracker did not identify a two-room movement oscillation.");
+        Assert(tracker.ShouldSuppressAction("W", roomA, out var routeReason) &&
+               routeReason.Contains("oscillation", StringComparison.OrdinalIgnoreCase),
+            "The recovery tracker did not block the next movement that would continue a verified route oscillation.");
+
+        tracker.Reset();
+        tracker.RecordRejectedDecision("No executable action returned.", yard);
+        tracker.RecordRejectedDecision("The same proposed action was blocked.", yard);
+        var inspection = tracker.ChooseInspectionCommand(yard);
+        Assert(!string.IsNullOrWhiteSpace(inspection),
+            "The recovery tracker could not select a reversible perception command after rejected decisions.");
+        Assert(tracker.BuildGuidance(yard).EscalationLevel >= 1,
+            "Repeated unusable decisions did not raise the autonomous recovery escalation level.");
+        return Task.CompletedTask;
+    }
+
+    private static Task TestAutonomousSafetyHardeningAsync()
+    {
+        var live = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedPrompt = true,
+            HasVerifiedRoom = true,
+            HasVerifiedLiveState = true,
+            CanAutonomousPlay = true,
+            Server = "Omniverse BBS",
+            World = "Classic",
+            CurrentRoom = "Market Square",
+            InventoryFreshness = "captured within 15 seconds",
+            EquipmentFreshness = "captured within 30 seconds",
+            InventoryItems = new[] { "old sword", "quest key" },
+            EquippedItems = new[] { "wooden shield" },
+        };
+
+        Assert(!BorinAutonomousSafetyPolicy.Validate("QUIT", live).Allowed,
+            "Autonomous safety allowed Borin to quit/log off his own player session.");
+        Assert(!BorinAutonomousSafetyPolicy.Validate("SYS GOTO 100", live).Allowed,
+            "Autonomous safety allowed a privilege-control alias.");
+        Assert(!BorinAutonomousSafetyPolicy.Validate("LOOK;N", live).Allowed,
+            "Autonomous safety accepted more than one command in a single model action.");
+        Assert(BorinAutonomousSafetyPolicy.Validate("KILL GOBLIN", live).Allowed,
+            "Autonomous safety incorrectly blocked ordinary combat gameplay.");
+        Assert(BorinAutonomousSafetyPolicy.Validate("SELL OLD SWORD", live).Allowed,
+            "Autonomous safety blocked an inventory action despite fresh ownership evidence.");
+
+        var staleInventory = live with { InventoryFreshness = "older client capture" };
+        Assert(!BorinAutonomousSafetyPolicy.Validate("SELL OLD SWORD", staleInventory).Allowed,
+            "Autonomous safety allowed an irreversible inventory action from stale ownership evidence.");
+
+        var staleEquipment = live with { EquipmentFreshness = "capture time unknown" };
+        Assert(!BorinAutonomousSafetyPolicy.Validate("REMOVE WOODEN SHIELD", staleEquipment).Allowed,
+            "Autonomous safety allowed equipment removal without fresh equipment evidence.");
+
+        Assert(!BorinPlayerSessionLifecycleStore.IsConfirmedCleanupMemoryBoundary(BorinCleanupSignalKind.Warning),
+            "A cleanup warning was incorrectly treated as the post-cleanup Git-push boundary.");
+        Assert(!BorinPlayerSessionLifecycleStore.IsConfirmedCleanupMemoryBoundary(BorinCleanupSignalKind.Starting),
+            "Cleanup start was incorrectly treated as completion for post-cleanup Git push.");
+        Assert(BorinPlayerSessionLifecycleStore.IsConfirmedCleanupMemoryBoundary(BorinCleanupSignalKind.Completed),
+            "Cleanup completion was not recognized as a confirmed post-cleanup memory boundary.");
+        return Task.CompletedTask;
+    }
+
+    private static async Task TestEndToEndSelfPlayLifecycleAsync(string temporaryRoot, CancellationToken token)
+    {
+        var report = await BorinEndToEndSelfPlayValidation.RunAsync(
+            Path.Combine(temporaryRoot, "end-to-end-self-play"),
+            token);
+        Assert(report.Passed, report.Detail);
+        Assert(report.Checks.Count >= 10, "The end-to-end self-play validation did not exercise the expected lifecycle breadth.");
+    }
+
+    private static async Task TestReflectionContinuityAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "ReflectionContinuity");
+        Directory.CreateDirectory(root);
+        await using var journal = new BorinPlayerJournalStore();
+        await journal.ConfigureAsync(root, "borin-test", token);
+        await journal.AddReflectionAsync(
+            "automatic",
+            "Level safely",
+            "Training Yard",
+            "Current reflection: The yard hit harder than expected. Conversation lesson: none. Next goal: scout a safer route.",
+            token);
+
+        var guidance = journal.BuildGameplayReflectionGuidance();
+        Assert(guidance.Contains("yard hit harder", StringComparison.OrdinalIgnoreCase),
+            "Prior reflection was not available for autonomous strategy continuity.");
+        Assert(guidance.Contains("not evidence", StringComparison.OrdinalIgnoreCase),
+            "Prior reflection was not explicitly bounded as a strategy hypothesis rather than gameplay proof.");
+        var reflectionContext = journal.BuildReflectionContext();
+        Assert(reflectionContext.Contains("Recent prior reflections", StringComparison.OrdinalIgnoreCase),
+            "New reflection generation did not receive earlier reflection continuity.");
+    }
+
+    private static Task TestCleanupSignalDetectionAsync()
+    {
+        Assert(BorinPlayerSessionLifecycleStore.DetectCleanupSignal(
+                "*** Server cleanup/restart scheduled in 5 minutes. ***", "Terminal") == BorinCleanupSignalKind.Warning,
+            "A server cleanup warning was not recognized.");
+        Assert(BorinPlayerSessionLifecycleStore.DetectCleanupSignal(
+                "The MajorMUD server is shutting down now.", "Terminal") == BorinCleanupSignalKind.Starting,
+            "An active server shutdown was not recognized.");
+        Assert(BorinPlayerSessionLifecycleStore.DetectCleanupSignal(
+                "Server restart completed successfully.", "Terminal") == BorinCleanupSignalKind.Completed,
+            "A completed server restart was not recognized.");
+        Assert(BorinPlayerSessionLifecycleStore.DetectCleanupSignal(
+                "Bob says, \"server cleanup/restart scheduled in 5 minutes\"", "Speech") == BorinCleanupSignalKind.None,
+            "Player speech was incorrectly allowed to trigger Borin's cleanup lifecycle.");
+        Assert(BorinPlayerSessionLifecycleStore.DetectCleanupSignal(
+                "I should cleanup my inventory soon.", "Terminal") == BorinCleanupSignalKind.None,
+            "Ordinary cleanup wording incorrectly triggered the server lifecycle.");
+        return Task.CompletedTask;
+    }
+
+    private static async Task TestCleanupSessionLifecycleAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "CleanupSessionLifecycle");
+        Directory.CreateDirectory(root);
+        var store = new BorinPlayerSessionLifecycleStore();
+        await store.ConfigureAsync(root, "borin-test", token);
+        var now = DateTimeOffset.Now;
+        var state = BorinGameStateSnapshot.Empty with
+        {
+            HasVerifiedLiveState = true,
+            HasVerifiedRoom = true,
+            HasVerifiedPrompt = true,
+            Server = "Omniverse BBS",
+            World = "Classic",
+            CharacterName = "Borin",
+            CurrentRoom = "Training Yard",
+            CurrentRoomKey = "1:100",
+            HealthPercent = 72,
+            ManaPercent = 61,
+            CharacterLevel = 10,
+            ExperienceCurrent = 10_850,
+            LastCommand = "KILL GOBLIN",
+            CapturedAt = now,
+        };
+        var begun = await store.BeginCleanupAsync(
+            BorinCleanupSignalKind.Warning,
+            "Server restart in five minutes.",
+            "Level safely in Training Yard.",
+            true,
+            state,
+            token);
+        Assert(begun.Exists && begun.ResumeAutonomousPlay && begun.Assignment.Contains("Level safely", StringComparison.OrdinalIgnoreCase),
+            "Cleanup begin did not persist the autonomous assignment before consolidation.");
+
+        var gameplay = new BorinGameplayLearningSnapshot(
+            "Omniverse BBS",
+            "Classic",
+            "Relevant verified lessons selected.",
+            new[] { "Verified leveling experience: Training Yard produced 850 XP." },
+            42,
+            now,
+            Path.Combine(root, "AI", "Memory", "Gameplay", "verified-gameplay-learning.json"));
+        var consolidated = await store.CompleteConsolidationAsync(
+            gameplay,
+            "Current reflection: Training Yard is useful but watch HP. Conversation lesson: none. Next goal: resume leveling after restart.",
+            token);
+        Assert(consolidated.State == "ConsolidatedWaitingForRestart" && consolidated.VerifiedObservationCount == 42,
+            "Cleanup consolidation did not retain verified gameplay observation count.");
+        Assert(consolidated.Summary.Contains("Training Yard", StringComparison.OrdinalIgnoreCase) &&
+               consolidated.Reflection.Contains("watch HP", StringComparison.OrdinalIgnoreCase),
+            "Cleanup summary did not retain the durable verified/reflection context.");
+
+        Assert(!BorinPlayerSessionLifecycleStore.HasConfirmedCleanupMemoryBoundary(consolidated),
+            "A locally consolidated warning checkpoint was incorrectly treated as a confirmed post-cleanup Git boundary.");
+
+        var gameplayDirectory = Path.GetDirectoryName(store.StoragePath)!;
+        var expired = Path.Combine(gameplayDirectory, "events-20000101.jsonl");
+        var current = Path.Combine(gameplayDirectory, $"events-{DateTime.Now:yyyyMMdd}.jsonl");
+        await File.WriteAllTextAsync(expired, "old", token);
+        await File.WriteAllTextAsync(current, "current", token);
+        File.SetLastWriteTimeUtc(expired, DateTime.UtcNow.AddDays(-30));
+        var deleted = await store.PruneRawGameplayJournalsAsync(current, 7, 64, 48, token);
+        Assert(deleted == 1 && !File.Exists(expired) && File.Exists(current),
+            "Cleanup retention did not delete only the expired raw journal while preserving the current journal.");
+
+        var reloaded = new BorinPlayerSessionLifecycleStore();
+        await reloaded.ConfigureAsync(root, "borin-test", token);
+        Assert(reloaded.Current.Exists && reloaded.Current.ResumeAutonomousPlay &&
+               reloaded.Current.Assignment.Contains("Level safely", StringComparison.OrdinalIgnoreCase),
+            "The cleanup checkpoint did not survive a store reload/app restart boundary.");
+        var boundary = await reloaded.MarkBoundaryConfirmedAsync("Server restart completed successfully.", token);
+        Assert(BorinPlayerSessionLifecycleStore.HasConfirmedCleanupMemoryBoundary(boundary),
+            "An explicit cleanup completion did not persist the confirmed post-cleanup memory boundary.");
+        await reloaded.MarkDisconnectedAsync("Server closed the connection for restart.", token);
+        var resumed = await reloaded.MarkResumedAsync(state with { CurrentRoom = "Newhaven, Village Entrance", HealthPercent = 100 }, token);
+        Assert(resumed.ResumedAt is not null && resumed.State == "Resumed" && resumed.ResumeAutonomousPlay,
+            "The cleanup checkpoint did not complete its resume lifecycle.");
+        Assert(!reloaded.Current.Exists,
+            "A successfully resumed cleanup checkpoint remained active instead of moving to history.");
+    }
+
+    private static Task TestPrivateMemoryRepositoryBoundaryAsync()
+    {
+        Assert(BorinMemoryRepositorySync.IsDurableMemoryRelativePath("borin-memory.json"),
+            "Core Borin memory was not included in the private-memory allowlist.");
+        Assert(BorinMemoryRepositorySync.IsDurableMemoryRelativePath("borin-gameplay-learning.json"),
+            "Verified gameplay learning was not included in the private-memory allowlist.");
+        Assert(BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Gameplay/borin-test/borin-reflection-journal.json"),
+            "The bounded reflection journal was not included in the private-memory allowlist.");
+        Assert(BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Knowledge/borin-verified-learning.json"),
+            "Verified learned knowledge was not included in the private-memory allowlist.");
+        Assert(!BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Gameplay/borin-test/events-20260825.jsonl"),
+            "Raw terminal JSONL was incorrectly included in the private-memory repository.");
+        Assert(!BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Gameplay/borin-test/borin-session-lifecycle.json"),
+            "The operational cleanup checkpoint was incorrectly included in remote durable memory.");
+        Assert(!BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Backups/borin-memory-20260825.json"),
+            "Local backup snapshots were incorrectly included in the private-memory repository.");
+        Assert(!BorinMemoryRepositorySync.IsDurableMemoryRelativePath("Knowledge/borin-knowledge-index.json"),
+            "A reconstructible knowledge index was incorrectly included in the private-memory repository.");
+
+        Assert(BorinMemoryRepositorySync.IsCredentialFreeGitHubRemote("https://github.com/ShisenShi1017/Borin-Memory.git"),
+            "The configured credential-free private GitHub remote was rejected.");
+        Assert(BorinMemoryRepositorySync.IsCredentialFreeGitHubRemote("git@github.com:ShisenShi1017/Borin-Memory.git"),
+            "A normal GitHub SSH remote was rejected.");
+        Assert(!BorinMemoryRepositorySync.IsCredentialFreeGitHubRemote("https://token123@github.com/ShisenShi1017/Borin-Memory.git"),
+            "A credential-bearing HTTPS remote was incorrectly accepted.");
+        Assert(!BorinMemoryRepositorySync.IsCredentialFreeGitHubRemote("https://example.com/ShisenShi1017/Borin-Memory.git"),
+            "A non-GitHub remote was incorrectly accepted by the private-memory boundary.");
+        return Task.CompletedTask;
+    }
+
+
+    private static async Task TestPrivateMemoryRepositoryOutboxAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "memory-sync-outbox");
+        var memoryRoot = Path.Combine(root, "AI", "Memory");
+        Directory.CreateDirectory(memoryRoot);
+
+        static BorinMemoryRepositorySyncMetadata Metadata(string id, DateTimeOffset timestamp, string goal) =>
+            new(
+                id,
+                timestamp,
+                "Omniverse BBS",
+                "Classic",
+                "Borin",
+                "borin-training-01",
+                goal,
+                "Newhaven, Village Entrance",
+                12,
+                34567,
+                9,
+                ["Verified a safe leveling route."],
+                "Prefer the verified route until new evidence changes the plan.",
+                "Cleanup memory consolidated safely.");
+
+        var first = Metadata("cleanup-001", DateTimeOffset.UtcNow.AddMinutes(-10), "Level safely in Newhaven.");
+        var second = Metadata("cleanup-002", DateTimeOffset.UtcNow.AddMinutes(-5), "Review equipment upgrades.");
+        var updatedFirst = first with { Goal = "Level safely, then review equipment." };
+
+        var store = new BorinMemoryRepositorySyncOutboxStore();
+        store.Configure(memoryRoot);
+        await store.StageAsync(first, token);
+        await store.StageAsync(second, token);
+        await store.StageAsync(updatedFirst, token);
+
+        var status = await store.GetStatusAsync(token);
+        Assert(status.PendingCount == 2,
+            "The memory-sync outbox did not deduplicate a repeated cleanup ID while retaining the second cleanup.");
+
+        var reloaded = new BorinMemoryRepositorySyncOutboxStore();
+        reloaded.Configure(memoryRoot);
+        var pending = await reloaded.LoadPendingAsync(token);
+        Assert(pending.Count == 2 && pending.Any(item => item.CleanupId == "cleanup-001" && item.Goal.Contains("equipment", StringComparison.OrdinalIgnoreCase)),
+            "The memory-sync outbox did not survive a store reload/app restart boundary with the newest cleanup metadata.");
+
+        await reloaded.RemoveAsync(["cleanup-001"], token);
+        var afterOne = await reloaded.LoadPendingAsync(token);
+        Assert(afterOne.Count == 1 && afterOne[0].CleanupId == "cleanup-002",
+            "Acknowledging one pushed cleanup removed the wrong pending memory snapshot.");
+
+        await reloaded.RemoveAsync(["cleanup-002"], token);
+        var empty = await reloaded.GetStatusAsync(token);
+        Assert(empty.PendingCount == 0,
+            "The memory-sync outbox did not clear after every staged cleanup snapshot was acknowledged.");
+        Assert(!BorinMemoryRepositorySync.IsDurableMemoryRelativePath(".borin-memory-sync-outbox.json"),
+            "The operational memory-sync outbox was incorrectly eligible for upload to Borin-Memory.");
+    }
+
+    private static async Task TestLongRunRetentionAsync(string temporaryRoot, CancellationToken token)
+    {
+        var root = Path.Combine(temporaryRoot, "long-run-retention");
+        Directory.CreateDirectory(root);
+        var lifecycle = new BorinPlayerSessionLifecycleStore();
+        await lifecycle.ConfigureAsync(root, "borin-long-run", token);
+        var gameplayDirectory = Path.GetDirectoryName(lifecycle.StoragePath)!;
+        var current = Path.Combine(gameplayDirectory, "events-current.jsonl");
+        await File.WriteAllTextAsync(current, "current", token);
+
+        for (var index = 0; index < 8; index++)
+        {
+            var path = Path.Combine(gameplayDirectory, $"events-recent-{index:00}.jsonl");
+            await File.WriteAllTextAsync(path, new string('x', 4096), token);
+            File.SetLastWriteTimeUtc(path, DateTime.UtcNow.AddMinutes(-(index + 1)));
+        }
+
+        var deleted = await lifecycle.PruneRawGameplayJournalsAsync(current, 90, 8, 4, token);
+        var remaining = Directory.EnumerateFiles(gameplayDirectory, "events-*.jsonl", SearchOption.TopDirectoryOnly)
+            .Where(path => !Path.GetFullPath(path).Equals(Path.GetFullPath(current), StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        Assert(deleted >= 4 && remaining.Length <= 4 && File.Exists(current),
+            "Long-run journal retention did not enforce the bounded file count while preserving the active journal.");
+
+        Assert(BorinMemoryRepositorySync.ShouldCompactHistory(50, true, 50),
+            "The private memory repository did not schedule history compaction at the configured threshold.");
+        Assert(!BorinMemoryRepositorySync.ShouldCompactHistory(49, true, 50),
+            "The private memory repository scheduled history compaction too early.");
+        Assert(!BorinMemoryRepositorySync.ShouldCompactHistory(500, false, 50),
+            "History compaction ignored its explicit disable switch.");
+
+        var normalized = new BorinPlayerSettings
+        {
+            RawGameplayJournalMaximumMegabytes = 1,
+            RawGameplayJournalMaximumFiles = 1,
+            MemoryRepositorySessionSummaryLimit = 1,
+            MemoryRepositoryHistoryCompactionIntervalCommits = 1,
+        }.Normalize();
+        Assert(normalized.RawGameplayJournalMaximumMegabytes == 8 &&
+               normalized.RawGameplayJournalMaximumFiles == 4 &&
+               normalized.MemoryRepositorySessionSummaryLimit == 25 &&
+               normalized.MemoryRepositoryHistoryCompactionIntervalCommits == 10,
+            "Long-run storage controls were not normalized to safe lower bounds.");
     }
 
     private static Task TestCommandOwnershipAndDestinationBoundaryAsync()

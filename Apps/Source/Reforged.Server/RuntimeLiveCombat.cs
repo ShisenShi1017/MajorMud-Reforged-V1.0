@@ -14,7 +14,7 @@ public sealed record RuntimeLiveCombatEncounter(
     int NpcLevel,
     int NpcMaximumHitPoints,
     IReadOnlyList<RuntimeNpcAttackDefinition> NpcAttacks,
-    int NpcMaximumEnergy,
+    int NpcEnergyPerRound,
     int NpcCurrentEnergy,
     int NpcCurrentHitPoints,
     int PlayerCurrentEnergy,
@@ -85,6 +85,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         return command.Name switch
         {
             "attack" or "kill" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.NormalWeapon),
+            "bash" when TryExecuteClassicExitAction(session,command,out var doorBash) => doorBash,
             "bash" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Bash),
             "smash" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Smash),
             "backstab" => BeginLiveCombat(session, command.ArgumentText, ClassicAttackType.Backstab),
@@ -95,6 +96,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             "combat" => RenderLiveCombatStatus(session),
             "round" => ExecuteLiveCombatRound(session),
             "assist" => AssistLiveCombat(session, command.ArgumentText),
+            "break" => BreakLiveCombat(session),
             _ => _policyGateway.Execute(session, command)
         };
     }
@@ -109,7 +111,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             $"Spawn ID: {encounter.SpawnId}",
             $"Generated level: {encounter.NpcLevel}",
             $"NPC HP: {encounter.NpcCurrentHitPoints}/{encounter.NpcMaximumHitPoints}",
-            $"NPC Energy: {encounter.NpcCurrentEnergy}/{encounter.NpcMaximumEnergy}",
+            $"NPC Energy carried: {encounter.NpcCurrentEnergy} (+{encounter.NpcEnergyPerRound}/round)",
             $"Round: {encounter.RoundNumber}",
             $"Player carried attack energy: {encounter.PlayerCurrentEnergy}",
             $"Player attack: {encounter.PlayerAttackType}",
@@ -237,18 +239,20 @@ public sealed partial class RuntimeLiveGameplayFacade
         RegisterCombatEngagement(session, encounter, initialThreat: 1);
         AuthorizeOwnedCompanionAssistance(session, encounter);
         AuthorizeExplicitNpcAssistance(session, encounter);
-        _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} attacks {target.Definition.Name}.");
+        _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} moves to attack {target.Definition.Name}.");
         var engaged = RuntimeClassicCombatAnsi.Engagement(target.Definition.Name);
         return string.IsNullOrWhiteSpace(preparationMessage) ? engaged : preparationMessage + Environment.NewLine + engaged;
     }
 
 
 
-    internal static int ResolveNpcEncounterStartingEnergy(int decodedMaximumEnergy)
+    internal static int ResolveNpcEncounterStartingEnergy(int decodedEnergyPerRound)
     {
-        if (decodedMaximumEnergy < 0)
-            throw new InvalidDataException("NPC_COMBAT_NEGATIVE_MAXIMUM_ENERGY");
-        return decodedMaximumEnergy;
+        if (decodedEnergyPerRound < 0)
+            throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ROUND_ENERGY");
+        // Retained native simulators start carried energy at zero and add the decoded monster
+        // Energy value at the beginning of each combat round.
+        return 0;
     }
 
     private static readonly string[] CombatConcealmentConditionKeys = ["combat.hidden", "state.hidden", "hidden", "combat.sneaking", "state.sneaking", "sneaking"];
@@ -278,6 +282,26 @@ public sealed partial class RuntimeLiveGameplayFacade
             changed = true;
         }
         return changed ? character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow } : character;
+    }
+
+    private string BreakLiveCombat(RuntimeSession session)
+    {
+        if (_livePvpEncounterBySession.TryGetValue(session.Id, out var pvpEncounterId) &&
+            _livePvpEncounters.TryGetValue(pvpEncounterId, out var pvpEncounter))
+        {
+            var opponentId = pvpEncounter.AttackerSessionId.Equals(session.Id, StringComparison.OrdinalIgnoreCase)
+                ? pvpEncounter.DefenderSessionId : pvpEncounter.AttackerSessionId;
+            EndLivePvpEncounter(pvpEncounter);
+            _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Id.Equals(opponentId, StringComparison.OrdinalIgnoreCase))
+                ?.EnqueueMessage("*Combat Off*");
+            return "*Combat Off*";
+        }
+        if (_liveCombats.TryRemove(session.Id, out var encounter))
+        {
+            ReleaseCombatEngagement(session, encounter, "player-break");
+            return "*Combat Off*";
+        }
+        return string.Empty;
     }
 
     private string FleeLiveCombat(RuntimeSession session)

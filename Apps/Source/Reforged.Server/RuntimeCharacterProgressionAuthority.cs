@@ -38,22 +38,11 @@ public static class RuntimeCharacterProgressionResolver
         };
     }
 
-    public static long ApplyDecodedExperienceModifier(long baseAmount, RuntimeCharacterDefinition race, RuntimeCharacterDefinition characterClass)
-    {
-        if (baseAmount < 0) throw new ArgumentOutOfRangeException(nameof(baseAmount));
-        var classPercent = characterClass.ExperiencePercent > 0
-            ? characterClass.ExperiencePercent
-            : checked(characterClass.ExperienceStored + 100);
-        var combinedPercent = checked(classPercent + race.ExperienceAddPercent);
-        if (combinedPercent < 0) throw new InvalidDataException("Decoded race/class experience modifier produced a negative percentage.");
-        return checked(baseAmount * combinedPercent / 100L);
-    }
-
-    public static RuntimeCharacterRecord AwardExperience(RuntimeCharacterRecord character, long baseAmount, RuntimeCharacterDefinition race, RuntimeCharacterDefinition characterClass, string sourceRecordId)
-    {
-        var adjusted = ApplyDecodedExperienceModifier(baseAmount, race, characterClass);
-        return AwardExperience(character, adjusted, $"{sourceRecordId}|base={baseAmount}|percent={characterClass.ExperiencePercent + race.ExperienceAddPercent}");
-    }
+    // MajorMUD race/class EXP values are progression-chart costs. They determine
+    // how much total experience is required to train to each level; they never
+    // scale an earned XP award. RequiredExperience/ExperienceChartPercent owns
+    // that chart arithmetic. Keep AwardExperience raw so monster, quest, and
+    // script rewards enter the character XP ledger exactly once.
 
     public static RuntimeCharacterRecord AwardExperience(RuntimeCharacterRecord character, long amount, string sourceRecordId)
     {
@@ -105,6 +94,8 @@ public static class RuntimeCharacterProgressionResolver
         var conditions = new Dictionary<string, string>(normalized.Conditions, StringComparer.OrdinalIgnoreCase);
         var currentCp = conditions.TryGetValue("character_points", out var raw) && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
         conditions["character_points"] = checked(currentCp + characterPointAward).ToString(CultureInfo.InvariantCulture);
+        var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(normalized);
+        conditions["lives"] = Math.Min(RuntimeClassicCharacterProgressionFormula.MaximumLives, checked(currentLives + 1)).ToString(CultureInfo.InvariantCulture);
         var markers = new Dictionary<string, string>(semantic.RuntimeMarkers, StringComparer.OrdinalIgnoreCase)
         {
             [LastPromotionMarker] = string.Join("|", DateTimeOffset.UtcNow.ToString("O", CultureInfo.InvariantCulture), activeClass, targetLevel.ToString(CultureInfo.InvariantCulture), hpRoll.ToString(CultureInfo.InvariantCulture), growth.MaximumHitPointDelta.ToString(CultureInfo.InvariantCulture), growth.MaximumManaDelta.ToString(CultureInfo.InvariantCulture), sourceRecordId)
@@ -151,6 +142,7 @@ public sealed class RuntimeCharacterProgressionSchedule
     public static RuntimeCharacterProgressionSchedule Load(string dataRoot)
     {
         var rows = new List<RuntimeCharacterProgressionScheduleRow>();
+        if (!Directory.Exists(dataRoot)) return new RuntimeCharacterProgressionSchedule(rows);
         foreach (var path in Directory.EnumerateFiles(dataRoot, "*.json", SearchOption.TopDirectoryOnly).OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
         {
             using var document = JsonDocument.Parse(File.ReadAllText(path));
@@ -174,6 +166,35 @@ public sealed class RuntimeCharacterProgressionSchedule
         if (selected.MaximumLevel is int cap && targetLevel > cap) throw new InvalidOperationException($"Target level {targetLevel} exceeds the evidence-backed cap {cap}.");
         var prior = _rows.Where(row => row.TargetLevel < targetLevel && Matches(row.ClassRef, character.ClassId, character.ClassName) && Matches(row.RaceRef, character.RaceId, character.RaceName)).OrderByDescending(row => row.TargetLevel).FirstOrDefault();
         if (prior is not null && selected.RequiredExperience <= prior.RequiredExperience) throw new InvalidDataException($"Progression XP threshold {selected.RequiredExperience} is not greater than prior threshold {prior.RequiredExperience}.");
+        return selected;
+    }
+
+    public RuntimeCharacterProgressionScheduleRow Require(
+        RuntimeCharacterRecord character,
+        int targetLevel,
+        RuntimeCharacterDefinition race,
+        RuntimeCharacterDefinition characterClass)
+    {
+        var formulaRow = new RuntimeCharacterProgressionScheduleRow(
+            $"stock-formula.level.{targetLevel}",
+            targetLevel,
+            RuntimeClassicCharacterProgressionFormula.RequiredExperience(targetLevel, race, characterClass),
+            RuntimeClassicCharacterProgressionFormula.CharacterPointAwardForPromotion(targetLevel),
+            characterClass.Id,
+            race.Id,
+            null,
+            "strongly_correlated",
+            "MMUDExplorer/modMMudFunc.bas:CalcExpNeeded_STOCK+CalcCPLevel",
+            "native stock formula recovery");
+
+        var matches = _rows.Where(row => row.TargetLevel == targetLevel
+            && Matches(row.ClassRef, character.ClassId, character.ClassName)
+            && Matches(row.RaceRef, character.RaceId, character.RaceName)).ToArray();
+        if (matches.Length == 0) return formulaRow;
+
+        var selected = Require(character, targetLevel);
+        if (selected.RequiredExperience != formulaRow.RequiredExperience || selected.CharacterPointAward != formulaRow.CharacterPointAward)
+            throw new InvalidDataException($"Evidence-promoted progression row '{selected.RowId}' conflicts with the recovered stock XP/CP formula for level {targetLevel}.");
         return selected;
     }
 

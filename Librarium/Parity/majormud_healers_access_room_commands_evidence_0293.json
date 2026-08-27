@@ -1,0 +1,91 @@
+{
+  "schema": "majormud-parity-evidence-v1",
+  "update": "0293",
+  "pass": 23,
+  "title": "Healers / Tickets-Passes / Room Command Relocation Closure",
+  "claims": [
+    {
+      "id": "native-buy-healing",
+      "confidence": "PASS",
+      "claim": "Native HELP documents BUY HEALING in an appropriate room as healing all wounds for a price; healer services are MajorMUD gameplay rather than inn-rest or transportation behavior.",
+      "sources": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+      ]
+    },
+    {
+      "id": "decoded-healer-lines",
+      "confidence": "STRONG",
+      "claim": "Decoded room action scripts contain 132 room-owned trigger lines across textblocks 159, 1602-1606, 1608-1611 and 4351 whose exact line shape is monsters -> price -> cast -> adddelay and whose cast spell is healer spell 219-224. Pass 23 executes the recovered presence, price/debit and spell effect while preserving adddelay as unresolved timing.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
+      ]
+    },
+    {
+      "id": "healer-price-units",
+      "confidence": "STRONG",
+      "claim": "Decoded price operands are carried-currency copper-value units: Pass 22 independently correlates price 10000 with the Dead Jester native 100-gold wager, while the recovered currency authority defines gold=100 copper units. Pass 23 therefore debits decoded healer prices through the same denomination authority.",
+      "sources": [
+        "Librarium/Parity/majormud_gangs_casino_arena_top_evidence_0292.json",
+        "Apps/Source/Reforged.Server/RuntimeBundleCEconomyAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
+      ]
+    },
+    {
+      "id": "healer-insufficient-funds",
+      "confidence": "PASS",
+      "claim": "Healer price lines reference native message 318 for insufficient funds; the retained WCCMSG2 payload is exactly \"You cannot afford that service.\" Pass 23 returns that native payload when carried currency is below the decoded price.",
+      "sources": [
+        "Librarium/Objects/native_message_payloads/native_message_payload_records.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
+      ]
+    },
+    {
+      "id": "healer-spell-identity",
+      "confidence": "STRONG",
+      "claim": "Decoded healer casts use spells 219 minor healing, 220 major healing, 221 greater healing, 222 cure poison, 223 cure disease and 224 remove curse. Pass 23 reuses existing spell/cure/remove-curse authorities instead of creating service-only formulas.",
+      "sources": [
+        "Librarium/Objects/spells/spell_records_0122.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivePowers.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicLiveStatusEffects.cs"
+      ]
+    },
+    {
+      "id": "ticket-pass-access",
+      "confidence": "STRONG",
+      "claim": "Classic travel is not a transport service. Existing native type-17 Ticket/Item exit gates require possession of the decoded ticket/pass and deliberately do not consume it until consumption is proven.",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+        "Librarium/Parity/majormud_settings_healers_access_rankings_evidence_0291.json"
+      ]
+    },
+    {
+      "id": "room-command-relocation",
+      "confidence": "STRONG",
+      "claim": "The decoded textblock graph contains 45 room-owned trigger lines across 13 action-script textblocks whose entire matched line is only native message/text presentation plus one immediate teleport. Pass 23 resolves the action by source map/room and exact entered phrase, renders retained native payloads, moves immediately to the decoded map/room, saves the session location, and admits room-entry NPC respawns.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicTextblockGraphAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
+      ]
+    },
+    {
+      "id": "room-relocation-examples",
+      "confidence": "PASS",
+      "claim": "Examples directly decoded include room 2/1306 GO/ENTER/CRAWL/CLIMB HOLE -> map 2 room 487 with messages 767/768; room 10/235 READ/LOOK BOOK -> map 15 room 740 with messages 2585/2950; and room 17/1742 LOVE/SAY LOVE -> map 17 room 1743 with messages 2986/2987.",
+      "sources": [
+        "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+        "Librarium/Objects/native_message_payloads/native_message_payload_records.json"
+      ]
+    }
+  ],
+  "unresolved": [
+    "Exact generic ShopType 5 BUY HEALING price formula outside decoded scripted healer lines",
+    "Time unit and exact command throttling effect of decoded adddelay values",
+    "Exact native global RNG algorithm/seed used by healing magnitude rolls",
+    "Whether each ticket/pass access item is consumed or retained",
+    "Complex conditional/delayed room-action scripts outside the presentation+teleport safe subset",
+    "Exact observer departure/arrival and room-render ordering around room-script relocation"
+  ]
+}

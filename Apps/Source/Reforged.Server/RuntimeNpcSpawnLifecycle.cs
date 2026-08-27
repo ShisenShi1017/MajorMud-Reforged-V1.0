@@ -59,8 +59,9 @@ public sealed record RuntimeNpcRespawnBlock(
 
 /// <summary>
 /// Owns evidence-backed runtime spawn slots and the death/wait/respawn boundary.
-/// Generated spawn records determine home room and respawn delay. Population chance,
-/// native group rolls, and retry cadence remain unactivated until separately proven.
+/// Generated spawn records determine home room; RuntimeMajorMudSpawnTimingCatalog resolves
+/// the best-supported timer source/unit. Population chance, native wall-clock admission,
+/// native group rolls, room-entry admission, and retry cadence remain separately evidence-gated.
 /// </summary>
 public sealed partial class RuntimeLivingWorldService
 {
@@ -294,7 +295,10 @@ public sealed partial class RuntimeLivingWorldService
         if (worldTick is < 0) throw new ArgumentOutOfRangeException(nameof(worldTick));
         lock (_gate)
         {
-            var result = TickNpcSpawnLifecycleLocked(nowUtc, worldTick);
+            // Explicit diagnostic/admin tick retains the ability to admit every due slot.
+            // The live world heartbeat does not call this path; native gameplay admission
+            // is room-entry driven through AdmitDueNpcRespawnsForRoom.
+            var result = TickNpcSpawnLifecycleLocked(nowUtc, worldTick, admissionRoomId: null);
             if (result.Transitions.Count > 0)
             {
                 Save();
@@ -304,11 +308,28 @@ public sealed partial class RuntimeLivingWorldService
         }
     }
 
-    private RuntimeNpcLifecycleTickResult TickNpcSpawnLifecycleLocked(DateTimeOffset nowUtc, long? worldTick)
+    public RuntimeNpcLifecycleTickResult AdmitDueNpcRespawnsForRoom(string roomId, DateTimeOffset nowUtc, long? worldTick = null)
+    {
+        if (string.IsNullOrWhiteSpace(roomId)) throw new ArgumentException("Room id is required.", nameof(roomId));
+        if (worldTick is < 0) throw new ArgumentOutOfRangeException(nameof(worldTick));
+        lock (_gate)
+        {
+            var result = TickNpcSpawnLifecycleLocked(nowUtc, worldTick, roomId.Trim());
+            if (result.Transitions.Count > 0)
+            {
+                Save();
+                SaveLivingWorldCompletionLocked();
+            }
+            return result;
+        }
+    }
+
+    private RuntimeNpcLifecycleTickResult TickNpcSpawnLifecycleLocked(DateTimeOffset nowUtc, long? worldTick, string? admissionRoomId = null)
     {
         var transitions = new List<RuntimeNpcLifecycleTransition>();
         foreach (var current in _npcs.Values
-                     .Where(x => !x.Alive && x.RespawnAtUtc is not null && x.RespawnAtUtc <= nowUtc)
+                     .Where(x => !x.Alive && x.RespawnAtUtc is not null && x.RespawnAtUtc <= nowUtc
+                         && (admissionRoomId is null || x.HomeRoomId.Equals(admissionRoomId, StringComparison.OrdinalIgnoreCase)))
                      .OrderBy(x => x.RespawnAtUtc)
                      .ThenBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase)
                      .ToArray())
@@ -456,6 +477,7 @@ public sealed class RuntimeNpcSpawnLifecycleSmokeReport
         Require(report, typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.CaptureNpcSpawnSlots)) is not null, "spawn-slot-catalog-exposed");
         Require(report, typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.EnterNpcRespawnWait)) is not null, "respawn-wait-transition-exposed");
         Require(report, typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.TickNpcSpawnLifecycle)) is not null, "respawn-tick-exposed");
+        Require(report, typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.AdmitDueNpcRespawnsForRoom)) is not null, "room-entry-respawn-admission-exposed");
         Require(report, typeof(RuntimeNpcSpawnSlotSnapshot).GetProperty(nameof(RuntimeNpcSpawnSlotSnapshot.MaterializedCapacity)) is not null, "materialized-capacity-owned");
         Require(report, typeof(RuntimeNpcLifecycleTransition).GetProperty(nameof(RuntimeNpcLifecycleTransition.WorldTick)) is not null, "world-tick-audit-exposed");
         Require(report, typeof(RuntimeLivingWorldService).GetMethod(nameof(RuntimeLivingWorldService.GetBlockedNpcRespawns)) is not null, "blocked-respawn-catalog-exposed");

@@ -63,6 +63,31 @@ public sealed class RuntimeClassicTextblockGraphAuthority
         return command is not null;
     }
 
+    public bool TryResolveRoomActionPlan(int mapNumber, int roomNumber, string input, out RuntimeClassicTextblockExecutionPlan plan)
+    {
+        plan = null!;
+        var normalized = NormalizeCommand(input);
+        var ownerToken = $"Room {mapNumber}/{roomNumber}";
+        var candidates = _nodes.Values
+            .Where(node => node.OwnerKind.Equals("room", StringComparison.OrdinalIgnoreCase)
+                && node.ContentKind.Equals("action_script", StringComparison.OrdinalIgnoreCase)
+                && RoomOwnerContains(node.OwnerRaw, ownerToken)
+                && node.Triggers.Any(trigger => TriggerMatches(trigger, normalized)))
+            .OrderBy(node => node.TextblockId)
+            .ToArray();
+        if (candidates.Length == 0) return false;
+        if (candidates.Length > 1)
+            throw new InvalidOperationException($"Decoded room command '{normalized}' is ambiguous in room {mapNumber}/{roomNumber}: {string.Join(", ", candidates.Select(x => x.TextblockId))}.");
+        return TryCreateExecutionPlan(candidates[0].TextblockId, input, out plan);
+    }
+
+    private static bool RoomOwnerContains(string ownerRaw, string ownerToken)
+    {
+        foreach (var part in ownerRaw.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            if (part.Equals(ownerToken, StringComparison.OrdinalIgnoreCase)) return true;
+        return false;
+    }
+
     public bool TryCreateExecutionPlan(int rootTextblockId, string input, out RuntimeClassicTextblockExecutionPlan plan)
     {
         plan = null!;

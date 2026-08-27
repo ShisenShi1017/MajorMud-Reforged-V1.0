@@ -2,9 +2,25 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    public string RenderRoom(RuntimeSession session) => RenderRoomInternal(session, forceDescription: false);
+    private const string ClassicStatlineModeKey = "ui.classic.statline.mode";
+    private const string ClassicReceiveEnabledKey = "ui.classic.receive.enabled";
+    private const string ClassicPartyFollowModeKey = "ui.classic.party.follow.mode";
+    private const string ClassicStatlineTemplateKey = "ui.classic.statline.template";
 
-    public string RenderRoomVerbose(RuntimeSession session) => RenderRoomInternal(session, forceDescription: true);
+    public string RenderRoom(RuntimeSession session) => RenderRoomInternal(session, forceDescription: false, forceBrief: false);
+
+    public string RenderRoomVerbose(RuntimeSession session) => RenderRoomInternal(session, forceDescription: true, forceBrief: false);
+
+    public string RenderBlankCommand(RuntimeSession session)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return string.Empty;
+        var character = _characters.LoadCharacter(actor.Id);
+        if (character is null) return string.Empty;
+        var mode = GetClassicStatlineMode(character);
+        return mode is "full" or "full_custom"
+            ? RenderRoomInternal(session, forceDescription: false, forceBrief: true)
+            : string.Empty;
+    }
 
     public string SetRoomDescriptionMode(RuntimeSession session, bool brief)
     {
@@ -28,14 +44,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                mode.Equals("brief", StringComparison.OrdinalIgnoreCase);
     }
 
-    private string RenderRoomInternal(RuntimeSession session, bool forceDescription)
+    private string RenderRoomInternal(RuntimeSession session, bool forceDescription, bool forceBrief)
     {
         const string reset = "\u001b[0m";
         const string brightCyan = "\u001b[1;36m";
-        const string yellow = "\u001b[1;33m";
         const string brightGreen = "\u001b[1;32m";
         const string magenta = "\u001b[1;35m";
-        const string gray = "\u001b[1;30m";
         const string white = "\u001b[0;37m";
 
         RuntimeBundleDSearchRuntime.EnsureLoaded(_characters.ProjectRoot, session.World.Definition.Id);
@@ -62,41 +76,48 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             $"{brightCyan}{session.CurrentRoom.Name}{reset}"
         };
-        if (forceDescription || !UsesBriefRoomDescriptions(session))
+        if (!forceBrief && (forceDescription || !UsesBriefRoomDescriptions(session)))
             lines.Add($"{white}{IndentClassicDescription(session.CurrentRoom.Description)}{reset}");
 
-        var hostile = living.Where(npc => ResolveLiveNpcDisposition(npc).Equals("hostile", StringComparison.OrdinalIgnoreCase))
-            .Select(npc => npc.Name).Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase).ToArray();
-        var friendly = living.Where(npc => ResolveLiveNpcDisposition(npc).Equals("friendly", StringComparison.OrdinalIgnoreCase))
-            .Select(npc => npc.Name).Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase).ToArray();
-        var neutral = living.Where(npc => ResolveLiveNpcDisposition(npc).Equals("neutral", StringComparison.OrdinalIgnoreCase))
-            .Select(npc => npc.Name).Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase).ToArray();
-        if (hostile.Length > 0) lines.Add($"{magenta}Also here: {JoinClassicNames(hostile)}.{reset}");
-        if (friendly.Length > 0) lines.Add($"{yellow}Also here: {JoinClassicNames(friendly)}.{reset}");
-        if (neutral.Length > 0) lines.Add($"{gray}Also here: {JoinClassicNames(neutral)}.{reset}");
-
-        var players = _sessions.InRoom(session.World.Definition.Id, session.CurrentRoom.Id)
+        var roomObserver = session.Actor is RuntimeCharacterActor roomObserverActor
+            ? _characters.LoadCharacter(roomObserverActor.Id)
+            : null;
+        var roomSessions = _sessions.InRoom(session.World.Definition.Id, session.CurrentRoom.Id)
             .Where(other => !other.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase))
-            .Select(other => other.Actor.DisplayName).Distinct(StringComparer.OrdinalIgnoreCase)
-            .OrderBy(name => name, StringComparer.OrdinalIgnoreCase).ToArray();
-        if (players.Length > 0) lines.Add($"{magenta}Players: {string.Join(", ", players)}{reset}");
+            .Where(other => other.Actor is not RuntimeCharacterActor targetActor || RuntimeClassicCharacterAppearance.CanView(
+                new RuntimeClassicAppearanceViewer(ConditionIsTrue(roomObserver, "see_hidden"), ConditionIsTrue(roomObserver, "detect_invisible"), false),
+                Appearance(_characters.LoadCharacter(targetActor.Id), targetActor)))
+            .Where(other => !forceBrief || other.Actor is not RuntimeCharacterActor targetActor
+                || !ConditionIsTrue(_characters.LoadCharacter(targetActor.Id), "sneaking"))
+            .ToArray();
+
+        // Every world inherits the native MajorMUD room stream. A trailing * marks
+        // Fiend reputation only; duplicate NPC names remain distinct occupants.
+        var nativePlayers = roomSessions.Select(other =>
+        {
+            var record = other.Actor is RuntimeCharacterActor characterActor
+                ? _characters.LoadCharacter(characterActor.Id)
+                : null;
+            var isFiend = record?.SemanticState?.Alignment?.Reputation.Equals(
+                "Fiend", StringComparison.OrdinalIgnoreCase) == true;
+            return (other.Actor.DisplayName, isFiend);
+        });
+        var occupants = RuntimeMajorMudCompatibility.FormatRoomOccupants(
+            nativePlayers, living.Select(npc => npc.Name));
 
         var roomCurrency = RuntimeClassicRoomCurrencyStore.Get(_characters.ProjectRoot, session.World.Definition.Id, session.CurrentRoom.Id);
-        if (!roomCurrency.IsEmpty) lines.Add($"{yellow}You notice {RuntimeClassicRoomCurrencyStore.Format(roomCurrency)} here.{reset}");
-
         var ground = LoadVisibleGround(session).ToArray();
-        if (ground.Length > 0) lines.Add($"{brightGreen}Items: {string.Join(", ", ground.Select(entry => entry.Name))}{reset}");
+        var noticed = new List<string>();
+        if (!roomCurrency.IsEmpty) noticed.Add(RuntimeClassicRoomCurrencyStore.Format(roomCurrency));
+        noticed.AddRange(ground.Select(entry => entry.Name));
+        if (noticed.Count > 0) lines.Add($"{brightGreen}You notice {string.Join(", ", noticed)} here.{reset}");
+        if (!string.IsNullOrWhiteSpace(occupants)) lines.Add($"{magenta}{occupants}{reset}");
 
-
-        var exits = session.CurrentRoom.Exits.Count == 0 ? "none" : string.Join(", ",
-            session.CurrentRoom.Exits
-                .Where(exit => CanCharacterSeeExit(session, exit))
-                .Select(exit => exit.Direction)
-                .Where(value => !string.IsNullOrWhiteSpace(value))
-                .Select(direction => DescribeClassicExit(session, direction)));
+        var visibleExits = session.CurrentRoom.Exits.Where(RuntimeMajorMudCompatibility.IsObviousExit).ToArray();
+        var exits = visibleExits.Length == 0
+            ? "NONE!!!"
+            : string.Join(", ", visibleExits.Select(exit =>
+                RuntimeMajorMudCompatibility.FormatObviousExit(exit, DescribeLivingExit(session, exit.Direction))));
         lines.Add($"{brightGreen}Obvious exits: {exits}{reset}");
         if (!_liveCombats.ContainsKey(session.Id))
         {
@@ -134,7 +155,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         var target = session.World.ResolveExitDestination(exit);
         if (target is null) return "You cannot see where that exit leads.";
         const string reset = "\u001b[0m", brightCyan = "\u001b[1;36m", white = "\u001b[0;37m", brightGreen = "\u001b[1;32m";
-        var exits = target.Exits.Count == 0 ? "none" : string.Join(", ", target.Exits.Select(candidate => candidate.Direction).Where(value => !string.IsNullOrWhiteSpace(value)).Select(ExpandDirection));
+        var visibleExits = target.Exits.Where(RuntimeMajorMudCompatibility.IsObviousExit).ToArray();
+        var exits = visibleExits.Length == 0
+            ? "NONE!!!"
+            : string.Join(", ", visibleExits.Select(candidate =>
+                RuntimeMajorMudCompatibility.FormatObviousExit(candidate, Living(session).DescribeExit(target, candidate.Direction))));
         return string.Join(Environment.NewLine, new[] { $"{brightCyan}{target.Name}{reset}", $"{white}{IndentClassicDescription(target.Description)}{reset}", $"{brightGreen}Obvious exits: {exits}{reset}" });
     }
 
@@ -171,32 +196,196 @@ public sealed partial class RuntimeLiveGameplayFacade
         return "    " + normalized;
     }
 
-    private static string JoinClassicNames(IReadOnlyList<string> names) =>
-        string.Join(", ", names);
 
-    private string DescribeClassicExit(RuntimeSession session, string direction)
+    public string ConfigureClassicSetting(RuntimeSession session, string arguments)
     {
-        var description = DescribeLivingExit(session, direction);
-        var expanded = ExpandDirection(direction);
-        if (description.Contains("closed", StringComparison.OrdinalIgnoreCase)) return $"closed door {expanded}";
-        if (description.Contains("locked", StringComparison.OrdinalIgnoreCase)) return $"locked door {expanded}";
-        return expanded;
+        var raw = (arguments ?? string.Empty).Trim();
+        if (raw.StartsWith("statline", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicStatline(session, raw, invokedThroughSet: true);
+        if (raw.StartsWith("receive", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicReceive(session, raw["receive".Length..].Trim());
+        if (raw.StartsWith("speech", StringComparison.OrdinalIgnoreCase))
+            return ConfigureMajorMudTalkMode(session, raw["speech".Length..].Trim());
+        if (raw.StartsWith("follow", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicPartyFollowMode(session, raw["follow".Length..].Trim());
+        if (raw.StartsWith("telepath", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicTelepathReceive(session, raw["telepath".Length..].Trim());
+        if (raw.StartsWith("gossip", StringComparison.OrdinalIgnoreCase))
+            return ConfigureCommunicationFlag(session, ClassicGossipEnabledKey, raw["gossip".Length..].Trim(), "Gossip");
+        if (raw.StartsWith("auction", StringComparison.OrdinalIgnoreCase))
+            return ConfigureCommunicationFlag(session, ClassicAuctionEnabledKey, raw["auction".Length..].Trim(), "Auction");
+        return "Unknown setting.";
     }
 
-    private static string ExpandDirection(string direction) => direction.Trim().ToUpperInvariant() switch
+    public string ConfigureClassicPartyFollowMode(RuntimeSession session, string arguments)
     {
-        "N" => "north", "S" => "south", "E" => "east", "W" => "west",
-        "NE" => "northeast", "NW" => "northwest", "SE" => "southeast", "SW" => "southwest",
-        "U" => "up", "D" => "down", _ => direction.Trim().ToLowerInvariant()
-    };
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+        var current = character.Conditions.TryGetValue(ClassicPartyFollowModeKey, out var stored)
+            && stored.Equals("blind", StringComparison.OrdinalIgnoreCase) ? "Blind" : "Normal";
+        if (raw.Length == 0) return $"Follow mode is {current}.";
+
+        string mode;
+        if (raw.Equals("blind", StringComparison.OrdinalIgnoreCase)) mode = "blind";
+        else if (raw.Equals("normal", StringComparison.OrdinalIgnoreCase)) mode = "normal";
+        else return "Usage: SET FOLLOW BLIND|NORMAL.";
+
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicPartyFollowModeKey] = mode
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return mode == "blind" ? "Follow mode is Blind." : "Follow mode is Normal.";
+    }
+
+    public bool ShouldRenderClassicPartyFollowRoom(RuntimeSession session)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return true;
+        var character = _characters.LoadCharacter(actor.Id);
+        return character is null
+            || !character.Conditions.TryGetValue(ClassicPartyFollowModeKey, out var mode)
+            || !mode.Equals("blind", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public string ConfigureClassicReceive(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+        if (raw.Length == 0)
+        {
+            var toggled = !IsClassicReceiveEnabled(character);
+            var toggledConditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                [ClassicReceiveEnabledKey] = toggled ? "1" : "0"
+            };
+            _characters.SaveCharacter(character with { Conditions = toggledConditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-receive-toggle");
+            return toggled ? "Receive On." : "Receive Off.";
+        }
+
+        bool enabled;
+        if (raw.Equals("on", StringComparison.OrdinalIgnoreCase)) enabled = true;
+        else if (raw.Equals("off", StringComparison.OrdinalIgnoreCase)) enabled = false;
+        else return "Usage: SET RECEIVE ON|OFF.";
+
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicReceiveEnabledKey] = enabled ? "1" : "0"
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return enabled ? "Receive On." : "Receive Off.";
+    }
+
+    private static bool IsClassicReceiveEnabled(RuntimeCharacterRecord character) =>
+        !character.Conditions.TryGetValue(ClassicReceiveEnabledKey, out var raw)
+        || !raw.Equals("0", StringComparison.OrdinalIgnoreCase);
+
+    public string ConfigureClassicStatline(RuntimeSession session, string arguments, bool invokedThroughSet)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+        if (invokedThroughSet)
+        {
+            if (!raw.StartsWith("statline", StringComparison.OrdinalIgnoreCase)) return "Unknown setting.";
+            raw = raw["statline".Length..].Trim();
+        }
+
+        if (raw.Length == 0) return $"Statline is {GetClassicStatlineMode(character).Replace('_', ' ')}.";
+
+        string mode;
+        string template = string.Empty;
+        if (raw.Equals("on", StringComparison.OrdinalIgnoreCase)) mode = "on";
+        else if (raw.Equals("off", StringComparison.OrdinalIgnoreCase)) mode = "off";
+        else if (raw.Equals("full", StringComparison.OrdinalIgnoreCase)) mode = "full";
+        else if (raw.StartsWith("full custom", StringComparison.OrdinalIgnoreCase))
+        {
+            mode = "full_custom";
+            template = raw["full custom".Length..].Trim();
+        }
+        else if (raw.StartsWith("custom", StringComparison.OrdinalIgnoreCase))
+        {
+            mode = "custom";
+            template = raw["custom".Length..].Trim();
+        }
+        else return "Usage: STATLINE ON|OFF|FULL or SET STATLINE [FULL] CUSTOM <format>.";
+
+        if (mode is "custom" or "full_custom")
+        {
+            if (template.Length == 0) return "A custom statline format is required.";
+            if (template.Length > 60) return "The custom statline may not exceed 60 characters.";
+        }
+
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicStatlineModeKey] = mode
+        };
+        if (mode is "custom" or "full_custom") conditions[ClassicStatlineTemplateKey] = template;
+        else conditions.Remove(ClassicStatlineTemplateKey);
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
+        return mode switch
+        {
+            "off" => "Statline Off.",
+            "on" => "Statline On.",
+            "full" => "Statline Full.",
+            "custom" => "Custom statline set.",
+            _ => "Full custom statline set."
+        };
+    }
 
     public string RenderClassicPrompt(RuntimeSession session)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return ":";
         var character = _characters.LoadCharacter(actor.Id);
         if (character is null) return ":";
-        var resting = RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Resting) ? " (Resting) " : string.Empty;
-        return RuntimeClassicCombatAnsi.Prompt(character.HitPoints, character.MaximumHitPoints, resting);
+        var mode = GetClassicStatlineMode(character);
+        if (mode.Equals("off", StringComparison.OrdinalIgnoreCase)) return ":";
+        if (mode is "custom" or "full_custom"
+            && character.Conditions.TryGetValue(ClassicStatlineTemplateKey, out var template)
+            && !string.IsNullOrWhiteSpace(template))
+            return RenderClassicCustomStatline(character, template);
+
+        var position = ResolveClassicPromptPosition(character);
+        var usesKai = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId)
+            .RequireClass(character.ClassId).Magic?.Type == 5;
+        return RuntimeClassicCombatAnsi.Prompt(
+            character.HitPoints, character.MaximumHitPoints,
+            character.Mana, character.MaximumMana,
+            usesKai, position);
+    }
+
+
+    private string ResolveClassicPromptPosition(RuntimeCharacterRecord character)
+    {
+        if (_focusedRegeneration.TryGetValue(character.CharacterId, out var focused))
+            return focused.Mode.Equals("meditate", StringComparison.OrdinalIgnoreCase) ? "Meditating" : "Resting";
+        return RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Resting) ? "Resting" : string.Empty;
+    }
+
+    private static string GetClassicStatlineMode(RuntimeCharacterRecord character) =>
+        character.Conditions.TryGetValue(ClassicStatlineModeKey, out var mode) && !string.IsNullOrWhiteSpace(mode)
+            ? mode.Trim().ToLowerInvariant()
+            : "full";
+
+    private string RenderClassicCustomStatline(RuntimeCharacterRecord character, string template)
+    {
+        var position = ResolveClassicPromptPosition(character);
+        var resting = string.IsNullOrWhiteSpace(position) ? string.Empty : $" ({position}) ";
+        var wealth = character.ItemState is null ? 0L : RuntimeBundleCInventoryAuthority.ReadCurrency(character.ItemState).CopperValue;
+        var experienceToNext = 0L;
+        try
+        {
+            var schedule = RuntimeCharacterProgressionSchedule.Load(Path.Combine(_characters.ProjectRoot, "Data", character.WorldId));
+            var foundation = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId);
+            var row = schedule.Require(character, checked(character.Level + 1), foundation.RequireRace(character.RaceId), foundation.RequireClass(character.ClassId));
+            experienceToNext = Math.Max(0L, row.RequiredExperience - character.Experience);
+        }
+        catch { }
+
+        return RuntimeMajorMudCompatibility.RenderStatlineTemplate(
+            template, character.HitPoints, character.MaximumHitPoints, character.Mana, character.MaximumMana,
+            wealth, character.Experience, experienceToNext, resting);
     }
 
     private static string ResolveLiveNpcDisposition(RuntimeLivingNpcState npc)
@@ -383,27 +572,240 @@ public sealed partial class RuntimeLiveGameplayFacade
             Flag("hidden"), Flag("sneaking"), Flag("invisible"), Flag("disguised"), Flag("transformed") || Flag("polymorphed"));
     }
 
+    private const string MajorMudTalkFastCondition = "ui.majormud.talk_fast";
+    private const string ClassicTelepathIgnoreKey = "communication.telepath.ignore";
+    private const string ClassicTelepathReceiveEnabledKey = "communication.telepath.receive.enabled";
+    private const string ClassicGossipEnabledKey = "communication.gossip.enabled";
+    private const string ClassicAuctionEnabledKey = "communication.auction.enabled";
+
     public string Say(RuntimeSession session, string text)
     {
         if (string.IsNullOrWhiteSpace(text)) return "Say what?";
-        if (session.Actor is RuntimeCharacterActor actor && _characters.LoadCharacter(actor.Id) is { } character
-            && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
-            return "You are unable to speak.";
-        _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} says, '{text.Trim()}'");
-        return $"You say, '{text.Trim()}'";
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
+        var message = text.Trim();
+        _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} says \"{message}\"");
+        return $"You say \"{message}\"";
+    }
+
+    public string Yell(RuntimeSession session, string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return "Yell what?";
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
+        var message = text.Trim();
+        var roomIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { session.CurrentRoom.Id };
+        foreach (var exit in session.CurrentRoom.Exits)
+        {
+            var target = session.World.ResolveExitDestination(exit);
+            if (target is not null) roomIds.Add(target.Id);
+        }
+        foreach (var target in _sessions.ActiveSessions.Where(target =>
+            target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+            && roomIds.Contains(target.CurrentRoom.Id)
+            && !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+        {
+            target.EnqueueMessage($"{session.Actor.DisplayName} yells \"{message}\"");
+        }
+        return $"You yell \"{message}\"";
+    }
+
+    public string ConfigureMajorMudTalkMode(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var mode = (arguments ?? string.Empty).Trim();
+        if (!mode.Equals("fast", StringComparison.OrdinalIgnoreCase) && !mode.Equals("slow", StringComparison.OrdinalIgnoreCase))
+            return "Use: TALK FAST or TALK SLOW.";
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [MajorMudTalkFastCondition] = mode.Equals("fast", StringComparison.OrdinalIgnoreCase) ? "1" : "0"
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-talk-mode");
+        return mode.Equals("fast", StringComparison.OrdinalIgnoreCase) ? "Talk mode is FAST." : "Talk mode is SLOW.";
+    }
+
+    public bool TryExecuteMajorMudSpeechShortcut(RuntimeSession session, RuntimeCommand command, out string result)
+    {
+        result = string.Empty;
+        var raw = command.RawInput.TrimStart();
+        if (raw.StartsWith(".", StringComparison.Ordinal))
+        {
+            result = Say(session, raw[1..]);
+            return true;
+        }
+        if (raw.StartsWith("\"", StringComparison.Ordinal))
+        {
+            result = Yell(session, raw[1..]);
+            return true;
+        }
+        if (raw.StartsWith("/", StringComparison.Ordinal))
+        {
+            var payload = raw[1..].TrimStart();
+            var separator = payload.IndexOf(' ');
+            if (separator <= 0 || separator >= payload.Length - 1)
+            {
+                result = "Telepath to whom, and what?";
+                return true;
+            }
+            result = Telepath(session, payload[..separator], payload[(separator + 1)..]);
+            return true;
+        }
+        return false;
     }
 
     public string Tell(RuntimeSession session, IReadOnlyList<string> arguments)
     {
         if (arguments.Count < 2) return "Use: tell <character> <message>.";
-        if (session.Actor is RuntimeCharacterActor actor && _characters.LoadCharacter(actor.Id) is { } character
-            && RuntimeClassicStatusProjection.IsSpeechBlocked(character))
-            return "You are unable to speak.";
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
         var target = arguments[0];
         var message = string.Join(" ", arguments.Skip(1));
         _sessions.SendTell(session, target, message, out var response);
         return response;
     }
+
+    public string Gossip(RuntimeSession session, string text) => ExecuteGlobalCommunicationChannel(
+        session, text, ClassicGossipEnabledKey, "Gossip");
+
+    public string Auction(RuntimeSession session, string text) => ExecuteGlobalCommunicationChannel(
+        session, text, ClassicAuctionEnabledKey, "Auction");
+
+    public string ForgetTelepath(RuntimeSession session, string query)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var ignored = ReadIgnoredTelepaths(character);
+        var raw = (query ?? string.Empty).Trim();
+        if (raw.Length == 0)
+        {
+            if (ignored.Count == 0) return "You are not ignoring telepaths from anyone.";
+            var names = _characters.ListAllCharacters()
+                .Where(candidate => ignored.Contains(candidate.CharacterId))
+                .Select(candidate => candidate.DisplayName)
+                .Order(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+            return names.Length == 0 ? string.Join(Environment.NewLine, ignored.Order(StringComparer.OrdinalIgnoreCase)) : string.Join(Environment.NewLine, names);
+        }
+
+        var matches = _characters.ListAllCharacters()
+            .Where(candidate => candidate.CharacterId.Equals(raw, StringComparison.OrdinalIgnoreCase)
+                || candidate.DisplayName.Equals(raw, StringComparison.OrdinalIgnoreCase)
+                || candidate.DisplayName.Contains(raw, StringComparison.OrdinalIgnoreCase))
+            .Take(2)
+            .ToArray();
+        if (matches.Length != 1) return $"No character uniquely matches '{raw}'.";
+        var target = matches[0];
+        var nowIgnored = ignored.Add(target.CharacterId) ? true : !ignored.Remove(target.CharacterId);
+        SaveIgnoredTelepaths(character, ignored);
+        return nowIgnored
+            ? $"Telepaths from {target.DisplayName} will now be ignored."
+            : $"Telepaths from {target.DisplayName} will now be received.";
+    }
+
+    private string Telepath(RuntimeSession session, string targetQuery, string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return "Telepath what?";
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
+        var target = _sessions.FindByActor(targetQuery);
+        if (target is null) return $"No connected character uniquely matches '{targetQuery}'.";
+        if (target.Actor is RuntimeCharacterActor targetActor && _characters.LoadCharacter(targetActor.Id) is { } targetRecord)
+        {
+            if (!CommunicationFlagEnabled(targetRecord, ClassicTelepathReceiveEnabledKey)
+                || ReadIgnoredTelepaths(targetRecord).Contains(session.Actor.Id))
+                return $"{target.Actor.DisplayName} is not receiving your telepaths.";
+        }
+        var message = text.Trim();
+        target.EnqueueMessage($"{session.Actor.DisplayName} telepaths: {message}");
+        return $"You telepath to {target.Actor.DisplayName}: {message}";
+    }
+
+    private string ExecuteGlobalCommunicationChannel(RuntimeSession session, string text, string conditionKey, string channelName)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (text ?? string.Empty).Trim();
+        if (raw.Length == 0)
+        {
+            var enabled = !CommunicationFlagEnabled(character, conditionKey);
+            SaveCommunicationFlag(character, conditionKey, enabled, $"majormud-{channelName.ToLowerInvariant()}-toggle");
+            return $"{channelName} {(enabled ? "On" : "Off")}.";
+        }
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
+        foreach (var target in _sessions.ActiveSessions.Where(target =>
+            target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+            && !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+        {
+            if (target.Actor is RuntimeCharacterActor targetActor
+                && _characters.LoadCharacter(targetActor.Id) is { } targetRecord
+                && !CommunicationFlagEnabled(targetRecord, conditionKey)) continue;
+            target.EnqueueMessage($"[{channelName}] {session.Actor.DisplayName}: {raw}");
+        }
+        return $"[{channelName}] You: {raw}";
+    }
+
+
+    private string ConfigureClassicTelepathReceive(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+
+        // Operator-confirmed Classic behavior: bare SET options toggle their current state.
+        // The retained help proves SET TELEPATH ON/OFF exists but does not safely establish
+        // which named state corresponds to blocking, so explicit ON/OFF remains gated.
+        if (raw.Length != 0)
+            return "SET TELEPATH toggles telepath receipt; explicit ON/OFF polarity remains evidence-gated.";
+
+        var enabled = !CommunicationFlagEnabled(character, ClassicTelepathReceiveEnabledKey);
+        SaveCommunicationFlag(character, ClassicTelepathReceiveEnabledKey, enabled, "majormud-telepath-toggle");
+        return enabled ? "Telepath On." : "Telepath Off.";
+    }
+
+    private string ConfigureCommunicationFlag(RuntimeSession session, string conditionKey, string arguments, string label)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+        if (raw.Length == 0)
+        {
+            var toggledEnabled = !CommunicationFlagEnabled(character, conditionKey);
+            SaveCommunicationFlag(character, conditionKey, toggledEnabled, $"majormud-{label.ToLowerInvariant()}-toggle");
+            return $"{label} {(toggledEnabled ? "On" : "Off")}.";
+        }
+        if (!raw.Equals("on", StringComparison.OrdinalIgnoreCase) && !raw.Equals("off", StringComparison.OrdinalIgnoreCase))
+            return $"Usage: SET {label.ToUpperInvariant()} ON|OFF.";
+        var enabled = raw.Equals("on", StringComparison.OrdinalIgnoreCase);
+        SaveCommunicationFlag(character, conditionKey, enabled, $"majormud-{label.ToLowerInvariant()}-setting");
+        return $"{label} {(enabled ? "On" : "Off")}.";
+    }
+
+    private void SaveCommunicationFlag(RuntimeCharacterRecord character, string conditionKey, bool enabled, string reason)
+    {
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [conditionKey] = enabled ? "1" : "0"
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, reason);
+    }
+
+    private static bool CommunicationFlagEnabled(RuntimeCharacterRecord character, string conditionKey) =>
+        !character.Conditions.TryGetValue(conditionKey, out var raw) || !raw.Equals("0", StringComparison.OrdinalIgnoreCase);
+
+    private static HashSet<string> ReadIgnoredTelepaths(RuntimeCharacterRecord character) =>
+        character.Conditions.TryGetValue(ClassicTelepathIgnoreKey, out var raw) && !string.IsNullOrWhiteSpace(raw)
+            ? raw.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToHashSet(StringComparer.OrdinalIgnoreCase)
+            : new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+    private void SaveIgnoredTelepaths(RuntimeCharacterRecord character, IReadOnlySet<string> ignored)
+    {
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
+        if (ignored.Count == 0) conditions.Remove(ClassicTelepathIgnoreKey);
+        else conditions[ClassicTelepathIgnoreKey] = string.Join('|', ignored.Order(StringComparer.OrdinalIgnoreCase));
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-telepath-forget");
+    }
+
+    private bool IsSpeechBlocked(RuntimeSession session) =>
+        session.Actor is RuntimeCharacterActor actor
+        && _characters.LoadCharacter(actor.Id) is { } character
+        && RuntimeClassicStatusProjection.IsSpeechBlocked(character);
 
     public string DrainMessages(RuntimeSession session)
     {
@@ -413,17 +815,21 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public void BroadcastDeparture(RuntimeSession session, string roomId, string direction)
     {
+        var expanded = RuntimeMajorMudCompatibility.ExpandDirection(direction);
         foreach (var target in _sessions.ActiveSessions.Where(target =>
             target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
             && target.CurrentRoom.Id.Equals(roomId, StringComparison.OrdinalIgnoreCase)
             && !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
         {
-            target.EnqueueMessage($"{session.Actor.DisplayName} leaves {direction}.");
+            target.EnqueueMessage($"{session.Actor.DisplayName} just left to the {expanded}.");
         }
     }
 
-    public void BroadcastArrival(RuntimeSession session)
-        => _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} arrives.");
+    public void BroadcastArrival(RuntimeSession session, string movementDirection)
+    {
+        var message = $"{session.Actor.DisplayName} walks into the room from the {RuntimeMajorMudCompatibility.OppositeDirection(movementDirection)}.";
+        _sessions.BroadcastRoom(session, message);
+    }
 
     private IEnumerable<string> LoadVisibleCorpses(RuntimeSession session)
     {

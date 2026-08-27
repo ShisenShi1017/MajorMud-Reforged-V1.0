@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Reforged.Server;
 
-public enum RuntimeEconomyNativeMarkupConfidence { ProvenFieldEncoding, StronglyCorrelatedMultiplierSemantics, UnknownExecutionOrder }
+public enum RuntimeEconomyNativeMarkupConfidence { ProvenFieldEncoding, StronglyCorrelatedAdditivePercentSemantics, UnknownExecutionOrder }
 public enum RuntimeEconomyNativeMarkupDomain { Merchandise, Trainer, SpellService, OtherService }
 
 public sealed record RuntimeEconomyNativeMarkupBinding(
@@ -18,12 +18,13 @@ public sealed record RuntimeEconomyNativeMarkupCatalog(
 public static class RuntimeEconomyNativeMarkup
 {
     public const int CurrentSchemaVersion = 1;
-    public const int NeutralMarkupPercent = 100;
+    public const int NeutralMarkupPercent = 0;
 
+    /// <summary>Converts MajorMUD's additive markup percentage into a normal multiplier.</summary>
     public static int ToMultiplierBasisPoints(int rawMarkupPercent)
     {
         if (rawMarkupPercent < 0) throw new InvalidOperationException("native-markup-negative");
-        return checked(rawMarkupPercent * 100);
+        return checked((100 + rawMarkupPercent) * 100);
     }
 
     public static long Apply(long value, int rawMarkupPercent, RuntimeEconomyRoundingPolicy rounding)

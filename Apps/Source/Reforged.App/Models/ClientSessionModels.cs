@@ -12,7 +12,7 @@ public enum ClientTerminalViewMode
     ClassicMegaMud = Reforged
 }
 public enum RouteExecutionState { Idle, Running, Paused, WaitingForRoom, Completed, Stopped, Faulted }
-public enum ClientCommandOrigin { Human, Borin, RouteAutomation, ClientAutomation, SystemLogin, ClientProtocol }
+public enum ClientCommandOrigin { Human, AutonomousAgent, RouteAutomation, ClientAutomation, SystemLogin, ClientProtocol }
 
 public sealed record ClientRoomLinkState(string Direction, string RoomKey, string RoomName);
 public sealed record ClientRoomCommandState(string Command, string Source, string InteractionType, string Requirements);
@@ -262,6 +262,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private string _currentRoomKey = string.Empty;
     private string _currentRoomDescription = string.Empty;
     private string _currentRoomCurrency = string.Empty;
+    private string _lastRawExitText = string.Empty;
     private DateTimeOffset? _roomUpdatedAt;
     private DateTimeOffset? _exitsUpdatedAt;
     private DateTimeOffset? _promptUpdatedAt;
@@ -397,6 +398,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public string CurrentRoomKey { get => _currentRoomKey; set => Set(ref _currentRoomKey, value); }
     public string CurrentRoomDescription { get => _currentRoomDescription; set => Set(ref _currentRoomDescription, value); }
     public string CurrentRoomCurrency { get => _currentRoomCurrency; set => Set(ref _currentRoomCurrency, value); }
+    public string LastRawExitText { get => _lastRawExitText; set => Set(ref _lastRawExitText, value?.Trim() ?? string.Empty); }
     public ObservableCollection<string> CurrentRoomExits { get; } = [];
     public ObservableCollection<string> CurrentRoomNpcs { get; } = [];
     public ObservableCollection<ClientRoomInspectionNpc> CurrentRoomNpcDetails { get; } = [];

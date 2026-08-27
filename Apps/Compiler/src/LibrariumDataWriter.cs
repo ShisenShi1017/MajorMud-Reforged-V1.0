@@ -287,9 +287,12 @@ public sealed class LibrariumDataWriter
         var result = new CompileResult { WorldId = LibrariumCompilerOptions.NormalizeWorld(options.WorldId), OutputRoot = options.OutputRoot };
         var reader = new LibrariumCatalogReader();
         var sourceFamilies = reader.ReadFamilies(options.LibrariumRoot, result.Diagnostics).ToArray();
-        var families = sourceFamilies
+        var effectiveSourceFamilies = new WorldOverrideEngine()
+            .Apply(options.RepositoryRoot, result.WorldId, sourceFamilies, result.Diagnostics)
+            .ToArray();
+        var families = effectiveSourceFamilies
             .Where(family => !IsExcludedFromRuntime(result.WorldId, family.Name))
-            .Select(ProjectRuntimeRecords)
+            .Select(family => ProjectRuntimeRecords(family, result.WorldId))
             .ToArray();
         ApplyCrossFamilyRuntimeGuards(families);
         new LibrariumValidator().Validate(families, result.Diagnostics);
@@ -312,7 +315,7 @@ public sealed class LibrariumDataWriter
 
         // Specialized projections may consume authoring-only families that remain
         // in Librarium but must not become standalone runtime files.
-        result.FilesWritten += RuntimeItemProjectionWriter.Write(options, sourceFamilies, WriteJson);
+        result.FilesWritten += RuntimeItemProjectionWriter.Write(options, effectiveSourceFamilies, WriteJson);
 
         if (options.ClientProjection)
         {
@@ -329,12 +332,15 @@ public sealed class LibrariumDataWriter
     }
 
     private static bool IsExcludedFromRuntime(string worldId, string familyName) =>
-        familyName.Equals("room_messages",StringComparison.OrdinalIgnoreCase) ||
+        familyName.Equals("room_messages", StringComparison.OrdinalIgnoreCase) ||
         familyName.Equals("classic_bug_fixes", StringComparison.OrdinalIgnoreCase) ||
-        worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase) &&
-        NonRuntimeClassicFamilies.Contains(familyName);
+        UsesClassicRuntimeShape(worldId) && NonRuntimeClassicFamilies.Contains(familyName);
 
-    private static LibrariumFamily ProjectRuntimeRecords(LibrariumFamily family)
+    private static bool UsesClassicRuntimeShape(string worldId) =>
+        worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase) ||
+        worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase);
+
+    private static LibrariumFamily ProjectRuntimeRecords(LibrariumFamily family, string worldId)
     {
         if (family.Name.Equals("banks", StringComparison.OrdinalIgnoreCase))
         {
@@ -345,19 +351,21 @@ public sealed class LibrariumDataWriter
             return new LibrariumFamily(family.Name, family.SourceFile, runtimeBanks, family.SourceFiles);
         }
 
-        if(family.Name.Equals("triggers",StringComparison.OrdinalIgnoreCase))
+        if (family.Name.Equals("triggers", StringComparison.OrdinalIgnoreCase))
         {
-            var runtimeTriggers=family.Records.Where(record=>
-                string.Equals(record["trigger_type"]?.GetValue<string>(),"npc_quest_entry",StringComparison.OrdinalIgnoreCase)).ToArray();
-            return new LibrariumFamily(family.Name,family.SourceFile,runtimeTriggers,family.SourceFiles);
+            var runtimeTriggers = family.Records.Where(record =>
+                string.Equals(record["trigger_type"]?.GetValue<string>(), "npc_quest_entry", StringComparison.OrdinalIgnoreCase) ||
+                (worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase) && IsCustomAuthoredRecord(record))).ToArray();
+            return new LibrariumFamily(family.Name, family.SourceFile, runtimeTriggers, family.SourceFiles);
         }
 
-        if(family.Name.Equals("scripts",StringComparison.OrdinalIgnoreCase))
+        if (family.Name.Equals("scripts", StringComparison.OrdinalIgnoreCase))
         {
-            var runtimeScripts=family.Records.Where(record=>
-                string.Equals(record["script_type"]?.GetValue<string>(),"mmexplorer_textblock_stage",StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(record["script_type"]?.GetValue<string>(),"npc_hit_spell_textblock_chain",StringComparison.OrdinalIgnoreCase)).ToArray();
-            return new LibrariumFamily(family.Name,family.SourceFile,runtimeScripts,family.SourceFiles);
+            var runtimeScripts = family.Records.Where(record =>
+                string.Equals(record["script_type"]?.GetValue<string>(), "mmexplorer_textblock_stage", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(record["script_type"]?.GetValue<string>(), "npc_hit_spell_textblock_chain", StringComparison.OrdinalIgnoreCase) ||
+                (worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase) && IsCustomAuthoredRecord(record))).ToArray();
+            return new LibrariumFamily(family.Name, family.SourceFile, runtimeScripts, family.SourceFiles);
         }
 
         if(family.Name is not ("quests" or "formulas")) return family;
@@ -368,6 +376,16 @@ public sealed class LibrariumDataWriter
             return !string.Equals(mapping["status"]?.GetValue<string>(),"pending",StringComparison.OrdinalIgnoreCase);
         }).ToArray();
         return new LibrariumFamily(family.Name,family.SourceFile,runtimeRecords,family.SourceFiles);
+    }
+
+    private static bool IsCustomAuthoredRecord(JsonObject record)
+    {
+        if (string.Equals(record["confidence"]?.GetValue<string>(), "host_authored_custom", StringComparison.OrdinalIgnoreCase)) return true;
+        if (record["runtime_mapping"] is JsonObject mapping &&
+            string.Equals(mapping["status"]?.GetValue<string>(), "runtime_authoritative_custom", StringComparison.OrdinalIgnoreCase)) return true;
+        if (record["world_scope"] is JsonArray scopes && scopes.Any(scope =>
+                string.Equals(scope?.GetValue<string>(), "custom", StringComparison.OrdinalIgnoreCase))) return true;
+        return false;
     }
 
     private static void ApplyCrossFamilyRuntimeGuards(IReadOnlyList<LibrariumFamily> families)

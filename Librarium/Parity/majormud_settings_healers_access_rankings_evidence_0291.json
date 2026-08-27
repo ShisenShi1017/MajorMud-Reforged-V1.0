@@ -1,0 +1,118 @@
+{
+  "schema": "majormud.pass21.settings-healers-access-rankings-evidence.v1",
+  "update": "0291",
+  "pass": "Pass 21 - Settings / Healers / Access / Rankings Closure",
+  "target": "MajorMUD 1.11p",
+  "policy": {
+    "pass": "direct/proven native behavior only",
+    "strong": "strongly correlated native/data behavior",
+    "unknown": "unresolved behavior remains evidence-gated",
+    "worldgroup": "excluded from MajorMUD parity"
+  },
+  "operatorCorrections": [
+    "Bare native SET options toggle their current state; explicit value forms remain only where retained native help directly documents them.",
+    "There is no inn-rest/rental system; inns are shops.",
+    "Healer-shop healing is the only required non-item purchasable service.",
+    "There is no transportation-service model; tickets/passes gate access and some room commands immediately relocate the player.",
+    "Casino and arena are native MajorMUD activities.",
+    "TOP rankings are native, including class-filtered TOP lists.",
+    "Native organizations are gangs only; gang houses are deed/upkeep based.",
+    "Worldgroup mail, account/session/login parity, weather/day-night, host limits, native logging/diagnostics, native SYSOP interface parity and crash/restart behavior are excluded."
+  ],
+  "nativeHelpEvidence": [
+    {
+      "messageNumber": 19,
+      "claim": "TOPTEN displays the top ten adventurers.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 37,
+      "claim": "Profile help documents Set Receive On/Off as controlling receipt of GIVE items.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 113,
+      "claim": "Gangs: CREATE GANG requires 100000 experience; max gang name length 19; INVITE/UNINVITE; BG/BROADGANG; TOPTEN/TOP gangs; DISBAND leader-only; LEAVE GANG.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 117,
+      "claim": "SET help documents Receive, Telepath, Follow Blind/Normal, Speech Fast/Slow and other profile settings. Some wording conflicts with operational RECEIVE polarity, so exact explicit RECEIVE/TELEPATH polarity is not over-promoted.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 135,
+      "claim": "Practice arena PvP causes no evil points/loss of life; killed players revive in Halls Of The Dead with HP from last arena entry.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 175,
+      "claim": "GOSSIP alone or SET GOSSIP toggles receipt; SET GOSSIP ON/OFF are explicit native forms.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 177,
+      "claim": "AUCTION alone or SET AUCTION toggles receipt; SET AUCTION ON/OFF are explicit native forms.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 207,
+      "claim": "BUY HEALING in the appropriate room heals all wounds for a price.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "messageNumber": 261,
+      "claim": "Gang houses are bought by the gang leader at the Deed Shoppe; tax is collected every sundown; insufficient funds in deed holder Silvermere bank repossess the house with its contents; guardians bar non-members; some houses contain shops/healers.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    }
+  ],
+  "ticketAccessEvidence": {
+    "exitId": "exit.map2.2552.u",
+    "sourceRoom": "room.map2.2552",
+    "sourceName": "The Drunken Demon Inn, Stairwell",
+    "destinationRoom": "room.map2.2554",
+    "rawValue": "2/2554 (Ticket/Item: 924)",
+    "gateKind": "ticket_item",
+    "requiredItemId": 924,
+    "confidence": "STRONG",
+    "consumption": "UNKNOWN; do not consume without explicit evidence",
+    "source": "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.parts/exits_decoded_semantic.part0026.json"
+  },
+  "scriptedHealerEvidence": [
+    {
+      "textblockId": 159,
+      "example": "buy minor healing:monsters:price 50 318:cast 219:adddelay 5",
+      "notes": "Same textblock includes major 120/cast220, greater 200/cast221, cure poison 1000/cast222, disease 2500/cast223, remove curse 5000/cast224.",
+      "source": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json"
+    },
+    {
+      "textblockId": 4351,
+      "notes": "Variant healer prices prove prices are room/script-specific rather than one universal inferred formula.",
+      "source": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json"
+    }
+  ],
+  "rankingEvidence": [
+    {
+      "claim": "Native config retains Maximum number of TOPTEN users/gangs lists? 30.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "claim": "Native config retains Include experience in topten command? YES.",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "claim": "Operator-confirmed class filter example TOP 10 WITCHHUNTER returns ten best Witchhunters.",
+      "source": "Pass 21 operator parity correction"
+    }
+  ],
+  "unresolved": [
+    "Exact generic healer ShopType 5 price/debit/order/message semantics where no decoded scripted transaction applies.",
+    "Ticket/pass consumption versus retained access and exact native failure/success messages per gate.",
+    "Exact command-triggered relocation mappings not already decoded.",
+    "Exact TOP ranking metric/order, class/category vocabulary, ties, refresh timing and output format.",
+    "Exact casino game commands, odds, bets, payouts and messages.",
+    "Exact arena rules beyond already recovered practice-arena death exception.",
+    "Exact explicit TELEPATH polarity and any unresolved setting defaults/persistence.",
+    "Remaining gang/gang-house leadership, deed amount, upkeep values/warnings, guardian/service/reset details."
+  ]
+}

@@ -1,91 +1,85 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "subsystem": "communications",
-  "runtimeOwner": "RuntimeCommunicationService",
+  "runtimeOwner": "RuntimeLiveGameplayFacade + RuntimeSessionManager",
   "channels": [
     {
       "id": "say",
       "scope": "same-room",
-      "status": "active-safe-shell"
+      "status": "PASS",
+      "evidence": "decoded native communications help plus preserved native self-rendering"
     },
     {
-      "id": "whisper",
-      "scope": "same-room-target",
-      "status": "active-safe-shell"
+      "id": "yell-prefix",
+      "syntax": "\"<TEXT>",
+      "scope": "current-room-and-adjacent-rooms",
+      "status": "STRONG",
+      "evidence": "YELLCHAR and decoded native communications help; exact recipient rendering remains unresolved"
+    },
+    {
+      "id": "telepath-prefix",
+      "syntax": "/Username <TEXT>",
+      "scope": "one connected target",
+      "status": "STRONG",
+      "evidence": "decoded native communications help; exact success/failure rendering remains unresolved"
     },
     {
       "id": "tell",
       "scope": "connected-target",
-      "status": "active-safe-shell"
+      "status": "compatibility-route-not-promoted",
+      "nativeDependency": "native TELL command identity/format is not proven by the recovered help; slash telepath is proven"
     },
     {
-      "id": "shout",
-      "scope": "connected-world-fallback",
-      "status": "active-safe-shell",
-      "nativeDependency": "exact Classic range"
+      "id": "whisper",
+      "scope": "unknown",
+      "status": "UNKNOWN",
+      "evidence": "native _cmd_whisper symbol identity only; exact syntax/range/rendering unresolved"
     },
     {
-      "id": "yell",
-      "scope": "connected-world-fallback",
-      "status": "active-safe-shell",
-      "nativeDependency": "exact Classic range"
+      "id": "gossip",
+      "scope": "world-global-to-gossip-enabled-users",
+      "status": "STRONG",
+      "toggle": "GOSSIP with no message",
+      "nativeDependency": "exact default flag state and rendering"
     },
     {
-      "id": "emote",
-      "scope": "same-room",
-      "status": "active-safe-shell"
+      "id": "auction",
+      "scope": "world-global-to-auction-enabled-users",
+      "status": "STRONG",
+      "toggle": "AUCTION with no message",
+      "nativeDependency": "exact default flag state and rendering"
     },
     {
-      "id": "pose",
-      "scope": "same-room",
-      "status": "active-safe-shell"
-    },
-    {
-      "id": "party",
-      "scope": "RuntimePartyCoordinationService route",
-      "status": "active-safe-shell"
-    },
-    {
-      "id": "guild",
-      "scope": "matching guild identity",
-      "status": "active-safe-shell",
-      "nativeDependency": "guild semantics"
-    },
-    {
-      "id": "global",
-      "scope": "host-policy gated",
-      "status": "disabled-by-default"
-    },
-    {
-      "id": "system",
-      "scope": "connected-world",
-      "status": "internal-only-policy"
-    },
-    {
-      "id": "administrative-broadcast",
-      "scope": "connected-world",
-      "status": "administrator-gated"
+      "id": "forget",
+      "scope": "telepath-ignore-toggle",
+      "status": "STRONG",
+      "nativeDependency": "exact persistence owner and output formatting"
     }
   ],
-  "filters": [
-    "connected",
-    "deafened",
-    "silenced",
-    "ignore-list",
-    "flood-window",
-    "channel-policy"
+  "settings": [
+    "SET TELEPATH ON/OFF",
+    "SET GOSSIP ON/OFF",
+    "SET AUCTION ON/OFF",
+    "SET SPEECH FAST/SLOW",
+    "SET MESSAGES LOW/MEDIUM/HIGH",
+    "SET ENTRANCES ON/OFF"
+  ],
+  "explicitlyUnresolved": [
+    "WHISPER syntax/range/rendering",
+    "exact TELL command identity versus slash telepath",
+    "exact communication colors/language/invisibility behavior",
+    "exact channel default flag states",
+    "flood/maxpage thresholds",
+    "communication logging owner",
+    "exact success/failure text",
+    "exact message-priority membership for SET MESSAGES",
+    "exact SET ENTRANCES default/persistence behavior"
   ],
   "ownership": {
     "recipientSelection": "communications",
     "partyMembership": "party-coordination",
-    "guildMembership": "guild-faction-organization",
     "commandParsing": "commands subsystem",
     "characterIdentityStorage": "character subsystem",
-    "hostTerminalDelivery": "worldgroup integration boundary"
-  },
-  "persistence": {
-    "floodWindow": "runtime-only",
-    "ignoreList": "native-dependent",
-    "deliveryLog": "native-dependent"
+    "WorldgroupOnly": "excluded from MajorMUD parity"
   }
 }

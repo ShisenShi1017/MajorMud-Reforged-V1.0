@@ -27,7 +27,7 @@ public sealed record RuntimeFormulaAuthorityRecord(
     string Notes);
 
 /// <summary>
-/// Pass 09 formula authority. This is deliberately separate from the MegaMUD client.
+/// Pass 10 formula authority. This is deliberately separate from the MegaMUD client.
 /// It reconciles server-native decode, imported databases, generated Librarium data,
 /// and current runtime formula owners before a formula is allowed to execute.
 /// </summary>
@@ -101,6 +101,45 @@ public sealed class RuntimeClassicFormulaAuthority
                 },
                 "Only explicit equipment and ability modifiers are executable; unknown base-stat ordering remains quarantined."),
             new(
+                RuntimeClassicCharacterFormulaCalculator.MagicResistanceFormulaId,
+                "character_statistics",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeClassicCharacterFormulaCalculator),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcMR line 4270: Fix((INT + (WIL * 3)) / 4) + modifiers"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained CalcMR implementation at source line 4270"),
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "MR weighting conflict resolved in favor of retained implementation evidence")
+                },
+                "Character Magic Resistance now has one live builder: Fix((INT + WIL*3)/4) + modifiers. It remains STRONG rather than PASS because an older screenshot note reversed INT/WIL weighting and exact native DLL ordering is not yet recovered."),
+            new(
+                RuntimeClassicCharacterFormulaCalculator.RawDodgeFormulaId,
+                "character_statistics",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeClassicCharacterFormulaCalculator),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcDodge lines 2482-2495: level, Charm, Agility, PlusDodge, light-encumbrance bonus"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained raw Dodge terms and provenance"),
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "encumbrance <33 boundary retained from recovered stock evidence")
+                },
+                "Player raw Dodge now uses the recovered stock character builder before the already-verified Dodge-vs-Accuracy and 95% final cap. Race/class ownership of PlusDodge remains unresolved where decoded ability-slot mapping is ambiguous."),
+            new(
+                RuntimeCharacterRegenerationAuthority.FormulaId,
+                "character_statistics",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeCharacterRegenerationAuthority),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcRestingRate lines 4111-4152 and CalcManaRegen lines 4209-4259"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained HP/mana regeneration calculations"),
+                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs", "passive, resting, and meditation runtime ticks")
+                },
+                "HP and mana regeneration formulas are live and strongly supported. Exact native timer phase, host-clock alignment, and the full type-5/Kai MPRegen branch ordering remain below PASS confidence."),
+            new(
                 ClassicCombatResolver.ClassCombatAccuracyFormulaId,
                 "combat",
                 RuntimeFormulaEvidenceGrade.StronglyCorroborated,
@@ -138,7 +177,7 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("nightmare_redux", "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm", "lines 1995-2006: independent matching implementation"),
                     new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained source formula and provenance")
                 },
-                "Player attack energy is Fix((weaponSpeed * 1000) / Fix((((level * (combatCode + 2)) + 45) * (agility + 150)) / 6)). The value is projected into the authoritative player combat profile for timing consumption."),
+                "Player attack energy starts with Fix((weaponSpeed * 1000) / Fix((((level * (combatCode + 2)) + 45) * (agility + 150)) / 6)), applies the recovered below-STR-requirement penalty, optional Speed percentage branch, and ((Encumbrance/2)+75)% modifier, then feeds the authoritative per-round swing scheduler."),
             new(
                 RuntimeClassicPhysicalFormulaCalculator.PlayerAttackSchedulingFormulaId,
                 "combat_timing",
@@ -221,12 +260,13 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeClassicPhysicalFormulaCalculator.CriticalDamageRangeFormulaId,
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("native_help", "Librarium/Evidence/native_message_catalog_correlation_0022.json", "critical hits do up to four times normal damage"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "stock CalculateAttack: critical range is 2x through 4x normal maximum, then DR is subtracted"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "critical damage range is two through four times normal maximum")
                 },
                 "Critical damage rolls inclusively from twice through four times the normal maximum damage before damage resistance."),
@@ -357,7 +397,7 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 "combat.hit_ac.native",
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(ClassicCombatResolver),
                 new[]
@@ -367,7 +407,7 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("nightmare_redux", "ImportedDatabases/OmniVerseReference"),
                     new RuntimeFormulaEvidenceSource("gap_resolution", "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json")
                 },
-                "The decoded and independently corroborated hit/AC equation, 10..99 clamp, inclusive d100 roll, and live resolver are promoted as one authoritative path."),
+                "The decoded stock hit/AC equation, 8..99 clamp, inclusive d100 roll (roll <= chance succeeds), and live resolver are promoted as one authoritative path."),
             new(
                 ClassicCombatResolver.ItemCriticalBonusFormulaId,
                 "combat",
@@ -423,7 +463,7 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 "combat.dodge.native",
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(ClassicCombatResolver),
                 new[]
@@ -432,11 +472,11 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer/clsMonsterAttackSim.cls"),
                     new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json")
                 },
-                "Decoded dodge scaling, 95 cap, backstab reduction, and inclusive roll boundary execute through the authoritative ClassicCombatResolver."),
+                "Recovered stock dodge scaling, 95 cap, Backstab /5 reduction, and inclusive roll boundary execute through the authoritative ClassicCombatResolver."),
             new(
                 "combat.dodge_base",
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(ClassicCombatResolver),
                 new[]
@@ -460,7 +500,7 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 "combat.dodge_final",
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(ClassicCombatResolver),
                 new[]
@@ -470,57 +510,118 @@ public sealed class RuntimeClassicFormulaAuthority
                 },
                 "The final avoidance stage applies the 95 percent cap and the distinct Backstab reduction before the inclusive avoidance roll."),
             new(
-                "combat.npc_attack_count",
+                RuntimeClassicNpcCombatCadence.AttackRowCountFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
-                nameof(RuntimeLiveGameplayFacade),
+                nameof(RuntimeNpcDefinition),
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "combat.attack_count"),
-                    new RuntimeFormulaEvidenceSource("runtime_npc_model", "RuntimeNpcModels.cs", "RuntimeNpcDefinition.AttackCount"),
-                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcAttacksPerRound")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudDatabase.bas", "attack_count limits authored attack rows; it is not the number of per-round attempts"),
+                    new RuntimeFormulaEvidenceSource("runtime_npc_model", "RuntimeNpcModels.cs", "ReadAttacks takes the declared row count")
                 },
-                "The decoded NPC attack_count controls the exact number of independently selected physical attacks executed during each live NPC combat round. A zero value performs no NPC attacks, invalid negative values are rejected, positive counts require decoded attack rows, and execution stops immediately when the player reaches zero hit points."),
+                "Decoded attack_count is the number of authored executable attack rows retained from the monster record. It limits the fixed-width row array and does not control how many selection attempts occur in a combat round."),
             new(
-                "combat.npc_attack_energy",
+                RuntimeClassicNpcCombatCadence.AttemptsPerRoundFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
-                nameof(RuntimeLiveGameplayFacade),
+                nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "combat.energy and attacks.energy_cost"),
-                    new RuntimeFormulaEvidenceSource("runtime_npc_model", "RuntimeNpcModels.cs", "RuntimeNpcDefinition.Energy and RuntimeNpcAttackDefinition.EnergyCost"),
-                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "SelectNpcAttack and ResolveNpcEnergyAfterAttack")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "For nAttempt = 1 To 6"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "independent retained implementation also uses six attempt slots")
                 },
-                "The decoded NPC energy pool gates attack-row eligibility. Each selected attack deducts its decoded energy_cost, unaffordable rows are excluded, and combat performs no NPC attack when no decoded row is affordable. No energy regeneration is introduced because its timing remains unresolved."),
+                "An NPC with at least one authored attack row receives six attack-selection attempt slots per 5-second combat round. This is strongly corroborated by two independent retained reverse-engineered implementations."),
             new(
-                ClassicCombatResolver.NpcResistedSpellEnergyRefundFormulaId,
+                RuntimeClassicNpcCombatCadence.EnergyCarryFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
-                nameof(RuntimeLiveGameplayFacade),
+                nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_spell_catalog", "Data/Classic/spells.json", "formula_refs contains formula.npc.spell_half_energy_refund"),
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "NPC hit-spell energy metadata"),
-                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcEnergyAfterResistedHitSpell")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudDatabase.bas", "monster Energy maps to nEnergyPerRound"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "carried energy starts at zero and adds nEnergyPerRound at each round"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same carried-energy loop")
                 },
-                "When a triggered NPC hit spell is fully resisted, half of the selected attack row's decoded energy_cost is refunded after the original cost is paid. Integer division truncates odd costs and the result is capped at the NPC encounter maximum energy."),
+                "Monster Energy is energy gained per combat round, not a maximum pool. Carried energy starts at zero, the decoded Energy value is added at each round, and unused energy carries forward without a one-round cap."),
+            new(
+                RuntimeNpcAttackSelector.FormulaId,
+                "combat_npc",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeNpcAttackSelector),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "one d100 is compared to Att%-x in slot order"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same ordered threshold selection"),
+                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "selection_percent values preserve authored Att%-x thresholds, including values above 100")
+                },
+                "Each attempt rolls one inclusive d100 and scans authored attack slots in order. The first row whose Att% threshold is at least the roll is selected. Unaffordable rows remain selectable and are not removed or re-normalized; thresholds above 100 behave as catch-all rows if reached."),
+            new(
+                RuntimeClassicNpcCombatCadence.SpellCastSuccessFormulaId,
+                "combat_npc",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeClassicNpcCombatCadence),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudDatabase.bas", "Type 2 maps AttAcc to spell id, AttMax to cast level, and AttMin to nAtkSuccess"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "spell success uses inclusive d100 <= nAtkSuccess"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same Type 2 success check")
+                },
+                "For direct NPC spell rows (Type 2), AttAcc is the spell id, AttMax is cast level, and AttMin is the cast-success percentage. A separate inclusive d100 roll determines cast success after row selection."),
+            new(
+                RuntimeClassicNpcCombatCadence.SpellFailureEnergyFormulaId,
+                "combat_npc",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeClassicNpcCombatCadence),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "failed or fully resisted Type 2 casts use Round(AttEnergy/2,0)"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same half-energy cast failure branch")
+                },
+                "A failed or fully resisted direct NPC spell consumes Round(energy_cost / 2, 0) using VB midpoint-to-even rounding. Physical misses/dodges and physical hit-spell resistance still consume the full physical attack cost."),
+            new(
+                RuntimeClassicNpcCombatCadence.PhysicalEarlyEndFormulaId,
+                "combat_npc",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                true,
+                nameof(RuntimeClassicNpcCombatCadence),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "after Type 1 selection, remaining energy below that row's cost jumps to next round"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same early-round branch")
+                },
+                "After a Type 1 physical row is selected, the retained simulators end the round when remaining energy falls below that row's cost. Type 2 spell rows do not use this physical early-end branch."),
             new(
                 ClassicCombatResolver.NpcEncounterEnergyResetFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "combat.energy"),
-                    new RuntimeFormulaEvidenceSource("encounter_constructor", "RuntimeLiveCombat.cs", "ResolveNpcEncounterStartingEnergy"),
-                    new RuntimeFormulaEvidenceSource("combat_lifecycle", "RuntimeLiveCombat.cs", "new encounter starts from decoded maximum; ended encounters are discarded")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "nRemainingEnergy = 0 before round loop"),
+                    new RuntimeFormulaEvidenceSource("live_combat", "RuntimeLiveCombat.cs", "ResolveNpcEncounterStartingEnergy")
                 },
-                "Each newly admitted combat encounter starts the NPC energy pool at the decoded combat.energy maximum. Flee, defeat, or invalidation discards the encounter state, so a later encounter resets to the decoded maximum without inventing in-combat regeneration."),
+                "A newly admitted NPC combat encounter begins with zero carried attack energy; the first round then adds the decoded per-round Energy value before attack attempts."),
+            new(
+                RuntimeClassicNpcCombatCadence.StockHpRegenIntervalFormulaId,
+                "combat_npc",
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                false,
+                nameof(RuntimeNpcDefinition),
+                new[]
+                {
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudFunc.bas", "STOCK_MOB_HPREGEN_ROUNDS = 18"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modExpPerHour.bas", "stock HP regen amount is modeled over the 18-round interval"),
+                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Librarium/Objects/npcs/npc_records_0122.json", "public_reference_0139.fields.hp_regen retains the authored per-monster amount")
+                },
+                "Stock MajorMUD uses an 18-combat-round NPC HP regeneration interval and the decoded NPC catalog retains the authored HP-regeneration amount. Exact live tick phase/order relative to incoming damage, death resolution and out-of-combat state is not yet native-proven, so activation remains fail-closed."),
             new(
                 ClassicCombatResolver.NpcDecodedCurrencyAmountsFormulaId,
                 "combat_reward",
@@ -534,19 +635,6 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("live_combat_completion", "RuntimeCombatCompletion.cs", "exact standard denominations placed on room ground; zero values remain zero")
                 },
                 "Decoded monster currency fields are denomination amounts rather than drop percentages. The live death consumer preserves copper, silver, gold, platinum, and runic independently, creates no fabricated fallback money for zero-value NPCs, and routes all five physical denominations through the shared room, inventory, banking, weight, pickup, drop, spending, persistence, and cleanup authorities."),
-            new(
-                ClassicCombatResolver.NpcAttackSelectionWeightFormulaId,
-                "combat_npc",
-                RuntimeFormulaEvidenceGrade.Verified,
-                true,
-                nameof(RuntimeNpcAttackSelector),
-                new[]
-                {
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "attacks.selection_percent values frequently total above 100 within one NPC record"),
-                    new RuntimeFormulaEvidenceSource("runtime_npc_model", "RuntimeNpcModels.cs", "RuntimeNpcAttackDefinition.SelectionPercent"),
-                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "SelectNpcAttack delegates to RuntimeNpcAttackSelector")
-                },
-                "Decoded NPC selection_percent values are positive relative weights, not independent absolute percentages. Invalid or unaffordable rows are removed first; the remaining rows are ordered by slot and selected by one inclusive 1..sum(weights) draw. Energy filtering therefore re-normalizes the eligible rows without changing authored weights."),
             new(
                 "combat.npc_hit_spell_relationship",
                 "combat_npc",
@@ -647,11 +735,11 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("classic_research", "Evidence/Omniverse/ClassicResearch/Combat/2026-07-07-CombatSpellBehavior/screenshots/04-spell-resistance-formula.jpg", "MR=(WIL+INT*3)/4+MagicRes; resist chance MR/2 capped at 97 percent"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcMR: MR=(INT+WIL*3)/4+modifiers; resist chance MR/2 capped at 97 percent"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer", "IsSpellResisted and CalcResistedDamage consumers corroborate resistance gating"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellResistance")
                 },
-                "For eligible NPC hit spells, target magic resistance is integer-truncated as (Willpower + Intellect*3)/4 plus the resolved MagicRes value. Full-resist chance is integer-truncated MR/2, clamped from 0 through 97 percent, and succeeds on an inclusive 1-100 roll. Resistance type 0 bypasses the check; type 1 requires Ability 51 Anti-Magic; type 2 checks everyone. Partial damage reduction and resisted energy cost remain separately unresolved."),
+                "For eligible NPC hit spells, target magic resistance uses the Pass 9 character authority: integer-truncated (Intellect + Willpower*3)/4 plus resolved MagicRes modifiers. Full-resist chance is integer-truncated MR/2, clamped from 0 through 97 percent, and succeeds on an inclusive 1-100 roll. Resistance type 0 bypasses the check; type 1 requires Ability 51 Anti-Magic; type 2 checks everyone. Partial damage reduction and resisted energy cost remain separately unresolved."),
             new(
                 ClassicCombatResolver.NpcHitSpellTypeSemanticsFormulaId,
                 "combat_npc",
@@ -690,9 +778,10 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("ability_catalog", "Data/Classic/abilities.json", "Abilities 3, 5, 65, and 66 modify cold, fire, stone, and lightning resistance by their stored values"),
                     new RuntimeFormulaEvidenceSource("monster_resistance_inventory", "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv", "positive, negative, 100, and greater-than-100 elemental resistance values across Classic monsters"),
                     new RuntimeFormulaEvidenceSource("retained_simulators", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ITEM_RESISTANCES.md", "resistance and vulnerability damage projections"),
-                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveElementalSpellDamage")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "CalculateResistDamage applies Fix(((100 - nBonusResist) * nDamage) / 100)"),
+                    new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveElementalSpellDamage and ApplyElementalSpellHitPoints")
                 },
-                "Cold, fire, stone, and lightning resistance values modify immediate elemental spell damage as a percentage. Positive values reduce damage, negative values increase damage, and values at or above 100 suppress damage. Integer division truncates toward zero. Acid and untyped damage remain unchanged because no corresponding decoded player resistance field is established."),
+                "Cold, fire, stone, and lightning resistance values modify immediate elemental spell damage with the retained signed Classic percentage formula. Positive values reduce damage, negative values increase damage, exactly 100 yields zero damage, and values above 100 produce negative damage that restores hit points up to the target's maximum. Integer division truncates toward zero. Acid and untyped damage remain unchanged because no corresponding decoded player resistance field is established. Water resistance remains projected and stackable but has no decoded NPC hit-spell attack-type consumer in the canonical Classic spell catalog."),
             new(
                 ClassicCombatResolver.NpcHitSpellPoisonImmunityFormulaId,
                 "combat_npc",
@@ -734,7 +823,7 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("live_power_restore", "RuntimeLivePowers.cs", "EnsureLivePowers expires stale persisted effects on world restore/reconnect"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ExecuteLiveCombatRound expires effects before combat profile resolution")
                 },
-                "NPC-delivered poison and status effects use decoded duration in six-second Classic combat rounds. Expired effects are removed on restore, power commands, and automatic ticks; character projections are synchronized and persisted. Target death removes all remaining active effects."),
+                "NPC-delivered poison and status effects use decoded duration in three-second spell/system rounds, separate from the five-second physical combat round. Expired effects are removed on restore, power commands, and automatic ticks; character projections are synchronized and persisted. Target death removes all remaining active effects."),
             new(
                 ClassicCombatResolver.NpcHitSpellCurePoisonFormulaId,
                 "combat_status",
@@ -769,11 +858,11 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("server_tick", "Apps/Source/Reforged.Server/ServerHostConfigurationAudit.cs", "Classic combat tick defaults to 6000 milliseconds"),
+                    new RuntimeFormulaEvidenceSource("server_tick", "Apps/Source/Reforged.Server/ServerHostConfigurationAudit.cs", "Classic spell/system periodic status tick is three seconds; physical combat is scheduled separately at five seconds"),
                     new RuntimeFormulaEvidenceSource("decoded_spell_effect", "Data/Classic/spells.json", "Poison and periodic damage spells provide authored effect ranges and durations"),
                     new RuntimeFormulaEvidenceSource("runtime_consumer", "Apps/Source/Reforged.Server/RuntimeClassicLiveStatusEffects.cs", "Inclusive periodic magnitude roll once per combat round")
                 },
-                "Periodic poison and decoded duration damage execute once per six-second Classic combat round using an inclusive authored effect-range roll. Missed ticks are caught up deterministically and stop at expiration or target death."),
+                "Periodic poison and decoded duration damage execute once per three-second spell/system round using an inclusive authored effect-range roll. Missed ticks are caught up deterministically and stop at expiration or target death."),
             new(
                 ClassicCombatResolver.StatusModifierFormulaId,
                 "combat_status",
@@ -1015,7 +1104,7 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeLiveGameplayFacade.NpcTargetThreatFormulaId,
                 "combat_npc_ai",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
@@ -1024,11 +1113,11 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("uploaded_runtime", "Apps/Source/Reforged.Server/RuntimeNpcThreat.cs", "highest explicit same-room detectable hostile threat is selected with stable tie ordering"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "live combat admission and damage feed the uploaded threat authority; NPC retaliation follows current_target_id")
                 },
-                "NPC target selection uses the uploaded explicit threat ledger. Combat admission establishes initial threat, direct damage adds exact threat, same-room detectable living hostile candidates are ranked by descending explicit threat, and only the selected target receives NPC retaliation."),
+                "Reforged NPC target selection currently uses the explicit threat ledger: combat admission establishes initial threat, direct damage adds threat, and same-room detectable hostile candidates are ranked deterministically. This runtime path is executable but remains STRONG because the original MajorMUD hate/threat selection and tie-order have not been proven."),
             new(
                 RuntimeLiveGameplayFacade.PlayerAssistFormulaId,
                 "combat_party",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
@@ -1037,11 +1126,11 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("session_authority", "Apps/Source/Reforged.Server/RuntimeSessionManager.cs", "unique same-room actor resolution"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "assist joins the ally's exact living NPC encounter and registers explicit threat")
                 },
-                "Assist joins a uniquely identified same-room ally's active encounter against the same living NPC instance. The assisting player receives an independent action-energy state and contributes explicit threat through normal attacks."),
+                "Reforged ASSIST joins a uniquely identified same-room ally's active encounter against the same living NPC instance and contributes through the current threat runtime. The command path remains STRONG until original MajorMUD party/assist admission and threat effects are proven."),
             new(
                 RuntimeLiveGameplayFacade.CompanionAssistFormulaId,
                 "combat_companion",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
                 nameof(RuntimeLivingWorldService),
                 new[]
@@ -1050,20 +1139,20 @@ public sealed class RuntimeClassicFormulaAuthority
                     new RuntimeFormulaEvidenceSource("uploaded_runtime", "Apps/Source/Reforged.Server/RuntimeNpcCompanionCombatAssist.cs", "same-room owner-authorized hostile target admission"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "owned same-room companions receive the owner's current hostile NPC target")
                 },
-                "A living NPC explicitly owned by the attacking character is authorized to assist only in the same room against the owner's live hostile target. Ownership and target relationships persist through the existing living-world metadata authority."),
+                "Reforged companion assistance uses explicit owner metadata and same-room hostile target admission. This is an evidence-backed deterministic runtime boundary, not a claim that the original MajorMUD companion assist timing/selection has been recovered."),
             new(
                 RuntimeLiveGameplayFacade.GuardAssistFormulaId,
                 "combat_npc_ai",
-                RuntimeFormulaEvidenceGrade.Verified,
+                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
                 true,
                 nameof(RuntimeLivingWorldService),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("uploaded_runtime", "Apps/Source/Reforged.Server/RuntimeNpcAssist.cs", "explicit same-room caller and hostile target admission"),
-                    new RuntimeFormulaEvidenceSource("uploaded_metadata", "Runtime living NPC metadata", "assist_target_instance_id, guard_target_instance_id, protected_npc_instance_id, or shared assist_group_id"),
-                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "explicitly linked same-room NPCs acquire the attacked character through the uploaded assist authority")
+                    new RuntimeFormulaEvidenceSource("decoded_relationship", "Librarium/Validation0003/monster_ability_relationships_verified_0003.json", "Ability 146 is MonsGuards and its value resolves to a specific monster legacy id"),
+                    new RuntimeFormulaEvidenceSource("runtime_projection", "Apps/Source/Reforged.Server/RuntimeNpcModels.cs", "Ability 146 values project to GuardedNpcLegacyIds and living metadata"),
+                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "Classic guard assistance admits only an ability-146 owner guarding the attacked NPC legacy id; generic Reforged assist links are isolated to non-Classic worlds")
                 },
-                "Guard and allied-NPC assistance executes only from explicit decoded/runtime relationship metadata. Same-room linked NPCs adopt the already observed hostile character target; no name-based, faction-inferred, or radius-based guard behavior is fabricated."),
+                "Classic guard relationship admission is data-owned by decoded ability 146 (MonsGuards). Exact native acquisition timing, propagation, retry cadence and priority relative to other AI decisions remain unresolved, so the relationship/consumer is STRONG rather than Verified."),
             new(
                 RuntimeLiveGameplayFacade.KillRewardAttributionFormulaId,
                 "combat_rewards",

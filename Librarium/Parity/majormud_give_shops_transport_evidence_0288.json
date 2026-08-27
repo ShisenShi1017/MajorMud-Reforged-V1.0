@@ -1,0 +1,69 @@
+{
+  "schema": "majormud.give-shops-transport-evidence.v1",
+  "update": "0288",
+  "policy": "Only stock MajorMUD behavior is scored. Reforged-only convenience services remain available outside Classic but do not count toward MajorMUD parity.",
+  "official_help": {
+    "commands_url": "https://www.majormud.com/mudhelp_commands.html",
+    "settings_url": "https://www.majormud.com/mudhelp_gamesettings.html",
+    "give": {
+      "syntax": "GIVE ITEM PLAYER",
+      "finding": "Official command help exposes GIVE as the direct player-to-player item transfer command."
+    },
+    "receive": {
+      "syntax": "SET RECEIVE ON|OFF",
+      "finding": "Official command help says RECEIVE controls whether other players can give items; SHARE help also excludes recipients whose RECEIVE is off."
+    },
+    "auction": {
+      "finding": "Official help describes AUCTION as a gossip-like communication channel used to advertise trading/selling, not an escrow/accept transaction system."
+    },
+    "shops": {
+      "commands": [
+        "STOCK/LIST",
+        "BUY",
+        "SELL",
+        "APPRAISE",
+        "INVENTORY"
+      ],
+      "finding": "The stock command help enumerates shop operations and does not expose REPAIR as a shop command."
+    }
+  },
+  "retained_repository_evidence": {
+    "classic_service_catalog": "Reports/RuntimeVerification/classic_economy_service_coverage.json",
+    "service_kind_count": 12,
+    "repair_service_kind_count": 0,
+    "shop_count": 178,
+    "buy_runtime": "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+    "give_runtime": "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs",
+    "item_transfer_authority": "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "encumbrance_authority": "Apps/Source/Reforged.Server/RuntimeMajorMudCompatibility.cs"
+  },
+  "operator_stock_observations": {
+    "source": "2026-08-26 operator parity clarification",
+    "give": "Players trade by giving directly; there is no separate stock TRADE accept/escrow workflow.",
+    "encumbrance": "GIVE fails when the recipient cannot take the incoming weight.",
+    "limited_items": "Limited status alone does not make an item ungiveable; special item restrictions may still block transfer.",
+    "repair": "No stock repair service is believed to exist.",
+    "shop_failures": "Stock purchase failures are fundamentally insufficient funds or unavailable stock.",
+    "transport": "Transportation is MajorMUD-owned.",
+    "rug_12_2248": "The move/pull rug opening is temporary and follows the normal MajorMUD door timer authority."
+  },
+  "runtime_closure": {
+    "classic_give": [
+      "accepts GIVE <item> <player> stock syntax",
+      "honors SET RECEIVE OFF",
+      "checks recipient carried weight against the recovered Classic encumbrance capacity",
+      "runs RuntimeItemEngine.Give restrictions before cross-character commit",
+      "does not blanket-block limited items"
+    ],
+    "classic_extension_isolation": [
+      "TRADE convenience command is blocked in Classic and retained only for non-Classic worlds",
+      "REPAIR generated service is blocked in Classic and retained only for non-Classic worlds"
+    ],
+    "shop_boundary": [
+      "BUY checks persistent stock before settling copper",
+      "currency debit is authoritative for insufficient-funds failure"
+    ],
+    "transport": "MajorMUD ownership is accepted; exact records, schedule/fare/boarding/message semantics remain UNKNOWN.",
+    "rug_12_2248": "The final qualified-exit behavior family is no longer unknown: activation is temporary and shares the normal Classic door-timer authority. Exact duration and failure message remain unresolved under timer/message closure."
+  }
+}

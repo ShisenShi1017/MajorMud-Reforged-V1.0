@@ -1,5 +1,33 @@
 # MajorMUD Reforged
 
+## Pass 27 compile hotfix
+
+The latest Trainer/Editor-integrated Pass 27 baseline now includes two C# build repairs: the Bundle D audit evaluates the non-nullable `StrengthAlternative` Boolean directly, and `RuntimeLiveWorld.ConfigureCommunicationFlag` no longer redeclares `enabled` in an overlapping scope. These are compile-only corrections and do not change parity scoring or gameplay behavior.
+
+## Pass 27 parity update — CodeUpdate0298
+
+Pass 27 corrects the Classic trap ownership and evidence boundary. Native RoomRec evidence now fixes the trap Para2 encoding at 0–4 and confirms the mixed-width room-exit storage contract. `DISARM TRAP <direction>` now requires the Traps skill before reaching the unresolved native detection/disarm boundary. MMExplorer's rendered Rooms table is no longer treated as a possible source for missing Para2 values; exact per-exit state must come from stock WCCMP002 or an equivalent native RoomRec export. Generic Reforged trap charges/rearm timers are explicitly extension-only and do not count toward Classic parity.
+
+Current parity: **73 PASS / 76 STRONG / 28 UNKNOWN = 177** (**41.2% strict**, **84.2% evidence-backed**).
+
+## Pass 26 parity update — CodeUpdate0297
+
+Pass 26 makes the decoded door requirement values executable at the correct boundary. Numeric Picklocks/Strength requirements gate explicit PICKLOCK/BASH attempts, while ordinary movement still checks only resulting door state. A Boolean parser bug that dropped Strength alternatives from keyed exits is fixed. Trap per-exit activation state remains UNKNOWN rather than guessed, and the generic Reforged world-container shell is removed from Classic scoring because native death piles, banks, gang-house vaults, portable items, and named chest loot are owned by their actual subsystems.
+
+Current parity: **73 PASS / 76 STRONG / 28 UNKNOWN = 177** (**41.2% strict**, **84.2% evidence-backed**).
+
+## Pass 25 parity update — CodeUpdate0296
+
+Pass 25 corrects the native door-action boundary and narrows the room-mechanics parity scope. Door/Gate picklock/bash metadata is no longer applied automatically while walking; `PICKLOCK <direction>` and `BASH <direction>` are explicit door actions, and `DISARM TRAP <direction>` is registered at the native trap boundary. Exact success rolls remain evidence-gated. The generic environmental-hazard service is classified as a Reforged extension because no generic hazard type exists in the stock RoomType family.
+
+Current parity: **73 PASS / 76 STRONG / 29 UNKNOWN = 178** (**41.0% strict**, **83.7% evidence-backed**).
+
+## Pass 24 parity update — CodeUpdate0295
+
+Pass 24 separates earned XP from the race/class experience chart. Race/class EXP values determine the accumulated XP required to reach each level; they do not scale monster XP awards. Classic NPC XP remains divided among characters actively fighting that exact NPC at death, with the native nonzero-remainder disposition still evidence-gated. Classic party admission now uses the STRONG-evidence six-character maximum, and monster loot is not automatically divided by party membership.
+
+Current parity: **73 PASS / 75 STRONG / 31 UNKNOWN = 179** (40.8% strict, 82.7% evidence-backed).
+
 Decoded Map 17 boulder failures execute their complete native chain: message 3309 followed by level-scaled self-damage spell 1324 with persistent HP mutation.
 
 CodeUpdate0139 includes reproducible WCCMSG2 output: 3,869 logical messages retain all three native channels, `message` and `text` namespaces are distinct, and decoded pedestal/boulder output is evidence-bound.
@@ -27,6 +55,7 @@ Short version:
 - Librarium is authoritative.
 - `/Data` is generated runtime output.
 - Clean CI/local checkouts regenerate `/Data` from Librarium before server bootstrap; generated `Data/Classic` is not committed as source.
+- CodeUpdate0279 enables `Custom1` as the first isolated editable realm. Generate it with `dotnet run --project Apps/Compiler/MajorMud.Reforged.Compiler.csproj -- build --world Custom1 --clean`; its canonical deltas live in `Librarium/WorldOverrides/Custom1/overrides.json`.
 - Generated runtime readers support compiler chunk manifests; optional NPC AI runtime relationships can be derived from generated spawns.
 - Classic is evidence-locked.
 - Real `Saves/` must be preserved. Imported/reference databases and raw evidence are local-only archives, not committed source.

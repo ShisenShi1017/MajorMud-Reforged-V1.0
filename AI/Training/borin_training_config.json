@@ -1,0 +1,18 @@
+{
+  "curriculum": [
+    {"name": "Basic Survival", "hours": 4},
+    {"name": "Combat Optimization", "hours": 6},
+    {"name": "Navigation & Hazard Avoidance", "hours": 8},
+    {"name": "Macro-Strategy & Economy", "hours": 4}
+  ],
+  "economy": {
+    "carried_gold_reserve": 10,
+    "withdraw_from_bank_when_below_reserve": false,
+    "bank_surplus": true,
+    "learn_buy_sell": true,
+    "learn_equipment_upgrades": true
+  },
+  "checkpoint_seconds": 300,
+  "status_seconds": 30,
+  "action_delay_seconds": 0.15
+}

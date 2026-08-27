@@ -6,10 +6,11 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    public const int ClassicCombatRoundMilliseconds = 6000;
-    public async Task TickLiveCombatsAsync(CancellationToken cancellationToken)
+    public const int ClassicCombatRoundMilliseconds = 5000;
+    public const int ClassicSpellSystemRoundMilliseconds = 3000;
+
+    public async Task TickLiveStatusesAsync(CancellationToken cancellationToken)
     {
-        PruneInactiveCombatOwnership();
         var nowUtc = DateTimeOffset.UtcNow;
         var statusWorlds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var activeSession in _sessions.ActiveSessions)
@@ -18,6 +19,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (statusWorlds.Add(activeSession.World.Definition.Id))
                 TickClassicLiveStatuses(activeSession, nowUtc);
         }
+        await Task.CompletedTask;
+    }
+
+    public async Task TickLiveCombatsAsync(CancellationToken cancellationToken)
+    {
+        PruneInactiveCombatOwnership();
         foreach (var session in _sessions.ActiveSessions)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -56,7 +63,22 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
         if (!RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead) || character.HitPoints != 0) return "You are not dead.";
-        var room = session.World.ResolveGeneratedCharacterStartRoom() ?? throw new InvalidOperationException("Generated character start room is unavailable.");
+        if (RuntimeClassicCharacterProgressionFormula.ReadLives(character) <= 0)
+            return "You have no lives remaining. This character is permanently dead.";
+
+        var alignment = character.SemanticState?.Alignment;
+        var reputation = alignment?.Reputation
+            ?? (character.Conditions.TryGetValue("alignment", out var alignmentText) ? alignmentText : string.Empty);
+        var evilPoints = alignment?.EvilPoints
+            ?? (character.Conditions.TryGetValue("evil_points", out var rawEvil) && int.TryParse(rawEvil, out var parsedEvil) ? parsedEvil : 0);
+        var outlawOrWorse = evilPoints >= 40 || reputation.Equals("Outlaw", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Criminal", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Villain", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Villian", StringComparison.OrdinalIgnoreCase)
+            || reputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase);
+        var roomNumber = outlawOrWorse ? 142 : 2189;
+        var room = session.World.FindRoom(1, roomNumber)
+            ?? throw new InvalidOperationException($"Decoded Classic death-respawn room 1/{roomNumber} is unavailable.");
         var updated = RuntimeCharacterDeathResolver.Respawn(character, room.Id, room.RoomNumber, DateTimeOffset.UtcNow);
         _characters.SaveCharacter(updated);
         session.MoveToWorld(session.World, room, "combat-respawn");
@@ -83,8 +105,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
     }
 
-    private string CompleteNpcDefeat(RuntimeSession session, RuntimeCharacterRecord before, RuntimeNpcDefinition npc, int playerHp)
+    private string CompleteNpcDefeat(RuntimeSession session, RuntimeLiveCombatEncounter defeatedEncounter, RuntimeCharacterRecord before, RuntimeNpcDefinition npc, int playerHp)
     {
+        // Native runtime observation shows monster XP is shared by characters who are actively
+        // fighting that exact monster at the instant it dies, not by party membership. Snapshot
+        // the eligible combatants before any encounter is removed.
+        var experienceParticipants = ResolveNpcExperienceParticipants(session, defeatedEncounter);
         var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
 
         // Decoded monster currency fields are denomination amounts, not a drop percentage.
@@ -99,10 +125,6 @@ public sealed partial class RuntimeLiveGameplayFacade
             npc.SilverReward,
             npc.CopperReward);
 
-        var characterCatalog = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, before.WorldId);
-        var race = characterCatalog.RequireRace(before.RaceId);
-        var characterClass = characterCatalog.RequireClass(before.ClassId);
-        var awarded = RuntimeCharacterProgressionResolver.AwardExperience(before, npc.ExperienceReward, race, characterClass, "npc:" + npc.Id);
         var dropped = new List<string>();
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, before.WorldId);
         var movedItems = state.Items
@@ -158,16 +180,15 @@ public sealed partial class RuntimeLiveGameplayFacade
             dropped.Add(definition.Name);
         }
 
-        var attribution = new Dictionary<string, string>(awarded.Conditions, StringComparer.OrdinalIgnoreCase)
+        var attribution = new Dictionary<string, string>(before.Conditions, StringComparer.OrdinalIgnoreCase)
         {
             ["combat.last_kill_credit_character_id"] = before.CharacterId,
             ["combat.last_kill_npc_id"] = npc.Id,
             ["combat.last_kill_npc_legacy_id"] = npc.LegacyId.ToString(System.Globalization.CultureInfo.InvariantCulture),
-            ["combat.last_kill_xp_awarded"] = (awarded.Experience - before.Experience).ToString(System.Globalization.CultureInfo.InvariantCulture),
             ["combat.last_loot_attribution_character_id"] = before.CharacterId,
             ["combat.last_kill_at_utc"] = DateTimeOffset.UtcNow.ToString("O")
         };
-        var updated = awarded with
+        var updated = before with
         {
             HitPoints = playerHp,
             Conditions = attribution,
@@ -176,16 +197,94 @@ public sealed partial class RuntimeLiveGameplayFacade
         };
         _characters.SaveCharacter(updated);
 
+        var distribution = DistributeNpcDefeatExperience(session, defeatedEncounter, npc, experienceParticipants);
+        var awardedXp = distribution.Awards.GetValueOrDefault(before.CharacterId);
         var moneyStatus = string.IsNullOrWhiteSpace(currencyText) ? string.Empty : $" {currencyText} fall to the ground.";
         var lootStatus = dropped.Count == 0 ? string.Empty : " It also drops " + string.Join(", ", dropped) + ".";
-        var awardedXp = awarded.Experience - before.Experience;
-        if (awardedXp > 0)
-        {
-            var gangs = new RuntimeClassicGangStateService(_characters.ProjectRoot);
-            if (gangs.FindByMember(before.CharacterId) is not null) gangs.AwardMemberExperience(before.CharacterId, awardedXp);
-        }
-        return $"Reward: {awardedXp} XP.{moneyStatus}{lootStatus}";
+        return $"You gain {awardedXp} experience.\n*Combat Off*{moneyStatus}{lootStatus}";
     }
+
+    internal static (long Share, long Remainder) SplitClassicNpcExperience(long totalExperience, int activeCombatants)
+    {
+        if (totalExperience < 0) throw new ArgumentOutOfRangeException(nameof(totalExperience));
+        if (activeCombatants <= 0) throw new ArgumentOutOfRangeException(nameof(activeCombatants));
+        return (totalExperience / activeCombatants, totalExperience % activeCombatants);
+    }
+
+    private RuntimeSession[] ResolveNpcExperienceParticipants(RuntimeSession source, RuntimeLiveCombatEncounter defeatedEncounter)
+    {
+        var participants = _sessions.ActiveSessions
+            .Where(candidate => candidate.Actor is RuntimeCharacterActor)
+            .Where(candidate => candidate.World.Definition.Id.Equals(defeatedEncounter.WorldId, StringComparison.OrdinalIgnoreCase))
+            .Where(candidate => candidate.CurrentRoom.Id.Equals(defeatedEncounter.RoomId, StringComparison.OrdinalIgnoreCase))
+            .Where(candidate => _liveCombats.TryGetValue(candidate.Id, out var active)
+                && active.NpcInstanceId.Equals(defeatedEncounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(candidate => candidate.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        // The killing session is necessarily an active combatant at this point. This fallback is
+        // defensive only; it must not turn nearby party members into XP recipients.
+        return participants.Length > 0 ? participants : new[] { source };
+    }
+
+    private RuntimeNpcExperienceDistribution DistributeNpcDefeatExperience(
+        RuntimeSession source,
+        RuntimeLiveCombatEncounter defeatedEncounter,
+        RuntimeNpcDefinition npc,
+        IReadOnlyList<RuntimeSession> participants)
+    {
+        var split = SplitClassicNpcExperience(npc.ExperienceReward, participants.Count);
+        var awards = new Dictionary<string, long>(StringComparer.OrdinalIgnoreCase);
+        var gangs = new RuntimeClassicGangStateService(_characters.ProjectRoot);
+        var nowUtc = DateTimeOffset.UtcNow;
+
+        foreach (var participant in participants)
+        {
+            if (participant.Actor is not RuntimeCharacterActor actor) continue;
+            var character = _characters.LoadCharacter(actor.Id)
+                ?? throw new InvalidOperationException($"Character save was not found for active combatant '{actor.Id}'.");
+
+            // Race/class EXP percentages are progression-cost modifiers, not multipliers on
+            // monster XP earned. Apply the native shared amount directly.
+            var awarded = RuntimeCharacterProgressionResolver.AwardExperience(
+                character,
+                split.Share,
+                $"npc:{npc.Id}|active-combat-split={participants.Count}");
+            var conditions = new Dictionary<string, string>(awarded.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                ["combat.last_kill_xp_awarded"] = split.Share.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.last_kill_xp_npc_id"] = npc.Id,
+                ["combat.last_kill_xp_participant_count"] = participants.Count.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.last_kill_xp_remainder"] = split.Remainder.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["combat.last_kill_xp_remainder_policy"] = split.Remainder == 0 ? "none" : "native-recipient-unresolved-unassigned",
+                ["combat.last_kill_xp_at_utc"] = nowUtc.ToString("O")
+            };
+            awarded = awarded with { Conditions = conditions, UpdatedAtUtc = nowUtc };
+            _characters.SaveCharacter(awarded);
+            awards[actor.Id] = split.Share;
+
+            if (split.Share > 0 && gangs.FindByMember(actor.Id) is not null)
+                gangs.AwardMemberExperience(actor.Id, split.Share);
+
+            if (_liveCombats.TryGetValue(participant.Id, out var activeEncounter)
+                && activeEncounter.NpcInstanceId.Equals(defeatedEncounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase))
+            {
+                ReleaseCombatEngagement(participant, activeEncounter, "npc-defeat-xp-distribution");
+                _liveCombats.TryRemove(participant.Id, out _);
+            }
+
+            if (!participant.Id.Equals(source.Id, StringComparison.OrdinalIgnoreCase))
+                participant.EnqueueMessage($"You gain {split.Share} experience.\n*Combat Off*");
+        }
+
+        return new RuntimeNpcExperienceDistribution(awards, split.Share, split.Remainder, participants.Count);
+    }
+
+    private sealed record RuntimeNpcExperienceDistribution(
+        IReadOnlyDictionary<string, long> Awards,
+        long Share,
+        long Remainder,
+        int ParticipantCount);
 
     internal static bool ShouldDropNpcLoot(int dropPercent, int roll)
     {
@@ -212,9 +311,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         var transition = RuntimeCharacterDeathResolver.Defeat(cleaned, catalog, session.CurrentRoom.Id, nowUtc);
         var defeated = ScatterDeathGearFromDecodedRoomSpell(session, transition.Character, transition.Corpse.CorpseId);
         _characters.SaveCharacter(defeated.Character);
+        var livesRemaining = RuntimeClassicCharacterProgressionFormula.ReadLives(defeated.Character);
+        if (livesRemaining <= 0)
+            return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. You have no lives remaining; this character is permanently dead.";
         if (defeated.ScatteredRootItems > 0)
-            return $"Your dropped gear was scattered from {session.CurrentRoom.Name} into {defeated.DestinationRoomCount} decoded destination room(s). Your corpse ({transition.Corpse.CorpseId}) remains here with any recoverable gold. Use 'respawn'.";
-        return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. Use 'respawn', then return and use 'recover'.";
+            return $"Your dropped gear was scattered from {session.CurrentRoom.Name} into {defeated.DestinationRoomCount} decoded destination room(s). Your corpse ({transition.Corpse.CorpseId}) remains here with any recoverable gold. {livesRemaining} lives remain. Use 'respawn'.";
+        return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. {livesRemaining} lives remain. Use 'respawn', then return and use 'recover'.";
     }
 
     private (RuntimeCharacterRecord Character, int ScatteredRootItems, int DestinationRoomCount) ScatterDeathGearFromDecodedRoomSpell(
@@ -293,11 +395,19 @@ public sealed class RuntimeCombatCompletionSmokeReport
             Require(RuntimeLiveGameplayFacade.ShouldDropNpcLoot(1, 1), "loot-one-percent-inclusive-success"); report.Checks.Add("loot-one-percent-inclusive-success");
             Require(!RuntimeLiveGameplayFacade.ShouldDropNpcLoot(1, 2), "loot-one-percent-inclusive-failure"); report.Checks.Add("loot-one-percent-inclusive-failure");
             Require(RuntimeLiveGameplayFacade.ShouldDropNpcLoot(100, 100), "loot-hundred-percent-inclusive-success"); report.Checks.Add("loot-hundred-percent-inclusive-success");
+            var oddSplit = RuntimeLiveGameplayFacade.SplitClassicNpcExperience(525, 2);
+            Require(oddSplit.Share == 262 && oddSplit.Remainder == 1, "active-combat-xp-integer-split-525-by-2"); report.Checks.Add("active-combat-xp-integer-split-525-by-2");
+            var banditSplit = RuntimeLiveGameplayFacade.SplitClassicNpcExperience(125, 2);
+            Require(banditSplit.Share == 62 && banditSplit.Remainder == 1, "active-combat-xp-integer-split-125-by-2"); report.Checks.Add("active-combat-xp-integer-split-125-by-2");
+            var evenSplit = RuntimeLiveGameplayFacade.SplitClassicNpcExperience(500, 2);
+            Require(evenSplit.Share == 250 && evenSplit.Remainder == 0, "active-combat-xp-even-split-500-by-2"); report.Checks.Add("active-combat-xp-even-split-500-by-2");
             var exact = new RuntimeClassicRoomCurrencyBalance(1, 2, 3, 4, 5);
             Require(RuntimeClassicRoomCurrencyStore.Format(exact).Contains("1 runic coin", StringComparison.Ordinal), "exact-runic-denomination-format"); report.Checks.Add("exact-runic-denomination-format");
             Require(RuntimeClassicRoomCurrencyStore.Format(exact).Contains("2 platinum pieces", StringComparison.Ordinal), "exact-denomination-format"); report.Checks.Add("exact-denomination-format");
-            Require(RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds == 6000, "classic-six-second-combat-round"); report.Checks.Add("classic-six-second-combat-round");
+            Require(RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds == 5000, "classic-five-second-combat-round"); report.Checks.Add("classic-five-second-combat-round");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TickLiveCombatsAsync)) is not null, "automatic-combat-tick"); report.Checks.Add("automatic-combat-tick");
+            Require(RuntimeLiveGameplayFacade.ClassicSpellSystemRoundMilliseconds == 3000, "classic-three-second-spell-system-round"); report.Checks.Add("classic-three-second-spell-system-round");
+            Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TickLiveStatusesAsync)) is not null, "automatic-spell-system-tick"); report.Checks.Add("automatic-spell-system-tick");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RespawnCharacter)) is not null, "respawn-execution"); report.Checks.Add("respawn-execution");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.RecoverCorpse)) is not null, "corpse-recovery"); report.Checks.Add("corpse-recovery");
             var catalog = RuntimeItemCatalog.Load(projectRoot, ServerRuntimeOptions.Load(projectRoot).DefaultWorldId);

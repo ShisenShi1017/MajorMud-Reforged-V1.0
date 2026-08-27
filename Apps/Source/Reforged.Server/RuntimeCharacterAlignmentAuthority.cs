@@ -58,14 +58,21 @@ public static class RuntimeCharacterAlignmentResolver
     }
 
     public static RuntimeCharacterAlignmentState ApplyAttack(RuntimeCharacterAlignmentState state, string targetReputation, RuntimeCharacterAlignmentRuleContract contract)
+        => ApplyAttack(state, targetReputation, targetIsLawful: false, contract);
+
+    public static RuntimeCharacterAlignmentState ApplyAttack(RuntimeCharacterAlignmentState state, string targetReputation, bool targetIsLawful, RuntimeCharacterAlignmentRuleContract contract)
     {
-        var penalty = AttackPenaltyForTargetReputation(targetReputation, contract);
+        var basePenalty = AttackPenaltyForTargetReputation(targetReputation, contract);
+        var penalty = RuntimeClassicDeathLawPvpAuthority.ApplyLawfulAttackMultiplier(basePenalty, targetIsLawful);
         return state with
         {
             EvilPoints = checked(state.EvilPoints + penalty),
             PerformedEvilActionToday = state.PerformedEvilActionToday || penalty > 0
         };
     }
+
+    public static RuntimeClassicLawConsequence ResolveLawConsequence(RuntimeCharacterAlignmentState state)
+        => RuntimeClassicDeathLawPvpAuthority.ResolveLawConsequence(state.Reputation, state.EvilPoints);
 
     public static bool CanInitiateAttack(RuntimeCharacterAlignmentState state)
         => state.EvilPoints < LegacyFiendAttackLockoutThreshold;

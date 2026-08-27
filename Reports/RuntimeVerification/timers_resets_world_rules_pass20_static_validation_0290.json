@@ -1,0 +1,241 @@
+{
+  "schema": "majormud.pass20-timers-resets-world-rules-validation.v1",
+  "update": "0290",
+  "generatedAtUtc": "2026-08-26T21:14:44.786154+00:00",
+  "passed": true,
+  "checkCount": 46,
+  "failureCount": 0,
+  "checks": [
+    {
+      "name": "native player save prompt 60s",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native buffer save prompt 300s",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "timing authority player save constant",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "timing authority buffer save constant",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "host uses native player-save interval",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "host autosave admission uses same native interval",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "old five-minute character autosave removed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native rest activation says 20 seconds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native meditate activation says 20 seconds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native rest interruption names move attack attacked",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "focused activation uses timing authority",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary commands no longer blanket-cancel focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "movement flag controls command-side focus cancellation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "dispatcher supplies movement flag",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PVE combat entry cancels focus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PVP combat entry cancels both sides",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Last Killed room-entry evidence retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native Last Killed Delay diagnostic retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native minutes-before-regen diagnostic retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room-entry respawn API exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room-entry admission filters exact home room",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "global living tick no longer respawns due NPCs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "player movement admits destination respawns",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "party follower movement admits destination respawns",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "admission occurs before leader room render",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "zero-delay remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room-entry pending flag closed in timing projection",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "timer audit reports player save interval",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "timer audit says global heartbeat no longer materializes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger update 0290",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "player save assertion PASS",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room-entry assertion STRONG",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "clock scheduling remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "world reset remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "world rules config remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "save coordination remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime parity audit points at 0290",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "scorecard counts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "scorecard percentages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass20 evidence update",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass20 evidence names direct native save",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "remaining registry updated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "json parses: Librarium/Parity/majormud_parity_assertions_0290.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "json parses: Librarium/Parity/majormud_timers_resets_world_rules_evidence_0290.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "json parses: Librarium/RemainingSystems/remaining_systems_registry.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "json parses: Reports/RuntimeVerification/majormud_parity_scorecard_0290.json",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

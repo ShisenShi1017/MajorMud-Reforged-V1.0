@@ -19,7 +19,7 @@ public static class RuntimeCombatDecodeBundleAudit
             .Where(x => x.Subsystem.StartsWith("combat", StringComparison.OrdinalIgnoreCase) && x.Executable)
             .ToArray();
         foreach (var id in new[] { ClassicCombatResolver.HitFormulaId, ClassicCombatResolver.ClassCombatAccuracyFormulaId, ClassicCombatResolver.PhysicalDamageFormulaId, ClassicCombatResolver.StrengthDamageFormulaId, ClassicCombatResolver.PlayerAttackEnergyFormulaId,
-            RuntimeClassicPhysicalFormulaCalculator.PlayerAttackSchedulingFormulaId, RuntimeClassicPhysicalFormulaCalculator.SpecialAttackTimingFormulaId, RuntimeClassicPhysicalFormulaCalculator.NaturalCriticalChanceFormulaId, RuntimeClassicPhysicalFormulaCalculator.FinalCriticalChanceFormulaId, RuntimeClassicPhysicalFormulaCalculator.CriticalResolutionOrderFormulaId, ClassicCombatResolver.QuickAndDeadlyFormulaId, ClassicCombatResolver.QuestCombatBonusFormulaId, ClassicCombatResolver.ItemCriticalBonusFormulaId, ClassicCombatResolver.CriticalFormulaId, ClassicCombatResolver.DodgeFormulaId, ClassicCombatResolver.DodgeBaseFormulaId, ClassicCombatResolver.DodgeAbilityFormulaId, ClassicCombatResolver.DodgeFinalFormulaId, ClassicCombatResolver.DodgeRollBoundaryFormulaId, ClassicCombatResolver.NpcAttackCountFormulaId, ClassicCombatResolver.NpcAttackEnergyFormulaId, ClassicCombatResolver.NpcAttackSelectionWeightFormulaId, ClassicCombatResolver.NpcResistedSpellEnergyRefundFormulaId, ClassicCombatResolver.NpcEncounterEnergyResetFormulaId, ClassicCombatResolver.NpcDecodedCurrencyAmountsFormulaId, ClassicCombatResolver.NpcHitSpellRelationshipFormulaId, ClassicCombatResolver.NpcHitSpellMetadataFormulaId, ClassicCombatResolver.NpcHitSpellClassificationFormulaId, ClassicCombatResolver.NpcHitSpellAttackElementFormulaId, ClassicCombatResolver.NpcHitSpellEffectRangeFormulaId, ClassicCombatResolver.NpcHitSpellTargetScopeFormulaId, ClassicCombatResolver.NpcHitSpellResistanceScopeFormulaId, ClassicCombatResolver.NpcHitSpellResistanceRollFormulaId, ClassicCombatResolver.NpcHitSpellTypeSemanticsFormulaId, ClassicCombatResolver.NpcHitSpellImmediateDamageFormulaId, ClassicCombatResolver.NpcHitSpellElementalResistanceFormulaId, ClassicCombatResolver.NpcHitSpellPoisonImmunityFormulaId, ClassicCombatResolver.NpcHitSpellStatusDeliveryFormulaId, ClassicCombatResolver.NpcHitSpellExpirationFormulaId, ClassicCombatResolver.NpcHitSpellCurePoisonFormulaId, ClassicCombatResolver.StatusLifecycleFormulaId, ClassicCombatResolver.StatusPeriodicFormulaId, ClassicCombatResolver.StatusModifierFormulaId, ClassicCombatResolver.StatusCureDispelFormulaId, ClassicCombatResolver.StatusDeathCleanupFormulaId, ClassicCombatResolver.BackstabDamageFormulaId, ClassicCombatResolver.BackstabPreparationFormulaId, ClassicCombatResolver.PhysicalAttackConcealmentBreakFormulaId, ClassicCombatResolver.IncapacitatedDodgeSuppressionFormulaId, ClassicCombatResolver.IncapacitatedAttackSuppressionFormulaId, ClassicCombatResolver.PhysicalSpecialCommandRoutingFormulaId, ClassicCombatResolver.PerfectStealthCommandFormulaId, ClassicCombatResolver.StealthVsPerceptionFormulaId, RuntimeClassicStealthResolver.ModifiedStealthFormulaId, RuntimeClassicStealthResolver.SeeHiddenFormulaId, RuntimeClassicStealthResolver.PercentileRollFormulaId, RuntimeClassicStealthResolver.CommandAdmissionFormulaId, RuntimeLiveGameplayFacade.NpcTargetThreatFormulaId, RuntimeLiveGameplayFacade.PlayerAssistFormulaId, RuntimeLiveGameplayFacade.CompanionAssistFormulaId, RuntimeLiveGameplayFacade.GuardAssistFormulaId, RuntimeLiveGameplayFacade.KillRewardAttributionFormulaId })
+            RuntimeClassicPhysicalFormulaCalculator.PlayerAttackSchedulingFormulaId, RuntimeClassicPhysicalFormulaCalculator.SpecialAttackTimingFormulaId, RuntimeClassicPhysicalFormulaCalculator.NaturalCriticalChanceFormulaId, RuntimeClassicPhysicalFormulaCalculator.FinalCriticalChanceFormulaId, RuntimeClassicPhysicalFormulaCalculator.CriticalResolutionOrderFormulaId, ClassicCombatResolver.QuickAndDeadlyFormulaId, ClassicCombatResolver.QuestCombatBonusFormulaId, ClassicCombatResolver.ItemCriticalBonusFormulaId, ClassicCombatResolver.CriticalFormulaId, ClassicCombatResolver.DodgeFormulaId, ClassicCombatResolver.DodgeBaseFormulaId, ClassicCombatResolver.DodgeAbilityFormulaId, ClassicCombatResolver.DodgeFinalFormulaId, ClassicCombatResolver.DodgeRollBoundaryFormulaId, ClassicCombatResolver.NpcAttackCountFormulaId, ClassicCombatResolver.NpcAttackAttemptsFormulaId, ClassicCombatResolver.NpcAttackEnergyFormulaId, ClassicCombatResolver.NpcAttackSelectionWeightFormulaId, ClassicCombatResolver.NpcSpellCastSuccessFormulaId, ClassicCombatResolver.NpcResistedSpellEnergyRefundFormulaId, ClassicCombatResolver.NpcPhysicalEarlyEndFormulaId, ClassicCombatResolver.NpcEncounterEnergyResetFormulaId, ClassicCombatResolver.NpcDecodedCurrencyAmountsFormulaId, ClassicCombatResolver.NpcHitSpellRelationshipFormulaId, ClassicCombatResolver.NpcHitSpellMetadataFormulaId, ClassicCombatResolver.NpcHitSpellClassificationFormulaId, ClassicCombatResolver.NpcHitSpellAttackElementFormulaId, ClassicCombatResolver.NpcHitSpellEffectRangeFormulaId, ClassicCombatResolver.NpcHitSpellTargetScopeFormulaId, ClassicCombatResolver.NpcHitSpellResistanceScopeFormulaId, ClassicCombatResolver.NpcHitSpellResistanceRollFormulaId, ClassicCombatResolver.NpcHitSpellTypeSemanticsFormulaId, ClassicCombatResolver.NpcHitSpellImmediateDamageFormulaId, ClassicCombatResolver.NpcHitSpellElementalResistanceFormulaId, ClassicCombatResolver.NpcHitSpellPoisonImmunityFormulaId, ClassicCombatResolver.NpcHitSpellStatusDeliveryFormulaId, ClassicCombatResolver.NpcHitSpellExpirationFormulaId, ClassicCombatResolver.NpcHitSpellCurePoisonFormulaId, ClassicCombatResolver.StatusLifecycleFormulaId, ClassicCombatResolver.StatusPeriodicFormulaId, ClassicCombatResolver.StatusModifierFormulaId, ClassicCombatResolver.StatusCureDispelFormulaId, ClassicCombatResolver.StatusDeathCleanupFormulaId, ClassicCombatResolver.BackstabDamageFormulaId, ClassicCombatResolver.BackstabPreparationFormulaId, ClassicCombatResolver.PhysicalAttackConcealmentBreakFormulaId, ClassicCombatResolver.IncapacitatedDodgeSuppressionFormulaId, ClassicCombatResolver.IncapacitatedAttackSuppressionFormulaId, ClassicCombatResolver.PhysicalSpecialCommandRoutingFormulaId, ClassicCombatResolver.PerfectStealthCommandFormulaId, ClassicCombatResolver.StealthVsPerceptionFormulaId, RuntimeClassicStealthResolver.ModifiedStealthFormulaId, RuntimeClassicStealthResolver.SeeHiddenFormulaId, RuntimeClassicStealthResolver.PercentileRollFormulaId, RuntimeClassicStealthResolver.CommandAdmissionFormulaId, RuntimeLiveGameplayFacade.NpcTargetThreatFormulaId, RuntimeLiveGameplayFacade.PlayerAssistFormulaId, RuntimeLiveGameplayFacade.CompanionAssistFormulaId, RuntimeLiveGameplayFacade.GuardAssistFormulaId, RuntimeLiveGameplayFacade.KillRewardAttributionFormulaId })
             authority.RequireExecutable(id);
 
         var ownershipSmoke = RuntimeLiveCombatOwnershipSmokeReport.Run();
@@ -49,21 +49,25 @@ public static class RuntimeCombatDecodeBundleAudit
         var sneaking = RuntimeLiveGameplayFacade.ApplyPerfectStealth(stealthCharacter, "sneak");
         if (!sneaking.Conditions.TryGetValue("combat.sneaking", out var sneakValue) || sneakValue != "1" || sneaking.Conditions.GetValueOrDefault("stealth.source") != "ability.186")
             throw new InvalidOperationException("Perfect Stealth Sneak failed to persist authoritative movement stealth.");
-        var weightedRows = new[]
+        var thresholdRows = new[]
         {
-            new RuntimeNpcAttackDefinition(1, 1, 1, 2, 25, 50, 0, 0, 0, 0, 0),
-            new RuntimeNpcAttackDefinition(2, 1, 1, 2, 75, 50, 0, 0, 0, 0, 0),
-            new RuntimeNpcAttackDefinition(3, 1, 1, 2, 100, 50, 0, 50, 0, 0, 0)
+            new RuntimeNpcAttackDefinition(1, 1, 1, 2, 25, 50, 0, 125, 0, 0, 0),
+            // Type 2 intentionally has AttMin (cast success) > AttMax (cast level); it must still be selectable.
+            new RuntimeNpcAttackDefinition(2, 2, 100, 15, 75, 376, 0, 500, 0, 0, 0),
+            new RuntimeNpcAttackDefinition(3, 1, 1, 2, 232, 50, 0, 50, 0, 0, 0)
         };
-        var firstWeight = RuntimeNpcAttackSelector.Select(weightedRows, 0, 25);
-        if (firstWeight.Attack?.Slot != 1 || firstWeight.TotalWeight != 100)
-            throw new InvalidOperationException("NPC weighted attack selection failed the first inclusive boundary.");
-        var secondWeight = RuntimeNpcAttackSelector.Select(weightedRows, 0, 26);
-        if (secondWeight.Attack?.Slot != 2)
-            throw new InvalidOperationException("NPC weighted attack selection failed the second inclusive boundary.");
-        var energyFilteredWeight = RuntimeNpcAttackSelector.Select(weightedRows, 50, 200);
-        if (energyFilteredWeight.Attack?.Slot != 3 || energyFilteredWeight.TotalWeight != 200)
-            throw new InvalidOperationException("NPC attack weights were not re-normalized after the energy eligibility filter.");
+        var firstThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 25);
+        if (firstThreshold.Attack?.Slot != 1 || firstThreshold.Affordable)
+            throw new InvalidOperationException("NPC threshold attack selection failed the first inclusive boundary or incorrectly treated the row as affordable.");
+        var secondThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 26);
+        if (secondThreshold.Attack?.Slot != 2 || secondThreshold.Affordable)
+            throw new InvalidOperationException("NPC threshold attack selection failed the second range or re-normalized around energy.");
+        var catchAllThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 50, 100);
+        if (catchAllThreshold.Attack?.Slot != 3 || !catchAllThreshold.Affordable)
+            throw new InvalidOperationException("NPC authored threshold above 100 did not behave as a slot-order catch-all.");
+        var cadenceSmoke = RuntimeClassicNpcCombatCadenceAudit.Run();
+        if (cadenceSmoke.Status != "PASS")
+            throw new InvalidOperationException("NPC combat cadence audit failed.");
         var classStealthFormula = RuntimeClassicStealthResolver.CalculateModifiedStealth(10, 80, 64, 60, true, false, 7);
         if (classStealthFormula != 85)
             throw new InvalidOperationException($"Modified Stealth formula mismatch: expected 85, got {classStealthFormula}.");
@@ -142,9 +146,11 @@ public sealed class RuntimeCombatBundleClosureSmokeReport
         var report = new RuntimeCombatBundleClosureSmokeReport();
         try
         {
-            Require(RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds == 6000, "six-second-round-authority");
-            report.Checks.Add("six-second-round-authority");
+            Require(RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds == 5000, "five-second-round-authority");
+            report.Checks.Add("five-second-round-authority");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TickLiveCombatsAsync)) is not null, "automatic-round-scheduler");
+            Require(RuntimeLiveGameplayFacade.ClassicSpellSystemRoundMilliseconds == 3000, "three-second-spell-system-round-authority");
+            Require(typeof(RuntimeLiveGameplayFacade).GetMethod(nameof(RuntimeLiveGameplayFacade.TickLiveStatusesAsync)) is not null, "automatic-spell-status-scheduler");
             report.Checks.Add("automatic-round-scheduler");
             Require(typeof(RuntimeLiveGameplayFacade).GetMethod("PruneInactiveCombatOwnership", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic) is not null, "logout-disconnect-combat-release");
             report.Checks.Add("logout-disconnect-combat-release");

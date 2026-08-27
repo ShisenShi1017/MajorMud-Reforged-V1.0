@@ -1,0 +1,768 @@
+{
+  "schema": "majormud.pass19-static-validation.v1",
+  "update": "0289",
+  "generatedUtc": "2026-08-26T20:40:21.938103+00:00",
+  "passed": true,
+  "checkCount": 151,
+  "passedCount": 151,
+  "failedCount": 0,
+  "failures": [],
+  "checks": [
+    {
+      "name": "global fallback event exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fallback preserves original prompt",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fallback happens after valid registration test",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "speech prefix action checked before fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "data-driven action checked before fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "raw input is retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "resolution error no longer directly returned",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "dot SAY shortcut",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "quote YELL shortcut",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "slash telepath shortcut",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "YELL current plus adjacent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GOSSIP command wired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "AUCTION command wired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FORGET command wired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native TELL is not registered",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "generic WHISPER is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "generic TELL is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "generic SHOUT is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SET TELEPATH polarity is gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GOSSIP/AUCTION settings wired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "compatibility communication default not labeled Classic",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: drag",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: drag",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: go",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: go",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: health",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: health",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: map",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: map",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: profile",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: profile",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: track",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: track",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: aid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: aid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: light",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: stash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: stash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: mana",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: mana",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: invoke",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: invoke",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: read",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: read",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: suicide",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: suicide",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: reroll",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: reroll",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: appraise",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: appraise",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: eat",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: eat",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: drink",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: drink",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: rob",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: rob",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: ready",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: ready",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: exits",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: exits",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: picklock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: picklock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: broadcast",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: broadcast",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: scan",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: scan",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: quiet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: quiet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: stock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: stock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: unstock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: unstock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity registered: markup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native identity routed: markup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "READY no longer diagnostic classification",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "UNFOLLOW not registered",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native BR alias belongs to BROADCAST",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "BR alias removed from BRIEF",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ambiguous resolution falls through SAY",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Classic HELP fails closed instead of synthetic fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE command registered",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE routed to live runtime",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE defaults to PARTY",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE supports WITH ROOM/PARTY",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE integer division preserves remainder",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE excludes hidden recipients",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE excludes RECEIVE-off recipients",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE preserves exact denomination",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SHARE uses batch transaction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "batch transaction has rollback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "JOIN GANG routes gang",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "LEAVE GANG routes gang",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "JOIN and LEAVE route party otherwise",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "JOIN and FOLLOW both enable movement-follow",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "TRACK remains distinct evidence-gated command",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "broadcast JOIN is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "leader LEAVE succession is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no invented invite timeout",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no invented six-member cap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "leader transfer disabled by evidence-bounded default",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "default party policy labeled compatibility shell",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "long-lived invitation smoke exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "leader leave gate smoke exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "backrank front-balance enforced",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "front-rank slot formula not invented",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "leader rank change is evidence gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SET FOLLOW BLIND/NORMAL wired",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "BLIND suppresses party-follow room render",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit follower QUIT stops follow",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "live session loss does not infer party disconnect policy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "generic multiplayer completion is fenced from Classic parity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "party coordination smoke labels offline behavior compatibility-only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "party XP probe remains unresolved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport catalog renamed paid-room-transfers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport owner renamed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport has no timer/state APIs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport runtime emits immediate move request",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport runtime has no persistent trip API",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transport smoke checks source room",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "registry contains paid-room-transfers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "registry removed active transport-services id",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "remaining audit uses paid-room-transfers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "remaining audit removed transport-services",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger update 0289",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "parity counts 71/69/44",
+      "passed": true,
+      "detail": "{'STRONG': 69, 'UNKNOWN': 44, 'PASS': 71}"
+    },
+    {
+      "name": "scored total 184",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "communication range promoted STRONG",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "paid-room-transfer dependency remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "old transport assertion removed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "party coordination remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "native command table remains UNKNOWN",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime parity audit points at 0289",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "scorecard counts match",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "scorecard percentages match",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "remaining shell counts match",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "communication smoke tests WHISPER gate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "communication smoke tests TELL gate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "communication smoke no longer expects SAY ignore",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence update",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records global scope",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records SHARE message 227",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records JOIN follows immediately",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records rank balance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records native follow mode message 153",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records native BR alias message 123",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence excludes generic multiplayer XP shell",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence keeps party XP unresolved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pass19 evidence records Classic HELP fail-closed boundary",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "compilerValidation": "NOT_RUN_DOTNET_SDK_UNAVAILABLE"
+}

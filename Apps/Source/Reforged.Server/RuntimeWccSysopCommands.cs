@@ -184,14 +184,24 @@ public sealed class RuntimeWccSysopService
         if (arguments.Count == 0 || arguments[0].Equals("status", StringComparison.OrdinalIgnoreCase))
         {
             var state = store.Capture();
-            return $"PvP is {(state.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}. " +
+            var range = state.MaximumLevelDifference <= 0 ? "unrestricted" : state.MaximumLevelDifference.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            return $"PvP is {(state.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}; maximum level difference={range}. " +
                    "When enabled, PvP is permitted everywhere except rooms carrying proven safe-room evidence.";
         }
         var enabled = arguments.Count == 1 && (arguments[0].Equals("enable", StringComparison.OrdinalIgnoreCase) ||
                                                arguments[0].Equals("on", StringComparison.OrdinalIgnoreCase));
         var disabled = arguments.Count == 1 && (arguments[0].Equals("disable", StringComparison.OrdinalIgnoreCase) ||
                                                 arguments[0].Equals("off", StringComparison.OrdinalIgnoreCase));
-        if (!enabled && !disabled) return "Usage: SYSOP PVP STATUS|ENABLE|DISABLE";
+        if (arguments.Count == 2 && (arguments[0].Equals("level", StringComparison.OrdinalIgnoreCase) || arguments[0].Equals("range", StringComparison.OrdinalIgnoreCase)))
+        {
+            if (!int.TryParse(arguments[1], System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var maximumDifference) || maximumDifference < -1)
+                return "Usage: SYSOP PVP RANGE <positive levels|-1 for unrestricted>";
+            var ranged = store.SetMaximumLevelDifference(maximumDifference, character.CharacterId);
+            return ranged.MaximumLevelDifference <= 0
+                ? $"PvP level range is now unrestricted for {character.WorldId}."
+                : $"PvP is now restricted to a {ranged.MaximumLevelDifference}-level difference for {character.WorldId}.";
+        }
+        if (!enabled && !disabled) return "Usage: SYSOP PVP STATUS|ENABLE|DISABLE|RANGE <levels|-1>";
         var updated = store.SetEnabled(enabled, character.CharacterId);
         return $"PvP is now {(updated.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}.";
     }

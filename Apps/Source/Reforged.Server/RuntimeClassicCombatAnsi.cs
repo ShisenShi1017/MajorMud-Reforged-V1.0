@@ -12,7 +12,7 @@ internal static class RuntimeClassicCombatAnsi
     internal const string White = "\u001b[0;37m";
 
     internal static string Engagement(string npcName) =>
-        $"{BrightYellow}*Combat Engaged*{Reset}{Environment.NewLine}{BrightCyan}You attack {npcName}.{Reset}";
+        $"{BrightYellow}*Combat Engaged*{Reset}";
 
     internal static string PlayerAttack(string text, ClassicHitOutcome outcome) =>
         Color(text, outcome switch
@@ -41,8 +41,16 @@ internal static class RuntimeClassicCombatAnsi
                $"{BrightCyan}{npcName}:{Reset} {npcColor}{npcHitPoints}/{npcMaximumHitPoints}{Reset}";
     }
 
-    internal static string Prompt(int hitPoints, int maximumHitPoints, string resting) =>
-        $"{BrightCyan}[HP={Reset}{HealthColor(hitPoints, maximumHitPoints)}{hitPoints}{Reset}{BrightCyan}{resting}]:{Reset}";
+    internal static string Prompt(
+        int hitPoints, int maximumHitPoints,
+        int resource, int maximumResource,
+        bool usesKai, string position)
+    {
+        var label = usesKai ? "KAI" : "MA";
+        var suffix = string.IsNullOrWhiteSpace(position) ? string.Empty : " (" + position.Trim() + ")";
+        return $"{BrightCyan}[HP={Reset}{HealthColor(hitPoints, maximumHitPoints)}{hitPoints}{Reset}" +
+               $"{BrightCyan}/{label}={Reset}{HealthColor(resource, maximumResource)}{resource}{Reset}{BrightCyan}]:{Reset}{suffix}";
+    }
 
     private static string HealthColor(int current, int maximum)
     {

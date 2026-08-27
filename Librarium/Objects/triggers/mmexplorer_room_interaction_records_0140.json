@@ -29533,7 +29533,7 @@
         "pull rug"
       ],
       "raw_value": "Action [on the D exit of this room]: move rug, pull rug",
-      "runtime_disposition": "command_alias_trigger_enabled_native_effect_pending",
+      "runtime_disposition": "command_alias_trigger_enabled_temporary_shared_door_timer_family",
       "evidence_refs": [
         {
           "source": "MMUD-Explorer",
@@ -29568,11 +29568,9 @@
         "source_room_required",
         "commands_preserved",
         "command_alias_semantics_promoted_0182",
-        "native_effect_semantics_still_required",
         "command_alias_semantics_promoted_0182",
-        "native_effect_semantics_still_required",
         "command_alias_semantics_promoted_0182",
-        "native_effect_semantics_still_required"
+        "temporary_door_timer_family_confirmed_0288"
       ],
       "accepted_commands": [
         "move rug",
@@ -29618,9 +29616,9 @@
           "source_room_match": "required",
           "exit_direction_match": "required"
         },
-        "state_effect": "native_action_result_not_yet_decoded",
-        "repeatability": "not_yet_decoded",
-        "reset_timing": "not_yet_decoded",
+        "state_effect": "temporarily_reveals_bound_exit_via_shared_classic_door_timer",
+        "repeatability": "temporary_retriggerable_after_normal_door_timer_reset",
+        "reset_timing": "shared_classic_door_timer_authority_exact_duration_not_yet_recovered",
         "failure_message": "not_yet_decoded"
       },
       "semantic_status": "strongly_correlated_command_activation",
@@ -29628,7 +29626,12 @@
       "semantic_provenance": [
         "MMExplorer Rooms-table Action value binds commands to a named exit direction",
         "comma-separated variants contain abbreviations/synonyms and duplicates, supporting alias rather than sequence semantics"
-      ]
+      ],
+      "state_effect": "temporarily_reveals_bound_exit_via_shared_classic_door_timer",
+      "repeatability": "temporary_retriggerable_after_normal_door_timer_reset",
+      "reset_timing": "shared_classic_door_timer_authority_exact_duration_not_yet_recovered",
+      "failure_message": "not_yet_decoded",
+      "evidence_note_0288": "Operator-confirmed stock behavior: move/pull rug is temporary and follows normal MajorMUD door timers."
     },
     {
       "id": "interaction.map12.2256.w.272",

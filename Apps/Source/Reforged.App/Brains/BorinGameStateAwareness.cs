@@ -224,9 +224,10 @@ public sealed record BorinGameStateSnapshot(
         var healthMaximum = ready ? session?.HealthMaximum ?? 0 : 0;
         var healthVerified = ready && healthMaximum > 0;
         var health = healthVerified ? session?.HealthPercent ?? 0 : 0;
-        var canAutonomousPlay = ready && promptVerified && roomVerified && exitsVerified &&
-                                exits.Length > 0 && healthVerified && !inCombat && !moving &&
-                                health > settings.DangerHealthPercent;
+        // Autonomous play is gated by authoritative connection/perception, not by gameplay state.
+        // Combat, low health, resting, zero-exit rooms, and unresolved tactical situations are
+        // conditions Borin must reason about and play through rather than reasons to stop him.
+        var canAutonomousPlay = ready && promptVerified && roomVerified && !moving;
         var blockReason = ResolveAutonomousBlockReason(
             ready,
             promptVerified,
@@ -354,7 +355,7 @@ public sealed record BorinGameStateSnapshot(
 - Captured inventory ({InventoryFreshness}): {FormatItems(InventoryItems)}.
 - Captured equipment ({EquipmentFreshness}): {FormatItems(EquippedItems)}.
 - Last command observed by the Client: {(LastCommand.Length == 0 ? "none captured" : $"{LastCommandOrigin} sent {LastCommand} ({LastCommandFreshness})")}.
-- Autonomous play readiness: {CanAutonomousPlay}. {(CanAutonomousPlay ? "Verified prompt, room, and exits are fresh." : AutonomousPlayBlockReason)}
+- Autonomous play readiness: {CanAutonomousPlay}. {AutonomousPlayBlockReason}
 """
             : "- Room, exits, vitals, combat, movement, inventory, equipment, level, experience, and currency are not verified live now. Do not reuse stale remembered values.";
         var privacy = externalConversation
@@ -401,13 +402,13 @@ Authority and honesty rules:
         if (!ready) return "Borin is not verified inside the MajorMUD realm.";
         if (!promptVerified) return "The HP prompt has not been seen recently.";
         if (!roomVerified) return "The current room title has not been seen recently. Send LOOK.";
-        if (!exitsVerified) return "The current room exits have not been seen after the room title. Send LOOK.";
-        if (exitCount == 0) return "No current exits were parsed.";
-        if (!healthVerified) return "Current HP was seen, but maximum HP is not verified. Capture a full current/maximum HP status before autonomous play.";
-        if (inCombat) return "Autonomous play cannot start while combat is active.";
-        if (moving) return "Autonomous play cannot start while movement is unresolved.";
-        if (health <= dangerHealthPercent) return $"Health is at or below the {dangerHealthPercent}% safety threshold.";
-        return "Verified perception is ready.";
+        if (moving) return "Waiting for the current movement command to resolve.";
+        if (!exitsVerified) return "Autonomous play is ready; exits are not currently verified, so movement remains unavailable until Borin refreshes them.";
+        if (exitCount == 0) return "Autonomous play is ready in a room with no parsed exits; Borin may use other ordinary player actions.";
+        if (!healthVerified) return "Autonomous play is ready with scalar HP only; Borin must treat health percentage as unknown until maximum HP is verified.";
+        if (inCombat) return "Autonomous play is ready and combat is active; Borin must choose his own combat or survival action.";
+        if (healthVerified && health <= dangerHealthPercent) return $"Autonomous play is ready; health is at or below {dangerHealthPercent}%, so Borin should prioritize survival.";
+        return "Verified perception is ready for continuous autonomous play.";
     }
 
     private static bool IsFresh(DateTimeOffset? timestamp, DateTimeOffset now, TimeSpan maximumAge)

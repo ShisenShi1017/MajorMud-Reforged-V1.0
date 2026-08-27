@@ -46,8 +46,10 @@ public sealed class RuntimeCommandDispatcher
     public bool RequestsSessionExit(RuntimeSession session, string input)
     {
         var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
-        return string.IsNullOrWhiteSpace(command.ResolutionError)
-               && command.Name.Equals("quit", StringComparison.OrdinalIgnoreCase);
+        var requested = string.IsNullOrWhiteSpace(command.ResolutionError)
+                        && command.Name.Equals("quit", StringComparison.OrdinalIgnoreCase);
+        if (requested) _gameplay?.HandleExplicitClassicSessionExit(session);
+        return requested;
     }
 
     public string Dispatch(RuntimeSession session, string input)
@@ -56,15 +58,36 @@ public sealed class RuntimeCommandDispatcher
         session.Touch();
         if (command.Name.Length == 0)
         {
-            return _gameplay?.RenderRoom(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
+            return _gameplay?.RenderBlankCommand(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
         }
 
-        if (!string.IsNullOrWhiteSpace(command.ResolutionError))
+        // MajorMUD/Reforged prompt rule (global across Classic, Custom, and AI):
+        // explicit speech shortcuts are actions; otherwise only a successfully resolved
+        // command/action executes. Everything else is SAY text using the original input.
+        var registeredCommand = string.IsNullOrWhiteSpace(command.ResolutionError)
+            && session.World.CommandCatalog.IsRegistered(command.Name);
+        if (!registeredCommand
+            && _gameplay is not null
+            && _gameplay.TryExecuteMajorMudSpeechShortcut(session, command, out var speechShortcut))
         {
-            return command.ResolutionError;
+            _events?.Publish("communication", "speech-shortcut", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
+            return speechShortcut;
         }
 
-        _gameplay?.NotifyCharacterAction(session, command.Name);
+        if (!registeredCommand)
+        {
+            if (string.IsNullOrWhiteSpace(command.ResolutionError)
+                && _gameplay is not null
+                && TryExecuteUnregisteredAction(session, command, out var actionResult))
+            {
+                return actionResult;
+            }
+
+            _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
+            return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
+        }
+
+        _gameplay?.NotifyCharacterAction(session, command.Name, command.IsMovement);
 
         if (command.IsMovement)
         {
@@ -79,8 +102,10 @@ public sealed class RuntimeCommandDispatcher
                 if (moved)
                 {
                     _gameplay?.BroadcastDeparture(session, previousRoom.Id, command.Name);
+                    _gameplay?.CaptureClassicPracticeArenaEntry(session, previousRoom);
                     var trapResult = _gameplay?.ApplyExitTrap(session, previousRoom, command.Name) ?? string.Empty;
-                    _gameplay?.BroadcastArrival(session);
+                    _gameplay?.BroadcastArrival(session, command.Name);
+                    _gameplay?.AdmitClassicRoomEntryNpcRespawns(session);
                     movementResult = _gameplay?.RenderRoom(session) ?? movementResult;
                     if (!string.IsNullOrWhiteSpace(trapResult)) movementResult = trapResult + Environment.NewLine + movementResult;
                     _state?.UpdateSessionLocation(session);
@@ -100,11 +125,17 @@ public sealed class RuntimeCommandDispatcher
                                 continue;
                             }
                             _gameplay.BroadcastDeparture(follower, previousRoom.Id, command.Name);
+                            _gameplay.CaptureClassicPracticeArenaEntry(follower, previousRoom);
                             var followerTrap = _gameplay.ApplyExitTrap(follower, previousRoom, command.Name);
-                            _gameplay.BroadcastArrival(follower);
-                            var followerRoom = _gameplay.RenderRoom(follower);
-                            follower.EnqueueMessage($"-- Following your Party leader {command.Name} --\n" +
-                                (string.IsNullOrWhiteSpace(followerTrap) ? followerRoom : followerTrap + Environment.NewLine + followerRoom));
+                            _gameplay.BroadcastArrival(follower, command.Name);
+                            _gameplay.AdmitClassicRoomEntryNpcRespawns(follower);
+                            var followerRoom = _gameplay.ShouldRenderClassicPartyFollowRoom(follower)
+                                ? _gameplay.RenderRoom(follower)
+                                : string.Empty;
+                            var followerDetails = string.Join(Environment.NewLine, new[] { followerTrap, followerRoom }
+                                .Where(value => !string.IsNullOrWhiteSpace(value)));
+                            follower.EnqueueMessage($"-- Following your Party leader {command.Name} --" +
+                                (followerDetails.Length == 0 ? string.Empty : Environment.NewLine + followerDetails));
                             _state?.UpdateSessionLocation(follower);
                             _events?.Publish("movement", "party-followed", follower.World.Definition.Id, follower.Id, follower.Actor.Id, $"{previousRoom.Id}->{follower.CurrentRoom.Id}");
                         }
@@ -125,7 +156,7 @@ public sealed class RuntimeCommandDispatcher
                 _state?.UpdateSessionLocation(session);
                 _events?.Publish("movement", "failed", previousWorld.Definition.Id, session.Id, session.Actor.Id,
                     $"{previousRoom.Id}:{command.Name}: {ex.GetType().Name}: {ex.Message}");
-                return $"Movement failed: {ex.Message}";
+                return ex.Message;
             }
         }
 
@@ -139,6 +170,17 @@ public sealed class RuntimeCommandDispatcher
                 return contextualResult;
             }
 
+            // Native room/textblock commands can deliberately reuse a normal command verb
+            // (for example BUY HEALING and command-triggered room relocations). Resolve an
+            // exact current-room decoded command before the generic command owner so the
+            // retained room script, not a synthetic shop/command fallback, owns that phrase.
+            if (_gameplay is not null && _gameplay.TryExecuteDecodedWorldCommand(session, command, out var decodedRoomCommand))
+            {
+                _state?.UpdateSessionLocation(session);
+                _events?.Publish("command", "decoded-world-command-completed", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
+                return decodedRoomCommand;
+            }
+
             var result = command.Name switch
             {
             "search" => _gameplay?.ExecuteClassicSearch(session) ?? "Live gameplay facade is not attached.",
@@ -147,15 +189,21 @@ public sealed class RuntimeCommandDispatcher
                 : (_gameplay?.LookDirection(session, command.ArgumentText) ?? "Live gameplay facade is not attached."),
             "brief" => _gameplay?.SetRoomDescriptionMode(session, brief: true) ?? "Live gameplay facade is not attached.",
             "verbose" => _gameplay?.SetRoomDescriptionMode(session, brief: false) ?? "Live gameplay facade is not attached.",
+            "statline" => _gameplay?.ConfigureClassicStatline(session, command.ArgumentText, invokedThroughSet: false) ?? "Live gameplay facade is not attached.",
+            "set" => _gameplay?.ConfigureClassicSetting(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "examine" => _gameplay?.Examine(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "say" => _gameplay?.Say(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
-            "tell" => _gameplay?.Tell(session, command.Arguments) ?? "Live gameplay facade is not attached.",
+            "talk" => _gameplay?.ConfigureMajorMudTalkMode(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
+            "gossip" => _gameplay?.Gossip(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
+            "auction" => _gameplay?.Auction(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
+            "forget" => _gameplay?.ForgetTelepath(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "messages" => _gameplay?.DrainMessages(session) ?? string.Empty,
             "score" => _gameplay?.RenderScore(session) ?? "Live gameplay facade is not attached.",
             "character" => _gameplay?.RenderCharacterMenu(session) ?? "Live gameplay facade is not attached.",
             "wealth" => _gameplay?.RenderWealth(session) ?? "Live gameplay facade is not attached.",
             "experience" => _gameplay?.RenderExperience(session) ?? "Live gameplay facade is not attached.",
             "inventory" => _gameplay?.RenderInventory(session) ?? "Live gameplay facade is not attached.",
+            "keys" => _gameplay?.RenderKeys(session) ?? "Live gameplay facade is not attached.",
             "equipment" => string.IsNullOrWhiteSpace(command.ArgumentText)
                 ? (_gameplay?.RenderEquipment(session) ?? "Live gameplay facade is not attached.")
                 : ExecuteItem(session, RuntimeCommand.Parse($"equip {command.ArgumentText}")),
@@ -170,13 +218,15 @@ public sealed class RuntimeCommandDispatcher
                 _gameplay?.ExecuteMajorMudPlusCommand(session, command) ?? "Live gameplay facade is not attached.",
             "sysop" => _gameplay?.ExecuteWccSysopCommand(session, command) ?? "Live gameplay facade is not attached.",
             "invite" or "uninvite" when command.Arguments.FirstOrDefault()?.Equals("member", StringComparison.OrdinalIgnoreCase) == true => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "invite" or "uninvite" or "follow" or "unfollow" or "frontrank" or "midrank" or "backrank" => _gameplay?.ExecuteClassicPartyCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "create" or "join" or "leave" or "broadgang" or "disband" or "promote" or "demote" or "topten" => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "ready" => _gameplay?.RenderIntegrationStatus(session) ?? "Live gameplay facade is not attached.",
+            "join" when command.Arguments.FirstOrDefault()?.Equals("gang", StringComparison.OrdinalIgnoreCase) == true => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
+            "leave" when command.Arguments.FirstOrDefault()?.Equals("gang", StringComparison.OrdinalIgnoreCase) == true => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
+            "invite" or "uninvite" or "follow" or "frontrank" or "midrank" or "backrank" or "join" or "leave" => _gameplay?.ExecuteClassicPartyCommand(session, command) ?? "Live gameplay facade is not attached.",
+            "share" => _gameplay?.ExecuteClassicShare(session, command) ?? "Live gameplay facade is not attached.",
+            "create" or "broadgang" or "disband" or "promote" or "demote" or "topten" => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
+            var nativeEvidenceCommand when route.Kind is RuntimeCommandRouteKind.NativeEvidenceGate => ExecuteEvidenceGatedNativeCommand(session, command),
             "audit" => _gameplay?.ExecuteAuditCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "put" when _gameplay is not null && _gameplay.TryExecuteDecodedWorldCommand(session, command, out var decodedPut) => decodedPut,
             "get" or "drop" or "put" or "give" or "equip" or "wear" or "wield" or "remove" => ExecuteItem(session, command),
-            "open" or "close" or "lock" or "unlock" or "pull" or "push" or "activate" => _gameplay?.ExecuteLivingWorldCommand(session, command) ?? "Live gameplay facade is not attached.",
+            "open" or "close" or "lock" or "unlock" or "pull" or "push" or "activate" or "picklock" or "disarm" => _gameplay?.ExecuteLivingWorldCommand(session, command) ?? "Live gameplay facade is not attached.",
             "worldstate" => _gameplay?.RenderLivingWorldState(session) ?? "Live gameplay facade is not attached.",
             "services" or "list" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",
             "trade" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",
@@ -198,7 +248,7 @@ public sealed class RuntimeCommandDispatcher
         catch (Exception ex)
         {
             _events?.Publish("command", "failed", session.World.Definition.Id, session.Id, session.Actor.Id, $"{command.Name}: {ex.GetType().Name}: {ex.Message}");
-            return $"Command '{command.Name}' failed: {ex.Message}";
+            return ex.Message;
         }
     }
 
@@ -206,31 +256,38 @@ public sealed class RuntimeCommandDispatcher
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["look"] = "look [direction|object]", ["brief"] = "brief", ["verbose"] = "verbose",
+            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set speech fast|slow | set telepath | set gossip [on|off] | set auction [on|off]",
             ["search"] = "search [object]", ["examine"] = "examine <target>", ["score"] = "score",
             ["character"] = "character", ["wealth"] = "wealth",
-            ["experience"] = "experience", ["inventory"] = "inventory", ["equipment"] = "equipment",
+            ["experience"] = "experience", ["inventory"] = "inventory", ["keys"] = "keys", ["equipment"] = "equipment",
             ["party"] = "party", ["whohome"] = "whohome", ["librarium"] = "librarium [page <family> <offset> [search text]]",
             ["rest"] = "rest", ["meditate"] = "meditate",
             ["get"] = "get <item>", ["drop"] = "drop <item>", ["put"] = "put <item> <container>",
-            ["give"] = "give <item|currency> <target>", ["equip"] = "equip <item>", ["wear"] = "wear <item>",
-            ["wield"] = "wield <weapon>", ["remove"] = "remove <item>", ["attack"] = "attack <target>",
+            ["give"] = "give <item> <player>", ["equip"] = "equip <item>", ["wear"] = "wear <item>",
+            ["wield"] = "wield <weapon>", ["remove"] = "remove <item>", ["attack"] = "attack <target>", ["break"] = "break",
             ["kill"] = "kill <target>", ["flee"] = "flee", ["cast"] = "cast <spell> [target]",
-            ["use"] = "use <item> [target]", ["spells"] = "spells", ["abilities"] = "abilities", ["skills"] = "skills",
-            ["ask"] = "ask <npc> <keyword>", ["talk"] = "talk <npc>", ["say"] = "say <message>", ["tell"] = "tell <player> <message>",
+            ["use"] = "use <item> [target]", ["spells"] = "spells", ["powers"] = "powers", ["abilities"] = "abilities", ["skills"] = "skills",
+            ["ask"] = "ask <npc> <keyword>", ["greet"] = "greet <npc>", ["talk"] = "talk fast|slow", ["say"] = "say <message>",
+            ["gossip"] = "gossip [message]", ["auction"] = "auction [message]", ["forget"] = "forget [player]",
             ["messages"] = "messages", ["services"] = "services", ["list"] = "list", ["buy"] = "buy <item> [quantity]",
-            ["follow"] = "follow <player>", ["unfollow"] = "unfollow", ["frontrank"] = "frontrank", ["midrank"] = "midrank", ["backrank"] = "backrank",
+            ["follow"] = "follow <player>", ["join"] = "join <player>|<broadcast-group>|gang <gang>", ["leave"] = "leave [gang]", ["frontrank"] = "frontrank", ["midrank"] = "midrank", ["backrank"] = "backrank",
             ["sell"] = "sell <item> [quantity]", ["repair"] = "repair <item>", ["train"] = "train [skill|stat]",
             ["bank"] = "bank", ["deposit"] = "deposit <amount> <denomination>",
             ["withdraw"] = "withdraw <amount> <denomination>", ["trade"] = "trade <arguments>",
             ["quest"] = "quest", ["accept"] = "accept <quest>", ["abandon"] = "abandon <quest>",
             ["complete"] = "complete <quest>", ["journal"] = "journal", ["save"] = "save", ["who"] = "who",
+            ["drag"] = "drag <character>", ["go"] = "go <location>", ["health"] = "health", ["map"] = "map", ["profile"] = "profile", ["track"] = "track <user>",
+            ["aid"] = "aid", ["light"] = "light <item>", ["stash"] = "stash <item>", ["mana"] = "mana", ["invoke"] = "invoke <kai power>", ["read"] = "read <scroll>",
+            ["suicide"] = "suicide", ["reroll"] = "reroll", ["appraise"] = "appraise <item>", ["eat"] = "eat <item>", ["drink"] = "drink <item>", ["rob"] = "rob <target>",
+            ["ready"] = "ready", ["exits"] = "exits", ["picklock"] = "picklock <direction>", ["disarm"] = "disarm trap <direction>", ["page"] = "page", ["broadcast"] = "broadcast [message]", ["share"] = "share <amount> <currency> [with room|party]",
+            ["scan"] = "scan", ["quiet"] = "quiet", ["topten"] = "topten | top <n> <class> | topten gangs | top <n> gangs", ["stock"] = "stock <item> [price] [currency]", ["unstock"] = "unstock <item>", ["markup"] = "markup <percent>",
             ["where"] = "where", ["help"] = "help [command]", ["commands"] = "commands", ["quit"] = "quit",
             ["mudplus"] = "mudplus", ["description"] = "description [set <line1>|<line2>]",
             ["mudreg"] = "mudreg [name|search <text>|set <field> <value>]", ["buylife"] = "buylife",
             ["plusadmin"] = "plusadmin <operation>", ["sysop"] = "sysop <native-command> [arguments]",
             ["activate"] = "activate <object>", ["assist"] = "assist <character>",
-            ["audit"] = "audit [room <room>|spawns]", ["backstab"] = "backstab <target>",
-            ["bash"] = "bash <target>", ["close"] = "close <object|direction>",
+            ["audit"] = "audit [room <room>|spawns|megamud|parity|timers|combat]", ["backstab"] = "backstab <target>",
+            ["bash"] = "bash <target|direction>", ["close"] = "close <object|direction>",
             ["combat"] = "combat", ["dispel"] = "dispel <effect|target>",
             ["events"] = "events", ["hide"] = "hide", ["lock"] = "lock <object|direction>",
             ["open"] = "open <object|direction>", ["prepare"] = "prepare",
@@ -248,14 +305,25 @@ public sealed class RuntimeCommandDispatcher
     internal static bool HasHelpUsage(string canonical) => CommandUsage.ContainsKey(canonical);
     internal static int HelpUsageCount => CommandUsage.Count;
 
-    private static string RenderHelp(RuntimeSession session, RuntimeCommand command)
+    private string RenderHelp(RuntimeSession session, RuntimeCommand command)
     {
-        var topic = command.Name.Equals("commands", StringComparison.OrdinalIgnoreCase) ? string.Empty : command.ArgumentText.Trim();
+        var topic = command.Name.Equals("commands", StringComparison.OrdinalIgnoreCase) ? "commands" : command.ArgumentText.Trim();
+        if (_gameplay is not null && _gameplay.TryRenderMajorMudNativeHelp(topic, out var nativeHelp))
+            return nativeHelp;
+
+        var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        // Do not fabricate synthetic HELP output in Classic when the retained native topic
+        // resolver cannot establish one unique topic. Custom/AI may expose Reforged command
+        // help, but Classic fails closed until native fuzzy/prefix/ambiguity behavior is proven.
+        if (classicWorld)
+            return $"Native HELP topic resolution for '{topic}' is not yet recovered.";
+
         if (topic.Length == 0)
         {
             var registrations = session.World.CommandCatalog.Registrations;
             var names = registrations
-                .Where(r => !r.IsMovement && !IsDiagnosticCommand(r.Canonical) && !IsClientProtocolCommand(r.Canonical))
+                .Where(r => !r.IsMovement && !IsDiagnosticCommand(r.Canonical) && !IsClientProtocolCommand(r.Canonical)
+                    && (!classicWorld || !IsClassicExtensionCommand(r.Canonical)))
                 .Select(r => r.Canonical)
                 .Append("commands")
                 .Distinct(StringComparer.OrdinalIgnoreCase)
@@ -280,6 +348,8 @@ public sealed class RuntimeCommandDispatcher
         var registration = session.World.CommandCatalog.Registrations.FirstOrDefault(r =>
             string.Equals(r.Canonical, resolved.Name, StringComparison.OrdinalIgnoreCase));
         if (registration is null) return $"No help topic matches '{topic}'. Type HELP for the command list.";
+        if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase) && IsClassicExtensionCommand(registration.Canonical))
+            return $"No help topic matches '{topic}'. Type HELP for the command list.";
         if (IsClientProtocolCommand(registration.Canonical))
             return $"No help topic matches '{topic}'. Type HELP for the command list.";
         var isContextual = !RuntimeCommandRuntimeRouteCatalog.TryGet(registration.Canonical, out var route);
@@ -299,25 +369,40 @@ public sealed class RuntimeCommandDispatcher
                $"Category: {kind}";
     }
 
+    private static bool IsClassicExtensionCommand(string name) => name is "trade" or "repair";
+
     private static bool IsDiagnosticCommand(string name) => name is
-        "audit" or "ready" or "worldstate" or "world" or "worlds" or "sessions" or "state" or "events";
+        "audit" or "worldstate" or "world" or "worlds" or "sessions" or "state" or "events";
 
     private static bool IsClientProtocolCommand(string name) => name is
         "clientdata" or "roomdata" or "librarium" or "whohome";
 
     private string ExecuteDataDrivenCommand(RuntimeSession session, RuntimeCommand command)
     {
-        if (_gameplay is not null && _gameplay.TryExecuteMajorMudPlusAction(session, command, out var plusAction))
-        {
-            return plusAction;
-        }
-        if (_gameplay is not null && _gameplay.TryExecuteDecodedWorldCommand(session, command, out var result))
+        return TryExecuteUnregisteredAction(session, command, out var result)
+            ? result
+            : $"Nothing here responds to '{command.Name}'.";
+    }
+
+    private bool TryExecuteUnregisteredAction(RuntimeSession session, RuntimeCommand command, out string result)
+    {
+        result = string.Empty;
+        if (_gameplay is null) return false;
+        if (_gameplay.TryExecuteMajorMudPowerShortcut(session, command, out result)) return true;
+        if (_gameplay.TryExecuteMajorMudPlusAction(session, command, out result)) return true;
+        if (_gameplay.TryExecuteDecodedWorldCommand(session, command, out result))
         {
             _state?.UpdateSessionLocation(session);
             _events?.Publish("command", "decoded-world-command-completed", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
-            return result;
+            return true;
         }
-        return $"Nothing here responds to '{command.Name}'.";
+        return false;
+    }
+
+    private string ExecuteEvidenceGatedNativeCommand(RuntimeSession session, RuntimeCommand command)
+    {
+        if (TryExecuteUnregisteredAction(session, command, out var contextual)) return contextual;
+        return $"Native command '{command.Name.ToUpperInvariant()}' is recognized, but its exact runtime behavior is not yet recovered.";
     }
 
     private string ExecuteItem(RuntimeSession session, RuntimeCommand command) =>
@@ -347,15 +432,18 @@ public sealed class RuntimeCommand
     internal static readonly IReadOnlyList<RuntimeCommandRegistration> DefaultRegistrations =
     [
         new("look", ["l"], 2),
-        new("brief", ["br"], 2),
+        new("brief", [], 5),
         new("verbose", ["verb"], 3),
+        new("statline", [], 4),
+        new("set", [], 3),
         new("search", ["sea"], 3),
         new("examine", ["x"], 2),
-        new("score", ["sc", "stat", "stats", "status"], 3),
+        new("score", ["sc", "st", "stat", "stats", "status"], 3),
         new("character", ["char", "sheet"], 3),
         new("wealth", ["money"], 3),
         new("experience", ["exp"], 3),
         new("inventory", ["i", "inv"], 3),
+        new("keys", [], 3),
         new("equipment", ["eq", "wearing"], 3),
         new("party", ["par"], 3),
         new("get", ["g"], 3),
@@ -372,14 +460,17 @@ public sealed class RuntimeCommand
         new("combat", [], 3),
         new("round", [], 3),
         new("assist", [], 3),
+        new("break", [], 3),
         new("cast", [], 3),
         new("prepare", [], 3),
-        new("spells", ["spellbook"], 3),
+        new("spells", ["spellbook", "sp"], 2),
+        new("powers", ["pow"], 3),
         new("use", [], 3),
         new("dispel", [], 3),
         new("abilities", [], 3),
         new("skills", [], 3),
         new("ask", [], 3),
+        new("greet", [], 3),
         new("talk", [], 3),
         new("buy", [], 3),
         new("sell", [], 4),
@@ -414,7 +505,9 @@ public sealed class RuntimeCommand
         new("complete", [], 3),
         new("journal", ["qlog"], 3),
         new("say", [], 3),
-        new("tell", [], 3),
+        new("gossip", [], 6),
+        new("auction", [], 7),
+        new("forget", [], 6),
         new("messages", [], 3),
         new("mudplus", ["mmplus"], 3),
         new("description", ["desc"], 4),
@@ -426,7 +519,6 @@ public sealed class RuntimeCommand
         new("invite", [], 3),
         new("uninvite", [], 3),
         new("follow", [], 3),
-        new("unfollow", [], 3),
         new("frontrank", ["frontr"], 5),
         new("midrank", ["midr"], 4),
         new("backrank", ["backr"], 4),
@@ -437,6 +529,35 @@ public sealed class RuntimeCommand
         new("promote", [], 3),
         new("demote", [], 3),
         new("topten", ["top"], 3),
+        new("drag", [], 4),
+        new("go", [], 2),
+        new("health", [], 6),
+        new("map", [], 3),
+        new("profile", [], 7),
+        new("track", [], 5),
+        new("aid", [], 3),
+        new("light", [], 5),
+        new("stash", [], 5),
+        new("mana", [], 4),
+        new("invoke", [], 6),
+        new("read", [], 4),
+        new("suicide", [], 7),
+        new("reroll", [], 6),
+        new("appraise", [], 8),
+        new("eat", [], 3),
+        new("drink", [], 5),
+        new("rob", [], 3),
+        new("exits", [], 5),
+        new("picklock", [], 8),
+        new("disarm", [], 6),
+        new("page", [], 4),
+        new("broadcast", ["br"], 9),
+        new("share", [], 5),
+        new("scan", [], 4),
+        new("quiet", [], 5),
+        new("stock", [], 5),
+        new("unstock", [], 7),
+        new("markup", [], 6),
         new("respawn", [], 3),
         new("recover", [], 3),
         new("ready", [], 3),
@@ -481,27 +602,30 @@ public sealed class RuntimeCommand
     internal static bool IsDefaultRegistration(string canonical) =>
         DefaultRegistrations.Any(registration => registration.Canonical.Equals(canonical, StringComparison.OrdinalIgnoreCase));
 
-    private RuntimeCommand(string name, IReadOnlyList<string> arguments, string resolutionError = "")
+    private RuntimeCommand(string name, IReadOnlyList<string> arguments, string resolutionError = "", string rawInput = "")
     {
         Name = name;
         Arguments = arguments;
         ResolutionError = resolutionError;
+        RawInput = rawInput;
     }
 
     public string Name { get; }
     public IReadOnlyList<string> Arguments { get; }
     public string ResolutionError { get; }
+    public string RawInput { get; }
     public string ArgumentText => string.Join(" ", Arguments);
     public bool IsMovement => ExactTokens.TryGetValue(Name, out var registration) && registration.IsMovement;
 
     public static RuntimeCommand Parse(string input, RuntimeClassicCommandCatalog? catalog = null)
     {
-        var tokens = (input ?? string.Empty).Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (tokens.Length == 0) return new RuntimeCommand(string.Empty, Array.Empty<string>());
+        var rawInput = input ?? string.Empty;
+        var tokens = rawInput.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (tokens.Length == 0) return new RuntimeCommand(string.Empty, Array.Empty<string>(), rawInput: rawInput);
         var name = tokens[0].ToLowerInvariant();
         var resolved = catalog is null ? Resolve(name) : catalog.Resolve(name);
-        if (resolved.Error.Length > 0) return new RuntimeCommand(name, tokens.Skip(1).ToArray(), resolved.Error);
-        return new RuntimeCommand(resolved.Name, tokens.Skip(1).ToArray());
+        if (resolved.Error.Length > 0) return new RuntimeCommand(name, tokens.Skip(1).ToArray(), resolved.Error, rawInput);
+        return new RuntimeCommand(resolved.Name, tokens.Skip(1).ToArray(), rawInput: rawInput);
     }
 
     private static RuntimeCommandResolution Resolve(string token)

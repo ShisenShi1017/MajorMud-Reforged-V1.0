@@ -37,8 +37,10 @@
     "zero-regen-fields-classified-as-non-restocking",
     "five-denomination-bank-deposit-withdraw-authority",
     "trainer-level-class-and-progression-authority",
-    "repair-fails-closed-without-generated-cost",
+    "no-native-repair-service-projected",
     "buy-sell-stock-and-currency-rollback-boundaries"
   ],
-  "Failures": []
+  "Failures": [],
+  "ClassicRepairServiceProjected": false,
+  "ClassicRepairServiceDisposition": "No stock repair command/service is projected; Reforged repair remains non-Classic only."
 }

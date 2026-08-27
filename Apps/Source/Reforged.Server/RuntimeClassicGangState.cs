@@ -74,16 +74,16 @@ public sealed class RuntimeClassicGangStateService
     public RuntimeClassicGangRecord? FindByMember(string characterId) =>
         List().SingleOrDefault(gang => !gang.Disbanded && gang.Members.Any(member => member.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)));
 
-    public RuntimeClassicGangRecord Invite(RuntimeClassicGangRecord gang, string actorId, string targetId)
+    public RuntimeClassicGangRecord Invite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline)
     {
-        RequireOfficer(gang, actorId);
+        RequireInviteAuthority(gang, actorId, leaderOnline);
         if (FindByMember(targetId) is not null) throw new InvalidOperationException("That character already belongs to a gang.");
         return Save(gang with { PendingInviteCharacterIds = gang.PendingInviteCharacterIds.Append(targetId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray() });
     }
 
-    public RuntimeClassicGangRecord Uninvite(RuntimeClassicGangRecord gang, string actorId, string targetId)
+    public RuntimeClassicGangRecord Uninvite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline)
     {
-        RequireOfficer(gang, actorId);
+        RequireInviteAuthority(gang, actorId, leaderOnline);
         var members = gang.Members.Where(member => !member.CharacterId.Equals(targetId, StringComparison.OrdinalIgnoreCase)).ToArray();
         var invites = gang.PendingInviteCharacterIds.Where(id => !id.Equals(targetId, StringComparison.OrdinalIgnoreCase)).ToArray();
         return Save(gang with { Members = members, PendingInviteCharacterIds = invites, TheoreticalSize = Math.Max(members.Length, gang.TheoreticalSize) });
@@ -133,10 +133,13 @@ public sealed class RuntimeClassicGangStateService
         return notifications;
     }
 
-    private static void RequireOfficer(RuntimeClassicGangRecord gang, string actorId)
+    private static void RequireInviteAuthority(RuntimeClassicGangRecord gang, string actorId, bool leaderOnline)
     {
         var member = gang.Members.SingleOrDefault(member => member.CharacterId.Equals(actorId, StringComparison.OrdinalIgnoreCase));
-        if (member is null || member.Role is not ("Leader" or "Lieutenant")) throw new InvalidOperationException("Only the gang leader or a lieutenant may manage invitations.");
+        if (member is null) throw new InvalidOperationException("You do not belong to that gang.");
+        if (member.Role.Equals("Leader", StringComparison.OrdinalIgnoreCase)) return;
+        if (member.Role.Equals("Lieutenant", StringComparison.OrdinalIgnoreCase) && !leaderOnline) return;
+        throw new InvalidOperationException("Only the gang leader may manage invitations while the gang leader is online.");
     }
 
     public RuntimeClassicGangRecord Disband(RuntimeClassicGangRecord gang) => Save(gang with

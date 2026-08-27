@@ -52,7 +52,8 @@ public sealed record RuntimeClassicLiveStatusDefinition(
 
 public sealed class RuntimeClassicLiveStatusCatalog
 {
-    public const int CombatRoundSeconds = 6;
+    public const int CombatRoundSeconds = 5;
+    public const int SpellRoundSeconds = 3;
     private readonly IReadOnlyDictionary<string, RuntimeClassicLiveStatusDefinition> _bySpellId;
     private readonly IReadOnlyDictionary<string, RuntimeClassicLiveStatusDefinition> _byLegacyId;
 
@@ -234,6 +235,7 @@ public static class RuntimeClassicStatusProjection
                         if (resolved > 0) flags.Add($"negate_ability.{resolved}");
                         break;
                     case 145: Add(numeric, "mana_regeneration", resolved); break;
+                    case 147: Add(numeric, "resist_water", resolved); break;
                     case 19: flags.Add("poisoned"); break;
                     case 21: flags.Add("poison_immune"); break;
                     case 57: flags.Add("see_hidden"); break;
@@ -427,9 +429,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             ["effect_kind"] = definition.IsPoison ? "poison" : "status",
             ["spell_type_raw"] = spell.SpellTypeRaw.ToString(CultureInfo.InvariantCulture),
             ["attack_type_raw"] = spell.AttackTypeRaw.ToString(CultureInfo.InvariantCulture),
-            ["duration_unit"] = "combat_rounds",
+            ["duration_unit"] = "spell_rounds",
             ["duration_rounds"] = spell.DurationRaw.ToString(CultureInfo.InvariantCulture),
-            ["round_seconds"] = RuntimeClassicLiveStatusCatalog.CombatRoundSeconds.ToString(CultureInfo.InvariantCulture),
+            ["round_seconds"] = RuntimeClassicLiveStatusCatalog.SpellRoundSeconds.ToString(CultureInfo.InvariantCulture),
             ["stacking"] = "refresh_same_spell_independent_different_spells",
             ["remove_on_death"] = "1",
             ["persist_across_logout"] = "1",
@@ -440,7 +442,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             metadata["periodic_operation"] = "damage";
             metadata["tick_interval_rounds"] = "1";
-            metadata["next_tick_utc"] = nowUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
+            metadata["next_tick_utc"] = nowUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.SpellRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
         }
         foreach (var ability in definition.Abilities)
             metadata[$"ability.{ability.AbilityId}"] = ability.Value.ToString(CultureInfo.InvariantCulture);
@@ -459,9 +461,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             ["source"] = "player_cast_spell",
             ["effect_kind"] = definition.IsPoison ? "poison" : "status",
-            ["duration_unit"] = "combat_rounds",
+            ["duration_unit"] = "spell_rounds",
             ["duration_rounds"] = castEffect.Duration.ToString(CultureInfo.InvariantCulture),
-            ["round_seconds"] = RuntimeClassicLiveStatusCatalog.CombatRoundSeconds.ToString(CultureInfo.InvariantCulture),
+            ["round_seconds"] = RuntimeClassicLiveStatusCatalog.SpellRoundSeconds.ToString(CultureInfo.InvariantCulture),
             ["stacking"] = "refresh_same_spell_independent_different_spells",
             ["remove_on_death"] = "1",
             ["persist_across_logout"] = "1",
@@ -471,13 +473,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             metadata["periodic_operation"] = "damage";
             metadata["tick_interval_rounds"] = "1";
-            metadata["next_tick_utc"] = nowUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
+            metadata["next_tick_utc"] = nowUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.SpellRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
         }
         foreach (var ability in definition.Abilities)
             metadata[$"ability.{ability.AbilityId}"] = ability.Value.ToString(CultureInfo.InvariantCulture);
         var normalized = castEffect with
         {
-            ExpiresAtUtc = nowUtc.AddSeconds(checked((long)castEffect.Duration * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds)),
+            ExpiresAtUtc = nowUtc.AddSeconds(checked((long)castEffect.Duration * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
             Metadata = metadata
         };
         var snapshot = _liveSpellEngine!.Snapshot();
@@ -502,20 +504,20 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (!catalog.TryGet(effect.SpellId, out var definition) || effect.Duration <= 0) return effect;
             var metadata = new Dictionary<string, string>(effect.Metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
             if (metadata.TryGetValue("duration_unit", out var unit)
-                && unit.Equals("combat_rounds", StringComparison.OrdinalIgnoreCase)) return effect;
+                && unit.Equals("spell_rounds", StringComparison.OrdinalIgnoreCase)) return effect;
             changed = true;
-            metadata["duration_unit"] = "combat_rounds";
+            metadata["duration_unit"] = "spell_rounds";
             metadata["duration_rounds"] = effect.Duration.ToString(CultureInfo.InvariantCulture);
-            metadata["round_seconds"] = RuntimeClassicLiveStatusCatalog.CombatRoundSeconds.ToString(CultureInfo.InvariantCulture);
-            if (definition.HasPeriodicDamage && !metadata.ContainsKey("next_tick_utc"))
+            metadata["round_seconds"] = RuntimeClassicLiveStatusCatalog.SpellRoundSeconds.ToString(CultureInfo.InvariantCulture);
+            if (definition.HasPeriodicDamage)
             {
                 metadata["periodic_operation"] = "damage";
                 metadata["tick_interval_rounds"] = "1";
-                metadata["next_tick_utc"] = effect.AppliedAtUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
+                metadata["next_tick_utc"] = effect.AppliedAtUtc.AddSeconds(RuntimeClassicLiveStatusCatalog.SpellRoundSeconds).ToString("O", CultureInfo.InvariantCulture);
             }
             return effect with
             {
-                ExpiresAtUtc = effect.AppliedAtUtc.AddSeconds(checked((long)effect.Duration * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds)),
+                ExpiresAtUtc = effect.AppliedAtUtc.AddSeconds(checked((long)effect.Duration * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds)),
                 Metadata = metadata
             };
         }).ToArray();
@@ -575,7 +577,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             }
                             _characters.SaveCharacter(character with { HitPoints = nextHp, UpdatedAtUtc = nextTick });
                         }
-                        nextTick = nextTick.AddSeconds(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds);
+                        nextTick = nextTick.AddSeconds(RuntimeClassicLiveStatusCatalog.SpellRoundSeconds);
                         tickCount++;
                     }
                     metadata["next_tick_utc"] = nextTick.ToString("O", CultureInfo.InvariantCulture);
@@ -779,7 +781,8 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
                 && catalog.Definitions.Any(x => x.Abilities.Any(a => a.AbilityId == 68) && x.RemovedByFreedom)
                 && catalog.Definitions.Any(x => x.Abilities.Any(a => a.AbilityId == 87) && x.RemovedByFreedom),
                 "decoded-freedom-removal-classification"); report.Checks.Add("decoded-freedom-removes-hold-and-speed-effects");
-            Require(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds == 6, "status-round-six-seconds"); report.Checks.Add("status-round-six-seconds");
+            Require(RuntimeClassicLiveStatusCatalog.CombatRoundSeconds == 5, "combat-round-five-seconds"); report.Checks.Add("combat-round-five-seconds");
+            Require(RuntimeClassicLiveStatusCatalog.SpellRoundSeconds == 3, "spell-round-three-seconds"); report.Checks.Add("spell-round-three-seconds");
         }
         catch (Exception ex) { report.Failures.Add(ex.Message); }
         return report;

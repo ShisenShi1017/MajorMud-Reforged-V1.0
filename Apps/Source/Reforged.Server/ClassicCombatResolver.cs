@@ -93,11 +93,14 @@ public sealed class ClassicCombatResolver
     public const string DodgeAbilityFormulaId = "combat.dodge_ability34";
     public const string DodgeFinalFormulaId = "combat.dodge_final";
     public const string DodgeRollBoundaryFormulaId = RuntimeClassicPhysicalFormulaCalculator.DodgeRollBoundaryFormulaId;
-    public const string NpcAttackCountFormulaId = "combat.npc_attack_count";
-    public const string NpcAttackEnergyFormulaId = "combat.npc_attack_energy";
+    public const string NpcAttackCountFormulaId = RuntimeClassicNpcCombatCadence.AttackRowCountFormulaId;
+    public const string NpcAttackAttemptsFormulaId = RuntimeClassicNpcCombatCadence.AttemptsPerRoundFormulaId;
+    public const string NpcAttackEnergyFormulaId = RuntimeClassicNpcCombatCadence.EnergyCarryFormulaId;
     public const string NpcAttackSelectionWeightFormulaId = RuntimeNpcAttackSelector.FormulaId;
-    public const string NpcResistedSpellEnergyRefundFormulaId = "combat.npc_resisted_spell_half_energy_refund";
-    public const string NpcEncounterEnergyResetFormulaId = "combat.npc_encounter_energy_reset";
+    public const string NpcSpellCastSuccessFormulaId = RuntimeClassicNpcCombatCadence.SpellCastSuccessFormulaId;
+    public const string NpcResistedSpellEnergyRefundFormulaId = RuntimeClassicNpcCombatCadence.SpellFailureEnergyFormulaId;
+    public const string NpcPhysicalEarlyEndFormulaId = RuntimeClassicNpcCombatCadence.PhysicalEarlyEndFormulaId;
+    public const string NpcEncounterEnergyResetFormulaId = "combat.npc_encounter_energy_start";
     public const string NpcDecodedCurrencyAmountsFormulaId = "combat.npc_decoded_currency_amounts";
     public const string NpcHitSpellRelationshipFormulaId = "combat.npc_hit_spell_relationship";
     public const string NpcHitSpellMetadataFormulaId = "combat.npc_hit_spell_metadata";
@@ -155,7 +158,13 @@ public sealed class ClassicCombatResolver
             authority.RequireExecutable(DodgeFinalFormulaId);
             authority.RequireExecutable(DodgeRollBoundaryFormulaId);
             authority.RequireExecutable(NpcAttackCountFormulaId);
+            authority.RequireExecutable(NpcAttackAttemptsFormulaId);
             authority.RequireExecutable(NpcAttackEnergyFormulaId);
+            authority.RequireExecutable(NpcAttackSelectionWeightFormulaId);
+            authority.RequireExecutable(NpcSpellCastSuccessFormulaId);
+            authority.RequireExecutable(NpcResistedSpellEnergyRefundFormulaId);
+            authority.RequireExecutable(NpcPhysicalEarlyEndFormulaId);
+            authority.RequireExecutable(NpcEncounterEnergyResetFormulaId);
             authority.RequireExecutable(NpcHitSpellRelationshipFormulaId);
             authority.RequireExecutable(NpcHitSpellMetadataFormulaId);
             authority.RequireExecutable(NpcHitSpellClassificationFormulaId);
@@ -195,7 +204,7 @@ public sealed class ClassicCombatResolver
         var scaledMaximum = Scale(request.MaximumDamage, modifiers.PreDrDamagePercent);
         var hitChance = CalculateHitChance(request.AttackType, request.Attacker, request.Defender, modifiers.AccuracyModifier);
         var hitRoll = _random.NextInclusive(1, 100);
-        if (hitRoll >= hitChance)
+        if (!RuntimeClassicPhysicalFormulaCalculator.IsHitRollSuccessful(hitChance, hitRoll))
         {
             return new ClassicAttackResult(ClassicHitOutcome.Miss, hitChance, 0, 0, 0, 0, false);
         }
@@ -235,26 +244,26 @@ public sealed class ClassicCombatResolver
         ClassicCombatantStats defender,
         int attackAccuracyModifier = 0)
     {
+        // Stock MajorMUD clamps physical hit chance to 8..99. Backstab receives
+        // a pre-resolved stock defense value from the caller (AC/4 + BS defense
+        // for ordinary NPCs, or the appropriate see-hidden variant).
         if (attackType == ClassicAttackType.Backstab)
         {
-            return Math.Clamp(attacker.AttackValue - defender.DefenseValue, 10, 99);
+            if (defender.DefenseValue <= 0) return 99;
+            return Math.Clamp(attacker.AttackValue - defender.DefenseValue, 8, 99);
         }
 
-        var adjustedAttackValue = attacker.AttackValue + attackAccuracyModifier + defender.ImposedAccuracyModifier;
-        if (adjustedAttackValue == 0)
-        {
-            return 10;
-        }
+        var adjustedAttackValue = Math.Clamp(
+            attacker.AttackValue + attackAccuracyModifier + defender.ImposedAccuracyModifier,
+            1, 9999);
+        var defense = Math.Clamp(checked(defender.DefenseValue + defender.ArmorClass), 0, 9999);
+        if (defense <= 0) return 99;
 
-        var hitRating = ((long)adjustedAttackValue * adjustedAttackValue) / 140;
-        if (hitRating <= 0)
-        {
-            return 10;
-        }
-
-        var defense = (long)defender.DefenseValue + defender.ArmorClass;
-        var chance = 100 - (int)((defense * defense) / hitRating);
-        return Math.Clamp(chance, 10, 99);
+        // MMUD Explorer CalculateAttackDefense: accTemp=(ACCY*ACCY)\140, min 1;
+        // hit=100-((Defense*Defense)\accTemp), then stock clamp 8..99.
+        var hitRating = Math.Max(1L, ((long)adjustedAttackValue * adjustedAttackValue) / 140L);
+        var chance = 100 - (int)(((long)defense * defense) / hitRating);
+        return Math.Clamp(chance, 8, 99);
     }
 
     public static int CalculateDodgeChance(ClassicAttackType attackType, int attackerAttackValue, int defenderDodgeBonus)
@@ -349,15 +358,44 @@ public static class RuntimeClassicPhysicalFormulaCalculator
     }
 
     // MMUD Explorer modMMudFunc.bas 4678 and Nightmare Redux frmSwingCalc.frm 2006.
-    public static int CalculateAttackEnergyCost(int combatCode, int level, int weaponSpeed, int agility)
+    public static int CalculateAttackEnergyCost(
+        int combatCode,
+        int level,
+        int weaponSpeed,
+        int agility,
+        int strength = 0,
+        int encumbrancePercent = -1,
+        int itemStrengthRequirement = 0,
+        int speedAdjustmentPercent = 0,
+        bool isBackstab = false)
     {
         if (combatCode < 0) throw new ArgumentOutOfRangeException(nameof(combatCode));
         if (level <= 0) throw new ArgumentOutOfRangeException(nameof(level));
         if (weaponSpeed < 0) throw new ArgumentOutOfRangeException(nameof(weaponSpeed));
+        if (encumbrancePercent < -1) throw new ArgumentOutOfRangeException(nameof(encumbrancePercent));
+        if (itemStrengthRequirement < 0) throw new ArgumentOutOfRangeException(nameof(itemStrengthRequirement));
+        if (speedAdjustmentPercent < 0) throw new ArgumentOutOfRangeException(nameof(speedAdjustmentPercent));
         if (weaponSpeed == 0) return 0;
+
         var denominator = checked((((level * (combatCode + 2)) + 45) * (agility + 150)) / 6);
         if (denominator <= 0) throw new InvalidOperationException("CLASSIC_ATTACK_ENERGY_DENOMINATOR_INVALID");
-        return checked((weaponSpeed * 1000) / denominator);
+        var energy = checked((weaponSpeed * 1000) / denominator);
+
+        // MMUD Explorer CalcEnergyUsed: failing the wielded weapon's STR requirement
+        // raises energy by 1.5% for each missing STR point.
+        if (strength > 0 && strength < itemStrengthRequirement)
+            energy = checked(((((itemStrengthRequirement - strength) * 3) + 200) * energy) / 200);
+
+        // A non-default Speed adjustment is percentage-based and does not apply to Backstab.
+        if (speedAdjustmentPercent > 0 && speedAdjustmentPercent != 100 && !isBackstab)
+            energy = checked((energy * speedAdjustmentPercent) / 100);
+
+        // Stock encumbrance is part of attack energy itself. At 0% encumbrance this
+        // is 75% of base energy; at 50% it is 100%; at 100% it is 125%.
+        if (encumbrancePercent >= 0)
+            energy = checked((energy * ((encumbrancePercent / 2) + 75)) / 100);
+
+        return energy;
     }
     // MMUD Explorer frmMain.frm 27917-27951 and MudInfo formula publication.
     // Classic natural critical chance is capped before Quick-and-Deadly, quest, and item modifiers.
@@ -393,6 +431,14 @@ public static class RuntimeClassicPhysicalFormulaCalculator
     {
         if (combinedCriticalChance <= 40) return Math.Clamp(combinedCriticalChance, 0, 99);
         return Math.Clamp(40 + ((combinedCriticalChance - 40) / 3), 0, 99);
+    }
+
+    // Stock MajorMUD physical hit checks use an inclusive 1..100 roll.
+    // The stock hit floor/cap are 8/99, and a roll equal to the final chance succeeds.
+    public static bool IsHitRollSuccessful(int hitChance, int roll)
+    {
+        if (roll < 1 || roll > 100) throw new ArgumentOutOfRangeException(nameof(roll));
+        return roll <= Math.Clamp(hitChance, 0, 100);
     }
 
     // Classic percentage checks use an inclusive 1..100 roll. A chance of 1 succeeds
@@ -487,6 +533,11 @@ public sealed class RuntimeClassicPhysicalFormulaSmokeReport
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStrengthMaximumDamageBonus(49) == 0, "strength-fix-truncation"); report.Checks.Add("strength-fix-truncation");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStrengthMaximumDamageBonus(40) == -1, "strength-negative-bonus"); report.Checks.Add("strength-negative-bonus");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50) == 24, "attack-energy-known-vector"); report.Checks.Add("attack-energy-known-vector");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 0, 50) == 18, "attack-energy-zero-encumbrance-75-percent"); report.Checks.Add("attack-energy-zero-encumbrance-75-percent");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 40, 50, 60) == 31, "attack-energy-strength-requirement-and-medium-encumbrance"); report.Checks.Add("attack-energy-strength-requirement-and-medium-encumbrance");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 100, 50) == 30, "attack-energy-heavy-encumbrance-125-percent"); report.Checks.Add("attack-energy-heavy-encumbrance-125-percent");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80) == 19, "attack-energy-speed-adjustment"); report.Checks.Add("attack-energy-speed-adjustment");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80, true) == 24, "backstab-ignores-speed-adjustment"); report.Checks.Add("backstab-ignores-speed-adjustment");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(1, 50, 50, 50) == 1, "natural-critical-minimum-one"); report.Checks.Add("natural-critical-minimum-one");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(50, 100, 90, 80) == 13, "natural-critical-stat-vector"); report.Checks.Add("natural-critical-stat-vector");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(500, 500, 500, 500) == 75, "natural-critical-cap-75"); report.Checks.Add("natural-critical-cap-75");
@@ -496,6 +547,16 @@ public sealed class RuntimeClassicPhysicalFormulaSmokeReport
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(40) == 40, "final-critical-no-diminishing-through-forty"); report.Checks.Add("final-critical-no-diminishing-through-forty");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(43) == 41, "final-critical-one-third-excess"); report.Checks.Add("final-critical-one-third-excess");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateFinalCriticalChance(1000) == 99, "final-critical-cap-99"); report.Checks.Add("final-critical-cap-99");
+            Require(RuntimeClassicPhysicalFormulaCalculator.IsHitRollSuccessful(8, 8), "hit-inclusive-floor-boundary"); report.Checks.Add("hit-inclusive-floor-boundary");
+            Require(!RuntimeClassicPhysicalFormulaCalculator.IsHitRollSuccessful(8, 9), "hit-floor-next-roll-fails"); report.Checks.Add("hit-floor-next-roll-fails");
+            Require(RuntimeClassicPhysicalFormulaCalculator.IsHitRollSuccessful(99, 99), "hit-inclusive-cap-boundary"); report.Checks.Add("hit-inclusive-cap-boundary");
+            Require(!RuntimeClassicPhysicalFormulaCalculator.IsHitRollSuccessful(99, 100), "hit-cap-roll-100-fails"); report.Checks.Add("hit-cap-roll-100-fails");
+            var hitFloor = ClassicCombatResolver.CalculateHitChance(ClassicAttackType.NormalWeapon, new ClassicCombatantStats(1, 0, 0, 0, 0), new ClassicCombatantStats(0, 0, 9999, 0, 0));
+            Require(hitFloor == 8, "stock-hit-floor-eight"); report.Checks.Add("stock-hit-floor-eight");
+            var hitCap = ClassicCombatResolver.CalculateHitChance(ClassicAttackType.NormalWeapon, new ClassicCombatantStats(100, 0, 0, 0, 0), new ClassicCombatantStats(0, 0, 0, 0, 0));
+            Require(hitCap == 99, "stock-hit-cap-ninety-nine"); report.Checks.Add("stock-hit-cap-ninety-nine");
+            var zeroBackstabDefense = ClassicCombatResolver.CalculateHitChance(ClassicAttackType.Backstab, new ClassicCombatantStats(25, 0, 0, 0, 0), new ClassicCombatantStats(0, 0, 0, 0, 0));
+            Require(zeroBackstabDefense == 99, "stock-backstab-zero-defense-cap"); report.Checks.Add("stock-backstab-zero-defense-cap");
             Require(RuntimeClassicPhysicalFormulaCalculator.IsCriticalRollSuccessful(1, 1), "critical-one-percent-lower-bound"); report.Checks.Add("critical-one-percent-lower-bound");
             Require(!RuntimeClassicPhysicalFormulaCalculator.IsCriticalRollSuccessful(1, 2), "critical-one-percent-upper-fail"); report.Checks.Add("critical-one-percent-upper-fail");
             Require(RuntimeClassicPhysicalFormulaCalculator.IsCriticalRollSuccessful(100, 100), "critical-hundred-percent"); report.Checks.Add("critical-hundred-percent");

@@ -1,0 +1,347 @@
+{
+  "pass": true,
+  "passed": 68,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "field-contract-roomtype-short",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "field-contract-trapstate-short",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-Active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-Inactive",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-Hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-ActiveMovement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-InactiveMovement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-state-validation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-room-exit-slots-10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-para2-signed16",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-type9-damage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-type24-spell",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evidence-five-states",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ability40-findtraps",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ability41-disarmtraps",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ability179-findtrapsvalue",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-helper-present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-recognizes-ability41",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-recognizes-traps-name",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-skill-gate-message",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-block-found",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "disarm-roll-remains-gated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-random-in-disarm-boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-trap-state-mutation-in-disarm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "classic-trap-owner-file",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "para2-future-projection-key",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-infer-active-comment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "wccmp002-boundary-comment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "apply-exit-trap-failclosed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "projected-state-still-failclosed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generic-trap-extension-comment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generic-not-classic-comment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-current-pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-classic-owner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-generic-not-classic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-no-generic-trap-timers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-wccmp002-required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry-para2-not-recovered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "message-conflict-unresolved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "message-docs-para3-para4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "message-editor-conflict",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "message-no-binding-policy",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mme-mdb-insufficient",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "recovery-source-wccmp002",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "recovery-status-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fallback-failclosed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger-update-0298",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-ledger-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-ledger-signed16",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-ledger-wccmp002",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "trap-ledger-skill-gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "audit-current-ledger",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "audit-current-scope",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "scope-update-0298",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-pass-73",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-strong-76",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-unknown-28",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-total-177",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-strict-41.2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "score-backed-84.2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generic-trap-reset-not-native",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "classic-reset-unknown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "world-reset-order-not-promoted",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_ownership_scope_0298.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/Parity/majormud_parity_assertions_0298.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Librarium/RemainingSystems/remaining_systems_registry.json",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "json:Reports/RuntimeVerification/majormud_parity_scorecard_0298.json",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

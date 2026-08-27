@@ -34,7 +34,7 @@ public sealed partial class RuntimeLivingWorldService
             var prefix = NpcStatusPrefix + spellId + ".";
             foreach (var key in metadata.Keys.Where(key => key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)).ToArray())
                 metadata.Remove(key);
-            var expiresAtUtc = nowUtc.AddSeconds(checked((long)durationRounds * RuntimeClassicLiveStatusCatalog.CombatRoundSeconds));
+            var expiresAtUtc = nowUtc.AddSeconds(checked((long)durationRounds * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds));
             metadata[prefix + "duration_rounds"] = durationRounds.ToString(CultureInfo.InvariantCulture);
             metadata[prefix + "applied_at_utc"] = nowUtc.ToString("O", CultureInfo.InvariantCulture);
             metadata[prefix + "expires_at_utc"] = expiresAtUtc.ToString("O", CultureInfo.InvariantCulture);

@@ -248,7 +248,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         SendCommandCoreAsync(sessionId, command, echoToTerminal: true, ClientCommandOrigin.Human, cancellationToken);
 
     public Task SendCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default) =>
-        SendCommandCoreAsync(sessionId, origin == ClientCommandOrigin.Borin ? FormatBorinCommand(command) : command,
+        SendCommandCoreAsync(sessionId, origin == ClientCommandOrigin.AutonomousAgent ? FormatAutonomousAgentCommand(command) : command,
             echoToTerminal: true, origin, cancellationToken);
 
     public Task SendSensitiveCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default) =>
@@ -257,7 +257,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     public Task SendSensitiveCommandAsAsync(string sessionId, string command, ClientCommandOrigin origin, CancellationToken cancellationToken = default) =>
         SendCommandCoreAsync(sessionId, command, echoToTerminal: false, origin, cancellationToken);
 
-    private static string FormatBorinCommand(string command)
+    private static string FormatAutonomousAgentCommand(string command)
     {
         var normalized = Regex.Replace(command?.Trim() ?? string.Empty, @"\s+", " ");
         if (normalized.Length == 0) return normalized;
@@ -265,7 +265,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         if (split < 0) return normalized.ToLowerInvariant();
         var root = normalized[..split].ToLowerInvariant();
         var arguments = normalized[(split + 1)..];
-        // Preserve Borin's authored speech and character names; ordinary command
+        // Preserve authored speech and character names for autonomous agents; ordinary command
         // targets produced by deterministic planners are rendered naturally.
         return root is "say" or "tell" or "telepath" or "group" or "party" or "gos" or "gossip" or "broadgang" or "bg"
             ? $"{root} {arguments}"
@@ -305,6 +305,15 @@ public sealed partial class ClientSessionService : IClientSessionService
         var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
         if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
             throw new InvalidOperationException($"{session.DisplayName} is not connected.");
+
+        // A live TCP socket is not the same thing as a logged-in MajorMUD
+        // character. Keep autonomous/protocol traffic off the wire until
+        // a real game prompt or room has been observed. Human input and the
+        // dedicated SystemLogin path remain available so authentication can
+        // complete. Reforged-only private protocol traffic is additionally
+        // blocked on Omniverse/unknown external BBS hosts.
+        if (!ClientCommandIsolationPolicy.CanTransmit(session, origin))
+            return;
 
         await runtime.SendGate.WaitAsync(cancellationToken);
         try
@@ -431,6 +440,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.CurrentRoomDescription = string.Empty;
             session.CurrentRoomCurrency = string.Empty;
             session.CurrentRoomExits.Clear();
+            session.LastRawExitText = string.Empty;
             session.CurrentRoomNpcs.Clear();
             session.CurrentRoomNpcDetails.Clear();
             session.CurrentRoomNpcDetailsUpdatedAt = null;
@@ -574,6 +584,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.CurrentRoomDescription = string.Empty;
         session.CurrentRoomCurrency = string.Empty;
         session.CurrentRoomExits.Clear();
+        session.LastRawExitText = string.Empty;
         session.CurrentRoomNpcs.Clear();
         session.CurrentRoomNpcDetails.Clear();
         session.CurrentRoomNpcDetailsUpdatedAt = null;
@@ -861,7 +872,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     private void ParsePartialStatus(ClientSessionConnection session, string partial)
     {
         // Prompts and status ticks often arrive without CR/LF. Preserve and parse
-        // them immediately so Borin sees the same live state as the terminal.
+        // them immediately so autonomous consumers see the same live state as the terminal.
         var clean = StripAnsiForPromptDetection(partial).Trim();
         session.LastReceivedLine = clean;
         session.LastServerActivityAt = DateTimeOffset.Now;
@@ -1029,12 +1040,16 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.CurrentRoomExits.Clear();
             foreach (var exit in roomDisplay.Exits)
                 session.CurrentRoomExits.Add(exit);
+            session.LastRawExitText = roomDisplay.RawExitText;
             session.CurrentRoomDescription = roomDisplay.Description;
             session.CurrentRoomCurrency = roomDisplay.Currency;
             ReplaceRoomValues(session.CurrentRoomNpcs, roomDisplay.Npcs);
             ReplaceRoomValues(session.CurrentRoomPlayers, roomDisplay.Players);
             ReplaceRoomValues(session.CurrentRoomItems, roomDisplay.Items);
-            session.ExitsUpdatedAt = DateTimeOffset.Now;
+            // A room display may contain an exit line whose native decoration we
+            // do not understand yet. Do not turn a zero-direction parse into
+            // authoritative "no exits" unless the server explicitly reported none.
+            session.ExitsUpdatedAt = roomDisplay.ExitsVerified ? DateTimeOffset.Now : null;
             if (_runtime.TryGetValue(session.SessionId, out var runtime) && runtime.RoomConfirmation is not null && roomChanged &&
                 (!string.Equals(roomDisplay.RoomName, runtime.ExpectedPreviousRoom, StringComparison.OrdinalIgnoreCase) ||
                  !string.IsNullOrWhiteSpace(roomDisplay.RoomKey)))
@@ -1248,12 +1263,13 @@ public sealed partial class ClientSessionService : IClientSessionService
         if (!string.IsNullOrWhiteSpace(room.RoomKey)) session.CurrentRoomKey = room.RoomKey;
         session.CurrentRoomDescription = room.Description;
         session.CurrentRoomCurrency = room.Currency;
+        session.LastRawExitText = room.RawExitText;
         ReplaceRoomValues(session.CurrentRoomExits, room.Exits);
         ReplaceRoomValues(session.CurrentRoomNpcs, room.Npcs);
         ReplaceRoomValues(session.CurrentRoomPlayers, room.Players);
         ReplaceRoomValues(session.CurrentRoomItems, room.Items);
         session.RoomUpdatedAt = DateTimeOffset.Now;
-        session.ExitsUpdatedAt = session.RoomUpdatedAt;
+        session.ExitsUpdatedAt = room.ExitsVerified ? session.RoomUpdatedAt : null;
     }
 
     private static void ReplaceRoomValues(ObservableCollection<string> target, IEnumerable<string> values)

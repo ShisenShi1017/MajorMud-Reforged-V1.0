@@ -1,0 +1,342 @@
+# Pass 8 → Pass 27 Cumulative Updated Files + Latest Trainer/Editor Integration
+
+This repair-safe overlay contains the newest version of every project file touched from Pass 8 through Pass 27, plus the latest user-supplied Borin Trainer and Custom1 Simple Editor updates. Unchanged repository bulk, character saves, Python caches, compiled artifacts, and external evidence archives are intentionally excluded.
+
+## Post-install compile hotfix
+- Fixed `RuntimeBundleDRemainingExhaustionAudit.cs`: `StrengthAlternative` is a non-nullable Boolean and is now evaluated directly instead of compared with `null`.
+- Fixed `RuntimeLiveWorld.cs`: renamed the toggle-path local to `toggledEnabled` so it no longer conflicts with the later `enabled` local in the same method.
+- This hotfix does not change Classic parity classifications or gameplay semantics.
+
+## Post-Pass27 trainer/editor integration
+- Latest `borin_trainer.zip` checked against the Pass 27 cumulative package: 7 of 8 trainer files were already byte-identical.
+- `Apps/Source/Reforged.Server/ServerRuntimeHost.cs` from the trainer ZIP was older and would revert the proven Classic player autosave from 60 seconds to 5 minutes, so the Pass 27 host version is retained while all trainer functionality remains present.
+- Latest Custom1 Simple Editor update is integrated: 4 existing editor/compiler files are replaced with the supplied newer versions and `Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs` is added.
+- This combined ZIP is the install baseline for the next parity pass.
+
+## Current parity
+- PASS: **73**
+- STRONG: **76**
+- UNKNOWN: **28**
+- Total: **177**
+- Strict parity: **41.2%**
+- Evidence-backed: **84.2%**
+
+## Pass 27 summary
+- Native RoomRec evidence fixes trap Para2 as a signed 16-bit state field: 0 Active, 1 Inactive, 2 Hidden, 3 Active movement, 4 Inactive movement.
+- Classic `DISARM TRAP <direction>` now enforces the native Traps-skill admission requirement before the unresolved native detection/disarm dispatcher.
+- The generic Reforged `RuntimeTrapService` is explicitly not the Classic parity authority; speculative charges/rearm/persistence do not count as MajorMUD behavior.
+- MMExplorer's Rooms-table projection is confirmed lossy for trap Para2. Exact per-exit state recovery now correctly targets stock `WCCMP002` room records or an equivalent native RoomRec export.
+- Conflicting retained documentation for trap Para3/Para4 passage/failure message ownership remains unresolved; no message mapping is guessed.
+- Exact SEARCH/DISARM rolls, failed-disarm triggering, trap state transitions, reset/rearm interaction, and world-reset ordering remain UNKNOWN/fail-closed.
+- Dedicated Pass 27 validation: **68/68 PASS**.
+- XP-sharing regression: **16/16 PASS**; both combat suites, native economy markup, and Gameplay Group 4 also PASS.
+
+## Package counts
+- Pass 27 changed/new project files: **18**
+- New cumulative members in Pass 27: **11**
+- Cumulative project files: **274**
+- ZIP members including this manifest: **275**
+
+## Pass 27 changed/new project files
+- `Apps/Source/Reforged.Server/RuntimeLivingWorld.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs`
+- `Apps/Source/Reforged.Server/RuntimeTraps.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `CHANGELOG.md`
+- `Docs/CODE_UPDATE_0298_TRAP_STATE_RESET_BOUNDARY_CLOSURE.md`
+- `Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json`
+- `Librarium/Parity/majormud_ownership_scope_0298.json`
+- `Librarium/Parity/majormud_parity_assertions_0298.json`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `README.md`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/TRAP_STATE_RESET_BOUNDARY_0298.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0298.md`
+- `Reports/RuntimeVerification/PASS27_VALIDATION_0298.md`
+- `Reports/RuntimeVerification/trap_state_reset_boundary_pass27_static_validation_0298.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0298.json`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+
+## Cumulative project files
+- `.github/workflows/dotnet-server.yml`
+- `AI/Training/README.md`
+- `AI/Training/borin_headless_trainer.py`
+- `AI/Training/borin_training_config.json`
+- `Apps/Compiler.Tests/Program.cs`
+- `Apps/Compiler/Program.cs`
+- `Apps/Compiler/src/LibrariumDataWriter.cs`
+- `Apps/Compiler/src/WorldOverrideEngine.cs`
+- `Apps/Editor/README.md`
+- `Apps/Source/Reforged.App/App.xaml.cs`
+- `Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs`
+- `Apps/Source/Reforged.App/BuildRepairGlobalUsings.cs`
+- `Apps/Source/Reforged.App/Reforged.App.csproj`
+- `Apps/Source/Reforged.App/Services/CustomWorldEditorService.cs`
+- `Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs`
+- `Apps/Source/Reforged.App/Services/ReforgedHostController.cs`
+- `Apps/Source/Reforged.App/ViewModels/BorinForgeViewModel.cs`
+- `Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs`
+- `Apps/Source/Reforged.App/Views/EditorView.xaml`
+- `Apps/Source/Reforged.Server/ClassicCombatResolver.cs`
+- `Apps/Source/Reforged.Server/ClassicRuntimeAudit.cs`
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeActorsAbilities.cs`
+- `Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterAlignmentAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterDeath.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterDecodeBundleAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterLifecycle.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicCasino.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicCharacterFormulaCalculator.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicCombatAnsi.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicDecodedFailureBranch.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicEconomyParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicEconomyPricing.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicGangGameplay.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicGangState.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicNativeTextblockPayloadAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicNpcAiNativeClosureAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicNpcNativeFieldContract.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicPartyGameplay.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicRoomExitNativeFieldContract.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicRoomsDoorsTrapsParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicShare.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicTextblockGraphAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeClientPanelData.cs`
+- `Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs`
+- `Apps/Source/Reforged.Server/RuntimeCombatDecodeBundleAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeCommandRouting.cs`
+- `Apps/Source/Reforged.Server/RuntimeCommandSystem.cs`
+- `Apps/Source/Reforged.Server/RuntimeCommunication.cs`
+- `Apps/Source/Reforged.Server/RuntimeCommunicationSmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimeEconomyNativeMarkup.cs`
+- `Apps/Source/Reforged.Server/RuntimeEconomyNativeMarkupSmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimeHeadlessTraining.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveCombat.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveGameplay.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveGameplayPart6.cs`
+- `Apps/Source/Reforged.Server/RuntimeLivePowers.cs`
+- `Apps/Source/Reforged.Server/RuntimeLivePvp.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveWorld.cs`
+- `Apps/Source/Reforged.Server/RuntimeLivingWorld.cs`
+- `Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudCompatibility.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudNativeHelp.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudPlus.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudSpawnTiming.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudTimerAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeMultiplayerCompletion.cs`
+- `Apps/Source/Reforged.Server/RuntimeNpcModels.cs`
+- `Apps/Source/Reforged.Server/RuntimeNpcSpawnLifecycle.cs`
+- `Apps/Source/Reforged.Server/RuntimePartyCoordination.cs`
+- `Apps/Source/Reforged.Server/RuntimePartyCoordinationSmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimePlayerCombatProfiles.cs`
+- `Apps/Source/Reforged.Server/RuntimeTransportServiceSmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimeTransportServices.cs`
+- `Apps/Source/Reforged.Server/RuntimeTraps.cs`
+- `Apps/Source/Reforged.Server/RuntimeWccSysopCommands.cs`
+- `Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs`
+- `Apps/Source/Reforged.Server/ServerNetworkHost.cs`
+- `Apps/Source/Reforged.Server/ServerRuntimeHost.cs`
+- `CHANGELOG.md`
+- `Config/server.worlds.json`
+- `Docs/CODE_UPDATE_0279_CUSTOM_WORLD_EDITOR_AND_CUSTOM1.md`
+- `Docs/CODE_UPDATE_0279_MAJORMUD_CHARACTER_ADVANCEMENT_PARITY.md`
+- `Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md`
+- `Docs/CODE_UPDATE_0281_CLASSIC_ROOMS_DOORS_TRAPS_PARITY.md`
+- `Docs/CODE_UPDATE_0282_MAJORMUD_ECONOMY_TRANSACTIONS_SERVICES_PARITY.md`
+- `Docs/CODE_UPDATE_0283_CHARACTER_PROGRESSION_NATIVE_CLOSURE.md`
+- `Docs/CODE_UPDATE_0284_WORLDGROUP_OWNERSHIP_SCOPE.md`
+- `Docs/CODE_UPDATE_0285_DEATH_LAW_PVP_LIFECYCLE_CLOSURE.md`
+- `Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md`
+- `Docs/CODE_UPDATE_0287_CLASSIC_ROOMS_NATIVE_SCHEMA_TRAP_STATE_CLOSURE.md`
+- `Docs/CODE_UPDATE_0288_GIVE_SHOPS_TRANSPORT_CLOSURE.md`
+- `Docs/CODE_UPDATE_0289_COMMANDS_COMMUNICATION_PARTY_COORDINATION.md`
+- `Docs/CODE_UPDATE_0290_TIMERS_RESETS_WORLD_RULES_CLOSURE.md`
+- `Docs/CODE_UPDATE_0291_SETTINGS_HEALERS_ACCESS_RANKINGS_CLOSURE.md`
+- `Docs/CODE_UPDATE_0292_GANGS_CASINO_ARENA_TOP_CLOSURE.md`
+- `Docs/CODE_UPDATE_0293_HEALERS_ACCESS_ROOM_COMMANDS_CLOSURE.md`
+- `Docs/CODE_UPDATE_0294_COMBAT_XP_SHARING_CORRECTION.md`
+- `Docs/CODE_UPDATE_0295_EXPERIENCE_CHARTS_PARTY_REWARD_BOUNDARY.md`
+- `Docs/CODE_UPDATE_0296_DOORS_LOCKS_TRAPS_ROOM_EFFECTS_CLOSURE.md`
+- `Docs/CODE_UPDATE_0297_DOOR_REQUIREMENTS_TRAP_STATE_CONTAINER_SCOPE.md`
+- `Docs/CODE_UPDATE_0298_TRAP_STATE_RESET_BOUNDARY_CLOSURE.md`
+- `Docs/Economy/ECONOMY_NATIVE_MARKUP_RUNTIME_PASS_0162.md`
+- `Librarium/Objects/shops/shop_catalog_0121.json`
+- `Librarium/Objects/triggers/mmexplorer_room_interaction_records_0140.json`
+- `Librarium/Overlays/Custom1/overlay_manifest_0127.json`
+- `Librarium/Parity/majormud_character_advancement_evidence_0279.json`
+- `Librarium/Parity/majormud_character_progression_evidence_0283.json`
+- `Librarium/Parity/majormud_combat_xp_sharing_evidence_0294.json`
+- `Librarium/Parity/majormud_commands_communication_party_evidence_0289.json`
+- `Librarium/Parity/majormud_death_law_pvp_lifecycle_evidence_0285.json`
+- `Librarium/Parity/majormud_door_requirements_container_scope_evidence_0297.json`
+- `Librarium/Parity/majormud_doors_traps_room_effects_evidence_0296.json`
+- `Librarium/Parity/majormud_economy_evidence_0282.json`
+- `Librarium/Parity/majormud_experience_party_reward_evidence_0295.json`
+- `Librarium/Parity/majormud_gangs_casino_arena_top_evidence_0292.json`
+- `Librarium/Parity/majormud_give_shops_transport_evidence_0288.json`
+- `Librarium/Parity/majormud_healers_access_room_commands_evidence_0293.json`
+- `Librarium/Parity/majormud_npc_ai_native_evidence_0286.json`
+- `Librarium/Parity/majormud_ownership_scope_0284.json`
+- `Librarium/Parity/majormud_ownership_scope_0291.json`
+- `Librarium/Parity/majormud_ownership_scope_0296.json`
+- `Librarium/Parity/majormud_ownership_scope_0297.json`
+- `Librarium/Parity/majormud_ownership_scope_0298.json`
+- `Librarium/Parity/majormud_parity_assertions_0279.json`
+- `Librarium/Parity/majormud_parity_assertions_0280.json`
+- `Librarium/Parity/majormud_parity_assertions_0281.json`
+- `Librarium/Parity/majormud_parity_assertions_0282.json`
+- `Librarium/Parity/majormud_parity_assertions_0283.json`
+- `Librarium/Parity/majormud_parity_assertions_0284.json`
+- `Librarium/Parity/majormud_parity_assertions_0285.json`
+- `Librarium/Parity/majormud_parity_assertions_0286.json`
+- `Librarium/Parity/majormud_parity_assertions_0287.json`
+- `Librarium/Parity/majormud_parity_assertions_0288.json`
+- `Librarium/Parity/majormud_parity_assertions_0289.json`
+- `Librarium/Parity/majormud_parity_assertions_0290.json`
+- `Librarium/Parity/majormud_parity_assertions_0291.json`
+- `Librarium/Parity/majormud_parity_assertions_0292.json`
+- `Librarium/Parity/majormud_parity_assertions_0293.json`
+- `Librarium/Parity/majormud_parity_assertions_0295.json`
+- `Librarium/Parity/majormud_parity_assertions_0296.json`
+- `Librarium/Parity/majormud_parity_assertions_0297.json`
+- `Librarium/Parity/majormud_parity_assertions_0298.json`
+- `Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json`
+- `Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json`
+- `Librarium/Parity/majormud_settings_healers_access_rankings_evidence_0291.json`
+- `Librarium/Parity/majormud_timers_resets_world_rules_evidence_0290.json`
+- `Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json`
+- `Librarium/RemainingSystems/communication_catalog.json`
+- `Librarium/RemainingSystems/party_catalog.json`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `Librarium/RemainingSystems/transport_service_catalog.json`
+- `Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json`
+- `Librarium/Runtime/Economy/native_markup_catalog_0162.json`
+- `Librarium/WorldOverrides/Custom1/README.md`
+- `Librarium/WorldOverrides/Custom1/overrides.json`
+- `README.md`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/COMBAT_XP_SHARING_CORRECTION_0294.md`
+- `Reports/RuntimeVerification/DOORS_LOCKS_TRAPS_ROOM_EFFECTS_0296.md`
+- `Reports/RuntimeVerification/DOOR_REQUIREMENTS_TRAP_STATE_CONTAINER_SCOPE_0297.md`
+- `Reports/RuntimeVerification/EXPERIENCE_PARTY_REWARD_BOUNDARY_0295.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0279.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0280.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0281.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0282.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0283.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0284.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0285.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0286.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0287.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0288.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0289.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0290.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0291.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0292.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0293.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0295.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0296.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0297.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0298.md`
+- `Reports/RuntimeVerification/PASS15_VALIDATION_0285.md`
+- `Reports/RuntimeVerification/PASS16_VALIDATION_0286.md`
+- `Reports/RuntimeVerification/PASS17_VALIDATION_0287.md`
+- `Reports/RuntimeVerification/PASS18_VALIDATION_0288.md`
+- `Reports/RuntimeVerification/PASS19_VALIDATION_0289.md`
+- `Reports/RuntimeVerification/PASS20_VALIDATION_0290.md`
+- `Reports/RuntimeVerification/PASS21_VALIDATION_0291.md`
+- `Reports/RuntimeVerification/PASS22_VALIDATION_0292.md`
+- `Reports/RuntimeVerification/PASS23_VALIDATION_0293.md`
+- `Reports/RuntimeVerification/PASS24_VALIDATION_0295.md`
+- `Reports/RuntimeVerification/PASS25_VALIDATION_0296.md`
+- `Reports/RuntimeVerification/PASS26_VALIDATION_0297.md`
+- `Reports/RuntimeVerification/PASS27_VALIDATION_0298.md`
+- `Reports/RuntimeVerification/PASS9_VALIDATION_0279.md`
+- `Reports/RuntimeVerification/TRAP_STATE_RESET_BOUNDARY_0298.md`
+- `Reports/RuntimeVerification/WORLDGROUP_OWNERSHIP_SCOPE_0284.md`
+- `Reports/RuntimeVerification/character_advancement_pass9_static_validation_0279.json`
+- `Reports/RuntimeVerification/classic_economy_service_coverage.json`
+- `Reports/RuntimeVerification/combat_xp_sharing_correction_0294.json`
+- `Reports/RuntimeVerification/commands_communication_party_pass19_static_validation_0289.json`
+- `Reports/RuntimeVerification/death_law_pvp_lifecycle_pass15_static_validation_0285.json`
+- `Reports/RuntimeVerification/door_requirements_trap_container_pass26_static_validation_0297.json`
+- `Reports/RuntimeVerification/doors_locks_traps_room_effects_pass25_static_validation_0296.json`
+- `Reports/RuntimeVerification/economy_transactions_services_pass12_static_validation_0282.json`
+- `Reports/RuntimeVerification/experience_party_reward_pass24_static_validation_0295.json`
+- `Reports/RuntimeVerification/gangs_casino_arena_top_pass22_static_validation_0292.json`
+- `Reports/RuntimeVerification/give_shops_transport_pass18_static_validation_0288.json`
+- `Reports/RuntimeVerification/healers_access_room_commands_pass23_static_validation_0293.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0279.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0280.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0281.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0282.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0283.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0284.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0285.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0286.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0287.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0288.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0289.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0290.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0291.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0292.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0293.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0295.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0296.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0297.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0298.json`
+- `Reports/RuntimeVerification/native_character_progression_pass13_static_validation_0283.json`
+- `Reports/RuntimeVerification/native_npc_ai_pass16_static_validation_0286.json`
+- `Reports/RuntimeVerification/native_npc_combat_argument_boundary.md`
+- `Reports/RuntimeVerification/npc_ai_pass10_static_validation_0280.json`
+- `Reports/RuntimeVerification/rooms_doors_traps_pass11_static_validation_0281.json`
+- `Reports/RuntimeVerification/rooms_native_schema_trap_state_pass17_static_validation_0287.json`
+- `Reports/RuntimeVerification/settings_healers_access_rankings_pass21_static_validation_0291.json`
+- `Reports/RuntimeVerification/timers_resets_world_rules_pass20_static_validation_0290.json`
+- `Reports/RuntimeVerification/trap_state_reset_boundary_pass27_static_validation_0298.json`
+- `Reports/RuntimeVerification/worldgroup_ownership_pass14_static_validation_0284.json`
+- `Tools/Validation/validate_combat_xp_sharing_correction.py`
+- `Tools/Validation/validate_economy_native_markup_runtime.py`
+- `Tools/Validation/validate_pass10_npc_parity.py`
+- `Tools/Validation/validate_pass11_rooms_doors_traps_parity.py`
+- `Tools/Validation/validate_pass12_economy_transactions_services_parity.py`
+- `Tools/Validation/validate_pass13_native_character_progression_closure.py`
+- `Tools/Validation/validate_pass14_worldgroup_ownership_scope.py`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass16_native_npc_ai.py`
+- `Tools/Validation/validate_pass17_rooms_native_schema_trap_state.py`
+- `Tools/Validation/validate_pass18_give_shops_transport.py`
+- `Tools/Validation/validate_pass19_commands_communication_party.py`
+- `Tools/Validation/validate_pass20_timers_resets_world_rules.py`
+- `Tools/Validation/validate_pass21_settings_healers_access_rankings.py`
+- `Tools/Validation/validate_pass22_gangs_casino_arena_top.py`
+- `Tools/Validation/validate_pass23_healers_access_room_commands.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass25_doors_locks_traps_room_effects.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+
+## Post-Pass27 WPF duplicate-source build repair
+- `Apps/Source/Reforged.App/App.xaml`
+- `Apps/Source/Reforged.App/App.xaml.cs`
+- `Apps/Source/Reforged.App/MainWindow.xaml`
+- `Apps/Source/Reforged.App/MainWindow.xaml.cs`
+- `Tools/Repair-ReforgedApp-DuplicateSources.ps1`
+- `Repair-ReforgedApp-Build.cmd`
+- `WPF_DUPLICATE_REPAIR_README.txt`

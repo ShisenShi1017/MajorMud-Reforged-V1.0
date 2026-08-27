@@ -1,5 +1,70 @@
 # Release Notes
 
+## Pass 27 post-integration compile hotfix
+
+- Repairs CS0037 in `RuntimeBundleDRemainingExhaustionAudit.cs` after `StrengthAlternative` became a non-nullable Boolean.
+- Repairs CS0136 in `RuntimeLiveWorld.cs` by removing the duplicate `enabled` local declaration.
+- No gameplay or parity-score change.
+
+## CodeUpdate0298 - Trap state and reset boundary closure
+
+- Defines the native type-09/type-24 trap Para2 state encoding: 0 Active, 1 Inactive, 2 Hidden, 3 Active movement, 4 Inactive movement.
+- Enforces the Traps-skill requirement for `DISARM TRAP <direction>` without inventing the native SEARCH or disarm roll.
+- Corrects the missing-state recovery source from MMExplorer MDB to native WCCMP002 RoomRec data.
+- Preserves the unresolved Para3/Para4 trap-message ownership conflict rather than assigning guessed messages.
+- Separates generic Reforged trap charges/rearm/persistence from the Classic type-09/type-24 trap authority.
+- Leaves exact per-exit state, failed-disarm behavior, transitions, reset/rearm ordering, and native messages UNKNOWN/fail-closed.
+- Parity remains 73 PASS / 76 STRONG / 28 UNKNOWN = 177.
+
+## CodeUpdate0297 - Door requirements, trap state, and container scope
+
+- Applies decoded numeric Picklocks/Strength requirements to explicit PICKLOCK/BASH attempts rather than ordinary traversal.
+- Fixes Boolean Key-exit `strength_alternative` parsing so keyed doors with a Strength route expose BASH correctly.
+- Keeps exact native success rolls and messages evidence-gated after the recovered requirement is met.
+- Keeps 295 decoded exit traps fail-closed when their native Para2 activation state is unavailable; no trap state is guessed.
+- Removes the generic Reforged world-container shell from Classic parity scoring while preserving actual native death-pile, bank, gang-house vault, item-ownership, and chest-loot behavior in their owning systems.
+- Parity: 73 PASS / 76 STRONG / 28 UNKNOWN = 177.
+
+## CodeUpdate0296 - Doors, locks, traps, and room-effect scope
+
+- Stops movement from treating Door/Gate picklock/strength metadata as an automatic traversal requirement.
+- Recognizes `PICKLOCK <direction>` and `DISARM TRAP <direction>` at the native room boundary.
+- Lets `BASH <direction>` resolve a decoded door before combat BASH falls back to a creature target.
+- Leaves exact PICKLOCK/BASH success rolls and trap detection/disarm/state transitions unresolved and fail-closed.
+- Removes the generic Reforged environmental-hazard abstraction from Classic parity scoring; native room effects remain attached to their actual decoded mechanisms.
+- Parity: 73 PASS / 76 STRONG / 29 UNKNOWN = 178.
+
+## CodeUpdate0295 - Experience charts and party reward boundary
+
+- Treats race/class EXP values exclusively as progression-chart costs used to calculate accumulated XP required for each level.
+- Removes the obsolete path that could multiply an earned XP award by race/class EXP percentages.
+- Keeps NPC XP eligibility tied to characters actively fighting that exact NPC at death, not party membership.
+- Preserves integer-quotient XP sharing while leaving the nonzero remainder disposition UNKNOWN.
+- Applies the STRONG-evidence six-character Classic party maximum; exact full-party native text remains unrecovered.
+- Does not auto-split monster money/items across a party; room drops remain independent of `SHARE`, which is the explicit currency-distribution command.
+- Parity remains 73 PASS / 75 STRONG / 31 UNKNOWN = 179.
+
+## CodeUpdate0279 - Custom World 1 and editor foundation
+
+- Enables one isolated `ReforgedCustom` realm, `Custom1`, alongside protected Classic.
+- Wires the integrated desktop Editor workspace to real Classic and Custom1 editor services.
+- Adds Custom1 world settings plus Librarium object browse/search, base-record inspection, scoped JSON patch/upsert/delete overrides, and Build/Rebuild for immediate Host testing.
+- Adds `WorldOverrideEngine`; Custom1 is compiled from canonical Librarium plus `Librarium/WorldOverrides/Custom1/overrides.json`, while Classic explicitly ignores those deltas.
+- Keeps Custom1 on the same runtime-family projection shape as Classic until an explicit custom override changes content.
+- Auto-generates missing runtime data for enabled custom worlds when the embedded Host starts, and CI now generates both Classic and Custom1.
+- Adds recursive-merge regression coverage and static packaging validation. Full .NET execution remains pending in this packaging environment because the .NET SDK is unavailable.
+
+## CodeUpdate0277 - Elemental over-resistance healing merge
+
+- Merges the separate resistance/healing gameplay fix onto the cumulative MajorMUD Parity Pass 6 baseline without rolling back CodeUpdates 0271-0276.
+- Restores signed Cold, Fire, Stone, and Lightning resistance handling: exactly 100% yields zero damage and values above 100% convert incoming elemental damage into HP healing capped at maximum HP.
+- Applies the signed behavior to direct and area NPC hit-spells and hostile decoded player spells targeting characters.
+- Projects Ability 147 as Water resistance without inventing a Water attack-type consumer.
+- Keeps Poison Immunity separate; poison immunity is not converted into speculative poison healing.
+- Preserves Pass 6 native SPELLS/POWERS tables and learned short-spell routing.
+- Does not change the strict parity score solely because this imported gameplay fix was merged; parity promotion remains evidence-gated.
+- .NET build execution remains pending because the packaging environment does not contain the .NET SDK.
+
 ## Classic economy and service closure
 
 All generated Classic shops, banks, trainers, inventory links, item economy records, and economy rules now have explicit runtime coverage. Live purchases apply decoded shop markup, and persistent restocking honors decoded timing, quantity, probability, and stock limits.
@@ -229,3 +294,8 @@ Brother Caelum can now search decoded evidence by file identity, findings, confi
 ## Guardian Hall Phase 3-0163 — Chamber Visual Identity
 Each Guardian room now has a unique parchment palette, accent border, and role-purpose badge for faster visual orientation.
 CodeUpdate0139 now includes the complete decoded WCCMMUD SYSOP/GAMEOP command catalog, authenticated role enforcement, six safely executable native command roots, and explicit fail-closed reporting for commands still awaiting exact native evidence or an owning runtime subsystem.
+
+### Post-Pass27 WPF duplicate-source repair
+- Restores canonical `App` and `MainWindow` WPF source files.
+- Adds a safe repair command that quarantines extra duplicate `Reforged.App.App` / `Reforged.App.MainWindow` definitions, clears stale `bin/obj`, and rebuilds `Reforged.App`.
+- Quarantined files are preserved under `_UpdateQuarantine` rather than deleted.

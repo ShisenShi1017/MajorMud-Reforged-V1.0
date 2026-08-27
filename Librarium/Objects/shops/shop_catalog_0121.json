@@ -4,7 +4,7 @@
   "object_type": "shop",
   "world_scope": "classic/custom/ai",
   "status": "complete_for_current_evidence_corpus",
-  "description": "Shop inventory, buy/sell/repair rules.",
+  "description": "Shop inventory and native buy/sell/restock rules. Repair is not projected as a stock MajorMUD shop service; any Reforged repair mechanic is extension-only.",
   "evidence_bucket": "economy",
   "evidence_total": 79856,
   "source_breakdown": {

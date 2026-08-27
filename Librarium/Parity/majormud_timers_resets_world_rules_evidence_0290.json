@@ -1,0 +1,87 @@
+{
+  "schema": "majormud.timers-resets-world-rules-evidence.v1",
+  "update": "0290",
+  "pass": "Pass 20 — Timers / Resets / World Rules Closure",
+  "policy": "Promote only retained MajorMUD 1.11p/native evidence or strong cross-source correlations. Do not infer universal timer semantics from one subsystem. Unresolved reset ordering, zero-delay behavior, restart/missed-timer behavior, buffer ownership, and host-clock phase remain UNKNOWN.",
+  "native_wccmmud_configuration": {
+    "source": "Librarium/Evidence/native_support_catalog_0020.json",
+    "mcv_file": "WCCMMUD.mcv",
+    "sha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b",
+    "direct_findings": [
+      {
+        "text": "Seconds between saving Player data? 60",
+        "classification": "PASS",
+        "runtime_binding": "RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds = 60 and ServerRuntimeHost character-autosave scheduling"
+      },
+      {
+        "text": "Seconds between saving Buffer data? 300",
+        "classification": "PASS constant / UNKNOWN owner-order",
+        "runtime_binding": "RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds = 300 is retained as evidence only until exact native buffer participants and ordering are recovered"
+      }
+    ],
+    "boundary": "The two interval values do not prove cross-participant save ordering, dirty-buffer semantics, shutdown/crash behavior, rollback, or which Reforged world-state stores correspond to native Buffer data."
+  },
+  "native_help_timing": {
+    "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "findings": [
+      {
+        "message": 201,
+        "topic": "Exit Quit Save",
+        "classification": "PASS",
+        "behavior": "Exit waits five seconds and the character is saved when exit completes. This was already scored before Pass 20; the timing constant is centralized in RuntimeClassicTimingAuthority."
+      },
+      {
+        "message": 205,
+        "topic": "Rest Meditate",
+        "classification": "PASS",
+        "behavior": "REST and MEDITATE require at least 20 seconds before the increased regeneration takes effect; moving, attacking, or being attacked during that period terminates the state and yields no bonus."
+      }
+    ],
+    "runtime_correction": "Ordinary non-movement commands no longer cancel focused regeneration. Movement cancels at command dispatch and actual PvE/PvP combat-entry paths cancel the attacker/defender states."
+  },
+  "spawn_regeneration": {
+    "native_binary_correlation": {
+      "source": "Librarium/BinaryCorrelation0085/wcc_wbb_binary_correlation_0085.json",
+      "strings": [
+        "Room Max: %d  Current: %d  Last Killed: %s Delay: %d",
+        "Minutes before regenerating: %d minutes"
+      ],
+      "classification": "STRONG",
+      "finding": "The native binary exposes Last Killed, Delay, room population, and a minutes-before-regenerating diagnostic family."
+    },
+    "room_entry_evidence": {
+      "source": "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json",
+      "upstream": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt:32",
+      "classification": "STRONG",
+      "finding": "Resetting monster Last Killed makes monsters regenerate the next time someone walks into the room."
+    },
+    "runtime_binding": [
+      "RuntimeLivingWorldService.Tick no longer materializes due NPC respawns from the global heartbeat",
+      "RuntimeLivingWorldService.AdmitDueNpcRespawnsForRoom admits only due slots whose home room matches the entered room",
+      "RuntimeCommandDispatcher calls room-entry admission after successful player movement and after successful party-follower movement before room rendering"
+    ],
+    "remaining_unknown": [
+      "exact native wall-clock minute boundary/phase",
+      "zero Delay semantics",
+      "restart and missed-timer reconciliation",
+      "simultaneous multiple due-spawn ordering beyond deterministic Reforged ordering",
+      "global/world reset interaction"
+    ]
+  },
+  "world_reset_boundary": {
+    "classification": "UNKNOWN",
+    "finding": "Pass 20 does not promote the existing room/area reset policy shell to native MajorMUD truth. Exact reset categories, hard-reset encodings, active-player/combat behavior, corpse/limited-item survival, owner ordering, rollback, and restart interaction still require native evidence."
+  },
+  "score_changes": [
+    {
+      "id": "timers.player-data-save-60s",
+      "state": "PASS",
+      "reason": "direct retained WCCMMUD native configuration string plus active Classic scheduler binding"
+    },
+    {
+      "id": "timers.room-entry-respawn-admission",
+      "state": "STRONG",
+      "reason": "native Last Killed/Delay correlation plus explicit Nightmare Redux behavior description; active runtime binding without claiming exact minute phase"
+    }
+  ]
+}

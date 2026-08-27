@@ -1,0 +1,48 @@
+{
+  "schema": "majormud.classic-room-mechanics-scope.v1",
+  "update": "0296",
+  "pass": 25,
+  "classicScope": {
+    "genericEnvironmentalHazardSubsystem": false,
+    "reason": "Stock RoomType family 0-24 contains no generic environmental-hazard record family. Native room damage/status effects remain owned by decoded trap, cast, text/script, remote-action, and other actual room/exit mechanisms.",
+    "reforgedExtensionOwner": "RuntimeEnvironmentalHazardService"
+  },
+  "doorBoundary": {
+    "movement": "checks resulting door open/locked state only",
+    "explicitActions": [
+      "PICKLOCK <direction>",
+      "BASH <direction>"
+    ],
+    "para2": "PICKLOCK/BASH chance/difficulty field; exact live roll unresolved",
+    "para3": "5-minute open blocks",
+    "para4": "key requirement"
+  },
+  "trapBoundary": {
+    "decodedExitTrapCount": 295,
+    "nativeCommand": "DISARM TRAP <direction>",
+    "searchDiscovery": true,
+    "exactDetectionAndDisarmFormula": "UNKNOWN"
+  },
+  "sources": [
+    {
+      "kind": "retained-native-help",
+      "path": "Librarium/Evidence/native_message_catalog_correlation_0022.json"
+    },
+    {
+      "kind": "retained-room-schema",
+      "path": "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json"
+    },
+    {
+      "kind": "retained-room-trap-evidence",
+      "path": "Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json"
+    },
+    {
+      "kind": "Nightmare-Redux-editor",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/frmRoom.frm"
+    },
+    {
+      "kind": "Nightmare-Redux-MME-export",
+      "url": "https://github.com/syntax53/Nightmare-Redux/blob/e079ebc509f9c5d9d3b4a18eb1dfff74d1f48f83/frmMME_Export.frm"
+    }
+  ]
+}

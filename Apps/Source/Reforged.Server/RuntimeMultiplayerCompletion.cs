@@ -18,6 +18,13 @@ public sealed record RuntimeMultiplayerCompletionSave(
 public sealed record RuntimeMultiplayerLootClaimResult(bool Succeeded, string? FailureCode, int QuantityRemaining);
 public sealed record RuntimeDamageResult(int DamageApplied, int CurrentHealth, bool Died, string? CorpseId, string? TargetActorId);
 
+/// <summary>
+/// Generic Reforged multiplayer completion/smoke model. This type is NOT the Classic
+/// MajorMUD party authority and its invite expiry, leader succession, XP split, corpse,
+/// disconnect, and persistence choices must not be used as native parity evidence.
+/// Classic live party behavior is owned by RuntimePartyCoordinationService plus the
+/// evidence-gated RuntimeLiveGameplayFacade consumers.
+/// </summary>
 public sealed class RuntimeMultiplayerCompletionState
 {
     private readonly object _partyGate = new();

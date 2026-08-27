@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "catalogId": "classic-party-coordination",
   "runtimeOwner": "Reforged.Server.RuntimePartyCoordinationService",
-  "modeBoundary": "Classic-safe compatibility infrastructure; unproven Classic constants remain configurable and provenance-tagged",
+  "modeBoundary": "Classic live party coordination uses a STRONG six-member cap; unresolved leader/rank/disconnect edges remain gated.",
   "lifecycle": [
     "create",
     "invite",
@@ -23,16 +23,21 @@
   "integrations": {
     "communications": "returns deterministic connected-recipient routing",
     "movement": "returns deterministic follower movement requests without bypassing movement validation",
-    "combat": "does not calculate damage, targeting, or shared rewards",
-    "economy": "does not calculate loot or currency distribution",
+    "combat": "NPC XP eligibility is owned by exact-NPC active combat at death, not party membership; party service does not calculate XP.",
+    "economy": "Monster currency/items are not auto-split by party state; explicit SHARE owns voluntary currency distribution.",
     "quests": "does not calculate shared quest credit",
     "sessions": "accepts connected/disconnected state and preserves policy boundary"
   },
   "safeFallbacks": [
     "unknown party membership rejects the operation",
     "unknown permissions fail closed",
-    "expired invitations are removed and rejected",
     "followers move only when connected, opted in, and co-located with the leader",
     "offline members do not receive party chat delivery"
-  ]
+  ],
+  "strongNativeFindings": {
+    "maximumMembers": 6,
+    "frontBackBalance": "front rank count must be at least back rank count",
+    "joinFollow": "JOIN/FOLLOW after invite begins following immediately",
+    "lootBoundary": "monster currency drops to room; no automatic party loot split promoted"
+  }
 }

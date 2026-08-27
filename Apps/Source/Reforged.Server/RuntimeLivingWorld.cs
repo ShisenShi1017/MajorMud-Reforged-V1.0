@@ -532,7 +532,8 @@ public sealed partial class RuntimeLivingWorldService
         var events=new List<string>();
         lock (_gate)
         {
-            events.AddRange(TickNpcSpawnLifecycleLocked(nowUtc, null).Transitions.Select(x => x.EventCode));
+            // MajorMUD lair regeneration is admitted by room entry after the delay has
+            // elapsed; the global heartbeat must not materialize due NPCs into empty rooms.
             events.AddRange(TickLivingWorldCompletionLocked(nowUtc));
             events.AddRange(TickNpcTimedStatusesLocked(nowUtc));
             if(events.Count>0){ Save(); SaveLivingWorldCompletionLocked(); }
@@ -599,6 +600,7 @@ public sealed partial class RuntimeLivingWorldService
 
     private void LoadGeneratedNpcInstances()
     {
+        var spawnTimingCatalog = RuntimeMajorMudSpawnTimingCatalog.Load(_projectRoot);
         foreach(var spawn in _world.Spawns)
         {
             if (!TryResolveSpawnRoom(spawn, out var room, out var reason))
@@ -621,6 +623,7 @@ public sealed partial class RuntimeLivingWorldService
                 var id=$"{spawn.Id}:{npc.Id}:{ordinal}";
                 var aiRelationship = _world.NpcAiCatalog.FindBySpawnId(spawn.Id)
                     ?? throw new InvalidOperationException($"NPC AI relationship missing for generated spawn '{spawn.Id}'.");
+                var spawnTiming = spawnTimingCatalog.Resolve(spawn, npc);
                 var metadata = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
                 {
                     ["source_room_reference"] = FormatSourceRoomReference(spawn),
@@ -636,6 +639,15 @@ public sealed partial class RuntimeLivingWorldService
                     ["npc_ai_monster_group_id"] = aiRelationship.MonsterGroupId.ToString(),
                     ["npc_ai_respawn_minutes"] = aiRelationship.RespawnMinutes.ToString(),
                     ["npc_ai_interaction_model"] = aiRelationship.InteractionModel,
+                    ["npc_respawn_timer_mode"] = spawnTiming.Mode,
+                    ["npc_respawn_timer_source_value"] = spawnTiming.SourceValue.ToString(),
+                    ["npc_respawn_timer_source_unit"] = spawnTiming.SourceUnit,
+                    ["npc_respawn_timer_authority"] = spawnTiming.Authority,
+                    ["npc_respawn_timer_confidence"] = spawnTiming.Confidence,
+                    ["npc_respawn_timer_effective_minutes"] = spawnTiming.EffectiveMinutes.ToString(),
+                    ["npc_respawn_native_minute_gate_pending"] = spawnTiming.NativeMinuteGatePending ? "true" : "false",
+                    ["npc_respawn_native_room_entry_pending"] = spawnTiming.NativeRoomEntryAdmissionPending ? "true" : "false",
+                    ["npc_respawn_timer_note"] = spawnTiming.Note,
                     ["see_hidden"] = npc.SeeHidden ? "1" : "0",
                     ["animal"] = npc.Animal ? "1" : "0",
                     ["charm_level"] = npc.CharmLevel.ToString(),
@@ -659,7 +671,7 @@ public sealed partial class RuntimeLivingWorldService
                     ["maximum_area_population"] = spawn.MaximumAreaPopulation.ToString()
                 };
                 _npcs[id]=new(id,spawn.Id,npc.Id,npc.Name,room.Id,room.Id,
-                    Math.Max(1,npc.HitPoints),Math.Max(1,npc.HitPoints),true,null,aiRelationship.InteractionModel,aiRelationship.RespawnMinutes,metadata);
+                    Math.Max(1,npc.HitPoints),Math.Max(1,npc.HitPoints),true,null,aiRelationship.InteractionModel,spawnTiming.EffectiveMinutes,metadata);
             }
         }
     }
@@ -812,6 +824,16 @@ public sealed partial class RuntimeLivingWorldService
         }
     }
 
+    private static string NormalizeCanonicalItemId(string value)
+    {
+        var trimmed = value?.Trim() ?? string.Empty;
+        if (trimmed.Length == 0) return string.Empty;
+        if (trimmed.StartsWith("item.", StringComparison.OrdinalIgnoreCase)) return trimmed;
+        return int.TryParse(trimmed, out var itemId) && itemId > 0
+            ? $"item.{itemId}"
+            : trimmed;
+    }
+
     private void LoadDecodedExitObjects()
     {
         var exitsPath = Path.Combine(_projectRoot, _world.Definition.DataRoot, _world.Definition.ExitsFile);
@@ -819,7 +841,8 @@ public sealed partial class RuntimeLivingWorldService
         foreach (var value in RuntimeChunkedClassicCatalog.LoadRecords(exitsPath))
         {
             var gateKind = JsonValueReader.ReadString(value, "gate_kind", string.Empty);
-            if (!gateKind.Equals("door", StringComparison.OrdinalIgnoreCase)) continue;
+            if (!gateKind.Equals("door", StringComparison.OrdinalIgnoreCase)
+                && !gateKind.Equals("key", StringComparison.OrdinalIgnoreCase)) continue;
             var id = JsonValueReader.ReadString(value, "id", string.Empty);
             var roomId = ReadRelationship(value, "from_room_id", "from_room");
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(roomId)) continue;
@@ -828,10 +851,23 @@ public sealed partial class RuntimeLivingWorldService
             var qualifier = JsonValueReader.ReadString(value, "qualifier", "Door");
             var keyItemId = string.Empty;
             if (value.TryGetProperty("prerequisites", out var prerequisites) && prerequisites.ValueKind == JsonValueKind.Object)
-                keyItemId = JsonValueReader.ReadString(prerequisites, "required_item_id", string.Empty);
+                keyItemId = NormalizeCanonicalItemId(JsonValueReader.ReadString(prerequisites, "required_item_id", string.Empty));
+            var initiallyOpen = false;
+            var initiallyLocked = gateKind.Equals("key", StringComparison.OrdinalIgnoreCase);
+            if (value.TryGetProperty("edge_state_semantics", out var edgeState) && edgeState.ValueKind == JsonValueKind.Object)
+            {
+                var initialState = JsonValueReader.ReadString(edgeState, "initial_state", string.Empty);
+                if (!string.IsNullOrWhiteSpace(initialState))
+                {
+                    initiallyOpen = initialState.Contains("open", StringComparison.OrdinalIgnoreCase)
+                                    && !initialState.Contains("closed", StringComparison.OrdinalIgnoreCase);
+                    initiallyLocked = initialState.Contains("locked", StringComparison.OrdinalIgnoreCase)
+                                      && !initialState.Contains("unlocked", StringComparison.OrdinalIgnoreCase);
+                }
+            }
             var definition = new RuntimeLivingWorldObjectDefinition(
                 id, roomId, "door", string.IsNullOrWhiteSpace(qualifier) ? $"{direction} door" : qualifier,
-                direction, keyItemId, false, false, targetRoomId, ReadMetadata(value));
+                direction, keyItemId, initiallyOpen, initiallyLocked, targetRoomId, ReadMetadata(value));
             _objectDefinitions[id] = definition;
             _objects[id] = new(id, definition.InitiallyOpen, definition.InitiallyLocked, false, DateTimeOffset.UtcNow);
         }
@@ -1073,10 +1109,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (character.BaseStats.TryGetValue(key, out var stat)) { value = stat; break; }
         }
         if (keys.Any(key => key.Equals("picklocks", StringComparison.OrdinalIgnoreCase) || key.Equals("picklock", StringComparison.OrdinalIgnoreCase)))
-        {
-            value = checked(value + (character.SemanticState?.DerivedStats.TryGetValue("picklocks_bonus", out var equipmentBonus) == true ? equipmentBonus : 0));
-            value = checked(value + RuntimeClassicStatusProjection.Numeric(character, "picklocks"));
-        }
+            return RuntimeClassicCharacterProgressionFormula.PicklocksValue(character);
         return value;
     }
 
@@ -1128,7 +1161,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // incorrectly rejects a valid decoded command.
         if (!session.TryMove(gate.Direction, out var movementResult)) { result = movementResult; return true; }
         BroadcastDeparture(session, previous.Id, gate.Direction);
-        BroadcastArrival(session);
+        BroadcastArrival(session, gate.Direction);
         Save(session);
         result = RenderRoom(session);
         return true;
@@ -1137,6 +1170,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     public bool TryExecuteDecodedWorldCommand(RuntimeSession session, RuntimeCommand command, out string result)
     {
         if (TryExecuteTeleporterCommand(session, command, out result)) return true;
+        if (TryExecuteClassicCasinoCommand(session, command, out result)) return true;
+        if (TryExecuteClassicRoomActionScript(session, command, out result)) return true;
         var living = Living(session);
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
         var matches = living.CaptureWorldObjectDefinitions().Where(definition =>
@@ -1228,6 +1263,23 @@ public sealed partial class RuntimeLiveGameplayFacade
         return Living(session).Interact(session,command,LoadItemState(session));
     }
 
+    private static bool HasClassicDisarmTrapsAbility(RuntimeCharacterRecord character)
+    {
+        foreach(var key in character.Skills.Keys)
+        {
+            if(key.Equals("traps",StringComparison.OrdinalIgnoreCase)
+                ||key.Equals("disarmtraps",StringComparison.OrdinalIgnoreCase)
+                ||key.Equals("disarm-traps",StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            var normalized=key.Trim();
+            var separator=normalized.LastIndexOf('.');
+            if(separator>=0)normalized=normalized[(separator+1)..];
+            if(int.TryParse(normalized,out var abilityId)&&abilityId==41)return true;
+        }
+        return false;
+    }
+
     private static int ReadCharacterSkillValue(RuntimeCharacterRecord character,string skill)
     {
         var keys=skill.Trim().ToLowerInvariant() switch
@@ -1249,8 +1301,118 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     public string DescribeLivingExit(RuntimeSession session,string direction)=>Living(session).DescribeExit(session.CurrentRoom,direction);
+
+    public bool TryExecuteClassicExitAction(RuntimeSession session,RuntimeCommand command,out string result)
+    {
+        result=string.Empty;
+        var action=command.Name.ToLowerInvariant();
+        var direction=command.ArgumentText.Trim();
+        if(action.Equals("disarm",StringComparison.OrdinalIgnoreCase))
+        {
+            if(command.Arguments.Count<2||!command.Arguments[0].Equals("trap",StringComparison.OrdinalIgnoreCase))
+            {
+                result="DISARM TRAP <direction>";
+                return true;
+            }
+            direction=command.Arguments[1];
+        }
+        if(string.IsNullOrWhiteSpace(direction))
+        {
+            result=action.Equals("disarm",StringComparison.OrdinalIgnoreCase)?"DISARM TRAP <direction>":$"{action.ToUpperInvariant()} <direction>";
+            return true;
+        }
+
+        var living=Living(session);
+        if(!living.TryGetClassicExitActionEvidence(session.CurrentRoom,direction,out var evidence))
+            return false;
+
+        if(action.Equals("disarm",StringComparison.OrdinalIgnoreCase))
+        {
+            if(!evidence.GateKind.Equals("damage_trap",StringComparison.OrdinalIgnoreCase)
+                &&!evidence.GateKind.Equals("spell_trap",StringComparison.OrdinalIgnoreCase))
+            {
+                result="No decoded exit trap is present in that direction.";
+                return true;
+            }
+
+            RuntimeCharacterRecord? trapCharacter=session.Actor is RuntimeCharacterActor trapActor?_characters.LoadCharacter(trapActor.Id):null;
+            if(trapCharacter is null)
+            {
+                result="Character state is unavailable.";
+                return true;
+            }
+            if(!HasClassicDisarmTrapsAbility(trapCharacter))
+            {
+                result="DISARM TRAP requires the Traps skill.";
+                return true;
+            }
+
+            // Native help proves that a traps expert may attempt to disarm a trap only after
+            // the trap has been found with SEARCH. The exact native find/disarm probability and
+            // per-exit Para2 transition are still unresolved, so do not reuse the generic hidden-
+            // object search roll or invent a successful state mutation here.
+            result="DISARM TRAP is recognized and the Traps skill requirement is met, but native SEARCH discovery, the disarm roll, and the trap state transition remain evidence-gated.";
+            return true;
+        }
+
+        if(!evidence.GateKind.Equals("door",StringComparison.OrdinalIgnoreCase)
+            &&!evidence.GateKind.Equals("key",StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        RuntimeCharacterRecord? character=session.Actor is RuntimeCharacterActor actor?_characters.LoadCharacter(actor.Id):null;
+        if(character is null)
+        {
+            result="Character state is unavailable.";
+            return true;
+        }
+
+        var allowsAction=action.Equals("picklock",StringComparison.OrdinalIgnoreCase)?evidence.AllowsPicklock:evidence.AllowsBash;
+        if(!allowsAction)
+        {
+            result=$"No recovered {action.ToUpperInvariant()} path exists for that door.";
+            return true;
+        }
+
+        var actionValue=0;
+        var actionStat=string.Empty;
+        if(action.Equals("picklock",StringComparison.OrdinalIgnoreCase))
+        {
+            actionValue=RuntimeClassicCharacterProgressionFormula.PicklocksValue(character);
+            actionStat="Picklocks";
+            if(actionValue<=0)
+            {
+                result="PICKLOCK requires the Picklocks skill.";
+                return true;
+            }
+        }
+        else
+        {
+            actionValue=ReadCharacterSkillValue(character,"strength");
+            actionStat="Strength";
+        }
+
+        // The decoded room qualifier is authoritative about whether a door has a numeric
+        // Picklocks/Strength requirement or permits any value to attempt the action.
+        // Do not reinterpret this as a traversal check and do not invent the remaining
+        // native random/success dispatcher around a character that meets the requirement.
+        if(evidence.RequirementFor(action) is int requirement&&actionValue<requirement)
+        {
+            result=$"{action.ToUpperInvariant()} does not meet this door's recovered {actionStat} requirement ({requirement}).";
+            return true;
+        }
+
+        var requirementText=evidence.RequirementFor(action) is int recovered
+            ?$"recovered {actionStat} requirement {recovered} is met"
+            :evidence.IsAnyRequirementFor(action)
+                ?$"this door permits any {actionStat} value to attempt the action"
+                :$"the {actionStat} requirement is not separately projected";
+        result=$"{action.ToUpperInvariant()} is recognized and {requirementText}, but the native success roll, exact failure text, and state transition remain evidence-gated.";
+        return true;
+    }
+
     public string ExecuteLivingWorldCommand(RuntimeSession session,RuntimeCommand command)
     {
+        if((command.Name is "picklock" or "disarm")&&TryExecuteClassicExitAction(session,command,out var nativeExitAction))return nativeExitAction;
         return TryExecuteDecodedWorldCommand(session,command,out var decoded)
             ? decoded
             : Living(session).Interact(session,command,LoadItemState(session));

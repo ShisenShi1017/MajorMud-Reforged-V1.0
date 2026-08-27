@@ -49,7 +49,7 @@ public partial class MainWindow : Window
         Top = Clamp(requestedTop, workArea.Top, Math.Max(workArea.Top, workArea.Bottom - Height));
 
         // Preserve saved layouts from the retired multi-agent workspace by
-        // migrating their last active workspace into Borin at startup.
+        // migrating their last active private workspace at startup.
         var workspaceId = state.ActiveWorkspaceId.Equals("guardians", StringComparison.OrdinalIgnoreCase)
             ? "forge"
             : state.ActiveWorkspaceId;

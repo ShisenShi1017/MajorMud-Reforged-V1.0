@@ -57,7 +57,7 @@ public static class RuntimeBundleDRemainingExhaustionAudit
         var reciprocal = gates.Count(x => !string.IsNullOrWhiteSpace(x.ReciprocalExitId));
         var actionBound = gates.Count(x => x.RequiredActionCount > 0 || x.RequiredActionOrder.Count > 0);
         var restricted = gates.Count(x => x.AllowedClassId is not null || x.DeniedClassId is not null || x.AllowedRaceId is not null || x.DeniedRaceId is not null || !string.IsNullOrWhiteSpace(x.MinimumAlignmentName) || !string.IsNullOrWhiteSpace(x.MaximumAlignmentName) || x.AbilityId is not null);
-        var picklock = gates.Count(x => x.PicklocksDifficulty is not null || x.PicklocksOrStrength is not null || x.StrengthAlternative is not null || x.AnyPicklocks || x.AnyPicklocksOrStrength);
+        var picklock = gates.Count(x => x.PicklocksDifficulty is not null || x.PicklocksOrStrength is not null || x.StrengthAlternative || x.AnyPicklocks || x.AnyPicklocksOrStrength);
         var effects = gates.Count(x => x.Damage != 0 || x.SpellId > 0 || x.PreSpellId > 0 || x.PostSpellId > 0);
         var stateful = gates.Count(x => !string.IsNullOrWhiteSpace(x.StateIdentity) || x.ReciprocalStateLink || x.SaveWorldStateRisk);
 

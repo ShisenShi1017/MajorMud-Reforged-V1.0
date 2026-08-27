@@ -1,42 +1,36 @@
 {
-  "schemaVersion": 1,
-  "subsystem": "transport-services",
-  "runtimeOwner": "RuntimeTransportService",
-  "persistenceOwner": "World transportation state; Economy owns fare commit; Rooms owns movement commit; session owner coordinates disconnect",
-  "supportedFamilies": [
-    "boats",
-    "ships",
-    "ferries",
-    "carriages",
-    "scheduled transport",
-    "paid transport",
-    "NPC transport",
-    "quest transport",
-    "cross-zone travel"
-  ],
+  "schemaVersion": 2,
+  "subsystem": "paid-room-transfers",
+  "runtimeOwner": "RuntimePaidRoomTransferService",
+  "persistenceOwner": "none for transportation; Economy owns fare mutation and Rooms/session location owns the immediate movement commit",
+  "nativeShape": "source room + recognized command + payment validation + immediate destination-room move",
   "operations": [
-    "board",
-    "depart",
-    "advance/arrive",
-    "disconnect coordination",
-    "inspect"
-  ],
-  "typedRequests": [
+    "resolve source-room command",
+    "validate fare/payment",
     "charge fare",
-    "move actor",
-    "announce",
-    "start/end combat restriction"
+    "move actor immediately",
+    "render native result when recovered"
   ],
-  "safeFallback": "Reject unknown transports, invalid stops, combat-disallowed boarding, over-capacity boarding, and premature arrival.",
-  "evidenceClassification": "strongly-correlated",
+  "explicitlyExcludedNativeAssumptions": [
+    "vehicle state",
+    "passenger/boarding state",
+    "departure schedules",
+    "travel timers",
+    "arrival waiting periods",
+    "capacity queues",
+    "transport-specific disconnect behavior",
+    "transport persistence/restart recovery"
+  ],
+  "evidenceClassification": "ownership-strong-semantics-unknown",
   "nativeDependencies": [
-    "exact Classic transport record families",
-    "native schedules and boarding windows",
-    "fare ownership and refund behavior",
-    "disconnect/linkdead behavior",
-    "capacity and party boarding",
-    "combat interruption",
-    "exact messages",
-    "persistence and restart recovery"
-  ]
+    "exact source room",
+    "exact recognized command",
+    "exact destination room",
+    "exact cost and currency",
+    "exact validation/debit/movement order",
+    "exact insufficient-funds message",
+    "exact success/movement message"
+  ],
+  "classicOwnership": "MajorMUD",
+  "ownershipEvidence": "Pass 18 operator correction: MajorMUD transport is an immediate paid room transfer, not a persistent transport service."
 }

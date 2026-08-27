@@ -76,7 +76,7 @@
   ],
   "remainingSystemsSummary": {
     "registryEntryCount": 36,
-    "partialEntryCount": 35,
+    "partialEntryCount": 36,
     "nativeDependencyRecordCountDeduplicated": 40,
     "registryIds": [
       "party-coordination",
@@ -94,7 +94,7 @@
       "pvp-policy",
       "law-bounty-guards",
       "rest-inn-recovery-policy",
-      "transport-services",
+      "paid-room-transfers",
       "player-transactions",
       "account-session-ownership",
       "world-rules-configuration",
@@ -121,11 +121,12 @@
     {
       "id": "party-coordination",
       "questions": [
-        "party member limit",
-        "invitation timeout and timer owner",
-        "logout, disconnect, death, restart, reset, and deletion behavior",
-        "shared experience, loot, quest credit, spell, teleport, and resurrection policy",
-        "exact command permissions and rendered messages"
+        "exact party member limit",
+        "whether invitations expire and any native timeout owner",
+        "leader LEAVE succession behavior",
+        "unexpected linkdead/disconnect/death/restart/reset/deletion behavior",
+        "shared experience/loot/quest/assist/spell/teleport/resurrection policy",
+        "leader/default rank behavior, Frontrank spot-limit formula beyond front>=back, exact command permissions/rendered messages"
       ],
       "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
     },
@@ -139,17 +140,20 @@
     {
       "id": "communications.classic-range-rendering",
       "questions": [
-        "exact shout/yell distance and adjacency rules",
-        "exact local/tell/whisper failure and success rendering",
-        "color, language, invisibility, and moderation rules"
+        "exact local/yell/telepath/gossip/auction success and failure rendering",
+        "WHISPER syntax/range/targeting/rendering",
+        "native TELL command identity if any",
+        "color/language/invisibility/moderation rules"
       ],
       "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
     },
     {
       "id": "communications.persistence-logging",
       "questions": [
-        "ignore/mute persistence owner",
-        "communication logging and flood thresholds",
+        "FORGET/channel-flag persistence owner and default states",
+        "SET TELEPATH ON/OFF polarity",
+        "SET MESSAGES exhaustive per-message priority classification and SET ENTRANCES default/persistence",
+        "communication logging and page/flood thresholds",
         "Worldgroup versus MajorMUD moderation boundary"
       ],
       "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
@@ -308,16 +312,15 @@
       "finalPhase": "Final WCC/WBB/Native DLL and File Semantic Exhaustion"
     },
     {
-      "id": "transport-services",
+      "id": "paid-room-transfers",
       "questions": [
-        "exact Classic transport record families",
-        "native schedules and boarding windows",
-        "fare ownership and refund behavior",
-        "disconnect/linkdead behavior",
-        "capacity and party boarding",
-        "combat interruption",
-        "exact messages",
-        "persistence and restart recovery"
+        "exact source room",
+        "exact recognized command",
+        "exact destination room",
+        "exact cost and currency",
+        "exact validation/debit/movement order",
+        "exact insufficient-funds message",
+        "exact success/movement message"
       ],
       "finalPhase": "WCC-WBB-native"
     },

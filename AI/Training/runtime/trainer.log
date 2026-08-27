@@ -1,0 +1,14 @@
+Unhandled exception. System.IO.FileNotFoundException: World rooms file was not found for world 'Custom1'.
+File name: 'E:\MajorMud-Reforged Github\Data/Custom1\rooms.json'
+   at Reforged.Server.RuntimeWorldLoader.Load(String projectRoot, WorldRuntimeDefinition definition) in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\RuntimeWorldLoader.cs:line 12
+   at Reforged.Server.ServerRuntimeHost.Bootstrap() in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\ServerRuntimeHost.cs:line 181
+   at Program.<Main>$(String[] args) in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs:line 20
+   at Program.<Main>(String[] args)
+TRAINER ERROR: Headless server exited unexpectedly with code None
+Unhandled exception. System.IO.FileNotFoundException: World rooms file was not found for world 'Custom1'.
+File name: 'E:\MajorMud-Reforged Github\Data/Custom1\rooms.json'
+   at Reforged.Server.RuntimeWorldLoader.Load(String projectRoot, WorldRuntimeDefinition definition) in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\RuntimeWorldLoader.cs:line 12
+   at Reforged.Server.ServerRuntimeHost.Bootstrap() in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\ServerRuntimeHost.cs:line 181
+   at Program.<Main>$(String[] args) in E:\MajorMud-Reforged Github\Apps\Source\Reforged.Server\Program.cs:line 20
+   at Program.<Main>(String[] args)
+TRAINER ERROR: Headless server exited unexpectedly with code None

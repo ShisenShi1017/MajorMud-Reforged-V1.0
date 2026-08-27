@@ -1,0 +1,140 @@
+{
+  "schema": "majormud.room-exit-native-schema-evidence.v1",
+  "update": "0287",
+  "scope": "Stock MajorMUD 1.11p room-exit storage and the Pass 17 trap-state projection correction.",
+  "policy": "Storage mappings may be activated when corroborated. Missing per-record Para values are not reconstructed from display strings; unresolved activation fails closed.",
+  "native_room_exit_storage": {
+    "RoomExit": "signed 32-bit Long",
+    "RoomType": "signed 16-bit Integer",
+    "Para1": "signed 32-bit Long",
+    "Para2": "signed 16-bit Integer",
+    "Para3": "signed 32-bit Long",
+    "Para4": "signed 32-bit Long",
+    "source": "Nightmare Redux modFieldmaps.bas RoomRecType"
+  },
+  "room_type_codes": {
+    "0": "Normal",
+    "1": "Spell",
+    "2": "Key",
+    "3": "Item",
+    "4": "Toll",
+    "5": "Action",
+    "6": "Hidden",
+    "7": "Door",
+    "8": "Change Map",
+    "9": "Trap",
+    "10": "Text",
+    "11": "Gate",
+    "12": "Remote Action",
+    "13": "Class",
+    "14": "Race",
+    "15": "Level",
+    "16": "Timed",
+    "17": "Ticket",
+    "18": "User Count",
+    "19": "Block Guard",
+    "20": "Alignment",
+    "21": "Delay",
+    "22": "Cast",
+    "23": "Ability",
+    "24": "Spell Trap"
+  },
+  "hidden_para1_encodings": {
+    "1": "Hidden Passable",
+    "2": "Hidden Need Search",
+    "4": "Visible Searched",
+    "8": "Visible Blocked",
+    "16": "Blocked - 1 action",
+    "48": "Blocked - 2 actions",
+    "112": "Blocked - 3 actions",
+    "240": "Blocked - 4 actions",
+    "496": "Blocked - 5 actions",
+    "1008": "Blocked - 6 actions",
+    "2032": "Blocked - 7 actions",
+    "4080": "Blocked - 8 actions",
+    "8176": "Blocked - 9 actions",
+    "16368": "Blocked - 10 actions",
+    "16384": "Hidden Once",
+    "32768": "Permanent Visible"
+  },
+  "door_and_key_schema": {
+    "key_type_02": {
+      "Para1": "key required",
+      "Para2": "status / always locked marker",
+      "Para3": "picklock difficulty",
+      "Para4": "5-minute blocks to stay open"
+    },
+    "door_type_07": {
+      "Para1": "state / always locked marker",
+      "Para2": "chance/difficulty to picklock or bash",
+      "Para3": "5-minute blocks to stay open",
+      "Para4": "key required"
+    },
+    "gate_type_11": {
+      "Para1": "state / always locked marker",
+      "Para2": "chance/difficulty to picklock or bash",
+      "Para3": "5-minute blocks to stay open",
+      "Para4": "key required"
+    },
+    "mme_export_note": "For exported door qualifiers, negative stored Para2 is rendered as Abs(Para2 - 1); positive nonzero Para2 is rendered as any picklocks/strength. This is a display projection, not a recovered live success dispatcher."
+  },
+  "trap_schema": {
+    "damage_trap_type_09": {
+      "Para1": "max damage",
+      "Para2": {
+        "0": "Active",
+        "1": "Inactive",
+        "2": "Hidden",
+        "3": "Active mov",
+        "4": "Inactive mov"
+      },
+      "Para3": "message on passage",
+      "Para4": "message on fail"
+    },
+    "spell_trap_type_24": {
+      "Para1": "spell number",
+      "Para2": {
+        "0": "Active",
+        "1": "Inactive",
+        "2": "Hidden",
+        "3": "Active mov",
+        "4": "Inactive mov"
+      },
+      "Para3": "message on passage",
+      "Para4": "message on fail"
+    },
+    "projection_loss": "MMUD Explorer frmMME_Export emits trap damage/spell identity into the exit display qualifier but does not export native Para2 trap state.",
+    "current_classic_catalog": {
+      "total": 295,
+      "damage": 273,
+      "spell": 22,
+      "native_activation_state_projected": 0
+    },
+    "runtime_policy_0287": "Do not execute a decoded Classic trap solely because its operand is present. Activation remains fail-closed until native Para2 and exact state-transition semantics are recovered."
+  },
+  "semantic_exit_corpus": {
+    "total": 61976,
+    "classified": 61975,
+    "unknown": 1,
+    "remaining_unknown": "exit.map12.2248.d",
+    "note": "Hidden/Unknown means the MME projection could not reduce the stored hidden encoding to its passable/searchable/action summary. move rug/pull rug are known, but the native Para1 mutation/reset is still unproven."
+  },
+  "evidence": [
+    {
+      "source": "https://github.com/syntax53/Nightmare-Redux/blob/master/docs/roomspara.txt",
+      "supports": "room type codes and Para1-Para4 semantics including trap state family"
+    },
+    {
+      "source": "https://github.com/syntax53/Nightmare-Redux/blob/master/modFieldmaps.bas",
+      "supports": "mixed-width RoomRecType field storage"
+    },
+    {
+      "source": "https://github.com/syntax53/Nightmare-Redux/blob/master/frmMME_Export.frm",
+      "supports": "MME display projection, hidden classification, door qualifier projection, and loss of trap Para2 state"
+    },
+    {
+      "source": "Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json",
+      "supports": "current 61,976 semantic exits and 295 decoded trap identities/operands"
+    }
+  ]
+}

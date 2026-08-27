@@ -1,0 +1,161 @@
+{
+  "schema": "majormud.character-advancement-evidence.v1",
+  "update": "0279",
+  "baseline": "MajorMud-Reforged-V1.0-MajorMUD-Parity-Cumulative-Pass8.zip plus Pass8 BuildRepair1-3 overlays",
+  "policy": {
+    "PASS": "Exact/proven enough to activate as native behavior.",
+    "STRONG": "Substantial recovered evidence and live integration, but exact native behavior is not completely proven.",
+    "UNKNOWN": "Unresolved; runtime must not invent missing behavior.",
+    "mechanics_guide": "MajorMUD Complete Mechanics & Systems Guide is not formula authority and was not used as proof."
+  },
+  "findings": [
+    {
+      "id": "character.max-hp",
+      "state": "PASS",
+      "runtime_owner": "RuntimeCharacterDerivedStatisticCalculator.CalculateCreation",
+      "formula": "HEA/2 + level*class MinHP + level*race HP adjustment + con_adj + accumulated HP rolls + con_adj + MaxHP ability",
+      "notes": "The duplicate constitution adjustment is preserved because the native wccmmud.dll routine exposes it. Creation seeds accumulated HP rolls with the class maximum bonus-per-level cap.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_HP_MANA_CALC_MUDBRAIN_0137.md",
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0142.md",
+        "Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs"
+      ]
+    },
+    {
+      "id": "character.max-mana-kai",
+      "state": "PASS",
+      "runtime_owner": "RuntimeCharacterDerivedStatisticCalculator.CalculateCreation",
+      "formula": "type 0=0; types 1-4=MaxMana ability + MagicLevel*Level*2 + equipment mana cache + 6; type 5/Kai=max(0,Level-1)",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_HP_MANA_CALC_MUDBRAIN_0137.md",
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0142.md",
+        "Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs"
+      ]
+    },
+    {
+      "id": "character.promotion-hp-mana-growth",
+      "state": "PASS",
+      "runtime_owner": "RuntimeCharacterDerivedStatisticCalculator.CalculatePromotionGrowth / RuntimeCharacterProgressionResolver.Promote",
+      "notes": "One level per promotion; HP uses class minimum + race adjustment + 0..class cap roll + twice the constitution-adjustment delta. Mana delta is 0, MagicLevel*2, or +1 for type 5.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_LEVEL_PROGRESSION_PASS_0152.md",
+        "Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs",
+        "Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs"
+      ]
+    },
+    {
+      "id": "character.experience-modifiers",
+      "state": "PASS",
+      "runtime_owner": "RuntimeCharacterProgressionResolver.ApplyDecodedExperienceModifier",
+      "notes": "Decoded WCC class/race experience percentages apply before the authoritative character/class XP ledgers are updated.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_LEVEL_PROGRESSION_PASS_0151.md",
+        "Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs"
+      ]
+    },
+    {
+      "id": "character.hp-regeneration",
+      "state": "STRONG",
+      "runtime_owner": "RuntimeCharacterRegenerationAuthority",
+      "formula": "normal Fix(((Level+20)*Health)/750); resting Fix(((Level+20)*Health)/500); HPRegen percentage applied afterward",
+      "sources": [
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv lines for modMMudFunc.bas 4111-4152",
+        "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs"
+      ],
+      "unresolved": "Exact native tick phase/host-clock alignment remains unproven."
+    },
+    {
+      "id": "character.mana-regeneration-meditation",
+      "state": "STRONG",
+      "runtime_owner": "RuntimeCharacterRegenerationAuthority",
+      "formula": "Casting stat by magic type: INT, WIL, Fix((INT+WIL)/2), CHA, or Kai/type-5 seed; then Fix((((Level+20)*seed)*(MagicLevel+2))/1650) with MPRegen modifier semantics.",
+      "sources": [
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv lines for modMMudFunc.bas 4209-4259",
+        "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs"
+      ],
+      "unresolved": "Full type-5/Kai MPRegen branch ordering and exact native timer phase remain below PASS confidence."
+    },
+    {
+      "id": "character.magic-resistance",
+      "state": "STRONG",
+      "runtime_owner": "RuntimeClassicCharacterFormulaCalculator",
+      "formula": "Fix((INT + WIL*3)/4) + modifiers",
+      "sources": [
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv: modMMudFunc.bas line 4267/4270",
+        "Apps/Source/Reforged.Server/RuntimeClassicCharacterFormulaCalculator.cs"
+      ],
+      "conflict_resolution": "An older screenshot-derived note reversed INT/WIL weighting. Pass 9 follows the retained executable MMUD Explorer CalcMR implementation and keeps the result STRONG, not PASS, until native DLL ordering is independently recovered."
+    },
+    {
+      "id": "character.raw-dodge",
+      "state": "STRONG",
+      "runtime_owner": "RuntimeClassicCharacterFormulaCalculator / RuntimePlayerCombatProfileResolver",
+      "formula": "Fix(Level/5) + Fix((Charm-50)/5) + Fix((Agility-50)/3) + PlusDodge; if encumbrancePct < 33, add 10-Fix(encumbrancePct/10)",
+      "sources": [
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv: modMMudFunc.bas lines 2477-2495",
+        "Apps/Source/Reforged.Server/RuntimeClassicCharacterFormulaCalculator.cs",
+        "Apps/Source/Reforged.Server/RuntimePlayerCombatProfiles.cs"
+      ],
+      "unresolved": "Race/class ownership of PlusDodge is not promoted where decoded ability-slot mapping is ambiguous. Final Dodge-vs-Accuracy and 95% cap remain separately proven Combat behavior."
+    },
+    {
+      "id": "character.stealth-formula",
+      "state": "PASS",
+      "runtime_owner": "RuntimeClassicStealthResolver.CalculateModifiedStealth",
+      "formula": "level progression +20 + Fix(AGI/4) + Fix(INT/8) + Fix(Charm/6), class/race adjustments, then Ability 27",
+      "sources": [
+        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeCombatProfiles.cs",
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json"
+      ]
+    },
+    {
+      "id": "character.modifier-contribution-order",
+      "state": "STRONG",
+      "runtime_owner": "RuntimeCharacterCombatStatisticProjector / RuntimePlayerCombatProfileResolver",
+      "notes": "Pass 9 prevents quest/acquired ability values from being counted twice when the 0155 projection already contains ability + equipment totals. Direct equipment/ability additive projection remains STRONG.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0154.md",
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0155.md",
+        "Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs",
+        "Apps/Source/Reforged.Server/RuntimePlayerCombatProfiles.cs"
+      ]
+    },
+    {
+      "id": "character.picklocks-stock-formula",
+      "state": "UNKNOWN",
+      "notes": "Retained MMUD Explorer evidence contains two materially different Picklocks formula families. The exact stock branch/ownership is not sufficiently disambiguated, so Pass 9 does not activate a synthetic base Picklocks formula.",
+      "sources": [
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv: modMMudFunc.bas lines 4404-4436"
+      ]
+    },
+    {
+      "id": "character.absolute-xp-cp-schedule",
+      "state": "UNKNOWN",
+      "notes": "The retained CalcCPLevel calculator is a useful lead but does not establish the authoritative server promotion row schedule. Runtime continues to require evidence-promoted progression rows and fails closed when absent.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_LEVEL_PROGRESSION_PASS_0153.md",
+        "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv: modMMudFunc.bas lines 4442-4456",
+        "Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs"
+      ]
+    },
+    {
+      "id": "character.death-lives-exact",
+      "state": "UNKNOWN",
+      "notes": "Current death/corpse/respawn ownership is STRONGLY CORRELATED, but native XP loss, partial gold loss, corpse decay, resurrection penalties/order, status cleanup, alternate respawn, third-party looting, and exact lives semantics remain unresolved. Pass 9 does not promote or invent them.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_DEATH_PHASE_1_0160.md",
+        "Librarium/Evidence/Character/CHARACTER_DEATH_PHASE_2_0161.md"
+      ]
+    },
+    {
+      "id": "character.cross-category-modifier-order",
+      "state": "UNKNOWN",
+      "notes": "Exact native ordering among permanent race/class modifiers, acquired abilities, equipment, auras/status effects, and base-stat-derived values remains unresolved beyond the direct mappings already promoted.",
+      "sources": [
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0154.md",
+        "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0155.md"
+      ]
+    }
+  ]
+}

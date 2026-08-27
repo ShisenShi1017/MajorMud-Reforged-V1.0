@@ -101,7 +101,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         {
             ProfileName = MakeUniqueName("New Character"),
             SessionDisplayName = session?.DisplayName ?? $"Session {Math.Max(1, Profiles.Count + 1)}",
-            ServerProfileName = session?.ServerProfileName ?? "New BBS",
+            ServerProfileName = session?.ServerProfileName ?? "Local Host",
             WorldName = session?.WorldName ?? "Classic",
             HostName = session?.HostName ?? "127.0.0.1",
             Port = session?.Port ?? 4000,

@@ -15,10 +15,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var opponentSessionId = encounter.AttackerSessionId.Equals(session.Id, StringComparison.OrdinalIgnoreCase)
                     ? encounter.DefenderSessionId : encounter.AttackerSessionId;
                 var opponent = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Id.Equals(opponentSessionId, StringComparison.OrdinalIgnoreCase));
-                state = new { Active = true, WorldPvpEnabled = worldConfiguration.Enabled, SafeRoom = safeRoom, encounter.EncounterId, OpponentCharacterId = opponent?.Actor.Id ?? string.Empty,
+                state = new { Active = true, WorldPvpEnabled = worldConfiguration.Enabled, worldConfiguration.MaximumLevelDifference, SafeRoom = safeRoom, encounter.EncounterId, OpponentCharacterId = opponent?.Actor.Id ?? string.Empty,
                     OpponentName = opponent?.Actor.DisplayName ?? string.Empty, encounter.RoomId, encounter.RoundNumber, encounter.StartedAtUtc };
             }
-            else state = new { Active = false, WorldPvpEnabled = worldConfiguration.Enabled, SafeRoom = safeRoom, EncounterId = string.Empty, OpponentCharacterId = string.Empty,
+            else state = new { Active = false, WorldPvpEnabled = worldConfiguration.Enabled, worldConfiguration.MaximumLevelDifference, SafeRoom = safeRoom, EncounterId = string.Empty, OpponentCharacterId = string.Empty,
                 OpponentName = string.Empty, RoomId = session.CurrentRoom.Id, RoundNumber = 0, StartedAtUtc = (DateTimeOffset?)null };
             return ReforgedClientProtocol.Encode("PVPSTATE", System.Text.Json.JsonSerializer.Serialize(state));
         }

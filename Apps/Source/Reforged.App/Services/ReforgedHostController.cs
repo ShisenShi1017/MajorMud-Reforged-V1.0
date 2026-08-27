@@ -1,3 +1,4 @@
+using MajorMud.Reforged.Compiler;
 using Reforged.App.Models;
 using Reforged.Server;
 
@@ -44,6 +45,7 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                 throw new InvalidOperationException($"Host bootstrap failed with {bootstrap.ErrorCount} error(s).");
 
             var configured = ServerRuntimeOptions.Load(bootstrap.ProjectRoot);
+            EnsureGeneratedCustomWorlds(bootstrap.ProjectRoot, configured);
             var runtimeOptions = new ServerRuntimeOptions
             {
                 HostName = configured.HostName,
@@ -132,6 +134,27 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
     {
         await StopAsync(token);
         await StartAsync(options, token);
+    }
+
+    private static void EnsureGeneratedCustomWorlds(string projectRoot, ServerRuntimeOptions options)
+    {
+        foreach (var world in options.Worlds.Where(world => world.RuntimeEnabled &&
+                     world.Type.Equals("ReforgedCustom", StringComparison.OrdinalIgnoreCase)))
+        {
+            var roomsPath = Path.Combine(projectRoot, world.DataRoot, world.RoomsFile);
+            var manifestPath = Path.Combine(projectRoot, world.DataRoot, "world_manifest.json");
+            if (File.Exists(roomsPath) && File.Exists(manifestPath)) continue;
+
+            var result = new LibrariumDataWriter().Compile(new LibrariumCompilerOptions(projectRoot, world.Id, Clean: true));
+            if (!result.Success)
+            {
+                var errors = result.Diagnostics
+                    .Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error)
+                    .Select(diagnostic => $"{diagnostic.Code}: {diagnostic.Message}")
+                    .Take(5);
+                throw new InvalidOperationException($"Generated runtime data for custom world '{world.Id}' is missing and automatic compilation failed: {string.Join(" | ", errors)}");
+            }
+        }
     }
 
     private void SessionsChanged(object? sender, EventArgs eventArgs) =>

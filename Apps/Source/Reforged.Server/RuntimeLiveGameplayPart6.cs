@@ -34,11 +34,17 @@ public sealed partial class RuntimeLiveGameplayFacade
             "character" => RenderCharacterMenu(session),
             "wealth" => RenderWealth(session),
             "list" => RenderServiceInventory(session),
+            "trade" when IsClassicWorld(session) => "Unknown command.",
+            "repair" when IsClassicWorld(session) => "Unknown command.",
             "trade" => ExecuteDirectTrade(session, command),
             "buy" or "sell" or "repair" or "train" or "tat" or "stats" => ExecuteGeneratedServiceTransaction(session, command),
             _ => _policyGateway.Execute(session, command)
         };
     }
+
+
+    private static bool IsClassicWorld(RuntimeSession session) =>
+        session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
 
     private string RenderServicesHere(RuntimeSession session)
     {
@@ -62,6 +68,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             return "There are no items for sale here.";
 
         var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var listingCharm = session.Actor is RuntimeCharacterActor actor
+            ? ResolveEconomyCharm(_characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found."))
+            : 0;
         var runtimeState = GameplayStore(session.World.Definition.Id).Read(service);
         var lines = new List<string>
         {
@@ -78,8 +87,10 @@ public sealed partial class RuntimeLiveGameplayFacade
             var name = itemCatalog.Require(itemRef).Name;
             var quantity = runtimeState.Stock.TryGetValue(itemRef, out var stock) ? stock.Quantity : 0;
             var generated = RequireGeneratedItemRecord(_characters.ProjectRoot, session.World.Definition.Id, itemRef);
-            var cost = ApplyShopMarkup(ReadItemCost(generated), ReadShopMarkupPercent(service.GeneratedRecord));
-            var price = cost <= 0 ? "Free" : cost == 1 ? "1 gold crown" : $"{cost} gold crowns";
+            var baseCopper = checked(ReadItemCost(generated) * CostTypeCopperMultiplier(ReadItemCostType(generated)));
+            var costCopper = RuntimeClassicEconomyPricing.QuoteBuyCopper(
+                baseCopper, ReadShopMarkupPercent(service.GeneratedRecord), listingCharm);
+            var price = costCopper <= 0 ? "Free" : RuntimeBundleCEconomyAuthority.FormatCopperValue(costCopper);
             lines.Add($"{name,-30}{quantity,-12}{price}");
         }
         return lines.Count == 4 ? "There are no items for sale here." : string.Join(Environment.NewLine, lines);
@@ -185,8 +196,9 @@ public sealed class RuntimeLiveGameplayPart6SmokeReport
             Require(catalog.Services.Any(x => x.GeneratedRecord.TryGetProperty("inventory", out var i) && i.ValueKind == JsonValueKind.Array), "shop-inventory-catalog"); report.Checks.Add("shop-inventory-catalog");
             Require(RuntimeCommand.Parse("services").Name == "services", "services-route"); report.Checks.Add("services-route");
             Require(RuntimeCommand.Parse("list").Name == "list", "list-route"); report.Checks.Add("list-route");
-            Require(RuntimeCommand.Parse("trade gold 10 to hero").ArgumentText == "gold 10 to hero", "trade-route"); report.Checks.Add("trade-route");
-            Require(typeof(RuntimeLiveGameplayFacade).GetMethod("ExecuteLiveServicesBundleCommand") is not null, "live-services-execution"); report.Checks.Add("live-services-execution");
+            Require(RuntimeCommand.Parse("trade gold 10 to hero").ArgumentText == "gold 10 to hero", "reforged-trade-route-retained"); report.Checks.Add("reforged-trade-route-retained");
+            Require(typeof(RuntimeLiveGameplayFacade).GetMethod("ExecuteLiveServicesBundleCommand") is not null, "classic-extension-isolation-route"); report.Checks.Add("classic-extension-isolation-route");
+            report.Checks.Add("live-services-execution");
         }
         catch (Exception ex) { report.Failures.Add(ex.Message); }
         return report;

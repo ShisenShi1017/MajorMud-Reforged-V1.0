@@ -1,18 +1,18 @@
-# Economy CodeUpdate0162 — Native Markup Pass
+# Economy CodeUpdate0162 — Native Markup Pass (Corrected by Pass 12 / 0282)
 
-## Implemented
+> **Superseded semantic interpretation:** CodeUpdate0162 correctly bound the 178 WCC shop markup fields, but incorrectly treated the raw field as a direct multiplier with `100 = 1.00x`. Pass 12 recovered the current stock MMUD Explorer pricing functions and corrected that interpretation.
 
-- Bound all 178 decoded WCC shop markup fields to canonical providers.
-- Classified markup domains for merchandise, trainer, spell-service and other providers.
-- Established `100` as the neutral 1.00x field value from the cross-record pattern.
-- Converted whole-percent markup to basis points with checked arithmetic.
-- Corrected service-cost projection from additive `100% + markup` behavior to multiplicative `markup%` behavior.
-- Added deterministic rounding, validation, evidence, provenance and Librarium relationships.
+## Corrected Classic interpretation
 
-## Native boundary
+- The raw WCC/MDB `Markup%` field is an **additive percentage**.
+- `0` = no markup / retail base.
+- `100` = +100% = 2.00x before Charm.
+- `500` = +500% = 6.00x before Charm.
+- Merchandise uses `baseCopper + Fix(baseCopper * markup / 100)`.
+- Trainer money uses `Fix((Level * 5) * (Markup + 100) / 100) * 10`.
+- Merchandise buy Charm is applied after markup.
+- Merchandise sell value is based on the item's base copper value and does **not** use shop markup.
 
-The field encoding and multiplicative interpretation are strongly correlated and active. The original executable position of markup relative to level/rank adjustments, discounts, surcharges, minimum charges and final rounding remains unproven. Native-exact service calculation therefore remains fail-closed until that ordering is traced.
+## Evidence boundary
 
-## Ownership and persistence
-
-Economy owns markup conversion and checked arithmetic. Commerce or service runtimes own stage placement according to their selected verified policy. Provider markup definitions are immutable catalog data and do not add save-state fields.
+The retained current MMUD Explorer source strongly corroborates these formulas and reproduces stock v1.11p behavior. This is sufficient to activate the recovered Classic arithmetic as **STRONG**, but final native executable callsite proof is still required before promoting those pricing requirements to PASS. Generic repair/spell/other service-cost ordering also remains unresolved.
