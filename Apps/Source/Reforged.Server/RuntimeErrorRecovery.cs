@@ -4,13 +4,13 @@ public enum RuntimeFailureKind
 {
     InvalidRecord, MissingReference, CorruptSave, DuplicateRuntimeId, TimerOverflow,
     ArithmeticOverflow, PersistenceFailure, PartialWorldLoad, ScriptFailure,
-    EventFailure, ResetFailure, Unknown
+    EventFailure, ResetFailure, GameplayActionRejected, Unknown
 }
 
 public enum RuntimeRecoveryAction
 {
     Reject, SkipRecord, UseValidatedDefault, Rollback, DisconnectCharacter,
-    DisableSubsystem, StopWorldLoad, LogAndContinue
+    DisableSubsystem, StopWorldLoad, LogAndContinue, NoOp
 }
 
 public sealed record RuntimeFailureContext(
@@ -78,6 +78,12 @@ public sealed class RuntimeErrorRecoveryService
                 => context.RollbackAvailable
                     ? Decision(context, "recovery-rollback-owner-operation", RuntimeRecoveryAction.Rollback, requiresRollback: true)
                     : Decision(context, "recovery-disable-failed-owner", RuntimeRecoveryAction.DisableSubsystem, disableSubsystem: true),
+            // Operator-confirmed Classic boundary: an ordinary rejected gameplay action leaves state
+            // untouched. This branch must never be generalized to wrong/corrupt native data files,
+            // catastrophic persistence failures, or Worldgroup host recovery. Exact player-visible
+            // failure text versus silence remains command/action-specific and evidence-gated.
+            RuntimeFailureKind.GameplayActionRejected
+                => Decision(context, "classic-gameplay-action-no-op", RuntimeRecoveryAction.NoOp),
             _ => context.CharacterScoped
                 ? Decision(context, "recovery-disconnect-character", RuntimeRecoveryAction.DisconnectCharacter)
                 : Decision(context, "recovery-reject-unknown-failure", RuntimeRecoveryAction.Reject)

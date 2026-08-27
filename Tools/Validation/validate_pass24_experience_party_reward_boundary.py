@@ -76,7 +76,7 @@ check('registry-xp-remainder-remains-unknown', any('remainder' in x.lower() for 
 check('party-catalog-cap-six', partycat.get('strongNativeFindings',{}).get('maximumMembers')==6)
 check('party-catalog-no-auto-loot', 'not auto-split' in partycat.get('integrations',{}).get('economy','').lower())
 
-check('runtime-audit-current-ledger', 'majormud_parity_assertions_0295.json' in audit)
+check('runtime-audit-current-ledger', 'majormud_parity_assertions_0313.json' in audit)
 check('score-pass-73', score['PassCount']==73)
 check('score-strong-75', score['StrongCount']==75)
 check('score-unknown-31', score['UnknownCount']==31)

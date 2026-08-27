@@ -1,0 +1,56 @@
+{
+  "schema": "majormud.broadcast-group-evidence.v1",
+  "update": "0301",
+  "pass": "Pass 30 \u2014 Classic broadcast-group command/runtime closure",
+  "policy": "Only behavior directly shared by retained native WCCMMHLP records is activated. Conflicting group-127 evidence and exact native rendering/persistence ownership remain unresolved.",
+  "native_help": {
+    "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "message_123": {
+      "sha256": "de65a7eacbb6604d768f976f46df26fc67e5cd9270ced81bb1fab8fe894c2f42",
+      "proves": [
+        "JOIN <n> selects the current broadcast channel",
+        "BROADCAST <text> broadcasts to members on the selected channel",
+        "BROADCAST by itself lists current people on that channel",
+        "BR is an explicit alias for BROADCAST",
+        "this help body says groups 1 through 127"
+      ]
+    },
+    "message_157": {
+      "sha256": "b8ad1ce4712e2edf7ca22d322ed8449f7beac97420e945c69f3c3968fe69a49b",
+      "proves": [
+        "JOIN <n> is the broadcast-group form of JOIN",
+        "JOIN 0 returns to the default broadcast group",
+        "this help body says groups 1 through 126"
+      ]
+    },
+    "message_217": {
+      "sha256": "fb2c7a9e2eb1cca7b6873c1641b75accb35077f8f7e5f897f7f9460519a780d9",
+      "proves": [
+        "LEAVE while not in a party leaves the current broadcast group",
+        "that LEAVE action switches the player to group 0"
+      ]
+    }
+  },
+  "promoted_exact_intersection": {
+    "selectable_groups": "0..126",
+    "join_numeric": "JOIN 0..126 changes the selected broadcast group",
+    "leave_without_party": "LEAVE resets selected broadcast group to 0",
+    "broadcast_message": "BROADCAST <text> targets connected characters in the same world whose selected nonzero broadcast group matches the sender (groups 1..126)",
+    "broadcast_list": "bare BROADCAST/BR lists connected characters in the sender's selected nonzero broadcast group (groups 1..126)",
+    "alias": "BR resolves to BROADCAST"
+  },
+  "remaining_unknown": {
+    "group_127": "Native help conflicts: message 123 says 1..127 while message 157 says 1..126.",
+    "rendering": "Exact native list/send/failure prose and formatting are not recovered.",
+    "native_persistence_owner": "Current runtime persists selection through character Conditions, but exact original MajorMUD save field/ordering is not claimed.",
+    "group_0_delivery_edge": "Help calls 0 the default/no-group state but does not separately define BROADCAST send/list behavior while group 0 is selected; Classic fails closed there instead of guessing."
+  },
+  "runtime": [
+    "Apps/Source/Reforged.Server/RuntimeClassicBroadcastGroupAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPartyGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandRouting.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimePass30BroadcastGroupSmokeReport.cs"
+  ]
+}

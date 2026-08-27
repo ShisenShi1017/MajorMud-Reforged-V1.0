@@ -76,7 +76,7 @@ internal static class RuntimeCommandRuntimeRouteCatalog
         Add(routes, RuntimeCommandRouteKind.LivingWorldRuntime, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade.ExecuteLivingWorldCommand",
             "open", "close", "lock", "unlock", "pull", "push", "activate", "picklock", "disarm");
         Add(routes, RuntimeCommandRouteKind.CommunicationRuntime, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade communication/session runtime",
-            "say", "talk", "gossip", "auction", "forget", "messages", "who", "create", "invite", "uninvite", "follow", "frontrank", "midrank", "backrank", "join", "leave", "share", "broadgang", "disband", "promote", "demote", "topten");
+            "say", "talk", "gossip", "auction", "broadcast", "forget", "messages", "who", "create", "invite", "uninvite", "follow", "frontrank", "midrank", "backrank", "join", "leave", "share", "broadgang", "disband", "promote", "demote", "topten");
         Add(routes, RuntimeCommandRouteKind.MajorMudPlusRuntime, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade.ExecuteMajorMudPlusCommand",
             "mudplus", "description", "mudreg", "buylife", "plusadmin");
         Add(routes, RuntimeCommandRouteKind.SysopRuntime, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade.ExecuteWccSysopCommand",
@@ -85,7 +85,7 @@ internal static class RuntimeCommandRuntimeRouteCatalog
             "respawn", "recover");
         Add(routes, RuntimeCommandRouteKind.NativeEvidenceGate, "RuntimeCommandDispatcher", "Evidence-gated native command identity; execute decoded contextual action when available",
             "drag", "go", "health", "map", "profile", "track", "aid", "light", "stash", "mana", "invoke", "read", "suicide", "reroll",
-            "appraise", "eat", "drink", "rob", "ready", "exits", "page", "broadcast", "scan", "quiet", "stock", "unstock", "markup");
+            "appraise", "eat", "drink", "rob", "ready", "exits", "page", "scan", "quiet", "stock", "unstock", "markup");
         Add(routes, RuntimeCommandRouteKind.RuntimeDiagnostics, "RuntimeCommandDispatcher", "Runtime host/live-world diagnostic renderers",
             "worldstate", "audit", "where", "world", "worlds", "sessions", "state", "events");
         Add(routes, RuntimeCommandRouteKind.Help, "RuntimeCommandDispatcher", "Runtime command help catalog",

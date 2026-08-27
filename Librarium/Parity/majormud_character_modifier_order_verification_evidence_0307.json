@@ -1,0 +1,102 @@
+{
+  "schema": "majormud.classic-character-modifier-order-verification.v1",
+  "update": "0307",
+  "pass": 36,
+  "classification": "STRONG_PARTIAL_NATIVE_ORDER_BOUNDARY",
+  "operatorHypothesis": {
+    "source": "Two user-supplied document screenshots in the Pass 36 conversation",
+    "authority": "HYPOTHESIS_ONLY",
+    "policy": "No screenshot claim receives parity credit unless independently corroborated by retained native evidence."
+  },
+  "nativeEvidence": [
+    "Librarium/Evidence/Character/CHARACTER_CREATION_PASS_0141.md",
+    "Librarium/Evidence/Character/CHARACTER_HP_MANA_CALC_MUDBRAIN_0137.md",
+    "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0154.md",
+    "Librarium/Evidence/Character/CHARACTER_STATISTICS_PASS_0155.md",
+    "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+    "Librarium/Parity/majormud_character_advancement_evidence_0279.json",
+    "Librarium/Objects/abilities/ability_records.json",
+    "Librarium/Parity/majormud_parity_assertions_0306.json"
+  ],
+  "verifiedBoundaries": [
+    {
+      "id": "creation.starting-stat-source",
+      "state": "PASS-existing",
+      "claim": "Classic level-1 starting statistics are the selected race minimum statistics.",
+      "rejects": "A generic ClassBase + ClassLevelGain*Level + RaceModifier creation equation."
+    },
+    {
+      "id": "secondary-stat.native-recalculation",
+      "state": "PASS-formula-specific",
+      "claim": "wccmmud.dll calculate_secondary_stats @0x0041a424 recomputes secondary statistics after stat/equipment changes; exact MaxHP/MaxMana operand ordering is retained.",
+      "boundary": "Does not prove a single global order for every statistic."
+    },
+    {
+      "id": "ability.primary-stat-signed-delta",
+      "state": "STRONG",
+      "claim": "Retained abilities 45-49 explicitly describe signed parameter-value changes to Willpower, Strength, Health, Agility and Charm; Pass 36 does not invent an equivalent Intellect delta ability.",
+      "percentageStageProven": false
+    },
+    {
+      "id": "equipment.direct-combat-additive",
+      "state": "STRONG-existing",
+      "claim": "Decoded item armor-class, damage-resistance, accuracy and speed fields aggregate additively in stable equipment order.",
+      "genericEquipmentPercentStageProven": false
+    },
+    {
+      "id": "combat.raw-dodge-encumbrance-placement",
+      "state": "STRONG-existing",
+      "claim": "Recovered raw Dodge uses Level/Charm/Agility/PlusDodge and applies the documented below-33-percent encumbrance bonus before Dodge-vs-Accuracy resolution."
+    },
+    {
+      "id": "combat.defense-resolution-order",
+      "state": "PASS-existing",
+      "claim": "Native calculate_attack resolves hit chance using DV+AC before the later independent Dodge gate; negative dodge_bn takes the native blind/debuff forced-hit path."
+    },
+    {
+      "id": "status.periodic-clock",
+      "state": "PASS-existing",
+      "claim": "Decoded spell/status durations and periodic ticks use the recovered three-second spell/system round.",
+      "rejects": "A universal ten-second poison tick."
+    }
+  ],
+  "rejectedOrUnprovenScreenshotClaims": [
+    {
+      "claim": "generic class-base/per-level/race base-stat equation for Classic creation",
+      "disposition": "REJECTED"
+    },
+    {
+      "claim": "universal flat-equipment then percentage-equipment stat stage",
+      "disposition": "UNPROVEN"
+    },
+    {
+      "claim": "disease/curse/injury always apply before equipment percentages",
+      "disposition": "UNPROVEN"
+    },
+    {
+      "claim": "blindness is a final -50 percent Accuracy override",
+      "disposition": "REJECTED_AS_CURRENT_AUTHORITY"
+    },
+    {
+      "claim": "sleep/paralysis force both Dodge and Armor Class to zero",
+      "disposition": "UNPROVEN_NOT_ADOPTED"
+    },
+    {
+      "claim": "poison universally ticks every ten seconds",
+      "disposition": "REJECTED"
+    }
+  ],
+  "parityPromotion": {
+    "assertion": "character.cross-category-modifier-order",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Multiple exact/strong formula-specific order boundaries are independently recovered, while a universal all-category pipeline remains unresolved."
+  },
+  "runtimeMutation": false,
+  "stillUnknown": [
+    "one universal cross-category ordering for all primary and derived statistics",
+    "exact native ordering of disease/curse/injury stat deltas relative to equipment-derived stat effects",
+    "whether any Classic equipment stat effect uses a percentage stage and its rounding/order if so",
+    "exact native hard-state field mutations for blindness, sleep, paralysis and stun outside already recovered combat boundaries"
+  ]
+}

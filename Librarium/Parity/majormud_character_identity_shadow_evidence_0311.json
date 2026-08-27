@@ -1,0 +1,67 @@
+{
+  "schema": "majormud.character-identity-shadow-evidence.v1",
+  "update": "0311",
+  "pass": 40,
+  "classification": "STRONG_LOOK_SCOPED_SHADOW_PRESENTATION",
+  "policy": "The user-provided identity page is hypothesis-only. Pass 40 promotes only retained evidence for native name storage/uniqueness and the decoded/public-reference Shadow ability presentation contract. Room-list masking is not inferred from LOOK-only evidence.",
+  "retainedEvidence": {
+    "firstNameUniqueness": {
+      "state": "PASS",
+      "source": "Librarium/Parity/majormud_identity_law_native_closure_evidence_0299.json"
+    },
+    "userRecStorage": {
+      "state": "PASS",
+      "givenFirstNameBytes": 10,
+      "familyLastNameBytes": 18,
+      "source": "Librarium/Parity/majormud_identity_law_native_closure_evidence_0299.json"
+    },
+    "shadowAbility": {
+      "abilityId": 9,
+      "name": "Shadow",
+      "description": "Displays \"A shadowy figure!\" when looked at by other players.",
+      "source": "Librarium/Objects/abilities/ability_records.json",
+      "sourceClassification": "OmniVerse public codex snapshot / reference_fill_public_snapshot",
+      "promotion": "STRONG only; not native binary proof"
+    },
+    "blackEmbroideredRobes": {
+      "itemId": "item.1331",
+      "legacyId": 1331,
+      "name": "black embroidered robes",
+      "shadowAbilityId": 9,
+      "shadowValue": 100,
+      "relationshipState": "Verified",
+      "sources": [
+        "Librarium/Objects/items/item_records_0122.json",
+        "Librarium/Validation0003/item_ability_relationships_verified_0003.json"
+      ]
+    }
+  },
+  "externalCrossCheck": {
+    "role": "corroborating_secondary_only",
+    "source": "MUDCENTRAL MajorMUD 1.11o torso item table",
+    "finding": "Black Embroidered Robes list Shadow +100 among their item properties."
+  },
+  "runtimeProjection": {
+    "lookOtherPlayer": "If the target has an equipped item with positive Shadow ability 9, LOOK masks the target heading as 'A shadowy figure' and emits the exact retained payload 'A shadowy figure!'.",
+    "selfLook": "Not masked by Shadow.",
+    "roomOccupantList": "Unchanged. The retained ability description is LOOK-scoped and does not prove room-list identity masking.",
+    "genericAbilityOwnership": "The runtime consumes positive equipped ability 9 rather than hardcoding item 1331, so any evidence-backed Shadow item follows the same LOOK rule."
+  },
+  "notPromoted": [
+    "3-15 character name limit from the user-provided page",
+    "letters-only name grammar",
+    "automatic capitalization rule",
+    "complete reserved-name list",
+    "exact title precedence",
+    "exact invisibility/True Sight identity rendering",
+    "room occupant list replacement with A shadowy figure",
+    "exact identity validation/failure messages"
+  ],
+  "parityPromotion": {
+    "assertion": "native.character-identity-policy",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Unique first names and UserRec widths are already native-proven; Pass 40 adds an evidence-backed, live LOOK-scoped Shadow presentation path while preserving unresolved name-validation/title/visibility details as explicit gates."
+  },
+  "noGameplayGuessing": true
+}

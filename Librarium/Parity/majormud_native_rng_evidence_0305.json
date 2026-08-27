@@ -1,0 +1,65 @@
+{
+  "schema": "majormud.classic-worldgroup-rng-evidence.v1",
+  "update": "0305",
+  "pass": 34,
+  "conclusion": "The supplied MSVC LCG hypothesis is rejected. The bound Worldgroup runtime uses the Borland/CW3220MT 32-bit LCG core and packed-time startup seed documented by retained native disassembly.",
+  "nativeRuntime": {
+    "module": "CW3220MT.DLL",
+    "sha256": "4a2f6889f9dc5cfdf4ac44156dde8db0d20c6a0f63db06c576ac0bbba2011a15",
+    "srandRva": "0x00016100",
+    "randRva": "0x0001611C",
+    "wgserverRandThunkRva": "0x0004AE08",
+    "multiplierHex": "0x015A4E35",
+    "multiplierDecimal": 22695477,
+    "increment": 1,
+    "stateWidthBits": 32,
+    "outputMaskHex": "0x7FFF",
+    "randMax": 32767,
+    "stateOwnership": "CW3220MT thread-local CRT state"
+  },
+  "startupSeed": {
+    "wgserverSeedCallRva": "0x0001D5A4",
+    "wgserverNowRva": "0x000360FA",
+    "formula": "(hour << 11) + (minute << 5) + (second >> 1)",
+    "resolutionSeconds": 2,
+    "startupSrandCallsInStaticReachablePath": 1
+  },
+  "rangeHelpers": [
+    {
+      "symbol": "_genrdn",
+      "rva": "0x0000738C",
+      "maximum": "exclusive",
+      "edgeBehavior": "exclusiveMaximum == 0 => 0; exclusiveMaximum <= minimum => minimum",
+      "ordinaryPath": "consumes shared host PRNG; result remains below exclusiveMaximum"
+    },
+    {
+      "symbol": "_lngrnd",
+      "rva": "0x000073DE",
+      "maximum": "exclusive",
+      "edgeBehavior": "instruction-equivalent to _genrdn for the recovered range contract"
+    }
+  ],
+  "validationVector": {
+    "inputSeed": 1234,
+    "nativeNextSeed": 2236414843,
+    "nativeReturnedValue": 1356,
+    "rejectedMsvcNextSeed": 266623053,
+    "rejectedMsvcReturnedValue": 4068
+  },
+  "authoritativeRetainedEvidence": [
+    "Apps/Source/Reforged.Server/WorldgroupPrngRuntimeRegistry.cs",
+    "Apps/Source/Reforged.Server/WorldgroupExportImplementationRegistry.cs",
+    "Librarium/Evidence/worldgroup_semantic_exhaustion_0037.json",
+    "Librarium/Reports/worldgroup_semantic_exhaustion_0037.md"
+  ],
+  "runtimeActivation": [
+    "RuntimeClassicWorldgroupPrng executes the recovered uint32 srand/rand state transition exactly",
+    "WorldgroupPrngRuntimeRegistry executes packed startup-time seed construction and exact raw vectors",
+    "RuntimeGlobalRandomService remains Reforged extension infrastructure and is not the Classic parity owner"
+  ],
+  "remainingUnknown": [
+    "exact mapping of MajorMUD gameplay callsites to effective Worldgroup execution-thread PRNG state",
+    "exact gameplay-wide PRNG mutation/draw ordering including indirect paths",
+    "fully instruction-equivalent Reforged execution of the recovered _genrdn/_lngrnd bounded-remainder loop"
+  ]
+}

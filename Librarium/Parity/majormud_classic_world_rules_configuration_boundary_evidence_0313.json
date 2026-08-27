@@ -1,0 +1,77 @@
+{
+  "schema": "majormud.classic-world-rules-configuration-boundary-evidence.v1",
+  "update": "0313",
+  "pass": 42,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 42 promotes the broad Classic world-rules/configuration assertion to STRONG by connecting the retained 44-prompt WCCMMUD.mcv setup catalog to Reforged's no-legacy-INI policy and six already-live exact default projections. Exact ranges, mutability/restart requirements, and remaining owner/effect mappings stay unresolved.",
+  "classificationPolicy": "Exact retained prompt/default strings and directly consumed runtime defaults may be treated as proven narrow contracts. The broad configuration owner remains STRONG until ranges, mutability, and every gameplay owner/effect mapping are recovered.",
+  "nativeSource": {
+    "file": "WCCMMUD.mcv",
+    "sha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b",
+    "retainedPromptCount": 44,
+    "nativeConfigurationFile": "WCCMMUD.INI",
+    "reforgedShipsNativeIni": false
+  },
+  "activeExactDefaultProjections": [
+    {
+      "prompt": "Seconds between saving Player data? 60",
+      "offset": 264,
+      "value": 60,
+      "owner": "RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds",
+      "state": "PASS"
+    },
+    {
+      "prompt": "Seconds between saving Buffer data? 300",
+      "offset": 303,
+      "value": 300,
+      "owner": "RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds",
+      "state": "PASS"
+    },
+    {
+      "prompt": "Maximum level difference for PVP? 100",
+      "offset": 1363,
+      "value": 100,
+      "owner": "RuntimeLivePvp default policy via RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference",
+      "state": "PASS"
+    },
+    {
+      "prompt": "Max EPs to forgive per day? 18",
+      "offset": 1761,
+      "value": 18,
+      "owner": "RuntimeCharacterAlignmentAuthority.DefaultForgivenessPolicy",
+      "state": "PASS"
+    },
+    {
+      "prompt": "Minutes per Evil Point Cycle? 60",
+      "offset": 1792,
+      "value": 60,
+      "owner": "RuntimeCharacterAlignmentAuthority.DefaultForgivenessPolicy",
+      "state": "PASS"
+    },
+    {
+      "prompt": "EPs to forgive per cycle? 1",
+      "offset": 1825,
+      "value": 1,
+      "owner": "RuntimeCharacterAlignmentAuthority.DefaultForgivenessPolicy",
+      "state": "PASS"
+    }
+  ],
+  "remainingUnknown": [
+    "exact allowed ranges for remaining setup values",
+    "exact live-mutable versus restart-only behavior for remaining settings",
+    "exact runtime owner/effect mapping for setup prompts not yet connected to a proven Classic owner"
+  ],
+  "notPromoted": [
+    "a WCCMMUD.INI parser/writer in Reforged",
+    "generic Reforged world-rule ranges as native evidence",
+    "generic Reforged mutability metadata as native evidence",
+    "unmapped WCCMMUD prompt effects",
+    "automatic activation of all retained setup defaults"
+  ],
+  "parityPromotion": {
+    "assertion": "native.world-rules-configuration",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The native configuration source/default catalog, no-legacy-file boundary, and six live exact default projections are now explicitly connected and executable; remaining ranges/mutability/owner mappings prevent PASS."
+  }
+}

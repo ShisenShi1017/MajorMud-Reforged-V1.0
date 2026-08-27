@@ -212,12 +212,15 @@ public sealed class LibrariumDataWriter
 
         if (familyName.Equals("character_foundation", StringComparison.OrdinalIgnoreCase) &&
             record["character_creation_rules"] is JsonObject characterCreationRules &&
-            characterCreationRules["alignment_evil_point_rules"] is JsonObject alignmentRules)
+            characterCreationRules["alignment_evil_point_rules"] is JsonObject alignmentRules &&
+            alignmentRules["lawful_target_attack_penalty"] is JsonObject lawfulPenalty)
         {
-            // This block documents that an exact lawful-target modifier was not
-            // recovered. Runtime uses the authoritative eight-reputation penalty
-            // table and must not receive an unresolved, non-executable alternative.
-            alignmentRules.Remove("lawful_target_attack_penalty");
+            // Pass 28: retained native HL1B11/GOODTEXT closes the exact x3 modifier.
+            // Project only the executable scalar into generated runtime data; provenance stays in Librarium.
+            alignmentRules["lawful_target_attack_penalty"] = new JsonObject
+            {
+                ["multiplier"] = lawfulPenalty["multiplier"]?.DeepClone()
+            };
         }
 
         if (familyName.Equals("loot_rules", StringComparison.OrdinalIgnoreCase) &&

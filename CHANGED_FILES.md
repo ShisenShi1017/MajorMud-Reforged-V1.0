@@ -1,3 +1,371 @@
+# Pass 42 cumulative updated-files overlay
+
+Pass 42 connects the retained native configuration catalog to live Classic owners without creating or parsing `WCCMMUD.INI`. It promotes the broad world-rules/configuration ownership boundary while preserving exact ranges, per-setting mutability/restart behavior, and remaining owner/effect mappings as evidence gates.
+
+Parity: **97 PASS / 83 STRONG / 20 UNKNOWN = 200** (48.5% strict / 90.0% evidence-backed).
+
+## Pass 42 package counts
+
+- Pass 41 cumulative members retained: **184/184**
+- Pass 42 modified existing cumulative members: **24**
+- Pass 42 new relevant cumulative members: **11**
+- Pass 42 delta files: **35**
+- Pass 42 cumulative members: **195**
+
+## Pass 42 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+- `Tools/Validation/validate_pass37_classic_regeneration_correction.py`
+- `Tools/Validation/validate_pass38_classic_scheduler_boundary.py`
+- `Tools/Validation/validate_pass39_classic_lifecycle_death_verification.py`
+- `Tools/Validation/validate_pass40_classic_identity_shadow.py`
+- `Tools/Validation/validate_pass41_classic_gameplay_failure_boundary.py`
+- `Apps/Source/Reforged.Server/RuntimeClassicWorldRulesConfigurationEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimePass42ClassicWorldRulesConfigurationBoundarySmokeReport.cs`
+- `Docs/CODE_UPDATE_0313_CLASSIC_WORLD_RULES_CONFIGURATION_BOUNDARY.md`
+- `Librarium/Evidence/ClassicConfiguration/CLASSIC_WORLD_RULES_CONFIGURATION_BOUNDARY_PASS_0313.md`
+- `Librarium/Parity/majormud_classic_world_rules_configuration_boundary_evidence_0313.json`
+- `Librarium/Parity/majormud_parity_assertions_0313.json`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0313.md`
+- `Reports/RuntimeVerification/PASS42_VALIDATION_0313.md`
+- `Reports/RuntimeVerification/classic_world_rules_configuration_boundary_pass42_static_validation_0313.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0313.json`
+- `Tools/Validation/validate_pass42_classic_world_rules_configuration_boundary.py`
+
+---
+
+# Pass 41 cumulative updated-files overlay
+
+Pass 41 separates ordinary rejected Classic gameplay actions from catastrophic native-file/startup failures and Reforged-owned rollback mechanisms. It promotes only the broad error-handling/recovery boundary; exact native failure presentation and catastrophic save rollback ordering remain evidence-gated.
+
+Parity: **97 PASS / 82 STRONG / 21 UNKNOWN = 200** (48.5% strict / 89.5% evidence-backed).
+
+## Pass 41 package counts
+
+- Pass 40 cumulative members retained: **173/173**
+- Pass 41 modified existing cumulative members: **25**
+- Pass 41 new relevant cumulative members: **11**
+- Pass 41 delta files: **36**
+- Pass 41 cumulative members: **184**
+
+## Pass 41 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeErrorRecovery.cs`
+- `Apps/Source/Reforged.Server/RuntimeErrorRecoverySmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+- `Tools/Validation/validate_pass37_classic_regeneration_correction.py`
+- `Tools/Validation/validate_pass38_classic_scheduler_boundary.py`
+- `Tools/Validation/validate_pass39_classic_lifecycle_death_verification.py`
+- `Tools/Validation/validate_pass40_classic_identity_shadow.py`
+- `Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimePass41ClassicGameplayFailureBoundarySmokeReport.cs`
+- `Docs/CODE_UPDATE_0312_CLASSIC_GAMEPLAY_FAILURE_BOUNDARY.md`
+- `Librarium/Evidence/HostRuntime/CLASSIC_GAMEPLAY_FAILURE_BOUNDARY_PASS_0312.md`
+- `Librarium/Parity/majormud_classic_gameplay_failure_boundary_evidence_0312.json`
+- `Librarium/Parity/majormud_parity_assertions_0312.json`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0312.md`
+- `Reports/RuntimeVerification/PASS41_VALIDATION_0312.md`
+- `Reports/RuntimeVerification/classic_gameplay_failure_boundary_pass41_static_validation_0312.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0312.json`
+- `Tools/Validation/validate_pass41_classic_gameplay_failure_boundary.py`
+
+---
+
+# Pass 40 cumulative updated-files overlay
+
+Pass 40 connects the retained Shadow ability-9 LOOK presentation contract and preserves the unproven room-list boundary.
+
+Parity: **97 PASS / 81 STRONG / 22 UNKNOWN = 200**.
+
+## Pass 40 package counts
+
+- Pass 39 cumulative members retained: **162**
+- Pass 40 modified existing cumulative members: **24**
+- Pass 40 new relevant cumulative members: **11**
+- Pass 40 delta files: **35**
+- Pass 40 cumulative members: **173**
+
+## Pass 40 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicCharacterAppearance.cs`
+- `Apps/Source/Reforged.Server/RuntimeLiveWorld.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+- `Tools/Validation/validate_pass37_classic_regeneration_correction.py`
+- `Tools/Validation/validate_pass38_classic_scheduler_boundary.py`
+- `Tools/Validation/validate_pass39_classic_lifecycle_death_verification.py`
+- `Apps/Source/Reforged.Server/RuntimeClassicIdentityShadowEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimePass40ClassicIdentityShadowVerificationSmokeReport.cs`
+- `Docs/CODE_UPDATE_0311_CLASSIC_CHARACTER_IDENTITY_SHADOW.md`
+- `Librarium/Evidence/Character/CLASSIC_CHARACTER_IDENTITY_SHADOW_PASS_0311.md`
+- `Librarium/Parity/majormud_character_identity_shadow_evidence_0311.json`
+- `Librarium/Parity/majormud_parity_assertions_0311.json`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0311.md`
+- `Reports/RuntimeVerification/PASS40_VALIDATION_0311.md`
+- `Reports/RuntimeVerification/classic_identity_shadow_pass40_static_validation_0311.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0311.json`
+- `Tools/Validation/validate_pass40_classic_identity_shadow.py`
+
+---
+
+# Pass 39 cumulative updated-files overlay
+
+Pass 39 verifies the supplied combat-priority, LINKDEATH/logout, and death-XP pages against retained Classic evidence. It promotes only the independently supported MajorMUD lifecycle boundary and explicitly rejects or gates unsupported formulas and modern server architecture.
+
+Current parity: **97 PASS / 80 STRONG / 23 UNKNOWN = 200** (48.5% strict / 88.5% evidence-backed).
+
+`character.native-lifecycle-boundary` moves UNKNOWN -> STRONG. `character.death-xp-loss-exact` remains UNKNOWN. The supplied `ActionDelay` priority queue is rejected because stock attack-energy scheduling is already PASS.
+
+## Pass 39 package counts
+
+- Previous cumulative members retained: **151/151**
+- Pass 39 modified existing cumulative members: **21**
+- Pass 39 new relevant cumulative members: **11**
+- Pass 39 delta files: **32**
+- Pass 39 cumulative members: **162**
+
+## Pass 39 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicLifecycleDeathEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimePass39ClassicLifecycleDeathVerificationSmokeReport.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Docs/CODE_UPDATE_0310_CLASSIC_LIFECYCLE_DEATH_VERIFICATION.md`
+- `Librarium/Evidence/Character/CLASSIC_LIFECYCLE_DEATH_HYPOTHESIS_VERIFICATION_PASS_0310.md`
+- `Librarium/Parity/majormud_classic_lifecycle_death_verification_evidence_0310.json`
+- `Librarium/Parity/majormud_parity_assertions_0310.json`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0310.md`
+- `Reports/RuntimeVerification/PASS39_VALIDATION_0310.md`
+- `Reports/RuntimeVerification/classic_lifecycle_death_verification_pass39_static_validation_0310.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0310.json`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+- `Tools/Validation/validate_pass37_classic_regeneration_correction.py`
+- `Tools/Validation/validate_pass38_classic_scheduler_boundary.py`
+- `Tools/Validation/validate_pass39_classic_lifecycle_death_verification.py`
+
+# Pass 37 cumulative updated-files overlay
+
+Pass 37 corrects the live stock Classic REST/MEDITATE regeneration branch. Reforged had been using the GreaterMUD `/500` HP branch for REST and omitted stock MajorMUD's x3 resting multiplier. The stock `/750` branch, resting multiplier, mana meditation ordering, and Kai special branch are now connected with direct-native HELP activation/interruption evidence and strong retained formula/cadence evidence.
+
+Current parity: **97 PASS / 78 STRONG / 25 UNKNOWN = 200** (48.5% strict / 87.5% evidence-backed).
+
+`native.rest-inn-recovery-policy` moves UNKNOWN -> STRONG. PASS is not claimed because exact Worldgroup host-clock phase, simultaneous ordering, exact MEDITATE presentation, and remaining cleanup ordering are unresolved.
+
+## Pass 37 package counts
+
+- Previous cumulative members retained: **122/122**
+- Pass 37 modified existing cumulative members: **19**
+- Pass 37 new relevant cumulative members: **14**
+- Pass 37 delta files: **33**
+- Pass 37 cumulative members: **136**
+
+## Pass 37 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs`
+- `Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeClassicRegenerationEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimePass37ClassicRegenerationCorrectionSmokeReport.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Docs/CODE_UPDATE_0308_CLASSIC_REST_MEDITATE_REGENERATION.md`
+- `Librarium/Evidence/Character/CLASSIC_REST_MEDITATE_REGENERATION_PASS_0308.md`
+- `Librarium/Parity/majormud_classic_regeneration_correction_evidence_0308.json`
+- `Librarium/Parity/majormud_parity_assertions_0308.json`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0308.md`
+- `Reports/RuntimeVerification/PASS37_VALIDATION_0308.md`
+- `Reports/RuntimeVerification/classic_regeneration_correction_pass37_static_validation_0308.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0308.json`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+- `Tools/Validation/validate_pass37_classic_regeneration_correction.py`
+
+# Pass 36 cumulative updated-files overlay
+
+Pass 36 verifies the operator-supplied character modifier-order document against retained native MajorMUD evidence. It promotes only the broad cross-category ordering boundary from UNKNOWN to STRONG; it does **not** copy the document's unsupported formulas into gameplay. All 110 Pass 35 cumulative members are retained.
+
+Current parity: **97 PASS / 77 STRONG / 26 UNKNOWN = 200** (48.5% strict / 87.0% evidence-backed).
+
+Pass 36 delta: evidence-only character modifier-order registry + smoke path, native-evidence triage, current ledger/scorecard, documentation, and current-ledger regression updates. No gameplay modifier implementation file is changed.
+
+## Pass 36 package counts
+
+- Previous cumulative members retained: **110/110**
+- Pass 36 modified existing cumulative members: **17**
+- Pass 36 new relevant members: **12**
+- Pass 36 delta files: **29**
+- Pass 36 cumulative members: **122**
+
+## Pass 36 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimeCharacterModifierOrderEvidenceRegistry.cs`
+- `Apps/Source/Reforged.Server/RuntimePass36CharacterModifierOrderVerificationSmokeReport.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Docs/CODE_UPDATE_0307_CLASSIC_CHARACTER_MODIFIER_ORDER_VERIFICATION.md`
+- `Librarium/Evidence/Character/CLASSIC_CHARACTER_MODIFIER_ORDER_VERIFICATION_PASS_0307.md`
+- `Librarium/Evidence/HostRuntime/CLASSIC_CHARACTER_MODIFIER_ORDER_VERIFICATION_PASS_0307.md`
+- `Librarium/Parity/majormud_character_modifier_order_verification_evidence_0307.json`
+- `Librarium/Parity/majormud_parity_assertions_0307.json`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0307.md`
+- `Reports/RuntimeVerification/PASS36_VALIDATION_0307.md`
+- `Reports/RuntimeVerification/character_modifier_order_verification_pass36_static_validation_0307.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0307.json`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+- `Tools/Validation/validate_pass36_character_modifier_order_verification.py`
+
+# Pass 35 cumulative updated-files overlay
+
+Pass 35 adds the exact-version Classic Worldgroup RNG direct-call boundary and preserves all 99 Pass 34 cumulative members. It does not globally replace any gameplay RNG caller, does not add `WCCMMUD.INI`, and does not replace Borin Trainer, Custom1 Simple Editor, `App.xaml.cs`, or `MainWindow.xaml.cs` source.
+
+Current parity: **97 PASS / 76 STRONG / 27 UNKNOWN = 200** (48.5% strict / 86.5% evidence-backed).
+
+Pass 35 delta: direct randomness-call boundary registry + smoke path, exact-version evidence, current ledger/scorecard, remaining-system boundary update, documentation, and static validation.
+
+## Pass 35 package counts
+
+- Previous cumulative members retained: **99/99**
+- Pass 35 modified existing cumulative members: **18**
+- Pass 35 new relevant members: **11**
+- Pass 35 delta files: **29**
+- Pass 35 cumulative members: **110**
+
+## Pass 35 delta files
+
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/RuntimeMajorMudParityAudit.cs`
+- `Apps/Source/Reforged.Server/RuntimePass35ClassicWorldgroupRngCallsiteBoundarySmokeReport.cs`
+- `Apps/Source/Reforged.Server/WorldgroupRngDirectCallsiteRegistry.cs`
+- `CHANGED_FILES.md`
+- `CHANGELOG.md`
+- `Docs/CODE_UPDATE_0306_CLASSIC_WORLDGROUP_RNG_CALLSITE_BOUNDARY.md`
+- `Librarium/Evidence/HostRuntime/CLASSIC_WORLDGROUP_RNG_CALLSITE_BOUNDARY_PASS_0306.md`
+- `Librarium/Parity/majormud_native_rng_callsite_boundary_evidence_0306.json`
+- `Librarium/Parity/majormud_parity_assertions_0306.json`
+- `Librarium/RemainingSystems/global_random_catalog.json`
+- `Librarium/RemainingSystems/remaining_systems_registry.json`
+- `ReleaseNotes.md`
+- `Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD_0306.md`
+- `Reports/RuntimeVerification/PASS35_VALIDATION_0306.md`
+- `Reports/RuntimeVerification/classic_worldgroup_rng_callsite_boundary_pass35_static_validation_0306.json`
+- `Reports/RuntimeVerification/majormud_parity_scorecard_0306.json`
+- `Tools/Validation/validate_pass15_death_law_pvp_lifecycle.py`
+- `Tools/Validation/validate_pass24_experience_party_reward_boundary.py`
+- `Tools/Validation/validate_pass26_door_requirements_trap_container_scope.py`
+- `Tools/Validation/validate_pass27_trap_state_reset_boundary.py`
+- `Tools/Validation/validate_pass28_identity_law_native_closure.py`
+- `Tools/Validation/validate_pass29_evil_reputation_redemption.py`
+- `Tools/Validation/validate_pass30_broadcast_groups.py`
+- `Tools/Validation/validate_pass31_native_help_aliases.py`
+- `Tools/Validation/validate_pass32_classic_set_profile_settings.py`
+- `Tools/Validation/validate_pass33_classic_file_configuration_boundary.py`
+- `Tools/Validation/validate_pass34_classic_worldgroup_prng.py`
+- `Tools/Validation/validate_pass35_classic_worldgroup_rng_callsite_boundary.py`
+
+# Pass 34 cumulative updated-files overlay
+
+Pass 34 adds the executable Classic Worldgroup/Borland PRNG core, packed-time startup seed authority, evidence/ledger/scorecard updates, focused validation, and current-ledger regression updates. It preserves every Pass 33 cumulative member; no Borin, Custom1 Simple Editor, App.xaml.cs, or MainWindow.xaml.cs source is replaced by Pass 34.
+
+Current parity: **96 PASS / 76 STRONG / 27 UNKNOWN = 199** (48.2% strict / 86.4% evidence-backed).
+
 # Pass 8 → Pass 27 Cumulative Updated Files + Latest Trainer/Editor Integration
 
 This repair-safe overlay contains the newest version of every project file touched from Pass 8 through Pass 27, plus the latest user-supplied Borin Trainer and Custom1 Simple Editor updates. Unchanged repository bulk, character saves, Python caches, compiled artifacts, and external evidence archives are intentionally excluded.
@@ -340,3 +708,6 @@ This repair-safe overlay contains the newest version of every project file touch
 - `Tools/Repair-ReforgedApp-DuplicateSources.ps1`
 - `Repair-ReforgedApp-Build.cmd`
 - `WPF_DUPLICATE_REPAIR_README.txt`
+
+## Pass 38 / Update 0309
+Classic scheduler-boundary verification, centralized owner cadence constants, evidence registry/smoke report, parity ledger/scorecard update, and regression validation. No Borin Trainer, Custom1 Simple Editor, or WPF UI source changes.

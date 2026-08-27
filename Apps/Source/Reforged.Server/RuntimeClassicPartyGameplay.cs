@@ -68,8 +68,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     private string JoinClassicParty(RuntimeSession session, string query)
     {
         if (string.IsNullOrWhiteSpace(query)) return "Join whom?";
-        if (int.TryParse(query.Trim(), out _))
-            return "Native broadcast-group JOIN is recovered, but broadcast-group runtime state is not yet evidence-complete.";
+        if (int.TryParse(query.Trim(), out var broadcastGroup))
+            return SetClassicBroadcastGroup(session, broadcastGroup);
 
         var leader = _sessions.FindUniqueInRoom(session, query);
         if (leader is null) return $"You don't see {query.Trim()} here!";
@@ -100,7 +100,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     private string LeaveClassicParty(RuntimeSession session)
     {
         var party = _partyGameplay.FindByMember(session.Actor.Id);
-        if (party is null) return "You are not in a party at the present time.";
+        if (party is null) return SetClassicBroadcastGroup(session, 0);
         var leader = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(party.LeaderId, StringComparison.OrdinalIgnoreCase));
         if (party.LeaderId.Equals(session.Actor.Id, StringComparison.OrdinalIgnoreCase) && party.Members.Count > 1)
             return "Native party-leader LEAVE succession behavior is not yet recovered.";

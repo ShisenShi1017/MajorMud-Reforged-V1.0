@@ -27,7 +27,7 @@ public sealed record RuntimeMajorMudTimerAuditReport(
 /// </summary>
 public static class RuntimeMajorMudTimerAudit
 {
-    public const int RecoveredCombatRoundSeconds = 5;
+    public const int RecoveredCombatRoundSeconds = RuntimeClassicTimingAuthority.CombatRoundSeconds;
 
     public static RuntimeMajorMudTimerAuditReport Run(string projectRoot, RuntimeLivingWorldService living)
     {
@@ -54,7 +54,8 @@ public static class RuntimeMajorMudTimerAudit
         diagnostics.Add("Ordinary lair room Delay is projected in minutes, but exact wall-clock-minute gating remains evidence-gated.");
         diagnostics.Add("Last Killed/regen evidence is now active as room-entry admission: elapsed NPC respawn timers do not materialize from the global heartbeat; a player entering the home room admits due spawns.");
         diagnostics.Add("Zero-delay room semantics remain disputed and receive no parity credit.");
-        diagnostics.Add("Room reset ordering, hard-reset exceptions, world reset ordering, restart/missed-timer admission, and host-clock/DST behavior remain UNKNOWN.");
+        diagnostics.Add("There is no evidence-backed single universal 10-second Classic gameplay phase: combat, spell/status, regeneration, save, exit, and room-entry respawn owners use distinct recovered boundaries.");
+        diagnostics.Add("Room reset ordering, hard-reset exceptions, world reset ordering, restart/missed-timer admission, simultaneous-event ordering, and exact host-clock phase remain UNKNOWN.");
         diagnostics.Add($"Native WCCMMUD player-data save interval is {RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds}s; native buffer-data prompt is {RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds}s, but exact buffer ownership/order remains UNKNOWN.");
         diagnostics.Add("Existing in-flight respawn deadlines are preserved across upgrade/restore; the new timer authority is guaranteed for newly scheduled deaths rather than retroactively rewriting uncertain persisted deadlines.");
 

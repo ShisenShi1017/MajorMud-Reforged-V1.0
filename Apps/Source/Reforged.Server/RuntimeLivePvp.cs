@@ -49,7 +49,9 @@ public sealed class RuntimePvpWorldConfigurationStore
     {
         lock (_gate)
         {
-            if (!File.Exists(_path)) return new(1, _worldId, false, string.Empty, DateTimeOffset.MinValue, 0);
+            if (!File.Exists(_path))
+                return new(1, _worldId, false, string.Empty, DateTimeOffset.MinValue, 0,
+                    RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference);
             var value = JsonSerializer.Deserialize<RuntimePvpWorldConfiguration>(File.ReadAllText(_path),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             if (value is null || value.SchemaVersion != 1 || !value.WorldId.Equals(_worldId, StringComparison.OrdinalIgnoreCase))

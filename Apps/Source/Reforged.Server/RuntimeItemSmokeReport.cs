@@ -201,9 +201,15 @@ public static class RuntimeItemSmokeReport
             if (RuntimeCharacterRegenerationAuthority.FocusActivationDelay != TimeSpan.FromSeconds(20) ||
                 RuntimeCharacterRegenerationAuthority.RestCadence != TimeSpan.FromSeconds(20) ||
                 RuntimeCharacterRegenerationAuthority.MeditateCadence != TimeSpan.FromSeconds(10) ||
-                rest.HitPointRate != 4 || meditate.ManaRate != 8 ||
+                rest.HitPointRate != 9 || meditate.ManaRate != 4 ||
                 RuntimeCommand.Parse("rest").Name != "rest" || RuntimeCommand.Parse("meditate").Name != "meditate")
                 throw new InvalidOperationException("Decoded REST/MEDITATE activation, cadence, formulas, or command routes are incomplete.");
+
+            var kai = caster with { Magic = new RuntimeMagicDefinition(5, 0) };
+            var kaiPassive = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(regenerationCharacter, kai, DateTimeOffset.UnixEpoch);
+            var kaiMeditate = RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(regenerationCharacter, kai, DateTimeOffset.UnixEpoch);
+            if (kaiPassive.ManaRate != 2 || kaiMeditate.ManaRate != 2)
+                throw new InvalidOperationException("Decoded Kai/type-5 one-point MPRegen branch is incomplete.");
         });
 
         Check("decoded-timed-maximum-resource-and-encumbrance-effects", () =>

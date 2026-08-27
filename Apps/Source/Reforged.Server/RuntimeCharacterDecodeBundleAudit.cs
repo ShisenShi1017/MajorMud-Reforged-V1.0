@@ -335,6 +335,15 @@ public static class RuntimeCharacterDecodeBundleAudit
         Check(!catalog.AlignmentRuleContract.CreationBlocking, "alignment_evil_point_rules.creation_blocking");
         Check(catalog.AlignmentRuleContract.DefaultEpCycleMinutes == catalog.AlignmentRuleContract.CycleMinutes, "alignment_evil_point_rules.default_epcycle_minutes");
         Check(catalog.AlignmentRuleContract.DefaultEpAmount == catalog.AlignmentRuleContract.CycleAmount, "alignment_evil_point_rules.default_epamount");
+        Check(catalog.AlignmentRuleContract.MaximumDailyReduction == 18, "alignment_evil_point_rules.maxepday_default_18");
+        Check(catalog.AlignmentRuleContract.ReputationMinimumEvilPoints.Count == 8
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Good"] == -200
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Neutral"] == -50
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Seedy"] == 30
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Outlaw"] == 40
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Criminal"] == 80
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Villain"] == 120
+            && catalog.AlignmentRuleContract.ReputationMinimumEvilPoints["Fiend"] == 210, "alignment_evil_point_rules.reputation_thresholds");
         Check(!string.IsNullOrWhiteSpace(catalog.AlignmentRuleContract.NegativeEpException), "alignment_evil_point_rules.negative_ep_exception");
         Check(catalog.DerivedFormulaContract.CreationAbilityAndEquipmentCache == 0, "derived_stat_formulas.maximum_mana.creation_ability_and_equipment_cache");
         Check(catalog.DerivedFormulaContract.SpellcastingTypes.Count == 5, "derived_stat_formulas.spellcasting.types");
@@ -408,7 +417,13 @@ public static class RuntimeCharacterDecodeBundleAudit
         Check(catalog.AlignmentRuleContract.AttackReputationPenalties.All(pair => RuntimeCharacterAlignmentResolver.AttackPenaltyForTargetReputation(pair.Key, catalog.AlignmentRuleContract) == pair.Value), "runtime.alignment.decoded_attack_penalties");
         Check(RuntimeCharacterAlignmentResolver.CanInitiateAttack(alignment with { EvilPoints = catalog.AlignmentRuleContract.FiendAttackLockoutThreshold - 1 }, catalog.AlignmentRuleContract) && !RuntimeCharacterAlignmentResolver.CanInitiateAttack(alignment with { EvilPoints = catalog.AlignmentRuleContract.FiendAttackLockoutThreshold }, catalog.AlignmentRuleContract), "runtime.alignment.decoded_fiend_lockout");
         var cleanup = RuntimeCharacterAlignmentResolver.CreateCleanupConfiguration(catalog.AlignmentRuleContract);
-        Check(cleanup.EvilActionReduction == catalog.AlignmentRuleContract.EvilActionReduction && cleanup.NoEvilActionBaseReduction == catalog.AlignmentRuleContract.NoEvilActionBaseReduction && cleanup.CycleMinutes == catalog.AlignmentRuleContract.CycleMinutes && cleanup.CycleAmount == catalog.AlignmentRuleContract.CycleAmount, "runtime.alignment.decoded_cleanup_configuration");
+        Check(cleanup.EvilActionReduction == catalog.AlignmentRuleContract.EvilActionReduction && cleanup.NoEvilActionBaseReduction == catalog.AlignmentRuleContract.NoEvilActionBaseReduction && cleanup.CycleMinutes == catalog.AlignmentRuleContract.CycleMinutes && cleanup.CycleAmount == catalog.AlignmentRuleContract.CycleAmount && cleanup.MaximumDailyReduction == 18, "runtime.alignment.decoded_cleanup_configuration");
+        Check(RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(29, "Neutral", catalog.AlignmentRuleContract) == "Neutral"
+            && RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(30, "Neutral", catalog.AlignmentRuleContract) == "Seedy"
+            && RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(40, "Seedy", catalog.AlignmentRuleContract) == "Outlaw"
+            && RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(80, "Outlaw", catalog.AlignmentRuleContract) == "Criminal"
+            && RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(120, "Criminal", catalog.AlignmentRuleContract) == "Villain"
+            && RuntimeCharacterAlignmentResolver.ResolveReputationForEvilPoints(210, "Villain", catalog.AlignmentRuleContract) == "Fiend", "runtime.alignment.decoded_reputation_transition_thresholds");
 
         foreach (var race in catalog.Races)
         foreach (var characterClass in catalog.Classes)

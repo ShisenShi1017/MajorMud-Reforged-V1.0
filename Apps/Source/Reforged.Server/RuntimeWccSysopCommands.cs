@@ -169,7 +169,7 @@ public sealed class RuntimeWccSysopService
             "goto" => ExecuteGoto(session, definition, arguments),
             "initialize" => ExecuteInitialize(arguments, living),
             "configure" => ExecuteConfigure(arguments),
-            "reload" => "SYSOP RELOAD is not applicable: it reloaded the legacy WCCMUD.INI file, which the standalone Reforged application does not use.",
+            "reload" => "SYSOP RELOAD has no literal file target in Reforged: native MajorMUD reloaded WCCMMUD.INI, while Reforged stores equivalent configuration in its own internal configuration system.",
             "reset" => ExecuteReset(session, arguments, living),
             "speak" => ExecuteSpeak(session, arguments),
             "arena" => ExecuteArena(character.WorldId, arguments),
@@ -526,7 +526,7 @@ public sealed class RuntimeWccSysopService
         {
             if (!int.TryParse(arguments[3], out var amount)) return "Usage: SYSOP GOD <character-id> ADD EVIL <amount>";
             var alignment = target.SemanticState?.Alignment ?? RuntimeCharacterAlignmentResolver.CreateInitial();
-            var updatedAlignment = alignment with { EvilPoints = checked(alignment.EvilPoints + amount), PerformedEvilActionToday = alignment.PerformedEvilActionToday || amount > 0, SourceRecordId = "wccmmud.sysop.god.add_evil" };
+            var updatedAlignment = RuntimeCharacterAlignmentResolver.ApplyEvilPointDelta(alignment, amount, markPositiveDeltaAsEvilAction: false) with { SourceRecordId = "wccmmud.sysop.god.add_evil" };
             SaveGodAlignment(target, targetSession, updatedAlignment, "add-evil");
             return $"{target.DisplayName} now has {updatedAlignment.EvilPoints} evil point(s).";
         }

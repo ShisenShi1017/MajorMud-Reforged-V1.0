@@ -90,13 +90,17 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
             "info" => 19,
             "spells" => 21,
             "shops" => 23,
+            "laws" => 31,
             "movement" => 25,
             "party" => 27,
             "tips" => 33,
             "items" => 35,
             "profile" => 37,
+            "misc" => 111,
+            "set" => 117,
             "stats1" => 45,
             "stats2" => 47,
+            "help" => 263,
             _ => 0
         };
         if (nativeMainAliasBody > 0 && _bodies.TryGetValue(nativeMainAliasBody, out var aliasBody))

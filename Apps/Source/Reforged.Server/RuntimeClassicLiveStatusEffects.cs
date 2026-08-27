@@ -52,8 +52,8 @@ public sealed record RuntimeClassicLiveStatusDefinition(
 
 public sealed class RuntimeClassicLiveStatusCatalog
 {
-    public const int CombatRoundSeconds = 5;
-    public const int SpellRoundSeconds = 3;
+    public const int CombatRoundSeconds = RuntimeClassicTimingAuthority.CombatRoundSeconds;
+    public const int SpellRoundSeconds = RuntimeClassicTimingAuthority.SpellSystemRoundSeconds;
     private readonly IReadOnlyDictionary<string, RuntimeClassicLiveStatusDefinition> _bySpellId;
     private readonly IReadOnlyDictionary<string, RuntimeClassicLiveStatusDefinition> _byLegacyId;
 

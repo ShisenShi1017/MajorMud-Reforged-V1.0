@@ -1,4 +1,81 @@
+## CodeUpdate0313 - Classic world-rules/configuration boundary
+
+- Promotes `native.world-rules-configuration` from UNKNOWN to STRONG.
+- Retains the exact 44-prompt/default `WCCMMUD.mcv` setup catalog as native configuration evidence.
+- Keeps Reforged free of `WCCMMUD.INI`; the native INI remains evidence only, not a Reforged runtime dependency.
+- Connects six exact defaults already consumed by live Classic timing, PvP, and Evil-Point owners: 60s Player save, 300s Buffer save, PvP difference 100, EP/day 18, EP cycle 60m, EP/cycle 1.
+- Does not infer native ranges or live-reload/restart behavior from Reforged's generic typed world-rule service.
+- Leaves remaining setting owner/effect mappings unresolved until native evidence closes them.
+- Parity: **97 PASS / 83 STRONG / 20 UNKNOWN = 200** (48.5% strict / 90.0% evidence-backed).
+
+## Pass 41 / Update 0312 — Classic gameplay failure boundary
+
+- Promotes `native.error-handling-recovery` from UNKNOWN to STRONG.
+- Ordinary rejected Classic gameplay actions remain state-preserving no-ops; no rollback/disable/world-load stop is introduced.
+- Separates catastrophic wrong/corrupt native-file startup failure from ordinary gameplay rejection.
+- Keeps exact failure wording, malformed post-startup reference behavior, and catastrophic save rollback ordering UNKNOWN.
+- Parity: 97 PASS / 82 STRONG / 21 UNKNOWN = 200; 48.5% strict, 89.5% evidence-backed.
+
+# CodeUpdate0311 / Pass 40 — Classic identity / Shadow LOOK boundary
+
+- Promoted `native.character-identity-policy` UNKNOWN -> STRONG from the existing native first-name/UserRec anchors plus the retained Shadow ability presentation contract.
+- Connected equipped positive ability 9 (`Shadow`) to Classic `LOOK <character>` for other players.
+- Black Embroidered Robes (`item.1331`) are retained as `Shadow +100`; LOOK now masks the target heading as `A shadowy figure` and emits `A shadowy figure!`.
+- Preserved self LOOK without masking.
+- Deliberately left the normal room occupant list using the real character name because the retained Shadow description is LOOK-scoped and does not prove room-list masking.
+- Kept the user-provided 3-15 letters-only name grammar, reserved-name list, title precedence and invisibility presentation as hypotheses only.
+- Advanced parity to **97 PASS / 81 STRONG / 22 UNKNOWN = 200** (48.5% strict / 89.0% evidence-backed).
+
+# CodeUpdate0310 / Pass 39 — Classic lifecycle / death hypothesis verification
+
+- Verified the supplied combat, LINKDEATH/logout, and death-XP pages as hypotheses rather than native authority.
+- Rejected the proposed ActionDelay priority queue because the existing stock attack-energy scheduler is already PASS.
+- Promoted `character.native-lifecycle-boundary` UNKNOWN -> STRONG from exact 5-second graceful exit + automatic save and explicit follower-exit stop-following evidence.
+- Excluded raw reconnect/socket/account mechanics as Worldgroup plumbing; kept MajorMUD-owned unexpected-disconnect consequences unresolved.
+- Kept exact death XP loss UNKNOWN; no level-10 exemption, 10% formula, 2,000,000 cap, de-level count, or pool-recalculation order is guessed.
+- Advanced the current parity ledger to 0310: **97 PASS / 80 STRONG / 23 UNKNOWN = 200**.
+
+# CodeUpdate0308 / Pass 37 — Classic REST / MEDITATE Regeneration Correction
+
+- Corrected Classic player HP regeneration to the stock MajorMUD `/750` base with minimum one; the prior `/500` path was the GreaterMUD branch.
+- Corrected REST to multiply the stock HP base by 3 before applying HPRegen percentage.
+- Corrected types 1-4 MEDITATE mana regeneration to return the recovered base before MPRegen percentage; passive mana still applies MPRegen.
+- Preserved Kai/type 5 as the recovered one-point MPRegen branch.
+- Retained 30-second passive, 20-second REST, and 10-second MEDITATE cadence evidence plus direct-native 20-second activation/interruption behavior.
+- Promoted `native.rest-inn-recovery-policy` UNKNOWN -> STRONG while keeping exact host-clock phase, simultaneous tick ordering, exact MEDITATE presentation, and remaining cleanup ordering unresolved.
+- Advanced the current parity ledger to 0308: **97 PASS / 78 STRONG / 25 UNKNOWN = 200**.
+- Added Pass 37 evidence registry, smoke route, focused static validation, and cumulative current-ledger regression updates.
+
 # Changelog
+
+## CodeUpdate0307 / Pass 36 — Classic character modifier-order verification
+
+- Treated the operator-supplied modifier-order screenshots as hypotheses and checked them against retained native evidence.
+- Promoted `character.cross-category-modifier-order` from UNKNOWN to STRONG based on multiple recovered formula-specific order boundaries.
+- Rejected the screenshot class-base/per-level creation equation for Classic: promoted creation evidence starts primary stats at race minima.
+- Did not invent a universal equipment percentage stage, disease/curse ordering, blindness -50% Accuracy rule, or sleep/paralysis AC-zero rule.
+- Rejected the screenshot's universal 10-second poison tick because periodic spell/status timing is already proven at a 3-second spell/system round.
+- Added an evidence-only runtime registry and Pass 36 smoke route; no gameplay modifier formula changed.
+- Parity: **97 PASS / 77 STRONG / 26 UNKNOWN = 200** (48.5% strict / 87.0% evidence-backed).
+
+## CodeUpdate0306 / Pass 35 — Classic Worldgroup RNG direct-call boundary
+
+- Pinned the exact retained WCCMMUD/WBBMMUD native versions used by the randomness callsite evidence.
+- Added an executable direct-call census boundary registry: 146 `_genrdn` and 42 `_lngrnd` WGSERVER-thunk calls per MajorMUD module variant; retained explicit `_genrdn` addresses remain bounded to 64 per module.
+- Preserved the bounded argument analyzer exactly: 64 `_genrdn` observations per module and 42 `_lngrnd` observations per module; the narrower `_genrdn` set is not treated as complete.
+- Left indirect calls, gameplay semantic attribution, Worldgroup execution-thread CRT mapping, gameplay draw ordering, and the instruction-equivalent range loop unresolved.
+- Made **zero gameplay RNG caller rewrites**; no global Classic stream was invented.
+- Parity: **97 PASS / 76 STRONG / 27 UNKNOWN = 200** (48.5% strict / 86.5% evidence-backed).
+
+## CodeUpdate0305 / Pass 34 — Classic Worldgroup PRNG closure
+
+- Rejected the proposed MSVC `214013/2531011` LCG after retained native Worldgroup evidence identified the bound Borland/CW3220MT generator.
+- Activated the exact raw Classic transition `seed = seed * 0x015A4E35 + 1 (mod 2^32)` with 15-bit output `(seed >> 16) & 0x7FFF`.
+- Activated the recovered WGSERVER startup seed packing `(hour << 11) + (minute << 5) + (second >> 1)`, including two-second resolution.
+- Retained `_genrdn`/`_lngrnd` exclusive-maximum and shared-host-PRNG behavior as a proven native boundary without inventing an instruction-equivalent range loop.
+- Kept the old xorshift multi-stream `RuntimeGlobalRandomService` explicitly classified as Reforged extension infrastructure, not Classic parity.
+- Narrowed the remaining RNG UNKNOWN to gameplay callsite/thread-state mapping, exact draw ordering, and complete native range-loop activation.
+- Parity: **96 PASS / 76 STRONG / 27 UNKNOWN = 199** (48.2% strict / 86.4% evidence-backed).
 
 ## Pass 27 post-integration compile hotfix
 
@@ -736,3 +813,8 @@ One-time validation proofs are recorded in ValidationManifest.json.
 - Reconciled all 35 unresolved spawn labels: resolved 28 exact no-spawn NPC names from generated NPC IDs and classified seven decoded monster-group-9 population references without expanding grouped candidates into live rooms. Living-world counts remain 962 generated spawns and 1,015 live NPC instances.
 - Compacted every generated runtime world by retaining pending quest candidates and formula probes in Librarium only. Classic runtime quests drop from 2,183 to 83 executable flows and formulas from 36 to seven, removing exactly 2,129 non-runtime records while quest and combat smokes remain green.
 - Retired the unconsumed 117-record room-message offset catalog from runtime generation while preserving it in Librarium. Exact comparison found 59/62 unique strings already represented by executable interactions/native payloads; three unbound offset strings remain evidence-only. Classic now emits 33 gameplay families, 103,412 objects, and 38 files; native-message coverage is green.
+
+## Update 0309 — Pass 38 Classic scheduler boundary
+- Promoted `native.clock-scheduling` UNKNOWN -> STRONG by separating independently recovered owner clocks from unsupported global-phase assumptions.
+- Centralized existing 5s combat, 3s spell/system, and 30/20/10s regeneration cadence constants in `RuntimeClassicTimingAuthority`.
+- Did not promote a universal 10-second tick, player-first NPC phase, cleanup/spawn order, or same-cycle cross-owner ordering.

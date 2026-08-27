@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "subsystem": "clock-scheduling",
-  "updatedByPass": "RemainingSystems-0008-ClockScheduling",
+  "updatedByPass": "Pass 38 / Update 0309",
   "runtimeOwner": "RuntimeClockSchedulingService",
   "persistenceOwner": "world scheduling state; action effects remain owner-subsystem responsibilities",
   "scheduleKinds": [
@@ -42,12 +42,37 @@
     "corrupt persistence retains catalog defaults"
   ],
   "nativeDependencies": [
-    "exact Classic round/tick/minute conversion",
-    "native seed clock and host-time boundary",
+    "exact host-clock phase for recovered owner cadences",
+    "simultaneous cross-owner event ordering",
+    "exact _background_fast/_medium/_slow/_energy/_inactivity cadence and priority",
     "restart and missed-timer behavior",
-    "simultaneous timer ordering",
     "overflow and drift behavior",
-    "day rollover and daylight-saving dependence",
-    "exact schedules for merchants/trainers/spawns/quests/status/events"
-  ]
+    "exact player input versus NPC decision ordering",
+    "whether a newly admitted/spawned NPC may act on the same native host cycle",
+    "exact remaining schedules for merchants/trainers/quests/status/events"
+  ],
+  "status": "implemented-strong-owner-scoped-classic-boundary",
+  "evidenceClassification": "strong-mixed-pass-owner-cadences",
+  "classicBoundary0309": {
+    "provenSeconds": {
+      "combat": 5,
+      "spellSystem": 3,
+      "playerSave": 60,
+      "bufferSavePrompt": 300,
+      "exitDelay": 5,
+      "focusActivation": 20
+    },
+    "strongSeconds": {
+      "passiveRegeneration": 30,
+      "restRegeneration": 20,
+      "meditateRegeneration": 10
+    },
+    "roomEntryRespawnAdmission": "STRONG",
+    "universalTenSecondGameplayPhase": "NOT_PROMOTED",
+    "exactSameCycleOrdering": "UNKNOWN",
+    "exactHostPhase": "UNKNOWN",
+    "backgroundBucketCadence": "UNKNOWN",
+    "npcPlayerFirstOrdering": "UNKNOWN",
+    "spawnNextTickAction": "UNKNOWN"
+  }
 }

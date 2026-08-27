@@ -6,7 +6,7 @@ namespace Reforged.Server;
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    public const int ClassicCombatRoundMilliseconds = 5000;
+    public const int ClassicCombatRoundMilliseconds = RuntimeClassicTimingAuthority.CombatRoundSeconds * 1000;
     public const int ClassicSpellSystemRoundMilliseconds = 3000;
 
     public async Task TickLiveStatusesAsync(CancellationToken cancellationToken)

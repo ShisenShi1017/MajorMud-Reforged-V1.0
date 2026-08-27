@@ -164,8 +164,7 @@ public static class RuntimeCharacterDecodeCoverageRegistry
         path.Contains(".public_reference_0139.", StringComparison.OrdinalIgnoreCase) ||
         path.Contains(".source.", StringComparison.OrdinalIgnoreCase) ||
         path.EndsWith(".evidence", StringComparison.OrdinalIgnoreCase) ||
-        path.EndsWith(".note", StringComparison.OrdinalIgnoreCase) ||
-        path.Contains(".lawful_target_attack_penalty.", StringComparison.OrdinalIgnoreCase);
+        path.EndsWith(".note", StringComparison.OrdinalIgnoreCase);
 
     private static bool IsCatalogMetadata(string path) =>
         path is "$.authority" or "$.schema_version" or "$.classification" or

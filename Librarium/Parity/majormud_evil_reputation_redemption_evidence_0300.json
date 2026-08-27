@@ -1,0 +1,66 @@
+{
+  "schema": "majormud.evil-reputation-redemption-evidence.v1",
+  "update": "0300",
+  "pass": 29,
+  "status": "EVIDENCE_BACKED_CLOSURE",
+  "summary": "Pass 29 closes numeric Evil-Point reputation transitions and executable MAXEPDAY/EPCYCLE/EPAMOUNT defaults, wires reputation recalculation to EP mutations, and preserves the Villain/Fiend enforcement-source conflict as unresolved.",
+  "facts": [
+    {
+      "id": "classic-evil-point-reputation-reference-points",
+      "state": "PASS",
+      "claim": "MajorMUD reference points are Saint -220..-201, Good -200..-51, Neutral -50..29, Seedy 30..39, Outlaw 40..79, Criminal 80..119, Villain 120..209, and Fiend from 210; the 300-EP attack-initiation lockout is separate and does not introduce a new reputation.",
+      "evidence": [
+        "Archived MajorMUD legal-system documentation mirrored at https://www.mudinfo.net/viewtopic.php?t=2509",
+        "operator-corroboration.omnimud-classic.2026-08-27: EP 237 displayed FIEND and 28 to Villain"
+      ],
+      "runtime": [
+        "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json reputation_minimum_evil_points",
+        "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs RuntimeCharacterAlignmentRuleContract",
+        "Apps/Source/Reforged.Server/RuntimeCharacterAlignmentAuthority.cs ResolveReputationForEvilPoints"
+      ],
+      "boundary": "The reference table names -220 as the Saint floor but no lower reputation name. Runtime therefore does not invent a ninth band below Saint."
+    },
+    {
+      "id": "classic-evil-point-redemption-defaults",
+      "state": "PASS",
+      "claim": "Default MAXEPDAY=18, EPCYCLE=60 minutes and EPAMOUNT=1 are directly retained in WCCMMUD setup/message evidence; the archived MajorMUD documentation supplies the cleanup arithmetic and confirms that forgiveness reduces EP toward Good/Saint.",
+      "evidence": [
+        "Librarium/Evidence/native_support_binary_layouts_0021.json MAXEPDAY/EPCYCLE/EPAMOUNT",
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json messages 68-70",
+        "https://www.mudinfo.net/viewtopic.php?t=2509"
+      ],
+      "runtime": [
+        "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json maximum_daily_reduction=18",
+        "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs decoded MaximumDailyReduction",
+        "Apps/Source/Reforged.Server/RuntimeCharacterAlignmentAuthority.cs ApplyDailyCleanup"
+      ],
+      "correction": "Prior generated authority stored maximum_daily_reduction as descriptive text, which decoded as zero and was replaced by int.MaxValue. Pass 29 makes the native default executable as integer 18."
+    },
+    {
+      "id": "omnimud-classic-redemption-corroboration",
+      "state": "CORROBORATING_ONLY",
+      "claim": "At 237 EP OmniMUD Classic displays FIEND, 28 EP to Villain, 1 EP per 60 minutes and max 18/day. This confirms direction and matching evil-side cutoffs/default cycle values but is not treated as native MajorMUD proof or as proof of the complete cleanup schedule.",
+      "evidence": [
+        "Project-owner runtime capture transcribed 2026-08-27"
+      ]
+    },
+    {
+      "id": "villain-fiend-enforcement-source-conflict",
+      "state": "UNKNOWN",
+      "claim": "Native player help and archived operator documentation disagree on whether Villain adds divine intervention or bounty-hunter pursuit and where divine lightning begins.",
+      "evidence": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json HL1B11",
+        "https://www.mudinfo.net/viewtopic.php?t=2509"
+      ],
+      "boundary": "No new bounty-hunter/divine enforcement actor is activated until target-version native runtime behavior resolves the conflict."
+    }
+  ],
+  "unresolved": [
+    "exact cleanup wall-clock/day-boundary invocation and ordering",
+    "exact FORGIVE accounting/history and approximately-five-minute window",
+    "Lawful creation sequencing and complete evil-action admission classification",
+    "Villain/Fiend extra enforcement actor and cadence conflict",
+    "guard spawn/routing, arrest/jail/fine/confiscation ordering",
+    "behavior of EP values below the documented Saint reference floor if native data can reach them"
+  ]
+}

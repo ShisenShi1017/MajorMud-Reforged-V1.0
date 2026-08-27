@@ -12,7 +12,8 @@ Validation evidence supplied by the project owner from the archived MajorMUD evi
 - At 300 or more evil points, a Fiend cannot attack again until evil points fall below 300.
 - During cleanup, a character who performed an evil action that day has evil points reduced by 2.
 - During cleanup, a character with no evil action that day receives `3 + floor(minutes_played / EPCYCLE) * EPAMOUNT` forgiveness, subject to `MAXEPDAY`. Defaults shown are EPCYCLE=60 and EPAMOUNT=1.
-- The exact extra penalty for attacking a Lawful character is described as much larger but is not numerically verified here and remains UNKNOWN.
+- Native help subsequently closes the Lawful-target multiplier at exactly `3x` the otherwise-applicable evil-point attack penalty. This supersedes the earlier unresolved note while preserving the original operator evidence for the base reputation table.
+- Pass 29 / Update 0300 promotes that operator reputation table into the decoded runtime contract and closes the native default cleanup configuration (`MAXEPDAY=18`, `EPCYCLE=60`, `EPAMOUNT=1`). See `CLASSIC_EVIL_REPUTATION_REDEMPTION_PASS_0300.md`. Enforcement wording for Villain/Fiend remains separately evidence-gated because retained native help and the archived operator text do not name the same escalation actor at the same band.
 
 ## Critical interpretation correction
 

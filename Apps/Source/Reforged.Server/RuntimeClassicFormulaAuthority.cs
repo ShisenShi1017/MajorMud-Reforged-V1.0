@@ -134,11 +134,12 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeCharacterRegenerationAuthority),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcRestingRate lines 4111-4152 and CalcManaRegen lines 4209-4259"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained HP/mana regeneration calculations"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcRestingRate lines 4111-4152 and CalcManaRegen lines 4209-4259; stock MajorMUD branch separated from GreaterMUD"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained HP/mana regeneration calculations and branch markers"),
+                    new RuntimeFormulaEvidenceSource("pass37_correction", "Librarium/Parity/majormud_classic_regeneration_correction_evidence_0308.json", "stock /750 HP base, x3 REST multiplier, meditation MPRegen branch, and cadence boundary"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs", "passive, resting, and meditation runtime ticks")
                 },
-                "HP and mana regeneration formulas are live and strongly supported. Exact native timer phase, host-clock alignment, and the full type-5/Kai MPRegen branch ordering remain below PASS confidence."),
+                "Stock MajorMUD HP regeneration now uses the /750 base with minimum one and x3 REST multiplier instead of the GreaterMUD /500 branch. Types 1-4 meditation returns the base mana rate before MPRegen, while passive mana applies MPRegen; Kai/type 5 keeps its one-point special branch. Exact native host-clock phase and remaining presentation/cleanup ordering remain below PASS confidence."),
             new(
                 ClassicCombatResolver.ClassCombatAccuracyFormulaId,
                 "combat",

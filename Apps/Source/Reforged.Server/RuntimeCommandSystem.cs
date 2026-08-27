@@ -196,6 +196,7 @@ public sealed class RuntimeCommandDispatcher
             "talk" => _gameplay?.ConfigureMajorMudTalkMode(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "gossip" => _gameplay?.Gossip(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "auction" => _gameplay?.Auction(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
+            "broadcast" => _gameplay?.Broadcast(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "forget" => _gameplay?.ForgetTelepath(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "messages" => _gameplay?.DrainMessages(session) ?? string.Empty,
             "score" => _gameplay?.RenderScore(session) ?? "Live gameplay facade is not attached.",
@@ -256,7 +257,7 @@ public sealed class RuntimeCommandDispatcher
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["look"] = "look [direction|object]", ["brief"] = "brief", ["verbose"] = "verbose",
-            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set speech fast|slow | set telepath | set gossip [on|off] | set auction [on|off]",
+            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set follow [blind|normal] | set speech [fast|slow] | set messages low|medium|high | set entrances [on|off] | set telepath | set gossip [on|off] | set auction [on|off]",
             ["search"] = "search [object]", ["examine"] = "examine <target>", ["score"] = "score",
             ["character"] = "character", ["wealth"] = "wealth",
             ["experience"] = "experience", ["inventory"] = "inventory", ["keys"] = "keys", ["equipment"] = "equipment",

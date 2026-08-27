@@ -15,6 +15,9 @@ public sealed record RuntimeErrorRecoverySmokeReport(bool Passed, IReadOnlyList<
         Check("disable-on-unrecoverable-persistence", persistence.DisableSubsystem && service.IsSubsystemDisabled("WorldState"));
         Check("critical-load-stop", service.Decide(new(RuntimeFailureKind.InvalidRecord,"Catalog","startup",WorldLoadCritical:true)).StopWorldLoad);
         Check("duplicate-id-stop", service.Decide(new(RuntimeFailureKind.DuplicateRuntimeId,"NPC","spawn")).StopWorldLoad);
+        var noOp = service.Apply(new(RuntimeFailureKind.GameplayActionRejected,"ClassicGameplay","command",CharacterScoped:true,RollbackAvailable:true));
+        Check("classic-gameplay-failure-no-op", noOp.Action==RuntimeRecoveryAction.NoOp && !noOp.RequiresRollback && !noOp.DisableSubsystem && !noOp.StopWorldLoad);
+        Check("classic-gameplay-failure-no-disable-state", !service.IsSubsystemDisabled("ClassicGameplay"));
         Check("unknown-character-disconnect", service.Decide(new(RuntimeFailureKind.Unknown,"SessionOwnership","restore",CharacterScoped:true)).Action==RuntimeRecoveryAction.DisconnectCharacter);
         Check("state-valid", service.ValidateState().Count==0);
         return new(failures.Count==0,checks,failures);

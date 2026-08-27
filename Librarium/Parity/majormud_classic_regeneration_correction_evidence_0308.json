@@ -1,0 +1,78 @@
+{
+  "schema": "majormud.classic-regeneration-correction.v1",
+  "update": "0308",
+  "pass": 37,
+  "classification": "STRONG_STOCK_CLASSIC_REGENERATION_BOUNDARY",
+  "targetAssertion": "native.rest-inn-recovery-policy",
+  "nativeDirectEvidence": [
+    {
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "catalog": "WCCMMHLP.mcv",
+      "message": 205,
+      "sha256": "a1dfc8abf42b30f79da5de75d34404409c3cf9f3e782be2daa3d4d0341b29b97",
+      "proves": [
+        "REST increases HP regeneration",
+        "MEDITATE increases Mana regeneration",
+        "20-second uninterrupted activation requirement",
+        "movement/attack/being attacked terminates pending restful/meditative state and yields no bonus"
+      ]
+    },
+    {
+      "source": "Librarium/BinaryCorrelation0085/wcc_wbb_binary_correlation_0085.json",
+      "proves": [
+        "WCC/WBB MajorMUD binaries retain RESTING - REST REGEN %d. and MEDITATE - MANA REGEN %d. timing strings"
+      ],
+      "limitation": "does not by itself prove cadence constants or formula"
+    }
+  ],
+  "strongRecoveredFormulaEvidence": {
+    "source": "syntax53/MMUD-Explorer modMMudFunc.bas",
+    "upstreamBlobSha": "1d7981a0edcf9312a89f935277541a16fad81b4d",
+    "retainedMirrorEvidence": "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv",
+    "stockHp": [
+      "Fix(((Level + 20) * Health) / 750)",
+      "minimum 1",
+      "REST multiplies base by 3",
+      "HPRegen percent applied after base/rest multiplier"
+    ],
+    "greaterMudSeparation": "/500 is explicitly guarded by bGreaterMUD; stock branch is /750",
+    "manaTypes1To4": [
+      "Mage=INT",
+      "Priest=WIL",
+      "Druid=Fix((INT+WIL)/2)",
+      "Bard=CHA",
+      "Fix((((Level+20)*seed)*(MagicLevel+2))/1650)",
+      "MEDITATE exits before MPRegen percentage while passive applies MPRegen"
+    ],
+    "kaiType5": "one-point base with MPRegen percentage, immediate exit before Level/MagicLevel formula"
+  },
+  "strongCadenceEvidence": {
+    "source": "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json / 0077-REGEN-TICKS",
+    "passiveSeconds": 30,
+    "restSeconds": 20,
+    "meditateSeconds": 10,
+    "limitation": "exact host clock phase and simultaneous ordering are not proven"
+  },
+  "runtimeCorrection": {
+    "source": "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs",
+    "before": "Classic REST used the GreaterMUD /500 HP base and omitted the stock x3 resting multiplier; meditation applied MPRegen to types 1-4.",
+    "after": [
+      "Classic passive HP uses /750 minimum-one base then HPRegen percent",
+      "Classic REST uses /750 minimum-one base, x3, then HPRegen percent",
+      "types 1-4 passive mana applies MPRegen but MEDITATE returns pre-MPRegen base",
+      "Kai/type 5 preserves one-point MPRegen branch"
+    ]
+  },
+  "parityPromotion": {
+    "assertion": "native.rest-inn-recovery-policy",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Formula and cadence are strongly recovered and runtime-connected, while native HELP directly proves activation/interruption behavior. Exact host scheduler phase and remaining presentation/cleanup details prevent PASS."
+  },
+  "stillUnknown": [
+    "exact Worldgroup host-clock phase of 30/20/10-second ticks",
+    "simultaneous ordering when passive/focused/status/combat work lands on the same host cycle",
+    "exact native MEDITATE command response/presentation text",
+    "remaining status-cleanup ordering after interruption outside the directly proven activation boundary"
+  ]
+}

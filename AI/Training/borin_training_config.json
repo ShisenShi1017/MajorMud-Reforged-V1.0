@@ -1,9 +1,14 @@
 {
+  "continuous": true,
   "curriculum": [
-    {"name": "Basic Survival", "hours": 4},
-    {"name": "Combat Optimization", "hours": 6},
-    {"name": "Navigation & Hazard Avoidance", "hours": 8},
-    {"name": "Macro-Strategy & Economy", "hours": 4}
+    {"name": "Survival & Recovery", "minutes": 30},
+    {"name": "Exploration & Hazard Avoidance", "minutes": 30},
+    {"name": "Combat & Tactics", "minutes": 30},
+    {"name": "Spells, Powers & Item Use", "minutes": 30},
+    {"name": "NPCs, Dialogue & Quests", "minutes": 30},
+    {"name": "Inventory, Equipment & Item Care", "minutes": 30},
+    {"name": "Progression & Character Mastery", "minutes": 30},
+    {"name": "Economy & Macro Strategy", "minutes": 30}
   ],
   "economy": {
     "carried_gold_reserve": 10,
@@ -12,7 +17,13 @@
     "learn_buy_sell": true,
     "learn_equipment_upgrades": true
   },
-  "checkpoint_seconds": 300,
-  "status_seconds": 30,
-  "action_delay_seconds": 0.15
+  "tester": {
+    "enabled": true,
+    "response_excerpt_chars": 600,
+    "maximum_unique_defects": 2000
+  },
+  "checkpoint_seconds": 60,
+  "status_seconds": 15,
+  "action_delay_seconds": 0.15,
+  "runtime_restart_delay_seconds": 2.0
 }

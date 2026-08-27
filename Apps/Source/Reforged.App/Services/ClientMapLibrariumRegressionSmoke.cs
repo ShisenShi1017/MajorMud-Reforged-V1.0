@@ -40,6 +40,23 @@ public static class ClientMapLibrariumRegressionSmoke
         Require(!echo.VisibleText.Contains("librarium page exits", StringComparison.OrdinalIgnoreCase), "private-command-echo-hidden");
         Require(echo.VisibleText.Contains("ordinary room text", StringComparison.Ordinal), "game-text-after-private-echo-preserved");
 
+        // TelnetConnection echoes command input byte-by-byte, so private command
+        // echoes must remain hidden even when TCP divides them across reads.
+        filter.NoteOutboundCommand("clientdata stats");
+        var splitEcho1 = filter.Process("[HP=35/MA=0]: cl");
+        var splitEcho2 = filter.Process("ientdata ");
+        var splitEcho3 = filter.Process("stats\r\nvisible after split echo\r\n");
+        var splitEchoVisible = splitEcho1.VisibleText + splitEcho2.VisibleText + splitEcho3.VisibleText;
+        Require(!splitEchoVisible.Contains("clientdata stats", StringComparison.OrdinalIgnoreCase), "chunked-private-command-echo-hidden");
+        Require(splitEchoVisible.Contains("visible after split echo", StringComparison.Ordinal), "chunked-private-command-tail-preserved");
+
+        // Repeated polling commands are separate private sends and every echoed
+        // instance must be consumed rather than only the first one.
+        filter.NoteOutboundCommand("clientdata pvp");
+        filter.NoteOutboundCommand("clientdata pvp");
+        var repeatedEcho = filter.Process("[HP=35/MA=0]: clientdata pvp\r\n[HP=35/MA=0]: clientdata pvp\r\n");
+        Require(!repeatedEcho.VisibleText.Contains("clientdata pvp", StringComparison.OrdinalIgnoreCase), "repeated-private-command-echoes-hidden");
+
         Require(LibrariumFriendlyNames.Family("rooms") == "Rooms and Areas", "friendly-room-family");
         Require(LibrariumFriendlyNames.Family("npcs") == "Creatures and Bosses", "friendly-creature-family");
         Require(LibrariumFriendlyNames.Family("room_commands") == "Things You Can Do in Rooms", "friendly-room-command-family");

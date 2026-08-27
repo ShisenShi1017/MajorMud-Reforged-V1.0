@@ -45,7 +45,7 @@ public sealed record RuntimeMajorMudParityReport(
 /// </summary>
 public static class RuntimeMajorMudParityAudit
 {
-    private const string AssertionLedgerRelativePath = "Librarium/Parity/majormud_parity_assertions_0298.json";
+    private const string AssertionLedgerRelativePath = "Librarium/Parity/majormud_parity_assertions_0313.json";
     private const string RemainingSystemsRelativePath = "Librarium/RemainingSystems/remaining_systems_registry.json";
     private const string RemainingAuditRelativePath = "Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json";
     private const string OwnershipScopeRelativePath = "Librarium/Parity/majormud_ownership_scope_0298.json";

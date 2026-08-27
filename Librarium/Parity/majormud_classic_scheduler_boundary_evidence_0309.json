@@ -1,0 +1,126 @@
+{
+  "schema": "majormud.classic-scheduler-boundary.v1",
+  "update": "0309",
+  "pass": 38,
+  "classification": "STRONG_OWNER_SCOPED_CLASSIC_SCHEDULER_BOUNDARY",
+  "targetAssertion": "native.clock-scheduling",
+  "policy": "Do not collapse independently recovered MajorMUD clocks into one synthetic global tick. Promote each cadence only at its proven/strong owner boundary; keep cross-owner phase/order unknown.",
+  "provenOwnerCadences": [
+    {
+      "owner": "physical combat",
+      "seconds": 5,
+      "state": "PASS",
+      "source": "combat.round-five-seconds / RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds"
+    },
+    {
+      "owner": "spell/status duration and periodic processing",
+      "seconds": 3,
+      "state": "PASS",
+      "source": "spells.spell-round-three-seconds / RuntimeClassicLiveStatusCatalog"
+    },
+    {
+      "owner": "player data autosave",
+      "seconds": 60,
+      "state": "PASS",
+      "source": "WCCMMUD.mcv exact setup prompt"
+    },
+    {
+      "owner": "native Buffer data setup interval",
+      "seconds": 300,
+      "state": "PASS_CONSTANT_ONLY",
+      "source": "WCCMMUD.mcv exact setup prompt",
+      "limitation": "participant ownership/order unresolved"
+    },
+    {
+      "owner": "EXIT/QUIT delay",
+      "seconds": 5,
+      "state": "PASS",
+      "source": "WCCMMHLP native HELP"
+    },
+    {
+      "owner": "REST/MEDITATE focus activation",
+      "seconds": 20,
+      "state": "PASS",
+      "source": "WCCMMHLP message 205"
+    }
+  ],
+  "strongOwnerCadences": [
+    {
+      "owner": "passive player regeneration",
+      "seconds": 30,
+      "state": "STRONG",
+      "source": "Pass37 retained MMUD Explorer cadence evidence"
+    },
+    {
+      "owner": "REST HP regeneration",
+      "seconds": 20,
+      "state": "STRONG",
+      "source": "Pass37 retained MMUD Explorer cadence evidence"
+    },
+    {
+      "owner": "MEDITATE mana regeneration",
+      "seconds": 10,
+      "state": "STRONG",
+      "source": "Pass37 retained MMUD Explorer cadence evidence"
+    },
+    {
+      "owner": "NPC/lair regeneration admission",
+      "state": "STRONG",
+      "source": "Pass20 native Last Killed/Delay strings + Nightmare Redux behavior",
+      "behavior": "delay is minute-based and due slots are admitted on home-room entry rather than global-heartbeat materialization",
+      "limitations": [
+        "exact wall-clock minute phase",
+        "zero-delay semantics",
+        "simultaneous due-spawn ordering",
+        "reset interaction"
+      ]
+    }
+  ],
+  "hostArchitectureCorroboration": {
+    "source": "Librarium/PromotionReview0088/timing_execution_promotion_review_0088.json",
+    "state": "CORROBORATED",
+    "facts": [
+      "Worldgroup/MajorBBS host-managed module architecture",
+      "_rtkick/_my_rtkick delayed-work symbols",
+      "_syscyc/_majormud_syscyc and _background_* symbols present in WCC/WBB binaries"
+    ],
+    "limitation": "symbol/API correlation does not prove exact original cadence constants or cross-owner dispatch ordering"
+  },
+  "userProvidedPhaseDocumentReview": {
+    "role": "hypothesis_only",
+    "unsupportedOrUnprovenClaims": [
+      "one universal 10-second status/regeneration phase",
+      "poison/disease always execute before regeneration on that phase",
+      "all buff/debuff timers decrement on that 10-second phase",
+      "players always act before NPC decisions and therefore always receive a one-tick reaction advantage",
+      "newly spawned NPCs can never act until the next scheduler tick",
+      "corpse generation -> entity removal -> spawn check is the exact native global cleanup ordering"
+    ],
+    "reason": "retained Classic evidence establishes heterogeneous owner clocks and room-entry spawn admission, but no exact native trace proves the proposed cross-owner phase ordering."
+  },
+  "runtimeBoundary": {
+    "centralAuthority": "Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs",
+    "changes": [
+      "centralize existing 5s combat and 3s spell/system constants",
+      "centralize strong 30/20/10 regeneration cadences",
+      "retain room-entry spawn admission",
+      "add scheduler evidence registry and smoke report"
+    ],
+    "gameplaySemanticChange": "none beyond eliminating duplicate cadence literals; existing owner-specific behavior is preserved"
+  },
+  "parityPromotion": {
+    "assertion": "native.clock-scheduling",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Multiple independent scheduler owners now have PASS or STRONG cadence/admission evidence and active runtime bindings. Exact cross-owner phase/order remains unresolved, preventing PASS."
+  },
+  "stillUnknown": [
+    "exact Worldgroup host phase for owner clocks",
+    "same-host-cycle ordering among combat, spell/status, regeneration, saves, NPC AI, resets and other work",
+    "exact _background_fast/_medium/_slow/_energy/_inactivity cadence and priority",
+    "restart/missed-timer reconciliation, drift and overflow semantics",
+    "exact player-input-versus-NPC-decision ordering and any reaction-advantage rule",
+    "whether newly admitted/spawned NPCs may act on the same native host cycle",
+    "world reset/cleanup category ordering remains a separate UNKNOWN"
+  ]
+}

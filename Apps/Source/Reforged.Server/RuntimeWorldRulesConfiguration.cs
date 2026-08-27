@@ -5,6 +5,12 @@ public enum RuntimeRuleMutability { StartupOnly, RuntimeMutable, RuntimeMutableW
 public sealed record RuntimeWorldRuleDefinition(string Id,RuntimeRuleValueType ValueType,string DefaultValue,string? Minimum,string? Maximum,RuntimeRuleMutability Mutability,IReadOnlySet<RuntimeWorldMode> AllowedModes,bool Persist,bool RequiresAdministrator);
 public sealed record RuntimeWorldRuleChange(string RuleId,string PreviousValue,string NewValue,string ActorId,DateTimeOffset ChangedUtc,long Revision,bool RequiresWorldReset);
 public sealed record RuntimeWorldRuleResult(bool Accepted,string Code,string? Value,RuntimeWorldRuleChange? Change);
+/// <summary>
+/// Reforged-owned typed world-rule storage. The native MajorMUD evidence source is WCCMMUD.INI,
+/// but Reforged intentionally does not create or parse that legacy file. Proven Classic defaults
+/// are projected through RuntimeClassicConfigurationAuthority; unknown native ranges/mutability
+/// remain evidence-gated instead of being inferred from this generic Reforged service.
+/// </summary>
 public sealed class RuntimeWorldRulesConfigurationService
 {
  private const int SchemaVersion=1; private readonly RuntimeWorldMode _mode; private readonly Dictionary<string,RuntimeWorldRuleDefinition> _definitions; private readonly Dictionary<string,string> _values; private readonly string? _path; private long _revision;

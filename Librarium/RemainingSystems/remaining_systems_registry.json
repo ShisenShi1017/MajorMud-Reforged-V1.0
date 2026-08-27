@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "phase": "remaining-systems",
-  "updatedByPass": "Pass 27 / Update 0298",
+  "updatedByPass": "Pass 42 / Update 0313",
   "systems": [
     {
       "id": "party-coordination",
@@ -24,7 +24,7 @@
         "FRONTRANK",
         "MIDRANK",
         "BACKRANK",
-        "JOIN <n> broadcast group (runtime gated)",
+        "JOIN <n> broadcast group (0..126 exact; 127 evidence-conflicted)",
         "SET FOLLOW BLIND/NORMAL"
       ],
       "timers": [],
@@ -41,8 +41,8 @@
         "exact Frontrank spot-limit formula beyond the proven front>=back rule",
         "quest/spell/teleport/resurrection/death interactions",
         "unexpected linkdead/disconnect behavior",
-        "broadcast-group runtime state, exact upper bound, and rendering",
-        "XP remainder recipient/disposition when monster XP is not evenly divisible"
+        "XP remainder recipient/disposition when monster XP is not evenly divisible",
+        "broadcast-group 127 validity, exact native rendering, and exact native persistence ownership"
       ],
       "xpSharing0294": {
         "eligibility": "characters actively fighting the exact NPC at death; party membership irrelevant",
@@ -60,6 +60,14 @@
         "xp": "active exact-NPC combatants at death; party membership irrelevant; integer quotient per recipient; remainder unresolved",
         "loot": "native-era captures place monster currency on the room floor; no automatic party loot split promoted",
         "manualCurrencySharing": "SHARE remains the explicit party/room currency distribution command"
+      },
+      "broadcastGroup0301": {
+        "selection": "JOIN 0..126 active from exact shared native help evidence",
+        "leave": "LEAVE while not in a party resets broadcast group to 0",
+        "send": "BROADCAST/BR routes to connected same-world characters on the selected group",
+        "list": "bare BROADCAST/BR lists connected members of the selected group",
+        "group127": "UNKNOWN due direct native help conflict (123 vs 157)",
+        "classification": "PASS for uncontested command/runtime semantics; rendering/persistence owner remain gated"
       }
     },
     {
@@ -123,6 +131,7 @@
         "gossip",
         "auction",
         "forget",
+        "broadcast / br",
         "whisper (evidence-gated)",
         "tell (not promoted as native)",
         "extension communication channels"
@@ -135,15 +144,38 @@
         "SET TELEPATH polarity unresolved",
         "SET MESSAGES priority classes proven but per-message classification unresolved",
         "SET ENTRANCES native toggle proven but exact default/persistence unresolved",
-        "compatibility-shell actor flags"
+        "compatibility-shell actor flags",
+        "broadcast group 0..126 persisted in Reforged character Conditions; native persistence owner unresolved"
       ],
       "evidenceClassification": "native-confirmed-set-toggle-scope",
       "nativeDependencies": [
-        "exact communication setting defaults/persistence",
-        "explicit TELEPATH ON/OFF polarity",
-        "MAXPAGES/flood/page behavior",
+        "exact communication/profile setting defaults and native persistence owner/serialization",
+        "explicit TELEPATH ON/OFF polarity and conflicting RECEIVE polarity wording",
+        "SET MESSAGES per-message priority classification and complete filtering integration",
+        "SET ENTRANCES exact event rendering/timing/default",
+        "MAXPAGES/flood/page behavior, SET INTERRUPT execution, SET WARNING execution",
         "remaining exact channel rendering"
-      ]
+      ],
+      "profileSettings0303": {
+        "state": "PASS-narrow",
+        "provenActive": [
+          "GOSSIP and SET GOSSIP bare receipt toggle plus explicit SET GOSSIP ON/OFF",
+          "AUCTION and SET AUCTION bare receipt toggle plus explicit SET AUCTION ON/OFF",
+          "SET FOLLOW BLIND/NORMAL plus bare toggle",
+          "SET SPEECH FAST/SLOW plus bare SET SPEECH toggle",
+          "SET MESSAGES LOW/MEDIUM/HIGH explicit selection and documented threshold meanings",
+          "SET ENTRANCES ON/OFF plus bare toggle selection state"
+        ],
+        "remainingUnknown": [
+          "Native defaults and exact persistence owner/serialization for communication/profile settings.",
+          "Explicit SET TELEPATH ON/OFF polarity.",
+          "Conflicting SET RECEIVE polarity wording between retained help records.",
+          "Exact per-message priority classification and complete runtime filtering for SET MESSAGES.",
+          "Exact login/logout/realm entrance event rendering, recipient timing and default for SET ENTRANCES.",
+          "MAXPAGES/flood/page behavior, SET INTERRUPT execution, SET WARNING execution and remaining exact channel rendering.",
+          "Native FAST-mode resolver remains distinct from the operator-mandated Reforged command-to-SAY fallback that applies globally."
+        ]
+      }
     },
     {
       "id": "doors-locks-access",
@@ -278,8 +310,8 @@
     },
     {
       "id": "clock-scheduling",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-owner-scoped-classic-boundary",
       "runtimeOwner": "RuntimeClockSchedulingService",
       "persistenceOwner": "world scheduling state; action mutation remains owner-subsystem responsibility",
       "recordFamilies": [
@@ -306,12 +338,39 @@
         "missed-timer policy",
         "revision"
       ],
-      "evidenceClassification": "mixed-strong-unknown",
+      "evidenceClassification": "strong-mixed-pass-owner-cadences",
       "nativeDependencies": [
-        "exact in-game tick/round/minute relationships",
-        "simultaneous gameplay timer ordering",
-        "overflow/drift semantics"
-      ]
+        "exact host-clock phase for recovered owner cadences",
+        "simultaneous cross-owner event ordering",
+        "exact _background_fast/_medium/_slow/_energy/_inactivity cadence and priority",
+        "restart and missed-timer behavior",
+        "overflow and drift behavior",
+        "exact player input versus NPC decision ordering",
+        "whether a newly admitted/spawned NPC may act on the same native host cycle",
+        "exact remaining schedules for merchants/trainers/quests/status/events"
+      ],
+      "classicScheduler0309": {
+        "provenSeconds": {
+          "combat": 5,
+          "spellSystem": 3,
+          "playerSave": 60,
+          "bufferSavePrompt": 300,
+          "exitDelay": 5,
+          "focusActivation": 20
+        },
+        "strongSeconds": {
+          "passiveRegeneration": 30,
+          "restRegeneration": 20,
+          "meditateRegeneration": 10
+        },
+        "roomEntryRespawnAdmission": "STRONG",
+        "universalTenSecondGameplayPhase": "NOT_PROMOTED",
+        "exactSameCycleOrdering": "UNKNOWN",
+        "exactHostPhase": "UNKNOWN",
+        "backgroundBucketCadence": "UNKNOWN",
+        "npcPlayerFirstOrdering": "UNKNOWN",
+        "spawnNextTickAction": "UNKNOWN"
+      }
     },
     {
       "id": "world-reset-cleanup",
@@ -467,9 +526,9 @@
     {
       "id": "rest-inn-recovery-policy",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeRestRecoveryPolicyService",
-      "persistenceOwner": "Character/session owners; Classic persistence remains native-dependent",
+      "status": "implemented-strong-classic-regeneration-boundary",
+      "runtimeOwner": "RuntimeCharacterRegenerationAuthority + RuntimeLiveGameplayFacade",
+      "persistenceOwner": "Character/session owners; exact native host phase and remaining cleanup ordering remain native-dependent",
       "recordFamilies": [
         "rest/meditate character recovery state"
       ],
@@ -478,7 +537,9 @@
         "meditate"
       ],
       "timers": [
-        "native recovery tick remains external/native-dependent"
+        "passive HP/mana regeneration: 30 seconds",
+        "REST HP regeneration: 20 seconds after 20-second uninterrupted focus activation",
+        "MEDITATE mana regeneration: 10 seconds after 20-second uninterrupted focus activation"
       ],
       "flags": [
         "allow rest",
@@ -486,13 +547,26 @@
         "inn",
         "safe logout"
       ],
-      "evidenceClassification": "native-confirmed-no-inn-rest",
+      "evidenceClassification": "strong-stock-major-mud-regeneration-with-native-help-boundary",
       "nativeDependencies": [
-        "exact REST/MEDITATE recovery formula",
-        "tick timing",
-        "activation/output messages",
-        "remaining interruption/status cleanup"
-      ]
+        "exact Worldgroup host-clock phase and simultaneous tick ordering",
+        "exact native MEDITATE command response/presentation text",
+        "remaining interruption/status-cleanup ordering beyond the proven move/attack/attacked activation boundary"
+      ],
+      "classicRegeneration0308": {
+        "state": "STRONG",
+        "stockHitPointDivisor": 750,
+        "minimumHitPointBase": 1,
+        "restingMultiplier": 3,
+        "passiveCadenceSeconds": 30,
+        "restCadenceSeconds": 20,
+        "meditateCadenceSeconds": 10,
+        "focusActivationSeconds": 20,
+        "hpRegenPercentOrder": "after stock base; REST multiplies base by 3 before HPRegen percent",
+        "manaTypes1To4": "base = Fix((((Level+20)*castingStat)*(MagicLevel+2))/1650); MEDITATE returns base before MPRegen; passive applies MPRegen",
+        "kaiType5": "one-point base with MPRegen percent; bypasses Level/MagicLevel formula",
+        "rejectedClassicBranch": "GreaterMUD /500 HP divisor"
+      }
     },
     {
       "id": "paid-room-transfers",
@@ -558,9 +632,9 @@
     {
       "id": "world-rules-configuration",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-classic-safe-typed-contract",
+      "status": "implemented-strong-classic-configuration-boundary",
       "runtimeOwner": "RuntimeWorldRulesConfigurationService",
-      "persistenceOwner": "world configuration snapshot",
+      "persistenceOwner": "Reforged internal configuration/runtime owners; no WCCMMUD.INI file in Reforged",
       "recordFamilies": [
         "world rule definitions",
         "world rule values",
@@ -568,8 +642,8 @@
       ],
       "commands": [
         "inspect world rules",
-        "set world rule",
-        "reload startup rules"
+        "set Reforged world rule",
+        "native SYSOP RELOAD retained as a no-literal-file boundary in Reforged"
       ],
       "timers": [],
       "flags": [
@@ -579,10 +653,39 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact MajorMUD gameplay configuration sources/defaults/ranges",
-        "runtime-mutable versus fixed gameplay rules",
-        "gameplay world-state/save effects"
-      ]
+        "exact allowed ranges for remaining WCCMMUD gameplay values",
+        "runtime-mutable versus restart-only behavior for remaining settings",
+        "exact owner/effect mapping for unmapped setup prompts"
+      ],
+      "classicConfiguration0304": {
+        "nativeSource": "WCCMMUD.INI (retained setup/default evidence in WCCMMUD.mcv)",
+        "reforgedHasNativeIni": false,
+        "retainedPromptCount": 44,
+        "defaultPvpLevelDifference": 100,
+        "state": "PASS-narrow",
+        "remainingUnknown": [
+          "exact ranges",
+          "remaining live mutability/restart requirements",
+          "remaining owner/effect mappings"
+        ]
+      },
+      "classicConfiguration0313": {
+        "state": "STRONG",
+        "nativeSource": "WCCMMUD.mcv setup/default evidence for WCCMMUD.INI",
+        "reforgedHasNativeIni": false,
+        "retainedPromptCount": 44,
+        "activeExactDefaultProjectionCount": 6,
+        "activeOwners": [
+          "RuntimeClassicTimingAuthority",
+          "RuntimeLivePvp",
+          "RuntimeCharacterAlignmentAuthority"
+        ],
+        "remainingUnknown": [
+          "exact ranges",
+          "remaining live mutability/restart requirements",
+          "remaining owner/effect mappings"
+        ]
+      }
     },
     {
       "id": "save-coordination",
@@ -655,29 +758,50 @@
     },
     {
       "id": "global-rng",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeGlobalRandomService",
-      "persistenceOwner": "Save coordination for explicitly registered stream snapshots",
+      "classification": "runtime-active-native-core-partially-integrated",
+      "status": "classic-native-core-and-direct-call-boundary-proven-gameplay-call-order-bounded",
+      "runtimeOwner": "RuntimeClassicWorldgroupPrng for Classic raw host state; RuntimeGlobalRandomService is Reforged extension infrastructure",
+      "persistenceOwner": "Classic WGSERVER startup reseeds from packed time; Reforged extension stream snapshots remain extension-only",
       "recordFamilies": [
-        "runtime random stream definitions and states"
+        "native CRT seed/draw state",
+        "proven host range-helper contract",
+        "proven direct native randomness import-call boundary",
+        "Reforged extension stream definitions and states"
       ],
       "commands": [
+        "--smoke-pass34-classic-worldgroup-prng",
+        "--smoke-pass35-classic-worldgroup-rng-callsite-boundary",
         "--smoke-global-random"
       ],
       "timers": [],
       "flags": [
-        "stream scope",
-        "sequence",
-        "seeded state"
+        "uint32 Classic CRT seed",
+        "15-bit Classic raw output",
+        "Reforged extension stream scope/sequence"
       ],
       "nativeDependencies": [
-        "exact native RNG algorithm",
-        "seed source",
-        "stream ownership",
-        "range semantics",
-        "restart persistence"
-      ]
+        "exact MajorMUD gameplay draw/mutation ordering across direct and indirect paths",
+        "callsite-to-Worldgroup-execution-thread CRT state mapping",
+        "fully instruction-equivalent _genrdn/_lngrnd bounded-remainder runtime activation"
+      ],
+      "classicPrng0305": {
+        "state": "PASS-narrow",
+        "multiplier": "0x015A4E35",
+        "increment": 1,
+        "stateWidthBits": 32,
+        "randMax": 32767,
+        "startupSeed": "(hour << 11) + (minute << 5) + (second >> 1)",
+        "rejectedCandidate": "MSVC 214013/2531011"
+      },
+      "classicDirectCallBoundary0306": {
+        "state": "PASS-narrow",
+        "wccmmudSha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+        "wbbmmudSha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+        "genrdnDirectPerModule": 146,
+        "lngrndDirectPerModule": 42,
+        "indirectCallsResolved": false,
+        "gameplaySemanticMappingResolved": false
+      }
     },
     {
       "id": "global-world-state",
@@ -749,38 +873,43 @@
     {
       "id": "import-export-compatibility",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-compatibility-shell",
+      "status": "classic-native-boundary-closed; reforged-custom-ai-compatibility-extension-active",
       "runtimeOwner": "RuntimeImportExportCompatibilityService",
       "persistenceOwner": "Owning subsystem; coordinator stores no imported runtime payload",
       "recordFamilies": [
-        "compatibility requests",
-        "version envelopes",
-        "payload fingerprints",
-        "migration requests"
+        "Classic exact-file/version validation boundary",
+        "Reforged Custom/AI compatibility requests",
+        "Reforged version envelopes",
+        "Reforged migration requests"
       ],
       "commands": [
-        "inspect",
-        "validate",
-        "import",
-        "export",
-        "migrate"
+        "Classic: inspect/validate exact identity only",
+        "Custom/AI: inspect",
+        "Custom/AI: validate",
+        "Custom/AI: import",
+        "Custom/AI: export",
+        "Custom/AI: migrate"
       ],
       "timers": [],
       "flags": [
-        "host authorized",
+        "Classic exact file required",
+        "Classic exact version required",
+        "Classic migration rejected",
+        "host authorized (Custom/AI)",
         "Classic IDs preserved",
         "dry run",
-        "owner commit required"
+        "owner commit required (Custom/AI)"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "Classic PASS boundary; Custom/AI Reforged extension",
       "nativeDependencies": [
-        "exact WCC/WBB record versioning",
-        "native import/export commands",
-        "legacy save migrations",
-        "duplicate and missing-reference behavior",
-        "rollback semantics",
-        "binary checksums and packing"
-      ]
+        "exact native crash/log text and binary header encoding are optional evidence follow-up, not a migration/import parity blocker"
+      ],
+      "classicBoundary0304": {
+        "state": "PASS",
+        "workflow": "external editor -> exact native file/version replacement -> server start/restart",
+        "wrongFileOrVersion": "hard startup/load failure; no conversion or migration",
+        "reforgedPolicy": "do not create a Classic import/export/migration subsystem"
+      }
     },
     {
       "id": "help-reference",
@@ -797,7 +926,8 @@
       "commands": [
         "help",
         "help search",
-        "--smoke-help-reference"
+        "--smoke-help-reference",
+        "--smoke-pass31-native-help-aliases"
       ],
       "timers": [],
       "flags": [
@@ -808,13 +938,29 @@
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
         "exact Classic help topic record families",
-        "native HELP command syntax and aliases",
+        "remaining native HELP aliases outside the exact main-screen LAWS/MISC/SET/HELP set",
         "exact formatting and pagination",
         "textblock linkage",
         "permission filtering",
         "Worldgroup versus MajorMUD help ownership",
         "search matching and ambiguity behavior"
-      ]
+      ],
+      "nativeHelpAlias0302": {
+        "state": "PASS-narrow",
+        "aliases": [
+          "laws -> body 31",
+          "misc -> body 111",
+          "set -> body 117",
+          "help -> body 263"
+        ],
+        "remainingUnknown": [
+          "HELP TOPICS exact list rendering",
+          "fuzzy/prefix resolver",
+          "ambiguity precedence",
+          "permission filtering",
+          "pagination"
+        ]
+      }
     },
     {
       "id": "rankings-statistics",
@@ -850,8 +996,8 @@
     },
     {
       "id": "character-identity-policy",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "runtime-active-strong-evidence",
+      "status": "implemented-strong-shadow-look-boundary",
       "runtimeOwner": "RuntimeCharacterIdentityPolicyService",
       "persistenceOwner": "Character subsystem for canonical identity and granted title identifiers; policy service stores no character save payload",
       "recordFamilies": [
@@ -874,14 +1020,26 @@
         "title visibility",
         "title enabled"
       ],
-      "evidenceClassification": "operator-confirmed-first-name-unique",
+      "evidenceClassification": "mixed-native-pass-and-strong-shadow-look",
       "nativeDependencies": [
-        "exact first-name length/allowed characters",
-        "reserved names",
-        "title precedence",
-        "hidden/disguised identity rendering",
-        "exact validation messages"
-      ]
+        "exact first-name minimum length and allowed characters beyond recovered UserRec storage widths",
+        "complete reserved-name list and capitalization behavior",
+        "title sources and exact precedence",
+        "hidden/invisible/disguise precedence and exact room-list Shadow rendering",
+        "exact validation and failure messages"
+      ],
+      "shadowLook0311": {
+        "state": "STRONG",
+        "abilityId": 9,
+        "payload": "A shadowy figure!",
+        "blackEmbroideredRobes": {
+          "itemId": "item.1331",
+          "shadowValue": 100
+        },
+        "scope": "LOOK <character> by another player only",
+        "selfLookMasked": false,
+        "roomOccupantNameMasked": "UNKNOWN; unchanged in runtime"
+      }
     },
     {
       "id": "capacity-resource-limits",
@@ -919,7 +1077,7 @@
     {
       "id": "error-handling-recovery",
       "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "status": "implemented-strong-classic-failure-boundary",
       "runtimeOwner": "RuntimeErrorRecoveryService",
       "persistenceOwner": "owning subsystem retains payload; recovery service owns decisions and disabled-subsystem runtime state",
       "recordFamilies": [
@@ -941,10 +1099,34 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "normal MajorMUD malformed/missing reference handling",
-        "in-game failed action rollback behavior",
-        "exact player-visible failure messages"
-      ]
+        "exact command/action-specific failure text versus silent no-op",
+        "malformed/missing post-startup MajorMUD data-reference behavior",
+        "catastrophic save rollback/participant ordering"
+      ],
+      "classicFailureBoundary0304": {
+        "state": "PASS-narrow",
+        "ordinaryRejectedGameplayAction": "no-op/state unchanged",
+        "syntheticRollback": "not invoked for ordinary rejected gameplay actions",
+        "remainingUnknown": [
+          "exact command-specific text versus silence",
+          "malformed/missing data-reference handling",
+          "catastrophic save rollback ordering"
+        ]
+      },
+      "classicFailureBoundary0312": {
+        "state": "STRONG",
+        "ordinaryRejectedGameplayAction": "no-op/state unchanged",
+        "ordinaryRejectionRollback": false,
+        "ordinaryRejectionDisablesSubsystem": false,
+        "ordinaryRejectionStopsWorldLoad": false,
+        "wrongCorruptNativeFile": "hard startup/load failure; not this no-op branch",
+        "reforgedTransactionalRollback": "implementation safety mechanism; not native ordinary-gameplay evidence",
+        "remainingUnknown": [
+          "exact command-specific text versus silence",
+          "malformed/missing post-startup data-reference handling",
+          "catastrophic save rollback/participant ordering"
+        ]
+      }
     },
     {
       "id": "games-arenas-optional-activities",
@@ -968,7 +1150,7 @@
       ],
       "evidenceClassification": "strong-native-casino-practice-arena",
       "nativeDependencies": [
-        "native global RNG algorithm/seed/shared stream",
+        "exact casino draw ordering and callsite-to-thread-state mapping within the proven Worldgroup PRNG",
         "unrecovered casino result text payloads",
         "room 1/11 adddelay unit/command-delay semantics",
         "remaining non-practice arena edges if any"

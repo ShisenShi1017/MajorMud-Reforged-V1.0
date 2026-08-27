@@ -656,9 +656,9 @@ public sealed class ServerNetworkHost
             }
             try
             {
-                RuntimeIdentity.ValidateCharacterName(given.Trim());
+                RuntimeIdentity.ValidateClassicGivenName(given.Trim());
                 if (!string.IsNullOrWhiteSpace(family))
-                    RuntimeIdentity.ValidateCharacterName(family.Trim());
+                    RuntimeIdentity.ValidateClassicFamilyName(family.Trim());
             }
             catch (InvalidOperationException exception)
             {
@@ -737,7 +737,12 @@ public sealed class ServerNetworkHost
             if (key.Length == 1 && !char.IsControl(key[0]) && IsTextField(selected) && !(trainingMode && selected == 1))
             {
                 if (!editing) BeginEditing(true);
-                var maxLength = selected is >= 3 and <= 8 ? 3 : 18;
+                var maxLength = selected switch
+                {
+                    >= 3 and <= 8 => 3,
+                    1 => RuntimeIdentity.ClassicGivenNameMaximumLength,
+                    _ => RuntimeIdentity.ClassicFamilyNameMaximumLength
+                };
                 if (editBuffer.Length < maxLength)
                     editBuffer += key;
                 continue;

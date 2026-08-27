@@ -1,0 +1,87 @@
+{
+  "schema": "majormud.pass32.classic-set-profile-settings-evidence.v1",
+  "update": "0303",
+  "pass": "Pass 32 - Classic SET Profile / Communication Settings",
+  "target": "MajorMUD 1.11p",
+  "policy": {
+    "pass": "Only exact retained native command/value/toggle semantics are promoted.",
+    "strong": "Existing runtime behavior may remain active when strongly evidenced but not exact.",
+    "unknown": "Defaults, persistence ownership, event/message classification and conflicting polarity remain evidence-gated."
+  },
+  "nativeHelpSource": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+  "nativeHelpEvidence": [
+    {
+      "messageNumber": 117,
+      "sha256": "17ddee12301b928f4f522b1dd6faf110dc65d574951d5b146c30ebe7e7841bc2",
+      "claims": [
+        "SET MESSAGES accepts Low/Medium/High.",
+        "SET FOLLOW accepts Blind/Normal; Blind reduces messages while following in a party.",
+        "SET ENTRANCES accepts On/Off and controls notices when adventurers enter or leave The Realm.",
+        "SET SPEECH accepts Fast/Slow; Slow requires the configured speech character and Fast treats non-command/action text as room speech.",
+        "SET TELEPATH On/Off exists, but its compact wording does not safely prove the stored blocking/receipt polarity.",
+        "SET RECEIVE wording conflicts another retained Profile help record and is not newly promoted by this pass."
+      ]
+    },
+    {
+      "messageNumber": 119,
+      "sha256": "61c32e8a1decc3a9c4cfb126f035402974aeee69e3e0bff5a01758805a379fb2",
+      "claims": [
+        "SET FOLLOW (Blind/Normal) is native.",
+        "SET ENTRANCES (On/Off) is native.",
+        "Bare SET SPEECH toggles fast and slow talking."
+      ]
+    },
+    {
+      "messageNumber": 121,
+      "sha256": "bc3e8a411086f17bbb80222d6b6c4eb99d5c4c677e76f8bc39f7f07caae09d8d",
+      "claims": [
+        "Low shows high-priority messages only.",
+        "Medium shows high- and medium-priority messages.",
+        "High shows high-, medium-, and low-priority messages.",
+        "The native help explicitly declines to enumerate every message priority classification, so per-message classification remains unresolved."
+      ]
+    },
+    {
+      "messageNumber": 175,
+      "sha256": "14734ab1a78e32ddf163c3cfb2dd5a3b12c03d4df75a26d21aee87e8ae5256bd",
+      "claims": [
+        "GOSSIP with no message toggles receipt.",
+        "SET GOSSIP with no value toggles receipt.",
+        "SET GOSSIP ON and SET GOSSIP OFF explicitly enable/disable receipt."
+      ]
+    },
+    {
+      "messageNumber": 177,
+      "sha256": "98af8e5681bd19241aca1ae896c23f394738a7a84de689789713170cab42f761",
+      "claims": [
+        "AUCTION with no message toggles receipt.",
+        "SET AUCTION with no value toggles receipt.",
+        "SET AUCTION ON and SET AUCTION OFF explicitly enable/disable receipt."
+      ]
+    },
+    {
+      "messageNumber": 37,
+      "sha256": "7db8e67af75da2cc1ea286327ef723ff16c2012250decbdc1f137a57c38b9089",
+      "claims": [
+        "Profile help independently documents Talk Fast/Slow and Set Receive.",
+        "Set Receive wording conflicts SET help polarity, so this pass does not promote explicit RECEIVE polarity further."
+      ]
+    }
+  ],
+  "runtimeCorrections": [
+    "Bare SET FOLLOW now toggles Normal/Blind instead of merely reporting the current value.",
+    "SET SPEECH now has a dedicated wrapper so bare SET SPEECH toggles Fast/Slow while bare TALK remains invalid and does not silently toggle.",
+    "SET MESSAGES LOW|MEDIUM|HIGH now persists the explicitly selected native level; no native default is invented.",
+    "SET ENTRANCES [ON|OFF] plus bare toggle now persists an explicitly selected state; no native default or exact entrance notification rendering is invented.",
+    "Existing GOSSIP/AUCTION bare-toggle and explicit ON/OFF behavior is retained and promoted narrowly."
+  ],
+  "remainingUnknown": [
+    "Native defaults and exact persistence owner/serialization for communication/profile settings.",
+    "Explicit SET TELEPATH ON/OFF polarity.",
+    "Conflicting SET RECEIVE polarity wording between retained help records.",
+    "Exact per-message priority classification and complete runtime filtering for SET MESSAGES.",
+    "Exact login/logout/realm entrance event rendering, recipient timing and default for SET ENTRANCES.",
+    "MAXPAGES/flood/page behavior, SET INTERRUPT execution, SET WARNING execution and remaining exact channel rendering.",
+    "Native FAST-mode resolver remains distinct from the operator-mandated Reforged command-to-SAY fallback that applies globally."
+  ]
+}

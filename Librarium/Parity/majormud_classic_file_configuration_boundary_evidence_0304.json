@@ -1,0 +1,60 @@
+{
+  "schema": "majormud.classic-file-configuration-boundary-evidence.v1",
+  "update": "0304",
+  "pass": 33,
+  "sources": [
+    {
+      "type": "operator-correction",
+      "path": "Librarium/Evidence/ClassicConfiguration/CLASSIC_FILE_CONFIG_FAILURE_USER_EVIDENCE_0304.md",
+      "claims": [
+        "Classic content changes are external native-file edits followed by exact-file/exact-version replacement and server restart",
+        "Classic has no cross-version native migration/import/export subsystem to emulate",
+        "wrong native file/version is a hard startup/load boundary and commonly crashes Worldgroup",
+        "ordinary failed gameplay actions generally leave state unchanged",
+        "WCCMMUD.INI is the native configuration source while Reforged has no WCCMMUD.INI file"
+      ]
+    },
+    {
+      "type": "retained-native-catalog",
+      "path": "Librarium/Evidence/native_support_catalog_0020.json",
+      "sha256": "3253760117103f0b5d87aaf212724d28f9a9ba9d1f3653a0a20d2292fce3d317",
+      "nativeFile": "WCCMMUD.mcv",
+      "nativeFileSha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b",
+      "configurationPromptCount": 44,
+      "selectedExactDefaults": {
+        "playerDataSaveSeconds": 60,
+        "bufferDataSaveSeconds": 300,
+        "maximumPvpLevelDifference": 100,
+        "inactivitySeconds": 5000,
+        "maximumTopTenEntries": 30,
+        "evilPointsRetainedAfterFinalDeathPercent": 50,
+        "genderChangeGoldCost": 5000,
+        "maximumEvilPointsForgivenPerDay": 18,
+        "evilPointCycleMinutes": 60,
+        "evilPointsForgivenPerCycle": 1,
+        "lawfulChoiceEnabled": true,
+        "keepExperienceAfterFinalDeath": true,
+        "allowSysopLightningOnAllPlayers": true,
+        "profanityCheckingEnabled": false,
+        "sweepCoinThreshold": "GOLD",
+        "sweepCoinsFromGangHouses": false
+      }
+    }
+  ],
+  "runtimeCorrections": [
+    "Reforged does not create/read/write WCCMMUD.INI",
+    "RuntimeClassicConfigurationAuthority centralizes retained native configuration defaults without creating a legacy file",
+    "default PvP maximum-level-difference is 100 when no Reforged PvP override exists",
+    "Classic import/export/migration requests are rejected as an external exact-file replacement workflow",
+    "Classic validation requires exact source/target version and exact native file identity when a WCC/WBB file is being validated",
+    "ordinary Classic gameplay action rejection has an explicit no-op recovery disposition"
+  ],
+  "remainingUnknown": [
+    "exact command-specific error text versus silent no-op behavior",
+    "exact native file header/checksum/version encoding and crash/log text",
+    "exact allowed ranges for WCCMMUD configuration values not otherwise recovered",
+    "which remaining WCCMMUD settings are live mutable versus restart-only",
+    "exact mapping of all 44 native setup prompts to current Reforged runtime owners",
+    "catastrophic save rollback implementation ordering"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "majormud.identity-law-native-closure-evidence.v1",
+  "update": "0299",
+  "pass": 28,
+  "status": "EVIDENCE_BACKED_CORRECTION",
+  "summary": "Pass 28 closes the native first/family-name storage widths and corrects the Classic law contract without inventing unresolved Fiend, guard cadence, bounty, arrest, jail, or trap behavior.",
+  "facts": [
+    {
+      "id": "native-user-first-last-name-widths",
+      "state": "PASS",
+      "claim": "The native MajorMUD user record stores FirstName as 10 bytes and LastName as 18 bytes.",
+      "evidence": [
+        "Nightmare Redux modFieldmaps_vO.bas UserRecType: FirstName As String * 10; LastName As String * 18",
+        "Nightmare Redux AddUserFieldMap: FLD_STRING 10 for firstname and FLD_STRING 18 for lastname",
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json catalog 3 EDTCHAN2: Given Name has 10 question-mark cells and Family Name has 18"
+      ],
+      "runtime": [
+        "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs RuntimeIdentity.ClassicGivenNameMaximumLength=10",
+        "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs RuntimeIdentity.ClassicFamilyNameMaximumLength=18",
+        "Apps/Source/Reforged.Server/ServerNetworkHost.cs Classic character creator input maxima"
+      ],
+      "boundary": "EDITCHA1 visually allocates an 18-character screen slot for Given Name. Pass 28 does not misread that presentation width as native storage capacity; the 10-byte UserRec field is authoritative for persisted first-name length. Minimum length and allowed-character grammar remain unresolved native semantics."
+    },
+    {
+      "id": "lawful-target-x3",
+      "state": "PASS",
+      "claim": "Attacking a Lawful player applies three times the otherwise-applicable evil-point attack penalty.",
+      "evidence": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json HL1B11: Attacking a lawful player will give thrice the evil points",
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json GOODTEXT: attacks/robbery against Lawful receive three times the regular evil points"
+      ],
+      "runtime": [
+        "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json lawful_target_attack_penalty.multiplier=3",
+        "Apps/Compiler/src/LibrariumDataWriter.cs projects only the executable multiplier",
+        "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs decodes the multiplier into RuntimeCharacterAlignmentRuleContract",
+        "Apps/Source/Reforged.Server/RuntimeCharacterAlignmentAuthority.cs consumes the decoded multiplier"
+      ]
+    },
+    {
+      "id": "law-reputation-help-correction",
+      "state": "STRONG",
+      "claim": "Native help defines Outlaw as guards attacking on sight but sparing life; Criminal as the same except guards slay; Villain as Criminal plus possible intervention by the Gods. The prior Reforged bounty-hunter escalation was speculative and is removed from the Classic authority.",
+      "evidence": [
+        "Librarium/Evidence/native_message_catalog_correlation_0022.json HL1B11"
+      ],
+      "runtime": [
+        "Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs"
+      ],
+      "boundary": "Fiend help only states that it is the utmost evil and survival is unlikely. Exact Fiend-specific guard/divine behavior is still UNKNOWN. The separately proven 300+ EP attack-initiation lockout remains active."
+    },
+    {
+      "id": "lawful-choice-text-boundary",
+      "state": "EVIDENCE_ONLY",
+      "claim": "Native GOODTEXT/GOODPMPT and ENABLAWF prove an optional Lawful character choice, permanent until a new character, blocking initiation of actions that give evil points while still permitting attacks on bad-reputation targets.",
+      "boundary": "Pass 28 does not activate the creation choice because exact reputation cutoff/action classification and creation sequencing are not sufficiently recovered for a fail-safe implementation."
+    },
+    {
+      "id": "forgive-command-boundary",
+      "state": "EVIDENCE_ONLY",
+      "claim": "Native help exposes FORGIVE <user> to counter evil points gained from an accidental attack, with an approximately five-minute window; setup defaults include MAXEPDAY=18, EPCYCLE=60 and EPAMOUNT=1.",
+      "boundary": "The approximate timing and exact accounting/history state are insufficient for exact runtime activation in this pass."
+    },
+    {
+      "id": "trap-pass27-boundary-rechecked",
+      "state": "UNKNOWN",
+      "claim": "Pass 28 rechecked the retained/public native room sources. They confirm trap field/state structure but still do not recover stock WCCMP002 per-exit Para2 values, SEARCH probability, DISARM roll, failed-disarm trigger or exact state transition/reset ordering.",
+      "boundary": "No speculative trap behavior is added. Pass 27 trap UNKNOWNs remain intact."
+    }
+  ],
+  "unresolved": [
+    "native name minimum length and allowed-character grammar",
+    "reserved-name policy and exact validation messages",
+    "title/disguise/hidden identity precedence",
+    "exact Evil-Point-to-reputation thresholds",
+    "Fiend-specific guard/divine enforcement beyond the proven 300 EP attack lockout",
+    "guard spawn/cadence/room routing and arrest/jail/fine/confiscation ordering",
+    "Lawful creation sequencing and exact bad-reputation cutoff/action classification",
+    "FORGIVE exact accounting and timing semantics",
+    "trap SEARCH/DISARM RNG and state transitions"
+  ]
+}

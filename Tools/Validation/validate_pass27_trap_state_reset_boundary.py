@@ -65,7 +65,7 @@ check('generic-trap-extension-comment','Generic Reforged trap service for Custom
 check('generic-not-classic-comment','not the Classic' in generic and 'RuntimeClassicExitTrapCatalog' in generic)
 systems={s['id']:s for s in registry['systems']}
 tr=systems['traps']
-check('registry-current-pass',registry.get('updatedByPass')=='Pass 27 / Update 0298')
+check('registry-current-pass',registry.get('updatedByPass') in {'Pass 27 / Update 0298','Pass 30 / Update 0301','Pass 31 / Update 0302','Pass 32 / Update 0303','Pass 33 / Update 0304','Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'})
 check('registry-classic-owner','RuntimeClassicExitTrapCatalog' in tr['runtimeOwner'])
 check('registry-generic-not-classic',tr['pass27NativeTrapBoundary']['genericRuntimeTrapServiceCountsForClassic'] is False)
 check('registry-no-generic-trap-timers',tr['timers']==[])
@@ -93,7 +93,7 @@ check('trap-ledger-unknown',la['native.traps']['state']=='UNKNOWN')
 check('trap-ledger-signed16','signed 16-bit' in la['native.traps']['description'])
 check('trap-ledger-wccmp002','WCCMP002' in la['native.traps']['description'])
 check('trap-ledger-skill-gate','Traps-skill admission gate' in la['native.traps']['description'])
-check('audit-current-ledger','majormud_parity_assertions_0298.json' in audit)
+check('audit-current-ledger','majormud_parity_assertions_0313.json' in audit)
 check('audit-current-scope','majormud_ownership_scope_0298.json' in audit)
 check('scope-update-0298',scope['update']=='0298')
 check('score-pass-73',score['PassCount']==73)

@@ -14,6 +14,6 @@
 
 `RuntimeCharacterAlignmentState` owns Evil Points, the preserved reputation label, the daily evil-action marker, minutes played for cleanup, and the last cleanup amount. Save version 3 persists this state while versions 1 and 2 remain readable.
 
-## Explicitly unresolved
+## Later native closure / still unresolved
 
-The larger lawful-target penalty and exact Evil-Point-to-reputation thresholds are not verified. Runtime does not invent either behavior.
+Native help now proves the Lawful-target attack modifier is exactly `3x` the otherwise-applicable evil-point attack penalty. Pass 29 / Update 0300 closes the documented Evil-Point reputation reference points from the recovered MajorMUD operator documentation: Saint `-220`, Good `-200`, Neutral `-50`, Seedy `30`, Outlaw `40`, Criminal `80`, Villain `120`, and Fiend `210`. The source documents ranges from `-220` through the Fiend band; behavior below the Saint reference floor is not promoted as a separate native reputation. Villain/Fiend enforcement actor/cadence remains source-conflicted and therefore unresolved.

@@ -88,7 +88,9 @@ public sealed record RuntimeCharacterAlignmentRuleContract(
     int InitialEvilPoints,
     string InitialReputation,
     IReadOnlyDictionary<string, int> AttackReputationPenalties,
+    IReadOnlyDictionary<string, int> ReputationMinimumEvilPoints,
     string AttackPenaltyRule,
+    int LawfulAttackPenaltyMultiplier,
     bool CreationBlocking,
     int EvilActionReduction,
     int NoEvilActionBaseReduction,
@@ -185,7 +187,7 @@ public sealed class RuntimeCharacterCatalog
     public RuntimeCharacterCreationContract CreationContract { get; private set; } = RuntimeCharacterCreationContract.Blocked;
     public RuntimeCharacterExperienceRule ExperienceRule { get; private set; } = new(string.Empty, string.Empty, string.Empty, Array.Empty<string>());
     public RuntimeCharacterDerivedFormulaContract DerivedFormulaContract { get; private set; } = new(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0, new Dictionary<int, string>());
-    public RuntimeCharacterAlignmentRuleContract AlignmentRuleContract { get; private set; } = new(0, "Neutral", new Dictionary<string, int>(), string.Empty, false, 2, 3, 60, 1, 60, 1, int.MaxValue, string.Empty, 300);
+    public RuntimeCharacterAlignmentRuleContract AlignmentRuleContract { get; private set; } = new(0, "Neutral", new Dictionary<string, int>(), new Dictionary<string, int>(), string.Empty, RuntimeClassicDeathLawPvpAuthority.LawfulAttackPenaltyMultiplier, false, 2, 3, 60, 1, 60, 1, 18, string.Empty, 300);
 
     public static RuntimeCharacterCatalog Load(string projectRoot, string worldId)
     {
@@ -267,19 +269,28 @@ public sealed class RuntimeCharacterCatalog
     private static RuntimeCharacterAlignmentRuleContract ReadAlignmentRuleContract(JsonElement root)
     {
         if (!root.TryGetProperty("character_creation_rules", out var creation) || !creation.TryGetProperty("alignment_evil_point_rules", out var rules))
-            return new(0, "Neutral", new Dictionary<string, int>(), string.Empty, false, 2, 3, 60, 1, 60, 1, int.MaxValue, string.Empty, 300);
+            return new(0, "Neutral", new Dictionary<string, int>(), new Dictionary<string, int>(), string.Empty, RuntimeClassicDeathLawPvpAuthority.LawfulAttackPenaltyMultiplier, false, 2, 3, 60, 1, 60, 1, 18, string.Empty, 300);
         var penalties = ReadIntDictionary(rules, "attack_reputation_penalties");
+        var reputationMinimums = ReadIntDictionary(rules, "reputation_minimum_evil_points");
         rules.TryGetProperty("daily_cleanup", out var cleanup);
         cleanup.TryGetProperty("evil_action_that_day", out var evilDay);
         cleanup.TryGetProperty("no_evil_action_that_day", out var cleanDay);
         rules.TryGetProperty("fiend_attack_lockout", out var lockout);
         var maximumDailyReduction = ReadInt(cleanDay, "maximum_daily_reduction");
-        if (maximumDailyReduction <= 0) maximumDailyReduction = int.MaxValue;
+        if (maximumDailyReduction <= 0) maximumDailyReduction = 18;
+        var lawfulMultiplier = RuntimeClassicDeathLawPvpAuthority.LawfulAttackPenaltyMultiplier;
+        if (rules.TryGetProperty("lawful_target_attack_penalty", out var lawfulPenalty) && lawfulPenalty.ValueKind == JsonValueKind.Object)
+        {
+            var decoded = ReadInt(lawfulPenalty, "multiplier");
+            if (decoded > 0) lawfulMultiplier = decoded;
+        }
         return new(
             ReadInt(rules, "initial_evil_points"),
             ReadString(rules, "initial_reputation"),
             penalties,
+            reputationMinimums,
             ReadString(rules, "attack_penalty_rule"),
+            lawfulMultiplier,
             rules.TryGetProperty("creation_blocking", out var creationBlocking) && creationBlocking.ValueKind == JsonValueKind.True,
             ReadInt(evilDay, "evil_points_reduced_by"),
             ReadInt(cleanDay, "base_reduction"),
@@ -882,9 +893,9 @@ public sealed class RuntimeCharacterService
     {
         // Classic character identity is composed of separately validated given and family names.
         // The display name may contain the separator space and must not be rejected as a single token.
-        RuntimeIdentity.ValidateCharacterName(givenName);
+        RuntimeIdentity.ValidateClassicGivenName(givenName);
         if (!string.IsNullOrWhiteSpace(familyName))
-            RuntimeIdentity.ValidateCharacterName(familyName);
+            RuntimeIdentity.ValidateClassicFamilyName(familyName);
         var normalizedSex = NormalizeSex(sex);
         var catalog = RuntimeCharacterCatalog.Load(_projectRoot, world.Definition.Id);
         var raceDefinition = catalog.RequireRace(race);
@@ -1035,14 +1046,32 @@ public sealed class RuntimeCharacterService
 
 public static class RuntimeIdentity
 {
+    // Native UserRecType / AddUserFieldMap: FirstName is 10 bytes, LastName is 18 bytes.
+    // The lower bound and allowed-character policy are still compatibility policy, not promoted native proof.
+    public const int ClassicGivenNameMaximumLength = 10;
+    public const int ClassicFamilyNameMaximumLength = 18;
     private static readonly Regex CharacterNamePattern = new("^[A-Za-z][A-Za-z'-]{2,19}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     public static void ValidateCharacterName(string name)
     {
         if (string.IsNullOrWhiteSpace(name) || !CharacterNamePattern.IsMatch(name.Trim()))
         {
-            throw new InvalidOperationException("Character names must be 3-20 characters, start with a letter, and contain only letters, apostrophes, or hyphens.");
+            throw new InvalidOperationException("Character names must satisfy the current compatibility name-shape policy (3-20 characters, starting with a letter, letters/apostrophes/hyphens only).");
         }
+    }
+
+    public static void ValidateClassicGivenName(string name)
+    {
+        ValidateCharacterName(name);
+        if (name.Trim().Length > ClassicGivenNameMaximumLength)
+            throw new InvalidOperationException($"Given Name may not exceed {ClassicGivenNameMaximumLength} characters in Classic MajorMUD.");
+    }
+
+    public static void ValidateClassicFamilyName(string name)
+    {
+        ValidateCharacterName(name);
+        if (name.Trim().Length > ClassicFamilyNameMaximumLength)
+            throw new InvalidOperationException($"Family Name may not exceed {ClassicFamilyNameMaximumLength} characters in Classic MajorMUD.");
     }
 
     public static string CharacterId(string worldId, string name) => $"{Normalize(worldId, "world")}:{Normalize(name, "character")}";

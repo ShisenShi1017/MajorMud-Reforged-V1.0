@@ -1,0 +1,143 @@
+{
+  "schema": "majormud.classic-lifecycle-death-verification.v1",
+  "update": "0310",
+  "pass": 39,
+  "classification": "STRONG_CLASSIC_LIFECYCLE_BOUNDARY_WITH_REJECTED_HYPOTHESES",
+  "policy": "User-provided documents are treated as hypotheses. Only claims independently supported by retained native help, exact prior parity evidence, or recovered stock formula evidence are promoted. Modern server architecture and unsupported formulas are rejected or kept UNKNOWN.",
+  "sourceReview": {
+    "userProvidedCombatPage": {
+      "role": "hypothesis_only",
+      "claimsReviewed": [
+        "ActionDelay = WeaponSpeed - Agility/20 - HasteSkill/10",
+        "global per-room priority queue with agility/level/random tie-breakers",
+        "precompute all hit/damage results before applying HP changes",
+        "purge later pending attacks when a target dies"
+      ],
+      "result": "The priority-queue formula is rejected for Classic because the existing PASS stock formula uses attack-energy cost plus 1000 energy per combat round, carry-forward remainder, and a five-swing cap. Exact same-round lethal actor ordering remains UNKNOWN."
+    },
+    "userProvidedLinkdeathPage": {
+      "role": "hypothesis_only",
+      "claimsReviewed": [
+        "combat blocks clean logout",
+        "player.json synchronous save",
+        "fixed three-minute LINKDEATH timer",
+        "same username/IP socket reattachment",
+        "linkdead character remains and auto-attacks",
+        "combat pauses the cleanup timer",
+        "leader succession chooses the next highest-level member",
+        "mercenaries return to their tavern",
+        "charmed/summoned monsters become hostile on logout",
+        "save-and-destroy object cleanup sequence"
+      ],
+      "result": "Only the already-proven five-second graceful exit plus automatic save and explicit follower-exit stop-following behavior are promoted. Raw reconnect/socket takeover is Worldgroup-owned and excluded. The remaining MajorMUD gameplay consequences stay UNKNOWN. player.json is explicitly non-native."
+    },
+    "userProvidedDeathXpPage": {
+      "role": "hypothesis_only",
+      "claimsReviewed": [
+        "no death XP loss below level 10",
+        "floor(total experience / 10) loss",
+        "2,000,000 XP maximum loss cap",
+        "exactly one level of de-level regression",
+        "post-delevel HP/mana pool recalculation",
+        "race/class EXP modifiers excluded from death penalty"
+      ],
+      "result": "The exact normal-death XP formula remains UNKNOWN. Existing parity evidence supports only that race/class EXP modifiers construct experience charts and must not be assumed to multiply earned monster XP or a death penalty without separate proof. No level gate, 10% formula, 2,000,000 cap, de-level count, or pool recalculation rule is promoted."
+    }
+  },
+  "independentlySupportedLifecycle": [
+    {
+      "claim": "EXIT/QUIT waits five seconds before leaving MajorMUD.",
+      "state": "PASS",
+      "sources": [
+        "Librarium/Parity/majormud_death_law_pvp_lifecycle_evidence_0285.json",
+        "retained WCCMMHLP / official MajorMUD command help"
+      ],
+      "runtime": "RuntimeClassicDeathLawPvpAuthority.GracefulExitDelaySeconds -> RuntimeClassicTimingAuthority.GracefulExitDelaySeconds; ServerNetworkHost waits this delay."
+    },
+    {
+      "claim": "The character is automatically saved on graceful exit.",
+      "state": "PASS",
+      "sources": [
+        "Librarium/Parity/majormud_death_law_pvp_lifecycle_evidence_0285.json",
+        "retained WCCMMHLP / official MajorMUD command help"
+      ],
+      "runtime": "ServerNetworkHost session finalizer calls SaveSession. Exact cross-owner save/cleanup ordering remains open."
+    },
+    {
+      "claim": "An explicitly exiting follower stops following.",
+      "state": "PASS",
+      "sources": [
+        "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json",
+        "native FOLLOW help message 147"
+      ],
+      "runtime": "RuntimeLiveGameplayFacade.HandleExplicitClassicSessionExit removes a non-leader follower from the live Classic party."
+    },
+    {
+      "claim": "SUICIDE costs one life and has the same normal-death effect for the life counter; last-life SUICIDE and SUICIDE NOW reroll.",
+      "state": "PASS_LIFE_BOUNDARY",
+      "sources": [
+        "existing character.life-loss-on-death PASS assertion",
+        "retained WCCMMHLP / official MajorMUD command help"
+      ],
+      "boundary": "This does not prove the exact normal-death XP loss formula."
+    }
+  ],
+  "combatContradiction": {
+    "userHypothesis": "ActionDelay priority queue",
+    "nativeParityState": "REJECTED",
+    "existingPassAssertion": "combat.attack-energy-scheduling",
+    "recoveredContract": [
+      "stock attack-energy cost uses combat code, level, weapon speed, agility, strength-requirement penalty, Speed percentage branch, and encumbrance percentage",
+      "each physical combat round contributes 1000 action-energy units",
+      "whole swings execute when enough energy is available",
+      "unused energy carries forward",
+      "hard cap of five swings"
+    ],
+    "sources": [
+      "Librarium/Parity/majormud_combat_evidence_0278.json",
+      "Apps/Source/Reforged.Server/ClassicCombatResolver.cs"
+    ],
+    "stillUnknown": "Exact cross-actor ordering when multiple player/NPC attacks resolve on the same native host/combat cycle, including whether a lethal earlier attack suppresses a later due attack."
+  },
+  "deathXpBoundary": {
+    "state": "UNKNOWN",
+    "assertion": "character.death-xp-loss-exact",
+    "notPromoted": [
+      "level < 10 immunity",
+      "10 percent of total experience",
+      "integer truncation rule for the death penalty",
+      "2,000,000 XP cap",
+      "exact de-level regression count",
+      "post-delevel HP/mana recomputation ordering"
+    ],
+    "existingStrongConstraint": "Race/class EXP modifiers build experience charts; do not apply them to death-loss arithmetic without separate native evidence.",
+    "runtimePolicy": "No guessed XP subtraction is added to RuntimeCharacterDeathResolver."
+  },
+  "worldgroupBoundary": {
+    "excluded": [
+      "same username/IP reconnect requirement",
+      "socket reattachment mechanics",
+      "account/session object ownership",
+      "duplicate-session policy"
+    ],
+    "reason": "These are host/session responsibilities, not MajorMUD gameplay parity. MajorMUD-owned consequences of unexpected disconnect remain in scope."
+  },
+  "stillUnknown": [
+    "whether clean logout is blocked during combat and exact native failure text",
+    "MajorMUD-owned unexpected-disconnect combat retention/autoattack behavior",
+    "any native disconnect grace/cleanup timer and its interaction with renewed combat",
+    "party leader exit succession and tie-breaking",
+    "hired follower/mercenary logout ownership and return behavior",
+    "charm/summon logout behavior",
+    "exact ordering among save, combat cleanup, party/follower cleanup, corpse/world-state cleanup, and departure",
+    "normal-death XP arithmetic, caps, rounding, level gate, de-level behavior, and ordering",
+    "same-round lethal cross-actor physical attack ordering"
+  ],
+  "parityPromotion": {
+    "assertion": "character.native-lifecycle-boundary",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Graceful five-second exit with automatic save and explicit follower-exit cleanup are independently proven and live, while raw reconnect plumbing is excluded as Worldgroup-owned. Remaining MajorMUD gameplay consequences of unexpected disconnect and exact cross-owner cleanup ordering stay gated."
+  },
+  "noGameplayGuessing": true
+}

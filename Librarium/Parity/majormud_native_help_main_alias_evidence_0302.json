@@ -1,0 +1,59 @@
+{
+  "schema": "majormud.native-help-main-alias-evidence.v1",
+  "update": "0302",
+  "pass": "Pass 31 \u2014 Classic native HELP main-menu alias closure",
+  "policy": "Only aliases printed verbatim on the retained WCCMMHLP native HELP main screen are promoted. HELP TOPICS output, fuzzy/prefix matching, ambiguity precedence, permission filtering and pagination remain unresolved.",
+  "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+  "native_help": {
+    "message_1": {
+      "sha256": "23d6974b81f16e582a7a0b58fc1df51d7e52c604844dc42887818ddef7064a0b",
+      "proves": [
+        "LAWS is a native main HELP topic",
+        "MISC is a native main HELP topic",
+        "SET is a native main HELP topic",
+        "HELP is a native main HELP topic",
+        "TOPICS is advertised but exact list rendering is not present in retained body text"
+      ]
+    },
+    "message_31": {
+      "sha256": "7d521c6d9be015a6a0fca923a67c7d408aa8cbcc34bfe7b58bbe07efc6cfbd93",
+      "topic": "LAWS",
+      "note": "The paired title record is blank, so direct main-menu aliasing is required rather than inferred token matching."
+    },
+    "message_111": {
+      "sha256": "ee5b2c13e3ce02eab71a61c9f4b2105d44c70f49c1f7295c285bae42ea025246",
+      "topic": "MISC",
+      "note": "The native internal title is Misc1, while the main HELP screen explicitly prints MISC."
+    },
+    "message_117": {
+      "sha256": "17ddee12301b928f4f522b1dd6faf110dc65d574951d5b146c30ebe7e7841bc2",
+      "topic": "SET",
+      "note": "Multiple SET-related title records make generic exact-token resolution ambiguous; the main HELP screen explicitly binds SET to the primary SET body."
+    },
+    "message_263": {
+      "sha256": "990d7d3d9b1ee33b8c0f8d4cada66b31085537a0f2ecf2009eb2ce12faf1dd82",
+      "topic": "HELP",
+      "proves": [
+        "HELP HELP displays the help-system instructions",
+        "HELP TOPICS is a native syntax identity",
+        "the exact HELP TOPICS list rendering is not recovered"
+      ]
+    }
+  },
+  "runtime": {
+    "owner": "Apps/Source/Reforged.Server/RuntimeMajorMudNativeHelp.cs",
+    "promoted_aliases": {
+      "laws": 31,
+      "misc": 111,
+      "set": 117,
+      "help": 263
+    },
+    "still_fail_closed": [
+      "topics list rendering",
+      "fuzzy/prefix resolver",
+      "ambiguous token precedence",
+      "permission filtering",
+      "pagination"
+    ]
+  }
+}

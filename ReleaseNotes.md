@@ -1,4 +1,66 @@
+# Pass 42 — Classic world-rules/configuration boundary
+
+Pass 42 promotes the broad Classic configuration ownership boundary to STRONG. Native `WCCMMUD.mcv` evidence retains 44 exact setup prompts/defaults, while Reforged continues to use its own configuration and does not ship/read/write `WCCMMUD.INI`. Six exact defaults are already connected to live Classic runtime owners. Exact remaining ranges, per-setting live/restart semantics, and unmapped setting effects remain evidence-gated.
+
+Parity: **97 PASS / 83 STRONG / 20 UNKNOWN = 200** — **48.5% strict / 90.0% evidence-backed**.
+
+# Pass 41 / Update 0312 — Classic gameplay failure boundary
+
+- Promotes `native.error-handling-recovery` from UNKNOWN to STRONG.
+- Ordinary rejected Classic gameplay actions remain state-preserving no-ops; no rollback/disable/world-load stop is introduced.
+- Separates catastrophic wrong/corrupt native-file startup failure from ordinary gameplay rejection.
+- Keeps exact failure wording, malformed post-startup reference behavior, and catastrophic save rollback ordering UNKNOWN.
+- Parity: 97 PASS / 82 STRONG / 21 UNKNOWN = 200; 48.5% strict, 89.5% evidence-backed.
+
+# Pass 40 — Classic Identity / Shadow LOOK Verification
+
+Pass 40 verifies the Black Embroidered Robes disguise question against retained MajorMUD evidence. Black Embroidered Robes (`item.1331`) carry Shadow +100, and retained ability 9 explicitly describes the LOOK presentation as `A shadowy figure!` when viewed by other players. Reforged now consumes positive equipped Shadow generically in `LOOK <character>` rather than hardcoding only the robes.
+
+The room occupant list intentionally continues to show the character name. That is not treated as a bug because the available Shadow evidence is specifically LOOK-scoped; native room-list masking remains unresolved.
+
+Parity: **97 PASS / 81 STRONG / 22 UNKNOWN = 200** — strict **48.5%**, evidence-backed **89.0%**.
+
+# Pass 39 — Classic Lifecycle / Death Verification
+
+Pass 39 promotes only the evidence-backed MajorMUD lifecycle boundary: 5-second graceful exit with automatic save and explicit follower exit cleanup. The supplied ActionDelay priority queue, fixed three-minute LINKDEATH, modern player.json/session assumptions, and exact death-XP arithmetic remain rejected or gated.
+
+Parity: **97 PASS / 80 STRONG / 23 UNKNOWN = 200** (48.5% strict / 88.5% evidence-backed).
+
+## Pass 37 / CodeUpdate0308 — Classic regeneration correction
+
+Classic REST/MEDITATE regeneration has been corrected to the stock MajorMUD branch. REST now uses the stock `/750` HP base, minimum-one clamp, and x3 resting multiplier before HPRegen instead of the GreaterMUD `/500` branch. Types 1-4 meditation now returns the recovered base mana regeneration before MPRegen percentage, while passive mana continues to apply MPRegen; Kai retains its one-point special branch.
+
+Native HELP directly confirms the 20-second uninterrupted activation boundary and movement/attack/being-attacked interruption behavior. Strong retained evidence supports passive 30-second, REST 20-second, and MEDITATE 10-second cadences. Exact host-clock phase and remaining presentation/cleanup ordering remain evidence-gated, so `native.rest-inn-recovery-policy` is STRONG rather than PASS.
+
+Parity after Pass 37: **97 PASS / 78 STRONG / 25 UNKNOWN = 200** (48.5% strict / 87.5% evidence-backed).
+
 # Release Notes
+
+## CodeUpdate0307 - Classic character modifier-order verification
+
+- Verifies the supplied modifier-order document against retained native evidence rather than treating it as authority.
+- Advances the broad cross-category modifier-order assertion from UNKNOWN to STRONG without claiming a universal pipeline.
+- Preserves race-minimum creation stats, recovered native secondary-stat order, additive decoded item/ability projections, combat encumbrance ordering, AC-before-Dodge defense order, and the 3-second periodic status clock.
+- Explicitly does not activate unsupported screenshot rules such as generic equipment percentages, final -50% blindness Accuracy, sleep/paralysis AC=0, or 10-second poison ticks.
+- No gameplay formula changes.
+- Parity: **97 PASS / 77 STRONG / 26 UNKNOWN = 200**.
+
+## CodeUpdate0306 - Classic Worldgroup RNG direct-call boundary
+
+- Records the exact-version direct MajorMUD call boundary into WGSERVER randomness helpers.
+- Pins the proven census of 146 direct `_genrdn` and 42 direct `_lngrnd` calls per WCCMMUD/WBBMMUD module variant and validates the matching thunk addresses; it does not fabricate the 82 `_genrdn` addresses not retained in the evidence list.
+- Keeps the incomplete `_genrdn` argument-position coverage explicitly bounded instead of treating it as a complete map.
+- Does not replace gameplay random callers, invent a process-global Classic stream, or activate the unresolved native range loop.
+- Parity: **97 PASS / 76 STRONG / 27 UNKNOWN = 200**.
+
+## CodeUpdate0305 - Classic Worldgroup PRNG closure
+
+- Uses the proven Borland/CW3220MT raw RNG contract instead of the rejected MSVC LCG hypothesis.
+- Adds an executable uint32 Classic PRNG core and exact 0..32767 raw output projection.
+- Adds exact WGSERVER packed-time startup seeding with two-second resolution.
+- Preserves proven `_genrdn`/`_lngrnd` exclusive-maximum boundaries while keeping unresolved gameplay-wide draw ordering fail-closed.
+- Leaves Reforged's existing xorshift multi-stream service available only as extension infrastructure.
+- Parity: **96 PASS / 76 STRONG / 27 UNKNOWN = 199**.
 
 ## Pass 27 post-integration compile hotfix
 
@@ -299,3 +361,6 @@ CodeUpdate0139 now includes the complete decoded WCCMMUD SYSOP/GAMEOP command ca
 - Restores canonical `App` and `MainWindow` WPF source files.
 - Adds a safe repair command that quarantines extra duplicate `Reforged.App.App` / `Reforged.App.MainWindow` definitions, clears stale `bin/obj`, and rebuilds `Reforged.App`.
 - Quarantined files are preserved under `_UpdateQuarantine` rather than deleted.
+
+## Pass 38 — Classic scheduler boundary
+MajorMUD timing is now represented as owner-specific recovered clocks rather than one synthetic global tick. The broad scheduler bucket advances to STRONG while exact host phase and simultaneous event order remain evidence-gated.

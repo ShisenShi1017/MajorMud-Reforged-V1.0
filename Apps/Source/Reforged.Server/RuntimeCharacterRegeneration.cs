@@ -13,9 +13,9 @@ public sealed record RuntimeCharacterRegenerationTick(
 
 public static class RuntimeCharacterRegenerationAuthority
 {
-    public static readonly TimeSpan PassiveCadence = TimeSpan.FromSeconds(30);
-    public static readonly TimeSpan RestCadence = TimeSpan.FromSeconds(20);
-    public static readonly TimeSpan MeditateCadence = TimeSpan.FromSeconds(10);
+    public static readonly TimeSpan PassiveCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.PassiveRegenerationSeconds);
+    public static readonly TimeSpan RestCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.RestRegenerationSeconds);
+    public static readonly TimeSpan MeditateCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.MeditateRegenerationSeconds);
     public static readonly TimeSpan FocusActivationDelay = RuntimeClassicTimingAuthority.FocusedRegenerationActivationDelay;
     public const string FormulaId = "character.passive_regeneration.decoded_30_seconds";
 
@@ -30,10 +30,11 @@ public static class RuntimeCharacterRegenerationAuthority
         var hpPercent = Derived(character, "hit_point_regeneration_percent");
         var manaPercent = ResolveManaRegenerationPercent(character);
 
-        // MMUD Explorer CalcRestingRate(..., False): Fix(((Level + 20) * Health) / 750).
-        var baseHitPointRate = Math.Max(0, checked(((character.Level + 20) * health) / 750));
+        // Stock MajorMUD branch of MMUD Explorer CalcRestingRate(..., False):
+        // max(1, Fix(((Level + 20) * Health) / 750)), then HPRegen percent.
+        var baseHitPointRate = CalculateClassicHitPointBase(character.Level, health);
         var hitPointRate = ApplyPercent(baseHitPointRate, hpPercent);
-        var manaRate = CalculateManaRate(character, characterClass, manaPercent);
+        var manaRate = CalculateManaRate(character, characterClass, manaPercent, meditating: false);
         var nextHitPoints = Math.Min(character.MaximumHitPoints, checked(character.HitPoints + hitPointRate));
         var nextMana = Math.Min(character.MaximumMana, checked(character.Mana + manaRate));
 
@@ -51,7 +52,10 @@ public static class RuntimeCharacterRegenerationAuthority
     {
         var health = Read(character.BaseStats, "health", "hea");
         var percent = Derived(character, "hit_point_regeneration_percent");
-        var rate = ApplyPercent(Math.Max(0, checked(((character.Level + 20) * health) / 500)), percent);
+        // Stock MajorMUD does not use the GreaterMUD /500 branch. It calculates the
+        // normal /750 rate, clamps it to at least one, multiplies by three while
+        // resting, then applies HPRegen percent.
+        var rate = ApplyPercent(checked(CalculateClassicHitPointBase(character.Level, health) * 3), percent);
         var next = Math.Min(character.MaximumHitPoints, checked(character.HitPoints + rate));
         return new(character with { HitPoints = next, UpdatedAtUtc = nowUtc }, rate, 0, next - character.HitPoints, 0,
             "decoded_data_and_multi_source_formula_evidence", FormulaId + ".rest");
@@ -59,28 +63,37 @@ public static class RuntimeCharacterRegenerationAuthority
 
     public static RuntimeCharacterRegenerationTick ApplyMeditateTick(RuntimeCharacterRecord character, RuntimeCharacterDefinition characterClass, DateTimeOffset nowUtc)
     {
-        var rate = CalculateManaRate(character, characterClass, ResolveManaRegenerationPercent(character));
+        var rate = CalculateManaRate(character, characterClass, ResolveManaRegenerationPercent(character), meditating: true);
         var next = Math.Min(character.MaximumMana, checked(character.Mana + rate));
         return new(character with { Mana = next, UpdatedAtUtc = nowUtc }, 0, rate, 0, next - character.Mana,
             "decoded_data_and_multi_source_formula_evidence", FormulaId + ".meditate");
     }
 
-    private static int CalculateManaRate(RuntimeCharacterRecord character, RuntimeCharacterDefinition characterClass, int percent)
+    private static int CalculateManaRate(RuntimeCharacterRecord character, RuntimeCharacterDefinition characterClass, int percent, bool meditating)
     {
         var magic = characterClass.Magic;
         if (magic is null || magic.Type == 0) return 0;
+
+        // MMUD Explorer CalcManaRegen keeps Kai/type 5 on its own one-point branch.
+        // For types 1-4, meditation exits after the base formula and before MPRegen
+        // percentage application; passive regeneration applies MPRegen afterward.
+        if (magic.Type == 5)
+            return ApplyPercent(1, percent);
+
         var seed = magic.Type switch
         {
             1 => Read(character.BaseStats, "intellect", "int"),
             2 => Read(character.BaseStats, "wisdom", "willpower", "wil"),
             3 => checked((Read(character.BaseStats, "intellect", "int") + Read(character.BaseStats, "wisdom", "willpower", "wil")) / 2),
             4 => Read(character.BaseStats, "charm", "cha"),
-            5 => 1,
             _ => throw new InvalidDataException($"Unsupported decoded magic type {magic.Type} for regeneration.")
         };
         var baseRate = Math.Max(0, checked(((character.Level + 20) * seed * (magic.Level + 2)) / 1650));
-        return ApplyPercent(baseRate, percent);
+        return meditating ? baseRate : ApplyPercent(baseRate, percent);
     }
+
+    internal static int CalculateClassicHitPointBase(int level, int health) =>
+        Math.Max(1, checked(((level + 20) * health) / 750));
 
     private static int ApplyPercent(int basis, int percent) =>
         Math.Max(0, checked(basis + checked((percent * basis) / 100)));

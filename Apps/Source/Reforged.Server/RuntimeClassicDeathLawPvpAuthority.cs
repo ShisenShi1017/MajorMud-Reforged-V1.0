@@ -6,8 +6,11 @@ public enum RuntimeClassicLawConsequence
     None = 0,
     GuardsAttackUntilDowned = 1 << 0,
     GuardsAttackUntilDeath = 1 << 1,
-    BountyHuntersAttack = 1 << 2,
-    DivineIntervention = 1 << 3,
+    // Bit 2 intentionally remains unused in executable Classic enforcement. The archived
+    // MajorMUD legal-system documentation assigns bounty-hunter escalation to Villain while
+    // native player help describes possible divine intervention at Villain. Until that source
+    // conflict is reconciled against the target 1.11p native runtime, do not guess the actor.
+    DivineInterventionEligible = 1 << 3,
     AttackInitiationLocked = 1 << 4
 }
 
@@ -36,8 +39,14 @@ public static class RuntimeClassicDeathLawPvpAuthority
         {
             "OUTLAW" => RuntimeClassicLawConsequence.GuardsAttackUntilDowned,
             "CRIMINAL" => RuntimeClassicLawConsequence.GuardsAttackUntilDeath,
-            "VILLAIN" or "VILLIAN" => RuntimeClassicLawConsequence.GuardsAttackUntilDeath | RuntimeClassicLawConsequence.BountyHuntersAttack,
-            "FIEND" => RuntimeClassicLawConsequence.GuardsAttackUntilDeath | RuntimeClassicLawConsequence.BountyHuntersAttack | RuntimeClassicLawConsequence.DivineIntervention,
+            // Native HL1B11 says Villain is Criminal plus possible intervention by the "Gods".
+            // The archived legal-system operator documentation instead places bounty hunters here
+            // and divine lightning at Fiend. Preserve the directly rendered help behavior while the
+            // conflicting enforcement actor is still evidence-gated.
+            "VILLAIN" or "VILLIAN" => RuntimeClassicLawConsequence.GuardsAttackUntilDeath | RuntimeClassicLawConsequence.DivineInterventionEligible,
+            // Fiend escalation is source-conflicted; preserve the independently proven 300-EP
+            // attack lockout below and fail closed on additional active enforcement.
+            "FIEND" => RuntimeClassicLawConsequence.None,
             _ => RuntimeClassicLawConsequence.None
         };
         if (evilPoints >= FiendAttackLockoutEvilPoints)

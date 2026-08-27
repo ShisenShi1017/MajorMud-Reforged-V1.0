@@ -10,16 +10,30 @@ internal sealed class ReforgedClientProtocolFilter
     private bool _atLineStart = true;
     private bool _capturingProtocol;
     private bool _skipLineFeed;
-    private readonly Dictionary<string, DateTimeOffset> _hiddenCommandEchoes = new(StringComparer.OrdinalIgnoreCase);
+    private sealed class HiddenCommandEchoExpectation
+    {
+        public HiddenCommandEchoExpectation(string command, DateTimeOffset createdAt)
+        {
+            Command = command;
+            CreatedAt = createdAt;
+        }
+
+        public string Command { get; }
+        public DateTimeOffset CreatedAt { get; }
+    }
+
+    private readonly Queue<HiddenCommandEchoExpectation> _hiddenCommandEchoes = new();
+    private readonly StringBuilder _hiddenEchoCandidate = new();
 
     public void NoteOutboundCommand(string command)
     {
         var normalized = command?.Trim() ?? string.Empty;
         if (normalized.Length == 0) return;
-        var now = DateTimeOffset.UtcNow;
-        foreach (var expired in _hiddenCommandEchoes.Where(item => now - item.Value > TimeSpan.FromSeconds(15)).Select(item => item.Key).ToArray())
-            _hiddenCommandEchoes.Remove(expired);
-        _hiddenCommandEchoes[normalized] = now;
+
+        // Reforged's Telnet host echoes input one byte at a time. Keep every
+        // private protocol command in send order so its echoed characters can
+        // be removed even when TCP splits the echo across multiple reads.
+        _hiddenCommandEchoes.Enqueue(new HiddenCommandEchoExpectation(normalized, DateTimeOffset.UtcNow));
     }
 
     public ReforgedClientProtocolFilterResult Process(string text)
@@ -69,22 +83,80 @@ internal sealed class ReforgedClientProtocolFilter
         _capturingProtocol = false;
         _skipLineFeed = false;
         _hiddenCommandEchoes.Clear();
+        _hiddenEchoCandidate.Clear();
     }
 
     private string RemoveHiddenCommandEchoes(string text)
     {
-        if (_hiddenCommandEchoes.Count == 0 || text.Length == 0) return text;
-        foreach (var command in _hiddenCommandEchoes.Keys.ToArray())
+        if (text.Length == 0) return text;
+
+        var visible = new StringBuilder(text.Length);
+        FlushExpiredHiddenEchoes(visible, DateTimeOffset.UtcNow);
+
+        foreach (var character in text)
         {
-            var pattern = $@"(?im)^[ \t]*\[(?:HP|H)[^\]\r\n]*\][ \t]*:?[ \t]*{Regex.Escape(command)}[ \t]*(?:\r?\n|$)";
-            var filtered = Regex.Replace(text, pattern, string.Empty, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
-            if (filtered.Length != text.Length)
+            while (true)
             {
-                text = filtered;
-                _hiddenCommandEchoes.Remove(command);
+                if (_hiddenCommandEchoes.Count == 0)
+                {
+                    if (_hiddenEchoCandidate.Length > 0)
+                    {
+                        visible.Append(_hiddenEchoCandidate);
+                        _hiddenEchoCandidate.Clear();
+                    }
+                    visible.Append(character);
+                    break;
+                }
+
+                var expected = _hiddenCommandEchoes.Peek().Command;
+                var matched = _hiddenEchoCandidate.Length;
+
+                if (matched < expected.Length && character == expected[matched])
+                {
+                    _hiddenEchoCandidate.Append(character);
+                    if (_hiddenEchoCandidate.Length == expected.Length)
+                    {
+                        // Exact byte-for-byte server echo of the private command:
+                        // discard it and advance to the next expected echo.
+                        _hiddenEchoCandidate.Clear();
+                        _hiddenCommandEchoes.Dequeue();
+                        FlushExpiredHiddenEchoes(visible, DateTimeOffset.UtcNow);
+                    }
+                    break;
+                }
+
+                if (_hiddenEchoCandidate.Length > 0)
+                {
+                    // This looked like a private echo prefix but diverged. It was
+                    // ordinary game text, so restore it and re-evaluate the current
+                    // character as a possible start of the real echo.
+                    visible.Append(_hiddenEchoCandidate);
+                    _hiddenEchoCandidate.Clear();
+                    continue;
+                }
+
+                visible.Append(character);
+                break;
             }
         }
-        return text;
+
+        return visible.ToString();
+    }
+
+    private void FlushExpiredHiddenEchoes(StringBuilder visible, DateTimeOffset now)
+    {
+        while (_hiddenCommandEchoes.Count > 0 &&
+               now - _hiddenCommandEchoes.Peek().CreatedAt > TimeSpan.FromSeconds(15))
+        {
+            // If a false-positive prefix was being held when the expectation
+            // expired, restore it rather than losing legitimate game output.
+            if (_hiddenEchoCandidate.Length > 0)
+            {
+                visible.Append(_hiddenEchoCandidate);
+                _hiddenEchoCandidate.Clear();
+            }
+            _hiddenCommandEchoes.Dequeue();
+        }
     }
 
     private void Decode(ICollection<ReforgedClientProtocolMessage> messages)

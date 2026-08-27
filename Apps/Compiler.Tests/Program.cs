@@ -150,14 +150,30 @@ using (var characterFoundationDocument = JsonDocument.Parse(File.ReadAllText(Pat
 {
     var foundationRoot = characterFoundationDocument.RootElement;
     var alignmentRules = foundationRoot.GetProperty("character_creation_rules").GetProperty("alignment_evil_point_rules");
-    if (alignmentRules.TryGetProperty("lawful_target_attack_penalty", out _))
-        throw new Exception("Runtime character foundation retained the unresolved, non-executable lawful-target evidence note.");
+    if (!alignmentRules.TryGetProperty("lawful_target_attack_penalty", out var lawfulPenalty) ||
+        lawfulPenalty.GetProperty("multiplier").GetInt32() != 3 || lawfulPenalty.EnumerateObject().Count() != 1)
+        throw new Exception("Runtime character foundation did not project the exact native x3 Lawful-target multiplier cleanly.");
     var penalties = alignmentRules.GetProperty("attack_reputation_penalties");
     if (penalties.GetProperty("Saint").GetInt32() != 2 ||
         penalties.GetProperty("Good").GetInt32() != 2 ||
         penalties.GetProperty("Neutral").GetInt32() != 0 ||
         penalties.GetProperty("Fiend").GetInt32() != 0)
         throw new Exception("Runtime character foundation did not preserve the authoritative decoded reputation penalty table.");
+    var reputationMinimums = alignmentRules.GetProperty("reputation_minimum_evil_points");
+    if (reputationMinimums.GetProperty("Saint").GetInt32() != -220 ||
+        reputationMinimums.GetProperty("Good").GetInt32() != -200 ||
+        reputationMinimums.GetProperty("Neutral").GetInt32() != -50 ||
+        reputationMinimums.GetProperty("Seedy").GetInt32() != 30 ||
+        reputationMinimums.GetProperty("Outlaw").GetInt32() != 40 ||
+        reputationMinimums.GetProperty("Criminal").GetInt32() != 80 ||
+        reputationMinimums.GetProperty("Villain").GetInt32() != 120 ||
+        reputationMinimums.GetProperty("Fiend").GetInt32() != 210)
+        throw new Exception("Runtime character foundation lost the recovered Classic Evil-Point reputation transition points.");
+    var cleanDay = alignmentRules.GetProperty("daily_cleanup").GetProperty("no_evil_action_that_day");
+    if (cleanDay.GetProperty("maximum_daily_reduction").GetInt32() != 18 ||
+        cleanDay.GetProperty("default_epcycle_minutes").GetInt32() != 60 ||
+        cleanDay.GetProperty("default_epamount").GetInt32() != 1)
+        throw new Exception("Runtime character foundation lost MAXEPDAY/EPCYCLE/EPAMOUNT Classic defaults.");
 }
 
 using (var lootRulesDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "loot_rules.json"))))

@@ -19,12 +19,30 @@ public sealed record RuntimeCharacterAlignmentCleanupConfiguration(
     int CycleAmount,
     int MaximumDailyReduction)
 {
-    public static RuntimeCharacterAlignmentCleanupConfiguration ClassicDefault { get; } = new(2, 3, 60, 1, int.MaxValue);
+    public static RuntimeCharacterAlignmentCleanupConfiguration ClassicDefault { get; } = new(
+        2,
+        3,
+        RuntimeClassicConfigurationAuthority.EvilPointCycleMinutes,
+        RuntimeClassicConfigurationAuthority.EvilPointsForgivenPerCycle,
+        RuntimeClassicConfigurationAuthority.MaximumEvilPointsForgivenPerDay);
 }
 
 public static class RuntimeCharacterAlignmentResolver
 {
     public const int LegacyFiendAttackLockoutThreshold = 300;
+
+    public static IReadOnlyDictionary<string, int> ClassicReputationMinimumEvilPoints { get; } =
+        new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Saint"] = -220,
+            ["Good"] = -200,
+            ["Neutral"] = -50,
+            ["Seedy"] = 30,
+            ["Outlaw"] = 40,
+            ["Criminal"] = 80,
+            ["Villain"] = 120,
+            ["Fiend"] = 210
+        };
 
     public static RuntimeCharacterAlignmentState CreateInitial()
         => new(0, "Neutral", false, 0, 0, "proven", "character_creation_rules.alignment_evil_point_rules");
@@ -36,7 +54,7 @@ public static class RuntimeCharacterAlignmentResolver
         => AttackPenaltyForTargetReputation(targetReputation, new RuntimeCharacterAlignmentRuleContract(0, "Neutral", new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
             ["Saint"] = 2, ["Good"] = 2, ["Neutral"] = 0, ["Seedy"] = 0, ["Outlaw"] = 0, ["Criminal"] = 0, ["Villain"] = 0, ["Fiend"] = 0
-        }, "Legacy Classic attack-reputation penalty table.", false, 2, 3, 60, 1, 60, 1, int.MaxValue, "Negative EP suppresses the documented base reduction.", LegacyFiendAttackLockoutThreshold));
+        }, ClassicReputationMinimumEvilPoints, "Legacy Classic attack-reputation penalty table.", RuntimeClassicDeathLawPvpAuthority.LawfulAttackPenaltyMultiplier, false, 2, 3, 60, 1, 60, 1, 18, "Negative EP suppresses the documented base reduction.", LegacyFiendAttackLockoutThreshold));
 
     public static int AttackPenaltyForTargetReputation(string targetReputation, RuntimeCharacterAlignmentRuleContract contract)
     {
@@ -50,9 +68,11 @@ public static class RuntimeCharacterAlignmentResolver
     public static RuntimeCharacterAlignmentState ApplyAttack(RuntimeCharacterAlignmentState state, string targetReputation)
     {
         var penalty = AttackPenaltyForTargetReputation(targetReputation);
+        var evilPoints = checked(state.EvilPoints + penalty);
         return state with
         {
-            EvilPoints = checked(state.EvilPoints + penalty),
+            EvilPoints = evilPoints,
+            Reputation = ResolveReputationForEvilPoints(evilPoints, state.Reputation),
             PerformedEvilActionToday = state.PerformedEvilActionToday || penalty > 0
         };
     }
@@ -63,11 +83,63 @@ public static class RuntimeCharacterAlignmentResolver
     public static RuntimeCharacterAlignmentState ApplyAttack(RuntimeCharacterAlignmentState state, string targetReputation, bool targetIsLawful, RuntimeCharacterAlignmentRuleContract contract)
     {
         var basePenalty = AttackPenaltyForTargetReputation(targetReputation, contract);
-        var penalty = RuntimeClassicDeathLawPvpAuthority.ApplyLawfulAttackMultiplier(basePenalty, targetIsLawful);
+        var penalty = targetIsLawful ? checked(basePenalty * contract.LawfulAttackPenaltyMultiplier) : basePenalty;
+        var evilPoints = checked(state.EvilPoints + penalty);
         return state with
         {
-            EvilPoints = checked(state.EvilPoints + penalty),
+            EvilPoints = evilPoints,
+            Reputation = ResolveReputationForEvilPoints(evilPoints, state.Reputation, contract),
             PerformedEvilActionToday = state.PerformedEvilActionToday || penalty > 0
+        };
+    }
+
+    public static string ResolveReputationForEvilPoints(int evilPoints, string? currentReputation = null)
+        => ResolveReputationForEvilPoints(evilPoints, currentReputation, null);
+
+    public static string ResolveReputationForEvilPoints(int evilPoints, string? currentReputation, RuntimeCharacterAlignmentRuleContract? contract)
+    {
+        // Lawful is a creation-time legal pledge rather than an Evil-Point band. Until that
+        // separate native creation/action gate is fully recovered, never erase an explicitly
+        // persisted Lawful state merely because its ordinary EP value is zero.
+        if (string.Equals(currentReputation, "Lawful", StringComparison.OrdinalIgnoreCase)) return "Lawful";
+
+        var thresholds = contract?.ReputationMinimumEvilPoints is { Count: > 0 }
+            ? contract.ReputationMinimumEvilPoints
+            : ClassicReputationMinimumEvilPoints;
+        int Require(string name)
+        {
+            if (!thresholds.TryGetValue(name, out var value))
+                throw new InvalidDataException($"Decoded Classic reputation threshold '{name}' is missing; EP reputation resolution fails closed.");
+            return value;
+        }
+
+        if (evilPoints >= Require("Fiend")) return "Fiend";
+        if (evilPoints >= Require("Villain")) return "Villain";
+        if (evilPoints >= Require("Criminal")) return "Criminal";
+        if (evilPoints >= Require("Outlaw")) return "Outlaw";
+        if (evilPoints >= Require("Seedy")) return "Seedy";
+        if (evilPoints >= Require("Neutral")) return "Neutral";
+        if (evilPoints >= Require("Good")) return "Good";
+
+        // The recovered reference table names Saint for the negative band below Good and gives
+        // -220 as its documented reference floor. No lower reputation name is documented, so
+        // values below that reference floor remain Saint rather than inventing a ninth band.
+        _ = Require("Saint");
+        return "Saint";
+    }
+
+    public static RuntimeCharacterAlignmentState ApplyEvilPointDelta(
+        RuntimeCharacterAlignmentState state,
+        int delta,
+        RuntimeCharacterAlignmentRuleContract? contract = null,
+        bool markPositiveDeltaAsEvilAction = true)
+    {
+        var evilPoints = checked(state.EvilPoints + delta);
+        return state with
+        {
+            EvilPoints = evilPoints,
+            Reputation = ResolveReputationForEvilPoints(evilPoints, state.Reputation, contract),
+            PerformedEvilActionToday = state.PerformedEvilActionToday || (markPositiveDeltaAsEvilAction && delta > 0)
         };
     }
 
@@ -111,9 +183,11 @@ public static class RuntimeCharacterAlignmentResolver
                 : Math.Max(0, requestedReduction - configuration.EvilActionReduction);
         }
 
+        var evilPoints = checked(state.EvilPoints - requestedReduction);
         return state with
         {
-            EvilPoints = checked(state.EvilPoints - requestedReduction),
+            EvilPoints = evilPoints,
+            Reputation = ResolveReputationForEvilPoints(evilPoints, state.Reputation),
             PerformedEvilActionToday = false,
             MinutesPlayedToday = 0,
             DailyReductionApplied = requestedReduction

@@ -2235,8 +2235,13 @@
       },
       "attack_penalty_rule": "Attacking a Saint or Good target adds 2 evil points. Attacking a Neutral or Seedy-or-worse target adds no evil points.",
       "lawful_target_attack_penalty": {
-        "status": "UNKNOWN",
-        "classification": "documented_as_much_larger_than_normal_but_exact_amount_not_verified"
+        "status": "PROVEN",
+        "multiplier": 3,
+        "rule": "Attacking a Lawful player applies three times the otherwise-applicable evil-point attack penalty.",
+        "evidence": [
+          "Librarium/Evidence/native_message_catalog_correlation_0022.json:HL1B11",
+          "Librarium/Evidence/native_message_catalog_correlation_0022.json:GOODTEXT"
+        ]
       },
       "daily_cleanup": {
         "evil_action_that_day": {
@@ -2249,7 +2254,9 @@
           "formula": "3 + floor(minutes_played / EPCYCLE) * EPAMOUNT",
           "default_epcycle_minutes": 60,
           "default_epamount": 1,
-          "maximum_daily_reduction": "MAXEPDAY configuration cap"
+          "maximum_daily_reduction": 18,
+          "maximum_daily_reduction_config": "MAXEPDAY",
+          "maximum_daily_reduction_default_evidence": "Native WCCMMUD setup prompt: Max EPs to forgive per day? 18"
         },
         "negative_ep_exception": "When moving from Neutral toward Good/Saint (EP < 0), the base 2-point portion does not apply, per Classic documentation."
       },
@@ -2259,7 +2266,18 @@
       },
       "creation_blocking": false,
       "evidence": "Librarium/Evidence/Character/CLASSIC_EVIL_LEGAL_SYSTEM_USER_EVIDENCE_0137.md",
-      "note": "The 2 EP value is target-reputation-specific for attacking Saint or Good targets. It is not a universal cost for every evil action."
+      "note": "The 2 EP value is target-reputation-specific for attacking Saint or Good targets. Native HL1B11/GOODTEXT separately prove the x3 Lawful-target multiplier; this does not prove every other crime or reputation threshold.",
+      "reputation_minimum_evil_points": {
+        "Saint": -220,
+        "Good": -200,
+        "Neutral": -50,
+        "Seedy": 30,
+        "Outlaw": 40,
+        "Criminal": 80,
+        "Villain": 120,
+        "Fiend": 210
+      },
+      "reputation_range_rule": "Archived MajorMUD legal-system reference points: Saint -220..-201, Good -200..-51, Neutral -50..29, Seedy 30..39, Outlaw 40..79, Criminal 80..119, Villain 120..209, Fiend 210+; 300+ Fiend attack-initiation lockout is separate. Behavior below the documented Saint floor is not used to invent a new reputation."
     }
   },
   "derived_stat_formulas": {

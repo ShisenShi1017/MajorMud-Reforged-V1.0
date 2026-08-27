@@ -1,0 +1,92 @@
+{
+  "schema": "majormud.classic-worldgroup-rng-direct-callsite-boundary.v1",
+  "update": "0306",
+  "pass": 35,
+  "evidenceClass": "PROVEN_STATIC_DIRECT_BOUNDARY",
+  "scope": "Exact native module versions and direct x86 calls to WGSERVER.EXE import thunks only; indirect register/data calls are excluded.",
+  "sourceEvidence": [
+    "Librarium/Evidence/native_host_callsite_map_0003.json",
+    "Librarium/Evidence/native_host_argument_positions_0014.json",
+    "Librarium/Evidence/native_host_service_ownership_0004.json",
+    "Librarium/Parity/majormud_native_rng_evidence_0305.json"
+  ],
+  "modules": [
+    {
+      "file": "wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "symbols": {
+        "_genrdn": {
+          "thunkVa": "0x00478cb2",
+          "directCallsiteCount": 146,
+          "boundedArgumentAnalyzerCallsiteCount": 64,
+          "retainedDirectAddressCount": 64
+        },
+        "_lngrnd": {
+          "thunkVa": "0x004789e2",
+          "directCallsiteCount": 42,
+          "boundedArgumentAnalyzerCallsiteCount": 42,
+          "retainedDirectAddressCount": 42
+        }
+      }
+    },
+    {
+      "file": "wbbmmud.dll",
+      "sha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+      "symbols": {
+        "_genrdn": {
+          "thunkVa": "0x00478cb2",
+          "directCallsiteCount": 146,
+          "boundedArgumentAnalyzerCallsiteCount": 64,
+          "retainedDirectAddressCount": 64
+        },
+        "_lngrnd": {
+          "thunkVa": "0x004789e2",
+          "directCallsiteCount": 42,
+          "boundedArgumentAnalyzerCallsiteCount": 42,
+          "retainedDirectAddressCount": 42
+        }
+      }
+    }
+  ],
+  "combined": {
+    "_genrdn": {
+      "directCallsiteCount": 292,
+      "boundedArgumentAnalyzerCallsiteCount": 128,
+      "retainedDirectAddressCount": 128
+    },
+    "_lngrnd": {
+      "directCallsiteCount": 84,
+      "boundedArgumentAnalyzerCallsiteCount": 84,
+      "retainedDirectAddressCount": 84
+    }
+  },
+  "argumentAnalyzerBoundary": {
+    "scope": "Bounded caller-side stack analysis only; exact native prototypes remain fail-closed.",
+    "genrdnObservedPerModule": 64,
+    "genrdnTotalDirectPerModule": 146,
+    "lngrndObservedPerModule": 42,
+    "lngrndTotalDirectPerModule": 42,
+    "note": "Do not treat the 64 observed _genrdn rows as a complete direct-call argument map."
+  },
+  "runtimeActivation": {
+    "directBoundaryRegistry": "Apps/Source/Reforged.Server/WorldgroupRngDirectCallsiteRegistry.cs",
+    "gameplayRandomCallerRewrites": 0,
+    "globalClassicStreamInvented": false,
+    "boundedRangeLoopActivated": false
+  },
+  "stillUnknown": [
+    "indirect MajorMUD randomness callsites and paths",
+    "gameplay semantic attribution of individual direct randomness callsites",
+    "mapping of callsites to effective Worldgroup execution-thread CW3220MT CRT state",
+    "gameplay-wide PRNG draw/mutation ordering",
+    "fully instruction-equivalent Reforged _genrdn/_lngrnd bounded-remainder execution"
+  ],
+  "directCallsiteMapBoundary": {
+    "censusCountIsAuthoritative": true,
+    "genrdnRetainedAddressCountPerModule": 64,
+    "genrdnCensusCountPerModule": 146,
+    "lngrndRetainedAddressCountPerModule": 42,
+    "lngrndCensusCountPerModule": 42,
+    "note": "The retained native callsite artifact proves the _genrdn census count as 146 per module but preserves only 64 explicit _genrdn addresses per module; Pass 35 does not invent the missing addresses."
+  }
+}

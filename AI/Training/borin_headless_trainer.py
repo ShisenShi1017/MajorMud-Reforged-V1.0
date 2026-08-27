@@ -1,27 +1,44 @@
 #!/usr/bin/env python3
-"""Borin headless reinforcement-learning trainer for MajorMUD Reforged.
+"""Borin continuous headless reinforcement-learning trainer and runtime tester.
 
-This trainer talks only to Reforged.Server's newline-delimited JSON stdin/stdout
-headless protocol. It uses tabular Q-learning so it has no third-party Python
-runtime dependency and can run unattended for the full 22-hour curriculum.
+The trainer talks only to Reforged.Server's newline-delimited JSON stdin/stdout
+headless protocol. It uses dependency-free tabular Q-learning, continuously
+rotates through major gameplay systems, preserves learned state between runs,
+and writes an aggregated defect report while it plays.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
-import math
 import os
 import random
 import re
 import signal
 import subprocess
-import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
+DIRECTIONS = {
+    "n", "s", "e", "w", "ne", "nw", "se", "sw", "u", "d",
+    "north", "south", "east", "west", "northeast", "northwest",
+    "southeast", "southwest", "up", "down",
+}
+CURRENCY_VALUES = {"runic": 1_000_000, "platinum": 10_000, "gold": 100, "silver": 10, "copper": 1}
+
+PHASE_ACTIONS: list[list[str]] = [
+    ["look", "score", "health", "rest", "meditate", "recover", "inventory", "flee", "explore"],
+    ["look", "exits", "search", "scan", "hide", "sneak", "explore", "open_exit", "close_exit", "picklock_exit", "disarm_exit", "get_all"],
+    ["combat", "attack", "kill", "bash", "smash", "backstab", "punch", "kick", "jumpkick", "flee", "score", "explore"],
+    ["spells", "powers", "abilities", "skills", "cast_candidate", "invoke_candidate", "use_candidate", "read_candidate", "dispel", "score", "explore"],
+    ["quest", "journal", "greet_npc", "ask_npc_quest", "ask_npc_help", "services", "look", "explore"],
+    ["inventory", "equipment", "keys", "get_all", "appraise_candidate", "equip_candidate", "wear_candidate", "wield_candidate", "repair_candidate", "use_candidate", "explore"],
+    ["experience", "character", "profile", "train", "tat", "ready", "score", "skills", "abilities", "explore"],
+    ["wealth", "services", "list", "bank", "deposit_surplus", "buy_candidate", "sell_candidate", "equip_candidate", "repair_candidate", "get_all", "attack", "explore"],
+]
 
 
 def clean(text: str) -> str:
@@ -40,6 +57,10 @@ def write_json_atomic(path: Path, value: Any) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(value, indent=2, sort_keys=True), encoding="utf-8")
     tmp.replace(path)
+
+
+def utc_now() -> str:
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
 class HeadlessClient:
@@ -122,6 +143,7 @@ class Snapshot:
     exp: int = 0
     armor_a: int = 0
     armor_b: int = 0
+    level: int = 0
     room: str = ""
     dead: bool = False
 
@@ -131,10 +153,10 @@ def numeric_snapshot(state: dict[str, Any]) -> Snapshot:
     wealth = clean(str(state.get("wealth", "")))
     response = clean(str(state.get("response", ""))).lower()
     hp = hp_max = mana = mana_max = exp = armor_a = armor_b = 0
-    m = re.search(r"Hits:\s*(\d+)\s*/\s*(\d+)", score, re.I)
+    m = re.search(r"Hits:\s*(-?\d+)\s*/\s*(\d+)", score, re.I)
     if m:
         hp, hp_max = map(int, m.groups())
-    m = re.search(r"(?:Mana|Kai):\s*\*?\s*(\d+)\s*/\s*(\d+)", score, re.I)
+    m = re.search(r"(?:Mana|Kai):\s*\*?\s*(-?\d+)\s*/\s*(\d+)", score, re.I)
     if m:
         mana, mana_max = map(int, m.groups())
     m = re.search(r"Exp:\s*(\d+)", score, re.I)
@@ -145,14 +167,14 @@ def numeric_snapshot(state: dict[str, Any]) -> Snapshot:
         armor_a, armor_b = map(int, m.groups())
     m = re.search(r"Wealth:\s*(\d+)\s+copper", wealth, re.I)
     copper = int(m.group(1)) if m else 0
+    actor = state.get("actor") or {}
+    level = int(actor.get("level") or 0)
     room = str((state.get("room") or {}).get("id", ""))
-    dead = hp_max > 0 and hp <= 0 or any(x in response for x in ("you have died", "you are dead", "you die"))
-    return Snapshot(hp, hp_max, mana, mana_max, copper, exp, armor_a, armor_b, room, dead)
+    dead = (hp_max > 0 and hp <= 0) or any(x in response for x in ("you have died", "you are dead", "you die"))
+    return Snapshot(hp, hp_max, mana, mana_max, copper, exp, armor_a, armor_b, level, room, dead)
 
 
 def gear_metric(s: Snapshot) -> float:
-    # Higher survivability and defense is treated as an upgrade signal. Combat reward
-    # still teaches Borin when a lower-defense item performs better in practice.
     return s.hp_max * 1.0 + s.armor_a * 4.0 + s.armor_b * 4.0 + s.mana_max * 0.15
 
 
@@ -166,11 +188,17 @@ def parse_carried_denominations(text: str) -> dict[str, int]:
         "silver": r"(\d+)\s+silver",
         "copper": r"(\d+)\s+copper",
     }
-    out = {}
+    out: dict[str, int] = {}
     for name, pat in patterns.items():
         m = re.search(pat, carried, re.I)
         out[name] = int(m.group(1)) if m else 0
     return out
+
+
+def carried_copper_from_state(state: dict[str, Any]) -> int:
+    denoms = parse_carried_denominations(str(state.get("bank", "")))
+    total = sum(denoms[k] * CURRENCY_VALUES[k] for k in CURRENCY_VALUES)
+    return total or numeric_snapshot(state).wealth_copper
 
 
 def inventory_items(text: str) -> list[str]:
@@ -179,12 +207,11 @@ def inventory_items(text: str) -> list[str]:
     if not m or "nothing" in m.group(1).lower():
         return []
     parts = [x.strip().rstrip(".") for x in m.group(1).split(",")]
-    result = []
+    result: list[str] = []
     for part in parts:
         low = part.lower()
         if any(word in low for word in ("runic", "platinum", "gold crown", "silver noble", "copper farthing")):
             continue
-        # Do not sell currently equipped gear. It can still be evaluated/replaced first.
         if "(" in part and ")" in part:
             continue
         part = re.sub(r"^\d+\s+", "", part).strip()
@@ -194,9 +221,9 @@ def inventory_items(text: str) -> list[str]:
 
 
 def shop_items(text: str) -> list[tuple[str, int]]:
-    rows = []
+    rows: list[tuple[str, int]] = []
     for line in clean(text).splitlines():
-        m = re.match(r"^(.{1,30}?)\s{2,}(\d+)\s+(Free|\d+\s+gold crowns?)\s*$", line, re.I)
+        m = re.match(r"^(.{1,40}?)\s{2,}(\d+)\s+(Free|\d+\s+gold crowns?)\s*$", line, re.I)
         if not m:
             continue
         name = m.group(1).strip()
@@ -204,6 +231,30 @@ def shop_items(text: str) -> list[tuple[str, int]]:
         if int(m.group(2)) > 0:
             rows.append((name, price))
     return rows
+
+
+def listing_candidates(text: str, maximum: int = 20) -> list[str]:
+    result: list[str] = []
+    for raw in clean(text).splitlines():
+        line = raw.strip()
+        if not line or len(line) > 100:
+            continue
+        low = line.lower()
+        if any(low.startswith(prefix) for prefix in (
+            "known ", "available ", "spells", "powers", "abilities", "skills", "you know", "none", "no ", "usage:", "---"
+        )):
+            continue
+        line = re.sub(r"^[*+\-•>\d.()\[\]\s]+", "", line).strip()
+        if not line:
+            continue
+        # Prefer the first textual column and strip obvious resource/status suffixes.
+        name = re.split(r"\s{2,}|\t|\s+\(cost|\s+cost[:=]|\s+level\s+\d", line, maxsplit=1, flags=re.I)[0].strip(" .:-")
+        if 1 < len(name) <= 60 and any(ch.isalpha() for ch in name):
+            if name.lower() not in {x.lower() for x in result}:
+                result.append(name)
+        if len(result) >= maximum:
+            break
+    return result
 
 
 class QLearner:
@@ -232,7 +283,7 @@ class QLearner:
         if random.random() < self.epsilon:
             return random.randrange(n)
         best = max(values)
-        choices = [i for i, v in enumerate(values) if v == best]
+        choices = [i for i, value in enumerate(values) if value == best]
         return random.choice(choices)
 
     def update(self, key: str, action: int, reward: float, next_key: str, n: int) -> None:
@@ -251,15 +302,201 @@ class QLearner:
             "steps": self.steps,
             "totalReward": self.total_reward,
             "epsilon": self.epsilon,
-            "updatedUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "updatedUtc": utc_now(),
         })
 
 
-ACTIONS = [
-    "look", "score", "inventory", "search", "explore", "get_all", "attack", "flee",
-    "rest", "meditate", "services", "list", "bank", "deposit_surplus", "buy_candidate",
-    "sell_candidate", "equip_candidate"
-]
+class TrainingTester:
+    SEVERITY_RANK = {"critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}
+
+    def __init__(self, json_path: Path, markdown_path: Path, config: dict[str, Any]):
+        self.json_path = json_path
+        self.markdown_path = markdown_path
+        self.enabled = bool(config.get("enabled", True))
+        self.excerpt_chars = max(100, int(config.get("response_excerpt_chars", 600)))
+        self.maximum_unique = max(100, int(config.get("maximum_unique_defects", 2000)))
+        existing = read_json(json_path, {})
+        defects = existing.get("defects", []) if isinstance(existing, dict) else []
+        self.defects: dict[str, dict[str, Any]] = {}
+        for defect in defects:
+            if isinstance(defect, dict) and defect.get("id"):
+                self.defects[str(defect["id"])] = defect
+        self.total_occurrences = int(existing.get("summary", {}).get("totalOccurrences", 0)) if isinstance(existing, dict) else 0
+        self.dirty = False
+
+    def _fingerprint(self, category: str, command: str, room: str, detail: str) -> str:
+        stable_detail = re.sub(r"\b\d{4,}\b", "#", clean(detail).lower())[:300]
+        raw = f"{category}|{command.lower()}|{room.lower()}|{stable_detail}"
+        return hashlib.sha1(raw.encode("utf-8", errors="replace")).hexdigest()[:12]
+
+    def record(self, severity: str, category: str, title: str, command: str, room: str,
+               phase: str, cycle: int, detail: str) -> None:
+        if not self.enabled:
+            return
+        detail = clean(detail).strip()[:self.excerpt_chars]
+        defect_id = self._fingerprint(category, command, room, detail or title)
+        now = utc_now()
+        item = self.defects.get(defect_id)
+        if item is None:
+            if len(self.defects) >= self.maximum_unique:
+                # Keep the most useful long-run data bounded.
+                oldest = min(self.defects.values(), key=lambda x: str(x.get("lastSeenUtc", "")), default=None)
+                if oldest is not None:
+                    self.defects.pop(str(oldest.get("id", "")), None)
+            item = {
+                "id": defect_id,
+                "severity": severity,
+                "category": category,
+                "title": title,
+                "command": command,
+                "room": room,
+                "phase": phase,
+                "cycle": cycle,
+                "occurrences": 0,
+                "firstSeenUtc": now,
+                "lastSeenUtc": now,
+                "detail": detail,
+            }
+            self.defects[defect_id] = item
+        item["occurrences"] = int(item.get("occurrences", 0)) + 1
+        item["lastSeenUtc"] = now
+        item["phase"] = phase
+        item["cycle"] = cycle
+        if detail:
+            item["detail"] = detail
+        if self.SEVERITY_RANK.get(severity, 0) > self.SEVERITY_RANK.get(str(item.get("severity", "info")), 0):
+            item["severity"] = severity
+        self.total_occurrences += 1
+        self.dirty = True
+
+    def observe(self, before: Snapshot, after: Snapshot, state: dict[str, Any], command: str,
+                phase: str, cycle: int) -> None:
+        if not self.enabled:
+            return
+        room = after.room or before.room or "unknown"
+        response = clean(str(state.get("response", ""))).strip()
+        error = clean(str(state.get("error") or "")).strip()
+        low = response.lower()
+
+        if error:
+            self.record("critical", "protocol-error", "Headless runtime returned a protocol error", command, room, phase, cycle, error)
+
+        critical_markers = (
+            "unhandled exception", "nullreferenceexception", "keynotfoundexception", "indexoutofrangeexception",
+            "invalidoperationexception", "object reference not set", "stack trace", "fatal error",
+        )
+        if any(marker in low for marker in critical_markers):
+            self.record("critical", "runtime-exception", "Gameplay command exposed a runtime exception", command, room, phase, cycle, response)
+
+        high_markers = (
+            "live gameplay facade is not attached", "has no executable dispatcher branch", "not implemented",
+            "not supported by this runtime", "server bootstrap failed",
+        )
+        if any(marker in low for marker in high_markers):
+            self.record("high", "runtime-route", "Registered gameplay path is not executable", command, room, phase, cycle, response)
+
+        if "recognized, but its exact runtime behavior is not yet recovered" in low:
+            self.record("medium", "parity-gap", "Recognized command still lacks recovered runtime behavior", command, room, phase, cycle, response)
+
+        for field in ("score", "health", "character", "experience", "wealth", "inventory", "equipment", "keys", "combat", "spells", "powers", "abilities", "skills", "quest", "journal", "services", "bank"):
+            probe = clean(str(state.get(field, ""))).strip()
+            if probe.lower().startswith("unavailable:"):
+                self.record("high", "headless-state-probe", f"Headless state probe '{field}' failed", command, room, phase, cycle, probe)
+
+        # State-query commands should always render something useful. Empty output here is suspicious,
+        # while empty output from movement/dialogue actions can be legitimate and is not flagged.
+        if not response and command.split(" ", 1)[0].lower() in {
+            "score", "health", "inventory", "equipment", "wealth", "experience", "character",
+            "spells", "powers", "abilities", "skills", "quest", "journal", "services", "bank",
+        }:
+            self.record("medium", "empty-state-response", "State query returned an empty response", command, room, phase, cycle, "empty response")
+
+        if after.hp_max > 0 and (after.hp < 0 or after.hp > after.hp_max):
+            self.record("high", "state-invariant", "Hit points are outside the valid range", command, room, phase, cycle, f"HP={after.hp}/{after.hp_max}")
+        if after.mana_max > 0 and (after.mana < 0 or after.mana > after.mana_max):
+            self.record("high", "state-invariant", "Mana/Kai is outside the valid range", command, room, phase, cycle, f"Mana={after.mana}/{after.mana_max}")
+        if not room:
+            self.record("critical", "state-invariant", "Headless state lost the current room identity", command, "unknown", phase, cycle, response)
+
+        # Exit data that the authoritative runtime already marks invalid is a useful tester finding.
+        for exit_info in (state.get("room") or {}).get("exitDetails", []) or []:
+            if not isinstance(exit_info, dict) or not exit_info.get("hasBlockedDestination"):
+                continue
+            direction = str(exit_info.get("direction") or "?")
+            target = str(exit_info.get("targetRoomId") or exit_info.get("targetRoomNumber") or "unknown")
+            detail = f"direction={direction}; target={target}; destinationStatus={exit_info.get('destinationStatus','')}; validationStatus={exit_info.get('validationStatus','')}; runtimeDisposition={exit_info.get('runtimeDisposition','')}"
+            self.record("medium", "blocked-exit-data", "Room exit points to a blocked or unresolved destination", f"move {direction}", room, phase, cycle, detail)
+
+        cmd_low = command.lower()
+        if cmd_low.startswith("deposit ") and "you deposit" in low and after.wealth_copper > before.wealth_copper:
+            self.record("high", "economy-invariant", "Successful deposit increased carried wealth", command, room, phase, cycle, f"before={before.wealth_copper}; after={after.wealth_copper}; {response}")
+        if cmd_low.startswith("buy ") and ("you buy" in low or "you purchase" in low) and after.wealth_copper > before.wealth_copper:
+            self.record("high", "economy-invariant", "Successful purchase increased carried wealth", command, room, phase, cycle, f"before={before.wealth_copper}; after={after.wealth_copper}; {response}")
+        if cmd_low.startswith("sell ") and "you sell" in low and after.wealth_copper < before.wealth_copper:
+            self.record("high", "economy-invariant", "Successful sale reduced carried wealth", command, room, phase, cycle, f"before={before.wealth_copper}; after={after.wealth_copper}; {response}")
+
+    def record_restart(self, command: str, room: str, phase: str, cycle: int, error: Exception) -> None:
+        self.record("critical", "server-restart", "Headless server failed and had to be restarted", command, room or "unknown", phase, cycle, str(error))
+
+    def summary(self) -> dict[str, Any]:
+        values = list(self.defects.values())
+        critical = sum(1 for x in values if x.get("severity") == "critical")
+        high = sum(1 for x in values if x.get("severity") == "high")
+        return {
+            "uniqueDefects": len(values),
+            "totalOccurrences": self.total_occurrences,
+            "critical": critical,
+            "high": high,
+        }
+
+    def last_defect(self) -> dict[str, Any] | None:
+        if not self.defects:
+            return None
+        return max(self.defects.values(), key=lambda x: str(x.get("lastSeenUtc", "")))
+
+    def save(self, force: bool = False) -> None:
+        if not self.enabled or (not force and not self.dirty):
+            return
+        ordered = sorted(
+            self.defects.values(),
+            key=lambda x: (
+                self.SEVERITY_RANK.get(str(x.get("severity", "info")), 0),
+                int(x.get("occurrences", 0)),
+                str(x.get("lastSeenUtc", "")),
+            ),
+            reverse=True,
+        )
+        payload = {
+            "schema": "borin-training-defects-v1",
+            "updatedUtc": utc_now(),
+            "summary": self.summary(),
+            "defects": ordered,
+        }
+        write_json_atomic(self.json_path, payload)
+        lines = [
+            "# Borin Continuous Training Tester Report",
+            "",
+            f"Updated: {payload['updatedUtc']}",
+            f"Unique defects: {payload['summary']['uniqueDefects']}; occurrences: {payload['summary']['totalOccurrences']}; critical: {payload['summary']['critical']}; high: {payload['summary']['high']}",
+            "",
+        ]
+        if not ordered:
+            lines.append("No defects have been recorded yet.")
+        else:
+            for item in ordered:
+                lines.extend([
+                    f"## [{str(item.get('severity','info')).upper()}] {item.get('title','Defect')} ({item.get('id','')})",
+                    f"- Occurrences: {item.get('occurrences', 0)}",
+                    f"- Command: `{item.get('command','')}`",
+                    f"- Room: `{item.get('room','')}`",
+                    f"- Phase/cycle: {item.get('phase','')} / {item.get('cycle', 0)}",
+                    f"- First seen: {item.get('firstSeenUtc','')}",
+                    f"- Last seen: {item.get('lastSeenUtc','')}",
+                    f"- Detail: {item.get('detail','')}",
+                    "",
+                ])
+        self.markdown_path.write_text("\n".join(lines), encoding="utf-8")
+        self.dirty = False
 
 
 def state_key(phase: int, state: dict[str, Any], snap: Snapshot) -> str:
@@ -269,17 +506,21 @@ def state_key(phase: int, state: dict[str, Any], snap: Snapshot) -> str:
     npc = 1 if room.get("visibleNpcs") else 0
     services = 0 if "no generated services" in clean(str(state.get("services", ""))).lower() else 1
     combat = 0 if "not in combat" in clean(str(state.get("combat", ""))).lower() else 1
-    return f"{phase}|{room.get('id','')}|h{hp_bucket}|w{wealth_bucket}|n{npc}|s{services}|c{combat}"
+    return f"{phase}|{room.get('id','')}|h{hp_bucket}|w{wealth_bucket}|n{npc}|s{services}|c{combat}|l{snap.level}"
 
 
-def choose_exit(state: dict[str, Any], learner: QLearner) -> str:
+def choose_exit(state: dict[str, Any]) -> str:
     room = state.get("room") or {}
     exits = [str(x) for x in room.get("exits", []) if str(x).strip()]
-    if not exits:
-        return "look"
-    random.shuffle(exits)
-    # Bias toward exploration; the Q table decides when exploration itself is worthwhile.
-    return exits[0]
+    return random.choice(exits) if exits else "look"
+
+
+def first_npc_name(state: dict[str, Any]) -> str | None:
+    npcs = (state.get("room") or {}).get("visibleNpcs") or []
+    if not npcs:
+        return None
+    npc = random.choice(npcs)
+    return str(npc.get("displayName") or npc.get("DisplayName") or "").strip() or None
 
 
 def reserve_deposit_command(state: dict[str, Any], reserve_gold: int) -> str:
@@ -287,15 +528,13 @@ def reserve_deposit_command(state: dict[str, Any], reserve_gold: int) -> str:
     if "unavailable:" in bank_text.lower() or "no generated bank" in bank_text.lower():
         return "look"
     denoms = parse_carried_denominations(bank_text)
-    values = {"runic": 1_000_000, "platinum": 10_000, "gold": 100, "silver": 10, "copper": 1}
-    total = sum(denoms[k] * values[k] for k in values)
+    total = sum(denoms[k] * CURRENCY_VALUES[k] for k in CURRENCY_VALUES)
     reserve = reserve_gold * 100
     surplus = max(0, total - reserve)
     if surplus <= 0:
         return "look"
-    # Deposit the largest actual denomination that can be removed while preserving reserve.
     for name in ("runic", "platinum", "gold", "silver", "copper"):
-        unit = values[name]
+        unit = CURRENCY_VALUES[name]
         amount = min(denoms[name], surplus // unit)
         if amount > 0:
             return f"deposit {amount} {name}"
@@ -305,47 +544,79 @@ def reserve_deposit_command(state: dict[str, Any], reserve_gold: int) -> str:
 def command_for(action: str, phase: int, state: dict[str, Any], learner: QLearner,
                 reserve_gold: int, last_shop: list[tuple[str, int]]) -> tuple[str, str | None]:
     snap = numeric_snapshot(state)
+    inventory = inventory_items(str(state.get("inventory", "")))
+    npc = first_npc_name(state)
+
     if action == "explore":
-        return choose_exit(state, learner), None
+        return choose_exit(state), None
     if action == "get_all":
         return "get all", None
-    if action == "attack":
-        npcs = (state.get("room") or {}).get("visibleNpcs") or []
-        if npcs:
-            name = str(npcs[0].get("displayName") or npcs[0].get("DisplayName") or "").strip()
-            if name:
-                return f"attack {name}", None
-        return "look", None
+    if action in {"attack", "kill", "bash", "smash", "backstab", "punch", "kick", "jumpkick"}:
+        return (f"{action} {npc}", None) if npc else ("look", None)
+    if action == "greet_npc":
+        return (f"greet {npc}", None) if npc else ("look", None)
+    if action == "ask_npc_quest":
+        return (f"ask {npc} quest", None) if npc else ("look", None)
+    if action == "ask_npc_help":
+        return (f"ask {npc} help", None) if npc else ("look", None)
+    if action in {"open_exit", "close_exit", "picklock_exit", "disarm_exit"}:
+        direction = choose_exit(state)
+        if direction == "look":
+            return "look", None
+        if action == "open_exit":
+            return f"open {direction}", None
+        if action == "close_exit":
+            return f"close {direction}", None
+        if action == "picklock_exit":
+            return f"picklock {direction}", None
+        return f"disarm trap {direction}", None
     if action == "deposit_surplus":
         return reserve_deposit_command(state, reserve_gold), None
     if action == "buy_candidate":
-        # The 10-gold reserve is a hard rule: buying pauses while below reserve.
         if snap.wealth_copper < reserve_gold * 100:
             return "look", None
         affordable = [(name, price) for name, price in last_shop if snap.wealth_copper - price * 100 >= reserve_gold * 100]
         if not affordable:
             return "list", None
-        # Prefer items that have previously improved Borin, but keep exploration alive.
         if random.random() < learner.epsilon:
             name, _ = random.choice(affordable)
         else:
             name, _ = max(affordable, key=lambda x: learner.gear.get(x[0].lower(), 0.0) - x[1] * 0.1)
         return f"buy {name}", name
     if action == "sell_candidate":
-        items = inventory_items(str(state.get("inventory", "")))
-        if not items:
+        if not inventory:
             return "look", None
-        name = min(items, key=lambda x: learner.gear.get(x.lower(), 0.0))
+        name = min(inventory, key=lambda x: learner.gear.get(x.lower(), 0.0))
         return f"sell {name}", name
-    if action == "equip_candidate":
-        items = inventory_items(str(state.get("inventory", "")))
-        if not items:
+    if action in {"equip_candidate", "wear_candidate", "wield_candidate"}:
+        if not inventory:
             return "look", None
         if random.random() < learner.epsilon:
-            name = random.choice(items)
+            name = random.choice(inventory)
         else:
-            name = max(items, key=lambda x: learner.gear.get(x.lower(), 0.0))
-        return f"equip {name}", name
+            name = max(inventory, key=lambda x: learner.gear.get(x.lower(), 0.0))
+        verb = action.split("_", 1)[0]
+        return f"{verb} {name}", name
+    if action in {"repair_candidate", "appraise_candidate", "use_candidate", "read_candidate"}:
+        if not inventory:
+            return "look", None
+        name = random.choice(inventory)
+        verb = action.split("_", 1)[0]
+        return f"{verb} {name}", name
+    if action == "cast_candidate":
+        candidates = listing_candidates(str(state.get("spells", "")))
+        if not candidates:
+            return "spells", None
+        name = random.choice(candidates)
+        return (f"cast {name} {npc}", name) if npc else (f"cast {name}", name)
+    if action == "invoke_candidate":
+        candidates = listing_candidates(str(state.get("powers", "")))
+        if not candidates:
+            return "powers", None
+        name = random.choice(candidates)
+        return f"invoke {name}", name
+    if action == "dispel":
+        return "dispel self", None
     return action, None
 
 
@@ -357,65 +628,103 @@ def reward_for(phase: int, before: Snapshot, after: Snapshot, command: str, resp
     survival_bonus_due = elapsed_since_survival_bonus >= 30.0
     if after.dead:
         reward -= 1000.0
-    hp_lost = max(0, before.hp - after.hp)
-    reward -= float(hp_lost)
+    reward -= float(max(0, before.hp - after.hp))
 
-    if phase == 0:  # Basic survival
+    if phase == 0:  # Survival & Recovery
         if survival_bonus_due and not after.dead:
             reward += 10.0
         if command.startswith("flee") and before.hp_max and before.hp / max(1, before.hp_max) < 0.25 and "cannot" not in text:
             reward += 5.0
-    elif phase == 1:  # Combat optimization
-        if any(x in text for x in ("you kill", "you have slain", "you slay", "is dead", "defeated")):
-            reward += 100.0
-        reward -= max(0, before.mana - after.mana)
-        if any(x in text for x in ("vulnerable", "critical", "super-effective", "especially effective")):
-            reward += 5.0
-    elif phase == 2:  # Navigation and hazards
-        if command.lower() in {"n","s","e","w","ne","nw","se","sw","u","d","north","south","east","west","up","down"}:
+        if after.hp > before.hp:
+            reward += min(25.0, float(after.hp - before.hp))
+    elif phase == 1:  # Exploration & Hazards
+        if command.lower() in DIRECTIONS:
             reward -= 1.0
         if new_room:
             reward += 50.0
         if any(x in text for x in ("trap", "trapped", "poisoned by", "hazard")):
             reward -= 500.0
-        if any(x in text for x in ("patrol notices", "spotted by", "detects you")):
+    elif phase == 2:  # Combat
+        if any(x in text for x in ("you kill", "you have slain", "you slay", "is dead", "defeated")):
+            reward += 100.0
+        reward -= max(0, before.mana - after.mana)
+        if any(x in text for x in ("vulnerable", "critical", "especially effective")):
+            reward += 5.0
+    elif phase == 3:  # Spells/Powers/Item Use
+        if command.split(" ", 1)[0] in {"cast", "invoke", "use", "read", "dispel"} and not any(x in text for x in ("cannot", "not found", "do not", "unavailable:")):
+            reward += 10.0
+        if after.mana < before.mana and any(x in text for x in ("no effect", "cannot", "fails", "failed")):
             reward -= 10.0
-    else:  # Macro strategy / economy
-        wealth_delta = after.wealth_copper - before.wealth_copper
-        if wealth_delta > 0:
-            reward += wealth_delta / 100.0  # +1 per gold equivalent earned
-        if gear_name and command.lower().startswith("equip") and "you equip" in text:
+    elif phase == 4:  # NPCs/Dialogue/Quests
+        if after.exp > before.exp:
+            reward += min(500.0, float(after.exp - before.exp))
+        if any(x in text for x in ("quest accepted", "you accept", "quest complete", "completed quest", "reward")):
+            reward += 50.0
+        if command.startswith(("greet ", "ask ")) and len(text) > 20 and "does not respond" not in text:
+            reward += 5.0
+    elif phase == 5:  # Inventory/Equipment
+        if gear_name and command.lower().startswith(("equip ", "wear ", "wield ")) and any(x in text for x in ("you equip", "you wear", "you wield")):
             delta = gear_metric(after) - gear_metric(before)
             learner.gear[gear_name.lower()] = learner.gear.get(gear_name.lower(), 0.0) * 0.7 + delta * 0.3
-            if delta > 0:
-                reward += 100.0
-            elif delta < 0:
-                reward -= 25.0
+            reward += 100.0 if delta > 0 else (-25.0 if delta < 0 else 2.0)
+        if command.startswith(("repair ", "appraise ", "get ")) and not any(x in text for x in ("cannot", "not found", "do not")):
+            reward += 5.0
+    elif phase == 6:  # Progression
+        if after.level > before.level:
+            reward += 500.0
+        if after.exp > before.exp:
+            reward += min(250.0, float(after.exp - before.exp))
+        if command.startswith("train") and not any(x in text for x in ("cannot", "not enough", "unavailable:")):
+            reward += 15.0
+    else:  # Economy & Macro Strategy
+        wealth_delta = after.wealth_copper - before.wealth_copper
+        if wealth_delta > 0:
+            reward += wealth_delta / 100.0
+        if gear_name and command.lower().startswith(("equip ", "wear ", "wield ")) and any(x in text for x in ("you equip", "you wear", "you wield")):
+            delta = gear_metric(after) - gear_metric(before)
+            learner.gear[gear_name.lower()] = learner.gear.get(gear_name.lower(), 0.0) * 0.7 + delta * 0.3
+            reward += 100.0 if delta > 0 else (-25.0 if delta < 0 else 2.0)
         reserve = reserve_gold * 100
-        if after.wealth_copper > reserve and command.lower().startswith("deposit") and "you deposit" in text:
+        if command.lower().startswith("deposit") and "you deposit" in text:
             reward += 25.0
-        if after.wealth_copper < reserve:
-            # Borin must earn/find money, not withdraw it. There is no withdraw action in ACTIONS.
-            if command in ("look", "score", "inventory", "services", "bank"):
-                reward -= 5.0
-        if command in ("look", "score", "inventory"):
-            reward -= 1.0
+        if after.wealth_copper < reserve and command in ("look", "score", "inventory", "services", "bank", "wealth"):
+            reward -= 5.0
+
     if any(x in text for x in ("unavailable:", "there is no generated", "cannot ", "could not ", "do not carry", "not found")):
         reward -= 2.0
     return reward, survival_bonus_due
 
 
-def phase_schedule(config: dict[str, Any], total_hours: float) -> list[tuple[str, float]]:
-    raw = [(str(x["name"]), float(x["hours"])) for x in config["curriculum"]]
-    base = sum(h for _, h in raw)
-    scale = total_hours / base if base else 1.0
-    return [(name, hours * 3600.0 * scale) for name, hours in raw]
+def phase_schedule(config: dict[str, Any], finite_hours: float | None = None) -> list[tuple[str, float]]:
+    raw: list[tuple[str, float]] = []
+    for item in config.get("curriculum", []):
+        name = str(item.get("name", "Training"))
+        if "seconds" in item:
+            seconds = float(item["seconds"])
+        elif "minutes" in item:
+            seconds = float(item["minutes"]) * 60.0
+        else:
+            seconds = float(item.get("hours", 0.5)) * 3600.0
+        raw.append((name, max(1.0, seconds)))
+    if not raw:
+        raise RuntimeError("Training curriculum is empty")
+    if finite_hours is not None:
+        base = sum(seconds for _, seconds in raw)
+        target = max(1.0, finite_hours * 3600.0)
+        scale = target / base
+        raw = [(name, seconds * scale) for name, seconds in raw]
+    return raw
+
+
+def should_stop(stop_flag: bool, stop_request: Path) -> bool:
+    return stop_flag or stop_request.exists()
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", required=True)
-    ap.add_argument("--hours", type=float, default=22.0)
+    ap.add_argument("--continuous", action="store_true", help="repeat the curriculum until stopped")
+    ap.add_argument("--hours", type=float, default=None, help="optional finite diagnostic run length")
     ap.add_argument("--player", default="Borin")
     ap.add_argument("--seed", type=int, default=None)
     args = ap.parse_args()
@@ -429,158 +738,233 @@ def main() -> int:
     config = read_json(root / "borin_training_config.json", {})
     if not config:
         raise RuntimeError("borin_training_config.json is missing or invalid")
+
+    continuous = bool(args.continuous or (args.hours is None and config.get("continuous", True)))
     reserve_gold = int(config.get("economy", {}).get("carried_gold_reserve", 10))
     action_delay = float(config.get("action_delay_seconds", 0.15))
-    checkpoint_seconds = float(config.get("checkpoint_seconds", 300))
-    status_seconds = float(config.get("status_seconds", 30))
+    checkpoint_seconds = float(config.get("checkpoint_seconds", 60))
+    status_seconds = float(config.get("status_seconds", 15))
+    restart_delay = float(config.get("runtime_restart_delay_seconds", 2.0))
 
     runtime.mkdir(parents=True, exist_ok=True)
     pid_path = runtime / "trainer.pid"
+    stop_request = runtime / "stop.request"
+    stop_request.unlink(missing_ok=True)
     pid_path.write_text(str(os.getpid()), encoding="utf-8")
     log_path = runtime / "trainer.log"
     learner = QLearner(checkpoint)
+    tester = TrainingTester(runtime / "defects.json", runtime / "defects.md", config.get("tester", {}))
     stop = False
 
     def on_stop(*_: Any) -> None:
         nonlocal stop
         stop = True
+
     signal.signal(signal.SIGINT, on_stop)
     signal.signal(signal.SIGTERM, on_stop)
 
-    start = time.time()
-    last_checkpoint = start
+    started = time.time()
+    last_checkpoint = started
     last_status = 0.0
-    last_survival_bonus = start
+    last_survival_bonus = started
     visited_rooms: set[str] = set(learner.visits)
-    schedule = phase_schedule(config, args.hours)
-    total_seconds = sum(x[1] for x in schedule)
+    schedule = phase_schedule(config, None if continuous else args.hours)
+    cycle_seconds = sum(seconds for _, seconds in schedule)
     client: HeadlessClient | None = None
     last_shop: list[tuple[str, int]] = []
+    cycle = 1
+    phase_name = "Starting headless runtime"
+    phase_started = started
+    last_command = ""
+    state: dict[str, Any] = {}
+
+    def write_status(current_state: dict[str, Any], current_phase: str, phase_index: int,
+                     phase_duration: float, phase_start: float, command: str, response: str) -> None:
+        now = time.time()
+        snap = numeric_snapshot(current_state)
+        bank_text = clean(str(current_state.get("bank", "")))
+        carried_copper = carried_copper_from_state(current_state)
+        banked_gold: str | float = "unknown"
+        m = re.search(r"Banked:\s*(.*)", bank_text, re.I)
+        if m:
+            banked_gold = m.group(1).strip()
+        tester_summary = tester.summary()
+        last_defect = tester.last_defect()
+        phase_elapsed = max(0.0, now - phase_start)
+        payload = {
+            "mode": "continuous" if continuous else "finite",
+            "cycle": cycle,
+            "completedCycles": max(0, cycle - 1),
+            "phaseIndex": phase_index + 1,
+            "phaseCount": len(schedule),
+            "phase": current_phase,
+            "elapsed": f"{(now-started)/3600:.2f}h",
+            "remaining": "until stopped" if continuous else "finite run",
+            "phaseElapsed": f"{phase_elapsed/60:.1f}m",
+            "phaseRemaining": f"{max(0.0, phase_duration-phase_elapsed)/60:.1f}m",
+            "cycleDuration": f"{cycle_seconds/3600:.2f}h",
+            "steps": learner.steps,
+            "totalReward": round(learner.total_reward, 2),
+            "epsilon": round(learner.epsilon, 4),
+            "room": snap.room,
+            "level": snap.level,
+            "carriedGold": round(carried_copper / 100.0, 2),
+            "bankedGold": banked_gold,
+            "reserveRule": f"Keep {reserve_gold} gold carried; bank surplus; never withdraw to refill reserve.",
+            "lastCommand": command,
+            "lastResponse": clean(response)[:500],
+            "tester": tester_summary,
+            "lastDefect": last_defect,
+            "updatedUtc": utc_now(),
+        }
+        write_json_atomic(runtime / "status.json", payload)
 
     try:
         write_json_atomic(runtime / "status.json", {
-            "phase": "Starting headless runtime", "elapsed": "0s", "remaining": f"{args.hours:.1f}h",
-            "steps": learner.steps, "totalReward": learner.total_reward, "carriedGold": 0, "bankedGold": 0,
+            "mode": "continuous" if continuous else "finite",
+            "cycle": cycle,
+            "phase": "Starting headless runtime",
+            "elapsed": "0s",
+            "remaining": "until stopped" if continuous else "finite run",
+            "steps": learner.steps,
+            "totalReward": learner.total_reward,
+            "carriedGold": 0,
+            "bankedGold": 0,
+            "tester": tester.summary(),
+            "updatedUtc": utc_now(),
         })
         client = HeadlessClient(repo, args.player, log_path)
         state = client.state
-        for phase_index, (phase_name, phase_seconds) in enumerate(schedule):
-            phase_start = time.time()
-            while not stop and time.time() - phase_start < phase_seconds:
-                before = numeric_snapshot(state)
-                key = state_key(phase_index, state, before)
-                action_index = learner.choose(key, len(ACTIONS))
-                action = ACTIONS[action_index]
 
-                # Curriculum masks keep training focused while retaining cross-phase basics.
-                if phase_index == 0 and action in {"buy_candidate", "sell_candidate", "deposit_surplus"}:
-                    action = "explore"
-                elif phase_index == 1 and action in {"buy_candidate", "sell_candidate", "deposit_surplus"}:
-                    action = "attack"
-                elif phase_index == 2 and action in {"buy_candidate", "sell_candidate", "deposit_surplus", "equip_candidate"}:
-                    action = "explore"
+        while not should_stop(stop, stop_request):
+            for phase_index, (phase_name, phase_duration) in enumerate(schedule):
+                phase_started = time.time()
+                while not should_stop(stop, stop_request) and time.time() - phase_started < phase_duration:
+                    before = numeric_snapshot(state)
+                    actions = PHASE_ACTIONS[min(phase_index, len(PHASE_ACTIONS) - 1)]
+                    key = state_key(phase_index, state, before)
+                    action_index = learner.choose(key, len(actions))
+                    action = actions[action_index]
 
-                # Economy reserve is a hard policy boundary. At a bank, bank surplus before
-                # taking discretionary actions; below reserve, never withdraw and do not buy.
-                if phase_index == 3:
-                    bank_text_now = clean(str(state.get("bank", ""))).lower()
-                    if before.wealth_copper > reserve_gold * 100 and "carried:" in bank_text_now:
-                        deposit_cmd = reserve_deposit_command(state, reserve_gold)
-                        if deposit_cmd != "look":
-                            action = "deposit_surplus"
-                action_index = ACTIONS.index(action)
-                command, gear_name = command_for(action, phase_index, state, learner, reserve_gold, last_shop)
-                try:
-                    next_state = client.send(command)
-                except Exception:
-                    # Preserve learning, then restart the authoritative runtime and continue.
-                    learner.save()
-                    if client:
-                        client.close()
-                    time.sleep(2.0)
-                    client = HeadlessClient(repo, args.player, log_path)
-                    state = client.state
-                    continue
+                    # Hard economy policy: preserve ten gold, bank surplus, never withdraw.
+                    if phase_index == 7:
+                        carried = carried_copper_from_state(state)
+                        bank_text_now = clean(str(state.get("bank", ""))).lower()
+                        if carried > reserve_gold * 100 and "carried:" in bank_text_now:
+                            deposit_cmd = reserve_deposit_command(state, reserve_gold)
+                            if deposit_cmd != "look":
+                                action = "deposit_surplus"
+                                action_index = actions.index(action)
+                        elif carried < reserve_gold * 100:
+                            # Earn/find/sell instead of withdrawing or buying.
+                            if first_npc_name(state):
+                                action = "attack"
+                            elif inventory_items(str(state.get("inventory", ""))) and "no generated services" not in clean(str(state.get("services", ""))).lower():
+                                action = "sell_candidate"
+                            else:
+                                action = random.choice(["get_all", "explore"])
+                            action_index = actions.index(action)
 
-                if command == "list":
-                    parsed = shop_items(str(next_state.get("response", "")))
-                    if parsed:
-                        last_shop = parsed
+                    command, gear_name = command_for(action, phase_index, state, learner, reserve_gold, last_shop)
+                    last_command = command
+                    try:
+                        next_state = client.send(command)
+                    except Exception as exc:
+                        tester.record_restart(command, before.room, phase_name, cycle, exc)
+                        tester.save(force=True)
+                        learner.save()
+                        if client:
+                            client.close()
+                        time.sleep(max(0.1, restart_delay))
+                        client = HeadlessClient(repo, args.player, log_path)
+                        state = client.state
+                        continue
 
-                after = numeric_snapshot(next_state)
-                room_id = after.room
-                new_room = bool(room_id and room_id not in visited_rooms)
-                if room_id:
-                    visited_rooms.add(room_id)
-                    learner.visits[room_id] = learner.visits.get(room_id, 0) + 1
+                    if command == "list":
+                        parsed = shop_items(str(next_state.get("response", "")))
+                        if parsed:
+                            last_shop = parsed
 
-                reward, paid_survival = reward_for(
-                    phase_index, before, after, command, str(next_state.get("response", "")),
-                    new_room, gear_name, learner, reserve_gold, time.time() - last_survival_bonus,
-                )
-                if paid_survival:
-                    last_survival_bonus = time.time()
-                next_key = state_key(phase_index, next_state, after)
-                learner.update(key, action_index, reward, next_key, len(ACTIONS))
-                state = next_state
+                    after = numeric_snapshot(next_state)
+                    room_id = after.room
+                    new_room = bool(room_id and room_id not in visited_rooms)
+                    if room_id:
+                        visited_rooms.add(room_id)
+                        learner.visits[room_id] = learner.visits.get(room_id, 0) + 1
 
-                # Death does not erase learned policy; reset only the session wrapper.
-                if after.dead:
-                    state = client.reset_session()
+                    reward, paid_survival = reward_for(
+                        phase_index, before, after, command, str(next_state.get("response", "")),
+                        new_room, gear_name, learner, reserve_gold, time.time() - last_survival_bonus,
+                    )
+                    if paid_survival:
+                        last_survival_bonus = time.time()
+                    next_key = state_key(phase_index, next_state, after)
+                    learner.update(key, action_index, reward, next_key, len(actions))
+                    tester.observe(before, after, next_state, command, phase_name, cycle)
+                    state = next_state
 
-                now = time.time()
-                if now - last_checkpoint >= checkpoint_seconds:
-                    learner.save()
-                    last_checkpoint = now
-                if now - last_status >= status_seconds:
-                    elapsed = now - start
-                    remaining = max(0.0, total_seconds - elapsed)
-                    bank_text = clean(str(state.get("bank", "")))
-                    denoms = parse_carried_denominations(bank_text)
-                    carried_copper = sum(denoms[k] * v for k, v in {"runic":1000000,"platinum":10000,"gold":100,"silver":10,"copper":1}.items())
-                    if carried_copper == 0:
-                        carried_copper = numeric_snapshot(state).wealth_copper
-                    banked_gold = "unknown"
-                    m = re.search(r"Banked:\s*(.*)", bank_text, re.I)
-                    if m:
-                        banked_gold = m.group(1).strip()
-                    write_json_atomic(runtime / "status.json", {
-                        "phase": phase_name,
-                        "elapsed": f"{elapsed/3600:.2f}h",
-                        "remaining": f"{remaining/3600:.2f}h",
-                        "steps": learner.steps,
-                        "totalReward": round(learner.total_reward, 2),
-                        "epsilon": round(learner.epsilon, 4),
-                        "room": after.room,
-                        "carriedGold": round(carried_copper / 100.0, 2),
-                        "bankedGold": banked_gold,
-                        "reserveRule": f"Keep {reserve_gold} gold carried; bank surplus; never withdraw to refill reserve.",
-                        "lastCommand": command,
-                        "lastResponse": clean(str(state.get("response", "")))[:500],
-                    })
-                    last_status = now
-                if action_delay > 0:
-                    time.sleep(action_delay)
-            if stop:
+                    if after.dead:
+                        state = client.reset_session()
+
+                    now = time.time()
+                    if now - last_checkpoint >= checkpoint_seconds:
+                        learner.save()
+                        tester.save(force=True)
+                        last_checkpoint = now
+                    if now - last_status >= status_seconds:
+                        write_status(state, phase_name, phase_index, phase_duration, phase_started, command, str(state.get("response", "")))
+                        tester.save()
+                        last_status = now
+                    if action_delay > 0:
+                        time.sleep(action_delay)
+
+                if should_stop(stop, stop_request):
+                    break
+
+            if should_stop(stop, stop_request):
                 break
+            if not continuous:
+                break
+            cycle += 1
 
         learner.save()
-        elapsed = time.time() - start
+        tester.save(force=True)
+        elapsed = time.time() - started
+        final_state = state or {}
+        snap = numeric_snapshot(final_state)
         write_json_atomic(runtime / "status.json", {
-            "phase": "Stopped" if stop else "Complete",
+            "mode": "continuous" if continuous else "finite",
+            "cycle": cycle,
+            "phase": "Stopped" if should_stop(stop, stop_request) else "Complete",
             "elapsed": f"{elapsed/3600:.2f}h",
-            "remaining": "0h" if not stop else "stopped early",
+            "remaining": "stopped" if should_stop(stop, stop_request) else "0h",
             "steps": learner.steps,
             "totalReward": round(learner.total_reward, 2),
-            "carriedGold": round(numeric_snapshot(state).wealth_copper / 100.0, 2),
+            "carriedGold": round(carried_copper_from_state(final_state) / 100.0, 2) if final_state else 0,
             "bankedGold": "see last bank snapshot",
+            "tester": tester.summary(),
+            "lastDefect": tester.last_defect(),
+            "lastCommand": last_command,
+            "room": snap.room,
+            "updatedUtc": utc_now(),
         })
         return 0
     except Exception as exc:
+        tester.record("critical", "trainer-fault", "Trainer process faulted", last_command, numeric_snapshot(state).room if state else "unknown", phase_name, cycle, str(exc))
+        tester.save(force=True)
         write_json_atomic(runtime / "status.json", {
-            "phase": "Faulted", "elapsed": f"{(time.time()-start)/3600:.2f}h", "remaining": "unknown",
-            "steps": learner.steps, "totalReward": round(learner.total_reward, 2),
-            "carriedGold": "unknown", "bankedGold": "unknown", "error": str(exc),
+            "mode": "continuous" if continuous else "finite",
+            "cycle": cycle,
+            "phase": "Faulted",
+            "elapsed": f"{(time.time()-started)/3600:.2f}h",
+            "remaining": "unknown",
+            "steps": learner.steps,
+            "totalReward": round(learner.total_reward, 2),
+            "carriedGold": "unknown",
+            "bankedGold": "unknown",
+            "tester": tester.summary(),
+            "error": str(exc),
+            "updatedUtc": utc_now(),
         })
         with log_path.open("a", encoding="utf-8") as log:
             log.write(f"TRAINER ERROR: {exc}\n")
@@ -588,12 +972,14 @@ def main() -> int:
     finally:
         try:
             learner.save()
+            tester.save(force=True)
         except Exception:
             pass
         if client:
             client.close()
         try:
             pid_path.unlink(missing_ok=True)
+            stop_request.unlink(missing_ok=True)
         except Exception:
             pass
 

@@ -45,7 +45,8 @@
         "Lawful target attack penalty is tripled",
         "Outlaw guards attack but spare life",
         "Criminal guards slay",
-        "higher evil states escalate enforcement",
+        "Villain is Criminal plus possible intervention by the Gods",
+        "Fiend is the utmost evil but exact additional enforcement is not stated in retained native help",
         "300+ evil points blocks initiating another attack"
       ],
       "runtime": [
@@ -60,9 +61,10 @@
       ],
       "remaining": [
         "exact guard spawn/target cadence",
-        "bounty arithmetic",
-        "arrest/jail/fine ordering",
-        "official help and archived legal text differ in how Villain/Fiend divine intervention is summarized; reputation consequence remains STRONG"
+        "exact Fiend-specific guard/divine enforcement",
+        "arrest/jail/fine/confiscation ordering",
+        "exact Evil-Point-to-reputation thresholds and persistence/messages",
+        "no standalone bounty-hunter escalation is promoted without native evidence"
       ]
     },
     {

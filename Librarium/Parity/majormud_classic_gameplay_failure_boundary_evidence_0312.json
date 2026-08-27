@@ -1,0 +1,70 @@
+{
+  "schema": "majormud.classic-gameplay-failure-boundary-evidence.v1",
+  "update": "0312",
+  "pass": 41,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 41 promotes the broad Classic error-handling/recovery assertion to STRONG by separating ordinary state-preserving gameplay rejection from catastrophic native-file/startup failure and Reforged-owned transactional recovery. Exact native failure wording and catastrophic save rollback ordering remain unresolved.",
+  "classificationPolicy": "PASS requires exact native branch behavior and presentation; operator-confirmed/state-preserving gameplay rejection may support executable STRONG/PASS-narrow subcontracts without inventing command text or catastrophic persistence ordering.",
+  "facts": [
+    {
+      "id": "ordinary-gameplay-rejection",
+      "state": "PASS-narrow",
+      "claim": "An ordinary rejected Classic gameplay action leaves gameplay state unchanged and does not invoke synthetic rollback/recovery.",
+      "evidence": [
+        "Project-owner/operator Classic behavior retained in Pass 33",
+        "Docs/CODE_UPDATE_0304_CLASSIC_FILE_CONFIGURATION_FAILURE_BOUNDARY.md"
+      ],
+      "runtime": [
+        "RuntimeFailureKind.GameplayActionRejected -> RuntimeRecoveryAction.NoOp",
+        "Pass 41 verifies Apply does not disable the gameplay subsystem even when rollback is nominally available."
+      ]
+    },
+    {
+      "id": "catastrophic-native-file-separation",
+      "state": "PASS",
+      "claim": "Wrong/corrupt or wrong-version native MajorMUD files belong to a hard startup/load failure boundary, not the ordinary rejected-gameplay no-op path.",
+      "evidence": [
+        "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json"
+      ],
+      "runtime": [
+        "World-load-critical recovery stops load; RuntimeImportExportCompatibility enforces exact Classic file/version replacement boundaries."
+      ]
+    },
+    {
+      "id": "exact-command-failure-presentation",
+      "state": "UNKNOWN",
+      "claim": "Exact native failure text versus silent no-op is command/action-specific.",
+      "boundary": "No generic synthetic Classic error text is promoted."
+    },
+    {
+      "id": "malformed-post-startup-reference",
+      "state": "UNKNOWN",
+      "claim": "Exact behavior when a malformed/missing MajorMUD data reference is reached after successful startup remains unresolved.",
+      "boundary": "Do not assume every such failure crashes Worldgroup and do not assume graceful recovery."
+    },
+    {
+      "id": "catastrophic-save-rollback-order",
+      "state": "UNKNOWN",
+      "claim": "Exact native save participant/rollback ordering on catastrophic persistence failure remains unresolved.",
+      "boundary": "Separate from the proven 60-second save interval and from ordinary gameplay rejection."
+    },
+    {
+      "id": "reforged-rollback-extension-boundary",
+      "state": "EXCLUDED_FROM_CLASSIC_EVIDENCE",
+      "claim": "Reforged rollback helpers used for internal atomicity do not prove a native MajorMUD ordinary-gameplay rollback subsystem."
+    }
+  ],
+  "parityPromotion": {
+    "assertion": "native.error-handling-recovery",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The major ownership branches are now evidence-separated and executable: ordinary gameplay rejection is state-preserving, incompatible native files are catastrophic startup/load failures, and synthetic Reforged rollback is not treated as native evidence. Exact presentation and catastrophic save ordering remain open."
+  },
+  "notPromoted": [
+    "generic native error text for all failed commands",
+    "graceful recovery from wrong/corrupt native files",
+    "universal crash behavior for every missing post-startup record",
+    "catastrophic save rollback ordering",
+    "Worldgroup host/session crash recovery as MajorMUD gameplay behavior"
+  ]
+}

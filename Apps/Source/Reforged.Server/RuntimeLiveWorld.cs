@@ -5,6 +5,8 @@ public sealed partial class RuntimeLiveGameplayFacade
     private const string ClassicStatlineModeKey = "ui.classic.statline.mode";
     private const string ClassicReceiveEnabledKey = "ui.classic.receive.enabled";
     private const string ClassicPartyFollowModeKey = "ui.classic.party.follow.mode";
+    private const string ClassicMessagesLevelKey = "ui.classic.messages.level";
+    private const string ClassicEntrancesEnabledKey = "ui.classic.entrances.enabled";
     private const string ClassicStatlineTemplateKey = "ui.classic.statline.template";
 
     public string RenderRoom(RuntimeSession session) => RenderRoomInternal(session, forceDescription: false, forceBrief: false);
@@ -205,9 +207,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (raw.StartsWith("receive", StringComparison.OrdinalIgnoreCase))
             return ConfigureClassicReceive(session, raw["receive".Length..].Trim());
         if (raw.StartsWith("speech", StringComparison.OrdinalIgnoreCase))
-            return ConfigureMajorMudTalkMode(session, raw["speech".Length..].Trim());
+            return ConfigureClassicSpeechSetting(session, raw["speech".Length..].Trim());
         if (raw.StartsWith("follow", StringComparison.OrdinalIgnoreCase))
             return ConfigureClassicPartyFollowMode(session, raw["follow".Length..].Trim());
+        if (raw.StartsWith("messages", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicMessagesLevel(session, raw["messages".Length..].Trim());
+        if (raw.StartsWith("entrances", StringComparison.OrdinalIgnoreCase))
+            return ConfigureClassicEntrances(session, raw["entrances".Length..].Trim());
         if (raw.StartsWith("telepath", StringComparison.OrdinalIgnoreCase))
             return ConfigureClassicTelepathReceive(session, raw["telepath".Length..].Trim());
         if (raw.StartsWith("gossip", StringComparison.OrdinalIgnoreCase))
@@ -224,10 +230,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         var raw = (arguments ?? string.Empty).Trim();
         var current = character.Conditions.TryGetValue(ClassicPartyFollowModeKey, out var stored)
             && stored.Equals("blind", StringComparison.OrdinalIgnoreCase) ? "Blind" : "Normal";
-        if (raw.Length == 0) return $"Follow mode is {current}.";
 
+        // Classic SET options are toggles when invoked bare unless retained evidence
+        // proves a non-binary/value form. SET FOLLOW also has explicit BLIND/NORMAL.
         string mode;
-        if (raw.Equals("blind", StringComparison.OrdinalIgnoreCase)) mode = "blind";
+        if (raw.Length == 0) mode = current == "Blind" ? "normal" : "blind";
+        else if (raw.Equals("blind", StringComparison.OrdinalIgnoreCase)) mode = "blind";
         else if (raw.Equals("normal", StringComparison.OrdinalIgnoreCase)) mode = "normal";
         else return "Usage: SET FOLLOW BLIND|NORMAL.";
 
@@ -237,6 +245,61 @@ public sealed partial class RuntimeLiveGameplayFacade
         };
         _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow });
         return mode == "blind" ? "Follow mode is Blind." : "Follow mode is Normal.";
+    }
+
+    public string ConfigureClassicMessagesLevel(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim().ToLowerInvariant();
+        if (raw is not ("low" or "medium" or "high"))
+            return "Usage: SET MESSAGES LOW|MEDIUM|HIGH.";
+
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicMessagesLevelKey] = raw
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-set-messages");
+        return $"Messages {char.ToUpperInvariant(raw[0])}{raw[1..]}.";
+    }
+
+    public string ConfigureClassicEntrances(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var raw = (arguments ?? string.Empty).Trim();
+        var current = character.Conditions.TryGetValue(ClassicEntrancesEnabledKey, out var stored)
+            && stored.Equals("1", StringComparison.OrdinalIgnoreCase);
+
+        bool entrancesEnabled;
+        if (raw.Length == 0) entrancesEnabled = !current;
+        else if (raw.Equals("on", StringComparison.OrdinalIgnoreCase)) entrancesEnabled = true;
+        else if (raw.Equals("off", StringComparison.OrdinalIgnoreCase)) entrancesEnabled = false;
+        else return "Usage: SET ENTRANCES ON|OFF.";
+
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicEntrancesEnabledKey] = entrancesEnabled ? "1" : "0"
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-set-entrances");
+        return entrancesEnabled ? "Entrances On." : "Entrances Off.";
+    }
+
+    internal static string ReadClassicMessagesLevel(RuntimeCharacterRecord character) =>
+        character.Conditions.TryGetValue(ClassicMessagesLevelKey, out var raw)
+        && raw is not null
+        && (raw.Equals("low", StringComparison.OrdinalIgnoreCase)
+            || raw.Equals("medium", StringComparison.OrdinalIgnoreCase)
+            || raw.Equals("high", StringComparison.OrdinalIgnoreCase))
+            ? raw.ToLowerInvariant()
+            : string.Empty; // Native default remains unresolved; absence is not promoted as a default.
+
+    internal static bool? ReadClassicEntrancesEnabled(RuntimeCharacterRecord character)
+    {
+        if (!character.Conditions.TryGetValue(ClassicEntrancesEnabledKey, out var raw)) return null;
+        if (raw.Equals("1", StringComparison.OrdinalIgnoreCase)) return true;
+        if (raw.Equals("0", StringComparison.OrdinalIgnoreCase)) return false;
+        return null;
     }
 
     public bool ShouldRenderClassicPartyFollowRoom(RuntimeSession session)
@@ -466,12 +529,18 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var record = _characters.LoadCharacter(character.Id);
                 if (record is null) return $"{actor.DisplayName} [{actor.Kind}] id={actor.Id}";
                 var pronoun = string.Equals(character.Sex, "Female", StringComparison.OrdinalIgnoreCase) ? "She" : "He";
+                var isSelf = character.Id.Equals(session.Actor.Id,StringComparison.OrdinalIgnoreCase);
                 var appearance = RuntimeClassicCharacterAppearance.Compose(
-                    new RuntimeClassicAppearanceViewer(ConditionIsTrue(observerRecord,"see_hidden"), ConditionIsTrue(observerRecord,"detect_invisible"), character.Id.Equals(session.Actor.Id,StringComparison.OrdinalIgnoreCase)),
+                    new RuntimeClassicAppearanceViewer(ConditionIsTrue(observerRecord,"see_hidden"), ConditionIsTrue(observerRecord,"detect_invisible"), isSelf),
                     Appearance(record,character));
-                var lines = new List<string> { $"[ {character.DisplayName} ]", string.Empty };
+                var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+                var shadowLook = RuntimeClassicCharacterAppearance.TryResolveEquippedShadowLookOverride(record, catalog, isSelf, out var shadowPayload);
+                var visibleIdentity = shadowLook ? "A shadowy figure" : character.DisplayName;
+                var lines = new List<string> { $"[ {visibleIdentity} ]", string.Empty };
                 var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
-                if (RuntimeClassicCharacterAppearance.TryResolveShadowformOverride(record, native, out var shadowform))
+                if (shadowLook)
+                    lines.Add(shadowPayload);
+                else if (RuntimeClassicCharacterAppearance.TryResolveShadowformOverride(record, native, out var shadowform))
                     lines.Add(shadowform);
                 else
                     lines.Add(appearance);
@@ -483,7 +552,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var equipmentHeadingIndex = lines.FindIndex(line => line.Equals($"{pronoun} is equipped with:", StringComparison.Ordinal));
                     lines.InsertRange(equipmentHeadingIndex < 0 ? lines.Count : equipmentHeadingIndex, customDescription.Concat(new[] { string.Empty }));
                 }
-                var activeDescriptions = ActiveSpellLookMessages(session, character.Id, character.DisplayName);
+                var activeDescriptions = ActiveSpellLookMessages(session, character.Id, shadowLook ? "a shadowy figure" : character.DisplayName);
                 if (activeDescriptions.Count > 0)
                 {
                     lines.AddRange(activeDescriptions);
@@ -491,7 +560,6 @@ public sealed partial class RuntimeLiveGameplayFacade
                 }
                 if (record?.ItemState is not null)
                 {
-                    var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
                     var equipped = record.ItemState.Items.Where(i => i.OwnerId != null && i.OwnerId.Equals(character.Id, StringComparison.OrdinalIgnoreCase) && i.EquippedSlot is not null).OrderBy(i => catalog.Require(i.CanonicalItemId).Name).ToArray();
                     if (equipped.Length == 0) lines.Add("Nothing.");
                     else foreach (var equippedItem in equipped) lines.Add($"{catalog.Require(equippedItem.CanonicalItemId).Name,-30}({ClassicDisplaySlot(catalog, equippedItem)})");
@@ -577,6 +645,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     private const string ClassicTelepathReceiveEnabledKey = "communication.telepath.receive.enabled";
     private const string ClassicGossipEnabledKey = "communication.gossip.enabled";
     private const string ClassicAuctionEnabledKey = "communication.auction.enabled";
+    private const string ClassicBroadcastGroupKey = "communication.broadcast.group";
 
     public string Say(RuntimeSession session, string text)
     {
@@ -606,6 +675,21 @@ public sealed partial class RuntimeLiveGameplayFacade
             target.EnqueueMessage($"{session.Actor.DisplayName} yells \"{message}\"");
         }
         return $"You yell \"{message}\"";
+    }
+
+    private string ConfigureClassicSpeechSetting(RuntimeSession session, string arguments)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var mode = (arguments ?? string.Empty).Trim();
+        if (mode.Length == 0)
+        {
+            // WCCMMHLP message 119 explicitly says SET SPEECH toggles Fast/Slow.
+            var currentlyFast = character.Conditions.TryGetValue(MajorMudTalkFastCondition, out var stored)
+                && stored.Equals("1", StringComparison.OrdinalIgnoreCase);
+            mode = currentlyFast ? "slow" : "fast";
+        }
+        return ConfigureMajorMudTalkMode(session, mode);
     }
 
     public string ConfigureMajorMudTalkMode(RuntimeSession session, string arguments)
@@ -667,6 +751,72 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public string Auction(RuntimeSession session, string text) => ExecuteGlobalCommunicationChannel(
         session, text, ClassicAuctionEnabledKey, "Auction");
+
+
+    public string Broadcast(RuntimeSession session, string text)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var group = ReadClassicBroadcastGroup(character);
+        var raw = (text ?? string.Empty).Trim();
+        if (group == RuntimeClassicBroadcastGroupAuthority.DefaultGroup)
+            return "Native BROADCAST behavior while in default group 0 is not separately recovered.";
+
+        // WCCMMHLP 123/157 prove the channel-selection/list/broadcast shape.
+        // They conflict only on whether group 127 is valid, so Pass 30 activates the
+        // shared 0..126 contract and keeps 127 evidence-gated rather than guessing.
+        var currentMembers = _sessions.ActiveSessions
+            .Where(target => target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase))
+            .Where(target => target.Actor is RuntimeCharacterActor targetActor
+                && _characters.LoadCharacter(targetActor.Id) is { } targetRecord
+                && ReadClassicBroadcastGroup(targetRecord) == group)
+            .OrderBy(target => target.Actor.DisplayName, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        if (raw.Length == 0)
+        {
+            return currentMembers.Length == 0
+                ? $"No connected characters are on broadcast group {group}."
+                : $"Broadcast group {group}: {string.Join(", ", currentMembers.Select(target => target.Actor.DisplayName))}";
+        }
+
+        if (IsSpeechBlocked(session)) return "You are unable to speak.";
+        foreach (var target in currentMembers.Where(target => !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+            target.EnqueueMessage($"[Broadcast {group}] {session.Actor.DisplayName}: {raw}");
+        return $"[Broadcast {group}] You: {raw}";
+    }
+
+    internal string SetClassicBroadcastGroup(RuntimeSession session, int group)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
+        var selection = RuntimeClassicBroadcastGroupAuthority.ClassifySelection(group);
+        if (selection.State == RuntimeClassicBroadcastGroupSelectionState.EvidenceConflict)
+            return "Native HELP conflicts on whether broadcast group 127 is valid; group 127 remains evidence-gated.";
+        if (!selection.IsSelectable)
+            return "Native broadcast groups are proven only for group 0 and groups 1 through 126; group 127 remains evidence-gated.";
+
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+        var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            [ClassicBroadcastGroupKey] = group.ToString(System.Globalization.CultureInfo.InvariantCulture)
+        };
+        _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "majormud-broadcast-group");
+        return group == 0 ? "Broadcast group reset to 0." : $"Broadcast group set to {group}.";
+    }
+
+    internal int GetClassicBroadcastGroup(RuntimeSession session)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return 0;
+        return _characters.LoadCharacter(actor.Id) is { } character ? ReadClassicBroadcastGroup(character) : 0;
+    }
+
+    private static int ReadClassicBroadcastGroup(RuntimeCharacterRecord character)
+    {
+        if (!character.Conditions.TryGetValue(ClassicBroadcastGroupKey, out var raw)) return 0;
+        return int.TryParse(raw, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var group)
+            ? RuntimeClassicBroadcastGroupAuthority.NormalizePersistedGroup(group)
+            : RuntimeClassicBroadcastGroupAuthority.DefaultGroup;
+    }
 
     public string ForgetTelepath(RuntimeSession session, string query)
     {

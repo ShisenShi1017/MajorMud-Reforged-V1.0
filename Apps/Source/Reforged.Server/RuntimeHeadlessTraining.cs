@@ -104,15 +104,50 @@ public sealed partial class ServerRuntimeHost
                         .Distinct(StringComparer.OrdinalIgnoreCase)
                         .OrderBy(x => x, StringComparer.OrdinalIgnoreCase)
                         .ToArray(),
+                    exitDetails = session.CurrentRoom.Exits
+                        .Where(x => !string.IsNullOrWhiteSpace(x.Direction))
+                        .OrderBy(x => x.Direction, StringComparer.OrdinalIgnoreCase)
+                        .Select(x => new
+                        {
+                            x.Id,
+                            x.Direction,
+                            x.TargetMapId,
+                            x.TargetRoomNumber,
+                            x.TargetRoomId,
+                            x.ExitType,
+                            x.GateKind,
+                            x.Qualifier,
+                            x.RuntimeDisposition,
+                            x.DestinationStatus,
+                            x.ValidationStatus,
+                            x.SourceVerified,
+                            x.HasBlockedDestination
+                        })
+                        .ToArray(),
                     visibleNpcs
                 },
                 score = SafeDispatch("score"),
+                health = SafeDispatch("health"),
+                character = SafeDispatch("character"),
+                experience = SafeDispatch("experience"),
                 wealth = SafeDispatch("wealth"),
                 inventory = SafeDispatch("inventory"),
                 equipment = SafeDispatch("equipment"),
+                keys = SafeDispatch("keys"),
                 combat = SafeDispatch("combat"),
+                spells = SafeDispatch("spells"),
+                powers = SafeDispatch("powers"),
+                abilities = SafeDispatch("abilities"),
+                skills = SafeDispatch("skills"),
+                quest = SafeDispatch("quest"),
+                journal = SafeDispatch("journal"),
                 services = SafeDispatch("services"),
                 bank = SafeDispatch("bank"),
+                runtime = new
+                {
+                    processId = Environment.ProcessId,
+                    sessionId = session.Id
+                },
                 pendingMessages = session.DrainMessages(),
                 prompt = _commands.RenderClassicPrompt(session)
             };
