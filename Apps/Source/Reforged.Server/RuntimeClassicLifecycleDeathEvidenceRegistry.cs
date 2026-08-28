@@ -89,16 +89,16 @@ public static class RuntimeClassicLifecycleDeathEvidenceRegistry
             "Linkdead combat retention, party leadership, follower state, corpse reconciliation, and persistence ordering remain open.")
     ];
 
-    public const bool PriorityQueueFormulaPromoted = false;
-    public const bool FixedThreeMinuteLinkdeadTimerPromoted = false;
-    public const bool SameUserIpReconnectRulePromoted = false;
-    public const bool PlayerJsonNativeSavePromoted = false;
-    public const bool DeathXpUnderLevelTenImmunityPromoted = false;
-    public const bool DeathXpTenPercentPromoted = false;
-    public const bool DeathXpTwoMillionCapPromoted = false;
-    public const bool ExactLeaderExitSuccessionResolved = false;
-    public const bool ExactLinkdeadGameplayResolved = false;
-    public const bool ExactCrossOwnerExitOrderingResolved = false;
+    public static readonly bool PriorityQueueFormulaPromoted = false;
+    public static readonly bool FixedThreeMinuteLinkdeadTimerPromoted = false;
+    public static readonly bool SameUserIpReconnectRulePromoted = false;
+    public static readonly bool PlayerJsonNativeSavePromoted = false;
+    public static readonly bool DeathXpUnderLevelTenImmunityPromoted = false;
+    public static readonly bool DeathXpTenPercentPromoted = false;
+    public static readonly bool DeathXpTwoMillionCapPromoted = false;
+    public static readonly bool ExactLeaderExitSuccessionResolved = false;
+    public static readonly bool ExactLinkdeadGameplayResolved = false;
+    public static readonly bool ExactCrossOwnerExitOrderingResolved = false;
 
     public static IReadOnlyList<string> Validate()
     {

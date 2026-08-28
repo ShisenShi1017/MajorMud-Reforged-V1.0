@@ -1624,6 +1624,55 @@ if (args.Any(arg => string.Equals(arg, "--smoke-pass42-classic-world-rules-confi
     return smoke.Passed ? 0 : 1;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-pass43-classic-majormud-plus-event-boundary", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimePass43ClassicMajorMudPlusEventBoundarySmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-pass44-classic-party-coordination-boundary", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimePass44ClassicPartyCoordinationBoundarySmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-pass45-classic-trap-boundary", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimePass45ClassicTrapBoundarySmokeReport.Run(Directory.GetCurrentDirectory());
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-help", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicNativeHelpSmokeReport.Run(Directory.GetCurrentDirectory());
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-player-commands", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicNativePlayerCommandSmokeReport.Run(Directory.GetCurrentDirectory());
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-pass48-classic-extension-boundaries", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimePass48ClassicExtensionBoundarySmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-pass49-classic-death-experience", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimePass49ClassicDeathExperienceSmokeReport.Run(Directory.GetCurrentDirectory());
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-pass39-classic-lifecycle-death-verification", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimePass39ClassicLifecycleDeathVerificationSmokeReport.Run();

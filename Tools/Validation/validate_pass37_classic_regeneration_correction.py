@@ -109,7 +109,7 @@ req('kaiPassive.ManaRate != 2 || kaiMeditate.ManaRate != 2' in item_smoke,'item-
 req('--smoke-pass37-classic-regeneration-correction' in program,'pass37-smoke-cli')
 req('RuntimePass37ClassicRegenerationCorrectionSmokeReport.Run()' in program,'pass37-smoke-run')
 req(program.count('--smoke-pass37-classic-regeneration-correction')==1,'pass37-smoke-cli-single')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 req('majormud_parity_assertions_0307.json' not in audit,'runtime-audit-old-ledger-retired')
 
 # Only target state changes from 0307 -> 0308.
@@ -139,7 +139,7 @@ req(abs(cat['Character & Status']['EvidenceBackedPercent']-89.1)<0.01,'character
 # Remaining-system registry now expresses the narrowed boundary.
 systems={s['id']:s for s in remain['systems']}
 r=systems['rest-inn-recovery-policy']
-req(remain.get('updatedByPass') in {'Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'remaining-registry-update')
+req(remain.get('updatedByPass') in {'Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'remaining-registry-update')
 req(r.get('status')=='implemented-strong-classic-regeneration-boundary','remaining-rest-status')
 req(r.get('evidenceClassification')=='strong-stock-major-mud-regeneration-with-native-help-boundary','remaining-rest-evidence-class')
 rr=r.get('classicRegeneration0308',{})
@@ -155,7 +155,7 @@ for token in ['GreaterMUD','/750','multiply `baseHP` by **3**','UNKNOWN -> STRON
 protected={
  'Apps/Source/Reforged.App/App.xaml.cs':'7859f07246d9891f83b3c1c99fadd332ef514c5cc4ee59dc90276a1c11e5f397',
  'Apps/Source/Reforged.App/MainWindow.xaml.cs':'4bfb84db25a6798780d76300a7f4f58dd63d3ebeaec035b4a1eaf266aefc325b',
- 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'76d6dab9d3c1384bdbe2d6bd7c7c9464ea3c99130221cbbdf1ec36bcd7d86731',
+ 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'f39861f8f2cf00d8641f694b7f2a022353a00b48782aba0b3bd6575cb5aaede8',
  'Apps/Source/Reforged.App/ViewModels/BorinForgeViewModel.cs':'51c6558509d2b7b08605803cb8137ff094d1d79f797f76e707de1192094f3cc9',
  'Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs':'7368ef1919c30ae89b35d04ae6d8c364dfb30c4d241fe0c9df8541494289a52a',
  'Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs':'6233ccb692a7088ddfb5aab20f2144ba8fc9657ad672fafa87aba6a9ae9da791',

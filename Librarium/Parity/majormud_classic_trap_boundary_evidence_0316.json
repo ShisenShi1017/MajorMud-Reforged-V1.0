@@ -1,0 +1,90 @@
+{
+  "schema": "majormud.classic-trap-boundary-evidence.v1",
+  "pass": 45,
+  "update": "0316",
+  "target": "native.traps",
+  "policy": "Promote only the broad trap boundary to STRONG. Exact per-exit activation, probability formulas, failure triggering, message ownership, transition ordering, and reset/rearm behavior remain UNKNOWN and fail closed.",
+  "nativeHelp": [
+    {
+      "messageNumber": 15,
+      "symbol": "HL1B4B",
+      "sha256": "2c30090896445871255b4e167609f68ea03e5d52bbc979af3b0d215ad82b563f",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claim": "Normally anyone can find a trap by searching; the Traps skill gives a much higher chance; a traps expert can attempt to disarm a trap found."
+    },
+    {
+      "messageNumber": 245,
+      "symbol": "HL1B106",
+      "sha256": "81e097285a019714d7b1c7a73b68087f756d94c55072a1a3527978d895215418",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claim": "A character with the Traps skill can attempt to disarm a trap after it is found with SEARCH using DISARM TRAP <direction>."
+    }
+  ],
+  "strongCorrelations": [
+    {
+      "id": "trap.catalog",
+      "state": "PASS",
+      "claim": "The Classic semantic exit corpus retains exactly 295 exit traps: 273 fixed-damage and 22 spell traps.",
+      "source": "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json"
+    },
+    {
+      "id": "trap.roomrec-schema",
+      "state": "STRONG",
+      "claim": "RoomRec types 9 and 24 own damage/spell traps and Para2 is a signed 16-bit state with values 0 Active, 1 Inactive, 2 Hidden, 3 Active movement, 4 Inactive movement.",
+      "sources": [
+        "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
+        "Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json"
+      ]
+    },
+    {
+      "id": "trap.runtime-admission",
+      "state": "STRONG",
+      "claim": "Classic DISARM TRAP is recognized, requires the Traps/DisarmTraps ability admission gate, and refuses to invent discovery/disarm success or state mutation.",
+      "runtime": [
+        "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs"
+      ]
+    },
+    {
+      "id": "trap.projection-loss",
+      "state": "STRONG",
+      "claim": "The retained MMExplorer projection preserves trap identity/effect operands but not each native Para2 state; Classic activation therefore fails closed.",
+      "sources": [
+        "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
+        "Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json"
+      ]
+    }
+  ],
+  "runtimeBoundary": {
+    "live": [
+      "295 trap identity/effect operands retained",
+      "DISARM TRAP <direction> recognized",
+      "Traps-skill admission gate enforced",
+      "future explicit native_trap_state field accepted only for known 0-4 values"
+    ],
+    "failClosed": [
+      "trap effect execution when native Para2 is absent",
+      "trap effect execution even when a 0-4 Para2 is projected until exact state-transition semantics are recovered",
+      "SEARCH/disarm probability",
+      "failed-disarm triggering",
+      "Para3/Para4 rendering ownership",
+      "state mutation/rearm/reset ordering"
+    ]
+  },
+  "parityPromotion": {
+    "assertion": "native.traps",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Exact native help closes command/discovery admission semantics, while retained room schema and the complete 295-trap operand corpus strongly recover the data boundary. The runtime already preserves those proven facts and fails closed on every unresolved execution edge."
+  },
+  "remainingExactUnknowns": [
+    "per-exit WCCMP002 Para2 values",
+    "exact SEARCH probability and Traps-skill modifier",
+    "exact DISARM probability",
+    "failed-disarm trigger behavior",
+    "Para3/Para4 message ownership and exact rendering",
+    "Para2 transition semantics for states 0-4",
+    "reset/rearm/persistence behavior",
+    "exact trap-vs-movement/death/reset simultaneous ordering"
+  ]
+}

@@ -89,7 +89,7 @@ for aid in ['commands.native-player-command-table','native.party-coordination','
 req((score['PassCount'],score['StrongCount'],score['UnknownCount'],score['ScoredRequirementCount'])==(78,76,28,182),'score-counts')
 req(abs(score['StrictPercent']-42.9)<0.01,'score-strict-42.9')
 req(abs(score['EvidenceBackedPercent']-84.6)<0.01,'score-evidence-84.6')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 
 # Recent compile-regression fixes stay fixed.
 bundle=text('Apps/Source/Reforged.Server/RuntimeBundleDRemainingExhaustionAudit.cs')

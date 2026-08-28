@@ -1,5 +1,11 @@
 # MajorMUD Reforged Project Status
 
+- PASS 49 corrects the Classic death-experience boundary from native WCCMMUD disassembly. Ordinary non-final death preserves experience exactly. Final-death/reroll retention keeps the greater of floor(total XP / 10) and the stock half-level threshold plus one when both KEEPEXP gates are enabled above level one; otherwise it retains zero. No 2,000,000 cap exists. Ordinary death is live, while replacement-character/retained-XP transfer remains gated. Current parity is 97 PASS / 90 STRONG / 13 UNKNOWN = 200.
+
+- Cumulative local verification through PASS49 is green: full solution Release build 0 warnings/errors; compiler regression 104,911 records / 47 families; Classic generation 103,330 objects / 36 families / 41 files with 26,668/26,668 room descriptions; PASS31, PASS39, and PASS43-49 runtime smokes; core/server smoke 17/17. Python validators remain unrun because no interpreter is registered.
+
+- Nahr message 8480 remains UNKNOWN after exact WCC updater page 12006, WCCMMUD DLL, MDB, public-reference, and relationship-consensus exhaustion. The sources do not contain its five caller-owned miss verb/body-part pairs, so no prose is inferred.
+
 - `SYSOP LIST LIMITED` now reports the authoritative live presence of generated limited items and their current room/user/owned-domain location. Definitions without an instantiated item are omitted, matching the user-confirmed rule that omission means the item is not presently in the world.
 
 - Native WCC `.HSE` evidence closes the ordinary gang-house interior-location gap for 47 map-qualified rooms. After preserving ten stronger overlapping service bindings, generated Classic exposes 57 total house locations. The movement gateway now enforces persistent owning-gang membership, so native guardians bar non-members from entrances and interiors. Exact sundown event production and any house behavior not described by the retained files remain evidence-bound.

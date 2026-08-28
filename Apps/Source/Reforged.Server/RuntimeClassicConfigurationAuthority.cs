@@ -9,7 +9,7 @@ namespace Reforged.Server;
 public static class RuntimeClassicConfigurationAuthority
 {
     public const string NativeConfigurationFileName = "WCCMMUD.INI";
-    public const bool ReforgedUsesNativeConfigurationFile = false;
+    public static readonly bool ReforgedUsesNativeConfigurationFile = false;
     public const int NativeConfigurationPromptCount = 44;
 
     // Exact retained WCCMMUD.mcv defaults used by active Reforged Classic owners.

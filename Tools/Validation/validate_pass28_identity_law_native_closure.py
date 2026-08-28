@@ -83,7 +83,7 @@ req(score.get('PassCount')==74 and score.get('StrongCount')==76 and score.get('U
 req(score.get('ScoredRequirementCount')==178,'score-total-178')
 req(abs(score.get('StrictPercent',0)-41.6)<0.01,'score-strict-41.6')
 req(abs(score.get('EvidenceBackedPercent',0)-84.3)<0.01,'score-evidence-84.3')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-points-latest-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-points-latest-ledger')
 
 # Pass 27 trap unknowns are not guessed closed.
 req(any(f.get('id')=='trap-pass27-boundary-rechecked' and f.get('state')=='UNKNOWN' for f in evidence.get('facts',[])),'trap-unknown-boundary-recorded')

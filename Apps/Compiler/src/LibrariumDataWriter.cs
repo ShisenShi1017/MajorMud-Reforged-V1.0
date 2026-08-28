@@ -293,9 +293,18 @@ public sealed class LibrariumDataWriter
         var effectiveSourceFamilies = new WorldOverrideEngine()
             .Apply(options.RepositoryRoot, result.WorldId, sourceFamilies, result.Diagnostics)
             .ToArray();
-        var families = effectiveSourceFamilies
+        var projectedFamilies = effectiveSourceFamilies
             .Where(family => !IsExcludedFromRuntime(result.WorldId, family.Name))
             .Select(family => ProjectRuntimeRecords(family, result.WorldId))
+            .ToList();
+        var nativeHelp = NativeHelpProjectionBuilder.Build(options.RepositoryRoot, result.Diagnostics);
+        if (nativeHelp is not null)
+            projectedFamilies.Add(nativeHelp);
+        var nativePlayerCommands = NativePlayerCommandProjectionBuilder.Build(options.RepositoryRoot, result.Diagnostics);
+        if (nativePlayerCommands is not null)
+            projectedFamilies.Add(nativePlayerCommands);
+        var families = projectedFamilies
+            .OrderBy(family => family.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
         ApplyCrossFamilyRuntimeGuards(families);
         new LibrariumValidator().Validate(families, result.Diagnostics);

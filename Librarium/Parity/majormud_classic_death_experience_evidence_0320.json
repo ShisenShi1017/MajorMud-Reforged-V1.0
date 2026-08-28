@@ -1,0 +1,63 @@
+{
+  "schema": "majormud.classic-death-experience.v1",
+  "update": "0320",
+  "pass": 49,
+  "classification": "STRONG_NATIVE_FORMULA_RECOVERED_FINAL_REROLL_CONSUMER_PENDING",
+  "source": {
+    "artifact": "Archive/ImportedDatabasesAndEvidence.LocalOnly.rar::ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "sha256": "5A99E7C34CF9CF58DC6E97FC3EF28F1BD83F9BCEC15CA59AD08826D2F21D2077",
+    "role": "authoritative native MajorMUD runtime",
+    "retention": "local-only archive; binary is not added to Git"
+  },
+  "ordinaryDeath": {
+    "export": "_check_kill_user",
+    "rva": "0x00019A33",
+    "virtualAddress": "0x00419A33",
+    "lifeDecrement": "0x0041A0F0",
+    "survivingLifeBranch": "0x0041A0F7-0x0041A1F4",
+    "result": "Experience is not read, divided, subtracted, capped, or written. No experience mutation helper is called. The branch restores HP/mana, recalculates secondary stats, relocates, saves, and reports remaining lives.",
+    "exactExperienceLoss": 0,
+    "runtime": "RuntimeCharacterDeathResolver records before/after/loss markers and preserves the exact long Experience value when at least one life remains."
+  },
+  "finalDeathOrReroll": {
+    "gatingCallsite": "_check_kill_user 0x0041A20E-0x0041A22B",
+    "calculatorExport": "_save_permanent_info",
+    "calculatorRva": "0x00071E9C",
+    "calculatorVirtualAddress": "0x00471E9C",
+    "requirements": [
+      "global KEEPEXP is enabled",
+      "the player's Keep Some Experience option is enabled",
+      "the departing character level is greater than 1"
+    ],
+    "halfLevelThreshold": {
+      "address": "0x00472028-0x004720A7",
+      "formula": "stock_required_experience(floor(current_level / 2), race_class_experience_chart) + 1"
+    },
+    "tenPercentCandidate": {
+      "address": "0x004720AA-0x004720EF",
+      "formula": "floor(total_experience / 10)",
+      "representation": "native split high/low experience value is divided exactly; Reforged long division is equivalent"
+    },
+    "selection": {
+      "address": "0x004720F1-0x0047215D",
+      "formula": "max(half_level_threshold, ten_percent_candidate)"
+    },
+    "disabledOrLevelOneResult": 0,
+    "twoMillionCapPresent": false,
+    "ordinaryDeathDelevelPresent": false,
+    "runtime": "RuntimeClassicDeathExperienceAuthority exposes and regression-tests the exact calculator, but no final-character reroll handoff consumes it yet."
+  },
+  "correctedHypotheses": [
+    "Normal death does not remove 10 percent of experience.",
+    "There is no level-under-10 ordinary-death exemption because ordinary death has zero XP loss at every level.",
+    "There is no 2,000,000 cap in the recovered final-reroll retention calculation.",
+    "The native 10 percent operation retains experience for a replacement character; it is not an ordinary-death penalty."
+  ],
+  "parityPromotion": {
+    "assertion": "character.death-xp-loss-exact",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "passBlockedBy": "Final-death/reroll character replacement and retained-XP transfer are not executable in the current server."
+  },
+  "noGameplayGuessing": true
+}

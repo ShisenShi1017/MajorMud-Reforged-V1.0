@@ -1,5 +1,11 @@
 # MajorMUD Reforged
 
+## Current Classic parity baseline
+
+PASS 49 / update 0320 corrects the Classic death-experience boundary from native WCCMMUD disassembly. Ordinary non-final death preserves experience exactly. Final-death/reroll retention keeps the greater of 10% of total experience and the stock half-level threshold plus one only when both KEEPEXP gates are enabled above level one; its replacement-character consumer remains evidence-gated.
+
+Current parity: **97 PASS / 90 STRONG / 13 UNKNOWN = 200** (**48.5% strict**, **93.5% evidence-backed**).
+
 ## Pass 27 compile hotfix
 
 The latest Trainer/Editor-integrated Pass 27 baseline now includes two C# build repairs: the Bundle D audit evaluates the non-nullable `StrengthAlternative` Boolean directly, and `RuntimeLiveWorld.ConfigureCommunicationFlag` no longer redeclares `enabled` in an overlapping scope. These are compile-only corrections and do not change parity scoring or gameplay behavior.
@@ -102,5 +108,3 @@ Do not hand-edit generated `/Data` as canonical source. Update Librarium/source 
 
 One-time validation proofs are recorded in ValidationManifest.json.
 WCCMMUD online administration is exposed through authenticated `SYSOP` dispatch backed by generated Librarium data. The legacy SYSOP unlock value is configuration evidence and is never entered as a gameplay command.
-
-

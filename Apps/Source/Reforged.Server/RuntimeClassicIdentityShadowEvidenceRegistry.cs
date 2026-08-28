@@ -21,7 +21,7 @@ public sealed record RuntimeClassicIdentityShadowEvidenceRow(
 /// </summary>
 public static class RuntimeClassicIdentityShadowEvidenceRegistry
 {
-    public const int ShadowAbilityId = 9;
+    public static readonly int ShadowAbilityId = 9;
     public const int BlackEmbroideredRobesLegacyId = 1331;
     public const int BlackEmbroideredRobesShadowValue = 100;
     public const string ShadowLookPayload = "A shadowy figure!";

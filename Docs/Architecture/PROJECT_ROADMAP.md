@@ -13,6 +13,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Status: local repository cleanup/imported-reference archival applied; awaiting push and GitHub Actions confirmation
 - Verification: current-health validator PASS 15/15; Classic compiler/runtime audits PASS with 26,668/26,668 room descriptions; interaction/narrative smoke PASS with 83 executable quest entries; app Release build PASS; app publish PASS to `Release/MajorMudReforgedApp`
 - Guardian Hall engineering direction: Borin's phases 1-10 are permanent deterministic infrastructure with independent planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP, repository-update, and overnight controls. Candidate ZIP generation defaults on; autonomous and repository-update controls default off.
+- Current parity continuation: PASS 49 / update 0320, with ordinary Classic death XP proven and executable at zero loss. Final-character replacement/retained-XP transfer, native save/catalog compatibility, and 13 remaining UNKNOWN assertions define the next evidence-driven work queue.
 
 ## CodeUpdate0139 Runtime Scope
 

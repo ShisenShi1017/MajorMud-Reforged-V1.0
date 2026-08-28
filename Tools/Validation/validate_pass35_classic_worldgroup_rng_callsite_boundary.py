@@ -128,7 +128,7 @@ req(abs(score['StrictPercent']-48.5)<0.01,'score-strict-48.5')
 req(abs(score['EvidenceBackedPercent']-86.5)<0.01,'score-evidence-86.5')
 cat={c['Category']:c for c in score['Categories']}
 req((cat['Host / Persistence / Worldgroup']['Pass'],cat['Host / Persistence / Worldgroup']['Strong'],cat['Host / Persistence / Worldgroup']['Unknown'],cat['Host / Persistence / Worldgroup']['Total'])==(4,1,4,9),'score-host-category')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 req('majormud_parity_assertions_0305.json' not in audit,'runtime-audit-old-ledger-retired')
 
 # Remaining-system policy keeps all unsafe activation gates closed.
@@ -139,7 +139,7 @@ req(any('64-per-module _genrdn' in x for x in catalog.get('safeFallback',[])),'c
 for token in ['exact MajorMUD gameplay draw/mutation ordering','execution-thread CRT state','instruction-equivalent Reforged activation']:
     req(any(token in x for x in catalog.get('nativeDependencies',[])),'catalog-unknown:'+token[:25])
 systems={s['id']:s for s in registry['systems']}
-req(registry.get('updatedByPass') in {'Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'registry-pass35')
+req(registry.get('updatedByPass') in {'Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'registry-pass35')
 gr=systems['global-rng']
 req(gr.get('status')=='classic-native-core-and-direct-call-boundary-proven-gameplay-call-order-bounded','registry-rng-status')
 cb=gr.get('classicDirectCallBoundary0306',{})
@@ -151,7 +151,7 @@ req(cb.get('indirectCallsResolved') is False and cb.get('gameplaySemanticMapping
 protected={
  'Apps/Source/Reforged.App/App.xaml.cs':'7859f07246d9891f83b3c1c99fadd332ef514c5cc4ee59dc90276a1c11e5f397',
  'Apps/Source/Reforged.App/MainWindow.xaml.cs':'4bfb84db25a6798780d76300a7f4f58dd63d3ebeaec035b4a1eaf266aefc325b',
- 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'76d6dab9d3c1384bdbe2d6bd7c7c9464ea3c99130221cbbdf1ec36bcd7d86731',
+ 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'f39861f8f2cf00d8641f694b7f2a022353a00b48782aba0b3bd6575cb5aaede8',
  'Apps/Source/Reforged.App/ViewModels/BorinForgeViewModel.cs':'51c6558509d2b7b08605803cb8137ff094d1d79f797f76e707de1192094f3cc9',
  'Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs':'7368ef1919c30ae89b35d04ae6d8c364dfb30c4d241fe0c9df8541494289a52a',
  'Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs':'6233ccb692a7088ddfb5aab20f2144ba8fc9657ad672fafa87aba6a9ae9da791',

@@ -21,6 +21,26 @@ if (!File.Exists(Path.Combine(result.OutputRoot, "compile_manifest.json"))) thro
 if (File.Exists(Path.Combine(result.OutputRoot, "room_messages.json"))) throw new Exception("Evidence-only room message offsets leaked into runtime output.");
 if (File.Exists(Path.Combine(result.OutputRoot, "classic_bug_fixes.json"))) throw new Exception("Classic correction contracts leaked into runtime output.");
 
+using (var helpDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "native_help.json"))))
+{
+    var helpRecords = helpDocument.RootElement.GetProperty("records").EnumerateArray().ToArray();
+    if (helpRecords.Length != 132) throw new Exception($"Native help projection expected 132 runtime records but found {helpRecords.Length}.");
+    if (helpRecords.Count(record => ReadString(record, "record_kind").Equals("main", StringComparison.OrdinalIgnoreCase)) != 1)
+        throw new Exception("Native help projection did not contain exactly one main record.");
+    if (helpRecords.Count(record => ReadString(record, "record_kind").Equals("topic", StringComparison.OrdinalIgnoreCase)) != 131)
+        throw new Exception("Native help projection did not contain 131 complete topic records.");
+    if (helpRecords.Any(record => string.IsNullOrWhiteSpace(ReadString(record, "body"))))
+        throw new Exception("Native help projection retained an empty body.");
+}
+
+using (var commandDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "native_player_commands.json"))))
+{
+    var commandRecords = commandDocument.RootElement.GetProperty("records").EnumerateArray().ToArray();
+    if (commandRecords.Length != 63) throw new Exception($"Native player-command projection expected 63 runtime records but found {commandRecords.Length}.");
+    var explicitAliases = commandRecords.Sum(record => record.GetProperty("explicit_aliases").GetArrayLength());
+    if (explicitAliases != 3) throw new Exception($"Native player-command projection expected 3 explicit aliases but found {explicitAliases}.");
+}
+
 foreach (var familyFile in Directory.EnumerateFiles(result.OutputRoot, "*.json"))
 {
     var fileName = Path.GetFileName(familyFile);

@@ -7,6 +7,17 @@ Current baseline:
 - Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
 - Status: local repository update; GitHub Actions pending until pushed and confirmed green
 
+Current parity continuation:
+
+- PASS 49 / update `0320` is the current local continuation.
+- Parity: `97 PASS / 90 STRONG / 13 UNKNOWN = 200` (`48.5%` strict, `93.5%` evidence-backed).
+- Generated Classic: 103,330 objects across 36 families and 41 files; `Data/Classic` remains untracked.
+- Death experience: ordinary non-final death preserves XP exactly. Final-death/reroll retention uses the recovered KEEPEXP-gated max of 10% XP and the stock half-level threshold plus one, with no 2,000,000 cap.
+- Remaining death boundary: replacement-character creation and retained-XP transfer are not connected, so final-reroll execution remains gated.
+- Nahr 8480 remains UNKNOWN after exact updater/DLL/MDB/reference exhaustion; do not infer prose.
+- Verification: full solution Release build PASS with 0 warnings/errors; compiler regression PASS at 104,911 records / 47 families; Classic generation PASS at 103,330 objects / 36 families / 41 files; focused PASS31, PASS39, and PASS43-49 smokes PASS; core/server smoke PASS 17/17. Python validators were not run because no interpreter is registered.
+- Python validators were not run because `py -3` reports no installed interpreter.
+
 Important rules:
 
 - Librarium is authoritative.

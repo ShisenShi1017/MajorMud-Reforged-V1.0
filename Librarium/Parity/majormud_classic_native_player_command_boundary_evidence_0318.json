@@ -1,0 +1,45 @@
+{
+  "schema": "majormud.classic-native-player-command-boundary-evidence.v1",
+  "pass": 47,
+  "update": "0318",
+  "target": "commands.native-player-command-table",
+  "policy": "Promote only command identities and aliases printed by retained WCCMMHLP payloads. Do not infer prefixes, ambiguity precedence, hidden commands, handlers, or argument-parser ordering.",
+  "source": {
+    "path": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "catalog": "WCCMMHLP.mcv",
+    "commandSummaryMessage": 3,
+    "broadcastingMessage": 123,
+    "summaryUniqueCommandCount": 61,
+    "documentedCommandCount": 63,
+    "explicitAliases": {
+      "backstab": "bs",
+      "broadcast": "br",
+      "broadgang": "bg"
+    }
+  },
+  "generatedProjection": {
+    "path": "Data/Classic/native_player_commands.json",
+    "recordCount": 63,
+    "authority": "Librarium",
+    "manualDataEdits": false
+  },
+  "runtime": {
+    "owner": "RuntimeClassicNativePlayerCommandRegistry",
+    "documentedInputsResolved": 63,
+    "explicitAliasesResolved": 3,
+    "unknownBehaviorFailsClosed": true
+  },
+  "parityPromotion": {
+    "assertion": "commands.native-player-command-table",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Every input printed by the native command summary plus the separately documented BROADCAST and BROADGANG commands resolves through the live parser, while only the three explicit native aliases are claimed exact."
+  },
+  "remainingExactUnknowns": [
+    "undocumented native aliases",
+    "minimum accepted prefixes",
+    "ambiguity precedence",
+    "hidden dispatcher entries not listed by WCCMMHLP",
+    "exact handler and argument-parser validation ordering"
+  ]
+}

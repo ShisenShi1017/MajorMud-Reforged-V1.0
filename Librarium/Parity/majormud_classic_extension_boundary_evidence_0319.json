@@ -1,0 +1,50 @@
+{
+  "schema": "majormud.classic-extension-boundary-evidence.v1",
+  "pass": 48,
+  "update": "0319",
+  "target": "native.reforged-extension-boundaries",
+  "policy": "Centralize only boundaries already established by retained native help, decoded schemas, runtime evidence, and explicit project scope. Do not claim native save/catalog compatibility or classify future surfaces without evidence.",
+  "runtime": {
+    "owner": "RuntimeClassicExtensionBoundaryAuthority",
+    "boundaryCount": 9,
+    "reforgedOnlyCount": 6,
+    "classicGameplayOwnerCount": 2,
+    "compatibilityUnresolvedCount": 1,
+    "classicDeniedCommands": [
+      "trade",
+      "repair"
+    ],
+    "overlayRetainsDeniedCommands": true,
+    "classicStockTransferCommand": "give"
+  },
+  "classifiedBoundaries": [
+    "Direct TRADE escrow is a Reforged convenience; stock Classic uses GIVE.",
+    "Generated REPAIR is a Reforged service; the stock Classic shop/service corpus exposes no repair service.",
+    "RuntimeGlobalRandomService is generic infrastructure and receives no Classic parity credit; RuntimeClassicWorldgroupPrng retains the proven native PRNG core.",
+    "Generic environmental-hazard, world-container, and trap-service abstractions receive no Classic parity credit; actual decoded room effects, ownership domains, and Classic exit traps retain their gameplay owners."
+  ],
+  "nahr8480Exhaustion": {
+    "assertion": "npc.native-combat-message-8480",
+    "result": "remains UNKNOWN",
+    "nativeUpdaterRecord": "wccupda2.dat page 12006 carries legacy monster id 1006 and exactly matches all five Nahr attack arrays, but contains no miss verb or body-part/weapon strings before the next monster record begins on page 12007.",
+    "checkedSources": [
+      "native WCC updater monster record",
+      "WCCMMUD DLL strings and disassembly",
+      "MMExplorer data-v1.11n.mdb",
+      "retained OmniVerse WCC record",
+      "same-hit-message relationship consensus"
+    ],
+    "reason": "No source supplies the five caller-owned argument pairs. Hit message 8453 has conflicting decoded pairs on other attacks, and the remaining hit IDs have no bound pair. No prose is inferred."
+  },
+  "parityPromotion": {
+    "assertion": "native.reforged-extension-boundaries",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The known boundaries are now represented by one executable authority and smoke-tested across Classic, Custom, and AI admission. The promotion remains STRONG because native save/catalog compatibility and future surface classification are still open."
+  },
+  "remainingExactUnknowns": [
+    "native MajorMUD save byte and version compatibility",
+    "native catalog byte and version compatibility",
+    "classification of future gameplay surfaces not yet covered by retained evidence"
+  ]
+}

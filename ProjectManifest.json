@@ -26,10 +26,10 @@
       "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0139 local runtime cohesion is closed into the local baseline. CodeUpdate0140 repository cleanup and imported/reference evidence archival is applied locally: loose ImportedDatabases/Evidence content is retired from Git, required proof anchors are promoted into Librarium, generated Data/Classic remains untracked, runtime saves are realm-scoped under Classic/Custom/Host roots, and current-health validation passes locally where tooling is available. GitHub Actions is pending until the pushed commit is confirmed green.",
-    "lastUpdateName": "CodeUpdate0140-RepositoryCleanupImportedEvidenceArchive",
+    "milestone2Status": "CodeUpdate0140 remains the local baseline. PASS 49 / update 0320 proves ordinary Classic death preserves experience exactly and recovers the final-reroll retention formula. Final replacement-character transfer remains disconnected, so the assertion is STRONG. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "lastUpdateName": "CodeUpdate0140-Pass49-ClassicDeathExperience",
     "nextRecommendedWork": [
-      "Push CodeUpdate0140 when approved.",
+      "Review and commit the cumulative PASS 43-49 CodeUpdate0140 continuation when approved.",
       "Wait for green GitHub Actions.",
       "Begin the next approved public update only after the gate is green or explicitly overridden."
     ]
@@ -52,9 +52,9 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_PASS; remoteactions pass 139/139 invocations and 85/85 signatures; spell/status closure passes 1,350 spells, 105 decoded ability IDs, and 111 status effects; economy/service closure passes 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services; 3,467 verified WCCTEXT2 payloads are canonical Librarium data and cleanly regenerate into one runtime file. Classic compile passes at 30 families / 101,731 objects / 35 files; server build, F10 payload/complete dialogue audits, and interaction/narrative smoke pass. GitHub Actions must regenerate Data/Classic from Librarium because generated data is not tracked.",
+  "buildVerification": "LOCAL_PASS_THROUGH_PASS49_EXCEPT_PYTHON_UNAVAILABLE; full solution Release build passes with 0 warnings/errors; compiler regression passes with 104,911 records across 47 families; Classic generation passes with 103,330 objects across 36 families and 41 files; focused PASS31, PASS39, and PASS43-49 smokes pass; core/server smoke passes 17/17. Python validators remain unavailable because no interpreter is registered. GitHub Actions must regenerate Data/Classic from Librarium because generated data is not tracked.",
   "current_codeupdate": "0140",
-  "last_update": "Repository cleanup and imported evidence archive local update",
+  "last_update": "PASS 49 Classic death experience local update",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -93,7 +93,7 @@
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Imported/reference databases and raw evidence are local-only archival material after approved cleanup. Retain Archive/ImportedDatabasesAndEvidence.LocalOnly.rar locally for future decode, provenance, or source-retirement audits; do not commit loose ImportedDatabases/Evidence contents.",
   "savePolicy": "Runtime saves are realm-scoped. Classic realm state lives under Saves/Classic, custom realm state lives under Saves/Custom/<realm>, host account credential state lives under Saves/Host, and one login may keep up to three characters per world.",
-  "updatedUtc": "2026-08-25T00:00:00Z",
+  "updatedUtc": "2026-08-29T00:00:00Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited or committed as canonical source. Clean validation environments regenerate /Data from Librarium before runtime bootstrap.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

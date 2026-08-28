@@ -1,0 +1,44 @@
+{
+  "schema": "majormud.classic-native-help-boundary-evidence.v1",
+  "pass": 46,
+  "update": "0317",
+  "target": "native.help-reference",
+  "policy": "Promote the complete native help corpus and generated runtime projection to STRONG while keeping unresolved native resolver and presentation behavior fail-closed.",
+  "source": {
+    "path": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "sha256": "1072ffaafcd134c9a47ae0a36835cd5cb78c09332d60a00ae47766a12b073800",
+    "catalog": "WCCMMHLP.mcv",
+    "nonemptyRecordCount": 263,
+    "mainRecordCount": 1,
+    "titleBodyPairCount": 131
+  },
+  "generatedProjection": {
+    "path": "Data/Classic/native_help.json",
+    "recordCount": 132,
+    "mainRecordCount": 1,
+    "topicRecordCount": 131,
+    "authority": "Librarium",
+    "manualDataEdits": false
+  },
+  "runtime": {
+    "owner": "RuntimeMajorMudNativeHelpCatalog",
+    "readsGeneratedDataOnly": true,
+    "exactMainAliases": "PASS-narrow",
+    "uniqueExactKeywordResolution": "STRONG",
+    "unknownBehaviorFailsClosed": true
+  },
+  "parityPromotion": {
+    "assertion": "native.help-reference",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Every retained WCCMMHLP record is now preserved as a compiler-generated runtime record and consumed without direct Librarium access. The original search and presentation dispatcher is not recovered, so exact parity is not claimed."
+  },
+  "remainingExactUnknowns": [
+    "HELP TOPICS exact list rendering and ordering",
+    "prefix and fuzzy matching",
+    "ambiguity precedence",
+    "formatting and pagination",
+    "textblock linkage",
+    "permission filtering"
+  ]
+}

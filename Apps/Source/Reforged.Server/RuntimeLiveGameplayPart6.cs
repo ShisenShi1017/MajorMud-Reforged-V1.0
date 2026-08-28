@@ -34,17 +34,13 @@ public sealed partial class RuntimeLiveGameplayFacade
             "character" => RenderCharacterMenu(session),
             "wealth" => RenderWealth(session),
             "list" => RenderServiceInventory(session),
-            "trade" when IsClassicWorld(session) => "Unknown command.",
-            "repair" when IsClassicWorld(session) => "Unknown command.",
+            "trade" when !RuntimeClassicExtensionBoundaryAuthority.IsCommandAvailable(session.World.Definition.Type, command.Name) => "Unknown command.",
+            "repair" when !RuntimeClassicExtensionBoundaryAuthority.IsCommandAvailable(session.World.Definition.Type, command.Name) => "Unknown command.",
             "trade" => ExecuteDirectTrade(session, command),
             "buy" or "sell" or "repair" or "train" or "tat" or "stats" => ExecuteGeneratedServiceTransaction(session, command),
             _ => _policyGateway.Execute(session, command)
         };
     }
-
-
-    private static bool IsClassicWorld(RuntimeSession session) =>
-        session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
 
     private string RenderServicesHere(RuntimeSession session)
     {

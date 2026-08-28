@@ -70,11 +70,11 @@ public static class RuntimeClassicRegenerationEvidenceRegistry
             "No retained exact native scheduler callsite proves phase/order.")
     ];
 
-    public const bool GameplayFormulaCorrected = true;
-    public const bool StockMajorMudBranchSelected = true;
-    public const bool ExactHostPhaseResolved = false;
-    public const bool ExactMeditateResponseResolved = false;
-    public const bool ExactStatusCleanupOrderingResolved = false;
+    public static readonly bool GameplayFormulaCorrected = true;
+    public static readonly bool StockMajorMudBranchSelected = true;
+    public static readonly bool ExactHostPhaseResolved = false;
+    public static readonly bool ExactMeditateResponseResolved = false;
+    public static readonly bool ExactStatusCleanupOrderingResolved = false;
 
     public static IReadOnlyList<string> Validate()
     {

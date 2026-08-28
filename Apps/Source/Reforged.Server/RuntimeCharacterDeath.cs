@@ -16,6 +16,10 @@ public static class RuntimeCharacterDeathMarkers
     public const string RecoveredAtUtc = "character.death.recovered_at_utc";
     public const string RecoveredRootItems = "character.death.recovered_root_items";
     public const string RecoveredGold = "character.death.recovered_gold";
+    public const string ExperienceBefore = "character.death.experience_before";
+    public const string ExperienceAfter = "character.death.experience_after";
+    public const string ExperienceLost = "character.death.experience_lost";
+    public const string ExperiencePolicy = "character.death.experience_policy";
 }
 
 public sealed record RuntimeCharacterDeathTransition(
@@ -101,6 +105,11 @@ public static class RuntimeCharacterDeathResolver
         var snapshot = engine.Snapshot(0, state.ActiveItemState);
         var eventId = "death." + Guid.NewGuid().ToString("N");
         var semantic = character.SemanticState ?? RuntimeCharacterSemanticState.Empty;
+        var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
+        if (currentLives <= 0) throw new InvalidOperationException("Character has no lives remaining.");
+        var ordinaryDeathExperience = currentLives > 1
+            ? RuntimeClassicDeathExperienceAuthority.PreserveOrdinaryDeathExperience(character.Experience, currentLives)
+            : null;
         var markers = new Dictionary<string, string>(semantic.RuntimeMarkers, StringComparer.OrdinalIgnoreCase)
         {
             [RuntimeCharacterDeathMarkers.State] = DeadState,
@@ -113,6 +122,20 @@ public static class RuntimeCharacterDeathResolver
             [RuntimeCharacterDeathMarkers.RetainedRootItems] = retainedIds.Count.ToString(System.Globalization.CultureInfo.InvariantCulture),
             [RuntimeCharacterDeathMarkers.Evidence] = EvidenceClassification
         };
+        if (ordinaryDeathExperience is not null)
+        {
+            markers[RuntimeCharacterDeathMarkers.ExperienceBefore] = ordinaryDeathExperience.ExperienceBefore.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            markers[RuntimeCharacterDeathMarkers.ExperienceAfter] = ordinaryDeathExperience.ExperienceAfter.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            markers[RuntimeCharacterDeathMarkers.ExperienceLost] = ordinaryDeathExperience.ExperienceLost.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            markers[RuntimeCharacterDeathMarkers.ExperiencePolicy] = ordinaryDeathExperience.Classification;
+        }
+        else
+        {
+            markers.Remove(RuntimeCharacterDeathMarkers.ExperienceBefore);
+            markers.Remove(RuntimeCharacterDeathMarkers.ExperienceAfter);
+            markers.Remove(RuntimeCharacterDeathMarkers.ExperienceLost);
+            markers.Remove(RuntimeCharacterDeathMarkers.ExperiencePolicy);
+        }
         markers.Remove(RuntimeCharacterDeathMarkers.RespawnedAtUtc);
         markers.Remove(RuntimeCharacterDeathMarkers.RespawnRoomId);
         markers.Remove(RuntimeCharacterDeathMarkers.RecoveredAtUtc);
@@ -120,8 +143,6 @@ public static class RuntimeCharacterDeathResolver
         markers.Remove(RuntimeCharacterDeathMarkers.RecoveredGold);
 
         var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase);
-        var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(character);
-        if (currentLives <= 0) throw new InvalidOperationException("Character has no lives remaining.");
         conditions["lives"] = Math.Max(0, currentLives - 1).ToString(System.Globalization.CultureInfo.InvariantCulture);
 
         var defeated = RuntimeCharacterFlagResolver.Set(

@@ -1,3 +1,30 @@
+## Pass 49 / Update 0320 - Classic death experience correction
+
+- Promotes `character.death-xp-loss-exact` from UNKNOWN to STRONG.
+- Proves from native `_check_kill_user` that ordinary non-final death preserves experience exactly.
+- Recovers final-death/reroll retention from `_save_permanent_info`: `max(stock half-level threshold + 1, floor(total XP / 10))` when both KEEPEXP gates are enabled above level 1; otherwise zero.
+- Corrects the old 10%-ordinary-death hypothesis and proves the recovered routine contains no 2,000,000 cap.
+- Records zero ordinary-death XP loss in the live death transition while keeping final-character replacement/retained-XP transfer gated.
+- Parity: **97 PASS / 90 STRONG / 13 UNKNOWN = 200** (48.5% strict / 93.5% evidence-backed).
+
+## Pass 48 / Update 0319 - Classic extension boundary
+
+- Promotes `native.reforged-extension-boundaries` from UNKNOWN to STRONG.
+- Centralizes Classic admission for known Reforged-only TRADE and REPAIR surfaces while preserving them for Custom/AI worlds.
+- Separates generic Reforged RNG, hazard, container, and trap infrastructure from decoded/native Classic gameplay owners.
+- Keeps native MajorMUD save/catalog byte compatibility and future unclassified surfaces unresolved.
+- Exhausts the Nahr message 8480 updater/DLL/MDB/reference trail without inventing the five missing argument pairs.
+- Parity: **97 PASS / 89 STRONG / 14 UNKNOWN = 200** (48.5% strict / 93.0% evidence-backed).
+
+## Pass 47 / Update 0318 - Classic native player-command boundary
+
+- Promotes `commands.native-player-command-table` from UNKNOWN to STRONG.
+- Compiles 61 unique WCCMMHLP command-summary identities plus BROADCAST and BROADGANG into 63 generated Classic command records.
+- Proves all 63 documented full-name inputs resolve through the live parser.
+- Proves only the explicit native aliases BS, BR, and BG; other compatibility aliases receive no native parity claim.
+- Keeps native minimum prefixes, ambiguity precedence, hidden dispatcher entries, and exact argument-parser ordering unresolved.
+- Parity: **97 PASS / 88 STRONG / 15 UNKNOWN = 200** (48.5% strict / 92.5% evidence-backed).
+
 ## CodeUpdate0313 - Classic world-rules/configuration boundary
 
 - Promotes `native.world-rules-configuration` from UNKNOWN to STRONG.
@@ -47,6 +74,13 @@
 - Added Pass 37 evidence registry, smoke route, focused static validation, and cumulative current-ledger regression updates.
 
 # Changelog
+
+## Classic native help parity continuation
+
+- Incorporated the PASS 43-45 MajorMUD Plus event, party coordination, and Classic trap evidence boundaries.
+- Added compiler-generated native help data for all 263 retained WCCMMHLP records.
+- Switched runtime native help loading from Librarium evidence to generated `Data/Classic/native_help.json`.
+- Promoted `native.help-reference` from UNKNOWN to STRONG while leaving unresolved resolver and presentation behavior fail-closed.
 
 ## CodeUpdate0307 / Pass 36 — Classic character modifier-order verification
 

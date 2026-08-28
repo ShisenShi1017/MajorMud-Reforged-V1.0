@@ -1,3 +1,19 @@
+# Pass 49 - Classic death experience
+
+Native WCCMMUD disassembly corrects the prior death-XP hypothesis. Ordinary non-final death preserves experience exactly. The 10% calculation belongs to final-death/reroll retention, which keeps the greater of floor(total XP / 10) and the stock half-level threshold plus one when global and player KEEPEXP are enabled above level one; otherwise it retains zero. No 2,000,000 cap exists in the recovered routine.
+
+The live ordinary-death resolver now records the exact zero-loss result. Final-character replacement and retained-XP transfer remain disconnected, so this assertion is STRONG rather than PASS.
+
+Parity: **97 PASS / 90 STRONG / 13 UNKNOWN = 200** - **48.5% strict / 93.5% evidence-backed**.
+
+# Pass 48 - Classic extension boundary
+
+Known stock-versus-Reforged gameplay boundaries now share one executable authority. Classic rejects direct TRADE escrow and generated REPAIR, while Custom/AI retain those extension surfaces. Generic Reforged infrastructure receives no Classic parity credit, and native save/catalog compatibility remains unresolved.
+
+The Nahr message 8480 updater/DLL/MDB/reference trail was also exhausted. No source supplies its five missing argument pairs, so the assertion remains UNKNOWN without guessed prose.
+
+Parity: **97 PASS / 89 STRONG / 14 UNKNOWN = 200** - **48.5% strict / 93.0% evidence-backed**.
+
 # Pass 42 — Classic world-rules/configuration boundary
 
 Pass 42 promotes the broad Classic configuration ownership boundary to STRONG. Native `WCCMMUD.mcv` evidence retains 44 exact setup prompts/defaults, while Reforged continues to use its own configuration and does not ship/read/write `WCCMMUD.INI`. Six exact defaults are already connected to live Classic runtime owners. Exact remaining ranges, per-setting live/restart semantics, and unmapped setting effects remain evidence-gated.
@@ -35,6 +51,10 @@ Native HELP directly confirms the 20-second uninterrupted activation boundary an
 Parity after Pass 37: **97 PASS / 78 STRONG / 25 UNKNOWN = 200** (48.5% strict / 87.5% evidence-backed).
 
 # Release Notes
+
+## Classic parity continuation
+
+The local parity baseline now includes the PASS 43-45 evidence boundaries and a compiler-owned Classic native-help projection. All 131 retained WCCMMHLP topics are available through generated runtime data. Exact native topic-list rendering and non-exact search behavior remain intentionally unresolved.
 
 ## CodeUpdate0307 - Classic character modifier-order verification
 

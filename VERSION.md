@@ -4,6 +4,9 @@
 - Current Database Version: `0010`
 - Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
 - Current baseline: CodeUpdate0139 runtime cohesion is closed locally; CodeUpdate0140 repository cleanup and imported/reference evidence archival is ready for commit/push.
+- Current parity continuation: PASS 49 / update 0320; 97 PASS / 90 STRONG / 13 UNKNOWN = 200 (48.5% strict / 93.5% evidence-backed).
+- Classic death-experience boundary: ordinary non-final death preserves XP exactly. Final-death/reroll retention is recovered but remains gated until the replacement-character consumer is connected.
+- Native command projection: 63 documented WCCMMHLP player-command inputs and explicit BS/BR/BG aliases compile into generated Classic data and resolve through the live parser; undocumented native prefix/precedence behavior remains open.
 - Economy/service closure: local PASS for 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services.
 - Spell/status closure: local PASS for 1,350/1,350 spells, 105/105 decoded ability IDs, and 111/111 status effects with zero unclassified records.
 - Remoteaction closure: local PASS for all 139 decoded invocations / 85 signatures; 85 executable generated contracts and 0 unresolved or evidence-gated signatures.

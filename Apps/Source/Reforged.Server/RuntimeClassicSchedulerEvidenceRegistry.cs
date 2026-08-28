@@ -77,12 +77,12 @@ public static class RuntimeClassicSchedulerEvidenceRegistry
             "No retained native trace proves this cross-owner admission rule.")
     ];
 
-    public const bool UniversalTenSecondGameplayPhasePromoted = false;
-    public const bool ExactSameCycleOrderingResolved = false;
-    public const bool ExactHostPhaseResolved = false;
-    public const bool ExactBackgroundCadenceResolved = false;
-    public const bool ExactNpcPlayerFirstOrderingResolved = false;
-    public const bool ExactSpawnNextTickActionResolved = false;
+    public static readonly bool UniversalTenSecondGameplayPhasePromoted = false;
+    public static readonly bool ExactSameCycleOrderingResolved = false;
+    public static readonly bool ExactHostPhaseResolved = false;
+    public static readonly bool ExactBackgroundCadenceResolved = false;
+    public static readonly bool ExactNpcPlayerFirstOrderingResolved = false;
+    public static readonly bool ExactSpawnNextTickActionResolved = false;
 
     public static IReadOnlyList<string> Validate()
     {

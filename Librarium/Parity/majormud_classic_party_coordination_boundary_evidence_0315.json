@@ -1,0 +1,135 @@
+{
+  "schema": "majormud.classic-party-coordination-boundary-evidence.v1",
+  "update": "0315",
+  "pass": 44,
+  "target": "native.party-coordination",
+  "policy": "Exact native help/captured behavior may be PROVEN; retained native-era/runtime correlation may be STRONG; user gameplay reports are hypotheses unless independently supported; unresolved exact state ordering remains UNKNOWN.",
+  "nativeHelp": [
+    {
+      "messageNumber": 27,
+      "label": "party summary",
+      "symbol": "HL1B9",
+      "sha256": "c9557d45807d70cfea3e117b2151d060d8220d37ca67a7ab67cf5b408deda610",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claimText": "\u001b[0m\u001b[2J\u001b[1;33mInvite     Uninvite    Party     Join    Backrank   Frontrank\r\r\u001b[37mInvite <USERNAME>   \u001b[0m- Will invite someone into your adventuring group.\r\u001b[1mUninvite <USERNAME> \u001b[0m- Will kick someone out of your adventuring group.\r\u001b[1mJoin <USERNAME>     \u001b[0m- Allows you to join another user, but ONLY if he/she\r                      has already invited you.\r\u001b[1mLeave               \u001b[0m- Pretty straightforward.\r\u001b[1mParty               \u001b[0m- Will display who is in your adventuring group, and what\r                      ranks they are in.\r\u001b[1mBackrank            \u001b[0m- If you are in someone's adventuring group, this will\r                      put you into the back rank. You will be harder to hit\r                      in combat, but will also have a harder time hitting\r                      opponents with close combat attacks. Great for magic\r                      users casting ranged spells, or players with missile\r                      weapons.\r\u001b[1mFrontrank           \u001b[0m- Will place you into the frontrank, if a spot is currently\r                      available. At least the same amount of users must be in the front\r                      rank as the back. You will have an easier time hitting opponents,\r\t\t      but will get hit easier as well.\t\t      \r"
+    },
+    {
+      "messageNumber": 147,
+      "label": "follow mode core",
+      "symbol": "HL1B62",
+      "sha256": "2887b4f9cc3379a102d66f5e4b6eb9ba0788eaeea04b1c3693f23e5ff28dc054",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claimText": "\nTo join a party, first you must be invited by the leader (with the INVITE \ncommand).  Once you have been invited, you may type FOLLOW <username> to\nstart following that person.  While following you will move where they move\nand will show up in their PARTY command.\r\nTo stop following, you may type LEAVE, your leader may type UNINVITE <you>,\nor you may exit the game.\r"
+    },
+    {
+      "messageNumber": 153,
+      "label": "follow BLIND/NORMAL",
+      "symbol": "HL1B65",
+      "sha256": "d2511cf2fb1475935d30d29e70cb148dbb3c8677ced07be6564f85707ca77329",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claimText": "\nThere are two types of following, BLIND and NORMAL.  If you are following \r'BLIND', then you will not see any room descriptions as you move with\nyour party.  If you are following 'NORMAL', then you will see all the \nroom descriptions normally as you move.\r\nSyntax:\r\nSET FOLLOW BLIND\nSET FOLLOW NORMAL\r"
+    },
+    {
+      "messageNumber": 217,
+      "label": "LEAVE",
+      "symbol": "HL1B92",
+      "sha256": "fb2c7a9e2eb1cca7b6873c1641b75accb35077f8f7e5f897f7f9460519a780d9",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claimText": "\nThe leave command does a number of things depending on its use:\r\nYou can leave a party which you are following by typing LEAVE.\r\nYou can leave your broadcast group and switch to group 0 (no group)\nby typing LEAVE when you are not in a party.\r\nYou can leave a gang by typing LEAVE GANG.\r"
+    },
+    {
+      "messageNumber": 227,
+      "label": "SHARE",
+      "symbol": "HL1B97",
+      "sha256": "458c5db394ccc29b75876003b99892f2c6212f9409b0474f026dad9b5a343bd1",
+      "source": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+      "claimText": "\nThe SHARE command is used to share a certain amount of a currency\nwith either the members of your party or everyone in the room.  \nThe syntax of the command is:\r\nSHARE <amount> <currency> [WITH <ROOM/PARTY>]\r\nIf you do not specify WITH ROOM or WITH PARTY, then PARTY is assumed.\r\nIf the amount you are sharing does not divide evenly among the people\nin the room/party, then you will be left with the remainder.  In other\nwords, if you SHARE 5 GOLD and there are only 2 people other than yourself\nin your party, each will receive 2 gold and you will be left with 1.\r\nIf you attempt to SHARE with anyone who is hidden or has their RECEIVE\nset off, then they will not be included in the receipts of your sharing.\r"
+    }
+  ],
+  "strongCorrelations": [
+    {
+      "id": "party.maximum-size",
+      "state": "STRONG",
+      "claim": "Classic party capacity is six total characters including the leader.",
+      "source": "Librarium/Parity/majormud_experience_party_reward_evidence_0295.json",
+      "runtime": "RuntimePartyPolicy.ClassicStrongEvidence.MaximumMembers=6"
+    },
+    {
+      "id": "party.reward-boundary",
+      "state": "STRONG",
+      "claim": "NPC XP is awarded to active combatants rather than by party membership; monster currency is not automatically party-split; SHARE is the explicit manual currency distribution path.",
+      "sources": [
+        "Librarium/Parity/majormud_combat_xp_sharing_evidence_0294.json",
+        "Librarium/Parity/majormud_experience_party_reward_evidence_0295.json"
+      ]
+    },
+    {
+      "id": "party.keyed-door-composition",
+      "state": "STRONG",
+      "claim": "Follower movement is resolved after the leader move and traverses the resulting door state. This supports the observed leader-opens/followers-pass case without inventing a party-wide key ownership transfer.",
+      "runtime": [
+        "RuntimeCommandSystem movement follower path",
+        "RuntimeLivingWorldCompletion door/key traversal state"
+      ],
+      "caveat": "No separate native party-key-sharing primitive is claimed."
+    }
+  ],
+  "operatorHypotheses": [
+    {
+      "claim": "When a multi-member party leader leaves, the party disbands.",
+      "status": "HYPOTHESIS_PENDING_NATIVE_PROOF"
+    },
+    {
+      "claim": "Quest commands are actor-local; party membership does not automatically grant quest command credit.",
+      "status": "HYPOTHESIS_PENDING_NATIVE_PROOF"
+    },
+    {
+      "claim": "Death creates the dead character death pile and does not impose a native party wait timer.",
+      "status": "HYPOTHESIS_PENDING_NATIVE_PROOF_FOR_PARTY_MEMBERSHIP_EDGE"
+    },
+    {
+      "claim": "Unexpected disconnect does not impose a native party wait timer; MegaMUD wait behavior is client-side.",
+      "status": "MEGAMUD_WAIT_EXCLUDED_FROM_NATIVE_POLICY; exact membership cleanup still UNKNOWN"
+    },
+    {
+      "claim": "Ordinary room/teleport commands must be issued by each character unless the specific spell/script explicitly has party/area semantics.",
+      "status": "HYPOTHESIS_WITH_NATIVE_RECORD_EXCEPTIONS_TO_BE_PROVEN_INDIVIDUALLY"
+    },
+    {
+      "claim": "PvP room offensive spells exclude the caster party.",
+      "status": "HYPOTHESIS_PENDING_NATIVE_PVP_SPELL_PROOF"
+    }
+  ],
+  "runtimeBoundary": {
+    "alreadyLive": [
+      "invite/join/follow/leave follower shell",
+      "directional follower movement",
+      "front>=back rank invariant",
+      "SET FOLLOW BLIND/NORMAL room-description behavior",
+      "six-member strong-evidence cap",
+      "manual SHARE distribution",
+      "no generic MegaMUD wait timer in the Classic party service"
+    ],
+    "failClosed": [
+      "multi-member leader LEAVE still returns party-leader-leave-native-unknown",
+      "unexpected disconnect membership cleanup is not inferred from session absence",
+      "exact death membership cleanup is not invented",
+      "special teleport/resurrection/PvP room-spell propagation requires subsystem-specific evidence"
+    ]
+  },
+  "parityPromotion": {
+    "assertion": "native.party-coordination",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The broad party shell now has exact native help for command/follow/rank/share behavior plus retained STRONG capacity/reward correlations and an evidence-gated runtime that refuses unresolved cross-subsystem edges."
+  },
+  "remainingExactUnknowns": [
+    "multi-member leader LEAVE/disband state ordering and exact text",
+    "leader/default rank edge cases and exact Frontrank slot formula",
+    "unexpected linkdead/disconnect membership cleanup",
+    "death membership cleanup ordering",
+    "special teleport/resurrection propagation",
+    "PvP room-spell party exclusion and exact target admission",
+    "exact party-full and remaining party command rendering"
+  ]
+}

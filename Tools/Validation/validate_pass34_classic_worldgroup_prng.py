@@ -103,7 +103,7 @@ req('do not substitute the Reforged xorshift multi-stream service for Classic na
 req(any('gameplay draw/mutation ordering' in x for x in catalog.get('nativeDependencies',[])),'catalog-pull-order-unknown')
 
 systems={s['id']:s for s in registry['systems']}
-req(registry.get('updatedByPass') in {'Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'registry-pass34')
+req(registry.get('updatedByPass') in {'Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'registry-pass34')
 gr=systems['global-rng']
 req(gr.get('status') in {'classic-native-core-proven-gameplay-call-order-bounded','classic-native-core-and-direct-call-boundary-proven-gameplay-call-order-bounded'},'registry-rng-status')
 req(gr.get('classicPrng0305',{}).get('multiplier')=='0x015A4E35','registry-rng-multiplier')
@@ -125,7 +125,7 @@ req(abs(score['StrictPercent']-48.2)<0.01,'score-strict-48.2')
 req(abs(score['EvidenceBackedPercent']-86.4)<0.01,'score-evidence-86.4')
 cat={c['Category']:c for c in score['Categories']}
 req((cat['Host / Persistence / Worldgroup']['Pass'],cat['Host / Persistence / Worldgroup']['Strong'],cat['Host / Persistence / Worldgroup']['Unknown'],cat['Host / Persistence / Worldgroup']['Total'])==(3,1,4,8),'score-host-category')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 
 # Prior pass behavior and compile-regression safeguards remain intact.
 req('MaximumPvpLevelDifference = 100' in text('Apps/Source/Reforged.Server/RuntimeClassicConfigurationAuthority.cs'),'pass33-pvp-default-preserved')

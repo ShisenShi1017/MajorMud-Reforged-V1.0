@@ -1,5 +1,9 @@
 # AI Context for Reforged
 
+- PASS 49 / update 0320 is the current local parity continuation. Native WCCMMUD corrects the old death-XP hypothesis: ordinary non-final death preserves XP exactly. Final-death/reroll retention, not ordinary death, owns the 10% calculation and keeps the greater of floor(total XP / 10) and the stock half-level threshold plus one when global/player KEEPEXP are enabled above level 1; otherwise it keeps zero. No 2,000,000 cap exists. Ordinary death is live; final-character replacement/retained-XP transfer remains disconnected, so the assertion is STRONG rather than PASS. Current parity is 97 PASS / 90 STRONG / 13 UNKNOWN = 200 (48.5% strict / 93.5% evidence-backed). Full solution Release build, compiler regression, Classic generation, focused PASS31/PASS39/PASS43-49 smokes, and core/server smoke 17/17 pass locally; Python validation is unavailable because no interpreter is registered.
+
+- PASS 48 / update 0319 is the previous local parity continuation. It centralized known stock-versus-Reforged boundaries and recorded 97 PASS / 89 STRONG / 14 UNKNOWN = 200 (48.5% strict / 93.0% evidence-backed).
+
 - `SYSOP LIST LIMITED` is live under user-confirmed semantics: limited definitions appear only when an actual instance exists, and output identifies its room or owning runtime domain. Persistent character-held instances and living-world ground instances form the current authoritative index; duplicate instance IDs are collapsed.
 
 - Gang-house generated authority now contains 57 exact locations: the existing 20 service rooms plus 37 additional native WCC `.HSE` interiors. Ten `.HSE` rooms overlap stronger service bindings and do not override them. Movement into any generated house room requires membership in the persistently owning gang, implementing the decoded guardian boundary without relying on map art.

@@ -108,7 +108,7 @@ req(score.get('PassCount')==76 and score.get('StrongCount')==76 and score.get('U
 req(score.get('ScoredRequirementCount')==180,'score-total-180')
 req(abs(score.get('StrictPercent',0)-42.2)<0.01,'score-strict-42.2')
 req(abs(score.get('EvidenceBackedPercent',0)-84.4)<0.01,'score-evidence-84.4')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger-0300')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger-0300')
 
 # Recent compile/regression fixes must remain fixed.
 bundle_d=text('Apps/Source/Reforged.Server/RuntimeBundleDRemainingExhaustionAudit.cs')

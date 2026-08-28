@@ -104,7 +104,7 @@ req('no-gameplay-formula-change' in smoke,'smoke-no-formula-change')
 req('--smoke-pass36-character-modifier-order-verification' in program,'pass36-smoke-cli')
 req('RuntimePass36CharacterModifierOrderVerificationSmokeReport.Run()' in program,'pass36-smoke-run')
 req(program.count('--smoke-pass36-character-modifier-order-verification')==1,'pass36-smoke-cli-single')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 req('majormud_parity_assertions_0306.json' not in audit,'runtime-audit-old-ledger-retired')
 
 # The pass documentation must explicitly preserve the evidence boundary.
@@ -127,7 +127,7 @@ req('SpellRoundSeconds = RuntimeClassicTimingAuthority.SpellSystemRoundSeconds' 
 protected={
  'Apps/Source/Reforged.App/App.xaml.cs':'7859f07246d9891f83b3c1c99fadd332ef514c5cc4ee59dc90276a1c11e5f397',
  'Apps/Source/Reforged.App/MainWindow.xaml.cs':'4bfb84db25a6798780d76300a7f4f58dd63d3ebeaec035b4a1eaf266aefc325b',
- 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'76d6dab9d3c1384bdbe2d6bd7c7c9464ea3c99130221cbbdf1ec36bcd7d86731',
+ 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'f39861f8f2cf00d8641f694b7f2a022353a00b48782aba0b3bd6575cb5aaede8',
  'Apps/Source/Reforged.App/ViewModels/BorinForgeViewModel.cs':'51c6558509d2b7b08605803cb8137ff094d1d79f797f76e707de1192094f3cc9',
  'Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs':'7368ef1919c30ae89b35d04ae6d8c364dfb30c4d241fe0c9df8541494289a52a',
  'Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs':'6233ccb692a7088ddfb5aab20f2144ba8fc9657ad672fafa87aba6a9ae9da791',

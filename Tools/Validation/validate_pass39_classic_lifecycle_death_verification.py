@@ -76,7 +76,7 @@ for bad in ['2000000','2_000_000','/ 10','* 0.10','0.10','Level < 10','Level <= 
 req('--smoke-pass39-classic-lifecycle-death-verification' in program,'pass39-smoke-cli')
 req('RuntimePass39ClassicLifecycleDeathVerificationSmokeReport.Run()' in program,'pass39-smoke-run')
 req(program.count('--smoke-pass39-classic-lifecycle-death-verification')==1,'pass39-smoke-cli-single')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 req('majormud_parity_assertions_0309.json' not in audit,'runtime-audit-prior-retired')
 
 # Exactly one assertion promotion from Pass38 to Pass39.
@@ -103,7 +103,7 @@ cat={c['Category']:c for c in score['Categories']}
 cc=cat['Character & Status']
 req((cc['Pass'],cc['Strong'],cc['Unknown'],cc['Total'])==(24,18,4,46),'character-category-counts')
 req(abs(cc['EvidenceBackedPercent']-91.3)<0.01,'character-category-evidence-91.3')
-req(remain.get('updatedByPass') in {'Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'remaining-registry-update')
+req(remain.get('updatedByPass') in {'Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'remaining-registry-update')
 
 # Documentation states the confidence boundary, not the screenshot as truth.
 for token in ['UNKNOWN -> STRONG','ActionDelay = WeaponSpeed','rejected','character.death-xp-loss-exact','remains **UNKNOWN**','97 PASS / 80 STRONG / 23 UNKNOWN = 200','Worldgroup host plumbing']:
@@ -113,7 +113,7 @@ for token in ['UNKNOWN -> STRONG','ActionDelay = WeaponSpeed','rejected','charac
 protected={
  'Apps/Source/Reforged.App/App.xaml.cs':'7859f07246d9891f83b3c1c99fadd332ef514c5cc4ee59dc90276a1c11e5f397',
  'Apps/Source/Reforged.App/MainWindow.xaml.cs':'4bfb84db25a6798780d76300a7f4f58dd63d3ebeaec035b4a1eaf266aefc325b',
- 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'76d6dab9d3c1384bdbe2d6bd7c7c9464ea3c99130221cbbdf1ec36bcd7d86731',
+ 'Apps/Source/Reforged.App/Brains/BorinHeadlessTrainingService.cs':'f39861f8f2cf00d8641f694b7f2a022353a00b48782aba0b3bd6575cb5aaede8',
  'Apps/Source/Reforged.App/ViewModels/BorinForgeViewModel.cs':'51c6558509d2b7b08605803cb8137ff094d1d79f797f76e707de1192094f3cc9',
  'Apps/Source/Reforged.App/Services/CustomWorldSimpleFormCatalog.cs':'7368ef1919c30ae89b35d04ae6d8c364dfb30c4d241fe0c9df8541494289a52a',
  'Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs':'6233ccb692a7088ddfb5aab20f2144ba8fc9657ad672fafa87aba6a9ae9da791',

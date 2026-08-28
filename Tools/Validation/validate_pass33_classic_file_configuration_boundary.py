@@ -114,10 +114,10 @@ req(abs(score['EvidenceBackedPercent']-86.2)<0.01,'score-evidence-86.2')
 cat={c['Category']:c for c in score['Categories']}
 req((cat['Import / Export / Limits / Recovery']['Pass'],cat['Import / Export / Limits / Recovery']['Unknown'],cat['Import / Export / Limits / Recovery']['Total'])==(2,2,4),'score-import-recovery-category')
 req((cat['Timers / Resets / World Rules']['Pass'],cat['Timers / Resets / World Rules']['Unknown'],cat['Timers / Resets / World Rules']['Total'])==(6,4,15),'score-worldrules-category')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 
 # Registry boundary.
-req(registry.get('updatedByPass') in {'Pass 33 / Update 0304','Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'registry-pass33')
+req(registry.get('updatedByPass') in {'Pass 33 / Update 0304','Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'registry-pass33')
 systems={s['id']:s for s in registry['systems']}
 req(systems['import-export-compatibility'].get('classicBoundary0304',{}).get('state')=='PASS','registry-import-boundary-pass')
 req(systems['world-rules-configuration'].get('classicConfiguration0304',{}).get('reforgedHasNativeIni') is False,'registry-no-ini')

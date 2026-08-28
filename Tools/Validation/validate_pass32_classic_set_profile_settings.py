@@ -112,11 +112,11 @@ req(abs(score['StrictPercent']-45.8)<0.01,'score-strict-45.8')
 req(abs(score['EvidenceBackedPercent']-85.4)<0.01,'score-evidence-85.4')
 cat=next(c for c in score['Categories'] if c['Category']=='Parties / Communication / Organizations')
 req((cat['Pass'],cat['Strong'],cat['Unknown'],cat['Total'])==(10,3,2,15),'score-communication-category')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-current-ledger')
 
 # Registry records the narrow closure and preserves remaining unknowns.
 systems={s['id']:s for s in registry['systems']}; comm=systems['communications']
-req(registry.get('updatedByPass') in {'Pass 32 / Update 0303','Pass 33 / Update 0304','Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313'},'registry-pass32')
+req(registry.get('updatedByPass') in {'Pass 32 / Update 0303','Pass 33 / Update 0304','Pass 34 / Update 0305','Pass 35 / Update 0306','Pass 37 / Update 0308','Pass 38 / Update 0309','Pass 39 / Update 0310','Pass 40 / Update 0311','Pass 41 / Update 0312','Pass 42 / Update 0313','Pass 43 / Update 0314','Pass 44 / Update 0315','Pass 45 / Update 0316'},'registry-pass32')
 req(comm.get('profileSettings0303',{}).get('state')=='PASS-narrow','registry-profile-pass-narrow')
 runk=' '.join(comm.get('profileSettings0303',{}).get('remainingUnknown',[])).lower()
 for token in ['telepath','receive','per-message','entrance','maxpages']:

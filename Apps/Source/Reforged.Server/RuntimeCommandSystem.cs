@@ -324,7 +324,7 @@ public sealed class RuntimeCommandDispatcher
             var registrations = session.World.CommandCatalog.Registrations;
             var names = registrations
                 .Where(r => !r.IsMovement && !IsDiagnosticCommand(r.Canonical) && !IsClientProtocolCommand(r.Canonical)
-                    && (!classicWorld || !IsClassicExtensionCommand(r.Canonical)))
+                    && RuntimeClassicExtensionBoundaryAuthority.IsCommandAvailable(session.World.Definition.Type, r.Canonical))
                 .Select(r => r.Canonical)
                 .Append("commands")
                 .Distinct(StringComparer.OrdinalIgnoreCase)
@@ -349,7 +349,7 @@ public sealed class RuntimeCommandDispatcher
         var registration = session.World.CommandCatalog.Registrations.FirstOrDefault(r =>
             string.Equals(r.Canonical, resolved.Name, StringComparison.OrdinalIgnoreCase));
         if (registration is null) return $"No help topic matches '{topic}'. Type HELP for the command list.";
-        if (session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase) && IsClassicExtensionCommand(registration.Canonical))
+        if (!RuntimeClassicExtensionBoundaryAuthority.IsCommandAvailable(session.World.Definition.Type, registration.Canonical))
             return $"No help topic matches '{topic}'. Type HELP for the command list.";
         if (IsClientProtocolCommand(registration.Canonical))
             return $"No help topic matches '{topic}'. Type HELP for the command list.";
@@ -369,8 +369,6 @@ public sealed class RuntimeCommandDispatcher
                $"Aliases: {aliases}" + Environment.NewLine +
                $"Category: {kind}";
     }
-
-    private static bool IsClassicExtensionCommand(string name) => name is "trade" or "repair";
 
     private static bool IsDiagnosticCommand(string name) => name is
         "audit" or "worldstate" or "world" or "worlds" or "sessions" or "state" or "events";

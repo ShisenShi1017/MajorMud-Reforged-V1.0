@@ -174,7 +174,7 @@ void ServerBootstrapSmoke()
         report.HostConfiguration.Port != 4000 ||
         report.HostConfiguration.MaxSessions != 64 ||
         report.HostConfiguration.WorldTickMilliseconds != 1000 ||
-        report.HostConfiguration.CombatTickMilliseconds != 6000)
+        report.HostConfiguration.CombatTickMilliseconds != 5000)
     {
         throw new InvalidOperationException("Server bootstrap did not attach expected runtime-enabled host configuration.");
     }
@@ -382,7 +382,7 @@ void ServerHostConfigurationAuditSmoke()
         report.Port != 4000 ||
         report.MaxSessions != 64 ||
         report.WorldTickMilliseconds != 1000 ||
-        report.CombatTickMilliseconds != 6000 ||
+        report.CombatTickMilliseconds != 5000 ||
         !report.GameplayEnabled ||
         !report.NetworkingEnabled ||
         !report.WorldSimulationEnabled)
@@ -564,10 +564,10 @@ void ServerRuntimeStateAndEventsSmoke()
     var host = new ServerRuntimeHost(root, options);
     host.Bootstrap();
 
-    if (host.State.Worlds.Count != 1 ||
-        host.State.Worlds.First().WorldId != "classic" ||
+    if (!host.State.Worlds.Any(world => world.WorldId.Equals("classic", StringComparison.OrdinalIgnoreCase)) ||
         host.Events.EventCount == 0 ||
-        !host.Events.Events.Any(item => item.Category == "world" && item.Name == "loaded"))
+        !host.Events.Events.Any(item => item.Category == "world" && item.Name == "loaded" &&
+            item.WorldId?.Equals("classic", StringComparison.OrdinalIgnoreCase) == true))
     {
         throw new InvalidOperationException("Runtime host did not publish world-loaded state/event records.");
     }
@@ -617,7 +617,7 @@ void ServerRuntimeStateAndEventsSmoke()
 
     var state = dispatcher.Dispatch(session, "state");
     var events = dispatcher.Dispatch(session, "events");
-    if (!state.Contains("Worlds=1", StringComparison.Ordinal) ||
+    if (!state.Contains($"Worlds={host.State.Worlds.Count}", StringComparison.Ordinal) ||
         !state.Contains("Sessions=1", StringComparison.Ordinal) ||
         !state.Contains("Characters=0", StringComparison.Ordinal) ||
         !events.Contains("movement.completed", StringComparison.Ordinal))

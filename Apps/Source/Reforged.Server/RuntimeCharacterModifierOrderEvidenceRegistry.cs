@@ -55,11 +55,11 @@ public static class RuntimeCharacterModifierOrderEvidenceRegistry
             "Conflicts with the promoted three-second spell/status round authority.")
     ];
 
-    public const bool GameplayFormulaChanged = false;
-    public const bool UniversalCrossCategoryOrderResolved = false;
-    public const bool GenericEquipmentPercentageStageResolved = false;
-    public const bool DiseaseCurseInjuryOrderingResolved = false;
-    public const bool HardStateStructMutationResolved = false;
+    public static readonly bool GameplayFormulaChanged = false;
+    public static readonly bool UniversalCrossCategoryOrderResolved = false;
+    public static readonly bool GenericEquipmentPercentageStageResolved = false;
+    public static readonly bool DiseaseCurseInjuryOrderingResolved = false;
+    public static readonly bool HardStateStructMutationResolved = false;
 
     public static IReadOnlyList<string> Validate()
     {

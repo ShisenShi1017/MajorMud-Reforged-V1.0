@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "phase": "remaining-systems",
-  "updatedByPass": "Pass 42 / Update 0313",
+  "updatedByPass": "Pass 49 / Update 0320",
   "systems": [
     {
       "id": "party-coordination",
-      "classification": "runtime-active-partially-exhausted",
+      "classification": "runtime-active-strong-boundary-exact-edges-open",
       "runtimeOwner": "RuntimeLiveGameplayFacade + RuntimePartyCoordinationService",
       "persistenceOwner": "runtime session coordination only; exact MajorMUD persistence/linkdead ownership remains native-dependent",
       "recordFamilies": [
@@ -33,14 +33,16 @@
         "follow mode Blind/Normal (room-description behavior proven)",
         "connected is runtime delivery state only and is not a native disconnect-policy claim"
       ],
-      "status": "implemented-evidence-gated-shell",
-      "evidenceClassification": "mixed-pass-strong-unknown",
+      "status": "implemented-evidence-gated-strong-boundary",
+      "evidenceClassification": "strong-with-exact-native-edges-open",
       "nativeDependencies": [
-        "leader LEAVE behavior when followers remain",
+        "exact multi-member leader LEAVE/disband transition, cleanup order, and rendering",
         "leader/default rank behavior and exact permission/failure text",
         "exact Frontrank spot-limit formula beyond the proven front>=back rule",
-        "quest/spell/teleport/resurrection/death interactions",
-        "unexpected linkdead/disconnect behavior",
+        "unexpected linkdead/disconnect membership cleanup; no MegaMUD wait timer is imported",
+        "death membership cleanup ordering; death-pile ownership remains character/death subsystem owned",
+        "special scripted or spell-driven teleport/resurrection party propagation",
+        "PvP room-spell party exclusion and exact target-admission ordering",
         "XP remainder recipient/disposition when monster XP is not evenly divisible",
         "broadcast-group 127 validity, exact native rendering, and exact native persistence ownership"
       ],
@@ -68,6 +70,37 @@
         "list": "bare BROADCAST/BR lists connected members of the selected group",
         "group127": "UNKNOWN due direct native help conflict (123 vs 157)",
         "classification": "PASS for uncontested command/runtime semantics; rendering/persistence owner remain gated"
+      },
+      "partyBoundary0315": {
+        "classification": "STRONG",
+        "nativeHelpMessages": [
+          27,
+          147,
+          153,
+          217,
+          227
+        ],
+        "provenCore": [
+          "INVITE/UNINVITE/JOIN/ordinary follower LEAVE/PARTY shell",
+          "follower moves where leader moves",
+          "front>=back rank invariant",
+          "SET FOLLOW BLIND/NORMAL room-description behavior",
+          "SHARE party currency distribution semantics"
+        ],
+        "strongCore": [
+          "six total party members",
+          "active-combat-not-party XP ownership",
+          "no automatic party loot division",
+          "leader-opened door followed by ordinary follower movement uses resulting door state"
+        ],
+        "excluded": "MegaMUD client wait timers are not native MajorMUD party-server behavior",
+        "failClosed": [
+          "multi-member leader LEAVE exact behavior",
+          "unexpected disconnect membership cleanup",
+          "death membership cleanup",
+          "special teleport/resurrection propagation",
+          "PvP room-spell party exclusion"
+        ]
       }
     },
     {
@@ -243,8 +276,8 @@
     },
     {
       "id": "traps",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "classic-exit-traps-fail-closed-pending-native-state-roll",
+      "classification": "runtime-active-strong-boundary-exact-execution-open",
+      "status": "classic-exit-trap-boundary-strong-exact-roll-state-transitions-fail-closed",
       "runtimeOwner": "RuntimeClassicExitTrapCatalog / RuntimeLiveGameplayFacade (Classic); RuntimeTrapService is Reforged extension only",
       "persistenceOwner": "Exact Classic trap persistence/reset owner UNKNOWN; generic RuntimeTrapService persistence does not count for Classic parity",
       "recordFamilies": [
@@ -265,7 +298,7 @@
         "Para2: 3 Active movement",
         "Para2: 4 Inactive movement"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "STRONG",
       "nativeDependencies": [
         "per-exit WCCMP002 Para2 values",
         "exact native SEARCH detection formula",
@@ -306,6 +339,29 @@
         "requiredRecoverySource": "stock WCCMP002 room records or equivalent native export",
         "messageFieldOwnership": "UNKNOWN due retained docs/editor conflict",
         "genericRuntimeTrapServiceCountsForClassic": false
+      },
+      "pass45TrapBoundary0316": {
+        "classification": "STRONG",
+        "decodedExitTrapCount": 295,
+        "damageTrapCount": 273,
+        "spellTrapCount": 22,
+        "nativeHelp": [
+          "15/HL1B4B",
+          "245/HL1B106"
+        ],
+        "nativeDisarmSyntax": "DISARM TRAP <direction>",
+        "anyoneMaySearch": true,
+        "trapsSkillImprovesSearchChance": true,
+        "disarmRequiresTrapFound": true,
+        "disarmRequiresTrapsSkill": true,
+        "perExitPara2Recovered": false,
+        "exactSearchRoll": "UNKNOWN",
+        "exactDisarmRoll": "UNKNOWN",
+        "failedDisarmTrigger": "UNKNOWN",
+        "messageOwnership": "UNKNOWN",
+        "stateTransitions": "UNKNOWN",
+        "resetRearm": "UNKNOWN",
+        "policy": "fail closed; no generic RuntimeTrapService formulas or timers count as Classic evidence"
       }
     },
     {
@@ -411,9 +467,9 @@
     },
     {
       "id": "events",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeWorldEventService",
+      "classification": "runtime-active-native-plus-boundary",
+      "status": "implemented-strong-classic-plus-contest-boundary",
+      "runtimeOwner": "RuntimeMajorMudPlusService for Classic Plus contest; RuntimeWorldEventService remains a Reforged extension",
       "persistenceOwner": "world event coordination; owner subsystems persist their own mutations",
       "recordFamilies": [
         "MajorMUD Plus event definitions and active state"
@@ -433,13 +489,28 @@
         "failed",
         "repeatable"
       ],
-      "evidenceClassification": "operator-confirmed-majormud-plus-only",
+      "evidenceClassification": "native-executable-exact-structure-with-rng-order-unresolved",
       "nativeDependencies": [
-        "exact MajorMUD Plus event activation prerequisites",
-        "affected rooms/NPCs/items",
-        "duration/reset behavior",
-        "player-visible messages"
-      ]
+        "exact contest RNG callsite/thread/draw ordering remains unresolved under native.global-rng.native-contract"
+      ],
+      "classicPlusEvent0314": {
+        "state": "STRONG",
+        "legacyItemNumber": 965,
+        "placementRangeCount": 17,
+        "runeQuantity": 40,
+        "maximumAttemptsPerRune": 50,
+        "excludedRoomAttributeMask": 16,
+        "visibleRoomCapacity": 17,
+        "hiddenRoomCapacity": 15,
+        "nativeRoutines": [
+          "0x00404D80-0x00404FA1",
+          "0x00404CC4-0x00404D7F",
+          "0x00404FA2-0x0040521C"
+        ],
+        "exactRngDrawOrderingResolved": false,
+        "automaticPrizeOrRankingMutation": false,
+        "genericNativeEventSchedulerClaimed": false
+      }
     },
     {
       "id": "pvp-policy",
@@ -913,9 +984,9 @@
     },
     {
       "id": "help-reference",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeHelpReferenceService",
+      "classification": "runtime-active-strong-native-corpus",
+      "status": "generated-native-help-family-active-exact-resolver-edges-open",
+      "runtimeOwner": "RuntimeMajorMudNativeHelpCatalog over generated Data/Classic/native_help.json",
       "persistenceOwner": "source catalog owners; help coordinator stores no mutable player/world state",
       "recordFamilies": [
         "help topic definitions",
@@ -927,7 +998,8 @@
         "help",
         "help search",
         "--smoke-help-reference",
-        "--smoke-pass31-native-help-aliases"
+        "--smoke-pass31-native-help-aliases",
+        "--smoke-classic-native-help"
       ],
       "timers": [],
       "flags": [
@@ -935,15 +1007,13 @@
         "minimum access",
         "content owner"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "STRONG",
       "nativeDependencies": [
-        "exact Classic help topic record families",
-        "remaining native HELP aliases outside the exact main-screen LAWS/MISC/SET/HELP set",
-        "exact formatting and pagination",
+        "exact HELP TOPICS rendering and pagination",
+        "exact prefix/fuzzy matching and ambiguity precedence",
         "textblock linkage",
         "permission filtering",
-        "Worldgroup versus MajorMUD help ownership",
-        "search matching and ambiguity behavior"
+        "Worldgroup versus MajorMUD help ownership outside WCCMMHLP"
       ],
       "nativeHelpAlias0302": {
         "state": "PASS-narrow",
@@ -959,6 +1029,44 @@
           "ambiguity precedence",
           "permission filtering",
           "pagination"
+        ]
+      },
+      "nativeHelpProjection0317": {
+        "state": "STRONG",
+        "nativeRecordCount": 263,
+        "mainRecordCount": 1,
+        "topicPairCount": 131,
+        "generatedRecordCount": 132,
+        "runtimeSource": "Data/Classic/native_help.json",
+        "runtimeReadsLibrarium": false,
+        "exactMainAliases": "PASS-narrow",
+        "uniqueExactKeywordTokens": "STRONG",
+        "remainingUnknown": [
+          "HELP TOPICS exact list rendering",
+          "prefix/fuzzy matching",
+          "ambiguity precedence",
+          "permission filtering",
+          "pagination",
+          "textblock linkage"
+        ]
+      },
+      "nativePlayerCommandProjection0318": {
+        "state": "STRONG",
+        "nativeSummaryCommandCount": 61,
+        "documentedCommandCount": 63,
+        "explicitAliases": [
+          "BS -> BACKSTAB",
+          "BR -> BROADCAST",
+          "BG -> BROADGANG"
+        ],
+        "generatedRuntimeSource": "Data/Classic/native_player_commands.json",
+        "runtimeResolutionAudit": "63/63 documented inputs and 3/3 explicit aliases",
+        "remainingUnknown": [
+          "undocumented native aliases",
+          "minimum command prefixes",
+          "ambiguity precedence",
+          "hidden dispatcher entries not listed by native help",
+          "exact argument validation and failure ordering"
         ]
       }
     },
@@ -1158,9 +1266,9 @@
     },
     {
       "id": "reforged-extension-boundaries",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-mode-isolation-shell",
-      "runtimeOwner": "RuntimeExtensionBoundaryService",
+      "classification": "runtime-active-strong-boundary-compatibility-open",
+      "status": "known-extension-boundaries-centralized-and-executable",
+      "runtimeOwner": "RuntimeClassicExtensionBoundaryAuthority",
       "persistenceOwner": "WorldRulesConfiguration and SaveCoordination retain mode/version state",
       "recordFamilies": [
         "extension definitions",
@@ -1170,7 +1278,7 @@
       "commands": [
         "extension authorization",
         "Classic isolation validation",
-        "--smoke-extension-boundaries"
+        "--smoke-pass48-classic-extension-boundaries"
       ],
       "timers": [],
       "flags": [
@@ -1181,9 +1289,8 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact native Classic extension boundary and version markers",
-        "native save and catalog version compatibility",
-        "host module feature flags and Worldgroup policy"
+        "native save and catalog byte/version compatibility",
+        "future gameplay surfaces not yet classified by retained native evidence"
       ]
     }
   ]

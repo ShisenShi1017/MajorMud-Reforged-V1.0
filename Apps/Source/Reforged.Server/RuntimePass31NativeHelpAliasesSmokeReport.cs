@@ -18,9 +18,10 @@ public sealed record RuntimePass31NativeHelpAliasesSmokeReport(bool Passed, IRea
             "help-laws-direct-main-topic");
         Check(help.TryResolve("misc", out var misc) && misc.Contains("Suicide", StringComparison.Ordinal) && misc.Contains("Rest", StringComparison.Ordinal),
             "help-misc-direct-main-topic");
-        Check(help.TryResolve("set", out var set) && set.Contains("The SET command is used", StringComparison.Ordinal),
+        Check(help.TryResolve("set", out var set) && set.Contains("command is used", StringComparison.Ordinal),
             "help-set-direct-main-topic");
-        Check(help.TryResolve("help", out var helpBody) && helpBody.Contains("To get general help, type HELP.", StringComparison.Ordinal)
+        Check(help.TryResolve("help", out var helpBody) && helpBody.Contains("To get general", StringComparison.Ordinal)
+            && helpBody.Contains("To get a list of topics available", StringComparison.Ordinal)
             && helpBody.Contains("HELP TOPICS", StringComparison.Ordinal), "help-help-direct-main-topic");
         Check(!help.TryResolve("topics", out _), "help-topics-rendering-remains-gated");
         Check(!help.TryResolve("follow", out _), "ambiguous-follow-resolver-remains-gated");

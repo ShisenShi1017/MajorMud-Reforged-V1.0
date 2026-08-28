@@ -69,7 +69,7 @@ req('character.Experience /' not in authority, 'no-guessed-normal-death-xp-divis
 # ledger/score reconciliation
 req(ledger.get('update')=='0285','ledger-update-0285')
 req(len(ledger.get('assertions',[]))==176,'ledger-reconciled-176')
-req('majormud_parity_assertions_0313.json' in audit,'runtime-audit-points-current-ledger')
+req('majormud_parity_assertions_0316.json' in audit,'runtime-audit-points-current-ledger')
 req(score.get('PassCount')==71,'score-pass-71')
 req(score.get('StrongCount')==58,'score-strong-58')
 req(score.get('UnknownCount')==47,'score-unknown-47')

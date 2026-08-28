@@ -10,12 +10,20 @@ Scope:
 - Runtime saves use realm-scoped roots: `Saves/Classic`, `Saves/Custom/<realm>`, and `Saves/Host`.
 - Character creation allows up to three characters per login per world.
 - Active continuity/manifests updated to identify CodeUpdate0140 as the current push baseline.
+- PASS 43-49 parity continuations, culminating in update 0320 native Classic death-experience correction and exact ordinary-death execution.
 
 Verification:
 
 - `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore`: PASS locally with 0 warnings and 0 errors.
+- Compiler regression: PASS at 104,911 records across 47 families.
+- Classic generation: PASS at 103,330 objects across 36 families and 41 files, including 26,668/26,668 room descriptions.
+- Focused PASS31, PASS39, and PASS43-49 runtime smokes: PASS.
+- Core/server smoke: PASS 17/17.
+- Python PASS49 validator: NOT RUN because no interpreter is registered locally.
 - `python Tools\validator.py`: PASS locally with 15/15 current-health checks.
 - GitHub Actions: pending until pushed and confirmed green.
+- PASS 48 cumulative verification: full solution Release build PASS with 0 warnings/errors; compiler regression PASS at 104,911 records / 47 families; Classic generation PASS at 103,330 objects / 36 families / 41 files; focused PASS31 and PASS43-48 smokes PASS; core/server smoke PASS 17/17.
+- PASS 48 Python validator: not run because the Windows Python launcher reports no installed interpreter.
 
 Known limitation:
 

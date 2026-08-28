@@ -37,7 +37,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             "buy" => BuyGeneratedItem(character, services, command.ArgumentText),
             "sell" => SellGeneratedItem(character, services, command.ArgumentText),
-            "repair" when !session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase) => RepairGeneratedItem(character, services, command.ArgumentText),
+            "repair" when RuntimeClassicExtensionBoundaryAuthority.IsCommandAvailable(session.World.Definition.Type, command.Name) => RepairGeneratedItem(character, services, command.ArgumentText),
             "train" => TrainAtGeneratedTrainer(character, services),
             _ => throw new InvalidOperationException("Unsupported generated service transaction.")
         };

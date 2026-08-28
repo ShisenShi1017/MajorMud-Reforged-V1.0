@@ -4,14 +4,14 @@ using System.Text.RegularExpressions;
 namespace Reforged.Server;
 
 /// <summary>
-/// Runtime projection of the decoded WCCMMHLP.MCV payload recovered in update 0022.
+/// Runtime projection of the compiler-generated WCCMMHLP help family.
 /// Bodies are returned verbatim (including ANSI) so the wire presentation remains
 /// MajorMUD-compatible. Topic matching outside the explicit native main-menu aliases
 /// is deliberately conservative and is not treated as proof of the original resolver.
 /// </summary>
 public sealed class RuntimeMajorMudNativeHelpCatalog
 {
-    private const string EvidenceRelativePath = "Librarium/Evidence/native_message_catalog_correlation_0022.json";
+    private const string GeneratedRelativePath = "Data/Classic/native_help.json";
     private static readonly Regex Whitespace = new(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
     private readonly string _mainBody;
@@ -30,40 +30,34 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
 
     public static RuntimeMajorMudNativeHelpCatalog Load(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, EvidenceRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path)) throw new FileNotFoundException("Decoded MajorMUD native help catalog is missing.", path);
+        var path = Path.Combine(projectRoot, GeneratedRelativePath.Replace('/', Path.DirectorySeparatorChar));
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated MajorMUD native help catalog is missing.", path);
 
         using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var helpCatalog = document.RootElement.GetProperty("catalogs")
-            .EnumerateArray()
-            .Single(catalog => string.Equals(catalog.GetProperty("mcv_file").GetString(), "WCCMMHLP.mcv", StringComparison.OrdinalIgnoreCase));
-
-        var entries = helpCatalog.GetProperty("entries").EnumerateArray()
-            .Where(entry => entry.TryGetProperty("defined", out var defined) && defined.GetBoolean())
-            .Select(entry => new
-            {
-                Number = entry.GetProperty("message_number").GetInt32(),
-                Symbol = entry.TryGetProperty("symbol", out var symbol) ? symbol.GetString() ?? string.Empty : string.Empty,
-                Text = entry.TryGetProperty("decoded_cp437", out var text) ? text.GetString() ?? string.Empty : string.Empty
-            })
-            .Where(entry => entry.Text.Length > 0)
-            .ToDictionary(entry => entry.Number);
-
-        if (!entries.TryGetValue(1, out var main))
-            throw new InvalidDataException("Decoded MajorMUD help main body (WCCMMHLP message 1) is missing.");
+        var records = document.RootElement.GetProperty("records").EnumerateArray().ToArray();
+        var main = records.SingleOrDefault(record =>
+            string.Equals(ReadString(record, "record_kind"), "main", StringComparison.OrdinalIgnoreCase));
+        if (main.ValueKind == JsonValueKind.Undefined || ReadString(main, "body").Length == 0)
+            throw new InvalidDataException("Generated MajorMUD help main body is missing.");
 
         var bodies = new Dictionary<int, string>();
         var topics = new List<RuntimeMajorMudHelpTopic>();
-        foreach (var title in entries.Values.Where(entry => entry.Number >= 2 && entry.Number % 2 == 0).OrderBy(entry => entry.Number))
+        foreach (var topic in records.Where(record =>
+                     string.Equals(ReadString(record, "record_kind"), "topic", StringComparison.OrdinalIgnoreCase))
+                 .OrderBy(record => record.GetProperty("title_message_number").GetInt32()))
         {
-            if (!entries.TryGetValue(title.Number + 1, out var body)) continue;
-            if (!body.Symbol.StartsWith("HL1B", StringComparison.OrdinalIgnoreCase)) continue;
-            bodies[body.Number] = body.Text;
-            topics.Add(new RuntimeMajorMudHelpTopic(title.Number, body.Number, title.Text, Tokenize(title.Text)));
+            var titleNumber = topic.GetProperty("title_message_number").GetInt32();
+            var bodyNumber = topic.GetProperty("body_message_number").GetInt32();
+            var keywords = ReadString(topic, "native_keywords");
+            var body = ReadString(topic, "body");
+            if (keywords.Length == 0 || body.Length == 0) continue;
+            bodies[bodyNumber] = body;
+            topics.Add(new RuntimeMajorMudHelpTopic(titleNumber, bodyNumber, keywords, Tokenize(keywords)));
         }
 
-        if (!bodies.ContainsKey(3)) throw new InvalidDataException("Decoded MajorMUD COMMANDS help body is missing.");
-        return new RuntimeMajorMudNativeHelpCatalog(main.Text, bodies, topics);
+        if (topics.Count != 131 || !bodies.ContainsKey(3))
+            throw new InvalidDataException($"Generated MajorMUD help catalog expected 131 topics including COMMANDS; found {topics.Count}.");
+        return new RuntimeMajorMudNativeHelpCatalog(ReadString(main, "body"), bodies, topics);
     }
 
     public string Main() => _mainBody;
@@ -124,6 +118,8 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
 
     public bool HasNativeMainAndCommands() => _mainBody.Length > 0 && _bodies.ContainsKey(3);
 
+    public int TopicCount => _topics.Count;
+
     private static IReadOnlyList<string> Tokenize(string value) =>
         Whitespace.Replace(value.Replace('\0', ' '), " ").Trim()
             .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
@@ -137,6 +133,11 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
         var normalized = Whitespace.Replace(value.Trim().ToLowerInvariant(), " ");
         return new string(normalized.Where(character => char.IsLetterOrDigit(character) || character is ' ' or '.').ToArray()).Trim();
     }
+
+    private static string ReadString(JsonElement element, string propertyName) =>
+        element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.String
+            ? value.GetString() ?? string.Empty
+            : string.Empty;
 }
 
 public sealed record RuntimeMajorMudHelpTopic(

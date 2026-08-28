@@ -23,11 +23,11 @@ public static class WorldgroupRngDirectCallsiteRegistry
     public const string DirectCallScope = "PE import table plus x86 direct-call references to WGSERVER.EXE import thunks; indirect register/data calls excluded.";
     public const string ArgumentScope = "Bounded caller-side stack argument analysis; coverage is not a complete prototype/callsite map.";
 
-    public const bool IndirectCallsitesResolved = false;
-    public const bool GameplaySemanticMappingResolved = false;
-    public const bool ExecutionThreadCrtMappingResolved = false;
-    public const bool GameplayDrawOrderingResolved = false;
-    public const bool InstructionEquivalentRangeLoopPortResolved = false;
+    public static readonly bool IndirectCallsitesResolved = false;
+    public static readonly bool GameplaySemanticMappingResolved = false;
+    public static readonly bool ExecutionThreadCrtMappingResolved = false;
+    public static readonly bool GameplayDrawOrderingResolved = false;
+    public static readonly bool InstructionEquivalentRangeLoopPortResolved = false;
 
     public static readonly IReadOnlyList<WorldgroupRngDirectCallsiteEvidence> Proven = new WorldgroupRngDirectCallsiteEvidence[]
     {

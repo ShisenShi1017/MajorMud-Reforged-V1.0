@@ -1,0 +1,165 @@
+{
+  "schema": "majormud.classic-majormud-plus-event-boundary-evidence.v1",
+  "update": "0314",
+  "pass": 43,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 43 promotes native.events from UNKNOWN to STRONG by connecting the retained exact MajorMUD Plus rune-contest placement, room-admission, status/finish, and destructive result-scan contracts to the already-live RuntimeMajorMudPlus implementation. Exact native RNG callsite/thread/draw ordering remains unresolved and prevents PASS.",
+  "classificationPolicy": "Exact retained executable-derived contest constants and result-scan behavior are narrow proven contracts. The broad event assertion remains STRONG while contest RNG draw ownership/order is unresolved. Generic Reforged event scheduling is excluded from native evidence.",
+  "retainedSource": {
+    "contract": "Librarium/Objects/majormud_plus/majormud_plus_records_0139.json",
+    "contractSha256": "4a22ad0728335c2c88a2fc2b477b65878dcee8e58348f7e17e5b12853fc7cedc",
+    "runtimeClosure": "Reports/RuntimeVerification/majormud_plus_runtime_closure.md",
+    "runtimeClosureSha256": "155cc6a08f03e90f98844045fe6f55ec86ab9439fd48eeff28460431aae31654",
+    "nativeUtility": "WCCMMUTL.EXE",
+    "nativeClassification": "native_executable_exact",
+    "routines": {
+      "utility": "WCCMMUTL.EXE",
+      "placement_routine": "0x00404D80-0x00404FA1",
+      "room_admission_and_insert": "0x00404CC4-0x00404D7F",
+      "result_scan": "0x00404FA2-0x0040521C",
+      "classification": "native_executable_exact"
+    }
+  },
+  "exactContestContract": {
+    "canonical_item_id": "item.965",
+    "legacy_item_number": 965,
+    "maximum_attempts_per_item": 50,
+    "excluded_room_attribute_mask": 16,
+    "visible_room_capacity": 17,
+    "hidden_room_capacity": 15,
+    "placement_ranges": [
+      {
+        "map": 1,
+        "minimum_room": 547,
+        "maximum_room": 815,
+        "quantity": 1
+      },
+      {
+        "map": 1,
+        "minimum_room": 869,
+        "maximum_room": 1009,
+        "quantity": 1
+      },
+      {
+        "map": 1,
+        "minimum_room": 1451,
+        "maximum_room": 1633,
+        "quantity": 1
+      },
+      {
+        "map": 1,
+        "minimum_room": 1640,
+        "maximum_room": 1794,
+        "quantity": 1
+      },
+      {
+        "map": 1,
+        "minimum_room": 1833,
+        "maximum_room": 2117,
+        "quantity": 1
+      },
+      {
+        "map": 2,
+        "minimum_room": 41,
+        "maximum_room": 1122,
+        "quantity": 4
+      },
+      {
+        "map": 2,
+        "minimum_room": 1124,
+        "maximum_room": 2514,
+        "quantity": 6
+      },
+      {
+        "map": 3,
+        "minimum_room": 1,
+        "maximum_room": 785,
+        "quantity": 3
+      },
+      {
+        "map": 6,
+        "minimum_room": 134,
+        "maximum_room": 548,
+        "quantity": 2
+      },
+      {
+        "map": 6,
+        "minimum_room": 751,
+        "maximum_room": 832,
+        "quantity": 1
+      },
+      {
+        "map": 6,
+        "minimum_room": 836,
+        "maximum_room": 994,
+        "quantity": 1
+      },
+      {
+        "map": 6,
+        "minimum_room": 996,
+        "maximum_room": 1243,
+        "quantity": 1
+      },
+      {
+        "map": 6,
+        "minimum_room": 1407,
+        "maximum_room": 1566,
+        "quantity": 1
+      },
+      {
+        "map": 6,
+        "minimum_room": 1626,
+        "maximum_room": 3107,
+        "quantity": 4
+      },
+      {
+        "map": 7,
+        "minimum_room": 1,
+        "maximum_room": 1358,
+        "quantity": 6
+      },
+      {
+        "map": 8,
+        "minimum_room": 1,
+        "maximum_room": 955,
+        "quantity": 5
+      },
+      {
+        "map": 10,
+        "minimum_room": 1,
+        "maximum_room": 274,
+        "quantity": 1
+      }
+    ]
+  },
+  "liveOwner": "Apps/Source/Reforged.Server/RuntimeMajorMudPlus.cs",
+  "provenNarrowContracts": [
+    "legacy rune item 965 / item.965",
+    "17 placement ranges totaling 40 runes",
+    "maximum 50 placement attempts per rune",
+    "room attribute 0x10 excluded",
+    "visible per-room capacity 17",
+    "hidden per-room capacity 15",
+    "visible and hidden contest modes",
+    "status/finish result enumeration and destructive rune cleanup",
+    "no automatic prize/ranking mutation in the recovered contest routines"
+  ],
+  "remainingUnknown": [
+    "exact native contest RNG callsite",
+    "exact execution thread/CRT ownership for the contest draw",
+    "exact contest draw ordering relative to other native RNG consumers"
+  ],
+  "notPromoted": [
+    "Random.Shared as native RNG evidence",
+    "a universal native event scheduler",
+    "automatic prize or ranking mutation",
+    "guessed contest duration/reset cadence",
+    "unproven player-visible text beyond retained/live contract"
+  ],
+  "parityPromotion": {
+    "assertion": "native.events",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The exact contest structure and lifecycle are recovered and live, but exact native RNG draw ownership/order is still unresolved under the global RNG boundary."
+  }
+}
