@@ -3,11 +3,12 @@ namespace Reforged.Server;
 /// <summary>
 /// Evidence gate for the recovered Classic MajorMUD communication-profile and paging-limit boundary.
 ///
-/// Native help proves user-scoped profile controls, PAGE toggling, and the exact SET MAXPAGES
-/// three-second window. It does not prove the stored default bits, explicit TELEPATH polarity,
-/// native record serialization, page overflow/backpressure behavior, or exact channel rendering.
-/// Reforged's generic 512-character / 10-second / 6-message communication policy is an extension
-/// shell and receives no Classic parity credit.
+/// Native WCCMMUD.DLL ownership now proves the stored communication-profile defaults, persisted
+/// record offsets, TELEPATH polarity, MAXPAGES/MAXGOSSIP/MAXAUCTION byte semantics, reconnect
+/// load/save mapping, and three-second receive counters. PAGE itself is a live-session toggle and
+/// is not in the persisted profile block. Exact Worldgroup page/telegram handoff and final rendered
+/// presentation remain separately gated. Reforged's generic communication flood shell receives no
+/// Classic parity credit.
 /// </summary>
 public static class RuntimeClassicCommunicationPersistenceLimitsAuthority
 {
@@ -33,24 +34,62 @@ public static class RuntimeClassicCommunicationPersistenceLimitsAuthority
     public const string NativeForgetCommandExport = "_cmd_forget";
     public const string NativeGossipCommandExport = "_cmd_gossip";
 
+
+    // Fresh-character values written by the native initializer at 0x004165FB..0x00416643.
+    public const bool DefaultPageEnabled = true;
+    public const bool DefaultTelepathReceiveEnabled = true;
+    public const bool DefaultGossipReceiveEnabled = true;
+    public const bool DefaultAuctionReceiveEnabled = true;
+    public const bool DefaultEntrancesEnabled = true;
+    public const string DefaultMessagesLevel = "high";
+    public const byte DefaultMaxPages = 3;
+    public const byte DefaultMaxGossip = 3;
+    public const byte DefaultMaxAuction = 3;
+
+    // Native character-record offsets recovered from the save/load owner. PAGE itself is a
+    // live-session byte and is deliberately absent from this persisted block.
+    public const int RecordMessagesThresholdOffset = 0x3B;
+    public const int RecordCommunicationFlagsOffset = 0x3C;
+    public const int RecordMaxPagesOffset = 0x3E;
+    public const int RecordDisplayFlagsOffset = 0x6A;
+    public const int RecordMaxGossipOffset = 0xA9;
+    public const int RecordMaxAuctionOffset = 0xAA;
+    public const int TelepathBlockMask = 0x20;
+    public const int EntrancesBlockMask = 0x01;
+    public const int GossipBlockMask = 0x02;
+    public const int AuctionBlockMask = 0x04;
+
+    /// <summary>Matches native SET MAX* semantics: atol, cap only values above 255, then store AL.</summary>
+    public static byte NormalizeNativeLimit(long value) => unchecked((byte)(value > byte.MaxValue ? byte.MaxValue : value));
+
+    /// <summary>Native receive owners compare current &gt; max before incrementing.</summary>
+    public static bool NativePreIncrementReceiveAllowed(byte current, byte maximum) => current <= maximum;
+
+    public static string CycleMessagesLevel(string current) => current.ToLowerInvariant() switch
+    {
+        "high" => "low",
+        "medium" => "high",
+        _ => "medium"
+    };
+
     public const bool GenericCommunicationFloodPolicyIsNativeClassic = false;
     public const bool GenericMaximumMessageLengthIsNativeClassic = false;
     public const bool ReforgedCharacterConditionsAreNativeProfileSerialization = false;
     public const bool MaxPagesIsGeneralChatFloodControl = false;
     public const bool WorldgroupMailAndNativeLoggingAreMajorMudGameplayParity = false;
 
-    public const bool ExactNativeProfileDefaultsResolved = false;
-    public const bool ExactNativeProfileSerializationResolved = false;
-    public const bool ExactTelepathExplicitPolarityResolved = false;
-    public const bool ExactMaxPagesDefaultResolved = false;
-    public const bool ExactMaxPagesAllowedRangeResolved = false;
-    public const bool ExactMaxPagesOverflowBehaviorResolved = false;
+    public const bool ExactNativeProfileDefaultsResolved = true;
+    public const bool ExactNativeProfileSerializationResolved = true;
+    public const bool ExactTelepathExplicitPolarityResolved = true;
+    public const bool ExactMaxPagesDefaultResolved = true;
+    public const bool ExactMaxPagesAllowedRangeResolved = true;
+    public const bool ExactMaxPagesOverflowBehaviorResolved = true;
     public const bool ExactPageTelegramHostHandoffResolved = false;
     public const bool ExactPageTelegramRenderingResolved = false;
     public const bool ExactChannelRenderingResolved = false;
     public const bool ExactMessagePriorityMembershipResolved = false;
-    public const bool ExactEntrancesDefaultPersistenceResolved = false;
-    public const bool ExactReconnectLoadSaveOrderingResolved = false;
+    public const bool ExactEntrancesDefaultPersistenceResolved = true;
+    public const bool ExactReconnectLoadSaveOrderingResolved = true;
 
     public static void RequireClassicNativeProfileDefaults()
     {

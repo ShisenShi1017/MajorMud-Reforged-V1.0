@@ -1,0 +1,68 @@
+{
+  "schema": "majormud.native-daily-ganghouse-cleanup-evidence.v1",
+  "code_update": "0343",
+  "dll": {
+    "name": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "packaged": false
+  },
+  "scope": [
+    "MajorBBS/Worldgroup mcurou auto-cleanup ABI ownership",
+    "daily gang-house tax/repossession producer",
+    "daily disbanded-gang record sweep producer",
+    "restart/missed-cleanup non-invention boundary"
+  ],
+  "native_findings": [
+    {
+      "id": "mcurou-export-owner",
+      "owner": "_ljngame_mcurou export ordinal 22 @ 0x004091FD",
+      "finding": "The retained WCCMMUD.DLL exports its module auto-cleanup entry point as _ljngame_mcurou. The body owns the gang-house tax/deed/eviction/room-cleanup work and finishes with the final gang-record sweep/cleanup-complete path."
+    },
+    {
+      "id": "host-daily-cadence",
+      "owner": "MajorBBS module ABI mcurou contract",
+      "finding": "MajorBBS/Worldgroup invokes each module's mcurou once per day. The documented historical default is 03:00 local host time; the host owns/configures the cleanup wall-clock time."
+    },
+    {
+      "id": "no-game-sundown-producer",
+      "owner": "mcurou ABI + WCCMMUD export body",
+      "finding": "Gang-house taxation is not gated on a separately recovered in-game daylight/sunset scheduler. The executable owner is the host daily auto-cleanup callback."
+    },
+    {
+      "id": "restart-catchup-unproven",
+      "owner": "host scheduling boundary",
+      "finding": "No retained MajorMUD evidence proves replay/catch-up of a missed mcurou event after process restart. Reforged therefore schedules the next future host cleanup occurrence and does not manufacture a missed callback."
+    }
+  ],
+  "external_abi_reference": {
+    "title": "MajorBBS Developers Guide Rev 6.2 (Jan 1994)",
+    "section": "mcurou() - auto-cleanup routine",
+    "url": "https://download.mbbsemu.com/docs/MajorBBS_Developers_Guide_Rev_6.2_Jan_1994.pdf",
+    "use": "Host ABI/cadence identity only; WCCMMUD.DLL remains authoritative for MajorMUD cleanup effects."
+  },
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicAutoCleanup.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangHouseUpkeep.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs",
+    "Apps/Source/Reforged.Server/ServerRuntimeHost.cs"
+  ],
+  "runtime_corrections": [
+    "Gang-house upkeep is now named and routed as daily auto-cleanup rather than an inferred in-game sundown callback.",
+    "Classic host bootstrap registers a one-minute probe around an exact once-daily scheduled callback; the probe itself never causes extra cleanup executions.",
+    "The historical 03:00 local host default is used unless a future host-configuration owner supplies another cleanup time.",
+    "A restart after today's cleanup time schedules tomorrow's callback; no missed-event catch-up is invented.",
+    "The daily callback runs gang-house bank taxation/repossession and the disbanded-gang zero-member sweep."
+  ],
+  "parity": {
+    "before": { "PASS": 125, "STRONG": 75, "UNKNOWN": 0 },
+    "after": { "PASS": 125, "STRONG": 75, "UNKNOWN": 0 },
+    "promotions": [],
+    "reason": "The automatic gang-house tax producer/cadence gap is closed, but native.organizations.persistence-services remains STRONG because the same mcurou boundary's automatic room-content cleanup is not yet wired into the live persisted room-item state and exact embedded gang-house healer/shop/rubbish-room service presentation remains independently incomplete."
+  },
+  "remaining_gates": [
+    "connect mcurou room-ground item/currency cleanup to the live persisted world-item owner without fabricating state ownership",
+    "close remaining gang-house-specific healer/shop/rubbish-room service presentation where generic service ownership is insufficient",
+    "exact host-configured non-default cleanup time persistence/configuration is a host setting, not a MajorMUD gameplay constant"
+  ]
+}

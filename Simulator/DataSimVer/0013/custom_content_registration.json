@@ -1,6 +1,6 @@
 {
   "pass": "DataSimVer0013",
-  "objective": "Register sysop/GM placeholder-room hypothesis and the originally reported code_of_twinks_78 value without modifying legacy /Data; later user correction classifies it as the WCCMMUD SYSOP unlock/key.",
+  "objective": "Register the sysop/GM placeholder-room hypothesis and the originally reported configuration clue without modifying legacy /Data; CodeUpdate0333 corrects the transcription to CODEC_OF_TWINKS=78 and records SYS_*_KEY values as Worldgroup access levels.",
   "data_changed": false,
   "room_endpoints_promoted": 0,
   "special_exit_semantics_promoted": 0,
@@ -11,15 +11,15 @@
   "behavior_model": [
     {
       "actor": "normal_player",
-      "action": "submit code_of_twinks_78 as a player command",
+      "action": "submit CODEC_OF_TWINKS=78 as a player command",
       "expected": "fail",
-      "reason": "the value is a legacy WCCMMUD SYSOP unlock/key, not a player command"
+      "reason": "this is a legacy configuration setting/value, not a player command"
     },
     {
       "actor": "sysop_or_gm",
       "action": "use authenticated sysop command surface",
       "expected": "capability-gated",
-      "reason": "Reforged maps legacy key authorization to authenticated account roles and explicit sysop capabilities"
+      "reason": "Reforged uses standalone authenticated capabilities; legacy SYS_*_KEY entries describe Worldgroup user-level gates and remain evidence for parity reconstruction"
     }
   ]
 }

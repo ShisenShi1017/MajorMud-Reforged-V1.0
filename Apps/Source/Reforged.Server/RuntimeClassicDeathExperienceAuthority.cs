@@ -14,7 +14,11 @@ public static class RuntimeClassicDeathExperienceAuthority
 {
     public const string OrdinaryDeathClassification = "native_normal_death_preserves_experience";
     public const string FinalRerollClassification = "native_final_reroll_retained_experience";
-    public const bool FinalRerollConsumerConnected = false;
+    public const bool FinalRerollConsumerConnected = true;
+    public const string KeepExperienceConditionKey = "classic.keep_experience_after_final_death";
+
+    public static bool IsPlayerKeepExperienceEnabled(RuntimeCharacterRecord character) =>
+        !character.Conditions.TryGetValue(KeepExperienceConditionKey, out var raw) || !raw.Equals("0", StringComparison.OrdinalIgnoreCase);
 
     public static RuntimeClassicDeathExperienceResult PreserveOrdinaryDeathExperience(
         long currentExperience,

@@ -9,6 +9,8 @@ public static class RuntimeCharacterDeathMarkers
     public const string OccurredAtUtc = "character.death.occurred_at_utc";
     public const string GoldEscrow = "character.death.gold_escrow";
     public const string DroppedRootItems = "character.death.dropped_root_items";
+    public const string FloorPlacedRootItems = "character.death.floor_placed_root_items";
+    public const string FloorLostRootItems = "character.death.floor_lost_root_items";
     public const string RetainedRootItems = "character.death.retained_root_items";
     public const string Evidence = "character.death.evidence";
     public const string RespawnedAtUtc = "character.death.respawned_at_utc";

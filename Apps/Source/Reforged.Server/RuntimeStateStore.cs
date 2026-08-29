@@ -43,6 +43,8 @@ public sealed class RuntimeStateStore
         if (_sessions.TryRemove(sessionId, out var removed)) _sessions[sessionId] = removed with { Connected = false, LastCommandAtUtc = DateTimeOffset.UtcNow };
     }
 
+    public void RemoveCharacter(string characterId) => _characters.TryRemove(characterId, out _);
+
     public string RenderStatus() => $"Worlds={_worlds.Count}; Sessions={_sessions.Values.Count(s => s.Connected)}; Characters={_characters.Count}";
 }
 

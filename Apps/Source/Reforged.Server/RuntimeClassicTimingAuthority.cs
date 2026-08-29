@@ -1,37 +1,55 @@
 namespace Reforged.Server;
 
 /// <summary>
-/// MajorMUD 1.11p timing constants that are directly retained in the native
-/// WCCMMUD/WCCMMHLP message catalogs. Keep unresolved host phase/order semantics
-/// outside this class rather than turning observed constants into a universal clock model.
+/// MajorMUD 1.11p timing constants recovered from WCCMMUD.DLL plus retained
+/// WCCMMUD/WCCMMHLP configuration/help. Native background work is driven by a
+/// one-second fast callback and owner-specific logical-tick buckets; it is not a
+/// synthetic universal wall-clock tick.
 /// </summary>
 public static class RuntimeClassicTimingAuthority
 {
-    // PASS: stock MajorMUD physical combat round.
+    // PASS: stock MajorMUD physical combat round / energy bucket.
     public const int CombatRoundSeconds = 5;
 
-    // PASS: decoded spell/status duration and periodic-processing round.
+    // PASS: decoded spell/status duration and native medium bucket.
     public const int SpellSystemRoundSeconds = 3;
 
-    // STRONG: subsystem-specific recovery cadences. These are deliberately not
-    // collapsed into a synthetic universal gameplay tick.
-    public const int PassiveRegenerationSeconds = 30;
-    public const int RestRegenerationSeconds = 20;
-    public const int MeditateRegenerationSeconds = 10;
+    // CodeUpdate0336 direct WCCMMUD.DLL background scheduler constants.
+    public const int FastSchedulerSeconds = 1;
+    public const int MediumSchedulerFastTicks = 3;
+    public const int EnergySchedulerFastTicks = 5;
+    public const int MonsterCreateSchedulerFastTicks = 5;
+    public const int SlowSchedulerFastTicks = 30;
+
+    // Player regeneration is owned by the native slow/fast character update paths.
+    public const int PassiveRegenerationSeconds = SlowSchedulerFastTicks;
+    public const int RestCounterThreshold = 20;
+    public const int RestRegenerationFastTicks = RestCounterThreshold + 1;
+    public const int MeditateCounterThreshold = 14;
+    public const int MeditateRegenerationFastTicks = MeditateCounterThreshold + 1;
+
+    // Compatibility/reporting names. These are logical fast-tick counts, which are
+    // seconds only while the one-shot fast callback is being serviced on time.
+    public const int RestRegenerationSeconds = RestRegenerationFastTicks;
+    public const int MeditateRegenerationSeconds = MeditateRegenerationFastTicks;
+
     // WCCMMUD.mcv: "Seconds between saving Player data? 60"
     public const int PlayerDataSaveIntervalSeconds = RuntimeClassicConfigurationAuthority.PlayerDataSaveIntervalSeconds;
 
-    // WCCMMUD.mcv: "Seconds between saving Buffer data? 300"
-    // The exact set/order of native "Buffer data" owners is still unresolved, so this
-    // constant is evidence only until an owner-specific save path is recovered.
+    // WCCMMUD.mcv: "Seconds between saving Buffer data? 300". This is a setup
+    // value separate from the recovered background-save callback constant; owner
+    // mapping remains evidence-gated.
     public const int BufferDataSaveIntervalSeconds = RuntimeClassicConfigurationAuthority.BufferDataSaveIntervalSeconds;
 
-    // WCCMMHLP.mcv HELP EXIT/QUIT/SAVE.
+    // WCCMMHLP HELP EXIT/QUIT/SAVE.
     public const int GracefulExitDelaySeconds = 5;
 
-    // WCCMMHLP.mcv HELP REST/MEDITATE.
-    public const int FocusedRegenerationActivationSeconds = 20;
+    // WCCMMHLP says REST/MEDITATE need "at least 20 seconds". This is historical
+    // presentation guidance, not the executable scheduling source. Native REST fires
+    // on fast counter >20 (21st callback); native MEDITATE fires on >14 (15th).
+    public const int FocusedRegenerationHelpSeconds = 20;
+    public const int FocusedRegenerationActivationSeconds = FocusedRegenerationHelpSeconds;
 
     public static readonly TimeSpan PlayerDataSaveInterval = TimeSpan.FromSeconds(PlayerDataSaveIntervalSeconds);
-    public static readonly TimeSpan FocusedRegenerationActivationDelay = TimeSpan.FromSeconds(FocusedRegenerationActivationSeconds);
+    public static readonly TimeSpan FocusedRegenerationActivationDelay = TimeSpan.FromSeconds(FocusedRegenerationHelpSeconds);
 }

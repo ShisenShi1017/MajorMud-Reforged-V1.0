@@ -1,0 +1,84 @@
+{
+  "schema": "majormud.native-scheduler-regeneration-evidence.v1",
+  "code_update": "0336",
+  "classification": "native_exact_with_runtime_regressions",
+  "source_boundary": {
+    "wccmmud_dll": "local-only original Classic executable; SHA-256 5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077; raw binary excluded from repository/update package",
+    "wccmmhlp": "local-only original WCCMMHLP message catalog; raw file excluded from repository/update package"
+  },
+  "scheduler": {
+    "fast_seconds": 1,
+    "medium_fast_ticks": 3,
+    "energy_fast_ticks": 5,
+    "monster_create_fast_ticks": 5,
+    "slow_fast_ticks": 30,
+    "fast_callback": "one-shot RTKICK(1); increment logical tick once; process due queue; fast characters; fast monsters; re-arm from current execution",
+    "while_running_missed_tick_policy": "no elapsed-time catch-up; host stalls stretch wall-clock duration",
+    "internal_due_order": "due internal callbacks execute before fast character and fast monster updates",
+    "restart_deadline_persistence": "unresolved"
+  },
+  "character_regeneration": {
+    "passive_hp_base": "max(1, trunc(((Level + 20) * Health) / 750))",
+    "rest_hp_base": "passive HP base * 3",
+    "percent_modifier": "trunc(((100 + signed_modifier) * base) / 100)",
+    "passive_mana_types": {
+      "1": "INT",
+      "2": "WIL",
+      "3": "trunc((INT+WIL)/2)",
+      "4": "CHA",
+      "5": "base=1"
+    },
+    "passive_mana_base": "types 1-4: trunc(((Level+20)*seed*(MagicLevel+2))/1650); type 5: 1; then MPRegen modifier",
+    "meditate_mana": "same type base, type5=1, but no MPRegen modifier",
+    "mana_clamp": "0..MaximumMana",
+    "rest_counter": "increment each serviced fast character update; trigger when >20; reset to 0; 21 fast callbacks per bonus",
+    "meditate_counter": "increment each serviced fast character update; trigger when >14; reset to 0; 15 fast callbacks per bonus",
+    "rest_success_text": "You are now resting.\\r",
+    "meditate_success_text": "You are now meditating.\\r"
+  },
+  "help_runtime_conflict": {
+    "help_claim": "REST and MEDITATE must remain uninterrupted for at least 20 seconds for increased regeneration to take effect.",
+    "executable_resolution": "REST is consistent as a minimum because first bonus is on the 21st serviced fast callback; MEDITATE executable fires on the 15th serviced fast callback. Strict runtime parity follows WCCMMUD.DLL while preserving historical HELP as conflicting presentation evidence."
+  },
+  "npc_regeneration": {
+    "owner": "_slow_update_monster",
+    "generation": "30 logical fast ticks",
+    "formula": "if alive/injured, add authored HPRegen and cap at maximum",
+    "generation_marker": "at most one slow update per monster per slow generation",
+    "micro_order": "native records are staggered across host cycles after generation boundary; exact per-record staggering remains open"
+  },
+  "native_addresses": {
+    "startup_scheduler": "0x0040242f",
+    "background_energy": "0x0042122f",
+    "background_slow": "0x004215f6",
+    "background_medium": "0x004216e6",
+    "background_fast": "0x00421719",
+    "due_queue": "0x004217ec",
+    "queue_insert": "0x00421831",
+    "slow_update_monster": "0x00421c06",
+    "slow_update_character": "0x004221ad",
+    "fast_update_character": "0x00422b6b",
+    "rest_counter": "0x00422c06",
+    "meditate_counter": "0x00422d33"
+  },
+  "rejected_or_superseded": [
+    "MMUD Explorer STOCK_MOB_HPREGEN_ROUNDS=18 is a simulator approximation, not the Classic native owner interval.",
+    "Recovered 10-second MEDITATE cadence is superseded by direct native counter >14.",
+    "Recovered 20-second repeating REST cadence is superseded by direct native counter >20; HELP remains a minimum-duration statement.",
+    "Wall-clock elapsed catch-up scheduling is not native for the background-fast owner."
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs"
+  ],
+  "remaining_strong_boundaries": [
+    "complete scheduler queue persistence/restart reconciliation",
+    "complete cross-owner same-cycle ordering",
+    "exact per-monster slow-generation micro-stagger",
+    "remaining REST/MEDITATE cleanup ordering across death/disconnect/status transitions",
+    "room/world reset and respawn scheduler ownership"
+  ]
+}

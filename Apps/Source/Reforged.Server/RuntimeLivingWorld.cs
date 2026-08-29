@@ -63,6 +63,15 @@ public sealed record RuntimeStaticRoomItemResetResult(
     int RestoredCount,
     IReadOnlyList<string> RestoredPlacementIds);
 
+public sealed record RuntimeClassicNativeDeathFloorPlacement(
+    bool Placed,
+    string? RoomId,
+    bool Hidden,
+    bool Stacked,
+    int? NativeSlot,
+    string Stage,
+    string? FloorInstanceId);
+
 public static class RuntimeClassicSkillTest
 {
     public static int SuccessChance(int skillValue,int modifier) => Math.Clamp(checked(skillValue + modifier),0,100);
@@ -120,6 +129,32 @@ public sealed partial class RuntimeLivingWorldService
         RestoreLivingWorldCompletion();
     }
 
+    /// <summary>
+    /// Applies the authored NPC HPRegeneration amount once for the recovered native
+    /// 30-fast-tick slow generation. WCCMMUD staggers individual monster slow updates
+    /// across host cycles after the generation boundary; that micro-order remains part
+    /// of the broader scheduler assertion rather than being invented here.
+    /// </summary>
+    public int ApplyNativeSlowNpcRegeneration(DateTimeOffset nowUtc)
+    {
+        lock (_gate)
+        {
+            var changed = 0;
+            foreach (var pair in _npcs.ToArray())
+            {
+                var npc = pair.Value;
+                if (!npc.Alive || npc.CurrentHitPoints >= npc.MaximumHitPoints) continue;
+                if (!npc.Metadata.TryGetValue("hp_regen", out var raw) || !int.TryParse(raw, out var amount) || amount <= 0) continue;
+                var next = Math.Min(npc.MaximumHitPoints, checked(npc.CurrentHitPoints + amount));
+                if (next == npc.CurrentHitPoints) continue;
+                _npcs[pair.Key] = npc with { CurrentHitPoints = next };
+                changed++;
+            }
+            if (changed > 0) Save();
+            return changed;
+        }
+    }
+
     public string WorldId => _world.Definition.Id;
     public int NpcInstanceCount { get { lock (_gate) return _npcs.Count; } }
     public int WorldObjectCount { get { lock (_gate) return _objectDefinitions.Count; } }
@@ -173,8 +208,48 @@ public sealed partial class RuntimeLivingWorldService
     {
         lock(_gate)
         {
-            if(!_items.Remove(instanceId,out var item))throw new InvalidOperationException("The room item is no longer present.");
-            var moved=item with{OwnerId=characterId,LocationKind=RuntimeItemLocations.Character,LocationId=characterId};
+            if(!_items.TryGetValue(instanceId,out var item))throw new InvalidOperationException("The room item is no longer present.");
+
+            // Native room QTY stores extra copies beyond the first. Removing one copy decrements QTY
+            // and leaves the slot in place until the final copy is removed. Keep generic Reforged
+            // stacks unchanged; this split applies only to slots produced by the recovered native
+            // room insertion contract.
+            var nativeRoomStack = item.Metadata?.TryGetValue("native_room_quantity_encoding", out var encoding) == true
+                && encoding.Equals("extra_copies_beyond_first", StringComparison.OrdinalIgnoreCase);
+            RuntimeItemInstance moved;
+            if(nativeRoomStack && item.StackQuantity > 1)
+            {
+                var remainingMetadata=item.Metadata!.ToDictionary(pair=>pair.Key,pair=>pair.Value,StringComparer.OrdinalIgnoreCase);
+                remainingMetadata["native_room_qty"]=(item.StackQuantity-2).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                _items[instanceId]=item with{StackQuantity=item.StackQuantity-1,Metadata=remainingMetadata};
+                var movedMetadata=item.Metadata!.ToDictionary(pair=>pair.Key,pair=>pair.Value,StringComparer.OrdinalIgnoreCase);
+                movedMetadata.Remove("native_room_slot");
+                movedMetadata.Remove("native_room_qty");
+                movedMetadata.Remove("native_room_quantity_encoding");
+                movedMetadata.Remove("native_item_uses");
+                movedMetadata.Remove("hidden_at_cleanup");
+                movedMetadata.Remove("hidden_at_cleanup_utc");
+                moved=new RuntimeItemInstance(Guid.NewGuid().ToString("N"),item.CanonicalItemId,characterId,
+                    RuntimeItemLocations.Character,characterId,null,item.Charges,1,item.Durability,movedMetadata);
+            }
+            else
+            {
+                _items.Remove(instanceId);
+                var movedMetadata=item.Metadata is null
+                    ? null
+                    : item.Metadata.ToDictionary(pair=>pair.Key,pair=>pair.Value,StringComparer.OrdinalIgnoreCase);
+                if(movedMetadata is not null)
+                {
+                    movedMetadata.Remove("native_room_slot");
+                    movedMetadata.Remove("native_room_qty");
+                    movedMetadata.Remove("native_room_quantity_encoding");
+                    movedMetadata.Remove("native_item_uses");
+                    movedMetadata.Remove("hidden_at_cleanup");
+                    movedMetadata.Remove("hidden_at_cleanup_utc");
+                }
+                moved=item with{OwnerId=characterId,LocationKind=RuntimeItemLocations.Character,LocationId=characterId,
+                    StackQuantity=1,Metadata=movedMetadata};
+            }
             Save();
             return moved;
         }
@@ -193,6 +268,199 @@ public sealed partial class RuntimeLivingWorldService
             Save();
         }
     }
+    public RuntimeClassicNativeDeathFloorPlacement DropNativeDeathGroundItemTree(
+        IReadOnlyList<RuntimeItemInstance> items, string rootInstanceId, RuntimeSession session)
+    {
+        lock (_gate)
+        {
+            var root = items.FirstOrDefault(item => item.InstanceId.Equals(rootInstanceId, StringComparison.OrdinalIgnoreCase));
+            if (root is null) throw new InvalidOperationException($"Native death-drop root '{rootInstanceId}' is unavailable.");
+            var inventoryEmergencyFallback = root.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase);
+            var placement = DisposeNativeDeathItemInRoom(root, session.CurrentRoom, 0, "death-room-dfs");
+
+            if (!placement.Placed)
+                placement = DisposeNativeDeathItemInTrail(root, session.ClassicMovementTrail);
+
+            if (!placement.Placed && inventoryEmergencyFallback &&
+                _world.FindRoom(RuntimeClassicNativeCharacterDeathAuthority.EmergencyInventorySpillMap,
+                    RuntimeClassicNativeCharacterDeathAuthority.EmergencyInventorySpillRoom) is { } emergencyRoom)
+            {
+                placement = DisposeNativeDeathItemInRoom(root, emergencyRoom, 0, "inventory-emergency-room-164-dfs");
+            }
+
+            if (!placement.Placed)
+                return placement with { Stage = inventoryEmergencyFallback ? "native-floor-exhausted-inventory-lost" : "native-floor-exhausted-secondary-lost" };
+
+            // Reforged portable-container descendants are a compatibility extension around the
+            // native root-slot behavior. Preserve their tree with the successfully placed root; if
+            // the native root merged into an existing room slot, reparent immediate children to
+            // that surviving room instance instead of orphaning them.
+            var byContainer = items
+                .Where(item => item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase))
+                .GroupBy(item => item.LocationId, StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.OrdinalIgnoreCase);
+            var pending = new Stack<string>();
+            var included = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            pending.Push(rootInstanceId);
+            while (pending.Count > 0)
+            {
+                var id = pending.Pop();
+                if (!included.Add(id)) continue;
+                if (byContainer.TryGetValue(id, out var children))
+                    foreach (var child in children) pending.Push(child.InstanceId);
+            }
+
+            foreach (var item in items.Where(item => included.Contains(item.InstanceId) &&
+                         !item.InstanceId.Equals(rootInstanceId, StringComparison.OrdinalIgnoreCase)))
+            {
+                var metadata = item.Metadata is null
+                    ? new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+                    : item.Metadata.ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+                metadata["native_character_death_drop"] = "wccmmud_check_kill_user";
+                var locationId = placement.Stacked && item.LocationId.Equals(rootInstanceId, StringComparison.OrdinalIgnoreCase)
+                    ? placement.FloorInstanceId ?? rootInstanceId
+                    : item.LocationId;
+                _items[item.InstanceId] = item with { OwnerId = null, LocationId = locationId, EquippedSlot = null, Metadata = metadata };
+            }
+            Save();
+            return placement;
+        }
+    }
+
+    private RuntimeClassicNativeDeathFloorPlacement DisposeNativeDeathItemInRoom(
+        RuntimeItemInstance root, RuntimeRoom room, int depth, string stage)
+    {
+        if (depth > RuntimeClassicNativeCharacterDeathAuthority.SpillMaximumDepth)
+            return NativeDeathPlacementFailure(stage);
+
+        // _dispose_of_item_in_room invokes the visible add-item owner twice before traversing.
+        var placement = TryInsertNativeRoomItem(root, room, hidden: false, stage);
+        if (placement.Placed) return placement;
+        placement = TryInsertNativeRoomItem(root, room, hidden: false, stage);
+        if (placement.Placed) return placement;
+
+        foreach (var direction in RuntimeClassicNativeCharacterDeathAuthority.NativeSpillDirectionOrder)
+        {
+            var exit = _world.FindExit(room, direction);
+            if (exit is null || exit.HasBlockedDestination || exit.TargetRoomNumber <= 0) continue;
+            var exitType = exit.ExitType ?? 0;
+            if (exitType == RuntimeClassicNativeCharacterDeathAuthority.ChangeMapExitRoomType ||
+                exitType == RuntimeClassicNativeCharacterDeathAuthority.RemoteActionExitRoomType) continue;
+            var target = _world.FindRoom(exit.TargetMapId, exit.TargetRoomNumber);
+            if (target is null) continue;
+            placement = DisposeNativeDeathItemInRoom(root, target, depth + 1, stage);
+            if (placement.Placed) return placement;
+        }
+        return NativeDeathPlacementFailure(stage);
+    }
+
+    private RuntimeClassicNativeDeathFloorPlacement DisposeNativeDeathItemInTrail(
+        RuntimeItemInstance root, IReadOnlyList<RuntimeRoomKey> trail)
+    {
+        foreach (var key in trail.Take(RuntimeClassicNativeCharacterDeathAuthority.MovementTrailLength))
+        {
+            var room = _world.FindRoom(key.MapId, key.RoomNumber);
+            if (room is null) continue;
+            var placement = TryInsertNativeRoomItem(root, room, hidden: false, "movement-trail-visible");
+            if (placement.Placed) return placement;
+            placement = TryInsertNativeRoomItem(root, room, hidden: true, "movement-trail-hidden");
+            if (placement.Placed) return placement;
+        }
+        return NativeDeathPlacementFailure("movement-trail-exhausted");
+    }
+
+    private RuntimeClassicNativeDeathFloorPlacement TryInsertNativeRoomItem(
+        RuntimeItemInstance incoming, RuntimeRoom room, bool hidden, string stage)
+    {
+        var definition = _itemCatalog.Require(incoming.CanonicalItemId);
+        var nativeUses = RuntimeClassicNativeCharacterDeathAuthority.NativeItemUses(definition, incoming);
+        var capacity = hidden
+            ? RuntimeClassicNativeCharacterDeathAuthority.HiddenRoomItemSlots
+            : RuntimeClassicNativeCharacterDeathAuthority.VisibleRoomItemSlots;
+        var roomItems = _items.Values
+            .Where(item => item.LocationKind.Equals(RuntimeItemLocations.Room, StringComparison.OrdinalIgnoreCase)
+                && item.LocationId.Equals(room.Id, StringComparison.OrdinalIgnoreCase)
+                && RuntimeClassicHiddenSearchService.IsHidden(item) == hidden)
+            .OrderBy(NativeRoomSlotSortKey)
+            .ThenBy(item => item.InstanceId, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        // Native _add_item_to_room stacks solely on incoming ItemUses == -1 plus same item ID.
+        // It does this before looking for an empty slot and does not consult a generic stackable flag.
+        if (nativeUses == -1)
+        {
+            var stackTarget = roomItems.FirstOrDefault(item =>
+                item.CanonicalItemId.Equals(incoming.CanonicalItemId, StringComparison.OrdinalIgnoreCase));
+            if (stackTarget is not null)
+            {
+                var metadata = stackTarget.Metadata is null
+                    ? new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+                    : stackTarget.Metadata.ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+                var quantity = checked(Math.Max(1, stackTarget.StackQuantity) + Math.Max(1, incoming.StackQuantity));
+                metadata["native_character_death_drop"] = "wccmmud_check_kill_user";
+                metadata["native_room_quantity_encoding"] = "extra_copies_beyond_first";
+                metadata["native_room_qty"] = (quantity - 1).ToString(System.Globalization.CultureInfo.InvariantCulture);
+                metadata["native_item_uses"] = "-1";
+                _items[stackTarget.InstanceId] = stackTarget with { StackQuantity = quantity, Metadata = metadata };
+                return new(true, room.Id, hidden, true, ReadNativeRoomSlot(stackTarget), stage, stackTarget.InstanceId);
+            }
+        }
+
+        var slot = FirstFreeNativeRoomSlot(roomItems, capacity);
+        if (slot < 0) return NativeDeathPlacementFailure(stage);
+        var incomingMetadata = incoming.Metadata is null
+            ? new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+            : incoming.Metadata.ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+        incomingMetadata["native_character_death_drop"] = "wccmmud_check_kill_user";
+        incomingMetadata["native_room_slot"] = slot.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        incomingMetadata["native_item_uses"] = nativeUses.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        incomingMetadata["native_room_quantity_encoding"] = "extra_copies_beyond_first";
+        incomingMetadata["native_room_qty"] = Math.Max(0, incoming.StackQuantity - 1).ToString(System.Globalization.CultureInfo.InvariantCulture);
+        incomingMetadata.Remove("revealed_by_pickup");
+        if (hidden) incomingMetadata["hidden_at_cleanup"] = "true";
+        else
+        {
+            incomingMetadata.Remove("hidden_at_cleanup");
+            incomingMetadata.Remove("hidden_at_cleanup_utc");
+        }
+        _items[incoming.InstanceId] = incoming with
+        {
+            OwnerId = null,
+            LocationKind = RuntimeItemLocations.Room,
+            LocationId = room.Id,
+            EquippedSlot = null,
+            Metadata = incomingMetadata
+        };
+        return new(true, room.Id, hidden, false, slot, stage, incoming.InstanceId);
+    }
+
+    private static int FirstFreeNativeRoomSlot(IReadOnlyList<RuntimeItemInstance> roomItems, int capacity)
+    {
+        var used = new HashSet<int>();
+        var unassigned = 0;
+        foreach (var item in roomItems)
+        {
+            var slot = ReadNativeRoomSlot(item);
+            if (slot is >= 0 && slot < capacity) used.Add(slot.Value);
+            else unassigned++;
+        }
+        for (var count = 0; count < unassigned; count++)
+        {
+            var conceptual = Enumerable.Range(0, capacity).FirstOrDefault(index => !used.Contains(index), -1);
+            if (conceptual < 0) return -1;
+            used.Add(conceptual);
+        }
+        return Enumerable.Range(0, capacity).FirstOrDefault(index => !used.Contains(index), -1);
+    }
+
+    private static int NativeRoomSlotSortKey(RuntimeItemInstance item) => ReadNativeRoomSlot(item) ?? int.MaxValue;
+
+    private static int? ReadNativeRoomSlot(RuntimeItemInstance item) =>
+        item.Metadata?.TryGetValue("native_room_slot", out var raw) == true && int.TryParse(raw, out var slot) ? slot : null;
+
+    private static RuntimeClassicNativeDeathFloorPlacement NativeDeathPlacementFailure(string stage) =>
+        new(false, null, false, false, null, stage, null);
+
     public void DropGroundItemTree(IReadOnlyList<RuntimeItemInstance> items, string rootInstanceId, string roomId)
     {
         lock (_gate)
@@ -1012,7 +1280,8 @@ public sealed partial class RuntimeLivingWorldService
 public sealed partial class RuntimeLiveGameplayFacade
 {
     private readonly ConcurrentDictionary<string,RuntimeLivingWorldService> _livingWorlds=new(StringComparer.OrdinalIgnoreCase);
-    private RuntimeLivingWorldService Living(RuntimeSession session)=>_livingWorlds.GetOrAdd(session.World.Definition.Id,_=>new RuntimeLivingWorldService(_characters.ProjectRoot,session.World));
+    private RuntimeLivingWorldService Living(RuntimeSession session)=>Living(session.World);
+    private RuntimeLivingWorldService Living(RuntimeWorld world)=>_livingWorlds.GetOrAdd(world.Definition.Id,_=>new RuntimeLivingWorldService(_characters.ProjectRoot,world));
     public IReadOnlyList<RuntimeLivingNpcState> LivingNpcsInRoom(RuntimeSession session)=>Living(session).NpcsInRoom(session.CurrentRoom.Id);
     public RuntimeLivingNpcState SummonLivingNpc(RuntimeSession session,string npcId,string source)=>Living(session).SummonNpc(npcId,session.CurrentRoom.Id,source);
     public bool CanTraverseLivingWorld(RuntimeSession session,string direction,out string failure)
@@ -1179,7 +1448,31 @@ public sealed partial class RuntimeLiveGameplayFacade
             && definition.Metadata.TryGetValue("commands", out var encoded)
             && encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase))).ToArray();
-        if (matches.Length == 0) { result = string.Empty; return false; }
+        if (matches.Length == 0)
+        {
+            if (RuntimeMegaMudRouteCompatibility.TryResolve(
+                    _characters.ProjectRoot, session.World, session.CurrentRoom, entered,
+                    out var legacyTarget, out var legacyTransition))
+            {
+                if (!CanMove(session, out var movementFailure))
+                {
+                    result = movementFailure;
+                    return true;
+                }
+
+                session.MoveToWorld(
+                    session.World,
+                    legacyTarget,
+                    $"megamud-route-compat:{legacyTransition.FromSignature}:{legacyTransition.NormalizedCommand}");
+                Save(session);
+                AdmitClassicRoomEntryNpcRespawns(session);
+                result = RenderRoom(session);
+                return true;
+            }
+
+            result = string.Empty;
+            return false;
+        }
         if (matches.Length > 1) { result = "The decoded command matches more than one room interaction."; return true; }
         if (matches[0].Kind.Equals("native_support_invasion", StringComparison.OrdinalIgnoreCase))
         {
@@ -1426,10 +1719,12 @@ public sealed partial class RuntimeLiveGameplayFacade
     public Task TickLivingWorldsAsync(CancellationToken cancellationToken)
     {
         var now=DateTimeOffset.UtcNow;
-        TickActiveCharacterRegeneration(now);
+        var schedulerStep=_classicNativeSchedulerClock.Advance(now);
+        TickActiveCharacterRegeneration(now,schedulerStep);
         foreach(var world in _livingWorlds.Values)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            if(schedulerStep.SlowDue) world.ApplyNativeSlowNpcRegeneration(now);
             world.Tick(now);
         }
         return Task.CompletedTask;

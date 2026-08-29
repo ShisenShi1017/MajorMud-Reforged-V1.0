@@ -579,7 +579,8 @@ public sealed class RuntimeCharacterRepository
                 .Select(TryLoadCharacter)
                 .Where(value => value is not null)
                 .Cast<RuntimeCharacterRecord>()
-                .Count(value => value.WorldId.Equals(character.WorldId, StringComparison.OrdinalIgnoreCase));
+                .Count(value => value.WorldId.Equals(character.WorldId, StringComparison.OrdinalIgnoreCase)
+                    && RuntimeClassicCharacterProgressionFormula.ReadLives(value) > 0);
             if (existingInWorld >= MaximumCharactersPerAccountPerWorld)
             {
                 throw new InvalidOperationException($"Account '{account.DisplayName}' already has {MaximumCharactersPerAccountPerWorld} characters in realm '{character.WorldId}'.");
@@ -590,6 +591,62 @@ public sealed class RuntimeCharacterRepository
             var ids = account.CharacterIds.Concat(new[] { character.CharacterId }).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
             WriteAtomic(AccountPath(account.AccountId), account with { CharacterIds = ids, UpdatedAtUtc = DateTimeOffset.UtcNow });
             return character;
+        }
+    }
+
+    public RuntimeCharacterRecord ReplaceCharacter(RuntimeAccountRecord account, RuntimeCharacterRecord previous, RuntimeCharacterRecord replacement)
+    {
+        lock (_gate)
+        {
+            var current = TryLoadCharacter(previous.CharacterId)
+                ?? throw new InvalidOperationException($"Character '{previous.DisplayName}' was not found for reroll.");
+            if (!string.Equals(current.AccountId, account.AccountId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Reroll character/account ownership mismatch.");
+            if (!string.Equals(current.WorldId, replacement.WorldId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Reroll cannot move a character between realms.");
+
+            var sameId = current.CharacterId.Equals(replacement.CharacterId, StringComparison.OrdinalIgnoreCase);
+            if (!sameId && TryLoadCharacter(replacement.CharacterId) is not null)
+                throw new InvalidOperationException($"Character '{replacement.DisplayName}' already exists.");
+
+            var accountIds = account.CharacterIds.ToArray();
+            var slot = Array.FindIndex(accountIds, id => id.Equals(current.CharacterId, StringComparison.OrdinalIgnoreCase));
+            if (slot < 0) throw new InvalidOperationException("Reroll source character is not present in the account slot list.");
+
+            var oldPath = CharacterPath(current.CharacterId);
+            var newPath = CharacterPath(replacement.CharacterId);
+            var prepared = RuntimeCharacterPersistencePolicy.PrepareForSave(replacement, "reroll-replacement", DateTimeOffset.UtcNow);
+            var updatedIds = accountIds.ToArray();
+            updatedIds[slot] = prepared.CharacterId;
+            if (updatedIds.Distinct(StringComparer.OrdinalIgnoreCase).Count() != updatedIds.Length)
+                throw new InvalidOperationException("Reroll replacement would duplicate an existing character slot.");
+
+            // Write the replacement and account slot first. If the logical ID changed, only
+            // then remove the departed character. No old-character backup is retained by this
+            // destructive replacement path: REROLL intentionally discards the prior character.
+            WriteAtomic(newPath, prepared, retainBackup: false);
+            try
+            {
+                WriteAtomic(AccountPath(account.AccountId), account with
+                {
+                    CharacterIds = updatedIds,
+                    UpdatedAtUtc = DateTimeOffset.UtcNow
+                });
+            }
+            catch
+            {
+                if (sameId) WriteAtomic(oldPath, current, retainBackup: false);
+                else TryDelete(newPath);
+                throw;
+            }
+
+            if (!sameId)
+            {
+                TryDelete(oldPath);
+                TryDelete(oldPath + ".bak");
+            }
+            TryDelete(newPath + ".bak");
+            return prepared;
         }
     }
 
@@ -891,6 +948,63 @@ public sealed class RuntimeCharacterService
         string eyeColor,
         int creationPointsRemaining)
     {
+        var character = BuildCharacterRecord(account, world, name, sex, race, characterClass, selectedStats, givenName, familyName, hairLength, hairColor, eyeColor, creationPointsRemaining);
+        return _repository.CreateCharacter(account, character);
+    }
+
+    public RuntimeCharacterRecord RerollCharacter(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        RuntimeCharacterRecord previous,
+        string name,
+        string sex,
+        string race,
+        string characterClass,
+        IReadOnlyDictionary<string, int>? selectedStats,
+        string givenName,
+        string familyName,
+        string hairLength,
+        string hairColor,
+        string eyeColor,
+        int creationPointsRemaining)
+    {
+        if (!previous.AccountId.Equals(account.AccountId, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Reroll character/account ownership mismatch.");
+        if (!previous.WorldId.Equals(world.Definition.Id, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Reroll must create the replacement character in the same realm.");
+
+        var oldCatalog = RuntimeCharacterCatalog.Load(_projectRoot, previous.WorldId);
+        var oldRace = oldCatalog.RequireRace(previous.RaceId);
+        var oldClass = oldCatalog.RequireClass(previous.ClassId);
+        var chart = RuntimeClassicCharacterProgressionFormula.ExperienceChartPercent(oldRace, oldClass);
+        var keepEnabled = previous.Conditions.TryGetValue("ui.classic.keep.enabled", out var keepRaw)
+            && keepRaw.Equals("1", StringComparison.OrdinalIgnoreCase);
+        var retainedExperience = RuntimeClassicDeathExperienceAuthority.CalculateFinalRerollRetainedExperience(
+            previous.Experience, previous.Level, chart, keepEnabled, RuntimeClassicConfigurationAuthority.KeepExperienceAfterFinalDeath);
+
+        var replacement = BuildCharacterRecord(account, world, name, sex, race, characterClass, selectedStats, givenName, familyName, hairLength, hairColor, eyeColor, creationPointsRemaining) with
+        {
+            Experience = retainedExperience,
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
+        return _repository.ReplaceCharacter(account, previous, replacement);
+    }
+
+    private RuntimeCharacterRecord BuildCharacterRecord(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        string name,
+        string sex,
+        string race,
+        string characterClass,
+        IReadOnlyDictionary<string, int>? selectedStats,
+        string givenName,
+        string familyName,
+        string hairLength,
+        string hairColor,
+        string eyeColor,
+        int creationPointsRemaining)
+    {
         // Classic character identity is composed of separately validated given and family names.
         // The display name may contain the separator space and must not be rejected as a single token.
         RuntimeIdentity.ValidateClassicGivenName(givenName);
@@ -945,6 +1059,13 @@ public sealed class RuntimeCharacterService
             equipmentManaCache: catalog.DerivedFormulaContract.CreationAbilityAndEquipmentCache);
         var maximumHitPoints = derivedStatistics.MaximumHitPoints;
         var maximumMana = derivedStatistics.MaximumMana;
+
+        // Native _create_player consumes the permanent-info retained-XP field once after
+        // core creation inputs are validated. Delay the destructive read until this point
+        // so failed character-creation attempts cannot consume the pending reroll value.
+        var retainedRerollExperience = RuntimeClassicPermanentDeathInfoStore.Consume(
+            _projectRoot, account.AccountId, world.Definition.Id);
+
         var startingAbilities = raceDefinition.AbilitySlots
             .Concat(classDefinition.AbilitySlots)
             .GroupBy(value => value.AbilityId)
@@ -962,7 +1083,7 @@ public sealed class RuntimeCharacterService
             classDefinition.Id,
             classDefinition.Name,
             startingLevel,
-            0,
+            retainedRerollExperience,
             maximumHitPoints,
             maximumHitPoints,
             maximumMana,
@@ -986,6 +1107,8 @@ public sealed class RuntimeCharacterService
                 ["race_base_creation_points"] = raceDefinition.BaseCreationPoints.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["creation_points"] = Math.Max(0, creationPointsRemaining).ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["lives"] = RuntimeClassicCharacterProgressionFormula.MaximumLives.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                [RuntimeClassicDeathExperienceAuthority.KeepExperienceConditionKey] = "1",
+                ["classic.reroll_retained_experience_consumed"] = retainedRerollExperience.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 ["given_name"] = givenName ?? string.Empty,
                 ["family_name"] = familyName ?? string.Empty,
                 ["hair_length"] = hairLength ?? string.Empty,
@@ -1002,7 +1125,7 @@ public sealed class RuntimeCharacterService
             null,
             RuntimeCharacterSemanticState.Empty with { Alignment = RuntimeCharacterAlignmentResolver.CreateInitial(catalog.AlignmentRuleContract) },
             normalizedSex);
-        return _repository.CreateCharacter(account, character);
+        return character;
     }
 
     private static int ReadStat(IReadOnlyDictionary<string, int> values, params string[] keys)

@@ -6,7 +6,7 @@ The decoded WCCMMUD online SYSOP/GAMEOP command surface is now a Librarium famil
 
 - 20 native command roots retained.
 - 10 command roots retain decoded GAMEOP permission.
-- The user-confirmed `code_of_twinks_78` value is recorded as the legacy `SYSOPKEY` configuration value, not exposed as a player command.
+- Correction retained by CodeUpdate0333: the observed setting is `CODEC_OF_TWINKS=78`. `SYS_*_KEY` values such as `MMUDGOD`, `MMUDOP`, `MMUDELITE`, and `normal` are Worldgroup user levels/access classes. The numeric CODEC setting is evidence, not a plaintext player command, and its exact native semantic role is not inferred.
 - Runtime authority is the authenticated account role: Moderator for GAMEOP-allowed commands; Sysop or Administrator for the complete catalog.
 - Six safe roots are executable: `BUFFERS`, `STATUS`, `MAP`, room `RESET`, realm `SPEAK`, and `ARENA`.
 - Unsupported roots return their exact catalog disposition and make no mutation.

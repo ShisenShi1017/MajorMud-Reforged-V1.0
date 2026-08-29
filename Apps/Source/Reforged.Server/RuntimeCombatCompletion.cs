@@ -66,19 +66,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (RuntimeClassicCharacterProgressionFormula.ReadLives(character) <= 0)
             return "You have no lives remaining. This character is permanently dead.";
 
-        var alignment = character.SemanticState?.Alignment;
-        var reputation = alignment?.Reputation
-            ?? (character.Conditions.TryGetValue("alignment", out var alignmentText) ? alignmentText : string.Empty);
-        var evilPoints = alignment?.EvilPoints
-            ?? (character.Conditions.TryGetValue("evil_points", out var rawEvil) && int.TryParse(rawEvil, out var parsedEvil) ? parsedEvil : 0);
-        var outlawOrWorse = evilPoints >= 40 || reputation.Equals("Outlaw", StringComparison.OrdinalIgnoreCase)
-            || reputation.Equals("Criminal", StringComparison.OrdinalIgnoreCase)
-            || reputation.Equals("Villain", StringComparison.OrdinalIgnoreCase)
-            || reputation.Equals("Villian", StringComparison.OrdinalIgnoreCase)
-            || reputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase);
-        var roomNumber = outlawOrWorse ? 142 : 2189;
-        var room = session.World.FindRoom(1, roomNumber)
-            ?? throw new InvalidOperationException($"Decoded Classic death-respawn room 1/{roomNumber} is unavailable.");
+        // Legacy/manual recovery exists only for saves created before the native immediate-revival
+        // path was connected. Native WCCMMUD chooses solely by Evil Points (threshold 40), with
+        // a room-local DeathRoom override; reputation labels are not consulted.
+        var room = RuntimeClassicNativeCharacterDeathAuthority.ResolveRespawn(session, character);
         var updated = RuntimeCharacterDeathResolver.Respawn(character, room.Id, room.RoomNumber, DateTimeOffset.UtcNow);
         _characters.SaveCharacter(updated);
         session.MoveToWorld(session.World, room, "combat-respawn");
@@ -306,17 +297,117 @@ public sealed partial class RuntimeLiveGameplayFacade
         var nowUtc = DateTimeOffset.UtcNow;
         _ = RuntimeDecodedDeathTextAuthority.Resolve(before, catalog,
             RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot));
+
+        // Native _check_kill_user performs shared leave/death cleanup before status termination and
+        // before either the arena exception or normal death inventory/life processing.
+        CleanupClassicCharacterDeath(session);
         RemoveCharacterLiveStatusEffects(before.CharacterId, nowUtc, "runtime.live_status.player_death");
         var cleaned = RuntimeClassicStatusProjection.Clear(before, nowUtc, "runtime.live_status.player_death");
-        var transition = RuntimeCharacterDeathResolver.Defeat(cleaned, catalog, session.CurrentRoom.Id, nowUtc);
-        var defeated = ScatterDeathGearFromDecodedRoomSpell(session, transition.Character, transition.Corpse.CorpseId);
-        _characters.SaveCharacter(defeated.Character);
-        var livesRemaining = RuntimeClassicCharacterProgressionFormula.ReadLives(defeated.Character);
-        if (livesRemaining <= 0)
-            return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. You have no lives remaining; this character is permanently dead.";
-        if (defeated.ScatteredRootItems > 0)
-            return $"Your dropped gear was scattered from {session.CurrentRoom.Name} into {defeated.DestinationRoomCount} decoded destination room(s). Your corpse ({transition.Corpse.CorpseId}) remains here with any recoverable gold. {livesRemaining} lives remain. Use 'respawn'.";
-        return $"Your corpse ({transition.Corpse.CorpseId}) remains in {session.CurrentRoom.Name}. {livesRemaining} lives remain. Use 'respawn', then return and use 'recover'.";
+
+        if (IsClassicPracticeArena(session))
+            return CompletePracticeArenaPlayerDefeat(session, cleaned);
+
+        var livesBefore = RuntimeClassicCharacterProgressionFormula.ReadLives(cleaned);
+        if (livesBefore <= 0) return "You have no lives remaining. This character is permanently dead.";
+        var finalLife = livesBefore == 1;
+        var state = cleaned.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0,
+            new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+
+        // Classic drops each denomination directly into the death room and zeros carried money.
+        var currency = RuntimeBundleCInventoryAuthority.ReadCurrency(state);
+        if (!currency.IsEmpty)
+            RuntimeClassicRoomCurrencyStore.AddExact(_characters.ProjectRoot, cleaned.WorldId, session.CurrentRoom.Id,
+                currency.Runic, currency.Platinum, currency.Gold, currency.Silver, currency.Copper);
+        state = RuntimeBundleCInventoryAuthority.WriteCurrency(state, new RuntimeClassicInventoryCurrency(0, 0, 0, 0, 0));
+
+        // Ordinary deaths retain ability-100/CURSED roots. Final death bypasses both protections.
+        // Native death-floor placement is exact here: 17 visible/15 hidden room slots, ItemUses==-1
+        // stacking, bounded DFS, the 20-room movement trail, and the inventory-only map 1 / room 164 fallback.
+        var allItems = state.Items.ToArray();
+        var roots = allItems.Where(item => string.Equals(item.OwnerId, cleaned.CharacterId, StringComparison.OrdinalIgnoreCase)
+            && !item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(item => item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase) ? 0 : 1)
+            .ToArray();
+        var droppedRoots = roots.Where(item => finalLife || !catalog.Require(item.CanonicalItemId).RetainedOnDeath).ToArray();
+        var droppedIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var floorPlacedRoots = 0;
+        var floorLostRoots = 0;
+        var children = allItems.Where(item => item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase))
+            .GroupBy(item => item.LocationId, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.OrdinalIgnoreCase);
+        foreach (var root in droppedRoots)
+        {
+            var pending = new Stack<string>();
+            pending.Push(root.InstanceId);
+            while (pending.Count > 0)
+            {
+                var id = pending.Pop();
+                if (!droppedIds.Add(id)) continue;
+                if (children.TryGetValue(id, out var descendants))
+                    foreach (var child in descendants) pending.Push(child.InstanceId);
+            }
+            var placement = Living(session).DropNativeDeathGroundItemTree(allItems, root.InstanceId, session);
+            if (placement.Placed) floorPlacedRoots++;
+            else floorLostRoots++;
+        }
+        state = state with { Items = allItems.Where(item => !droppedIds.Contains(item.InstanceId)).ToArray() };
+
+        var conditions = new Dictionary<string, string>(cleaned.Conditions, StringComparer.OrdinalIgnoreCase)
+        {
+            ["lives"] = Math.Max(0, livesBefore - 1).ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [RuntimeCharacterDeathMarkers.OccurredAtUtc] = nowUtc.ToString("O"),
+            [RuntimeCharacterDeathMarkers.RoomId] = session.CurrentRoom.Id,
+            [RuntimeCharacterDeathMarkers.DroppedRootItems] = droppedRoots.Length.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [RuntimeCharacterDeathMarkers.FloorPlacedRootItems] = floorPlacedRoots.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [RuntimeCharacterDeathMarkers.FloorLostRootItems] = floorLostRoots.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            [RuntimeCharacterDeathMarkers.ExperienceBefore] = cleaned.Experience.ToString(System.Globalization.CultureInfo.InvariantCulture)
+        };
+
+        if (finalLife)
+        {
+            var characterCatalog = _characters.GetCatalog(cleaned.WorldId);
+            var race = characterCatalog.RequireRace(cleaned.RaceId);
+            var characterClass = characterCatalog.RequireClass(cleaned.ClassId);
+            var chart = RuntimeClassicCharacterProgressionFormula.ExperienceChartPercent(race, characterClass);
+            var retained = RuntimeClassicDeathExperienceAuthority.CalculateFinalRerollRetainedExperience(
+                cleaned.Experience, cleaned.Level, chart,
+                RuntimeClassicDeathExperienceAuthority.IsPlayerKeepExperienceEnabled(cleaned),
+                RuntimeClassicConfigurationAuthority.KeepExperienceAfterFinalDeath);
+            RuntimeClassicPermanentDeathInfoStore.Save(_characters.ProjectRoot, cleaned.AccountId, cleaned.WorldId,
+                cleaned.CharacterId, retained, nowUtc);
+            conditions[RuntimeCharacterDeathMarkers.ExperienceAfter] = retained.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            conditions[RuntimeCharacterDeathMarkers.ExperienceLost] = Math.Max(0, cleaned.Experience - retained).ToString(System.Globalization.CultureInfo.InvariantCulture);
+            conditions[RuntimeCharacterDeathMarkers.ExperiencePolicy] = RuntimeClassicDeathExperienceAuthority.FinalRerollClassification;
+            var final = RuntimeCharacterFlagResolver.Set(cleaned with
+            {
+                HitPoints = 0,
+                ItemState = state,
+                Conditions = conditions,
+                UpdatedAtUtc = nowUtc
+            }, RuntimeCharacterFlagIds.Dead, "runtime.classic.native-final-death");
+            _characters.SaveCharacter(final, "runtime.classic.native-final-death");
+            return $"You have no lives remaining; this character is permanently dead. {retained} experience is retained for your replacement character.";
+        }
+
+        var experience = RuntimeClassicDeathExperienceAuthority.PreserveOrdinaryDeathExperience(cleaned.Experience, livesBefore);
+        conditions[RuntimeCharacterDeathMarkers.ExperienceAfter] = experience.ExperienceAfter.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        conditions[RuntimeCharacterDeathMarkers.ExperienceLost] = "0";
+        conditions[RuntimeCharacterDeathMarkers.ExperiencePolicy] = experience.Classification;
+        var destination = RuntimeClassicNativeCharacterDeathAuthority.ResolveRespawn(session, cleaned);
+        var revived = RuntimeCharacterFlagResolver.Clear(cleaned with
+        {
+            HitPoints = cleaned.MaximumHitPoints,
+            Mana = cleaned.MaximumMana,
+            RoomId = destination.Id,
+            RoomNumber = destination.RoomNumber,
+            ItemState = state,
+            Conditions = conditions,
+            UpdatedAtUtc = nowUtc
+        }, RuntimeCharacterFlagIds.Dead, "runtime.classic.native-death-revival");
+        _characters.SaveCharacter(revived, "runtime.classic.native-death-revival");
+        session.MoveToWorld(session.World, destination, "classic-native-death-revival");
+        _sessions.BroadcastRoom(session, $"{session.Actor.DisplayName} returns to life.", includeSource: false);
+        return $"You return to life at {destination.Name} with full HP and mana. {livesBefore - 1} lives remain.";
     }
 
     private (RuntimeCharacterRecord Character, int ScatteredRootItems, int DestinationRoomCount) ScatterDeathGearFromDecodedRoomSpell(

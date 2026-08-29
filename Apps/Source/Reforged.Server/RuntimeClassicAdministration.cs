@@ -16,8 +16,8 @@ public sealed class RuntimeClassicAdministrationPolicy
     // SYSOP command or administrative capability.
     public bool EveryoneCanUseSysGoto { get; set; }
 
-    // Local Host/editor-managed character grants. This replaces the insecure legacy plaintext
-    // SYSOPKEY behavior with an explicit persisted character capability.
+    // Local Host/editor-managed character grants for the standalone runtime. Classic command-level
+    // access was gated by Worldgroup user levels; Reforged persists its own explicit capability grants.
     public List<string> SysopCharacterIds { get; set; } = [];
 
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;

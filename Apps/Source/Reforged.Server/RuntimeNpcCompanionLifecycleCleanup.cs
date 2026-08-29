@@ -28,7 +28,7 @@ public sealed partial class RuntimeLivingWorldService
 {
     private static readonly HashSet<string> SupportedCompanionCleanupReasons = new(StringComparer.OrdinalIgnoreCase)
     {
-        "dismissed", "owner-logout", "owner-disconnect", "duration-expired", "charm-broken", "companion-death"
+        "dismissed", "owner-logout", "owner-disconnect", "owner-reroll", "duration-expired", "charm-broken", "companion-death"
     };
 
     public RuntimeNpcCompanionCleanupResult CleanupNpcCompanionLifecycle(RuntimeNpcCompanionCleanupRequest request)

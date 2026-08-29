@@ -1,0 +1,204 @@
+{
+  "schema": "majormud.native-formula-callsite-evidence.v1",
+  "code_update": "0334",
+  "source": {
+    "artifact": "ImportedDatabasesAndEvidence.LocalOnly.rar -> ImportedDatabases/WCCDefaultInstall/.../wccmmud.dll",
+    "repository_copy_retained": false,
+    "bytes": 643072,
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "image_base": "0x00400000",
+    "architecture": "PE32 i386"
+  },
+  "closure_policy": "PASS only where the original WCCMMUD executable exposes the exact formula/callsite and the live runtime has executable regression coverage. Secondary MMUD Explorer formulas remain corroboration, not the promotion authority.",
+  "native_findings": [
+    {
+      "assertion": "character.magic-resistance-formula",
+      "state": "PASS",
+      "range": "0x0041ab17-0x0041ab3f",
+      "proof": [
+        "load INT from character +0xA2",
+        "load WIL from character +0xA4",
+        "compute INT + 3*WIL",
+        "signed divide by 4 with truncation toward zero",
+        "store MR then add modifier output"
+      ],
+      "runtime": "RuntimeClassicCharacterFormulaCalculator.CalculateMagicResistance"
+    },
+    {
+      "assertion": "character.picklocks-stock-formula",
+      "state": "PASS",
+      "range": "0x0041a7ce-0x0041a86f",
+      "proof": [
+        "ability 37 gates stock Picklocks",
+        "level >15 becomes floor((level-15)/2)+15",
+        "base = ((adjustedLevel*10 + AGL + INT)*2)/7",
+        "native modifier call binds ability 37 with paired ability 180 output",
+        "result clamps at zero",
+        "separate ability-40 branch at 0x0041a701-0x0041a7bc contains the competing CHA term and does not own stock ability-37 Picklocks",
+        "live runtime now keeps ability-37 enhancement and paired ability-180 PickLocksValue contributions distinct, then clamps the composed result at zero"
+      ],
+      "runtime": "RuntimeClassicCharacterProgressionFormula.PicklocksBase/PicklocksValue + RuntimeCharacterCombatStatisticProjector distinct ability-37/180 projections"
+    },
+    {
+      "assertion": "character.stock-xp-threshold-formula",
+      "state": "PASS",
+      "ranges": [
+        "TRAIN callsite 0x0041e895-0x0041e8a8",
+        "formula 0x00473810-0x00473a2f"
+      ],
+      "proof": [
+        "TRAIN passes current level and class raw ExpTable + race raw ExpTable",
+        "formula reconstructs (raw+100)*10 level-2 base",
+        "native multiplier/divisor table and later 115/100,109/100,108/100 bands match runtime",
+        "native 32-bit rollover/billion tabulation matches runtime vectors"
+      ],
+      "runtime": "RuntimeClassicCharacterProgressionFormula.RequiredExperienceForChart"
+    },
+    {
+      "assertion": "character.stock-cp-award-schedule",
+      "state": "PASS",
+      "range": "0x0041ea3a-0x0041ea98",
+      "proof": [
+        "new level <=10 awards 10",
+        "new level <=20 awards 15",
+        "otherwise ((newLevel-1)/10)*5+10",
+        "award is added to both native CP tracking fields"
+      ],
+      "runtime": "RuntimeClassicCharacterProgressionFormula.CharacterPointAwardForPromotion"
+    },
+    {
+      "assertion": "character.life-gain-on-level",
+      "state": "PASS",
+      "ranges": [
+        "initializer 0x00402348",
+        "TRAIN 0x0041eac6-0x0041eb07"
+      ],
+      "proof": [
+        "global life promotion increment at 0x00482cd8 initializes to 5",
+        "TRAIN adds that WORD after successful level increment",
+        "lives clamp to 9",
+        "native message reports the actual delta"
+      ],
+      "runtime_correction": "Runtime promotion changed from +1 to +5, cap 9",
+      "runtime": "RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion"
+    },
+    {
+      "assertion": "economy.currency-denominations",
+      "state": "PASS",
+      "range": "0x0041ed10-0x0041ed89",
+      "proof": [
+        "five denomination slots fold through x100,x100,x10,x10",
+        "item cost_type callsites place exactly one item cost into the corresponding slot",
+        "stock multipliers low-to-high are 1,10,100,10000,1000000"
+      ],
+      "runtime": "RuntimeLiveGameplayFacade.CostTypeCopperMultiplier"
+    },
+    {
+      "assertion": "economy.shop-markup-arithmetic",
+      "state": "PASS",
+      "range": "0x0041c153-0x0041c169",
+      "proof": [
+        "native loads shop Markup WORD",
+        "adds 100",
+        "multiplies current base",
+        "integer divides by 100"
+      ],
+      "runtime": "RuntimeClassicEconomyPricing.QuoteBuyCopper"
+    },
+    {
+      "assertion": "economy.merchandise-buy-price",
+      "state": "PASS",
+      "range": "0x0041c0ac-0x0041c19f",
+      "proof": [
+        "cost_type converts first",
+        "base >100000 is divided by100 and later restored x100",
+        "shop factor is Markup+100",
+        "Charm factor is 110-floor(Charm/5), including Charm 0",
+        "both stages use integer truncation; no VB final rounding at native callsite"
+      ],
+      "regression_vectors": [
+        {
+          "base": 100,
+          "markup": 0,
+          "charm": 0,
+          "result": 110
+        },
+        {
+          "base": 101,
+          "markup": 0,
+          "charm": 55,
+          "result": 99
+        },
+        {
+          "base": 100001,
+          "markup": 0,
+          "charm": 50,
+          "result": 100000
+        },
+        {
+          "base": 99999,
+          "markup": 1,
+          "charm": 1,
+          "result": 111097
+        }
+      ],
+      "runtime": "RuntimeClassicEconomyPricing.QuoteBuyCopper"
+    },
+    {
+      "assertion": "economy.merchandise-sell-price",
+      "state": "PASS",
+      "range": "0x0041c5e7-0x0041c6c4",
+      "proof": [
+        "cost_type converts first",
+        "Charm factor is floor(Charm/2)+25, including Charm 0",
+        "integer multiply/divide by100",
+        "shop markup is absent",
+        "result is added directly to copper wallet field"
+      ],
+      "regression_vectors": [
+        {
+          "base": 100,
+          "charm": 0,
+          "result": 25
+        },
+        {
+          "base": 100,
+          "charm": 50,
+          "result": 50
+        },
+        {
+          "base": 100,
+          "charm": 100,
+          "result": 75
+        }
+      ],
+      "runtime": "RuntimeClassicEconomyPricing.QuoteSellCopper"
+    },
+    {
+      "assertion": "economy.training-money-cost",
+      "state": "PASS",
+      "range": "0x0041e95b-0x0041e990",
+      "proof": [
+        "current level is multiplied by5",
+        "trainer/shop Markup is loaded and 100 added",
+        "integer divide by100",
+        "computed amount is passed in the silver denomination slot, therefore x10 copper"
+      ],
+      "runtime": "RuntimeClassicEconomyPricing.TrainingCostCopper"
+    }
+  ],
+  "not_promoted": [
+    {
+      "assertion": "character.raw-dodge-formula",
+      "reason": "The retained MMUD Explorer formula is live, but this pass did not establish the matching original-DLL base-stat/encumbrance callsite. Nearby ability-34 native code belongs to a different derived-stat composition and is not used as substitute evidence."
+    }
+  ],
+  "runtime_corrections": [
+    "TRAIN life gain corrected from +1 to +5 with cap 9.",
+    "BUY Charm 0 corrected from neutral 100% to native 110% factor.",
+    "SELL Charm 0 corrected from neutral 100% to native 25% factor.",
+    "BUY/SELL VB-style floating rounding and retained secondary-source overflow loop removed from the live stock pricing owner; native integer stage truncation and the >100,000 BUY scale boundary are now explicit."
+  ],
+  "reproducible_verifier": "Tools/verify_wccmmud_native_formula_0334.py",
+  "verification_report": "Reports/RuntimeVerification/native_formula_callsite_verification_0334.json"
+}

@@ -25,8 +25,8 @@ public static class RuntimeWccSysopSmokeReport
             var catalog = RuntimeWccSysopCatalog.Load(projectRoot, "Classic");
             Check("catalog-loads-generated-data", true, $"commands={catalog.Commands.Count}");
             Check("all-decoded-command-roots-retained", catalog.Commands.Count == 20, $"commands={catalog.Commands.Count}; expected=20");
-            Check("legacy-setting-retained", catalog.LegacySetting == "SYSOPKEY", catalog.LegacySetting);
-            Check("user-confirmed-unlock-retained", catalog.ConfiguredValue == "code_of_twinks_78", catalog.ConfiguredValue);
+            Check("legacy-setting-retained", catalog.LegacySetting == "CODEC_OF_TWINKS", catalog.LegacySetting);
+            Check("user-confirmed-config-value-retained", catalog.ConfiguredValue == "78", catalog.ConfiguredValue);
             Check("plaintext-key-command-denied", !catalog.PlaintextKeyCommandAllowed, catalog.PlaintextKeyCommandAllowed.ToString());
             Check("authenticated-authority-declared",
                 catalog.RuntimeAuthority == "authenticated_account_role_and_explicit_capabilities", catalog.RuntimeAuthority);

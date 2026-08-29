@@ -13,6 +13,9 @@ public sealed class RuntimeClassicGangGameplayService
         _gangs = new RuntimeClassicGangStateService(characters.ProjectRoot);
     }
 
+    public int ClearClassicDepartureInvitations(string characterId) =>
+        _gangs.ClearPendingInvitationsForCharacter(characterId);
+
     public string Execute(RuntimeSession session, RuntimeCommand command)
     {
         if (session.Actor is not RuntimeCharacterActor actor) throw new InvalidOperationException("A persistent character is required.");
@@ -25,7 +28,7 @@ public sealed class RuntimeClassicGangGameplayService
             "join" => Join(character, command.Arguments),
             "leave" => Leave(character, command.Arguments),
             "broadgang" => Broadgang(session, character, command.ArgumentText),
-            "disband" => Disband(character, command.Arguments),
+            "disband" => Disband(session, character, command.Arguments),
             "promote" => SetRole(character, command.ArgumentText, "Lieutenant"),
             "demote" => SetRole(character, command.ArgumentText, "Member"),
             "topten" => RenderTop(character, command.Arguments),
@@ -46,11 +49,24 @@ public sealed class RuntimeClassicGangGameplayService
         var query = string.Join(' ', args.Skip(1));
         var targets = _characters.ListAllCharacters().Where(character => character.CharacterId.Equals(query, StringComparison.OrdinalIgnoreCase) || character.DisplayName.Equals(query, StringComparison.OrdinalIgnoreCase)).Take(2).ToArray();
         if (targets.Length != 1) return "No saved character uniquely matches that exact name or character ID.";
+        var target = targets[0];
         var gang = _gangs.FindByMember(actor.CharacterId) ?? throw new InvalidOperationException("You do not belong to a gang.");
         var leaderOnline = _sessions.FindByActor(gang.LeaderCharacterId) is not null;
-        var updated = remove ? _gangs.Uninvite(gang, actor.CharacterId, targets[0].CharacterId, leaderOnline) : _gangs.Invite(gang, actor.CharacterId, targets[0].CharacterId, leaderOnline);
-        _sessions.FindByActor(targets[0].CharacterId)?.EnqueueMessage(remove ? $"You are no longer invited to {updated.Name}." : $"You have been invited to join {updated.Name}. Type JOIN GANG {updated.Name}.");
-        return remove ? $"{targets[0].DisplayName} was removed or uninvited from {updated.Name}." : $"{targets[0].DisplayName} was invited to {updated.Name}.";
+        var targetSession = _sessions.FindByActor(target.CharacterId);
+
+        if (remove)
+        {
+            var updated = _gangs.Uninvite(gang, actor.CharacterId, target.CharacterId, leaderOnline, targetSession is not null);
+            targetSession?.EnqueueMessage($"You have been removed from {updated.Name}.");
+            return $"{target.DisplayName} was removed from {updated.Name}.";
+        }
+
+        var added = _gangs.Invite(gang, actor.CharacterId, target.CharacterId, leaderOnline);
+        if (added)
+            targetSession?.EnqueueMessage($"You have been invited to join {gang.Name}. Type JOIN GANG {gang.Name}.");
+        // Native INVITE's caller-side confirmation path still runs when _invite_to_gang rejects
+        // an exact duplicate node; only the target notification is suppressed.
+        return $"{target.DisplayName} was invited to {gang.Name}.";
     }
 
     private string Join(RuntimeCharacterRecord character, IReadOnlyList<string> args)
@@ -80,13 +96,69 @@ public sealed class RuntimeClassicGangGameplayService
         return $"You tell {gang.Name}: {text.Trim()}";
     }
 
-    private string Disband(RuntimeCharacterRecord character, IReadOnlyList<string> args)
+    private string Disband(RuntimeSession session, RuntimeCharacterRecord character, IReadOnlyList<string> args)
     {
-        if (args.Count != 1 || !args[0].Equals("gang", StringComparison.OrdinalIgnoreCase)) return "Usage: DISBAND GANG";
-        var gang = _gangs.FindByMember(character.CharacterId) ?? throw new InvalidOperationException("You do not belong to a gang.");
-        if (!gang.LeaderCharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)) throw new InvalidOperationException("Only the gang leader may disband the gang.");
-        var updated = _gangs.Disband(gang);
-        return $"Gang '{updated.Name}' is disbanded.";
+        if (args.Count != 1 || !args[0].Equals("gang", StringComparison.OrdinalIgnoreCase)) return "Syntax: DISBAND {Party/Gang}";
+        var gang = _gangs.FindByMember(character.CharacterId) ?? throw new InvalidOperationException("You are not in a gang!");
+        if (!gang.LeaderCharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("You are not the leader of the gang; You may not disband it!");
+
+        session.BeginClassicGangDisbandConfirmation(gang.Name);
+        return $"Are you sure you want to disband {gang.Name}? ";
+    }
+
+    public bool TryHandleClassicModalInput(RuntimeSession session, string input, out string result)
+    {
+        result = string.Empty;
+        if (!session.TryGetClassicGangDisbandConfirmation(out var pendingGangName)) return false;
+
+        try
+        {
+            if (!RuntimeClassicGangModalAuthority.ConfirmsDisband(input))
+            {
+                result = "Your gang has not been disbanded.";
+                return true;
+            }
+
+            if (session.Actor is not RuntimeCharacterActor actor)
+            {
+                result = string.Empty;
+                return true;
+            }
+
+            var character = _characters.LoadCharacter(actor.Id);
+            var gang = character is null ? null : _gangs.FindByMember(character.CharacterId);
+            if (gang is null || !gang.Name.Equals(pendingGangName, StringComparison.OrdinalIgnoreCase))
+            {
+                // Native 0x004083DC silently completes the modal if current user/gang lookup
+                // fails between prompt and reply.
+                result = string.Empty;
+                return true;
+            }
+
+            var first = $"The gang {gang.Name} has now been disbanded.";
+            var second = "The name may not be used again until all members have entered the game!";
+            foreach (var member in gang.Members)
+            {
+                var target = _sessions.FindByActor(member.CharacterId);
+                if (target is null || target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)) continue;
+                target.EnqueueMessage(first + Environment.NewLine + second);
+            }
+
+            var onlineIds = _sessions.ActiveSessions
+                .Where(value => value.Actor.IsPersistentCharacter)
+                .Select(value => value.Actor.Id)
+                .ToArray();
+            _gangs.Disband(gang, onlineIds);
+            // 0341 regression owner: offline former member(s) remain until character load/cleanup.
+            result = first + Environment.NewLine + second;
+            return true;
+        }
+        finally
+        {
+            // Every state-0x88 path restores active gameplay state 0x82.
+            session.CompleteClassicModalInput();
+        }
     }
 
     private string SetRole(RuntimeCharacterRecord leader, string query, string role)

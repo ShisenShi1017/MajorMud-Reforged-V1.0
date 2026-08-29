@@ -7,8 +7,11 @@
     "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMSYS.REL"
   ],
   "authorization": {
-    "legacy_setting": "SYSOPKEY",
-    "user_confirmed_configured_value": "code_of_twinks_78",
+    "legacy_setting": "CODEC_OF_TWINKS",
+    "user_confirmed_configured_value": "78",
+    "user_confirmed_semantics": "Observed legacy WCCMMUD configuration setting; exact native meaning of the numeric value remains evidence-bounded.",
+    "worldgroup_access_level_evidence": "Librarium/Parity/majormud_wccmmud_ini_user_evidence_0333.json",
+    "worldgroup_access_level_note": "SYS_*_KEY values such as MMUDGOD, MMUDOP, MMUDELITE, and normal are Worldgroup user levels/access classes.",
     "runtime_authority": "authenticated_account_role_and_explicit_capabilities",
     "plaintext_key_command_allowed": false
   },

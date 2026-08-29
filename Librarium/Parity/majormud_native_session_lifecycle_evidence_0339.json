@@ -1,0 +1,107 @@
+{
+  "schema": "majormud.native-session-lifecycle-evidence.v1",
+  "code_update": "0339",
+  "target": {
+    "module": "WCCMMUD.DLL",
+    "bytes": 643072,
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+  },
+  "native_findings": [
+    {
+      "id": "shared_leave_cleanup_order",
+      "function_va": "0x00420DDF",
+      "classification": "PROVEN",
+      "contract": "_cleanup_when_user_leaves executes _kill_autocombat_against, _stop_dragging_user, _stop_following(user,-1), _clear_gang_invitations(user,0), _dismiss_users_angels, _cleanup_pending_commands, then _kill_autocombat(user,1), in that order."
+    },
+    {
+      "id": "graceful_worldgroup_logoff_order",
+      "function_va": "0x00408D3C",
+      "classification": "PROVEN",
+      "contract": "The graceful Worldgroup logoff callback clears forget-list state, runs the shared MajorMUD leave cleanup, saves the player once, clears the live player, then clears the active session/line slot."
+    },
+    {
+      "id": "unexpected_hangup_order",
+      "function_va": "0x00408D9A",
+      "classification": "PROVEN",
+      "contract": "Unexpected hangup performs an initial _save_player, evaluates the configured hangup consequence, runs _check_kill_user and—when still active—the shared leave cleanup, performs the final _save_player, then clears the live player/session slot."
+    },
+    {
+      "id": "hangup_configuration_default",
+      "classification": "PROVEN_CONFIGURATION",
+      "contract": "Retained WCCMMUD configuration prompts default hangup punishment to NONE, minimum loss 0%, maximum loss 0%, and maximum items lost 0. Native punishment modes are HIGH=1, MEDIUM=2, LOW=3, NONE=4; HIGH always qualifies, MEDIUM requires autocombat/being attacked, LOW requires PvP combat, NONE never applies the penalty."
+    },
+    {
+      "id": "party_departure_no_successor",
+      "function_va": "0x0041DE75",
+      "classification": "PROVEN",
+      "contract": "_stop_following(leader,-1) scans active users, clears every follower whose leader reference matches the departing leader and removes each from the group; it then calls _remove_from_group on the departing user. No successor election occurs."
+    },
+    {
+      "id": "native_angel_scope",
+      "function_va": "0x004203DB",
+      "classification": "PROVEN",
+      "contract": "_dismiss_users_angels deletes only the native special summon class/owner shape including marker value 37 and matching player owner name. It does not prove generic pet, mercenary, escort, or charm cleanup semantics."
+    },
+    {
+      "id": "pending_command_chain_cleanup",
+      "function_va": "0x00450E27",
+      "classification": "PROVEN",
+      "contract": "_cleanup_pending_commands walks and deletes the user's pending-command linked chain until the owner pointer is null."
+    },
+    {
+      "id": "quit_command_vs_logoff_callback",
+      "function_va": "0x0046196C",
+      "classification": "PROVEN",
+      "contract": "_cmd_quit performs command-stage autocombat/gang-invite exit setup and queues host exit work; the full shared leave cleanup and save/clear ordering belong to the later Worldgroup logoff callback, not the initial QUIT parser branch."
+    },
+    {
+      "id": "death_cleanup_owner",
+      "function_va": "0x00419A33",
+      "classification": "PROVEN",
+      "contract": "_check_kill_user calls the shared leave cleanup before status termination and before practice-arena or ordinary death item/life/respawn handling."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicLifecycleDeathEvidenceRegistry.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPartyGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimePartyCoordination.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs",
+    "Apps/Source/Reforged.Server/RuntimeSession.cs",
+    "Apps/Source/Reforged.Server/RuntimeSessionManager.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/ServerNetworkHost.cs",
+    "Apps/Source/Reforged.Server/ServerRuntimeHost.cs",
+    "Apps/Source/Reforged.Server/RuntimeHeadlessTraining.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePvp.cs"
+  ],
+  "parity_promotion": {
+    "assertion": "character.native-lifecycle-boundary",
+    "from": "STRONG",
+    "to": "PASS"
+  },
+  "preserved_boundaries": [
+    {
+      "assertion": "native.party-coordination",
+      "state": "STRONG",
+      "reason": "Leader/death/disconnect departure cleanup is now exact, but leader/default rank, Frontrank slot formula, and special teleport/resurrection/PvP room-spell edges remain unresolved."
+    },
+    {
+      "assertion": "native.save-coordination",
+      "state": "STRONG",
+      "reason": "Per-session graceful/hangup save ordering is now exact, while the broader Player/Buffer/Btrieve transaction, flush, shutdown and partial-save contract remains unresolved."
+    },
+    {
+      "boundary": "generic-companion-exit-semantics",
+      "state": "UNPROMOTED",
+      "reason": "Native marker-37 angel dismissal is exact; mercenary/charm/generic companion departure behavior is not inferred from it."
+    },
+    {
+      "boundary": "nondefault-hangup-penalty-activation",
+      "state": "FAIL_CLOSED",
+      "reason": "The native decision/defaults are recovered. Reforged stock parity follows retained NONE/0/0/0; nondefault operator configuration is not silently enabled without an explicit configuration owner."
+    }
+  ],
+  "verification": "Reports/RuntimeVerification/native_session_lifecycle_verification_0339.json"
+}

@@ -25,13 +25,33 @@ public static class RuntimeClassicDeathLawPvpAuthority
     public const int GracefulExitDelaySeconds = RuntimeClassicTimingAuthority.GracefulExitDelaySeconds;
     public const int FiendAttackLockoutEvilPoints = 300;
     public const int LawfulAttackPenaltyMultiplier = 3;
-    public const string PracticeArenaRoomName = "Arena Practice Room";
-    public const int HallsOfTheDeadMap = 1;
-    public const int HallsOfTheDeadRoom = 2189;
+    public const int NativePracticeArenaRoomType = 5;
+    public const int DefaultGoodRespawnMap = 1;
+    public const int DefaultGoodRespawnRoom = 2189;
+    public const int DefaultEvilRespawnMap = 1;
+    public const int DefaultEvilRespawnRoom = 142;
+    public const int EvilRespawnThreshold = 40;
     public const string PracticeArenaEntryHpCondition = "classic.practice_arena.entry_hp";
 
-    public static bool IsPracticeArena(RuntimeRoom room) =>
-        room.Name.Equals(PracticeArenaRoomName, StringComparison.OrdinalIgnoreCase);
+    public static bool IsPracticeArena(RuntimeRoom room, bool arenaEnabled) =>
+        arenaEnabled && room.EnvironmentRoomType == NativePracticeArenaRoomType;
+
+    public static bool IsArenaEnabled(string projectRoot, string worldId)
+    {
+        var path = Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, worldId), "sysop", $"{RuntimeIdentity.Normalize(worldId, "world")}.arena");
+        // Reforged's SYSOP ARENA COMBAT maps to the native global byte = 1; NORMAL maps to 0.
+        return File.Exists(path) && File.ReadAllText(path).Trim().Equals("combat", StringComparison.OrdinalIgnoreCase);
+    }
+
+    public static RuntimeRoom ResolveDeathDestination(RuntimeWorld world, RuntimeRoom deathRoom, int evilPoints)
+    {
+        if (deathRoom.EnvironmentDeathRoomId > 0)
+            return world.FindRoom(deathRoom.MapId, deathRoom.EnvironmentDeathRoomId)
+                ?? throw new InvalidOperationException($"Native death-room destination {deathRoom.MapId}/{deathRoom.EnvironmentDeathRoomId} is unavailable.");
+        var roomNumber = evilPoints >= EvilRespawnThreshold ? DefaultEvilRespawnRoom : DefaultGoodRespawnRoom;
+        return world.FindRoom(1, roomNumber)
+            ?? throw new InvalidOperationException($"Native default death-room destination 1/{roomNumber} is unavailable.");
+    }
 
     public static RuntimeClassicLawConsequence ResolveLawConsequence(string reputation, int evilPoints)
     {

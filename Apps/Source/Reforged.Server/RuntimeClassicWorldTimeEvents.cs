@@ -16,8 +16,9 @@ public sealed record RuntimeClassicWorldTimeEventResult(
     IReadOnlyList<RuntimeClassicGangHouseUpkeepResult> GangHouseUpkeep);
 
 /// <summary>
-/// Consumes an authoritative Classic world-time transition. This class deliberately does not
-/// manufacture a clock or infer a sunrise/sunset cadence: the host must supply the decoded event.
+/// Compatibility adapter retained for older callers. CodeUpdate0343 recovered the real native
+/// producer: gang-house taxation is owned by the daily MajorBBS/Worldgroup mcurou callback, not
+/// an independently recovered in-game sunset scheduler.
 /// </summary>
 public sealed class RuntimeClassicWorldTimeEventService
 {
@@ -39,7 +40,7 @@ public sealed class RuntimeClassicWorldTimeEventService
         {
             RuntimeClassicWorldTimePhase.Sundown => new(
                 worldTimeEvent,
-                _gangHouseUpkeep.ProcessSundown(worldTimeEvent.CycleId, worldTimeEvent.OccurredAtUtc)),
+                _gangHouseUpkeep.ProcessDailyAutoCleanup(worldTimeEvent.CycleId, worldTimeEvent.OccurredAtUtc)),
             _ => throw new ArgumentOutOfRangeException(nameof(worldTimeEvent))
         };
     }

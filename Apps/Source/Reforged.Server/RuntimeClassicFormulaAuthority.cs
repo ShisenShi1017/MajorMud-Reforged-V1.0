@@ -62,7 +62,7 @@ public sealed class RuntimeClassicFormulaAuthority
             "Data/NativeDecodeReports/CodeUpdate0155CharacterStatistics/character_statistics_contract_0155.json",
             "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json",
             "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json",
-            "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json"
+            "Librarium/Objects/abilities/ability_records.json"
         };
         foreach (var relative in required)
         {
@@ -97,22 +97,23 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("native_decode", "Data/NativeDecodeReports/CodeUpdate0155CharacterStatistics/character_statistics_contract_0155.json"),
                     new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/SourceImports/MMExplorer"),
-                    new RuntimeFormulaEvidenceSource("imported_ability_catalog", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json")
+                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json")
                 },
                 "Only explicit equipment and ability modifiers are executable; unknown base-stat ordering remains quarantined."),
             new(
                 RuntimeClassicCharacterFormulaCalculator.MagicResistanceFormulaId,
                 "character_statistics",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicCharacterFormulaCalculator),
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcMR line 4270: Fix((INT + (WIL * 3)) / 4) + modifiers"),
                     new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained CalcMR implementation at source line 4270"),
-                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "MR weighting conflict resolved in favor of retained implementation evidence")
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "MR weighting conflict resolved in favor of retained implementation evidence"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json", "WCCMMUD.DLL 0x0041ab17..0x0041ab3f computes (INT + WIL*3)/4 then adds the native modifier output")
                 },
-                "Character Magic Resistance now has one live builder: Fix((INT + WIL*3)/4) + modifiers. It remains STRONG rather than PASS because an older screenshot note reversed INT/WIL weighting and exact native DLL ordering is not yet recovered."),
+                "Character Magic Resistance is native-verified: WCCMMUD.DLL computes signed Fix((INT + WIL*3)/4) and then adds the modifier result. The executable runtime and regression vectors match that ordering."),
             new(
                 RuntimeClassicCharacterFormulaCalculator.RawDodgeFormulaId,
                 "character_statistics",
@@ -129,17 +130,17 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeCharacterRegenerationAuthority.FormulaId,
                 "character_statistics",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeCharacterRegenerationAuthority),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcRestingRate lines 4111-4152 and CalcManaRegen lines 4209-4259; stock MajorMUD branch separated from GreaterMUD"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained HP/mana regeneration calculations and branch markers"),
-                    new RuntimeFormulaEvidenceSource("pass37_correction", "Librarium/Parity/majormud_classic_regeneration_correction_evidence_0308.json", "stock /750 HP base, x3 REST multiplier, meditation MPRegen branch, and cadence boundary"),
-                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs", "passive, resting, and meditation runtime ticks")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "_slow_update_character and _fast_update_character exact HP/mana arithmetic, modifiers, counters and owner ordering"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "REST/MEDITATE historical HELP boundary retained separately from executable MEDITATE timing"),
+                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs", "native combined percent arithmetic, passive/rest/meditate formulas, exact counters and response"),
+                    new RuntimeFormulaEvidenceSource("runtime_clock", "Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs", "one-shot one-second fast clock with 3/5/5/30 owner buckets and no elapsed catch-up")
                 },
-                "Stock MajorMUD HP regeneration now uses the /750 base with minimum one and x3 REST multiplier instead of the GreaterMUD /500 branch. Types 1-4 meditation returns the base mana rate before MPRegen, while passive mana applies MPRegen; Kai/type 5 keeps its one-point special branch. Exact native host-clock phase and remaining presentation/cleanup ordering remain below PASS confidence."),
+                "Character regeneration is native-verified. HP uses max(1,trunc(((Level+20)*Health)/750)); REST multiplies the base by three; HP/MP modifiers use trunc(((100+modifier)*base)/100). Mana types 1-4 and Kai/type 5 match the DLL, including MEDITATE bypassing MPRegen. Passive work runs in the 30-tick slow owner, REST fires on fast counter 21, and MEDITATE on fast counter 15."),
             new(
                 ClassicCombatResolver.ClassCombatAccuracyFormulaId,
                 "combat",
@@ -445,7 +446,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("creator_or_community_reference", "MUDInfo topic 1647"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer"),
-                    new RuntimeFormulaEvidenceSource("imported_ability_catalog", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json")
+                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json")
                 },
                 "Per-10 relationships are accepted as strongly corroborated, but activation waits for exact baseline, truncation, and fixed-point rules from decoded data."),
             new(
@@ -458,7 +459,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 2115"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer", "CalcResistedDamage consumers"),
-                    new RuntimeFormulaEvidenceSource("imported_ability_catalog", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json", "AntiMagic ability 51")
+                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "AntiMagic ability 51")
                 },
                 "Equation is strongly corroborated; runtime activation waits for decoded rounding, caps, and anti-magic branch ordering."),
             new(
@@ -526,54 +527,51 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeClassicNpcCombatCadence.AttemptsPerRoundFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "For nAttempt = 1 To 6"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "independent retained implementation also uses six attempt slots")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user increments an attempt counter and loops while counter <= 5, yielding attempts 1..6"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "AttemptsPerRound = 6")
                 },
-                "An NPC with at least one authored attack row receives six attack-selection attempt slots per 5-second combat round. This is strongly corroborated by two independent retained reverse-engineered implementations."),
+                "Original WCCMMUD.DLL proves six NPC attack-selection attempts: the native counter is incremented before each selection and loops while its completed value is <= 5."),
             new(
                 RuntimeClassicNpcCombatCadence.EnergyCarryFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudDatabase.bas", "monster Energy maps to nEnergyPerRound"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "carried energy starts at zero and adds nEnergyPerRound at each round"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same carried-energy loop")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_generate_monster seeds current +0x16 and authored +0x114 from Energy; _energy_update_monster performs add-below/clamp-above/equality-hold"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "RefreshRoundEnergy")
                 },
-                "Monster Energy is energy gained per combat round, not a maximum pool. Carried energy starts at zero, the decoded Energy value is added at each round, and unused energy carries forward without a one-round cap."),
+                "Native active-monster energy starts at the authored Energy value. On each native energy update: if current is below authored, add one authored-energy quantum; if current is above authored, clamp to authored; if equal, leave it unchanged. Idle energy therefore does not accumulate without bound."),
             new(
                 RuntimeNpcAttackSelector.FormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeNpcAttackSelector),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "one d100 is compared to Att%-x in slot order"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same ordered threshold selection"),
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "selection_percent values preserve authored Att%-x thresholds, including values above 100")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user calls range(0,100), scans five Att% bytes in slot order, and selects on roll < threshold"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeNpcModels.cs", "RuntimeNpcAttackSelector")
                 },
-                "Each attempt rolls one inclusive d100 and scans authored attack slots in order. The first row whose Att% threshold is at least the roll is selected. Unaffordable rows remain selectable and are not removed or re-normalized; thresholds above 100 behave as catch-all rows if reached."),
+                "Each native attempt draws one [0,100) value and scans the five authored Att% bytes in slot order. The first slot satisfying roll < threshold is selected. Energy affordability is evaluated after selection, so rows are not re-normalized; thresholds above 100 are always true when reached."),
             new(
                 RuntimeClassicNpcCombatCadence.SpellCastSuccessFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudDatabase.bas", "Type 2 maps AttAcc to spell id, AttMax to cast level, and AttMin to nAtkSuccess"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "spell success uses inclusive d100 <= nAtkSuccess"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same Type 2 success check")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_monster_cast resolves AttAcc spell id at +0x12e, AttMin success at +0x13e, AttMax cast level at +0x148, then draws [0,100) and tests roll < AttMin"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "SpellCastSucceeds")
                 },
-                "For direct NPC spell rows (Type 2), AttAcc is the spell id, AttMax is cast level, and AttMin is the cast-success percentage. A separate inclusive d100 roll determines cast success after row selection."),
+                "For native Type-2 rows, AttAcc is spell id, AttMin is cast-success percentage, and AttMax is cast level. _monster_cast performs a separate [0,100) roll and succeeds on roll < AttMin."),
             new(
                 RuntimeClassicNpcCombatCadence.SpellFailureEnergyFormulaId,
                 "combat_npc",
@@ -582,47 +580,48 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "failed or fully resisted Type 2 casts use Round(AttEnergy/2,0)"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same half-energy cast failure branch")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_monster_cast reads per-row AttEnergy and its failed-cast path deducts max(1, floor(AttEnergy/2)) for positive costs"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "DeductFailedSpellCost")
                 },
-                "A failed or fully resisted direct NPC spell consumes Round(energy_cost / 2, 0) using VB midpoint-to-even rounding. Physical misses/dodges and physical hit-spell resistance still consume the full physical attack cost."),
+                "The native pre-cast failure path deducts max(1, floor(AttEnergy / 2)) for a non-zero positive attack cost, correcting the retained simulator's banker-rounding approximation. Exact mapping of every later spell-resolution/resistance refund branch is still being held STRONG."),
             new(
                 RuntimeClassicNpcCombatCadence.PhysicalEarlyEndFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "after Type 1 selection, remaining energy below that row's cost jumps to next round"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "external:syntax53/Nightmare-Redux/clsMonsterAttackSim.cls", "same early-round branch")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user checks affordability before physical execution, deducts AttEnergy, then sets the attempt-loop early-end flag when remaining energy is below the same cost"),
+                    new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "ShouldEndRoundAfterPhysicalSelection")
                 },
-                "After a Type 1 physical row is selected, the retained simulators end the round when remaining energy falls below that row's cost. Type 2 spell rows do not use this physical early-end branch."),
+                "Native Type-1 selection terminates when the row cannot be afforded; after an affordable physical attack it deducts the full cost and ends further attempts when remaining energy is below that same row cost. Type-2 rows use _monster_cast instead."),
             new(
                 ClassicCombatResolver.NpcEncounterEnergyResetFormulaId,
                 "combat_npc",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/clsMonsterAttackSim.cls", "nRemainingEnergy = 0 before round loop"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_generate_monster copies authored Energy to both active current and authored-baseline fields"),
                     new RuntimeFormulaEvidenceSource("live_combat", "RuntimeLiveCombat.cs", "ResolveNpcEncounterStartingEnergy")
                 },
-                "A newly admitted NPC combat encounter begins with zero carried attack energy; the first round then adds the decoded per-round Energy value before attack attempts."),
+                "A native active monster starts with current energy equal to authored Energy, so a newly admitted Reforged encounter now starts at the decoded Energy value rather than zero."),
             new(
                 RuntimeClassicNpcCombatCadence.StockHpRegenIntervalFormulaId,
                 "combat_npc",
                 RuntimeFormulaEvidenceGrade.StronglyCorroborated,
-                false,
-                nameof(RuntimeNpcDefinition),
+                true,
+                nameof(RuntimeLivingWorldService),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modMMudFunc.bas", "STOCK_MOB_HPREGEN_ROUNDS = 18"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "external:syntax53/MMUD-Explorer/modExpPerHour.bas", "stock HP regen amount is modeled over the 18-round interval"),
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Librarium/Objects/npcs/npc_records_0122.json", "public_reference_0139.fields.hp_regen retains the authored per-monster amount")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "_slow_update_monster adds authored +0x130 HP regeneration once per slow generation and caps at maximum"),
+                    new RuntimeFormulaEvidenceSource("native_scheduler", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "slow generation is rooted at 30 logical fast ticks; per-monster generation markers prevent duplicate updates"),
+                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Librarium/Objects/npcs/npc_records_0122.json", "public_reference_0139.fields.hp_regen retains the authored per-monster amount"),
+                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs", "ApplyNativeSlowNpcRegeneration")
                 },
-                "Stock MajorMUD uses an 18-combat-round NPC HP regeneration interval and the decoded NPC catalog retains the authored HP-regeneration amount. Exact live tick phase/order relative to incoming damage, death resolution and out-of-combat state is not yet native-proven, so activation remains fail-closed."),
+                "The retained 18-combat-round simulator approximation is rejected for Classic. WCCMMUD.DLL applies authored NPC HP regeneration once per 30-fast-tick slow generation. Reforged now activates the amount on the recovered slow boundary, while exact native per-monster host-cycle staggering remains under the broader scheduler assertion."),
             new(
                 ClassicCombatResolver.NpcDecodedCurrencyAmountsFormulaId,
                 "combat_reward",
@@ -1176,7 +1175,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 3122"),
-                    new RuntimeFormulaEvidenceSource("imported_ability_catalog", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json", "Ability 22 Accuracy"),
+                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "Ability 22 Accuracy"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer")
                 },
                 "Highest non-item Ability 22 selection is corroborated; item stacking and category ordering require exact decoded implementation."),

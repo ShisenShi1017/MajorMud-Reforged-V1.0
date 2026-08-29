@@ -17614,7 +17614,8 @@
       "prerequisites": {},
       "commands": [],
       "effects": {
-        "damage": 30
+        "damage": 30,
+        "native_trap_state": 2
       },
       "raw_value": "6/994 (Trap, 30 damage)",
       "runtime_disposition": "active_runtime",
@@ -17628,6 +17629,13 @@
           "row_index_on_page": 14,
           "offset": 1939,
           "classification": "direct_mdb_table_decode"
+        },
+        {
+          "source": "WCCMP002",
+          "path": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat",
+          "native_record_offset": 23277576,
+          "native_exit_index": 9,
+          "classification": "direct_wccmp002_native_room_record_decode"
         }
       ],
       "confidence": "high_direction_and_destination; qualifier_preserved",
@@ -17682,7 +17690,17 @@
         "qualifier reparses to the same gate family and numeric operands",
         "destination identity remains unchanged",
         "fallback does not invent missing currency, flags, spells, or item consumption"
-      ]
+      ],
+      "native_exit_record": {
+        "source": "WCCMP002",
+        "native_record_offset": 23277576,
+        "native_exit_index": 9,
+        "room_type": 9,
+        "para1": 30,
+        "para2": 2,
+        "para3": 1537,
+        "para4": 66
+      }
     },
     {
       "id": "exit.map6.993.w",

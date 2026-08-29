@@ -1,0 +1,5493 @@
+{
+  "schema": "reforged.native-runtime-verification.v1",
+  "authority": "consolidated retained native-verifier results supplied with the cumulative runtime package",
+  "all_passed": true,
+  "subsystem_count": 11,
+  "check_count": 920,
+  "failure_count": 0,
+  "verifications": [
+    {
+      "subsystem": "character-death",
+      "passed": true,
+      "check_count": 60,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": "Completed local-only WCCMMUD.DLL verification run from CodeUpdate0337; reconstructed after ephemeral working-container reset. The DLL is intentionally not packaged.",
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true
+        },
+        {
+          "name": "image-base",
+          "passed": true
+        },
+        {
+          "name": "alignment-respawn-419a69",
+          "passed": true
+        },
+        {
+          "name": "death-cleanup-call-before-status-419b28",
+          "passed": true
+        },
+        {
+          "name": "deathroom-and-arena-419c0f",
+          "passed": true
+        },
+        {
+          "name": "currency-five-denominations-and-zero-419cf8",
+          "passed": true
+        },
+        {
+          "name": "life-decrement-immediate-revival-41a0e0",
+          "passed": true
+        },
+        {
+          "name": "leave-cleanup-owner-order-420ddf",
+          "passed": true
+        },
+        {
+          "name": "final-reroll-save-472000",
+          "passed": true
+        },
+        {
+          "name": "final-reroll-restore-xp-472447",
+          "passed": true
+        },
+        {
+          "name": "create-player-consumes-permanent-info-4166f5",
+          "passed": true
+        },
+        {
+          "name": "arena-global-enable-463ee0",
+          "passed": true
+        },
+        {
+          "name": "arena-global-disable-463f2a",
+          "passed": true
+        },
+        {
+          "name": "room-spill-dfs-owner-41989a",
+          "passed": true
+        },
+        {
+          "name": "movement-trail-fallback-4199aa",
+          "passed": true
+        },
+        {
+          "name": "good-default-death-room",
+          "passed": true
+        },
+        {
+          "name": "evil-default-death-room",
+          "passed": true
+        },
+        {
+          "name": "evil-39-good-room",
+          "passed": true
+        },
+        {
+          "name": "evil-40-evil-room",
+          "passed": true
+        },
+        {
+          "name": "retained-xp-gate-1",
+          "passed": true
+        },
+        {
+          "name": "retained-xp-gate-2",
+          "passed": true
+        },
+        {
+          "name": "retained-xp-gate-3",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-n",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-s",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-e",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-w",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-ne",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-nw",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-se",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-sw",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-u",
+          "passed": true
+        },
+        {
+          "name": "native-exit-slot-d",
+          "passed": true
+        },
+        {
+          "name": "spill-skip-roomtype-8",
+          "passed": true
+        },
+        {
+          "name": "spill-skip-roomtype-12",
+          "passed": true
+        },
+        {
+          "name": "visible-room-item-capacity",
+          "passed": true
+        },
+        {
+          "name": "hidden-room-item-capacity",
+          "passed": true
+        },
+        {
+          "name": "movement-trail-length",
+          "passed": true
+        },
+        {
+          "name": "spill-maximum-depth",
+          "passed": true
+        },
+        {
+          "name": "ordinary-death-xp-preserved",
+          "passed": true
+        },
+        {
+          "name": "stock-arena-roomtype-5",
+          "passed": true
+        },
+        {
+          "name": "stock-arena-deathroom-205",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathExperienceAuthority.cs:FinalRerollConsumerConnected = tru",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathExperienceAuthority.cs:KeepExperienceConditionKey",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathExperienceAuthority.cs:Math.Max(halfLevelThreshold, tenPe",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicPermanentDeathInfo.cs:RetainedExperience",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicPermanentDeathInfo.cs:public static long Consume",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicPermanentDeathInfo.cs:document.Pending.Remove",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs:RuntimeClassicPermanentDeathInfoSt",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs:retainedRerollExperience",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs:NativePracticeArenaRoomType = 5",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs:EvilRespawnThreshold = 40",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs:EnvironmentDeathRoomId",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs:DefaultGoodRespawnRoom = 2189",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs:DefaultEvilRespawnRoom = 142",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:runtime.classic.native-death-reviv",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:RuntimeClassicPermanentDeathInfoSt",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:RuntimeClassicRoomCurrencyStore.Ad",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:DropNativeDeathGroundItemTree",
+          "passed": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:full HP and mana",
+          "passed": true
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "daily-ganghouse-cleanup",
+      "passed": true,
+      "check_count": 38,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "mcurou-export-present",
+          "passed": true,
+          "detail": [
+            22,
+            4231677
+          ]
+        },
+        {
+          "name": "mcurou-export-ordinal-22",
+          "passed": true,
+          "detail": [
+            22,
+            4231677
+          ]
+        },
+        {
+          "name": "mcurou-export-va",
+          "passed": true,
+          "detail": [
+            22,
+            4231677
+          ]
+        },
+        {
+          "name": "mcurou-prologue",
+          "passed": true,
+          "detail": "558bec81c48cf4ffff535657"
+        },
+        {
+          "name": "native-string:GANGHOUSE : NMBR %d - LEADER %s - GANG %s - HO",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Gang leader %s couldn't pay his ga",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Leader %s paid house tax. OLD SILV",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Adding gang house deed for gang ho",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Removing GANGHOUSE DEED %d from Ro",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Cleanup Complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "mcurou-tax-string-direct-xref",
+          "passed": true,
+          "detail": {
+            "string_va": "0x47cc63",
+            "xref_count": 1
+          }
+        },
+        {
+          "name": "default-0300-next-before-time",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "default-0300-no-catchup-after-time",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:DefaultHostCleanupLocalTime ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:NextOccurrenceAfter",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:no restart catch-up",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:ProcessDailyAutoCleanup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:CleanupDisbandedGangs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseUpkeep.cs:ProcessDailyAutoCleanup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseUpkeep.cs:DebitBankGold",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseUpkeep.cs:RepossessHouse",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseUpkeep.cs:gang-house-auto-cleanup-tax:",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:classic-mcurou-probe",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:RuntimeClassicAutoCleanupSch",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:DateTimeOffset.Now",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicWorldTimeEvents.cs:Compatibility adapter",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicWorldTimeEvents.cs:ProcessDailyAutoCleanup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-no-ProcessSundown",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-count-200",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "parity-pass-125",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-strong-75",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-unknown-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "organizations-remains-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "evidence-0343",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-no-overpromotion",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "death-floor",
+      "passed": true,
+      "check_count": 88,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "movement-trail-zero-init",
+          "passed": true,
+          "detail": {
+            "va": "0x4164bf",
+            "length": 27
+          }
+        },
+        {
+          "name": "movement-trail-newest-first-shift",
+          "passed": true,
+          "detail": {
+            "va": "0x416b22",
+            "length": 69
+          }
+        },
+        {
+          "name": "death-room-bounded-dfs",
+          "passed": true,
+          "detail": {
+            "va": "0x41989a",
+            "length": 172
+          }
+        },
+        {
+          "name": "movement-trail-visible-then-hidden",
+          "passed": true,
+          "detail": {
+            "va": "0x4199aa",
+            "length": 137
+          }
+        },
+        {
+          "name": "inventory-room164-emergency",
+          "passed": true,
+          "detail": {
+            "va": "0x419dea",
+            "length": 101
+          }
+        },
+        {
+          "name": "secondary-no-room164-fallback",
+          "passed": true,
+          "detail": {
+            "va": "0x419f69",
+            "length": 71
+          }
+        },
+        {
+          "name": "hidden-room-add-stack-cap15",
+          "passed": true,
+          "detail": {
+            "va": "0x41d0f5",
+            "length": 120
+          }
+        },
+        {
+          "name": "visible-room-add-stack-cap17",
+          "passed": true,
+          "detail": {
+            "va": "0x41d16f",
+            "length": 120
+          }
+        },
+        {
+          "name": "visible-room-remove-qty-extra-copy",
+          "passed": true,
+          "detail": {
+            "va": "0x41d2a6",
+            "length": 72
+          }
+        },
+        {
+          "name": "visible-slot-fill-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-2",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-3",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-4",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-5",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-6",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-7",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-8",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-9",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-10",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-11",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-12",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-13",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-14",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-15",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-slot-fill-16",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "visible-capacity-full",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-2",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-3",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-4",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-5",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-6",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-7",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-8",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-9",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-10",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-11",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-12",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-13",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-slot-fill-14",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hidden-capacity-full",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unlimited-same-id-stacks-before-capacity",
+          "passed": true,
+          "detail": [
+            777,
+            -1,
+            1
+          ]
+        },
+        {
+          "name": "finite-same-id-does-not-stack-when-full",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-qty-decrement-keeps-slot",
+          "passed": true,
+          "detail": [
+            777,
+            -1,
+            0
+          ]
+        },
+        {
+          "name": "native-zero-qty-clears-final-copy",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-direction-order",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "skip-changemap-roomtype-8",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "skip-remoteaction-roomtype-12",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "dfs-origin-through-depth5",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "trail-length-20",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "trail-newest-first-model",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "inventory-emergency-map",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "inventory-emergency-room",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "secondary-has-no-emergency",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "conceptual-slot-first-free",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSession.cs:ClassicMovementTrail",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSession.cs:RecordClassicMovement(target)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSession.cs:MovementTrailLength",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs:VisibleRoomItemSlots = 17",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs:HiddenRoomItemSlots = 15",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs:EmergencyInventorySpillRoom = 164",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs:NativeSpillDirectionOrder",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs:definition.MaximumUses < 0 ? -1 : item",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:DisposeNativeDeathItemInRoom",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:DisposeNativeDeathItemInTrail",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:TryInsertNativeRoomItem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:native_room_quantity_encoding",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:extra_copies_beyond_first",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:movement-trail-hidden",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:inventory-emergency-room-164-dfs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:ReadNativeRoomSlot",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:StackQuantity=item.StackQuantity-1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:DropNativeDeathGroundItemTree(allItems",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:FloorPlacedRootItems",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:FloorLostRootItems",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.RoomItems(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.RoomItemUses(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.RoomItemQty(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.InvisItems(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.InvisItemUses(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "retained-field:Roomrec.InvisItemQty(x)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-death-floor-pass",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "broad-lifecycle-remains-strong",
+          "passed": true,
+          "detail": "STRONG"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "formula-callsite",
+      "passed": true,
+      "check_count": 66,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "magic_resistance_41ab17",
+          "passed": true,
+          "detail": {
+            "va": "0x0041ab17",
+            "length": 40
+          }
+        },
+        {
+          "name": "picklocks_41a7ce",
+          "passed": true,
+          "detail": {
+            "va": "0x0041a7ce",
+            "length": 160
+          }
+        },
+        {
+          "name": "train_xp_call_41e895",
+          "passed": true,
+          "detail": {
+            "va": "0x0041e895",
+            "length": 28
+          }
+        },
+        {
+          "name": "train_cp_41ea3a",
+          "passed": true,
+          "detail": {
+            "va": "0x0041ea3a",
+            "length": 100
+          }
+        },
+        {
+          "name": "promotion_life_initializer_402348",
+          "passed": true,
+          "detail": {
+            "va": "0x00402348",
+            "length": 20
+          }
+        },
+        {
+          "name": "promotion_life_add_cap_41eac6",
+          "passed": true,
+          "detail": {
+            "va": "0x0041eac6",
+            "length": 35
+          }
+        },
+        {
+          "name": "money_fold_41ed10",
+          "passed": true,
+          "detail": {
+            "va": "0x0041ed10",
+            "length": 118
+          }
+        },
+        {
+          "name": "buy_formula_41c120",
+          "passed": true,
+          "detail": {
+            "va": "0x0041c120",
+            "length": 104
+          }
+        },
+        {
+          "name": "sell_formula_41c65b",
+          "passed": true,
+          "detail": {
+            "va": "0x0041c65b",
+            "length": 30
+          }
+        },
+        {
+          "name": "training_money_41e95b",
+          "passed": true,
+          "detail": {
+            "va": "0x0041e95b",
+            "length": 58
+          }
+        },
+        {
+          "name": "xp_formula_entry_473810",
+          "passed": true,
+          "detail": {
+            "va": "0x00473810",
+            "length": 64
+          }
+        },
+        {
+          "name": "buy:100:0:0",
+          "passed": true,
+          "detail": 110
+        },
+        {
+          "name": "buy:100:100:50",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "buy:100:500:50",
+          "passed": true,
+          "detail": 600
+        },
+        {
+          "name": "buy:101:0:55",
+          "passed": true,
+          "detail": 99
+        },
+        {
+          "name": "buy:100001:0:50",
+          "passed": true,
+          "detail": 100000
+        },
+        {
+          "name": "buy:99999:1:1",
+          "passed": true,
+          "detail": 111097
+        },
+        {
+          "name": "sell:100:0",
+          "passed": true,
+          "detail": 25
+        },
+        {
+          "name": "sell:100:50",
+          "passed": true,
+          "detail": 50
+        },
+        {
+          "name": "sell:100:100",
+          "passed": true,
+          "detail": 75
+        },
+        {
+          "name": "sell:101:55",
+          "passed": true,
+          "detail": 52
+        },
+        {
+          "name": "cp:2",
+          "passed": true,
+          "detail": 10
+        },
+        {
+          "name": "cp:10",
+          "passed": true,
+          "detail": 10
+        },
+        {
+          "name": "cp:11",
+          "passed": true,
+          "detail": 15
+        },
+        {
+          "name": "cp:20",
+          "passed": true,
+          "detail": 15
+        },
+        {
+          "name": "cp:21",
+          "passed": true,
+          "detail": 20
+        },
+        {
+          "name": "cp:31",
+          "passed": true,
+          "detail": 25
+        },
+        {
+          "name": "lives:0",
+          "passed": true,
+          "detail": 5
+        },
+        {
+          "name": "lives:1",
+          "passed": true,
+          "detail": 6
+        },
+        {
+          "name": "lives:4",
+          "passed": true,
+          "detail": 9
+        },
+        {
+          "name": "lives:8",
+          "passed": true,
+          "detail": 9
+        },
+        {
+          "name": "lives:9",
+          "passed": true,
+          "detail": 9
+        },
+        {
+          "name": "picklocks:1:50:50",
+          "passed": true,
+          "detail": 31
+        },
+        {
+          "name": "picklocks:15:70:70",
+          "passed": true,
+          "detail": 82
+        },
+        {
+          "name": "picklocks:16:70:70",
+          "passed": true,
+          "detail": 82
+        },
+        {
+          "name": "picklocks:17:70:70",
+          "passed": true,
+          "detail": 85
+        },
+        {
+          "name": "magic-resistance:60:40:+7",
+          "passed": true,
+          "detail": 52
+        },
+        {
+          "name": "magic-resistance:40:60:-5",
+          "passed": true,
+          "detail": 50
+        },
+        {
+          "name": "xp:1:100",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "xp:2:100",
+          "passed": true,
+          "detail": 1000
+        },
+        {
+          "name": "xp:3:100",
+          "passed": true,
+          "detail": 2000
+        },
+        {
+          "name": "xp:10:100",
+          "passed": true,
+          "detail": 81123
+        },
+        {
+          "name": "xp:50:290",
+          "passed": true,
+          "detail": 783554100
+        },
+        {
+          "name": "xp:100:290",
+          "passed": true,
+          "detail": 51766413104
+        },
+        {
+          "name": "training:0:300",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "training:1:300",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "training:9:0",
+          "passed": true,
+          "detail": 450
+        },
+        {
+          "name": "training:9:100",
+          "passed": true,
+          "detail": 900
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicEconomyPricing.cs:110 - (charm / 5)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicEconomyPricing.cs:(charm / 2) + 25",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicEconomyPricing.cs:NativeMultiplyDivide100",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicEconomyPricing.cs:NativeBuyScaleThresholdCopper = 100_",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs:LivesPerPromotion = 5",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs:LivesAfterPromotion",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs:picklocks_ability_bonus",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs:RuntimeCharacterAbilityValues.Read(a",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeClassicCharacterProgressionFormula.cs:return Math.Max(0, value)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs:RuntimeClassicCharacterProgressionFo",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeCharacterProgressionAuthority.cs:majormud_native_formula_callsite_evi",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs:derived[\"picklocks_ability_bonus\"] =",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs:derived[\"picklocks_bonus\"] = Runtime",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:no-plus-one-life-promotion",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime-source:no-vb-final-rounding",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "gang-communications",
+      "passed": true,
+      "check_count": 66,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "fresh-profile-defaults",
+          "passed": true,
+          "detail": {
+            "va": "0x4165fb",
+            "length": 56
+          }
+        },
+        {
+          "name": "maxpages-atol-upper-cap-store-byte",
+          "passed": true,
+          "detail": {
+            "va": "0x45933e",
+            "length": 30
+          }
+        },
+        {
+          "name": "telepath-on-clears-block",
+          "passed": true,
+          "detail": {
+            "va": "0x459df8",
+            "length": 8
+          }
+        },
+        {
+          "name": "telepath-off-sets-block",
+          "passed": true,
+          "detail": {
+            "va": "0x459e39",
+            "length": 8
+          }
+        },
+        {
+          "name": "profile-save-map",
+          "passed": true,
+          "detail": {
+            "va": "0x471f6c",
+            "length": 64
+          }
+        },
+        {
+          "name": "profile-load-map",
+          "passed": true,
+          "detail": {
+            "va": "0x4723ad",
+            "length": 72
+          }
+        },
+        {
+          "name": "fast-reset-receive-counters",
+          "passed": true,
+          "detail": {
+            "va": "0x4228c4",
+            "length": 21
+          }
+        },
+        {
+          "name": "global-channel-preincrement-counter",
+          "passed": true,
+          "detail": {
+            "va": "0x46af59",
+            "length": 50
+          }
+        },
+        {
+          "name": "telepath-maxpages-check",
+          "passed": true,
+          "detail": {
+            "va": "0x457300",
+            "length": 37
+          }
+        },
+        {
+          "name": "gang-load-disband-drain",
+          "passed": true,
+          "detail": {
+            "va": "0x41559c",
+            "length": 42
+          }
+        },
+        {
+          "name": "gang-cleanup-zero-count-delete",
+          "passed": true,
+          "detail": {
+            "va": "0x40a8f6",
+            "length": 40
+          }
+        },
+        {
+          "name": "native-string:Telepaths will no longer be blocked.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Future telepaths will be blocked.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Paging is now set to Ok.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Paging is now set to Off.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Please specify the maximum number of pages",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Your gang, %s, has been disbanded!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Gang %s has been disbanded and will be del",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Your ganghouse has been closed down!!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Gang house items have dissappeared from yo",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Adding gang house deed for gan",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Cleanup Complete",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "limit-vector--257",
+          "passed": true,
+          "detail": {
+            "actual": 255,
+            "expected": 255
+          }
+        },
+        {
+          "name": "limit-vector--256",
+          "passed": true,
+          "detail": {
+            "actual": 0,
+            "expected": 0
+          }
+        },
+        {
+          "name": "limit-vector--1",
+          "passed": true,
+          "detail": {
+            "actual": 255,
+            "expected": 255
+          }
+        },
+        {
+          "name": "limit-vector-0",
+          "passed": true,
+          "detail": {
+            "actual": 0,
+            "expected": 0
+          }
+        },
+        {
+          "name": "limit-vector-3",
+          "passed": true,
+          "detail": {
+            "actual": 3,
+            "expected": 3
+          }
+        },
+        {
+          "name": "limit-vector-255",
+          "passed": true,
+          "detail": {
+            "actual": 255,
+            "expected": 255
+          }
+        },
+        {
+          "name": "limit-vector-256",
+          "passed": true,
+          "detail": {
+            "actual": 255,
+            "expected": 255
+          }
+        },
+        {
+          "name": "limit-vector-300",
+          "passed": true,
+          "detail": {
+            "actual": 255,
+            "expected": 255
+          }
+        },
+        {
+          "name": "max3-allows-four-before-reject",
+          "passed": true,
+          "detail": [
+            true,
+            true,
+            true,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "max0-allows-one-before-reject",
+          "passed": true,
+          "detail": [
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "max255-byte-counter-wraps",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:DefaultMaxPages = 3",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:RecordMaxPagesOffset = 0x3E",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:ExactTelepathExplicitPolarit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:NormalizeNativeLimit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:NativePreIncrementReceiveAll",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCommunicationPersistenceLimitsAuthority.cs:ExactReconnectLoadSaveOrderi",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:ConfigureClassicReceiveLimit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:ClassicMaxGossipKey",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:TryConsumeClassicReceiveBudg",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:Usage: SET TELEPATH ON|OFF.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:CycleMessagesLevel",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveWorld.cs:DefaultEntrancesEnabled",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:ClassicPageEnabled",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:ToggleClassicPageEnabled",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:\"page\" => _gameplay?.Configu",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:remainingOffline",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:CleanupDisbandedGangs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:PendingDisbandNotificationCh",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:onlineIds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:offline former member(s) rem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCleanup.cs:CleanupDisbandedGangs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicCleanup.cs:gang-record sweep",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-count-200",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "parity-pass-125",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-strong-75",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-unknown-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "communications-remains-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "organizations-remains-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "evidence-0341",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-no-overpromotion",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "gang-modal-invitations",
+      "passed": true,
+      "check_count": 85,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "disband-prompt-enters-state-88",
+          "passed": true,
+          "detail": {
+            "va": "0x4587a1",
+            "length": 45
+          }
+        },
+        {
+          "name": "state-88-one-token-first-char-y",
+          "passed": true,
+          "detail": {
+            "va": "0x4083dc",
+            "length": 37
+          }
+        },
+        {
+          "name": "state-88-confirm-tell-remove-save",
+          "passed": true,
+          "detail": {
+            "va": "0x40842c",
+            "length": 80
+          }
+        },
+        {
+          "name": "state-88-cancel-restores-82",
+          "passed": true,
+          "detail": {
+            "va": "0x408488",
+            "length": 47
+          }
+        },
+        {
+          "name": "invite-node-is-0x1c-transient",
+          "passed": true,
+          "detail": {
+            "va": "0x44fa98",
+            "length": 48
+          }
+        },
+        {
+          "name": "clear-invites-global-list-owner",
+          "passed": true,
+          "detail": {
+            "va": "0x44fb55",
+            "length": 48
+          }
+        },
+        {
+          "name": "join-scans-transient-invite-list",
+          "passed": true,
+          "detail": {
+            "va": "0x44ff43",
+            "length": 44
+          }
+        },
+        {
+          "name": "join-increments-gang-count",
+          "passed": true,
+          "detail": {
+            "va": "0x44ff6f",
+            "length": 35
+          }
+        },
+        {
+          "name": "disband-party-stop-following-minus-one",
+          "passed": true,
+          "detail": {
+            "va": "0x41dee9",
+            "length": 48
+          }
+        },
+        {
+          "name": "native-string:Are you sure you want to disband %s? ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:The gang %s has now been disbanded.\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:The name may not be used again until all members h",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Your gang has not been disbanded.\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are not the leader of the gang; You may not di",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are not in a gang!\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Syntax: DISBAND {Party/Gang}\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:That gang doesn't exist!\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You have joined the gang %s.\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s just joined your gang.\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are no longer following %s.\r",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "modal-vector:'Y'",
+          "passed": true,
+          "detail": {
+            "actual": true,
+            "expected": true
+          }
+        },
+        {
+          "name": "modal-vector:'y'",
+          "passed": true,
+          "detail": {
+            "actual": true,
+            "expected": true
+          }
+        },
+        {
+          "name": "modal-vector:'YES'",
+          "passed": true,
+          "detail": {
+            "actual": true,
+            "expected": true
+          }
+        },
+        {
+          "name": "modal-vector:'yup'",
+          "passed": true,
+          "detail": {
+            "actual": true,
+            "expected": true
+          }
+        },
+        {
+          "name": "modal-vector:'N'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'NO'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'quit'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:''",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'   '",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'Y please'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'yes please'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'N no'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "modal-vector:'1'",
+          "passed": true,
+          "detail": {
+            "actual": false,
+            "expected": false
+          }
+        },
+        {
+          "name": "invitation-vector-duplicate-selective-global-clear",
+          "passed": true,
+          "detail": {
+            "actual": [
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                false,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ],
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ]
+                ]
+              ],
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ],
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ],
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                1,
+                [
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ],
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                1,
+                [
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ]
+            ],
+            "expected": [
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                false,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ],
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ]
+                ]
+              ],
+              [
+                true,
+                [
+                  [
+                    "character.a",
+                    "Red Dragons"
+                  ],
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ],
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                1,
+                [
+                  [
+                    "character.a",
+                    "Blue Knights"
+                  ],
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ],
+              [
+                1,
+                [
+                  [
+                    "character.b",
+                    "Red Dragons"
+                  ]
+                ]
+              ]
+            ]
+          }
+        },
+        {
+          "name": "runtime:RuntimeClassicGangModalAuthority.cs:ActiveGameplayState = 0x82",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangModalAuthority.cs:DisbandConfirmationState = 0x8",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangModalAuthority.cs:tokens.Length == 1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangModalAuthority.cs:char.ToUpperInvariant(tokens[0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:BeginClassicGangDisbandConfirm",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:TryGetClassicGangDisbandConfir",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:CompleteClassicModalInput",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:ClearClassicModalState",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:if (session.HasClassicModalInp",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:TryHandleClassicModalInput(ses",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangInvitations.cs:process-local",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangInvitations.cs:ByScope",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangInvitations.cs:ClearForCharacter",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangInvitations.cs:value.GangName.Equals(gangName",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:MigrateLegacyPersistedInvitati",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:PendingInviteCharacterIds = []",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:RuntimeClassicGangInvitationRe",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:RuntimeClassicGangInvitationRe",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:ClearForCharacter(_folder, cha",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangState.cs:TheoreticalSize = checked(gang",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:Are you sure you want to disba",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:Your gang has not been disband",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:The name may not be used again",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangGameplay.cs:session.CompleteClassicModalIn",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicNativeSessionLifecycle.cs:session.ClearClassicModalState",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicNativeSessionLifecycle.cs:ClearClassicPendingCommands",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:DisbandClassic(string actorId)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:RemoveFromClassicGroup(actor)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:follower.LeaderId = null",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:DisbandClassicParty",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:You are no longer following",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:command.Arguments[0].Equals(\"p",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:DisbandClassicParty(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerNetworkHost.cs:if (!session.HasClassicModalIn",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerNetworkHost.cs:if (session.HasClassicModalInp",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerNetworkHost.cs:telnet.WriteAsync(response",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:if (!session.HasClassicModalIn",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:if (session.HasClassicModalInp",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "no-persisted-invite-append",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "no-disband-clears-global-invites",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-count-200",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "parity-pass-125",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-strong-75",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-unknown-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "organizations-remains-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "party-remains-pass",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "evidence-0342",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-no-overpromotion",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "npc-combat",
+      "passed": true,
+      "check_count": 49,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "background-energy-combat-order-42128c",
+          "passed": true,
+          "detail": {
+            "va": "0x0042128c",
+            "length": 39
+          }
+        },
+        {
+          "name": "monster-energy-refresh-4213ab",
+          "passed": true,
+          "detail": {
+            "va": "0x004213ab",
+            "length": 77
+          }
+        },
+        {
+          "name": "monster-spawn-energy-pair-424761",
+          "passed": true,
+          "detail": {
+            "va": "0x00424761",
+            "length": 157
+          }
+        },
+        {
+          "name": "npc-attempt-selection-dispatch-42e61c",
+          "passed": true,
+          "detail": {
+            "va": "0x0042e61c",
+            "length": 157
+          }
+        },
+        {
+          "name": "npc-six-attempt-loop-42f5e8",
+          "passed": true,
+          "detail": {
+            "va": "0x0042f5e8",
+            "length": 16
+          }
+        },
+        {
+          "name": "monster-cast-field-contract-427d2d",
+          "passed": true,
+          "detail": {
+            "va": "0x00427d2d",
+            "length": 332
+          }
+        },
+        {
+          "name": "monster-cast-half-energy-427f99",
+          "passed": true,
+          "detail": {
+            "va": "0x00427f99",
+            "length": 46
+          }
+        },
+        {
+          "name": "physical-energy-early-end-42e950",
+          "passed": true,
+          "detail": {
+            "va": "0x0042e950",
+            "length": 62
+          }
+        },
+        {
+          "name": "energy:1000:1000",
+          "passed": true,
+          "detail": 1000
+        },
+        {
+          "name": "energy:250:1000",
+          "passed": true,
+          "detail": 1250
+        },
+        {
+          "name": "energy:1250:1000",
+          "passed": true,
+          "detail": 1000
+        },
+        {
+          "name": "energy:0:333",
+          "passed": true,
+          "detail": 333
+        },
+        {
+          "name": "energy:100:333",
+          "passed": true,
+          "detail": 433
+        },
+        {
+          "name": "threshold:0",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "threshold:24",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "threshold:25",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "threshold:74",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "threshold:75",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "name": "threshold:99",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "name": "spell-success:75:0",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "spell-success:75:74",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "spell-success:75:75",
+          "passed": true,
+          "detail": false
+        },
+        {
+          "name": "spell-success:100:99",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "spell-success:0:0",
+          "passed": true,
+          "detail": false
+        },
+        {
+          "name": "failed-spell-cost:1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "failed-spell-cost:2",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "failed-spell-cost:3",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "failed-spell-cost:125",
+          "passed": true,
+          "detail": 62
+        },
+        {
+          "name": "failed-spell-cost:127",
+          "passed": true,
+          "detail": 63
+        },
+        {
+          "name": "failed-spell-cost:128",
+          "passed": true,
+          "detail": 64
+        },
+        {
+          "name": "attempt-count",
+          "passed": true,
+          "detail": 6
+        },
+        {
+          "name": "order-roll-0-player-first",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "order-roll-59-player-first",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "order-roll-60-npc-first",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "order-roll-99-npc-first",
+          "passed": true,
+          "detail": true
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs:RefreshRoundEnergy",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs:Math.Max(1, attack.EnergyCost / 2)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs:roll < attack.MinimumDamage",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeNpcModels.cs:random.Next(0, 100)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeNpcModels.cs:roll < x.SelectionPercent",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLiveCombat.cs:return decodedEnergyPerRound;",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs:RefreshRoundEnergy(npcEnergy, encounter.Np",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs:SpellCastSucceeds(attack, Random.Shared.Ne",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs:majormud_native_npc_combat_rng_evidence_03",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:no-bankers-npc-failed-spell",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:no-unbounded-add-round-energy",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "organization-persistence-services",
+      "passed": true,
+      "check_count": 204,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "native-string:Why don't you slow down for a few seconds?",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are typing too quickly - command ignored",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You may not sell items to a gang shop.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You may not stock limited items!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You may not stock that item!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You add the %s to your shops stock.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:No more new items may be stocked in this shop.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You do not have the correct item to stock this shop.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You cannot STOCK if you are not in your gangs shop!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Syntax: STOCK {item} {price} {currency}",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You cannot UNSTOCK if you are not in your gangs shop!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Syntax: UNSTOCK {item}",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:New gang shop markup value set to %u percent.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Adding gang house deed for gang house %d ba",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:GANGHOUSE : Removing GANGHOUSE DEED %d from Room %s Map",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-parser-keyword-xref",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-parser-calls-owner",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-owner-zero-branch",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-owner-visible-17",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-owner-hidden-15",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-owner-recursive-visible",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "clearitem-owner-recursive-hidden",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "adddelay-keyword-xref",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "adddelay-byte-owner-6bb",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-owner-prologue",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-copy-254-bytes",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-next-node-offset-100",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-warning-count-9-existing",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-warning-string-xref",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-refuse-count-13-existing",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "queue-refuse-string-xref",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-owner-prologue",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-shop-type-11",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-controller-ability-184",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-gamelimit-field",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-ability-82",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-ability-83",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-equipped-item-helper",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-ability-100",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-no-giveaway-flag-428",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-existing-quantity-cap-20",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-ten-slot-loop",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-explicit-price-clamp-9999",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-removal-helper-call",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-owner-prologue",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-lowest-quantity-initial-20",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-shop-type-11",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-controller-ability-184",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-all-room-drop-call",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-ten-slot-loop",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "unstock-quantity-decrement",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "markup-shop-type-11",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "markup-controller-ability-184",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "markup-upper-1000",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "markup-store-word-d2",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "sell-type-11-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "sell-gang-shop-message-xref",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1602-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1602-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1602-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1602-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1603-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1603-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1603-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1603-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1604-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1604-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1604-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1604-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1605-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1605-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1605-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1605-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1606-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1606-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1606-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1606-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1608-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1608-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1608-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1608-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1609-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1609-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1609-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1609-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1610-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1610-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1610-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1610-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1611-healer-credential",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1611-healer-summon",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1611-healer-spells",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1611-healer-delay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1612-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1612-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1613-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1613-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1614-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1614-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1615-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1615-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1616-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1616-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1617-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1617-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1618-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1618-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1619-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1619-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1620-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1620-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1621-guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1621-emblem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1623-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1624-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1625-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1626-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1627-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1628-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1629-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1630-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1631-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1632-key",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1634-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1634-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1635-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1635-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1636-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1636-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1637-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1637-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1638-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1638-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1639-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1639-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1640-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1640-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1641-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1641-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1642-rubbish-primary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "textblock-1642-rubbish-secondary",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeClassicGangHouseWorldCleanup.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseWorldCleanup.cs:RemoveGroundItemTreesInRooms",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseWorldCleanup.cs:RemoveGroundItemTreesByCanonical",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseWorldCleanup.cs:RemoveSummonedNpc",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseWorldCleanup.cs:shop.124",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseWorldCleanup.cs:ClearRooms",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeClassicGangHouseServices.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseServices.cs:ExecuteRecoveredGangHousePlans",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseServices.cs:checkitem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseServices.cs:clearitem",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseServices.cs:AddClassicCommandDelay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangHouseServices.cs:SummonLivingNpc",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeClassicTextblockGraphAuthority.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicTextblockGraphAuthority.cs:1602",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicTextblockGraphAuthority.cs:1642",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicTextblockGraphAuthority.cs:summon healer",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicTextblockGraphAuthority.cs:summon guard",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeSession.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:public byte ClassicCommandDelay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:unchecked((byte)(ClassicCommandD",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:before >= 13",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:before == 9 ? \"Why don't you slo",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeSession.cs:TryDequeueClassicPendingCommand",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeCommandSystem.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:ClassicCommandDelay > 0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:QueueClassicPendingCommand(input",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:ExecuteClassicGangShopCommand",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeCharacterRegeneration.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCharacterRegeneration.cs:TickClassicCommandDelay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCharacterRegeneration.cs:TryDequeueClassicPendingCommand",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCharacterRegeneration.cs:_classicPendingCommandExecutor",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeClassicGangShop.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:ClassicGangShops",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:10",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:20",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:1000",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:EquipmentAbilityModifiers.Contai",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:definition.NotDroppable",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:definition.CursedWhenEquipped",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:You may not stock limited items!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:You may not sell items to a gang",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:UNSTOCK",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:MARKUP",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:QuoteBuyCopper",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicGangShop.cs:listingCharm",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:RuntimeClassicAutoCleanup.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:ProcessDailyAutoCleanup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:_gangHouseWorldCleanup?.Invoke()",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicAutoCleanup.cs:CleanupDisbandedGangs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "source-exists:ServerRuntimeHost.cs",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:ApplyClassicGangHouseDailyCleanu",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:ServerRuntimeHost.cs:BindClassicPendingCommandExecuto",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-count-200",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "parity-pass-126",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-strong-74",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-unknown-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "organization-promoted-pass",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "evidence-0344-exists",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-0344-code-update",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-0344-promotion",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "party-coordination",
+      "passed": true,
+      "check_count": 124,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "remove-group-rank-and-five-slots",
+          "passed": true,
+          "detail": {
+            "va": "0x41ddb1",
+            "length": 41
+          }
+        },
+        {
+          "name": "remove-group-global-scan",
+          "passed": true,
+          "detail": {
+            "va": "0x41de2a",
+            "length": 59
+          }
+        },
+        {
+          "name": "stop-follow-specific-remove-then-clear-leader",
+          "passed": true,
+          "detail": {
+            "va": "0x41dea6",
+            "length": 16
+          }
+        },
+        {
+          "name": "stop-follow-all-no-successor",
+          "passed": true,
+          "detail": {
+            "va": "0x41df05",
+            "length": 31
+          }
+        },
+        {
+          "name": "add-group-five-slots",
+          "passed": true,
+          "detail": {
+            "va": "0x41e0aa",
+            "length": 69
+          }
+        },
+        {
+          "name": "add-group-mode1-reciprocal-propagation",
+          "passed": true,
+          "detail": {
+            "va": "0x41e0ef",
+            "length": 113
+          }
+        },
+        {
+          "name": "rank-active-slot-count",
+          "passed": true,
+          "detail": {
+            "va": "0x41e198",
+            "length": 105
+          }
+        },
+        {
+          "name": "rank-front",
+          "passed": true,
+          "detail": {
+            "va": "0x41e22b",
+            "length": 22
+          }
+        },
+        {
+          "name": "rank-back-constraints",
+          "passed": true,
+          "detail": {
+            "va": "0x41e2e9",
+            "length": 115
+          }
+        },
+        {
+          "name": "rank-mid-constraints",
+          "passed": true,
+          "detail": {
+            "va": "0x41e434",
+            "length": 112
+          }
+        },
+        {
+          "name": "display-clears-dead-leader",
+          "passed": true,
+          "detail": {
+            "va": "0x43b5e4",
+            "length": 9
+          }
+        },
+        {
+          "name": "display-travel-relation",
+          "passed": true,
+          "detail": {
+            "va": "0x43b63a",
+            "length": 76
+          }
+        },
+        {
+          "name": "bare-leave-follower-only",
+          "passed": true,
+          "detail": {
+            "va": "0x453e37",
+            "length": 43
+          }
+        },
+        {
+          "name": "follow-accept-add-group-then-leader",
+          "passed": true,
+          "detail": {
+            "va": "0x45408f",
+            "length": 34
+          }
+        },
+        {
+          "name": "follow-failed-invite-branch",
+          "passed": true,
+          "detail": {
+            "va": "0x45412f",
+            "length": 32
+          }
+        },
+        {
+          "name": "join-user-delegates-follow",
+          "passed": true,
+          "detail": {
+            "va": "0x4542ff",
+            "length": 17
+          }
+        },
+        {
+          "name": "invite-front-and-slot",
+          "passed": true,
+          "detail": {
+            "va": "0x4568ac",
+            "length": 66
+          }
+        },
+        {
+          "name": "invite-full-skips-target-continues-inviter",
+          "passed": true,
+          "detail": {
+            "va": "0x4568ee",
+            "length": 126
+          }
+        },
+        {
+          "name": "share-travel-relation",
+          "passed": true,
+          "detail": {
+            "va": "0x46d43f",
+            "length": 65
+          }
+        },
+        {
+          "name": "ordinary-follower-mode3-and-clear",
+          "passed": true,
+          "detail": {
+            "va": "0x4230e6",
+            "length": 66
+          }
+        },
+        {
+          "name": "target-type12-party-reject",
+          "passed": true,
+          "detail": {
+            "va": "0x43f15b",
+            "length": 63
+          }
+        },
+        {
+          "name": "target-type13-party-admit",
+          "passed": true,
+          "detail": {
+            "va": "0x43f19c",
+            "length": 65
+          }
+        },
+        {
+          "name": "native-string:The following people are in your travel part",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:  %-30.30s %-12.12s [Invited]",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are not in a party at the present time.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s just moved to the front rank in your grou",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You have moved to the front ranks of your gr",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You may not enter the backrank of your own p",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are the only one in the front rank.  You",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:There would not be enough people left in the",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s just moved to the back rank in your group",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You have moved to the back ranks of your gro",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are the only one in the back rank.  You ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You may not leave your current rank in your ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s just moved to the middle of your group.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You have moved to the middle ranks of your g",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You must be invited first!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are now following %s",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s started to follow you.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:%s has invited you to follow %s.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You have invited %s to follow you.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:You are no longer following %s.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-string:Following a monster - Not implemented yet.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-invite-first-slot",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-pending-invite-not-member",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-invite-forces-front",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-follow-consumes-invite",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-follow-reciprocal-link",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-accepted-relation",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-second-invite-reserves-raw-slot",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-second-follow-expands-peer-links",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-switch-follow",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-switch-stale-old-leader-slot-retained",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-switch-stale-slot-not-travel-member",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-failed-mode3-clears-leader-only",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-stop-follow",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-stop-global-unlink",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-leader-departure-detaches",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graph-leader-departure-no-successor",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "five-native-slots",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "sixth-slot-rejected",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "six-total-including-owner",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "invite-timeout-field-absent",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "full-invite-target-notification-skipped",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "full-invite-inviter-confirmation-retained",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "target12-raw-invite-excluded",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "share-display-raw-invite-excluded",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "rank-vector-1",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Frontrank",
+              "front_others": 0,
+              "back_others": 0,
+              "target": "Frontrank",
+              "visible_count": 1
+            },
+            "expected": [
+              false,
+              "Midrank",
+              "party-not-present-rank-reset"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-2",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": true,
+              "actor_rank": "Frontrank",
+              "front_others": 0,
+              "back_others": 1,
+              "target": "Frontrank",
+              "visible_count": 2
+            },
+            "expected": [
+              true,
+              "Frontrank",
+              null
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-3",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": true,
+              "actor_rank": "Frontrank",
+              "front_others": 1,
+              "back_others": 0,
+              "target": "Backrank",
+              "visible_count": 2
+            },
+            "expected": [
+              false,
+              "Frontrank",
+              "party-leader-cannot-enter-backrank"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-4",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Frontrank",
+              "front_others": 0,
+              "back_others": 1,
+              "target": "Backrank",
+              "visible_count": 2
+            },
+            "expected": [
+              false,
+              "Frontrank",
+              "party-only-frontrank-cannot-leave"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-5",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Midrank",
+              "front_others": 1,
+              "back_others": 2,
+              "target": "Backrank",
+              "visible_count": 4
+            },
+            "expected": [
+              false,
+              "Midrank",
+              "party-backrank-front-balance-required"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-6",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Midrank",
+              "front_others": 2,
+              "back_others": 1,
+              "target": "Backrank",
+              "visible_count": 4
+            },
+            "expected": [
+              true,
+              "Backrank",
+              null
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-7",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Frontrank",
+              "front_others": 0,
+              "back_others": 1,
+              "target": "Midrank",
+              "visible_count": 2
+            },
+            "expected": [
+              false,
+              "Frontrank",
+              "party-only-frontrank-cannot-leave"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-8",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Backrank",
+              "front_others": 1,
+              "back_others": 0,
+              "target": "Midrank",
+              "visible_count": 2
+            },
+            "expected": [
+              false,
+              "Backrank",
+              "party-only-backrank-cannot-leave"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-9",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": true,
+              "actor_rank": "Frontrank",
+              "front_others": 1,
+              "back_others": 1,
+              "target": "Midrank",
+              "visible_count": 3
+            },
+            "expected": [
+              false,
+              "Frontrank",
+              "party-leader-cannot-leave-current-rank"
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-10",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Backrank",
+              "front_others": 1,
+              "back_others": 1,
+              "target": "Midrank",
+              "visible_count": 3
+            },
+            "expected": [
+              true,
+              "Midrank",
+              null
+            ]
+          }
+        },
+        {
+          "name": "rank-vector-11",
+          "passed": true,
+          "detail": {
+            "input": {
+              "leader": false,
+              "actor_rank": "Midrank",
+              "front_others": 1,
+              "back_others": 0,
+              "target": "Frontrank",
+              "visible_count": 2
+            },
+            "expected": [
+              true,
+              "Frontrank",
+              null
+            ]
+          }
+        },
+        {
+          "name": "rank-raw-invite-not-counted",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:ClassicNativeGroupSlotCount = 5",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:AddToClassicGroup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:RemoveFromClassicGroup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:StopFollowingSpecific",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:IsClassicTravelRelation",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:CaptureClassicDisplay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:ResolveClassicTravelPartyActorIds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:StopFollowingAfterFailedClassicMove",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:IsClassicHostilePartyTargetExcluded",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:ResolveClassicType13ActorIds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:party-leader-cannot-enter-backrank",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:party-backrank-front-balance-require",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimePartyCoordination.cs:if (actor.LeaderId is not null && vi",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:You have invited {target.Actor.Displ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:You must be invited first!",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:return FollowClassicPartyLeader(sess",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:Following a monster - Not implemente",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:A root",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyGameplay.cs:You may not enter the backrank of yo",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeCommandSystem.cs:StopClassicPartyFollowAfterFailedMov",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:CaptureClassicDisplay",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:ResolveClassicFollowerMoves",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:ResolveClassicType13ActorIds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLiveGameplay.cs:IsClassicHostilePartyTargetExcluded",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeLivePowers.cs:IsClassicPartyHostileRoomSpellTarget",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicShare.cs:ResolveClassicTravelPartyActorIds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyCoordinationEvidenceRegistry.cs:ExactRankTransitionsResolved = true",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyCoordinationEvidenceRegistry.cs:ExactInviteSlotAndLifetimeResolved =",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyCoordinationEvidenceRegistry.cs:ExactDisplayAndShareRelationResolved",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:RuntimeClassicPartyCoordinationEvidenceRegistry.cs:StrongMaximumPartyMembers = 6",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-party-pass",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-gang-persistence-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "parity-communications-still-strong",
+          "passed": true,
+          "detail": [
+            [
+              "native.communications.persistence-logging",
+              "STRONG"
+            ]
+          ]
+        },
+        {
+          "name": "parity-save-coordination-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "parity-count-200",
+          "passed": true,
+          "detail": 200
+        },
+        {
+          "name": "parity-pass-125",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-strong-75",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-unknown-0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-update-0340",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-twelve-native-findings",
+          "passed": true,
+          "detail": 12
+        },
+        {
+          "name": "evidence-party-promotion-pass",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-share-owner",
+          "passed": true,
+          "detail": null
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "scheduler-regeneration",
+      "passed": true,
+      "check_count": 69,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "startup-fast-and-monster-create-40242f",
+          "passed": true,
+          "detail": {
+            "va": "0x40242f",
+            "length": 30
+          }
+        },
+        {
+          "name": "background-energy-42122f",
+          "passed": true,
+          "detail": {
+            "va": "0x42122f",
+            "length": 30
+          }
+        },
+        {
+          "name": "background-slow-4215f6",
+          "passed": true,
+          "detail": {
+            "va": "0x4215f6",
+            "length": 30
+          }
+        },
+        {
+          "name": "background-medium-4216e6",
+          "passed": true,
+          "detail": {
+            "va": "0x4216e6",
+            "length": 30
+          }
+        },
+        {
+          "name": "background-fast-order-421719",
+          "passed": true,
+          "detail": {
+            "va": "0x421719",
+            "length": 58
+          }
+        },
+        {
+          "name": "due-queue-4217ec",
+          "passed": true,
+          "detail": {
+            "va": "0x4217ec",
+            "length": 45
+          }
+        },
+        {
+          "name": "queue-deadline-insert-421831",
+          "passed": true,
+          "detail": {
+            "va": "0x421831",
+            "length": 45
+          }
+        },
+        {
+          "name": "npc-slow-hp-regen-421c69",
+          "passed": true,
+          "detail": {
+            "va": "0x421c69",
+            "length": 53
+          }
+        },
+        {
+          "name": "hp-native-base-percent-42235b",
+          "passed": true,
+          "detail": {
+            "va": "0x42235b",
+            "length": 61
+          }
+        },
+        {
+          "name": "mana-passive-native-percent-4224a2",
+          "passed": true,
+          "detail": {
+            "va": "0x4224a2",
+            "length": 57
+          }
+        },
+        {
+          "name": "rest-counter-422c06",
+          "passed": true,
+          "detail": {
+            "va": "0x422c06",
+            "length": 39
+          }
+        },
+        {
+          "name": "meditate-counter-422d33",
+          "passed": true,
+          "detail": {
+            "va": "0x422d33",
+            "length": 39
+          }
+        },
+        {
+          "name": "meditate-type5-no-mpregen-422df3",
+          "passed": true,
+          "detail": {
+            "va": "0x422df3",
+            "length": 48
+          }
+        },
+        {
+          "name": "monster-create-fast-ticks",
+          "passed": true,
+          "detail": 5
+        },
+        {
+          "name": "slow-fast-ticks",
+          "passed": true,
+          "detail": 30
+        },
+        {
+          "name": "medium-fast-ticks",
+          "passed": true,
+          "detail": 3
+        },
+        {
+          "name": "fast-seconds",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "energy-fast-ticks",
+          "passed": true,
+          "detail": 5
+        },
+        {
+          "name": "rest-too-sick",
+          "passed": true,
+          "detail": "You are too sick to rest!\r"
+        },
+        {
+          "name": "rest-social",
+          "passed": true,
+          "detail": "%s stops to rest.\r"
+        },
+        {
+          "name": "rest-success",
+          "passed": true,
+          "detail": "You are now resting.\r"
+        },
+        {
+          "name": "meditate-success",
+          "passed": true,
+          "detail": "You are now meditating.\r"
+        },
+        {
+          "name": "hp-base:1:1",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "hp-base:10:50",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "name": "hp-base:50:100",
+          "passed": true,
+          "detail": 9
+        },
+        {
+          "name": "hp-base:100:100",
+          "passed": true,
+          "detail": 16
+        },
+        {
+          "name": "native-percent:4:100",
+          "passed": true,
+          "detail": 8
+        },
+        {
+          "name": "native-percent:4:25",
+          "passed": true,
+          "detail": 5
+        },
+        {
+          "name": "native-percent:4:-25",
+          "passed": true,
+          "detail": 3
+        },
+        {
+          "name": "native-percent:4:-200",
+          "passed": true,
+          "detail": -4
+        },
+        {
+          "name": "native-percent:1:-150",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "native-percent:9:50",
+          "passed": true,
+          "detail": 13
+        },
+        {
+          "name": "mana-base:(10, 50, 3)",
+          "passed": true,
+          "detail": 4
+        },
+        {
+          "name": "mana-base:(1, 1, 0)",
+          "passed": true,
+          "detail": 0
+        },
+        {
+          "name": "mana-base:(50, 100, 5)",
+          "passed": true,
+          "detail": 29
+        },
+        {
+          "name": "rest-first-trigger-21",
+          "passed": true,
+          "detail": [
+            21
+          ]
+        },
+        {
+          "name": "rest-repeat-42",
+          "passed": true,
+          "detail": [
+            21,
+            42
+          ]
+        },
+        {
+          "name": "meditate-first-trigger-15",
+          "passed": true,
+          "detail": [
+            15
+          ]
+        },
+        {
+          "name": "meditate-repeat-30",
+          "passed": true,
+          "detail": [
+            15,
+            30
+          ]
+        },
+        {
+          "name": "scheduler-tick30-all-buckets",
+          "passed": true,
+          "detail": [
+            30,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "name": "scheduler-delayed-no-catchup",
+          "passed": true,
+          "detail": [
+            [
+              0,
+              false,
+              false,
+              false,
+              false
+            ],
+            [
+              1,
+              true,
+              false,
+              false,
+              false
+            ],
+            [
+              2,
+              true,
+              false,
+              false,
+              false
+            ],
+            [
+              2,
+              false,
+              false,
+              false,
+              false
+            ],
+            [
+              3,
+              true,
+              true,
+              false,
+              false
+            ]
+          ]
+        },
+        {
+          "name": "kai-passive-modifier",
+          "passed": true,
+          "detail": 2
+        },
+        {
+          "name": "kai-meditate-unmodified",
+          "passed": true,
+          "detail": 1
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs:FastSchedulerSeconds = 1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs:RestCounterThreshold = 20",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs:MeditateCounterThreshold = 14",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicTimingAuthority.cs:SlowSchedulerFastTicks = 30",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs:_nextFastDueUtc = nowUtc.AddSeconds",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs:scheduler-no-elapsed-catchup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs:LogicalFastTick",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs:checked((100 + percent) * basis) / 100",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs:meditating ? 1 : ApplyPercent(1, perce",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs:FastTickCounter + 1",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs:You are now meditating.",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:_classicNativeSchedulerClock.Advance(n",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivingWorld.cs:ApplyNativeSlowNpcRegeneration(now)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs:StockHpRegenSlowFastTicks",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Librarium/Parity/majormud_parity_assertions.json:timers.meditate-mp-native-fast-counter",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Librarium/Parity/majormud_parity_assertions.json:majormud_native_scheduler_regeneration",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:no-wallclock-regen-catchup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:no-old-meditate-message",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-pass:character.hp-regeneration-formula",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-pass:character.mana-regeneration-meditation",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-pass:timers.passive-hp-regen-30s",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-pass:timers.rest-hp-20s",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-pass:timers.meditate-mp-native-fast-counter",
+          "passed": true,
+          "detail": "PASS"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "session-lifecycle",
+      "passed": true,
+      "check_count": 71,
+      "failure_count": 0,
+      "dll": {
+        "bytes": 643072,
+        "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+      },
+      "execution_provenance": null,
+      "checks": [
+        {
+          "name": "dll-size",
+          "passed": true,
+          "detail": 643072
+        },
+        {
+          "name": "dll-sha256",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "image-base",
+          "passed": true,
+          "detail": "0x400000"
+        },
+        {
+          "name": "graceful-logoff-callback",
+          "passed": true,
+          "detail": {
+            "va": "0x408d3c",
+            "length": 83
+          }
+        },
+        {
+          "name": "unexpected-hangup-entry",
+          "passed": true,
+          "detail": {
+            "va": "0x408d9a",
+            "length": 66
+          }
+        },
+        {
+          "name": "unexpected-hangup-final-save-clear",
+          "passed": true,
+          "detail": {
+            "va": "0x4091a4",
+            "length": 82
+          }
+        },
+        {
+          "name": "shared-leave-cleanup",
+          "passed": true,
+          "detail": {
+            "va": "0x420ddf",
+            "length": 109
+          }
+        },
+        {
+          "name": "stop-following-entry",
+          "passed": true,
+          "detail": {
+            "va": "0x41de75",
+            "length": 65
+          }
+        },
+        {
+          "name": "stop-following-all-final-remove",
+          "passed": true,
+          "detail": {
+            "va": "0x41dee9",
+            "length": 133
+          }
+        },
+        {
+          "name": "dismiss-users-angels",
+          "passed": true,
+          "detail": {
+            "va": "0x4203db",
+            "length": 139
+          }
+        },
+        {
+          "name": "cleanup-pending-commands",
+          "passed": true,
+          "detail": {
+            "va": "0x450e27",
+            "length": 83
+          }
+        },
+        {
+          "name": "quit-command-owner",
+          "passed": true,
+          "detail": {
+            "va": "0x46196c",
+            "length": 147
+          }
+        },
+        {
+          "name": "death-shared-cleanup-before-status",
+          "passed": true,
+          "detail": {
+            "va": "0x419b28",
+            "length": 35
+          }
+        },
+        {
+          "name": "hangup-mode-vector-1",
+          "passed": true,
+          "detail": [
+            1,
+            false,
+            false,
+            false,
+            true
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-2",
+          "passed": true,
+          "detail": [
+            1,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-3",
+          "passed": true,
+          "detail": [
+            2,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-4",
+          "passed": true,
+          "detail": [
+            2,
+            true,
+            false,
+            false,
+            true
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-5",
+          "passed": true,
+          "detail": [
+            2,
+            false,
+            true,
+            false,
+            true
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-6",
+          "passed": true,
+          "detail": [
+            3,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-7",
+          "passed": true,
+          "detail": [
+            3,
+            true,
+            true,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-8",
+          "passed": true,
+          "detail": [
+            3,
+            false,
+            false,
+            true,
+            true
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-9",
+          "passed": true,
+          "detail": [
+            4,
+            true,
+            true,
+            true,
+            false
+          ]
+        },
+        {
+          "name": "hangup-mode-vector-10",
+          "passed": true,
+          "detail": [
+            4,
+            false,
+            false,
+            false,
+            false
+          ]
+        },
+        {
+          "name": "stock-hangup-punishment-none",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-hangup-min-percent-zero",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-hangup-max-percent-zero",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "stock-hangup-max-items-zero",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "native-angel-marker-37",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "leader-successor-election-disabled",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "graceful-save-count-one",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "hangup-save-count-two",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:CompleteClassicGracefulLogoff",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:CompleteClassicUnexpectedHangup",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:CleanupClassicCharacterDeath",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:KillClassicAutocombatAgainst",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:DismissClassicNativeAngelSummons",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:HangupPunishmentDefault = RuntimeClassicHang",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:_characters.SaveSession(session); // native ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs:_sessions.Remove(session.Id, saveCharacter: ",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs:CleanupClassicCharacterDeath(session);",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeLivePvp.cs:var death = CompletePlayerDefeat(victimSessi",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimePartyCoordination.cs:CleanupClassicDeparture",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimePartyCoordination.cs:RemoveParty(party);",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimePartyCoordination.cs:DisconnectPolicy: RuntimePartyDisconnectPoli",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSession.cs:ClearClassicPendingCommands",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSession.cs:ClassicPendingCommandCount",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSessionManager.cs:bool saveCharacter = true",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeSessionManager.cs:if (saveCharacter)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCommandSystem.cs:CompleteGracefulSessionExit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCommandSystem.cs:CompleteUnexpectedSessionExit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeCommandSystem.cs:PrepareClassicQuit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/ServerNetworkHost.cs:CompleteGracefulSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/ServerNetworkHost.cs:CompleteUnexpectedSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/ServerRuntimeHost.cs:gracefulSessionExit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/ServerRuntimeHost.cs:CompleteGracefulSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/ServerRuntimeHost.cs:CompleteUnexpectedSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeHeadlessTraining.cs:gracefulSessionExit",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeHeadlessTraining.cs:CompleteGracefulSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeHeadlessTraining.cs:CompleteUnexpectedSessionExit(session)",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicLifecycleDeathEvidenceRegistry.cs:ExactLeaderExitSuccessionResolved = true",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicLifecycleDeathEvidenceRegistry.cs:ExactLinkdeadGameplayResolved = true",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "runtime:Apps/Source/Reforged.Server/RuntimeClassicLifecycleDeathEvidenceRegistry.cs:ExactCrossOwnerExitOrderingResolved = true",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "config:Level of punishment for hanging up? NONE",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "config:Minimum percentage to lose on hangup? 0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "config:Maximum percentage to lose on hangup? 0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "config:Maximum items to lose on hangup? 0",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "parity-character-lifecycle-pass",
+          "passed": true,
+          "detail": "PASS"
+        },
+        {
+          "name": "parity-party-still-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "parity-save-coordination-still-strong",
+          "passed": true,
+          "detail": "STRONG"
+        },
+        {
+          "name": "evidence-update-0339",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "name": "evidence-nine-native-findings",
+          "passed": true,
+          "detail": 9
+        }
+      ],
+      "failures": []
+    }
+  ]
+}

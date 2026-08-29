@@ -15,10 +15,8 @@ public sealed record RuntimeClassicRegenerationEvidenceRow(
     string EvidenceBoundary);
 
 /// <summary>
-/// Pass 37 evidence boundary for Classic player HP/mana regeneration. Exact native
-/// WCCMMHLP text is separated from MMUD Explorer formula/cadence evidence so the
-/// runtime can consume strongly-correlated stock behavior without overstating it as
-/// direct DLL proof.
+/// CodeUpdate0336 direct WCCMMUD.DLL regeneration evidence. Historical HELP is kept
+/// separately where its MEDITATE timing guidance conflicts with executable behavior.
 /// </summary>
 public static class RuntimeClassicRegenerationEvidenceRegistry
 {
@@ -26,68 +24,73 @@ public static class RuntimeClassicRegenerationEvidenceRegistry
     public const int RestingMultiplier = 3;
     public const int ManaDivisor = 1650;
     public const int PassiveCadenceSeconds = 30;
-    public const int RestCadenceSeconds = 20;
-    public const int MeditateCadenceSeconds = 10;
-    public const int FocusActivationSeconds = 20;
+    public const int RestCadenceFastTicks = 21;
+    public const int MeditateCadenceFastTicks = 15;
+    public const int FocusHelpSeconds = 20;
 
     public static IReadOnlyList<RuntimeClassicRegenerationEvidenceRow> Rows { get; } =
     [
-        new("native.help.focus-delay", RuntimeClassicRegenerationEvidenceState.Proven,
-            "REST and MEDITATE require at least 20 uninterrupted seconds before increased regeneration takes effect.",
-            "Exact WCCMMHLP message 205."),
+        new("native.help.focus-guidance", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Historical REST/MEDITATE HELP says increased regeneration requires at least 20 uninterrupted seconds.",
+            "Exact WCCMMHLP message; MEDITATE executable timing conflicts and is governed by the DLL."),
         new("native.help.interruptions", RuntimeClassicRegenerationEvidenceState.Proven,
-            "Movement, attacking, or being attacked terminates the restful/meditative state and yields no bonus.",
-            "Exact WCCMMHLP message 205."),
-        new("hp.stock-base", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Stock MajorMUD HP regeneration starts with max(1, Fix(((Level + 20) * Health) / 750)).",
-            "MMUD Explorer CalcRestingRate stock branch; exact DLL arithmetic callsite remains untraced."),
+            "Movement, attacking, or being attacked terminates REST/MEDITATE and yields no pending bonus.",
+            "Exact WCCMMHLP message plus native command/state branches."),
+        new("hp.stock-base", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Stock HP regeneration uses max(1, trunc(((Level + 20) * Health) / 750)).",
+            "Direct WCCMMUD.DLL _slow_update_character arithmetic, CodeUpdate0336."),
         new("hp.greatermud-divisor", RuntimeClassicRegenerationEvidenceState.RejectedForClassic,
-            "Use divisor 500 for Classic MajorMUD resting HP regeneration.",
-            "MMUD Explorer guards /500 behind bGreaterMUD; Classic must use the non-GreaterMUD branch."),
-        new("hp.rest-multiplier", RuntimeClassicRegenerationEvidenceState.Strong,
-            "REST multiplies the stock HP base rate by three before HPRegen percentage application.",
-            "MMUD Explorer CalcRestingRate implementation and retained Pascal reference comments."),
-        new("timer.passive-hp", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Passive HP regeneration ticks every 30 seconds.",
-            "MMUD Explorer retained cadence evidence; exact host phase remains unresolved."),
-        new("timer.rest-hp", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Focused REST HP regeneration ticks every 20 seconds after the activation boundary.",
-            "MMUD Explorer retained cadence evidence; exact host phase remains unresolved."),
-        new("timer.meditate-mana", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Focused MEDITATE mana regeneration ticks every 10 seconds after the activation boundary.",
-            "MMUD Explorer retained cadence evidence; exact host phase remains unresolved."),
-        new("mana.types1-4-base", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Magic types 1-4 use INT, WIL, Fix((INT+WIL)/2), or CHA and then Fix((((Level+20)*seed)*(MagicLevel+2))/1650).",
-            "MMUD Explorer CalcManaRegen; exact native DLL branch remains untraced."),
-        new("mana.meditation-mpregen-order", RuntimeClassicRegenerationEvidenceState.Strong,
-            "For magic types 1-4, MEDITATE returns the base mana rate before MPRegen percentage application; passive mana regeneration applies MPRegen afterward.",
-            "MMUD Explorer CalcManaRegen bMeditating early-exit branch."),
-        new("mana.kai-special", RuntimeClassicRegenerationEvidenceState.Strong,
-            "Kai/type 5 uses a one-point regeneration base with MPRegen percentage and bypasses the level/MagicLevel formula.",
-            "MMUD Explorer CalcManaRegen type-5 branch; exact native DLL ordering remains below PASS."),
-        new("timer.host-phase", RuntimeClassicRegenerationEvidenceState.Unknown,
-            "Exact Worldgroup host-clock phase and simultaneous ordering of passive/focused regeneration ticks.",
-            "No retained exact native scheduler callsite proves phase/order.")
+            "Use divisor 500 for Classic MajorMUD HP regeneration.",
+            "Direct DLL uses /750; retained /500 branch belongs to GreaterMUD reference code."),
+        new("hp.rest-multiplier", RuntimeClassicRegenerationEvidenceState.Proven,
+            "REST multiplies the stock HP base by three before HPRegen adjustment.",
+            "Direct WCCMMUD.DLL _fast_update_character REST branch."),
+        new("timer.passive-hp", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Passive player regeneration runs in the 30-fast-tick native slow bucket.",
+            "Direct _background_slow -> slow-character call path and scheduler constant 30."),
+        new("timer.rest-hp", RuntimeClassicRegenerationEvidenceState.Proven,
+            "REST fires when its fast counter exceeds 20, so each bonus occurs on the 21st serviced fast callback after reset.",
+            "Direct _fast_update_character counter increment/compare/reset branch."),
+        new("timer.meditate-mana", RuntimeClassicRegenerationEvidenceState.Proven,
+            "MEDITATE fires when its fast counter exceeds 14, so each bonus occurs on the 15th serviced fast callback after reset.",
+            "Direct _fast_update_character counter branch; executable behavior supersedes conflicting 20-second HELP guidance."),
+        new("mana.types1-4-base", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Magic types 1-4 use INT, WIL, trunc((INT+WIL)/2), or CHA and trunc(((Level+20)*seed*(MagicLevel+2))/1650).",
+            "Direct WCCMMUD.DLL slow/fast character mana branches."),
+        new("mana.meditation-mpregen-order", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Passive mana applies ((100+MPRegen)*base)/100; MEDITATE bypasses MPRegen.",
+            "Direct WCCMMUD.DLL passive and meditation branches."),
+        new("mana.kai-special", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Kai/type 5 uses base 1; passive mana applies MPRegen, while MEDITATE returns the unmodified one-point base.",
+            "Direct WCCMMUD.DLL type-5 branches."),
+        new("timer.character-host-phase", RuntimeClassicRegenerationEvidenceState.Proven,
+            "The one-second background-fast callback processes due internal callbacks before fast-character counters; delayed callbacks do not synthesize elapsed catch-up ticks.",
+            "Direct _background_fast, internal due queue, _background_slow and _fast_update_character call order."),
+        new("response.meditate", RuntimeClassicRegenerationEvidenceState.Proven,
+            "Successful MEDITATE response is exactly 'You are now meditating.'",
+            "Direct WCCMMUD.DLL native string and command branch."),
+        new("cleanup.status-order", RuntimeClassicRegenerationEvidenceState.Unknown,
+            "Exact cleanup ordering for every non-movement status/death/disconnect transition while REST/MEDITATE is active.",
+            "The focused regen owner is exact; broader lifecycle cleanup ordering is not fully traced.")
     ];
 
     public static readonly bool GameplayFormulaCorrected = true;
     public static readonly bool StockMajorMudBranchSelected = true;
-    public static readonly bool ExactHostPhaseResolved = false;
-    public static readonly bool ExactMeditateResponseResolved = false;
+    public static readonly bool ExactHostPhaseResolved = true;
+    public static readonly bool ExactMeditateResponseResolved = true;
     public static readonly bool ExactStatusCleanupOrderingResolved = false;
 
     public static IReadOnlyList<string> Validate()
     {
         var failures = new List<string>();
-        if (Rows.Count != 12) failures.Add("expected-twelve-regeneration-evidence-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicRegenerationEvidenceState.Proven) != 2) failures.Add("expected-two-proven-regeneration-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicRegenerationEvidenceState.Strong) != 8) failures.Add("expected-eight-strong-regeneration-rows");
+        if (Rows.Count != 14) failures.Add("expected-fourteen-regeneration-evidence-rows");
+        if (Rows.Count(row => row.State == RuntimeClassicRegenerationEvidenceState.Proven) != 12) failures.Add("expected-twelve-proven-regeneration-rows");
         if (Rows.Count(row => row.State == RuntimeClassicRegenerationEvidenceState.RejectedForClassic) != 1) failures.Add("expected-one-rejected-classic-row");
         if (Rows.Count(row => row.State == RuntimeClassicRegenerationEvidenceState.Unknown) != 1) failures.Add("expected-one-unknown-regeneration-row");
-        if (!GameplayFormulaCorrected) failures.Add("pass37-must-correct-gameplay-formula");
+        if (!GameplayFormulaCorrected) failures.Add("gameplay-formula-must-be-corrected");
         if (!StockMajorMudBranchSelected) failures.Add("stock-major-mud-branch-must-be-selected");
-        if (ExactHostPhaseResolved) failures.Add("host-phase-must-remain-open");
-        if (ExactMeditateResponseResolved) failures.Add("meditate-response-must-remain-open");
+        if (!ExactHostPhaseResolved) failures.Add("character-host-phase-must-be-resolved");
+        if (!ExactMeditateResponseResolved) failures.Add("meditate-response-must-be-resolved");
         if (ExactStatusCleanupOrderingResolved) failures.Add("status-cleanup-order-must-remain-open");
         return failures;
     }

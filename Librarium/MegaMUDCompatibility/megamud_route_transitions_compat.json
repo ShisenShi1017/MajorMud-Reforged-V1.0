@@ -1,0 +1,1170 @@
+{
+  "schema": "reforged.megamud.route-transition-compat.v1",
+  "source": "Recovered default MegaMUD .mp route corpus (1,957 files), corroborated by MegaMUD Decode Pass 21 path semantics",
+  "policy": {
+    "purpose": "Last-resort legacy MegaMUD special-route synchronization when no authoritative runtime room action already handles the command.",
+    "included": "Only signature-changing, unambiguous special commands with no route-level required item evidence.",
+    "excluded": [
+      "normal compass directions",
+      "same-signature actions/puzzle effects",
+      "ambiguous signature transitions",
+      "client-local @ commands",
+      "routes carrying a required-item field"
+    ]
+  },
+  "transitionCount": 144,
+  "transitions": [
+    {
+      "fromSignature": "01E00001",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "B1500044",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "01E00400",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "4BB00020",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "06700000",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "B8700040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "0AB00014",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "DE400400",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "0AB00104",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "DE400040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "0BF00054",
+      "command": "go man",
+      "normalizedCommand": "go man",
+      "toSignature": "E9510050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "0BF00054",
+      "command": "go manhole",
+      "normalizedCommand": "go manhole",
+      "toSignature": "E9510050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "15B01001",
+      "command": "go waterfall",
+      "normalizedCommand": "go waterfall",
+      "toSignature": "4F301100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "15B01004",
+      "command": "go waterfall",
+      "normalizedCommand": "go waterfall",
+      "toSignature": "4F301100",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "19F01001",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "A8200011",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "1FF01001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "DE404000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "1FF01100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "DE400001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "21100010",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "27A10040",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "22B00000",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "B4900100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "24700004",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E00500",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "24700100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "24700110",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "26B00000",
+      "command": "pull bone",
+      "normalizedCommand": "pull bone",
+      "toSignature": "96600000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "26D00080",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "31805000",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "29E00005",
+      "command": "go cave",
+      "normalizedCommand": "go cave",
+      "toSignature": "7E800020",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "31805000",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "26D00080",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "32F00001",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "61D00040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "34300040",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "3A700001",
+      "observationCount": 5,
+      "sourceRouteCount": 5
+    },
+    {
+      "fromSignature": "3A700001",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "34300040",
+      "observationCount": 5,
+      "sourceRouteCount": 5
+    },
+    {
+      "fromSignature": "3AA00009",
+      "command": "dive moat",
+      "normalizedCommand": "dive moat",
+      "toSignature": "42410050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "3AA00009",
+      "command": "go moat",
+      "normalizedCommand": "go moat",
+      "toSignature": "42410050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "3EC00040",
+      "command": "climb root",
+      "normalizedCommand": "climb root",
+      "toSignature": "41B00001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "41B00001",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "3EC00040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600001",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600004",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600010",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600040",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600100",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42600400",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42601000",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "42604000",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "43300055",
+      "command": "dive pool",
+      "normalizedCommand": "dive pool",
+      "toSignature": "38050000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "45F00000",
+      "command": "push button",
+      "normalizedCommand": "push button",
+      "toSignature": "88220000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "47E00004",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "47E00110",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "47E00110",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "47E00004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "48600080",
+      "command": "shakabuku",
+      "normalizedCommand": "shakabuku",
+      "toSignature": "23610000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "4BB00020",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "01E00400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "4C200014",
+      "command": "enter manhole",
+      "normalizedCommand": "enter manhole",
+      "toSignature": "B1510014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "4C200014",
+      "command": "go man",
+      "normalizedCommand": "go man",
+      "toSignature": "B1510014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "4C200014",
+      "command": "go manhole",
+      "normalizedCommand": "go manhole",
+      "toSignature": "B1510014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "4E200001",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "7D010410",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "57200100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "57201040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "57201040",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "57200100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "5D704000",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "8A200005",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00014",
+      "command": "jump north",
+      "normalizedCommand": "jump north",
+      "toSignature": "60F00041",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00014",
+      "command": "jump west",
+      "normalizedCommand": "jump west",
+      "toSignature": "60F00041",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00041",
+      "command": "jump east",
+      "normalizedCommand": "jump east",
+      "toSignature": "60F00014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00041",
+      "command": "jump south",
+      "normalizedCommand": "jump south",
+      "toSignature": "60F00014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00050",
+      "command": "jump south",
+      "normalizedCommand": "jump south",
+      "toSignature": "60F00054",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "60F00054",
+      "command": "jump north",
+      "normalizedCommand": "jump north",
+      "toSignature": "60F00050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "61D00010",
+      "command": "climb strand",
+      "normalizedCommand": "climb strand",
+      "toSignature": "FF600000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "61D00040",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "32F00001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "61D00505",
+      "command": "climb strand",
+      "normalizedCommand": "climb strand",
+      "toSignature": "FF600000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "61D04500",
+      "command": "climb strand",
+      "normalizedCommand": "climb strand",
+      "toSignature": "FF600000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "61D05000",
+      "command": "climb strand",
+      "normalizedCommand": "climb strand",
+      "toSignature": "FF600000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "71E00014",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "7D700004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "77501000",
+      "command": "turn right candle left",
+      "normalizedCommand": "turn right candle left",
+      "toSignature": "77505500",
+      "observationCount": 4,
+      "sourceRouteCount": 4
+    },
+    {
+      "fromSignature": "79700000",
+      "command": "touch gem",
+      "normalizedCommand": "touch gem",
+      "toSignature": "5BE00100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "7C100100",
+      "command": "go reef",
+      "normalizedCommand": "go reef",
+      "toSignature": "AE500004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "7D700004",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "71E00014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "7E800020",
+      "command": "go jungle",
+      "normalizedCommand": "go jungle",
+      "toSignature": "29E00005",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "7EC00090",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "EAA00056",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "87800100",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "B8B01400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "87F00010",
+      "command": "ask seher activate",
+      "normalizedCommand": "ask seher activate",
+      "toSignature": "A3A00500",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "87F00010",
+      "command": "ask seher home",
+      "normalizedCommand": "ask seher home",
+      "toSignature": "F1400055",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "90100001",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "8A200005",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "91300040",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E00410",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "9D400055",
+      "command": "go manhole",
+      "normalizedCommand": "go manhole",
+      "toSignature": "FDA10055",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "9FB00020",
+      "command": "move bookcase",
+      "normalizedCommand": "move bookcase",
+      "toSignature": "F4800020",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "9FD00404",
+      "command": "go fog",
+      "normalizedCommand": "go fog",
+      "toSignature": "E6104000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "A0700050",
+      "command": "go manhole",
+      "normalizedCommand": "go manhole",
+      "toSignature": "E9510050",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "A2C00404",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E00100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "A2C01400",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E04000",
+      "observationCount": 4,
+      "sourceRouteCount": 4
+    },
+    {
+      "fromSignature": "A3A00500",
+      "command": "go fountain",
+      "normalizedCommand": "go fountain",
+      "toSignature": "87F00010",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "A8200011",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "19F01001",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "AE500004",
+      "command": "go beach",
+      "normalizedCommand": "go beach",
+      "toSignature": "7C100100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "AE500104",
+      "command": "go pool",
+      "normalizedCommand": "go pool",
+      "toSignature": "C9A00000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "AE500400",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "D7710000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "AF200005",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "C4F01400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B1500044",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "01E00001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B3400050",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "24900004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B4300005",
+      "command": "heartbeat",
+      "normalizedCommand": "heartbeat",
+      "toSignature": "F1B00040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B4900100",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "22B00000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B5500005",
+      "command": "go stairs",
+      "normalizedCommand": "go stairs",
+      "toSignature": "81510001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B8300001",
+      "command": "borrow skiff",
+      "normalizedCommand": "borrow skiff",
+      "toSignature": "45500005",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B8700040",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "06700000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B8B01400",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "87800100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "B9504100",
+      "command": "push ruby",
+      "normalizedCommand": "push ruby",
+      "toSignature": "B9506100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "C0300004",
+      "command": "climb branch",
+      "normalizedCommand": "climb branch",
+      "toSignature": "F8101400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "C1400000",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "C1400050",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "C1400004",
+      "command": "move rocks",
+      "normalizedCommand": "move rocks",
+      "toSignature": "C1400100",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "C1400050",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "C1400000",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "C1400100",
+      "command": "move rocks",
+      "normalizedCommand": "move rocks",
+      "toSignature": "C1400004",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "C1400500",
+      "command": "dig sand",
+      "normalizedCommand": "dig sand",
+      "toSignature": "34F10000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "C9A00000",
+      "command": "go reef",
+      "normalizedCommand": "go reef",
+      "toSignature": "AE500104",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "CB400500",
+      "command": "climb tree",
+      "normalizedCommand": "climb tree",
+      "toSignature": "7BA40000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "CC900050",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "BCB00104",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "CEA04100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "DE401000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "D0100100",
+      "command": "climb vine",
+      "normalizedCommand": "climb vine",
+      "toSignature": "F8100004",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "D0400050",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "C4F00005",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "D0404001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "C4F04500",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "D0404100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "C4F01001",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "D3200000",
+      "command": "climb cliff",
+      "normalizedCommand": "climb cliff",
+      "toSignature": "E3000004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "D3200000",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "3F400040",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "D7710000",
+      "command": "go crack",
+      "normalizedCommand": "go crack",
+      "toSignature": "AE500400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DC201400",
+      "command": "go alley",
+      "normalizedCommand": "go alley",
+      "toSignature": "CAB00180",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DE400001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "1FF01100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DE400040",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "0AB00104",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "DE400400",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "0AB00014",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DE401000",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "CEA04100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DE404000",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "1FF01001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DEB00010",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "5E200050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "DEB00040",
+      "command": "go portal",
+      "normalizedCommand": "go portal",
+      "toSignature": "DEB00010",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "E0700000",
+      "command": "climb wall",
+      "normalizedCommand": "climb wall",
+      "toSignature": "63544000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "E3000004",
+      "command": "climb cliff",
+      "normalizedCommand": "climb cliff",
+      "toSignature": "D3200000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "E6104000",
+      "command": "go fog",
+      "normalizedCommand": "go fog",
+      "toSignature": "9FD00404",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "EA200001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "EA204400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "EA200040",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "EA201050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "EA201404",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "EA201050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "EA205001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "EA201100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "EBF00006",
+      "command": "go alley",
+      "normalizedCommand": "go alley",
+      "toSignature": "4C900054",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "EEA00056",
+      "command": "dive well",
+      "normalizedCommand": "dive well",
+      "toSignature": "38050000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F0B00055",
+      "command": "go manhole",
+      "normalizedCommand": "go manhole",
+      "toSignature": "E9510050",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F4800020",
+      "command": "move wall",
+      "normalizedCommand": "move wall",
+      "toSignature": "9FB00020",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "F4800020",
+      "command": "push wall",
+      "normalizedCommand": "push wall",
+      "toSignature": "9FB00020",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F4E00001",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E04000",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "F4E00100",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "A2C00404",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F4E00410",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "91300040",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "F4E00500",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "24700004",
+      "observationCount": 3,
+      "sourceRouteCount": 3
+    },
+    {
+      "fromSignature": "F4E04040",
+      "command": "go path",
+      "normalizedCommand": "go path",
+      "toSignature": "F4E00001",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F4E05000",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "F5800010",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F5800010",
+      "command": "go hole",
+      "normalizedCommand": "go hole",
+      "toSignature": "F4E05000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F7800140",
+      "command": "enter bush",
+      "normalizedCommand": "enter bush",
+      "toSignature": "5E710000",
+      "observationCount": 5,
+      "sourceRouteCount": 5
+    },
+    {
+      "fromSignature": "F8100004",
+      "command": "climb vine",
+      "normalizedCommand": "climb vine",
+      "toSignature": "D0100100",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F8101400",
+      "command": "climb branch",
+      "normalizedCommand": "climb branch",
+      "toSignature": "C0300004",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "F9600005",
+      "command": "move rubble",
+      "normalizedCommand": "move rubble",
+      "toSignature": "F9600006",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "F9600006",
+      "command": "move rubble",
+      "normalizedCommand": "move rubble",
+      "toSignature": "F9600005",
+      "observationCount": 2,
+      "sourceRouteCount": 2
+    },
+    {
+      "fromSignature": "FAF00000",
+      "command": "climb wall",
+      "normalizedCommand": "climb wall",
+      "toSignature": "4AC08400",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "FBB00064",
+      "command": "pull lever",
+      "normalizedCommand": "pull lever",
+      "toSignature": "D3200000",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    },
+    {
+      "fromSignature": "FFFFFFFF",
+      "command": "par",
+      "normalizedCommand": "par",
+      "toSignature": "03A00055",
+      "observationCount": 1,
+      "sourceRouteCount": 1
+    }
+  ]
+}

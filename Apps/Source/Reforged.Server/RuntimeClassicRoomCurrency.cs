@@ -36,6 +36,20 @@ public static class RuntimeClassicRoomCurrencyStore
         }
     }
 
+    public static int ClearRooms(string projectRoot, string worldId, IEnumerable<string> roomIds)
+    {
+        ArgumentNullException.ThrowIfNull(roomIds);
+        lock (Gate)
+        {
+            var document = Load(projectRoot);
+            var removed = 0;
+            foreach (var roomId in roomIds.Where(value => !string.IsNullOrWhiteSpace(value)).Distinct(StringComparer.OrdinalIgnoreCase))
+                if (document.Rooms.Remove(Key(worldId, roomId))) removed++;
+            if (removed > 0) Save(projectRoot, document);
+            return removed;
+        }
+    }
+
     public static string AddExact(string projectRoot, string worldId, string roomId, long runic, long platinum, long gold, long silver, long copper)
     {
         if (runic < 0 || platinum < 0 || gold < 0 || silver < 0 || copper < 0)

@@ -54,8 +54,11 @@ public static class RuntimeMajorMudTimerAudit
         diagnostics.Add("Ordinary lair room Delay is projected in minutes, but exact wall-clock-minute gating remains evidence-gated.");
         diagnostics.Add("Last Killed/regen evidence is now active as room-entry admission: elapsed NPC respawn timers do not materialize from the global heartbeat; a player entering the home room admits due spawns.");
         diagnostics.Add("Zero-delay room semantics remain disputed and receive no parity credit.");
+        diagnostics.Add("WCCMMUD.DLL drives a one-second one-shot background-fast callback; internal medium/energy/monster-create/slow buckets are due at 3/5/5/30 logical fast ticks respectively.");
+        diagnostics.Add("Delayed background-fast service increments the logical tick once and re-arms from the execution moment; elapsed wall-clock catch-up is not synthesized while running.");
+        diagnostics.Add("REST increments its native fast counter and fires when it exceeds 20 (21st fast callback). MEDITATE fires when its counter exceeds 14 (15th fast callback), despite historical HELP saying at least 20 seconds for both.");
         diagnostics.Add("There is no evidence-backed single universal 10-second Classic gameplay phase: combat, spell/status, regeneration, save, exit, and room-entry respawn owners use distinct recovered boundaries.");
-        diagnostics.Add("Room reset ordering, hard-reset exceptions, world reset ordering, restart/missed-timer admission, simultaneous-event ordering, and exact host-clock phase remain UNKNOWN.");
+        diagnostics.Add("Room reset ordering, hard-reset exceptions, world reset ordering, restart deadline persistence, and full cross-owner simultaneous-event ordering remain unresolved.");
         diagnostics.Add($"Native WCCMMUD player-data save interval is {RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds}s; native buffer-data prompt is {RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds}s, but exact buffer ownership/order remains UNKNOWN.");
         diagnostics.Add("Existing in-flight respawn deadlines are preserved across upgrade/restore; the new timer authority is guaranteed for newly scheduled deaths rather than retroactively rewriting uncertain persisted deadlines.");
 
@@ -97,8 +100,8 @@ public static class RuntimeMajorMudTimerAudit
         builder.AppendLine();
         builder.AppendLine("RECOVERED CADENCES (implementation/evidence; not all receive strict parity credit)");
         builder.AppendLine($"- Passive HP regen cadence: {report.PassiveRegenSeconds}s");
-        builder.AppendLine($"- Rest cadence: {report.RestSeconds}s");
-        builder.AppendLine($"- Meditate cadence: {report.MeditateSeconds}s");
+        builder.AppendLine($"- REST native trigger: every {report.RestSeconds} serviced fast callbacks (HELP says at least 20 seconds)");
+        builder.AppendLine($"- MEDITATE native trigger: every {report.MeditateSeconds} serviced fast callbacks (DLL overrides conflicting 20-second HELP guidance)");
         builder.AppendLine($"- Runtime combat round: {report.CombatRoundSeconds}s");
         builder.AppendLine($"- Runtime spell/system round: {report.SpellRoundSeconds}s");
         builder.AppendLine($"- Recovered MajorMUD combat round evidence: {report.RecoveredCombatRoundSeconds}s");

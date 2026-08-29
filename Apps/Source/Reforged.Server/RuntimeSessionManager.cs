@@ -74,7 +74,7 @@ public sealed class RuntimeSessionManager
         if (session.Actor.IsPersistentCharacter && _characters is not null)
         {
             foreach (var gangName in new RuntimeClassicGangStateService(_characters.ProjectRoot).ConsumeDisbandNotifications(session.Actor.Id))
-                session.EnqueueMessage($"Your gang '{gangName}' has been disbanded by a SYSOP or its leader.");
+                session.EnqueueMessage($"Your gang, {gangName}, has been disbanded!");
         }
         _state?.TrackSession(session);
         _events?.Publish("session", "started", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
@@ -84,16 +84,45 @@ public sealed class RuntimeSessionManager
         return true;
     }
 
-    public bool Remove(string sessionId)
+    public void ReplaceCharacter(RuntimeSession session, RuntimeCharacterRecord replacement)
+    {
+        if (!_sessions.TryGetValue(session.Id, out var active) || !ReferenceEquals(active, session))
+            throw new InvalidOperationException("Cannot replace a character on an inactive session.");
+        if (!replacement.WorldId.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Replacement character belongs to a different realm.");
+
+        var oldActor = session.Actor;
+        var room = session.World.FindRoomById(replacement.RoomId)
+            ?? (replacement.RoomNumber > 0 ? session.World.FindRoomByNumber(replacement.RoomNumber) : null)
+            ?? session.World.ResolveGeneratedCharacterStartRoom()
+            ?? throw new InvalidOperationException("Replacement character has no resolvable starting room.");
+        var actor = new RuntimeCharacterActor(replacement.CharacterId, replacement.DisplayName, replacement.RaceName, replacement.ClassName, replacement.Level, replacement.Sex);
+
+        foreach (var target in InRoom(session.World.Definition.Id, session.CurrentRoom.Id))
+            if (!target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase))
+                target.EnqueueMessage($"{oldActor.DisplayName} leaves the world.");
+
+        _state?.RemoveSession(session.Id);
+        _state?.RemoveCharacter(oldActor.Id);
+        session.ReplaceCharacter(session.World, room, actor, "reroll-replacement");
+        _state?.TrackSession(session);
+        _events?.Publish("session", "character-rerolled", session.World.Definition.Id, session.Id, actor.Id,
+            $"previousActor={oldActor.Id}; replacement={actor.DisplayName}; room={room.Id}");
+        BroadcastRoom(session, $"{actor.DisplayName} enters the world.");
+        SessionsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public bool Remove(string sessionId, bool saveCharacter = true)
     {
         if (!_sessions.TryRemove(sessionId, out var session)) return false;
         foreach (var target in InRoom(session.World.Definition.Id, session.CurrentRoom.Id))
         {
             target.EnqueueMessage($"{session.Actor.DisplayName} leaves the world.");
         }
-        _characters?.SaveSession(session);
+        if (saveCharacter) _characters?.SaveSession(session);
         _state?.RemoveSession(sessionId);
-        _events?.Publish("session", "ended", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
+        _events?.Publish("session", "ended", session.World.Definition.Id, session.Id, session.Actor.Id,
+            $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}; saveCharacter={saveCharacter}");
         SessionsChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }

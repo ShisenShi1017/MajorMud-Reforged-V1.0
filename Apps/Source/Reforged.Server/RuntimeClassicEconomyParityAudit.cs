@@ -42,20 +42,27 @@ public static class RuntimeClassicEconomyParityAudit
               && RuntimeEconomyNativeMarkup.Apply(100, 500, RuntimeEconomyRoundingPolicy.Floor) == 600,
             "stock-additive-shop-markup");
 
-        Check(RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 0, 0) == 100
+        Check(RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 0, 0) == 110
               && RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 100, 50) == 200
               && RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 500, 50) == 600,
-            "stock-buy-markup-stage");
+            "stock-buy-markup-and-charm-zero-stage");
 
         Check(RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 100, 1) == 220
               && RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 100, 50) == 200
               && RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 100, 100) == 180,
             "stock-buy-charm-stage");
 
-        Check(RuntimeClassicEconomyPricing.QuoteSellCopper(100, 0) == 100
+        Check(RuntimeClassicEconomyPricing.QuoteSellCopper(100, 0) == 25
               && RuntimeClassicEconomyPricing.QuoteSellCopper(100, 50) == 50
               && RuntimeClassicEconomyPricing.QuoteSellCopper(100, 100) == 75,
             "stock-sell-charm-stage");
+
+        Check(RuntimeClassicEconomyPricing.QuoteBuyCopper(101, 0, 55) == 99
+              && RuntimeClassicEconomyPricing.QuoteBuyCopper(99_999, 1, 1) == 111_097,
+            "stock-buy-integer-truncation-no-vb-round");
+
+        Check(RuntimeClassicEconomyPricing.QuoteBuyCopper(100_001, 0, 50) == 100_000,
+            "stock-buy-over-100k-scale-boundary");
 
         // Markup is intentionally absent from QuoteSellCopper; buying a 100-copper item
         // from a +500% shop costs 600 at Charm 50, but selling it remains 50 at Charm 50.

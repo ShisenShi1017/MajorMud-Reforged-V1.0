@@ -12,6 +12,7 @@ public sealed partial class ServerRuntimeHost
     private readonly RuntimeCharacterService _characters;
     private readonly ServerTickScheduler _scheduler = new();
     private readonly RuntimeLiveGameplayFacade _gameplay;
+    private readonly List<RuntimeClassicAutoCleanupScheduler> _classicAutoCleanup = new();
     private RuntimeCommandDispatcher _commands;
 
     public ServerRuntimeHost(string projectRoot, ServerRuntimeOptions options)
@@ -22,6 +23,7 @@ public sealed partial class ServerRuntimeHost
         _sessions = new RuntimeSessionManager(_state, _events, _options.Development, _characters);
         _gameplay = new RuntimeLiveGameplayFacade(_characters, _sessions);
         _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events, _gameplay);
+        _gameplay.BindClassicPendingCommandExecutor((session, input) => _commands.Dispatch(session, input));
     }
 
     public IReadOnlyDictionary<string, RuntimeWorld> Worlds => _worlds;
@@ -192,6 +194,21 @@ public sealed partial class ServerRuntimeHost
         _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), token => _gameplay.TickLivingWorldsAsync(token));
         _scheduler.Register("combat-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.CombatTickMilliseconds)), token => _gameplay.TickLiveCombatsAsync(token));
         _scheduler.Register("spell-system-tick", TimeSpan.FromMilliseconds(RuntimeLiveGameplayFacade.ClassicSpellSystemRoundMilliseconds), token => _gameplay.TickLiveStatusesAsync(token));
+        _classicAutoCleanup.Clear();
+        var cleanupBootLocal = DateTimeOffset.Now;
+        foreach (var classicWorld in _worlds.Values.Where(world => string.Equals(world.Definition.Type, "Classic", StringComparison.OrdinalIgnoreCase)))
+            _classicAutoCleanup.Add(new RuntimeClassicAutoCleanupScheduler(
+                _characters,
+                classicWorld.Definition.Id,
+                cleanupBootLocal,
+                gangHouseWorldCleanup: () => _gameplay.ApplyClassicGangHouseDailyCleanup(classicWorld)));
+        _scheduler.Register("classic-mcurou-probe", TimeSpan.FromMinutes(1), _ =>
+        {
+            var nowLocal = DateTimeOffset.Now;
+            foreach (var cleanup in _classicAutoCleanup) cleanup.TryRun(nowLocal);
+            return Task.CompletedTask;
+        });
+
         _scheduler.Register("session-heartbeat", TimeSpan.FromSeconds(30), _ => Task.CompletedTask);
         _scheduler.Register("character-autosave", RuntimeClassicTimingAuthority.PlayerDataSaveInterval, _ =>
         {
@@ -218,22 +235,26 @@ public sealed partial class ServerRuntimeHost
 
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         var schedulerTask = _scheduler.RunAsync(linked.Token);
+        var gracefulSessionExit = false;
 
         try
         {
             while (!linked.IsCancellationRequested)
             {
-                Console.Write("> ");
+                if (!session.HasClassicModalInput) Console.Write("> ");
                 var input = Console.ReadLine();
-                if (input is null || _commands.RequestsSessionExit(session, input))
+                if (input is null) break;
+                if (_commands.RequestsSessionExit(session, input))
                 {
+                    gracefulSessionExit = true;
                     break;
                 }
 
                 var response = _commands.Dispatch(session, input);
                 if (!string.IsNullOrWhiteSpace(response))
                 {
-                    Console.WriteLine(response);
+                    if (session.HasClassicModalInput) Console.Write(response);
+                    else Console.WriteLine(response);
                 }
 
                 await Task.Yield();
@@ -241,7 +262,11 @@ public sealed partial class ServerRuntimeHost
         }
         finally
         {
-            _sessions.Remove(session.Id);
+            if (_sessions.ActiveSessions.Any(active => active.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (gracefulSessionExit) _commands.CompleteGracefulSessionExit(session);
+                else _commands.CompleteUnexpectedSessionExit(session);
+            }
             linked.Cancel();
             try
             {

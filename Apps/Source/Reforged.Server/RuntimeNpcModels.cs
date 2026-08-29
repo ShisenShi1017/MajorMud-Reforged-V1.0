@@ -383,10 +383,10 @@ public sealed record RuntimeNpcAttackSelectionResult(
     IReadOnlyList<RuntimeNpcAttackDefinition> OrderedAttacks);
 
 /// <summary>
-/// Classic NPC attack-row selection recovered from MMUD Explorer and Nightmare Redux. One
-/// inclusive d100 roll is compared against authored Att%-x thresholds in slot order. The first
-/// matching row is selected even when its energy cost cannot currently be paid; native combat
-/// does not remove unaffordable rows and re-normalize the remaining rows.
+/// Classic NPC attack-row selection recovered directly from WCCMMUD.DLL. One native [0,100)
+/// roll is compared against authored Att%-x byte thresholds in slot order using roll < threshold.
+/// The first matching row is selected even when its energy cost cannot currently be paid; native
+/// combat does not remove unaffordable rows and re-normalize the remaining rows.
 /// </summary>
 public static class RuntimeNpcAttackSelector
 {
@@ -399,8 +399,8 @@ public static class RuntimeNpcAttackSelector
     {
         ArgumentNullException.ThrowIfNull(attacks);
         if (currentEnergy < 0) throw new ArgumentOutOfRangeException(nameof(currentEnergy));
-        if (roll is < 1 or > 100)
-            throw new ArgumentOutOfRangeException(nameof(roll), "Roll must be within 1..100.");
+        if (roll is < 0 or >= 100)
+            throw new ArgumentOutOfRangeException(nameof(roll), "Native roll must be within 0..99.");
         if (attacks.Any(x => x.EnergyCost < 0))
             throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ATTACK_ENERGY_COST");
         if (attacks.Any(x => x.SelectionPercent < 0))
@@ -410,7 +410,7 @@ public static class RuntimeNpcAttackSelector
             .Where(x => x.Type > 0 && x.SelectionPercent > 0)
             .OrderBy(x => x.Slot)
             .ToArray();
-        var selected = ordered.FirstOrDefault(x => roll <= x.SelectionPercent);
+        var selected = ordered.FirstOrDefault(x => roll < x.SelectionPercent);
         return new RuntimeNpcAttackSelectionResult(
             selected,
             selected is not null && selected.EnergyCost <= currentEnergy,
@@ -424,7 +424,7 @@ public static class RuntimeNpcAttackSelector
         Random random)
     {
         ArgumentNullException.ThrowIfNull(random);
-        return Select(attacks, currentEnergy, random.Next(1, 101));
+        return Select(attacks, currentEnergy, random.Next(0, 100));
     }
 }
 

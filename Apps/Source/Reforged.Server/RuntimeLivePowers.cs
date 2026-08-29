@@ -28,6 +28,31 @@ public sealed class RuntimeLivePowerStateRepository
         File.Move(temp, _path, true);
     }
 
+    public void RemoveCharacter(string characterId)
+    {
+        if (string.IsNullOrWhiteSpace(characterId) || !File.Exists(_path)) return;
+        var state = Load();
+        var spells = state.Spells with
+        {
+            KnownSpells = state.Spells.KnownSpells
+                .Where(spell => !spell.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray(),
+            ActiveEffects = state.Spells.ActiveEffects
+                .Where(effect => !effect.CasterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)
+                                 && !effect.Target.Id.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray(),
+            Resources = state.Spells.Resources
+                .Where(pair => !pair.Key.Equals(characterId, StringComparison.OrdinalIgnoreCase))
+                .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase)
+        };
+        var abilities = state.Abilities
+            .Where(pair => !pair.Key.Equals(characterId, StringComparison.OrdinalIgnoreCase))
+            .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+        var cooldownPrefix = characterId + "\u001f";
+        var cooldowns = state.SpellCooldowns
+            .Where(pair => !pair.Key.StartsWith(cooldownPrefix, StringComparison.OrdinalIgnoreCase))
+            .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
+        Save(new RuntimeLivePowerState(spells, abilities, cooldowns, DateTimeOffset.UtcNow));
+    }
+
     private static RuntimeLivePowerState Empty() => new(
         new RuntimeSpellState(Array.Empty<RuntimeKnownSpell>(), Array.Empty<RuntimeActiveSpellEffect>(), new Dictionary<string, RuntimeSpellResources>()),
         new Dictionary<string, RuntimeActorAbilitySnapshot>(StringComparer.OrdinalIgnoreCase),
@@ -37,6 +62,12 @@ public sealed class RuntimeLivePowerStateRepository
 public sealed partial class RuntimeLiveGameplayFacade
 {
     private sealed record WeaponOnHitSpellResult(int NpcCurrentHitPoints, string Output);
+    private sealed record RecoveredItemSpellWorldAction(
+        bool Handled,
+        RuntimeRoom? Destination,
+        int BeforeMessageId,
+        int AfterMessageId,
+        string Output);
     private readonly object _livePowerGate = new();
     private readonly Dictionary<string, RuntimeActorAbilityState> _liveAbilityStates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _liveSpellCooldowns = new(StringComparer.OrdinalIgnoreCase);
@@ -56,7 +87,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             ExpireLivePowers(session, DateTimeOffset.UtcNow);
             return command.Name switch
             {
-                "cast" => CastLiveSpell(session, command),
+                "cast" => CastLiveSpell(session, command, invoked: false),
+                "invoke" => CastLiveSpell(session, command, invoked: true),
                 "use" => UseLiveItemOrAbility(session, command),
                 "abilities" or "skills" => RenderLiveAbilities(session),
                 "prepare" or "spells" => RenderLiveSpells(session),
@@ -176,12 +208,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
     }
 
-    private string CastLiveSpell(RuntimeSession session, RuntimeCommand command)
+    private string CastLiveSpell(RuntimeSession session, RuntimeCommand command, bool invoked)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
-        if (command.Arguments.Count == 0) return "Cast which spell?";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-        if (RuntimeClassicStatusProjection.IsSpellCastBlocked(character)) return "You cannot cast while affected by the current status.";
+        var classDefinition = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId);
+        var usesKai = classDefinition.Magic?.Type == 5;
+        if (invoked && !usesKai) return "You may not invoke... You are not KAI!";
+        if (!invoked && usesKai) return "You may not cast... You are KAI!";
+        if (command.Arguments.Count == 0)
+            return invoked ? "Syntax: INVOKE {power} [{target}]" : "Syntax: CAST {spell} [{target}]";
+        if (RuntimeClassicStatusProjection.IsSpellCastBlocked(character)) return invoked ? "You cannot invoke while affected by the current status." : "You cannot cast while affected by the current status.";
         var spell = ResolveSpell(command.Arguments[0]);
         if (!IsDecodedSpellCasterAlignmentAdmitted(spell, character, out var alignmentFailure))
             return alignmentFailure;
@@ -200,6 +237,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         else target = spell.TargetType == "13"
             ? new RuntimeSpellTarget("character", actor.Id)
             : ResolvePowerTarget(session, targetArguments, spell.TargetType);
+        if (spell.TargetType == "12" && !IsClassicPartyHostileRoomSpellTarget(session, target))
+            return "That character is not a valid hostile room-spell target.";
         var targetNpc = target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
             ? LivingNpcsInRoom(session).FirstOrDefault(npc => npc.InstanceId.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
             : null;
@@ -257,7 +296,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             foreach (var appliedTarget in (partyTargets ?? [target])) PublishDecodedStartMessage(session, spell, appliedTarget, null, publishObservers: partyTargets is null);
             var targetDisplayName = ResolveSpellTargetDisplayName(target, targetNpc);
             var castOutput = string.IsNullOrWhiteSpace(spell.StartMessage?.CasterMessage)
-                ? $"You cast {spell.Name} on {target.Id}."
+                ? $"You {(invoked ? "invoke" : "cast")} {spell.Name} on {target.Id}."
                 : RenderDecodedStartMessage(spell.StartMessage.CasterMessage, targetDisplayName, targetDisplayName);
             var eventOutput = string.Join(" ", result.Events.Select(RenderSpellEvent));
             if (removedCurses > 0)
@@ -374,6 +413,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (!cast.Succeeded) throw new InvalidOperationException(cast.FailureMessage ?? cast.FailureCode ?? "The item spell failed.");
             if (temporarilyLearned) _liveSpellEngine.Forget(character.CharacterId, spell.Id);
             _ = NormalizeDecodedPlayerStatusCast(session, cast.Cast.Effect, now);
+            var recoveredWorldAction = ResolveRecoveredItemSpellWorldAction(session, selected, spell);
             var spent = engine.SpendCharges(selected.InstanceId, character.CharacterId);
             var effects = _liveSpellEngine.EffectsFor(character.CharacterId);
             var synchronized = RuntimeCharacterStatusEffectResolver.Synchronize(character, effects, now,
@@ -387,7 +427,20 @@ public sealed partial class RuntimeLiveGameplayFacade
             };
             _characters.SaveCharacter(synchronized, $"use-decoded-spell-item:{selected.CanonicalItemId}");
             PersistLivePowers(character.WorldId);
-            result = $"You use {definition.Name}. {spell.Name} takes effect. Uses remaining: {spent.Charges}.";
+            if (recoveredWorldAction.Handled && recoveredWorldAction.BeforeMessageId > 0)
+                BroadcastRecoveredNativeSecondaryMessage(session, recoveredWorldAction.BeforeMessageId);
+            if (recoveredWorldAction.Destination is not null)
+            {
+                session.MoveToWorld(session.World, recoveredWorldAction.Destination,
+                    $"decoded-item-spell:{selected.CanonicalItemId}:{spell.Id}:textblock.1421");
+                _characters.SaveSession(session);
+                AdmitClassicRoomEntryNpcRespawns(session);
+            }
+            if (recoveredWorldAction.Handled && recoveredWorldAction.AfterMessageId > 0)
+                BroadcastRecoveredNativeSecondaryMessage(session, recoveredWorldAction.AfterMessageId);
+            result = recoveredWorldAction.Handled
+                ? recoveredWorldAction.Output
+                : $"You use {definition.Name}. {spell.Name} takes effect. Uses remaining: {spent.Charges}.";
             return true;
         }
         catch
@@ -395,6 +448,36 @@ public sealed partial class RuntimeLiveGameplayFacade
             _liveSpellEngine.RestoreSnapshot(powerBefore);
             throw;
         }
+    }
+
+    private RecoveredItemSpellWorldAction ResolveRecoveredItemSpellWorldAction(
+        RuntimeSession session,
+        RuntimeItemInstance selected,
+        RuntimeSpellDefinition spell)
+    {
+        // Native spell 607, supplied by item 992 (potion of levitation), owns textblock 1421:
+        //   roomitem 993 1834:message 1835:teleport 1009 9:message 1836
+        // Item 993 is the non-gettable waterfall placed in room 3/1. Preserve the exact
+        // room-item condition and native messages rather than inferring movement from a
+        // MegaMUD route fingerprint.
+        if (!selected.CanonicalItemId.Equals("item.992", StringComparison.OrdinalIgnoreCase)
+            || !spell.LegacyId.Equals("607", StringComparison.OrdinalIgnoreCase))
+            return new(false, null, 0, 0, string.Empty);
+
+        var waterfallPresent = Living(session).GroundItems(session.CurrentRoom.Id)
+            .Any(item => item.CanonicalItemId.Equals("item.993", StringComparison.OrdinalIgnoreCase));
+        if (!waterfallPresent)
+            return new(true, null, 1834, 0, _nativePayloads.RequireMessage(1834));
+
+        var destination = session.World.FindRoom(9, 1009)
+            ?? throw new InvalidOperationException("Decoded potion-of-levitation destination 9/1009 is unavailable.");
+        var output = new[]
+            {
+                _nativePayloads.RequireMessage(1835),
+                _nativePayloads.RequireMessage(1836)
+            }
+            .Where(message => !string.IsNullOrWhiteSpace(message));
+        return new(true, destination, 1835, 1836, string.Join(Environment.NewLine, output));
     }
 
     private string ActivateGangHouseDeed(
@@ -801,10 +884,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                 .ToArray();
             if (matches.Length != 1) return false;
 
-            var words = new List<string> { "cast", matches[0].Id };
+            var classDefinition = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId);
+            var usesKai = classDefinition.Magic?.Type == 5;
+            var words = new List<string> { usesKai ? "invoke" : "cast", matches[0].Id };
             words.AddRange(command.Arguments);
             var cast = RuntimeCommand.Parse(string.Join(' ', words), session.World.CommandCatalog);
-            result = CastLiveSpell(session, cast);
+            result = CastLiveSpell(session, cast, invoked: usesKai);
             return true;
         }
     }

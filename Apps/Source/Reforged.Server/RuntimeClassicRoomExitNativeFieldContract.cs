@@ -11,6 +11,23 @@ public static class RuntimeClassicRoomExitNativeFieldContract
     public const int SignedInt16Min = -32768;
     public const int SignedInt16Max = 32767;
 
+    public const int RoomRecordSize = 1544;
+    public const int RoomExitOffset = 824;
+    public const int RoomTypeOffset = 864;
+    public const int Para1Offset = 884;
+    public const int Para2Offset = 924;
+    public const int Para3Offset = 944;
+    public const int Para4Offset = 984;
+    public const int ExitSlotCount = 10;
+
+    public static int DirectionIndex(string direction) => direction.Trim().ToUpperInvariant() switch
+    {
+        "N" => 0, "S" => 1, "E" => 2, "W" => 3,
+        "NE" => 4, "NW" => 5, "SE" => 6, "SW" => 7,
+        "U" => 8, "D" => 9,
+        _ => -1
+    };
+
     public enum RoomExitType : short
     {
         Normal = 0,

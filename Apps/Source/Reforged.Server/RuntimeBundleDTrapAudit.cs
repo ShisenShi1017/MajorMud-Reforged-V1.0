@@ -26,7 +26,10 @@ public static class RuntimeBundleDTrapAudit
         Check(spell.All(x => x.SpellId > 0 && x.Damage == 0), "spell-identifiers-preserved");
         Check(definitions.Select(x => x.ExitId).Distinct(StringComparer.OrdinalIgnoreCase).Count() == definitions.Length, "one-trap-per-canonical-exit");
         Check(definitions.All(x => x.SourceExitRecord.Equals(x.ExitId, StringComparison.OrdinalIgnoreCase)), "source-exit-provenance-preserved");
-        Check(definitions.All(x => !x.NativeActivationStateProjected && x.NativeActivationState is null), "mme-projection-does-not-invent-trap-para2-state");
+        Check(definitions.All(x => x.NativeActivationStateProjected && x.NativeActivationState is >= 0 and <= 4), "wccmp002-projects-all-native-trap-para2-states");
+        Check(definitions.Count(x => x.NativeActivationState == 0) == 293, "wccmp002-active-trap-state-count-293");
+        Check(definitions.Count(x => x.NativeActivationState == 2) == 2, "wccmp002-hidden-trap-state-count-2");
+        Check(definitions.All(x => x.NativeActivationState is 0 or 2), "stock-traps-use-only-observed-para2-zero-or-two");
 
         var options = ServerRuntimeOptions.Load(projectRoot);
         var definition = options.Worlds.First(x => x.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));

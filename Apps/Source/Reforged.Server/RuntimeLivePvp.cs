@@ -128,6 +128,19 @@ public sealed partial class RuntimeLiveGameplayFacade
         var attackerAlignment = attacker.SemanticState?.Alignment ?? RuntimeCharacterAlignmentResolver.CreateInitial(characterCatalog.AlignmentRuleContract);
         if (!RuntimeCharacterAlignmentResolver.CanInitiateAttack(attackerAlignment, characterCatalog.AlignmentRuleContract))
             return $"PvP attack denied: characters at {characterCatalog.AlignmentRuleContract.FiendAttackLockoutThreshold} evil points cannot initiate another attack.";
+        var practiceArena = IsClassicPracticeArena(attackerSession);
+        RuntimeCharacterAlignmentState? projectedAlignment = null;
+        if (!practiceArena)
+        {
+            var defenderReputation = defender.SemanticState?.Alignment?.Reputation ?? "Neutral";
+            var defenderIsLawful = defender.Conditions.TryGetValue("lawful", out var lawfulRaw) &&
+                (lawfulRaw.Equals("1", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("true", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("yes", StringComparison.OrdinalIgnoreCase));
+            projectedAlignment = RuntimeCharacterAlignmentResolver.ApplyAttack(attackerAlignment, defenderReputation, defenderIsLawful, characterCatalog.AlignmentRuleContract);
+            if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(
+                    attacker, attackerAlignment.EvilPoints, projectedAlignment.EvilPoints))
+                return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+        }
+
         var policy = _livePvpPolicies.GetOrAdd(attacker.WorldId, worldId =>
         {
             var catalog = RuntimePvpZoneCatalog.Load(_characters.ProjectRoot, worldId);
@@ -143,14 +156,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         var admission = policy.RegisterAttack(attacker.CharacterId, defender.CharacterId, DateTimeOffset.UtcNow);
         if (!admission.Allowed) return $"PvP attack denied: {admission.Reason}.";
 
-        var practiceArena = RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(attackerSession.CurrentRoom);
-        if (!practiceArena)
+        if (projectedAlignment is not null)
         {
-            var defenderReputation = defender.SemanticState?.Alignment?.Reputation ?? "Neutral";
-            var defenderIsLawful = defender.Conditions.TryGetValue("lawful", out var lawfulRaw) &&
-                (lawfulRaw.Equals("1", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("true", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("yes", StringComparison.OrdinalIgnoreCase));
-            var updatedAlignment = RuntimeCharacterAlignmentResolver.ApplyAttack(attackerAlignment, defenderReputation, defenderIsLawful, characterCatalog.AlignmentRuleContract);
-            var semantic = (attacker.SemanticState ?? RuntimeCharacterSemanticState.Empty) with { Alignment = updatedAlignment };
+            var semantic = (attacker.SemanticState ?? RuntimeCharacterSemanticState.Empty) with { Alignment = projectedAlignment };
             attacker = attacker with { SemanticState = semantic, UpdatedAtUtc = DateTimeOffset.UtcNow };
             _characters.SaveCharacter(attacker, "runtime.pvp.attack-alignment");
         }
@@ -265,9 +273,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             var victimSession = defenderHp == 0 ? defenderSession : attackerSession;
             var victim = defenderHp == 0 ? defender with { HitPoints = 0 } : attacker with { HitPoints = 0 };
             var killerSession = defenderHp == 0 ? attackerSession : defenderSession;
-            var death = RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(victimSession.CurrentRoom)
-                ? CompletePracticeArenaPlayerDefeat(victimSession, victim)
-                : CompletePlayerDefeat(victimSession, victim);
+            // Route every player death through the shared native _check_kill_user projection;
+            // CompletePlayerDefeat owns the practice-arena early-return branch after cleanup.
+            var death = CompletePlayerDefeat(victimSession, victim);
             EndLivePvpEncounter(encounter);
             victimSession.EnqueueMessage($"{killerSession.Actor.DisplayName} defeated you. {death}\n*Combat Off*");
             return attackerLine + Environment.NewLine + $"{killerSession.Actor.DisplayName} defeats {victimSession.Actor.DisplayName}.\n*Combat Off*";
@@ -279,8 +287,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     public void CaptureClassicPracticeArenaEntry(RuntimeSession session, RuntimeRoom previousRoom)
     {
         if (session.Actor is not RuntimeCharacterActor actor ||
-            !RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(session.CurrentRoom) ||
-            RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(previousRoom)) return;
+            !IsClassicPracticeArena(session) ||
+            RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(previousRoom,
+                RuntimeClassicDeathLawPvpAuthority.IsArenaEnabled(_characters.ProjectRoot, session.World.Definition.Id))) return;
         var character = _characters.LoadCharacter(actor.Id);
         if (character is null) return;
         var conditions = new Dictionary<string, string>(character.Conditions, StringComparer.OrdinalIgnoreCase)
@@ -290,21 +299,26 @@ public sealed partial class RuntimeLiveGameplayFacade
         _characters.SaveCharacter(character with { Conditions = conditions, UpdatedAtUtc = DateTimeOffset.UtcNow }, "classic.practice-arena.entry-hp");
     }
 
+    private bool IsClassicPracticeArena(RuntimeSession session) =>
+        RuntimeClassicDeathLawPvpAuthority.IsPracticeArena(session.CurrentRoom,
+            RuntimeClassicDeathLawPvpAuthority.IsArenaEnabled(_characters.ProjectRoot, session.World.Definition.Id));
+
     private string CompletePracticeArenaPlayerDefeat(RuntimeSession victimSession, RuntimeCharacterRecord victim)
     {
         var restoreHp = RuntimeClassicDeathLawPvpAuthority.RequirePracticeArenaEntryHitPoints(victim);
-        var halls = victimSession.World.FindRoom(RuntimeClassicDeathLawPvpAuthority.HallsOfTheDeadMap, RuntimeClassicDeathLawPvpAuthority.HallsOfTheDeadRoom)
-            ?? throw new InvalidOperationException("Decoded Halls Of The Dead room 1/2189 is unavailable.");
+        var evilPoints = RuntimeClassicNativeCharacterDeathAuthority.ReadEvilPoints(victim);
+        var destination = RuntimeClassicDeathLawPvpAuthority.ResolveDeathDestination(victimSession.World, victimSession.CurrentRoom, evilPoints);
         var restored = victim with
         {
             HitPoints = restoreHp,
-            RoomId = halls.Id,
-            RoomNumber = halls.RoomNumber,
+            Mana = victim.MaximumMana,
+            RoomId = destination.Id,
+            RoomNumber = destination.RoomNumber,
             UpdatedAtUtc = DateTimeOffset.UtcNow
         };
         _characters.SaveCharacter(restored, "classic.practice-arena.defeat");
-        victimSession.MoveToWorld(victimSession.World, halls, "classic-practice-arena-revival");
-        return $"Practice-arena defeat costs no life or evil points. You revive in {halls.Name} with {restoreHp} HP.";
+        victimSession.MoveToWorld(victimSession.World, destination, "classic-practice-arena-revival");
+        return $"Practice-arena defeat costs no life or evil points. You revive in {destination.Name} with {restoreHp} HP and full mana.";
     }
 
     private static ClassicAttackResult ResolvePvpStrike(ClassicCombatResolver resolver, RuntimePlayerCombatProfile attacker,

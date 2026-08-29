@@ -15,11 +15,16 @@ public sealed class TelnetConnection : IAsyncDisposable
     private const byte Dont = 254;
     private const byte Echo = 1;
     private const byte SuppressGoAhead = 3;
+    private const byte Gmcp = 201;
+
+    private static readonly Encoding LegacyEncoding = new LegacyCodePage437Encoding();
 
     private readonly NetworkStream _stream;
     private readonly SemaphoreSlim _writeGate = new(1, 1);
     private readonly byte[] _single = new byte[1];
     private bool _skipNextLineFeed;
+
+    public bool ReforgedClientDataEnabled { get; private set; }
 
     public TelnetConnection(NetworkStream stream) => _stream = stream;
 
@@ -30,14 +35,33 @@ public sealed class TelnetConnection : IAsyncDisposable
         await WriteBytesAsync(new byte[]
         {
             Iac, Will, SuppressGoAhead,
-            Iac, Will, Echo
+            Iac, Will, Echo,
+            Iac, Will, Gmcp
         }, cancellationToken).ConfigureAwait(false);
     }
 
     public Task WriteAsync(string text, CancellationToken cancellationToken)
     {
         var normalized = NormalizeAnsi(NormalizeNetworkNewLines(text));
-        return WriteBytesAsync(Encoding.UTF8.GetBytes(normalized), cancellationToken);
+        return WriteApplicationBytesAsync(LegacyEncoding.GetBytes(normalized), cancellationToken);
+    }
+
+    public async Task AdvertiseReforgedClientDataAsync(int port, string token, CancellationToken cancellationToken)
+    {
+        var payload = Encoding.ASCII.GetBytes($"Reforged.ClientData 1|{port}|{token}");
+        if (!ReforgedClientDataEnabled) return;
+        var bytes = new List<byte>(payload.Length + 5)
+        {
+            Iac, Sb, Gmcp
+        };
+        foreach (var value in payload)
+        {
+            bytes.Add(value);
+            if (value == Iac) bytes.Add(Iac);
+        }
+        bytes.Add(Iac);
+        bytes.Add(Se);
+        await WriteBytesAsync(bytes.ToArray(), cancellationToken).ConfigureAwait(false);
     }
 
     private static readonly Regex OscSequence = new(@"\x1B\].*?(?:\x07|\x1B\\)", RegexOptions.Compiled | RegexOptions.Singleline);
@@ -98,14 +122,14 @@ public sealed class TelnetConnection : IAsyncDisposable
             var value = await ReadDataByteAsync(cancellationToken).ConfigureAwait(false);
             if (value < 0)
             {
-                return buffer.Count == 0 ? null : Encoding.UTF8.GetString(buffer.ToArray());
+                return buffer.Count == 0 ? null : LegacyEncoding.GetString(buffer.ToArray());
             }
 
             if (value is 10 or 13)
             {
                 if (value == 13) _skipNextLineFeed = true;
                 await WriteAsync("\r\n", cancellationToken).ConfigureAwait(false);
-                return Encoding.UTF8.GetString(buffer.ToArray());
+                return LegacyEncoding.GetString(buffer.ToArray());
             }
 
             if (value is 8 or 127)
@@ -124,7 +148,7 @@ public sealed class TelnetConnection : IAsyncDisposable
                 if (hideInput)
                     await WriteAsync("*", cancellationToken).ConfigureAwait(false);
                 else
-                    await WriteBytesAsync(new[] { (byte)value }, cancellationToken).ConfigureAwait(false);
+                    await WriteApplicationBytesAsync(new[] { (byte)value }, cancellationToken).ConfigureAwait(false);
             }
         }
     }
@@ -152,7 +176,7 @@ public sealed class TelnetConnection : IAsyncDisposable
         }
         if (value == 32) return "SPACE";
         if (value is 8 or 127) return "BACKSPACE";
-        return ((char)value).ToString();
+        return LegacyEncoding.GetString(new[] { (byte)value });
     }
 
     private async Task<int> ReadDataByteAsync(CancellationToken cancellationToken)
@@ -192,6 +216,13 @@ public sealed class TelnetConnection : IAsyncDisposable
                     // We are the echoing endpoint. Accept DO ECHO and reject client WILL ECHO.
                     response = command is Do ? Will : command is Dont ? Wont : Dont;
                 }
+                else if (option == Gmcp)
+                {
+                    // Only a client that explicitly answers DO receives a side-channel token.
+                    if (command is Do) ReforgedClientDataEnabled = true;
+                    if (command is Dont) ReforgedClientDataEnabled = false;
+                    response = command is Do ? Will : command is Dont ? Wont : Dont;
+                }
                 else
                 {
                     response = command is Will or Wont ? Dont : Wont;
@@ -221,6 +252,20 @@ public sealed class TelnetConnection : IAsyncDisposable
     {
         var read = await _stream.ReadAsync(_single.AsMemory(0, 1), cancellationToken).ConfigureAwait(false);
         return read == 0 ? -1 : _single[0];
+    }
+
+    private Task WriteApplicationBytesAsync(byte[] bytes, CancellationToken cancellationToken)
+    {
+        if (Array.IndexOf(bytes, Iac) < 0)
+            return WriteBytesAsync(bytes, cancellationToken);
+
+        var escaped = new List<byte>(bytes.Length + 4);
+        foreach (var value in bytes)
+        {
+            escaped.Add(value);
+            if (value == Iac) escaped.Add(Iac);
+        }
+        return WriteBytesAsync(escaped.ToArray(), cancellationToken);
     }
 
     private async Task WriteBytesAsync(byte[] bytes, CancellationToken cancellationToken)

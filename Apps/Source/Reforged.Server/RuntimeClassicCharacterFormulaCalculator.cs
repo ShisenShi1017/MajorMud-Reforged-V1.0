@@ -191,8 +191,14 @@ public static class RuntimeClassicCharacterFormulaAudit
             "stock-picklocks-post-fifteen-half-level-boundary");
         Check(RuntimeClassicCharacterProgressionFormula.PicklocksBase(17, 70, 70) == 85,
             "stock-picklocks-level-seventeen-vector");
-        Check(RuntimeClassicCharacterProgressionFormula.MaximumLives == 9,
-            "stock-life-cap-nine");
+        Check(RuntimeClassicCharacterProgressionFormula.MaximumLives == 9
+              && RuntimeClassicCharacterProgressionFormula.LivesPerPromotion == 5,
+            "stock-life-gain-five-cap-nine");
+        Check(RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion(1) == 6
+              && RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion(4) == 9
+              && RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion(8) == 9
+              && RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion(9) == 9,
+            "stock-life-promotion-boundaries");
 
         return new(failures.Count == 0, checks, failures);
     }

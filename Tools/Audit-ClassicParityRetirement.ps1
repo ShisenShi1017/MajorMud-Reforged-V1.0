@@ -107,8 +107,9 @@ $document = [ordered]@{
     }
     generated_decode_consumption_audit = $decodeAudit
     wccmmud_sysop_unlock = [ordered]@{
-        configured_key_name = 'code_of_twinks_78'
-        user_confirmed_semantics = 'WCCMMUD SYSOP unlock/key'
+        configured_setting_name = 'CODEC_OF_TWINKS'
+        configured_setting_value = 78
+        user_confirmed_semantics = 'Observed WCCMMUD configuration setting; exact native numeric semantics remain evidence-bounded'
         request_registration_files = @($twinksEvidence | Where-Object { Test-Path -LiteralPath (Join-Path $ProjectRoot $_) })
         native_contract_files = @(
             'ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.msg',

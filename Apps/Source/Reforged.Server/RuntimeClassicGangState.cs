@@ -29,10 +29,13 @@ public sealed class RuntimeClassicGangStateService
 {
     private readonly string _folder;
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
+    private static readonly object InvitationMigrationGate = new();
+    private static readonly HashSet<string> MigratedInvitationScopes = new(StringComparer.OrdinalIgnoreCase);
 
     public RuntimeClassicGangStateService(string projectRoot)
     {
         _folder = Path.Combine(RuntimeSavePaths.RealmRoot(Path.GetFullPath(projectRoot), "classic"), "gangs");
+        MigrateLegacyPersistedInvitationsOnce();
     }
 
     public IReadOnlyList<RuntimeClassicGangRecord> List() => Directory.Exists(_folder)
@@ -49,7 +52,13 @@ public sealed class RuntimeClassicGangStateService
     {
         Validate(gang);
         Directory.CreateDirectory(_folder);
-        var normalized = gang with { Revision = checked(gang.Revision + 1), UpdatedAtUtc = DateTimeOffset.UtcNow };
+        // Native invitations are process-local and must never survive in the gang record.
+        var normalized = gang with
+        {
+            PendingInviteCharacterIds = [],
+            Revision = checked(gang.Revision + 1),
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
         var path = Path.Combine(_folder, RuntimeIdentity.Normalize(normalized.GangId, "gang") + ".json");
         var temporary = path + ".tmp";
         File.WriteAllText(temporary, JsonSerializer.Serialize(normalized, JsonOptions));
@@ -74,28 +83,57 @@ public sealed class RuntimeClassicGangStateService
     public RuntimeClassicGangRecord? FindByMember(string characterId) =>
         List().SingleOrDefault(gang => !gang.Disbanded && gang.Members.Any(member => member.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)));
 
-    public RuntimeClassicGangRecord Invite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline)
+    public bool Invite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline)
     {
         RequireInviteAuthority(gang, actorId, leaderOnline);
         if (FindByMember(targetId) is not null) throw new InvalidOperationException("That character already belongs to a gang.");
-        return Save(gang with { PendingInviteCharacterIds = gang.PendingInviteCharacterIds.Append(targetId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray() });
+        // _invite_to_gang returns false for an exact duplicate target+gang node and does not
+        // mutate the persistent gang record.
+        return RuntimeClassicGangInvitationRegistry.Add(_folder, targetId, gang.Name);
     }
 
-    public RuntimeClassicGangRecord Uninvite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline)
+    public RuntimeClassicGangRecord Uninvite(RuntimeClassicGangRecord gang, string actorId, string targetId, bool leaderOnline, bool targetOnline)
     {
         RequireInviteAuthority(gang, actorId, leaderOnline);
+        // The live-user native path calls _remove_from_gang, whose first operation is
+        // _clear_gang_invitations(target, gangName), even when the target is only invited.
+        // The offline-record path has no such transient-list call.
+        if (targetOnline)
+            RuntimeClassicGangInvitationRegistry.ClearForCharacter(_folder, targetId, gang.Name);
+
         var members = gang.Members.Where(member => !member.CharacterId.Equals(targetId, StringComparison.OrdinalIgnoreCase)).ToArray();
-        var invites = gang.PendingInviteCharacterIds.Where(id => !id.Equals(targetId, StringComparison.OrdinalIgnoreCase)).ToArray();
-        return Save(gang with { Members = members, PendingInviteCharacterIds = invites, TheoreticalSize = Math.Max(members.Length, gang.TheoreticalSize) });
+        if (members.Length == gang.Members.Count)
+            throw new InvalidOperationException("That character is not a member of your gang.");
+        return Save(gang with { Members = members, TheoreticalSize = Math.Max(0, gang.TheoreticalSize - 1) });
     }
+
+    /// <summary>Native _clear_gang_invitations(leavingUsr, NULL).</summary>
+    public int ClearPendingInvitationsForCharacter(string characterId) =>
+        RuntimeClassicGangInvitationRegistry.ClearForCharacter(_folder, characterId);
 
     public RuntimeClassicGangRecord Join(RuntimeClassicGangRecord gang, RuntimeCharacterRecord character)
     {
-        if (gang.Disbanded) throw new InvalidOperationException("That gang has been disbanded.");
         if (FindByMember(character.CharacterId) is not null) throw new InvalidOperationException("You already belong to a gang.");
-        if (!gang.PendingInviteCharacterIds.Contains(character.CharacterId, StringComparer.OrdinalIgnoreCase)) throw new InvalidOperationException("You have not been invited to that gang.");
+        if (!RuntimeClassicGangInvitationRegistry.Contains(_folder, character.CharacterId, gang.Name))
+            throw new InvalidOperationException("You have not been invited to that gang.");
+
+        // Native _join_gang does not inspect the disband marker after resolving the gang record;
+        // a still-live transient invitation can therefore join a marked record until its normal
+        // drain/cleanup path removes it. Preserve that edge rather than inventing an early reject.
         var members = gang.Members.Append(new RuntimeClassicGangMember(character.CharacterId, character.DisplayName, "Member", DateTimeOffset.UtcNow)).ToArray();
-        return Save(gang with { Members = members, PendingInviteCharacterIds = gang.PendingInviteCharacterIds.Where(id => !id.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)).ToArray(), TheoreticalSize = Math.Max(gang.TheoreticalSize, members.Length) });
+        var pendingDisband = gang.Disbanded
+            ? gang.PendingDisbandNotificationCharacterIds.Append(character.CharacterId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray()
+            : gang.PendingDisbandNotificationCharacterIds;
+        var updated = Save(gang with
+        {
+            Members = members,
+            TheoreticalSize = checked(gang.TheoreticalSize + 1),
+            PendingDisbandNotificationCharacterIds = pendingDisband
+        });
+        // Native successful JOIN consumes all outstanding gang invites for the user through the
+        // same lifecycle clear owner, not only the selected gang invite.
+        RuntimeClassicGangInvitationRegistry.ClearForCharacter(_folder, character.CharacterId);
+        return updated;
     }
 
     public RuntimeClassicGangRecord Leave(RuntimeClassicGangRecord gang, string characterId)
@@ -103,7 +141,7 @@ public sealed class RuntimeClassicGangStateService
         if (gang.LeaderCharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)) throw new InvalidOperationException("The gang leader must disband the gang rather than leave it.");
         var members = gang.Members.Where(member => !member.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray();
         if (members.Length == gang.Members.Count) throw new InvalidOperationException("You do not belong to that gang.");
-        return Save(gang with { Members = members, TheoreticalSize = Math.Max(members.Length, gang.TheoreticalSize) });
+        return Save(gang with { Members = members, TheoreticalSize = Math.Max(0, gang.TheoreticalSize - 1) });
     }
 
     public RuntimeClassicGangRecord SetMemberRole(RuntimeClassicGangRecord gang, string leaderId, string targetId, string role)
@@ -122,13 +160,43 @@ public sealed class RuntimeClassicGangStateService
         return Save(gang with { Members = members });
     }
 
+    public void RemoveCharacterForReroll(string characterId)
+    {
+        foreach (var gang in List().Where(gang => !gang.Disbanded).ToArray())
+        {
+            if (gang.LeaderCharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase))
+            {
+                Disband(gang);
+                continue;
+            }
+
+            var members = gang.Members.Where(member => !member.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var invites = gang.PendingInviteCharacterIds.Where(id => !id.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray();
+            var notices = gang.PendingDisbandNotificationCharacterIds.Where(id => !id.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray();
+            if (members.Length != gang.Members.Count || invites.Length != gang.PendingInviteCharacterIds.Count || notices.Length != gang.PendingDisbandNotificationCharacterIds.Count)
+                Save(gang with
+                {
+                    Members = members,
+                    PendingInviteCharacterIds = invites,
+                    PendingDisbandNotificationCharacterIds = notices,
+                    TheoreticalSize = Math.Max(members.Length, gang.TheoreticalSize)
+                });
+        }
+    }
+
     public IReadOnlyList<string> ConsumeDisbandNotifications(string characterId)
     {
         var notifications = new List<string>();
-        foreach (var gang in List().Where(gang => gang.PendingDisbandNotificationCharacterIds.Contains(characterId, StringComparer.OrdinalIgnoreCase)))
+        foreach (var gang in List().Where(gang => gang.Disbanded && gang.PendingDisbandNotificationCharacterIds.Contains(characterId, StringComparer.OrdinalIgnoreCase)))
         {
             notifications.Add(gang.Name);
-            Save(gang with { PendingDisbandNotificationCharacterIds = gang.PendingDisbandNotificationCharacterIds.Where(id => !id.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray() });
+            var members = gang.Members.Where(member => !member.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray();
+            Save(gang with
+            {
+                Members = members,
+                TheoreticalSize = Math.Max(0, gang.TheoreticalSize - 1),
+                PendingDisbandNotificationCharacterIds = gang.PendingDisbandNotificationCharacterIds.Where(id => !id.Equals(characterId, StringComparison.OrdinalIgnoreCase)).ToArray()
+            });
         }
         return notifications;
     }
@@ -142,12 +210,39 @@ public sealed class RuntimeClassicGangStateService
         throw new InvalidOperationException("Only the gang leader may manage invitations while the gang leader is online.");
     }
 
-    public RuntimeClassicGangRecord Disband(RuntimeClassicGangRecord gang) => Save(gang with
+    public RuntimeClassicGangRecord Disband(RuntimeClassicGangRecord gang) => Disband(gang, Array.Empty<string>());
+
+    /// <summary>
+    /// Native _remove_from_gang leader path: mark the gang disbanded, strip every currently live
+    /// member immediately, and retain only offline former members in the native member count until
+    /// their next character load consumes the disband marker. No successor leader is elected.
+    /// </summary>
+    public RuntimeClassicGangRecord Disband(RuntimeClassicGangRecord gang, IEnumerable<string> onlineCharacterIds)
     {
-        Disbanded = true,
-        ToptenEnabled = false,
-        PendingDisbandNotificationCharacterIds = gang.Members.Select(member => member.CharacterId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray()
-    });
+        var online = onlineCharacterIds.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var remainingOffline = gang.Members.Where(member => !online.Contains(member.CharacterId)).ToArray();
+        return Save(gang with
+        {
+            Members = remainingOffline,
+            TheoreticalSize = remainingOffline.Length,
+            Disbanded = true,
+            ToptenEnabled = false,
+            PendingDisbandNotificationCharacterIds = remainingOffline.Select(member => member.CharacterId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray()
+        });
+    }
+
+    /// <summary>Native cleanup deletes gang records whose member count is zero (or force-delete bit is set).</summary>
+    public IReadOnlyList<string> CleanupDisbandedGangs()
+    {
+        var deleted = new List<string>();
+        foreach (var gang in List().Where(gang => gang.Disbanded && gang.TheoreticalSize == 0))
+        {
+            var path = Path.Combine(_folder, RuntimeIdentity.Normalize(gang.GangId, "gang") + ".json");
+            if (File.Exists(path)) File.Delete(path);
+            deleted.Add(gang.Name);
+        }
+        return deleted;
+    }
 
     public RuntimeClassicGangRecord SetTopten(RuntimeClassicGangRecord gang, bool enabled) =>
         Save(gang with { ToptenEnabled = enabled });
@@ -208,6 +303,28 @@ public sealed class RuntimeClassicGangStateService
         .Take(Math.Clamp(count, 1, 100))
         .ToArray();
 
+    private void MigrateLegacyPersistedInvitationsOnce()
+    {
+        lock (InvitationMigrationGate)
+        {
+            if (!MigratedInvitationScopes.Add(_folder) || !Directory.Exists(_folder)) return;
+            foreach (var path in Directory.EnumerateFiles(_folder, "*.json", SearchOption.TopDirectoryOnly))
+            {
+                var legacy = JsonSerializer.Deserialize<RuntimeClassicGangRecord>(File.ReadAllText(path), JsonOptions);
+                if (legacy is null || legacy.PendingInviteCharacterIds.Count == 0) continue;
+                foreach (var targetId in legacy.PendingInviteCharacterIds.Distinct(StringComparer.OrdinalIgnoreCase))
+                    RuntimeClassicGangInvitationRegistry.Add(_folder, targetId, legacy.Name);
+
+                // Compatibility migration is not a gameplay save: keep revision/timestamp exact
+                // while removing the obsolete persisted projection from disk.
+                var normalized = legacy with { PendingInviteCharacterIds = [] };
+                var temporary = path + ".tmp";
+                File.WriteAllText(temporary, JsonSerializer.Serialize(normalized, JsonOptions));
+                File.Move(temporary, path, true);
+            }
+        }
+    }
+
     private static RuntimeClassicGangRecord LoadPath(string path)
     {
         var gang = JsonSerializer.Deserialize<RuntimeClassicGangRecord>(File.ReadAllText(path), JsonOptions)
@@ -221,6 +338,6 @@ public sealed class RuntimeClassicGangStateService
         if (string.IsNullOrWhiteSpace(gang.GangId) || string.IsNullOrWhiteSpace(gang.Name)) throw new InvalidDataException("Gang identity and name are required.");
         if (gang.TheoreticalSize < gang.Members.Count) throw new InvalidDataException("Gang theoretical size cannot be smaller than its roster.");
         if (gang.Members.Select(member => member.CharacterId).Distinct(StringComparer.OrdinalIgnoreCase).Count() != gang.Members.Count) throw new InvalidDataException("Gang roster contains duplicate characters.");
-        if (gang.Members.Count > 0 && !gang.Members.Any(member => member.CharacterId.Equals(gang.LeaderCharacterId, StringComparison.OrdinalIgnoreCase))) throw new InvalidDataException("Gang leader must belong to the roster.");
+        if (!gang.Disbanded && gang.Members.Count > 0 && !gang.Members.Any(member => member.CharacterId.Equals(gang.LeaderCharacterId, StringComparison.OrdinalIgnoreCase))) throw new InvalidDataException("Gang leader must belong to the roster.");
     }
 }

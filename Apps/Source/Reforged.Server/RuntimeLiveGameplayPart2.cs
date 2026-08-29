@@ -143,6 +143,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             case "equip":
             case "wear":
             case "wield":
+            case "ready":
             {
                 var item = ResolveClassicEquipmentCandidate(engine.Inventory(actor.Id), catalog, command.ArgumentText);
                 var forcedSlot = catalog.ResolveClassicEquipmentSlot(item.CanonicalItemId);

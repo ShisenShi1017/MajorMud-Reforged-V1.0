@@ -12,6 +12,7 @@ public sealed class ServerNetworkHost
     private readonly RuntimeSessionManager _sessions;
     private readonly RuntimeCharacterService _characters;
     private readonly RuntimeAccountSecurityService _accountSecurity;
+    private readonly ServerClientDataHost _clientData;
 
     public ServerNetworkHost(
         ServerRuntimeOptions options,
@@ -26,21 +27,25 @@ public sealed class ServerNetworkHost
         _sessions = sessions;
         _characters = characters;
         _accountSecurity = new RuntimeAccountSecurityService(characters.ProjectRoot);
+        _clientData = new ServerClientDataHost(options.Network, commands, sessions);
     }
 
     public async Task RunTelnetAsync(CancellationToken cancellationToken)
     {
+        using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         var endpoint = new IPEndPoint(_options.Network.ResolveBindAddress(), _options.Network.TelnetPort);
         var listener = new TcpListener(endpoint);
         listener.Start();
+        var clientDataTask = _clientData.RunAsync(linked.Token);
         Console.WriteLine($"Telnet listener started on {endpoint.Address}:{endpoint.Port}; maxSessions={_options.Network.MaxSessions}");
+        Console.WriteLine($"MegaMUD legacy connection uses Telnet/game port {endpoint.Port}; Reforged private client-data remains separate on port {_options.Network.ClientDataPort}.");
 
         try
         {
-            while (!cancellationToken.IsCancellationRequested)
+            while (!linked.IsCancellationRequested)
             {
-                var client = await listener.AcceptTcpClientAsync(cancellationToken).ConfigureAwait(false);
-                _ = Task.Run(() => HandleClientAsync(client, cancellationToken), cancellationToken);
+                var client = await listener.AcceptTcpClientAsync(linked.Token).ConfigureAwait(false);
+                _ = Task.Run(() => HandleClientAsync(client, linked.Token), CancellationToken.None);
             }
         }
         catch (OperationCanceledException)
@@ -50,6 +55,9 @@ public sealed class ServerNetworkHost
         finally
         {
             listener.Stop();
+            linked.Cancel();
+            try { await clientDataTask.ConfigureAwait(false); }
+            catch (OperationCanceledException) { }
         }
     }
 
@@ -70,16 +78,21 @@ public sealed class ServerNetworkHost
             var account = await AuthenticateAccountAsync(telnet, linked.Token).ConfigureAwait(false);
             if (account is null) return;
 
-            var selectedWorld = await SelectWorldAsync(telnet, linked.Token).ConfigureAwait(false);
-            if (selectedWorld is null)
+            var worldSelection = await SelectWorldAsync(telnet, linked.Token).ConfigureAwait(false);
+            if (worldSelection is null)
             {
                 await telnet.WriteLineAsync("Connection closed: no world selected.", linked.Token).ConfigureAwait(false);
                 return;
             }
+            var selectedWorld = worldSelection.World;
 
             // Character selection, creation, and its ANSI editor must not inherit the login timeout.
-            // Only Host shutdown or a real socket disconnect may cancel this phase.
-            var character = await SelectOrCreateCharacterAsync(account, selectedWorld, telnet, hostCancellationToken).ConfigureAwait(false);
+            // Only Host shutdown or a real socket disconnect may cancel this phase. MegaMUD's
+            // classic BBS auto-login enters the game with `/go majormud`; when that launch token
+            // selected the default world, resume the most recently used existing character instead
+            // of exposing a second BBS-style `your selection` prompt to the automation client.
+            var character = await SelectOrCreateCharacterAsync(
+                account, selectedWorld, telnet, hostCancellationToken, worldSelection.MegaMudDirectLogin, worldSelection.MegaMudCharacterSelector).ConfigureAwait(false);
             if (character is null)
             {
                 await telnet.WriteLineAsync("Connection closed: no character selected.", linked.Token).ConfigureAwait(false);
@@ -93,8 +106,14 @@ public sealed class ServerNetworkHost
                 return;
             }
 
+            var lifecycleCompleted = false;
             try
             {
+                if (telnet.ReforgedClientDataEnabled)
+                {
+                    var registration = _clientData.Register(session);
+                    await telnet.AdvertiseReforgedClientDataAsync(registration.Port, registration.Token, hostCancellationToken).ConfigureAwait(false);
+                }
                 await telnet.WriteLineAsync(selectedWorld.Definition.Motd, hostCancellationToken).ConfigureAwait(false);
                 await telnet.WriteLineAsync(_commands.Dispatch(session, "look"), hostCancellationToken).ConfigureAwait(false);
                 Task<string?>? pendingInput = null;
@@ -108,7 +127,10 @@ public sealed class ServerNetworkHost
                     // from recognizing that movement completed and stalls imported .mp paths.
                     if (pendingInput is null)
                     {
-                        await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
+                        // Worldgroup modal state 0x88 owns its own prompt text. Do not append
+                        // the normal MajorMUD status prompt while the confirmation is pending.
+                        if (!session.HasClassicModalInput)
+                            await telnet.WriteAsync(_commands.RenderClassicPrompt(session), hostCancellationToken).ConfigureAwait(false);
                         pendingInput = telnet.ReadLineAsync(hideInput: false, hostCancellationToken);
                     }
 
@@ -121,7 +143,8 @@ public sealed class ServerNetworkHost
                             await telnet.WriteLineAsync(hostCancellationToken).ConfigureAwait(false);
                             foreach (var pending in liveMessages)
                                 await telnet.WriteLineAsync(pending, hostCancellationToken).ConfigureAwait(false);
-                            await telnet.WriteAsync(_commands.RenderClassicPrompt(session) + " ", hostCancellationToken).ConfigureAwait(false);
+                            if (!session.HasClassicModalInput)
+                                await telnet.WriteAsync(_commands.RenderClassicPrompt(session), hostCancellationToken).ConfigureAwait(false);
                         }
                         continue;
                     }
@@ -135,7 +158,37 @@ public sealed class ServerNetworkHost
                         await telnet.WriteLineAsync($"Exiting MajorMUD in {RuntimeClassicDeathLawPvpAuthority.GracefulExitDelaySeconds} seconds...", hostCancellationToken).ConfigureAwait(false);
                         await Task.Delay(TimeSpan.FromSeconds(RuntimeClassicDeathLawPvpAuthority.GracefulExitDelaySeconds), hostCancellationToken).ConfigureAwait(false);
                         await telnet.WriteLineAsync("Goodbye.", hostCancellationToken).ConfigureAwait(false);
+                        _commands.CompleteGracefulSessionExit(session);
+                        lifecycleCompleted = true;
                         break;
+                    }
+
+                    if (string.Equals(input.Trim(), "reroll", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var previous = _characters.LoadCharacter(session.Actor.Id);
+                        if (previous is null)
+                        {
+                            await telnet.WriteLineAsync("Character save was not found.", hostCancellationToken).ConfigureAwait(false);
+                            continue;
+                        }
+
+                        // Native REROLL executes immediately unless the player has configured a
+                        // suicide password. Reforged does not yet expose SET SUICIDE, so do not add
+                        // a non-native Y/N prompt that would stall an unchanged MegaMUD client.
+                        await telnet.WriteLineAsync("Rerolling character. Create your replacement character.", hostCancellationToken).ConfigureAwait(false);
+                        var replacement = await CreateRerolledCharacterAsync(account, selectedWorld, previous, telnet, hostCancellationToken).ConfigureAwait(false);
+                        if (replacement is null)
+                        {
+                            await telnet.WriteLineAsync("Reroll cancelled; your current character remains unchanged.", hostCancellationToken).ConfigureAwait(false);
+                            continue;
+                        }
+
+                        var oldCharacterId = previous.CharacterId;
+                        _commands.HandleCharacterRerollCleanup(session, oldCharacterId);
+                        _sessions.ReplaceCharacter(session, replacement);
+                        await telnet.WriteLineAsync($"Your new character {replacement.DisplayName} enters MajorMUD with {replacement.Experience} experience.", hostCancellationToken).ConfigureAwait(false);
+                        await telnet.WriteLineAsync(_commands.Dispatch(session, "look"), hostCancellationToken).ConfigureAwait(false);
+                        continue;
                     }
 
                     if (string.Equals(input.Trim(), "train stats", StringComparison.OrdinalIgnoreCase)
@@ -181,14 +234,33 @@ public sealed class ServerNetworkHost
 
                     var response = _commands.Dispatch(session, input);
                     if (!string.IsNullOrWhiteSpace(response))
-                        await telnet.WriteLineAsync(response, hostCancellationToken).ConfigureAwait(false);
+                    {
+                        if (session.HasClassicModalInput)
+                            await telnet.WriteAsync(response, hostCancellationToken).ConfigureAwait(false);
+                        else
+                            await telnet.WriteLineAsync(response, hostCancellationToken).ConfigureAwait(false);
+                    }
                 }
             }
             finally
             {
-                try { _characters.SaveSession(session); }
-                catch (Exception saveException) { Console.Error.WriteLine($"Character save failed for {session.Actor.Id}: {saveException.Message}"); }
-                _sessions.Remove(session.Id);
+                _clientData.Unregister(session.Id);
+                if (!lifecycleCompleted && _sessions.ActiveSessions.Any(active => active.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+                {
+                    try
+                    {
+                        _commands.CompleteUnexpectedSessionExit(session);
+                        lifecycleCompleted = true;
+                    }
+                    catch (Exception lifecycleException)
+                    {
+                        Console.Error.WriteLine($"Classic unexpected-hangup cleanup failed for {session.Actor.Id}: {lifecycleException.Message}");
+                        // Safety fallback only; native-ordered paths above are the parity owner.
+                        try { _characters.SaveSession(session); }
+                        catch (Exception saveException) { Console.Error.WriteLine($"Character fallback save failed for {session.Actor.Id}: {saveException.Message}"); }
+                        _sessions.Remove(session.Id, saveCharacter: false);
+                    }
+                }
             }
         }
         catch (OperationCanceledException)
@@ -211,7 +283,7 @@ public sealed class ServerNetworkHost
 
     private async Task<RuntimeAccountRecord?> AuthenticateAccountAsync(TelnetConnection telnet, CancellationToken cancellationToken)
     {
-        await telnet.WriteAsync("Account: ", cancellationToken).ConfigureAwait(false);
+        await telnet.WriteAsync("Enter your user-id (Account): ", cancellationToken).ConfigureAwait(false);
         var accountName = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
         if (string.IsNullOrWhiteSpace(accountName))
         {
@@ -304,7 +376,7 @@ public sealed class ServerNetworkHost
 
         for (var attempt = 1; attempt <= 3; attempt++)
         {
-            await telnet.WriteAsync("Password: ", cancellationToken).ConfigureAwait(false);
+            await telnet.WriteAsync("Enter your password: ", cancellationToken).ConfigureAwait(false);
             var password = await telnet.ReadLineAsync(hideInput: true, cancellationToken).ConfigureAwait(false);
             var failure = "Password was not received.";
             if (string.IsNullOrEmpty(password))
@@ -351,17 +423,100 @@ public sealed class ServerNetworkHost
         await telnet.WriteLineAsync(cancellationToken).ConfigureAwait(false);
     }
 
+    private async Task<RuntimeCharacterRecord?> CreateRerolledCharacterAsync(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        RuntimeCharacterRecord previous,
+        TelnetConnection telnet,
+        CancellationToken cancellationToken)
+    {
+        while (true)
+        {
+            var catalog = _characters.GetCatalog(world.Definition.Id);
+            var races = catalog.Races.ToArray();
+            IReadOnlyList<string>? raceHelp = null;
+            var raceDescriptionPath = Path.Combine(_characters.ProjectRoot, "Data", world.Definition.Id, "race_descriptions.json");
+            if (File.Exists(raceDescriptionPath))
+            {
+                var raceDescriptions = RuntimeClassicDescriptionAuthority.Load(_characters.ProjectRoot, world.Definition.Id);
+                raceHelp = races.Select(value => raceDescriptions.TryRaceDescription(value.Name, out var description)
+                    ? description
+                    : $"No decoded description is available for {value.Name}.").ToArray();
+            }
+
+            var race = await SelectNumberedAsync(telnet, "Choose a race for the new character:", races.Select(value => value.Name).ToArray(), cancellationToken, raceHelp).ConfigureAwait(false);
+            if (race is null) return null;
+            var classes = catalog.Classes.ToArray();
+            var characterClass = await SelectNumberedAsync(telnet, "Choose a class for the new character:", classes.Select(value => value.Name).ToArray(), cancellationToken).ConfigureAwait(false);
+            if (characterClass is null) return null;
+
+            var creation = await RunClassicCharacterCreationScreenAsync(
+                telnet, catalog.RequireRace(race), catalog.RequireClass(characterClass), cancellationToken, null).ConfigureAwait(false);
+            if (creation is null) return null;
+
+            try
+            {
+                return _characters.RerollCharacter(
+                    account, world, previous, creation.DisplayName, creation.Sex, race, characterClass,
+                    creation.Stats, creation.GivenName, creation.FamilyName,
+                    creation.HairLength, creation.HairColor, creation.EyeColor, creation.CreationPointsRemaining);
+            }
+            catch (Exception exception) when (exception is ArgumentException or InvalidOperationException)
+            {
+                await telnet.WriteLineAsync($"Character reroll failed: {exception.Message}", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteLineAsync("Your original character has not been discarded. Please try again or disconnect to cancel.", cancellationToken).ConfigureAwait(false);
+            }
+        }
+    }
+
     private async Task<RuntimeCharacterRecord?> SelectOrCreateCharacterAsync(
         RuntimeAccountRecord account,
         RuntimeWorld world,
         TelnetConnection telnet,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken,
+        bool megaMudDirectLogin = false,
+        string? megaMudCharacterSelector = null)
     {
         while (true)
         {
             var existing = _characters.ListCharacters(account.AccountId)
                 .Where(character => string.Equals(character.WorldId, world.Definition.Id, StringComparison.OrdinalIgnoreCase))
                 .ToArray();
+
+            if (megaMudDirectLogin)
+            {
+                if (existing.Length == 0)
+                {
+                    await telnet.WriteLineAsync(
+                        "MegaMUD direct login requires an existing character. Create the character once with the Reforged client or a normal Telnet session, then reconnect MegaMUD.",
+                        cancellationToken).ConfigureAwait(false);
+                    return null;
+                }
+
+                RuntimeCharacterRecord? selected = null;
+                if (!string.IsNullOrWhiteSpace(megaMudCharacterSelector))
+                {
+                    var selector = megaMudCharacterSelector.Trim();
+                    var selectedIndex = ResolveMegaMudCharacterSelectorIndex(
+                        existing.Select(character => character.DisplayName).ToArray(),
+                        selector);
+                    if (selectedIndex < 0)
+                    {
+                        await telnet.WriteLineAsync(
+                            $"MegaMUD character selector '{selector}' does not match an existing character slot or exact character name.",
+                            cancellationToken).ConfigureAwait(false);
+                        return null;
+                    }
+                    selected = existing[selectedIndex];
+                }
+
+                selected ??= existing
+                    .OrderByDescending(character => character.UpdatedAtUtc)
+                    .ThenBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase)
+                    .First();
+                await telnet.WriteLineAsync($"Entering MajorMUD as {selected.DisplayName}.", cancellationToken).ConfigureAwait(false);
+                return selected;
+            }
 
             if (existing.Length > 0)
             {
@@ -377,9 +532,15 @@ public sealed class ServerNetworkHost
                 var canCreate = existing.Length < _characters.MaximumCharactersPerAccountPerWorld;
                 if (canCreate)
                     await telnet.WriteLineAsync($"  {existing.Length + 1}) Create a new character", cancellationToken).ConfigureAwait(false);
-                await telnet.WriteAsync(canCreate ? $"Enter 1-{existing.Length + 1}: " : $"Enter 1-{existing.Length}: ", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteAsync(canCreate ? $"Enter your selection (1-{existing.Length + 1}): " : $"Enter your selection (1-{existing.Length}): ", cancellationToken).ConfigureAwait(false);
                 var selection = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
                 if (selection is null) return null;
+                if (TryParseMegaMudLaunchCommand(selection.Trim(), out var requestedCharacter))
+                {
+                    megaMudDirectLogin = true;
+                    megaMudCharacterSelector = requestedCharacter;
+                    continue;
+                }
                 if (int.TryParse(selection.Trim(), out var selectedIndex))
                 {
                     if (selectedIndex >= 1 && selectedIndex <= existing.Length) return existing[selectedIndex - 1];
@@ -770,8 +931,8 @@ public sealed class ServerNetworkHost
                 await telnet.WriteLineAsync($"  {index + 1}) {options[index]}", cancellationToken).ConfigureAwait(false);
             var supportsDescriptions = descriptions is not null && descriptions.Count == options.Count;
             await telnet.WriteAsync(supportsDescriptions
-                ? $"Enter 1-{options.Count}, or ? <number> for details: "
-                : $"Enter 1-{options.Count}: ", cancellationToken).ConfigureAwait(false);
+                ? $"Enter your selection (1-{options.Count}), or ? <number> for details: "
+                : $"Enter your selection (1-{options.Count}): ", cancellationToken).ConfigureAwait(false);
             var response = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
             if (response is null) return null;
             var entered = response.Trim();
@@ -795,10 +956,26 @@ public sealed class ServerNetworkHost
         }
     }
 
-    private async Task<RuntimeWorld?> SelectWorldAsync(TelnetConnection telnet, CancellationToken cancellationToken)
+    private sealed record RuntimeWorldSelection(RuntimeWorld World, bool MegaMudDirectLogin, string? MegaMudCharacterSelector = null);
+
+    private async Task<RuntimeWorldSelection?> SelectWorldAsync(TelnetConnection telnet, CancellationToken cancellationToken)
     {
         var worlds = _worldProvider();
         if (worlds.Count == 0) return null;
+
+        RuntimeWorld? DefaultWorld()
+        {
+            if (worlds.TryGetValue(_options.DefaultWorldId, out var byId)) return byId;
+            return worlds.Values.FirstOrDefault(world =>
+                string.Equals(world.Definition.Id, _options.DefaultWorldId, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(world.Definition.Name, _options.DefaultWorldId, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!_options.Network.AllowWorldSelection)
+        {
+            var configured = DefaultWorld() ?? worlds.Values.First();
+            return new RuntimeWorldSelection(configured, false);
+        }
 
         var menu = new[]
         {
@@ -816,10 +993,21 @@ public sealed class ServerNetworkHost
                 var available = FindWorld(worlds, item.Aliases) is not null;
                 await telnet.WriteLineAsync($"  {item.Number}) {item.Label}{(available ? string.Empty : " [not configured]")}", cancellationToken).ConfigureAwait(false);
             }
-            await telnet.WriteAsync("Enter 1-4: ", cancellationToken).ConfigureAwait(false);
+            // Keep the classic phrase because recovered MegaMUD BBS profiles key on it and reply
+            // with `/go majormud`. That launch token is handled explicitly below.
+            await telnet.WriteAsync("Enter your selection (1-4): ", cancellationToken).ConfigureAwait(false);
             var response = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
             if (response is null) return null;
-            if (!int.TryParse(response.Trim(), out var selected) || selected < 1 || selected > 4)
+            var trimmed = response.Trim();
+
+            if (TryParseMegaMudLaunchCommand(trimmed, out var requestedCharacter))
+            {
+                var defaultWorld = DefaultWorld() ?? worlds.Values.First();
+                await telnet.WriteLineAsync($"MegaMUD direct login: {defaultWorld.Definition.Name}.", cancellationToken).ConfigureAwait(false);
+                return new RuntimeWorldSelection(defaultWorld, true, requestedCharacter);
+            }
+
+            if (!int.TryParse(trimmed, out var selected) || selected < 1 || selected > 4)
             {
                 await telnet.WriteLineAsync("Invalid world selection.", cancellationToken).ConfigureAwait(false);
                 continue;
@@ -827,9 +1015,42 @@ public sealed class ServerNetworkHost
 
             var chosen = menu[selected - 1];
             var world = FindWorld(worlds, chosen.Aliases);
-            if (world is not null) return world;
+            if (world is not null) return new RuntimeWorldSelection(world, false);
             await telnet.WriteLineAsync($"{chosen.Label} is not configured on this Host yet. Choose another world.", cancellationToken).ConfigureAwait(false);
         }
+    }
+
+    internal static bool TryParseMegaMudLaunchCommand(string value, out string? characterSelector)
+    {
+        characterSelector = null;
+        var raw = (value ?? string.Empty).Trim();
+        foreach (var prefix in new[] { "/go majormud", "go majormud", "majormud" })
+        {
+            if (raw.Equals(prefix, StringComparison.OrdinalIgnoreCase)) return true;
+            if (!raw.StartsWith(prefix + " ", StringComparison.OrdinalIgnoreCase)) continue;
+            var selector = raw[(prefix.Length + 1)..].Trim();
+            if (selector.Length == 0) return true;
+            characterSelector = selector;
+            return true;
+        }
+        return false;
+    }
+
+    internal static bool IsMegaMudLaunchCommand(string value) =>
+        TryParseMegaMudLaunchCommand(value, out _);
+
+    internal static int ResolveMegaMudCharacterSelectorIndex(IReadOnlyList<string> displayNames, string selector)
+    {
+        var requested = (selector ?? string.Empty).Trim();
+        if (requested.Length == 0) return -1;
+        if (int.TryParse(requested, out var slot))
+            return slot >= 1 && slot <= displayNames.Count ? slot - 1 : -1;
+        for (var index = 0; index < displayNames.Count; index++)
+        {
+            if (string.Equals(displayNames[index], requested, StringComparison.OrdinalIgnoreCase))
+                return index;
+        }
+        return -1;
     }
 
     private static RuntimeWorld? FindWorld(IReadOnlyDictionary<string, RuntimeWorld> worlds, IReadOnlyList<string> aliases)

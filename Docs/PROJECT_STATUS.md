@@ -1,12 +1,15 @@
 # MajorMUD Reforged Project Status
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **98 PASS / 102 STRONG / 0 UNKNOWN = 200** (**49.0% strict / 100.0% evidence-backed**).
+- Current parity: **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
 - The cumulative parity ledger is Librarium/Parity/majormud_parity_assertions.json; historical pass ledgers and validation snapshots are retired.
 - Tools/validator.py is the single current-health entrypoint. Runtime parity closure is exposed as --smoke-classic-parity-closure.
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
 - Generated Data/Classic remains untracked and must be regenerated from Librarium in clean environments.
 - GitHub Actions remains the official post-push validation gate.
+
+- Native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, and death-floor placement are integrated from the reviewed cumulative evidence. Local Release compilation and the affected runtime gates pass.
+- Combat formula authority now reads the Librarium ability catalog. The runtime no longer blocks combat because the retired loose OmniVerse ability file is absent.
 
 - Nahr message 8480 is now PASS. The original WCCMMUD 1.11p DLL plus `wccknms2.dat` trace proves equipped-item ID zero causes both caller buffers to be empty for all five physical attacks; runtime preserves the exact empty spacing.
 
@@ -237,7 +240,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`.
+- Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
 - Milestone 1: complete and frozen.
 - CodeUpdate0137: complete and folded into the local baseline.
 - CodeUpdate0138 status: green by user report.
@@ -445,6 +448,6 @@ Latest local continuation: grouped abilities 125-134 are complete as persistent 
 
 # Current Update 0332 Integration
 
-- PASS61 final native repository ownership closure plus the exact Nahr 8480 empty-buffer trace is the current parity baseline: 98 PASS / 102 STRONG / 0 UNKNOWN = 200 (49.0% strict / 100.0% evidence-backed).
+- The current native parity baseline is 126 PASS / 74 STRONG / 0 UNKNOWN = 200 (63.0% strict / 100.0% evidence-backed), including native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, and organization promotions.
 - The cumulative PASS50-61 payload and Creator Studio full-control editor payload are integrated with no overlap and no changes to generated Data, saves, imported evidence, archives, releases, or build output.
-- Explicit server and Reforged.App Release builds pass with zero warnings/errors. PASS50-61 parity smokes and the focused Nahr live-combat checks pass. The broader live-combat smoke later fails the unrelated `npc-blacknight-self-status-persisted` check. Python validators could not run because no interpreter is registered.
+- Explicit server and Reforged.App Release builds pass with zero warnings/errors. The consolidated parity closure and full live-combat smoke pass, including Nahr native-empty rendering and Blacknight timed-status lifecycle coverage. Python validators could not run because no interpreter is registered.

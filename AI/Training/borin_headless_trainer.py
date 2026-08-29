@@ -36,7 +36,7 @@ PHASE_ACTIONS: list[list[str]] = [
     ["spells", "powers", "abilities", "skills", "cast_candidate", "invoke_candidate", "use_candidate", "read_candidate", "dispel", "score", "explore"],
     ["quest", "journal", "greet_npc", "ask_npc_quest", "ask_npc_help", "services", "look", "explore"],
     ["inventory", "equipment", "keys", "get_all", "appraise_candidate", "equip_candidate", "wear_candidate", "wield_candidate", "repair_candidate", "use_candidate", "explore"],
-    ["experience", "character", "profile", "train", "tat", "ready", "score", "skills", "abilities", "explore"],
+    ["experience", "character", "profile", "train", "tat", "ready_candidate", "score", "skills", "abilities", "explore"],
     ["wealth", "services", "list", "bank", "deposit_surplus", "buy_candidate", "sell_candidate", "equip_candidate", "repair_candidate", "get_all", "attack", "explore"],
 ]
 
@@ -241,7 +241,7 @@ def listing_candidates(text: str, maximum: int = 20) -> list[str]:
             continue
         low = line.lower()
         if any(low.startswith(prefix) for prefix in (
-            "known ", "available ", "spells", "powers", "abilities", "skills", "you know", "none", "no ", "usage:", "---"
+            "known ", "available ", "spells", "powers", "abilities", "skills", "you know", "you have no ", "you have the following ", "level ", "none", "no ", "usage:", "---"
         )):
             continue
         line = re.sub(r"^[*+\-•>\d.()\[\]\s]+", "", line).strip()
@@ -308,6 +308,10 @@ class QLearner:
 
 class TrainingTester:
     SEVERITY_RANK = {"critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}
+    # Historical parity-gap records for commands promoted by the player runtime contract
+    # are no longer active defects. Keep lifetime counts, but retire them from the current
+    # defect queue so Borin does not relearn or repeatedly report behavior that was fixed.
+    RESOLVED_PARITY_COMMANDS = {"health", "invoke", "exits", "ready", "profile", "scan"}
 
     def __init__(self, json_path: Path, markdown_path: Path, config: dict[str, Any]):
         self.json_path = json_path
@@ -317,12 +321,27 @@ class TrainingTester:
         self.maximum_unique = max(100, int(config.get("maximum_unique_defects", 2000)))
         existing = read_json(json_path, {})
         defects = existing.get("defects", []) if isinstance(existing, dict) else []
+        summary = existing.get("summary", {}) if isinstance(existing, dict) and isinstance(existing.get("summary"), dict) else {}
+        legacy_total = int(summary.get("totalOccurrences", 0))
+        self.lifetime_occurrences = int(summary.get("lifetimeOccurrences", legacy_total))
+        self.retired_occurrences = int(summary.get("retiredOccurrences", 0))
         self.defects: dict[str, dict[str, Any]] = {}
+        retired_now = 0
         for defect in defects:
-            if isinstance(defect, dict) and defect.get("id"):
-                self.defects[str(defect["id"])] = defect
-        self.total_occurrences = int(existing.get("summary", {}).get("totalOccurrences", 0)) if isinstance(existing, dict) else 0
-        self.dirty = False
+            if not isinstance(defect, dict) or not defect.get("id"):
+                continue
+            command_name = str(defect.get("command", "")).split(" ", 1)[0].lower()
+            is_resolved_parity_gap = (
+                str(defect.get("category", "")) == "parity-gap"
+                and command_name in self.RESOLVED_PARITY_COMMANDS
+            )
+            if is_resolved_parity_gap:
+                retired_now += int(defect.get("occurrences", 0))
+                continue
+            self.defects[str(defect["id"])] = defect
+        self.retired_occurrences += retired_now
+        self.total_occurrences = sum(int(item.get("occurrences", 0)) for item in self.defects.values())
+        self.dirty = retired_now > 0
 
     def _fingerprint(self, category: str, command: str, room: str, detail: str) -> str:
         stable_detail = re.sub(r"\b\d{4,}\b", "#", clean(detail).lower())[:300]
@@ -367,6 +386,7 @@ class TrainingTester:
         if self.SEVERITY_RANK.get(severity, 0) > self.SEVERITY_RANK.get(str(item.get("severity", "info")), 0):
             item["severity"] = severity
         self.total_occurrences += 1
+        self.lifetime_occurrences += 1
         self.dirty = True
 
     def observe(self, before: Snapshot, after: Snapshot, state: dict[str, Any], command: str,
@@ -398,15 +418,77 @@ class TrainingTester:
         if "recognized, but its exact runtime behavior is not yet recovered" in low:
             self.record("medium", "parity-gap", "Recognized command still lacks recovered runtime behavior", command, room, phase, cycle, response)
 
-        for field in ("score", "health", "character", "experience", "wealth", "inventory", "equipment", "keys", "combat", "spells", "powers", "abilities", "skills", "quest", "journal", "services", "bank"):
+        for field in ("score", "health", "exits", "profile", "scan", "character", "experience", "wealth", "inventory", "equipment", "keys", "combat", "spells", "powers", "abilities", "skills", "quest", "journal", "services", "bank"):
             probe = clean(str(state.get(field, ""))).strip()
             if probe.lower().startswith("unavailable:"):
                 self.record("high", "headless-state-probe", f"Headless state probe '{field}' failed", command, room, phase, cycle, probe)
 
+        # Borin is a normal player. Keep his training assumptions synchronized with the
+        # server's player-visible compatibility contract instead of teaching around parity gaps.
+        runtime = state.get("runtime") if isinstance(state.get("runtime"), dict) else {}
+        contract = runtime.get("playerContract") if isinstance(runtime.get("playerContract"), dict) else {}
+        expected_contract = {
+            "version": "majorMud-player-2026-pass09",
+            "terminalEncoding": "CP437",
+            "privateClientDataOutOfBand": True,
+            "megaMudDirectLoginSupported": True,
+            "megaMudCharacterSelectorSupported": True,
+            "megaMudUsesTelnetPortOnly": True,
+            "defaultPromptAnsiFree": True,
+            "healthCommandSupported": True,
+            "exitsCommandSupported": True,
+            "readyCommandSupported": True,
+            "profileCommandSupported": True,
+            "scanExactBehaviorRecovered": True,
+            "scanDisplaysCurrentAdventurers": True,
+            "warningBlocksProvenPositiveEvilPointActions": True,
+            "warningOffAllowsProvenEvilPointActions": True,
+            "rerollCharacterReplacementConnected": True,
+            "rerollDiscardsOldCharacterState": True,
+            "keepControlsRerollExperienceRetention": True,
+            "classicCombatRoundMilliseconds": 5000,
+            "castRejectsKaiClasses": True,
+            "invokeRequiresKaiClass": True,
+            "decodedRoomActionsUseNormalPlayerCommands": True,
+        }
+        for key, expected in expected_contract.items():
+            if contract.get(key) != expected:
+                self.record("high", "player-runtime-contract", f"Borin player runtime contract mismatch: {key}", command, room, phase, cycle,
+                            f"expected={expected!r}; actual={contract.get(key)!r}")
+
+        health_probe = clean(str(state.get("health", ""))).strip()
+        if "recognized, but its exact runtime behavior is not yet recovered" in health_probe.lower():
+            self.record("medium", "player-runtime-contract", "HEALTH regressed to an evidence-gated placeholder", command, room, phase, cycle, health_probe)
+        elif health_probe and not re.search(r"^Health:\s*-?\d+/\d+\s+(?:Mana|Kai):\s*-?\d+/\d+$", health_probe, re.I):
+            self.record("medium", "player-runtime-contract", "HEALTH response no longer matches Borin's player-state contract", command, room, phase, cycle, health_probe)
+
+        exits_probe = clean(str(state.get("exits", ""))).strip()
+        if "recognized, but its exact runtime behavior is not yet recovered" in exits_probe.lower():
+            self.record("medium", "player-runtime-contract", "EXITS regressed to an evidence-gated placeholder", command, room, phase, cycle, exits_probe)
+        elif exits_probe and not exits_probe.lower().startswith("obvious exits:"):
+            self.record("medium", "player-runtime-contract", "EXITS response no longer matches the room-presentation contract", command, room, phase, cycle, exits_probe)
+
+        scan_probe = clean(str(state.get("scan", ""))).strip()
+        if "recognized, but its exact runtime behavior is not yet recovered" in scan_probe.lower():
+            self.record("medium", "player-runtime-contract", "SCAN regressed to an evidence-gated placeholder", command, room, phase, cycle, scan_probe)
+        elif scan_probe and not (scan_probe.lower().startswith("current adventurers") or scan_probe.lower().startswith("there are no users in the game")):
+            self.record("medium", "player-runtime-contract", "SCAN response no longer matches the current-adventurer scan contract", command, room, phase, cycle, scan_probe)
+
+        profile_probe = clean(str(state.get("profile", ""))).strip()
+        if "recognized, but its exact runtime behavior is not yet recovered" in profile_probe.lower():
+            self.record("medium", "player-runtime-contract", "PROFILE regressed to an evidence-gated placeholder", command, room, phase, cycle, profile_probe)
+        elif profile_probe and not profile_probe.lower().startswith("current profile settings:"):
+            self.record("medium", "player-runtime-contract", "PROFILE response no longer exposes current player settings", command, room, phase, cycle, profile_probe)
+
+        raw_prompt = str(state.get("prompt", ""))
+        plain_prompt = clean(raw_prompt).strip()
+        if plain_prompt.startswith("[HP=") and "\x1b[" in raw_prompt:
+            self.record("high", "player-runtime-contract", "Default HP prompt contains ANSI and may desynchronize legacy clients", command, room, phase, cycle, raw_prompt)
+
         # State-query commands should always render something useful. Empty output here is suspicious,
         # while empty output from movement/dialogue actions can be legitimate and is not flagged.
         if not response and command.split(" ", 1)[0].lower() in {
-            "score", "health", "inventory", "equipment", "wealth", "experience", "character",
+            "score", "health", "exits", "profile", "scan", "inventory", "equipment", "wealth", "experience", "character",
             "spells", "powers", "abilities", "skills", "quest", "journal", "services", "bank",
         }:
             self.record("medium", "empty-state-response", "State query returned an empty response", command, room, phase, cycle, "empty response")
@@ -445,6 +527,8 @@ class TrainingTester:
         return {
             "uniqueDefects": len(values),
             "totalOccurrences": self.total_occurrences,
+            "lifetimeOccurrences": self.lifetime_occurrences,
+            "retiredOccurrences": self.retired_occurrences,
             "critical": critical,
             "high": high,
         }
@@ -467,7 +551,7 @@ class TrainingTester:
             reverse=True,
         )
         payload = {
-            "schema": "borin-training-defects-v1",
+            "schema": "borin-training-defects-v2",
             "updatedUtc": utc_now(),
             "summary": self.summary(),
             "defects": ordered,
@@ -477,7 +561,7 @@ class TrainingTester:
             "# Borin Continuous Training Tester Report",
             "",
             f"Updated: {payload['updatedUtc']}",
-            f"Unique defects: {payload['summary']['uniqueDefects']}; occurrences: {payload['summary']['totalOccurrences']}; critical: {payload['summary']['critical']}; high: {payload['summary']['high']}",
+            f"Active defects: {payload['summary']['uniqueDefects']}; active occurrences: {payload['summary']['totalOccurrences']}; lifetime occurrences: {payload['summary']['lifetimeOccurrences']}; retired resolved occurrences: {payload['summary']['retiredOccurrences']}; critical: {payload['summary']['critical']}; high: {payload['summary']['high']}",
             "",
         ]
         if not ordered:
@@ -588,7 +672,7 @@ def command_for(action: str, phase: int, state: dict[str, Any], learner: QLearne
             return "look", None
         name = min(inventory, key=lambda x: learner.gear.get(x.lower(), 0.0))
         return f"sell {name}", name
-    if action in {"equip_candidate", "wear_candidate", "wield_candidate"}:
+    if action in {"equip_candidate", "wear_candidate", "wield_candidate", "ready_candidate"}:
         if not inventory:
             return "look", None
         if random.random() < learner.epsilon:
@@ -614,7 +698,7 @@ def command_for(action: str, phase: int, state: dict[str, Any], learner: QLearne
         if not candidates:
             return "powers", None
         name = random.choice(candidates)
-        return f"invoke {name}", name
+        return (f"invoke {name} {npc}", name) if npc else (f"invoke {name}", name)
     if action == "dispel":
         return "dispel self", None
     return action, None

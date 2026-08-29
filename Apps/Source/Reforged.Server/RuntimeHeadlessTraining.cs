@@ -128,6 +128,9 @@ public sealed partial class ServerRuntimeHost
                 },
                 score = SafeDispatch("score"),
                 health = SafeDispatch("health"),
+                exits = SafeDispatch("exits"),
+                profile = SafeDispatch("profile"),
+                scan = SafeDispatch("scan"),
                 character = SafeDispatch("character"),
                 experience = SafeDispatch("experience"),
                 wealth = SafeDispatch("wealth"),
@@ -146,7 +149,32 @@ public sealed partial class ServerRuntimeHost
                 runtime = new
                 {
                     processId = Environment.ProcessId,
-                    sessionId = session.Id
+                    sessionId = session.Id,
+                    playerContract = new
+                    {
+                        version = "majorMud-player-2026-pass09",
+                        terminalEncoding = "CP437",
+                        privateClientDataOutOfBand = true,
+                        megaMudDirectLoginSupported = true,
+                        megaMudCharacterSelectorSupported = true,
+                        megaMudUsesTelnetPortOnly = true,
+                        defaultPromptAnsiFree = true,
+                        healthCommandSupported = true,
+                        exitsCommandSupported = true,
+                        readyCommandSupported = true,
+                        profileCommandSupported = true,
+                        scanExactBehaviorRecovered = true,
+                        scanDisplaysCurrentAdventurers = true,
+                        warningBlocksProvenPositiveEvilPointActions = RuntimeClassicWarningAuthority.ExecutableEvilPointSafeguardConnected,
+                        warningOffAllowsProvenEvilPointActions = true,
+                        rerollCharacterReplacementConnected = RuntimeClassicDeathExperienceAuthority.FinalRerollConsumerConnected,
+                        rerollDiscardsOldCharacterState = true,
+                        keepControlsRerollExperienceRetention = true,
+                        classicCombatRoundMilliseconds = RuntimeLiveGameplayFacade.ClassicCombatRoundMilliseconds,
+                        castRejectsKaiClasses = true,
+                        invokeRequiresKaiClass = true,
+                        decodedRoomActionsUseNormalPlayerCommands = true
+                    }
                 },
                 pendingMessages = session.DrainMessages(),
                 prompt = _commands.RenderClassicPrompt(session)
@@ -155,6 +183,7 @@ public sealed partial class ServerRuntimeHost
             Console.Out.Flush();
         }
 
+        var gracefulSessionExit = false;
         try
         {
             WriteState("ready", string.Empty, "Headless MajorMUD runtime ready.");
@@ -174,13 +203,15 @@ public sealed partial class ServerRuntimeHost
                         operation.Equals("quit", StringComparison.OrdinalIgnoreCase))
                     {
                         WriteState("shutdown", "quit", "Headless runtime shutting down.");
+                        gracefulSessionExit = true;
                         break;
                     }
 
                     if (operation.Equals("reset", StringComparison.OrdinalIgnoreCase))
                     {
-                        _sessions.Remove(session.Id);
+                        _commands.CompleteGracefulSessionExit(session);
                         session = CreateTrainingSession();
+                        gracefulSessionExit = false;
                         WriteState("reset", string.Empty, "Training session reset. Persistent Borin character state was preserved.");
                         continue;
                     }
@@ -198,6 +229,7 @@ public sealed partial class ServerRuntimeHost
                     if (_commands.RequestsSessionExit(session, command))
                     {
                         WriteState("shutdown", command, "Headless runtime shutting down.");
+                        gracefulSessionExit = true;
                         break;
                     }
 
@@ -214,7 +246,11 @@ public sealed partial class ServerRuntimeHost
         }
         finally
         {
-            _sessions.Remove(session.Id);
+            if (_sessions.ActiveSessions.Any(active => active.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+            {
+                if (gracefulSessionExit) _commands.CompleteGracefulSessionExit(session);
+                else _commands.CompleteUnexpectedSessionExit(session);
+            }
             linked.Cancel();
             try { await schedulerTask.ConfigureAwait(false); }
             catch (OperationCanceledException) { }

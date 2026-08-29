@@ -13,12 +13,14 @@ public sealed record RuntimeClassicParityClosureSmokeReport(bool Passed, IReadOn
         var evilReputation = RuntimeEvilReputationParitySmokeReport.Run();
         var extensionBoundary = RuntimeClassicExtensionBoundarySmokeReport.Run();
         var deathExperience = RuntimeClassicDeathExperienceSmokeReport.Run(projectRoot);
+        var rerollWarning = RuntimeRerollWarningSmokeReport.Run();
         var checks = new List<string>
         {
             "identity-law-parity:" + identityLaw.Passed,
             "evil-reputation-parity:" + evilReputation.Passed,
             "classic-extension-boundary:" + extensionBoundary.Passed,
             "classic-death-experience:" + deathExperience.Passed,
+            "classic-reroll-warning:" + rerollWarning.Passed,
             "remaining-system-owner-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.RemainingSystemOwnerCount == 36),
             "native-dependency-group-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.NativeDependencyGroupCount == 40),
             "native-artifact-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.NativeArtifactRecordCount == 396),

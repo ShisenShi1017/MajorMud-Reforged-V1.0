@@ -250,9 +250,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (decodedEnergyPerRound < 0)
             throw new InvalidDataException("NPC_COMBAT_NEGATIVE_ROUND_ENERGY");
-        // Retained native simulators start carried energy at zero and add the decoded monster
-        // Energy value at the beginning of each combat round.
-        return 0;
+        // Native _generate_monster seeds active +0x16 and its authored copy +0x114 from the same
+        // monster Energy field. Idle monsters therefore begin an engagement at authored Energy.
+        return decodedEnergyPerRound;
     }
 
     private static readonly string[] CombatConcealmentConditionKeys = ["combat.hidden", "state.hidden", "hidden", "combat.sneaking", "state.sneaking", "sneaking"];

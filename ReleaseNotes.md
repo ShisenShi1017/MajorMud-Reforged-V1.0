@@ -1,3 +1,7 @@
+## Native parity promotion and combat authority repair
+
+Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, and organization behavior. Parity is **126 PASS / 74 STRONG / 0 UNKNOWN**. MegaMUD/Borin compatibility now includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, and SET WARNING. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
+
 ## PASS61 / Update 0332 — Final Native Repository Closure
 
 The final repository-wide native dependency inventory is now STRONG: 36 owners, 40 dependency groups, 396 retained native artifacts, all supplied WCC families classified, and 156/156 MajorMUD-used Worldgroup symbols owned. The final standalone Nahr message-8480 assertion is now PASS: the native 1.11p chain proves both caller buffers are empty for all five attacks, and runtime preserves the resulting spacing. Parity: **98 PASS / 102 STRONG / 0 UNKNOWN (49.0% strict / 100.0% evidence-backed)**.

@@ -2,7 +2,7 @@
   "schema": "majormud.classic-death-experience.v1",
   "update": "0320",
   "pass": 49,
-  "classification": "STRONG_NATIVE_FORMULA_RECOVERED_FINAL_REROLL_CONSUMER_PENDING",
+  "classification": "PASS_NATIVE_FORMULA_AND_FINAL_REROLL_CONSUMER_CONNECTED",
   "source": {
     "artifact": "Archive/ImportedDatabasesAndEvidence.LocalOnly.rar::ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
     "sha256": "5A99E7C34CF9CF58DC6E97FC3EF28F1BD83F9BCEC15CA59AD08826D2F21D2077",
@@ -45,7 +45,7 @@
     "disabledOrLevelOneResult": 0,
     "twoMillionCapPresent": false,
     "ordinaryDeathDelevelPresent": false,
-    "runtime": "RuntimeClassicDeathExperienceAuthority exposes and regression-tests the exact calculator, but no final-character reroll handoff consumes it yet."
+    "runtime": "RuntimeClassicDeathExperienceAuthority exposes/regression-tests the exact calculator and RuntimeCharacterService.RerollCharacter now applies the result to the freshly built replacement character before RuntimeCharacterRepository.ReplaceCharacter atomically replaces the old account slot."
   },
   "correctedHypotheses": [
     "Normal death does not remove 10 percent of experience.",
@@ -55,9 +55,9 @@
   ],
   "parityPromotion": {
     "assertion": "character.death-xp-loss-exact",
-    "from": "UNKNOWN",
-    "to": "STRONG",
-    "passBlockedBy": "Final-death/reroll character replacement and retained-XP transfer are not executable in the current server."
+    "from": "STRONG",
+    "to": "PASS",
+    "passBlockedBy": null
   },
   "noGameplayGuessing": true
 }

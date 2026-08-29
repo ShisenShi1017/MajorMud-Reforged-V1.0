@@ -245,9 +245,9 @@ public sealed partial class RuntimeLiveGameplayFacade
         var npcEnergy = _liveCombats.TryGetValue(session.Id, out var resourceUpdatedEncounter)
             ? resourceUpdatedEncounter.NpcCurrentEnergy
             : encounter.NpcCurrentEnergy;
-        // Native monster Energy is energy gained each combat round. Unused energy carries
-        // forward and is not capped at one round's gain.
-        npcEnergy = RuntimeClassicNpcCombatCadence.AddRoundEnergy(npcEnergy, encounter.NpcEnergyPerRound);
+        // Native _energy_update_monster refreshes active energy against the authored baseline:
+        // below baseline add one quantum, above baseline clamp, equality unchanged.
+        npcEnergy = RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(npcEnergy, encounter.NpcEnergyPerRound);
         var forcedMoveByNpcScript = false;
         var roundStartRoom = session.CurrentRoom;
         var alignmentProtection = RuntimeEquipmentCombatEffects.ResolveAlignmentProtection(before, npc.Alignment);
@@ -275,7 +275,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 ClassicAttackResult npcResult;
                 if (isDecodedSpellRow)
                 {
-                    var castSucceeded = RuntimeClassicNpcCombatCadence.SpellCastSucceeds(attack, Random.Shared.Next(1, 101));
+                    var castSucceeded = RuntimeClassicNpcCombatCadence.SpellCastSucceeds(attack, Random.Shared.Next(0, 100));
                     npcEnergy = castSucceeded
                         ? RuntimeClassicNpcCombatCadence.DeductFullAttackCost(npcEnergy, attack)
                         : RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(npcEnergy, attack);
@@ -1397,9 +1397,13 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             var directSpellEnergyAttack = energyAttack with { Type = 2, EnergyCost = 100 };
             Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(103, directSpellEnergyAttack, 1000) == 53, "npc-resisted-spell-half-energy-cost"); report.Checks.Add("npc-resisted-spell-half-energy-cost");
             var oddCostAttack = energyAttack with { Type = 2, EnergyCost = 125 };
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, oddCostAttack, 1000) == 138, "npc-spell-half-cost-bankers-rounding"); report.Checks.Add("npc-spell-half-cost-bankers-rounding");
-            Require(RuntimeClassicNpcCombatCadence.AddRoundEnergy(250, 333) == 583, "npc-energy-carries-across-rounds"); report.Checks.Add("npc-energy-carries-across-rounds");
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEncounterStartingEnergy(333) == 0, "npc-encounter-carried-energy-starts-zero"); report.Checks.Add("npc-encounter-carried-energy-starts-zero");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, oddCostAttack, 1000) == 138, "npc-spell-half-cost-floor-odd"); report.Checks.Add("npc-spell-half-cost-floor-odd");
+            var odd127CostAttack = energyAttack with { Type = 2, EnergyCost = 127 };
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, odd127CostAttack, 1000) == 137, "npc-spell-half-cost-no-bankers-rounding"); report.Checks.Add("npc-spell-half-cost-no-bankers-rounding");
+            Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(250, 333) == 583, "npc-energy-below-baseline-adds-quantum"); report.Checks.Add("npc-energy-below-baseline-adds-quantum");
+            Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(333, 333) == 333, "npc-energy-idle-does-not-accumulate"); report.Checks.Add("npc-energy-idle-does-not-accumulate");
+            Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(500, 333) == 333, "npc-energy-above-baseline-clamps"); report.Checks.Add("npc-energy-above-baseline-clamps");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEncounterStartingEnergy(333) == 333, "npc-encounter-energy-starts-at-authored-value"); report.Checks.Add("npc-encounter-energy-starts-at-authored-value");
             var invalidAttackCountRejected = false;
             try { _ = RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(new RuntimeNpcDefinition { Id = "npc.invalid", AttackCount = -1 }); }
             catch (InvalidDataException) { invalidAttackCountRejected = true; }
@@ -1612,11 +1616,12 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
                 var appliedStatus = livingStatusAudit.ApplyNpcTimedStatus(
                     hoodedMan.InstanceId, blacknightStatus.SpellId, blacknightStatus.DurationRounds,
                     blacknightStatus.Abilities.ToDictionary(ability => ability.AbilityId, ability => ability.Value), statusNow);
-                Require(appliedStatus.Applied && appliedStatus.ExpiresAtUtc == statusNow.AddSeconds(90) &&
-                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddSeconds(89)) == 200,
+                var blacknightDurationSeconds = checked(blacknightStatus.DurationRounds * RuntimeClassicLiveStatusCatalog.SpellRoundSeconds);
+                Require(appliedStatus.Applied && appliedStatus.ExpiresAtUtc == statusNow.AddSeconds(blacknightDurationSeconds) &&
+                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddSeconds(blacknightDurationSeconds - 1)) == 200,
                     "npc-blacknight-self-status-persisted"); report.Checks.Add("npc-blacknight-self-status-persisted");
-                Require(livingStatusAudit.Tick(statusNow.AddSeconds(90)).Contains($"npc-status-expired:{hoodedMan.InstanceId}:spell.1220") &&
-                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddSeconds(90)) == 0,
+                Require(livingStatusAudit.Tick(statusNow.AddSeconds(blacknightDurationSeconds)).Contains($"npc-status-expired:{hoodedMan.InstanceId}:spell.1220") &&
+                    livingStatusAudit.ResolveNpcTimedAbilityModifier(hoodedMan.InstanceId, 37, statusNow.AddSeconds(blacknightDurationSeconds)) == 0,
                     "npc-blacknight-self-status-expiration"); report.Checks.Add("npc-blacknight-self-status-expiration");
                 _ = livingStatusAudit.ApplyNpcTimedStatus(
                     hoodedMan.InstanceId, blacknightStatus.SpellId, blacknightStatus.DurationRounds,

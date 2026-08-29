@@ -140,11 +140,14 @@ public sealed class ServerRuntimeOptions
             return new NetworkRuntimeOptions();
         }
 
+        var telnetPort = ReadInt(network, "telnetPort", 4000);
+        var defaultClientDataPort = telnetPort >= 65535 ? 65534 : telnetPort + 1;
         return new NetworkRuntimeOptions
         {
             Enabled = ReadBoolean(network, "enabled", false),
             BindAddress = ReadString(network, "bindAddress", "127.0.0.1"),
-            TelnetPort = ReadInt(network, "telnetPort", 4000),
+            TelnetPort = telnetPort,
+            ClientDataPort = ReadInt(network, "clientDataPort", defaultClientDataPort),
             MaxSessions = ReadInt(network, "maxSessions", 32),
             LoginTimeoutSeconds = ReadInt(network, "loginTimeoutSeconds", 120),
             AllowWorldSelection = ReadBoolean(network, "allowWorldSelection", true)
@@ -178,6 +181,7 @@ public sealed class NetworkRuntimeOptions
     public bool Enabled { get; init; }
     public string BindAddress { get; init; } = "127.0.0.1";
     public int TelnetPort { get; init; } = 4000;
+    public int ClientDataPort { get; init; } = 4001;
     public int MaxSessions { get; init; } = 32;
     public int LoginTimeoutSeconds { get; init; } = 120;
     public bool AllowWorldSelection { get; init; } = true;

@@ -56,13 +56,13 @@ public static class RuntimeCombatDecodeBundleAudit
             new RuntimeNpcAttackDefinition(2, 2, 100, 15, 75, 376, 0, 500, 0, 0, 0),
             new RuntimeNpcAttackDefinition(3, 1, 1, 2, 232, 50, 0, 50, 0, 0, 0)
         };
-        var firstThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 25);
+        var firstThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 24);
         if (firstThreshold.Attack?.Slot != 1 || firstThreshold.Affordable)
-            throw new InvalidOperationException("NPC threshold attack selection failed the first inclusive boundary or incorrectly treated the row as affordable.");
-        var secondThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 26);
+            throw new InvalidOperationException("NPC native [0,100) threshold selection failed the first boundary or incorrectly treated the row as affordable.");
+        var secondThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 0, 25);
         if (secondThreshold.Attack?.Slot != 2 || secondThreshold.Affordable)
-            throw new InvalidOperationException("NPC threshold attack selection failed the second range or re-normalized around energy.");
-        var catchAllThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 50, 100);
+            throw new InvalidOperationException("NPC native [0,100) threshold selection failed the second range or re-normalized around energy.");
+        var catchAllThreshold = RuntimeNpcAttackSelector.Select(thresholdRows, 50, 99);
         if (catchAllThreshold.Attack?.Slot != 3 || !catchAllThreshold.Affordable)
             throw new InvalidOperationException("NPC authored threshold above 100 did not behave as a slot-order catch-all.");
         var cadenceSmoke = RuntimeClassicNpcCombatCadenceAudit.Run();

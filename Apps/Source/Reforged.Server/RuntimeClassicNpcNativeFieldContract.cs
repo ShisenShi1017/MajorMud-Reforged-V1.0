@@ -50,9 +50,9 @@ public static class RuntimeClassicNpcNativeFieldContract
         foreach (var attack in npc.Attacks)
         {
             Byte(attack.Type, $"attack[{attack.Slot}].Type", npc);
-            // Att% is a native byte. Retained Classic rows include values above 100; with the
-            // recovered inclusive d100 comparison those values intentionally saturate to always
-            // true when their slot is reached, so do not clamp them to a modern 0..100 schema.
+            // Att% is a native byte. WCCMMUD requests a [0,100) roll and selects on roll < Att%.
+            // Retained Classic rows include values above 100; those intentionally saturate to
+            // always true when reached, so do not clamp them to a modern 0..100 schema.
             Byte(attack.SelectionPercent, $"attack[{attack.Slot}].SelectionPercent", npc);
             Int16(attack.Accuracy, $"attack[{attack.Slot}].Accuracy", npc);
             Int16(attack.MinimumDamage, $"attack[{attack.Slot}].MinimumDamage", npc);

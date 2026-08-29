@@ -48,15 +48,15 @@ public static class RuntimeClassicLifecycleDeathEvidenceRegistry
         new("linkdead.same-user-ip-reattach", RuntimeClassicLifecycleDeathEvidenceState.ExcludedWorldgroup,
             "Reconnect requires the same username/IP and reattaches the socket to the in-memory player object.",
             "Raw reconnect/socket takeover/account ownership is Worldgroup host plumbing and excluded from MajorMUD gameplay parity."),
-        new("linkdead.combat-retention", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
+        new("linkdead.combat-retention", RuntimeClassicLifecycleDeathEvidenceState.UnsupportedHypothesis,
             "A disconnected character necessarily remains in room combat, auto-attacks, and can die until combat ends.",
-            "Exact MajorMUD gameplay consequences of unexpected disconnect remain unresolved."),
-        new("linkdead.timer-pause-in-combat", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
+            "Contradicted by native _ljngame_huprou: after the preliminary save/hangup consequence it calls _cleanup_when_user_leaves, which clears combat ownership before the final save/clear."),
+        new("linkdead.timer-pause-in-combat", RuntimeClassicLifecycleDeathEvidenceState.UnsupportedHypothesis,
             "The disconnect cleanup timer pauses whenever combat resumes.",
-            "No retained native call trace or help text proves this interaction."),
-        new("party.leader-exit-successor", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
-            "When a party leader exits, the next highest-level member is automatically promoted.",
-            "Native leader-leave succession and tie-breaking remain unresolved; live Classic fails closed rather than guessing."),
+            "Contradicted by the recovered unexpected-hangup callback: MajorMUD performs its gameplay cleanup synchronously in the hangup path and does not install a MajorMUD-owned deferred linkdead timer."),
+        new("party.leader-exit-successor", RuntimeClassicLifecycleDeathEvidenceState.Proven,
+            "When a party leader exits, no successor is elected; every follower is detached and the departing leader is removed from the group.",
+            "Direct WCCMMUD.DLL _stop_following(user,-1) scan clears each matching follower leader reference/removes each member, then calls _remove_from_group on the departing user."),
         new("followers.mercenary-tavern-return", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
             "Hired followers are serialized, unspawned, and returned for hire at their original tavern on player exit.",
             "No retained exact native follower ownership/cleanup evidence proves this sequence."),
@@ -81,12 +81,12 @@ public static class RuntimeClassicLifecycleDeathEvidenceRegistry
         new("death.xp-race-class-modifier-exclusion", RuntimeClassicLifecycleDeathEvidenceState.Strong,
             "Race/class EXP modifiers belong to the experience chart rather than monster-earned XP; therefore they must not be assumed to multiply a death penalty without separate native proof.",
             "Existing experience-chart parity evidence; exact death-loss arithmetic is still UNKNOWN."),
-        new("ordering.explicit-exit-save-vs-cleanup", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
-            "Exact native ordering among graceful save, combat cleanup, party/follower cleanup, corpse/world-state cleanup, and final departure.",
-            "Component behaviors are partly proven, but the cross-owner native order is not."),
-        new("ordering.unexpected-disconnect-cleanup", RuntimeClassicLifecycleDeathEvidenceState.Unknown,
-            "Exact MajorMUD-owned cleanup ordering after unexpected disconnect.",
-            "Linkdead combat retention, party leadership, follower state, corpse reconciliation, and persistence ordering remain open.")
+        new("ordering.explicit-exit-save-vs-cleanup", RuntimeClassicLifecycleDeathEvidenceState.Proven,
+            "Graceful Worldgroup logoff performs forget-list cleanup, shared MajorMUD leave cleanup, one player save, then clears the live player/session slot.",
+            "Direct WCCMMUD.DLL _ljngame_lofrou call order: _clear_forget_list -> _cleanup_when_user_leaves -> _save_player -> _clear_player -> active-slot clear."),
+        new("ordering.unexpected-disconnect-cleanup", RuntimeClassicLifecycleDeathEvidenceState.Proven,
+            "Unexpected hangup performs an initial player save, applies the configured hangup consequence decision, runs the shared leave cleanup, saves again, then clears the live player/session slot.",
+            "Direct WCCMMUD.DLL _ljngame_huprou call trace. Stock retained configuration defaults to punishment NONE with 0/0 percent and 0 item loss, so the default path has no hangup penalty.")
     ];
 
     public static readonly bool PriorityQueueFormulaPromoted = false;
@@ -96,19 +96,19 @@ public static class RuntimeClassicLifecycleDeathEvidenceRegistry
     public static readonly bool DeathXpUnderLevelTenImmunityPromoted = false;
     public static readonly bool DeathXpTenPercentPromoted = false;
     public static readonly bool DeathXpTwoMillionCapPromoted = false;
-    public static readonly bool ExactLeaderExitSuccessionResolved = false;
-    public static readonly bool ExactLinkdeadGameplayResolved = false;
-    public static readonly bool ExactCrossOwnerExitOrderingResolved = false;
+    public static readonly bool ExactLeaderExitSuccessionResolved = true;
+    public static readonly bool ExactLinkdeadGameplayResolved = true;
+    public static readonly bool ExactCrossOwnerExitOrderingResolved = true;
 
     public static IReadOnlyList<string> Validate()
     {
         var failures = new List<string>();
         if (Rows.Count != 21) failures.Add("expected-twenty-one-lifecycle-death-evidence-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.Proven) != 4) failures.Add("expected-four-proven-lifecycle-rows");
+        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.Proven) != 7) failures.Add("expected-seven-proven-lifecycle-rows");
         if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.Strong) != 1) failures.Add("expected-one-strong-lifecycle-row");
-        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.UnsupportedHypothesis) != 3) failures.Add("expected-three-unsupported-hypotheses");
+        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.UnsupportedHypothesis) != 5) failures.Add("expected-five-unsupported-hypotheses");
         if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.ExcludedWorldgroup) != 1) failures.Add("expected-one-worldgroup-exclusion");
-        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.Unknown) != 12) failures.Add("expected-twelve-open-lifecycle-death-rows");
+        if (Rows.Count(row => row.State == RuntimeClassicLifecycleDeathEvidenceState.Unknown) != 7) failures.Add("expected-seven-open-lifecycle-death-rows");
         if (PriorityQueueFormulaPromoted) failures.Add("priority-queue-formula-must-not-be-promoted");
         if (FixedThreeMinuteLinkdeadTimerPromoted) failures.Add("three-minute-linkdead-timer-must-not-be-promoted");
         if (SameUserIpReconnectRulePromoted) failures.Add("same-user-ip-reconnect-must-not-be-promoted");
@@ -116,9 +116,9 @@ public static class RuntimeClassicLifecycleDeathEvidenceRegistry
         if (DeathXpUnderLevelTenImmunityPromoted) failures.Add("death-xp-level-gate-must-not-be-promoted");
         if (DeathXpTenPercentPromoted) failures.Add("death-xp-ten-percent-must-not-be-promoted");
         if (DeathXpTwoMillionCapPromoted) failures.Add("death-xp-cap-must-not-be-promoted");
-        if (ExactLeaderExitSuccessionResolved) failures.Add("leader-exit-succession-must-remain-open");
-        if (ExactLinkdeadGameplayResolved) failures.Add("linkdead-gameplay-must-remain-open");
-        if (ExactCrossOwnerExitOrderingResolved) failures.Add("cross-owner-exit-order-must-remain-open");
+        if (!ExactLeaderExitSuccessionResolved) failures.Add("leader-exit-succession-must-be-resolved");
+        if (!ExactLinkdeadGameplayResolved) failures.Add("linkdead-gameplay-must-be-resolved");
+        if (!ExactCrossOwnerExitOrderingResolved) failures.Add("cross-owner-exit-order-must-be-resolved");
         return failures;
     }
 }

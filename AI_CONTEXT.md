@@ -1,7 +1,7 @@
 # AI Context for Reforged
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **98 PASS / 102 STRONG / 0 UNKNOWN = 200** (**49.0% strict / 100.0% evidence-backed**).
+- Current parity: **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
 - The exact original WCCMMUD 1.11p DLL plus wccknms2.dat trace proves both Nahr message-8480 caller arguments are empty strings for all five attacks. Preserve the native empty spacing.
 - Librarium/Parity/majormud_parity_assertions.json is the cumulative retained ledger. ValidationManifest.json records accepted one-time validation.
 - Tools/validator.py is the only current-health entrypoint. Runtime parity closure uses --smoke-classic-parity-closure.
@@ -9,13 +9,15 @@
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
 - Generated Data is untracked. Local Borin state, saves, imported-data archives, and release output are preserved and excluded from this cleanup commit.
 - GitHub Actions is the official gate after push.
+- Native exit, formula, NPC combat, scheduler/regeneration, character death, and death-floor promotions are integrated and locally runtime-verified.
+- Combat formula authority consumes `Librarium/Objects/abilities/ability_records.json`; loose imported evidence is not a runtime dependency.
 
 ## Current Position
 
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`.
-- Current local status: CodeUpdate0139 runtime cohesion is closed locally; CodeUpdate0140 cleanup/archive baseline is being prepared for push.
+- Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
+- Current local status: native organization/session work and MegaMUD/Borin compatibility are merged and locally verified; GitHub Actions remains pending push.
 - CodeUpdate0138: pushed and green by user report.
 - Latest local verification for CodeUpdate0140: CodeUpdate0139 Bundle H final audit sweep PASS 63/63 and final smoke sweep PASS are retained as the runtime baseline. After imported/reference archival cleanup, `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` passes with 0 warnings/errors and `python Tools\validator.py` passes 15/15 current-health checks. GitHub Actions pending until pushed and confirmed green.
 - Decode Exhaustion Bundle F Revision 0033 and Bundle G Revision 0002 are installed locally into the dirty CodeUpdate0139 repo without commit or push. Bundle G closes the prior F10 native payload gap: server Release build passes, `--audit-bundle-f-phase-f10-native-payloads` now reports 0 disconnects, and Bundle F F10 complete through F15 audits pass locally.

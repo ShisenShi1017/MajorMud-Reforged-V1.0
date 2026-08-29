@@ -2,12 +2,12 @@
 
 - Current Code Update: `0140`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`
-- Current baseline: CodeUpdate0139 runtime cohesion is closed locally; CodeUpdate0140 repository cleanup and imported/reference evidence archival is ready for commit/push.
-- Current parity continuation: PASS 61 / update 0332 plus exact Nahr 8480 closure; 98 PASS / 102 STRONG / 0 UNKNOWN = 200 (49.0% strict / 100.0% evidence-backed).
+- Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`
+- Current baseline: native session, party, gang communication, modal invitation, daily cleanup, organization-service, and MegaMUD/Borin compatibility work is integrated locally; GitHub Actions remains pending push.
+- Current parity continuation: 126 PASS / 74 STRONG / 0 UNKNOWN = 200 (63.0% strict / 100.0% evidence-backed).
 - Creator Studio: full-control Custom1 authoring integrated; Quick Create retained; Classic structural identity and runtime metadata remain protected.
-- Update 0332 integration verification: explicit server and Reforged.App Release builds PASS with 0 warnings/errors; PASS50-61 runtime smokes PASS.
-- Classic death-experience boundary: ordinary non-final death preserves XP exactly. Final-death/reroll retention is recovered but remains gated until the replacement-character consumer is connected.
+- Local parity verification: Reforged.Server, Reforged.App, Reforged.Client, and core/server test Release builds PASS with warnings as errors; MegaMUD, native-command, communication, organization, gang-house, and parity-closure gates PASS. Retained native verifier results are consolidated in Reports/RuntimeVerification/native_runtime_verification.json.
+- Classic death-experience boundary: ordinary non-final death preserves XP exactly. Interactive REROLL now creates a fresh replacement character and transfers only the evidence-backed SET KEEP retained experience.
 - Native command projection: 63 documented WCCMMHLP player-command inputs and explicit BS/BR/BG aliases compile into generated Classic data and resolve through the live parser; undocumented native prefix/precedence behavior remains open.
 - Economy/service closure: local PASS for 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services.
 - Spell/status closure: local PASS for 1,350/1,350 spells, 105/105 decoded ability IDs, and 111/111 status effects with zero unclassified records.

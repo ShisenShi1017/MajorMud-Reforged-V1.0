@@ -79,7 +79,7 @@ public sealed class RuntimeWccSysopCatalog
         }).ToDictionary(record => record.Command, StringComparer.OrdinalIgnoreCase);
 
         return new RuntimeWccSysopCatalog(
-            ReadAuthorization(authorization, "legacy_setting", "SYSOPKEY"),
+            ReadAuthorization(authorization, "legacy_setting", "CODEC_OF_TWINKS"),
             ReadAuthorization(authorization, "user_confirmed_configured_value", "configured-outside-runtime"),
             ReadAuthorization(authorization, "runtime_authority", "authenticated_account_role_and_explicit_capabilities"),
             authorization?.TryGetProperty("plaintext_key_command_allowed", out var plaintext) == true && plaintext.GetBoolean(),

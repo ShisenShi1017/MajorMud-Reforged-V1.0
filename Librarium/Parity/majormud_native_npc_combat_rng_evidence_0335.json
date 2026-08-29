@@ -1,0 +1,94 @@
+{
+  "schema": "majormud.native-npc-combat-rng-evidence.v1",
+  "code_update": "0335",
+  "source": {
+    "file": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "distribution": "local-only; not packaged"
+  },
+  "native_findings": [
+    {
+      "id": "npc-energy-refresh",
+      "functions": [
+        "_generate_monster",
+        "_energy_update_monster"
+      ],
+      "addresses": [
+        "0x00424761",
+        "0x004213AB"
+      ],
+      "finding": "Active current energy and authored baseline are seeded from the same monster Energy field. Each update adds authored Energy when current is below baseline, clamps current to baseline when above, and leaves equality unchanged.",
+      "runtime_owner": "RuntimeClassicNpcCombatCadence.RefreshRoundEnergy"
+    },
+    {
+      "id": "npc-threshold-selection",
+      "function": "_attack_monster_user",
+      "address": "0x0042E64A",
+      "finding": "Each selection attempt calls the exclusive-max range helper with (0,100), scans exactly five Att% bytes in slot order, and selects the first slot where roll < threshold. Attack type dispatch occurs only after selection.",
+      "runtime_owner": "RuntimeNpcAttackSelector"
+    },
+    {
+      "id": "npc-six-attempt-loop",
+      "function": "_attack_monster_user",
+      "addresses": [
+        "0x0042E637",
+        "0x0042F5E8"
+      ],
+      "finding": "Attempt counter increments before selection and repeats while completed counter <= 5, producing attempts 1 through 6 per admitted attack invocation.",
+      "runtime_owner": "RuntimeClassicNpcCombatCadence.AttemptsPerRound"
+    },
+    {
+      "id": "npc-direct-spell-fields",
+      "function": "_monster_cast",
+      "addresses": [
+        "0x00427D2D",
+        "0x00427D73",
+        "0x00427DB2",
+        "0x00427DED"
+      ],
+      "finding": "Selected Type-2 slot resolves AttAcc as spell id, AttMin as cast-success threshold, AttMax as cast level, and AttEnergy as the energy requirement/cost. Cast success uses a separate range(0,100) draw and roll < AttMin.",
+      "runtime_owner": "RuntimeClassicNpcCombatCadence.SpellCastSucceeds"
+    },
+    {
+      "id": "npc-failed-spell-floor-half",
+      "function": "_monster_cast",
+      "address": "0x00427F99",
+      "finding": "A native pre-cast failure branch charges max(1, floor(AttEnergy/2)) for positive non-zero costs. This disproves VB midpoint-to-even for values such as 127. Later resistance/refund branches remain separately unresolved.",
+      "runtime_owner": "RuntimeClassicNpcCombatCadence.DeductFailedSpellCost",
+      "parity_state": "STRONG"
+    },
+    {
+      "id": "npc-physical-energy-early-end",
+      "function": "_attack_monster_user",
+      "address": "0x0042E950",
+      "finding": "A selected physical row first checks affordability, deducts full row energy when affordable, then sets the attempt-loop early-end flag when remaining energy is below that same row cost.",
+      "runtime_owner": "RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection"
+    },
+    {
+      "id": "combat-scheduler-rng-order",
+      "function": "_background_energy",
+      "address": "0x0042128C",
+      "finding": "After monster energy updates, one range(0,100) draw orders player autocombat and the NPC scheduler: roll < 60 runs player autocombat first; roll >= 60 runs NPC scheduler first. Per-attempt row selection randomness occurs later inside _attack_monster_user.",
+      "parity_state": "STRONG",
+      "reason": "This closes only the combat-energy slice, not gameplay-wide RNG draw ordering."
+    }
+  ],
+  "promoted_assertions": [
+    "npc.attack-threshold-selection",
+    "npc.direct-spell-field-semantics",
+    "npc.physical-early-round-end",
+    "npc.round-energy-carry",
+    "npc.six-attempt-cadence"
+  ],
+  "held_strong": [
+    "npc.failed-spell-half-energy",
+    "npc.attack-row-count",
+    "npc.hp-regen-stock-interval",
+    "npc.monsguards-relationship",
+    "npc.native-ai-semantics",
+    "npc.runtime-lifecycle",
+    "native.global-rng.native-contract"
+  ],
+  "verification": "Reports/RuntimeVerification/native_npc_combat_verification_0335.json"
+}

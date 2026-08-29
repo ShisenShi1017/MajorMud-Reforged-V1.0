@@ -33,6 +33,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             && services.Any(service => ReadServiceKind(service).Equals("healer_or_temple", StringComparison.OrdinalIgnoreCase)))
             return "BUY HEALING is available here, but the exact native healer price/debit formula is not yet recovered.";
 
+        if (command.Name.Equals("buy", StringComparison.OrdinalIgnoreCase)
+            && TryBuyClassicGangShopItem(session, command.ArgumentText, out var classicGangShopBuy))
+            return classicGangShopBuy;
+
+        if (command.Name.Equals("sell", StringComparison.OrdinalIgnoreCase)
+            && TryRejectClassicGangShopSell(session, out var classicGangShopSell))
+            return classicGangShopSell;
+
         return command.Name switch
         {
             "buy" => BuyGeneratedItem(character, services, command.ArgumentText),
@@ -275,6 +283,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
             var context = new RuntimeQuestDialogueContext(character, items);
             var result = authority.Execute(ParseLegacyId(npc.NpcId), keyword, context);
+            if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(character, result.Character))
+            {
+                CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "warning-blocked-evil-action");
+                return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+            }
             _characters.SaveCharacter(result.Character);
             AwardCommittedGangExperience(character, result.Character);
             if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"ability.{result.AbilityId}"))
@@ -341,6 +354,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
 
         var updatedCharacter = context.ToCharacterRecord();
+        if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(character, updatedCharacter))
+        {
+            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "warning-blocked-evil-action");
+            return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+        }
         var hostIntents = ApplyQuestWorldIntents(session, updatedCharacter, result.Events, result.TriggerId, result.ScriptId);
         updatedCharacter = hostIntents.Character;
         _characters.SaveCharacter(updatedCharacter);
@@ -631,11 +649,14 @@ public sealed class RuntimeWorldSystemsBundleSmokeReport
                 &&RuntimeEconomyNativeMarkup.Apply(100,100,RuntimeEconomyRoundingPolicy.Floor)==200
                 &&RuntimeEconomyNativeMarkup.Apply(100,500,RuntimeEconomyRoundingPolicy.Floor)==600,
                 "decoded-native-additive-markup-live-pricing");
-            Check(r,RuntimeClassicEconomyPricing.QuoteBuyCopper(100,100,50)==200
+            Check(r,RuntimeClassicEconomyPricing.QuoteBuyCopper(100,0,0)==110
+                &&RuntimeClassicEconomyPricing.QuoteBuyCopper(100,100,50)==200
                 &&RuntimeClassicEconomyPricing.QuoteBuyCopper(100,100,100)==180
+                &&RuntimeClassicEconomyPricing.QuoteBuyCopper(100001,0,50)==100000
+                &&RuntimeClassicEconomyPricing.QuoteSellCopper(100,0)==25
                 &&RuntimeClassicEconomyPricing.QuoteSellCopper(100,50)==50
                 &&RuntimeClassicEconomyPricing.QuoteSellCopper(100,100)==75,
-                "classic-merchandise-charm-pricing");
+                "classic-native-merchandise-charm-pricing");
             Check(r,RuntimeClassicEconomyPricing.TrainingCostCopper(1,300)==200
                 &&RuntimeClassicEconomyPricing.TrainingCostCopper(9,0)==450,
                 "classic-trainer-money-formula");

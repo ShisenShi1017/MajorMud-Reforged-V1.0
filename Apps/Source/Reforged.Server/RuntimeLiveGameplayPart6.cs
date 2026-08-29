@@ -53,6 +53,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private string RenderServiceInventory(RuntimeSession session)
     {
+        if (TryRenderClassicGangShopInventory(session, out var classicGangShopInventory)) return classicGangShopInventory;
         var catalog = RuntimeServiceCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var service = ResolveServicesAtRoom(catalog, session.CurrentRoom.RoomNumber)
             .FirstOrDefault(x => !ReadServiceKind(x).Equals("bank", StringComparison.OrdinalIgnoreCase));

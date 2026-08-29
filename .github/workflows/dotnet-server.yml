@@ -39,6 +39,9 @@ jobs:
       - name: Generate Custom1 runtime data
         run: dotnet run --project Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-build -- build --world Custom1 --clean
 
+      - name: Verify MegaMUD Telnet connection contract
+        run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-megamud-connection
+
       - name: Verify Classic parity closure
         run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
 

@@ -78,6 +78,7 @@ public sealed class RuntimeClassicCommandRuntimeAuthority
         RuntimeCommandRouteKind.BankRuntime => "generated bank service in current room",
         RuntimeCommandRouteKind.LivingWorldRuntime => "decoded object or exit in current room",
         RuntimeCommandRouteKind.SysopRuntime => "authenticated SYSOP/GAMEOP capability",
+        RuntimeCommandRouteKind.SessionLifecycle => "interactive connected runtime session",
         RuntimeCommandRouteKind.SessionExit => "connected runtime session",
         _ => "connected runtime session"
     };
@@ -87,7 +88,7 @@ public sealed class RuntimeClassicCommandRuntimeAuthority
         RuntimeCommandRouteKind.RoomPresentation or RuntimeCommandRouteKind.CharacterState or
         RuntimeCommandRouteKind.RuntimeDiagnostics or RuntimeCommandRouteKind.Help => "read or presentation state only",
         RuntimeCommandRouteKind.CommunicationRuntime => "message queues only",
-        RuntimeCommandRouteKind.SessionExit => "session lifecycle only",
+        RuntimeCommandRouteKind.SessionLifecycle or RuntimeCommandRouteKind.SessionExit => "session lifecycle only",
         _ => "validated runtime mutation with subsystem rollback/fail-closed behavior"
     };
 }

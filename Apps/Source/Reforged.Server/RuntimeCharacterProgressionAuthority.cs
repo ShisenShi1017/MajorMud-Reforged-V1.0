@@ -95,7 +95,7 @@ public static class RuntimeCharacterProgressionResolver
         var currentCp = conditions.TryGetValue("character_points", out var raw) && int.TryParse(raw, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
         conditions["character_points"] = checked(currentCp + characterPointAward).ToString(CultureInfo.InvariantCulture);
         var currentLives = RuntimeClassicCharacterProgressionFormula.ReadLives(normalized);
-        conditions["lives"] = Math.Min(RuntimeClassicCharacterProgressionFormula.MaximumLives, checked(currentLives + 1)).ToString(CultureInfo.InvariantCulture);
+        conditions["lives"] = RuntimeClassicCharacterProgressionFormula.LivesAfterPromotion(currentLives).ToString(CultureInfo.InvariantCulture);
         var markers = new Dictionary<string, string>(semantic.RuntimeMarkers, StringComparer.OrdinalIgnoreCase)
         {
             [LastPromotionMarker] = string.Join("|", DateTimeOffset.UtcNow.ToString("O", CultureInfo.InvariantCulture), activeClass, targetLevel.ToString(CultureInfo.InvariantCulture), hpRoll.ToString(CultureInfo.InvariantCulture), growth.MaximumHitPointDelta.ToString(CultureInfo.InvariantCulture), growth.MaximumManaDelta.ToString(CultureInfo.InvariantCulture), sourceRecordId)
@@ -183,9 +183,9 @@ public sealed class RuntimeCharacterProgressionSchedule
             characterClass.Id,
             race.Id,
             null,
-            "strongly_correlated",
-            "MMUDExplorer/modMMudFunc.bas:CalcExpNeeded_STOCK+CalcCPLevel",
-            "native stock formula recovery");
+            "proven",
+            "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+            "native WCCMMUD.DLL stock formula/callsite recovery");
 
         var matches = _rows.Where(row => row.TargetLevel == targetLevel
             && Matches(row.ClassRef, character.ClassId, character.ClassName)

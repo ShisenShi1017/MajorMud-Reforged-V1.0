@@ -14,8 +14,9 @@ public sealed record RuntimeCharacterRegenerationTick(
 public static class RuntimeCharacterRegenerationAuthority
 {
     public static readonly TimeSpan PassiveCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.PassiveRegenerationSeconds);
-    public static readonly TimeSpan RestCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.RestRegenerationSeconds);
-    public static readonly TimeSpan MeditateCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.MeditateRegenerationSeconds);
+    public static readonly TimeSpan RestCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.RestRegenerationFastTicks);
+    public static readonly TimeSpan MeditateCadence = TimeSpan.FromSeconds(RuntimeClassicTimingAuthority.MeditateRegenerationFastTicks);
+    // HELP-only presentation guidance. Native scheduling uses fast counters below.
     public static readonly TimeSpan FocusActivationDelay = RuntimeClassicTimingAuthority.FocusedRegenerationActivationDelay;
     public const string FormulaId = "character.passive_regeneration.decoded_30_seconds";
 
@@ -35,8 +36,9 @@ public static class RuntimeCharacterRegenerationAuthority
         var baseHitPointRate = CalculateClassicHitPointBase(character.Level, health);
         var hitPointRate = ApplyPercent(baseHitPointRate, hpPercent);
         var manaRate = CalculateManaRate(character, characterClass, manaPercent, meditating: false);
+        // Native slow HP locally caps only at maximum; native mana clamps both bounds.
         var nextHitPoints = Math.Min(character.MaximumHitPoints, checked(character.HitPoints + hitPointRate));
-        var nextMana = Math.Min(character.MaximumMana, checked(character.Mana + manaRate));
+        var nextMana = Math.Clamp(checked(character.Mana + manaRate), 0, character.MaximumMana);
 
         return new RuntimeCharacterRegenerationTick(
             character with { HitPoints = nextHitPoints, Mana = nextMana, UpdatedAtUtc = nowUtc },
@@ -64,7 +66,7 @@ public static class RuntimeCharacterRegenerationAuthority
     public static RuntimeCharacterRegenerationTick ApplyMeditateTick(RuntimeCharacterRecord character, RuntimeCharacterDefinition characterClass, DateTimeOffset nowUtc)
     {
         var rate = CalculateManaRate(character, characterClass, ResolveManaRegenerationPercent(character), meditating: true);
-        var next = Math.Min(character.MaximumMana, checked(character.Mana + rate));
+        var next = Math.Clamp(checked(character.Mana + rate), 0, character.MaximumMana);
         return new(character with { Mana = next, UpdatedAtUtc = nowUtc }, 0, rate, 0, next - character.Mana,
             "decoded_data_and_multi_source_formula_evidence", FormulaId + ".meditate");
     }
@@ -74,11 +76,10 @@ public static class RuntimeCharacterRegenerationAuthority
         var magic = characterClass.Magic;
         if (magic is null || magic.Type == 0) return 0;
 
-        // MMUD Explorer CalcManaRegen keeps Kai/type 5 on its own one-point branch.
-        // For types 1-4, meditation exits after the base formula and before MPRegen
-        // percentage application; passive regeneration applies MPRegen afterward.
+        // Native WCCMMUD type 5 forces a one-point base. Passive regeneration then
+        // applies MPRegen; MEDITATE bypasses MPRegen for every magic type, including 5.
         if (magic.Type == 5)
-            return ApplyPercent(1, percent);
+            return meditating ? 1 : ApplyPercent(1, percent);
 
         var seed = magic.Type switch
         {
@@ -88,15 +89,17 @@ public static class RuntimeCharacterRegenerationAuthority
             4 => Read(character.BaseStats, "charm", "cha"),
             _ => throw new InvalidDataException($"Unsupported decoded magic type {magic.Type} for regeneration.")
         };
-        var baseRate = Math.Max(0, checked(((character.Level + 20) * seed * (magic.Level + 2)) / 1650));
+        var baseRate = checked(((character.Level + 20) * seed * (magic.Level + 2)) / 1650);
         return meditating ? baseRate : ApplyPercent(baseRate, percent);
     }
 
     internal static int CalculateClassicHitPointBase(int level, int health) =>
         Math.Max(1, checked(((level + 20) * health) / 750));
 
-    private static int ApplyPercent(int basis, int percent) =>
-        Math.Max(0, checked(basis + checked((percent * basis) / 100)));
+    internal static int ApplyPercent(int basis, int percent) =>
+        // WCCMMUD computes ((100 + modifier) * basis) / 100 as one signed integer
+        // expression. This differs from basis + (modifier*basis)/100 for negatives.
+        checked(checked((100 + percent) * basis) / 100);
 
     private static int Derived(RuntimeCharacterRecord character, string key) =>
         character.SemanticState?.DerivedStats.TryGetValue(key, out var value) == true ? value : 0;
@@ -114,8 +117,12 @@ public static class RuntimeCharacterRegenerationAuthority
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    private readonly ConcurrentDictionary<string, DateTimeOffset> _characterRegenerationDue = new(StringComparer.OrdinalIgnoreCase);
+    private readonly RuntimeClassicNativeSchedulerClock _classicNativeSchedulerClock = new();
     private readonly ConcurrentDictionary<string, RuntimeFocusedRegenerationState> _focusedRegeneration = new(StringComparer.OrdinalIgnoreCase);
+    private Func<RuntimeSession, string, string>? _classicPendingCommandExecutor;
+
+    public void BindClassicPendingCommandExecutor(Func<RuntimeSession, string, string> executor) =>
+        _classicPendingCommandExecutor = executor ?? throw new ArgumentNullException(nameof(executor));
 
     public string ExecuteRegenerationStateCommand(RuntimeSession session, RuntimeCommand command)
     {
@@ -130,20 +137,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (!abilities.CanUseCapability(character, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, gates))
                 return "You have not learned the Meditate ability for your class and level.";
         }
-        var now = DateTimeOffset.UtcNow;
-        _focusedRegeneration[actor.Id] = new(mode, now, now + RuntimeCharacterRegenerationAuthority.FocusActivationDelay);
-        if (mode == "rest")
-            return "You are now resting.";
-        return mode == "rest"
-            ? "You begin resting. Remain uninterrupted for 20 seconds to increase HP regeneration."
-            : "You begin meditating. Remain uninterrupted for 20 seconds to increase mana regeneration.";
+        _focusedRegeneration[actor.Id] = new(mode, DateTimeOffset.UtcNow, 0);
+        return mode == "rest" ? "You are now resting." : "You are now meditating.";
     }
 
     /// <summary>
     /// Native REST/MEDITATE help names only three interruption causes: movement,
-    /// attacking, or being attacked. Actual combat entry paths cancel focused
-    /// regeneration themselves, so ordinary non-movement commands must not silently
-    /// cancel a pending/active rest or meditation state.
+    /// attacking, or being attacked. Combat entry paths cancel focused regeneration
+    /// themselves; ordinary non-movement commands do not reset the native fast counter.
     /// </summary>
     public void NotifyCharacterAction(RuntimeSession session, string commandName, bool isMovement)
     {
@@ -154,42 +155,55 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private void CancelFocusedRegeneration(string characterId) => _focusedRegeneration.TryRemove(characterId, out _);
 
-    private void TickActiveCharacterRegeneration(DateTimeOffset nowUtc)
+    private void TickActiveCharacterRegeneration(DateTimeOffset nowUtc, RuntimeClassicSchedulerStep schedulerStep)
     {
+        if (!schedulerStep.FastDue) return;
         foreach (var session in _sessions.ActiveSessions)
         {
             if (session.Actor is not RuntimeCharacterActor actor) continue;
+            // _fast_update_character decrements the native +0x6BB command-delay byte once on
+            // every one-second fast callback. When the delay is zero, the same owner drains at
+            // most one pending command through 0x450E7F, including on the tick that reaches zero.
+            session.TickClassicCommandDelay();
+            if (session.ClassicCommandDelay == 0
+                && _classicPendingCommandExecutor is not null
+                && session.TryDequeueClassicPendingCommand(out var pendingCommand))
+            {
+                var pendingOutput = _classicPendingCommandExecutor(session, pendingCommand);
+                if (!string.IsNullOrWhiteSpace(pendingOutput)) session.EnqueueMessage(pendingOutput);
+            }
             var character = _characters.LoadCharacter(actor.Id);
             if (character is null) continue;
             var catalog = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId);
-            var due = _characterRegenerationDue.GetOrAdd(character.CharacterId, nowUtc + RuntimeCharacterRegenerationAuthority.PassiveCadence);
+            var definition = catalog.RequireClass(character.ClassId);
             var updated = character;
-            if (nowUtc >= due)
+
+            // Native _background_fast executes due internal callbacks before
+            // _fast_update_character. A 30-tick slow callback therefore regenerates
+            // passive HP/MP before same-cycle REST/MEDITATE fast-counter work.
+            if (schedulerStep.SlowDue)
+                updated = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(updated, definition, nowUtc).Character;
+
+            if (_focusedRegeneration.TryGetValue(character.CharacterId, out var focused))
             {
-                var elapsedTicks = Math.Max(1L, (long)((nowUtc - due).Ticks / RuntimeCharacterRegenerationAuthority.PassiveCadence.Ticks) + 1L);
-                for (var tick = 0L; tick < elapsedTicks; tick++)
-                    updated = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(updated, catalog.RequireClass(updated.ClassId), nowUtc).Character;
-                if (updated.HitPoints != character.HitPoints || updated.Mana != character.Mana)
-                    _characters.SaveCharacter(updated);
-                _characterRegenerationDue[character.CharacterId] = due + TimeSpan.FromTicks(checked(RuntimeCharacterRegenerationAuthority.PassiveCadence.Ticks * elapsedTicks));
+                var counter = checked(focused.FastTickCounter + 1);
+                var threshold = focused.Mode == "rest"
+                    ? RuntimeClassicTimingAuthority.RestCounterThreshold
+                    : RuntimeClassicTimingAuthority.MeditateCounterThreshold;
+                if (counter > threshold)
+                {
+                    updated = focused.Mode == "rest"
+                        ? RuntimeCharacterRegenerationAuthority.ApplyRestTick(updated, definition, nowUtc).Character
+                        : RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(updated, definition, nowUtc).Character;
+                    counter = 0;
+                }
+                _focusedRegeneration[character.CharacterId] = focused with { FastTickCounter = counter };
             }
 
-            if (!_focusedRegeneration.TryGetValue(character.CharacterId, out var focused) || nowUtc < focused.NextTickUtc) continue;
-            var focusCadence = focused.Mode == "rest" ? RuntimeCharacterRegenerationAuthority.RestCadence : RuntimeCharacterRegenerationAuthority.MeditateCadence;
-            var focusTicks = Math.Max(1L, (long)((nowUtc - focused.NextTickUtc).Ticks / focusCadence.Ticks) + 1L);
-            var focusedCharacter = updated;
-            for (var tick = 0L; tick < focusTicks; tick++)
-                focusedCharacter = focused.Mode == "rest"
-                    ? RuntimeCharacterRegenerationAuthority.ApplyRestTick(focusedCharacter, catalog.RequireClass(focusedCharacter.ClassId), nowUtc).Character
-                    : RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(focusedCharacter, catalog.RequireClass(focusedCharacter.ClassId), nowUtc).Character;
-            if (focusedCharacter.HitPoints != updated.HitPoints || focusedCharacter.Mana != updated.Mana)
-                _characters.SaveCharacter(focusedCharacter);
-            _focusedRegeneration[character.CharacterId] = focused with
-            {
-                NextTickUtc = focused.NextTickUtc + TimeSpan.FromTicks(checked(focusCadence.Ticks * focusTicks))
-            };
+            if (updated.HitPoints != character.HitPoints || updated.Mana != character.Mana)
+                _characters.SaveCharacter(updated);
         }
     }
 }
 
-public sealed record RuntimeFocusedRegenerationState(string Mode, DateTimeOffset StartedAtUtc, DateTimeOffset NextTickUtc);
+public sealed record RuntimeFocusedRegenerationState(string Mode, DateTimeOffset StartedAtUtc, int FastTickCounter);

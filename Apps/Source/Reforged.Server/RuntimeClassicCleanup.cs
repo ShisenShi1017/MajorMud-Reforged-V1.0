@@ -32,8 +32,15 @@ public sealed class RuntimeClassicCleanupService
 
     public RuntimeClassicCleanupResult Run(DateTimeOffset nowUtc) => CleanupRoomGround(nowUtc, null);
 
-    public RuntimeClassicCleanupResult Run(DateTimeOffset nowUtc, string projectRoot, string worldId) =>
-        CleanupRoomGround(nowUtc, new RuntimeClassicGangHouseProtectionService(projectRoot, worldId));
+    public RuntimeClassicCleanupResult Run(DateTimeOffset nowUtc, string projectRoot, string worldId)
+    {
+        // Native cleanup removes unprotected/disbanded gang-house room contents before its final
+        // gang-record sweep. Only after offline former members have drained the native count to zero
+        // does that sweep delete the gang record, which makes the name reusable.
+        var result = CleanupRoomGround(nowUtc, new RuntimeClassicGangHouseProtectionService(projectRoot, worldId));
+        new RuntimeClassicGangStateService(projectRoot).CleanupDisbandedGangs();
+        return result;
+    }
 
     public RuntimeClassicCleanupResult Run(
         DateTimeOffset nowUtc,

@@ -52,13 +52,26 @@
     {
       "name": "Classic parity repository closure",
       "status": "accepted",
-      "summary": "The cumulative assertion ledger contains 98 PASS, 102 STRONG, and zero UNKNOWN assertions. The original WCCMMUD 1.11p Nahr message-8480 chain proves the five physical attack rows pass empty attack-verb and weapon-name strings. Historical pass validators and snapshots were retired after acceptance.",
+      "summary": "The cumulative assertion ledger contains 126 PASS, 74 STRONG, and zero UNKNOWN assertions. The original WCCMMUD 1.11p Nahr message-8480 chain proves the five physical attack rows pass empty attack-verb and weapon-name strings. Reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, death-floor, session lifecycle, party coordination, gang communications/invitations, daily gang-house cleanup, and organization-service evidence is connected to executable runtime gates. Historical pass validators and snapshots remain retired after acceptance.",
       "evidence": [
         "Librarium/Parity/majormud_parity_assertions.json",
         "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
         "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
         "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-        "Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md"
+        "Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md",
+        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+        "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
+        "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json",
+        "Librarium/Parity/majormud_native_character_death_lifecycle_evidence_0337.json",
+        "Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+        "Librarium/Parity/majormud_native_session_lifecycle_evidence_0339.json",
+        "Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+        "Librarium/Parity/majormud_native_gang_communications_edge_evidence_0341.json",
+        "Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
+        "Librarium/Parity/majormud_native_daily_ganghouse_cleanup_evidence_0343.json",
+        "Librarium/Parity/majormud_native_organization_persistence_services_evidence_0344.json",
+        "Reports/RuntimeVerification/native_runtime_verification.json"
       ]
     }
   ]

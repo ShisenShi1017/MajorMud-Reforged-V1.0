@@ -1,0 +1,90 @@
+{
+  "schema": "majormud.native-death-floor-evidence.v1",
+  "code_update": "0338",
+  "target": {
+    "module": "WCCMMUD.DLL",
+    "bytes": 643072,
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+  },
+  "native_findings": [
+    {
+      "id": "room_item_insert_visible",
+      "function_va": "0x0041D0A1",
+      "range": "0x0041D16F-0x0041D1E0",
+      "classification": "PROVEN",
+      "contract": "Visible room storage has 17 slots. Incoming ItemUses == -1 first scans for the same item ID and increments the slot QTY word. Otherwise the first empty slot receives ItemID, ItemUses, and QTY=0. Full storage returns -1."
+    },
+    {
+      "id": "room_item_insert_hidden",
+      "function_va": "0x0041D0A1",
+      "range": "0x0041D0F5-0x0041D16D",
+      "classification": "PROVEN",
+      "contract": "Hidden room storage has 15 slots and uses the same ItemUses==-1 same-ID stack rule before first-empty-slot allocation."
+    },
+    {
+      "id": "room_item_qty_encoding",
+      "function_va": "0x0041D1FF",
+      "range": "0x0041D2A6-0x0041D2EC",
+      "classification": "PROVEN",
+      "contract": "Native room QTY stores extra copies beyond the first: removal decrements QTY while QTY>0; only a zero-QTY final copy clears ItemID/ItemUses/QTY from the slot."
+    },
+    {
+      "id": "room_item_field_names",
+      "classification": "PROVEN_RETAINED_SOURCE_CORRELATION",
+      "contract": "Retained MMUD Explorer source names the matching room arrays RoomItems, RoomItemUses, RoomItemQty, InvisItems, InvisItemUses, and InvisItemQty, corroborating the native offset interpretation."
+    },
+    {
+      "id": "death_floor_dfs",
+      "function_va": "0x0041989A",
+      "range": "0x0041989A-0x00419999",
+      "classification": "PROVEN",
+      "contract": "Death room disposal attempts visible add-item twice, then traverses ten exits in native order N,S,E,W,NE,NW,SE,SW,U,D, skipping RoomType 12 RemoteAction and 8 ChangeMap. A global recursion depth gate permits the origin through depth 5."
+    },
+    {
+      "id": "movement_trail_storage",
+      "function_va": "0x00416AE6",
+      "range": "0x00416B22-0x00416B60",
+      "classification": "PROVEN",
+      "contract": "Normal movement shifts two 20-entry arrays by 19 dwords and writes the newly entered map/room at index 0. Session initialization zeroes both arrays. Nonstandard relocation bypasses this trail update branch."
+    },
+    {
+      "id": "death_floor_trail",
+      "function_va": "0x004199AA",
+      "range": "0x004199AA-0x00419A32",
+      "classification": "PROVEN",
+      "contract": "Fallback scans 20 movement-trail entries newest-first. Each valid room tries visible insertion, then hidden insertion, returning on first success."
+    },
+    {
+      "id": "inventory_emergency_fallback",
+      "function_va": "0x00419A33",
+      "range": "0x00419DEA-0x00419E54",
+      "classification": "PROVEN",
+      "contract": "For the 100-slot inventory loop, failure of death-room DFS and movement-trail placement is followed by _dispose_of_item_in_room(room 164, map 1, item, uses). If that also fails, the item is cleared/lost."
+    },
+    {
+      "id": "secondary_no_emergency_fallback",
+      "function_va": "0x00419A33",
+      "range": "0x00419F69-0x00419FB5",
+      "classification": "PROVEN",
+      "contract": "For the 50-slot secondary/equipment loop, failure of death-room DFS is followed by movement-trail placement and then loss/logging; there is no map 1 room 164 retry."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs",
+    "Apps/Source/Reforged.Server/RuntimeSession.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterDeath.cs"
+  ],
+  "parity_promotion": {
+    "assertion": "character.death-drop-floor-spill",
+    "from": "STRONG",
+    "to": "PASS"
+  },
+  "preserved_boundary": {
+    "assertion": "character.native-lifecycle-boundary",
+    "state": "STRONG",
+    "reason": "Complete host logoff/hangup, follower/controlled-NPC, leadership, persistence/delete, and reconnect micro-order remains broader than the now-exact death-floor placement contract."
+  },
+  "verification": "Reports/RuntimeVerification/native_death_floor_verification_0338.json"
+}

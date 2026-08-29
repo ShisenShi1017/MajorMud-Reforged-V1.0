@@ -2,9 +2,12 @@ namespace Reforged.Server;
 
 /// <summary>
 /// Evidence-gated executor for room-owned MajorMUD textblock action scripts.
-/// Pass 23 intentionally executes only two recovered families:
-///  - simple healer purchases whose decoded line is monsters -> price -> cast(219..224) -> adddelay;
-///  - immediate room relocations whose decoded line is presentation -> teleport -> presentation.
+/// The executor now owns the recovered room-action families needed by Classic runtime:
+///  - gang-house summons, healer purchases, emblem/key creation, and rubbish disposal;
+///  - immediate room relocations whose decoded line is presentation -> teleport -> presentation;
+///  - the exact dark-druid field transition in textblock 5001 (message -> cast 213 -> teleport -> message);
+///  - exact room 8/461 statue commands from textblock 863, which summon NPC 347;
+///  - exact room 16/1517 latch command from textblock 2892, which grants item 1281 then renders message 2519.
 /// Other decoded room actions remain owned by their existing runtime consumers or fail closed until their
 /// condition/timing semantics are recovered.
 /// </summary>
@@ -15,22 +18,106 @@ public sealed partial class RuntimeLiveGameplayFacade
         result = string.Empty;
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
         var graph = RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot);
-        if (!graph.TryResolveRoomActionPlan(session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber, entered, out var plan))
-            return false;
+        var plans = graph.ResolveRoomActionPlans(session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber, entered);
+        if (plans.Count == 0) return false;
 
-        if (IsRecoveredSimpleHealerPlan(plan))
+        // Exact gang-house action scripts may expose alternative same-phrase lines. Keep those
+        // alternatives together so CHECKITEM can select the authored credential branch.
+        if (plans.All(IsRecoveredGangHouseServicePlan))
         {
-            result = ExecuteRecoveredSimpleHealerPlan(session, plan);
+            result = ExecuteRecoveredGangHousePlans(session, plans);
             return true;
         }
 
-        if (IsRecoveredImmediateRelocationPlan(plan))
+        if (plans.Count == 1 && IsRecoveredSimpleHealerPlan(plans[0]))
         {
-            result = ExecuteRecoveredImmediateRelocationPlan(session, plan);
+            result = ExecuteRecoveredSimpleHealerPlan(session, plans[0]);
+            return true;
+        }
+
+        if (plans.Count == 1 && IsRecoveredImmediateRelocationPlan(plans[0]))
+        {
+            result = ExecuteRecoveredImmediateRelocationPlan(session, plans[0]);
+            return true;
+        }
+
+        var plan = plans.Count == 1 ? plans[0] : null;
+        if (plan is not null && IsRecoveredDarkDruidFieldPlan(plan))
+        {
+            result = ExecuteRecoveredDarkDruidFieldPlan(session, plan);
+            return true;
+        }
+
+        if (plan is not null && IsRecoveredMap8StatueSummonPlan(plan))
+        {
+            result = ExecuteRecoveredMap8StatueSummonPlan(session, plan);
+            return true;
+        }
+
+        if (plan is not null && IsRecoveredMap16LatchRewardPlan(plan))
+        {
+            result = ExecuteRecoveredMap16LatchRewardPlan(session, plan);
             return true;
         }
 
         return false;
+    }
+
+    private static bool IsRecoveredDarkDruidFieldPlan(RuntimeClassicTextblockExecutionPlan plan)
+    {
+        if (plan.RootTextblockId != 5001 || plan.Operations.Count != 4) return false;
+        if (!plan.MatchedInput.Equals("go arch", StringComparison.OrdinalIgnoreCase)
+            && !plan.MatchedInput.Equals("enter arch", StringComparison.OrdinalIgnoreCase)
+            && !plan.MatchedInput.Equals("go field", StringComparison.OrdinalIgnoreCase)
+            && !plan.MatchedInput.Equals("enter field", StringComparison.OrdinalIgnoreCase)) return false;
+
+        var firstMessage = plan.Operations[0];
+        var cast = plan.Operations[1];
+        var teleport = plan.Operations[2];
+        var secondMessage = plan.Operations[3];
+        return firstMessage.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase)
+            && (firstMessage.TargetTextblockId ?? firstMessage.NumericArguments.FirstOrDefault()) == 287
+            && cast.Opcode.Equals("cast", StringComparison.OrdinalIgnoreCase)
+            && (cast.SpellId ?? cast.NumericArguments.FirstOrDefault()) == 213
+            && teleport.Opcode.Equals("teleport", StringComparison.OrdinalIgnoreCase)
+            && (teleport.RoomNumber ?? teleport.NumericArguments.FirstOrDefault()) == 142
+            && (teleport.MapNumber ?? teleport.NumericArguments.Skip(1).FirstOrDefault()) == 7
+            && secondMessage.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase)
+            && (secondMessage.TargetTextblockId ?? secondMessage.NumericArguments.FirstOrDefault()) == 288;
+    }
+
+    private string ExecuteRecoveredDarkDruidFieldPlan(RuntimeSession session, RuntimeClassicTextblockExecutionPlan plan)
+    {
+        if (session.Actor is not RuntimeCharacterActor)
+            throw new InvalidOperationException("A persistent character is required for the decoded dark-druid field transition.");
+
+        // Spell 213 ("opaque field") is a level-0, zero-cost, zero-magnitude, zero-duration
+        // native environmental spell. The decoded room script uses it between its two messages
+        // and the teleport, but no recovered field proves a persistent character mutation.
+        // Preserve that fail-closed boundary instead of inventing a status effect or player cast.
+        var output = new List<string>();
+        var beforeMessage = _nativePayloads.RequireMessage(287);
+        if (!string.IsNullOrWhiteSpace(beforeMessage)) output.Add(beforeMessage);
+        BroadcastRecoveredNativeSecondaryMessage(session, 287);
+
+        var destination = session.World.FindRoom(7, 142)
+            ?? throw new InvalidOperationException("Decoded dark-druid field destination 7/142 is unavailable.");
+        session.MoveToWorld(session.World, destination, $"classic-room-textblock:{plan.RootTextblockId}:spell.213");
+        _characters.SaveSession(session);
+        AdmitClassicRoomEntryNpcRespawns(session);
+
+        var afterMessage = _nativePayloads.RequireMessage(288);
+        if (!string.IsNullOrWhiteSpace(afterMessage)) output.Add(afterMessage);
+        BroadcastRecoveredNativeSecondaryMessage(session, 288);
+        return string.Join(Environment.NewLine, output);
+    }
+
+    private void BroadcastRecoveredNativeSecondaryMessage(RuntimeSession session, int messageId)
+    {
+        if (!_nativePayloads.TryResolveSecondaryMessage(messageId, out var observerTemplate)
+            || string.IsNullOrWhiteSpace(observerTemplate)) return;
+        var observerMessage = observerTemplate.Replace("%s", session.Actor.DisplayName, StringComparison.Ordinal);
+        _sessions.BroadcastRoom(session, observerMessage, includeSource: false);
     }
 
     private static bool IsRecoveredSimpleHealerPlan(RuntimeClassicTextblockExecutionPlan plan)
@@ -67,7 +154,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var beforeState = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0,
             new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
         if (RuntimeBundleCInventoryAuthority.ReadCurrency(beforeState).CopperValue < priceCopper)
-            return insufficientFundsMessageId > 0 ? _nativePayloads.RequireMessage(insufficientFundsMessageId) : string.Empty;
+            return insufficientFundsMessageId > 0 ? EmitClassicGangHouseMessage(session, insufficientFundsMessageId) : string.Empty;
 
         EnsureLivePowers(session);
         var liveBefore = _liveSpellEngine!.Snapshot();
@@ -82,9 +169,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             var debited = RuntimeBundleCEconomyAuthority.DebitCopperValue(afterState, priceCopper);
             _characters.SaveCharacter(afterEffect with { ItemState = debited, UpdatedAtUtc = DateTimeOffset.UtcNow },
                 $"classic-healer:textblock.{plan.RootTextblockId}:spell.{spellId}");
+            var delayValue = plan.Operations.Single(op => op.Opcode.Equals("adddelay", StringComparison.OrdinalIgnoreCase))
+                .NumericArguments.FirstOrDefault();
+            session.AddClassicCommandDelay(delayValue);
             PersistLivePowers(session.World.Definition.Id);
 
-            // Exact healer success/observer presentation is not recovered for this room-script path.
+            // The recovered healer textblock line has no MESSAGE opcode; native CAST delegates directly to the spell owner, so no extra gang-house service prose is invented for this room-script path.
             // Do not reuse player-cast observer prose with the player incorrectly acting as the healer.
             return string.Empty;
         }
@@ -130,6 +220,62 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
 
         throw new InvalidOperationException($"Unsupported recovered healer spell {legacySpellId}.");
+    }
+
+
+    private static bool IsRecoveredMap8StatueSummonPlan(RuntimeClassicTextblockExecutionPlan plan)
+    {
+        if (plan.RootTextblockId != 863 || plan.Operations.Count != 1) return false;
+        if (!plan.MatchedInput.Equals("touch statue", StringComparison.OrdinalIgnoreCase)
+            && !plan.MatchedInput.Equals("move statue", StringComparison.OrdinalIgnoreCase)) return false;
+        var operation = plan.Operations[0];
+        var npcId = operation.NpcId ?? operation.NumericArguments.FirstOrDefault();
+        return operation.Opcode.Equals("summon", StringComparison.OrdinalIgnoreCase) && npcId == 347;
+    }
+
+    private string ExecuteRecoveredMap8StatueSummonPlan(RuntimeSession session, RuntimeClassicTextblockExecutionPlan plan)
+    {
+        _ = SummonLivingNpc(session, "npc.347", $"classic-room-textblock:{plan.RootTextblockId}");
+        return string.Empty;
+    }
+
+    private static bool IsRecoveredMap16LatchRewardPlan(RuntimeClassicTextblockExecutionPlan plan)
+    {
+        if (plan.RootTextblockId != 2892 || !plan.MatchedInput.Equals("lift latch", StringComparison.OrdinalIgnoreCase))
+            return false;
+        if (plan.Operations.Count != 2) return false;
+        var giveItem = plan.Operations[0];
+        var message = plan.Operations[1];
+        var itemId = giveItem.ItemId ?? giveItem.NumericArguments.FirstOrDefault();
+        var messageId = message.TargetTextblockId ?? message.NumericArguments.FirstOrDefault();
+        return giveItem.Opcode.Equals("giveitem", StringComparison.OrdinalIgnoreCase)
+            && itemId == 1281
+            && message.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase)
+            && messageId == 2519;
+    }
+
+    private string ExecuteRecoveredMap16LatchRewardPlan(RuntimeSession session, RuntimeClassicTextblockExecutionPlan plan)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor)
+            throw new InvalidOperationException("A persistent character is required for the decoded latch reward.");
+
+        var character = _characters.LoadCharacter(actor.Id)
+            ?? throw new InvalidOperationException("Character save was not found for the decoded latch reward.");
+        var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0,
+            new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, characterAuthority);
+        _ = engine.Create("item.1281", RuntimeItemLocations.Character, actor.Id, ownerId: actor.Id);
+        var updatedState = engine.Snapshot(state.Gold, state.ActiveItemState);
+        _characters.SaveCharacter(character with
+        {
+            ItemState = updatedState,
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        }, $"classic-room-textblock:{plan.RootTextblockId}:giveitem:1281");
+
+        BroadcastRecoveredNativeSecondaryMessage(session, 2519);
+        return _nativePayloads.RequireMessage(2519);
     }
 
     private static bool IsRecoveredImmediateRelocationPlan(RuntimeClassicTextblockExecutionPlan plan)

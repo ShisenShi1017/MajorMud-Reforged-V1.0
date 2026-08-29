@@ -65,20 +65,103 @@ public sealed class RuntimeClassicTextblockGraphAuthority
 
     public bool TryResolveRoomActionPlan(int mapNumber, int roomNumber, string input, out RuntimeClassicTextblockExecutionPlan plan)
     {
-        plan = null!;
+        var plans = ResolveRoomActionPlans(mapNumber, roomNumber, input);
+        plan = plans.FirstOrDefault()!;
+        return plan is not null;
+    }
+
+    /// <summary>
+    /// Returns every exact line-level action plan for a room phrase in authored order. Classic
+    /// action scripts may repeat the same player phrase on multiple lines to express alternative
+    /// condition branches (the gang-house rubbish rooms use two accepted credentials). The older
+    /// single-plan projection could silently discard those later alternatives.
+    /// </summary>
+    public IReadOnlyList<RuntimeClassicTextblockExecutionPlan> ResolveRoomActionPlans(int mapNumber, int roomNumber, string input)
+    {
         var normalized = NormalizeCommand(input);
         var ownerToken = $"Room {mapNumber}/{roomNumber}";
-        var candidates = _nodes.Values
+        var roomNodes = _nodes.Values
             .Where(node => node.OwnerKind.Equals("room", StringComparison.OrdinalIgnoreCase)
                 && node.ContentKind.Equals("action_script", StringComparison.OrdinalIgnoreCase)
-                && RoomOwnerContains(node.OwnerRaw, ownerToken)
-                && node.Triggers.Any(trigger => TriggerMatches(trigger, normalized)))
+                && RoomOwnerContains(node.OwnerRaw, ownerToken))
             .OrderBy(node => node.TextblockId)
             .ToArray();
-        if (candidates.Length == 0) return false;
-        if (candidates.Length > 1)
-            throw new InvalidOperationException($"Decoded room command '{normalized}' is ambiguous in room {mapNumber}/{roomNumber}: {string.Join(", ", candidates.Select(x => x.TextblockId))}.");
-        return TryCreateExecutionPlan(candidates[0].TextblockId, input, out plan);
+
+        var explicitMatches = roomNodes
+            .SelectMany(node => node.Triggers
+                .Where(trigger => trigger.Normalized.Equals(normalized, StringComparison.OrdinalIgnoreCase))
+                .OrderBy(trigger => trigger.Line)
+                .Select(trigger => (Node: node, Trigger: trigger)))
+            .ToArray();
+        if (explicitMatches.Length > 0)
+        {
+            var nodeIds = explicitMatches.Select(match => match.Node.TextblockId).Distinct().ToArray();
+            if (nodeIds.Length > 1)
+                throw new InvalidOperationException($"Decoded room command '{normalized}' is ambiguous in room {mapNumber}/{roomNumber}: {string.Join(", ", nodeIds)}.");
+            return explicitMatches.Select(match => CreateLinePlan(match.Node, match.Trigger.Line, normalized)).ToArray();
+        }
+
+        // Preserve the pre-0344 verb-prefix projection for unrelated room scripts. The gang-house
+        // service family is deliberately exact-phrase only because every authored BUY/MAKE/PULL
+        // variant is independently decoded and broad verb matching can execute the wrong priced line.
+        var legacyPrefixMatches = roomNodes
+            .Where(node => node.TextblockId is < 1602 or > 1642)
+            .SelectMany(node => node.Triggers
+                .Where(trigger => TriggerMatches(trigger, normalized))
+                .OrderByDescending(trigger => trigger.Normalized.Length)
+                .ThenBy(trigger => trigger.Line)
+                .Take(1)
+                .Select(trigger => (Node: node, Trigger: trigger)))
+            .ToArray();
+        if (legacyPrefixMatches.Length > 0)
+        {
+            var nodeIds = legacyPrefixMatches.Select(match => match.Node.TextblockId).Distinct().ToArray();
+            if (nodeIds.Length > 1)
+                throw new InvalidOperationException($"Decoded room command '{normalized}' is ambiguous in room {mapNumber}/{roomNumber}: {string.Join(", ", nodeIds)}.");
+            var match = legacyPrefixMatches[0];
+            return [CreateLinePlan(match.Node, match.Trigger.Line, normalized)];
+        }
+
+        // MMExplorer's decoder treats lines such as "summon healer:..." and "summon guard:..."
+        // as an opcode because SUMMON is also a valid textblock operation. In the original action
+        // script grammar those string-valued sequence-1 forms are player command triggers; a
+        // numeric SUMMON operation remains an effect. Recover that ambiguity without generalizing
+        // arbitrary string-valued opcodes into commands.
+        var implicitMatches = roomNodes
+            .SelectMany(node => node.Operations
+                .Where(operation => operation.Sequence == 1
+                    && operation.Opcode.Equals("summon", StringComparison.OrdinalIgnoreCase)
+                    && operation.NumericArguments.Count == 0
+                    && NormalizeCommand(operation.Raw).Equals(normalized, StringComparison.OrdinalIgnoreCase))
+                .OrderBy(operation => operation.Line)
+                .Select(operation => (Node: node, Operation: operation)))
+            .ToArray();
+        if (implicitMatches.Length == 0) return Array.Empty<RuntimeClassicTextblockExecutionPlan>();
+        var implicitNodeIds = implicitMatches.Select(match => match.Node.TextblockId).Distinct().ToArray();
+        if (implicitNodeIds.Length > 1)
+            throw new InvalidOperationException($"Decoded implicit room command '{normalized}' is ambiguous in room {mapNumber}/{roomNumber}: {string.Join(", ", implicitNodeIds)}.");
+        return implicitMatches.Select(match => CreateLinePlan(match.Node, match.Operation.Line, normalized, match.Operation.Sequence)).ToArray();
+    }
+
+    private static RuntimeClassicTextblockExecutionPlan CreateLinePlan(
+        RuntimeClassicTextblockNode node,
+        int line,
+        string normalized,
+        int skipThroughSequence = 1)
+    {
+        var operations = node.Operations
+            .Where(operation => operation.Line == line && operation.Sequence > skipThroughSequence)
+            .OrderBy(operation => operation.Sequence)
+            .ToArray();
+        var messages = operations
+            .Where(operation => operation.Opcode is "message" or "text" or "route" or "random")
+            .Select(operation => operation.TargetTextblockId ?? 0)
+            .Where(id => id > 0)
+            .ToArray();
+        var continuation = messages.LastOrDefault();
+        if (continuation == 0) continuation = node.NextTextblockId;
+        return new(node.TextblockId, node.TextblockId, line, normalized,
+            operations, messages, continuation > 0 ? continuation : null);
     }
 
     private static bool RoomOwnerContains(string ownerRaw, string ownerToken)

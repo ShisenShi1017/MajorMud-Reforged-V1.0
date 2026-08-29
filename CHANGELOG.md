@@ -1,5 +1,15 @@
+## Native parity promotion and combat authority repair
+
+- Integrated the reviewed cumulative native exit, formula, NPC combat, scheduler/regeneration, character death, and death-floor evidence and runtime ownership changes.
+- Integrated the cumulative native session, party, gang communication, modal invitation, daily cleanup, and organization-service promotions, producing **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
+- Added unchanged MegaMUD connection compatibility, interactive REROLL/SET KEEP, SET WARNING, client-data negotiation, and Borin player-runtime contracts while preserving live Borin state.
+- Recovered exact WCCMP002 native trap state for all 295 trap exits: 293 active and 2 hidden. Generated Classic and the Bundle D trap audit now preserve that distribution.
+- Replaced the combat formula authority's hard dependency on retired `ImportedDatabases` OmniVerse ability data with `Librarium/Objects/abilities/ability_records.json`; combat no longer blocks when loose imported evidence is archived.
+- Preserved the Blacknight timed-status regression against the authoritative three-second spell clock.
+- Repaired one nullable metadata copy warning in the native death-floor stack split path. Release builds pass with warnings as errors.
 ## Final standalone parity closure
 
+- Corrected the Blacknight live-combat smoke to derive its 15-round lifetime from the authoritative three-second spell clock. The full live-combat smoke now passes, including timed modifier application, exact expiration, and death cleanup.
 - Promoted `npc.native-combat-message-8480` from UNKNOWN to PASS from the original WCCMMUD 1.11p DLL plus `wccknms2.dat` execution chain.
 - Recorded equipped-item ID 0 for `npc.1006` Nahr and verified that `_move_monster_to_fighter` NULs both the attack-verb and weapon-name buffers before `_attack_monster_user` passes them to message 8480.
 - Runtime now distinguishes verified native empty arguments from unresolved missing fields and preserves the native empty spacing for all five Nahr physical attacks.

@@ -1,59 +1,50 @@
 namespace Reforged.Server;
 
 /// <summary>
-/// Stock MajorMUD merchandise/training arithmetic recovered from the current
-/// MMUD Explorer v1.11p formulas.  These routines intentionally preserve the
-/// original stage order: currency -> markup -> Charm -> legacy overflow/final
-/// rounding for buys; currency -> Charm for sells; and the trainer-specific
-/// (markup + 100) integer formula for level training.
+/// Stock MajorMUD merchandise/training arithmetic recovered directly from the
+/// original WCCMMUD.DLL. The native implementation uses 32-bit integer stages:
+/// currency -> optional >100,000 BUY scale -> additive shop markup -> Charm ->
+/// optional scale restore. SELL uses currency -> Charm only. There is no
+/// floating-point/VB final rounding step in the stock DLL callsites.
 /// </summary>
 public static class RuntimeClassicEconomyPricing
 {
-    // MMUD Explorer reproduces the legacy 32-bit overflow bug by repeatedly
-    // subtracting 0xFFFFFFFF when the post-Charm value exceeds that boundary.
-    private const decimal LegacyOverflowBoundary = 4_294_967_295m;
-
-    public const string MerchandiseFormulaId = "economy.classic.merchandise.mmexplorer_v111p_0282";
-    public const string TrainingFormulaId = "economy.classic.training.mmexplorer_v111p_0282";
+    public const string MerchandiseFormulaId = "economy.classic.merchandise.native_wccmmud_0334";
+    public const string TrainingFormulaId = "economy.classic.training.native_wccmmud_0334";
+    public const uint NativeBuyScaleThresholdCopper = 100_000u;
+    public const uint NativeBuyScaleDivisor = 100u;
 
     public static long QuoteBuyCopper(long baseCopper, int markupPercent, int charm)
     {
-        RequireInputs(baseCopper, markupPercent);
-        decimal value = baseCopper;
+        RequireInputs(baseCopper, markupPercent, charm);
+        var value = RequireNativeUInt32(baseCopper, "classic-economy-base-over-native-u32");
+        var scaled = value > NativeBuyScaleThresholdCopper;
+        if (scaled) value /= NativeBuyScaleDivisor;
 
-        // GetItemValue: nCopperBuy = nCopperBuy + Fix(nCopperBuy * (nMarkup / 100))
-        if (markupPercent > 0)
-            value += decimal.Truncate(value * markupPercent / 100m);
+        // WCCMMUD.DLL 0x0041c153..0x0041c169:
+        // floor(value * (shop.Markup + 100) / 100), using the low native DWORD.
+        value = NativeMultiplyDivide100(value, checked((uint)(markupPercent + 100)));
 
-        // GetItemValue stock branch:
-        // nCharmModBuy = 1 - ((Fix(nCharm / 5) - 10) / 100)
-        if (charm > 0)
-        {
-            var charmModifier = 1m - (((charm / 5) - 10) / 100m);
-            value *= charmModifier;
-            value = ApplyLegacyOverflow(value);
-        }
+        // WCCMMUD.DLL 0x0041c13c..0x0041c177:
+        // Charm factor = 110 - floor(Charm / 5). This runs even at Charm == 0.
+        var charmPercent = BuyCharmMultiplierPercent(charm);
+        value = NativeMultiplyDivide100(value, checked((uint)charmPercent));
 
-        return FinalVbRound(value);
+        // WCCMMUD.DLL 0x0041c17a..0x0041c184 restores the x100 scale after
+        // both integer pricing stages. The native IMUL keeps the low DWORD.
+        if (scaled) value = unchecked(value * NativeBuyScaleDivisor);
+        return value;
     }
 
     public static long QuoteSellCopper(long baseCopper, int charm)
     {
-        if (baseCopper < 0) throw new InvalidOperationException("classic-economy-base-negative");
-        decimal value = baseCopper;
+        if (charm < 0) throw new InvalidOperationException("classic-economy-charm-negative");
+        var value = RequireNativeUInt32(baseCopper, "classic-economy-base-over-native-u32");
 
-        // Stock selling is based on item value, not shop markup.
-        // nCharmModSell = Fix(nCharm / 2) + 25
-        // nCopperSell = Fix((nCharmModSell * nCopperSell) / 100)
-        if (charm > 0)
-        {
-            var charmPercent = (charm / 2) + 25;
-            value = charmPercent * value;
-            value = ApplyLegacyOverflow(value);
-            value = decimal.Truncate(value / 100m);
-        }
-
-        return FinalVbRound(value);
+        // WCCMMUD.DLL 0x0041c65b..0x0041c673:
+        // floor(baseCopper * (floor(Charm / 2) + 25) / 100).
+        // Shop markup is intentionally absent and Charm == 0 yields 25 percent.
+        return NativeMultiplyDivide100(value, checked((uint)SellCharmPercent(charm)));
     }
 
     public static long TrainingCostCopper(int trainingLevelIndex, int markupPercent)
@@ -61,38 +52,46 @@ public static class RuntimeClassicEconomyPricing
         if (trainingLevelIndex < 0) throw new InvalidOperationException("classic-training-level-negative");
         if (markupPercent < 0) throw new InvalidOperationException("classic-training-markup-negative");
 
-        // Recovered Pascal/MMUD Explorer formula:
-        // Result := (longword((Level * 5) * (Markup + 100)) div 100) * 10;
-        var value = decimal.Truncate((decimal)trainingLevelIndex * 5m * (markupPercent + 100m) / 100m) * 10m;
-        if (value > long.MaxValue) throw new OverflowException("classic-training-cost-overflow");
-        return (long)value;
+        // WCCMMUD.DLL 0x0041e95b..0x0041e981 computes the amount in silver:
+        // floor((Level * 5) * (Markup + 100) / 100). 0x0041e984..0x0041e990
+        // passes that value in the silver denomination slot, therefore x10 copper.
+        var levelTimesFive = checked((uint)trainingLevelIndex * 5u);
+        var silver = NativeMultiplyDivide100(levelTimesFive, checked((uint)(markupPercent + 100)));
+        return checked((long)silver * 10L);
     }
 
     public static int BuyCharmMultiplierPercent(int charm)
-        => charm > 0 ? 100 - ((charm / 5) - 10) : 100;
+    {
+        if (charm < 0) throw new InvalidOperationException("classic-economy-charm-negative");
+        var value = 110 - (charm / 5);
+        if (value < 0) throw new InvalidOperationException("classic-economy-buy-charm-factor-negative");
+        return value;
+    }
 
     public static int SellCharmPercent(int charm)
-        => charm > 0 ? (charm / 2) + 25 : 100;
+    {
+        if (charm < 0) throw new InvalidOperationException("classic-economy-charm-negative");
+        return checked((charm / 2) + 25);
+    }
 
-    private static void RequireInputs(long baseCopper, int markupPercent)
+    private static void RequireInputs(long baseCopper, int markupPercent, int charm)
     {
         if (baseCopper < 0) throw new InvalidOperationException("classic-economy-base-negative");
         if (markupPercent < 0) throw new InvalidOperationException("classic-economy-markup-negative");
+        if (charm < 0) throw new InvalidOperationException("classic-economy-charm-negative");
     }
 
-    private static decimal ApplyLegacyOverflow(decimal value)
+    private static uint RequireNativeUInt32(long value, string error)
     {
-        if (value <= LegacyOverflowBoundary) return value;
-        // Equivalent to the retained VB Do While loop without an unbounded loop.
-        var wraps = decimal.Floor((value - 1m) / LegacyOverflowBoundary);
-        return value - (wraps * LegacyOverflowBoundary);
+        if (value < 0 || value > uint.MaxValue) throw new InvalidOperationException(error);
+        return (uint)value;
     }
 
-    private static long FinalVbRound(decimal value)
+    private static uint NativeMultiplyDivide100(uint left, uint right)
     {
-        if (value <= 0m) return 0;
-        var rounded = decimal.Round(value, 0, MidpointRounding.ToEven);
-        if (rounded > long.MaxValue) throw new OverflowException("classic-economy-price-overflow");
-        return (long)rounded;
+        // The stock code uses 32-bit IMUL then clears EDX before unsigned DIV 100,
+        // so only the low DWORD of the product survives into the division.
+        var product = unchecked(left * right);
+        return product / 100u;
     }
 }

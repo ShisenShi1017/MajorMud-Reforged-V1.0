@@ -39,8 +39,20 @@ public sealed record RuntimeClassicDeathExperienceSmokeReport(
         Check(RuntimeClassicDeathExperienceAuthority.CalculateFinalRerollRetainedExperience(
                 1_000_000_000, 1, chart, playerKeepExperienceEnabled: true, globalKeepExperienceEnabled: true) == 0,
             "level-one-reroll-retains-zero");
-        Check(!RuntimeClassicDeathExperienceAuthority.FinalRerollConsumerConnected,
-            "final-reroll-consumer-remains-explicitly-gated");
+        Check(RuntimeClassicDeathExperienceAuthority.FinalRerollConsumerConnected,
+            "final-reroll-consumer-connected");
+        var tempRoot = Path.Combine(Path.GetTempPath(), "mmr-death-xp-smoke-" + Guid.NewGuid().ToString("N"));
+        try
+        {
+            RuntimeClassicPermanentDeathInfoStore.Save(tempRoot, "account", "Classic", "source", 123456, DateTimeOffset.UnixEpoch);
+            Check(RuntimeClassicPermanentDeathInfoStore.Peek(tempRoot, "account", "Classic")?.RetainedExperience == 123456,
+                "permanent-info-retained-xp-persisted");
+            Check(RuntimeClassicPermanentDeathInfoStore.Consume(tempRoot, "account", "Classic") == 123456,
+                "permanent-info-retained-xp-consumed-once");
+            Check(RuntimeClassicPermanentDeathInfoStore.Consume(tempRoot, "account", "Classic") == 0,
+                "permanent-info-retained-xp-second-consume-empty");
+        }
+        finally { if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true); }
 
         var catalog = RuntimeItemCatalog.Load(projectRoot, "Classic");
         var character = ProbeCharacter(2, 987_654_321);

@@ -38,20 +38,45 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public string RenderClassicParty(RuntimeSession session)
     {
-        var party = _partyGameplay.FindByMember(session.Actor.Id);
-        if (party is null) return "You are not in a party at the present time.";
+        SynchronizeClassicPartyActiveLocations();
+        var party = _partyGameplay.CaptureClassicDisplay(session.Actor.Id);
+        if (!party.HasAnyGroupSlot && party.LeaderId is null)
+            return "You are not in a party at the present time.";
+
         var rows = new List<string> { "The following people are in your travel party:" };
-        foreach (var member in party.Members.OrderBy(member => member.ActorId, StringComparer.OrdinalIgnoreCase))
+        foreach (var entry in party.Entries)
         {
-            var active = _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(member.ActorId, StringComparison.OrdinalIgnoreCase));
-            var character = _characters.LoadCharacter(member.ActorId);
-            var name = active?.Actor.DisplayName ?? character?.DisplayName ?? member.ActorId;
+            var active = _sessions.ActiveSessions.FirstOrDefault(candidate =>
+                candidate.Actor.Id.Equals(entry.ActorId, StringComparison.OrdinalIgnoreCase));
+            var character = _characters.LoadCharacter(entry.ActorId);
+            var name = active?.Actor.DisplayName ?? character?.DisplayName ?? entry.ActorId;
+            if (entry.Invited)
+            {
+                rows.Add($"   {name} [Invited]");
+                continue;
+            }
+
             var className = (active?.Actor as RuntimeCharacterActor)?.CharacterClass ?? character?.ClassName ?? "Unknown";
-            var hp = character is { MaximumHitPoints: > 0 } ? Math.Clamp(character.HitPoints * 100 / character.MaximumHitPoints, 0, 100) : 0;
-            var resource = character is { MaximumMana: > 0 } ? Math.Clamp(character.Mana * 100 / character.MaximumMana, 0, 100) : (int?)null;
-            var resourceKind = character is not null && RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId).Magic?.Type == 5 ? "K" : "M";
+            var hp = character is { MaximumHitPoints: > 0 }
+                ? Math.Clamp(character.HitPoints * 100 / character.MaximumHitPoints, 0, 100)
+                : 0;
+            var resource = character is { MaximumMana: > 0 }
+                ? Math.Clamp(character.Mana * 100 / character.MaximumMana, 0, 100)
+                : (int?)null;
+            var resourceKind = character is not null
+                && RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId).Magic?.Type == 5
+                ? "K"
+                : "M";
             var resourceText = resource is { } percent ? $"[{resourceKind}:{percent,3}%] " : string.Empty;
-            rows.Add($"   {name} ({className}) {resourceText}[H:{hp,3}%] - {member.Rank}");
+            rows.Add($"   {name} ({className}) {resourceText}[H:{hp,3}%] - {entry.Rank}");
+        }
+
+        if (party.LeaderId is { } leaderId && party.Entries.All(entry =>
+                !entry.ActorId.Equals(leaderId, StringComparison.OrdinalIgnoreCase)))
+        {
+            var leader = _sessions.ActiveSessions.FirstOrDefault(candidate =>
+                candidate.Actor.Id.Equals(leaderId, StringComparison.OrdinalIgnoreCase));
+            rows.Add($"   Following: {leader?.Actor.DisplayName ?? leaderId}");
         }
         return string.Join(Environment.NewLine, rows);
     }
@@ -64,8 +89,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     public IReadOnlyList<RuntimeSession> ResolveClassicPartyFollowers(RuntimeSession leader, string originRoomId)
     {
         SynchronizeClassicPartyActiveLocations();
-        return _partyGameplay.ResolveFollowerMoves(leader.Actor.Id, originRoomId, leader.CurrentRoom.Id)
-            .Select(move => _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Actor.Id.Equals(move.ActorId, StringComparison.OrdinalIgnoreCase)))
+        return _partyGameplay.ResolveClassicFollowerMoves(leader.Actor.Id, originRoomId, leader.CurrentRoom.Id)
+            .Select(move => _sessions.ActiveSessions.FirstOrDefault(candidate =>
+                candidate.Actor.Id.Equals(move.ActorId, StringComparison.OrdinalIgnoreCase)))
             .Where(candidate => candidate is not null)
             .Cast<RuntimeSession>()
             .ToArray();
@@ -74,31 +100,49 @@ public sealed partial class RuntimeLiveGameplayFacade
     private IReadOnlyList<RuntimeSpellTarget> ResolveClassicPartySpellTargets(RuntimeSession caster)
     {
         SynchronizeClassicPartyActiveLocations();
-        var party = _partyGameplay.FindByMember(caster.Actor.Id);
-        if (party is null) return [new RuntimeSpellTarget("character", caster.Actor.Id)];
-        return party.Members.Where(member => member.Connected)
-            .Select(member => _sessions.ActiveSessions.FirstOrDefault(active => active.Actor.Id.Equals(member.ActorId, StringComparison.OrdinalIgnoreCase)))
-            .Where(active => active is not null && active.World.Definition.Id.Equals(caster.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+        var ids = _partyGameplay.ResolveClassicType13ActorIds(caster.Actor.Id);
+        return ids
+            .Select(id => _sessions.ActiveSessions.FirstOrDefault(active =>
+                active.Actor.Id.Equals(id, StringComparison.OrdinalIgnoreCase)))
+            .Where(active => active is not null
+                && active.World.Definition.Id.Equals(caster.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
                 && active.CurrentRoom.Id.Equals(caster.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
             .Select(active => new RuntimeSpellTarget("character", active!.Actor.Id))
+            .DistinctBy(target => target.Id, StringComparer.OrdinalIgnoreCase)
             .OrderBy(target => target.Id, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
 
-    private void SynchronizeClassicPartyActiveLocations()
+    internal bool IsClassicPartyHostileRoomSpellTarget(RuntimeSession caster, RuntimeSpellTarget target)
     {
-        // Do not infer MajorMUD linkdead/disconnect membership behavior from session absence.
-        // Only connected sessions can safely refresh their current room. Explicit QUIT for a
-        // follower is handled separately from unexpected socket loss.
-        var memberships = _partyGameplay.CaptureAll()
-            .SelectMany(party => party.Members)
-            .Select(member => member.ActorId)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        foreach (var active in _sessions.ActiveSessions.Where(current => memberships.Contains(current.Actor.Id)))
-            _partyGameplay.SynchronizeConnection(active.Actor.Id, connected: true, active.CurrentRoom.Id);
+        if (!target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)) return true;
+        SynchronizeClassicPartyActiveLocations();
+        // Native _is_valid_target target-type 12 rejects self, direct leader/follower links,
+        // and every user id in the caster's five +0x6ae group slots.
+        return !_partyGameplay.IsClassicHostilePartyTargetExcluded(caster.Actor.Id, target.Id);
     }
 
-    public string ExecuteGangCommand(RuntimeSession session, RuntimeCommand command) => _gangGameplay.Execute(session, command);
+    public void StopClassicPartyFollowAfterFailedMove(RuntimeSession follower) =>
+        _partyGameplay.StopFollowingAfterFailedClassicMove(follower.Actor.Id);
+
+    private void SynchronizeClassicPartyActiveLocations()
+    {
+        // The native graph is live-session state. Register every active character so pending
+        // one-way invitation slots, leader pointers, rank bytes and room coordinates all share
+        // the same user index. Departure itself remains owned by the 0339 cleanup path.
+        foreach (var active in _sessions.ActiveSessions.Where(current => current.Actor is RuntimeCharacterActor))
+            _partyGameplay.SynchronizeClassicActor(active.Actor.Id, connected: true, active.CurrentRoom.Id);
+    }
+
+    public string ExecuteGangCommand(RuntimeSession session, RuntimeCommand command) =>
+        command.Name.Equals("disband", StringComparison.OrdinalIgnoreCase)
+        && command.Arguments.Count == 1
+        && command.Arguments[0].Equals("party", StringComparison.OrdinalIgnoreCase)
+            ? DisbandClassicParty(session)
+            : _gangGameplay.Execute(session, command);
+
+    public bool TryHandleClassicModalInput(RuntimeSession session, string input, out string result) =>
+        _gangGameplay.TryHandleClassicModalInput(session, input, out result);
 
     public bool TryExecuteMajorMudPlusAction(RuntimeSession session, RuntimeCommand command, out string result) =>
         _majorMudPlus.TryExecuteAction(session, command, out result, Living(session));
@@ -114,6 +158,20 @@ public sealed partial class RuntimeLiveGameplayFacade
             }
             return store;
         }
+    }
+
+    public string RenderHealth(RuntimeSession session)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor)
+            return "Health information is only available to a persistent character.";
+
+        var character = _characters.LoadCharacter(actor.Id);
+        if (character is null)
+            return "Health information is unavailable.";
+
+        var classDefinition = RuntimeCharacterCatalog.Load(_characters.ProjectRoot, character.WorldId).RequireClass(character.ClassId);
+        var resourceLabel = classDefinition.Magic?.Type == 5 ? "Kai" : "Mana";
+        return $"Health: {character.HitPoints}/{character.MaximumHitPoints}  {resourceLabel}: {character.Mana}/{character.MaximumMana}";
     }
 
     public string RenderScore(RuntimeSession session)

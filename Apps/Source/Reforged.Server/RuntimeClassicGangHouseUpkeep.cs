@@ -25,15 +25,15 @@ public sealed class RuntimeClassicGangHouseUpkeepService
             .ToDictionary(value => value.HouseId, value => checked((long)value.TaxValue), StringComparer.OrdinalIgnoreCase);
     }
 
-    public IReadOnlyList<RuntimeClassicGangHouseUpkeepResult> ProcessSundown(
-        string sundownCycleId,
-        DateTimeOffset sundownUtc)
+    public IReadOnlyList<RuntimeClassicGangHouseUpkeepResult> ProcessDailyAutoCleanup(
+        string cleanupCycleId,
+        DateTimeOffset cleanupUtc)
     {
-        if (string.IsNullOrWhiteSpace(sundownCycleId)) throw new ArgumentException("A stable sundown cycle ID is required.", nameof(sundownCycleId));
+        if (string.IsNullOrWhiteSpace(cleanupCycleId)) throw new ArgumentException("A stable mcurou cleanup cycle ID is required.", nameof(cleanupCycleId));
         var results = new List<RuntimeClassicGangHouseUpkeepResult>();
         foreach (var gang in _gangs.List().Where(value => !value.Disbanded && !string.IsNullOrWhiteSpace(value.GangHouseId)))
         {
-            if (string.Equals(gang.LastGangHouseSundownCycleId, sundownCycleId, StringComparison.OrdinalIgnoreCase)) continue;
+            if (string.Equals(gang.LastGangHouseSundownCycleId, cleanupCycleId, StringComparison.OrdinalIgnoreCase)) continue;
             var houseId = gang.GangHouseId!;
             if (!_taxByHouse.TryGetValue(houseId, out var taxGold) || taxGold <= 0)
                 throw new InvalidDataException($"No decoded positive GHouseTax exists for {houseId}.");
@@ -48,23 +48,23 @@ public sealed class RuntimeClassicGangHouseUpkeepService
             }
             catch (InvalidOperationException)
             {
-                _gangs.RepossessHouse(gang, sundownCycleId);
-                results.Add(new(gang.GangId, houseId, holderId, taxGold, "repossessed-insufficient-silvermere-bank-gold", sundownCycleId));
+                _gangs.RepossessHouse(gang, cleanupCycleId);
+                results.Add(new(gang.GangId, houseId, holderId, taxGold, "repossessed-insufficient-silvermere-bank-gold", cleanupCycleId));
                 continue;
             }
 
-            var updated = holder with { ItemState = debited, UpdatedAtUtc = sundownUtc };
-            _characters.SaveCharacter(updated, $"gang-house-sundown-tax:{sundownCycleId}:{houseId}");
+            var updated = holder with { ItemState = debited, UpdatedAtUtc = cleanupUtc };
+            _characters.SaveCharacter(updated, $"gang-house-auto-cleanup-tax:{cleanupCycleId}:{houseId}");
             try
             {
-                _gangs.RecordHouseUpkeep(gang, sundownCycleId, sundownUtc);
+                _gangs.RecordHouseUpkeep(gang, cleanupCycleId, cleanupUtc);
             }
             catch
             {
-                _characters.SaveCharacter(holder, $"gang-house-sundown-tax-rollback:{sundownCycleId}:{houseId}");
+                _characters.SaveCharacter(holder, $"gang-house-auto-cleanup-tax-rollback:{cleanupCycleId}:{houseId}");
                 throw;
             }
-            results.Add(new(gang.GangId, houseId, holderId, taxGold, "paid-from-silvermere-bank-gold", sundownCycleId));
+            results.Add(new(gang.GangId, houseId, holderId, taxGold, "paid-from-silvermere-bank-gold", cleanupCycleId));
         }
         return results;
     }

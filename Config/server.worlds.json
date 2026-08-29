@@ -63,6 +63,7 @@
     "enabled": true,
     "bindAddress": "127.0.0.1",
     "telnetPort": 4000,
+    "clientDataPort": 4001,
     "maxSessions": 32,
     "loginTimeoutSeconds": 120,
     "allowWorldSelection": true

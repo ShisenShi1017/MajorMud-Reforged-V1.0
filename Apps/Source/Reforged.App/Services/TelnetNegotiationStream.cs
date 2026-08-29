@@ -35,6 +35,7 @@ internal sealed class TelnetNegotiationStream : Stream
     private const byte OptionTerminalType = 24;
     private const byte OptionNaws = 31;
     private const byte OptionLineMode = 34;
+    private const byte OptionGmcp = 201;
 
     private const byte TerminalTypeIs = 0;
     private const byte TerminalTypeSend = 1;
@@ -43,6 +44,7 @@ internal sealed class TelnetNegotiationStream : Stream
     private readonly bool _negotiate;
     private readonly bool _captureTraffic;
     private readonly Action<string, bool>? _diagnostic;
+    private readonly Action<ReforgedClientDataEndpointAnnouncement>? _clientDataAnnouncement;
     private readonly Queue<byte> _decoded = new();
     private readonly byte[] _rawBuffer = new byte[8192];
     private readonly SemaphoreSlim _writeGate = new(1, 1);
@@ -76,12 +78,14 @@ internal sealed class TelnetNegotiationStream : Stream
         int columns,
         int rows,
         bool captureTraffic,
-        Action<string, bool>? diagnostic = null)
+        Action<string, bool>? diagnostic = null,
+        Action<ReforgedClientDataEndpointAnnouncement>? clientDataAnnouncement = null)
     {
         _inner = inner ?? throw new ArgumentNullException(nameof(inner));
         _negotiate = negotiate;
         _captureTraffic = captureTraffic;
         _diagnostic = diagnostic;
+        _clientDataAnnouncement = clientDataAnnouncement;
         _terminalType = NormalizeTerminalType(terminalType);
         _columns = Math.Clamp(columns, 20, ushort.MaxValue);
         _rows = Math.Clamp(rows, 5, ushort.MaxValue);
@@ -359,6 +363,22 @@ internal sealed class TelnetNegotiationStream : Stream
             Trace($"Sent terminal type {_terminalType}.", false);
         }
 
+        if (_subnegotiationOption == OptionGmcp && _subnegotiation.Count > 0)
+        {
+            var announcement = Encoding.ASCII.GetString(_subnegotiation.ToArray());
+            const string prefix = "Reforged.ClientData ";
+            var body = announcement.StartsWith(prefix, StringComparison.Ordinal) ? announcement[prefix.Length..] : string.Empty;
+            var parts = body.Split('|', 3, StringSplitOptions.TrimEntries);
+            if (parts.Length == 3 && parts[0] == "1" &&
+                int.TryParse(parts[1], NumberStyles.None, CultureInfo.InvariantCulture, out var port) &&
+                port is >= 1 and <= 65535 &&
+                parts[2].Length == 64 && parts[2].All(Uri.IsHexDigit))
+            {
+                _clientDataAnnouncement?.Invoke(new ReforgedClientDataEndpointAnnouncement(port, parts[2]));
+                Trace($"Accepted private Reforged client-data channel on port {port}.", false);
+            }
+        }
+
         _subnegotiation.Clear();
         _hasSubnegotiationOption = false;
     }
@@ -539,7 +559,8 @@ internal sealed class TelnetNegotiationStream : Stream
     private static bool SupportsRemoteOption(byte option) =>
         option is OptionBinary
             or OptionEcho
-            or OptionSuppressGoAhead;
+            or OptionSuppressGoAhead
+            or OptionGmcp;
 
     private static string CommandName(byte command) =>
         command switch
@@ -560,6 +581,7 @@ internal sealed class TelnetNegotiationStream : Stream
             OptionTerminalType => "TERMINAL-TYPE",
             OptionNaws => "NAWS",
             OptionLineMode => "LINEMODE",
+            OptionGmcp => "GMCP",
             _ => $"OPTION-{option.ToString(CultureInfo.InvariantCulture)}"
         };
 
@@ -663,3 +685,5 @@ internal sealed class TelnetNegotiationStream : Stream
     public override void SetLength(long value) =>
         throw new NotSupportedException();
 }
+
+internal sealed record ReforgedClientDataEndpointAnnouncement(int Port, string Token);

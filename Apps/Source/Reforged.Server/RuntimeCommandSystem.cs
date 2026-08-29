@@ -43,19 +43,59 @@ public sealed class RuntimeCommandDispatcher
     public string RenderClassicPrompt(RuntimeSession session) =>
         _gameplay?.RenderClassicPrompt(session) ?? ":";
 
+    public bool TryRenderClientData(RuntimeSession session, string input, out string result)
+    {
+        result = string.Empty;
+        if (_gameplay is null || string.IsNullOrWhiteSpace(input)) return false;
+
+        var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
+        if (!string.IsNullOrWhiteSpace(command.ResolutionError)) return false;
+
+        result = command.Name switch
+        {
+            "clientdata" => _gameplay.RenderClientPanelData(session, command),
+            "roomdata" => _gameplay.RenderClientRoomData(session, command),
+            "librarium" => _gameplay.RenderLibrarium(session, command),
+            "whohome" => _gameplay.RenderBossHomeStatus(session),
+            _ => string.Empty
+        };
+        return result.Length > 0;
+    }
+
+    public void HandleCharacterRerollCleanup(RuntimeSession session, string oldCharacterId) =>
+        _gameplay?.HandleCharacterRerollCleanup(session, oldCharacterId);
+
     public bool RequestsSessionExit(RuntimeSession session, string input)
     {
+        // Worldgroup modal states consume the next line as modal input; "QUIT" at state 0x88
+        // is therefore a cancel reply, not a session-exit command.
+        if (session.HasClassicModalInput) return false;
         var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
         var requested = string.IsNullOrWhiteSpace(command.ResolutionError)
                         && command.Name.Equals("quit", StringComparison.OrdinalIgnoreCase);
-        if (requested) _gameplay?.HandleExplicitClassicSessionExit(session);
+        if (requested) _gameplay?.PrepareClassicQuit(session);
         return requested;
     }
 
+    public RuntimeClassicLifecycleCleanupResult? CompleteGracefulSessionExit(RuntimeSession session) =>
+        _gameplay?.CompleteClassicGracefulLogoff(session);
+
+    public RuntimeClassicLifecycleCleanupResult? CompleteUnexpectedSessionExit(RuntimeSession session) =>
+        _gameplay?.CompleteClassicUnexpectedHangup(session);
+
     public string Dispatch(RuntimeSession session, string input)
     {
-        var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
         session.Touch();
+        if (_gameplay is not null && _gameplay.TryHandleClassicModalInput(session, input, out var modalResult))
+            return modalResult;
+
+        // Native command admission checks the live-user delay byte (+0x6BB) before normal
+        // gameplay parsing. While non-zero it routes the raw input line through the per-user
+        // pending-command owner at 0x450FA1 instead of discarding it. Modal input remains above
+        // this guard because Worldgroup owns that state.
+        if (session.ClassicCommandDelay > 0) return session.QueueClassicPendingCommand(input);
+
+        var command = RuntimeCommand.Parse(input, session.World.CommandCatalog);
         if (command.Name.Length == 0)
         {
             return _gameplay?.RenderBlankCommand(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
@@ -121,6 +161,9 @@ public sealed class RuntimeCommandDispatcher
                                 !_gameplay.CanEnterGangHouse(follower, command.Name, out followerFailure) ||
                                 !follower.TryMove(command.Name, out followerResult))
                             {
+                                // Native _fast_update_character calls _move_user(..., mode 3) for
+                                // a follower and clears +0x6aa whenever that move returns false.
+                                _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
                                 follower.EnqueueMessage($"You cannot follow your party leader {command.Name}: {(string.IsNullOrWhiteSpace(followerFailure) ? followerResult : followerFailure)}");
                                 continue;
                             }
@@ -192,6 +235,7 @@ public sealed class RuntimeCommandDispatcher
             "statline" => _gameplay?.ConfigureClassicStatline(session, command.ArgumentText, invokedThroughSet: false) ?? "Live gameplay facade is not attached.",
             "set" => _gameplay?.ConfigureClassicSetting(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "examine" => _gameplay?.Examine(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
+            "exits" => _gameplay?.RenderObviousExits(session) ?? "Live gameplay facade is not attached.",
             "say" => _gameplay?.Say(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "talk" => _gameplay?.ConfigureMajorMudTalkMode(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "gossip" => _gameplay?.Gossip(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
@@ -199,7 +243,9 @@ public sealed class RuntimeCommandDispatcher
             "broadcast" => _gameplay?.Broadcast(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "forget" => _gameplay?.ForgetTelepath(session, command.ArgumentText) ?? "Live gameplay facade is not attached.",
             "messages" => _gameplay?.DrainMessages(session) ?? string.Empty,
+            "page" => _gameplay?.ConfigureClassicPage(session) ?? "Live gameplay facade is not attached.",
             "score" => _gameplay?.RenderScore(session) ?? "Live gameplay facade is not attached.",
+            "health" => _gameplay?.RenderHealth(session) ?? "Live gameplay facade is not attached.",
             "character" => _gameplay?.RenderCharacterMenu(session) ?? "Live gameplay facade is not attached.",
             "wealth" => _gameplay?.RenderWealth(session) ?? "Live gameplay facade is not attached.",
             "experience" => _gameplay?.RenderExperience(session) ?? "Live gameplay facade is not attached.",
@@ -209,6 +255,8 @@ public sealed class RuntimeCommandDispatcher
                 ? (_gameplay?.RenderEquipment(session) ?? "Live gameplay facade is not attached.")
                 : ExecuteItem(session, RuntimeCommand.Parse($"equip {command.ArgumentText}")),
             "party" => _gameplay?.RenderClassicParty(session) ?? "Live gameplay facade is not attached.",
+            "profile" => _gameplay?.RenderClassicProfile(session) ?? "Live gameplay facade is not attached.",
+            "scan" => _gameplay?.RenderClassicUserScan(session) ?? "Live gameplay facade is not attached.",
             "whohome" => _gameplay?.RenderBossHomeStatus(session) ?? "Live gameplay facade is not attached.",
             "librarium" => _gameplay?.RenderLibrarium(session, command) ?? "Live gameplay facade is not attached.",
             "roomdata" => _gameplay?.RenderClientRoomData(session, command) ?? "Live gameplay facade is not attached.",
@@ -223,10 +271,11 @@ public sealed class RuntimeCommandDispatcher
             "leave" when command.Arguments.FirstOrDefault()?.Equals("gang", StringComparison.OrdinalIgnoreCase) == true => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
             "invite" or "uninvite" or "follow" or "frontrank" or "midrank" or "backrank" or "join" or "leave" => _gameplay?.ExecuteClassicPartyCommand(session, command) ?? "Live gameplay facade is not attached.",
             "share" => _gameplay?.ExecuteClassicShare(session, command) ?? "Live gameplay facade is not attached.",
+            "stock" or "unstock" or "markup" => _gameplay?.ExecuteClassicGangShopCommand(session, command) ?? "Live gameplay facade is not attached.",
             "create" or "broadgang" or "disband" or "promote" or "demote" or "topten" => _gameplay?.ExecuteGangCommand(session, command) ?? "Live gameplay facade is not attached.",
             var nativeEvidenceCommand when route.Kind is RuntimeCommandRouteKind.NativeEvidenceGate => ExecuteEvidenceGatedNativeCommand(session, command),
             "audit" => _gameplay?.ExecuteAuditCommand(session, command) ?? "Live gameplay facade is not attached.",
-            "get" or "drop" or "put" or "give" or "equip" or "wear" or "wield" or "remove" => ExecuteItem(session, command),
+            "get" or "drop" or "put" or "give" or "equip" or "wear" or "wield" or "ready" or "remove" => ExecuteItem(session, command),
             "open" or "close" or "lock" or "unlock" or "pull" or "push" or "activate" or "picklock" or "disarm" => _gameplay?.ExecuteLivingWorldCommand(session, command) ?? "Live gameplay facade is not attached.",
             "worldstate" => _gameplay?.RenderLivingWorldState(session) ?? "Live gameplay facade is not attached.",
             "services" or "list" => _gameplay?.ExecuteLiveServicesBundleCommand(session, command) ?? "Live gameplay facade is not attached.",
@@ -240,6 +289,7 @@ public sealed class RuntimeCommandDispatcher
             "state" => _state?.RenderStatus() ?? "Runtime state store is not attached.",
             "events" => _events?.RenderStatus() ?? "Runtime event dispatcher is not attached.",
             "help" or "commands" => RenderHelp(session, command),
+            "reroll" when route.Kind is RuntimeCommandRouteKind.SessionLifecycle => "REROLL requires an interactive character-creation session.",
             "quit" => "Goodbye.",
                 _ => throw new InvalidOperationException($"Registered command '{command.Name}' is assigned to route '{route.Kind}' but has no executable dispatcher branch.")
             };
@@ -257,7 +307,7 @@ public sealed class RuntimeCommandDispatcher
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["look"] = "look [direction|object]", ["brief"] = "brief", ["verbose"] = "verbose",
-            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set follow [blind|normal] | set speech [fast|slow] | set messages low|medium|high | set entrances [on|off] | set telepath | set gossip [on|off] | set auction [on|off]",
+            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set follow [blind|normal] | set speech [fast|slow] | set messages [low|medium|high] | set entrances [on|off] | set telepath [on|off] | set gossip [on|off] | set auction [on|off] | set maxpages|maxgossip|maxauction <n>",
             ["search"] = "search [object]", ["examine"] = "examine <target>", ["score"] = "score",
             ["character"] = "character", ["wealth"] = "wealth",
             ["experience"] = "experience", ["inventory"] = "inventory", ["keys"] = "keys", ["equipment"] = "equipment",
@@ -271,7 +321,7 @@ public sealed class RuntimeCommandDispatcher
             ["ask"] = "ask <npc> <keyword>", ["greet"] = "greet <npc>", ["talk"] = "talk fast|slow", ["say"] = "say <message>",
             ["gossip"] = "gossip [message]", ["auction"] = "auction [message]", ["forget"] = "forget [player]",
             ["messages"] = "messages", ["services"] = "services", ["list"] = "list", ["buy"] = "buy <item> [quantity]",
-            ["follow"] = "follow <player>", ["join"] = "join <player>|<broadcast-group>|gang <gang>", ["leave"] = "leave [gang]", ["frontrank"] = "frontrank", ["midrank"] = "midrank", ["backrank"] = "backrank",
+            ["follow"] = "follow [player]", ["join"] = "join <player>|<broadcast-group>|gang <gang>", ["leave"] = "leave [gang]", ["frontrank"] = "frontrank", ["midrank"] = "midrank", ["backrank"] = "backrank",
             ["sell"] = "sell <item> [quantity]", ["repair"] = "repair <item>", ["train"] = "train [skill|stat]",
             ["bank"] = "bank", ["deposit"] = "deposit <amount> <denomination>",
             ["withdraw"] = "withdraw <amount> <denomination>", ["trade"] = "trade <arguments>",
@@ -280,7 +330,7 @@ public sealed class RuntimeCommandDispatcher
             ["drag"] = "drag <character>", ["go"] = "go <location>", ["health"] = "health", ["map"] = "map", ["profile"] = "profile", ["track"] = "track <user>",
             ["aid"] = "aid", ["light"] = "light <item>", ["stash"] = "stash <item>", ["mana"] = "mana", ["invoke"] = "invoke <kai power>", ["read"] = "read <scroll>",
             ["suicide"] = "suicide", ["reroll"] = "reroll", ["appraise"] = "appraise <item>", ["eat"] = "eat <item>", ["drink"] = "drink <item>", ["rob"] = "rob <target>",
-            ["ready"] = "ready", ["exits"] = "exits", ["picklock"] = "picklock <direction>", ["disarm"] = "disarm trap <direction>", ["page"] = "page", ["broadcast"] = "broadcast [message]", ["share"] = "share <amount> <currency> [with room|party]",
+            ["ready"] = "ready <item>", ["exits"] = "exits", ["picklock"] = "picklock <direction>", ["disarm"] = "disarm trap <direction>", ["page"] = "page", ["broadcast"] = "broadcast [message]", ["share"] = "share <amount> <currency> [with room|party]",
             ["scan"] = "scan", ["quiet"] = "quiet", ["topten"] = "topten | top <n> <class> | topten gangs | top <n> gangs", ["stock"] = "stock <item> [price] [currency]", ["unstock"] = "unstock <item>", ["markup"] = "markup <percent>",
             ["where"] = "where", ["help"] = "help [command]", ["commands"] = "commands", ["quit"] = "quit",
             ["mudplus"] = "mudplus", ["description"] = "description [set <line1>|<line2>]",
@@ -292,7 +342,7 @@ public sealed class RuntimeCommandDispatcher
             ["combat"] = "combat", ["dispel"] = "dispel <effect|target>",
             ["events"] = "events", ["hide"] = "hide", ["lock"] = "lock <object|direction>",
             ["open"] = "open <object|direction>", ["prepare"] = "prepare",
-            ["pull"] = "pull <object>", ["push"] = "push <object>", ["ready"] = "ready",
+            ["pull"] = "pull <object>", ["push"] = "push <object>",
             ["recover"] = "recover", ["respawn"] = "respawn", ["round"] = "round",
             ["sessions"] = "sessions", ["smash"] = "smash <target>", ["sneak"] = "sneak",
             ["punch"] = "punch <target>", ["kick"] = "kick <target>", ["jumpkick"] = "jumpkick <target>",
@@ -362,7 +412,7 @@ public sealed class RuntimeCommandDispatcher
             ? "Movement"
             : isContextual ? "Contextual room action"
             : route.Kind is RuntimeCommandRouteKind.RuntimeDiagnostics ? "Host/diagnostic"
-            : route.Kind is RuntimeCommandRouteKind.SessionExit ? "Session"
+            : route.Kind is RuntimeCommandRouteKind.SessionExit or RuntimeCommandRouteKind.SessionLifecycle ? "Session"
             : "Player";
         return $"{registration.Canonical.ToUpperInvariant()}" + Environment.NewLine +
                $"Usage: {usage}" + Environment.NewLine +
@@ -387,6 +437,13 @@ public sealed class RuntimeCommandDispatcher
     {
         result = string.Empty;
         if (_gameplay is null) return false;
+
+        // MegaMUD BBS profiles can issue the configured ANSI command when a
+        // session begins. Reforged is always ANSI-capable, so acknowledge the
+        // stock "=a" command silently instead of leaking it into SAY text.
+        if (command.RawInput.Trim().Equals("=a", StringComparison.OrdinalIgnoreCase))
+            return true;
+
         if (_gameplay.TryExecuteMajorMudPowerShortcut(session, command, out result)) return true;
         if (_gameplay.TryExecuteMajorMudPlusAction(session, command, out result)) return true;
         if (_gameplay.TryExecuteDecodedWorldCommand(session, command, out result))

@@ -140,12 +140,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
 
         SynchronizeClassicPartyActiveLocations();
-        var party = _partyGameplay.FindByMember(source.Actor.Id);
-        if (party is null) return Array.Empty<RuntimeSession>();
-        return party.Members
-            .Where(member => member.Connected && !member.ActorId.Equals(source.Actor.Id, StringComparison.OrdinalIgnoreCase))
-            .Select(member => _sessions.ActiveSessions.FirstOrDefault(active => active.Actor.Id.Equals(member.ActorId, StringComparison.OrdinalIgnoreCase)))
-            .Where(active => active is not null && active.World.Definition.Id.Equals(source.World.Definition.Id, StringComparison.OrdinalIgnoreCase))
+        var partyActorIds = _partyGameplay.ResolveClassicTravelPartyActorIds(source.Actor.Id);
+        return partyActorIds
+            .Where(id => !id.Equals(source.Actor.Id, StringComparison.OrdinalIgnoreCase))
+            .Select(id => _sessions.ActiveSessions.FirstOrDefault(active =>
+                active.Actor.Id.Equals(id, StringComparison.OrdinalIgnoreCase)))
+            .Where(active => active is not null
+                && active.World.Definition.Id.Equals(source.World.Definition.Id, StringComparison.OrdinalIgnoreCase))
             .Cast<RuntimeSession>()
             .ToArray();
     }

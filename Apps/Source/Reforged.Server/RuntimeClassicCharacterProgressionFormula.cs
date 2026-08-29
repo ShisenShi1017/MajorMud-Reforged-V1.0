@@ -11,6 +11,7 @@ public static class RuntimeClassicCharacterProgressionFormula
     public const string PicklocksFormulaId = "character.stock_picklocks";
     public const int PicklocksGrantAbilityId = 37;
     public const int MaximumLives = 9;
+    public const int LivesPerPromotion = 5;
 
     private const long MaxUInt32 = 4_294_967_295L;
     private const long Billion = 1_000_000_000L;
@@ -147,12 +148,22 @@ public static class RuntimeClassicCharacterProgressionFormula
         var intellect = ReadStat(character.BaseStats, "intellect", "intelligence", "int");
         var value = PicklocksBase(character.Level, agility, intellect);
         var acquiredValues = RuntimeCharacterAbilityValues.Restore(character.Conditions);
-        var acquiredBonus = RuntimeCharacterAbilityValues.Read(acquiredValues, 180);
-        var equipmentBonus = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
-            character, "picklocks_bonus", acquiredBonus);
-        value = checked(value + acquiredBonus + equipmentBonus);
+        var acquiredAbilityBonus = RuntimeCharacterAbilityValues.Read(acquiredValues, PicklocksGrantAbilityId);
+        var equipmentAbilityBonus = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
+            character, "picklocks_ability_bonus", acquiredAbilityBonus);
+        var acquiredPicklocksValue = RuntimeCharacterAbilityValues.Read(acquiredValues, 180);
+        var equipmentPicklocksValue = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(
+            character, "picklocks_bonus", acquiredPicklocksValue);
+        value = checked(value + acquiredAbilityBonus + equipmentAbilityBonus);
+        value = checked(value + acquiredPicklocksValue + equipmentPicklocksValue);
         value = checked(value + RuntimeClassicStatusProjection.Numeric(character, "picklocks"));
-        return value;
+        return Math.Max(0, value);
+    }
+
+    public static int LivesAfterPromotion(int currentLives)
+    {
+        var bounded = Math.Clamp(currentLives, 0, MaximumLives);
+        return Math.Min(MaximumLives, checked(bounded + LivesPerPromotion));
     }
 
     public static int ReadLives(RuntimeCharacterRecord character)

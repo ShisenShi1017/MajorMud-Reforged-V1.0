@@ -1583,6 +1583,21 @@ if (args.Any(arg => string.Equals(arg, "--smoke-global-world-state", StringCompa
 }
 
 
+if (args.Any(arg => string.Equals(arg, "--smoke-megamud-connection", StringComparison.OrdinalIgnoreCase)))
+{
+    try
+    {
+        var smoke = await RuntimeMegaMudConnectionSmokeReport.RunAsync().ConfigureAwait(false);
+        Console.WriteLine(smoke.ToJson());
+        return smoke.Passed ? 0 : 1;
+    }
+    catch (Exception exception)
+    {
+        Console.Error.WriteLine($"MegaMUD connection smoke failed: {exception.Message}");
+        return 1;
+    }
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-parity-closure", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeClassicParityClosureSmokeReport.Run(projectRoot);

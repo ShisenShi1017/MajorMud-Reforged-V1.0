@@ -1,0 +1,92 @@
+{
+  "schema": "majormud.native-organization-persistence-services-evidence.v1",
+  "code_update": "0344",
+  "dll": {
+    "name": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "packaged": false
+  },
+  "scope": [
+    "daily mcurou gang-house world/deed cleanup",
+    "embedded gang-house healer, guard, key, emblem, and rubbish services",
+    "CLEARITEM 0 room-item ownership",
+    "ADDDELAY live delay byte and delayed-command queue",
+    "type-11 player-managed gang-shop STOCK/UNSTOCK/MARKUP/LIST/BUY/SELL boundary"
+  ],
+  "native_findings": [
+    {
+      "id": "mcurou-world-deed-cleanup",
+      "owner": "_ljngame_mcurou + gang-house room/deed loops",
+      "finding": "The daily native cleanup removes persisted floor contents and room currency from inactive/repossessed houses, removes stray house deeds from room floors, returns one deed to the Realm Deed Office when a house is unowned, and suppresses that deed while the house is actively owned."
+    },
+    {
+      "id": "clearitem-zero-room-owner",
+      "owner": "textblock CLEARITEM parser @ 0x00471384 -> room-item owner @ 0x0046C241",
+      "finding": "CLEARITEM 0 recursively clears all 17 visible plus 15 hidden native room item slots. It does not clear room currency; mcurou currency cleanup is a separate owner."
+    },
+    {
+      "id": "ganghouse-textblock-services",
+      "owner": "decoded authoritative textblocks 1602-1642",
+      "finding": "The retained database scripts provide exact house credentials, prices, healer spells, guard NPCs, generated keys/emblems, failure/message payload references, delays, and rubbish-room CLEARITEM 0 sequences. The initial string-form 'summon healer/guard' token is the player trigger; the later numeric SUMMON is the effect."
+    },
+    {
+      "id": "adddelay-and-pending-command-owner",
+      "owner": "ADDDELAY parser @ 0x00471760 and pending-command owner @ 0x00450FA1",
+      "finding": "ADDDELAY adds to the live user byte at +0x6BB. Commands entered while delayed are queued rather than discarded; the native linked queue warns after nine existing queued nodes and refuses the next command after twelve existing nodes, yielding a 13-command retained maximum."
+    },
+    {
+      "id": "gang-shop-stock-owner",
+      "owner": "STOCK @ 0x00452B1E",
+      "finding": "Type-11 gang shops require the matching Ability-184 controller item, own ten merchandise slots with a 20-unit per-slot cap, and retain per-slot price/currency. Duplicate item IDs may occupy a later slot after an earlier matching slot reaches 20. Native stock rejection covers GameLimit items, ability/ownership restrictions, equipped cursed-retained cases, and the item no-giveaway flag."
+    },
+    {
+      "id": "gang-shop-unstock-owner",
+      "owner": "UNSTOCK @ 0x0045326B",
+      "finding": "UNSTOCK ALL drains all ten slots onto the room floor and clears slot state. Single UNSTOCK selects a matching slot using the native lowest-quantity search and returns exactly one item to the character."
+    },
+    {
+      "id": "gang-shop-markup-owner",
+      "owner": "MARKUP @ 0x00453715",
+      "finding": "The native type-11 MARKUP command requires the Ability-184 controller and clamps the stored WORD markup to 0..1000 percent."
+    },
+    {
+      "id": "gang-shop-sell-boundary",
+      "owner": "merchandise SELL owner @ 0x0041C43C",
+      "finding": "Shop type 11 exits the generic SELL owner immediately with 'You may not sell items to a gang shop.' Player-managed gang shops therefore have no invented player-to-shop resale path."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicGangHouseWorldCleanup.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangHouseServices.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangShop.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicTextblockGraphAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicRoomCurrency.cs",
+    "Apps/Source/Reforged.Server/RuntimeSession.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicAutoCleanup.cs",
+    "Apps/Source/Reforged.Server/ServerRuntimeHost.cs"
+  ],
+  "runtime_corrections": [
+    "Daily mcurou cleanup now mutates the live persisted room-item/currency owners and reconciles gang-house deeds in shop.124.",
+    "Decoded gang-house healer, guard, key, emblem, and rubbish service scripts execute from their exact textblock operations rather than generic shop guesses.",
+    "CLEARITEM 0 removes the complete persisted room item tree while leaving room currency to its separate native owner.",
+    "ADDDELAY uses an 8-bit live delay and queues commands with native warning/refusal thresholds; queued commands drain through the normal dispatcher as delay expires.",
+    "Type-11 gang shops use a dedicated persisted ten-slot owner for STOCK, UNSTOCK, MARKUP, LIST and BUY, and explicitly reject SELL.",
+    "STOCK removes exactly one owned item/stack unit rather than incorrectly requiring the item definition to be consumable."
+  ],
+  "parity": {
+    "before": {"PASS": 125, "STRONG": 75, "UNKNOWN": 0},
+    "after": {"PASS": 126, "STRONG": 74, "UNKNOWN": 0},
+    "promotions": ["native.organizations.persistence-services"],
+    "reason": "The remaining organization-specific persistence and house-service owners are now directly native-backed, connected to live persisted runtime state, and covered by executable regression checks."
+  },
+  "out_of_scope_remaining_assertions": [
+    "global Btrieve/MKDE save coordination and durability remain under native.save-coordination",
+    "Worldgroup page/telegram/channel presentation and broader communication edges remain under communication assertions",
+    "generic non-gang shop/healer service gaps remain under their own economy/service assertions"
+  ]
+}

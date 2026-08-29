@@ -1,0 +1,115 @@
+{
+  "schema": "majormud.native-gang-communications-edge-evidence.v1",
+  "code_update": "0341",
+  "dll": {
+    "name": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "packaged": false
+  },
+  "scope": [
+    "gang disband/offline-drain/name reuse",
+    "gang cleanup owner and house ordering",
+    "communication profile defaults/serialization",
+    "SET TELEPATH polarity",
+    "SET MAXPAGES/MAXGOSSIP/MAXAUCTION range and counter behavior"
+  ],
+  "native_findings": [
+    {
+      "id": "communication-fresh-defaults",
+      "owner": "fresh-character init @ 0x004165FB",
+      "finding": "PAGE=1; counters=0; MAXPAGES/MAXGOSSIP/MAXAUCTION=3; communication flags initialize with TELEPATH block clear."
+    },
+    {
+      "id": "communication-record-map-save",
+      "owner": "profile save @ 0x00471F6C",
+      "finding": "MESSAGES -> record+0x3B; flags +0x700 -> +0x3C; display flags +0x7D4 -> +0x6A; MAXPAGES -> +0x3E; MAXGOSSIP -> +0xA9; MAXAUCTION -> +0xAA."
+    },
+    {
+      "id": "communication-record-map-load",
+      "owner": "profile load @ 0x004723AD",
+      "finding": "The same persisted fields restore directly into live profile fields; zero MAX* legacy values are compatibility-normalized after load."
+    },
+    {
+      "id": "page-session-only",
+      "owner": "PAGE dispatch @ 0x004145CF",
+      "finding": "PAGE toggles live +0x6E1 and requests save, but +0x6E1 is absent from the recovered persisted profile map."
+    },
+    {
+      "id": "telepath-polarity",
+      "owner": "_cmd_set @ 0x00459DDF",
+      "finding": "SET TELEPATH ON clears bit 0x20 (do not block); OFF sets bit 0x20 (block future telepaths)."
+    },
+    {
+      "id": "max-byte-parser",
+      "owner": "_cmd_set @ 0x0045933E",
+      "finding": "SET MAX* uses atol; values >255 are capped to 255; otherwise AL is stored, preserving low-byte wrap for negative values."
+    },
+    {
+      "id": "fast-counter-reset",
+      "owner": "fast character update @ 0x004228C4",
+      "finding": "page/telepath, gossip and auction receive counters are zeroed by the native fast update."
+    },
+    {
+      "id": "channel-counter-edge",
+      "owner": "global channel broadcaster @ 0x0046AF59",
+      "finding": "GOSSIP/AUCTION rejects only when current counter > configured maximum, then increments an 8-bit counter."
+    },
+    {
+      "id": "telepath-counter-edge",
+      "owner": "telepath owner @ 0x00457300",
+      "finding": "telepath checks page counter against MAXPAGES with the same pre-increment boundary and block flag."
+    },
+    {
+      "id": "gang-disband-marker",
+      "owner": "_remove_from_gang/_cmd_disband",
+      "finding": "Leader disband marks the gang and strips connected members immediately; offline former members remain in the native member count."
+    },
+    {
+      "id": "gang-offline-drain",
+      "owner": "character load @ 0x0041559C",
+      "finding": "An offline former member loading a disbanded gang has lieutenant state stripped, gang member count decremented, receives the disband notice, and loses the gang field."
+    },
+    {
+      "id": "gang-cleanup-delete",
+      "owner": "exported cleanup @ 0x004091FD, sweep @ 0x0040A8F6",
+      "finding": "gang record is deleted during cleanup when member count is zero (or force-delete flag bit 0x2 is set); only then can the name be recreated."
+    },
+    {
+      "id": "gang-house-cleanup-order",
+      "owner": "exported cleanup @ 0x004091FD",
+      "finding": "tax/deed/room cleanup occurs before MajorMUD user cleanup and final gang-record sweep; deed can be restored to deed shop and unprotected house contents are cleaned."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicCommunicationPersistenceLimitsAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeSession.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeSessionManager.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicCleanup.cs"
+  ],
+  "parity": {
+    "before": {
+      "PASS": 125,
+      "STRONG": 75,
+      "UNKNOWN": 0
+    },
+    "after": {
+      "PASS": 125,
+      "STRONG": 75,
+      "UNKNOWN": 0
+    },
+    "promotions": [],
+    "reason": "Meaningful native edges remain in both broad assertions: Worldgroup page/telegram/rendering ownership for communications, and exact interactive disband confirmation plus invitation-storage migration/presentation edges for gangs."
+  },
+  "remaining_gates": [
+    "exact Worldgroup page/telegram host handoff",
+    "exact page/channel presentation and per-message priority membership",
+    "exact interactive gang DISBAND Y/N dispatcher integration",
+    "migrate Reforged gang invitations from persisted JSON to truly transient runtime ownership without compatibility loss",
+    "remaining gang-house embedded-service presentation edges"
+  ]
+}

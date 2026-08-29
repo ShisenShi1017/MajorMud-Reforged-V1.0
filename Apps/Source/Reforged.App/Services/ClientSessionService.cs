@@ -95,6 +95,8 @@ public sealed partial class ClientSessionService : IClientSessionService
         public readonly ClassicLibrariumCatalogParser LibrariumParser = new();
         public readonly ClassicLibrariumPageParser LibrariumPageParser = new();
         public readonly ReforgedClientProtocolFilter ProtocolFilter = new();
+        public ReforgedClientDataEndpointAnnouncement? ClientDataEndpoint;
+        public readonly SemaphoreSlim ClientDataGate = new(1, 1);
         public Task? RouteTask;
         public bool SuppressReconnect;
         public readonly SemaphoreSlim SendGate = new(1, 1);
@@ -173,7 +175,12 @@ public sealed partial class ClientSessionService : IClientSessionService
                         session,
                         runtime,
                         message,
-                        traffic));
+                        traffic),
+                announcement =>
+                    HandleClientDataAnnouncement(
+                        session,
+                        runtime,
+                        announcement));
 
             var reader = new StreamReader(
                 telnetStream,
@@ -272,8 +279,68 @@ public sealed partial class ClientSessionService : IClientSessionService
             : $"{root} {arguments.ToLowerInvariant()}";
     }
 
-    public Task SendClientProtocolCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default) =>
-        SendCommandCoreAsync(sessionId, command, echoToTerminal: false, ClientCommandOrigin.ClientProtocol, cancellationToken);
+    public async Task SendClientProtocolCommandAsync(string sessionId, string command, CancellationToken cancellationToken = default)
+    {
+        var session = GetSession(sessionId);
+        var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
+            throw new InvalidOperationException($"{session.DisplayName} is not connected.");
+        if (!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol))
+            return;
+
+        var text = command?.Trim() ?? string.Empty;
+        if (text.Length == 0 || !runtime.AutomationDeduplicator.ShouldSend(text, ClientCommandOrigin.ClientProtocol, DateTimeOffset.UtcNow))
+            return;
+
+        var endpoint = runtime.ClientDataEndpoint;
+        if (endpoint is null)
+            return;
+
+        await runtime.ClientDataGate.WaitAsync(cancellationToken);
+        try
+        {
+            using var requestTimeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+            requestTimeout.CancelAfter(TimeSpan.FromSeconds(5));
+            var requestToken = requestTimeout.Token;
+
+            NoteClientProtocolParsers(runtime, text);
+            using var client = new TcpClient { NoDelay = true };
+            await client.ConnectAsync(session.HostName, endpoint.Port, requestToken);
+            using var stream = client.GetStream();
+            using var reader = new StreamReader(stream, new UTF8Encoding(false), false, 4096, leaveOpen: true);
+            await using var writer = new StreamWriter(stream, new UTF8Encoding(false), 4096, leaveOpen: true)
+            {
+                AutoFlush = true,
+                NewLine = "\n"
+            };
+
+            var request = JsonSerializer.Serialize(new ReforgedClientDataRequest(endpoint.Token, text));
+            await writer.WriteLineAsync(request.AsMemory(), requestToken);
+            var responseLine = await reader.ReadLineAsync(requestToken);
+            if (string.IsNullOrWhiteSpace(responseLine))
+                throw new IOException("Private client-data channel closed without a response.");
+            var response = JsonSerializer.Deserialize<ReforgedClientDataResponse>(responseLine)
+                ?? throw new IOException("Private client-data response was empty.");
+            if (!response.Ok)
+                throw new InvalidOperationException(response.Error.Length == 0 ? "Private client-data request was rejected." : response.Error);
+
+            var protocol = new ReforgedClientProtocolFilter();
+            var protocolResult = protocol.Process(response.Data + "\n");
+            if (protocolResult.Messages.Count == 0)
+                return;
+
+            await OnUiAsync(() =>
+            {
+                session.LastServerActivityAt = DateTimeOffset.Now;
+                foreach (var message in protocolResult.Messages)
+                    ParseClientProtocol(session, message);
+            });
+        }
+        finally
+        {
+            runtime.ClientDataGate.Release();
+        }
+    }
 
     public Task SendKeyAsync(string sessionId, string sequence, CancellationToken cancellationToken = default) =>
         SendRawCoreAsync(sessionId, sequence, cancellationToken);
@@ -297,6 +364,22 @@ public sealed partial class ClientSessionService : IClientSessionService
                 runtime,
                 snapshot.Columns,
                 snapshot.Rows);
+    }
+
+    private static void NoteClientProtocolParsers(Runtime runtime, string text)
+    {
+        var parserCommand = text.StartsWith("clientdata ", StringComparison.OrdinalIgnoreCase)
+            ? text["clientdata ".Length..].Trim()
+            : text;
+        runtime.RoomParser.NoteOutboundCommand(parserCommand);
+        runtime.StatParser.NoteOutboundCommand(parserCommand);
+        runtime.ItemScreenParser.NoteOutboundCommand(parserCommand);
+        runtime.SpellbookParser.NoteOutboundCommand(parserCommand);
+        runtime.PartyParser.NoteOutboundCommand(parserCommand);
+        runtime.WhoParser.NoteOutboundCommand(parserCommand);
+        runtime.BossHomeParser.NoteOutboundCommand(text);
+        runtime.LibrariumParser.NoteOutboundCommand(text);
+        runtime.LibrariumPageParser.NoteOutboundCommand(text);
     }
 
     private async Task SendCommandCoreAsync(string sessionId, string command, bool echoToTerminal, ClientCommandOrigin origin, CancellationToken cancellationToken)
@@ -323,18 +406,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             if (origin == ClientCommandOrigin.ClientProtocol)
             {
                 runtime.ProtocolFilter.NoteOutboundCommand(text);
-                var parserCommand = text.StartsWith("clientdata ", StringComparison.OrdinalIgnoreCase)
-                    ? text["clientdata ".Length..].Trim()
-                    : text;
-                runtime.RoomParser.NoteOutboundCommand(parserCommand);
-                runtime.StatParser.NoteOutboundCommand(parserCommand);
-                runtime.ItemScreenParser.NoteOutboundCommand(parserCommand);
-                runtime.SpellbookParser.NoteOutboundCommand(parserCommand);
-                runtime.PartyParser.NoteOutboundCommand(parserCommand);
-                runtime.WhoParser.NoteOutboundCommand(parserCommand);
-                runtime.BossHomeParser.NoteOutboundCommand(text);
-                runtime.LibrariumParser.NoteOutboundCommand(text);
-                runtime.LibrariumPageParser.NoteOutboundCommand(text);
+                NoteClientProtocolParsers(runtime, text);
             }
             else
             {
@@ -578,6 +650,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         runtime.LibrariumParser.Reset();
         runtime.LibrariumPageParser.Reset();
         runtime.ProtocolFilter.Reset();
+        runtime.ClientDataEndpoint = null;
         session.LivePromptText = string.Empty;
         session.CurrentRoomName = string.Empty;
         session.CurrentRoomKey = string.Empty;
@@ -1611,6 +1684,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         runtime.Client = null;
         runtime.ReadCts = null;
         runtime.ReadTask = null;
+        runtime.ClientDataEndpoint = null;
 
         try { readCts?.Cancel(); } catch { }
         try { client?.Close(); } catch { }
@@ -1660,6 +1734,16 @@ public sealed partial class ClientSessionService : IClientSessionService
         return Path.Combine(
             folder,
             $"{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.telnet.log");
+    }
+
+    private static void HandleClientDataAnnouncement(
+        ClientSessionConnection session,
+        Runtime runtime,
+        ReforgedClientDataEndpointAnnouncement announcement)
+    {
+        runtime.ClientDataEndpoint = announcement;
+        _ = OnUiAsync(() =>
+            session.TelnetStatus = $"Private client data ready on port {announcement.Port}; terminal polling disabled.");
     }
 
     private static void HandleTelnetDiagnostic(
@@ -1793,6 +1877,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         foreach (var runtime in _runtime.Values)
         {
             runtime.SendGate.Dispose();
+            runtime.ClientDataGate.Dispose();
             runtime.TelnetTraceGate.Dispose();
         }
     }
@@ -1828,3 +1913,6 @@ public sealed partial class ClientSessionService : IClientSessionService
     [GeneratedRegex(@"\x1B(?:[@-Z\-_]|\[[0-?]*[ -/]*[@-~])")] private static partial Regex StripAnsi();
     [GeneratedRegex(@"can't go|cannot go|no exit|blocked|locked|unable to move|you may not", RegexOptions.IgnoreCase)] private static partial Regex MovementRejected();
 }
+
+internal sealed record ReforgedClientDataRequest(string Token, string Command);
+internal sealed record ReforgedClientDataResponse(bool Ok, string Data, string Error);

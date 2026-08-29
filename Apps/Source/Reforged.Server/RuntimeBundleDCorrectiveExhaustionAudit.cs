@@ -54,7 +54,7 @@ public static class RuntimeBundleDCorrectiveExhaustionAudit
             "Evidence/DataSimVer0017-SearchCleanupEvidence.json",
             "Evidence/ExternalSources/Validation0008/search_hidden_exit_trace.csv",
             "Evidence/ExternalSources/Validation0012/cleanup_hidden_snippets.json",
-            "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json"
+            "Librarium/Objects/abilities/ability_records.json"
         };
         foreach (var source in requiredSources) Check(Exists(source), "all-source-present:" + source);
 

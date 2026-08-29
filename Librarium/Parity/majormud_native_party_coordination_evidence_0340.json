@@ -1,0 +1,124 @@
+{
+  "schema": "majormud.native-party-coordination-evidence.v1",
+  "code_update": "0340",
+  "target": {
+    "module": "WCCMMUD.DLL",
+    "bytes": 643072,
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+  },
+  "native_findings": [
+    {
+      "id": "five_slot_group_representation",
+      "function_va": "0x0041E077",
+      "classification": "PROVEN",
+      "contract": "Each live user owns exactly five WORD group slots at +0x6AE, a leader WORD at +0x6AA, and a rank byte at +0x6AC. _add_to_group mode 0 inserts into the first empty slot; self plus five slots yields a six-character maximum. The representation is a per-user graph, not an exclusive party object."
+    },
+    {
+      "id": "remove_group_global_unlink",
+      "function_va": "0x0041DD96",
+      "classification": "PROVEN",
+      "contract": "_remove_from_group resets the actor rank to Midrank, removes the actor from users named in the actor's five slots, clears those slots, then scans all live users and removes the actor from every remaining group slot. This helper does not clear leader pointers."
+    },
+    {
+      "id": "stop_following_and_departure",
+      "function_va": "0x0041DE75",
+      "classification": "PROVEN",
+      "contract": "_stop_following(leader,follower) removes the follower from the native group graph then clears the follower leader pointer. _stop_following(leader,-1) detaches every live direct follower, removes each from the graph, and finally removes the leader globally; no replacement leader is elected."
+    },
+    {
+      "id": "invite_reserves_slot_no_timeout",
+      "function_va": "0x004568AC",
+      "classification": "PROVEN",
+      "contract": "INVITE sets the inviter rank byte +0x6AC to Frontrank and calls _add_to_group(inviter,target,0) before FOLLOW. The native slot carries no timeout timestamp. If all five slots are occupied, target notification is skipped but inviter confirmation still runs without creating a sixth slot."
+    },
+    {
+      "id": "follow_accept_and_join_alias",
+      "function_va": "0x0045408F",
+      "classification": "PROVEN",
+      "contract": "FOLLOW clears the follower's own slots except a slot naming the selected leader, calls _add_to_group(leader,follower,1), and only on success overwrites follower +0x6AA. Mode 1 expands reciprocal peer links but ignores reciprocal overflow failures. JOIN <user> delegates directly to _cmd_follow at 0x004542FF; numeric JOIN and JOIN GANG are separate branches. FOLLOW also parses a monster target, but Classic terminates that branch with the native message \"Following a monster - Not implemented yet.\" rather than establishing a party relation."
+    },
+    {
+      "id": "party_display_relation_and_cleanup",
+      "function_va": "0x0043B569",
+      "classification": "PROVEN",
+      "contract": "PARTY display resolves the stored leader, clears +0x6AA when that leader is no longer live, walks the five raw slots, removes dead slot users, and distinguishes accepted travel relations from root-to-root pending slots shown as [Invited]."
+    },
+    {
+      "id": "exact_rank_state_machine",
+      "function_va": "0x0041E169",
+      "classification": "PROVEN",
+      "contract": "_change_user_rank counts caller plus live accepted travel relations in the caller's five slots, excluding raw [Invited] root-to-root slots. It resets an isolated caller to Midrank, admits Frontrank directly, blocks a leader from Backrank/Midrank, enforces only-front/only-back constraints, and requires frontrank count >= backrank count before entering Backrank."
+    },
+    {
+      "id": "party_share_relation_filter",
+      "function_va": "0x0046D3EE",
+      "classification": "PROVEN",
+      "contract": "Party SHARE walks the same five native slots and uses the same leader-pointer travel-relation predicate as PARTY display; root-to-root pending invitations are excluded from party recipients, and stale dead slots are cleared."
+    },
+    {
+      "id": "mode3_follower_movement",
+      "function_va": "0x004230C0",
+      "classification": "PROVEN",
+      "contract": "After ordinary successful leader movement, _fast_update_character scans direct followers and calls _move_user(follower,leaderExit,3). A failed mode-3 move or non-positive follower HP clears +0x6AA, ending automatic following without invoking _remove_from_group at that outer owner."
+    },
+    {
+      "id": "special_movement_nonpropagation",
+      "function_va": "0x004230C0",
+      "classification": "PROVEN_OWNER_BOUNDARY",
+      "contract": "Party propagation is owned by the ordinary _fast_update_character movement completion path. Direct/special teleport and resurrection placement do not acquire implicit party propagation from this owner."
+    },
+    {
+      "id": "party_target_types_12_13",
+      "function_va": "0x0043F15B",
+      "classification": "PROVEN",
+      "contract": "Native target type 12 rejects self, direct leader/follower, and any target in the caster five raw group slots. Target type 13 admits self, direct leader/follower, and targets in those raw slots."
+    },
+    {
+      "id": "departure_death_cleanup_convergence",
+      "classification": "PROVEN_CROSS_UPDATE",
+      "contract": "CodeUpdate0339 proved graceful logoff, unexpected hangup, and death all converge on shared leave cleanup; party leader departure detaches direct followers and globally removes the departing user before later death/respawn work."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimePartyCoordination.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPartyGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePowers.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicShare.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPartyCoordinationEvidenceRegistry.cs"
+  ],
+  "parity_promotion": {
+    "assertion": "native.party-coordination",
+    "from": "STRONG",
+    "to": "PASS"
+  },
+  "preserved_boundaries": [
+    {
+      "assertion": "native.organizations.persistence-services",
+      "state": "STRONG",
+      "reason": "Gang disband persistence/name reuse, house cleanup ordering, warnings, and remaining embedded service edges are independently unresolved."
+    },
+    {
+      "assertion": "native.communication-persistence-limits",
+      "state": "STRONG",
+      "reason": "Exact communication defaults/serialization, MAXPAGES range/overflow, reconnect ordering, priority membership, and exact channel/page rendering remain unresolved."
+    },
+    {
+      "assertion": "native.save-coordination",
+      "state": "STRONG",
+      "reason": "Per-session lifecycle ordering does not close broader Btrieve/MKDE transaction, flush, shutdown, and partial-save coordination."
+    },
+    {
+      "boundary": "party-reward-ownership",
+      "state": "SEPARATELY_BOUNDED",
+      "reason": "Active-combat XP and explicit SHARE ownership are retained evidence but are not used to overclaim party membership-state ownership."
+    },
+    {
+      "boundary": "megamud-wait-timers",
+      "state": "EXCLUDED",
+      "reason": "MegaMUD client wait timers are outside MajorMUD server parity."
+    }
+  ],
+  "verification": "Reports/RuntimeVerification/native_party_coordination_verification_0340.json"
+}

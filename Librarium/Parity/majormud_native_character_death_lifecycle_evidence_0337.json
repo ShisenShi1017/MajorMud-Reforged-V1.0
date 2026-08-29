@@ -1,0 +1,40 @@
+{
+  "schema": "majormud.native-character-death-lifecycle-evidence.v1",
+  "code_update": "0337",
+  "target": {
+    "module": "WCCMMUD.DLL",
+    "bytes": 643072,
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+  },
+  "native_findings": [
+    {"id":"death_alignment_destination","function_va":"0x00419A33","range":"0x00419A69-0x00419A8D","classification":"PROVEN","contract":"Death initializes map 1; Evil Points < 40 select room 2189 and Evil Points >= 40 select room 142. Reputation labels are not consulted by this branch."},
+    {"id":"death_room_override","function_va":"0x00419A33","range":"0x00419C0F-0x00419C25","classification":"PROVEN","contract":"A nonzero current-room DeathRoom replaces the default destination and retains the current room map."},
+    {"id":"death_cleanup_order","function_va":"0x00419A33","range":"0x00419B28-0x00419B4A","cleanup_function_va":"0x00420DDF","classification":"PROVEN","contract":"The shared leave/death cleanup owner is called before status termination, item/currency disposal, life decrement, respawn/save, or final-death persistence."},
+    {"id":"practice_arena_exception","function_va":"0x00419A33","range":"0x00419C26-0x00419CF7","classification":"PROVEN","contract":"When the native arena global is enabled and RoomType == 5, saved arena-entry HP and maximum mana are restored, the already-resolved death destination is applied, and the routine returns before money/items are dropped or a life is decremented."},
+    {"id":"death_currency","function_va":"0x00419A33","range":"0x00419CF8-0x00419D5A","classification":"PROVEN","contract":"All five carried currency denomination fields are added to the death room and then zeroed on the player."},
+    {"id":"ordinary_death_immediate_revival","function_va":"0x00419A33","range":"0x0041A0E0-0x0041A1D8","classification":"PROVEN","contract":"A life is decremented; if at least one remains, HP is restored from maximum HP, mana from maximum mana, the resolved destination is assigned, and the player is moved/saved immediately. No manual respawn command is required."},
+    {"id":"final_reroll_retained_xp_save","function_va":"0x00471E9C","range":"0x00472000-0x00472078","classification":"PROVEN","contract":"When final-reroll KEEP conditions apply and level > 1, permanent-info XP becomes max(stock threshold for floor(level/2)+1, floor(total XP/10)); otherwise the retained value is zero."},
+    {"id":"final_reroll_retained_xp_restore","function_va":"0x004722F7","range":"0x00472447-0x00472464","classification":"PROVEN","contract":"Permanent-info field +0x48 is copied directly into the new player's XP field +0x3C."},
+    {"id":"create_player_consumer","function_va":"0x00416600","range":"0x004166F5-0x00416718","classification":"PROVEN","contract":"Character creation calls _update_user_with_permanent_info once after core new-player field initialization."},
+    {"id":"death_floor_spill_owner","function_va":"0x0041989A","range":"0x0041989A-0x0041999A","classification":"PROVEN_NATIVE_NOT_FULLY_CONNECTED","contract":"Room disposal uses bounded depth-first exit traversal in native slot order, skips RoomType 12 and 8, and falls back to the player's 20-entry movement trail. Exact room-slot stacking/add-item behavior is not yet fully connected in Reforged, so the floor-spill assertion remains STRONG."}
+  ],
+  "stock_room_correlation": {
+    "room": "room.map1.206",
+    "name": "Arena Practice Room",
+    "room_type": 5,
+    "death_room_id": 205,
+    "classification": "PROVEN_DECODED_STOCK_DATA",
+    "note": "The executable + stock room record therefore revive a defeated player to room 205 when the arena exception is enabled. Retained HELP text that says Halls Of The Dead is preserved as a source conflict and does not override executable behavior."
+  },
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeCharacterDeath.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicDeathExperienceAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPermanentDeathInfo.cs",
+    "Apps/Source/Reforged.Server/RuntimeCharacterFoundation.cs",
+    "Apps/Source/Reforged.Server/RuntimeCombatCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePvp.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs"
+  ],
+  "verification": "Reports/RuntimeVerification/native_character_death_verification_0337.json"
+}

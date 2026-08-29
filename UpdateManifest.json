@@ -9,16 +9,16 @@
   "generatedClassicDataTrackedInGit": false,
   "importedDatabasesArchivedLocalOnly": true,
   "savesPreserved": true,
-  "purpose": "Close the repository-visible Classic parity inventory, preserve the exact native Nahr message-8480 empty arguments, integrate Creator Studio, and replace historical pass-specific validation surfaces with one current-health validator and one runtime parity-closure smoke gate.",
+  "purpose": "Continue strict Classic parity closure by integrating recovered native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, and death-floor placement while keeping Librarium authoritative and removing runtime dependence on retired imported evidence.",
   "currentValidation": {
     "entrypoint": "python Tools/validator.py",
     "runtimeParityGate": "--smoke-classic-parity-closure",
     "assertionLedger": "Librarium/Parity/majormud_parity_assertions.json",
     "scorecard": "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-    "pass": 98,
-    "strong": 102,
+    "pass": 126,
+    "strong": 74,
     "unknown": 0,
-    "strictPercent": 49.0,
+    "strictPercent": 63.0,
     "evidenceBackedPercent": 100.0
   },
   "reports": [
@@ -29,16 +29,30 @@
     "Reports/RuntimeVerification/native_npc_combat_argument_boundary.md",
     "Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md",
     "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
-    "ValidationManifest.json"
+    "ValidationManifest.json",
+    "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+    "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+    "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
+    "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json",
+    "Librarium/Parity/majormud_native_character_death_lifecycle_evidence_0337.json",
+    "Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+    "Librarium/Parity/majormud_native_session_lifecycle_evidence_0339.json",
+    "Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+    "Librarium/Parity/majormud_native_gang_communications_edge_evidence_0341.json",
+    "Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
+    "Librarium/Parity/majormud_native_daily_ganghouse_cleanup_evidence_0343.json",
+    "Librarium/Parity/majormud_native_organization_persistence_services_evidence_0344.json",
+    "Reports/RuntimeVerification/native_runtime_verification.json",
+    "Reports/RuntimeVerification/wccmp002_native_exit_recovery.md"
   ],
   "evidencePolicy": "Librarium is authoritative. Data is generated runtime output and is not committed as source. Imported databases and raw evidence are local-only archives. Classic behavior is evidence-locked; unresolved exact behavior must not be guessed.",
   "knownLimitations": [
-    "The 102 STRONG assertions are evidence-bounded and are not represented as exact-native PASS.",
+    "The 74 STRONG assertions are evidence-bounded and are not represented as exact-native PASS.",
     "Generated Data/Classic must be regenerated from Librarium in clean environments before server bootstrap.",
-    "Python validation cannot run locally until a registered Python interpreter replaces the unavailable Windows Store aliases.",
-    "The broader live-combat smoke retains the unrelated npc-blacknight-self-status-persisted failure after all Nahr-specific checks pass.",
-    "GitHub Actions remains the official gate after push."
+    "The consolidated native verification report records supplied package results; native DLL verifiers were not independently rerun in this environment.",
+    "GitHub Actions remains the official gate after push.",
+    "The broader item smoke retains two pre-existing corpse-resurrection equipment failures: the death equipment slot is not recorded and occupied-slot restoration does not yet displace safely."
   ],
-  "verificationStatus": "LOCAL_DOTNET_VERIFIED: server and app Release builds pass with zero warnings/errors; compiler regression passes 104,911 records across 47 families; Classic generation passes 103,330 objects and 26,668/26,668 room descriptions; parity closure passes 19/19; core/server smoke passes 17/17. Live combat retains only the pre-existing npc-blacknight-self-status-persisted failure after Nahr checks pass. Python is unavailable. GitHub Actions pending push.",
-  "updatedUtc": "2026-08-29T04:06:55Z"
+  "verificationStatus": "LOCAL_DOTNET_VERIFIED: Reforged.Server, Reforged.App, Reforged.Client, Core, and Core tests pass Release compilation with zero errors. Core smoke tests plus MegaMUD connection, Classic native player commands, communications, organizations, gang-house audit, and Classic parity closure pass. The consolidated native verification report retains 920 supplied checks with zero reported failures; native DLL verifiers were not independently rerun. The broader item smoke retains two pre-existing corpse-resurrection equipment failures. GitHub Actions pending push.",
+  "updatedUtc": "2026-08-29T14:26:36Z"
 }

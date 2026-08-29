@@ -1,0 +1,32 @@
+{
+  "schema": "majormud.classic-reroll-experience-execution.v1",
+  "pass": "09",
+  "classification": "PASS",
+  "nativeEvidence": {
+    "help": "REROLL kills the current character and returns to character creation; SET KEEP controls whether the replacement receives retained experience.",
+    "calculator": "RuntimeClassicDeathExperienceAuthority.CalculateFinalRerollRetainedExperience implements the recovered WCCMMUD _save_permanent_info formula.",
+    "globalKeepExperienceDefault": true
+  },
+  "runtime": {
+    "characterReplacement": "RuntimeCharacterService.RerollCharacter builds a fresh level-1 character and RuntimeCharacterRepository.ReplaceCharacter atomically replaces the account slot.",
+    "retainedState": [
+      "experience only, when SET KEEP and global KEEPEXP permit it"
+    ],
+    "discardedState": [
+      "inventory",
+      "equipment",
+      "carried/banked currency in item state",
+      "spells/powers",
+      "skills/abilities beyond fresh creation grants",
+      "quests/flags/conditions",
+      "alignment/evil points",
+      "appearance",
+      "stats",
+      "lives",
+      "old character identity"
+    ],
+    "sessionHandoff": "ServerNetworkHost reroll flow swaps the live session to the replacement character after commit.",
+    "regression": "RuntimeClassicDeathExperienceSmokeReport plus RuntimeRerollWarningSmokeReport"
+  },
+  "noGameplayGuessing": true
+}

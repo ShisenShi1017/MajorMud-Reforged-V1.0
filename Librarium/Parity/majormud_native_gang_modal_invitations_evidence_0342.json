@@ -1,0 +1,105 @@
+{
+  "schema": "majormud.native-gang-modal-invitations-evidence.v1",
+  "code_update": "0342",
+  "dll": {
+    "name": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "packaged": false
+  },
+  "scope": [
+    "Worldgroup state-0x88 gang DISBAND confirmation",
+    "process-local gang invitation ownership and compatibility migration",
+    "gang JOIN invitation consumption and disbanded-record edge",
+    "explicit DISBAND PARTY native stop-following branch"
+  ],
+  "native_findings": [
+    {
+      "id": "gang-disband-prompt-state",
+      "owner": "_cmd_disband @ 0x00458725",
+      "finding": "DISBAND GANG by the leader prints the confirmation prompt, stores Worldgroup session state 0x88 at session+0x1C and returns to the host without mutating the gang yet."
+    },
+    {
+      "id": "gang-disband-confirm-parser",
+      "owner": "Worldgroup gameplay state handler @ 0x004083DC",
+      "finding": "Confirmation requires exactly one parsed token and only tests whether that token's first character uppercases to Y. Y/YES/Yup confirm; blank, N, QUIT and multi-token replies cancel."
+    },
+    {
+      "id": "gang-disband-confirm-effects",
+      "owner": "state 0x88 confirm branch @ 0x00408407",
+      "finding": "The confirm branch resolves the live user and gang, emits the disband/name-reuse warning to the gang, calls _remove_from_gang on the leader, saves/sends, then restores state 0x82. Lookup failure silently restores state 0x82."
+    },
+    {
+      "id": "gang-disband-cancel-effects",
+      "owner": "state 0x88 cancel branch @ 0x00408488",
+      "finding": "Every non-confirming input emits 'Your gang has not been disbanded.' and restores state 0x82 without gang mutation."
+    },
+    {
+      "id": "gang-invite-transient-node",
+      "owner": "_invite_to_gang @ 0x0044FA7C",
+      "finding": "Each invitation is a 0x1C heap node in the process-global list at 0x00488574/0x00488578 containing target user id, a 19-character gang name and next pointer. Exact duplicate target+gang nodes are rejected."
+    },
+    {
+      "id": "gang-invite-clear-owner",
+      "owner": "_clear_gang_invitations @ 0x0044FB55",
+      "finding": "The transient list can be cleared for one user across every gang when gangName is null, or only for an exact user+gang pair when a gang name is supplied. Shared departure cleanup invokes the all-gangs form."
+    },
+    {
+      "id": "gang-join-transient-consumer",
+      "owner": "_join_gang @ 0x0044FEF8",
+      "finding": "JOIN resolves the gang record, scans the transient invitation list for exact target+gang, increments native member count and assigns the gang only on a matching node. The helper does not reject a gang solely because its disband marker is already set."
+    },
+    {
+      "id": "gang-invite-restart-lifetime",
+      "owner": "native heap/list ownership",
+      "finding": "No gang-invitation node belongs to the persistent character/gang record map. Invitations disappear on process restart; Reforged's pre-0342 persisted invite arrays are migrated once into live memory and removed from disk without a gameplay revision bump."
+    },
+    {
+      "id": "disband-party-explicit-owner",
+      "owner": "_cmd_disband -> _stop_following(user,-1) @ 0x0041DE75",
+      "finding": "DISBAND PARTY detaches every direct follower, removes each detached user from the native group graph, then removes the caller from the group slots. It does not elect a successor and does not clear the caller's own leader pointer in this -1 branch."
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicGangModalAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangInvitations.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangState.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicGangGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeSession.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeSessionLifecycle.cs",
+    "Apps/Source/Reforged.Server/ServerNetworkHost.cs",
+    "Apps/Source/Reforged.Server/ServerRuntimeHost.cs",
+    "Apps/Source/Reforged.Server/RuntimePartyCoordination.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicPartyGameplay.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveGameplay.cs"
+  ],
+  "runtime_corrections": [
+    "DISBAND GANG is now a real state-0x88 modal operation instead of immediate mutation.",
+    "QUIT while the disband modal is pending is consumed as a non-Y cancel reply instead of exiting the session.",
+    "Telnet/local-console hosts suppress the ordinary gameplay prompt while the native modal owns input.",
+    "Gang invitations are process-local; persistent gang JSON is compatibility-migrated and normalized to an empty legacy invite array.",
+    "Successful gang JOIN clears all transient invitations for the joining character, matching the native clear owner.",
+    "Native gang member-count increments/decrements are reflected by Reforged theoretical member count.",
+    "DISBAND PARTY now routes to the recovered _stop_following(user,-1) owner rather than falling into the gang syntax path."
+  ],
+  "parity": {
+    "before": {
+      "PASS": 125,
+      "STRONG": 75,
+      "UNKNOWN": 0
+    },
+    "after": {
+      "PASS": 125,
+      "STRONG": 75,
+      "UNKNOWN": 0
+    },
+    "promotions": [],
+    "reason": "The gang modal and transient invitation blockers are closed, but native.organizations.persistence-services remains STRONG because automatic gang-house sundown event production/cadence and remaining embedded house-service behavior are still not owned end-to-end. Party stays PASS; 0342 closes an explicit DISBAND PARTY command hole inside its already-proven native owner without changing the ledger."
+  },
+  "remaining_gates": [
+    "exact native producer/cadence that triggers gang-house sundown tax processing",
+    "remaining embedded gang-house shop/healer/rubbish-room service behavior and presentation where executable ownership is not yet complete",
+    "Worldgroup page/telegram host handoff and exact communication presentation remain separate communications gates"
+  ]
+}

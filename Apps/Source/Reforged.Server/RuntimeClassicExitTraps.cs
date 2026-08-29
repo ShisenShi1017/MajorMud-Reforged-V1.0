@@ -57,8 +57,8 @@ public sealed class RuntimeClassicExitTrapCatalog
 
             // The stock RoomRec layout proves Para2 is the signed 16-bit trap-state field
             // (0 Active, 1 Inactive, 2 Hidden, 3 Active-move, 4 Inactive-move). MMUD Explorer's
-            // rendered qualifier drops that field. Accept a future explicit WCCMP002 projection,
-            // but never infer the state from the display qualifier.
+            // rendered qualifier drops that field. CodeUpdate 0333 directly recovers WCCMP002 and
+            // projects the exact state; never infer it from the display qualifier.
             var nativeActivationState = 0;
             var nativeActivationStateProjected = effects.TryGetProperty("native_trap_state", out var nativeTrapStateElement)
                 && nativeTrapStateElement.ValueKind == JsonValueKind.Number
@@ -173,14 +173,13 @@ public sealed partial class RuntimeLiveGameplayFacade
             throw new InvalidOperationException($"Decoded exit trap endpoint mismatch: {trap.ExitId}");
         if (session.Actor is not RuntimeCharacterActor) return string.Empty;
 
-        // Strict Classic fail-closed rule: the MME projection does not preserve the native
-        // WCCMP002 RoomRec Para2 activation mode. Until each exit's value and transition semantics are recovered,
-        // do not guess that every decoded trap is Active. The exact damage/spell operands remain
-        // retained and will execute through the authoritative consumers once activation is proven.
+        // Strict Classic fail-closed rule: CodeUpdate 0333 now projects every stock WCCMP002
+        // RoomRec Para2 trap state exactly. Missing state is therefore a data-integrity failure, not
+        // permission to guess. Exact per-state trigger/transition/reset behavior is still not proven.
         if (!trap.NativeActivationStateProjected) return string.Empty;
 
-        // The five native state values are storage-proven, but exact per-state traversal/transition
-        // behavior is not yet executable-proven. A projected value therefore remains fail-closed.
+        // The five native state values and all 295 stock per-exit values are recovered, but exact
+        // traversal/transition behavior is not yet executable-proven. Projected traps remain fail-closed.
         return string.Empty;
 
         /* Activation-state closure will re-enable one of these exact effect consumers:

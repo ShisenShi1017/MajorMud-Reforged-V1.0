@@ -33132,23 +33132,15 @@
                                                                         ],
                                                "report_path":  "Build/CombinedUpdate/classic_decode_exhaustion_report.json"
                                            },
-    "wccmmud_sysop_unlock":  {
-                                 "configured_key_name":  "code_of_twinks_78",
-                                 "user_confirmed_semantics":  "WCCMMUD SYSOP unlock/key",
-                                 "request_registration_files":  [
-                                                                    "Evidence/DataSimVer0013-UserRequestedCustomContent.md",
-                                                                    "Reports/DataSimVer0013-CustomContentRegistration.md",
-                                                                    "Simulator/DataSimVer/0013/custom_content_registration.json"
-                                                                ],
-                                 "native_contract_files":  [
-                                                               "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.msg",
-                                                               "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.RLN",
-                                                               "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMSYS.NOT"
-                                                           ],
-                                 "runtime_authority":  "authenticated_account_role_and_explicit_capabilities",
-                                 "plaintext_key_runtime_command_allowed":  false,
-                                 "state":  "correctly_classified_sysop_command_inventory_and_capability_mapping_required"
-                             },
+    "wccmmud_configuration_evidence":  {
+                                              "setting_name":  "CODEC_OF_TWINKS",
+                                              "configured_value":  "78",
+                                              "user_confirmed_semantics":  "Observed WCCMMUD configuration; exact numeric semantics remain native-evidence-bounded",
+                                              "worldgroup_access_level_evidence":  "Librarium/Parity/majormud_wccmmud_ini_user_evidence_0333.json",
+                                              "runtime_authority":  "authenticated_account_role_and_explicit_capabilities",
+                                              "plaintext_configuration_command_allowed":  false,
+                                              "state":  "configuration_captured_worldgroup_level_mappings_partial_native_dispatcher_closure_required"
+                                          },
     "majormud_plus":  {
                           "native_source_files":  [
                                                       "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.AD",

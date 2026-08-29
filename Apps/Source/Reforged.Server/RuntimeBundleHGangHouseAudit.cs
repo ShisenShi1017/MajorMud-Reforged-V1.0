@@ -75,12 +75,11 @@ public static class RuntimeBundleHGangHouseAudit
         var localCoreGraph = Path.Combine(projectRoot, "LibrariumLocal", "core_graph.json");
         var localRuntimeIndex = Path.Combine(projectRoot, "LibrariumLocal", "runtime_index.json");
 
-        Check(File.Exists(nativeGangPath), "native-runtime-wccgangs-present");
-        Check(File.Exists(defaultGangPath), "default-install-wccgang2-present");
+        // Raw imported evidence is intentionally retired from the Git repository after
+        // promotion. Runtime readiness is proved by Librarium and generated catalogs.
         Check(File.Exists(summaryPath), "wccgangs-summary-present");
         Check(File.Exists(samplePath), "wccgangs-block-samples-present");
         Check(File.Exists(stringsPath), "wccgangs-strings-catalog-present");
-        Check(ExpectedMapFiles.All(file => File.Exists(Path.Combine(mapsRoot, file))), "all-ten-gang-house-map-references-present");
         Check(File.Exists(itemsPath), "generated-items-present");
         Check(File.Exists(shopsPath), "generated-shops-present");
         Check(File.Exists(librariumGangHousesPath), "librarium-gang-house-catalog-present");
@@ -91,15 +90,13 @@ public static class RuntimeBundleHGangHouseAudit
 
         var nativeLength = File.Exists(nativeGangPath) ? (int)new FileInfo(nativeGangPath).Length : 0;
         var defaultLength = File.Exists(defaultGangPath) ? (int)new FileInfo(defaultGangPath).Length : 0;
-        Check(nativeLength == 2048, "native-runtime-wccgangs-size-2048");
-        Check(defaultLength == 28672, "default-install-wccgang2-size-28672");
-
         var mapReferenceCount = ExpectedMapFiles.Count(file =>
         {
             var path = Path.Combine(mapsRoot, file);
             return File.Exists(path) && File.ReadAllText(path).Contains("Gang House", StringComparison.OrdinalIgnoreCase);
         });
-        Check(mapReferenceCount == ExpectedMapFiles.Length, "all-map-references-identify-gang-house");
+        Check(Read(librariumGangHousesPath).Contains("librarium_promoted_native_hse_and_deed_evidence", StringComparison.Ordinal),
+            "librarium-retains-promoted-native-gang-house-authority");
 
         var deedItemCount = CountMatchingNames(itemsPath, ExpectedDeedNames);
         var gangShopCount = CountRecordsByNamePattern(shopsPath, "gang house|gang shop|deed office");
@@ -137,15 +134,13 @@ public static class RuntimeBundleHGangHouseAudit
             "native-gang-house-guardian-member-entry-gate");
         var upkeepSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicGangHouseUpkeep.cs"));
         var worldTimeSource = Read(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server", "RuntimeClassicWorldTimeEvents.cs"));
-        Check(upkeepSource.Contains("ProcessSundown", StringComparison.Ordinal)
+        Check(upkeepSource.Contains("ProcessDailyAutoCleanup", StringComparison.Ordinal)
             && upkeepSource.Contains("DebitBankGold", StringComparison.Ordinal)
             && upkeepSource.Contains("RepossessHouse", StringComparison.Ordinal),
             "decoded-sundown-bank-gold-tax-and-repossession-boundary");
         Check(worldTimeSource.Contains("RuntimeClassicWorldTimePhase.Sundown", StringComparison.Ordinal)
-            && worldTimeSource.Contains("_gangHouseUpkeep.ProcessSundown", StringComparison.Ordinal)
-            && worldTimeSource.Contains("does not", StringComparison.OrdinalIgnoreCase)
-            && worldTimeSource.Contains("infer a sunrise/sunset cadence", StringComparison.OrdinalIgnoreCase),
-            "authoritative-sundown-event-consumer-without-invented-clock");
+            && worldTimeSource.Contains("ProcessDailyAutoCleanup", StringComparison.Ordinal),
+            "legacy-world-time-adapter-routes-to-native-daily-cleanup-owner");
         Check(catalog.Locations.Count == 57, "generated-gang-house-catalog-has-fifty-seven-native-and-service-locations");
         Check(catalog.Locations.All(x => world.FindRoom(x.MapId, x.RoomNumber) is not null), "gang-house-service-locations-resolve-to-runtime-rooms");
         Check(catalog.Locations.Count(x => x.LocationKind == "entrance") == 10, "gang-house-catalog-has-ten-native-entrances");
@@ -192,7 +187,7 @@ public static class RuntimeBundleHGangHouseAudit
             failures,
             new[]
             {
-                "Native WCCGANGS.DAT, default-install wccgang2.dat, decode summary/sample/string outputs, and all ten MudInfo gang-house reference maps are present.",
+                "Promoted native gang-house authority is retained in the Librarium; raw WCC and map references are optional local archives after source retirement.",
                 "Generated Classic data contains the ten parchment deed items and the gang-house vault/supply/deed shop family.",
                 "Generated Classic gang-house authority binds ten houses to 57 locations: 20 service locations plus 37 additional native WCC .HSE interiors.",
                 "RuntimeClassicGangHouseProtectionService consumes generated service locations plus persistent active gang-house assignments; repossession or disbanding removes cleanup protection."
@@ -203,7 +198,8 @@ public static class RuntimeBundleHGangHouseAudit
                 "Native WCC .HSE files recover 47 map-qualified customization rooms; ten overlap stronger service bindings and 37 add entrances, normal interiors, rest rooms, and vaults without overriding conflicts.",
                 "The listed LibrariumLocal/core_graph.json and LibrariumLocal/runtime_index.json handoff files are not present in the repository.",
                 "Gang-house maps are reference evidence for layout/legend only; this audit does not promote room IDs from map art.",
-                "Decoded sundown tax processing is connected to an explicit, idempotent Classic world-time event consumer. Automatic event production remains disabled until native cadence evidence is recovered; no UTC hour is invented. Repossessed house contents become unprotected for the authoritative cleanup boundary."
+                "Raw WCCGANGS, wccgang2, and map-reference files may be absent from Git after their promoted Librarium records have passed validation.",
+                "Gang-house taxation is owned by the once-per-day host mcurou callback. Reforged uses the historical 03:00 local host default without restart catch-up; host-configured non-default cleanup times remain an external host setting."
             },
             nativeLength,
             defaultLength,
