@@ -1,0 +1,97 @@
+{
+  "schema": "majormud.classic-save-coordination-boundary-evidence.v1",
+  "update": "0322",
+  "pass": 51,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 51 promotes native.save-coordination from UNKNOWN to STRONG by separating proven Classic/Worldgroup persistence ownership from Reforged's generic prepare/commit/rollback coordinator. Native WCC configuration retains 60-second Player data and 300-second Buffer data save clocks. MajorMUD uses retained Worldgroup DFA contexts and explicit insert/update/delete calls; WGSERVER exposes begin/end/abort/unlock transaction operations, stages variable-length mutations in shared buffer 0x00467CA4, records synchronous BTRCALL status, and delegates physical durability to WBTRV32/W32MKDE. W32MKDE proves write-back dirty state, pending-write counters, synchronous FlushFileBuffers barriers, and startup recovery artifact ownership. Exact MajorMUD player/world participant order, exact Buffer data record-family mapping, transaction grouping selected by the module, ordinary-save flush durability, and shutdown-save ordering remain unresolved and fail closed.",
+  "classificationPolicy": "Native timing/storage/transaction ownership receives parity credit only at the layer actually proven. RuntimeSaveCoordinationService ordering, prepare/commit phases, reverse rollback, generation snapshots, and JSON atomic replacement are Reforged policy and receive zero Classic parity credit.",
+  "nativeSaveClocks": {
+    "source": "WCCMMUD.mcv retained setup/default evidence",
+    "playerDataSeconds": 60,
+    "bufferDataSeconds": 300,
+    "nonClaim": "The 300-second Buffer data prompt does not identify the exact MajorMUD record families or prove ordering relative to Player data."
+  },
+  "majorMudDfaBoundary": {
+    "source": "Librarium/Evidence/worldgroup_dfa_persistence_lifecycle_0028.json",
+    "evidenceClass": "PROVEN_CALLER_SIDE_OPERATION_AND_ORDERING_BOUNDARY",
+    "retainedContext": true,
+    "mutationImports": [
+      "_dfaInsertV",
+      "_dfaInsertDup",
+      "_dfaUpdateV",
+      "_dfaUpdateDup",
+      "_dfaDelete"
+    ],
+    "finding": "MajorMUD imports distinct mutation calls and explicit reset/release operations, but does not directly import the host transaction exports in the recovered family."
+  },
+  "worldgroupPhysicalBoundary": {
+    "source": "Librarium/Evidence/worldgroup_dfa_physical_write_0029.json",
+    "module": "WGSERVER.EXE",
+    "transport": "WBTRV32.DLL!BTRCALL",
+    "transactionExports": [
+      "_dfaBegTrans",
+      "_dfaEndTrans",
+      "_dfaAbtTrans",
+      "_dfaUnlock"
+    ],
+    "sharedMutationBuffer": "0x00467CA4",
+    "lastStatus": "0x00467CA0",
+    "lastAuxiliaryStatus": "0x00467CA2",
+    "finding": "Insert/update wrappers stage caller data in the shared host buffer before synchronous BTRCALL; nonzero statuses enter Worldgroup error paths.",
+    "nonClaim": "The existence of host transaction exports does not prove which MajorMUD save operations are grouped into one transaction."
+  },
+  "mkdeDurabilityBoundary": {
+    "sources": [
+      "Librarium/Evidence/worldgroup_btrieve_durability_0030.json",
+      "Librarium/Evidence/worldgroup_mkde_durability_0031.json",
+      "Librarium/Evidence/worldgroup_mkde_flush_callers_0032.json",
+      "Librarium/Evidence/worldgroup_mkde_transaction_recovery_0033.json",
+      "Librarium/Evidence/worldgroup_mkde_log_artifact_lifecycle_0034.json"
+    ],
+    "owner": "W32MKDE.EXE",
+    "pendingWriteCounterOffset": "+0x08",
+    "flushRequiredFlag": "+0x0A bit 0x04",
+    "flushPrimitive": "KERNEL32!FlushFileBuffers",
+    "writeBehavior": "successful ordinary writes can remain pending behind MKDE dirty state; proven explicit/conditional flush wrappers synchronously flush at selected boundaries",
+    "recoveryArtifacts": [
+      "BTRVLOG.RCV",
+      "BTRVLOG.TRN",
+      "BTR_TMP.$??",
+      "%8X.LOG"
+    ],
+    "nonClaim": "Exact transaction-log bytes, replay semantics, and whether every ordinary MajorMUD save reaches an immediate flush are not proven."
+  },
+  "reforgedCoordinatorBoundary": {
+    "owner": "RuntimeSaveCoordinationService",
+    "classification": "REFORGED_EXTENSION_ONLY_FOR_CLASSIC_PARITY",
+    "noParityCreditFor": [
+      "configured participant order",
+      "prepare phase",
+      "ordered commit phase",
+      "reverse rollback",
+      "generation counters",
+      "JSON coordination snapshot",
+      "atomic snapshot replacement"
+    ],
+    "classicGateOwner": "RuntimeClassicSaveCoordinationAuthority"
+  },
+  "remainingUnknown": [
+    "exact ordinary MajorMUD Player data versus world/Buffer data participant ordering",
+    "exact record families and dirty semantics represented by native Buffer data",
+    "whether and how MajorMUD save participants are grouped through WGSERVER begin/end/abort transaction exports",
+    "exact ordinary-save flush/durability point below WGSERVER",
+    "exact shutdown-save participant ordering and final flush relationship",
+    "exact partial-save behavior at the MajorMUD module boundary"
+  ],
+  "excludedFromThisAssertion": [
+    "exact BTRVLOG.TRN/RCV record bytes and crash replay algorithm",
+    "startup host recovery sequencing unrelated to ordinary player/world save coordination"
+  ],
+  "noGameplayGuessing": true,
+  "parityPromotion": {
+    "assertion": "native.save-coordination",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Native save clocks, DFA mutation ownership, host transaction surface, staging buffer, synchronous Btrieve status path, and MKDE write-back/flush ownership are now bounded. Exact MajorMUD cross-participant ordering and transaction grouping remain unresolved, preventing PASS."
+  }
+}

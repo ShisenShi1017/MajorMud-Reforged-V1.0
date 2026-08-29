@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "subsystem": "communications",
   "runtimeOwner": "RuntimeLiveGameplayFacade + RuntimeSessionManager",
   "channels": [
@@ -57,6 +57,8 @@
     }
   ],
   "settings": [
+    "SET MAXPAGES <n>",
+    "PAGE",
     "SET TELEPATH ON/OFF",
     "SET GOSSIP ON/OFF",
     "SET AUCTION ON/OFF",
@@ -65,15 +67,16 @@
     "SET ENTRANCES ON/OFF"
   ],
   "explicitlyUnresolved": [
-    "WHISPER syntax/range/rendering",
-    "exact TELL command identity versus slash telepath",
-    "exact communication colors/language/invisibility behavior",
-    "exact channel default flag states",
-    "flood/maxpage thresholds",
-    "communication logging owner",
-    "exact success/failure text",
-    "exact message-priority membership for SET MESSAGES",
-    "exact SET ENTRANCES default/persistence behavior"
+    "exact native default states for PAGE, TELEPATH, GOSSIP, AUCTION, MESSAGES, ENTRANCES and related profile controls",
+    "exact native record offsets/bit encodings and serialization owner for communication/profile settings",
+    "explicit SET TELEPATH ON/OFF stored polarity; retained wording proves the selector exists but not which named state is the blocking state",
+    "exact SET MAXPAGES default value and accepted numeric range",
+    "exact behavior when pages/telegrams exceed MAXPAGES within the proven three-second period (drop, queue, defer, coalesce, error, or host behavior)",
+    "exact MajorMUD-to-Worldgroup page/telegram handoff and host/session interaction",
+    "exact page/telegram and remaining channel success/failure rendering, color, language, invisibility and moderation interactions",
+    "exact per-message priority membership behind SET MESSAGES LOW/MEDIUM/HIGH",
+    "exact SET ENTRANCES default, login/logout event timing and persistence",
+    "exact reconnect/login load and save ordering for communication/profile settings"
   ],
   "ownership": {
     "recipientSelection": "communications",
@@ -81,5 +84,24 @@
     "commandParsing": "commands subsystem",
     "characterIdentityStorage": "character subsystem",
     "WorldgroupOnly": "excluded from MajorMUD parity"
+  },
+  "status": "evidence-backed-strong-profile-and-limits-boundary",
+  "classification": "STRONG: native channel/profile control scope plus exact MAXPAGES three-second page/telegram window; defaults/serialization/overflow/rendering remain open",
+  "classicBoundaryOwner": "RuntimeClassicCommunicationPersistenceLimitsAuthority + RuntimeLiveGameplayFacade channel owners",
+  "reforgedExtensionOwner": "RuntimeCommunicationService compatibility shell; generic maximum-length/flood policy receives no Classic parity credit",
+  "pass57Boundary": {
+    "profileHelpMessage": 37,
+    "setHelpMessage": 117,
+    "messagesHelpMessage": 121,
+    "gossipHelpMessage": 175,
+    "auctionHelpMessage": 177,
+    "maxPagesWindowSeconds": 3,
+    "maxPagesSubjects": [
+      "pages",
+      "telegrams"
+    ],
+    "genericFloodPolicyReceivesClassicParityCredit": false,
+    "reforgedConditionsAreNativeSerializationClaim": false,
+    "worldgroupMailAndNativeLoggingExcluded": true
   }
 }

@@ -1,46 +1,162 @@
 {
   "schemaVersion": 1,
-  "updatedByPass": "RemainingSystems-0033-CapacityLimits",
   "subsystem": "capacity-resource-limits",
-  "runtimeOwner": "RuntimeCapacityLimitsService",
-  "supportedResources": [
-    "users",
-    "characters",
-    "npc-instances",
-    "objects",
-    "corpses",
-    "timers",
-    "parties",
-    "guilds",
-    "messages",
-    "active-events",
-    "world-state-entries"
+  "pass": "Update0327",
+  "status": "evidence-backed-boundary",
+  "classification": "STRONG exact WCCMMUD buffer/default limits plus narrow gameplay/data caps; hard world/inventory/NPC/table maxima and exact failures remain open",
+  "classicRuntimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + narrower Character/Party/Gang/Plus/Encumbrance owners",
+  "reforgedExtensionOwner": "RuntimeCapacityLimitsService",
+  "bufferDefaults": [
+    {
+      "prompt": "Number of rooms to buffer in memory? 1500",
+      "value": 1500,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of items to buffer in memory? 750",
+      "value": 750,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of active monsters to buffer? 2000",
+      "value": 2000,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of known monsters to buffer? 300",
+      "value": 300,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of spells to buffer in memory? 150",
+      "value": 150,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of races to buffer in memory? 12",
+      "value": 12,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of classes to buffer in memory? 16",
+      "value": 16,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of bankbooks to buffer in memory? 32",
+      "value": 32,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 250",
+      "value": 250,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 50",
+      "value": 50,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 10",
+      "value": 10,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Maximum number of TOPTEN users/gangs lists? 30",
+      "value": 30,
+      "kind": "configured-gameplay-output-cap"
+    },
+    {
+      "prompt": "Maximum items to lose on hangup? 0",
+      "value": 0,
+      "kind": "configured-hangup-penalty-cap-default"
+    }
   ],
-  "operations": [
-    "inspect",
-    "set usage",
-    "reserve",
-    "commit",
-    "release",
-    "host-authorized limit change"
+  "narrowRecoveredLimits": [
+    {
+      "id": "character.maximum-lives",
+      "value": 9,
+      "classification": "STRONG",
+      "owner": "RuntimeClassicCharacterProgressionFormula"
+    },
+    {
+      "id": "character.given-name-storage-width",
+      "value": 10,
+      "unit": "bytes",
+      "classification": "PASS/native-record-layout",
+      "owner": "RuntimeIdentity"
+    },
+    {
+      "id": "character.family-name-storage-width",
+      "value": 18,
+      "unit": "bytes",
+      "classification": "PASS/native-record-layout",
+      "owner": "RuntimeIdentity"
+    },
+    {
+      "id": "party.maximum-members",
+      "value": 6,
+      "classification": "STRONG",
+      "owner": "RuntimePartyPolicy.ClassicStrongEvidence"
+    },
+    {
+      "id": "gang.name-maximum",
+      "value": 19,
+      "unit": "characters",
+      "classification": "PASS/native-help-live-enforcement",
+      "owner": "RuntimeClassicGangStateService"
+    },
+    {
+      "id": "plus.visible-room-capacity",
+      "value": 17,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "plus.hidden-room-capacity",
+      "value": 15,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "plus.maximum-placement-attempts",
+      "value": 50,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "encumbrance.str<=100",
+      "formula": "STR * 48",
+      "classification": "PASS/strong-existing-formula-boundary",
+      "owner": "RuntimeMajorMudCompatibility"
+    },
+    {
+      "id": "encumbrance.str>100",
+      "formula": "4800 + (STR-100)*84",
+      "classification": "PASS/strong-existing-formula-boundary",
+      "owner": "RuntimeMajorMudCompatibility"
+    }
   ],
-  "policies": [
-    "owner-scoped mutation",
-    "checked arithmetic",
-    "hard-limit admission rejection",
-    "fail-closed unknown resource",
-    "host-only configuration mutation"
-  ],
-  "ownership": {
-    "usageTruth": "owning subsystem",
-    "coordination": "RuntimeCapacityLimitsService",
-    "configuration": "WorldRules/Host"
-  },
   "nativeDependencies": [
-    "exact Classic limits",
-    "configurable versus static limits",
-    "native integer widths",
-    "allocation failure behavior",
-    "cleanup and admission rejection messages"
+    "exact carried inventory item-count/slot maximum separate from the proven encumbrance weight formula",
+    "exact room-floor object-count maximum and death-drop overflow destination/order",
+    "exact concurrent world object/item-instance hard maximum and allocation failure cleanup",
+    "exact active NPC/monster hard maximum beyond the retained 2000 active-monster buffer default",
+    "exact gang member hard maximum; the generic organization default of 256 is not native evidence",
+    "exact per-account/per-world character-slot hard maximum",
+    "exact hard world/data-record maxima for rooms, items, monsters, spells, races, classes, bankbooks, and related tables beyond retained buffer defaults",
+    "exact native numeric widths/signedness for capacity counters and table indices not already proven by a record layout",
+    "exact allowed ranges, startup-only versus live mutability, and restart semantics for WCCMMUD.mcv capacity prompts",
+    "exact behavior on allocation/admission exhaustion including cleanup/rollback/retry ordering",
+    "exact player-visible capacity/allocation failure messages and rendering order"
+  ],
+  "antiClaims": [
+    "1500 rooms is a hard world room maximum",
+    "750 items is a hard world item maximum",
+    "2000 active monsters is a hard NPC instance maximum",
+    "generic RuntimeCapacityLimitsService Int64 counters are native widths",
+    "generic organization MaximumMembers=256 is the Classic gang member cap",
+    "host MAXUSERS is a MajorMUD gameplay-data limit"
   ]
 }

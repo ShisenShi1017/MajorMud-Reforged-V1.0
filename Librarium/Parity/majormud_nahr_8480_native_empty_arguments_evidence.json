@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "majormud-nahr-8480-native-empty-arguments",
+  "classification": "EXACT_NATIVE_EXECUTION_TRACE",
+  "assertion": "npc.native-combat-message-8480",
+  "source": {
+    "primaryArtifacts": [
+      "WCCMMUD 1.11p DLL",
+      "wccknms2.dat"
+    ],
+    "retention": "Primary artifacts remain in the local-only imported-data archive and are not reintroduced into Git.",
+    "traceSuppliedByOperator": true
+  },
+  "nativeChain": [
+    {
+      "routine": "_generate_monster",
+      "finding": "The relevant native monster-record field is equipped-item ID 0 for npc.1006 Nahr and is copied into the active monster structure."
+    },
+    {
+      "routine": "_move_monster_to_fighter",
+      "finding": "Equipped-item ID 0 explicitly NULs both the weapon-name and attack-verb buffers."
+    },
+    {
+      "routine": "_attack_monster_user",
+      "finding": "The NUL buffers are passed unchanged as the second and fourth string arguments to message 8480."
+    }
+  ],
+  "message": {
+    "legacyId": 8480,
+    "template": "%s %s %s with his %s, but %s dodges!",
+    "npcLegacyId": 1006,
+    "npcId": "npc.1006",
+    "npcName": "Nahr",
+    "physicalAttackSlots": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "miss_verb3": "",
+    "weapon_name": "",
+    "preserveNativeEmptySpacing": true
+  },
+  "crossChecks": [
+    "Thrag's equivalent native field contains item 209 (huge darkwood club).",
+    "Nahr variants 1004, 1005, and 1011 contain item 1023 (nexus blade).",
+    "Nahr 1006 uniquely contains item 0 and follows the native empty-buffer branch."
+  ],
+  "prohibitedSubstitutions": [
+    "swings at",
+    "fist",
+    "foot",
+    "any normalized replacement for the two verified empty native arguments"
+  ],
+  "runtimeContract": "All five npc.1006 physical attacks render message 8480 with empty second and fourth string arguments. Missing arguments on any other NPC remain unresolved unless independently proven."
+}

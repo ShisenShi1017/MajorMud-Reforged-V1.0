@@ -30,6 +30,11 @@ public sealed record RuntimeCommunicationActor(
     string? GuildId,
     IReadOnlySet<string>? AdjacentRoomIds = null);
 
+/// <summary>
+/// Reforged compatibility communication policy shell. MaximumMessageLength and the
+/// FloodWindowSeconds/FloodMaximumMessages pair are extension policy, NOT recovered
+/// Classic MajorMUD MAXPAGES/page/telegram semantics and receive zero Classic parity credit.
+/// </summary>
 public sealed record RuntimeCommunicationPolicy(
     int MaximumMessageLength,
     int FloodWindowSeconds,

@@ -1,10 +1,16 @@
+## PASS61 / Update 0332 parity continuation
+
+Final native repository ownership/inventory closure is **STRONG**: 36 Remaining Systems owners, 40 native dependency groups, 396 retained native artifacts, all supplied WCC file families classified, and 156/156 MajorMUD-used Worldgroup symbols owned. The original WCCMMUD 1.11p DLL plus `wccknms2.dat` trace closes the final standalone Nahr message-8480 gap: both caller arguments are verified empty strings for all five attacks. Current parity is **98 PASS / 102 STRONG / 0 UNKNOWN = 200 (100.0% evidence-backed)**.
+
 # MajorMUD Reforged
 
 ## Current Classic parity baseline
 
-PASS 49 / update 0320 corrects the Classic death-experience boundary from native WCCMMUD disassembly. Ordinary non-final death preserves experience exactly. Final-death/reroll retention keeps the greater of 10% of total experience and the stock half-level threshold plus one only when both KEEPEXP gates are enabled above level one; its replacement-character consumer remains evidence-gated.
+The cumulative Classic parity ledger closes the repository-visible native ownership inventory at STRONG confidence. All 36 Remaining Systems owners, 40 native dependency groups, 396 retained native artifacts, supplied WCC families, and 156/156 MajorMUD-used Worldgroup symbols are explicitly owned and fail-closed where exact semantics remain unresolved.
 
-Current parity: **97 PASS / 90 STRONG / 13 UNKNOWN = 200** (**48.5% strict**, **93.5% evidence-backed**).
+Current parity: **98 PASS / 102 STRONG / 0 UNKNOWN = 200** (**49.0% strict**, **100.0% evidence-backed**). This closes standalone UNKNOWN assertions without promoting the 102 evidence-bounded STRONG assertions to exact-native PASS.
+
+Creator Studio full-control editing is integrated into the Reforged app with Quick Create, nested field editing, expanded runtime Librarium families, Custom1 cloning, and protected Classic identity/runtime metadata.
 
 ## Pass 27 compile hotfix
 
@@ -54,8 +60,9 @@ Short version:
 
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive`.
-- Local verification: PASS current-health validator 15/15, Classic compiler/runtime audits with 26,668/26,668 room descriptions, interaction/narrative smoke with 83 executable quest entries, Reforged app Release build, and Reforged app publish to `Release/MajorMudReforgedApp`.
+- Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
+- Current validation entrypoint: `python Tools/validator.py`; retained runtime parity gate: `--smoke-classic-parity-closure`.
+- Local verification: Release server/compiler builds, compiler regression, Classic generation, generic parity closure, focused Nahr combat checks, and core/server smoke pass. Python validation is blocked locally because no interpreter is registered.
 - CodeUpdate0139 runtime cohesion is closed in the local baseline.
 - GitHub Actions is pending for CodeUpdate0140 until the pushed commit is confirmed green.
 - Librarium is authoritative.

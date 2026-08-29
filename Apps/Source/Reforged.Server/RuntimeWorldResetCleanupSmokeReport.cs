@@ -10,7 +10,7 @@ public sealed record RuntimeWorldResetCleanupSmokeReport(bool Passed, IReadOnlyL
     {
         var checks = new List<string>();
         var failures = new List<string>();
-        var plan = new RuntimeResetPlanDefinition("classic-room-reset", RuntimeResetScope.Room, new[]
+        var plan = new RuntimeResetPlanDefinition("reforged-reset-coordination-smoke", RuntimeResetScope.Room, new[]
         {
             new RuntimeResetActionDefinition("doors", RuntimeResetActionKind.Door, "doors-locks-access", 10, true),
             new RuntimeResetActionDefinition("traps", RuntimeResetActionKind.Trap, "traps", 20, true),
@@ -19,8 +19,8 @@ public sealed record RuntimeWorldResetCleanupSmokeReport(bool Passed, IReadOnlyL
             new RuntimeResetActionDefinition("orphan-cleanup", RuntimeResetActionKind.OrphanCleanup, "world-reset-cleanup", 90, false)
         }, RuntimeResetFailurePolicy.StopAndRollback);
         var service = new RuntimeWorldResetCleanupService(new[] { plan });
-        var dispatches = service.Begin(new RuntimeResetRequest("classic-room-reset", "smoke", DateTimeOffset.UnixEpoch, true));
-        if (dispatches.Select(x => x.ActionId).SequenceEqual(new[] { "doors", "traps", "containers", "orphan-cleanup" })) checks.Add("deterministic-order-and-hard-reset-exclusion"); else failures.Add("dispatch-order-invalid");
+        var dispatches = service.Begin(new RuntimeResetRequest("reforged-reset-coordination-smoke", "smoke", DateTimeOffset.UnixEpoch, true));
+        if (dispatches.Select(x => x.ActionId).SequenceEqual(new[] { "doors", "traps", "containers", "orphan-cleanup" })) checks.Add("reforged-plan-order-and-exclusion"); else failures.Add("dispatch-order-invalid");
         if (dispatches.All(x => x.OwnerSubsystem.Length > 0)) checks.Add("typed-owner-routing"); else failures.Add("owner-routing-invalid");
         var execution = service.Complete(dispatches[0].ExecutionId, new[]
         {
@@ -32,6 +32,16 @@ public sealed record RuntimeWorldResetCleanupSmokeReport(bool Passed, IReadOnlyL
         if (execution.Completed && execution.RolledBack) checks.Add("required-failure-rollback"); else failures.Add("rollback-policy-invalid");
         if (execution.FailedActionIds.Contains("traps")) checks.Add("failure-recording"); else failures.Add("failure-not-recorded");
         if (service.ValidateState().Count == 0) checks.Add("state-invariants"); else failures.AddRange(service.ValidateState());
+        if (!RuntimeClassicWorldResetCleanupAuthority.GenericCoordinatorOwnsClassicOrdering) checks.Add("generic-coordinator-receives-no-classic-ordering-credit"); else failures.Add("generic-coordinator-misclassified");
+        try
+        {
+            RuntimeClassicWorldResetCleanupAuthority.RequireUniversalClassicResetOrder();
+            failures.Add("classic-universal-order-should-remain-gated");
+        }
+        catch (InvalidOperationException ex) when (ex.Message == "native-world-reset-order-unresolved")
+        {
+            checks.Add("classic-universal-order-remains-fail-closed");
+        }
         return new(failures.Count == 0, checks, failures);
     }
 }

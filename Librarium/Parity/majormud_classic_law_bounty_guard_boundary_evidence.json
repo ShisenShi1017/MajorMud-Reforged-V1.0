@@ -1,0 +1,191 @@
+{
+  "schema": "majormud.classic-law-bounty-guard-boundary-evidence.v1",
+  "update": "0325",
+  "pass": 54,
+  "classification": "STRONG_BOUNDARY_EXACT_LAW_DISPATCH_EDGES_OPEN",
+  "result": "native.law-bounty-guards UNKNOWN -> STRONG",
+  "nativeModule": {
+    "wcc": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "wbb": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "exportCountPerDistribution": 592,
+    "abiExportSurfaceEqual": true,
+    "instructionEquivalenceClaimed": false
+  },
+  "nativeLawBoundaryAnchors": {
+    "count": 17,
+    "symbols": [
+      "_add_evil_points",
+      "_add_evil_timer",
+      "_add_evil_warnings_to_room",
+      "_already_evil",
+      "_attempt_to_forgive",
+      "_begin_clearing_evil_points",
+      "_clear_evil_points_routine",
+      "_cmd_forgive",
+      "_cmd_guard",
+      "_decrement_evil_timers",
+      "_delete_evil_points",
+      "_display_evil_star",
+      "_display_evil_timers",
+      "_evil_for_robbing",
+      "_get_saved_evil_points",
+      "_save_evil_points",
+      "_should_give_evil"
+    ],
+    "ownershipInterpretation": {
+      "award_admission_warning": [
+        "_add_evil_points",
+        "_add_evil_timer",
+        "_add_evil_warnings_to_room",
+        "_already_evil",
+        "_should_give_evil",
+        "_evil_for_robbing"
+      ],
+      "forgiveness_decay": [
+        "_attempt_to_forgive",
+        "_begin_clearing_evil_points",
+        "_clear_evil_points_routine",
+        "_decrement_evil_timers",
+        "_delete_evil_points",
+        "_cmd_forgive"
+      ],
+      "display_commands": [
+        "_display_evil_star",
+        "_display_evil_timers",
+        "_cmd_guard"
+      ],
+      "persistence": [
+        "_get_saved_evil_points",
+        "_save_evil_points"
+      ]
+    }
+  },
+  "nativeHelpLawContract": {
+    "criminalActsBroadlyNamed": [
+      "attacking innocents",
+      "stealing from others"
+    ],
+    "lawfulAttackMultiplier": 3,
+    "outlaw": "guards attack on sight but spare life",
+    "criminal": "guards slay on sight",
+    "villain": "criminal plus possible intervention by the Gods",
+    "fiend": "utmost evil; exact extra actor/cadence not stated",
+    "forgiveness": "deeds are eventually forgotten over time",
+    "exactActionClassificationOrWitnessLogicClaimed": false
+  },
+  "decodedGuardJailGraph": {
+    "guardNpcLegacyIds": [
+      13,
+      14,
+      40,
+      757
+    ],
+    "guardNpcNames": {
+      "13": "guardsman",
+      "14": "guardsman",
+      "40": "Sheriff Lionheart",
+      "757": "elite guardsman"
+    },
+    "hitSpell": 583,
+    "hitSpellName": "jail",
+    "entryTextblock": 1509,
+    "entryScript": "testskill current_hp 0 9624:price 0",
+    "bandDispatchTextblock": 9624,
+    "bandRows": [
+      {
+        "condition": "evilaligned 210",
+        "jailTimeSpell": 586,
+        "name": "fiend jail time",
+        "duration": 200,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 120 + goodaligned 209",
+        "jailTimeSpell": 641,
+        "name": "villain jail time",
+        "duration": 175,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 80 + goodaligned 119",
+        "jailTimeSpell": 642,
+        "name": "criminal jail time",
+        "duration": 150,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 40 + goodaligned 79",
+        "jailTimeSpell": 643,
+        "name": "outlaw jail time",
+        "duration": 125,
+        "thenSpell": 584
+      },
+      {
+        "condition": "goodaligned 39",
+        "jailTimeSpell": 644,
+        "name": "seedy+ jail time",
+        "duration": 100,
+        "thenSpell": 584
+      }
+    ],
+    "jailTeleportSpell": 584,
+    "jailTeleportMap": 1,
+    "encodedRoomRange": [
+      541,
+      545
+    ],
+    "exitJailControlSpell": 585,
+    "exitGateTextblock": 9113,
+    "exitGateScript": "roomitem 1363:cast 929",
+    "requiredRoomItem": 1363,
+    "exitTeleportSpell": 929,
+    "exitTeleportMap": 1,
+    "exitTeleportRoom": 1076,
+    "executionCaution": "Record and TextBlock graph is exact retained data. Exact native comparator semantics, ordering relative to lethal combat, destination draw, message rendering, and TextBlock control execution remain gated."
+  },
+  "alreadyRecovered": [
+    {
+      "fact": "Evil-Point reputation bands",
+      "classification": "PASS"
+    },
+    {
+      "fact": "default MAXEPDAY=18 / EPCYCLE=60 / EPAMOUNT=1 and recovered forgiveness arithmetic",
+      "classification": "PASS"
+    },
+    {
+      "fact": "Lawful-target evil-point multiplier 3x; Outlaw/Criminal/Villain help consequences and 300+ attack lockout",
+      "classification": "STRONG"
+    },
+    {
+      "fact": "guard jail hit-spell and decoded band/time/teleport control graph",
+      "classification": "STRONG_DATA_GRAPH_NOT_FULL_EXECUTION"
+    }
+  ],
+  "runtimeBoundary": {
+    "classicAuthority": "RuntimeClassicLawBountyGuardAuthority",
+    "genericLawPolicyReceivesNativeParityCredit": false,
+    "existingAlignmentEvilPointRuntimeRemainsActive": true,
+    "behaviorMutationInPass54": false
+  },
+  "stillUnresolvedForPass": [
+    "exact per-action crime classification and witness/admission rules inside the two broad native-help crime families",
+    "exact guard alert/spawn/hostility acquisition cadence and how it composes with ordinary NPC AI",
+    "exact Villain/Fiend additional enforcement actor/cadence where retained sources conflict",
+    "fine, confiscation, bounty arithmetic/limits, citizen reporting, and arrest policy not represented by the decoded guard jail graph",
+    "exact FORGIVE command accounting/history and wall-clock/cleanup scheduling beyond recovered redemption arithmetic/defaults",
+    "exact law/jail messages and rendering order",
+    "exact Evil-Point persisted record encoding/serialization despite native save/get owner exports",
+    "exact guard-hit jail ordering relative to death, jail TextBlock comparator semantics, jail destination RNG draw/order, and exit-control execution"
+  ],
+  "sources": [
+    "Librarium/NativeEvidence/native_abi_identity_closure_0002.json",
+    "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "Librarium/Evidence/Character/CLASSIC_EVIL_LEGAL_SYSTEM_USER_EVIDENCE_0137.md",
+    "Librarium/Evidence/Character/CLASSIC_EVIL_REPUTATION_REDEMPTION_PASS_0300.md",
+    "Librarium/Objects/npcs/npc_records_0122.json",
+    "Librarium/Objects/spells/spell_records_0122.json",
+    "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+    "Apps/Source/Reforged.Server/RuntimeCharacterAlignmentAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs"
+  ]
+}

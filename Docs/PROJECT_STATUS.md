@@ -1,10 +1,14 @@
 # MajorMUD Reforged Project Status
 
-- PASS 49 corrects the Classic death-experience boundary from native WCCMMUD disassembly. Ordinary non-final death preserves experience exactly. Final-death/reroll retention keeps the greater of floor(total XP / 10) and the stock half-level threshold plus one when both KEEPEXP gates are enabled above level one; otherwise it retains zero. No 2,000,000 cap exists. Ordinary death is live, while replacement-character/retained-XP transfer remains gated. Current parity is 97 PASS / 90 STRONG / 13 UNKNOWN = 200.
+- Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
+- Current parity: **98 PASS / 102 STRONG / 0 UNKNOWN = 200** (**49.0% strict / 100.0% evidence-backed**).
+- The cumulative parity ledger is Librarium/Parity/majormud_parity_assertions.json; historical pass ledgers and validation snapshots are retired.
+- Tools/validator.py is the single current-health entrypoint. Runtime parity closure is exposed as --smoke-classic-parity-closure.
+- Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
+- Generated Data/Classic remains untracked and must be regenerated from Librarium in clean environments.
+- GitHub Actions remains the official post-push validation gate.
 
-- Cumulative local verification through PASS49 is green: full solution Release build 0 warnings/errors; compiler regression 104,911 records / 47 families; Classic generation 103,330 objects / 36 families / 41 files with 26,668/26,668 room descriptions; PASS31, PASS39, and PASS43-49 runtime smokes; core/server smoke 17/17. Python validators remain unrun because no interpreter is registered.
-
-- Nahr message 8480 remains UNKNOWN after exact WCC updater page 12006, WCCMMUD DLL, MDB, public-reference, and relationship-consensus exhaustion. The sources do not contain its five caller-owned miss verb/body-part pairs, so no prose is inferred.
+- Nahr message 8480 is now PASS. The original WCCMMUD 1.11p DLL plus `wccknms2.dat` trace proves equipped-item ID zero causes both caller buffers to be empty for all five physical attacks; runtime preserves the exact empty spacing.
 
 - `SYSOP LIST LIMITED` now reports the authoritative live presence of generated limited items and their current room/user/owned-domain location. Definitions without an instantiated item are omitted, matching the user-confirmed rule that omission means the item is not presently in the world.
 
@@ -439,4 +443,8 @@ Latest local continuation: grouped abilities 125-134 are complete as persistent 
 
 
 
+# Current Update 0332 Integration
 
+- PASS61 final native repository ownership closure plus the exact Nahr 8480 empty-buffer trace is the current parity baseline: 98 PASS / 102 STRONG / 0 UNKNOWN = 200 (49.0% strict / 100.0% evidence-backed).
+- The cumulative PASS50-61 payload and Creator Studio full-control editor payload are integrated with no overlap and no changes to generated Data, saves, imported evidence, archives, releases, or build output.
+- Explicit server and Reforged.App Release builds pass with zero warnings/errors. PASS50-61 parity smokes and the focused Nahr live-combat checks pass. The broader live-combat smoke later fails the unrelated `npc-blacknight-self-status-persisted` check. Python validators could not run because no interpreter is registered.

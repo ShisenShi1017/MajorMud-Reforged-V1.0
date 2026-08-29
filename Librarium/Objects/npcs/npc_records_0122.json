@@ -217878,7 +217878,11 @@
           "energy_cost": 400,
           "hit_message_legacy_id": 2887,
           "miss_message_legacy_id": 8480,
-          "dodge_message_legacy_id": 8479
+          "dodge_message_legacy_id": 8479,
+          "miss_verb3": "",
+          "weapon_name": "",
+          "native_equipped_item_legacy_id": 0,
+          "native_empty_miss_arguments_verified": true
         },
         {
           "slot": 2,
@@ -217891,7 +217895,11 @@
           "energy_cost": 1000,
           "hit_message_legacy_id": 3333,
           "miss_message_legacy_id": 8480,
-          "dodge_message_legacy_id": 8479
+          "dodge_message_legacy_id": 8479,
+          "miss_verb3": "",
+          "weapon_name": "",
+          "native_equipped_item_legacy_id": 0,
+          "native_empty_miss_arguments_verified": true
         },
         {
           "slot": 3,
@@ -217904,7 +217912,11 @@
           "energy_cost": 600,
           "hit_message_legacy_id": 8453,
           "miss_message_legacy_id": 8480,
-          "dodge_message_legacy_id": 8479
+          "dodge_message_legacy_id": 8479,
+          "miss_verb3": "",
+          "weapon_name": "",
+          "native_equipped_item_legacy_id": 0,
+          "native_empty_miss_arguments_verified": true
         },
         {
           "slot": 4,
@@ -217917,7 +217929,11 @@
           "energy_cost": 1000,
           "hit_message_legacy_id": 1663,
           "miss_message_legacy_id": 8480,
-          "dodge_message_legacy_id": 8479
+          "dodge_message_legacy_id": 8479,
+          "miss_verb3": "",
+          "weapon_name": "",
+          "native_equipped_item_legacy_id": 0,
+          "native_empty_miss_arguments_verified": true
         },
         {
           "slot": 5,
@@ -217930,7 +217946,11 @@
           "energy_cost": 1000,
           "hit_message_legacy_id": 8453,
           "miss_message_legacy_id": 8480,
-          "dodge_message_legacy_id": 8479
+          "dodge_message_legacy_id": 8479,
+          "miss_verb3": "",
+          "weapon_name": "",
+          "native_equipped_item_legacy_id": 0,
+          "native_empty_miss_arguments_verified": true
         }
       ],
       "attack_profile_authority": {
@@ -217938,6 +217958,26 @@
         "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-monster-wcc.json",
         "source_key": "1006",
         "promotion_code_update": "0138"
+      },
+      "native_message_8480_argument_authority": {
+        "classification": "verified_native_empty_arguments",
+        "source": "original WCCMMUD 1.11p DLL and wccknms2.dat native trace",
+        "runtime_chain": [
+          "_generate_monster copies equipped item ID 0 into the active monster",
+          "_move_monster_to_fighter NULs weapon-name and attack-verb buffers when equipped item ID is 0",
+          "_attack_monster_user passes both empty buffers to WCCMSG2 message 8480"
+        ],
+        "attack_slots": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "miss_verb3": "",
+        "weapon_name": "",
+        "preserve_native_empty_spacing": true,
+        "evidence": "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json"
       },
       "public_reference_0139": {
         "source": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-monster-wcc.json",

@@ -1,0 +1,25 @@
+{
+  "schema": "majormud.remaining-system.native-combat-spell-boundary.v1",
+  "update": "0330",
+  "pass": 59,
+  "id": "combat-spells.native-boundary",
+  "status": "evidence-backed-strong-native-owner-boundary",
+  "runtimeOwner": "ClassicCombatResolver + Runtime spell/status execution families with individual evidence grades",
+  "nativeOwner": "WCCMMUD/WBBMMUD dedicated attack/autocombat/cast/spell/ability/upkeep ABI families",
+  "canonicalSpellCount": 1350,
+  "statusEffectCount": 111,
+  "nativeOwnerExportCount": 102,
+  "remainingNativeDependencies": [
+    "exact remaining native physical attack formula composition and branch priority",
+    "exact remaining spell formula composition and cast/use branch ordering",
+    "exact target admission/selection ordering when multiple target classes overlap",
+    "exact mana/kai/energy/charge reservation, spend, failure and refund ordering",
+    "exact magic resistance/saving throw/ability precedence across native branches",
+    "exact status apply/tick/expire/dispel order and same-cycle collisions",
+    "exact multi-target mutation order and native partial-failure semantics",
+    "exact combat/spell global RNG draw ordering and execution-thread mapping",
+    "exact native success/failure messages where caller-owned arguments remain absent",
+    "five Nahr npc.1006 message-8480 miss verb/weapon argument pairs"
+  ],
+  "nahr8480": "separate UNKNOWN assertion; five npc.1006 caller-owned pairs absent"
+}

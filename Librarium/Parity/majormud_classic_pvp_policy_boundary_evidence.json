@@ -1,0 +1,167 @@
+{
+  "schema": "majormud.classic-pvp-policy-boundary-evidence.v1",
+  "update": "0326",
+  "pass": 55,
+  "classification": "STRONG_NATIVE_OWNER_PLUS_EXACT_HELP_BOUNDARY_POLICY_EDGES_OPEN",
+  "result": "native.pvp-policy UNKNOWN -> STRONG",
+  "nativeModule": {
+    "wcc": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "wbb": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "exportCountPerDistribution": 592,
+    "abiExportSurfaceEqual": true,
+    "instructionEquivalenceClaimed": false
+  },
+  "nativePvpBoundaryAnchors": {
+    "count": 18,
+    "symbols": [
+      "_add_evil_points",
+      "_attack_user_user",
+      "_attacker_is_in_same_room",
+      "_check_kill_user",
+      "_cmd_any_attack",
+      "_cmd_attack",
+      "_cmd_killblow",
+      "_cmd_rob",
+      "_evil_for_robbing",
+      "_is_being_attacked",
+      "_is_combatting_user",
+      "_is_in_pvp_combat",
+      "_match_combat_target",
+      "_move_player_to_fighter",
+      "_rob_user",
+      "_should_give_evil",
+      "_use_player_target",
+      "_validate_auto_combat"
+    ],
+    "ownershipInterpretation": {
+      "attack_dispatch_and_user_resolution": [
+        "_cmd_attack",
+        "_cmd_any_attack",
+        "_attack_user_user",
+        "_attacker_is_in_same_room",
+        "_match_combat_target",
+        "_use_player_target",
+        "_move_player_to_fighter"
+      ],
+      "pvp_state_and_kill": [
+        "_is_being_attacked",
+        "_is_combatting_user",
+        "_is_in_pvp_combat",
+        "_validate_auto_combat",
+        "_check_kill_user",
+        "_cmd_killblow"
+      ],
+      "law_robbery_coupling": [
+        "_add_evil_points",
+        "_should_give_evil",
+        "_cmd_rob",
+        "_rob_user",
+        "_evil_for_robbing"
+      ]
+    }
+  },
+  "nativeHelpPvpContract": {
+    "lawsHelp": {
+      "message": 31,
+      "symbol": "HL1B11",
+      "facts": [
+        "two broad criminal acts are attacking innocents and stealing",
+        "town does not care if a hated person is slain",
+        "attacking Lawful gives three times the Evil Points",
+        "Seedy bad deeds are ignored",
+        "Outlaw/Criminal/Villain/Fiend law bands have explicit guard/escalation descriptions"
+      ]
+    },
+    "lawfulChoice": {
+      "symbols": [
+        "GOODTEXT",
+        "GOODPMPT"
+      ],
+      "setupDefault": {
+        "symbol": "ENABLAWF",
+        "value": true
+      },
+      "facts": [
+        "Lawful is an explicit creation choice",
+        "Lawful cannot instigate an action that would give Evil Points",
+        "attacking or robbing a Lawful player gives three times regular Evil Points",
+        "Lawful can still attack those with a bad reputation",
+        "Lawful title cannot be removed except by starting a new character"
+      ]
+    },
+    "levelRange": {
+      "symbol": "LVLDIFF",
+      "defaultMaximumDifference": 100,
+      "meaning": "realm-level maximum PvP level difference configuration"
+    },
+    "practiceArena": {
+      "message": 135,
+      "symbol": "HL1B55",
+      "facts": [
+        "players may fight each other without Evil Points",
+        "arena death loses no life",
+        "defeated player revives in Halls Of The Dead with HP from last arena entry"
+      ]
+    },
+    "forgive": {
+      "message": 155,
+      "symbol": "HL1B66",
+      "facts": [
+        "FORGIVE may counter Evil Points gained by an accidental attacker",
+        "documented window is approximately five minutes"
+      ],
+      "exactTimerSecondsClaimed": false
+    }
+  },
+  "alreadyRecovered": [
+    {
+      "fact": "Maximum level difference for PVP default = 100",
+      "classification": "PASS"
+    },
+    {
+      "fact": "Practice arena no-EP/no-life/restore-entry-HP behavior",
+      "classification": "STRONG"
+    },
+    {
+      "fact": "Lawful target 3x Evil-Point multiplier",
+      "classification": "STRONG"
+    },
+    {
+      "fact": "Evil-Point/reputation bands, Fiend 300+ attack lockout, and law owner family",
+      "classification": "PASS/STRONG"
+    }
+  ],
+  "runtimeBoundary": {
+    "classicAuthority": "RuntimeClassicPvpPolicyAuthority",
+    "genericPvpPolicyReceivesNativeParityCredit": false,
+    "genericMutualConsentReceivesNativeParityCredit": false,
+    "genericSamePartyGuildRestrictionsReceiveNativeParityCredit": false,
+    "genericCooldownLogoutRestrictionsReceiveNativeParityCredit": false,
+    "existingMaximumLevelDifferenceAndPracticeArenaRuntimeRemainActive": true,
+    "behaviorMutationInPass55": false
+  },
+  "stillUnresolvedForPass": [
+    "exact realm PvP enabled/disabled default, live mutability, and native persistence/serialization beyond the proven maximum-level-difference setup default",
+    "exact creation-time Lawful field encoding/persistence and prompt-to-character record flow",
+    "exact safe/restricted room or zone encoding outside the strongly correlated named practice-arena rooms",
+    "exact native target-admission branch ordering for Lawful attackers and the precise native mapping of innocents/hated/bad-reputation targets",
+    "exact same-party and same-gang/guild PvP restrictions, if any",
+    "exact player kill-credit ownership, normal PvP death penalties, and ordering around life/XP/corpse transitions",
+    "exact player-corpse item/currency access rights and public-loot transition behavior",
+    "exact PvP-triggered guard/bounty reaction ordering beyond the separately recovered Evil-Point/law owner boundary",
+    "exact native PvP attack cooldown, combat logout/disconnect restriction, and timer persistence behavior, if any",
+    "exact denial/attack/kill/corpse/guard PvP messages and rendering order",
+    "exact native branch ordering across _cmd_attack/_cmd_any_attack/_attack_user_user/_check_kill_user and Evil-Point/law hooks"
+  ],
+  "sources": [
+    "Librarium/NativeEvidence/native_abi_identity_closure_0002.json",
+    "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "Librarium/Evidence/native_support_catalog_0020.json",
+    "Librarium/Parity/majormud_death_law_pvp_lifecycle_evidence_0285.json",
+    "Librarium/Parity/majormud_classic_law_bounty_guard_boundary_evidence.json",
+    "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json",
+    "Apps/Source/Reforged.Server/RuntimeClassicDeathLawPvpAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicConfigurationAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePvp.cs"
+  ]
+}

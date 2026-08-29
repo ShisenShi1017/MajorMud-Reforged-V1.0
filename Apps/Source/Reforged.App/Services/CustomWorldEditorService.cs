@@ -55,6 +55,13 @@ public sealed class CustomWorldEditorService
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
     private readonly string _projectRoot;
     private IReadOnlyDictionary<string, LibrariumFamily>? _catalogCache;
+    private readonly Dictionary<string, CustomWorldSimpleFormDefinition> _discoveredFormCache = new(StringComparer.OrdinalIgnoreCase);
+    private static readonly HashSet<string> NonRuntimeCreatorFamilies = new(
+        [
+            "room_messages", "classic_bug_fixes", "ai_profiles", "areas", "assets", "client_views",
+            "conflicts", "events", "evidence_records", "guilds", "regions", "validation_rules", "world_overlays"
+        ],
+        StringComparer.OrdinalIgnoreCase);
 
     public CustomWorldEditorService(string? startDirectory = null)
     {
@@ -65,6 +72,16 @@ public sealed class CustomWorldEditorService
     public string ConfigPath => Path.Combine(_projectRoot, "Config", "server.worlds.json");
     public string OverridePath => WorldOverrideEngine.ResolveOverridePath(_projectRoot, CustomWorldId);
     public string GeneratedDataPath => Path.Combine(_projectRoot, "Data", CustomWorldId);
+
+    public IReadOnlyList<CustomWorldSimpleFamilyOption> GetEditableFamilies()
+    {
+        EnsureCatalogLoaded();
+        return _catalogCache!.Keys
+            .Where(family => !NonRuntimeCreatorFamilies.Contains(family))
+            .OrderBy(CustomWorldSimpleFormCatalog.LabelForFamily, StringComparer.OrdinalIgnoreCase)
+            .Select(family => new CustomWorldSimpleFamilyOption(family, CustomWorldSimpleFormCatalog.LabelForFamily(family)))
+            .ToArray();
+    }
 
     public CustomWorldEditorSnapshot Load()
     {
@@ -243,7 +260,31 @@ public sealed class CustomWorldEditorService
         return effective.ToJsonString(JsonOptions);
     }
 
-    public CustomWorldSimpleFormDefinition GetSimpleForm(string family) => CustomWorldSimpleFormCatalog.Get(family);
+    public CustomWorldSimpleFormDefinition GetSimpleForm(string family, string? targetId = null)
+    {
+        family = NormalizeRequired(family, "Family");
+        var baseForm = CustomWorldSimpleFormCatalog.Get(family);
+        var cacheKey = family + "|schema";
+        if (!_discoveredFormCache.TryGetValue(cacheKey, out var discovered))
+        {
+            var fields = new Dictionary<string, CustomWorldSimpleFieldDefinition>(StringComparer.OrdinalIgnoreCase);
+            foreach (var field in baseForm.Fields) fields[field.Path] = field;
+
+            var source = GetFamily(family);
+            foreach (var record in source.Records)
+                DiscoverEditorFields(record, string.Empty, fields, includeIndexedCollections: false);
+
+            discovered = baseForm with { Fields = OrderEditorFields(fields.Values).ToArray() };
+            _discoveredFormCache[cacheKey] = discovered;
+        }
+
+        if (string.IsNullOrWhiteSpace(targetId)) return discovered;
+
+        var merged = discovered.Fields.ToDictionary(field => field.Path, StringComparer.OrdinalIgnoreCase);
+        var effective = ReadEffectiveRecord(family, targetId);
+        DiscoverEditorFields(effective, string.Empty, merged, includeIndexedCollections: false);
+        return discovered with { Fields = OrderEditorFields(merged.Values).ToArray() };
+    }
 
     public (bool ExistsInBase, IReadOnlyDictionary<string, string> TextValues, IReadOnlyDictionary<string, bool> BoolValues) LoadSimpleRecord(
         string family,
@@ -251,7 +292,7 @@ public sealed class CustomWorldEditorService
     {
         family = NormalizeRequired(family, "Family");
         targetId = NormalizeRequired(targetId, "Object ID");
-        var definition = CustomWorldSimpleFormCatalog.Get(family);
+        var definition = GetSimpleForm(family, targetId);
         var baseRecord = GetFamily(family).Records.FirstOrDefault(record =>
             ReadRecordId(record).Equals(targetId, StringComparison.OrdinalIgnoreCase));
         var effective = baseRecord is null ? new JsonObject() : (JsonObject)baseRecord.DeepClone();
@@ -301,7 +342,7 @@ public sealed class CustomWorldEditorService
         IReadOnlySet<string>? changedPaths = null)
     {
         family = NormalizeRequired(family, "Family");
-        var definition = CustomWorldSimpleFormCatalog.Get(family);
+        var definition = GetSimpleForm(family, createNew ? null : targetId);
         var values = new Dictionary<string, string>(textValues, StringComparer.OrdinalIgnoreCase);
         var bools = new Dictionary<string, bool>(boolValues, StringComparer.OrdinalIgnoreCase);
 
@@ -363,7 +404,16 @@ public sealed class CustomWorldEditorService
                 CustomWorldSimpleFieldKind.Integer => int.TryParse(raw, out var number)
                     ? JsonValue.Create(number)
                     : throw new InvalidOperationException($"{field.Label} must be a whole number."),
+                CustomWorldSimpleFieldKind.Decimal when raw.Length == 0 =>
+                    throw new InvalidOperationException($"{field.Label} cannot be blank after you change it. Enter 0 if you want zero."),
+                CustomWorldSimpleFieldKind.Decimal => decimal.TryParse(raw, out var decimalNumber)
+                    ? JsonValue.Create(decimalNumber)
+                    : throw new InvalidOperationException($"{field.Label} must be a number."),
                 CustomWorldSimpleFieldKind.Lines => new JsonArray(SplitLines(raw).Select(value => (JsonNode?)JsonValue.Create(value)).ToArray()),
+                CustomWorldSimpleFieldKind.IntegerLines => ParseIntegerLines(raw, field.Label),
+                CustomWorldSimpleFieldKind.DecimalLines => ParseDecimalLines(raw, field.Label),
+                CustomWorldSimpleFieldKind.BooleanLines => ParseBooleanLines(raw, field.Label),
+                CustomWorldSimpleFieldKind.ObjectLines => ParseObjectLines(raw, field.Label),
                 _ => JsonValue.Create(raw)
             };
             SetPath(fields, field.Path, node);
@@ -504,17 +554,19 @@ public sealed class CustomWorldEditorService
         File.WriteAllText(OverridePath, root.ToJsonString(JsonOptions) + Environment.NewLine);
     }
 
+    private void EnsureCatalogLoaded()
+    {
+        if (_catalogCache is not null) return;
+        var diagnostics = new List<CompilerDiagnostic>();
+        _catalogCache = new LibrariumCatalogReader()
+            .ReadFamilies(Path.Combine(_projectRoot, "Librarium"), diagnostics)
+            .ToDictionary(item => item.Name, StringComparer.OrdinalIgnoreCase);
+    }
+
     private LibrariumFamily GetFamily(string family)
     {
-        if (_catalogCache is null)
-        {
-            var diagnostics = new List<CompilerDiagnostic>();
-            _catalogCache = new LibrariumCatalogReader()
-                .ReadFamilies(Path.Combine(_projectRoot, "Librarium"), diagnostics)
-                .ToDictionary(item => item.Name, StringComparer.OrdinalIgnoreCase);
-        }
-
-        return _catalogCache.TryGetValue(family, out var result)
+        EnsureCatalogLoaded();
+        return _catalogCache!.TryGetValue(family, out var result)
             ? result
             : throw new KeyNotFoundException($"Librarium family '{family}' was not found.");
     }
@@ -690,6 +742,259 @@ public sealed class CustomWorldEditorService
         }
     }
 
+    private static readonly HashSet<string> ProtectedEditorRootFields = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "id", "object_type", "world_scope", "confidence", "runtime_mapping"
+    };
+
+    private JsonObject ReadEffectiveRecord(string family, string targetId)
+    {
+        var baseRecord = GetFamily(family).Records.FirstOrDefault(record =>
+            ReadRecordId(record).Equals(targetId, StringComparison.OrdinalIgnoreCase));
+        var effective = baseRecord is null ? new JsonObject() : (JsonObject)baseRecord.DeepClone();
+        var customOverride = FindOverride(family, targetId);
+        if (customOverride is not null)
+        {
+            var operation = customOverride["operation"]?.GetValue<string>()?.Trim().ToLowerInvariant() ?? "patch";
+            if (operation == "delete") throw new InvalidOperationException($"'{targetId}' is deleted from Custom1.");
+            if (customOverride["fields"] is JsonObject fields) MergeObject(effective, fields);
+        }
+        if (baseRecord is null && customOverride is null)
+            throw new KeyNotFoundException($"Object '{family}/{targetId}' was not found.");
+        return effective;
+    }
+
+    private static IEnumerable<CustomWorldSimpleFieldDefinition> OrderEditorFields(IEnumerable<CustomWorldSimpleFieldDefinition> fields)
+        => fields
+            .OrderByDescending(field => field.Required)
+            .ThenBy(field => EditorSectionOrder(field.Path))
+            .ThenBy(field => field.Path, StringComparer.OrdinalIgnoreCase);
+
+    private static int EditorSectionOrder(string path)
+    {
+        var root = path.TrimStart('@').Split('.', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? string.Empty;
+        return root.ToLowerInvariant() switch
+        {
+            "name" or "title" or "display_name" or "short_name" or "legacy_id" or "description" or "classification" => 0,
+            "combat" or "effect" or "effects" or "damage" => 10,
+            "equipment" or "requirements" or "prerequisites" => 20,
+            "behavior" or "ai" or "movement" => 30,
+            "environment" or "spawn_model" or "respawn" => 40,
+            "economy" or "rewards" or "inventory" or "loot" => 50,
+            "relationships" or "commands" or "aliases" => 60,
+            "flags" or "status" => 70,
+            _ => 100
+        };
+    }
+
+    private static void DiscoverEditorFields(
+        JsonNode? node,
+        string path,
+        IDictionary<string, CustomWorldSimpleFieldDefinition> fields,
+        bool includeIndexedCollections)
+    {
+        if (node is null) return;
+        if (node is JsonObject obj)
+        {
+            foreach (var property in obj)
+            {
+                if (path.Length == 0 && ProtectedEditorRootFields.Contains(property.Key)) continue;
+                var childPath = path.Length == 0 ? property.Key : path + "." + property.Key;
+                DiscoverEditorFields(property.Value, childPath, fields, includeIndexedCollections);
+            }
+            return;
+        }
+
+        if (path.Length == 0 || path.StartsWith('@')) return;
+        if (fields.ContainsKey(path)) return;
+
+        if (node is JsonArray array)
+        {
+            if (array.Count == 0) return;
+            CustomWorldSimpleFieldKind kind;
+            string help;
+            if (array.All(item => item is JsonObject))
+            {
+                kind = CustomWorldSimpleFieldKind.ObjectLines;
+                help = "One entry per line. Each line uses field=value | field=value. Add or remove lines to control the collection without JSON.";
+            }
+            else if (array.All(item => item is JsonValue value && value.TryGetValue<bool>(out _)))
+            {
+                kind = CustomWorldSimpleFieldKind.BooleanLines;
+                help = "One yes/no value per line.";
+            }
+            else if (array.All(item => IsIntegerNode(item)))
+            {
+                kind = CustomWorldSimpleFieldKind.IntegerLines;
+                help = "One whole number per line.";
+            }
+            else if (array.All(item => IsNumberNode(item)))
+            {
+                kind = CustomWorldSimpleFieldKind.DecimalLines;
+                help = "One number per line.";
+            }
+            else
+            {
+                kind = CustomWorldSimpleFieldKind.Lines;
+                help = "One value per line.";
+            }
+
+            fields[path] = new CustomWorldSimpleFieldDefinition(path, HumanizeEditorPath(path), kind, false, string.Empty, help);
+            return;
+        }
+
+        if (node is not JsonValue valueNode) return;
+        var fieldKind = valueNode.TryGetValue<bool>(out _)
+            ? CustomWorldSimpleFieldKind.Boolean
+            : IsIntegerNode(valueNode)
+                ? CustomWorldSimpleFieldKind.Integer
+                : IsNumberNode(valueNode)
+                    ? CustomWorldSimpleFieldKind.Decimal
+                    : ShouldUseMultiline(path, valueNode)
+                        ? CustomWorldSimpleFieldKind.Multiline
+                        : CustomWorldSimpleFieldKind.Text;
+        fields[path] = new CustomWorldSimpleFieldDefinition(
+            path,
+            HumanizeEditorPath(path),
+            fieldKind,
+            false,
+            string.Empty,
+            "Full-control field: " + path);
+    }
+
+    private static bool IsIntegerNode(JsonNode? node)
+    {
+        if (node is not JsonValue value) return false;
+        return value.TryGetValue<int>(out _) || value.TryGetValue<long>(out _);
+    }
+
+    private static bool IsNumberNode(JsonNode? node)
+    {
+        if (node is not JsonValue value) return false;
+        return IsIntegerNode(node) || value.TryGetValue<decimal>(out _) || value.TryGetValue<double>(out _) || value.TryGetValue<float>(out _);
+    }
+
+    private static bool ShouldUseMultiline(string path, JsonValue value)
+    {
+        var leaf = path.Split('.', StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? path;
+        if (leaf.Contains("description", StringComparison.OrdinalIgnoreCase) ||
+            leaf.Contains("message", StringComparison.OrdinalIgnoreCase) ||
+            leaf.Contains("text", StringComparison.OrdinalIgnoreCase) ||
+            leaf.Contains("script", StringComparison.OrdinalIgnoreCase) ||
+            leaf.Contains("source", StringComparison.OrdinalIgnoreCase) ||
+            leaf.Contains("notes", StringComparison.OrdinalIgnoreCase)) return true;
+        return value.TryGetValue<string>(out var text) && (text?.Length ?? 0) > 100;
+    }
+
+    private static string HumanizeEditorPath(string path)
+    {
+        var leaf = path.TrimStart('@').Split('.', StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? path;
+        leaf = leaf.Replace('-', '_');
+        var words = leaf.Split('_', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (words.Length == 0) return path;
+        return string.Join(" ", words.Select(word => word.Length == 0 ? word : char.ToUpperInvariant(word[0]) + word[1..]));
+    }
+
+    private static JsonArray ParseIntegerLines(string raw, string label)
+    {
+        var result = new JsonArray();
+        foreach (var line in SplitEditorLines(raw))
+        {
+            if (!int.TryParse(line, out var value)) throw new InvalidOperationException($"{label} contains '{line}', which is not a whole number.");
+            result.Add(value);
+        }
+        return result;
+    }
+
+    private static JsonArray ParseDecimalLines(string raw, string label)
+    {
+        var result = new JsonArray();
+        foreach (var line in SplitEditorLines(raw))
+        {
+            if (!decimal.TryParse(line, out var value)) throw new InvalidOperationException($"{label} contains '{line}', which is not a number.");
+            result.Add(value);
+        }
+        return result;
+    }
+
+    private static JsonArray ParseBooleanLines(string raw, string label)
+    {
+        var result = new JsonArray();
+        foreach (var line in SplitEditorLines(raw))
+        {
+            if (!bool.TryParse(line, out var value)) throw new InvalidOperationException($"{label} contains '{line}'. Enter true or false on each line.");
+            result.Add(value);
+        }
+        return result;
+    }
+
+    private static JsonArray ParseObjectLines(string raw, string label)
+    {
+        var result = new JsonArray();
+        foreach (var line in SplitEditorLines(raw))
+        {
+            var obj = new JsonObject();
+            foreach (var token in line.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+            {
+                var separator = token.IndexOf('=');
+                if (separator <= 0) throw new InvalidOperationException($"{label} entry '{token}' must use field=value.");
+                var key = token[..separator].Trim();
+                var text = token[(separator + 1)..].Trim();
+                if (key.Length == 0) throw new InvalidOperationException($"{label} contains an empty field name.");
+                SetPath(obj, key, ParseEditorValue(text));
+            }
+            if (obj.Count > 0) result.Add(obj);
+        }
+        return result;
+    }
+
+    private static JsonNode? ParseEditorValue(string text)
+    {
+        if (bool.TryParse(text, out var boolean)) return JsonValue.Create(boolean);
+        if (int.TryParse(text, out var integer)) return JsonValue.Create(integer);
+        if (decimal.TryParse(text, out var number)) return JsonValue.Create(number);
+        if (text.Contains(','))
+            return new JsonArray(text.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Select(value => ParseEditorValue(value)).ToArray());
+        return JsonValue.Create(text);
+    }
+
+    private static string FormatObjectLines(JsonArray array)
+    {
+        var lines = new List<string>();
+        foreach (var item in array.OfType<JsonObject>())
+        {
+            var values = new List<string>();
+            FlattenObjectForEditor(item, string.Empty, values);
+            lines.Add(string.Join(" | ", values));
+        }
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private static void FlattenObjectForEditor(JsonNode? node, string path, ICollection<string> values)
+    {
+        if (node is JsonObject obj)
+        {
+            foreach (var property in obj)
+            {
+                var child = path.Length == 0 ? property.Key : path + "." + property.Key;
+                FlattenObjectForEditor(property.Value, child, values);
+            }
+            return;
+        }
+        if (node is JsonArray array)
+        {
+            values.Add(path + "=" + string.Join(",", array.Select(item => item?.ToString() ?? string.Empty)));
+            return;
+        }
+        values.Add(path + "=" + (node?.ToString() ?? string.Empty));
+    }
+
+    private static string[] SplitEditorLines(string raw) => (raw ?? string.Empty)
+        .Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+        .Where(value => value.Length > 0)
+        .ToArray();
+
     private static int ReadEditorInt(IReadOnlyDictionary<string, string> values, string key)
         => values.TryGetValue(key, out var raw) && int.TryParse(raw, out var parsed) ? parsed : 0;
 
@@ -739,8 +1044,11 @@ public sealed class CustomWorldEditorService
 
     private static string NodeToEditorText(JsonNode node, CustomWorldSimpleFieldKind kind)
     {
-        if (kind == CustomWorldSimpleFieldKind.Lines && node is JsonArray array)
-            return string.Join(Environment.NewLine, array.Select(value => value?.ToString() ?? string.Empty).Where(value => value.Length > 0));
+        if ((kind is CustomWorldSimpleFieldKind.Lines or CustomWorldSimpleFieldKind.IntegerLines or
+             CustomWorldSimpleFieldKind.DecimalLines or CustomWorldSimpleFieldKind.BooleanLines) && node is JsonArray array)
+            return string.Join(Environment.NewLine, array.Select(value => value?.ToString() ?? string.Empty));
+        if (kind == CustomWorldSimpleFieldKind.ObjectLines && node is JsonArray objectArray)
+            return FormatObjectLines(objectArray);
         if (node is JsonValue value)
         {
             if (value.TryGetValue<string>(out var text)) return text ?? string.Empty;

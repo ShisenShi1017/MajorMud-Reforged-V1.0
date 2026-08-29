@@ -109,6 +109,15 @@ using (var npcDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result
     var cloakedFigure = npcs.Single(x => x.GetProperty("id").GetString() == "npc.1086");
     if (cloakedFigure.GetProperty("rewards").GetProperty("xp_base").GetString() != "10000")
         throw new Exception("Cloaked figure correction was not projected into authoritative NPC XP.");
+    var nahr = npcs.Single(x => x.GetProperty("id").GetString() == "npc.1006");
+    var nahrAttacks = nahr.GetProperty("attacks").EnumerateArray().ToArray();
+    if (nahrAttacks.Length != 5 || nahrAttacks.Any(attack =>
+            attack.GetProperty("miss_message_legacy_id").GetInt32() != 8480 ||
+            attack.GetProperty("miss_verb3").GetString() != string.Empty ||
+            attack.GetProperty("weapon_name").GetString() != string.Empty ||
+            attack.GetProperty("native_equipped_item_legacy_id").GetInt32() != 0 ||
+            !attack.GetProperty("native_empty_miss_arguments_verified").GetBoolean()))
+        throw new Exception("Nahr native message-8480 empty arguments were not projected exactly.");
 }
 
 using (var economyDocument = JsonDocument.Parse(File.ReadAllText(Path.Combine(result.OutputRoot, "economy_rules.json"))))

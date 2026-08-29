@@ -1,40 +1,111 @@
 {
   "schemaVersion": 1,
   "subsystem": "pvp-policy",
-  "runtimeOwner": "RuntimePvpPolicyService",
-  "status": "runtime-active-partially-exhausted",
-  "zonePolicies": ["forbidden", "consent-only", "open"],
-  "policyChecks": [
-    "same-room validation",
-    "safe-zone denial",
-    "mutual consent",
-    "level-range limits",
-    "same-party restrictions",
-    "same-guild restrictions",
-    "attack cooldown",
-    "combat logout restriction"
-  ],
-  "integrations": {
-    "combat": "owns attack, damage, death, and kill execution",
-    "character": "owns character level, PvP flag, alignment, and Evil Point state",
-    "party": "supplies party identity",
-    "organizations": "supplies guild identity",
-    "law": "receives crime and guard-evaluation requests",
-    "economy": "owns loot and currency transfer",
-    "rooms": "supplies room and zone policy"
+  "pass": "Update0326",
+  "status": "evidence-backed-boundary",
+  "classification": "Classic user-vs-user native owner surface + exact Lawful/config/arena help STRONG; exact admission/kill/corpse/cooldown/message branches remain open",
+  "classicRuntimeOwner": "RuntimeClassicPvpPolicyAuthority + RuntimeClassicDeathLawPvpAuthority / RuntimeClassicConfigurationAuthority for already recovered exact/narrow rules",
+  "reforgedExtensionOwner": "RuntimePvpPolicyService",
+  "nativeOwnerFamilies": {
+    "attack_dispatch_and_user_resolution": [
+      "_cmd_attack",
+      "_cmd_any_attack",
+      "_attack_user_user",
+      "_attacker_is_in_same_room",
+      "_match_combat_target",
+      "_use_player_target",
+      "_move_player_to_fighter"
+    ],
+    "pvp_state_and_kill": [
+      "_is_being_attacked",
+      "_is_combatting_user",
+      "_is_in_pvp_combat",
+      "_validate_auto_combat",
+      "_check_kill_user",
+      "_cmd_killblow"
+    ],
+    "law_robbery_coupling": [
+      "_add_evil_points",
+      "_should_give_evil",
+      "_cmd_rob",
+      "_rob_user",
+      "_evil_for_robbing"
+    ]
   },
-  "safeFallback": "deny unknown actors, unknown zones, unsupported transitions, and unproven policy exceptions",
-  "persistence": "session/world policy only; native PvP flag and cooldown persistence remain unresolved",
+  "nativeHelpBoundary": {
+    "lawsHelp": {
+      "message": 31,
+      "symbol": "HL1B11",
+      "facts": [
+        "two broad criminal acts are attacking innocents and stealing",
+        "town does not care if a hated person is slain",
+        "attacking Lawful gives three times the Evil Points",
+        "Seedy bad deeds are ignored",
+        "Outlaw/Criminal/Villain/Fiend law bands have explicit guard/escalation descriptions"
+      ]
+    },
+    "lawfulChoice": {
+      "symbols": [
+        "GOODTEXT",
+        "GOODPMPT"
+      ],
+      "setupDefault": {
+        "symbol": "ENABLAWF",
+        "value": true
+      },
+      "facts": [
+        "Lawful is an explicit creation choice",
+        "Lawful cannot instigate an action that would give Evil Points",
+        "attacking or robbing a Lawful player gives three times regular Evil Points",
+        "Lawful can still attack those with a bad reputation",
+        "Lawful title cannot be removed except by starting a new character"
+      ]
+    },
+    "levelRange": {
+      "symbol": "LVLDIFF",
+      "defaultMaximumDifference": 100,
+      "meaning": "realm-level maximum PvP level difference configuration"
+    },
+    "practiceArena": {
+      "message": 135,
+      "symbol": "HL1B55",
+      "facts": [
+        "players may fight each other without Evil Points",
+        "arena death loses no life",
+        "defeated player revives in Halls Of The Dead with HP from last arena entry"
+      ]
+    },
+    "forgive": {
+      "message": 155,
+      "symbol": "HL1B66",
+      "facts": [
+        "FORGIVE may counter Evil Points gained by an accidental attacker",
+        "documented window is approximately five minutes"
+      ],
+      "exactTimerSecondsClaimed": false
+    }
+  },
   "nativeDependencies": [
-    "exact Classic PvP availability and consent model",
-    "safe and restricted zone encodings",
-    "level and alignment restrictions",
-    "criminal and Evil Point interactions",
-    "party and guild restrictions",
-    "kill credit and death penalties",
-    "loot and corpse access",
-    "guard and bounty reactions",
-    "cooldown and logout restrictions",
-    "exact commands and messages"
+    "exact realm PvP enabled/disabled default, live mutability, and native persistence/serialization beyond the proven maximum-level-difference setup default",
+    "exact creation-time Lawful field encoding/persistence and prompt-to-character record flow",
+    "exact safe/restricted room or zone encoding outside the strongly correlated named practice-arena rooms",
+    "exact native target-admission branch ordering for Lawful attackers and the precise native mapping of innocents/hated/bad-reputation targets",
+    "exact same-party and same-gang/guild PvP restrictions, if any",
+    "exact player kill-credit ownership, normal PvP death penalties, and ordering around life/XP/corpse transitions",
+    "exact player-corpse item/currency access rights and public-loot transition behavior",
+    "exact PvP-triggered guard/bounty reaction ordering beyond the separately recovered Evil-Point/law owner boundary",
+    "exact native PvP attack cooldown, combat logout/disconnect restriction, and timer persistence behavior, if any",
+    "exact denial/attack/kill/corpse/guard PvP messages and rendering order",
+    "exact native branch ordering across _cmd_attack/_cmd_any_attack/_attack_user_user/_check_kill_user and Evil-Point/law hooks"
+  ],
+  "explicitlyExcludedParityClaims": [
+    "RuntimePvpZonePolicy.ConsentOnly is native MajorMUD mutual-consent behavior",
+    "RuntimePvpZonePolicy.Forbidden/Open are decoded native zone encodings",
+    "RuntimePvpZoneRule.DenySameParty is native",
+    "RuntimePvpZoneRule.DenySameGuild is native",
+    "RuntimePvpZoneRule.AttackCooldown is native",
+    "RuntimePvpZoneRule.LogoutRestriction is native",
+    "RuntimePvpKillRequest proves native kill-credit/law/loot ordering",
+    "Reforged PvP denial strings are exact native messages"
   ]
 }

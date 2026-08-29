@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "phase": "remaining-systems",
-  "updatedByPass": "Pass 49 / Update 0320",
+  "updatedByPass": "Pass 60 / Update 0331",
   "systems": [
     {
       "id": "party-coordination",
@@ -147,15 +147,19 @@
     },
     {
       "id": "communications",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-evidence-gated-shell",
-      "runtimeOwner": "RuntimeLiveGameplayFacade for recovered MajorMUD channels; RuntimeCommunicationService remains a compatibility/policy shell for extension channels",
-      "persistenceOwner": "character Conditions currently store Reforged channel toggles/forget state; exact MajorMUD persistence owner remains native-dependent",
+      "classification": "runtime-active-strong-profile-controls-maxpages-boundary-exact-defaults-serialization-rendering-open",
+      "status": "evidence-backed-boundary",
+      "runtimeOwner": "RuntimeLiveGameplayFacade for recovered MajorMUD channels + RuntimeClassicCommunicationPersistenceLimitsAuthority for profile/page-limit evidence; RuntimeCommunicationService remains Reforged extension policy",
+      "persistenceOwner": "native help proves character/profile-scoped settings; Reforged Conditions are a compatibility representation only; exact MajorMUD record offsets/serialization/defaults remain native-dependent",
       "recordFamilies": [
-        "runtime actor communication state",
-        "Reforged compatibility ignore relationships",
-        "extension flood-window state (not promoted as native)",
-        "native channel delivery actions"
+        "native profile/current-profile settings",
+        "PAGE in-game paging selection",
+        "SET MAXPAGES page/telegram three-second limit",
+        "telepath per-sender ignore state",
+        "gossip/auction receipt selection",
+        "SET MESSAGES thresholds",
+        "SET ENTRANCES selection",
+        "extension flood-window state (not native)"
       ],
       "commands": [
         "say",
@@ -169,25 +173,31 @@
         "tell (not promoted as native)",
         "extension communication channels"
       ],
-      "timers": [],
-      "flags": [
-        "gossip receive",
-        "auction receive",
-        "telepath ignore sender",
-        "SET TELEPATH polarity unresolved",
-        "SET MESSAGES priority classes proven but per-message classification unresolved",
-        "SET ENTRANCES native toggle proven but exact default/persistence unresolved",
-        "compatibility-shell actor flags",
-        "broadcast group 0..126 persisted in Reforged character Conditions; native persistence owner unresolved"
+      "timers": [
+        "SET MAXPAGES uses an exact 3-second receive window for pages/telegrams; overflow handling remains unresolved"
       ],
-      "evidenceClassification": "native-confirmed-set-toggle-scope",
+      "flags": [
+        "PAGE paging availability",
+        "GOSSIP receipt",
+        "AUCTION receipt",
+        "telepath per-sender ignore",
+        "SET TELEPATH selector with explicit polarity unresolved",
+        "SET MESSAGES LOW/MEDIUM/HIGH thresholds",
+        "SET ENTRANCES selector",
+        "generic 10-second/6-message extension flood policy excluded"
+      ],
+      "evidenceClassification": "strong-exact-profile-control-scope-plus-maxpages-window-defaults-serialization-rendering-open",
       "nativeDependencies": [
-        "exact communication/profile setting defaults and native persistence owner/serialization",
-        "explicit TELEPATH ON/OFF polarity and conflicting RECEIVE polarity wording",
-        "SET MESSAGES per-message priority classification and complete filtering integration",
-        "SET ENTRANCES exact event rendering/timing/default",
-        "MAXPAGES/flood/page behavior, SET INTERRUPT execution, SET WARNING execution",
-        "remaining exact channel rendering"
+        "exact native default states for PAGE, TELEPATH, GOSSIP, AUCTION, MESSAGES, ENTRANCES and related profile controls",
+        "exact native record offsets/bit encodings and serialization owner for communication/profile settings",
+        "explicit SET TELEPATH ON/OFF stored polarity; retained wording proves the selector exists but not which named state is the blocking state",
+        "exact SET MAXPAGES default value and accepted numeric range",
+        "exact behavior when pages/telegrams exceed MAXPAGES within the proven three-second period (drop, queue, defer, coalesce, error, or host behavior)",
+        "exact MajorMUD-to-Worldgroup page/telegram handoff and host/session interaction",
+        "exact page/telegram and remaining channel success/failure rendering, color, language, invisibility and moderation interactions",
+        "exact per-message priority membership behind SET MESSAGES LOW/MEDIUM/HIGH",
+        "exact SET ENTRANCES default, login/logout event timing and persistence",
+        "exact reconnect/login load and save ordering for communication/profile settings"
       ],
       "profileSettings0303": {
         "state": "PASS-narrow",
@@ -205,9 +215,25 @@
           "Conflicting SET RECEIVE polarity wording between retained help records.",
           "Exact per-message priority classification and complete runtime filtering for SET MESSAGES.",
           "Exact login/logout/realm entrance event rendering, recipient timing and default for SET ENTRANCES.",
-          "MAXPAGES/flood/page behavior, SET INTERRUPT execution, SET WARNING execution and remaining exact channel rendering.",
-          "Native FAST-mode resolver remains distinct from the operator-mandated Reforged command-to-SAY fallback that applies globally."
+          "Native FAST-mode resolver remains distinct from the operator-mandated Reforged command-to-SAY fallback that applies globally.",
+          "MAXPAGES page/telegram scope and three-second window are now exact; default/range/overflow/host handoff/rendering remain unresolved under Pass 57."
         ]
+      },
+      "pass57NativeBoundary": {
+        "profileHelpMessage": 37,
+        "setHelpMessage": 117,
+        "maxPagesWindowSeconds": 3,
+        "maxPagesSubjects": [
+          "pages",
+          "telegrams"
+        ],
+        "pageTogglesInGamePaging": true,
+        "forgetPerSenderTelepathBlock": true,
+        "genericRuntimeFloodPolicyReceivesClassicParityCredit": false,
+        "reforgedConditionsAreNativeSerializationClaim": false,
+        "worldgroupMailAndNativeLoggingInScope": false,
+        "explicitTelepathPolarityResolved": false,
+        "exactNativeProfileSerializationResolved": false
       }
     },
     {
@@ -430,8 +456,8 @@
     },
     {
       "id": "world-reset-cleanup",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "strong-classic-boundary-generic-orchestration-quarantined",
+      "status": "evidence-backed-boundary",
       "runtimeOwner": "RuntimeWorldResetCleanupService",
       "persistenceOwner": "world reset execution history; subsystem-owned state remains with each owner",
       "recordFamilies": [
@@ -457,13 +483,16 @@
       ],
       "evidenceClassification": "strongly-correlated",
       "nativeDependencies": [
-        "exact native reset categories and ordering",
+        "exact native reset/cleanup category ordering",
         "active-player and combat behavior",
-        "corpse and limited-item survival",
-        "merchant, quest, NPC, event, door, trap, and container reset semantics",
+        "corpse and limited-item survival beyond recovered placement admission",
         "hard-reset exception encodings",
-        "exact failure and rollback behavior"
-      ]
+        "Remove@Maint 149 distinct lifecycle meaning",
+        "exact native failure/rollback/persistence ordering"
+      ],
+      "classicRuntimeOwner": "RuntimeClassicWorldResetCleanupAuthority",
+      "runtimeOwnerDisposition": "reforged-extension-shell-only",
+      "evidenceLedger": "Librarium/Parity/majormud_classic_world_reset_cleanup_boundary_evidence.json"
     },
     {
       "id": "events",
@@ -514,85 +543,135 @@
     },
     {
       "id": "pvp-policy",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimePvpPolicyService",
-      "persistenceOwner": "session/world PvP policy; Character and Combat retain owned state",
+      "classification": "runtime-active-strong-native-owner-exact-help-boundary-policy-edges-open",
+      "status": "evidence-backed-boundary",
+      "runtimeOwner": "RuntimeClassicPvpPolicyAuthority + RuntimeClassicDeathLawPvpAuthority/RuntimeClassicConfigurationAuthority for recovered Classic facts; RuntimePvpPolicyService is Reforged-only extension policy",
+      "persistenceOwner": "realm maximum-level-difference projection is active; exact native realm enable/Lawful/PvP state persistence remains native-dependent",
       "recordFamilies": [
-        "PvP zone rules",
-        "runtime actor PvP projections",
-        "attack cooldown state",
-        "logout restriction state",
-        "PvP consequence requests"
+        "native user-vs-user combat state",
+        "realm PvP level-range configuration",
+        "Lawful creation/protection policy",
+        "practice-arena exception",
+        "PvP kill/corpse/law handoff boundaries"
       ],
       "commands": [
-        "attack policy evaluation",
-        "register PvP attack",
-        "logout policy evaluation",
-        "create kill consequence request"
+        "native ATTACK owner (_cmd_attack/_cmd_any_attack)",
+        "native KILLBLOW owner (_cmd_killblow)",
+        "native ROB owner (_cmd_rob)",
+        "FORGIVE native help/law coupling"
       ],
       "timers": [
-        "per-attacker-target cooldown",
-        "per-character logout restriction"
+        "FORGIVE documented as approximately five minutes; exact timer unresolved",
+        "generic Reforged attack/logout timers receive no Classic credit"
       ],
       "flags": [
-        "PvP enabled",
-        "criminal",
-        "safe zone",
-        "consent-only zone",
-        "open zone"
+        "Lawful character choice",
+        "realm maximum PvP level difference",
+        "practice-arena exception",
+        "native PvP-combat state"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-native-owner-plus-exact-help-boundary",
       "nativeDependencies": [
-        "exact Classic PvP and consent model",
-        "zone encodings",
-        "level/alignment restrictions",
-        "criminal/Evil Point interactions",
-        "party/guild restrictions",
-        "kill credit/death penalties",
-        "loot/corpse access",
-        "guard/bounty routing",
-        "cooldowns/logout restrictions",
-        "exact commands/messages"
-      ]
+        "exact realm PvP enabled/disabled default, live mutability, and native persistence/serialization beyond the proven maximum-level-difference setup default",
+        "exact creation-time Lawful field encoding/persistence and prompt-to-character record flow",
+        "exact safe/restricted room or zone encoding outside the strongly correlated named practice-arena rooms",
+        "exact native target-admission branch ordering for Lawful attackers and the precise native mapping of innocents/hated/bad-reputation targets",
+        "exact same-party and same-gang/guild PvP restrictions, if any",
+        "exact player kill-credit ownership, normal PvP death penalties, and ordering around life/XP/corpse transitions",
+        "exact player-corpse item/currency access rights and public-loot transition behavior",
+        "exact PvP-triggered guard/bounty reaction ordering beyond the separately recovered Evil-Point/law owner boundary",
+        "exact native PvP attack cooldown, combat logout/disconnect restriction, and timer persistence behavior, if any",
+        "exact denial/attack/kill/corpse/guard PvP messages and rendering order",
+        "exact native branch ordering across _cmd_attack/_cmd_any_attack/_attack_user_user/_check_kill_user and Evil-Point/law hooks"
+      ],
+      "pass55NativeBoundary": {
+        "nativeAnchorCount": 18,
+        "maximumPvpLevelDifferenceDefault": 100,
+        "lawfulChoiceEnabledDefault": true,
+        "lawfulAttackPenaltyMultiplier": 3,
+        "lawsHelpMessage": 31,
+        "practiceArenaHelpMessage": 135,
+        "forgiveHelpMessage": 155,
+        "forgiveWindowExact": false,
+        "genericRuntimePvpPolicyReceivesClassicParityCredit": false,
+        "genericMutualConsentReceivesClassicParityCredit": false,
+        "genericSamePartyGuildRestrictionReceivesClassicParityCredit": false,
+        "genericCooldownLogoutRestrictionReceivesClassicParityCredit": false
+      }
     },
     {
       "id": "law-bounty-guards",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeLawPolicyService",
-      "persistenceOwner": "world law coordination; native persistence remains unresolved",
+      "classification": "runtime-active-strong-boundary-exact-law-dispatch-edges-open",
+      "status": "evidence-backed-boundary",
+      "runtimeOwner": "RuntimeClassicLawBountyGuardAuthority + RuntimeCharacterAlignmentResolver / RuntimeClassicDeathLawPvpAuthority for already recovered Classic behavior; RuntimeLawPolicyService is Reforged-only",
+      "persistenceOwner": "Native _save_evil_points / _get_saved_evil_points ownership is resolved; exact persisted record encoding/serialization remains native-dependent",
       "recordFamilies": [
-        "crime records",
-        "wanted and bounty state",
-        "law-zone policy",
-        "crime decay deadlines"
+        "Evil Point and timer state",
+        "reputation/alignment enforcement",
+        "native guard jail spell/TextBlock graph",
+        "native saved Evil Point state"
       ],
       "commands": [
-        "report crime",
-        "inspect wanted state",
-        "request fine",
-        "request jail",
-        "pardon"
+        "native FORGIVE owner (_cmd_forgive)",
+        "native GUARD owner (_cmd_guard)"
       ],
       "timers": [
-        "crime decay deadline"
+        "native Evil Point timers and decrement/clearing owners; exact schedule/accounting remains gated"
       ],
       "flags": [
-        "wanted",
-        "crime active",
-        "law enforced"
+        "Evil Point/reputation state",
+        "performed-evil/redemption state already recovered",
+        "guard jail band conditions from TextBlock 9624"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-native-owner-and-decoded-jail-boundary",
       "nativeDependencies": [
-        "exact crime families and witness rules",
-        "Evil Point and criminal-flag coupling",
-        "bounty arithmetic and limits",
-        "guard alert/summon/hostility behavior",
-        "arrest, jail, fines, confiscation, reputation, and reporting",
-        "crime decay and pardon authority",
-        "exact messages and persistence"
-      ]
+        "exact per-action crime classification and witness/admission rules inside the two broad native-help crime families",
+        "exact guard alert/spawn/hostility acquisition cadence and how it composes with ordinary NPC AI",
+        "exact Villain/Fiend additional enforcement actor/cadence where retained sources conflict",
+        "fine, confiscation, bounty arithmetic/limits, citizen reporting, and arrest policy not represented by the decoded guard jail graph",
+        "exact FORGIVE command accounting/history and wall-clock/cleanup scheduling beyond recovered redemption arithmetic/defaults",
+        "exact law/jail messages and rendering order",
+        "exact Evil-Point persisted record encoding/serialization despite native save/get owner exports",
+        "exact guard-hit jail ordering relative to death, jail TextBlock comparator semantics, jail destination RNG draw/order, and exit-control execution"
+      ],
+      "pass54NativeBoundary": {
+        "nativeAnchorCount": 17,
+        "guardJailNpcLegacyIds": [
+          13,
+          14,
+          40,
+          757
+        ],
+        "guardJailHitSpell": 583,
+        "entryTextblock": 1509,
+        "bandTextblock": 9624,
+        "jailTimeSpells": [
+          586,
+          641,
+          642,
+          643,
+          644
+        ],
+        "jailTimeDurationsSeconds": [
+          200,
+          175,
+          150,
+          125,
+          100
+        ],
+        "jailTeleportSpell": 584,
+        "jailMap": 1,
+        "encodedJailRoomRange": [
+          541,
+          545
+        ],
+        "exitControlSpell": 585,
+        "exitGateTextblock": 9113,
+        "exitTeleportSpell": 929,
+        "exitTeleportMap": 1,
+        "exitTeleportRoom": 1076,
+        "genericRuntimeLawPolicyReceivesClassicParityCredit": false
+      }
     },
     {
       "id": "rest-inn-recovery-policy",
@@ -760,8 +839,8 @@
     },
     {
       "id": "save-coordination",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "strong-classic-storage-boundary-generic-orchestration-quarantined",
+      "status": "evidence-backed-boundary",
       "runtimeOwner": "RuntimeSaveCoordinationService",
       "persistenceOwner": "cross-system transaction metadata; payload ownership remains with each subsystem",
       "recordFamilies": [
@@ -775,7 +854,8 @@
         "manual save coordination"
       ],
       "timers": [
-        "Classic player autosave: native 60-second interval active; other save triggers remain clock-scheduling-owned"
+        "Classic Player data save: native 60-second interval active",
+        "Classic Buffer data setup interval: native 300-second value retained; exact participant mapping remains gated"
       ],
       "flags": [
         "required",
@@ -783,12 +863,17 @@
         "dirty",
         "generation"
       ],
-      "evidenceClassification": "mixed-pass-strong-unknown",
+      "evidenceClassification": "strong-native-storage-boundary-with-unresolved-majorMud-cross-owner-order",
       "nativeDependencies": [
-        "ordinary MajorMUD player/world save participant ordering",
-        "buffer ownership",
-        "normal persistence ordering"
-      ]
+        "ordinary MajorMUD Player/world participant ordering",
+        "native Buffer data record-family mapping",
+        "MajorMUD transaction grouping",
+        "ordinary-save flush/durability point",
+        "shutdown-save ordering",
+        "partial-save semantics"
+      ],
+      "classicRuntimeOwner": "RuntimeClassicSaveCoordinationAuthority",
+      "runtimeOwnerDisposition": "reforged-extension-shell-only"
     },
     {
       "id": "worldgroup-integration",
@@ -829,9 +914,9 @@
     },
     {
       "id": "global-rng",
-      "classification": "runtime-active-native-core-partially-integrated",
-      "status": "classic-native-core-and-direct-call-boundary-proven-gameplay-call-order-bounded",
-      "runtimeOwner": "RuntimeClassicWorldgroupPrng for Classic raw host state; RuntimeGlobalRandomService is Reforged extension infrastructure",
+      "classification": "runtime-active-native-strong-contract-boundary",
+      "status": "evidence-backed-strong-native-contract-boundary",
+      "runtimeOwner": "RuntimeClassicWorldgroupPrng + RuntimeClassicGlobalRngContractAuthority for Classic native boundary; RuntimeGlobalRandomService remains Reforged extension infrastructure",
       "persistenceOwner": "Classic WGSERVER startup reseeds from packed time; Reforged extension stream snapshots remain extension-only",
       "recordFamilies": [
         "native CRT seed/draw state",
@@ -840,8 +925,6 @@
         "Reforged extension stream definitions and states"
       ],
       "commands": [
-        "--smoke-pass34-classic-worldgroup-prng",
-        "--smoke-pass35-classic-worldgroup-rng-callsite-boundary",
         "--smoke-global-random"
       ],
       "timers": [],
@@ -851,9 +934,12 @@
         "Reforged extension stream scope/sequence"
       ],
       "nativeDependencies": [
-        "exact MajorMUD gameplay draw/mutation ordering across direct and indirect paths",
-        "callsite-to-Worldgroup-execution-thread CRT state mapping",
-        "fully instruction-equivalent _genrdn/_lngrnd bounded-remainder runtime activation"
+        "complete direct _genrdn address/prototype map beyond retained subset",
+        "indirect MajorMUD randomness paths",
+        "gameplay semantic callsite attribution",
+        "callsite-to-Worldgroup execution-thread CRT state mapping",
+        "fully instruction-equivalent _genrdn/_lngrnd bounded-remainder execution",
+        "exact gameplay-wide PRNG draw/mutation ordering"
       ],
       "classicPrng0305": {
         "state": "PASS-narrow",
@@ -872,16 +958,32 @@
         "lngrndDirectPerModule": 42,
         "indirectCallsResolved": false,
         "gameplaySemanticMappingResolved": false
+      },
+      "classicGlobalRngBoundary0331": {
+        "state": "STRONG",
+        "rawPrngCoreExact": true,
+        "startupSeedExact": true,
+        "threadLocalStateOwnershipExact": true,
+        "hostRangeEndpointBoundaryExact": true,
+        "directCallCensusExact": true,
+        "genrdnDirectPerModule": 146,
+        "genrdnRetainedAddressesPerModule": 64,
+        "lngrndDirectPerModule": 42,
+        "lngrndRetainedAddressesPerModule": 42,
+        "gameplayCallsiteThreadMappingExact": false,
+        "gameplayDrawOrderingExact": false,
+        "instructionEquivalentRangeLoopExact": false
       }
     },
     {
       "id": "global-world-state",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
+      "classification": "runtime-active-evidence-bounded",
+      "status": "evidence-backed-boundary",
       "runtimeOwner": "RuntimeGlobalWorldStateService",
-      "persistenceOwner": "RuntimeSaveCoordinationService for registered persistent state",
+      "persistenceOwner": "RuntimeClassicSaveCoordinationAuthority boundary; exact Player/Buffer record mapping unresolved",
       "recordFamilies": [
-        "catalog-defined global area zone event and module state"
+        "Reforged catalog-defined global area zone event and module state (extension only)",
+        "Classic owner-specific room/event/limited/NPC/configuration state boundaries"
       ],
       "commands": [
         "--smoke-global-world-state"
@@ -893,16 +995,20 @@
         "reset policy",
         "visibility",
         "persistence",
-        "revision"
+        "revision",
+        "Classic owner boundary"
       ],
       "nativeDependencies": [
-        "exact native record families",
-        "unknown bits masks counters and latches",
-        "default values",
-        "mutation call sites",
+        "exact remaining MajorMUD-local gameplay record families",
+        "remaining unknown bits masks counters and latches",
+        "complete default values",
+        "complete mutation call sites",
         "reset and restart semantics",
+        "Player-data versus Buffer-data persistence mapping",
         "replication and visibility"
-      ]
+      ],
+      "classicRuntimeOwner": "RuntimeClassicGlobalWorldStateAuthority",
+      "runtimeOwnerDisposition": "reforged-extension-shell-only"
     },
     {
       "id": "builder-content-editing",
@@ -998,7 +1104,6 @@
         "help",
         "help search",
         "--smoke-help-reference",
-        "--smoke-pass31-native-help-aliases",
         "--smoke-classic-native-help"
       ],
       "timers": [],
@@ -1151,36 +1256,70 @@
     },
     {
       "id": "capacity-resource-limits",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-safe-policy-shell",
-      "runtimeOwner": "RuntimeCapacityLimitsService",
-      "persistenceOwner": "WorldRules/Host for configured limits; owning subsystems retain resource truth",
+      "classification": "runtime-active-strong-exact-buffer-defaults-narrow-gameplay-limits-hard-maxima-open",
+      "status": "evidence-backed-boundary",
+      "runtimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + narrower native-backed owners; RuntimeCapacityLimitsService is Reforged-only extension coordination",
+      "persistenceOwner": "WCCMMUD.mcv retains setup defaults; exact runtime mutability/restart/persistence of capacity prompts remains native-dependent",
       "recordFamilies": [
-        "capacity definitions",
-        "usage counters",
-        "reservation counters"
+        "WCCMMUD.mcv capacity/buffer prompts",
+        "native UserRec name-width fields",
+        "party member array correlation",
+        "gang-name help/live enforcement",
+        "MajorMUD Plus room-admission capacities",
+        "encumbrance weight capacity"
       ],
       "commands": [
-        "inspect capacity",
-        "reserve",
-        "commit",
-        "release",
-        "host-authorized limit change",
+        "native setup/configuration prompts",
+        "gang creation",
+        "party admission",
+        "item GIVE encumbrance admission",
         "--smoke-capacity-limits"
       ],
       "timers": [],
       "flags": [
-        "configurable",
-        "hard limit",
-        "native width"
+        "buffer default versus hard maximum distinction",
+        "host line/session/user limits excluded",
+        "generic reservation coordinator receives no Classic credit"
       ],
-      "evidenceClassification": "strongly-correlated",
+      "evidenceClassification": "strong-exact-buffer-defaults-plus-narrow-gameplay-limits-hard-maxima-open",
       "nativeDependencies": [
-        "exact MajorMUD gameplay/data limits",
-        "configurable versus static gameplay limits",
-        "native integer widths",
-        "player-visible allocation/admission failure behavior"
-      ]
+        "exact carried inventory item-count/slot maximum separate from the proven encumbrance weight formula",
+        "exact room-floor object-count maximum and death-drop overflow destination/order",
+        "exact concurrent world object/item-instance hard maximum and allocation failure cleanup",
+        "exact active NPC/monster hard maximum beyond the retained 2000 active-monster buffer default",
+        "exact gang member hard maximum; the generic organization default of 256 is not native evidence",
+        "exact per-account/per-world character-slot hard maximum",
+        "exact hard world/data-record maxima for rooms, items, monsters, spells, races, classes, bankbooks, and related tables beyond retained buffer defaults",
+        "exact native numeric widths/signedness for capacity counters and table indices not already proven by a record layout",
+        "exact allowed ranges, startup-only versus live mutability, and restart semantics for WCCMMUD.mcv capacity prompts",
+        "exact behavior on allocation/admission exhaustion including cleanup/rollback/retry ordering",
+        "exact player-visible capacity/allocation failure messages and rendering order"
+      ],
+      "pass56NativeBoundary": {
+        "roomsBufferedDefault": 1500,
+        "itemsBufferedDefault": 750,
+        "activeMonstersBufferedDefault": 2000,
+        "knownMonstersBufferedDefault": 300,
+        "spellsBufferedDefault": 150,
+        "racesBufferedDefault": 12,
+        "classesBufferedDefault": 16,
+        "bankbooksBufferedDefault": 32,
+        "messageBufferDefaults": [
+          250,
+          50,
+          10
+        ],
+        "maximumLives": 9,
+        "partyMaximumMembersStrong": 6,
+        "gangNameMaximumCharacters": 19,
+        "givenNameStorageBytes": 10,
+        "familyNameStorageBytes": 18,
+        "plusVisibleRoomCapacity": 17,
+        "plusHiddenRoomCapacity": 15,
+        "plusMaximumPlacementAttempts": 50,
+        "genericRuntimeCapacityLimitsReceivesClassicParityCredit": false,
+        "bufferDefaultsAreHardWorldMaximumClaims": false
+      }
     },
     {
       "id": "error-handling-recovery",
@@ -1278,7 +1417,7 @@
       "commands": [
         "extension authorization",
         "Classic isolation validation",
-        "--smoke-pass48-classic-extension-boundaries"
+        "--smoke-classic-parity-closure"
       ],
       "timers": [],
       "flags": [

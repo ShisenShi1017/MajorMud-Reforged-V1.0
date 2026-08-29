@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "native-npc-ai-semantics",
+  "pass": "Update0324",
+  "status": "evidence-backed-boundary",
+  "classification": "Classic native owner families STRONG; exact dispatcher semantics still open",
+  "classicRuntimeOwner": "RuntimeClassicNpcAiSemanticsAuthority",
+  "activeStrongRuntimeOwners": [
+    "RuntimeLiveGameplayFacade explicit combat/threat admission",
+    "RuntimeLivingWorldService NPC state",
+    "RuntimeClassicNpcCombatCadence",
+    "RuntimeLiveCombatOwnership MonsGuards admission"
+  ],
+  "nativeOwnerFamilies": {
+    "update_lanes": [
+      "_background_energy",
+      "_background_fast",
+      "_background_medium",
+      "_background_slow",
+      "_energy_update_monster",
+      "_fast_update_monster",
+      "_fast_update_monsters",
+      "_fast_update_next_monster",
+      "_medium_update_monster",
+      "_medium_update_monsters",
+      "_medium_update_next_monster",
+      "_slow_update_monster",
+      "_slow_update_monsters",
+      "_slow_update_next_monster"
+    ],
+    "target_selection": [
+      "_find_action_target",
+      "_find_any_action_target",
+      "_is_valid_monster_target",
+      "_monster_could_attack",
+      "_monster_count_valid_targets",
+      "_count_valid_targets",
+      "_confirm_monster_in_room",
+      "_is_combatting_monster",
+      "_match_combat_target"
+    ],
+    "movement_tracking": [
+      "_move_monster",
+      "_move_monster_to_fighter",
+      "_dir_monster_travelling_coord",
+      "_handle_following_monsters",
+      "_track_monster",
+      "_track_player",
+      "_stop_following"
+    ],
+    "known_monster_memory": [
+      "_find_monster_in_memory",
+      "_get_known_monster_data",
+      "_load_known_monster_into_buffer",
+      "_save_known_monster_from_buffer",
+      "_clear_known_monster",
+      "_clear_known_monsters_to_null",
+      "_mem_get_known_monster",
+      "_check_monster_confusion"
+    ],
+    "combat_actions": [
+      "_attack_monster_monster",
+      "_attack_monster_user",
+      "_give_monsters_a_free_attack",
+      "_monster_cast",
+      "_monster_cast_area"
+    ]
+  },
+  "nativeDependencies": [
+    "exact flee threshold, trigger branch, and destination choice",
+    "exact autonomous perception and aggression acquisition rules",
+    "exact native hate/threat generation, switching, tie ordering, decay, and memory lifetime",
+    "exact patrol route/path selection and blocked-path retry behavior",
+    "exact tracking rules and track-player/track-monster branch semantics",
+    "exact MonsGuards assist timing, propagation, and priority",
+    "exact mapping/cadence/priority of fast, medium, slow, energy, and other native update lanes",
+    "whether newly spawned/admitted NPCs act on the same native host cycle"
+  ],
+  "explicitlyExcludedParityClaims": [
+    "RuntimeNpcAiScheduler worldTick ordering is the native WCCMMUD update order",
+    "RuntimeNpcAiDecisionEngine candidate order is the native Classic priority order",
+    "stable ordinal tie-breaking is proven native hate/threat tie behavior",
+    "Reforged flee threshold or destination validation proves native flee semantics",
+    "explicit-route infrastructure proves native patrol/pathing semantics"
+  ]
+}

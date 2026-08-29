@@ -22,9 +22,12 @@ public sealed record RuntimeNpcAttackDefinition(
     int DodgeMessageLegacyId,
     string AttackVerb = "",
     string MissVerb = "",
-    string WeaponName = "")
+    string WeaponName = "",
+    bool NativeEmptyMissArgumentsVerified = false)
 {
     public int EffectiveSpellLegacyId => Type == 2 ? Accuracy : HitSpellLegacyId;
+    public bool HasExactNativeMissArguments => NativeEmptyMissArgumentsVerified ||
+        (!string.IsNullOrWhiteSpace(MissVerb) && !string.IsNullOrWhiteSpace(WeaponName));
 }
 
 public sealed class RuntimeNpcAttackArgumentRecoveryCatalog
@@ -282,8 +285,11 @@ public sealed class RuntimeNpcDefinition
                 JsonValueReader.ReadInt(attack, "miss_message_legacy_id", 0),
                 JsonValueReader.ReadInt(attack, "dodge_message_legacy_id", 0),
                 publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "atk_verb3", string.Empty) : string.Empty,
-                publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "miss_verb3", string.Empty) : string.Empty,
-                publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "weapon_name", string.Empty) : string.Empty);
+                JsonValueReader.ReadString(attack, "miss_verb3",
+                    publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "miss_verb3", string.Empty) : string.Empty),
+                JsonValueReader.ReadString(attack, "weapon_name",
+                    publicAttack.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(publicAttack, "weapon_name", string.Empty) : string.Empty),
+                JsonValueReader.ReadBool(attack, "native_empty_miss_arguments_verified", false));
             })
             .Where(IsExecutableAttackRow)
             .OrderBy(attack => attack.Slot)

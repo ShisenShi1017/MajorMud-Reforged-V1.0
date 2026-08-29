@@ -32,9 +32,10 @@ public sealed record RuntimeNpcAiTickResult(
     IReadOnlyList<string> StateChanges);
 
 /// <summary>
-/// Deterministic world-owned scheduler for evidence-backed Classic NPC decisions.
-/// Explicit targets and interaction requests are world-runtime state. Native-only
-/// perception, threat generation, pathing, and priority selection remain blocked.
+/// Deterministic Reforged coordination scheduler around evidence-backed NPC inputs.
+/// Its world-tick admission, instance ordering, and delivery/retry bookkeeping are not
+/// claimed as the native Classic WCCMMUD fast/medium/slow/energy dispatcher. Exact native
+/// perception, pathing, action priority, and update cadence remain fail-closed.
 /// </summary>
 public sealed class RuntimeNpcAiScheduler
 {

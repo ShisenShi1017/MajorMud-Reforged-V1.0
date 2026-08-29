@@ -1,3 +1,7 @@
+## PASS61 / Update 0332 — Final Native Repository Closure
+
+The final repository-wide native dependency inventory is now STRONG: 36 owners, 40 dependency groups, 396 retained native artifacts, all supplied WCC families classified, and 156/156 MajorMUD-used Worldgroup symbols owned. The final standalone Nahr message-8480 assertion is now PASS: the native 1.11p chain proves both caller buffers are empty for all five attacks, and runtime preserves the resulting spacing. Parity: **98 PASS / 102 STRONG / 0 UNKNOWN (49.0% strict / 100.0% evidence-backed)**.
+
 # Pass 49 - Classic death experience
 
 Native WCCMMUD disassembly corrects the prior death-XP hypothesis. Ordinary non-final death preserves experience exactly. The 10% calculation belongs to final-death/reroll retention, which keeps the greater of floor(total XP / 10) and the stock half-level threshold plus one when global and player KEEPEXP are enabled above level one; otherwise it retains zero. No 2,000,000 cap exists in the recovered routine.

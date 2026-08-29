@@ -1,8 +1,8 @@
 {
   "policy_id": "runtime_item_native_boundary_policy",
-  "code_update": "0204",
+  "code_update": "0329",
   "subsystem": "Items",
-  "status": "pre_native_semantic_exhaustion_complete",
+  "status": "native_ownership_boundary_strong_exact_semantics_open",
   "native_only_boundary_reached": true,
   "rules": [
     "Do not add new Classic item semantics from names, field presence, or analogy alone.",
@@ -14,10 +14,17 @@
   "remaining_dependency_groups": [
     "record_layout_and_flags",
     "charges_durability_and_use",
-    "loot_reset_and_scheduling",
+    "loot_reset_rng_and_scheduling",
     "persistence_and_recovery",
     "commands_messages_and_permissions",
     "native_edge_cases"
   ],
-  "pre_native_semantic_exhaustion_complete": true
+  "pre_native_semantic_exhaustion_complete": true,
+  "native_owner_surface_strong": true,
+  "pass58_native_ownership": {
+    "wccWbbItemEquipmentExports": 51,
+    "itemFacingCommandExports": 13,
+    "canonicalItems": 1950,
+    "genericReforgedPolicyReceivesExactNativeCredit": false
+  }
 }

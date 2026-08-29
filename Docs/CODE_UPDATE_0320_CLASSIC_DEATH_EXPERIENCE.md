@@ -26,4 +26,4 @@ The current server does not yet replace a final-life character or transfer retai
 
 - Native artifact SHA-256: `5A99E7C34CF9CF58DC6E97FC3EF28F1BD83F9BCEC15CA59AD08826D2F21D2077`
 - Evidence ledger: `Librarium/Parity/majormud_classic_death_experience_evidence_0320.json`
-- Focused validation: `Reports/RuntimeVerification/PASS49_VALIDATION_0320.md`
+- Current validation: `Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md`

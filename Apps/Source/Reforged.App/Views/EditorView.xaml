@@ -4,29 +4,30 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
         <DataTemplate x:Key="SimpleFieldTemplate">
-            <Grid Margin="0,0,0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="180"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Margin="0,3,12,0">
-                    <TextBlock Text="{Binding LabelWithRequired}" FontWeight="SemiBold" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding HelpText}" FontSize="11" Opacity="0.7" TextWrapping="Wrap"/>
-                </StackPanel>
-                <Grid Grid.Column="1">
-                    <TextBox Text="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Height="{Binding InputHeight}" MinHeight="30" TextWrapping="Wrap" AcceptsReturn="True"
-                             VerticalScrollBarVisibility="Auto"
-                             Visibility="{Binding IsText, Converter={StaticResource BoolToVisibility}}"/>
-                    <ComboBox ItemsSource="{Binding Options}" DisplayMemberPath="Label" SelectedValuePath="Value"
-                              SelectedValue="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              MinHeight="30"
-                              Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}"/>
-                    <CheckBox Content="Yes" IsChecked="{Binding BoolValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              VerticalAlignment="Center"
-                              Visibility="{Binding IsBoolean, Converter={StaticResource BoolToVisibility}}"/>
+            <Border BorderBrush="#22000000" BorderThickness="0,0,0,1" Padding="0,4,0,12" Margin="0,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding LabelWithRequired}" FontWeight="SemiBold" FontSize="13" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Row="1" Text="{Binding HelpText}" FontSize="11" Opacity="0.68" TextWrapping="Wrap" Margin="0,2,0,6"/>
+                    <Grid Grid.Row="2">
+                        <TextBox Text="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Height="{Binding InputHeight}" MinHeight="32" TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                 Visibility="{Binding IsText, Converter={StaticResource BoolToVisibility}}"/>
+                        <ComboBox ItemsSource="{Binding Options}" DisplayMemberPath="Label" SelectedValuePath="Value"
+                                  SelectedValue="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  MinHeight="32"
+                                  Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}"/>
+                        <CheckBox Content="Enabled / Yes" IsChecked="{Binding BoolValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  VerticalAlignment="Center" MinHeight="32"
+                                  Visibility="{Binding IsBoolean, Converter={StaticResource BoolToVisibility}}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Border>
         </DataTemplate>
     </UserControl.Resources>
     <Grid Margin="18">
@@ -118,7 +119,7 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Create / Edit Content">
+                    <TabItem Header="Creator Studio">
                         <Grid Margin="12">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -126,48 +127,55 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Border Padding="10" Margin="0,0,0,10" BorderBrush="#33000000" BorderThickness="1" CornerRadius="4">
+                            <Border Padding="12" Margin="0,0,0,10" BorderBrush="#33000000" BorderThickness="1" CornerRadius="4">
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="110"/>
-                                        <ColumnDefinition Width="190"/>
-                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="260"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Make / edit" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0"/>
+
+                                    <TextBlock Text="Content type" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,8"/>
                                     <ComboBox Grid.Column="1" ItemsSource="{Binding SimpleFamilies}" DisplayMemberPath="Label" SelectedValuePath="Value"
-                                              SelectedValue="{Binding SimpleFamily, Mode=TwoWay}" Margin="0,0,12,0"/>
-                                    <TextBlock Grid.Column="2" Text="Search" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                                    <TextBox Grid.Column="3" Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,0"
+                                              SelectedValue="{Binding SimpleFamily, Mode=TwoWay}" Margin="0,0,12,8" MinHeight="32"/>
+                                    <TextBlock Grid.Column="2" Text="Choose any Librarium object family. The editor discovers its editable fields automatically."
+                                               TextWrapping="Wrap" VerticalAlignment="Center" Opacity="0.72" Margin="0,0,12,8"/>
+                                    <Button Grid.Column="3" Content="New" Command="{Binding NewSimpleObjectCommand}" Padding="20,7" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                                    <TextBlock Grid.Row="1" Text="Find existing" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,8,0"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                             Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,12,0" MinHeight="32"
                                              ToolTip="Search by name or object ID."/>
-                                    <Button Grid.Column="4" Content="Find" Command="{Binding BrowseSimpleObjectsCommand}" Padding="14,6" Margin="0,0,8,0"/>
-                                    <Button Grid.Column="5" Content="New" Command="{Binding NewSimpleObjectCommand}" Padding="18,6" FontWeight="SemiBold"/>
+                                    <Button Grid.Row="1" Grid.Column="3" Content="Find" Command="{Binding BrowseSimpleObjectsCommand}" Padding="20,7"/>
                                 </Grid>
                             </Border>
 
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.85*" MinWidth="260"/>
+                                    <ColumnDefinition Width="320"/>
                                     <ColumnDefinition Width="12"/>
-                                    <ColumnDefinition Width="1.65*" MinWidth="440"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <GroupBox Header="Existing Content (Classic + Custom1)">
+                                <GroupBox Header="Existing Content">
                                     <Grid Margin="8">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        <TextBlock Text="Pick an existing Classic or Custom1 object to edit, or click New. Classic is never changed; edits become Custom1-only."
-                                                   TextWrapping="Wrap" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Select an existing Classic or Custom1 object. Classic stays unchanged; your edits are stored only in Custom1."
+                                                   TextWrapping="Wrap" Margin="0,0,0,8" Opacity="0.8"/>
                                         <DataGrid Grid.Row="1" ItemsSource="{Binding SimpleObjects}"
                                                   SelectedItem="{Binding SelectedSimpleObject, Mode=TwoWay}"
                                                   AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
                                                   HeadersVisibility="Column" GridLinesVisibility="Horizontal">
                                             <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.25*"/>
+                                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.35*"/>
                                                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="1*"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
@@ -175,7 +183,7 @@
                                 </GroupBox>
 
                                 <GroupBox Grid.Column="2" Header="{Binding SimpleFormTitle}">
-                                    <Grid Margin="10">
+                                    <Grid Margin="12">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -183,44 +191,76 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding SimpleFormHelp}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding SimpleFormHelp}" TextWrapping="Wrap"/>
+                                            <TextBlock Text="{Binding SimpleControlSummary}" FontWeight="SemiBold" Margin="0,5,0,0"/>
+                                        </StackPanel>
 
-                                        <Grid Grid.Row="1" Margin="0,0,0,10">
+                                        <Grid Grid.Row="1" Margin="0,12,0,10">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="180"/>
+                                                <ColumnDefinition Width="150"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel>
+                                            <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="Object ID" FontWeight="SemiBold"/>
-                                                <TextBlock Text="Optional for new objects" FontSize="11" Opacity="0.7"/>
+                                                <TextBlock Text="Blank = auto-generate" FontSize="11" Opacity="0.68"/>
                                             </StackPanel>
-                                            <TextBox Grid.Column="1" Text="{Binding SimpleObjectId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                     ToolTip="Leave blank on a new object and Reforged will create the ID automatically."/>
+                                            <TextBox Grid.Column="1" Text="{Binding SimpleObjectId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinHeight="32"
+                                                     ToolTip="Leave blank for a new object and Reforged will create the ID automatically."/>
                                         </Grid>
 
-                                        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                            <StackPanel>
-                                                <TextBlock Text="Required" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                                                <ItemsControl ItemsSource="{Binding SimpleRequiredFields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
-                                                <TextBlock Text="That is all you need to create it. Reforged fills the rest with safe defaults."
-                                                           TextWrapping="Wrap" Opacity="0.75" Margin="0,0,0,10"/>
-                                                <Expander Header="Optional settings" IsExpanded="False">
-                                                    <StackPanel Margin="0,10,0,0">
-                                                        <TextBlock Text="Open this only when you want more control." TextWrapping="Wrap" Opacity="0.75" Margin="0,0,0,8"/>
-                                                        <ItemsControl ItemsSource="{Binding SimpleOptionalFields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
+                                        <TabControl Grid.Row="2">
+                                            <TabItem Header="Quick Create">
+                                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="12">
+                                                    <StackPanel>
+                                                        <TextBlock Text="Required fields" FontSize="17" FontWeight="SemiBold"/>
+                                                        <TextBlock Text="A beginner can stop here. Fill the starred fields and Save &amp; Build." TextWrapping="Wrap" Opacity="0.72" Margin="0,3,0,12"/>
+                                                        <ItemsControl ItemsSource="{Binding SimpleRequiredFields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
+                                                        <Border Padding="10" BorderBrush="#22000000" BorderThickness="1" CornerRadius="4" Margin="0,4,0,0">
+                                                            <TextBlock Text="Want more control? Open Full Control. It exposes the rest of the fields found in this content type without requiring JSON."
+                                                                       TextWrapping="Wrap"/>
+                                                        </Border>
                                                     </StackPanel>
-                                                </Expander>
-                                            </StackPanel>
-                                        </ScrollViewer>
+                                                </ScrollViewer>
+                                            </TabItem>
+
+                                            <TabItem Header="Full Control">
+                                                <Grid Margin="12">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="120"/>
+                                                            <ColumnDefinition Width="280"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Text="Section" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                                        <ComboBox Grid.Column="1" ItemsSource="{Binding SimpleSections}" DisplayMemberPath="Title"
+                                                                  SelectedItem="{Binding SelectedSimpleSection, Mode=TwoWay}" MinHeight="32"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding SelectedSimpleSection.FieldCount, StringFormat='Fields in section: {0}'}"
+                                                                   VerticalAlignment="Center" HorizontalAlignment="Right" Opacity="0.72"/>
+                                                    </Grid>
+                                                    <TextBlock Grid.Row="1" Text="{Binding SelectedSimpleSection.Description}" TextWrapping="Wrap" Opacity="0.72" Margin="0,8,0,10"/>
+                                                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                                        <ItemsControl ItemsSource="{Binding SelectedSimpleSection.Fields}" ItemTemplate="{StaticResource SimpleFieldTemplate}"/>
+                                                    </ScrollViewer>
+                                                </Grid>
+                                            </TabItem>
+                                        </TabControl>
 
                                         <Grid Grid.Row="3" Margin="0,10,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Fill the required fields and click Save &amp; Build. Optional settings can be left alone."
-                                                       TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                            <TextBlock Text="Collections use plain field=value rows when they need multiple detailed entries. No JSON is required."
+                                                       TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,12,0" Opacity="0.72"/>
                                             <WrapPanel Grid.Column="1">
+                                                <Button Content="Clone" Command="{Binding CloneSimpleObjectCommand}" Padding="14,7" Margin="0,0,8,0"
+                                                        ToolTip="Make a complete Custom1 copy and then change any fields."/>
                                                 <Button Content="Delete from Custom1" Command="{Binding DeleteSimpleObjectCommand}" Padding="14,7" Margin="0,0,8,0"/>
                                                 <Button Content="Save &amp; Build" Command="{Binding SaveSimpleObjectCommand}" Padding="24,7" FontWeight="SemiBold"/>
                                             </WrapPanel>
@@ -236,7 +276,8 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel>
                                     <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
-                                    <TextBlock Text="No JSON knowledge is required in this editor. Advanced Overrides is optional." FontSize="11" Opacity="0.75"/>
+                                    <TextBlock Text="Creator Studio edits Custom1 only. Structural identity/runtime metadata stays protected; Advanced Overrides remains available for expert-level raw changes."
+                                               FontSize="11" Opacity="0.72" TextWrapping="Wrap"/>
                                 </StackPanel>
                                 <Button Grid.Column="1" Content="Build / Rebuild Custom1" Command="{Binding BuildCustomWorldCommand}" Padding="18,8" VerticalAlignment="Top"/>
                             </Grid>

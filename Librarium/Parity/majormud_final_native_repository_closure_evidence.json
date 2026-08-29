@@ -1,0 +1,748 @@
+{
+  "schemaVersion": 1,
+  "evidenceId": "majormud-final-native-repository-closure-0332",
+  "pass": "Pass 61 / Update 0332",
+  "classification": "STRONG_NATIVE_REPOSITORY_OWNER_CLOSURE",
+  "promotion": {
+    "assertion": "native.repository-inventory-closure.final-native-evidence",
+    "from": "UNKNOWN",
+    "to": "STRONG"
+  },
+  "repositoryInventory": {
+    "remainingSystemOwnerCount": 36,
+    "nativeDependencyGroupCount": 40,
+    "runtimeServiceDeclarationCount": 139,
+    "recordFamilyDeclarationCount": 120,
+    "commandFamilyDeclarationCount": 176,
+    "timerDeclarationCount": 29,
+    "stateObjectDeclarationCount": 132,
+    "allNativeDependencyGroupsClassified": true,
+    "allNativeDependencyGroupsOwned": true,
+    "allNativeDependencyGroupsFailClosed": true
+  },
+  "retainedNativeArtifactInventory": {
+    "recordCount": 396,
+    "familyCounts": {
+      "wcc": 147,
+      "wbb": 234,
+      "native_runtime": 15
+    },
+    "peArtifactCount": 6,
+    "pairedCanonicalNames": 147,
+    "wccOnly": 0,
+    "wbbOnly": 87
+  },
+  "wccExhaustion": {
+    "result": "AVAILABLE_WCC_ARTIFACTS_EXHAUSTED",
+    "exitCriteria": {
+      "all_supplied_wcc_files_inventoried": true,
+      "all_file_families_classified": true,
+      "all_direct_native_support_references_audited": true,
+      "unresolved_items_have_non_wcc_ownership_boundary": true,
+      "further_wcc_only_static_pass_expected_to_add_semantics": false
+    }
+  },
+  "worldgroupOwnership": {
+    "total_symbols": 156,
+    "matched_exports": 156,
+    "unmatched_exports": 0,
+    "callable": 121,
+    "imported_global_or_indirect": 34,
+    "unused_static_import": 1,
+    "implementation_traced": 27,
+    "ownership_and_abi_bounded": 129,
+    "hse_files": 133,
+    "sto_files": 7
+  },
+  "worldgroupConclusions": [
+    "All 156 MajorMUD-used Worldgroup symbols match supplied WGSERVER exports.",
+    "All imported globals/indirect references have explicit host ownership and interface classification.",
+    "No remaining MajorMUD-used import is unowned.",
+    "Exact BTRVLOG formats remain externally evidence-dependent and do not block import/global ownership closure."
+  ],
+  "combinedRemainingSystemsAudit": {
+    "registryEntryCount": 36,
+    "nativeDependencyRecordCountDeduplicated": 40
+  },
+  "dependencyGroupDisposition": [
+    {
+      "dependencyGroupId": "party-coordination.native-001",
+      "ownerSubsystem": "party-coordination",
+      "requiredEvidenceItemCount": 5,
+      "ownerEvidence": "Reports/RemainingSystems/party_coordination_exhaustion_0001.md",
+      "parityAssertions": [
+        "native.party-coordination"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "rooms.native-002",
+      "ownerSubsystem": "rooms",
+      "requiredEvidenceItemCount": 1,
+      "ownerEvidence": "Librarium/Evidence/worldgroup_room_latch_closure_0035.json",
+      "parityAssertions": [
+        "native.rooms",
+        "rooms.native-exit-storage-schema"
+      ],
+      "parityStates": [
+        "PASS",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "communications.classic-range-rendering",
+      "ownerSubsystem": "communications",
+      "requiredEvidenceItemCount": 3,
+      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.communications.classic-range-rendering",
+        "native.communications.persistence-logging"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "communications.persistence-logging",
+      "ownerSubsystem": "communications",
+      "requiredEvidenceItemCount": 3,
+      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.communications.classic-range-rendering",
+        "native.communications.persistence-logging"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "organizations.classic-model",
+      "ownerSubsystem": "guild-faction-organization",
+      "requiredEvidenceItemCount": 3,
+      "ownerEvidence": "Reports/RemainingSystems/organization_exhaustion_0003.md",
+      "parityAssertions": [
+        "native.organizations.classic-model",
+        "native.organizations.persistence-services"
+      ],
+      "parityStates": [
+        "PASS",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "organizations.persistence-services",
+      "ownerSubsystem": "guild-faction-organization",
+      "requiredEvidenceItemCount": 3,
+      "ownerEvidence": "Reports/RemainingSystems/organization_exhaustion_0003.md",
+      "parityAssertions": [
+        "native.organizations.classic-model",
+        "native.organizations.persistence-services"
+      ],
+      "parityStates": [
+        "PASS",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "doors-locks-access.native-007",
+      "ownerSubsystem": "doors-locks-access",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/door_lock_access_exhaustion_0004.md",
+      "parityAssertions": [
+        "native.doors-locks-access"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "deny access or preserve catalog default state"
+    },
+    {
+      "dependencyGroupId": "traps.native-008",
+      "ownerSubsystem": "traps",
+      "requiredEvidenceItemCount": 8,
+      "ownerEvidence": "Reports/RemainingSystems/trap_exhaustion_0005.md",
+      "parityAssertions": [
+        "native.traps"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject unknown traps and triggers; route only explicit typed requests; use catalog defaults after corrupt persistence"
+    },
+    {
+      "dependencyGroupId": "environmental-hazards.native-009",
+      "ownerSubsystem": "environmental-hazards",
+      "requiredEvidenceItemCount": 8,
+      "ownerEvidence": "Reports/RemainingSystems/environmental_hazard_exhaustion_0006.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject unknown hazards; require exact protection identifiers; emit only typed requests"
+    },
+    {
+      "dependencyGroupId": "world-containers.native-010",
+      "ownerSubsystem": "world-containers",
+      "requiredEvidenceItemCount": 8,
+      "ownerEvidence": "Reports/RemainingSystems/world_container_exhaustion_0007.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries",
+        "items.native-only-boundary"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "clock-scheduling.native-011",
+      "ownerSubsystem": "clock-scheduling",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/clock_scheduling_exhaustion_0008.md",
+      "parityAssertions": [
+        "native.clock-scheduling"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject invalid schedules, bound catch-up, fail closed on clock rollback, restore validated defaults after corrupt persistence"
+    },
+    {
+      "dependencyGroupId": "world-reset-cleanup.native-012",
+      "ownerSubsystem": "world-reset-cleanup",
+      "requiredEvidenceItemCount": 6,
+      "ownerEvidence": "Reports/RemainingSystems/world_reset_cleanup_exhaustion_0009.md",
+      "parityAssertions": [
+        "native.world-reset-cleanup"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "dispatch only validated plans; preserve excluded or unresolved state"
+    },
+    {
+      "dependencyGroupId": "events.native-013",
+      "ownerSubsystem": "events",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/world_event_exhaustion_0010.md",
+      "parityAssertions": [
+        "native.events"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject unknown events and transitions; dispatch only explicit typed actions; mark required-action failures"
+    },
+    {
+      "dependencyGroupId": "pvp-policy.native-014",
+      "ownerSubsystem": "pvp-policy",
+      "requiredEvidenceItemCount": 10,
+      "ownerEvidence": "Reports/RemainingSystems/pvp_policy_exhaustion_0030.md",
+      "parityAssertions": [
+        "native.pvp-policy"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "deny unknown or unproven PvP actions before Combat execution"
+    },
+    {
+      "dependencyGroupId": "law-bounty-guards.native-015",
+      "ownerSubsystem": "law-bounty-guards",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/law_bounty_guards_exhaustion_0029.md",
+      "parityAssertions": [
+        "native.law-bounty-guards"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject unknown zones, invalid crimes, arithmetic overflow, and unauthorized pardon requests; emit typed owner requests only"
+    },
+    {
+      "dependencyGroupId": "rest-inn-recovery-policy.native-016",
+      "ownerSubsystem": "rest-inn-recovery-policy",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/rest_recovery_policy_exhaustion_0013.md",
+      "parityAssertions": [
+        "native.rest-inn-recovery-policy"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "transport-services.native-017",
+      "ownerSubsystem": "transport-services",
+      "requiredEvidenceItemCount": 8,
+      "ownerEvidence": "Reports/RemainingSystems/transport_service_exhaustion_0014.md",
+      "parityAssertions": [
+        "transport.majormud-ownership",
+        "native.paid-room-transfers"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject unknown transports, invalid stops, combat-disallowed boarding, over-capacity boarding, and premature arrival."
+    },
+    {
+      "dependencyGroupId": "player-transactions.native-018",
+      "ownerSubsystem": "player-transactions",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/player_transaction_exhaustion_0015.md",
+      "parityAssertions": [
+        "transactions.classic-give-command-receive",
+        "transactions.classic-give-capacity-restrictions",
+        "transactions.no-native-trade-escrow"
+      ],
+      "parityStates": [
+        "PASS",
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject unknown parties, restricted assets, stale revisions, expired offers, and unauthorized acceptance."
+    },
+    {
+      "dependencyGroupId": "mail-offline-messaging.native-019",
+      "ownerSubsystem": "mail-offline-messaging",
+      "requiredEvidenceItemCount": 11,
+      "ownerEvidence": "Reports/RemainingSystems/mail_offline_messaging_exhaustion_0016.md",
+      "parityAssertions": [
+        "native.communications.persistence-logging",
+        "native.reforged-extension-boundaries"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Disable host-boundary features, reject attachments by default, enforce recipient/admin authorization, and never mutate assets directly."
+    },
+    {
+      "dependencyGroupId": "account-session-ownership.native-020",
+      "ownerSubsystem": "account-session-ownership",
+      "requiredEvidenceItemCount": 15,
+      "ownerEvidence": "Reports/RemainingSystems/account_session_ownership_exhaustion_0017.md",
+      "parityAssertions": [
+        "character.graceful-exit-save",
+        "native.save-coordination",
+        "administrative.sysop-worldgroup-key-boundary"
+      ],
+      "parityStates": [
+        "PASS",
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject unknown accounts, unowned/deleted/banned characters, duplicate active character sessions, unsafe logout, and ambiguous host-owned behavior."
+    },
+    {
+      "dependencyGroupId": "world-rules-configuration.native-021",
+      "ownerSubsystem": "world-rules-configuration",
+      "requiredEvidenceItemCount": 17,
+      "ownerEvidence": "Reports/RemainingSystems/world_rules_configuration_exhaustion_0018.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.world-rules-configuration.source-boundary",
+        "native.world-rules-configuration.default-prompt-catalog"
+      ],
+      "parityStates": [
+        "STRONG",
+        "PASS",
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation."
+    },
+    {
+      "dependencyGroupId": "world-rules-configuration.native-022",
+      "ownerSubsystem": "world-rules-configuration",
+      "requiredEvidenceItemCount": 17,
+      "ownerEvidence": "Reports/RemainingSystems/world_rules_configuration_exhaustion_0018.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.world-rules-configuration.source-boundary",
+        "native.world-rules-configuration.default-prompt-catalog"
+      ],
+      "parityStates": [
+        "STRONG",
+        "PASS",
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation."
+    },
+    {
+      "dependencyGroupId": "administrative-policy.native-023",
+      "ownerSubsystem": "administrative-policy",
+      "requiredEvidenceItemCount": 11,
+      "ownerEvidence": "Reports/RemainingSystems/administrative_policy_exhaustion_0019.md",
+      "parityAssertions": [
+        "administrative.sysop-worldgroup-key-boundary"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject unknown, unauthorized, unconfirmed, or actor-mismatched requests and record the rejection."
+    },
+    {
+      "dependencyGroupId": "security-permissions.native-024",
+      "ownerSubsystem": "security-permissions",
+      "requiredEvidenceItemCount": 10,
+      "ownerEvidence": "Reports/RemainingSystems/security_permission_exhaustion_0020.md",
+      "parityAssertions": [
+        "administrative.sysop-worldgroup-key-boundary",
+        "commands.native-player-command-table"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject unauthenticated, under-privileged, unregistered, malformed, oversized, cross-scope, or unknown requests and require an audit record."
+    },
+    {
+      "dependencyGroupId": "logging-diagnostics.native-025",
+      "ownerSubsystem": "logging-diagnostics",
+      "requiredEvidenceItemCount": 6,
+      "ownerEvidence": "Reports/RemainingSystems/logging_diagnostics_exhaustion_0021.md",
+      "parityAssertions": [
+        "native.error-handling-recovery",
+        "native.reforged-extension-boundaries"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Reject malformed log events and hide administrative or security-sensitive records from non-administrators."
+    },
+    {
+      "dependencyGroupId": "save-coordination.native-026",
+      "ownerSubsystem": "save-coordination",
+      "requiredEvidenceItemCount": 0,
+      "ownerEvidence": "Reports/RemainingSystems/save_coordination_exhaustion_0022.md",
+      "parityAssertions": [
+        "native.save-coordination",
+        "timers.player-data-save-60s"
+      ],
+      "parityStates": [
+        "STRONG",
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "startup-shutdown.native-027",
+      "ownerSubsystem": "startup-shutdown",
+      "requiredEvidenceItemCount": 5,
+      "ownerEvidence": "Reports/RemainingSystems/startup_shutdown_exhaustion_0023.md",
+      "parityAssertions": [
+        "native.save-coordination",
+        "native.error-handling-recovery"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "worldgroup-integration.native-028",
+      "ownerSubsystem": "worldgroup-integration",
+      "requiredEvidenceItemCount": 6,
+      "ownerEvidence": "Reports/RemainingSystems/worldgroup_integration_exhaustion_0024.md",
+      "parityAssertions": [
+        "wcc.available-artifacts-exhausted",
+        "native.global-world-state",
+        "native.global-rng.native-contract"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Keep unknown host/native boundaries disabled and require authenticated host context for Worldgroup-owned operations."
+    },
+    {
+      "dependencyGroupId": "global-rng.native-contract",
+      "ownerSubsystem": "global-rng",
+      "requiredEvidenceItemCount": 4,
+      "ownerEvidence": "Reports/RemainingSystems/global_random_contract_exhaustion_0037.md",
+      "parityAssertions": [
+        "native.global-rng.native-contract",
+        "native.global-rng.borland-crt-core",
+        "native.global-rng.startup-packed-time-seed",
+        "native.global-rng.host-range-endpoint-contract",
+        "native.global-rng.direct-callsite-boundary"
+      ],
+      "parityStates": [
+        "STRONG",
+        "PASS",
+        "PASS",
+        "PASS",
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "global-world-state.native-030",
+      "ownerSubsystem": "global-world-state",
+      "requiredEvidenceItemCount": 5,
+      "ownerEvidence": "Reports/RemainingSystems/global_world_state_exhaustion_0026.md",
+      "parityAssertions": [
+        "native.global-world-state"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "weather-day-night.native-031",
+      "ownerSubsystem": "weather-day-night",
+      "requiredEvidenceItemCount": 4,
+      "ownerEvidence": "Reports/RemainingSystems/weather_day_night_exhaustion_0027.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.reforged-extension-boundaries"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Classic simulation disabled; only explicit Custom/AI definitions may simulate conditions"
+    },
+    {
+      "dependencyGroupId": "builder-content-editing.native-032",
+      "ownerSubsystem": "builder-content-editing",
+      "requiredEvidenceItemCount": 5,
+      "ownerEvidence": "Reports/RemainingSystems/builder_content_editing_exhaustion_0028.md",
+      "parityAssertions": [
+        "native.builder-content-editing"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "import-export-compatibility.native-033",
+      "ownerSubsystem": "import-export-compatibility",
+      "requiredEvidenceItemCount": 6,
+      "ownerEvidence": "Reports/RemainingSystems/import_export_compatibility_exhaustion_0029.md",
+      "parityAssertions": [
+        "native.import-export-compatibility"
+      ],
+      "parityStates": [
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "help-reference.native-034",
+      "ownerSubsystem": "help-reference",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/help_reference_exhaustion_0030.md",
+      "parityAssertions": [
+        "native.help-reference",
+        "commands.native-help-topic-bodies"
+      ],
+      "parityStates": [
+        "STRONG",
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Expose only validated authorized catalog topics; do not invent native content."
+    },
+    {
+      "dependencyGroupId": "rankings-statistics.native-035",
+      "ownerSubsystem": "rankings-statistics",
+      "requiredEvidenceItemCount": 7,
+      "ownerEvidence": "Reports/RemainingSystems/rankings_statistics_exhaustion_0031.md",
+      "parityAssertions": [
+        "native.rankings-statistics"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "Expose only catalog-defined Reforged projections; do not assert Classic rankings or achievements without evidence."
+    },
+    {
+      "dependencyGroupId": "character-identity-policy.native-036",
+      "ownerSubsystem": "character-identity-policy",
+      "requiredEvidenceItemCount": 8,
+      "ownerEvidence": "Reports/RemainingSystems/character_identity_policy_exhaustion_0032.md",
+      "parityAssertions": [
+        "native.character-identity-policy",
+        "character.native-name-record-widths"
+      ],
+      "parityStates": [
+        "STRONG",
+        "PASS"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject invalid or unauthorized identity mutation and conceal unresolved hidden identity presentation"
+    },
+    {
+      "dependencyGroupId": "capacity-resource-limits.native-037",
+      "ownerSubsystem": "capacity-resource-limits",
+      "requiredEvidenceItemCount": 5,
+      "ownerEvidence": "Reports/RemainingSystems/capacity_resource_limits_exhaustion_0033.md",
+      "parityAssertions": [
+        "native.capacity-resource-limits"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "reject admission at configured hard limits and fail closed on unknown resources"
+    },
+    {
+      "dependencyGroupId": "error-handling-recovery.native-038",
+      "ownerSubsystem": "error-handling-recovery",
+      "requiredEvidenceItemCount": 6,
+      "ownerEvidence": "Reports/RemainingSystems/error_handling_recovery_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.error-handling-recovery"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "fail closed, use only validated defaults, and require owner-declared rollback"
+    },
+    {
+      "dependencyGroupId": "games-arenas-optional-activities.native-039",
+      "ownerSubsystem": "games-arenas-optional-activities",
+      "requiredEvidenceItemCount": 2,
+      "ownerEvidence": "Reports/RemainingSystems/optional_activities_exhaustion_0035.md",
+      "parityAssertions": [
+        "native.games-arenas-optional-activities"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    },
+    {
+      "dependencyGroupId": "reforged-extension-boundaries.native-040",
+      "ownerSubsystem": "reforged-extension-boundaries",
+      "requiredEvidenceItemCount": 3,
+      "ownerEvidence": "Reports/RemainingSystems/reforged_extension_boundaries_exhaustion_0036.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries"
+      ],
+      "parityStates": [
+        "STRONG"
+      ],
+      "disposition": "classified-owner-boundary",
+      "exactBehaviorComplete": false,
+      "safeFallback": "preserve unknown and fail closed"
+    }
+  ],
+  "parityAfterPromotion": {
+    "PASS": 98,
+    "STRONG": 102,
+    "UNKNOWN": 0,
+    "TOTAL": 200,
+    "evidenceBackedPercent": 100.0,
+    "strictPercent": 49.0
+  },
+  "remainingStandaloneUnknowns": [],
+  "notClaimed": [
+    "All owner-local formulas, branches, messages, limits, timers, save layouts, or persistence details are exact.",
+    "STRONG owner assertions are upgraded to PASS by repository closure.",
+    "Reforged safe policy shells define Classic behavior where native evidence remains absent."
+  ],
+  "subsequentExactClosure": {
+    "assertion": "npc.native-combat-message-8480",
+    "state": "PASS",
+    "evidence": "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
+    "result": "The five Nahr caller arguments are verified native empty strings, leaving zero standalone UNKNOWN assertions."
+  },
+  "closureRule": "No hidden or unowned native dependency group remains; unresolved exact semantics stay delegated to their evidence-bounded owner assertions and fail-closed policies."
+}

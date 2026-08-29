@@ -14,6 +14,12 @@ public sealed record RuntimeResetActionResult(string ActionId, bool Succeeded, s
 public sealed record RuntimeResetExecution(string ExecutionId, string PlanId, string RequestedBy, DateTimeOffset StartedAtUtc, DateTimeOffset? CompletedAtUtc, bool HardReset, bool Completed, bool RolledBack, IReadOnlyList<string> CompletedActionIds, IReadOnlyList<string> FailedActionIds, long Revision);
 public sealed record RuntimeResetSnapshot(int SchemaVersion, IReadOnlyList<RuntimeResetExecution> Executions, DateTimeOffset SavedAtUtc);
 
+/// <summary>
+/// Generic Reforged reset-plan coordination infrastructure. Numeric action order, hard-reset
+/// exclusion flags, and rollback policy are host-plan semantics only; they are not evidence of
+/// Classic MajorMUD reset ordering or failure behavior. Classic parity callers must use the
+/// owner-specific recovered authorities and keep unresolved universal orchestration fail-closed.
+/// </summary>
 public sealed class RuntimeWorldResetCleanupService
 {
     private readonly object _gate = new();

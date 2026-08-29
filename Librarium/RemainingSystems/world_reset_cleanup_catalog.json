@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "subsystem": "world-reset-cleanup",
   "runtimeOwner": "RuntimeWorldResetCleanupService",
-  "status": "runtime-active-partially-exhausted",
+  "status": "strong-classic-boundary-generic-orchestration-quarantined",
   "scopes": [
     "room",
     "area",
@@ -22,19 +22,32 @@
     "orphan-cleanup"
   ],
   "ordering": [
-    "explicit numeric order",
-    "canonical action id tie-break"
+    "Classic native universal ordering remains unresolved",
+    "generic coordinator numeric order and action-id tie-break are Reforged extension semantics only"
   ],
   "failurePolicies": [
-    "stop-and-rollback",
-    "continue-independent"
+    "generic Reforged shell supports stop-and-rollback and continue-independent",
+    "native Classic failure/rollback behavior remains unresolved"
   ],
   "ownershipBoundary": "coordinates reset requests; each subsystem owns its own state mutation and persistence",
   "safeFallback": "reject unknown plans, preserve owner state, and record required-action failures",
   "nativeDependencies": [
-    "exact Classic reset order",
-    "hard-reset exceptions",
-    "active-player behavior",
-    "persistence and restart semantics"
-  ]
+    "exact Classic reset/cleanup category ordering",
+    "hard-reset exception encoding",
+    "active-player and combat handling",
+    "corpse survival/removal behavior",
+    "limited-item survival beyond recovered placement admission",
+    "Remove@Maint 149 distinct lifecycle meaning",
+    "native failure/rollback and reset persistence ordering"
+  ],
+  "classicRuntimeOwner": "RuntimeClassicWorldResetCleanupAuthority",
+  "runtimeOwnerDisposition": "reforged-extension-shell-only",
+  "knownClassicOwners": [
+    "RuntimeClassicCleanupService",
+    "RuntimeCharacterAlignmentAuthority",
+    "RuntimeLivingWorldService.ResetGeneratedRoomItems",
+    "RuntimeWccSysopCommands RESET/INITIALIZE spawn-slot boundary",
+    "generated NPC room-entry respawn admission"
+  ],
+  "evidenceLedger": "Librarium/Parity/majormud_classic_world_reset_cleanup_boundary_evidence.json"
 }

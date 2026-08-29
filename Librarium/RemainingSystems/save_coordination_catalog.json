@@ -1,8 +1,24 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "subsystem": "save-coordination",
   "runtimeOwner": "RuntimeSaveCoordinationService",
-  "participants": [
+  "classicRuntimeOwner": "RuntimeClassicSaveCoordinationAuthority",
+  "runtimeOwnerDisposition": "reforged-extension-shell-only",
+  "classification": "strong-classic-storage-boundary-generic-orchestration-quarantined",
+  "status": "evidence-backed-boundary",
+  "nativeSaveClocks": {
+    "playerDataSeconds": 60,
+    "bufferDataSeconds": 300
+  },
+  "provenClassicStorageBoundary": [
+    "MajorMUD retained Worldgroup DFA context and distinct insert/update/delete operations",
+    "WGSERVER transaction begin/end/abort/unlock surface",
+    "WGSERVER shared mutation staging buffer 0x00467CA4",
+    "synchronous WBTRV32 BTRCALL status boundary",
+    "W32MKDE write-back cache/pending-write ownership",
+    "selected synchronous FlushFileBuffers barriers"
+  ],
+  "reforgedParticipants": [
     "character",
     "world",
     "party",
@@ -17,7 +33,7 @@
     "transport",
     "administrative-state"
   ],
-  "lifecycle": [
+  "reforgedLifecycle": [
     "dirty participant selection",
     "prepare",
     "ordered commit",
@@ -25,22 +41,24 @@
     "snapshot generation",
     "restart restoration"
   ],
-  "ordering": "ascending configured order then canonical participant id",
-  "transactionPolicy": [
+  "reforgedOrdering": "ascending configured order then canonical participant id",
+  "reforgedTransactionPolicy": [
     "unknown participant fails closed",
     "required prepare failure aborts",
     "commit failure rolls back committed rollback-capable participants",
     "unsupported rollback is reported",
     "atomic snapshot replacement"
   ],
-  "safeFallback": "Reject unknown participants and stop on required prepare or commit failure without inventing replacement state.",
-  "nativeDependencies": [
-    "exact MajorMUD save ordering",
-    "Worldgroup transaction boundary",
-    "autosave interval",
-    "shutdown-save behavior",
-    "crash journal format",
-    "native migration/version compatibility",
-    "partial-save recovery"
+  "safeFallback": "Keep Reforged coordination deterministic but do not claim its order or rollback as Classic. Fail closed when exact Classic Player/world order, Buffer-data participants, transaction grouping, or shutdown-save semantics are required.",
+  "remainingNativeDependencies": [
+    "exact MajorMUD Player/world save participant ordering",
+    "exact native Buffer data participant/record-family mapping",
+    "MajorMUD-to-WGSERVER transaction grouping",
+    "ordinary-save flush/durability point",
+    "shutdown-save ordering",
+    "MajorMUD partial-save semantics"
+  ],
+  "excludedNativeDependencies": [
+    "exact crash-log byte format and replay algorithm are tracked under native error/recovery rather than ordinary save coordination"
   ]
 }

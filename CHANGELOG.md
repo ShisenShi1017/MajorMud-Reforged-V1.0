@@ -1,3 +1,122 @@
+## Final standalone parity closure
+
+- Promoted `npc.native-combat-message-8480` from UNKNOWN to PASS from the original WCCMMUD 1.11p DLL plus `wccknms2.dat` execution chain.
+- Recorded equipped-item ID 0 for `npc.1006` Nahr and verified that `_move_monster_to_fighter` NULs both the attack-verb and weapon-name buffers before `_attack_monster_user` passes them to message 8480.
+- Runtime now distinguishes verified native empty arguments from unresolved missing fields and preserves the native empty spacing for all five Nahr physical attacks.
+- Current parity: **98 PASS / 102 STRONG / 0 UNKNOWN = 200** (**49.0% strict / 100.0% evidence-backed**).
+
+## PASS61 / Update 0332 cumulative intake and Creator Studio integration
+
+- Integrated the cumulative PASS50-61 native-boundary payload with 168 unique repository paths and no generated-data, save, imported-evidence, archive, release, or build-output files.
+- Integrated Creator Studio full-control editing across the existing Reforged app service, view-model, catalog, and XAML view files.
+- Preserved the live Borin training state; neither package overlaps those runtime files.
+- Repaired six warnings-as-errors failures by exposing fixed evidence classifications as read-only runtime properties rather than compile-time constants; behavior and fail-closed classifications are unchanged.
+- Verified the explicit server and Reforged.App Release builds with zero warnings/errors and all PASS50-61 runtime smokes.
+
+## Update 0332 — PASS61 Classic Final Native Repository Closure
+
+- Promoted `native.repository-inventory-closure.final-native-evidence` from UNKNOWN to STRONG after reconciling all 36 Remaining Systems owners and 40 native dependency groups against the retained native artifact/WCC/Worldgroup ownership evidence.
+- Confirmed 396 retained native artifacts, all supplied WCC file families classified, 156/156 MajorMUD-used Worldgroup symbols matched, and zero unowned MajorMUD-used host imports.
+- Repository closure is ownership/inventory closure only; owner-local STRONG semantics remain STRONG and fail-closed. Nahr message 8480 remains the sole UNKNOWN.
+- Current parity: **97 PASS / 102 STRONG / 1 UNKNOWN = 200** (48.5% strict / 99.5% evidence-backed).
+
+## Update 0331 — PASS60 Classic Global RNG Contract Boundary
+
+- Promoted `native.global-rng.native-contract` from UNKNOWN to STRONG by consolidating the exact retained Borland/CW3220MT raw PRNG, packed-time startup seed, TLS state ownership, host range endpoints, and exact-version direct `_genrdn`/`_lngrnd` census.
+- Added `RuntimeClassicGlobalRngContractAuthority` and a PASS60 smoke route with fail-closed gates for indirect paths, gameplay callsite semantics, execution-thread mapping, bounded-range-loop execution, and gameplay-wide draw ordering.
+- Explicitly keeps `RuntimeGlobalRandomService` xorshift128+ multi-stream/snapshot behavior outside Classic parity credit and does not invent a process-global Classic stream.
+- Parity: **97 PASS / 101 STRONG / 2 UNKNOWN = 200** (48.5% strict / 99.0% evidence-backed).
+
+## Update 0330 — PASS59 Classic Native Combat / Spell Boundary
+
+- Promoted `combat-spells.native-boundary` UNKNOWN -> STRONG from complete managed classification plus 102 shared WCCMMUD/WBBMMUD owner anchors.
+- Added fail-closed authority for unresolved formula, branch, target, resource, resistance, status, multi-target and RNG ordering.
+- Explicitly kept Reforged rollback/deterministic ordering/random-stream splitting outside Classic parity credit.
+- Re-exhausted Nahr 8480; exact hit prose exists, but caller-owned miss verb/weapon arguments remain absent, so it stays UNKNOWN.
+- Parity: 97 PASS / 100 STRONG / 3 UNKNOWN = 98.5% evidence-backed.
+
+## Update 0329 — PASS58 Classic native-only item behavior boundary
+
+- Promoted `items.native-only-boundary` from UNKNOWN to STRONG.
+- Bound the 1,950-item decoded subsystem to 51 shared WCCMMUD/WBBMMUD item/equipment/stock native exports and 13 item-facing native command handlers.
+- Added a fail-closed native-item authority and explicitly quarantined generic Reforged stack/durability/loot-seed/persistence behavior from exact Classic claims.
+- Kept record/flag mappings, stack maxima, charge/durability formulas, RNG/scheduler ordering, persistence, exact messages and native edge ordering unresolved.
+- Added focused smoke/static validation, evidence/catalog/status updates, and parity scorecard 0329.
+
+## Update 0328 — PASS57 Classic communication persistence and limits boundary
+
+- Promoted `native.communications.persistence-logging` from UNKNOWN to STRONG.
+- Recovered exact MAXPAGES scope: pages/telegrams, per 3-second receive period.
+- Preserved PAGE/profile/telepath/GOSSIP/AUCTION/MESSAGES/ENTRANCES evidence boundaries without guessing defaults or TELEPATH named polarity.
+- Quarantined Reforged's generic 512-char, 10-second/6-message flood policy from Classic parity.
+- Added fail-closed authority, focused smoke/static validation, parity evidence/catalog updates, and scorecard 0328.
+
+## CodeUpdate 0327 - Classic Capacity and Resource Limits Boundary
+
+- Promotes `native.capacity-resource-limits` from UNKNOWN to STRONG without inventing unresolved hard maxima.
+- Retains exact WCCMMUD.mcv buffer/default values for rooms/items/monsters/spells/races/classes/bankbooks/messages plus TOPTEN and hangup-item caps.
+- Consolidates narrow recovered limits/widths: lives 9, party 6 STRONG, gang name 19, UserRec names 10/18 bytes, Plus room 17/15 with 50 attempts, stock encumbrance formula.
+- Explicitly prevents buffer defaults from being misread as hard world maxima.
+- Quarantines RuntimeCapacityLimitsService configurable Int64 reservations and Worldgroup host line/session/user limits from Classic gameplay parity credit.
+- Keeps exact inventory/world/NPC/item/gang/character/table maxima, remaining widths, config ranges/mutability, allocation cleanup, and exact failure messages fail-closed.
+- Parity: **97 PASS / 97 STRONG / 6 UNKNOWN = 200** (48.5% strict / 97.0% evidence-backed).
+
+## CodeUpdate 0326 - Classic PvP Policy Boundary
+
+- Promotes `native.pvp-policy` from UNKNOWN to STRONG without inventing a generic consent/zone/cooldown model.
+- Binds 18 WCCMMUD/WBBMMUD user-vs-user attack/kill/combat-state/target/robbery/Evil-Point owner exports.
+- Preserves exact native Lawful creation/help, 3x penalty, default PvP level range 100, practice-arena exception, and approximate FORGIVE window.
+- Quarantines RuntimePvpPolicyService ConsentOnly, same-party/guild, cooldown, logout, and synthetic kill-routing semantics from Classic parity credit.
+- Keeps realm-enable persistence, Lawful record encoding, zone flags, admission ordering, party/gang restrictions, kill/corpse/guard ordering, cooldown/logout semantics, exact messages, and branch ordering fail-closed.
+- Parity: **97 PASS / 96 STRONG / 7 UNKNOWN = 200** (48.5% strict / 96.5% evidence-backed).
+
+## CodeUpdate 0325 - Classic Law, Bounty, and Guards Boundary
+
+- Promotes `native.law-bounty-guards` from UNKNOWN to STRONG without inventing a generic crime/bounty system.
+- Binds 17 WCCMMUD/WBBMMUD Evil-Point/legal owner exports across award/admission/warnings, robbery coupling, forgiveness/timers, display/commands, and saved-EP ownership.
+- Recovers the retained guard jail graph from NPC 13/14/40/757 hit spell 583 through TextBlocks 1509/9624, five jail-time spells, jail teleport 584, and exit chain 585/9113/929.
+- Quarantines RuntimeLawPolicyService witness radius, severity/bounty arithmetic, decay deadline, fine/jail/pardon shell from Classic parity credit.
+- Keeps exact crime/witness admission, guard cadence, source-conflicted Villain/Fiend escalation, fines/confiscation/bounty arithmetic, FORGIVE schedule/history, exact messages, saved-EP encoding, and jail execution/RNG ordering fail-closed.
+- Parity: **97 PASS / 95 STRONG / 8 UNKNOWN = 200** (48.5% strict / 96.0% evidence-backed).
+
+## CodeUpdate 0324 - Classic Native NPC AI Semantics Boundary
+
+- Promotes `npc.native-ai-semantics` from UNKNOWN to STRONG without guessing the native AI dispatcher.
+- Binds 43 WCCMMUD/WBBMMUD NPC-AI owner anchors across update lanes, target selection, movement/tracking, known-monster memory/confusion, and monster combat/cast actions.
+- Retains existing PASS/STRONG monster record, attack cadence, explicit threat-ledger, MonsGuards, lifecycle, and respawn behavior.
+- Reclassifies `RuntimeNpcAiScheduler` world-tick ordering and `RuntimeNpcAiDecisionEngine` candidate priority as Reforged coordination policy rather than exact Classic evidence.
+- Keeps flee thresholds, autonomous perception/aggro, native hate/threat switching and memory, patrol/pathing, tracking, assist timing/propagation, and fast/medium/slow/energy cadence/priority fail-closed.
+- Parity: **97 PASS / 94 STRONG / 9 UNKNOWN = 200** (48.5% strict / 95.5% evidence-backed).
+
+## CodeUpdate 0323 - Classic Global World State Boundary
+
+- Promotes `native.global-world-state` from UNKNOWN to STRONG without inventing a generic MajorMUD state table.
+- Uses the completed Worldgroup ownership audit: 156/156 MajorMUD-used symbols owned, including 34/34 imported global/indirect symbols classified as host runtime/rendering state.
+- Separates transient native shared globals from persistent gameplay state.
+- Keeps decoded gameplay-wide state at its narrower Classic owners: room latches/living doors, limited-item admission, MajorMUD Plus events, NPC respawn state, world-rule configuration, reset/cleanup, and DFA persistence.
+- Quarantines `RuntimeGlobalWorldStateService` scope/value/reset/visibility/JSON-snapshot policy from Classic parity credit.
+- Keeps exact remaining MajorMUD-local record families, bit/mask/counter meanings, defaults, mutation callsites, reset/restart ordering, Player-vs-Buffer persistence mapping, and replication/visibility gated.
+- Parity: **97 PASS / 93 STRONG / 10 UNKNOWN = 200** (48.5% strict / 95.0% evidence-backed).
+
+## CodeUpdate 0322 - Classic Save Coordination Boundary
+
+- Promotes `native.save-coordination` from UNKNOWN to STRONG without inventing a player/world save order.
+- Retains exact native 60-second Player-data and 300-second Buffer-data save clocks.
+- Binds the persistence stack through MajorMUD DFA mutations, WGSERVER transaction exports/shared staging buffer, WBTRV32 BTRCALL, and W32MKDE write-back/flush ownership.
+- Quarantines Reforged `RuntimeSaveCoordinationService` ordering, prepare/commit/rollback, and snapshot policy from Classic parity credit.
+- Adds a Classic save-coordination authority, focused smoke, parity evidence ledger, updated scorecard, and validation gate.
+
+## Pass 50 / Update 0321 - Classic world reset / cleanup boundary
+
+- Promotes `native.world-reset-cleanup` from UNKNOWN to STRONG.
+- Separates recovered Classic owner-specific reset/maintenance effects from the generic Reforged reset-plan coordinator.
+- Retains native ownership anchors `_cleanup_currency`, `_begin_refreshing_limited_items`, `_check_initiate_restocking`, and `_restock_items`, plus exact SYSOP RESET/INITIALIZE forms.
+- Keeps live Classic item/currency cleanup, Recharge, Evil Point forgiveness, static-placement restoration with limited admission, invasion cleanup, and generated-NPC respawn admission at their existing evidence-backed owners.
+- Reclassifies numeric reset-plan order, hard-reset exclusion, and rollback policy as Reforged-only infrastructure rather than MajorMUD parity evidence.
+- Adds fail-closed gates for universal category order, hard-reset encoding, active-player/combat behavior, corpse survival, and native failure/rollback semantics.
+- Keeps `Remove@Maint` 149 distinct from `Del@Maint` 119 until its exact lifecycle meaning is recovered.
+- Parity: **97 PASS / 91 STRONG / 12 UNKNOWN = 200** (48.5% strict / 94.0% evidence-backed).
+
 ## Pass 49 / Update 0320 - Classic death experience correction
 
 - Promotes `character.death-xp-loss-exact` from UNKNOWN to STRONG.

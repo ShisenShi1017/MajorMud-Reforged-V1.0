@@ -1,0 +1,167 @@
+{
+  "GeneratedAtUtc": "2026-08-28T18:30:00Z",
+  "ProjectRoot": "E:/MajorMud-Reforged Github",
+  "PassCount": 98,
+  "StrongCount": 102,
+  "UnknownCount": 0,
+  "ScoredRequirementCount": 200,
+  "StrictPercent": 49.0,
+  "EvidenceBackedPercent": 100.0,
+  "PartialSystemShellCount": 27,
+  "RemainingSystemCount": 27,
+  "Categories": [
+    {
+      "Category": "Administration & Host",
+      "Pass": 0,
+      "Strong": 2,
+      "Unknown": 0,
+      "Total": 2,
+      "StrictPercent": 0.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Character & Status",
+      "Pass": 24,
+      "Strong": 22,
+      "Unknown": 0,
+      "Total": 46,
+      "StrictPercent": 52.2,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Combat",
+      "Pass": 12,
+      "Strong": 6,
+      "Unknown": 0,
+      "Total": 18,
+      "StrictPercent": 66.7,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Commands & Help",
+      "Pass": 10,
+      "Strong": 3,
+      "Unknown": 0,
+      "Total": 13,
+      "StrictPercent": 76.9,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Data Reconstruction",
+      "Pass": 0,
+      "Strong": 3,
+      "Unknown": 0,
+      "Total": 3,
+      "StrictPercent": 0.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Economy & Services",
+      "Pass": 1,
+      "Strong": 15,
+      "Unknown": 0,
+      "Total": 16,
+      "StrictPercent": 6.2,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Host / Persistence / Worldgroup",
+      "Pass": 4,
+      "Strong": 5,
+      "Unknown": 0,
+      "Total": 9,
+      "StrictPercent": 44.4,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Import / Export / Limits / Recovery",
+      "Pass": 2,
+      "Strong": 2,
+      "Unknown": 0,
+      "Total": 4,
+      "StrictPercent": 50.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Items & Inventory",
+      "Pass": 4,
+      "Strong": 2,
+      "Unknown": 0,
+      "Total": 6,
+      "StrictPercent": 66.7,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "NPC & AI",
+      "Pass": 2,
+      "Strong": 11,
+      "Unknown": 0,
+      "Total": 13,
+      "StrictPercent": 15.4,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Optional / Rankings / Extensions",
+      "Pass": 0,
+      "Strong": 3,
+      "Unknown": 0,
+      "Total": 3,
+      "StrictPercent": 0.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Parties / Communication / Organizations",
+      "Pass": 10,
+      "Strong": 5,
+      "Unknown": 0,
+      "Total": 15,
+      "StrictPercent": 66.7,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Protocol & Legacy Clients",
+      "Pass": 11,
+      "Strong": 0,
+      "Unknown": 0,
+      "Total": 11,
+      "StrictPercent": 100.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Quests / Scripts / Triggers",
+      "Pass": 0,
+      "Strong": 2,
+      "Unknown": 0,
+      "Total": 2,
+      "StrictPercent": 0.0,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Rooms & World",
+      "Pass": 11,
+      "Strong": 10,
+      "Unknown": 0,
+      "Total": 21,
+      "StrictPercent": 52.4,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Spells & Effects",
+      "Pass": 1,
+      "Strong": 2,
+      "Unknown": 0,
+      "Total": 3,
+      "StrictPercent": 33.3,
+      "EvidenceBackedPercent": 100.0
+    },
+    {
+      "Category": "Timers / Resets / World Rules",
+      "Pass": 6,
+      "Strong": 9,
+      "Unknown": 0,
+      "Total": 15,
+      "StrictPercent": 40.0,
+      "EvidenceBackedPercent": 100.0
+    }
+  ]
+}

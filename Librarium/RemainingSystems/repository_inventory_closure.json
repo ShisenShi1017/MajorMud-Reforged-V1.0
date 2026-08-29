@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedByPass": "RemainingSystems-0037-RepositoryInventoryClosure",
+  "updatedByPass": "Pass 61 / Update 0332",
   "scope": {
     "repositoryBaseline": "MajorMud-Reforged Github(59).zip",
-    "cumulativeBaseline": "RemainingSystems-0036",
+    "cumulativeBaseline": "Pass 60 / Update 0331",
     "fileCountScanned": 5746
   },
-  "closureStatus": "repository-visible-inventory-closed-native-evidence-required",
+  "closureStatus": "evidence-backed-strong-native-owner-inventory-closure",
   "systems": [
     {
       "id": "party-coordination",
@@ -5152,7 +5152,7 @@
     {
       "id": "party-coordination.native-001",
       "ownerSubsystem": "party-coordination",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "party member limit",
         "invitation timeout and timer owner",
@@ -5160,65 +5160,106 @@
         "shared experience, loot, quest credit, spell, teleport, and resurrection policy",
         "exact command permissions and rendered messages"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/party_coordination_exhaustion_0001.md",
+      "parityAssertions": [
+        "native.party-coordination"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "rooms.native-002",
       "ownerSubsystem": "rooms",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "seven unresolved room latch effects"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Librarium/Evidence/worldgroup_room_latch_closure_0035.json",
+      "parityAssertions": [
+        "native.rooms",
+        "rooms.native-exit-storage-schema"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "communications.classic-range-rendering",
       "ownerSubsystem": "communications",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact shout/yell distance and adjacency rules",
         "exact local/tell/whisper failure and success rendering",
         "color, language, invisibility, and moderation rules"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.communications.classic-range-rendering",
+        "native.communications.persistence-logging"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "communications.persistence-logging",
       "ownerSubsystem": "communications",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "ignore/mute persistence owner",
         "communication logging and flood thresholds",
         "Worldgroup versus MajorMUD moderation boundary"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.communications.classic-range-rendering",
+        "native.communications.persistence-logging"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "organizations.classic-model",
       "ownerSubsystem": "guild-faction-organization",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "which organization categories are native MajorMUD entities",
         "whether player-created guilds exist",
         "exact ranks, permissions, commands, titles, and messages"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/organization_exhaustion_0003.md",
+      "parityAssertions": [
+        "native.organizations.classic-model",
+        "native.organizations.persistence-services"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "organizations.persistence-services",
       "ownerSubsystem": "guild-faction-organization",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "membership persistence and character deletion behavior",
         "dues, storage, halls, trainers, merchants, quests, reputation, hostility, and alliances",
         "Worldgroup versus MajorMUD organization ownership"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/organization_exhaustion_0003.md",
+      "parityAssertions": [
+        "native.organizations.classic-model",
+        "native.organizations.persistence-services"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "doors-locks-access.native-007",
       "ownerSubsystem": "doors-locks-access",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic open/close/lock/unlock messages",
         "native key-consumption semantics",
@@ -5228,12 +5269,18 @@
         "exact reset persistence",
         "seven unresolved room latch effects"
       ],
-      "safeFallback": "deny access or preserve catalog default state"
+      "safeFallback": "deny access or preserve catalog default state",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/door_lock_access_exhaustion_0004.md",
+      "parityAssertions": [
+        "native.doors-locks-access"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "traps.native-008",
       "ownerSubsystem": "traps",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact trap record families and field encodings",
         "native detection and disarm formulas",
@@ -5244,12 +5291,18 @@
         "immunity/protection precedence",
         "exact door/container/movement/combat/spell/quest/NPC ordering"
       ],
-      "safeFallback": "reject unknown traps and triggers; route only explicit typed requests; use catalog defaults after corrupt persistence"
+      "safeFallback": "reject unknown traps and triggers; route only explicit typed requests; use catalog defaults after corrupt persistence",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/trap_exhaustion_0005.md",
+      "parityAssertions": [
+        "native.traps"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "environmental-hazards.native-009",
       "ownerSubsystem": "environmental-hazards",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic environmental record families and room-field mappings",
         "native tick frequency and round conversion",
@@ -5260,12 +5313,18 @@
         "save and reset behavior",
         "weather and day/night coupling"
       ],
-      "safeFallback": "reject unknown hazards; require exact protection identifiers; emit only typed requests"
+      "safeFallback": "reject unknown hazards; require exact protection identifiers; emit only typed requests",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/environmental_hazard_exhaustion_0006.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "world-containers.native-010",
       "ownerSubsystem": "world-containers",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic container record families",
         "exact capacity and weight rules",
@@ -5276,12 +5335,19 @@
         "concurrent access behavior",
         "exact messages"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/world_container_exhaustion_0007.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries",
+        "items.native-only-boundary"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "clock-scheduling.native-011",
       "ownerSubsystem": "clock-scheduling",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic round/tick/minute conversion",
         "native seed clock and host-time boundary",
@@ -5291,12 +5357,18 @@
         "day rollover and daylight-saving dependence",
         "exact schedules for merchants/trainers/spawns/quests/status/events"
       ],
-      "safeFallback": "reject invalid schedules, bound catch-up, fail closed on clock rollback, restore validated defaults after corrupt persistence"
+      "safeFallback": "reject invalid schedules, bound catch-up, fail closed on clock rollback, restore validated defaults after corrupt persistence",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/clock_scheduling_exhaustion_0008.md",
+      "parityAssertions": [
+        "native.clock-scheduling"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "world-reset-cleanup.native-012",
       "ownerSubsystem": "world-reset-cleanup",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact reset category ordering",
         "hard-reset exception encodings",
@@ -5305,12 +5377,18 @@
         "owner-specific reset and persistence semantics",
         "failure and rollback behavior"
       ],
-      "safeFallback": "dispatch only validated plans; preserve excluded or unresolved state"
+      "safeFallback": "dispatch only validated plans; preserve excluded or unresolved state",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/world_reset_cleanup_exhaustion_0009.md",
+      "parityAssertions": [
+        "native.world-reset-cleanup"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "events.native-013",
       "ownerSubsystem": "events",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic event record families and dispatch mappings",
         "native start/end conditions and scheduling",
@@ -5320,12 +5398,18 @@
         "remote-action event behavior",
         "exact messages and administrative controls"
       ],
-      "safeFallback": "reject unknown events and transitions; dispatch only explicit typed actions; mark required-action failures"
+      "safeFallback": "reject unknown events and transitions; dispatch only explicit typed actions; mark required-action failures",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/world_event_exhaustion_0010.md",
+      "parityAssertions": [
+        "native.events"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "pvp-policy.native-014",
       "ownerSubsystem": "pvp-policy",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic PvP availability and consent model",
         "safe/restricted zone encodings",
@@ -5338,12 +5422,18 @@
         "cooldowns and logout restrictions",
         "exact commands and messages"
       ],
-      "safeFallback": "deny unknown or unproven PvP actions before Combat execution"
+      "safeFallback": "deny unknown or unproven PvP actions before Combat execution",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/pvp_policy_exhaustion_0030.md",
+      "parityAssertions": [
+        "native.pvp-policy"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "law-bounty-guards.native-015",
       "ownerSubsystem": "law-bounty-guards",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact crime families and witness rules",
         "Evil Point and criminal-flag coupling",
@@ -5353,12 +5443,18 @@
         "crime decay and pardon authority",
         "exact messages and persistence"
       ],
-      "safeFallback": "reject unknown zones, invalid crimes, arithmetic overflow, and unauthorized pardon requests; emit typed owner requests only"
+      "safeFallback": "reject unknown zones, invalid crimes, arithmetic overflow, and unauthorized pardon requests; emit typed owner requests only",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/law_bounty_guards_exhaustion_0029.md",
+      "parityAssertions": [
+        "native.law-bounty-guards"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "rest-inn-recovery-policy.native-016",
       "ownerSubsystem": "rest-inn-recovery-policy",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic rest/sleep commands and messages",
         "native recovery formulas and tick timing",
@@ -5368,12 +5464,18 @@
         "login-room behavior",
         "Worldgroup versus MajorMUD ownership"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/rest_recovery_policy_exhaustion_0013.md",
+      "parityAssertions": [
+        "native.rest-inn-recovery-policy"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "transport-services.native-017",
       "ownerSubsystem": "transport-services",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic transport record families",
         "native schedules and boarding windows",
@@ -5384,12 +5486,19 @@
         "exact messages",
         "persistence and restart recovery"
       ],
-      "safeFallback": "Reject unknown transports, invalid stops, combat-disallowed boarding, over-capacity boarding, and premature arrival."
+      "safeFallback": "Reject unknown transports, invalid stops, combat-disallowed boarding, over-capacity boarding, and premature arrival.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/transport_service_exhaustion_0014.md",
+      "parityAssertions": [
+        "transport.majormud-ownership",
+        "native.paid-room-transfers"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "player-transactions.native-018",
       "ownerSubsystem": "player-transactions",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic give/trade/auction command families",
         "native escrow and atomicity",
@@ -5399,12 +5508,20 @@
         "auction/bid/buyout persistence",
         "exact messages and logging"
       ],
-      "safeFallback": "Reject unknown parties, restricted assets, stale revisions, expired offers, and unauthorized acceptance."
+      "safeFallback": "Reject unknown parties, restricted assets, stale revisions, expired offers, and unauthorized acceptance.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/player_transaction_exhaustion_0015.md",
+      "parityAssertions": [
+        "transactions.classic-give-command-receive",
+        "transactions.classic-give-capacity-restrictions",
+        "transactions.no-native-trade-escrow"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "mail-offline-messaging.native-019",
       "ownerSubsystem": "mail-offline-messaging",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "MajorMUD versus Worldgroup ownership of player mail, notes, bulletin boards, and announcements",
         "exact offline tell behavior",
@@ -5418,12 +5535,19 @@
         "exact commands and messages",
         "host message queue and moderation integration"
       ],
-      "safeFallback": "Disable host-boundary features, reject attachments by default, enforce recipient/admin authorization, and never mutate assets directly."
+      "safeFallback": "Disable host-boundary features, reject attachments by default, enforce recipient/admin authorization, and never mutate assets directly.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/mail_offline_messaging_exhaustion_0016.md",
+      "parityAssertions": [
+        "native.communications.persistence-logging",
+        "native.reforged-extension-boundaries"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "account-session-ownership.native-020",
       "ownerSubsystem": "account-session-ownership",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "Worldgroup account and authentication structures",
         "native character slot limit",
@@ -5441,12 +5565,20 @@
         "save ordering on disconnect",
         "party and follower cleanup ordering"
       ],
-      "safeFallback": "Reject unknown accounts, unowned/deleted/banned characters, duplicate active character sessions, unsafe logout, and ambiguous host-owned behavior."
+      "safeFallback": "Reject unknown accounts, unowned/deleted/banned characters, duplicate active character sessions, unsafe logout, and ambiguous host-owned behavior.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/account_session_ownership_exhaustion_0017.md",
+      "parityAssertions": [
+        "character.graceful-exit-save",
+        "native.save-coordination",
+        "administrative.sysop-worldgroup-key-boundary"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "world-rules-configuration.native-021",
       "ownerSubsystem": "world-rules-configuration",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact MajorMUD 1.11p configuration record sources",
         "defaults and allowed ranges",
@@ -5466,12 +5598,20 @@
         "administrative permission levels",
         "Worldgroup versus MajorMUD configuration boundary"
       ],
-      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation."
+      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/world_rules_configuration_exhaustion_0018.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.world-rules-configuration.source-boundary",
+        "native.world-rules-configuration.default-prompt-catalog"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "world-rules-configuration.native-022",
       "ownerSubsystem": "world-rules-configuration",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact MajorMUD 1.11p configuration record sources",
         "defaults and allowed ranges",
@@ -5491,12 +5631,20 @@
         "administrative permission levels",
         "Worldgroup versus MajorMUD configuration boundary"
       ],
-      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation."
+      "safeFallback": "Use typed Reforged defaults, administrator-only mutation, and strict world-mode isolation.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/world_rules_configuration_exhaustion_0018.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.world-rules-configuration.source-boundary",
+        "native.world-rules-configuration.default-prompt-catalog"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "administrative-policy.native-023",
       "ownerSubsystem": "administrative-policy",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact MajorMUD and Worldgroup administrator levels",
         "exact command names and aliases",
@@ -5510,12 +5658,18 @@
         "builder versus sysop permissions",
         "native remote-action authority"
       ],
-      "safeFallback": "Reject unknown, unauthorized, unconfirmed, or actor-mismatched requests and record the rejection."
+      "safeFallback": "Reject unknown, unauthorized, unconfirmed, or actor-mismatched requests and record the rejection.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/administrative_policy_exhaustion_0019.md",
+      "parityAssertions": [
+        "administrative.sysop-worldgroup-key-boundary"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "security-permissions.native-024",
       "ownerSubsystem": "security-permissions",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact MajorMUD player, sysop and builder privilege levels",
         "Worldgroup authentication and authorization interfaces",
@@ -5528,12 +5682,19 @@
         "host/module trust handoff",
         "exact unauthorized-action messages"
       ],
-      "safeFallback": "Reject unauthenticated, under-privileged, unregistered, malformed, oversized, cross-scope, or unknown requests and require an audit record."
+      "safeFallback": "Reject unauthenticated, under-privileged, unregistered, malformed, oversized, cross-scope, or unknown requests and require an audit record.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/security_permission_exhaustion_0020.md",
+      "parityAssertions": [
+        "administrative.sysop-worldgroup-key-boundary",
+        "commands.native-player-command-table"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "logging-diagnostics.native-025",
       "ownerSubsystem": "logging-diagnostics",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact MajorMUD and Worldgroup log destinations",
         "native retention and rotation",
@@ -5542,19 +5703,33 @@
         "player-visible combat log behavior",
         "native audit visibility and redaction"
       ],
-      "safeFallback": "Reject malformed log events and hide administrative or security-sensitive records from non-administrators."
+      "safeFallback": "Reject malformed log events and hide administrative or security-sensitive records from non-administrators.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/logging_diagnostics_exhaustion_0021.md",
+      "parityAssertions": [
+        "native.error-handling-recovery",
+        "native.reforged-extension-boundaries"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "save-coordination.native-026",
       "ownerSubsystem": "save-coordination",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/save_coordination_exhaustion_0022.md",
+      "parityAssertions": [
+        "native.save-coordination",
+        "timers.player-data-save-60s"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "startup-shutdown.native-027",
       "ownerSubsystem": "startup-shutdown",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic startup ordering",
         "native DLL initialization and teardown",
@@ -5562,12 +5737,19 @@
         "crash recovery versus clean shutdown",
         "pending native action disposition"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/startup_shutdown_exhaustion_0023.md",
+      "parityAssertions": [
+        "native.save-coordination",
+        "native.error-handling-recovery"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "worldgroup-integration.native-028",
       "ownerSubsystem": "worldgroup-integration",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Worldgroup terminal-session APIs",
         "account and billing/access interfaces",
@@ -5576,24 +5758,42 @@
         "WCC/WBB library call boundaries",
         "native error messages and return codes"
       ],
-      "safeFallback": "Keep unknown host/native boundaries disabled and require authenticated host context for Worldgroup-owned operations."
+      "safeFallback": "Keep unknown host/native boundaries disabled and require authenticated host context for Worldgroup-owned operations.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/worldgroup_integration_exhaustion_0024.md",
+      "parityAssertions": [
+        "wcc.available-artifacts-exhausted",
+        "native.global-world-state",
+        "native.global-rng.native-contract"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "global-rng.native-contract",
       "ownerSubsystem": "global-rng",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact generator algorithm and integer width",
         "seed source and stream sharing",
         "inclusive/exclusive range semantics and bias",
         "save/restart restoration behavior"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/global_random_contract_exhaustion_0037.md",
+      "parityAssertions": [
+        "native.global-rng.native-contract",
+        "native.global-rng.borland-crt-core",
+        "native.global-rng.startup-packed-time-seed",
+        "native.global-rng.host-range-endpoint-contract",
+        "native.global-rng.direct-callsite-boundary"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "global-world-state.native-030",
       "ownerSubsystem": "global-world-state",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact global flag and variable record families",
         "unknown bit mask counter and latch meanings",
@@ -5601,24 +5801,37 @@
         "reset ordering and persistence",
         "replication and visibility behavior"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/global_world_state_exhaustion_0026.md",
+      "parityAssertions": [
+        "native.global-world-state"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "weather-day-night.native-031",
       "ownerSubsystem": "weather-day-night",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "prove whether MajorMUD 1.11p implements day/night or weather",
         "identify record families and transition schedules",
         "resolve effects on visibility rooms spawns NPC behavior spells and hazards",
         "resolve Worldgroup versus MajorMUD ownership"
       ],
-      "safeFallback": "Classic simulation disabled; only explicit Custom/AI definitions may simulate conditions"
+      "safeFallback": "Classic simulation disabled; only explicit Custom/AI definitions may simulate conditions",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/weather_day_night_exhaustion_0027.md",
+      "parityAssertions": [
+        "native.world-rules-configuration",
+        "native.reforged-extension-boundaries"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "builder-content-editing.native-032",
       "ownerSubsystem": "builder-content-editing",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "whether original MajorMUD exposes builder commands",
         "exact native builder permissions",
@@ -5626,12 +5839,18 @@
         "original record validation and publish workflow",
         "Worldgroup editor/module boundaries"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/builder_content_editing_exhaustion_0028.md",
+      "parityAssertions": [
+        "native.builder-content-editing"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "import-export-compatibility.native-033",
       "ownerSubsystem": "import-export-compatibility",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact WCC/WBB record versioning",
         "native import/export commands",
@@ -5640,12 +5859,18 @@
         "rollback semantics",
         "binary checksums and packing"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/import_export_compatibility_exhaustion_0029.md",
+      "parityAssertions": [
+        "native.import-export-compatibility"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "help-reference.native-034",
       "ownerSubsystem": "help-reference",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic help topic record families",
         "native HELP command syntax and aliases",
@@ -5655,12 +5880,19 @@
         "Worldgroup versus MajorMUD help ownership",
         "search matching and ambiguity behavior"
       ],
-      "safeFallback": "Expose only validated authorized catalog topics; do not invent native content."
+      "safeFallback": "Expose only validated authorized catalog topics; do not invent native content.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/help_reference_exhaustion_0030.md",
+      "parityAssertions": [
+        "native.help-reference",
+        "commands.native-help-topic-bodies"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "rankings-statistics.native-035",
       "ownerSubsystem": "rankings-statistics",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "whether Classic exposes rankings or scoreboards",
         "exact ranking metric families",
@@ -5670,12 +5902,18 @@
         "administrator exclusion",
         "native persistence and messages"
       ],
-      "safeFallback": "Expose only catalog-defined Reforged projections; do not assert Classic rankings or achievements without evidence."
+      "safeFallback": "Expose only catalog-defined Reforged projections; do not assert Classic rankings or achievements without evidence.",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/rankings_statistics_exhaustion_0031.md",
+      "parityAssertions": [
+        "native.rankings-statistics"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "character-identity-policy.native-036",
       "ownerSubsystem": "character-identity-policy",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic name length and allowed characters",
         "reserved-name list and duplicate comparison",
@@ -5686,12 +5924,19 @@
         "exact validation and failure messages",
         "Worldgroup versus MajorMUD name ownership"
       ],
-      "safeFallback": "reject invalid or unauthorized identity mutation and conceal unresolved hidden identity presentation"
+      "safeFallback": "reject invalid or unauthorized identity mutation and conceal unresolved hidden identity presentation",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/character_identity_policy_exhaustion_0032.md",
+      "parityAssertions": [
+        "native.character-identity-policy",
+        "character.native-name-record-widths"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "capacity-resource-limits.native-037",
       "ownerSubsystem": "capacity-resource-limits",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic limits",
         "configurable versus static limits",
@@ -5699,12 +5944,18 @@
         "allocation failure behavior",
         "cleanup and admission rejection messages"
       ],
-      "safeFallback": "reject admission at configured hard limits and fail closed on unknown resources"
+      "safeFallback": "reject admission at configured hard limits and fail closed on unknown resources",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/capacity_resource_limits_exhaustion_0033.md",
+      "parityAssertions": [
+        "native.capacity-resource-limits"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "error-handling-recovery.native-038",
       "ownerSubsystem": "error-handling-recovery",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact Classic failure behavior",
         "exact native messages",
@@ -5713,28 +5964,46 @@
         "script/event/reset recovery",
         "native subsystem disable behavior"
       ],
-      "safeFallback": "fail closed, use only validated defaults, and require owner-declared rollback"
+      "safeFallback": "fail closed, use only validated defaults, and require owner-declared rollback",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/error_handling_recovery_exhaustion_0034.md",
+      "parityAssertions": [
+        "native.error-handling-recovery"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "games-arenas-optional-activities.native-039",
       "ownerSubsystem": "games-arenas-optional-activities",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "feature existence in MajorMUD 1.11p",
         "exact commands, costs, rewards, rules, persistence, and ownership boundary"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/optional_activities_exhaustion_0035.md",
+      "parityAssertions": [
+        "native.games-arenas-optional-activities"
+      ],
+      "exactBehaviorComplete": false
     },
     {
       "id": "reforged-extension-boundaries.native-040",
       "ownerSubsystem": "reforged-extension-boundaries",
-      "status": "final-native-pass",
+      "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
         "exact native Classic extension boundary and version markers",
         "native save and catalog version compatibility",
         "host module feature flags and Worldgroup policy"
       ],
-      "safeFallback": "preserve unknown and fail closed"
+      "safeFallback": "preserve unknown and fail closed",
+      "finalClosurePass": "Pass 61 / Update 0332",
+      "ownerEvidence": "Reports/RemainingSystems/reforged_extension_boundaries_exhaustion_0036.md",
+      "parityAssertions": [
+        "native.reforged-extension-boundaries"
+      ],
+      "exactBehaviorComplete": false
     }
   ],
   "invariants": [
@@ -5742,5 +6011,17 @@
     "every declared record family, command family, timer, and state object has an owner",
     "unresolved semantics are assigned to the final native phase",
     "unknown native behavior remains inactive and fail closed"
-  ]
+  ],
+  "finalNativeClosure0332": {
+    "state": "STRONG",
+    "remainingSystemOwnerCount": 36,
+    "nativeDependencyGroupCount": 40,
+    "allDependencyGroupsHaveOwner": true,
+    "allDependencyGroupsHaveSafeFallback": true,
+    "allDependencyGroupsHaveEvidencePath": true,
+    "allDependencyGroupsClassified": true,
+    "exactBehaviorComplete": false,
+    "soleStandaloneUnknownAssertion": "",
+    "rule": "Repository closure means no hidden/unowned dependency bucket remains. It does not convert owner-local STRONG semantics into PASS."
+  }
 }

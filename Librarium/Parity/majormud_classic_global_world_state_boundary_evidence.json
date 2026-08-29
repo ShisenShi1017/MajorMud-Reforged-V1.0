@@ -1,0 +1,176 @@
+{
+  "schema": "majormud.classic-global-world-state-boundary-evidence.v1",
+  "update": "0323",
+  "pass": 52,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 52 promotes native.global-world-state from UNKNOWN to STRONG by separating host/imported globals, transient execution scratch, owner-specific Classic gameplay state, and Reforged generic world-state infrastructure. The supplied Worldgroup closure proves all 156 MajorMUD-used symbols are owned and all 34 imported globals/indirects are host runtime/rendering state (32 host_general_runtime, 2 host_message_rendering_transport), so they are not an unidentified MajorMUD gameplay-world-state store. Exact room-action latches and several other gameplay-wide state families already have narrow owners. The generic RuntimeGlobalWorldStateService remains a Reforged shell. Exact unnamed MajorMUD-local record families, remaining bit/mask/counter meanings, full defaults, complete mutation callsites, reset/restart ordering, ordinary persistence mapping, and replication/visibility remain unresolved and fail closed.",
+  "classificationPolicy": "A shared/global address or generic Reforged state primitive receives no Classic parity credit merely because it exists. Host imported globals are classified at their proven Worldgroup ownership; transient native globals remain execution scratch unless persistence is proven; decoded gameplay state stays with its specific owner. RuntimeGlobalWorldStateService JSON snapshots, reset-policy sorting, revision counters, mutation-source ACLs, value kinds, scopes, and visibility flags are Reforged policy only.",
+  "worldgroupImportedGlobalBoundary": {
+    "sources": [
+      "Librarium/Evidence/worldgroup_final_ownership_audit_0036.json",
+      "Librarium/Evidence/worldgroup_semantic_exhaustion_0037.json"
+    ],
+    "majorMudUsedSymbols": 156,
+    "matchedExports": 156,
+    "unmatchedExports": 0,
+    "importedGlobalOrIndirect": 34,
+    "domains": {
+      "host_general_runtime": {
+        "count": 32,
+        "symbols": [
+          "_accbb",
+          "_bgnedt",
+          "_channel",
+          "_clsbb",
+          "_fsdemg",
+          "_fsdscb",
+          "_genbb",
+          "_globs",
+          "_inplen",
+          "_input",
+          "_margc",
+          "_margv",
+          "_msysid",
+          "_namtmp",
+          "_nglobs",
+          "_nterms",
+          "_numbyts",
+          "_othusn",
+          "_status",
+          "_syscyc",
+          "_tfsbuf",
+          "_tfspst",
+          "_tfstate",
+          "_txtvars",
+          "_uidarr",
+          "_usaptr",
+          "_usrnum",
+          "_usrptr",
+          "_vdaptr",
+          "_vdasiz",
+          "_vdatmp",
+          "_version"
+        ]
+      },
+      "host_message_rendering_transport": {
+        "count": 2,
+        "symbols": [
+          "_prfbuf",
+          "_prfptr"
+        ]
+      }
+    },
+    "finding": "All MajorMUD-used imported globals/indirect references have explicit Worldgroup host ownership. No remaining MajorMUD-used Worldgroup import is unowned.",
+    "nonClaim": "This does not identify MajorMUD-local static/global variables inside WCCMMUD/WBBMMUD or prove their gameplay persistence semantics."
+  },
+  "transientNativeSharedGlobals": {
+    "sources": [
+      "Librarium/Evidence/worldgroup_character_target_singleton_handlers_0018.json",
+      "Librarium/Evidence/worldgroup_character_target_spell_dispatch_0016.json"
+    ],
+    "knownAddresses": [
+      "0x0048595C",
+      "0x00485960"
+    ],
+    "use": "Character-target spell effect chaining uses shared native globals as dispatcher scratch/control values.",
+    "classification": "TRANSIENT_EXECUTION_STATE_NO_PERSISTENCE_CREDIT",
+    "nonClaim": "Their existence is not evidence for a persistent gameplay-world-state record family."
+  },
+  "ownerSpecificGameplayState": [
+    {
+      "owner": "room-action-latches",
+      "sources": [
+        "Librarium/Evidence/worldgroup_room_latch_closure_0035.json",
+        "Librarium/Parity/majormud_parity_assertions.json"
+      ],
+      "boundary": "Seven shared room/exit latch identities are already assigned to the rooms/living-world authority; the current parity ledger scores native.rooms PASS."
+    },
+    {
+      "owner": "living-door-state",
+      "sources": [
+        "Librarium/Parity/majormud_parity_assertions.json"
+      ],
+      "boundary": "Decoded Classic door definitions have one canonical live state owner; global-world-state does not replace it."
+    },
+    {
+      "owner": "limited-item-admission-and-maintenance",
+      "sources": [
+        "Librarium/Parity/majormud_classic_world_reset_cleanup_boundary_evidence.json"
+      ],
+      "boundary": "Static placement restoration and maintenance use the recovered limited-item world-plus-owned admission boundary; universal reset ordering remains separate."
+    },
+    {
+      "owner": "majormud-plus-event-state",
+      "sources": [
+        "Librarium/Parity/majormud_parity_assertions.json"
+      ],
+      "boundary": "MajorMUD Plus contest lifecycle/state is already tracked by its event owner and is STRONG, not assigned to the generic state shell."
+    },
+    {
+      "owner": "npc-last-killed-respawn-state",
+      "sources": [
+        "Librarium/Parity/majormud_parity_assertions.json"
+      ],
+      "boundary": "NPC respawn admission/Last Killed semantics stay with NPC/living-world timing owners."
+    },
+    {
+      "owner": "world-rule-configuration",
+      "sources": [
+        "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json"
+      ],
+      "boundary": "WCCMMUD configuration defaults such as KEEPEXP, save clocks, PvP difference and Evil Point settings are configuration evidence, not dynamic generic world-state records."
+    },
+    {
+      "owner": "world-reset-maintenance",
+      "sources": [
+        "Librarium/Parity/majormud_classic_world_reset_cleanup_boundary_evidence.json"
+      ],
+      "boundary": "Reset/maintenance effects are owner-specific and STRONG; exact universal category order remains unresolved."
+    },
+    {
+      "owner": "worldgroup-dfa-persistence",
+      "sources": [
+        "Librarium/Parity/majormud_classic_save_coordination_boundary_evidence.json"
+      ],
+      "boundary": "DFA/Btrieve/MKDE storage ownership is STRONG, but exact mapping of MajorMUD gameplay-world-state record families into Buffer/Player data is still unresolved."
+    }
+  ],
+  "reforgedGenericWorldStateBoundary": {
+    "owner": "RuntimeGlobalWorldStateService",
+    "classification": "REFORGED_EXTENSION_ONLY_FOR_CLASSIC_PARITY",
+    "noParityCreditFor": [
+      "generic global/area/zone/event/module scope taxonomy",
+      "boolean/integer/text value-kind taxonomy",
+      "catalog-defined default values",
+      "alphabetic reset-by-policy ordering",
+      "revision counters and timestamps",
+      "mutation-source authorization lists",
+      "player-visible flag semantics",
+      "schema-1 JSON snapshots and temporary-file replacement"
+    ],
+    "classicGateOwner": "RuntimeClassicGlobalWorldStateAuthority",
+    "liveInstantiationBoundary": "Current server source only instantiates RuntimeGlobalWorldStateService in its dedicated smoke report."
+  },
+  "remainingUnknown": [
+    "exact MajorMUD-local gameplay global/variable record families not already owned by decoded subsystems",
+    "remaining unknown bit-mask, counter, and latch meanings outside already-closed room/action state",
+    "complete native default values for those remaining state families",
+    "complete mutation callsite map and branch ordering for those remaining state families",
+    "exact soft/hard reset and restart behavior for those remaining state families",
+    "exact mapping of remaining gameplay-world-state families to Player data versus Buffer data and ordinary persistence timing",
+    "exact native replication/visibility behavior for remaining shared gameplay state"
+  ],
+  "excludedFromThisAssertion": [
+    "Worldgroup account/session globals and host callback state",
+    "host message-rendering transport globals",
+    "native crash/startup recovery state",
+    "WCCMMUD configuration values already owned by world-rules/configuration except where their gameplay state effect is separately unresolved"
+  ],
+  "noGameplayGuessing": true,
+  "parityPromotion": {
+    "assertion": "native.global-world-state",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "The host/imported-global boundary is completely owned, transient shared globals are separated from persistence, and known gameplay-wide state is delegated to specific decoded owners. The remaining MajorMUD-local record/default/mutation/reset/persistence/visibility semantics are explicitly gated, preventing PASS."
+  }
+}

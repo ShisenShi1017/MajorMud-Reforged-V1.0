@@ -3,7 +3,7 @@
   "projectVersion": "0.1.0",
   "codeUpdate": "0140",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
+  "milestone": "CodeUpdate0140 - Classic Parity Closure and Creator Studio",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
   "guardianEngineeringPolicy": "Guardian Hall engineering phases 1-10 use isolated workspaces and independent persisted controls for planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIPs, repository updates, and overnight execution. Candidate ZIP generation defaults true; autonomous and repository-update capabilities default false, and Repository Updates must never be enabled on the user's behalf.",
@@ -16,7 +16,7 @@
     "Archive/ImportedDatabasesAndEvidence.LocalOnly.rar"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
+    "currentMilestone": "CodeUpdate0140 - Classic Parity Closure and Creator Studio",
     "currentCodeUpdate": "0140",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
@@ -26,10 +26,10 @@
       "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0140 remains the local baseline. PASS 49 / update 0320 proves ordinary Classic death preserves experience exactly and recovers the final-reroll retention formula. Final replacement-character transfer remains disconnected, so the assertion is STRONG. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
-    "lastUpdateName": "CodeUpdate0140-Pass49-ClassicDeathExperience",
+    "milestone2Status": "CodeUpdate0140 closes the repository-visible Classic parity inventory at the retained evidence boundary. The exact native Nahr message-8480 trace closes the last standalone UNKNOWN: 98 PASS / 102 STRONG / 0 UNKNOWN. Creator Studio full-control Custom1 authoring is integrated. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "lastUpdateName": "CodeUpdate0140-ClassicParityClosure-CreatorStudio",
     "nextRecommendedWork": [
-      "Review and commit the cumulative PASS 43-49 CodeUpdate0140 continuation when approved.",
+      "Review and commit the consolidated Classic parity closure and Creator Studio continuation when approved.",
       "Wait for green GitHub Actions.",
       "Begin the next approved public update only after the gate is green or explicitly overridden."
     ]
@@ -52,9 +52,9 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_PASS_THROUGH_PASS49_EXCEPT_PYTHON_UNAVAILABLE; full solution Release build passes with 0 warnings/errors; compiler regression passes with 104,911 records across 47 families; Classic generation passes with 103,330 objects across 36 families and 41 files; focused PASS31, PASS39, and PASS43-49 smokes pass; core/server smoke passes 17/17. Python validators remain unavailable because no interpreter is registered. GitHub Actions must regenerate Data/Classic from Librarium because generated data is not tracked.",
+  "buildVerification": "LOCAL_DOTNET_VERIFIED_NAHR_8480_CLOSURE; explicit Reforged.Server and Compiler.Tests Release builds pass with 0 warnings/errors; compiler projection preserves 5/5 Nahr verified-empty rows; the generic Classic parity closure smoke passes; focused live-combat Nahr checks pass at 785/785 exact reachable rows and exact empty-argument rendering; core/server smoke passes 17/17. The broader live-combat smoke later fails the unrelated npc-blacknight-self-status-persisted check. Python validators could not run because no interpreter is registered. Parity reconciles at 98 PASS / 102 STRONG / 0 UNKNOWN. GitHub Actions must regenerate Data/Classic from Librarium because generated data is not tracked.",
   "current_codeupdate": "0140",
-  "last_update": "PASS 49 Classic death experience local update",
+  "last_update": "Classic parity closure, validator/runtime consolidation, and Creator Studio local integration",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -88,12 +88,12 @@
   "latestRuntimeAudit": "Reports/RuntimeVerification/classic_runtime_audit.md",
   "latestRuntimeAuditFinding": "Regenerated Data/Classic rooms contain and runtime loads 26,668/26,668 descriptions. Runtime audit counts include 1,100 NPC definitions, 1,078 monster definitions, 962 spawn records, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 83 executable quests, 83 live NPC quest-entry triggers, and 182 executable stage scripts. Duplicate room/exit analysis triggers, the tooling script catalog, pending quest candidates, and formula probes remain Librarium-only. WCCMP002 is the selected MajorMUD 1.11p room/map source for this pass; WBBMP002 is secondary comparison evidence. Live spawn placement requires exact map-qualified room resolution. Bundle G native presentation closure and F10 through F15 audits pass. Quest dialogue dispatch includes atomic mutation/rollback, random tables, validated world intents, native remoteaction execution, room/object event recording, Classic non-repeat quest guards, and exhaustive NPC quest-entry validation. Verified/native and strongly-correlated sidecars compile only where evidence supports runtime activation, unresolved exits are compiler-blocked, and one-time validation proofs are recorded in ValidationManifest.json.",
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-  "current_milestone": "CodeUpdate0140 - Repository Cleanup and Imported Evidence Archive",
+  "current_milestone": "CodeUpdate0140 - Classic Parity Closure and Creator Studio",
   "librarium_authoritative": true,
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Imported/reference databases and raw evidence are local-only archival material after approved cleanup. Retain Archive/ImportedDatabasesAndEvidence.LocalOnly.rar locally for future decode, provenance, or source-retirement audits; do not commit loose ImportedDatabases/Evidence contents.",
   "savePolicy": "Runtime saves are realm-scoped. Classic realm state lives under Saves/Classic, custom realm state lives under Saves/Custom/<realm>, host account credential state lives under Saves/Host, and one login may keep up to three characters per world.",
-  "updatedUtc": "2026-08-29T00:00:00Z",
+  "updatedUtc": "2026-08-29T04:06:55Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited or committed as canonical source. Clean validation environments regenerate /Data from Librarium before runtime bootstrap.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

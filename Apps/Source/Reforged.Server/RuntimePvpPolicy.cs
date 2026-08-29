@@ -28,6 +28,12 @@ public sealed record RuntimePvpZoneRule(
 public sealed record RuntimePvpDecision(bool Allowed, RuntimePvpDecisionCode Code, string Reason);
 public sealed record RuntimePvpKillRequest(string KillerId, string VictimId, string RoomId, DateTimeOffset OccurredAtUtc, bool RequestKillCredit, bool RequestLawEvaluation, bool RequestLootPolicy);
 
+/// <summary>
+/// Reforged compatibility / extension PvP-policy shell. ConsentOnly/Open/Forbidden zones,
+/// same-party/guild denials, per-target attack cooldowns, and logout restrictions are NOT
+/// evidence of native Classic MajorMUD PvP behavior. Classic parity is bounded by
+/// RuntimeClassicPvpPolicyAuthority plus narrower recovered alignment/arena/config owners.
+/// </summary>
 public sealed class RuntimePvpPolicyService
 {
     private readonly Dictionary<string, RuntimePvpZoneRule> _zones;

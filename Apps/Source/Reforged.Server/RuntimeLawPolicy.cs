@@ -10,6 +10,12 @@ public sealed record RuntimeBountyState(string CharacterId, long Amount, bool Wa
 public sealed record RuntimeLawRequest(RuntimeLawActionKind Kind, string CharacterId, string? RelatedId, long Amount, string Reason);
 public sealed record RuntimeLawResult(bool Accepted, string Code, IReadOnlyList<RuntimeLawRequest> Requests);
 
+/// <summary>
+/// Reforged compatibility / extension law-policy shell. Its crime kinds, witness radius,
+/// severity-to-bounty arithmetic, expiration deadlines, fine/jail requests, and pardon model
+/// are NOT evidence of native Classic MajorMUD law behavior. Classic parity is bounded by
+/// RuntimeClassicLawBountyGuardAuthority and the narrower live Evil-Point/alignment owners.
+/// </summary>
 public sealed class RuntimeLawPolicyService
 {
     private readonly Dictionary<string, RuntimeLawZoneRule> _zones;

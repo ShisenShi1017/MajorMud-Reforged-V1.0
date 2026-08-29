@@ -48,6 +48,18 @@
         "Reports/DataDecode/quest_dialogue_dispatch_intake.md",
         "Reports/RuntimeVerification/validator_latest.json"
       ]
+    },
+    {
+      "name": "Classic parity repository closure",
+      "status": "accepted",
+      "summary": "The cumulative assertion ledger contains 98 PASS, 102 STRONG, and zero UNKNOWN assertions. The original WCCMMUD 1.11p Nahr message-8480 chain proves the five physical attack rows pass empty attack-verb and weapon-name strings. Historical pass validators and snapshots were retired after acceptance.",
+      "evidence": [
+        "Librarium/Parity/majormud_parity_assertions.json",
+        "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
+        "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
+        "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
+        "Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md"
+      ]
     }
   ]
 }

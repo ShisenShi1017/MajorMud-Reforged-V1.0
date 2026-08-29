@@ -1,0 +1,18 @@
+{
+  "schema": "majormud.global-rng-contract-status.v1",
+  "update": "0331",
+  "pass": 60,
+  "status": "evidence-backed-strong-native-contract-boundary",
+  "rawPrngCoreExact": true,
+  "startupSeedExact": true,
+  "threadLocalStateOwnershipExact": true,
+  "hostRangeEndpointBoundaryExact": true,
+  "directRandomImportCensusExact": true,
+  "completeGenrdnAddressMapExact": false,
+  "indirectRandomPathsExact": false,
+  "gameplayCallsiteThreadMappingExact": false,
+  "instructionEquivalentRangeLoopExact": false,
+  "gameplayWideDrawOrderingExact": false,
+  "reforgedGlobalRandomIsClassic": false,
+  "evidence": "Librarium/Parity/majormud_classic_global_rng_contract_boundary_evidence.json"
+}

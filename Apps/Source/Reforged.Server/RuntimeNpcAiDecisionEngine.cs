@@ -42,9 +42,10 @@ public sealed record RuntimeNpcDecisionTrace(
     IReadOnlyDictionary<string, string> StateChanges);
 
 /// <summary>
-/// Evidence-constrained Classic NPC decision entry point. This pass intentionally activates only
-/// decisions directly supported by existing generated/runtime fields. Native-only perception,
-/// threat, patrol, flee, assist, and spell-priority semantics remain blocked rather than inferred.
+/// Evidence-constrained Reforged NPC decision coordinator. It activates only decisions supported
+/// by existing generated/runtime fields and explicit owner state, but its candidate order is not
+/// claimed as the native Classic WCCMMUD dispatcher. Native flee/perception/patrol/tracking,
+/// assist priority, and exact update/retry ordering remain blocked rather than inferred.
 /// </summary>
 public sealed class RuntimeNpcAiDecisionEngine
 {

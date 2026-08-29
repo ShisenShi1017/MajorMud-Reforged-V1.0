@@ -4,20 +4,19 @@
 
 Message `8480` is a native physical dodge/miss template, **not an assist broadcast**. Its verified player payload is `%s %s %s with his %s, but %s dodges!`.
 
-Native NPC combat presentation is exact for 735 of 736 reachable WCCMSG2 formats. The only partial format is message `8480`, used by five physical attacks on NPC `1006` (`Nahr`).
+Native NPC combat presentation is exact for all 736 reachable WCCMSG2 formats. Message `8480`, used by five physical attacks on NPC `1006` (`Nahr`), is exact with two intentionally empty caller arguments.
 
 ## Exhaustive Evidence Check
 
 - Generated and Librarium attack records preserve all five `Nahr` attack rows and their exact hit, miss, and dodge message IDs.
-- The retained OmniVerse WCC monster record for NPC `1006` omits both `miss_verb3` and `weapon_name` on every one of the five rows.
-- Other NPCs using message `8480` prove that both values belong to the individual attack call site; they are not constants owned by the message.
-- Other `Nahr` definitions use different weapons and different message families and therefore cannot safely supply the missing values.
-- Native hit payloads identify some actions or anatomy, but two rows contain no body-part value at all. Reversing hit prose into caller arguments would invent text rather than recover decoded data.
-- No original monster DAT/TXT source containing the omitted NPC `1006` fields exists in the current repository evidence surface.
+- The retained OmniVerse WCC record omits `miss_verb3` and `weapon_name`, but the original WCCMMUD 1.11p DLL plus `wccknms2.dat` execution trace proves this omission represents native empty strings rather than lost prose.
+- Nahr's relevant native equipped-item field is `0`; `_generate_monster` copies it into active state, `_move_monster_to_fighter` NULs both buffers, and `_attack_monster_user` passes those buffers unchanged to message 8480.
+- Thrag's equivalent field contains item `209` (`huge darkwood club`), while Nahr variants `1004`, `1005`, and `1011` contain item `1023` (`nexus blade`). NPC `1006` uniquely follows the zero-item branch.
+- No hit phrase, anatomy, fist, foot, or normalized verb is inferred.
 
 ## Runtime Boundary
 
-The five rows retain safe fallback miss wording. No Classic value is inferred or hard-coded. Exact closure requires an original monster record, a native trace, or another immutable source that explicitly supplies the two caller-owned values for each attack.
+The five rows carry `native_empty_miss_arguments_verified=true`. Runtime renders the retained template with empty second and fourth string arguments, producing native spacing such as `Nahr  Shisenshi with his , but Shisenshi dodges!`. Other unresolved blank arguments still fail closed.
 
 ## Subsequent Combat Closure
 

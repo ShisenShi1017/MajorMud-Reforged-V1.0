@@ -16,6 +16,12 @@ public sealed record RuntimeCapacityDefinition(
 public sealed record RuntimeCapacitySnapshot(RuntimeCapacityResource Resource, long Used, long Reserved, long Maximum, long Available);
 public sealed record RuntimeCapacityResult(bool Success, string Code, RuntimeCapacitySnapshot? Snapshot = null);
 
+/// <summary>
+/// Reforged generic capacity/reservation coordination shell. Its configurable Int64 maxima,
+/// reservation counters, owner strings, and failure codes are NOT native Classic MajorMUD
+/// capacity semantics. Classic parity is bounded by RuntimeClassicCapacityResourceLimitsAuthority
+/// and the narrower owning subsystem authorities.
+/// </summary>
 public sealed class RuntimeCapacityLimitsService
 {
     private readonly Dictionary<RuntimeCapacityResource, RuntimeCapacityDefinition> _definitions = new();

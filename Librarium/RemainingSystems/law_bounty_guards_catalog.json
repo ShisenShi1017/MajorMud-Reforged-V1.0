@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "subsystem": "law-bounty-guards",
+  "pass": "Update0325",
+  "status": "evidence-backed-boundary",
+  "classification": "Classic native Evil-Point/legal owner families and decoded guard-jail graph STRONG; exact law dispatcher edges remain open",
+  "classicRuntimeOwner": "RuntimeClassicLawBountyGuardAuthority",
+  "activeRuntimeOwners": [
+    "RuntimeCharacterAlignmentResolver",
+    "RuntimeClassicDeathLawPvpAuthority",
+    "RuntimeLivePvp / combat admission where already recovered"
+  ],
+  "nativeOwnerFamilies": {
+    "award_admission_warning": [
+      "_add_evil_points",
+      "_add_evil_timer",
+      "_add_evil_warnings_to_room",
+      "_already_evil",
+      "_should_give_evil",
+      "_evil_for_robbing"
+    ],
+    "forgiveness_decay": [
+      "_attempt_to_forgive",
+      "_begin_clearing_evil_points",
+      "_clear_evil_points_routine",
+      "_decrement_evil_timers",
+      "_delete_evil_points",
+      "_cmd_forgive"
+    ],
+    "display_commands": [
+      "_display_evil_star",
+      "_display_evil_timers",
+      "_cmd_guard"
+    ],
+    "persistence": [
+      "_get_saved_evil_points",
+      "_save_evil_points"
+    ]
+  },
+  "decodedJailBoundary": {
+    "guardNpcLegacyIds": [
+      13,
+      14,
+      40,
+      757
+    ],
+    "guardNpcNames": {
+      "13": "guardsman",
+      "14": "guardsman",
+      "40": "Sheriff Lionheart",
+      "757": "elite guardsman"
+    },
+    "hitSpell": 583,
+    "hitSpellName": "jail",
+    "entryTextblock": 1509,
+    "entryScript": "testskill current_hp 0 9624:price 0",
+    "bandDispatchTextblock": 9624,
+    "bandRows": [
+      {
+        "condition": "evilaligned 210",
+        "jailTimeSpell": 586,
+        "name": "fiend jail time",
+        "duration": 200,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 120 + goodaligned 209",
+        "jailTimeSpell": 641,
+        "name": "villain jail time",
+        "duration": 175,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 80 + goodaligned 119",
+        "jailTimeSpell": 642,
+        "name": "criminal jail time",
+        "duration": 150,
+        "thenSpell": 584
+      },
+      {
+        "condition": "evilaligned 40 + goodaligned 79",
+        "jailTimeSpell": 643,
+        "name": "outlaw jail time",
+        "duration": 125,
+        "thenSpell": 584
+      },
+      {
+        "condition": "goodaligned 39",
+        "jailTimeSpell": 644,
+        "name": "seedy+ jail time",
+        "duration": 100,
+        "thenSpell": 584
+      }
+    ],
+    "jailTeleportSpell": 584,
+    "jailTeleportMap": 1,
+    "encodedRoomRange": [
+      541,
+      545
+    ],
+    "exitJailControlSpell": 585,
+    "exitGateTextblock": 9113,
+    "exitGateScript": "roomitem 1363:cast 929",
+    "requiredRoomItem": 1363,
+    "exitTeleportSpell": 929,
+    "exitTeleportMap": 1,
+    "exitTeleportRoom": 1076,
+    "executionCaution": "Record and TextBlock graph is exact retained data. Exact native comparator semantics, ordering relative to lethal combat, destination draw, message rendering, and TextBlock control execution remain gated."
+  },
+  "nativeDependencies": [
+    "exact per-action crime classification and witness/admission rules inside the two broad native-help crime families",
+    "exact guard alert/spawn/hostility acquisition cadence and how it composes with ordinary NPC AI",
+    "exact Villain/Fiend additional enforcement actor/cadence where retained sources conflict",
+    "fine, confiscation, bounty arithmetic/limits, citizen reporting, and arrest policy not represented by the decoded guard jail graph",
+    "exact FORGIVE command accounting/history and wall-clock/cleanup scheduling beyond recovered redemption arithmetic/defaults",
+    "exact law/jail messages and rendering order",
+    "exact Evil-Point persisted record encoding/serialization despite native save/get owner exports",
+    "exact guard-hit jail ordering relative to death, jail TextBlock comparator semantics, jail destination RNG draw/order, and exit-control execution"
+  ],
+  "explicitlyExcludedParityClaims": [
+    "RuntimeLawPolicyService crime kinds are native MajorMUD crime families",
+    "RuntimeLawPolicyService witness radius is native",
+    "RuntimeLawPolicyService severity is native bounty arithmetic",
+    "RuntimeLawPolicyService CrimeDecay deadline is native EP/FORGIVE decay",
+    "generic fine/jail/pardon requests prove native Classic policy",
+    "decoded jail room range proves native RNG selection order"
+  ]
+}

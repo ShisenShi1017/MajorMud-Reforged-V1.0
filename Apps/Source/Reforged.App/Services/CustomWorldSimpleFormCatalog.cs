@@ -7,7 +7,12 @@ public enum CustomWorldSimpleFieldKind
     Integer,
     Boolean,
     Choice,
-    Lines
+    Lines,
+    IntegerLines,
+    Decimal,
+    DecimalLines,
+    BooleanLines,
+    ObjectLines
 }
 
 public sealed record CustomWorldSimpleOption(string Value, string Label);
@@ -266,6 +271,31 @@ public static class CustomWorldSimpleFormCatalog
     public static CustomWorldSimpleFormDefinition Get(string family)
     {
         if (Forms.TryGetValue(family, out var form)) return form;
-        throw new KeyNotFoundException($"No simple editor form is registered for family '{family}'.");
+
+        var normalized = (family ?? string.Empty).Trim();
+        if (normalized.Length == 0) throw new KeyNotFoundException("Editor family is required.");
+        var singular = normalized.EndsWith("ies", StringComparison.OrdinalIgnoreCase) && normalized.Length > 3
+            ? normalized[..^3] + "y"
+            : normalized.EndsWith("s", StringComparison.OrdinalIgnoreCase) && normalized.Length > 1
+                ? normalized[..^1]
+                : normalized;
+        var display = Humanize(normalized);
+        var singularDisplay = Humanize(singular);
+        return new CustomWorldSimpleFormDefinition(
+            normalized,
+            singularDisplay,
+            singular + ".custom",
+            $"Create or edit {display.ToLowerInvariant()} using the fields discovered from the Librarium. System identity fields remain protected by the editor.",
+            []);
+    }
+
+    public static string LabelForFamily(string family)
+        => FamilyLabels.TryGetValue(family, out var label) ? label : Humanize(family);
+
+    private static string Humanize(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return string.Empty;
+        var words = value.Replace('-', '_').Split('_', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        return string.Join(" ", words.Select(word => word.Length == 0 ? word : char.ToUpperInvariant(word[0]) + word[1..]));
     }
 }

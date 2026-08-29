@@ -20,6 +20,13 @@ public sealed record RuntimeWorldStateDefinition(
 public sealed record RuntimeWorldStateEntry(string StateId, string Value, long Revision, DateTimeOffset UpdatedUtc, string UpdatedBy);
 public sealed record RuntimeWorldStateMutation(string StateId, string PreviousValue, string CurrentValue, long Revision, string OwnerSubsystem);
 
+/// <summary>
+/// Generic Reforged typed world-state compatibility infrastructure.
+///
+/// This service is not evidence of Classic MajorMUD global-state record layout, default values,
+/// reset/restart ordering, persistence mapping, replication, or player-visibility semantics.
+/// Classic parity claims are gated by RuntimeClassicGlobalWorldStateAuthority.
+/// </summary>
 public sealed class RuntimeGlobalWorldStateService
 {
     private readonly object _gate = new();

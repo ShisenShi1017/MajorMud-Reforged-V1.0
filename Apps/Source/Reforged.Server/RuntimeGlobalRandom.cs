@@ -4,6 +4,12 @@ public enum RuntimeRandomScope { World, Session, Action }
 public sealed record RuntimeRandomDraw(string StreamId, RuntimeRandomScope Scope, long Sequence, ulong RawValue, int MinimumInclusive, int MaximumInclusive, int Result);
 public sealed record RuntimeRandomStreamState(string StreamId, RuntimeRandomScope Scope, ulong State0, ulong State1, long Sequence);
 
+/// <summary>
+/// Reforged deterministic multi-stream RNG extension. PASS60 parity boundary:
+/// this xorshift128+ world/session/action service, its snapshot/restore behavior,
+/// and its inclusive rejection-sampling adapter do NOT define the Classic MajorMUD
+/// / Worldgroup RNG contract and receive zero Classic parity credit.
+/// </summary>
 public sealed class RuntimeGlobalRandomService
 {
     private readonly object _gate = new();

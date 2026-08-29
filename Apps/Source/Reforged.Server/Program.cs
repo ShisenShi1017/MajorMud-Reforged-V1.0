@@ -1526,125 +1526,6 @@ if (args.Any(arg => string.Equals(arg, "--smoke-character-identity-policy", Stri
     return smoke.Passed ? 0 : 1;
 }
 
-if (args.Any(arg => string.Equals(arg, "--smoke-pass28-identity-law", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass28IdentityLawSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass29-evil-reputation", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass29EvilReputationSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass30-broadcast-groups", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass30BroadcastGroupSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass31-native-help-aliases", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass31NativeHelpAliasesSmokeReport.Run(projectRoot);
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass32-classic-set-profile", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass32ClassicSetProfileSmokeReport.Run(projectRoot);
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass33-classic-file-config", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass33ClassicFileConfigurationBoundarySmokeReport.Run(projectRoot);
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass34-classic-worldgroup-prng", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass34ClassicWorldgroupPrngSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass35-classic-worldgroup-rng-callsite-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass35ClassicWorldgroupRngCallsiteBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass36-character-modifier-order-verification", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass36CharacterModifierOrderVerificationSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass37-classic-regeneration-correction", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass37ClassicRegenerationCorrectionSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass38-classic-scheduler-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass38ClassicSchedulerBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass40-classic-identity-shadow-verification", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass40ClassicIdentityShadowVerificationSmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 76;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass41-classic-gameplay-failure-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass41ClassicGameplayFailureBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass42-classic-world-rules-configuration-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass42ClassicWorldRulesConfigurationBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass43-classic-majormud-plus-event-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass43ClassicMajorMudPlusEventBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass44-classic-party-coordination-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass44ClassicPartyCoordinationBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass45-classic-trap-boundary", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass45ClassicTrapBoundarySmokeReport.Run(Directory.GetCurrentDirectory());
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-help", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeClassicNativeHelpSmokeReport.Run(Directory.GetCurrentDirectory());
@@ -1655,27 +1536,6 @@ if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-help", StringComp
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-player-commands", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeClassicNativePlayerCommandSmokeReport.Run(Directory.GetCurrentDirectory());
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass48-classic-extension-boundaries", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass48ClassicExtensionBoundarySmokeReport.Run();
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass49-classic-death-experience", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass49ClassicDeathExperienceSmokeReport.Run(Directory.GetCurrentDirectory());
-    Console.WriteLine(smoke.ToJson());
-    return smoke.Passed ? 0 : 1;
-}
-
-if (args.Any(arg => string.Equals(arg, "--smoke-pass39-classic-lifecycle-death-verification", StringComparison.OrdinalIgnoreCase)))
-{
-    var smoke = RuntimePass39ClassicLifecycleDeathVerificationSmokeReport.Run();
     Console.WriteLine(smoke.ToJson());
     return smoke.Passed ? 0 : 1;
 }
@@ -1718,6 +1578,14 @@ if (args.Any(arg => string.Equals(arg, "--smoke-weather-day-night", StringCompar
 if (args.Any(arg => string.Equals(arg, "--smoke-global-world-state", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeGlobalWorldStateSmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-parity-closure", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicParityClosureSmokeReport.Run(projectRoot);
     Console.WriteLine(smoke.ToJson());
     return smoke.Passed ? 0 : 1;
 }

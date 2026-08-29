@@ -1,0 +1,117 @@
+{
+  "schema": "majormud.classic-communication-persistence-limits-boundary-evidence.v1",
+  "update": "0328",
+  "pass": 57,
+  "classification": "STRONG_EXACT_PROFILE_CONTROL_SCOPE_AND_MAXPAGES_WINDOW_DEFAULTS_SERIALIZATION_RENDERING_OPEN",
+  "result": "native.communications.persistence-logging UNKNOWN -> STRONG",
+  "scopeBoundary": {
+    "majorMudProfileControlsInScope": true,
+    "pageTelegramRateContractInScope": true,
+    "worldgroupMailAndNativeLoggingParityInScope": false,
+    "genericRuntimeCommunicationFloodPolicyReceivesClassicParityCredit": false,
+    "reforgedCharacterConditionsAreNativeSerializationClaim": false,
+    "maxPagesIsGeneralChatFloodControl": false
+  },
+  "nativeHelpAnchors": [
+    {
+      "messageNumber": 37,
+      "sha256": "7db8e67af75da2cc1ea286327ef723ff16c2012250decbdc1f137a57c38b9089",
+      "claims": [
+        "PROFILE displays current profile settings",
+        "PAGE toggles whether other users on the system may page the player while the player is in-game"
+      ]
+    },
+    {
+      "messageNumber": 117,
+      "sha256": "17ddee12301b928f4f522b1dd6faf110dc65d574951d5b146c30ebe7e7841bc2",
+      "claims": [
+        "SET MAXPAGES <n> limits pages or telegrams received in each 3 second period",
+        "SET TELEPATH [On/Off] exists and controls disallowing incoming telepaths, but exact named polarity remains ambiguous",
+        "SET MESSAGES, RECEIVE, WARNING, FOLLOW, ENTRANCES and SPEECH are profile controls"
+      ]
+    },
+    {
+      "messageNumber": 121,
+      "sha256": "bc3e8a411086f17bbb80222d6b6c4eb99d5c4c677e76f8bc39f7f07caae09d8d",
+      "claims": [
+        "LOW shows high-priority messages only",
+        "MEDIUM shows high+medium",
+        "HIGH shows high+medium+low",
+        "help does not enumerate complete message-priority membership"
+      ]
+    },
+    {
+      "messageNumber": 175,
+      "sha256": "14734ab1a78e32ddf163c3cfb2dd5a3b12c03d4df75a26d21aee87e8ae5256bd",
+      "claims": [
+        "GOSSIP and SET GOSSIP bare toggle receipt",
+        "SET GOSSIP OFF disables receipt",
+        "SET GOSSIP ON enables receipt"
+      ]
+    },
+    {
+      "messageNumber": 177,
+      "sha256": "98af8e5681bd19241aca1ae896c23f394738a7a84de689789713170cab42f761",
+      "claims": [
+        "AUCTION and SET AUCTION bare toggle receipt",
+        "SET AUCTION OFF disables receipt",
+        "SET AUCTION ON enables receipt"
+      ]
+    }
+  ],
+  "nativeAbiAnchors": [
+    {
+      "export": "_cmd_set",
+      "owner": "WCCMMUD/WBBMMUD native command surface"
+    },
+    {
+      "export": "_cmd_forget",
+      "owner": "WCCMMUD/WBBMMUD native command surface"
+    },
+    {
+      "export": "_cmd_gossip",
+      "owner": "WCCMMUD/WBBMMUD native command surface"
+    }
+  ],
+  "recoveredContracts": {
+    "maxPagesWindowSeconds": 3,
+    "maxPagesSubjects": [
+      "pages",
+      "telegrams"
+    ],
+    "pageCommand": "toggles in-game paging availability from other system users",
+    "forget": "per-sender telepath ignore toggle",
+    "gossipAuction": "explicit receipt ON/OFF plus bare toggle",
+    "messages": "LOW/MEDIUM/HIGH threshold meanings proven",
+    "profileScope": "native help explicitly describes these as the player profile/current profile settings"
+  },
+  "antiClaims": [
+    "RuntimeCommunicationPolicy MaximumMessageLength=512 is a native MajorMUD limit",
+    "RuntimeCommunicationPolicy FloodWindowSeconds=10 and FloodMaximumMessages=6 implement native MAXPAGES",
+    "MAXPAGES rate-limits SAY/YELL/GOSSIP/AUCTION or all game output",
+    "Reforged character Conditions keys are the native MajorMUD profile record layout",
+    "SET TELEPATH ON definitely means receive-enabled or definitely means block-enabled",
+    "PAGE transport, telegram storage, Worldgroup mail, or native logging are reconstructed by this pass"
+  ],
+  "stillUnresolvedForPass": [
+    "exact native default states for PAGE, TELEPATH, GOSSIP, AUCTION, MESSAGES, ENTRANCES and related profile controls",
+    "exact native record offsets/bit encodings and serialization owner for communication/profile settings",
+    "explicit SET TELEPATH ON/OFF stored polarity; retained wording proves the selector exists but not which named state is the blocking state",
+    "exact SET MAXPAGES default value and accepted numeric range",
+    "exact behavior when pages/telegrams exceed MAXPAGES within the proven three-second period (drop, queue, defer, coalesce, error, or host behavior)",
+    "exact MajorMUD-to-Worldgroup page/telegram handoff and host/session interaction",
+    "exact page/telegram and remaining channel success/failure rendering, color, language, invisibility and moderation interactions",
+    "exact per-message priority membership behind SET MESSAGES LOW/MEDIUM/HIGH",
+    "exact SET ENTRANCES default, login/logout event timing and persistence",
+    "exact reconnect/login load and save ordering for communication/profile settings"
+  ],
+  "sources": [
+    "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json",
+    "Librarium/Parity/majormud_settings_healers_access_rankings_evidence_0291.json",
+    "Librarium/Parity/majormud_classic_set_profile_evidence_0303.json",
+    "Librarium/NativeEvidence/native_artifact_catalog_0001.json",
+    "Librarium/NativeEvidence/native_abi_identity_closure_0002.json",
+    "Apps/Source/Reforged.Server/RuntimeClassicCommunicationPersistenceLimitsAuthority.cs"
+  ]
+}

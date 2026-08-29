@@ -1,5 +1,7 @@
 namespace Reforged.Server;
 
+// PASS59 parity boundary: recovered formulas in this resolver keep their individual evidence grades; unresolved native cross-formula/branch/RNG ordering is gated by RuntimeClassicCombatSpellNativeBoundaryAuthority.
+
 public enum ClassicAttackType
 {
     Punch = 1,

@@ -1097,8 +1097,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var stringTokens = CountToken(template, "%s");
         if (stringTokens == 5 &&
             selection.LegacyMessageId == attack.MissMessageLegacyId &&
-            !string.IsNullOrWhiteSpace(attack.MissVerb) &&
-            !string.IsNullOrWhiteSpace(attack.WeaponName))
+            attack.HasExactNativeMissArguments)
         {
             rendered = template;
             foreach (var argument in new[] { attacker, attack.MissVerb, defender, attack.WeaponName, defender })
@@ -1391,8 +1390,9 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(RuntimeLiveGameplayFacade.ResolveNpcAttacksPerRound(zeroAttackNpc!) == 0, "zero-attack-npc-does-not-attack"); report.Checks.Add("zero-attack-npc-does-not-attack");
             var energyAttack = npcs.SelectMany(x => x.Attacks).FirstOrDefault(x => x.EnergyCost > 0 && x.Accuracy > 0 && x.SelectionPercent > 0);
             Require(energyAttack is not null, "decoded-npc-attack-energy-cost"); report.Checks.Add("decoded-npc-attack-energy-cost");
-            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { energyAttack! }, energyAttack!.EnergyCost - 1) == energyAttack, "npc-unaffordable-row-still-selected"); report.Checks.Add("npc-unaffordable-row-still-selected");
-            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { energyAttack! }, energyAttack.EnergyCost) == energyAttack, "npc-affordable-attack-selected"); report.Checks.Add("npc-affordable-attack-selected");
+            var deterministicEnergyAttack = energyAttack! with { SelectionPercent = 100 };
+            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { deterministicEnergyAttack }, deterministicEnergyAttack.EnergyCost - 1) == deterministicEnergyAttack, "npc-unaffordable-row-still-selected"); report.Checks.Add("npc-unaffordable-row-still-selected");
+            Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { deterministicEnergyAttack }, deterministicEnergyAttack.EnergyCost) == deterministicEnergyAttack, "npc-affordable-attack-selected"); report.Checks.Add("npc-affordable-attack-selected");
             Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterAttack(energyAttack.EnergyCost + 3, energyAttack) == 3, "npc-attack-energy-deducted"); report.Checks.Add("npc-attack-energy-deducted");
             var directSpellEnergyAttack = energyAttack with { Type = 2, EnergyCost = 100 };
             Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(103, directSpellEnergyAttack, 1000) == 53, "npc-resisted-spell-half-energy-cost"); report.Checks.Add("npc-resisted-spell-half-energy-cost");
@@ -1454,11 +1454,23 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(reachablePhysicalBodyPartRows.Length == 785 &&
                 reachablePhysicalBodyPartRows.Count(attack => !string.IsNullOrWhiteSpace(attack.MissVerb) && !string.IsNullOrWhiteSpace(attack.WeaponName)) == 780,
                 "npc-native-reachable-physical-body-part-coverage"); report.Checks.Add("npc-native-reachable-physical-body-part-coverage-780-of-785");
+            Require(reachablePhysicalBodyPartRows.Count(attack => attack.HasExactNativeMissArguments) == 785,
+                "npc-native-reachable-physical-body-part-exact-coverage"); report.Checks.Add("npc-native-reachable-physical-body-part-exact-coverage-785-of-785");
             var fullyBoundReachableIds = reachablePhysicalBodyPartRows.GroupBy(attack => attack.MissMessageLegacyId)
                 .Where(group => group.All(attack => !string.IsNullOrWhiteSpace(attack.MissVerb) && !string.IsNullOrWhiteSpace(attack.WeaponName)))
                 .Select(group => group.Key).OrderBy(id => id).ToArray();
             Require(fullyBoundReachableIds.SequenceEqual(new[] { 806, 2490, 2939, 8310, 8372 }),
                 "npc-native-reachable-body-part-fully-bound-message-ids"); report.Checks.Add("npc-native-reachable-body-part-fully-bound-message-ids-5");
+            var nahr = npcs.Single(x => x.LegacyId == 1006);
+            Require(nahr.Attacks.Count == 5 && nahr.Attacks.All(attack =>
+                attack.MissMessageLegacyId == 8480 && attack.NativeEmptyMissArgumentsVerified &&
+                attack.MissVerb.Length == 0 && attack.WeaponName.Length == 0),
+                "npc-native-nahr-8480-empty-arguments"); report.Checks.Add("npc-native-nahr-8480-empty-arguments-5-of-5");
+            var nahrMiss = new RuntimeNpcCombatMessageSelection(ClassicHitOutcome.Miss, 8480, "fallback-must-not-render");
+            Require(RuntimeLiveGameplayFacade.TryRenderNativeNpcCombatMessageFromAttack(
+                    nativeMessages, nahrMiss, nahr.Attacks[0], "Nahr", "Shisenshi", out var nahrMissText) &&
+                nahrMissText == "Nahr  Shisenshi with his , but Shisenshi dodges!",
+                "npc-native-nahr-8480-empty-argument-rendering"); report.Checks.Add("npc-native-nahr-8480-empty-argument-rendering");
             Require(npcs.SelectMany(npc => npc.Attacks).Count(attack => attack.Type == 2 && bodyPartMessageIds.Contains(attack.MissMessageLegacyId)) == 37,
                 "npc-native-type2-physical-miss-template-nonreachable"); report.Checks.Add("npc-native-type2-physical-miss-template-nonreachable-37");
             var generatedSpellCatalog = RuntimeSpellCatalog.Load(projectRoot, "Classic");

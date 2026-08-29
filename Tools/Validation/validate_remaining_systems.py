@@ -104,7 +104,7 @@ def main():
     world_state = next((entry for entry in systems if entry.get("id") == "global-world-state"), None)
     if not world_state or world_state.get("runtimeOwner") != "RuntimeGlobalWorldStateService":
         raise SystemExit("global-world-state-runtime-owner-invalid")
-    if world_state.get("status") != "implemented-safe-policy-shell":
+    if world_state.get("status") != "evidence-backed-boundary":
         raise SystemExit("global-world-state-status-invalid")
     weather = next((entry for entry in systems if entry.get("id") == "weather-day-night"), None)
     if not weather or weather.get("runtimeOwner") != "RuntimeWeatherDayNightService":
@@ -171,7 +171,7 @@ def main():
     reset = next((entry for entry in systems if entry.get("id") == "world-reset-cleanup"), None)
     if not reset or reset.get("runtimeOwner") != "RuntimeWorldResetCleanupService":
         raise SystemExit("world-reset-runtime-owner-invalid")
-    if reset.get("status") != "implemented-safe-policy-shell":
+    if reset.get("status") not in {"implemented-safe-policy-shell", "evidence-backed-boundary"}:
         raise SystemExit("world-reset-status-invalid")
     events = next((entry for entry in systems if entry.get("id") == "events"), None)
     if not events or events.get("runtimeOwner") != "RuntimeWorldEventService":
@@ -216,8 +216,13 @@ def main():
     save = next((entry for entry in systems if entry.get("id") == "save-coordination"), None)
     if not save or save.get("runtimeOwner") != "RuntimeSaveCoordinationService":
         raise SystemExit("save-coordination-runtime-owner-invalid")
-    if save.get("status") != "implemented-safe-policy-shell":
+    if save.get("status") not in {"implemented-safe-policy-shell", "evidence-backed-boundary"}:
         raise SystemExit("save-coordination-status-invalid")
+    if save.get("status") == "evidence-backed-boundary":
+        if save.get("classicRuntimeOwner") != "RuntimeClassicSaveCoordinationAuthority":
+            raise SystemExit("save-coordination-classic-owner-invalid")
+        if save.get("runtimeOwnerDisposition") != "reforged-extension-shell-only":
+            raise SystemExit("save-coordination-runtime-disposition-invalid")
     lifecycle = next((entry for entry in systems if entry.get("id") == "startup-shutdown"), None)
     if not lifecycle or lifecycle.get("runtimeOwner") != "RuntimeStartupShutdownService":
         raise SystemExit("startup-shutdown-runtime-owner-invalid")

@@ -13,16 +13,17 @@ public sealed record RuntimeGlobalWorldStateSmokeReport(bool Passed, IReadOnlyLi
         };
         var service = new RuntimeGlobalWorldStateService(definitions);
         var denied = false; try { service.Set("module.locked", "true", "player", DateTimeOffset.UtcNow); } catch (UnauthorizedAccessException) { denied = true; }
-        Check(denied, "unauthorized-mutation-fails-closed");
-        Check(service.Increment("event.counter", 2, "events", DateTimeOffset.UtcNow).CurrentValue == "2", "checked-counter-increment");
-        Check(service.Reset(RuntimeWorldStateResetPolicy.EventEnd, "events", DateTimeOffset.UtcNow).Single().CurrentValue == "0", "deterministic-event-reset");
+        Check(denied, "reforged-unauthorized-mutation-fails-closed");
+        Check(service.Increment("event.counter", 2, "events", DateTimeOffset.UtcNow).CurrentValue == "2", "reforged-checked-counter-increment");
+        Check(service.Reset(RuntimeWorldStateResetPolicy.EventEnd, "events", DateTimeOffset.UtcNow).Single().CurrentValue == "0", "reforged-deterministic-event-reset");
         var hidden = false; try { service.Read("module.locked"); } catch (UnauthorizedAccessException) { hidden = true; }
-        Check(hidden, "hidden-state-visibility");
+        Check(hidden, "reforged-hidden-state-visibility");
         var path = Path.Combine(Path.GetTempPath(), "reforged-world-state-smoke.json");
         service.Set("module.locked", "true", "administrative-policy", DateTimeOffset.UtcNow); service.Save(path);
-        var restored = new RuntimeGlobalWorldStateService(definitions); Check(restored.Restore(path) && restored.Read("module.locked", true).Value == "true", "persistent-state-restore");
+        var restored = new RuntimeGlobalWorldStateService(definitions); Check(restored.Restore(path) && restored.Read("module.locked", true).Value == "true", "reforged-persistent-state-restore");
         try { File.Delete(path); } catch { }
-        Check(restored.ValidateState().Count == 0, "state-invariants");
+        Check(restored.ValidateState().Count == 0, "reforged-state-invariants");
+        Check(!RuntimeClassicGlobalWorldStateAuthority.GenericWorldStateServiceOwnsClassicSemantics, "classic-semantics-remain-quarantined");
         return new(failures.Count == 0, checks, failures);
         void Check(bool value, string name) { checks.Add(name); if (!value) failures.Add(name); }
     }

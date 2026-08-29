@@ -1,0 +1,130 @@
+{
+  "schema": "majormud.classic-world-reset-cleanup-boundary-evidence.v1",
+  "update": "0321",
+  "pass": 50,
+  "status": "EVIDENCE_BACKED_BOUNDARY",
+  "summary": "Pass 50 promotes the broad Classic world-reset/cleanup assertion from UNKNOWN to STRONG by separating recovered owner-specific maintenance/reset behavior from Reforged's generic reset-plan coordinator. Native WCCMMUD ownership exports, exact SYSOP RESET/INITIALIZE forms, live Classic cleanup effects, limited static-placement restoration, invasion cleanup, and room-entry NPC respawn admission establish a substantial executable boundary. Universal category ordering, hard-reset exception encoding, active-player/combat behavior, corpse survival, Remove@Maint's distinct meaning, reset-versus-cleanup same-boundary ordering, and transactional failure/rollback semantics remain unresolved and fail closed.",
+  "classificationPolicy": "Owner-specific effects with retained native/database evidence may execute and receive parity credit. Generic numeric plan order, hard-reset exclusion flags, and rollback policy are Reforged coordination semantics only and must not be treated as Classic MajorMUD evidence.",
+  "nativeArtifact": {
+    "path": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "catalog": "Librarium/NativeEvidence/native_artifact_catalog_0001.json"
+  },
+  "nativeOwnershipExports": [
+    {
+      "symbol": "_cleanup_currency",
+      "claim": "native currency-cleanup owner exists",
+      "nonClaim": "does not establish its order relative to item/NPC/reset work"
+    },
+    {
+      "symbol": "_begin_refreshing_limited_items",
+      "claim": "native limited-item refresh owner exists",
+      "nonClaim": "does not by itself prove every limited-item survival/replacement rule"
+    },
+    {
+      "symbol": "_check_initiate_restocking",
+      "claim": "native restocking initiation owner exists",
+      "nonClaim": "does not establish universal cleanup cadence or category order"
+    },
+    {
+      "symbol": "_restock_items",
+      "claim": "native item-restocking owner exists",
+      "nonClaim": "does not establish exact room-placement sweep ordering"
+    }
+  ],
+  "excludedSymbolInterpretations": [
+    {
+      "symbols": ["_clear_room", "_clear_rooms_to_null"],
+      "reason": "Parallel clear_* exports exist for multiple record families, so these names are retained as structure/buffer ownership evidence and are not promoted as world-reset semantics from naming alone."
+    }
+  ],
+  "exactSysopSurface": {
+    "source": "Librarium/Objects/sysop_commands/wccmmud_sysop_command_records_0139.json",
+    "resetForms": [
+      "SYSOP RESET",
+      "SYSOP RESET ROOM",
+      "SYSOP RESET AREA",
+      "SYSOP RESET ROOM <room>",
+      "SYSOP RESET ROOM <room> <map>"
+    ],
+    "initializeForms": [
+      "SYSOP INITIALIZE",
+      "SYSOP INITIALIZE -1",
+      "SYSOP INITIALIZE <rate>",
+      "SYSOP INITIALIZE <rate> RECOVER"
+    ],
+    "runtimeBoundary": "Generated NPC spawn-slot RESET/INITIALIZE behavior already executes at its recovered boundary; RESET AREA remains fail-closed where exact area ownership is not proven."
+  },
+  "recoveredOwnerSpecificBehavior": [
+    {
+      "owner": "RuntimeClassicCleanupService",
+      "state": "PASS_NARROW",
+      "effects": [
+        "Del@Maint 119 room-ground items delete at cleanup",
+        "ordinary room-ground items hide at cleanup",
+        "Visible@Maint 154 fixtures remain visible",
+        "room-ground currency hides at cleanup",
+        "Recharge 121 applies to surviving finite-use items across ownership domains",
+        "character inventory/equipment are outside room-ground hide/delete ownership"
+      ]
+    },
+    {
+      "owner": "RuntimeCharacterAlignmentAuthority",
+      "state": "PASS_NARROW",
+      "effects": [
+        "decoded Evil Point forgiveness is cleanup-owned at the already-recovered exact formula/default boundary"
+      ]
+    },
+    {
+      "owner": "RuntimeLivingWorldService.ResetGeneratedRoomItems",
+      "state": "STRONG_NARROW",
+      "effects": [
+        "missing static room-item placements restore idempotently",
+        "existing ground placements do not duplicate",
+        "positive decoded game_limit blocks restoration when global world-plus-owned count is already at the limit",
+        "UnlimitedItems bypasses the decoded limit gate",
+        "generated invasion NPCs are removed at the maintenance recovery boundary"
+      ]
+    },
+    {
+      "owner": "generated NPC room-entry respawn admission",
+      "state": "STRONG_NARROW",
+      "effects": [
+        "due ordinary lair respawns are admitted on player entry to the home room after the decoded minute delay"
+      ],
+      "nonClaim": "this does not prove a universal heartbeat reset or same-cycle ordering"
+    }
+  ],
+  "genericCoordinatorBoundary": {
+    "owner": "RuntimeWorldResetCleanupService",
+    "classification": "REFORGED_EXTENSION_ONLY",
+    "liveClassicInstantiationFound": false,
+    "smokePlanRenamedTo": "reforged-reset-coordination-smoke",
+    "noParityCreditFor": [
+      "numeric action order",
+      "canonical action-id tie break",
+      "HardResetExcluded",
+      "StopAndRollback",
+      "ContinueIndependent"
+    ]
+  },
+  "remainingUnknown": [
+    "exact native category ordering across reset/cleanup owners",
+    "hard-reset exception field/bit encoding and exact exception set",
+    "active-player handling during room/area/world reset",
+    "combat handling when reset/cleanup reaches an occupied room",
+    "corpse survival/removal behavior",
+    "limited-item survival/replacement behavior beyond the recovered static-placement admission boundary",
+    "Remove@Maint 149 distinct lifecycle meaning versus Del@Maint 119",
+    "exact ordering when reset and cleanup occur at the same maintenance boundary",
+    "exact universal reset/cleanup schedule where one exists",
+    "native failure, partial-completion, rollback, and persistence ordering"
+  ],
+  "noGameplayGuessing": true,
+  "parityPromotion": {
+    "assertion": "native.world-reset-cleanup",
+    "from": "UNKNOWN",
+    "to": "STRONG",
+    "reason": "Multiple native-owned reset/cleanup families and live owner-specific effects are now connected while generic Reforged orchestration is explicitly quarantined; unresolved universal ordering and survival/failure rules prevent PASS."
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schema": "majormud.classic-capacity-resource-limits-boundary-evidence.v1",
+  "update": "0327",
+  "pass": 56,
+  "classification": "STRONG_EXACT_BUFFER_DEFAULTS_PLUS_NARROW_GAMEPLAY_LIMITS_HARD_MAXIMA_OPEN",
+  "result": "native.capacity-resource-limits UNKNOWN -> STRONG",
+  "scopeBoundary": {
+    "majorMudGameplayDataLimitsInScope": true,
+    "worldgroupHostLineSessionUserLimitsInScope": false,
+    "genericRuntimeCapacityReservationServiceReceivesClassicParityCredit": false,
+    "bufferDefaultsAreHardMaximumClaims": false
+  },
+  "retainedWccmmudMcvCapacityDefaults": [
+    {
+      "prompt": "Number of rooms to buffer in memory? 1500",
+      "value": 1500,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of items to buffer in memory? 750",
+      "value": 750,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of active monsters to buffer? 2000",
+      "value": 2000,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of known monsters to buffer? 300",
+      "value": 300,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of spells to buffer in memory? 150",
+      "value": 150,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of races to buffer in memory? 12",
+      "value": 12,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of classes to buffer in memory? 16",
+      "value": 16,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of bankbooks to buffer in memory? 32",
+      "value": 32,
+      "kind": "buffer-default-not-hard-world-max"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 250",
+      "value": 250,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 50",
+      "value": 50,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Number of messages to buffer in memory? 10",
+      "value": 10,
+      "kind": "buffer-default-owner-label-unresolved"
+    },
+    {
+      "prompt": "Maximum number of TOPTEN users/gangs lists? 30",
+      "value": 30,
+      "kind": "configured-gameplay-output-cap"
+    },
+    {
+      "prompt": "Maximum items to lose on hangup? 0",
+      "value": 0,
+      "kind": "configured-hangup-penalty-cap-default"
+    }
+  ],
+  "recoveredNarrowLimits": [
+    {
+      "id": "character.maximum-lives",
+      "value": 9,
+      "classification": "STRONG",
+      "owner": "RuntimeClassicCharacterProgressionFormula"
+    },
+    {
+      "id": "character.given-name-storage-width",
+      "value": 10,
+      "unit": "bytes",
+      "classification": "PASS/native-record-layout",
+      "owner": "RuntimeIdentity"
+    },
+    {
+      "id": "character.family-name-storage-width",
+      "value": 18,
+      "unit": "bytes",
+      "classification": "PASS/native-record-layout",
+      "owner": "RuntimeIdentity"
+    },
+    {
+      "id": "party.maximum-members",
+      "value": 6,
+      "classification": "STRONG",
+      "owner": "RuntimePartyPolicy.ClassicStrongEvidence"
+    },
+    {
+      "id": "gang.name-maximum",
+      "value": 19,
+      "unit": "characters",
+      "classification": "PASS/native-help-live-enforcement",
+      "owner": "RuntimeClassicGangStateService"
+    },
+    {
+      "id": "plus.visible-room-capacity",
+      "value": 17,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "plus.hidden-room-capacity",
+      "value": 15,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "plus.maximum-placement-attempts",
+      "value": 50,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
+    },
+    {
+      "id": "encumbrance.str<=100",
+      "formula": "STR * 48",
+      "classification": "PASS/strong-existing-formula-boundary",
+      "owner": "RuntimeMajorMudCompatibility"
+    },
+    {
+      "id": "encumbrance.str>100",
+      "formula": "4800 + (STR-100)*84",
+      "classification": "PASS/strong-existing-formula-boundary",
+      "owner": "RuntimeMajorMudCompatibility"
+    }
+  ],
+  "antiClaims": [
+    "1500 rooms is a hard world room maximum",
+    "750 items is a hard world item maximum",
+    "2000 active monsters is a hard NPC instance maximum",
+    "generic RuntimeCapacityLimitsService Int64 counters are native widths",
+    "generic organization MaximumMembers=256 is the Classic gang member cap",
+    "host MAXUSERS is a MajorMUD gameplay-data limit"
+  ],
+  "stillUnresolvedForPass": [
+    "exact carried inventory item-count/slot maximum separate from the proven encumbrance weight formula",
+    "exact room-floor object-count maximum and death-drop overflow destination/order",
+    "exact concurrent world object/item-instance hard maximum and allocation failure cleanup",
+    "exact active NPC/monster hard maximum beyond the retained 2000 active-monster buffer default",
+    "exact gang member hard maximum; the generic organization default of 256 is not native evidence",
+    "exact per-account/per-world character-slot hard maximum",
+    "exact hard world/data-record maxima for rooms, items, monsters, spells, races, classes, bankbooks, and related tables beyond retained buffer defaults",
+    "exact native numeric widths/signedness for capacity counters and table indices not already proven by a record layout",
+    "exact allowed ranges, startup-only versus live mutability, and restart semantics for WCCMMUD.mcv capacity prompts",
+    "exact behavior on allocation/admission exhaustion including cleanup/rollback/retry ordering",
+    "exact player-visible capacity/allocation failure messages and rendering order"
+  ],
+  "sources": [
+    "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json",
+    "Librarium/Parity/majormud_classic_world_rules_configuration_boundary_evidence_0313.json",
+    "Apps/Source/Reforged.Server/RuntimeClassicConfigurationAuthority.cs",
+    "Librarium/Parity/majormud_identity_law_native_closure_evidence_0299.json",
+    "Librarium/Parity/majormud_character_progression_evidence_0283.json",
+    "Librarium/Parity/majormud_experience_party_reward_evidence_0295.json",
+    "Librarium/Parity/majormud_gangs_casino_arena_top_evidence_0292.json",
+    "Librarium/Parity/majormud_classic_majormud_plus_event_boundary_evidence_0314.json",
+    "Librarium/Parity/majormud_ownership_scope_0291.json"
+  ]
+}

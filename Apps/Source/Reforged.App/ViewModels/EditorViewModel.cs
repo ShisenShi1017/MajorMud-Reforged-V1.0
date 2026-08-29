@@ -80,11 +80,15 @@ public sealed class CustomWorldSimpleFieldRow : ViewModelBase
     public string HelpText => Definition.HelpText;
     public CustomWorldSimpleFieldKind Kind => Definition.Kind;
     public IReadOnlyList<CustomWorldSimpleOption> Options => Definition.Options ?? [];
-    public bool IsText => Kind is CustomWorldSimpleFieldKind.Text or CustomWorldSimpleFieldKind.Multiline or CustomWorldSimpleFieldKind.Integer or CustomWorldSimpleFieldKind.Lines;
+    public bool IsText => Kind is CustomWorldSimpleFieldKind.Text or CustomWorldSimpleFieldKind.Multiline or CustomWorldSimpleFieldKind.Integer or
+        CustomWorldSimpleFieldKind.Lines or CustomWorldSimpleFieldKind.IntegerLines or CustomWorldSimpleFieldKind.Decimal or
+        CustomWorldSimpleFieldKind.DecimalLines or CustomWorldSimpleFieldKind.BooleanLines or CustomWorldSimpleFieldKind.ObjectLines;
     public bool IsChoice => Kind == CustomWorldSimpleFieldKind.Choice;
     public bool IsBoolean => Kind == CustomWorldSimpleFieldKind.Boolean;
     public bool IsRequired => Definition.Required;
-    public double InputHeight => Kind is CustomWorldSimpleFieldKind.Multiline or CustomWorldSimpleFieldKind.Lines ? 72 : 30;
+    public double InputHeight => Kind is CustomWorldSimpleFieldKind.Multiline or CustomWorldSimpleFieldKind.Lines or
+        CustomWorldSimpleFieldKind.IntegerLines or CustomWorldSimpleFieldKind.DecimalLines or
+        CustomWorldSimpleFieldKind.BooleanLines or CustomWorldSimpleFieldKind.ObjectLines ? 96 : 32;
     public bool IsDirty => _isDirty;
     public string TextValue
     {
@@ -104,6 +108,21 @@ public sealed class CustomWorldSimpleFieldRow : ViewModelBase
             _isDirty = true;
         }
     }
+}
+
+public sealed class CustomWorldSimpleSectionRow : ViewModelBase
+{
+    public CustomWorldSimpleSectionRow(string title, string description, IEnumerable<CustomWorldSimpleFieldRow> fields)
+    {
+        Title = title;
+        Description = description;
+        foreach (var field in fields) Fields.Add(field);
+    }
+
+    public string Title { get; }
+    public string Description { get; }
+    public ObservableCollection<CustomWorldSimpleFieldRow> Fields { get; } = [];
+    public int FieldCount => Fields.Count;
 }
 
 public sealed class EditorViewModel : ViewModelBase
@@ -142,6 +161,7 @@ public sealed class EditorViewModel : ViewModelBase
     private string _simpleFormHelp = string.Empty;
     private bool _simpleIsNew = true;
     private CustomWorldObjectRow? _selectedSimpleObject;
+    private CustomWorldSimpleSectionRow? _selectedSimpleSection;
 
     public EditorViewModel(
         ClassicAdministrationEditorService classicService,
@@ -149,6 +169,7 @@ public sealed class EditorViewModel : ViewModelBase
     {
         _classicService = classicService;
         _customService = customService;
+        SimpleFamilies = _customService.GetEditableFamilies();
         SaveClassicCommand = new RelayCommand(SaveClassic);
         ReloadCommand = new RelayCommand(Load);
         SaveCustomSettingsCommand = new RelayCommand(SaveCustomSettings);
@@ -159,6 +180,7 @@ public sealed class EditorViewModel : ViewModelBase
         BrowseObjectsCommand = new RelayCommand(BrowseObjects);
         BrowseSimpleObjectsCommand = new RelayCommand(BrowseSimpleObjects);
         NewSimpleObjectCommand = new RelayCommand(StartNewSimpleObject);
+        CloneSimpleObjectCommand = new RelayCommand(CloneSimpleObject, () => !SimpleIsNew && !string.IsNullOrWhiteSpace(SimpleObjectId));
         SaveSimpleObjectCommand = new AsyncRelayCommand(SaveSimpleObjectAsync);
         DeleteSimpleObjectCommand = new RelayCommand(DeleteSimpleObject, () => !string.IsNullOrWhiteSpace(SimpleObjectId));
         StartNewSimpleObject();
@@ -171,7 +193,8 @@ public sealed class EditorViewModel : ViewModelBase
     public ObservableCollection<CustomWorldSimpleFieldRow> SimpleFields { get; } = [];
     public ObservableCollection<CustomWorldSimpleFieldRow> SimpleRequiredFields { get; } = [];
     public ObservableCollection<CustomWorldSimpleFieldRow> SimpleOptionalFields { get; } = [];
-    public IReadOnlyList<CustomWorldSimpleFamilyOption> SimpleFamilies { get; } = CustomWorldSimpleFormCatalog.Families;
+    public ObservableCollection<CustomWorldSimpleSectionRow> SimpleSections { get; } = [];
+    public IReadOnlyList<CustomWorldSimpleFamilyOption> SimpleFamilies { get; }
     public IReadOnlyList<string> OverrideFamilies { get; } =
     [
         "rooms", "exits", "npcs", "spawns", "items", "spells", "abilities", "classes", "races",
@@ -218,7 +241,22 @@ public sealed class EditorViewModel : ViewModelBase
     }
     public string SimpleFormTitle { get => _simpleFormTitle; private set => Set(ref _simpleFormTitle, value); }
     public string SimpleFormHelp { get => _simpleFormHelp; private set => Set(ref _simpleFormHelp, value); }
-    public bool SimpleIsNew { get => _simpleIsNew; private set => Set(ref _simpleIsNew, value); }
+    public bool SimpleIsNew
+    {
+        get => _simpleIsNew;
+        private set
+        {
+            if (!Set(ref _simpleIsNew, value)) return;
+            (CloneSimpleObjectCommand as RelayCommand)?.Raise();
+        }
+    }
+    public CustomWorldSimpleSectionRow? SelectedSimpleSection
+    {
+        get => _selectedSimpleSection;
+        set => Set(ref _selectedSimpleSection, value);
+    }
+    public int SimpleFieldCount => SimpleFields.Count;
+    public string SimpleControlSummary => $"{SimpleFieldCount} editable field(s) across {SimpleSections.Count} section(s).";
     public CustomWorldObjectRow? SelectedSimpleObject
     {
         get => _selectedSimpleObject;
@@ -292,6 +330,7 @@ public sealed class EditorViewModel : ViewModelBase
     public ICommand BrowseObjectsCommand { get; }
     public ICommand BrowseSimpleObjectsCommand { get; }
     public ICommand NewSimpleObjectCommand { get; }
+    public ICommand CloneSimpleObjectCommand { get; }
     public ICommand SaveSimpleObjectCommand { get; }
     public ICommand DeleteSimpleObjectCommand { get; }
 
@@ -439,17 +478,9 @@ public sealed class EditorViewModel : ViewModelBase
             SimpleObjectId = string.Empty;
             SimpleIsNew = true;
             SimpleFormTitle = $"New {form.SingularName}";
-            SimpleFormHelp = form.HelpText + " Fields marked * are required. Object ID is optional and will be generated for you.";
-            SimpleFields.Clear();
-            SimpleRequiredFields.Clear();
-            SimpleOptionalFields.Clear();
-            foreach (var field in form.Fields)
-            {
-                var row = new CustomWorldSimpleFieldRow(field);
-                SimpleFields.Add(row);
-                if (field.Required) SimpleRequiredFields.Add(row);
-                else SimpleOptionalFields.Add(row);
-            }
+            SimpleFormHelp = form.HelpText + " Fill only the starred fields for a quick object, or open Full Control to change every discovered gameplay/content field.";
+            PopulateSimpleForm(form, null);
+            CustomStatus = $"Ready to create {form.SingularName}. {SimpleControlSummary}";
         }
         catch (Exception exception)
         {
@@ -461,31 +492,118 @@ public sealed class EditorViewModel : ViewModelBase
     {
         try
         {
-            var form = _customService.GetSimpleForm(item.Family);
+            var form = _customService.GetSimpleForm(item.Family, item.Id);
             var loaded = _customService.LoadSimpleRecord(item.Family, item.Id);
             SimpleObjectId = item.Id;
             SimpleIsNew = false;
             SimpleFormTitle = $"Edit {form.SingularName}: {(string.IsNullOrWhiteSpace(item.Name) ? item.Id : item.Name)}";
-            SimpleFormHelp = form.HelpText + " Change the fields you want and click Save.";
-            SimpleFields.Clear();
-            SimpleRequiredFields.Clear();
-            SimpleOptionalFields.Clear();
-            foreach (var field in form.Fields)
-            {
-                loaded.TextValues.TryGetValue(field.Path, out var text);
-                loaded.BoolValues.TryGetValue(field.Path, out var boolean);
-                var row = new CustomWorldSimpleFieldRow(field, text, field.Kind == CustomWorldSimpleFieldKind.Boolean ? boolean : null);
-                SimpleFields.Add(row);
-                if (field.Required) SimpleRequiredFields.Add(row);
-                else SimpleOptionalFields.Add(row);
-            }
-            CustomStatus = $"Loaded {item.Family}/{item.Id} into the simple editor.";
+            SimpleFormHelp = form.HelpText + " Full Control exposes the fields discovered in the Librarium record, including nested settings and structured collections.";
+            PopulateSimpleForm(form, loaded);
+            CustomStatus = $"Loaded {item.Family}/{item.Id}. {SimpleControlSummary}";
         }
         catch (Exception exception)
         {
             CustomStatus = "FAILED: " + exception.Message;
         }
     }
+
+    private void PopulateSimpleForm(
+        CustomWorldSimpleFormDefinition form,
+        (bool ExistsInBase, IReadOnlyDictionary<string, string> TextValues, IReadOnlyDictionary<string, bool> BoolValues)? loaded)
+    {
+        SimpleFields.Clear();
+        SimpleRequiredFields.Clear();
+        SimpleOptionalFields.Clear();
+        SimpleSections.Clear();
+
+        foreach (var field in form.Fields)
+        {
+            string? text = null;
+            var boolean = false;
+            if (loaded is not null)
+            {
+                loaded.Value.TextValues.TryGetValue(field.Path, out text);
+                loaded.Value.BoolValues.TryGetValue(field.Path, out boolean);
+            }
+            var row = new CustomWorldSimpleFieldRow(field, text,
+                field.Kind == CustomWorldSimpleFieldKind.Boolean && loaded is not null ? boolean : null);
+            SimpleFields.Add(row);
+            if (field.Required) SimpleRequiredFields.Add(row);
+            else SimpleOptionalFields.Add(row);
+        }
+
+        foreach (var group in SimpleOptionalFields
+                     .GroupBy(field => SectionForPath(field.Path))
+                     .OrderBy(group => SectionOrder(group.Key))
+                     .ThenBy(group => group.Key, StringComparer.OrdinalIgnoreCase))
+        {
+            SimpleSections.Add(new CustomWorldSimpleSectionRow(
+                group.Key,
+                SectionDescription(group.Key),
+                group.OrderBy(field => field.Label, StringComparer.OrdinalIgnoreCase)));
+        }
+
+        SelectedSimpleSection = SimpleSections.FirstOrDefault();
+        Raise(nameof(SimpleFieldCount));
+        Raise(nameof(SimpleControlSummary));
+    }
+
+    private void CloneSimpleObject()
+    {
+        if (SimpleIsNew || string.IsNullOrWhiteSpace(SimpleObjectId)) return;
+        var sourceId = SimpleObjectId;
+        _selectedSimpleObject = null;
+        Raise(nameof(SelectedSimpleObject));
+        SimpleObjectId = sourceId + ".copy." + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        SimpleIsNew = true;
+        SimpleFormTitle = "Clone: " + SimpleFormTitle.Replace("Edit ", string.Empty, StringComparison.OrdinalIgnoreCase);
+        SimpleFormHelp = "This is a complete editable copy. Change the name, room number, stats, effects, collections, or any other fields you want, then Save & Build.";
+        CustomStatus = "Clone prepared with a new Custom1-only ID. Change anything you want and save.";
+    }
+
+    private static string SectionForPath(string path)
+    {
+        if (path.StartsWith('@')) return "Collections";
+        var parts = path.Split('.', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 0) return "Basics";
+        var key = parts[0].ToLowerInvariant();
+        if (parts.Length == 1 && key is "name" or "title" or "display_name" or "short_name" or "legacy_id" or
+            "description" or "definition" or "category" or "type" or "classification" or "status") return "Basics";
+        var root = parts[0].Replace('_', ' ');
+        return string.Join(" ", root.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(word => char.ToUpperInvariant(word[0]) + word[1..]));
+    }
+
+    private static int SectionOrder(string section) => section.ToLowerInvariant() switch
+    {
+        "basics" => 0,
+        "classification" => 5,
+        "combat" => 10,
+        "effect" or "effects" => 15,
+        "equipment" or "requirements" or "prerequisites" => 20,
+        "behavior" or "ai" or "movement" => 30,
+        "environment" or "spawn model" => 40,
+        "economy" or "rewards" or "inventory" or "loot" => 50,
+        "relationships" or "commands" or "aliases" => 60,
+        "flags" => 70,
+        "collections" => 80,
+        _ => 100
+    };
+
+    private static string SectionDescription(string section) => section switch
+    {
+        "Basics" => "Names, descriptions, identity, and other top-level creator settings.",
+        "Combat" => "Damage, defenses, accuracy, speed, attacks, resistances, and combat behavior.",
+        "Equipment" => "Wear slots, requirements, bonuses, and equipment behavior.",
+        "Behavior" => "AI, alignment, movement, regeneration, and behavior controls.",
+        "Environment" => "Room/world environment, lighting, delays, spells, and area settings.",
+        "Economy" => "Cost, value, currency, weight, limits, and economy controls.",
+        "Rewards" => "Experience, money, drops, and reward settings.",
+        "Inventory" => "Detailed inventory rows and stock behavior.",
+        "Relationships" => "Links to rooms, objects, scripts, quests, and other records.",
+        "Collections" => "Detailed list rows. Add or remove lines to add or remove collection entries.",
+        _ => $"Full creator control for {section.ToLowerInvariant()} fields."
+    };
 
     private async Task SaveSimpleObjectAsync()
     {

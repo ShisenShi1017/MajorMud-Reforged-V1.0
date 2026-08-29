@@ -1,0 +1,139 @@
+{
+  "schema": "majormud.classic-native-npc-ai-boundary-evidence.v1",
+  "update": "0324",
+  "pass": 53,
+  "classification": "STRONG_BOUNDARY_EXACT_DISPATCH_EDGES_OPEN",
+  "result": "npc.native-ai-semantics UNKNOWN -> STRONG",
+  "nativeModule": {
+    "wcc": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "wbb": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "exportCountPerDistribution": 592,
+    "abiExportSurfaceEqual": true,
+    "instructionEquivalenceClaimed": false
+  },
+  "nativeAiBoundaryAnchors": {
+    "count": 43,
+    "groups": {
+      "update_lanes": {
+        "count": 14,
+        "symbols": [
+          "_background_energy",
+          "_background_fast",
+          "_background_medium",
+          "_background_slow",
+          "_energy_update_monster",
+          "_fast_update_monster",
+          "_fast_update_monsters",
+          "_fast_update_next_monster",
+          "_medium_update_monster",
+          "_medium_update_monsters",
+          "_medium_update_next_monster",
+          "_slow_update_monster",
+          "_slow_update_monsters",
+          "_slow_update_next_monster"
+        ]
+      },
+      "target_selection": {
+        "count": 9,
+        "symbols": [
+          "_find_action_target",
+          "_find_any_action_target",
+          "_is_valid_monster_target",
+          "_monster_could_attack",
+          "_monster_count_valid_targets",
+          "_count_valid_targets",
+          "_confirm_monster_in_room",
+          "_is_combatting_monster",
+          "_match_combat_target"
+        ]
+      },
+      "movement_tracking": {
+        "count": 7,
+        "symbols": [
+          "_move_monster",
+          "_move_monster_to_fighter",
+          "_dir_monster_travelling_coord",
+          "_handle_following_monsters",
+          "_track_monster",
+          "_track_player",
+          "_stop_following"
+        ]
+      },
+      "known_monster_memory": {
+        "count": 8,
+        "symbols": [
+          "_find_monster_in_memory",
+          "_get_known_monster_data",
+          "_load_known_monster_into_buffer",
+          "_save_known_monster_from_buffer",
+          "_clear_known_monster",
+          "_clear_known_monsters_to_null",
+          "_mem_get_known_monster",
+          "_check_monster_confusion"
+        ]
+      },
+      "combat_actions": {
+        "count": 5,
+        "symbols": [
+          "_attack_monster_monster",
+          "_attack_monster_user",
+          "_give_monsters_a_free_attack",
+          "_monster_cast",
+          "_monster_cast_area"
+        ]
+      }
+    }
+  },
+  "alreadyRecovered": [
+    {
+      "fact": "monster mixed-width record contract",
+      "classification": "PASS"
+    },
+    {
+      "fact": "Follow native field is signed-16 storage exported as Follow%; corpus values 0..100; decision timing unresolved",
+      "classification": "PASS_FIELD_MEANING_ONLY"
+    },
+    {
+      "fact": "six attack-selection attempts per five-second combat round with carried monster Energy and decoded row selection",
+      "classification": "STRONG"
+    },
+    {
+      "fact": "explicit combat admission plus direct damage feed deterministic Reforged threat ledger; highest same-room explicit threat selects target",
+      "classification": "STRONG_NOT_EXACT_NATIVE_THREAT_MATH"
+    },
+    {
+      "fact": "ability 146 MonsGuards relationship gates Classic guard admission",
+      "classification": "STRONG"
+    },
+    {
+      "fact": "Last Killed / room-entry respawn admission boundary",
+      "classification": "STRONG"
+    }
+  ],
+  "runtimeBoundary": {
+    "classicAuthority": "RuntimeClassicNpcAiSemanticsAuthority",
+    "genericSchedulerOrderingReceivesNativeParityCredit": false,
+    "genericDecisionPriorityReceivesNativeParityCredit": false,
+    "strongExplicitThreatLedgerRemainsActive": true,
+    "behaviorMutationInPass53": false
+  },
+  "stillUnresolvedForPass": [
+    "exact flee threshold, trigger branch, and destination choice",
+    "exact autonomous perception and aggression acquisition rules",
+    "exact native hate/threat generation, switching, tie ordering, decay, and memory lifetime",
+    "exact patrol route/path selection and blocked-path retry behavior",
+    "exact tracking rules and track-player/track-monster branch semantics",
+    "exact MonsGuards assist timing, propagation, and priority",
+    "exact mapping/cadence/priority of fast, medium, slow, energy, and other native update lanes",
+    "whether newly spawned/admitted NPCs act on the same native host cycle"
+  ],
+  "sources": [
+    "Librarium/NativeEvidence/native_abi_identity_closure_0002.json",
+    "Librarium/Parity/majormud_npc_ai_native_evidence_0286.json",
+    "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
+    "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md",
+    "Docs/Audits/NPC_AI_SEMANTIC_EXHAUSTION.md",
+    "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNpcAiNativeClosureAudit.cs"
+  ]
+}

@@ -1,5 +1,7 @@
 namespace Reforged.Server;
 
+// PASS59 parity boundary: Reforged atomic rollback and multi-target ordering are compatibility behavior, not proof of stock MajorMUD native execution order. See RuntimeClassicCombatSpellNativeBoundaryAuthority.
+
 public sealed record RuntimeSpellExecutionEvent(
     string EventId,
     string SpellId,

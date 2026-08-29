@@ -3,6 +3,12 @@ using System.Security.Cryptography;
 
 namespace Reforged.Server;
 
+/// <summary>
+/// Reforged compatibility item/state infrastructure. It can implement evidence-backed decoded
+/// behavior, but its generic stack, durability, persistence, container, loot-seed, and recovery
+/// policies are not by themselves proof of exact Classic native item semantics. Native-only
+/// claims must pass RuntimeClassicNativeItemBehaviorAuthority.
+/// </summary>
 public static class RuntimeItemLocations
 {
     public const string Character = "character";

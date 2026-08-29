@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
   "subsystem": "global-rng",
-  "pass": "Update0306",
-  "runtimeOwner": "RuntimeClassicWorldgroupPrng (Classic raw host contract) + RuntimeGlobalRandomService (Reforged extension streams)",
-  "classification": "Classic Worldgroup raw PRNG, startup seed, range endpoints, and exact direct randomness import census are proven; gameplay call attribution/pull ordering remains bounded",
+  "pass": "Update0331",
+  "runtimeOwner": "RuntimeClassicWorldgroupPrng + RuntimeClassicGlobalRngContractAuthority for the Classic native boundary; RuntimeGlobalRandomService remains Reforged extension streams",
+  "classification": "evidence-backed-strong-native-contract-boundary",
   "capabilities": [
-    "Classic uint32 Borland/CW3220MT rand/srand state transition",
-    "Classic 15-bit raw output 0..32767",
-    "Classic packed-time startup seed with two-second resolution",
-    "proven _genrdn/_lngrnd exclusive-maximum boundary metadata",
-    "proven exact-version direct _genrdn/_lngrnd import-thunk callsite census for WCCMMUD/WBBMMUD",
-    "Reforged extension world/session/action streams",
-    "Reforged extension snapshot/restore deterministic replay"
+    "exact Classic uint32 Borland/CW3220MT rand/srand state transition",
+    "exact Classic 15-bit raw output 0..32767",
+    "exact Classic packed-time startup seed with two-second resolution",
+    "exact thread-local CRT PRNG state ownership boundary",
+    "proven _genrdn/_lngrnd exclusive-maximum host range boundary metadata",
+    "proven exact-version direct _genrdn/_lngrnd import-thunk call census for WCCMMUD/WBBMMUD",
+    "Reforged extension world/session/action streams (zero Classic parity credit)",
+    "Reforged extension snapshot/restore deterministic replay (zero Classic parity credit)"
   ],
   "ownership": {
     "classicRawState": "RuntimeClassicWorldgroupPrng; one instance represents one recovered CRT state owner without asserting process-global sharing",
@@ -22,15 +23,21 @@
     "classicDirectCallBoundary": "WorldgroupRngDirectCallsiteRegistry; direct import calls only, with indirect calls explicitly excluded"
   },
   "safeFallback": [
-    "do not substitute the Reforged xorshift multi-stream service for Classic native RNG",
-    "do not invent a single process-global Classic stream; native CRT state is thread-local",
-    "do not rewrite inclusive high-level callers until their exact _genrdn/_lngrnd call mapping is recovered",
-    "unknown gameplay pull ordering remains evidence-gated",
-    "do not promote the bounded 64-per-module _genrdn argument observations into a complete 146-call direct argument map"
+    "do not substitute RuntimeGlobalRandomService xorshift128+ streams for the Classic native RNG",
+    "do not invent a single process-global Classic stream because native CRT state is thread-local",
+    "do not rewrite gameplay callers until their exact native helper/callsite/thread mapping is recovered",
+    "do not infer indirect randomness call paths from the direct-call census",
+    "do not promote the retained 64-per-module _genrdn address subset into a complete 146-call address/prototype map",
+    "keep exact gameplay draw ordering fail-closed across subsystems"
   ],
   "nativeDependencies": [
-    "exact MajorMUD gameplay draw/mutation ordering across direct and indirect paths",
-    "mapping of MajorMUD gameplay callsites to effective Worldgroup execution-thread CRT state",
-    "fully instruction-equivalent Reforged activation of the _genrdn/_lngrnd bounded-remainder loop"
-  ]
+    "complete direct _genrdn address/prototype map beyond retained 64-per-module subset",
+    "indirect MajorMUD randomness callsites",
+    "gameplay semantic callsite attribution",
+    "callsite-to-Worldgroup-execution-thread CRT state mapping",
+    "fully instruction-equivalent _genrdn/_lngrnd bounded-remainder runtime activation",
+    "exact gameplay-wide PRNG mutation/draw ordering"
+  ],
+  "status": "STRONG",
+  "boundaryEvidence": "Librarium/Parity/majormud_classic_global_rng_contract_boundary_evidence.json"
 }

@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "subsystem": "global-world-state",
-  "pass": "Update0026",
+  "pass": "Update0323",
   "runtimeOwner": "RuntimeGlobalWorldStateService",
-  "classification": "Reforged compatibility infrastructure; native meanings unresolved",
+  "classification": "Classic ownership boundary STRONG; generic typed service remains Reforged compatibility infrastructure",
   "scopes": [
     "global",
     "area",
@@ -32,18 +32,41 @@
     "persistence": "save coordination"
   },
   "safeFallback": [
+    "generic Reforged world-state taxonomy receives zero Classic parity credit",
     "unknown state IDs fail closed",
-    "unauthorized mutations reject",
-    "unknown bits and counters are not assigned meaning",
-    "invalid values reject",
-    "corrupt snapshots preserve catalog defaults"
+    "unauthorized mutations reject in the Reforged shell",
+    "unknown native bits counters and latches are not assigned meaning",
+    "host imported globals stay classified as Worldgroup state",
+    "corrupt Reforged snapshots preserve catalog defaults without implying Classic recovery behavior"
   ],
   "nativeDependencies": [
-    "exact global flag record families",
-    "unknown bits masks and counters",
-    "native default values",
-    "mutation call sites",
-    "reset and restart semantics",
-    "visibility and replication behavior"
+    "exact remaining MajorMUD-local gameplay record families",
+    "remaining unknown bits masks counters and latches outside decoded owner-specific state",
+    "complete native default values",
+    "complete mutation call sites",
+    "reset and restart semantics for remaining shared gameplay state",
+    "Player-data versus Buffer-data persistence mapping",
+    "replication and visibility behavior"
+  ],
+  "status": "evidence-backed-boundary",
+  "classicRuntimeOwner": "RuntimeClassicGlobalWorldStateAuthority",
+  "runtimeOwnerDisposition": "reforged-extension-shell-only",
+  "worldgroupImportedGlobalBoundary": {
+    "majorMudUsedSymbols": 156,
+    "importedGlobalOrIndirect": 34,
+    "hostGeneralRuntime": 32,
+    "hostMessageRenderingTransport": 2,
+    "allOwned": true,
+    "majorMudGameplayWorldState": false
+  },
+  "knownClassicOwnerBoundaries": [
+    "room-action-latches",
+    "living-door-state",
+    "limited-item-world-plus-owned-admission",
+    "majormud-plus-event-state",
+    "npc-last-killed-respawn-state",
+    "world-rule-configuration",
+    "world-reset-maintenance-owners",
+    "worldgroup-dfa-persistence-boundary"
   ]
 }

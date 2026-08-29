@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 
 namespace Reforged.Server;
 
+// PASS59 parity boundary: this managed exhaustion catalog does not define remaining native Classic formulas or ordering; those claims must pass RuntimeClassicCombatSpellNativeBoundaryAuthority.
+
 public enum RuntimeExecutionBindingStatus { CanonicalIdentityOnly, PromotedTestExecution, PromotedDefinitionBinding, NativeBlocked }
 public sealed record RuntimeExecutionBinding(string DefinitionId, string Kind, string Name, RuntimeExecutionBindingStatus Status, bool RuntimeExecutable, string Reason, IReadOnlyList<string> BindingReferences, IReadOnlyList<string> EvidenceReferences, string SafeFallback);
 public sealed record RuntimeNonNativeExhaustionCatalog(IReadOnlyDictionary<string,RuntimeExecutionBinding> Records);

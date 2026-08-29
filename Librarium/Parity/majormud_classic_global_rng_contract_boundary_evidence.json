@@ -1,0 +1,71 @@
+{
+  "schema": "majormud.classic-global-rng-contract-boundary.v1",
+  "update": "0331",
+  "pass": 60,
+  "classification": "STRONG_NATIVE_CONTRACT_BOUNDARY",
+  "conclusion": "Classic MajorMUD randomness is bounded to the native Worldgroup/CW3220MT contract with exact raw PRNG math, startup seed, TLS state ownership, host range endpoints, and exact-version direct import-call census. Exact gameplay callsite-to-thread mapping, indirect paths, instruction-equivalent range-loop execution, and gameplay-wide draw ordering remain unresolved and are not inferred.",
+  "nativeRuntime": {
+    "module": "CW3220MT.DLL",
+    "sha256": "4a2f6889f9dc5cfdf4ac44156dde8db0d20c6a0f63db06c576ac0bbba2011a15",
+    "multiplier": "0x015A4E35",
+    "increment": 1,
+    "stateWidthBits": 32,
+    "outputMask": "0x7FFF",
+    "randMaximum": 32767,
+    "stateOwnership": "thread-local CRT state",
+    "startupSeed": "(hour << 11) + (minute << 5) + (second >> 1)",
+    "startupSeedResolutionSeconds": 2
+  },
+  "majorMudModules": [
+    {
+      "file": "wccmmud.dll",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "genrdnDirectCalls": 146,
+      "genrdnRetainedAddresses": 64,
+      "lngrndDirectCalls": 42,
+      "lngrndRetainedAddresses": 42
+    },
+    {
+      "file": "wbbmmud.dll",
+      "sha256": "88e48a0bfbd9e8b7cf806c705b7be203168a2cfacaef5e35dad2aec5823ea091",
+      "genrdnDirectCalls": 146,
+      "genrdnRetainedAddresses": 64,
+      "lngrndDirectCalls": 42,
+      "lngrndRetainedAddresses": 42
+    }
+  ],
+  "provenBoundary": [
+    "Borland/CW3220MT uint32 srand/rand transition and 15-bit output",
+    "WGSERVER packed local-time startup seed and two-second resolution",
+    "CW3220MT PRNG state is thread-local, so a single process-global Classic stream is not asserted",
+    "_genrdn/_lngrnd exclusive maximum and non-consuming minimum edge behavior as retained in the host boundary",
+    "146 direct _genrdn plus 42 direct _lngrnd calls per retained MajorMUD module version",
+    "all 42 _lngrnd direct addresses per module retained; only 64 of 146 _genrdn direct addresses per module retained"
+  ],
+  "runtimeActivation": {
+    "rawClassicOwner": "Apps/Source/Reforged.Server/RuntimeClassicWorldgroupPrng.cs",
+    "pass60Boundary": "Apps/Source/Reforged.Server/RuntimeClassicGlobalRngContractAuthority.cs",
+    "directCallBoundary": "Apps/Source/Reforged.Server/WorldgroupRngDirectCallsiteRegistry.cs",
+    "reforgedExtensionOwner": "Apps/Source/Reforged.Server/RuntimeGlobalRandom.cs",
+    "gameplayCallerRewrites": 0,
+    "singleProcessGlobalClassicStreamInvented": false,
+    "reforgedXorshiftCreditedAsClassic": false
+  },
+  "remainingNativeDependencies": [
+    "complete direct _genrdn address/prototype map beyond the retained 64-per-module subset",
+    "indirect MajorMUD randomness callsites and paths",
+    "gameplay semantic attribution of individual native randomness callers",
+    "mapping each gameplay caller to the effective Worldgroup execution-thread CW3220MT state",
+    "fully instruction-equivalent _genrdn/_lngrnd bounded-remainder helper execution",
+    "exact gameplay-wide RNG mutation/draw ordering across combat, spells, NPCs, items, quests, events, resets and other callers"
+  ],
+  "sourceEvidence": [
+    "Librarium/Parity/majormud_native_rng_evidence_0305.json",
+    "Librarium/Parity/majormud_native_rng_callsite_boundary_evidence_0306.json",
+    "Librarium/Evidence/HostRuntime/CLASSIC_WORLDGROUP_RNG_PASS_0305.md",
+    "Librarium/Evidence/native_host_callsite_map_0003.json",
+    "Librarium/Evidence/native_host_argument_positions_0014.json",
+    "Apps/Source/Reforged.Server/WorldgroupPrngRuntimeRegistry.cs",
+    "Apps/Source/Reforged.Server/WorldgroupRngDirectCallsiteRegistry.cs"
+  ]
+}

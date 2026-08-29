@@ -1,11 +1,11 @@
 {
   "subsystem": "Items",
-  "code_update": "0204",
-  "status": "native_only_boundary_reached",
+  "code_update": "0329",
+  "status": "native_ownership_boundary_strong_exact_semantics_open",
   "pre_native_semantic_exhaustion_complete": true,
   "classic_semantic_exhaustion_complete": false,
   "canonical_item_count": 1950,
-  "next_required_phase": "final_wcc_wbb_native_dll_and_leftover_file_exhaustion",
+  "next_required_phase": "exact native item record/flag/formula/order/RNG/persistence/message closure",
   "reopen_triggers": [
     "new native DLL or executable evidence",
     "new WCC/WBB item records or headers",
@@ -109,5 +109,12 @@
         "native container depth/weight behavior"
       ]
     }
-  ]
+  ],
+  "native_owner_surface_strong": true,
+  "pass58_native_ownership": {
+    "wccWbbItemEquipmentExports": 51,
+    "itemFacingCommandExports": 13,
+    "canonicalItems": 1950,
+    "exactSemanticsComplete": false
+  }
 }

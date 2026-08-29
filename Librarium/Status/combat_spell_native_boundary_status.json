@@ -1,0 +1,15 @@
+{
+  "schema": "majormud.combat-spell-native-boundary-status.v1",
+  "update": "0330",
+  "pass": 59,
+  "status": "evidence-backed-strong-native-owner-boundary",
+  "canonicalSpellCount": 1350,
+  "statusEffectCount": 111,
+  "nativeOwnerExportCount": 102,
+  "nativeOwnerSurfaceStrong": true,
+  "exactNativeCrossFormulaOrdering": false,
+  "exactNativeRngOrdering": false,
+  "nahr8480ExactArguments": false,
+  "priorNonNativeExhaustion": "Librarium/Status/combat_spell_exhaustion_status_0185.json",
+  "evidence": "Librarium/Parity/majormud_classic_combat_spell_native_boundary_evidence.json"
+}
