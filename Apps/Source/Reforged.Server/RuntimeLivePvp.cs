@@ -50,13 +50,21 @@ public sealed class RuntimePvpWorldConfigurationStore
         lock (_gate)
         {
             if (!File.Exists(_path))
-                return new(1, _worldId, false, string.Empty, DateTimeOffset.MinValue, 0,
+                return new(1, _worldId, true, string.Empty, DateTimeOffset.MinValue, 0,
                     RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference);
             var value = JsonSerializer.Deserialize<RuntimePvpWorldConfiguration>(File.ReadAllText(_path),
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             if (value is null || value.SchemaVersion != 1 || !value.WorldId.Equals(_worldId, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException("PVP_WORLD_CONFIGURATION_INVALID");
-            return value;
+            if (value.MaximumLevelDifference < RuntimeClassicConfigurationAuthority.MinimumPvpLevelDifference ||
+                value.MaximumLevelDifference > RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifferenceAllowed)
+                throw new InvalidDataException("PVP_WORLD_CONFIGURATION_RANGE_INVALID");
+
+            // Migrate the pre-0358 Reforged-only Enabled flag into the native LVLDIFF sentinel.
+            var maximum = !value.Enabled && value.MaximumLevelDifference >= 0
+                ? RuntimeClassicConfigurationAuthority.PvpDisabledLevelDifference
+                : value.MaximumLevelDifference;
+            return value with { Enabled = RuntimeClassicDeathLawPvpAuthority.IsPvpEnabled(maximum), MaximumLevelDifference = maximum };
         }
     }
 
@@ -65,8 +73,11 @@ public sealed class RuntimePvpWorldConfigurationStore
         lock (_gate)
         {
             var prior = Capture();
+            var maximum = enabled
+                ? (prior.MaximumLevelDifference < 0 ? RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference : prior.MaximumLevelDifference)
+                : RuntimeClassicConfigurationAuthority.PvpDisabledLevelDifference;
             var updated = new RuntimePvpWorldConfiguration(1, _worldId, enabled, updatedByCharacterId,
-                DateTimeOffset.UtcNow, checked(prior.Revision + 1), prior.MaximumLevelDifference);
+                DateTimeOffset.UtcNow, checked(prior.Revision + 1), maximum);
             Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
             var temporary = _path + ".tmp";
             File.WriteAllText(temporary, JsonSerializer.Serialize(updated, new JsonSerializerOptions { WriteIndented = true }));
@@ -77,11 +88,14 @@ public sealed class RuntimePvpWorldConfigurationStore
 
     public RuntimePvpWorldConfiguration SetMaximumLevelDifference(int maximumLevelDifference, string updatedByCharacterId)
     {
-        if (maximumLevelDifference < -1) throw new ArgumentOutOfRangeException(nameof(maximumLevelDifference));
+        if (maximumLevelDifference < RuntimeClassicConfigurationAuthority.MinimumPvpLevelDifference ||
+            maximumLevelDifference > RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifferenceAllowed)
+            throw new ArgumentOutOfRangeException(nameof(maximumLevelDifference));
         lock (_gate)
         {
             var prior = Capture();
-            var updated = new RuntimePvpWorldConfiguration(1, _worldId, prior.Enabled, updatedByCharacterId,
+            var updated = new RuntimePvpWorldConfiguration(1, _worldId,
+                RuntimeClassicDeathLawPvpAuthority.IsPvpEnabled(maximumLevelDifference), updatedByCharacterId,
                 DateTimeOffset.UtcNow, checked(prior.Revision + 1), maximumLevelDifference);
             Directory.CreateDirectory(Path.GetDirectoryName(_path)!);
             var temporary = _path + ".tmp";
@@ -95,7 +109,9 @@ public sealed class RuntimePvpWorldConfigurationStore
 public sealed record RuntimeLivePvpEncounter(
     string EncounterId, string WorldId, string RoomId,
     string AttackerSessionId, string DefenderSessionId,
-    ClassicAttackType AttackerAttackType, int RoundNumber, DateTimeOffset StartedAtUtc);
+    ClassicAttackType AttackerAttackType, ClassicAttackType DefenderAttackType,
+    bool AttackerAutocombatActive, bool DefenderAutocombatActive,
+    int RoundNumber, DateTimeOffset StartedAtUtc);
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
@@ -116,13 +132,32 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (attackerSession.Actor is not RuntimeCharacterActor attackerActor || defenderSession.Actor is not RuntimeCharacterActor defenderActor)
             return "PvP requires two persistent characters.";
-        if (_livePvpEncounterBySession.ContainsKey(attackerSession.Id)) return "You are already in PvP combat.";
+        if (_livePvpEncounterBySession.TryGetValue(attackerSession.Id, out var existingEncounterId) &&
+            _livePvpEncounters.TryGetValue(existingEncounterId, out var existingEncounter))
+        {
+            var existingOpponentId = existingEncounter.AttackerSessionId.Equals(attackerSession.Id, StringComparison.OrdinalIgnoreCase)
+                ? existingEncounter.DefenderSessionId : existingEncounter.AttackerSessionId;
+            if (!existingOpponentId.Equals(defenderSession.Id, StringComparison.OrdinalIgnoreCase) ||
+                IsLivePvpAutocombatActive(existingEncounter, attackerSession.Id))
+                return "You are already in PvP combat.";
+
+            var resumed = SetLivePvpAutocombat(existingEncounter, attackerSession.Id, true, attackType);
+            _livePvpEncounters[resumed.EncounterId] = resumed;
+            CancelFocusedRegeneration(attackerActor.Id);
+            defenderSession.EnqueueMessage($"{attackerActor.DisplayName} attacks you.");
+            _sessions.BroadcastRoom(attackerSession, $"{attackerActor.DisplayName} attacks {defenderActor.DisplayName}.");
+            return $"You attack {defenderActor.DisplayName}.\n*Combat Engaged*";
+        }
         if (_livePvpEncounterBySession.ContainsKey(defenderSession.Id)) return $"{defenderActor.DisplayName} is already in PvP combat.";
         var pvpConfiguration = new RuntimePvpWorldConfigurationStore(_characters.ProjectRoot, attackerSession.World.Definition.Id).Capture();
-        if (!pvpConfiguration.Enabled) return "PvP is disabled by the SYSOP.";
+        if (!RuntimeClassicDeathLawPvpAuthority.IsPvpEnabled(pvpConfiguration.MaximumLevelDifference))
+            return "PvP is disabled by the SYSOP.";
         var attacker = _characters.LoadCharacter(attackerActor.Id) ?? throw new InvalidOperationException("PvP attacker save was not found.");
         var defender = _characters.LoadCharacter(defenderActor.Id) ?? throw new InvalidOperationException("PvP defender save was not found.");
-        if (!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(attacker.Level, defender.Level, pvpConfiguration.MaximumLevelDifference))
+        var defenderReputation = defender.SemanticState?.Alignment?.Reputation ?? "Neutral";
+        var defenderIsFiend = defenderReputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase);
+        if (!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(
+                attacker.Level, defender.Level, pvpConfiguration.MaximumLevelDifference, defenderIsFiend))
             return $"PvP attack denied: maximum level difference is {pvpConfiguration.MaximumLevelDifference}.";
         var characterCatalog = _characters.GetCatalog(attacker.WorldId);
         var attackerAlignment = attacker.SemanticState?.Alignment ?? RuntimeCharacterAlignmentResolver.CreateInitial(characterCatalog.AlignmentRuleContract);
@@ -132,7 +167,6 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeCharacterAlignmentState? projectedAlignment = null;
         if (!practiceArena)
         {
-            var defenderReputation = defender.SemanticState?.Alignment?.Reputation ?? "Neutral";
             var defenderIsLawful = defender.Conditions.TryGetValue("lawful", out var lawfulRaw) &&
                 (lawfulRaw.Equals("1", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("true", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("yes", StringComparison.OrdinalIgnoreCase));
             projectedAlignment = RuntimeCharacterAlignmentResolver.ApplyAttack(attackerAlignment, defenderReputation, defenderIsLawful, characterCatalog.AlignmentRuleContract);
@@ -146,7 +180,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             var catalog = RuntimePvpZoneCatalog.Load(_characters.ProjectRoot, worldId);
             var zones = attackerSession.World.AllRooms().Select(room => new RuntimePvpZoneRule(room.Id,
                 catalog.IsProvenSafe(room.Id) ? RuntimePvpZonePolicy.Forbidden : RuntimePvpZonePolicy.Open,
-                MaximumLevelDifference: pvpConfiguration.MaximumLevelDifference));
+                MaximumLevelDifference: 0,
+                DenySameParty: false,
+                DenySameGuild: false));
             return new RuntimePvpPolicyService(zones);
         });
         var attackerParty = _partyGameplay.FindByMember(attacker.CharacterId)?.PartyId;
@@ -164,7 +200,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
 
         var encounter = new RuntimeLivePvpEncounter($"pvp.{Guid.NewGuid():N}", attacker.WorldId, attackerSession.CurrentRoom.Id,
-            attackerSession.Id, defenderSession.Id, attackType, 0, DateTimeOffset.UtcNow);
+            attackerSession.Id, defenderSession.Id, attackType, ClassicAttackType.NormalWeapon,
+            true, true, 0, DateTimeOffset.UtcNow);
         if (!_livePvpEncounters.TryAdd(encounter.EncounterId, encounter) ||
             !_livePvpEncounterBySession.TryAdd(attackerSession.Id, encounter.EncounterId) ||
             !_livePvpEncounterBySession.TryAdd(defenderSession.Id, encounter.EncounterId))
@@ -203,6 +240,44 @@ public sealed partial class RuntimeLiveGameplayFacade
         return $"You flee from {opponent?.Actor.DisplayName ?? "PvP combat"}.\n*Combat Off*";
     }
 
+    internal static bool IsLivePvpAutocombatActive(RuntimeLivePvpEncounter encounter, string sessionId)
+    {
+        if (encounter.AttackerSessionId.Equals(sessionId, StringComparison.OrdinalIgnoreCase))
+            return encounter.AttackerAutocombatActive;
+        if (encounter.DefenderSessionId.Equals(sessionId, StringComparison.OrdinalIgnoreCase))
+            return encounter.DefenderAutocombatActive;
+        return false;
+    }
+
+    internal static RuntimeLivePvpEncounter SetLivePvpAutocombat(
+        RuntimeLivePvpEncounter encounter, string sessionId, bool active, ClassicAttackType? attackType = null)
+    {
+        if (encounter.AttackerSessionId.Equals(sessionId, StringComparison.OrdinalIgnoreCase))
+            return encounter with
+            {
+                AttackerAutocombatActive = active,
+                AttackerAttackType = attackType ?? encounter.AttackerAttackType
+            };
+        if (encounter.DefenderSessionId.Equals(sessionId, StringComparison.OrdinalIgnoreCase))
+            return encounter with
+            {
+                DefenderAutocombatActive = active,
+                DefenderAttackType = attackType ?? encounter.DefenderAttackType
+            };
+        return encounter;
+    }
+
+    private void StopLivePvpAutocombatForSession(RuntimeLivePvpEncounter encounter, string sessionId)
+    {
+        var updated = SetLivePvpAutocombat(encounter, sessionId, false);
+        if (!updated.AttackerAutocombatActive && !updated.DefenderAutocombatActive)
+        {
+            EndLivePvpEncounter(updated);
+            return;
+        }
+        _livePvpEncounters[updated.EncounterId] = updated;
+    }
+
     private void EndLivePvpEncounter(RuntimeLivePvpEncounter encounter)
     {
         _livePvpEncounters.TryRemove(encounter.EncounterId, out _);
@@ -238,6 +313,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             EndLivePvpEncounter(encounter);
             return "PvP combat ended because the SYSOP disabled PvP.\n*Combat Off*";
         }
+        if (!encounter.AttackerAutocombatActive && !encounter.DefenderAutocombatActive)
+        {
+            EndLivePvpEncounter(encounter);
+            return string.Empty;
+        }
+
         var attackerSession = _sessions.ActiveSessions.FirstOrDefault(session => session.Id.Equals(encounter.AttackerSessionId, StringComparison.OrdinalIgnoreCase));
         var defenderSession = _sessions.ActiveSessions.FirstOrDefault(session => session.Id.Equals(encounter.DefenderSessionId, StringComparison.OrdinalIgnoreCase));
         if (attackerSession?.Actor is not RuntimeCharacterActor attackerActor || defenderSession?.Actor is not RuntimeCharacterActor defenderActor ||
@@ -250,22 +331,30 @@ public sealed partial class RuntimeLiveGameplayFacade
         var defenderProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(defender);
         if (!attackerProfile.Ready || !defenderProfile.Ready) throw new InvalidOperationException("PVP_PLAYER_COMBAT_PROFILE_BLOCKED");
         var resolver = new ClassicCombatResolver(authority: RuntimeClassicFormulaAuthority.Load(_characters.ProjectRoot));
-        var attackerResult = ResolvePvpStrike(resolver, attackerProfile, defenderProfile, encounter.AttackerAttackType);
-        var defenderHp = Math.Max(0, defender.HitPoints - attackerResult.FinalDamage);
         var attackerHp = attacker.HitPoints;
-        var attackerLine = RenderAttack(attacker.DisplayName, defender.DisplayName, attackerResult);
-        defenderSession.EnqueueMessage(attackerResult.FinalDamage > 0
-            ? $"{attacker.DisplayName} hits you for {attackerResult.FinalDamage} damage."
-            : $"{attacker.DisplayName} misses you.");
-        if (defenderHp > 0)
+        var defenderHp = defender.HitPoints;
+        var attackerOutput = new List<string>();
+
+        if (encounter.AttackerAutocombatActive)
         {
-            var defenderResult = ResolvePvpStrike(resolver, defenderProfile, attackerProfile, ClassicAttackType.NormalWeapon);
-            attackerHp = Math.Max(0, attacker.HitPoints - defenderResult.FinalDamage);
+            var attackerResult = ResolvePvpStrike(resolver, attackerProfile, defenderProfile, encounter.AttackerAttackType);
+            defenderHp = Math.Max(0, defenderHp - attackerResult.FinalDamage);
+            attackerOutput.Add(RenderAttack(attacker.DisplayName, defender.DisplayName, attackerResult));
+            defenderSession.EnqueueMessage(attackerResult.FinalDamage > 0
+                ? $"{attacker.DisplayName} hits you for {attackerResult.FinalDamage} damage."
+                : $"{attacker.DisplayName} misses you.");
+        }
+
+        if (defenderHp > 0 && encounter.DefenderAutocombatActive)
+        {
+            var defenderResult = ResolvePvpStrike(resolver, defenderProfile, attackerProfile, encounter.DefenderAttackType);
+            attackerHp = Math.Max(0, attackerHp - defenderResult.FinalDamage);
             defenderSession.EnqueueMessage(RenderAttack(defender.DisplayName, attacker.DisplayName, defenderResult));
-            attackerLine += Environment.NewLine + (defenderResult.FinalDamage > 0
+            attackerOutput.Add(defenderResult.FinalDamage > 0
                 ? $"{defender.DisplayName} hits you for {defenderResult.FinalDamage} damage."
                 : $"{defender.DisplayName} misses you.");
         }
+
         _characters.SaveCharacter(attacker with { HitPoints = attackerHp, UpdatedAtUtc = DateTimeOffset.UtcNow }, "runtime.pvp.round");
         _characters.SaveCharacter(defender with { HitPoints = defenderHp, UpdatedAtUtc = DateTimeOffset.UtcNow }, "runtime.pvp.round");
         if (defenderHp == 0 || attackerHp == 0)
@@ -273,15 +362,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             var victimSession = defenderHp == 0 ? defenderSession : attackerSession;
             var victim = defenderHp == 0 ? defender with { HitPoints = 0 } : attacker with { HitPoints = 0 };
             var killerSession = defenderHp == 0 ? attackerSession : defenderSession;
-            // Route every player death through the shared native _check_kill_user projection;
-            // CompletePlayerDefeat owns the practice-arena early-return branch after cleanup.
             var death = CompletePlayerDefeat(victimSession, victim);
             EndLivePvpEncounter(encounter);
             victimSession.EnqueueMessage($"{killerSession.Actor.DisplayName} defeated you. {death}\n*Combat Off*");
-            return attackerLine + Environment.NewLine + $"{killerSession.Actor.DisplayName} defeats {victimSession.Actor.DisplayName}.\n*Combat Off*";
+            attackerOutput.Add($"{killerSession.Actor.DisplayName} defeats {victimSession.Actor.DisplayName}.\n*Combat Off*");
+            return string.Join(Environment.NewLine, attackerOutput);
         }
         _livePvpEncounters[encounter.EncounterId] = encounter with { RoundNumber = encounter.RoundNumber + 1 };
-        return attackerLine;
+        return string.Join(Environment.NewLine, attackerOutput);
     }
 
     public void CaptureClassicPracticeArenaEntry(RuntimeSession session, RuntimeRoom previousRoom)
@@ -324,7 +412,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     private static ClassicAttackResult ResolvePvpStrike(ClassicCombatResolver resolver, RuntimePlayerCombatProfile attacker,
         RuntimePlayerCombatProfile defender, ClassicAttackType attackType)
     {
-        var attack = new ClassicCombatantStats(attacker.AttackValue + attacker.ClassCombatAccuracy + attacker.AbilityAccuracyModifier + attacker.WeaponAccuracyModifier,
+        var attack = new ClassicCombatantStats(attacker.AttackValue + attacker.ClassCombatAccuracy + attacker.AbilityAccuracyModifier,
             attacker.DefenseValue, attacker.ArmorClass, attacker.DamageResistance, attacker.DodgeBonus, 0, attacker.CriticalChance);
         var defense = new ClassicCombatantStats(defender.AttackValue, defender.DefenseValue, defender.ArmorClass,
             defender.DamageResistance, defender.DodgeBonus, 0, defender.CriticalChance);

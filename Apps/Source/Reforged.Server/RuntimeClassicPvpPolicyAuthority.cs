@@ -6,7 +6,7 @@ namespace Reforged.Server;
 /// The retained WCCMMUD/WBBMMUD ABI has dedicated user-vs-user attack, user-kill,
 /// PvP-combat-state, user-target, robbery, and Evil-Point owner functions. Native help
 /// independently proves the Lawful creation pledge, the realm maximum-level-difference
-/// setting, and the practice-arena exception. Those sources do not prove Reforged's
+/// setting, including its -1 disable sentinel and lower-level-FIEND exception, and the practice-arena exception. Those sources do not prove Reforged's
 /// generic mutual-consent zones, same-party/guild policy, synthetic attack cooldown, or
 /// logout restriction; those remain extension policy and receive no Classic parity credit.
 /// </summary>
@@ -18,7 +18,10 @@ public static class RuntimeClassicPvpPolicyAuthority
     public const bool NativePvpCombatStateOwnerResolved = true;
     public const bool NativePvpEvilPointCouplingOwnerResolved = true;
 
-    public const int MaximumPvpLevelDifferenceDefault = 100;
+    public const int PvpDisabledLevelDifference = RuntimeClassicConfigurationAuthority.PvpDisabledLevelDifference;
+    public const int MaximumPvpLevelDifferenceDefault = RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference;
+    public const int MaximumPvpLevelDifferenceAllowed = RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifferenceAllowed;
+    public const bool LowerLevelFiendLosesLevelRangeProtection = true;
     public const bool LawfulChoiceEnabledDefault = true;
     public const int LawfulAttackPenaltyMultiplier = 3;
     public const int PracticeArenaHelpMessageNumber = 135;
@@ -32,7 +35,7 @@ public static class RuntimeClassicPvpPolicyAuthority
     public const bool GenericAttackCooldownIsNativeClassic = false;
     public const bool GenericLogoutRestrictionIsNativeClassic = false;
 
-    public const bool ExactRealmPvpEnableDefaultPersistenceResolved = false;
+    public const bool ExactRealmPvpEnableDefaultPersistenceResolved = true;
     public const bool ExactLawfulCreationPersistenceResolved = false;
     public const bool ExactSafeRestrictedZoneEncodingResolved = false;
     public const bool ExactLawfulTargetAdmissionBranchResolved = false;

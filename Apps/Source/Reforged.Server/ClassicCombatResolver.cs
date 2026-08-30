@@ -224,15 +224,18 @@ public sealed class ClassicCombatResolver
 
         var rolledDamage = _random.NextInclusive(scaledMinimum, scaledMaximum);
         var postDrDamage = rolledDamage - Math.Max(0, request.Defender.DamageResistance);
+        // Native _calculate_attack applies Bash/Smash's x3/x5 multiplier after DR but
+        // before the defender Dodge roll. Keep that order even though a successful
+        // dodge ultimately zeros damage either way.
+        var postSpecialDamage = checked(postDrDamage * modifiers.PostDrMultiplier);
         var dodgeChance = CalculateDodgeChance(request.AttackType, request.Attacker.AttackValue, request.Defender.DodgeBonus);
         if (dodgeChance > 0 && RuntimeClassicPhysicalFormulaCalculator.IsDodgeRollSuccessful(
                 dodgeChance, _random.NextInclusive(1, 100)))
         {
-            return new ClassicAttackResult(ClassicHitOutcome.Dodged, hitChance, dodgeChance, rolledDamage, postDrDamage, 0, critical);
+            return new ClassicAttackResult(ClassicHitOutcome.Dodged, hitChance, dodgeChance, rolledDamage, postSpecialDamage, 0, critical);
         }
 
-        var finalDamage = Math.Max(0, postDrDamage);
-        finalDamage = checked(finalDamage * modifiers.PostDrMultiplier);
+        var finalDamage = Math.Max(0, postSpecialDamage);
         var outcome = finalDamage <= 0
             ? ClassicHitOutcome.Glance
             : critical ? ClassicHitOutcome.Critical : ClassicHitOutcome.Hit;
@@ -331,12 +334,45 @@ public static class RuntimeClassicPhysicalFormulaCalculator
     public const string DodgeRollBoundaryFormulaId = "combat.dodge_roll_boundary";
     public const string BackstabAccuracyFormulaId = "combat.backstab_accuracy";
     public const string BackstabDamageFormulaId = "combat.backstab_damage";
+    public const string StockAccuracyFormulaId = "combat.stock_player_accuracy.native_0357";
 
     // MMUD Explorer frmMain.frm 27694: Fix((STR - 50) / 10).
     // C# integer division truncates toward zero, matching VB6 Fix for integer inputs.
     public static int CalculateStrengthMaximumDamageBonus(int strength)
         => (strength - 50) / 10;
 
+
+    // Native WCCMMUD.DLL _move_player_to_fighter (0x42AD90-0x42AF98).
+    // The original DLL folds signed equipped Accuracy and the <33% living encumbrance
+    // bonus together, rounds that bucket down/toward-zero to an even contribution,
+    // then applies class combat, floor-sqrt(level), Level/2, STR/3 and AGI/6.
+    public static int CalculateStockPlayerAccuracyBase(
+        int classCombatCode, int level, int strength, int agility,
+        int equippedAccuracy, int encumbrancePercent, bool living = true)
+    {
+        if (classCombatCode <= 0) return 0;
+        if (level < 0) throw new ArgumentOutOfRangeException(nameof(level));
+        if (encumbrancePercent is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(encumbrancePercent));
+
+        var bucket = equippedAccuracy == 0 ? 1 : equippedAccuracy;
+        if (living && encumbrancePercent < 33)
+            bucket = checked(bucket + 15 - (encumbrancePercent / 10));
+
+        var root = (int)Math.Sqrt(level);
+        while ((long)(root + 1) * (root + 1) <= level) root++;
+        while ((long)root * root > level) root--;
+
+        var inner = checked(
+            checked(root * (classCombatCode - 1))
+            + checked(classCombatCode * 2)
+            + (level / 2)
+            + (bucket / 2)
+            - 2);
+        return checked(
+            checked(inner * 2)
+            + ((strength - 50) / 3)
+            + ((agility - 50) / 6));
+    }
 
     // MMUD Explorer modMMudFunc.bas 2111-2132, stock MajorMUD branch.
     // Stock uses Fix((Stealth + Agility) / 2) + Fix(BSAccu / 2), then
@@ -348,8 +384,9 @@ public static class RuntimeClassicPhysicalFormulaCalculator
         return checked(accuracy + normalAccuracyBonus);
     }
 
-    // MMUD Explorer modMMudFunc.bas 4196-4198 and frmBSCalc.frm 1123-1124.
-    // Classic applies the level-scaling branch because Not bGreaterMUD is true.
+    // Native WCCMMUD.DLL _move_player_to_fighter (0x42B064-0x42B119) directly closes
+    // both Backstab endpoints: 2*normal + 2*Level + floor(Stealth/10) + ability 117/118,
+    // optional race-only 75%, then (Level+100)%. MMUD Explorer independently agrees.
     public static int CalculateBackstabDamage(int level, int stealth, int normalDamage, int backstabDamageBonus, bool classStealth)
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level));
@@ -526,6 +563,11 @@ public sealed class RuntimeClassicPhysicalFormulaSmokeReport
         var report = new RuntimeClassicPhysicalFormulaSmokeReport();
         try
         {
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(6, 1, 50, 50, 0, 0) == 46, "stock-accuracy-level-one-warrior-vector"); report.Checks.Add("stock-accuracy-level-one-warrior-vector");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(6, 20, 80, 60, 3, 0) == 109, "stock-accuracy-class-stat-equipment-vector"); report.Checks.Add("stock-accuracy-class-stat-equipment-vector");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(4, 20, 49, 49, 2, 32) == 70, "stock-accuracy-even-fold-vector"); report.Checks.Add("stock-accuracy-even-fold-vector");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(4, 20, 49, 49, 1, 32) == 68, "stock-accuracy-odd-fold-vector"); report.Checks.Add("stock-accuracy-odd-fold-vector");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(3, 50, 40, 40, -3, 33) == 80, "stock-accuracy-signed-truncation-vector"); report.Checks.Add("stock-accuracy-signed-truncation-vector");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabAccuracy(120, 80, 10, true, 5) == 115, "backstab-accuracy-stock-known-vector"); report.Checks.Add("backstab-accuracy-stock-known-vector");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabDamage(20, 120, 8, 3, true) == 85, "backstab-damage-known-vector"); report.Checks.Add("backstab-damage-known-vector");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabDamage(1, 0, 1, 0, true) == 4, "backstab-damage-classic-level-scale"); report.Checks.Add("backstab-damage-classic-level-scale");

@@ -117,16 +117,17 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeClassicCharacterFormulaCalculator.RawDodgeFormulaId,
                 "character_statistics",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicCharacterFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcDodge lines 2482-2495: level, Charm, Agility, PlusDodge, light-encumbrance bonus"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained raw Dodge terms and provenance"),
-                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "encumbrance <33 boundary retained from recovered stock evidence")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json", "_move_player_to_fighter directly calls _get_user_ability_value for ability 34, adds Level/5, (Charm-50)/5 and (Agility-50)/3, then applies the <33% encumbrance bonus to fighter +0x20"),
+                    new RuntimeFormulaEvidenceSource("native_consumer", "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json", "_calculate_attack directly consumes fighter +0x20 as raw Dodge, applies the recovered accuracy divisor/95% cap and Backstab /5"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcDodge lines 2482-2495 independently match the direct DLL arithmetic"),
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "retained stock formula and regression vectors")
                 },
-                "Player raw Dodge now uses the recovered stock character builder before the already-verified Dodge-vs-Accuracy and 95% final cap. Race/class ownership of PlusDodge remains unresolved where decoded ability-slot mapping is ambiguous."),
+                "Player raw Dodge is native-verified end-to-end: the original DLL constructs fighter Dodge from effective ability 34 plus Level/Charm/Agility, applies the below-33-percent encumbrance bonus, and passes that exact fighter field to the stock Dodge-vs-Accuracy resolver."),
             new(
                 RuntimeCharacterRegenerationAuthority.FormulaId,
                 "character_statistics",
@@ -144,16 +145,17 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 ClassicCombatResolver.ClassCombatAccuracyFormulaId,
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimePlayerCombatProfileResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_class_catalog", "Data/Classic/character_foundation.json", "classes[].combat_level and public combat_bonus projection"),
-                    new RuntimeFormulaEvidenceSource("imported_wcc", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-class-wcc.json", "combat_bonus per class"),
-                    new RuntimeFormulaEvidenceSource("bundle_a_handoff", "Apps/Source/Reforged.Server/RuntimeCharacterBundleCatalog.cs", "class_combat_level_accuracy")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json", "_move_player_to_fighter directly constructs fighter +0x00 from class +0x48, floor-sqrt(Level), Level/2, the folded equipped-Accuracy/encumbrance bucket, STR/3 and AGI/6"),
+                    new RuntimeFormulaEvidenceSource("native_plus_accuracy", "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json", "_move_player_to_fighter adds user +0x70A after base fighter Accuracy construction; martial accuracy remains a later attack-type-specific path"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "https://github.com/syntax53/MMUD-Explorer/blob/master/modMMudFunc.bas", "read-only CalculateAccuracy cross-check for stock class/level/STR/AGI/encumbrance semantics"),
+                    new RuntimeFormulaEvidenceSource("decoded_class_catalog", "Data/Classic/character_foundation.json", "public combat_bonus supplies the class combat value consumed by the native formula")
                 },
-                "Decoded class combat rating now contributes its per-level innate physical accuracy before ability and weapon accuracy modifiers in the single live Classic combat path."),
+                "Stock player base Accuracy is native-verified. Reforged constructs it once from the original fighter-build ordering and folds equipped direct Accuracy before direct ability/status plus-accuracy; normal live combat does not double-add the wielded weapon Accuracy."),
             new(
                 RuntimeClassicPhysicalFormulaCalculator.StrengthMaximumDamageFormulaId,
                 "combat",
@@ -249,16 +251,17 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeClassicPhysicalFormulaCalculator.BackstabDamageFormulaId,
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mmud_explorer_formula", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcBSDamage lines 4196-4198"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer_consumers", "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm", "minimum and maximum endpoint calls lines 1123-1124"),
-                    new RuntimeFormulaEvidenceSource("librarium_evidence", "Evidence/FormulaBehavior0072/candidate_references_0072.json", "retained formula and Classic level-scaling branch")
+                    new RuntimeFormulaEvidenceSource("librarium_evidence", "Evidence/FormulaBehavior0072/candidate_references_0072.json", "retained formula and Classic level-scaling branch"),
+                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json", "_move_player_to_fighter 0x42B064-0x42B119 directly proves both Backstab endpoint formulas, race-only 75% penalty, and Classic level scale")
                 },
-                "Backstab minimum and maximum damage are calculated independently from level, modified Stealth, the corresponding normal damage endpoint, and the decoded Backstab endpoint bonus, then scaled by (level + 100) percent for Classic."),
+                "Native _move_player_to_fighter directly closes both Classic Backstab endpoints: 2*normal + 2*Level + floor(Stealth/10) + ability 117/118, race-only Stealth at 75%, then (Level+100)% scaling."),
             new(
                 RuntimeClassicPhysicalFormulaCalculator.CriticalDamageRangeFormulaId,
                 "combat",
@@ -373,16 +376,17 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 ClassicCombatResolver.PhysicalDamageFormulaId,
                 "combat",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(ClassicCombatResolver),
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("generated_item_catalog", "Data/Classic/items.json", "weapon minimum/maximum damage and damage resistance fields"),
                     new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json", "physical range, critical range, and post-roll DR"),
-                    new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "one roll, DR subtraction, attack-type scaling, and non-negative final damage")
+                    new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "one roll, DR subtraction, attack-type scaling, and non-negative final damage"),
+                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json", "_calculate_attack 0x42B800-0x42BB23 directly proves pre-DR special scaling, critical-before-roll, DR, Bash/Smash post-DR multiplier, Dodge, and final clamp order")
                 },
-                "Weapon damage range, decoded attack-type scaling, one inclusive range roll, post-roll damage resistance, and non-negative final damage execute through ClassicCombatResolver."),
+                "Native _calculate_attack directly closes Classic physical resolution ordering: attack-type pre-DR scaling, hit, critical range expansion, damage roll, DR subtraction, Bash/Smash post-DR multiplier, Dodge resolution, then non-negative glance/hit clamp."),
             new(
                 ClassicCombatResolver.QuestCombatBonusFormulaId,
                 "combat",

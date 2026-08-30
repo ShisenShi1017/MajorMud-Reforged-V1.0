@@ -68,4 +68,36 @@ The connection profile and server launch contract are implemented, but final cer
 
 ## REROLL / KEEP compatibility
 
-REROLL is handled on the normal MegaMUD Telnet connection. It enters replacement-character creation and does not use the private Reforged client-data channel. `SET KEEP ON` transfers only the native retained-experience amount to the replacement character; `SET KEEP OFF` starts the replacement at zero experience. Reforged does not insert an extra Y/N confirmation, because native MajorMUD only adds a credential gate when a suicide password has been configured. `SET SUICIDE` password handling remains a separate compatibility boundary.
+REROLL is handled on the normal MegaMUD Telnet connection. It enters replacement-character creation and does not use the private Reforged client-data channel. `SET KEEP ON` transfers only the native retained-experience amount to the replacement character; `SET KEEP OFF` starts the replacement at zero experience. Reforged does not insert an extra Y/N confirmation, because native MajorMUD only adds a credential gate when a suicide password has been configured. `SET SUICIDE <password>` is now supported. When configured, both `SUICIDE` and `REROLL` receive the native `Enter your suicide password:` credential prompt; no Reforged-only Y/N confirmation is inserted.
+
+
+## TALK / RESPONSE / PAGE compatibility (CodeUpdate0347)
+
+- Classic `TALK FAST` preserves native fallback speech: otherwise-unrecognized non-command text is sent to the room.
+- Classic `TALK SLOW` no longer relies on that fallback. Room speech must use an explicit `SAY` or the stock `.` speech prefix; otherwise-unrecognized input returns `Command not recognized.`
+- `SET RESPONSE BRIEF` / `VERBOSE` follows the native player-visible self-response contract; BRIEF returns `Well Spoken...`.
+- Bare `PAGE` toggles the live-session page flag; `SET PAGE ON`, `SET PAGE OK`, and `SET PAGE OFF` use the native visible state strings.
+- These are ordinary Telnet/game-stream behaviors. No MegaMUD-only private channel or parser shim is introduced.
+- Actual MegaMUD-binary certification remains a Windows/.NET runtime test boundary.
+
+
+## Reforged host scope (CodeUpdate0348)
+
+Reforged does not emulate Worldgroup PAGE/telegram host transport, mail storage, presentation queues, or host logging. Those are host implementation details, not MegaMUD protocol requirements. MegaMUD compatibility is judged on MajorMUD-visible Telnet/game-stream behavior; the existing PAGE setting text/state and communication commands remain part of that contract.
+
+### SET MESSAGES filtering (CodeUpdate0349)
+
+MegaMUD receives the ordinary MajorMUD terminal stream after the connected character's native `SET MESSAGES` threshold is applied. Reforged does not add a MegaMUD-only channel for this feature. The recovered native threshold byte values are High=0, Medium=10, and Low=20: LOW receives high-priority room events only; MEDIUM receives high+medium; HIGH receives high+medium+low. Pickup/drop and ordinary physical-combat observer chatter are LOW-priority, while spell cast/resist/effect observer chatter is MEDIUM-priority. Movement, room speech, engagement, and important room actions remain HIGH-priority.
+
+## REST / MEDITATE compatibility (CodeUpdate0350)
+
+- REST and MEDITATE remain ordinary MajorMUD commands on the Telnet stream.
+- Active native sickness/poison state rejects them with the stock visible strings.
+- REST is still accepted at full HP; there is no invented full-HP rejection.
+- MEDITATE at full mana returns `Meditation will not help at this time.` and does not enter meditation.
+- Successful entry returns `You are now resting.` or `You are now meditating.` and emits the stock room observer social.
+- Imported MegaMUD executable string inventories independently recognize the recovery success/sickness/observer forms, so Reforged does not require a MegaMUD-specific parser shim.
+
+## BREAK compatibility (CodeUpdate0351)
+
+MegaMUD uses stock `break` on the ordinary MajorMUD command stream, including its documented "Break Combat Before Running" behavior. Reforged now emits the original DLL's active-manual-BREAK presentation: `*Combat Off*` to the breaking player and `<name> breaks off combat.` as a High-priority room observer line before combat teardown. No MegaMUD-specific protocol or private client-data signal is required. Exact opponent-side PvP autocombat ownership remains a separate evidence-gated server parity boundary.

@@ -783,7 +783,7 @@ Relevant William-verified lessons:
         var verb = command.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault()?.ToUpperInvariant() ?? string.Empty;
         return verb switch
         {
-            "SAY" or "TELEPATH" or "TELL" or "GROUP" or "PARTY" => "communication",
+            "SAY" or "TELEPATH" or "TELL" or "GOSSIP" or "AUCTION" or "GROUP" or "PARTY" => "communication",
             "N" or "S" or "E" or "W" or "U" or "D" or "NE" or "NW" or "SE" or "SW" or
             "NORTH" or "SOUTH" or "EAST" or "WEST" or "UP" or "DOWN" or "NORTHEAST" or
             "NORTHWEST" or "SOUTHEAST" or "SOUTHWEST" => "movement",

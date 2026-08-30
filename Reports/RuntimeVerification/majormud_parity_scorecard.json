@@ -1,40 +1,40 @@
 {
-  "GeneratedAtUtc": "2026-08-29T19:40:52Z",
+  "GeneratedAtUtc": "2026-08-30T06:40:00Z",
   "ProjectRoot": "repository-local",
-  "PassCount": 126,
-  "StrongCount": 74,
+  "PassCount": 144,
+  "StrongCount": 56,
   "UnknownCount": 0,
   "ScoredRequirementCount": 200,
-  "StrictPercent": 63.0,
+  "StrictPercent": 72.0,
   "EvidenceBackedPercent": 100.0,
   "PartialSystemShellCount": 27,
   "RemainingSystemCount": 27,
   "Categories": [
     {
       "Category": "Administration & Host",
-      "Pass": 0,
-      "Strong": 2,
+      "Pass": 1,
+      "Strong": 1,
       "Unknown": 0,
       "Total": 2,
-      "StrictPercent": 0.0,
+      "StrictPercent": 50.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Character & Status",
-      "Pass": 36,
-      "Strong": 10,
+      "Pass": 39,
+      "Strong": 7,
       "Unknown": 0,
       "Total": 46,
-      "StrictPercent": 78.3,
+      "StrictPercent": 84.8,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Combat",
-      "Pass": 12,
-      "Strong": 6,
+      "Pass": 16,
+      "Strong": 2,
       "Unknown": 0,
       "Total": 18,
-      "StrictPercent": 66.7,
+      "StrictPercent": 88.9,
       "EvidenceBackedPercent": 100.0
     },
     {
@@ -57,11 +57,11 @@
     },
     {
       "Category": "Economy & Services",
-      "Pass": 6,
-      "Strong": 10,
+      "Pass": 11,
+      "Strong": 5,
       "Unknown": 0,
       "Total": 16,
-      "StrictPercent": 37.5,
+      "StrictPercent": 68.8,
       "EvidenceBackedPercent": 100.0
     },
     {
@@ -111,11 +111,11 @@
     },
     {
       "Category": "Parties / Communication / Organizations",
-      "Pass": 12,
-      "Strong": 3,
+      "Pass": 15,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 15,
-      "StrictPercent": 80.0,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
@@ -138,11 +138,11 @@
     },
     {
       "Category": "Rooms & World",
-      "Pass": 12,
-      "Strong": 9,
+      "Pass": 14,
+      "Strong": 7,
       "Unknown": 0,
       "Total": 21,
-      "StrictPercent": 57.1,
+      "StrictPercent": 66.7,
       "EvidenceBackedPercent": 100.0
     },
     {

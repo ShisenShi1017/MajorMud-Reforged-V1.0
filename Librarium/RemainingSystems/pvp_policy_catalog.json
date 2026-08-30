@@ -64,7 +64,15 @@
     "levelRange": {
       "symbol": "LVLDIFF",
       "defaultMaximumDifference": 100,
-      "meaning": "realm-level maximum PvP level difference configuration"
+      "meaning": "realm-level maximum PvP level difference configuration",
+      "allowedRange": [
+        -1,
+        100
+      ],
+      "disableSentinel": -1,
+      "workingInstallConfiguredValue": 10,
+      "lowerLevelFiendProtectionException": true,
+      "workingInstallEvidence": "WGSERV.rar WCCMMUD.MSG/MCV; identical 1.11p DLL hash to retained default install"
     },
     "practiceArena": {
       "message": 135,
@@ -86,7 +94,6 @@
     }
   },
   "nativeDependencies": [
-    "exact realm PvP enabled/disabled default, live mutability, and native persistence/serialization beyond the proven maximum-level-difference setup default",
     "exact creation-time Lawful field encoding/persistence and prompt-to-character record flow",
     "exact safe/restricted room or zone encoding outside the strongly correlated named practice-arena rooms",
     "exact native target-admission branch ordering for Lawful attackers and the precise native mapping of innocents/hated/bad-reputation targets",

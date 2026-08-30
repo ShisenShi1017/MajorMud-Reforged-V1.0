@@ -1,0 +1,136 @@
+{
+  "update": "0350",
+  "subject": "MajorMUD native REST/MEDITATE command presentation closure",
+  "classification": "PASS-grade native executable evidence",
+  "sources": [
+    {
+      "name": "WCCMMUD.DLL",
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "origin": "ImportedDatabasesAndEvidence.LocalOnly(2).rar",
+      "bundled": false
+    },
+    {
+      "name": "MegaMUD Decode Passes 1-34 cumulative",
+      "sha256": "a7f3d611b5bbe430435a949b8ec3f3c153c298ade48d32cd8de1accc720e58f1",
+      "origin": "ImportedDatabasesAndEvidence.LocalOnly(2).rar",
+      "bundled": false
+    },
+    {
+      "name": "MegaMUD Pass28 STRING_INVENTORY.csv",
+      "sha256": "5dbeb8eaa51d0f14c1442c53db6b1e097434304f69f29947b2e97b63522eafc6",
+      "origin": "MegaMUD-Decode-Passes1-34-Cumulative.zip",
+      "bundled": false
+    }
+  ],
+  "native_command_owner": {
+    "rest_entry": "0x004147C0",
+    "meditate_entry": "0x004148B2",
+    "sickness_field": "user +0xBE",
+    "rest_state_bit": "user +0x6F4 mask 0x0400",
+    "meditate_state_bit": "user +0x7C8 mask 0x0100",
+    "rest_fast_counter": "user +0x7B2",
+    "meditate_fast_counter": "user +0x7EB",
+    "current_mana": "user +0x602",
+    "maximum_mana": "user +0x600"
+  },
+  "native_branches": [
+    {
+      "address": "0x004147F5",
+      "behavior": "REST compares signed user +0xBE against zero; positive rejects REST.",
+      "message_address": "0x0047D474",
+      "message": "You are too sick to rest!"
+    },
+    {
+      "address": "0x0041481C",
+      "behavior": "REST tests native resting bit 0x0400; observer social is emitted only when entering REST from a non-resting state."
+    },
+    {
+      "address": "0x00414844",
+      "behavior": "REST observer room dispatch supplies native room-message priority 0 (High).",
+      "message_address": "0x0047D48F",
+      "message": "%s stops to rest."
+    },
+    {
+      "address": "0x0041486C",
+      "behavior": "REST sets bit 0x0400, clears meditating bit 0x0100, and resets the REST fast counter."
+    },
+    {
+      "address": "0x00414894",
+      "message_address": "0x0047D4A2",
+      "message": "You are now resting."
+    },
+    {
+      "address": "0x004148B2",
+      "behavior": "MEDITATE checks native capability 187 (0xBB) before shared sickness/full-resource presentation."
+    },
+    {
+      "address": "0x00414906",
+      "behavior": "MEDITATE compares signed user +0xBE against zero; positive rejects MEDITATE.",
+      "message_address": "0x0047D4B8",
+      "message": "You are too sick to meditate!"
+    },
+    {
+      "address": "0x0041492D",
+      "behavior": "MEDITATE compares current mana +0x602 with maximum mana +0x600. If current >= maximum, current is clamped to maximum and meditation is rejected.",
+      "message_address": "0x0047D4D7",
+      "message": "Meditation will not help at this time."
+    },
+    {
+      "address": "0x0041496B",
+      "behavior": "MEDITATE tests native meditating bit 0x0100; observer social is emitted only when entering MEDITATE from a non-meditating state."
+    },
+    {
+      "address": "0x00414993",
+      "behavior": "MEDITATE observer room dispatch supplies native room-message priority 0 (High).",
+      "message_address": "0x0047D4FF",
+      "message": "%s kneels to meditate."
+    },
+    {
+      "address": "0x004149BC",
+      "behavior": "MEDITATE sets bit 0x0100, clears resting bit 0x0400, and resets the MEDITATE fast counter."
+    },
+    {
+      "address": "0x004149E4",
+      "message_address": "0x0047D517",
+      "message": "You are now meditating."
+    }
+  ],
+  "sickness_identity": {
+    "slow_update_address": "0x004221FA",
+    "slow_update_behavior": "When user +0xBE is positive, native slow update prints 'You feel ill.' and subtracts the +0xBE value from current HP.",
+    "slow_update_message_address": "0x0047FCE5",
+    "cure_poison_cross_check": "The decoded spell-effect switch is keyed by ability ID; ability 20 (Cure Poison) reaches 0x00449F01 and reduces target user +0xBE toward zero.",
+    "reforged_mapping": "Use the decoded active poison projection (classic.status.poisoned) for the REST/MEDITATE sickness gate. Generic non-poison status effects do not automatically count as this native sickness field."
+  },
+  "resource_edge": {
+    "rest_full_hp": "No native full-HP rejection exists in the recovered REST branch. REST may enter at full HP.",
+    "meditate_full_mana": "MEDITATE explicitly rejects at current mana >= maximum mana and clamps over-max current mana to maximum."
+  },
+  "megamud_corroboration": {
+    "pass28_string_inventory": [
+      " stops to rest",
+      " stops to rest.",
+      " kneels to meditate.",
+      "You are too sick to rest",
+      "You are now resting",
+      "You are now meditating"
+    ],
+    "pass9_timing_inventory": [
+      "stops to rest",
+      "kneels to meditate.",
+      "You are now resting",
+      "You are now meditating",
+      "You are too sick to rest"
+    ],
+    "conclusion": "MegaMUD independently recognizes the native recovery terminal surface; no MegaMUD-specific protocol or alternate wording is required."
+  },
+  "runtime_contract": [
+    "REST rejects only the recovered sickness gate within this presentation boundary; full HP does not reject REST.",
+    "MEDITATE capability admission occurs before sickness/full-mana presentation.",
+    "Both REST and MEDITATE reject active decoded poison sickness with exact native text.",
+    "MEDITATE rejects at full/over-full mana with exact native text and clamps over-full mana.",
+    "Entering REST/MEDITATE emits the exact observer social once per state entry at High room-message priority.",
+    "The success lines remain exact native terminal text.",
+    "Reforged client/Borin shared state parsing recognizes both 'You are now resting.' and 'You are now meditating.'."
+  ]
+}

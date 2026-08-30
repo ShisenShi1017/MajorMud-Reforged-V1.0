@@ -425,6 +425,10 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
         """^(?<speaker>[A-Za-z][A-Za-z0-9_' -]{0,39})\s+(?:telepaths?(?:\s+to\s+you)?|tells?\s+you)\s*[:,]?\s*["“']?(?<message>.+?)["”']?$""",
         RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
+    private static readonly Regex DirectedSayPattern = new(
+        """^(?<speaker>[A-Za-z][A-Za-z0-9_' -]{0,39})\s+says\s+\(to\s+you\)\s+["“']?(?<message>.+?)["”']?$""",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
     private static readonly Regex SayPattern = new(
         """^(?<speaker>[A-Za-z][A-Za-z0-9_' -]{0,39})\s+(?:says?(?:\s+to\s+you)?|chats?)\s*[:,]?\s*["“']?(?<message>.+?)["”']?$""",
         RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
@@ -435,6 +439,10 @@ public sealed class BorinPlayerResearch : IBorinPlayerResearch
 
     private static readonly Regex GossipPattern = new(
         """^(?<speaker>[A-Za-z][A-Za-z0-9_' -]{0,39})\s+(?:gossips?|gos)\s*[:,]?\s*["“']?(?<message>.+?)["”']?$""",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+    private static readonly Regex AuctionPattern = new(
+        """^(?<speaker>[A-Za-z][A-Za-z0-9_' -]{0,39})\s+auctions?\s*[:,]?\s*["“']?(?<message>.+?)["”']?$""",
         RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     private static readonly Regex LeadingPromptPattern = new(
@@ -2631,8 +2639,9 @@ Recent command/result evidence:
 
         var command = speech.Channel switch
         {
-            "telepath" => $"TELEPATH {speech.Speaker} {response}",
-            "gossip" => $"GOS {response}",
+            "telepath" => $"/{speech.Speaker} {response}",
+            "gossip" => $"GOSSIP {response}",
+            "auction" => $"AUCTION {response}",
             _ => $"SAY {response}",
         };
         await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.AutonomousAgent, token);
@@ -2915,12 +2924,14 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
     private static bool IsSafeDuringDanger(string command) =>
         command is "LOOK" or "L" or "INVENTORY" or "INV" or "I" or "EQUIPMENT" or "EQ" or "REST" ||
         command.StartsWith("SAY ", StringComparison.Ordinal) ||
+        command.StartsWith("/", StringComparison.Ordinal) ||
         command.StartsWith("TELEPATH ", StringComparison.Ordinal) ||
         command.StartsWith("TELL ", StringComparison.Ordinal);
 
     private static bool IsSafeDuringCombat(string command) =>
         command is "LOOK" or "L" or "INVENTORY" or "INV" or "I" or "EQUIPMENT" or "EQ" ||
         command.StartsWith("SAY ", StringComparison.Ordinal) ||
+        command.StartsWith("/", StringComparison.Ordinal) ||
         command.StartsWith("TELEPATH ", StringComparison.Ordinal) ||
         command.StartsWith("TELL ", StringComparison.Ordinal) ||
         command.StartsWith("ATTACK", StringComparison.Ordinal);
@@ -3371,8 +3382,10 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
                  {
                      (Pattern: TelepathPattern, Channel: "telepath"),
                      (Pattern: FromTellPattern, Channel: "telepath"),
+                     (Pattern: DirectedSayPattern, Channel: "say"),
                      (Pattern: GroupPattern, Channel: "group"),
                      (Pattern: GossipPattern, Channel: "gossip"),
+                     (Pattern: AuctionPattern, Channel: "auction"),
                      (Pattern: SayPattern, Channel: "say"),
                  })
         {
@@ -3892,7 +3905,7 @@ Conversation craft: answer the question asked, keep one clear topic, acknowledge
             }
 
             response = CleanSpeechResponse(response, BorinGameStateSnapshot.HardInGameReplyCharacterLimit);
-            var command = $"TELEPATH {speaker} {response}";
+            var command = $"/{speaker} {response}";
             await _sessions.SendCommandAsAsync(_settings.SessionId, command, ClientCommandOrigin.AutonomousAgent, token);
             _lastSentSpeech = response;
 

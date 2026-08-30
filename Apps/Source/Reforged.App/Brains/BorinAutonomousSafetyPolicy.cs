@@ -57,6 +57,10 @@ internal static class BorinAutonomousSafetyPolicy
         if (AutonomousControlRoots.Contains(root))
             return BorinAutonomousSafetyDecision.Reject($"'{root}' is account/session, character-destruction, privilege-control, script, or operating-system control and is not autonomous player gameplay.");
 
+        if (root.Equals("SET", StringComparison.OrdinalIgnoreCase)
+            && argument.StartsWith("SUICIDE", StringComparison.OrdinalIgnoreCase))
+            return BorinAutonomousSafetyDecision.Reject("SET SUICIDE configures a credential for a character-destruction command; Borin may not set, reveal, or submit it autonomously.");
+
         if (ArgumentRequiredRoots.Contains(root) && argument.Length == 0)
             return BorinAutonomousSafetyDecision.Reject($"'{root}' needs a concrete player-game target or argument; Borin may not send an underspecified state-changing command.");
 

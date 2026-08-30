@@ -1,0 +1,79 @@
+{
+  "schema": "majormud.native-talk-page-evidence.v1",
+  "update": "CodeUpdate0347",
+  "source": {
+    "module": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "raw_binary_bundled": false,
+    "retained_help": [
+      "WCCMMUD.DOC",
+      "WCCMMHLP.MSG",
+      "WCCMMUD.NOT"
+    ]
+  },
+  "talk": {
+    "fresh_initializer": {
+      "talk_live_byte_va": "0x004164E5",
+      "talk_live_byte_offset": "0x5F4",
+      "talk_live_byte_value": 1,
+      "meaning": "FAST",
+      "communication_flags_va": "0x00416633",
+      "communication_flags_value": "0x0010",
+      "talk_response_brief_mask": "0x0100",
+      "fresh_response_mode": "VERBOSE"
+    },
+    "persistence": {
+      "save_live_talk_to_record_va": "0x00471FE2-0x00471FE8",
+      "load_record_talk_to_live_va": "0x0047242C-0x0047242F",
+      "record_talk_mode_offset": "0x45",
+      "save_communication_flags_va": "0x00471F75-0x00471F7C",
+      "load_communication_flags_va": "0x004723B6-0x004723BA",
+      "record_communication_flags_offset": "0x3C"
+    },
+    "set_response_owner": {
+      "cmd_set_va": "0x00458B60",
+      "response_bit_test_va": "0x00458E62",
+      "brief_mask": "0x0100",
+      "brief_text": "Responses to talking will be brief now.",
+      "verbose_text": "Responses to talking will be verbose now.",
+      "brief_say_response": "Well Spoken..."
+    },
+    "resolver_contract": {
+      "help_fast": "You do NOT need to precede your line with a character. Just type whatever you wish to say and it will be said to the room.",
+      "help_slow": "You must precede all talking with a character if you want to speak to the room.",
+      "dll_fast_text": "Anything you type which is not recognized will be sent to the room.",
+      "dll_slow_text": "To talk to the room, you must begin your line with a %c",
+      "native_unrecognized_text": "Command not recognized."
+    },
+    "say_response_owner": {
+      "response_bit_test_va": "0x00450CCC",
+      "brief_branch_va": "0x00450CD5",
+      "verbose_branch_va": "0x00450CE2",
+      "brief_text": "Well Spoken...",
+      "verbose_format": "You %s \"%s\""
+    }
+  },
+  "page": {
+    "fresh_default_enabled": true,
+    "persistence": "live-session only; no character-record PAGE byte in the recovered save/load profile block",
+    "standalone_help": "Typing page will toggle on/off the ability for other users on the system to page you while you are in the game.",
+    "set_on_text": "Paging is now set to Ok.",
+    "set_off_text": "Paging is now set to Off.",
+    "valid_options_text": "Valid page options: ON/OK, OFF",
+    "maxpages": {
+      "window_seconds": 3,
+      "help": "Limits the number of pages or telegrams you want to receive in each 3 second period"
+    },
+    "still_open": [
+      "exact Worldgroup host PAGE/telegram send/handoff protocol",
+      "exact external host page rendering",
+      "exact per-message priority/logging membership"
+    ]
+  },
+  "megamud": {
+    "compatibility_rule": "MegaMUD-visible command parsing must preserve TALK FAST fallback, TALK SLOW command rejection, explicit SAY/dot speech, and native PAGE setting text without a Reforged-only prompt."
+  },
+  "borin": {
+    "compatibility_rule": "Borin uses explicit SAY for generated room dialogue and therefore must not depend on TALK FAST. Native brief response text and command-not-recognized text are accepted as ordinary server responses rather than private protocol data."
+  }
+}

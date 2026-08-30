@@ -64,6 +64,7 @@ public sealed class RuntimeSession
     /// </summary>
     public bool ClassicPageEnabled { get; private set; } = RuntimeClassicCommunicationPersistenceLimitsAuthority.DefaultPageEnabled;
     public bool ToggleClassicPageEnabled() => ClassicPageEnabled = !ClassicPageEnabled;
+    public bool SetClassicPageEnabled(bool enabled) => ClassicPageEnabled = enabled;
 
     // WCCMMUD live-user byte +0x6BB. ADDDELAY performs an 8-bit ADD and the one-second
     // fast-character owner decrements it once per native fast callback. This state belongs to

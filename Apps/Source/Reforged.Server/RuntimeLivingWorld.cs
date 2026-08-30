@@ -1293,6 +1293,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             return false;
         }
 
+        if (!CanTraverseClassicExitTrap(session, direction, out failure)) return false;
+
         var context = BuildExitGateContext(session, null);
 
         var decision = Living(session).EvaluateExitGate(session.CurrentRoom, direction, context);
@@ -1539,7 +1541,6 @@ public sealed partial class RuntimeLiveGameplayFacade
             if(File.Exists(nativePayloadPath))
             {
                 var payloads=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
-                if(payloads.TryResolveTextblock(failureTextblockId,out var directPayload))return directPayload;
                 var graph=RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot);
                 var failureNode=graph.Require(failureTextblockId);
                 var failure=RuntimeClassicDecodedFailureBranch.Execute(
@@ -1549,6 +1550,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if(failure.Character != character)
                     _characters.SaveCharacter(failure.Character,$"decoded-skill-test-failure:{definition.Id}:textblock.{failureTextblockId}");
                 if(failure.Output.Count>0)return string.Join(Environment.NewLine,failure.Output);
+                if(payloads.TryResolveTextblock(failureTextblockId,out var directPayload))return directPayload;
                 throw new InvalidOperationException($"Decoded skill-test failure textblock {failureTextblockId} has no renderable presentation operation.");
             }
             return "You strain against the rubble, but it does not move.";
@@ -1640,11 +1642,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 return true;
             }
 
-            // Native help proves that a traps expert may attempt to disarm a trap only after
-            // the trap has been found with SEARCH. The exact native find/disarm probability and
-            // per-exit Para2 transition are still unresolved, so do not reuse the generic hidden-
-            // object search roll or invent a successful state mutation here.
-            result="DISARM TRAP is recognized and the Traps skill requirement is met, but native SEARCH discovery, the disarm roll, and the trap state transition remain evidence-gated.";
+            result=ExecuteClassicTrapDisarm(session,direction);
             return true;
         }
 

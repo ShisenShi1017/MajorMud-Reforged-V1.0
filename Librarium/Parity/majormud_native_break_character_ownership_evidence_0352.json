@@ -1,0 +1,43 @@
+{
+  "schema": "majormud.break-character-ownership-evidence.v1",
+  "update": "0352",
+  "policy": "Only player/client-visible stock MajorMUD behavior receives Classic parity credit. Raw imported binaries remain local-only.",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "size": 643072,
+      "bundled": false
+    },
+    "MegaMUD Pass28 STRING_INVENTORY.csv": {
+      "sha256": "5dbeb8eaa51d0f14c1442c53db6b1e097434304f69f29947b2e97b63522eafc6",
+      "bundled": false
+    }
+  },
+  "native_break": {
+    "break_dispatch": "The native BREAK branch tests _is_inside_autocombat, optionally calls _display_autocombat_broken(user,1), then calls _kill_autocombat(user,1). It does not call _kill_autocombat_against.",
+    "kill_autocombat": {
+      "va": "0x0044C8C2",
+      "rva": "0x0004C8C2",
+      "ownership": "Per-user. The routine scans 0x226 autocombat owner slots and clears only entries equal to the requested user id by writing -1.",
+      "character_only": true
+    },
+    "kill_autocombat_against": {
+      "va": "0x0044C914",
+      "rva": "0x0004C914",
+      "ownership": "Separate routine. It iterates users, tests whether each user is autocombatting against the supplied target, then calls _kill_autocombat on those matching users.",
+      "called_by_break": false
+    },
+    "player_text": "*Combat Off*",
+    "observer_text": "%s breaks off combat.",
+    "observer_priority": "High"
+  },
+  "reforged_0352": {
+    "pve": "BREAK disables only PlayerAutocombatActive. The live NPC encounter and threat ownership remain, allowing the NPC to continue attacking. ATTACK on the same engaged NPC re-enables only the character's autocombat.",
+    "pvp": "Each PvP participant now has an independent autocombat-active flag and attack type. BREAK clears only the issuing participant; the opponent remains active and can continue attacking. If both participants independently break, the empty encounter can close.",
+    "client_borin": "The shared Classic parser tracks local autocombat separately from incoming combat danger. *Combat Off* turns local autocombat off; a later incoming hit or miss restores InCombat without turning autocombat back on. Client automatic offense stays suppressed until autocombat is explicitly re-engaged.",
+    "megamud": "MegaMUD continues to use stock BREAK and stock terminal markers. No private compatibility protocol is introduced."
+  },
+  "promotion": {
+    "commands.break-autocombat": "PASS"
+  }
+}

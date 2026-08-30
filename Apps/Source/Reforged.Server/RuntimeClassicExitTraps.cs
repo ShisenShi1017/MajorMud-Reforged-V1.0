@@ -164,6 +164,71 @@ public sealed partial class RuntimeLiveGameplayFacade
             return _classicExitTraps ??= RuntimeClassicExitTrapCatalog.Load(_characters.ProjectRoot);
     }
 
+    public bool TryGetClassicExitTrap(RuntimeSession session, string direction, out RuntimeClassicExitTrapDefinition trap, out int state)
+    {
+        trap = null!;
+        state = -1;
+        var exit = session.World.FindExit(session.CurrentRoom, direction);
+        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out trap)) return false;
+        if (!trap.NativeActivationStateProjected || trap.NativeActivationState is null)
+            throw new InvalidOperationException($"Decoded exit trap has no native activation-state projection: {trap.ExitId}");
+        state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
+        return true;
+    }
+
+    public bool CanTraverseClassicExitTrap(RuntimeSession session, string direction, out string failure)
+    {
+        failure = string.Empty;
+        if (!TryGetClassicExitTrap(session, direction, out _, out var state)) return true;
+        if (state != 2) return true;
+        // Native _move_user treats hidden trap-state 2 as no visible exit during ordinary movement.
+        failure = "There is no exit in that direction!";
+        return false;
+    }
+
+    public bool RevealClassicExitTrap(RuntimeSession session, string exitId)
+    {
+        var exit = session.CurrentRoom.Exits.FirstOrDefault(candidate => candidate.Id.Equals(exitId, StringComparison.OrdinalIgnoreCase));
+        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap) || trap.NativeActivationState is null) return false;
+        var state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
+        if (state != 2) return false;
+        Living(session).WriteClassicTrapState(trap.ExitId, 0);
+        return true;
+    }
+
+    public string ExecuteClassicTrapDisarm(RuntimeSession session, string direction)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "Only characters can disarm traps.";
+        var exit = session.World.FindExit(session.CurrentRoom, direction);
+        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap))
+            return $"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";
+        if (trap.NativeActivationState is null)
+            throw new InvalidOperationException($"Decoded exit trap has no native activation-state projection: {trap.ExitId}");
+
+        var state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
+        if (state is not (0 or 3))
+            return $"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";
+
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found for trap disarm.");
+        var skill = ResolveClassicDisarmTrapsSkill(character);
+        var roll = Random.Shared.Next(0, 100);
+        if (roll < skill)
+        {
+            Living(session).WriteClassicTrapState(trap.ExitId, state == 0 ? 1 : 4);
+            return $"You successfully disarmed the trap to the {ClassicDirectionWord(direction)}.";
+        }
+
+        var failure = $"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";
+        // Native exit type 9 has a ten-point non-triggering failure band. Exit type 24
+        // enters its effect path on every failed disarm roll. Generated damage/spell traps
+        // are the retained type-9/type-24 projections respectively.
+        var triggers = trap.TrapKind.Equals("spell_trap", StringComparison.OrdinalIgnoreCase) || roll - 10 >= skill;
+        if (!triggers) return failure;
+
+        var effect = ApplyClassicExitTrapEffect(session, actor, trap);
+        return string.IsNullOrWhiteSpace(effect) ? failure : failure + Environment.NewLine + effect;
+    }
+
     public string ApplyExitTrap(RuntimeSession session, RuntimeRoom sourceRoom, string direction)
     {
         var exit = session.World.FindExit(sourceRoom, direction);
@@ -171,22 +236,48 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!trap.FromRoomId.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase) ||
             !trap.ToRoomId.Equals(exit.TargetRoomId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException($"Decoded exit trap endpoint mismatch: {trap.ExitId}");
-        if (session.Actor is not RuntimeCharacterActor) return string.Empty;
+        if (session.Actor is not RuntimeCharacterActor actor) return string.Empty;
+        if (!trap.NativeActivationStateProjected || trap.NativeActivationState is null)
+            throw new InvalidOperationException($"Decoded exit trap has no native activation-state projection: {trap.ExitId}");
 
-        // Strict Classic fail-closed rule: CodeUpdate 0333 now projects every stock WCCMP002
-        // RoomRec Para2 trap state exactly. Missing state is therefore a data-integrity failure, not
-        // permission to guess. Exact per-state trigger/transition/reset behavior is still not proven.
-        if (!trap.NativeActivationStateProjected) return string.Empty;
+        var state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
+        // Native _move_user jump tables: states 0 and 3 enter the trap effect,
+        // states 1 and 4 pass normally, and state 2 is rejected by admission above.
+        if (state is 1 or 4) return string.Empty;
+        if (state == 2) return "There is no exit in that direction!";
+        if (state is not (0 or 3))
+            throw new InvalidOperationException($"Unsupported native trap state {state} for {trap.ExitId}.");
 
-        // The five native state values and all 295 stock per-exit values are recovered, but exact
-        // traversal/transition behavior is not yet executable-proven. Projected traps remain fail-closed.
-        return string.Empty;
-
-        /* Activation-state closure will re-enable one of these exact effect consumers:
-        return trap.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase)
-            ? ApplyDecodedDamageExitTrap(session, actor, trap)
-            : ApplyDecodedSpellExitTrap(session, actor, trap); */
+        return ApplyClassicExitTrapEffect(session, actor, trap);
     }
+
+    public bool ClassicTrapStoppedMovement(RuntimeSession session, RuntimeRoom sourceRoom)
+    {
+        if (!session.CurrentRoom.Id.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase)) return true;
+        if (session.Actor is not RuntimeCharacterActor actor) return false;
+        var character = _characters.LoadCharacter(actor.Id);
+        return character is null || character.HitPoints <= 0 || RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead);
+    }
+
+    private string ApplyClassicExitTrapEffect(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap) =>
+        trap.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase)
+            ? ApplyDecodedDamageExitTrap(session, actor, trap)
+            : ApplyDecodedSpellExitTrap(session, actor, trap);
+
+    private static int ResolveClassicDisarmTrapsSkill(RuntimeCharacterRecord character)
+    {
+        foreach (var key in new[] { "traps", "disarmtraps", "disarm_traps", "41" })
+            if (character.Skills.TryGetValue(key, out var value)) return Math.Clamp(value, 0, 100);
+        return 0;
+    }
+
+    private static string ClassicDirectionWord(string direction) =>
+        (direction ?? string.Empty).Trim().ToLowerInvariant() switch
+        {
+            "n" => "north", "s" => "south", "e" => "east", "w" => "west",
+            "ne" => "northeast", "nw" => "northwest", "se" => "southeast", "sw" => "southwest",
+            "u" => "up", "d" => "down", var value => value
+        };
 
     private string ApplyDecodedDamageExitTrap(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap)
     {

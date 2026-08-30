@@ -1,6 +1,6 @@
 ## Current Classic parity continuation
 
-The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, and organization evidence is integrated into executable runtime ownership. Current parity is **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
+The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration evidence is integrated into executable runtime ownership. Current parity is **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
 
 # MajorMUD Reforged
 
@@ -8,7 +8,7 @@ The reviewed native exit, formula, NPC combat, scheduler/regeneration, character
 
 The cumulative Classic parity ledger closes the repository-visible native ownership inventory at STRONG confidence. All 36 Remaining Systems owners, 40 native dependency groups, 396 retained native artifacts, supplied WCC families, and 156/156 MajorMUD-used Worldgroup symbols are explicitly owned and fail-closed where exact semantics remain unresolved.
 
-Current parity: **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict**, **100.0% evidence-backed**). The remaining 74 evidence-bounded STRONG assertions are not represented as exact-native PASS.
+Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict**, **100.0% evidence-backed**). The remaining 56 evidence-bounded STRONG assertions are not represented as exact-native PASS.
 
 Creator Studio full-control editing is integrated into the Reforged app with Quick Create, nested field editing, expanded runtime Librarium families, Custom1 cloning, and protected Classic identity/runtime metadata.
 

@@ -1,0 +1,112 @@
+{
+  "schema": "majormud.native-communication-rendering-evidence.v1",
+  "code_update": "0345",
+  "dll": {
+    "name": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "packaged": false
+  },
+  "megamud_decode": {
+    "name": "MegaMUD-Decode-Passes1-34-Cumulative.zip",
+    "sha256": "a7f3d611b5bbe430435a949b8ec3f3c153c298ade48d32cd8de1accc720e58f1",
+    "packaged": false,
+    "runtime_log_sha256": "7172cdfb78cbccf1866f011e7ee9ea55bb2836262f76975cffa8aaa1a5835fc1",
+    "observed_line_counts": {
+      "telepath": 23,
+      "directed_to_you": 41,
+      "gossip": 308
+    }
+  },
+  "scope": [
+    "SAY and YELL parser-visible output and current/adjacent-room range",
+    "slash telepath (_cmd_whisper) success/failure branch text",
+    "greater-than directed-message (_cmd_direct_message) same-room semantics",
+    "GOSSIP/AUCTION exact channel rendering and bare-command receipt toggles",
+    "legacy GOS/AUC command aliases required by automation clients",
+    "MegaMUD and Borin consumption/emission of the recovered terminal forms"
+  ],
+  "native_findings": [
+    {
+      "id": "say-yell-owner",
+      "owner": "talk/yell owner @ 0x00450A3F..0x00450D0E",
+      "finding": "SAY formats `%s says \\\"%s\\\"`; the sender receives `You say \\\"%s\\\"`. YELL reaches the current room plus each adjacent room. The current room receives `From %s (Yelling): \\\"%s\\\"`; adjacent rooms receive anonymous `Someone yells from above/below/the <direction> \\\"%s\\\"` text from the receiver-facing opposite direction. The sender receives `You yell \\\"%s\\\"`. The message pointer is passed directly to the formatter; ANSI/color fragments are emitted separately."
+    },
+    {
+      "id": "telepath-owner",
+      "owner": "_cmd_whisper @ 0x004571F2",
+      "finding": "`/Username <TEXT>` is one-recipient telepath. Exact visible branches include missing target/message, sender blocking, self-target, cannot-find, success `Name telepaths: message`, sender confirmation `--- Telepath Sent to Name ---`, and generic `--- Telepath Not Sent ---` for recipient blocking/ignore/rate-limit failure. A sender with TELEPATH receipt blocked cannot send telepaths."
+    },
+    {
+      "id": "direct-message-owner",
+      "owner": "_cmd_direct_message @ 0x0045748D",
+      "finding": "`>Username <TEXT>` first resolves the connected user, then enforces same-room delivery. The target receives `Name says (to you) \"text\"`; other room observers receive `Name says (to Target) \"text\"`; the sender receives `--- Message Directed to Target ---`. Failed/ambiguous user resolution returns `Cannot find user!`; a resolved target outside the room or with the native hidden byte (+0x5F6) set returns `--- Message Not Sent ---`. Native branches also prove missing target/message, speech-blocked, and self-target strings."
+    },
+    {
+      "id": "gossip-owner",
+      "owner": "_cmd_gossip @ 0x00469431",
+      "finding": "GOSSIP delivers `%s gossips: ` plus the raw message to world recipients whose gossip receipt flag is enabled. Bare GOSSIP toggles receipt with exact `You will now/no longer receive gossip messages.` text. Attempting to send while disabled emits the exact denial plus `Type 'gossip' to turn gossip on again.`"
+    },
+    {
+      "id": "auction-owner",
+      "owner": "_cmd_auction @ 0x004695BF",
+      "finding": "AUCTION mirrors the world-channel shape as `%s auctions: `, with its own receipt flag, exact bare toggle text, and exact send-while-disabled denial/hint."
+    },
+    {
+      "id": "moderation-boundary",
+      "owner": "native profanity branch + retained file configuration",
+      "finding": "The communication owners contain the exact profanity rejection text, but the supplied retained configuration has profanity checking disabled. Reforged therefore does not invent an active filter for this configuration."
+    },
+    {
+      "id": "tell-negative-identity",
+      "owner": "WCCMMUD export table + WCCMMHLP.MSG communication corpus",
+      "finding": "The native module exports `_cmd_whisper` and `_cmd_direct_message`; it has no `_cmd_tell` export. Native help documents `/Username <TEXT>`, SAY, GOSSIP, AUCTION and FORGET, with no TELL command identity. Reforged's TELL remains explicitly a compatibility extension and receives no Classic parity credit."
+    }
+  ],
+  "megamud_runtime_corroboration": [
+    "Imported MegaMUD.LOG contains 23 `Name telepaths: ...` lines, including `Shisenshi telepaths: @join`.",
+    "Imported MegaMUD.LOG contains 41 `Name says (to you) \\\"...\\\"` lines, including `{ok}` remote-control responses.",
+    "Imported MegaMUD.LOG contains 308 `Name gossips: ...` lines.",
+    "These are independent client-observed corroboration of the DLL's parser-visible forms, not replacements for the native DLL evidence."
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicCommunicationRenderingAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeMegaMudConnectionSmokeReport.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicCommunicationRenderingSmokeReport.cs",
+    "Apps/Source/Reforged.App/Services/ClientSessionService.cs",
+    "Apps/Source/Reforged.App/Brains/BorinPlayerResearch.cs",
+    "Apps/Source/Reforged.App/Brains/BorinCharacterTestHarness.cs"
+  ],
+  "runtime_corrections": [
+    "SAY/YELL no longer use Reforged-only generic adjacent-room rendering; native current-room and directional adjacent-room YELL lines are emitted.",
+    "Slash telepaths now enforce the sender's own TELEPATH block state and return native success/not-sent/malformed/self/not-found text.",
+    "The native `>` directed-message shortcut is live: connected-user resolution is realm-scoped, failed resolution returns `Cannot find user!`, resolved out-of-room/hidden targets return `--- Message Not Sent ---`, and successful same-room delivery emits target/observer/sender forms separately.",
+    "GOSSIP/AUCTION now emit native `Name gossips:` / `Name auctions:` lines, exact bare toggles, and exact send-while-disabled branches.",
+    "GOS/AUC aliases route to GOSSIP/AUCTION for legacy automation compatibility without changing native rendered output.",
+    "Borin emits slash telepaths and full GOSSIP/AUCTION commands, preserves punctuation payload case, and parses native telepath/direct/gossip/auction lines. Legacy autonomous TELEPATH/GOS output is translated at the client boundary."
+  ],
+  "parity": {
+    "before": {
+      "PASS": 126,
+      "STRONG": 74,
+      "UNKNOWN": 0
+    },
+    "after": {
+      "PASS": 127,
+      "STRONG": 73,
+      "UNKNOWN": 0
+    },
+    "promotions": [
+      "native.communications.classic-range-rendering"
+    ],
+    "reason": "The retained original DLL now closes parser-visible channel/range semantics and exact communication branch text, while imported MegaMUD runtime evidence independently corroborates the private/direct/gossip forms. Page/telegram host persistence remains a separate STRONG assertion."
+  },
+  "remaining_boundaries": [
+    "Worldgroup PAGE/telegram host handoff and page presentation remain under native.communications.persistence-logging.",
+    "Exact per-message priority membership/logging remains under native.communications.persistence-logging.",
+    "TALK FAST/SLOW resolver behavior remains intentionally separate because the project-wide unknown-command-to-SAY policy is operator mandated.",
+    "Live actual MegaMUD binary certification on Windows/.NET remains required before declaring 100% MegaMUD compatibility."
+  ]
+}

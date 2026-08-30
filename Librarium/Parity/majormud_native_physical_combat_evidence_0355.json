@@ -1,0 +1,60 @@
+{
+  "schema": "majormud.native-physical-combat-closure.v1",
+  "update": "CodeUpdate0355",
+  "target": "stock MajorMUD / Classic",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "artifact": "ImportedDatabasesAndEvidence.LocalOnly(2).rar -> original WCCMMUD.DLL",
+      "bundled": false,
+      "bytes": 643072,
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "image_base": "0x00400000",
+      "calculate_attack_rva": "0x0002B800",
+      "move_player_to_fighter_rva": "0x0002A19D",
+      "attack_user_user_rva": "0x0002BD26",
+      "attack_user_monster_rva": "0x0002CFAB"
+    },
+    "MegaMUD": "MegaMUD-Decode-Pass28-megamud-EXE-Native-Closure/STRING_INVENTORY.csv (local-only imported evidence)",
+    "retained_combat_evidence": "Librarium/Parity/majormud_combat_evidence_0278.json"
+  },
+  "native_contract": {
+    "backstab_endpoints": {
+      "owner": "_move_player_to_fighter 0x0042B064-0x0042B119",
+      "formula": "endpoint = floor((Level+100) * raceAdjusted(2*normalEndpoint + 2*Level + floor(Stealth/10) + ability117or118) / 100)",
+      "minimum_bonus_ability_id": 117,
+      "maximum_bonus_ability_id": 118,
+      "race_only_stealth": "When the native race-stealth bit is present without the class-stealth bit, each endpoint is first floor(endpoint*75/100)."
+    },
+    "physical_resolution_order": {
+      "owner": "_calculate_attack 0x0042B800-0x0042BB23",
+      "order": [
+        "attack-type pre-DR accuracy/damage modifiers",
+        "hit roll",
+        "critical roll/range expansion when allowed",
+        "inclusive damage range roll",
+        "damage resistance subtraction",
+        "Bash x3 / Smash x5 post-DR multiplier",
+        "Dodge chance/roll (Backstab Dodge divided by 5)",
+        "non-positive clamp to glance or positive hit/critical"
+      ],
+      "attack_type_modifiers": {
+        "Kick": "+33% pre-DR damage",
+        "JumpKick": "+66% pre-DR damage",
+        "Backstab": "critical disabled",
+        "Bash": "-15 accuracy, +10% pre-DR, critical disabled, x3 after DR",
+        "Smash": "-25 accuracy, +20% pre-DR, critical disabled, x5 after DR",
+        "Special125": "-75 accuracy, +125% pre-DR, critical disabled"
+      },
+      "dodge_cap_percent": 95,
+      "backstab_dodge_divisor": 5
+    }
+  },
+  "scope_note": "This closes Backstab endpoint damage and general physical damage/DR/Dodge ordering. Raw player Dodge construction, complete class/base accuracy construction, and non-default Speed source/integration remain separately STRONG.",
+  "megamud_compatibility": "MegaMUD contains ordinary Backstab/critical/dodge recognition strings and consumes the stock server combat stream; no private combat formula channel is required.",
+  "borin_compatibility": "Borin consumes authoritative server combat outcomes. It must not reproduce or override Classic physical combat formulas client-side.",
+  "promotion": {
+    "combat.backstab-damage-formula": "PASS",
+    "combat.physical-damage-dr-order": "PASS"
+  },
+  "verification": "Reports/RuntimeVerification/codeupdate0355_direct_native_combat_verification.json"
+}

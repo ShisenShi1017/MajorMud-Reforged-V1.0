@@ -43,7 +43,11 @@ public static class RuntimeBundleDTrapAudit
         var runtimeText = File.ReadAllText(runtimePath);
         Check(runtimeText.Contains("CompletePlayerDefeat(session, character)", StringComparison.Ordinal), "lethal-damage-uses-authoritative-death-consumer");
         Check(runtimeText.Contains("RuntimeSpellExecutionEngine", StringComparison.Ordinal), "spell-traps-retain-authoritative-spell-engine-consumer");
-        Check(runtimeText.Contains("if (!trap.NativeActivationStateProjected) return string.Empty;", StringComparison.Ordinal), "unknown-native-trap-activation-fails-closed");
+        Check(runtimeText.Contains("if (state is 1 or 4) return string.Empty;", StringComparison.Ordinal)
+            && runtimeText.Contains("if (state == 2) return \"There is no exit in that direction!\";", StringComparison.Ordinal),
+            "native-trap-state-jump-table-executable");
+        Check(runtimeText.Contains("roll - 10 >= skill", StringComparison.Ordinal), "type9-safe-failure-band-executable");
+        Check(runtimeText.Contains("state == 0 ? 1 : 4", StringComparison.Ordinal), "native-disarm-success-transitions-executable");
         Check(!runtimeText.Contains("DetectionDifficulty", StringComparison.Ordinal) && !runtimeText.Contains("DisarmDifficulty", StringComparison.Ordinal), "no-unsupported-detection-or-disarm-values-invented");
         Check(Directory.GetFiles(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server"), "RuntimeClassicExitTraps.cs", SearchOption.TopDirectoryOnly).Length == 1, "single-live-exit-trap-consumer");
 

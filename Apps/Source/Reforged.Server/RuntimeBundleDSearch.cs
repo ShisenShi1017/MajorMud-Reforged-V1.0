@@ -91,6 +91,17 @@ public sealed partial class RuntimeLiveGameplayFacade
                 100, false, false, new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase) { ["gate_kind"] = exit.GateKind, ["qualifier"] = exit.Qualifier });
         }
 
+        // Native trap state 2 is a hidden exit trap. SEARCH is the discovery owner; the exact
+        // native SEARCH probability remains separately evidence-gated, so it uses the existing
+        // Bundle-D search roll until that arithmetic is recovered. A successful find exposes the
+        // trap globally by moving its native state from hidden (2) to active (0).
+        foreach (var exit in session.CurrentRoom.Exits)
+        {
+            if (!TryGetClassicExitTrap(session, exit.Direction, out var trap, out var trapState) || trapState != 2) continue;
+            targets[trap.ExitId] = new(trap.ExitId, session.CurrentRoom.Id, "exit_trap", 100, false, false,
+                new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase) { ["native_trap_state"] = "2", ["direction"] = trap.Direction });
+        }
+
         foreach (var npc in LivingNpcsInRoom(session).Where(npc =>
             npc.Metadata.TryGetValue("hidden", out var hidden) && bool.TryParse(hidden, out var isHidden) && isHidden))
         {
@@ -110,6 +121,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             Math.Max(0, perception), Read(character.Skills, "search"), Read(character.BaseStats, "agl", "agi", "agility"),
             Read(character.BaseStats, "int", "intellect"), Read(character.BaseStats, "cha", "charm"), capability.Modifiers),
             targets.Values, Random.Shared);
+
+        foreach (var found in result.NewlyDiscoveredTargetIds)
+            RevealClassicExitTrap(session, found);
 
         RuntimeBundleDSearchRuntime.Save(_characters.ProjectRoot, session.World.Definition.Id,
             _sessions.ActiveSessions.Where(x => x.Actor is RuntimeCharacterActor).Select(x => x.Actor.Id).Append(actor.Id));

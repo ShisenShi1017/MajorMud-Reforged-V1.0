@@ -6,10 +6,12 @@ Current baseline:
 - Database Version: `0010`
 - Milestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio
 - Status: local repository update; GitHub Actions pending push.
-- Parity: 126 PASS / 74 STRONG / 0 UNKNOWN (63.0% strict / 100.0% evidence-backed).
-- Runtime: native exit, formula, NPC combat, scheduler/regeneration, character death, death-floor, session lifecycle, party coordination, gang communications/invitations, daily gang-house cleanup, and organization services are locally verified.
+- Parity: 144 PASS / 56 STRONG / 0 UNKNOWN (72.0% strict / 100.0% evidence-backed).
+- Runtime: native exit, formula, NPC combat, scheduler/regeneration, character death, death-floor, session lifecycle, party coordination, gang communications/invitations, daily gang-house cleanup, organization services, communication rendering, character-only BREAK, GIVE, and PvP LVLDIFF are locally verified.
+- Evidence: parity passes 0345-0358 are folded into the cumulative ledger; the generic native verification report retains 2,495 supplied checks with zero failures.
 - Compatibility: MegaMUD/Borin CP437 Telnet, client-data negotiation, route compatibility, REROLL/SET KEEP, and SET WARNING are locally verified.
 - Limitation: two pre-existing corpse-resurrection equipment item-smoke assertions remain open.
+- Current-health validator: 44/45 executed stages pass; execution stops truthfully at those two `server_items` assertions.
 
 Current authority and validation:
 

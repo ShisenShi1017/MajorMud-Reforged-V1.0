@@ -84,10 +84,10 @@ internal static class RuntimeCommandRuntimeRouteCatalog
             "sysop");
         Add(routes, RuntimeCommandRouteKind.RecoveryRuntime, "RuntimeLiveGameplayFacade.ExecutePolicyCommand", "RuntimeLiveGameplayFacade character recovery runtime",
             "respawn", "recover");
-        Add(routes, RuntimeCommandRouteKind.SessionLifecycle, "ServerNetworkHost", "Interactive character replacement lifecycle",
-            "reroll");
+        Add(routes, RuntimeCommandRouteKind.SessionLifecycle, "ServerNetworkHost", "Interactive character replacement/death lifecycle",
+            "reroll", "suicide");
         Add(routes, RuntimeCommandRouteKind.NativeEvidenceGate, "RuntimeCommandDispatcher", "Evidence-gated native command identity; execute decoded contextual action when available",
-            "drag", "go", "map", "track", "aid", "light", "stash", "mana", "read", "suicide",
+            "drag", "go", "map", "track", "aid", "light", "stash", "mana", "read",
             "appraise", "eat", "drink", "rob", "page", "quiet", "stock", "unstock", "markup");
         Add(routes, RuntimeCommandRouteKind.RuntimeDiagnostics, "RuntimeCommandDispatcher", "Runtime host/live-world diagnostic renderers",
             "worldstate", "audit", "where", "world", "worlds", "sessions", "state", "events");

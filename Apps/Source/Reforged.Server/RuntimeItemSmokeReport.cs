@@ -206,6 +206,21 @@ public static class RuntimeItemSmokeReport
                 RuntimeCommand.Parse("rest").Name != "rest" || RuntimeCommand.Parse("meditate").Name != "meditate")
                 throw new InvalidOperationException("Decoded REST/MEDITATE activation, cadence, formulas, or command routes are incomplete.");
 
+            var poisonedConditions = new Dictionary<string, string>(regenerationCharacter.Conditions, StringComparer.OrdinalIgnoreCase)
+            {
+                [RuntimeClassicStatusProjection.Prefix + "poisoned"] = "1"
+            };
+            if (!RuntimeClassicRegenerationCommandAuthority.IsTooSick(regenerationCharacter with { Conditions = poisonedConditions }) ||
+                RuntimeClassicRegenerationCommandAuthority.IsTooSick(regenerationCharacter) ||
+                RuntimeClassicRegenerationCommandAuthority.MeditationWillNotHelp(regenerationCharacter) ||
+                !RuntimeClassicRegenerationCommandAuthority.MeditationWillNotHelp(regenerationCharacter with { Mana = 100 }) ||
+                RuntimeClassicRegenerationCommandAuthority.RestTooSickMessage != "You are too sick to rest!" ||
+                RuntimeClassicRegenerationCommandAuthority.MeditateTooSickMessage != "You are too sick to meditate!" ||
+                RuntimeClassicRegenerationCommandAuthority.MeditationNotHelpfulMessage != "Meditation will not help at this time." ||
+                RuntimeClassicRegenerationCommandAuthority.ObserverMessage("Tester", "rest") != "Tester stops to rest." ||
+                RuntimeClassicRegenerationCommandAuthority.ObserverMessage("Tester", "meditate") != "Tester kneels to meditate.")
+                throw new InvalidOperationException("Native REST/MEDITATE sickness, full-mana, or observer presentation is incomplete.");
+
             var kai = caster with { Magic = new RuntimeMagicDefinition(5, 0) };
             var kaiPassive = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(regenerationCharacter, kai, DateTimeOffset.UnixEpoch);
             var kaiMeditate = RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(regenerationCharacter, kai, DateTimeOffset.UnixEpoch);

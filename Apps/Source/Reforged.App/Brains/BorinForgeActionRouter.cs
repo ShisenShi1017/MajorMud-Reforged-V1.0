@@ -128,7 +128,7 @@ public static class BorinForgeActionRouter
         var normalized = StripPolitePrefix(original);
         if (GossipIntroduction.IsMatch(normalized))
             return new BorinForgeActionPlan(true,
-                ["GOS Hail, I'm Borin Ironbeard, a dwarven adventurer exploring MajorMUD and learning the realm. Well met!"],
+                ["GOSSIP Hail, I'm Borin Ironbeard, a dwarven adventurer exploring MajorMUD and learning the realm. Well met!"],
                 original[..Math.Min(original.Length, 500)],
                 "Borin composed and sent his own Omniverse introduction on the requested global channel.");
         if (RequiresBorinComposition.IsMatch(normalized))

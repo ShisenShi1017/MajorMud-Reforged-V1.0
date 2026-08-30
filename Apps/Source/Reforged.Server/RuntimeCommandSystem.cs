@@ -65,6 +65,18 @@ public sealed class RuntimeCommandDispatcher
     public void HandleCharacterRerollCleanup(RuntimeSession session, string oldCharacterId) =>
         _gameplay?.HandleCharacterRerollCleanup(session, oldCharacterId);
 
+    public bool ClassicSuicideRequiresPassword(RuntimeSession session) =>
+        _gameplay?.ClassicSuicideRequiresPassword(session) ?? false;
+
+    public bool ValidateClassicSuicidePassword(RuntimeSession session, string password) =>
+        _gameplay?.ValidateClassicSuicidePassword(session, password) ?? false;
+
+    public bool ClassicSuicideIsFinalLife(RuntimeSession session) =>
+        _gameplay?.ClassicSuicideIsFinalLife(session) ?? false;
+
+    public string ExecuteClassicSuicide(RuntimeSession session) =>
+        _gameplay?.ExecuteClassicSuicide(session) ?? "Live gameplay facade is not attached.";
+
     public bool RequestsSessionExit(RuntimeSession session, string input)
     {
         // Worldgroup modal states consume the next line as modal input; "QUIT" at state 0x88
@@ -101,9 +113,10 @@ public sealed class RuntimeCommandDispatcher
             return _gameplay?.RenderBlankCommand(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
         }
 
-        // MajorMUD/Reforged prompt rule (global across Classic, Custom, and AI):
-        // explicit speech shortcuts are actions; otherwise only a successfully resolved
-        // command/action executes. Everything else is SAY text using the original input.
+        // Classic MajorMUD first admits explicit speech shortcuts and resolved commands/actions.
+        // Unrecognized text falls through to SAY only while TALK FAST is active; TALK SLOW returns
+        // the native command-not-recognized response unless the line used the configured speech prefix.
+        // Custom/AI retain Reforged's permissive command-to-SAY fallback.
         var registeredCommand = string.IsNullOrWhiteSpace(command.ResolutionError)
             && session.World.CommandCatalog.IsRegistered(command.Name);
         if (!registeredCommand
@@ -123,8 +136,15 @@ public sealed class RuntimeCommandDispatcher
                 return actionResult;
             }
 
-            _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
-            return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
+            var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+            if (!classicWorld || (_gameplay?.IsMajorMudTalkFast(session) ?? true))
+            {
+                _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
+                return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
+            }
+
+            _events?.Publish("communication", "command-not-recognized-slow-talk", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
+            return RuntimeClassicCommunicationRenderingAuthority.CommandNotRecognized;
         }
 
         _gameplay?.NotifyCharacterAction(session, command.Name, command.IsMovement);
@@ -138,12 +158,23 @@ public sealed class RuntimeCommandDispatcher
                 if (_gameplay is not null && !_gameplay.CanMove(session, out var movementGuardFailure)) return movementGuardFailure;
                 if (_gameplay is not null && !_gameplay.CanTraverseLivingWorld(session, command.Name, out var livingFailure)) return livingFailure;
                 if (_gameplay is not null && !_gameplay.CanEnterGangHouse(session, command.Name, out var gangHouseFailure)) return gangHouseFailure;
+
+                // Native _move_user executes active type-9/type-24 trap effects before the
+                // successful room transition. A lethal trap therefore leaves the requested move
+                // uncommitted (ordinary death may relocate the victim through the death engine).
+                var trapResult = _gameplay?.ApplyExitTrap(session, previousRoom, command.Name) ?? string.Empty;
+                if (_gameplay is not null && _gameplay.ClassicTrapStoppedMovement(session, previousRoom))
+                {
+                    _state?.UpdateSessionLocation(session);
+                    _events?.Publish("movement", "trap-stopped", session.World.Definition.Id, session.Id, session.Actor.Id, $"{previousRoom.Id}:{command.Name}");
+                    return trapResult;
+                }
+
                 var moved = session.TryMove(command.Name, out var movementResult);
                 if (moved)
                 {
                     _gameplay?.BroadcastDeparture(session, previousRoom.Id, command.Name);
                     _gameplay?.CaptureClassicPracticeArenaEntry(session, previousRoom);
-                    var trapResult = _gameplay?.ApplyExitTrap(session, previousRoom, command.Name) ?? string.Empty;
                     _gameplay?.BroadcastArrival(session, command.Name);
                     _gameplay?.AdmitClassicRoomEntryNpcRespawns(session);
                     movementResult = _gameplay?.RenderRoom(session) ?? movementResult;
@@ -158,18 +189,34 @@ public sealed class RuntimeCommandDispatcher
                             string followerResult = string.Empty;
                             if (!_gameplay.CanMove(follower, out followerFailure) ||
                                 !_gameplay.CanTraverseLivingWorld(follower, command.Name, out followerFailure) ||
-                                !_gameplay.CanEnterGangHouse(follower, command.Name, out followerFailure) ||
-                                !follower.TryMove(command.Name, out followerResult))
+                                !_gameplay.CanEnterGangHouse(follower, command.Name, out followerFailure))
                             {
                                 // Native _fast_update_character calls _move_user(..., mode 3) for
                                 // a follower and clears +0x6aa whenever that move returns false.
                                 _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
-                                follower.EnqueueMessage($"You cannot follow your party leader {command.Name}: {(string.IsNullOrWhiteSpace(followerFailure) ? followerResult : followerFailure)}");
+                                follower.EnqueueMessage($"You cannot follow your party leader {command.Name}: {followerFailure}");
+                                continue;
+                            }
+
+                            var followerTrap = _gameplay.ApplyExitTrap(follower, previousRoom, command.Name);
+                            if (_gameplay.ClassicTrapStoppedMovement(follower, previousRoom))
+                            {
+                                _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
+                                follower.EnqueueMessage($"-- Following your Party leader {command.Name} --" +
+                                    (string.IsNullOrWhiteSpace(followerTrap) ? string.Empty : Environment.NewLine + followerTrap));
+                                _state?.UpdateSessionLocation(follower);
+                                _events?.Publish("movement", "party-trap-stopped", follower.World.Definition.Id, follower.Id, follower.Actor.Id, $"{previousRoom.Id}:{command.Name}");
+                                continue;
+                            }
+
+                            if (!follower.TryMove(command.Name, out followerResult))
+                            {
+                                _gameplay.StopClassicPartyFollowAfterFailedMove(follower);
+                                follower.EnqueueMessage($"You cannot follow your party leader {command.Name}: {followerResult}");
                                 continue;
                             }
                             _gameplay.BroadcastDeparture(follower, previousRoom.Id, command.Name);
                             _gameplay.CaptureClassicPracticeArenaEntry(follower, previousRoom);
-                            var followerTrap = _gameplay.ApplyExitTrap(follower, previousRoom, command.Name);
                             _gameplay.BroadcastArrival(follower, command.Name);
                             _gameplay.AdmitClassicRoomEntryNpcRespawns(follower);
                             var followerRoom = _gameplay.ShouldRenderClassicPartyFollowRoom(follower)
@@ -290,6 +337,7 @@ public sealed class RuntimeCommandDispatcher
             "events" => _events?.RenderStatus() ?? "Runtime event dispatcher is not attached.",
             "help" or "commands" => RenderHelp(session, command),
             "reroll" when route.Kind is RuntimeCommandRouteKind.SessionLifecycle => "REROLL requires an interactive character-creation session.",
+            "suicide" when route.Kind is RuntimeCommandRouteKind.SessionLifecycle => "SUICIDE requires an interactive password/death session.",
             "quit" => "Goodbye.",
                 _ => throw new InvalidOperationException($"Registered command '{command.Name}' is assigned to route '{route.Kind}' but has no executable dispatcher branch.")
             };
@@ -307,7 +355,7 @@ public sealed class RuntimeCommandDispatcher
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["look"] = "look [direction|object]", ["brief"] = "brief", ["verbose"] = "verbose",
-            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set receive [on|off] | set follow [blind|normal] | set speech [fast|slow] | set messages [low|medium|high] | set entrances [on|off] | set telepath [on|off] | set gossip [on|off] | set auction [on|off] | set maxpages|maxgossip|maxauction <n>",
+            ["statline"] = "statline on|off|full", ["set"] = "set statline [full] custom <format> | set suicide <password> | set receive [on|off] | set follow [blind|normal] | set speech [fast|slow] | set messages [low|medium|high] | set entrances [on|off] | set telepath [on|off] | set gossip [on|off] | set auction [on|off] | set page [on|ok|off] | set response [brief|verbose] | set maxpages|maxgossip|maxauction <n>",
             ["search"] = "search [object]", ["examine"] = "examine <target>", ["score"] = "score",
             ["character"] = "character", ["wealth"] = "wealth",
             ["experience"] = "experience", ["inventory"] = "inventory", ["keys"] = "keys", ["equipment"] = "equipment",
@@ -329,7 +377,7 @@ public sealed class RuntimeCommandDispatcher
             ["complete"] = "complete <quest>", ["journal"] = "journal", ["save"] = "save", ["who"] = "who",
             ["drag"] = "drag <character>", ["go"] = "go <location>", ["health"] = "health", ["map"] = "map", ["profile"] = "profile", ["track"] = "track <user>",
             ["aid"] = "aid", ["light"] = "light <item>", ["stash"] = "stash <item>", ["mana"] = "mana", ["invoke"] = "invoke <kai power>", ["read"] = "read <scroll>",
-            ["suicide"] = "suicide", ["reroll"] = "reroll", ["appraise"] = "appraise <item>", ["eat"] = "eat <item>", ["drink"] = "drink <item>", ["rob"] = "rob <target>",
+            ["suicide"] = "suicide [now]", ["reroll"] = "reroll", ["appraise"] = "appraise <item>", ["eat"] = "eat <item>", ["drink"] = "drink <item>", ["rob"] = "rob <target>",
             ["ready"] = "ready <item>", ["exits"] = "exits", ["picklock"] = "picklock <direction>", ["disarm"] = "disarm trap <direction>", ["page"] = "page", ["broadcast"] = "broadcast [message]", ["share"] = "share <amount> <currency> [with room|party]",
             ["scan"] = "scan", ["quiet"] = "quiet", ["topten"] = "topten | top <n> <class> | topten gangs | top <n> gangs", ["stock"] = "stock <item> [price] [currency]", ["unstock"] = "unstock <item>", ["markup"] = "markup <percent>",
             ["where"] = "where", ["help"] = "help [command]", ["commands"] = "commands", ["quit"] = "quit",
@@ -561,8 +609,8 @@ public sealed class RuntimeCommand
         new("complete", [], 3),
         new("journal", ["qlog"], 3),
         new("say", [], 3),
-        new("gossip", [], 6),
-        new("auction", [], 7),
+        new("gossip", ["gos"], 3),
+        new("auction", ["auc"], 3),
         new("forget", [], 6),
         new("messages", [], 3),
         new("mudplus", ["mmplus"], 3),

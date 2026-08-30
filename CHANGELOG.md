@@ -1,7 +1,13 @@
 ## Native parity promotion and combat authority repair
 
 - Integrated the reviewed cumulative native exit, formula, NPC combat, scheduler/regeneration, character death, and death-floor evidence and runtime ownership changes.
-- Integrated the cumulative native session, party, gang communication, modal invitation, daily cleanup, and organization-service promotions, producing **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
+- Integrated parity passes 0345-0358 into the CodeUpdate0140 baseline, including native communication rendering, suicide traps, TALK/PAGE scope, host-only scope, SET message priorities, REST/MEDITATE, character-only BREAK, GIVE capacity and presentation, Charm pricing, physical-combat ordering, raw Dodge, stock Accuracy, and PvP LVLDIFF.
+- Integrated the cumulative native session, party, gang communication, modal invitation, daily cleanup, and organization-service promotions, producing **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**).
+- Consolidated 1,575 accepted checks from parity passes 0345-0358 into the generic native runtime verification report. The report now retains 2,495 supplied checks with zero failures; numbered one-off validators and reports remain retired.
+- Updated the retained remaining-systems validator to inspect current Librarium catalogs and consolidated inventory instead of deleted provenance sidecars and pass-era owner strings.
+- Updated the live-gameplay part 5 validator to require the five-denomination bank authority and reject the retired gold-only account bypass.
+- Corrected the character-foundation smoke name to obey the production ten-character Classic given-name limit.
+- Current-health validation passes 44/45 executed stages and stops at the two pre-existing corpse-resurrection equipment assertions in `--smoke-items`; this limitation remains open and is not reported as green.
 - Added unchanged MegaMUD connection compatibility, interactive REROLL/SET KEEP, SET WARNING, client-data negotiation, and Borin player-runtime contracts while preserving live Borin state.
 - Recovered exact WCCMP002 native trap state for all 295 trap exits: 293 active and 2 hidden. Generated Classic and the Bundle D trap audit now preserve that distribution.
 - Replaced the combat formula authority's hard dependency on retired `ImportedDatabases` OmniVerse ability data with `Librarium/Objects/abilities/ability_records.json`; combat no longer blocks when loose imported evidence is archived.

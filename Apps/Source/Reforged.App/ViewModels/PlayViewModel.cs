@@ -2622,6 +2622,11 @@ public sealed class PlayViewModel : ViewModelBase
         if (session.InCombat)
         {
             _combatObservedSessions.Add(session.SessionId);
+            if (!session.AutoCombatActive)
+            {
+                session.CombatAutomationStatus = "Still under attack; local autocombat remains off after BREAK.";
+                return;
+            }
             await TickCombatRoundActionAsync(session, timestamp);
             return;
         }

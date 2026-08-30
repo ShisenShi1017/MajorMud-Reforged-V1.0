@@ -1,6 +1,6 @@
 ## Native parity promotion and combat authority repair
 
-Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, and organization behavior. Parity is **126 PASS / 74 STRONG / 0 UNKNOWN**. MegaMUD/Borin compatibility now includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, and SET WARNING. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
+Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **144 PASS / 56 STRONG / 0 UNKNOWN**. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
 
 ## PASS61 / Update 0332 — Final Native Repository Closure
 

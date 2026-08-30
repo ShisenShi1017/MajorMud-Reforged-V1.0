@@ -1,0 +1,76 @@
+{
+  "schema": "majormud.break-extension-scope-evidence.v1",
+  "update": "0351",
+  "policy": "Only player/client-visible stock MajorMUD behavior receives Classic parity credit. Raw imported binaries remain local-only.",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "size": 643072,
+      "bundled": false
+    },
+    "MegaMUD Pass28 STRING_INVENTORY.csv": {
+      "sha256": "5dbeb8eaa51d0f14c1442c53db6b1e097434304f69f29947b2e97b63522eafc6",
+      "bundled": false
+    },
+    "MegaMUD help idh_dlg_other.txt": {
+      "sha256": "111bc7d20fffccf53e0dbf14ada9b810b197f3f92046b190376df32c9223247a",
+      "bundled": false
+    },
+    "native_help_catalog": "Librarium/Evidence/native_message_catalog_correlation_0022.json",
+    "classic_service_coverage": "Reports/RuntimeVerification/classic_economy_service_coverage.json"
+  },
+  "break_native": {
+    "display_export": "_display_autocombat_broken",
+    "display_rva": "0x0004BD6E",
+    "display_va": "0x0044BD6E",
+    "kill_export": "_kill_autocombat",
+    "kill_rva": "0x0004C8C2",
+    "kill_va": "0x0044C8C2",
+    "player_text": {
+      "va": "0x00487820",
+      "text": "*Combat Off*\\r"
+    },
+    "observer_text": {
+      "va": "0x0048782E",
+      "text": "%s breaks off combat.\\r"
+    },
+    "visible_branch_order": "At 0x004143D2 native checks _is_inside_autocombat; if true it calls _display_autocombat_broken(user,1) at 0x004143E6, then calls _kill_autocombat(user,1) at 0x004143F8.",
+    "help": "Combat help: Break - Will break off autocombat. Magic help: Break - Will break off casting of auto-combat spells.",
+    "reforged_0351": "Active manual BREAK now enqueues the exact player line and High-priority room observer line before live combat teardown.",
+    "remaining_boundary": "Reforged simplified PvP currently terminates the shared encounter for both participants. Native _kill_autocombat is per-user; exact opponent-side PvP autocombat ownership remains unresolved, so commands.break-autocombat remains STRONG."
+  },
+  "stock_extension_absence": {
+    "native_command_export_count": 78,
+    "present_exports": [
+      "_cmd_give",
+      "_cmd_auction"
+    ],
+    "absent_exports": [
+      "_cmd_trade",
+      "_cmd_repair"
+    ],
+    "decoded_classic_service_count": 204,
+    "decoded_repair_service_count": 0,
+    "trade_finding": "Stock MajorMUD player transfer is GIVE; AUCTION is a communication channel. No native accept/cancel TRADE escrow command is present in the original command-export census.",
+    "repair_finding": "No _cmd_repair exists and none of 204 decoded Classic services projects a repair owner. Reforged durability REPAIR therefore remains non-Classic only."
+  },
+  "megamud": {
+    "pass28_strings": [
+      "*Combat Off*",
+      " breaks off combat",
+      "client now sends break [stock only]",
+      "Stopped sending break before combat while sneaking, except when punching"
+    ],
+    "help": "Break Combat Before Running states that MegaMUD issues a break command before attempting to run from PVP/monsters when already in combat mode.",
+    "compatibility": "BREAK remains ordinary stock terminal input/output; no MegaMUD-specific protocol or private client-data dependency is introduced."
+  },
+  "borin": {
+    "parser": "Apps/Source/Reforged.App/Services/ClassicGameplayLineParser.cs already treats lines beginning *Combat Off* as the authoritative combat-disengaged marker.",
+    "compatibility": "No Borin-specific command rewrite is required; the corrected server emits the native marker Borin already consumes."
+  },
+  "promotion": {
+    "transactions.no-native-trade-escrow": "PASS",
+    "economy.no-native-repair-service": "PASS",
+    "commands.break-autocombat": "STRONG"
+  }
+}

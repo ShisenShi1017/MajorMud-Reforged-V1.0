@@ -64,6 +64,14 @@ public static class ClientAutomationRegressionSmoke
         service.Evaluate(context);
         Require(issued.Count == 1, "trigger-single-command-and-cooldown");
 
+        var combatParser = new ClassicCombatStreamParser();
+        var engaged = combatParser.Observe("*Combat Engaged*");
+        Require(engaged.Kind == ClassicCombatEventKind.Engaged && combatParser.InCombat && combatParser.AutocombatActive, "break-state-engaged-autocombat-on");
+        var broken = combatParser.Observe("*Combat Off*");
+        Require(broken.Kind == ClassicCombatEventKind.Disengaged && !combatParser.InCombat && !combatParser.AutocombatActive, "break-state-local-autocombat-off");
+        var incomingAfterBreak = combatParser.Observe("An opponent hits you for 7 damage.");
+        Require(incomingAfterBreak.Kind == ClassicCombatEventKind.IncomingHit && combatParser.InCombat && !combatParser.AutocombatActive, "break-state-incoming-danger-with-autocombat-off");
+
         var deduplicator = new ClientAutomationCommandDeduplicator();
         Require(deduplicator.ShouldSend(" Attack   Rat ", ClientCommandOrigin.ClientAutomation, now), "first-automatic-command-admitted");
         Require(!deduplicator.ShouldSend("attack rat", ClientCommandOrigin.RouteAutomation, now.AddMilliseconds(100)), "cross-family-duplicate-blocked");

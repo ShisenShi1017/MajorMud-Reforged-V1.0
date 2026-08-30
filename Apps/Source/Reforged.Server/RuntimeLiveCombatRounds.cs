@@ -129,8 +129,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var martialAccuracyBonus = RuntimeEquipmentCombatEffects.ResolveMartialAccuracy(before, encounter.PlayerAttackType);
         var resolvedPlayerAttackValue = encounter.PlayerAttackType == ClassicAttackType.Backstab
             ? player.BackstabAttackValue
-            : checked(player.AttackValue + player.ClassCombatAccuracy + player.AbilityAccuracyModifier +
-                (isMartialAttack ? martialAccuracyBonus : player.WeaponAccuracyModifier));
+            : checked(player.AttackValue + player.ClassCombatAccuracy + player.AbilityAccuracyModifier + martialAccuracyBonus);
         var playerStats = new ClassicCombatantStats(
             resolvedPlayerAttackValue,
             player.DefenseValue,
@@ -178,7 +177,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         var playerEnergy = encounter.PlayerCurrentEnergy;
         var messages = new List<string>();
         var roomMessageOverrides = new Dictionary<string, string>(StringComparer.Ordinal);
-        if (kaiPowerSuppressed)
+        var roomMessagePriorities = new Dictionary<string, RuntimeClassicRoomMessagePriority>(StringComparer.Ordinal);
+        if (!encounter.PlayerAutocombatActive)
+        {
+            // BREAK is character-only: suppress this character's automatic swings while
+            // leaving the NPC's threat/attack side of the encounter active.
+        }
+        else if (kaiPowerSuppressed)
         {
             messages.Add(RuntimeClassicCombatAnsi.Warning($"{actor.DisplayName}'s Kai powers are bound this round."));
         }
@@ -225,7 +230,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                     _liveCombats.TryRemove(session.Id, out _);
                     return $"{encounter.NpcName} is no longer a valid live combat target.";
                 }
-                messages.Add(RenderAttack(actor.DisplayName, encounter.NpcName, playerResult));
+                var playerAttackMessage = RenderAttack(actor.DisplayName, encounter.NpcName, playerResult);
+                messages.Add(playerAttackMessage);
+                roomMessagePriorities[playerAttackMessage] = RuntimeClassicRoomMessagePriority.Low;
                 if (!isMartialAttack && RuntimeWeaponOnHitSpellTrigger.IsEligibleHit(playerResult.Outcome))
                 {
                     foreach (var effect in player.WeaponOnHitSpells)
@@ -299,7 +306,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 if (!isDecodedSpellRow)
                 {
                     var npcAttackMessage = RenderNpcAttack(encounter.NpcName, actor.DisplayName, attack, npcResult);
-                    if (!string.IsNullOrEmpty(npcAttackMessage)) messages.Add(npcAttackMessage);
+                    if (!string.IsNullOrEmpty(npcAttackMessage))
+                    {
+                        messages.Add(npcAttackMessage);
+                        roomMessagePriorities[npcAttackMessage] = RuntimeClassicRoomMessagePriority.Low;
+                    }
                     var retaliationComponents = RuntimeEquipmentCombatEffects.ResolveEquipmentDamageShields(
                             _characters.ProjectRoot, before, npcResult.FinalDamage)
                         .Concat(ResolveLiveDamageShieldComponents(session, npcResult.FinalDamage))
@@ -326,6 +337,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                             var renderedSource = RuntimeClassicCombatAnsi.Effect(sourceMessage);
                             messages.Add(renderedSource);
                             roomMessageOverrides[renderedSource] = RuntimeClassicCombatAnsi.Effect(observerMessage);
+                            roomMessagePriorities[renderedSource] = RuntimeClassicRoomMessagePriority.Low;
                         }
                         if (npcHp == 0) break;
                     }
@@ -365,86 +377,108 @@ public sealed partial class RuntimeLiveGameplayFacade
                     // NPC-effect boundaries (TextBlock 2510 and NPC Picklocks).
                     if (hitSpellScript is null && !IsNpcSelfSpell(hitSpell))
                     {
-                    if (RuntimeClassicStatusProjection.IsSpellImmune(before, hitSpell.SpellLevel))
-                    {
-                        messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}."));
-                    }
-                    else
-                    {
-                    var resistance = ResolveNpcHitSpellResistance(
-                        hitSpell.ResistTypeRaw,
-                        ReadBaseStat(before, "wil", "willpower", "will"),
-                        ReadBaseStat(before, "int", "intellect", "intelligence"),
-                        RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
-                        ReadAbilityValue(before, 51),
-                        Random.Shared.Next(1, 101));
-                    if (resistance.Resisted)
-                    {
-                        // A single-target resistance aborts that cast and earns the decoded half-cost refund.
-                        // An area cast still executes against the remaining room targets, so one resistant
-                        // character cannot refund the shared cast's energy.
-                        if (attack.Type == 2 && !IsNpcRoomAreaSpell(hitSpell))
-                            npcEnergy = RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(energyBeforeAttack, attack);
-                        messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {encounter.NpcName}'s {hitSpell.SpellName}."));
-                    }
-                    else
-                    {
-                        var effect = ResolveNpcHitSpellEffect(
-                            hitSpell,
-                            ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
-                            ReadAbilityValue(before, 21) > 0,
-                            Random.Shared);
-                        if (effect.Executable && effect.DirectDamage != 0)
+                        if (RuntimeClassicStatusProjection.IsSpellImmune(before, hitSpell.SpellLevel))
                         {
-                            var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
-                            playerHp = hitPointResolution.HitPointsAfter;
-                            if (hitPointResolution.DamageApplied > 0)
-                            {
-                                nativeSpellDamage = hitPointResolution.DamageApplied;
-                                if (!isDecodedSpellRow)
-                                    messages.Add(RuntimeClassicCombatAnsi.NpcAttack($"{encounter.NpcName}'s {hitSpell.SpellName} hits {actor.DisplayName} for {hitPointResolution.DamageApplied} damage.", ClassicHitOutcome.Hit));
-                            }
-                            else
-                            {
-                                nativeSpellHealing = true;
-                                messages.Add(RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
-                                    ? $"{encounter.NpcName}'s {hitSpell.SpellName} heals {actor.DisplayName} for {hitPointResolution.HealingApplied} hit points."
-                                    : $"{encounter.NpcName}'s {hitSpell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health."));
-                            }
-                            var durationDelivery = ApplyNpcHitSpellStatusDelivery(
-                                session,
-                                before,
-                                hitSpell,
-                                $"npc.{npc.LegacyId}",
-                                ReadAbilityValue(before, 21) > 0,
-                                DateTimeOffset.UtcNow);
-                            if (durationDelivery.Applied)
-                            {
-                                before = _characters.LoadCharacter(actor.Id) ?? before;
-                                messages.Add(RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds."));
-                            }
+                            var spellImmuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}.");
+                            messages.Add(spellImmuneMessage);
+                            roomMessagePriorities[spellImmuneMessage] = RuntimeClassicRoomMessagePriority.Medium;
                         }
                         else
                         {
-                            var delivery = ApplyNpcHitSpellStatusDelivery(
-                                session,
-                                before,
-                                hitSpell,
-                                $"npc.{npc.LegacyId}",
-                                ReadAbilityValue(before, 21) > 0,
-                                DateTimeOffset.UtcNow);
-                            if (delivery.Applied)
+                            var resistance = ResolveNpcHitSpellResistance(
+                                hitSpell.ResistTypeRaw,
+                                ReadBaseStat(before, "wil", "willpower", "will"),
+                                ReadBaseStat(before, "int", "intellect", "intelligence"),
+                                RuntimeClassicCharacterFormulaCalculator.ResolveMagicResistanceModifier(before),
+                                ReadAbilityValue(before, 51),
+                                Random.Shared.Next(1, 101));
+                            if (resistance.Resisted)
                             {
-                                before = _characters.LoadCharacter(actor.Id) ?? before;
-                                messages.Add(RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds."));
+                                // A single-target resistance aborts that cast and earns the decoded half-cost refund.
+                                // An area cast still executes against the remaining room targets, so one resistant
+                                // character cannot refund the shared cast's energy.
+                                if (attack.Type == 2 && !IsNpcRoomAreaSpell(hitSpell))
+                                    npcEnergy = RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(energyBeforeAttack, attack);
+                                var spellResistMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {encounter.NpcName}'s {hitSpell.SpellName}.");
+                                messages.Add(spellResistMessage);
+                                roomMessagePriorities[spellResistMessage] = RuntimeClassicRoomMessagePriority.Medium;
                             }
-                            else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
-                                messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}."));
                             else
-                                messages.Add(RuntimeClassicCombatAnsi.Warning($"{encounter.NpcName}'s {hitSpell.SpellName} has no applicable effect on {actor.DisplayName}."));
+                            {
+                                var effect = ResolveNpcHitSpellEffect(
+                                    hitSpell,
+                                    ReadElementalResistance(before, ResolveNpcHitSpellAttackElement(hitSpell.AttackTypeRaw)),
+                                    ReadAbilityValue(before, 21) > 0,
+                                    Random.Shared);
+                                if (effect.Executable && effect.DirectDamage != 0)
+                                {
+                                    var hitPointResolution = ApplyElementalSpellHitPoints(playerHp, before.MaximumHitPoints, effect.DirectDamage);
+                                    playerHp = hitPointResolution.HitPointsAfter;
+                                    if (hitPointResolution.DamageApplied > 0)
+                                    {
+                                        nativeSpellDamage = hitPointResolution.DamageApplied;
+                                        if (!isDecodedSpellRow)
+                                        {
+                                            var spellHitMessage = RuntimeClassicCombatAnsi.NpcAttack($"{encounter.NpcName}'s {hitSpell.SpellName} hits {actor.DisplayName} for {hitPointResolution.DamageApplied} damage.", ClassicHitOutcome.Hit);
+                                            messages.Add(spellHitMessage);
+                                            roomMessagePriorities[spellHitMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        nativeSpellHealing = true;
+                                        var spellHealingMessage = RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
+                                            ? $"{encounter.NpcName}'s {hitSpell.SpellName} heals {actor.DisplayName} for {hitPointResolution.HealingApplied} hit points."
+                                            : $"{encounter.NpcName}'s {hitSpell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health.");
+                                        messages.Add(spellHealingMessage);
+                                        roomMessagePriorities[spellHealingMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                    var durationDelivery = ApplyNpcHitSpellStatusDelivery(
+                                        session,
+                                        before,
+                                        hitSpell,
+                                        $"npc.{npc.LegacyId}",
+                                        ReadAbilityValue(before, 21) > 0,
+                                        DateTimeOffset.UtcNow);
+                                    if (durationDelivery.Applied)
+                                    {
+                                        before = _characters.LoadCharacter(actor.Id) ?? before;
+                                        var durationMessage = RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds.");
+                                        messages.Add(durationMessage);
+                                        roomMessagePriorities[durationMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                }
+                                else
+                                {
+                                    var delivery = ApplyNpcHitSpellStatusDelivery(
+                                        session,
+                                        before,
+                                        hitSpell,
+                                        $"npc.{npc.LegacyId}",
+                                        ReadAbilityValue(before, 21) > 0,
+                                        DateTimeOffset.UtcNow);
+                                    if (delivery.Applied)
+                                    {
+                                        before = _characters.LoadCharacter(actor.Id) ?? before;
+                                        var statusMessage = RuntimeClassicCombatAnsi.Effect($"{encounter.NpcName}'s {hitSpell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
+                                        messages.Add(statusMessage);
+                                        roomMessagePriorities[statusMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                    else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
+                                    {
+                                        var spellImmuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {encounter.NpcName}'s {hitSpell.SpellName}.");
+                                        messages.Add(spellImmuneMessage);
+                                        roomMessagePriorities[spellImmuneMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                    else
+                                    {
+                                        var noEffectMessage = RuntimeClassicCombatAnsi.Warning($"{encounter.NpcName}'s {hitSpell.SpellName} has no applicable effect on {actor.DisplayName}.");
+                                        messages.Add(noEffectMessage);
+                                        roomMessagePriorities[noEffectMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                                    }
+                                }
+                            }
                         }
-                    }
-                    }
 
                     if (IsNpcRoomAreaSpell(hitSpell))
                         ApplyNpcRoomAreaSpellToBystanders(
@@ -452,7 +486,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                             hitSpell,
                             $"npc.{npc.LegacyId}",
                             encounter.NpcName,
-                            messages);
+                            messages,
+                            roomMessagePriorities);
                     }
                 }
                 if (isDecodedSpellRow && !nativeSpellHealing)
@@ -464,7 +499,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                         FinalDamage = nativeSpellDamage
                     };
                     var npcSpellMessage = RenderNpcAttack(encounter.NpcName, actor.DisplayName, attack, spellMessageResult);
-                    if (!string.IsNullOrEmpty(npcSpellMessage)) messages.Add(npcSpellMessage);
+                    if (!string.IsNullOrEmpty(npcSpellMessage))
+                    {
+                        messages.Add(npcSpellMessage);
+                        roomMessagePriorities[npcSpellMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                    }
                 }
 
                 if (RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection(attack, npcEnergy)) break;
@@ -528,7 +567,11 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         if (!forcedMoveByNpcScript)
             foreach (var message in messages)
-                _sessions.BroadcastRoom(session, roomMessageOverrides.GetValueOrDefault(message, message), includeSource: false);
+                _sessions.BroadcastRoom(
+                    session,
+                    roomMessageOverrides.GetValueOrDefault(message, message),
+                    includeSource: false,
+                    priority: roomMessagePriorities.GetValueOrDefault(message, RuntimeClassicRoomMessagePriority.High));
         messages.Add(RuntimeClassicCombatAnsi.RoundSummary(playerHp, before.MaximumHitPoints, encounter.NpcName, npcHp, encounter.NpcMaximumHitPoints));
         return string.Join(Environment.NewLine, messages);
     }
@@ -553,7 +596,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             {
                 messages.Add(native.RequireMessage(operation.FirstArgument));
                 if (native.TryResolveSecondaryMessage(operation.FirstArgument, out var secondary) && !string.IsNullOrWhiteSpace(secondary))
-                    _sessions.BroadcastRoom(session, secondary.Replace("%s", actorName, StringComparison.Ordinal), includeSource: false);
+                    _sessions.BroadcastRoom(
+                        session,
+                        secondary.Replace("%s", actorName, StringComparison.Ordinal),
+                        includeSource: false,
+                        priority: RuntimeClassicRoomMessagePriority.Medium);
             }
             else if (operation.Kind == "teleport")
             {
@@ -596,7 +643,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeNpcHitSpellSelection spell,
         string casterId,
         string casterName,
-        List<string> messages)
+        List<string> messages,
+        Dictionary<string, RuntimeClassicRoomMessagePriority> roomMessagePriorities)
     {
         var nowUtc = DateTimeOffset.UtcNow;
         var targets = _sessions.InRoom(primarySession.World.Definition.Id, primarySession.CurrentRoom.Id)
@@ -612,7 +660,9 @@ public sealed partial class RuntimeLiveGameplayFacade
 
             if (RuntimeClassicStatusProjection.IsSpellImmune(character, spell.SpellLevel))
             {
-                messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}."));
+                var immuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}.");
+                messages.Add(immuneMessage);
+                roomMessagePriorities[immuneMessage] = RuntimeClassicRoomMessagePriority.Medium;
                 continue;
             }
 
@@ -625,7 +675,9 @@ public sealed partial class RuntimeLiveGameplayFacade
                 Random.Shared.Next(1, 101));
             if (resistance.Resisted)
             {
-                messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {casterName}'s {spell.SpellName}."));
+                var resistMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {casterName}'s {spell.SpellName}.");
+                messages.Add(resistMessage);
+                roomMessagePriorities[resistMessage] = RuntimeClassicRoomMessagePriority.Medium;
                 continue;
             }
 
@@ -641,9 +693,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var nextHitPoints = hitPointResolution.HitPointsAfter;
                 if (hitPointResolution.DamageApplied > 0)
                 {
-                    messages.Add(RuntimeClassicCombatAnsi.NpcAttack(
+                    var areaHitMessage = RuntimeClassicCombatAnsi.NpcAttack(
                         $"{casterName}'s {spell.SpellName} hits {actor.DisplayName} for {hitPointResolution.DamageApplied} damage.",
-                        ClassicHitOutcome.Hit));
+                        ClassicHitOutcome.Hit);
+                    messages.Add(areaHitMessage);
+                    roomMessagePriorities[areaHitMessage] = RuntimeClassicRoomMessagePriority.Medium;
                     if (nextHitPoints == 0)
                     {
                         if (_liveCombats.TryRemove(target.Id, out var targetEncounter))
@@ -662,9 +716,11 @@ public sealed partial class RuntimeLiveGameplayFacade
                 }
                 else
                 {
-                    messages.Add(RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
+                    var areaHealingMessage = RuntimeClassicCombatAnsi.Effect(hitPointResolution.HealingApplied > 0
                         ? $"{casterName}'s {spell.SpellName} heals {actor.DisplayName} for {hitPointResolution.HealingApplied} hit points."
-                        : $"{casterName}'s {spell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health."));
+                        : $"{casterName}'s {spell.SpellName} would heal {actor.DisplayName}, but {actor.DisplayName} is already at full health.");
+                    messages.Add(areaHealingMessage);
+                    roomMessagePriorities[areaHealingMessage] = RuntimeClassicRoomMessagePriority.Medium;
                     if (hitPointResolution.HealingApplied > 0)
                     {
                         character = character with { HitPoints = nextHitPoints, UpdatedAtUtc = nowUtc };
@@ -675,18 +731,34 @@ public sealed partial class RuntimeLiveGameplayFacade
                 {
                     var durationDelivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc);
                     if (durationDelivery.Applied)
-                        messages.Add(RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds."));
+                    {
+                        var areaDurationMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {durationDelivery.DurationSeconds} combat rounds.");
+                        messages.Add(areaDurationMessage);
+                        roomMessagePriorities[areaDurationMessage] = RuntimeClassicRoomMessagePriority.Medium;
+                    }
                 }
                 continue;
             }
 
             var delivery = ApplyNpcHitSpellStatusDelivery(target, character, spell, casterId, poisonImmune, nowUtc);
             if (delivery.Applied)
-                messages.Add(RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds."));
+            {
+                var areaStatusMessage = RuntimeClassicCombatAnsi.Effect($"{casterName}'s {spell.SpellName} affects {actor.DisplayName} for {delivery.DurationSeconds} combat rounds.");
+                messages.Add(areaStatusMessage);
+                roomMessagePriorities[areaStatusMessage] = RuntimeClassicRoomMessagePriority.Medium;
+            }
             else if (delivery.PoisonImmune || effect.QuarantineReason == "elemental-immunity")
-                messages.Add(RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}."));
+            {
+                var areaImmuneMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} is immune to {casterName}'s {spell.SpellName}.");
+                messages.Add(areaImmuneMessage);
+                roomMessagePriorities[areaImmuneMessage] = RuntimeClassicRoomMessagePriority.Medium;
+            }
             else
-                messages.Add(RuntimeClassicCombatAnsi.Warning($"{casterName}'s {spell.SpellName} has no applicable effect on {actor.DisplayName}."));
+            {
+                var areaNoEffectMessage = RuntimeClassicCombatAnsi.Warning($"{casterName}'s {spell.SpellName} has no applicable effect on {actor.DisplayName}.");
+                messages.Add(areaNoEffectMessage);
+                roomMessagePriorities[areaNoEffectMessage] = RuntimeClassicRoomMessagePriority.Medium;
+            }
         }
     }
 

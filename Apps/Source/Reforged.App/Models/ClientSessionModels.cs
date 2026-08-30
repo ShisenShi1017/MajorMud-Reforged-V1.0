@@ -243,6 +243,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private ClientPvpState? _pvpState;
     private DateTimeOffset? _pvpStateUpdatedAt;
     private bool _inCombat;
+    private bool _autoCombatActive;
     private string _lastCombatEvent = "None";
     private string _combatAutomationStatus = "Automation safety lock is active.";
     private string _survivalAutomationStatus = "Automation safety lock is active.";
@@ -379,6 +380,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ClientLibrariumPage? LibrariumPage { get; set; }
     public ObservableCollection<ClientExperienceSample> SessionExperienceSamples { get; } = [];
     public bool InCombat { get => _inCombat; set => Set(ref _inCombat, value); }
+    public bool AutoCombatActive { get => _autoCombatActive; set => Set(ref _autoCombatActive, value); }
     public string LastCombatEvent { get => _lastCombatEvent; set => Set(ref _lastCombatEvent, value); }
     public string CombatAutomationStatus { get => _combatAutomationStatus; set => Set(ref _combatAutomationStatus, value?.Trim() ?? string.Empty); }
     public string SurvivalAutomationStatus { get => _survivalAutomationStatus; set => Set(ref _survivalAutomationStatus, value?.Trim() ?? string.Empty); }

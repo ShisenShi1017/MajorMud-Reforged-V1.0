@@ -156,13 +156,30 @@ public sealed class RuntimeSessionManager
         .OrderBy(session => session.Actor.DisplayName, StringComparer.OrdinalIgnoreCase)
         .ToArray();
 
-    public void BroadcastRoom(RuntimeSession source, string message, bool includeSource = false)
+    public void BroadcastRoom(
+        RuntimeSession source,
+        string message,
+        bool includeSource = false,
+        RuntimeClassicRoomMessagePriority priority = RuntimeClassicRoomMessagePriority.High,
+        string? excludedSessionId = null)
     {
         foreach (var target in InRoom(source.World.Definition.Id, source.CurrentRoom.Id))
         {
             if (!includeSource && target.Id.Equals(source.Id, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!string.IsNullOrWhiteSpace(excludedSessionId) && target.Id.Equals(excludedSessionId, StringComparison.OrdinalIgnoreCase)) continue;
+            if (!ShouldDeliverClassicRoomMessage(target, priority)) continue;
             target.EnqueueMessage(message);
         }
+    }
+
+    private bool ShouldDeliverClassicRoomMessage(RuntimeSession target, RuntimeClassicRoomMessagePriority priority)
+    {
+        if (priority == RuntimeClassicRoomMessagePriority.High) return true;
+        if (_characters is null || target.Actor is not RuntimeCharacterActor) return true;
+        var character = _characters.LoadCharacter(target.Actor.Id);
+        if (character is null) return true;
+        var level = RuntimeLiveGameplayFacade.ReadClassicMessagesLevel(character);
+        return RuntimeClassicCommunicationPersistenceLimitsAuthority.ShouldDeliverRoomMessage(level, priority);
     }
 
     public bool SendTell(RuntimeSession source, string targetQuery, string message, out string response)

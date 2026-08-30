@@ -184,7 +184,12 @@ public sealed class RuntimeWccSysopService
         if (arguments.Count == 0 || arguments[0].Equals("status", StringComparison.OrdinalIgnoreCase))
         {
             var state = store.Capture();
-            var range = state.MaximumLevelDifference <= 0 ? "unrestricted" : state.MaximumLevelDifference.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var range = state.MaximumLevelDifference switch
+            {
+                -1 => "disabled (-1)",
+                0 => "same-level only (0)",
+                _ => state.MaximumLevelDifference.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            };
             return $"PvP is {(state.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}; maximum level difference={range}. " +
                    "When enabled, PvP is permitted everywhere except rooms carrying proven safe-room evidence.";
         }
@@ -194,14 +199,19 @@ public sealed class RuntimeWccSysopService
                                                 arguments[0].Equals("off", StringComparison.OrdinalIgnoreCase));
         if (arguments.Count == 2 && (arguments[0].Equals("level", StringComparison.OrdinalIgnoreCase) || arguments[0].Equals("range", StringComparison.OrdinalIgnoreCase)))
         {
-            if (!int.TryParse(arguments[1], System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var maximumDifference) || maximumDifference < -1)
-                return "Usage: SYSOP PVP RANGE <positive levels|-1 for unrestricted>";
+            if (!int.TryParse(arguments[1], System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var maximumDifference) ||
+                maximumDifference < RuntimeClassicConfigurationAuthority.MinimumPvpLevelDifference ||
+                maximumDifference > RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifferenceAllowed)
+                return "Usage: SYSOP PVP RANGE <-1..100; -1 disables PvP, 0 permits same-level PvP only>";
             var ranged = store.SetMaximumLevelDifference(maximumDifference, character.CharacterId);
-            return ranged.MaximumLevelDifference <= 0
-                ? $"PvP level range is now unrestricted for {character.WorldId}."
-                : $"PvP is now restricted to a {ranged.MaximumLevelDifference}-level difference for {character.WorldId}.";
+            return ranged.MaximumLevelDifference switch
+            {
+                -1 => $"PvP is now DISABLED for {character.WorldId} (native LVLDIFF=-1).",
+                0 => $"PvP is now restricted to same-level characters for {character.WorldId}.",
+                _ => $"PvP is now restricted to a {ranged.MaximumLevelDifference}-level difference for {character.WorldId}."
+            };
         }
-        if (!enabled && !disabled) return "Usage: SYSOP PVP STATUS|ENABLE|DISABLE|RANGE <levels|-1>";
+        if (!enabled && !disabled) return "Usage: SYSOP PVP STATUS|ENABLE|DISABLE|RANGE <-1..100>";
         var updated = store.SetEnabled(enabled, character.CharacterId);
         return $"PvP is now {(updated.Enabled ? "ENABLED" : "DISABLED")} for {character.WorldId}.";
     }
@@ -216,7 +226,7 @@ public sealed class RuntimeWccSysopService
         var authority = gotoOnly ? "world policy: SYSOP GOTO enabled for all players" : catalog.RuntimeAuthority;
         return $"WCCMMUD SYSOP control ({authority}; role={role}).{Environment.NewLine}" +
                string.Join(Environment.NewLine, commands) +
-               (gotoOnly ? string.Empty : $"{Environment.NewLine}PVP [STATUS|ENABLE|DISABLE] [Reforged realm authority]") +
+               (gotoOnly ? string.Empty : $"{Environment.NewLine}PVP [STATUS|ENABLE|DISABLE|RANGE <-1..100>] [native LVLDIFF realm authority]") +
                $"{Environment.NewLine}The legacy {catalog.LegacySetting} value is never accepted as a player command.";
     }
 

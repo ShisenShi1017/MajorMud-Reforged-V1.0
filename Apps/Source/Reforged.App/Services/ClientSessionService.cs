@@ -268,13 +268,19 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         var normalized = Regex.Replace(command?.Trim() ?? string.Empty, @"\s+", " ");
         if (normalized.Length == 0) return normalized;
+        // Native MajorMUD speech shortcuts carry authored character names and message text after
+        // the punctuation token. Never lowercase that payload.
+        if (normalized[0] is '/' or '>') return normalized;
         var split = normalized.IndexOf(' ');
         if (split < 0) return normalized.ToLowerInvariant();
         var root = normalized[..split].ToLowerInvariant();
         var arguments = normalized[(split + 1)..];
-        // Preserve authored speech and character names for autonomous agents; ordinary command
-        // targets produced by deterministic planners are rendered naturally.
-        return root is "say" or "tell" or "telepath" or "group" or "party" or "gos" or "gossip" or "broadgang" or "bg"
+        // Borin historically emitted TELEPATH/GOS. Translate those autonomous-only spellings at
+        // the client boundary so he follows the recovered native slash/GOSSIP contract without
+        // requiring a non-native server TELL/TELEPATH command identity.
+        if (root == "telepath") return $"/{arguments}";
+        if (root == "gos") return $"gossip {arguments}";
+        return root is "say" or "tell" or "group" or "party" or "gossip" or "auction" or "broadgang" or "bg"
             ? $"{root} {arguments}"
             : $"{root} {arguments.ToLowerInvariant()}";
     }
@@ -531,6 +537,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.PromptUpdatedAt = null;
             session.LastServerActivityAt = null;
             session.InCombat = false;
+            session.AutoCombatActive = false;
             session.LastCombatEvent = "None";
             session.LastCombatAmount = 0;
             session.LastCombatEventAt = null;
@@ -674,6 +681,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         session.RoomUpdatedAt = null;
         session.ExitsUpdatedAt = null;
         session.InCombat = false;
+        session.AutoCombatActive = false;
         session.LastCombatEvent = "None";
         session.LastCombatAmount = 0;
         session.LastCombatEventAt = null;
@@ -1070,10 +1078,10 @@ public sealed partial class ClientSessionService : IClientSessionService
         if (_runtime.TryGetValue(session.SessionId, out var combatRuntime))
         {
             var combat = combatRuntime.CombatParser.Observe(prepared);
-            if (combat.Kind is ClassicCombatEventKind.Engaged or ClassicCombatEventKind.Disengaged)
-                session.InCombat = combat.InCombat;
             if (combat.Kind != ClassicCombatEventKind.None)
             {
+                session.InCombat = combat.InCombat;
+                session.AutoCombatActive = combatRuntime.CombatParser.AutocombatActive;
                 session.LastCombatEvent = combat.Kind.ToString();
                 session.LastCombatAmount = combat.Amount;
                 session.LastCombatEventAt = DateTimeOffset.Now;
@@ -1902,7 +1910,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     [GeneratedRegex(@"^(?:Inventory|Items carried|You are carrying|Nothing|Total|Weight|Encumbrance|Gold|Coins|Cash)\b", RegexOptions.IgnoreCase)] private static partial Regex InventoryNoise();
     [GeneratedRegex(@"attacks you|you attack|combat begins|engage in combat", RegexOptions.IgnoreCase)] private static partial Regex CombatStart();
     [GeneratedRegex(@"combat ends|no longer fighting|you have defeated|is dead", RegexOptions.IgnoreCase)] private static partial Regex CombatEnd();
-    [GeneratedRegex(@"you (?:sit|rest|meditate)|you are resting", RegexOptions.IgnoreCase)] private static partial Regex Resting();
+    [GeneratedRegex(@"you (?:sit|rest|meditate)|you are (?:now )?(?:resting|meditating)", RegexOptions.IgnoreCase)] private static partial Regex Resting();
     [GeneratedRegex(@"^\[([0-9A-F]{8}|\d+:\d+)\]\s*([A-Z][^.!?]{2,120})$", RegexOptions.IgnoreCase)] private static partial Regex KeyedRoomLine();
     [GeneratedRegex(@"^(?:Room\s+)?(?:Map\s*)?(\d+)\s*[-:/]\s*(\d+)\s*[:|-]\s*([A-Z][^.!?]{2,120})$", RegexOptions.IgnoreCase)] private static partial Regex NumberedRoomLine();
     [GeneratedRegex(@"^(?:\[[^\]]+\]\s*)?([A-Z][^.!?]{2,120})$")] private static partial Regex RoomLine();

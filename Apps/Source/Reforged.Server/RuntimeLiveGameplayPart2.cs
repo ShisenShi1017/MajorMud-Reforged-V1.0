@@ -108,6 +108,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         var characterAuthority = RuntimeCharacterBundleCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var engine = new RuntimeItemEngine(catalog, state.Items, state.Corpses, characterAuthority);
         string result;
+        string? roomObserverMessage = null;
+        RuntimeClassicRoomMessagePriority roomObserverPriority = RuntimeClassicRoomMessagePriority.High;
         switch (command.Name)
         {
             case "get":
@@ -124,11 +126,20 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var movedLiving=Living(session).TakeGroundItem(livingItem.InstanceId,actor.Id);
                     var updatedItems=state.Items.Concat(new[]{movedLiving}).ToArray();
                     _characters.SaveCharacter(character with{ItemState=state with{Items=updatedItems},UpdatedAtUtc=DateTimeOffset.UtcNow});
-                    return $"You get {catalog.Require(movedLiving.CanonicalItemId).Name}.";
+                    var livingName = catalog.Require(movedLiving.CanonicalItemId).Name;
+                    _sessions.BroadcastRoom(
+                        session,
+                        $"{session.Actor.DisplayName} picks up {livingName}.",
+                        includeSource: false,
+                        priority: RuntimeClassicRoomMessagePriority.Low);
+                    return $"You get {livingName}.";
                 }
                 var item = Resolve(engine.Ground(session.CurrentRoom.Id), catalog, command.ArgumentText);
                 var moved = engine.Get(item.InstanceId, actor.Id);
-                result = $"You get {catalog.Require(moved.CanonicalItemId).Name}.";
+                var movedName = catalog.Require(moved.CanonicalItemId).Name;
+                result = $"You get {movedName}.";
+                roomObserverMessage = $"{session.Actor.DisplayName} picks up {movedName}.";
+                roomObserverPriority = RuntimeClassicRoomMessagePriority.Low;
                 break;
             }
             case "drop":
@@ -137,7 +148,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var moved = engine.Drop(item.InstanceId, actor.Id, session.CurrentRoom.Id);
                 engine.AdministrativeRemove(moved.InstanceId);
                 Living(session).DropGroundItem(moved,session.CurrentRoom.Id);
-                result = $"You drop {catalog.Require(moved.CanonicalItemId).Name}.";
+                var movedName = catalog.Require(moved.CanonicalItemId).Name;
+                result = $"You drop {movedName}.";
+                roomObserverMessage = $"{session.Actor.DisplayName} dropped {movedName}.";
+                roomObserverPriority = RuntimeClassicRoomMessagePriority.Low;
                 break;
             }
             case "equip":
@@ -181,6 +195,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         var nowUtc = DateTimeOffset.UtcNow;
         var commit = RuntimeEquipmentRuntimeAuthority.Commit(character, engine, state.Gold, state.ActiveItemState, nowUtc);
         _characters.SaveCharacter(commit.Character);
+        if (!string.IsNullOrWhiteSpace(roomObserverMessage))
+            _sessions.BroadcastRoom(session, roomObserverMessage, includeSource: false, priority: roomObserverPriority);
         return result;
     }
 
@@ -402,53 +418,103 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (string.IsNullOrWhiteSpace(itemQuery) || string.IsNullOrWhiteSpace(targetQuery))
             throw new InvalidOperationException("Use: give <item> <player>.");
 
+        // Native _cmd_give resolves and rejects non-giveable items before the recipient
+        // admission branch. Preserve that ordering so an invalid recipient cannot mask an
+        // item-level GIVE restriction.
+        var preliminaryEngine = new RuntimeItemEngine(catalog, sourceState.Items, sourceState.Corpses);
+        var preliminarySelected = Resolve(preliminaryEngine.Inventory(sourceActor.Id), catalog, itemQuery);
+        if (RuntimeClassicGiveAuthority.IsPreTargetRestricted(preliminarySelected))
+            throw new InvalidOperationException(RuntimeClassicGiveAuthority.ItemCannotBeGivenMessage);
+
         var targetSession = _sessions.FindUniqueInRoom(sourceSession, targetQuery)
             ?? throw new InvalidOperationException($"No connected character here uniquely matches '{targetQuery}'.");
         if (targetSession.Actor is not RuntimeCharacterActor targetActor)
             throw new InvalidOperationException("The target must be a persistent character.");
         if (sourceActor.Id.Equals(targetActor.Id, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException("You cannot give an item to yourself.");
+            throw new InvalidOperationException("Why would you want to give to that?");
 
-        var itemName = _characters.ExecuteCharacterTransaction(sourceActor.Id, targetActor.Id, (freshSource, freshTarget) =>
+        string itemName;
+        try
         {
-            var freshSourceState = freshSource.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-            var freshTargetState = freshTarget.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
-            var sourceEngine = new RuntimeItemEngine(catalog, freshSourceState.Items, freshSourceState.Corpses);
-            if (!IsClassicReceiveEnabled(freshTarget))
-                throw new InvalidOperationException($"{targetActor.DisplayName} is not receiving items.");
+            itemName = _characters.ExecuteCharacterTransaction(sourceActor.Id, targetActor.Id, (freshSource, freshTarget) =>
+            {
+                var freshSourceState = freshSource.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+                var freshTargetState = freshTarget.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+                var sourceEngine = new RuntimeItemEngine(catalog, freshSourceState.Items, freshSourceState.Corpses);
+                if (!IsClassicReceiveEnabled(freshTarget))
+                    throw new InvalidOperationException(RuntimeClassicGiveAuthority.ReceiveOffMarker);
 
-            var selected = Resolve(sourceEngine.Inventory(sourceActor.Id), catalog, itemQuery);
-            var targetEngine = new RuntimeItemEngine(catalog, freshTargetState.Items, freshTargetState.Corpses);
+                var selected = Resolve(sourceEngine.Inventory(sourceActor.Id), catalog, itemQuery);
+                if (RuntimeClassicGiveAuthority.IsPreTargetRestricted(selected))
+                    throw new InvalidOperationException(RuntimeClassicGiveAuthority.ItemRestrictedMarker);
 
-            var targetOwned = freshTargetState.Items
-                .Where(item => string.Equals(item.OwnerId, targetActor.Id, StringComparison.OrdinalIgnoreCase)
-                    && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
-                        || item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
-                        || item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase)))
-                .ToArray();
-            var targetWeight = RuntimeBundleCInventoryAuthority.Project(freshTarget, catalog).TotalCarriedWeight;
-            var targetStrength = ReadClassicStrength(freshTarget, targetOwned, catalog);
-            var targetBaseCapacity = RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(targetStrength);
-            var targetCapacityModifier = ReadClassicEncumberanceCapacityBonus(freshTarget, sourceSession.World.Definition.Id);
-            var targetCapacity = RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(targetBaseCapacity, targetCapacityModifier);
-            var incomingWeight = checked((long)Math.Max(0, catalog.Require(selected.CanonicalItemId).Weight) * Math.Max(1, selected.StackQuantity));
-            if (checked(targetWeight + incomingWeight) > targetCapacity)
-                throw new InvalidOperationException($"{targetActor.DisplayName} cannot take that much weight.");
+                var targetEngine = new RuntimeItemEngine(catalog, freshTargetState.Items, freshTargetState.Corpses);
+                var targetOwned = freshTargetState.Items
+                    .Where(item => string.Equals(item.OwnerId, targetActor.Id, StringComparison.OrdinalIgnoreCase)
+                        && (item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase)
+                            || item.LocationKind.Equals(RuntimeItemLocations.Equipment, StringComparison.OrdinalIgnoreCase)
+                            || item.LocationKind.Equals(RuntimeItemLocations.Container, StringComparison.OrdinalIgnoreCase)))
+                    .ToArray();
 
-            // Use the item engine's GIVE path first so no_give, bound-owner, quest-owner,
-            // and owner-quantity restrictions are enforced. The two character saves are
-            // separate item-state domains, so remove the validated transferred root from
-            // the source engine and add it to the target engine inside one character transaction.
-            var transferred = sourceEngine.Give(selected.InstanceId, sourceActor.Id, targetActor.Id);
-            sourceEngine.AdministrativeRemove(transferred.InstanceId);
-            targetEngine.Add(transferred);
-            var sourceUpdated = freshSource with { ItemState = sourceEngine.Snapshot(freshSourceState.Gold, freshSourceState.ActiveItemState) };
-            var targetUpdated = freshTarget with { ItemState = targetEngine.Snapshot(freshTargetState.Gold, freshTargetState.ActiveItemState) };
-            return (sourceUpdated, targetUpdated, catalog.Require(transferred.CanonicalItemId).Name);
-        });
+                // Native add_item_to_inventory admits a normal carried item through a fixed
+                // 100-slot inventory array and performs the encumbrance test before committing.
+                var targetRootSlots = freshTargetState.Items.Count(item =>
+                    string.Equals(item.OwnerId, targetActor.Id, StringComparison.OrdinalIgnoreCase)
+                    && item.LocationKind.Equals(RuntimeItemLocations.Character, StringComparison.OrdinalIgnoreCase));
+                if (targetRootSlots >= RuntimeClassicGiveAuthority.NativeInventoryRootSlotCount)
+                    throw new InvalidOperationException(RuntimeClassicGiveAuthority.CapacityMarker);
 
-        targetSession.EnqueueMessage($"{sourceSession.Actor.DisplayName} gives you {itemName}.");
-        return $"You give {itemName} to {targetSession.Actor.DisplayName}.";
+                var targetWeight = RuntimeBundleCInventoryAuthority.Project(freshTarget, catalog).TotalCarriedWeight;
+                var targetStrength = ReadClassicStrength(freshTarget, targetOwned, catalog);
+                var targetBaseCapacity = RuntimeMajorMudCompatibility.CalculateBaseMaximumEncumberance(targetStrength);
+                var targetCapacityModifier = ReadClassicEncumberanceCapacityBonus(freshTarget, sourceSession.World.Definition.Id);
+                var targetCapacity = RuntimeMajorMudCompatibility.ApplyEncumberanceModifier(targetBaseCapacity, targetCapacityModifier);
+                var incomingWeight = checked((long)Math.Max(0, catalog.Require(selected.CanonicalItemId).Weight) * Math.Max(1, selected.StackQuantity));
+                if (checked(targetWeight + incomingWeight) > targetCapacity)
+                    throw new InvalidOperationException(RuntimeClassicGiveAuthority.CapacityMarker);
+
+                RuntimeItemInstance transferred;
+                try
+                {
+                    // RuntimeItemEngine remains the owner for no_give/bound/quest ownership
+                    // restrictions; Classic presentation maps those failures to the one native
+                    // GIVE rejection line rather than exposing Reforged metadata terminology.
+                    transferred = sourceEngine.Give(selected.InstanceId, sourceActor.Id, targetActor.Id);
+                }
+                catch (InvalidOperationException ex) when (RuntimeClassicGiveAuthority.IsTransferRestrictionFailure(ex.Message))
+                {
+                    throw new InvalidOperationException(RuntimeClassicGiveAuthority.ItemRestrictedMarker, ex);
+                }
+
+                sourceEngine.AdministrativeRemove(transferred.InstanceId);
+                targetEngine.Add(transferred);
+                var sourceUpdated = freshSource with { ItemState = sourceEngine.Snapshot(freshSourceState.Gold, freshSourceState.ActiveItemState) };
+                var targetUpdated = freshTarget with { ItemState = targetEngine.Snapshot(freshTargetState.Gold, freshTargetState.ActiveItemState) };
+                return (sourceUpdated, targetUpdated, catalog.Require(transferred.CanonicalItemId).Name);
+            });
+        }
+        catch (InvalidOperationException ex) when (ex.Message == RuntimeClassicGiveAuthority.ReceiveOffMarker)
+        {
+            throw new InvalidOperationException(RuntimeClassicGiveAuthority.RenderReceiveOff(targetActor.DisplayName));
+        }
+        catch (InvalidOperationException ex) when (ex.Message == RuntimeClassicGiveAuthority.CapacityMarker)
+        {
+            targetSession.EnqueueMessage(RuntimeClassicGiveAuthority.RecipientCapacityMessage);
+            throw new InvalidOperationException(RuntimeClassicGiveAuthority.RenderCannotAccept(targetActor.DisplayName));
+        }
+        catch (InvalidOperationException ex) when (ex.Message == RuntimeClassicGiveAuthority.ItemRestrictedMarker)
+        {
+            throw new InvalidOperationException(RuntimeClassicGiveAuthority.ItemCannotBeGivenMessage);
+        }
+
+        targetSession.EnqueueMessage(RuntimeClassicGiveAuthority.RenderRecipient(sourceSession.Actor.DisplayName, itemName));
+        _sessions.BroadcastRoom(
+            sourceSession,
+            RuntimeClassicGiveAuthority.RenderObserver(sourceSession.Actor.DisplayName, targetSession.Actor.DisplayName),
+            includeSource: false,
+            priority: RuntimeClassicRoomMessagePriority.High,
+            excludedSessionId: targetSession.Id);
+        return RuntimeClassicGiveAuthority.RenderSender(itemName, targetSession.Actor.DisplayName);
     }
 
     private static RuntimeItemInstance Resolve(IEnumerable<RuntimeItemInstance> source, RuntimeItemCatalog catalog, string query)
@@ -496,6 +562,11 @@ public sealed class RuntimeLiveGameplayPart2SmokeReport
             report.Checks.Add("tat-policy-route");
             Require(RuntimeCommand.SupportedCommands.Contains("quest"), "quest-route"); report.Checks.Add("quest-route");
             Require(RuntimeCommand.SupportedCommands.Contains("attack"), "combat-route"); report.Checks.Add("combat-route");
+            Require(RuntimeClassicGiveAuthority.NativeInventoryRootSlotCount == 100, "classic-give-root-slots"); report.Checks.Add("classic-give-root-slots");
+            Require(RuntimeClassicGiveAuthority.RecipientCapacityMessage == "You cannot carry that much!", "classic-give-capacity-text"); report.Checks.Add("classic-give-capacity-text");
+            Require(RuntimeClassicGiveAuthority.RenderReceiveOff("Target") == "Target refuses your offer.", "classic-give-receive-text"); report.Checks.Add("classic-give-receive-text");
+            Require(RuntimeClassicGiveAuthority.RenderCannotAccept("Target") == "Target cannot accept your offer.", "classic-give-accept-text"); report.Checks.Add("classic-give-accept-text");
+            Require(RuntimeClassicGiveAuthority.RenderSender("a sword", "Target") == "You just gave a sword to Target.", "classic-give-success-text"); report.Checks.Add("classic-give-success-text");
         }
         catch (Exception ex) { report.Failures.Add(ex.Message); }
         return report;

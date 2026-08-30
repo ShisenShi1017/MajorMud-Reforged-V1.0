@@ -26,7 +26,7 @@
       "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0140 continues exact Classic parity closure at the retained evidence boundary. Native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, death-floor placement, session lifecycle, party coordination, gang communications/invitations, daily gang-house cleanup, and organization services are executable and locally verified: 126 PASS / 74 STRONG / 0 UNKNOWN. MegaMUD/Borin compatibility and Creator Studio full-control Custom1 authoring remain integrated. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "milestone2Status": "CodeUpdate0140 continues exact Classic parity closure at the retained evidence boundary. Accepted parity passes through 0358 add communication rendering, suicide traps, TALK/PAGE scope, host-only scope, SET priorities, REST/MEDITATE, character-only BREAK, GIVE, Charm pricing, physical-combat ordering, raw Dodge, stock Accuracy, and PvP LVLDIFF: 144 PASS / 56 STRONG / 0 UNKNOWN. MegaMUD/Borin compatibility and Creator Studio full-control Custom1 authoring remain integrated. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
     "lastUpdateName": "CodeUpdate0140-ClassicParityClosure-CreatorStudio",
     "nextRecommendedWork": [
       "Review and commit the consolidated Classic parity closure and Creator Studio continuation when approved.",
@@ -52,7 +52,7 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_DOTNET_VERIFIED_PARITY_126_74; Reforged.Server, Reforged.App, Reforged.Client, Core, and Core tests pass Release compilation with zero errors. Core smoke tests, MegaMUD connection, Classic native player commands, communications, organizations, gang-house audit, and Classic parity closure pass. The runtime dependency on the retired OmniVerse ability file is replaced by the authoritative Librarium ability catalog. The consolidated native verification report retains 920 supplied checks with zero reported failures; native DLL verifiers were not independently rerun in this environment. GitHub Actions remains pending. Broader item smoke is not green on two pre-existing corpse-resurrection equipment assertions; this remains an explicit limitation.",
+  "buildVerification": "LOCAL_DOTNET_VERIFIED_PARITY_144_56; Reforged.Server and Reforged.App pass Release compilation with warnings as errors. Core/server test build and execution pass. MegaMUD connection and Classic parity closure gates pass. The runtime dependency on the retired OmniVerse ability file is replaced by the authoritative Librarium ability catalog. The consolidated native verification report retains 2,495 supplied checks with zero reported failures; native DLL verifiers were not independently rerun in this environment. GitHub Actions remains pending. Broader item smoke is not green on two pre-existing corpse-resurrection equipment assertions; this remains an explicit limitation.",
   "current_codeupdate": "0140",
   "last_update": "Classic parity closure, validator/runtime consolidation, and Creator Studio local integration",
   "subsystems_completed": [

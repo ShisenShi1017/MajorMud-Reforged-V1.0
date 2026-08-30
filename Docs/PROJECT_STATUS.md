@@ -1,12 +1,28 @@
 # MajorMUD Reforged Project Status
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
+- Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**).
 - The cumulative parity ledger is Librarium/Parity/majormud_parity_assertions.json; historical pass ledgers and validation snapshots are retired.
 - Tools/validator.py is the single current-health entrypoint. Runtime parity closure is exposed as --smoke-classic-parity-closure.
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
 - Generated Data/Classic remains untracked and must be regenerated from Librarium in clean environments.
-- GitHub Actions remains the official post-push validation gate.
+- GitHub Actions remains an optional post-push validation gate run by the user or Codex; parity passes here do not push.
+
+- CodeUpdate0358 uses the user-supplied working 1.11p Worldgroup/MajorMUD installation as evidence only to close native `LVLDIFF`: stock default 100, working configured 10 with the byte-identical DLL, valid range -1..100, -1 disables PvP, 0 is same-level-only, and lower-level FIEND defenders lose level-range protection. Reforged now uses that native realm rule without depending on Worldgroup.
+- CodeUpdate0357 closes stock player Accuracy directly from `_move_player_to_fighter`: class combat, floor-sqrt(Level), Level/2, STR/3, AGI/6, equipped Accuracy, pity Accuracy, and the `<33%` encumbrance fold now build the live fighter Accuracy before direct plus-accuracy. The old `combatCode*Level` approximation and weapon double-add are removed; MegaMUD/Borin remain server-authoritative.
+- CodeUpdate0356 closes raw player Dodge directly from exported `_move_player_to_fighter`: native ability 34 plus Level/Charm/Agility terms feed fighter Dodge, the `<33%` encumbrance bonus is added to that same field, and `_calculate_attack` consumes it. MegaMUD/Borin remain ordinary-stream server-authoritative consumers; class/base accuracy and non-default Speed remain evidence-gated.
+
+- CodeUpdate0355 closes native physical-combat damage ordering and Backstab endpoint damage directly from exported `_calculate_attack` / `_move_player_to_fighter`: Reforged now follows native DR -> Bash/Smash multiplier -> Dodge ordering, both Backstab endpoints use ability 117/118 plus race/class Stealth distinction and Classic level scaling, and MegaMUD/Borin remain ordinary-stream consumers. At the 0355 checkpoint raw Dodge construction still remained evidence-gated; 0356 closes it. Complete class/base accuracy construction and non-default Speed integration remain separately evidence-gated.
+
+- CodeUpdate0354 closes the native Classic BUY/SELL Charm pricing assertions directly from `_buy_item`/`_sell_item`: effective Charm is consumed from the current character field, BUY applies `110-floor(Charm/5)` after markup, SELL applies `floor(Charm/2)+25` without markup, Charm 0 is explicitly native-valid, and MegaMUD/Borin continue to use server-authoritative ordinary transactions.
+
+- CodeUpdate0353 closes stock GIVE item-capacity/restriction presentation: native 100 carried-root slots plus encumbrance admission, exact RECEIVE-off/capacity/item-restriction lines, exact sender/recipient/High-priority room success text, and ordinary-stream MegaMUD/Borin compatibility.
+
+- CodeUpdate0352 closes character-only BREAK/autocombat ownership. BREAK now disables only the issuing character's automatic attacks; NPC threat and PvP opponent autocombat remain active independently, and ATTACK re-engages only that character. Borin/client state separates incoming-combat danger from local autocombat so `*Combat Off*` does not imply the opponent stopped attacking.
+
+- CodeUpdate0351 closes the stock-scope absence of a native TRADE escrow command and REPAIR command/service from the original DLL/service census. Active BREAK now presents the native `*Combat Off*` and `<name> breaks off combat.` lines before teardown for MegaMUD/Borin compatibility; exact per-user PvP autocombat ownership remains STRONG.
+
+- CodeUpdate0350 closes native REST/MEDITATE sickness/full-resource/state-entry presentation: active decoded poison blocks both commands with native text, REST remains legal at full HP, MEDITATE rejects/clamps at full mana, observer socials are exact High-priority room messages, MegaMUD terminal strings are preserved, and the shared Reforged client/Borin parser recognizes both recovery success lines.
 
 - Native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, and death-floor placement are integrated from the reviewed cumulative evidence. Local Release compilation and the affected runtime gates pass.
 - Combat formula authority now reads the Librarium ability catalog. The runtime no longer blocks combat because the retired loose OmniVerse ability file is absent.
@@ -234,7 +250,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - Active mode: Codex local repository work.
 - Repository: `ShisenShi1017/MajorMud-Reforged-V1.0`.
 - Local path: `E:\MajorMud-Reforged Github`.
-- Current user request: amend current continuity to CodeUpdate0140, commit, and push.
+- Current work: integrate cumulative parity pass 0358 into the CodeUpdate0140 local baseline without restoring generated data or retired numbered validation artifacts.
 
 ## Current Baseline
 
@@ -244,7 +260,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - Milestone 1: complete and frozen.
 - CodeUpdate0137: complete and folded into the local baseline.
 - CodeUpdate0138 status: green by user report.
-- CodeUpdate0139 local status: runtime cohesion, room-description recovery, final native closure/WCC decode archive intake, verified/strong Librarium activation, Librarium app dashboard, Bundle H baseline/final audit capture, and server/native-runtime audit repairs applied and locally verified. CodeUpdate0140 local status: repository cleanup/imported-reference archival applied and locally verified.
+- CodeUpdate0139 is closed. CodeUpdate0140 contains repository cleanup/imported-reference archival plus accepted parity passes through 0358; the official public update remains 0140 while 0358 identifies the internal parity pass.
 - User-confirmed room-action vocabulary: all 25 clue-harvest verbs are evidence-gated active contextual commands. The candle trainer route is now closed: in `room.map1.2252`, all three decoded candle aliases traverse `exit.map1.2252.n` to `room.map1.2254`. The runtime double-gate evaluation that blocked valid text commands was removed, and exact teleporter plus living-world tests pass.
 - Fresh F11 verification reports 95 registrations, 44 aliases, and all 25 user-confirmed contextual room-action verbs active with no failures.
 - World-contract marker closure reconciles all three generated Classic/custom/AI world definitions with the live server world projection. Exhaustion is now 30 connected / 7 pending families with zero disconnected fields/families.
@@ -268,7 +284,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - The living-world audit now binds all 206/206 action gates with zero native/passive placeholders and zero ordinary action-semantic gaps.
 - Static room-item reconciliation now generates and materializes 363 shared-world placements across 287 rooms: 102 visible and 261 hidden-searchable. Room rendering, pickup, visible re-drop, Search, and living-world persistence are connected. Seven BBS-only Sysop-room rows and one invalid item-zero row are rejected.
 - Static room-item reset is explicit and idempotent at the host maintenance boundary: missing ordinary placements restore once even when another copy is character-owned, existing ground placements do not duplicate, and decoded positive item `game_limit` values block restoration only when the global world-plus-owned count is already at the limit. No global wall-clock schedule or unlinked dedicated item timer is guessed.
-- Local cleanup verification: `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` passes with 0 warnings/errors, and `python Tools\validator.py` passes 15/15 current-health checks after imported/reference archival cleanup.
+- Current local verification: Reforged.Server and Reforged.App Release builds pass with warnings as errors; core/server tests pass; `--smoke-classic-parity-closure` and `--smoke-megamud-connection` pass. The generic native verification report retains 2,495 supplied checks with zero failures.
 - GitHub Actions status for CodeUpdate0140: pending until pushed and confirmed green.
 - Guardian Hall engineering department is implemented locally across phases 1-10 with persisted sessions/tasks/memory/reports/statistics, isolated workspaces, guarded build/validation/runtime commands, repository analysis, diagnosis, and cumulative candidate ZIP packaging.
 - Current Guardian Hall policy: planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight execution are independently controlled. Candidate ZIP generation defaults on; autonomous and repository-update capabilities default off. Emergency Stop cancels execution without changing saved preferences.
@@ -448,6 +464,6 @@ Latest local continuation: grouped abilities 125-134 are complete as persistent 
 
 # Current Update 0332 Integration
 
-- The current native parity baseline is 126 PASS / 74 STRONG / 0 UNKNOWN = 200 (63.0% strict / 100.0% evidence-backed), including native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, and organization promotions.
+- The current native parity baseline is 137 PASS / 63 STRONG / 0 UNKNOWN = 200 (68.5% strict / 100.0% evidence-backed), including native exit, formula, NPC combat, scheduler/regeneration, REST/MEDITATE presentation, character death, session, party, gang, and organization promotions.
 - The cumulative PASS50-61 payload and Creator Studio full-control editor payload are integrated with no overlap and no changes to generated Data, saves, imported evidence, archives, releases, or build output.
 - Explicit server and Reforged.App Release builds pass with zero warnings/errors. The consolidated parity closure and full live-combat smoke pass, including Nahr native-empty rendering and Blacknight timed-status lifecycle coverage. Python validators could not run because no interpreter is registered.

@@ -1,0 +1,118 @@
+{
+  "schema": "majormud.native-set-messages-priority-evidence.v1",
+  "update": "CodeUpdate0349",
+  "source": {
+    "module": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "raw_binary_bundled": false,
+    "retained_help": "WCCMMHLP.MSG",
+    "retained_release_notes": "WCCMMUD.NOT"
+  },
+  "native_threshold_contract": {
+    "command_owner": "_cmd_set",
+    "command_owner_va": "0x00458B60",
+    "recipient_live_threshold_offset": "0x722",
+    "persisted_record_offset": "0x3B",
+    "values": {
+      "high": 0,
+      "medium": 10,
+      "low": 20
+    },
+    "bare_toggle_cycle": ["high", "low", "medium", "high"],
+    "write_sites": {
+      "bare_high_to_low": "0x00459290 writes 0x14",
+      "bare_low_to_medium": "0x004592E6 writes 0x0A",
+      "bare_medium_to_high": "0x004592C0 writes 0x00",
+      "explicit_high": "0x00459ABF writes 0x00",
+      "explicit_medium": "0x00459AFE writes 0x0A",
+      "explicit_low": "0x00459B3E writes 0x14"
+    }
+  },
+  "native_delivery_contract": {
+    "owner": "_tell_room",
+    "owner_va": "0x0046B010",
+    "priority_argument_stack_offset": "[ebp+0x18]",
+    "recipient_threshold_live_offset": "0x722",
+    "branches": [
+      {
+        "message_priority": "0",
+        "meaning": "high",
+        "delivery": "always admitted by the SET MESSAGES threshold gate"
+      },
+      {
+        "message_priority": "1..10",
+        "meaning": "medium",
+        "delivery": "admitted when recipient threshold is High(0) or Medium(10); suppressed for Low(20)"
+      },
+      {
+        "message_priority": "11..20",
+        "meaning": "low",
+        "delivery": "admitted only when recipient threshold is High(0)"
+      },
+      {
+        "message_priority": ">20",
+        "meaning": "outside normal room-message priority range",
+        "delivery": "rejected by this threshold path"
+      }
+    ],
+    "disassembly_gate_range": "0x0046B090..0x0046B0B4"
+  },
+  "player_visible_help": {
+    "summary": "SET MESSAGES LOW receives high-priority room messages only; MEDIUM receives high+medium; HIGH receives high+medium+low.",
+    "help_message_number": 121,
+    "release_note_corroboration": "Version 0.4p explicitly identifies room pickup/drop messages as low priority."
+  },
+  "native_priority_membership": {
+    "high_priority_examples": [
+      "room SAY/YELL and communication-visible room speech",
+      "ordinary entry/departure movement",
+      "attack engagement",
+      "door/open/close/bash/search/disarm and other important room actions",
+      "GIVE and gang-shop stock/unstock observer events"
+    ],
+    "medium_priority_examples": [
+      "spell cast observer text",
+      "spell resistance/failure observer text",
+      "spell effect observer text"
+    ],
+    "low_priority_examples": [
+      "GET/pickup observer text",
+      "DROP observer text",
+      "DRAG observer text",
+      "ordinary physical-combat hit/miss/dodge/glance observer chatter"
+    ],
+    "callsite_census": {
+      "numeric_high_0": 146,
+      "numeric_medium_10": 13,
+      "numeric_low_20": 18,
+      "caller_supplied_or_dynamic": 4,
+      "total_tell_room_calls": 181,
+      "dynamic_note": "Dynamic movement/drag/autocombat paths preserve caller-owned semantics; Reforged's still-unclosed DRAG/autocombat timing remains tracked by their own assertions rather than being invented here."
+    }
+  },
+  "reforged_integration": {
+    "recipient_side_filter": "RuntimeSessionManager.BroadcastRoom loads each persistent recipient's saved Classic messages level and applies the recovered threshold before enqueue.",
+    "high_default": "Existing room broadcasts remain HIGH unless an evidence-backed Medium/Low owner explicitly supplies a priority.",
+    "low_integrations": [
+      "normal visible item GET observer message",
+      "normal item DROP observer message",
+      "player-vs-NPC physical attack observer detail",
+      "NPC-vs-player physical attack observer detail",
+      "physical damage-shield observer detail"
+    ],
+    "medium_integrations": [
+      "decoded player spell start observer message",
+      "NPC spell resistance/immunity/damage/heal/status observer detail",
+      "NPC area-spell observer detail",
+      "NPC hit-spell secondary observer message"
+    ],
+    "mega_mud": "MegaMUD remains on the ordinary terminal stream and sees the threshold-filtered stream exactly as another connected MajorMUD client would.",
+    "borin": "Borin must not override the player's SET MESSAGES choice and must use authoritative/private state channels rather than relying on ambient observer chatter that may be intentionally suppressed."
+  },
+  "parity_promotion": {
+    "assertion": "native.communications.persistence-logging",
+    "from": "STRONG",
+    "to": "PASS",
+    "reason": "After Worldgroup-only host plumbing was removed from parity scope in 0348, exact SET MESSAGES recipient threshold semantics were the remaining player-visible blocker. 0349 recovers the numeric gate and integrates evidence-backed room-message priority classes in the server stream."
+  }
+}

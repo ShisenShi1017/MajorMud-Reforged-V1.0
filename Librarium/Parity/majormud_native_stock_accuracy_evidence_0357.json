@@ -1,0 +1,55 @@
+{
+  "schema": "majormud.native-stock-accuracy-closure.v1",
+  "update": "CodeUpdate0357",
+  "target": "stock MajorMUD / Classic",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "artifact": "ImportedDatabasesAndEvidence.LocalOnly(2).rar -> original WCCMMUD.DLL",
+      "bundled": false,
+      "bytes": 643072,
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "image_base": "0x00400000",
+      "move_player_to_fighter_rva": "0x0002A19D",
+      "calculate_attack_rva": "0x0002B800"
+    },
+    "MMUD_Explorer": {
+      "repository": "syntax53/MMUD-Explorer",
+      "file": "modMMudFunc.bas",
+      "usage": "read-only cross-check; no repository write or push",
+      "function": "CalculateAccuracy"
+    },
+    "MegaMUD": "MegaMUD-Decode-Pass28-megamud-EXE-Native-Closure/STRING_INVENTORY.csv (local-only imported evidence)"
+  },
+  "native_contract": {
+    "owner": "_move_player_to_fighter",
+    "fighter_accuracy_field": "fighter +0x00",
+    "inputs": {
+      "class_combat": "class record +0x48",
+      "level": "user +0x94",
+      "strength": "user +0xA6",
+      "agility": "user +0xAA",
+      "encumbrance_percent": "user +0x708",
+      "equipped_accuracy": "sum signed item +0x39A",
+      "direct_plus_accuracy": "user +0x70A"
+    },
+    "ordering": [
+      "sum equipped item Accuracy (+0x39A); if the sum is zero, use pity value 1",
+      "when living and encumbrance <33%, add 15-trunc(encumbrance/10) into the same equipment/encumbrance accuracy bucket",
+      "fold that bucket as 2*trunc(bucket/2), preserving native even-value behavior",
+      "add 2*((classCombat-1)*floor(sqrt(level)) + 2*classCombat + trunc(level/2) - 2)",
+      "add trunc((Strength-50)/3)",
+      "add trunc((Agility-50)/6)",
+      "after fighter construction, add direct plus-accuracy cache user +0x70A",
+      "martial Punch/Kick/JumpKick accuracy adjustments are added later by their own native ability paths"
+    ],
+    "formula_base": "2*((C-1)*floor(sqrt(L)) + 2*C + trunc(L/2) + trunc(B/2) - 2) + trunc((STR-50)/3) + trunc((AGI-50)/6), where B is pity-adjusted equipped accuracy plus the living <33% encumbrance bonus",
+    "consumer": "_calculate_attack consumes fighter +0x00 as attacker Accuracy in the already-PASS physical hit/Dodge resolver."
+  },
+  "runtime_change": "Reforged no longer approximates Classic base Accuracy as combatCode*Level plus a generic STR/AGI attack value. RuntimePlayerCombatProfileResolver now builds the native fighter Accuracy base, folds all equipped item accuracy in the native even-value bucket, and keeps direct ability/status plus-accuracy separate. Normal/PvP live combat no longer double-adds wielded weapon accuracy after that equipped-accuracy fold.",
+  "megamud_compatibility": "MegaMUD continues to consume ordinary server combat results; its imported executable contains Accuracy/Accuracy Bonus statistics labels but no Reforged-private formula transport is required.",
+  "borin_compatibility": "Borin consumes server-authoritative combat outcomes/state and must not substitute a private class/base Accuracy formula.",
+  "promotion": {
+    "combat.class-accuracy": "PASS"
+  },
+  "verification": "Reports/RuntimeVerification/codeupdate0357_direct_native_accuracy_verification.json"
+}

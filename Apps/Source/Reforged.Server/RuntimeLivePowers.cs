@@ -331,12 +331,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             && !string.IsNullOrWhiteSpace(spell.StartMessage.TargetMessage))
             targetSession.EnqueueMessage(RenderDecodedStartMessage(spell.StartMessage.TargetMessage, casterName, targetName));
         if (!publishObservers || string.IsNullOrWhiteSpace(spell.StartMessage.ObserverMessage)) return;
-        foreach (var observer in _sessions.InRoom(casterSession.World.Definition.Id, casterSession.CurrentRoom.Id))
-        {
-            if (observer.Id.Equals(casterSession.Id, StringComparison.OrdinalIgnoreCase)
-                || targetSession is not null && observer.Id.Equals(targetSession.Id, StringComparison.OrdinalIgnoreCase)) continue;
-            observer.EnqueueMessage(RenderDecodedStartMessage(spell.StartMessage.ObserverMessage, casterName, targetName));
-        }
+        _sessions.BroadcastRoom(
+            casterSession,
+            RenderDecodedStartMessage(spell.StartMessage.ObserverMessage, casterName, targetName),
+            includeSource: false,
+            priority: RuntimeClassicRoomMessagePriority.Medium,
+            excludedSessionId: targetSession?.Id);
     }
 
     private string ResolveSpellTargetDisplayName(RuntimeSpellTarget target, RuntimeLivingNpcState? targetNpc) =>

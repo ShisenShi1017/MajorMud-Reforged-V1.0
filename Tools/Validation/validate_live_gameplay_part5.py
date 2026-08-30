@@ -4,7 +4,7 @@ root=Path(sys.argv[1]) if len(sys.argv)>1 else Path(r'E:\MajorMud-Reforged Githu
 errors=[]
 server=root/'Apps/Source/Reforged.Server'
 checks={
- 'RuntimeLiveGameplayPart5.cs':['ExecuteBankCommand','ResolveBankAtRoom','RuntimeCurrencyAccount','economy.banked-gold','RuntimeLiveGameplayPart5SmokeReport'],
+ 'RuntimeLiveGameplayPart5.cs':['ExecuteBankCommand','ResolveBankAtRoom','RuntimeBundleCEconomyAuthority.Deposit','RuntimeBundleCEconomyAuthority.Withdraw','RuntimeLiveGameplayPart5SmokeReport'],
  'RuntimeLiveGameplayPart2.cs':['ExecuteBankCommand(session, command)'],
  'Program.cs':['--smoke-live-gameplay-part5','RuntimeLiveGameplayPart5SmokeReport.Run'],
 }
@@ -14,6 +14,8 @@ for file,tokens in checks.items():
  text=p.read_text(encoding='utf-8')
  for token in tokens:
   if token not in text: errors.append(f'{file}:missing-token:{token}')
+ if file == 'RuntimeLiveGameplayPart5.cs' and 'RuntimeCurrencyAccount' in text:
+  errors.append('RuntimeLiveGameplayPart5.cs:retired-gold-only-bank-bypass')
 banks=root/'Data/Classic/banks.json'
 if not banks.exists(): errors.append('missing:Data/Classic/banks.json')
 else:

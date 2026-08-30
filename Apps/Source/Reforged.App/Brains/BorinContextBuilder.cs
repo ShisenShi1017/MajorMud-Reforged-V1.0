@@ -111,7 +111,7 @@ Server/world/character: {Limit(game.GameServerIdentity, 300)} / {Limit(game.Worl
 Room: verified={game.HasVerifiedRoom}; key={Limit(game.CurrentRoomKey, 160)}; title={Limit(game.CurrentRoom, 300)}; freshness={game.RoomFreshness}
 Exits: verified={game.HasVerifiedExits}; values={FormatList(game.CurrentExits.Take(20), "none verified")}; freshness={game.ExitFreshness}
 Vitals: HP={game.HealthCurrent}/{game.HealthMaximum} ({game.HealthPercent}%); MA={game.ManaCurrent}/{game.ManaMaximum} ({game.ManaPercent}%)
-Activity: combat={game.InCombat}; resting={game.IsResting}; moving={game.IsMoving}
+Activity: combat={game.InCombat}; autocombat={game.AutocombatActive}; resting={game.IsResting}; moving={game.IsMoving}
 Last command: {game.LastCommandOrigin}; {Limit(game.LastCommand, 300)}; freshness={game.LastCommandFreshness}
 Inventory: {inventory}
 Equipment: {equipment}

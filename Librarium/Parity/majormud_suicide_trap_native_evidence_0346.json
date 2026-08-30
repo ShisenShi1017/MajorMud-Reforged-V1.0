@@ -1,0 +1,77 @@
+{
+  "schema": "majormud-native-evidence-v1",
+  "update": "CodeUpdate0346",
+  "source": {
+    "module": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "distribution": "ImportedDatabasesAndEvidence.LocalOnly/WCCDefaultInstall",
+    "raw_binary_bundled": false
+  },
+  "suicide": {
+    "cmd_suicide_va": "0x004692BE",
+    "commit_suicide_va": "0x0046E968",
+    "native_strings": [
+      "Enter your suicide password:",
+      "You may not suicide or reroll during a tournament.",
+      "You may not suicide or reroll in this room!",
+      "User %s has committed suicide.",
+      "The password may not be longer than 8 characters.",
+      "Password changed",
+      "Invalid password!"
+    ],
+    "proven_behavior": [
+      "SET SUICIDE stores/configures a suicide password with an eight-character maximum.",
+      "When configured, the same suicide password gates SUICIDE and REROLL.",
+      "SUICIDE prompts for the configured password before committing the death path.",
+      "Plain SUICIDE consumes one life through the normal death path; final-life SUICIDE enters replacement-character lifecycle.",
+      "SUICIDE NOW is documented as the immediate reroll-equivalent lifecycle form."
+    ],
+    "remaining_boundary": [
+      "Exact tournament-state source and the room-level no-suicide flag are not yet projected into Reforged admission metadata."
+    ]
+  },
+  "traps": {
+    "cmd_disarm_va": "0x00468BED",
+    "move_user_va": "0x00417692",
+    "exit_types": {
+      "9": "fixed-damage trap",
+      "24": "spell trap"
+    },
+    "para2_states": {
+      "0": "active; movement triggers effect",
+      "1": "inactive; movement passes",
+      "2": "hidden; ordinary movement reports no exit",
+      "3": "active movement; movement triggers effect",
+      "4": "inactive movement; movement passes"
+    },
+    "successful_disarm_transitions": {
+      "0": 1,
+      "3": 4
+    },
+    "disarm_roll": "random(0,100) < traps_value succeeds",
+    "failed_disarm": {
+      "type_9": "failure triggers effect when roll - 10 >= traps_value; otherwise it is a non-triggering failed disarm",
+      "type_24": "every failed disarm enters the trap effect path"
+    },
+    "movement_order": "active trap effect executes before successful room-transition completion",
+    "native_strings": [
+      "You successfully disarmed the trap to the %s.",
+      "You failed to disarm any trap to the %s.",
+      "There is no exit in that direction!"
+    ],
+    "remaining_boundary": [
+      "Exact SEARCH probability/Traps-skill modifier for discovering hidden state 2.",
+      "Exact Para3/Para4 trap presentation ownership.",
+      "Exact native trap reset/rearm timing and owner."
+    ]
+  },
+  "reforged_consumers": [
+    "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveWorld.cs",
+    "Apps/Source/Reforged.Server/ServerNetworkHost.cs",
+    "Apps/Source/Reforged.App/Brains/BorinAutonomousSafetyPolicy.cs"
+  ]
+}

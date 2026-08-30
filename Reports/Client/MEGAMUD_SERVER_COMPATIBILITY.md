@@ -4,6 +4,21 @@
 
 The current cumulative integration promotes player-visible lifecycle and profile behaviors while preserving MegaMUD as an unchanged external Telnet client and Borin as a normal Reforged player/tester.
 
+## CodeUpdate0345 communication compatibility
+
+The server communication stream now follows recovered Classic parser-visible forms instead of Reforged-only channel wrappers:
+
+- room SAY: `Name says "text"`;
+- current-room YELL: `From Name (Yelling): "text"`;
+- adjacent YELL: `Someone yells from above/below/the <direction> "text"`;
+- telepath: `Name telepaths: text`;
+- directed speech: `Name says (to you) "text"`;
+- world channels: `Name gossips: text` and `Name auctions: text`.
+
+The imported MegaMUD runtime log independently contains the telepath, directed-message, and gossip forms, so these lines are now regression invariants in `RuntimeMegaMudConnectionSmokeReport`. `GOS` and `AUC` are accepted as legacy channel aliases. The private Reforged client-data channel remains separate and is still disabled when a legacy client rejects GMCP.
+
+Borin was updated in the same pass: he emits native slash telepaths, uses full GOSSIP/AUCTION commands, translates legacy autonomous TELEPATH/GOS at the client boundary, and parses the exact native/MegaMUD lines above.
+
 ## REROLL + SET KEEP
 
 Native HELP REROLL establishes that REROLL kills the current character and enters replacement-character creation. Native final-death evidence establishes the retained-experience calculation and its gates. The user clarified the gameplay contract: the old character is discarded; a newly created character replaces it; only the KEEP-controlled retained experience may cross that boundary.
@@ -19,7 +34,7 @@ Reforged now implements that lifecycle:
 - Active gang membership is removed; a gang led by the departing character is disbanded rather than leaving an invalid leader identity.
 - Active combat ownership is broken, companion ownership is cleaned up, stale runtime character tracking is removed, and persisted/live spell, ability, resource, effect, and cooldown state keyed to the departed character is purged.
 - SET KEEP ON causes the fresh replacement to receive the already-recovered native retained-XP result. SET KEEP OFF produces zero retained XP.
-- REROLL does not add a Reforged-only Y/N prompt. Native MajorMUD only requires an extra credential when SET SUICIDE has configured a suicide password; that setting is not yet exposed by Reforged.
+- REROLL does not add a Reforged-only Y/N prompt. Native MajorMUD only requires an extra credential when SET SUICIDE has configured a suicide password; Reforged now exposes that setting and uses the same prompt for SUICIDE and REROLL.
 
 The native retained-XP calculation remains:
 
@@ -65,5 +80,34 @@ Borin now knows:
 ## Remaining boundary
 
 - SET INTERRUPT still requires an authoritative editable input-buffer interruption consumer.
-- SET SUICIDE / suicide-password handling and SUICIDE NOW equivalence are separate lifecycle work and are not invented by this pass.
+- SET SUICIDE / suicide-password handling is now connected to the Telnet lifecycle: the configured credential gates SUICIDE and REROLL, and `SUICIDE NOW` follows the native immediate-reroll lifecycle form. Tournament/no-suicide-room admission flags remain a separate native projection boundary.
 - Live Windows/.NET + actual MegaMUD binary certification remains required before declaring 100% MegaMUD compatibility.
+
+
+## CodeUpdate0347 TALK / RESPONSE / PAGE compatibility
+
+- Classic `TALK FAST` preserves native fallback speech: otherwise-unrecognized non-command text is sent to the room.
+- Classic `TALK SLOW` no longer relies on that fallback. Room speech must use an explicit `SAY` or the stock `.` speech prefix; otherwise-unrecognized input returns `Command not recognized.`
+- `SET RESPONSE BRIEF` / `VERBOSE` follows the native player-visible self-response contract; BRIEF returns `Well Spoken...`.
+- Bare `PAGE` toggles the live-session page flag; `SET PAGE ON`, `SET PAGE OK`, and `SET PAGE OFF` use the native visible state strings.
+- These are ordinary Telnet/game-stream behaviors. No MegaMUD-only private channel or parser shim is introduced.
+- Actual MegaMUD-binary certification remains a Windows/.NET runtime test boundary.
+
+
+## Reforged host scope (CodeUpdate0348)
+
+Reforged does not emulate Worldgroup PAGE/telegram host transport, mail storage, presentation queues, or host logging. Those are host implementation details, not MegaMUD protocol requirements. MegaMUD compatibility is judged on MajorMUD-visible Telnet/game-stream behavior; the existing PAGE setting text/state and communication commands remain part of that contract.
+
+### SET MESSAGES filtering (CodeUpdate0349)
+
+Legacy MegaMUD compatibility uses the same recipient-side MajorMUD room-message threshold as the stock server. No private protocol is required: LOW receives only high-priority room text, MEDIUM receives high+medium, and HIGH receives all room-message classes. Native threshold bytes are 20/10/0 respectively. Reforged's MegaMUD smoke locks this contract so a compatibility client does not receive a separate or bypassed observer stream.
+
+## CodeUpdate0350 recovery-state compatibility
+
+The original WCCMMUD command branch and imported MegaMUD executable inventories now jointly close the REST/MEDITATE terminal surface. Reforged emits the stock success, sickness, full-mana, and observer text on the normal Telnet stream. REST remains legal at full HP; MEDITATE rejects at current mana >= maximum. No private Reforged client-data dependency is introduced.
+
+The server MegaMUD smoke now locks the exact recovery strings. Final end-to-end certification with the actual MegaMUD binary remains a compiled Windows runtime boundary, not a protocol-design gap.
+
+## CodeUpdate0351 BREAK compatibility
+
+Imported MegaMUD evidence contains `*Combat Off*`, ` breaks off combat`, a stock-only note that the client sends `break`, and help stating that MegaMUD can issue `break` before running from PvP/monsters. Reforged now preserves the native active-BREAK player/observer terminal presentation and High-priority room delivery on the same ordinary Telnet stream. No MegaMUD-only shim was added.

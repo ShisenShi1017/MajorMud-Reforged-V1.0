@@ -1,7 +1,8 @@
 # AI Context for Reforged
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **126 PASS / 74 STRONG / 0 UNKNOWN = 200** (**63.0% strict / 100.0% evidence-backed**).
+- Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**).
+- Parity passes 0345-0358 are accepted into the cumulative ledger under CodeUpdate0140. Their 1,575 supplied checks are consolidated into the generic native runtime verification report; numbered one-off validators and reports are retired.
 - The exact original WCCMMUD 1.11p DLL plus wccknms2.dat trace proves both Nahr message-8480 caller arguments are empty strings for all five attacks. Preserve the native empty spacing.
 - Librarium/Parity/majormud_parity_assertions.json is the cumulative retained ledger. ValidationManifest.json records accepted one-time validation.
 - Tools/validator.py is the only current-health entrypoint. Runtime parity closure uses --smoke-classic-parity-closure.
@@ -17,9 +18,9 @@
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
 - Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
-- Current local status: native organization/session work and MegaMUD/Borin compatibility are merged and locally verified; GitHub Actions remains pending push.
+- Current local status: parity passes 0345-0358, native organization/session work, and MegaMUD/Borin compatibility are merged and locally verified; GitHub Actions remains pending push.
 - CodeUpdate0138: pushed and green by user report.
-- Latest local verification for CodeUpdate0140: CodeUpdate0139 Bundle H final audit sweep PASS 63/63 and final smoke sweep PASS are retained as the runtime baseline. After imported/reference archival cleanup, `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` passes with 0 warnings/errors and `python Tools\validator.py` passes 15/15 current-health checks. GitHub Actions pending until pushed and confirmed green.
+- Latest local verification for CodeUpdate0140: Reforged.Server and Reforged.App Release builds pass with warnings as errors; core/server tests pass; `--smoke-classic-parity-closure` and `--smoke-megamud-connection` pass. The consolidated native verification report retains 2,495 supplied checks with zero failures. GitHub Actions remains pending until pushed and confirmed green.
 - Decode Exhaustion Bundle F Revision 0033 and Bundle G Revision 0002 are installed locally into the dirty CodeUpdate0139 repo without commit or push. Bundle G closes the prior F10 native payload gap: server Release build passes, `--audit-bundle-f-phase-f10-native-payloads` now reports 0 disconnects, and Bundle F F10 complete through F15 audits pass locally.
 - Native presentation regeneration is reproducible: 3,467 verified WCCTEXT2 records are canonical Librarium data and compile into one generated runtime file. Clean Classic compile reports 30 families, 101,731 objects, and 35 files.
 - GitHub Actions is pending for CodeUpdate0140 until the pushed commit is confirmed green.

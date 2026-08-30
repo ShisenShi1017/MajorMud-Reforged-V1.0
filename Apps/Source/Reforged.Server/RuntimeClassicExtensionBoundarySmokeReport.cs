@@ -16,6 +16,8 @@ public sealed record RuntimeClassicExtensionBoundarySmokeReport(
         var checks = new List<string>();
         if (failures.Count == 0)
         {
+            checks.Add("native-78-command-export-census-trade-repair-absent");
+            checks.Add("decoded-204-service-census-repair-absent");
             checks.Add("classic-trade-and-repair-extensions-denied");
             checks.Add("classic-give-stock-command-retained");
             checks.Add("custom-and-ai-extension-commands-retained");

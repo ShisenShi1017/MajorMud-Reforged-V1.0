@@ -327,7 +327,7 @@ public sealed partial class ClientParsingProfileService : IClientParsingProfileS
         Add(profile, ClientParsingRuleKind.Currency, "Cash total", @"(?:Cash|Coins|Gold)\s*[:=]?\s*([0-9,]+)");
         Add(profile, ClientParsingRuleKind.CombatStart, "Combat starts", @"attacks you|you attack|combat begins|engage in combat");
         Add(profile, ClientParsingRuleKind.CombatEnd, "Combat ends", @"combat ends|no longer fighting|you have defeated|is dead");
-        Add(profile, ClientParsingRuleKind.Resting, "Resting state", @"you (?:sit|rest|meditate)|you are resting");
+        Add(profile, ClientParsingRuleKind.Resting, "Resting state", @"you (?:sit|rest|meditate)|you are (?:now )?(?:resting|meditating)");
         Add(profile, ClientParsingRuleKind.MovementRejected, "Movement rejected", @"can't go|cannot go|no exit|blocked|locked|unable to move|you may not");
         Add(profile, ClientParsingRuleKind.Experience, "Experience and next level", @"(?:Experience|Exp|XP)\s*[:=]?\s*([0-9,]+)(?:\s*(?:/|of|needed(?:\s+for\s+next\s+level)?[:=]?)\s*([0-9,]+))?");
         Add(profile, ClientParsingRuleKind.Level, "Character level", @"(?:Level|Lvl)\s*[:=]?\s*(\d+)");

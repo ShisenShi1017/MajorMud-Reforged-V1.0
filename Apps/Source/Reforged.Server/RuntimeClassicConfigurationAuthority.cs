@@ -15,7 +15,10 @@ public static class RuntimeClassicConfigurationAuthority
     // Exact retained WCCMMUD.mcv defaults used by active Reforged Classic owners.
     public const int PlayerDataSaveIntervalSeconds = 60;
     public const int BufferDataSaveIntervalSeconds = 300;
+    public const int PvpDisabledLevelDifference = -1;
+    public const int MinimumPvpLevelDifference = -1;
     public const int MaximumPvpLevelDifference = 100;
+    public const int MaximumPvpLevelDifferenceAllowed = 100;
     public const int InactivitySeconds = 5000;
     public const int MaximumTopTenEntries = 30;
     public const int EvilPointsRetainedAfterFinalDeathPercent = 50;

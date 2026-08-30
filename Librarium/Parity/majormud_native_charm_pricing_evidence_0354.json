@@ -1,0 +1,42 @@
+{
+  "schema": "majormud.native-charm-pricing-closure.v1",
+  "update": "CodeUpdate0354",
+  "target": "stock MajorMUD / Classic",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "artifact": "ImportedDatabasesAndEvidence.LocalOnly(2).rar -> original WCCMMUD.DLL",
+      "bundled": false,
+      "bytes": 643072,
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "image_base": "0x00400000",
+      "buy_item_rva": "0x0001B86F",
+      "sell_item_rva": "0x0001C43C"
+    },
+    "retained_formula_evidence": "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+    "MegaMUD": "MegaMUD-Decode-Pass28-megamud-EXE-Native-Closure/STRING_INVENTORY.csv (local-only imported evidence)"
+  },
+  "native_contract": {
+    "effective_charm_field": "WORD character +0xAC consumed directly by both _buy_item and _sell_item",
+    "buy": {
+      "range": "0x0041C13C-0x0041C177",
+      "formula": "floor(floor(base_or_scaled_base * (markup + 100) / 100) * (110 - floor(Charm / 5)) / 100), with >100000 BUY scale/restore around the integer stages",
+      "charm_zero_factor_percent": 110,
+      "rounding": "native integer truncation at each DIV; no floating/VB final rounding"
+    },
+    "sell": {
+      "range": "0x0041C65B-0x0041C673",
+      "formula": "floor(baseCopper * (floor(Charm / 2) + 25) / 100)",
+      "charm_zero_factor_percent": 25,
+      "shop_markup_applied": false,
+      "rounding": "native integer truncation at DIV 100"
+    }
+  },
+  "scope_note": "This closes the BUY/SELL Charm pricing callsites themselves. Universal cross-category ordering that produces the current/effective Charm field remains tracked separately under character modifier-order assertions.",
+  "megamud_compatibility": "Imported MegaMUD executable inventory contains ordinary `buy %s` and `sell %s` command templates; pricing remains server-authoritative on the normal terminal stream.",
+  "borin_compatibility": "Borin must not calculate or override Classic shop price from a private formula path; the server quote/transaction remains authoritative.",
+  "promotion": {
+    "economy.buy-charm-adjustment": "PASS",
+    "economy.sell-charm-adjustment": "PASS"
+  },
+  "verification": "Reports/RuntimeVerification/codeupdate0354_direct_native_charm_pricing_verification.json"
+}

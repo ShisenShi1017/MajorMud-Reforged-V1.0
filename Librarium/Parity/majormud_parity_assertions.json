@@ -1,6 +1,6 @@
 {
   "schema": "majormud.parity-assertions.v0311",
-  "update": "0344",
+  "update": "CodeUpdate0358",
   "scoring": {
     "PASS": "Exact/captured/recovered behavior with executable regression proof.",
     "STRONG": "Implementation/data connection is strongly evidenced but not yet exact native parity.",
@@ -21,10 +21,12 @@
     {
       "id": "native.builder-content-editing",
       "category": "Administration & Host",
-      "state": "STRONG",
-      "description": "Classic MajorMUD has no native in-game content builder; content editing is external (for example Nightmare Redux). Final negative native command-table proof is still required before PASS.",
+      "state": "PASS",
+      "description": "Classic MajorMUD has no native in-game world-content builder. Original WCCMMUD.DLL exposes 78 unique _cmd_ command handlers with no room/item/NPC/world editor root, while the retained exhaustive 20-root SYSOP catalog contains administration/configuration controls but no world-content editor. Character stat/description editors and bulletin/INI editors are not world-content builders. Reforged Creator Studio/Nightmare-style editing therefore remains an explicit Reforged extension rather than a Classic parity requirement.",
       "evidence": [
-        "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md"
+        "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
+        "Librarium/Parity/majormud_reforged_host_scope_builder_evidence_0348.json",
+        "Reports/RuntimeVerification/wccmmud_sysop_command_closure.md"
       ]
     },
     {
@@ -250,10 +252,12 @@
     {
       "id": "character.raw-dodge-formula",
       "category": "Character & Status",
-      "state": "STRONG",
-      "description": "Live player raw Dodge now uses recovered Level/Charm/Agility/PlusDodge formula and the below-33-percent encumbrance bonus before proven Dodge-vs-Accuracy resolution.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL `_move_player_to_fighter` directly constructs raw player Dodge in fighter +0x20 by calling `_get_user_ability_value` for ability 34, then adding trunc(Level/5), trunc((Charm-50)/5), and trunc((Agility-50)/3). For living characters below 33% encumbrance it then adds `10-trunc(encumbrancePercent/10)`. `_calculate_attack` consumes that exact fighter field for the proven Dodge-vs-Accuracy, 95% cap, and Backstab /5 behavior. Reforged matches the native signed/truncating arithmetic and ordering.",
       "evidence": [
-        "Librarium/Parity/majormud_character_advancement_evidence_0279.json"
+        "Librarium/Parity/majormud_character_advancement_evidence_0279.json",
+        "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json",
+        "Reports/RuntimeVerification/codeupdate0356_direct_native_raw_dodge_verification.json"
       ]
     },
     {
@@ -371,7 +375,7 @@
       "id": "native.pvp-policy",
       "category": "Character & Status",
       "state": "STRONG",
-      "description": "Classic PvP is now strongly bounded by 18 dedicated WCCMMUD/WBBMMUD user-vs-user attack/kill/combat-state/target/robbery/Evil-Point owner exports plus exact retained help for the Lawful creation pledge, the default maximum PvP level difference of 100, practice-arena no-EP/no-life revival behavior, and approximate FORGIVE use after accidental attack. Exact realm PvP-enable persistence, Lawful record encoding and target-admission branch order, native safe/restricted zone encoding, party/gang restrictions, kill-credit/death-penalty/corpse-access ordering, guard/bounty composition, cooldown/logout semantics, exact messages, and native attack/kill branch ordering remain unresolved. Reforged generic mutual-consent, same-party/guild, cooldown, and logout policy receives no Classic parity credit.",
+      "description": "Classic PvP is now strongly bounded by 18 dedicated WCCMMUD/WBBMMUD user-vs-user attack/kill/combat-state/target/robbery/Evil-Point owner exports plus exact retained help for the Lawful creation pledge, the default maximum PvP level difference of 100, practice-arena no-EP/no-life revival behavior, and approximate FORGIVE use after accidental attack. Lawful record encoding and target-admission branch order, native safe/restricted zone encoding, party/gang restrictions, kill-credit/death-penalty/corpse-access ordering, guard/bounty composition, cooldown/logout semantics, exact messages, and native attack/kill branch ordering remain unresolved. Reforged generic mutual-consent, same-party/guild, cooldown, and logout policy receives no Classic parity credit.",
       "evidence": [
         "Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json",
         "Librarium/Parity/majormud_ownership_scope_0284.json",
@@ -379,19 +383,21 @@
         "Apps/Source/Reforged.Server/RuntimeLivePvp.cs",
         "Librarium/Parity/majormud_classic_pvp_policy_boundary_evidence.json",
         "Apps/Source/Reforged.Server/RuntimeClassicPvpPolicyAuthority.cs",
-        "Docs/CLASSIC_PARITY_CLOSURE.md"
+        "Docs/CLASSIC_PARITY_CLOSURE.md",
+        "Librarium/Parity/majormud_native_pvp_lvldiff_working_install_evidence_0358.json"
       ]
     },
     {
       "id": "native.rest-inn-recovery-policy",
       "category": "Character & Status",
-      "state": "STRONG",
-      "description": "Classic REST/MEDITATE formula and timer owners are now native-exact: /750 HP base, x3 REST, native combined signed modifier arithmetic, 21-fast-callback REST, 15-fast-callback MEDITATE, exact MEDITATE response, types 1-4 mana base and Kai/type-5 handling. This broad assertion remains STRONG only for remaining sickness/full-resource presentation.",
+      "state": "PASS",
+      "description": "Classic REST/MEDITATE is native-closed across formula, timer, admission, sickness/full-resource presentation, state-entry social output, and recovery-state transitions: /750 HP base, x3 REST, native combined signed modifier arithmetic, 21-fast-callback REST, 15-fast-callback MEDITATE, capability 187 admission, poison/illness +0xBE sickness rejection, no full-HP REST rejection, full/over-full mana MEDITATE rejection/clamp, exact player/observer text, and types 1-4 plus Kai/type-5 mana handling.",
       "evidence": [
         "Librarium/Parity/majormud_classic_regeneration_correction_evidence_0308.json",
         "Librarium/Evidence/native_message_catalog_correlation_0022.json",
         "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json",
-        "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json"
+        "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json",
+        "Librarium/Parity/majormud_native_rest_meditate_command_evidence_0350.json"
       ]
     },
     {
@@ -484,11 +490,14 @@
     {
       "id": "combat.backstab-damage-formula",
       "category": "Combat",
-      "state": "STRONG",
-      "description": "The recovered Backstab endpoint formula is live and regression-tested, but its current evidence grade remains strongly corroborated rather than strict native closure.",
+      "state": "PASS",
+      "description": "Native WCCMMUD.DLL `_move_player_to_fighter` directly proves both Backstab endpoint formulas: 2*normal endpoint + 2*Level + floor(Stealth/10) + ability 117/118, race-only Stealth at 75%, then (Level+100)% Classic scaling; the live resolver matches and is regression-locked.",
       "evidence": [
         "Librarium/Parity/majormud_combat_evidence_0278.json",
-        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs"
+        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs",
+        "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json",
+        "Reports/RuntimeVerification/codeupdate0355_direct_native_combat_verification.json",
+        "Apps/Source/Reforged.Server/ClassicCombatResolver.cs"
       ]
     },
     {
@@ -504,11 +513,13 @@
     {
       "id": "combat.class-accuracy",
       "category": "Combat",
-      "state": "STRONG",
-      "description": "Decoded class combat rating feeds the live accuracy profile, but exact remaining native base-stat ordering is not promoted to strict parity.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL `_move_player_to_fighter` directly constructs stock player fighter Accuracy (+0x00): it sums signed equipped item Accuracy (+0x39A), substitutes pity 1 when that sum is zero, adds the living `<33%` encumbrance term `15-trunc(encumbrance/10)` into that same bucket, folds the bucket with native signed `/2` then `*2`, and combines class combat, floor-sqrt(Level), Level/2, STR/3 and AGI/6. The function then adds the direct plus-accuracy cache before `_calculate_attack` consumes fighter Accuracy. Reforged now follows that ordering and does not double-add wielded weapon Accuracy.",
       "evidence": [
-        "Librarium/Parity/majormud_combat_evidence_0278.json",
-        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs"
+        "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json",
+        "Apps/Source/Reforged.Server/ClassicCombatResolver.cs",
+        "Apps/Source/Reforged.Server/RuntimePlayerCombatProfiles.cs",
+        "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs"
       ]
     },
     {
@@ -572,11 +583,14 @@
     {
       "id": "combat.physical-damage-dr-order",
       "category": "Combat",
-      "state": "STRONG",
-      "description": "Weapon range, pre-roll special scaling, damage resistance and non-negative final damage are live; general native physical damage ordering remains strongly corroborated.",
+      "state": "PASS",
+      "description": "Native WCCMMUD.DLL `_calculate_attack` directly proves attack-type pre-DR modifiers, hit, critical range, damage roll, DR subtraction, Bash/Smash post-DR multiplication, Dodge (including Backstab /5), and final clamp ordering; the live resolver now follows that exact order.",
       "evidence": [
         "Librarium/Parity/majormud_combat_evidence_0278.json",
-        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs"
+        "Apps/Source/Reforged.Server/RuntimeClassicFormulaAuthority.cs",
+        "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json",
+        "Reports/RuntimeVerification/codeupdate0355_direct_native_combat_verification.json",
+        "Apps/Source/Reforged.Server/ClassicCombatResolver.cs"
       ]
     },
     {
@@ -622,11 +636,19 @@
     {
       "id": "commands.break-autocombat",
       "category": "Combat",
-      "state": "STRONG",
-      "description": "BREAK stops live autocombat without invoking flee; exact native timing/message ordering remains evidence-gated.",
+      "state": "PASS",
+      "description": "BREAK stops only the issuing character's autocombat without invoking flee. Original WCCMMUD.DLL closes the exact player text (*Combat Off*), High-priority room observer text (<name> breaks off combat.), display-before-_kill_autocombat ordering, and character-only ownership: _kill_autocombat(user,1) clears only that user's owner slots, while _kill_autocombat_against is a separate routine not called by BREAK. Reforged 0352 preserves NPC/opponent attack ownership, supports per-character PvP BREAK/re-engagement, and keeps Borin/client incoming-danger state separate from local autocombat.",
       "evidence": [
         "Librarium/Evidence/native_message_catalog_correlation_0022.json",
-        "Apps/Source/Reforged.Server/RuntimeClassicNativeHelpEvidenceRegistry.cs"
+        "Apps/Source/Reforged.Server/RuntimeClassicNativeHelpEvidenceRegistry.cs",
+        "Librarium/Parity/majormud_native_break_extension_scope_evidence_0351.json",
+        "Reports/RuntimeVerification/codeupdate0351_direct_native_evidence_verification.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicBreakAutocombatAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeLiveCombat.cs",
+        "Librarium/Parity/majormud_native_break_character_ownership_evidence_0352.json",
+        "Reports/RuntimeVerification/codeupdate0352_direct_native_evidence_verification.json",
+        "Apps/Source/Reforged.Server/RuntimeLivePvp.cs",
+        "Apps/Source/Reforged.App/Services/ClassicGameplayLineParser.cs"
       ]
     },
     {
@@ -752,10 +774,13 @@
     {
       "id": "economy.buy-charm-adjustment",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Recovered stock buy Charm modifier is 1 - ((Fix(Charm/5)-10)/100), applied after shop markup. Exact cross-category equipment/permanent-stat contribution order into effective Charm remains separately unresolved.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL _buy_item directly consumes the current/effective Charm WORD at character +0xAC and applies factor 110-floor(Charm/5) after the shop Markup+100 integer stage, with native truncation at each divide and the recovered >100000 scale/restore behavior. Cross-category construction of effective Charm remains a separate character-modifier-order boundary.",
       "evidence": [
-        "Librarium/Parity/majormud_economy_evidence_0282.json"
+        "Librarium/Parity/majormud_economy_evidence_0282.json",
+        "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+        "Librarium/Parity/majormud_native_charm_pricing_evidence_0354.json",
+        "Reports/RuntimeVerification/codeupdate0354_direct_native_charm_pricing_verification.json"
       ]
     },
     {
@@ -806,10 +831,13 @@
     {
       "id": "economy.sell-charm-adjustment",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Recovered stock sell Charm percentage is Fix(Charm/2)+25, applied to base item copper value with stock truncation and legacy overflow behavior.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL _sell_item directly consumes the current/effective Charm WORD at character +0xAC and computes floor(baseCopper*(floor(Charm/2)+25)/100), including Charm 0 => 25%, with no shop markup and native integer truncation.",
       "evidence": [
-        "Librarium/Parity/majormud_economy_evidence_0282.json"
+        "Librarium/Parity/majormud_economy_evidence_0282.json",
+        "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+        "Librarium/Parity/majormud_native_charm_pricing_evidence_0354.json",
+        "Reports/RuntimeVerification/codeupdate0354_direct_native_charm_pricing_verification.json"
       ]
     },
     {
@@ -1202,11 +1230,14 @@
     {
       "id": "commands.talk-fast-slow-mode",
       "category": "Parties / Communication / Organizations",
-      "state": "STRONG",
-      "description": "Native help strongly proves TALK/SET SPEECH FAST/SLOW and the native FAST-mode non-command-to-speech behavior. Reforged now intentionally applies the operator-mandated command→SAY fallback to Classic, Custom, and AI regardless of saved speech mode; exact native resolver order and response text remain unproven.",
+      "state": "PASS",
+      "description": "Native TALK/SET TALK/SET SPEECH FAST/SLOW is closed from retained WCCMMHLP/WCCMMUD.DOC plus WCCMMUD.DLL. Fresh characters initialize live talk byte +0x5F4 to 1 (FAST); save/load maps that byte to character-record offset 0x45. FAST sends unrecognized non-command/action input to room speech, while SLOW requires the configured speech prefix and otherwise follows the native command-not-recognized path. The native SAY/YELL self-response flag is bit 0x0100 in the persisted communication word at record offset 0x3C: clear is VERBOSE and set is BRIEF/Well Spoken. Reforged now executes those Classic resolver and response semantics while leaving Custom/AI permissive fallback unchanged.",
       "evidence": [
         "Librarium/Evidence/native_message_catalog_correlation_0022.json",
-        "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json"
+        "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json",
+        "Librarium/Parity/majormud_native_talk_page_evidence_0347.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicCommunicationPersistenceLimitsAuthority.cs",
+        "Docs/CODE_UPDATE_0347_NATIVE_TALK_PAGE_MEGAMUD_BORIN.md"
       ]
     },
     {
@@ -1222,26 +1253,34 @@
     {
       "id": "native.communications.classic-range-rendering",
       "category": "Parties / Communication / Organizations",
-      "state": "STRONG",
-      "description": "Decoded native help plus TALKCHAR/YELLCHAR evidence strongly establishes local talk, YELL to the current plus adjacent rooms, /Username <TEXT> one-recipient telepath, and world-wide GOSSIP/AUCTION channel scope for enabled recipients. Exact native rendering/failure text, language/color/invisibility/moderation effects, WHISPER semantics, and a native TELL command identity remain unresolved.",
+      "state": "PASS",
+      "description": "CodeUpdate0345 closes the Classic parser-visible communication range/rendering boundary directly from the retained original WCCMMUD.DLL. SAY is local-room speech; YELL reaches the source plus adjacent rooms and uses the recovered current-room and receiver-facing directional forms; /Username <TEXT> is the native one-recipient telepath with exact block/rate/ignore/success/failure branches; >Username <TEXT> is native same-room directed speech with target/observer/sender forms; GOSSIP/AUCTION are world channels for enabled recipients with exact toggles and send-while-disabled text. ANSI/color fragments are presentation metadata emitted separately from the raw message payload; the retained configuration disables profanity checking; directed-message lookup resolves the connected user first and then uses native same-room/hidden-state delivery gating. The native export/help corpus has no TELL command identity, so Reforged TELL remains an explicit extension outside parity. Imported MegaMUD runtime logs independently corroborate the recovered telepath, directed-message, and gossip forms.",
       "evidence": [
         "Librarium/Evidence/native_message_catalog_correlation_0022.json",
         "Librarium/Evidence/native_support_catalog_0020.json",
-        "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json"
+        "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json",
+        "Librarium/Parity/majormud_native_communication_rendering_evidence_0345.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicCommunicationRenderingAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicCommunicationRenderingSmokeReport.cs",
+        "Reports/Client/MEGAMUD_SERVER_COMPATIBILITY.md"
       ]
     },
     {
       "id": "native.communications.persistence-logging",
       "category": "Parties / Communication / Organizations",
-      "state": "STRONG",
-      "description": "Classic communication/profile persistence is now executable-evidence bounded: fresh-character PAGE is live-session ON; persisted defaults accept TELEPATH/GOSSIP/AUCTION/ENTRANCES, MESSAGES is High, and MAXPAGES/MAXGOSSIP/MAXAUCTION are 3. WCCMMUD.DLL directly maps MESSAGES/communication/display flags and MAX* bytes to character-record offsets 0x3B/0x3C/0x6A/0x3E/0xA9/0xAA and restores them on load. SET TELEPATH ON clears the block bit and OFF sets it. SET MAX* uses atol, caps only values above 255, stores the low byte, and recipient counters reset on the native three-second fast update; the native compare-before-increment edge is retained. PAGE itself is not in that persisted block. Exact Worldgroup page/telegram handoff, final page/channel rendering, and exact per-message priority membership remain unresolved, so this assertion remains STRONG.",
+      "state": "PASS",
+      "description": "Classic communication/profile persistence and player-visible room filtering are native-closed at the Reforged parity boundary: fresh-character PAGE is live-session ON; persisted defaults accept TELEPATH/GOSSIP/AUCTION/ENTRANCES, MESSAGES is High, MAXPAGES/MAXGOSSIP/MAXAUCTION are 3, TALK is FAST, and talking responses are VERBOSE. WCCMMUD.DLL maps persisted profile fields to recovered record offsets; 0347 closes PAGE ON/OK/OFF plus TALK/RESPONSE behavior; 0348 excludes Worldgroup-only PAGE/telegram transport, presentation/mail queues, and host logging from Reforged parity; and 0349 closes the remaining MajorMUD-visible SET MESSAGES gate. Native _cmd_set writes High=0, Medium=10, Low=20 and _tell_room applies that threshold per recipient. Reforged now applies the same recipient-side filtering, with evidence-backed LOW pickup/drop and physical-combat observer detail, MEDIUM spell observer detail, and HIGH important room events. MegaMUD receives the same filtered terminal stream and Borin does not override the player setting.",
       "evidence": [
         "Librarium/Parity/majormud_settings_healers_access_rankings_evidence_0291.json",
         "Librarium/Parity/majormud_ownership_scope_0291.json",
         "Librarium/Parity/majormud_classic_communication_persistence_limits_boundary_evidence.json",
         "Apps/Source/Reforged.Server/RuntimeClassicCommunicationPersistenceLimitsAuthority.cs",
         "Docs/CLASSIC_PARITY_CLOSURE.md",
-        "Librarium/Parity/majormud_native_gang_communications_edge_evidence_0341.json"
+        "Librarium/Parity/majormud_native_gang_communications_edge_evidence_0341.json",
+        "Librarium/Parity/majormud_native_communication_rendering_evidence_0345.json",
+        "Librarium/Parity/majormud_native_talk_page_evidence_0347.json",
+        "Librarium/Parity/majormud_reforged_host_scope_builder_evidence_0348.json",
+        "Librarium/Parity/majormud_native_set_messages_priority_evidence_0349.json"
       ]
     },
     {
@@ -1476,7 +1515,7 @@
       "id": "native.traps",
       "category": "Rooms & World",
       "state": "STRONG",
-      "description": "The Classic exit-trap boundary is strongly recovered without guessing unresolved execution details. Exactly 295 canonical exit traps are retained (273 fixed-damage and 22 spell traps). Native help proves SEARCH/DISARM admission behavior. CodeUpdate 0333 directly decodes stock WCCMP002 and recovers every canonical trap Para2 value exactly: 293 are 0 (Active) and 2 are 2 (Hidden), with zero type/operand/destination mismatches. Exact SEARCH/disarm probability formulas, failed-disarm triggering, Para3/Para4 message ownership, state-transition semantics, reset/rearm interaction, and exact movement/death/reset ordering remain unresolved and fail closed.",
+      "description": "The broad Classic trap boundary remains STRONG only for unresolved SEARCH probability, Para3/Para4 presentation ownership, and native reset/rearm timing. CodeUpdate 0346 directly recovers WCCMMUD.DLL movement and DISARM behavior: states 0/3 trigger before movement, 1/4 pass, hidden state 2 blocks ordinary movement until found, successful DISARM maps 0->1 and 3->4, type-9 damage traps have the native ten-point safe-failure band, and type-24 spell traps trigger on every failed disarm roll.",
       "evidence": [
         "Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json",
         "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
@@ -1484,7 +1523,8 @@
         "Librarium/Parity/majormud_door_requirements_container_scope_evidence_0297.json",
         "Librarium/Parity/majormud_trap_state_reset_boundary_evidence_0298.json",
         "Librarium/Parity/majormud_classic_trap_boundary_evidence_0316.json",
-        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json"
+        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json"
       ]
     },
     {
@@ -1558,35 +1598,38 @@
       "id": "traps.damage-exit-runtime",
       "category": "Rooms & World",
       "state": "STRONG",
-      "description": "The exact fixed-damage operand, authoritative lethal-death consumer, and exact per-exit WCCMP002 Para2 value are retained. Runtime execution remains fail-closed because exact native trigger eligibility, state transition/reset behavior, and simultaneous movement/death ordering are not yet proven.",
+      "description": "The fixed-damage operand, active-state admission, pre-movement execution order, failed-disarm trigger split, and authoritative lethal-death consumer are now live. This assertion remains STRONG pending the still-open native reset/rearm and trap-presentation ownership boundaries.",
       "evidence": [
         "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
         "Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs",
         "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
-        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json"
+        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json"
       ]
     },
     {
       "id": "traps.live-movement-order",
       "category": "Rooms & World",
-      "state": "STRONG",
-      "description": "The Reforged movement callsite remains departure -> trap consumer -> arrival, and CodeUpdate 0333 supplies each trap's exact WCCMP002 Para2 state. Trap effects still fail closed because exact original MajorMUD trigger/transition ordering relative to movement, death, and reset remains unresolved.",
+      "state": "PASS",
+      "description": "Native WCCMMUD.DLL _move_user type-9/type-24 branches execute active trap effects before the successful location transition. Reforged now applies the trap before TryMove, aborts the requested move when the trap kills/relocates the character, and uses the same ordering for party followers.",
       "evidence": [
         "Apps/Source/Reforged.Server/RuntimeCommandSystem.cs",
         "Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json",
-        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json"
+        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json"
       ]
     },
     {
       "id": "traps.spell-exit-runtime",
       "category": "Rooms & World",
       "state": "STRONG",
-      "description": "The exact spell ID, RuntimeSpellExecutionEngine consumer, and exact per-exit WCCMP002 Para2 value are retained. Runtime execution remains fail-closed because exact native trigger eligibility, state transition/reset behavior, and simultaneous movement/death ordering are not yet proven.",
+      "description": "The spell ID, active-state admission, pre-movement execution order, failed-disarm trigger behavior, and RuntimeSpellExecutionEngine consumer are now live. This assertion remains STRONG pending the still-open native reset/rearm and trap-presentation ownership boundaries.",
       "evidence": [
         "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
         "Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs",
         "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
-        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json"
+        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
+        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json"
       ]
     },
     {
@@ -1793,14 +1836,15 @@
     {
       "id": "pvp.realm-level-range-configuration",
       "category": "Character & Status",
-      "state": "STRONG",
-      "description": "Classic MajorMUD exposes a realm-level maximum PvP level-difference configuration and permits realms with PvP enabled, disabled, or level-range restricted. Reforged now persists and enforces that range; exact original setup-file serialization/default enable state remains unresolved.",
+      "state": "PASS",
+      "description": "Classic MajorMUD LVLDIFF is now closed end-to-end. The retained default 1.11p install stores LVLDIFF=100; the user-supplied working 1.11p install stores LVLDIFF=10 while using the byte-identical WCCMMUD.DLL, proving site-configurable persistence without an executable change. WCCMMUD.MSG constrains the value to -1..100, defines -1 as complete PvP disable, and states that a lower-level FIEND does not receive level-range protection. Reforged now defaults Classic PvP to 100, maps disable to -1, treats 0 as same-level-only, migrates its older separate Enabled flag into the native sentinel, applies the lower-level-FIEND exception, and avoids reapplying generic Reforged level/party/guild policy after the native admission gate.",
       "evidence": [
         "Librarium/Evidence/native_support_catalog_0020.json",
         "Apps/Source/Reforged.Server/RuntimeLivePvp.cs",
         "Apps/Source/Reforged.Server/RuntimeWccSysopCommands.cs",
         "https://wiki.mud.fyi/en/worldgroup/setup",
-        "https://www.majormud.com/mud-games.html"
+        "https://www.majormud.com/mud-games.html",
+        "Librarium/Parity/majormud_native_pvp_lvldiff_working_install_evidence_0358.json"
       ]
     },
     {
@@ -1833,13 +1877,14 @@
     {
       "id": "traps.native-activation-state-schema",
       "category": "Rooms & World",
-      "state": "STRONG",
-      "description": "Stock trap types 9 and 24 use signed-16-bit Para2 states 0 Active, 1 Inactive, 2 Hidden, 3 Active-movement, and 4 Inactive-movement. CodeUpdate 0333 now recovers the exact stock per-exit values for all 295 canonical traps (293 value 0, 2 value 2) and projects them into generated trap effects. Exact native trigger/transition/reset semantics for those state labels remain unresolved, so behavioral state semantics remain STRONG.",
+      "state": "PASS",
+      "description": "Stock trap types 9 and 24 use Para2 states 0 Active, 1 Inactive, 2 Hidden, 3 Active-movement, and 4 Inactive-movement. Native movement jump tables prove 0/3 trigger, 1/4 pass, and 2 behaves as no ordinary exit; native DISARM proves success transitions 0->1 and 3->4. CodeUpdate 0333 supplies exact per-exit initial values and CodeUpdate 0346 executes/persists those semantics.",
       "evidence": [
         "Apps/Source/Reforged.Server/RuntimeClassicRoomExitNativeFieldContract.cs",
         "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json",
         "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
-        "Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs"
+        "Apps/Source/Reforged.Server/RuntimeBundleDTrapAudit.cs",
+        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json"
       ]
     },
     {
@@ -1856,35 +1901,43 @@
     {
       "id": "transactions.classic-give-capacity-restrictions",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Before committing an item GIVE, Classic checks the recipient current carried weight plus incoming item weight against the recovered native encumbrance capacity and executes RuntimeItemEngine.Give restrictions (no_give/bound/quest/owner quantity). Limited status alone is not treated as non-transferable. Exact native failure-message text/order remains unresolved.",
+      "state": "PASS",
+      "description": "Classic item GIVE now follows the recovered native admission/presentation boundary: item-level no-give rejection occurs before recipient admission; SET RECEIVE OFF reports a refusal; add_item_to_inventory enforces the native 100 carried-root slots plus recovered encumbrance capacity; recipient capacity failure prints `You cannot carry that much!` and the sender sees `<name> cannot accept your offer.`; success uses exact sender/recipient/High-priority room observer text. Limited status alone remains transferable. The direct original WCCMMUD.DLL and retained MegaMUD executable inventory independently corroborate the terminal contract.",
       "evidence": [
         "Librarium/Parity/majormud_give_shops_transport_evidence_0288.json",
         "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs",
         "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
-        "Apps/Source/Reforged.Server/RuntimeMajorMudCompatibility.cs"
+        "Apps/Source/Reforged.Server/RuntimeMajorMudCompatibility.cs",
+        "Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
+        "Reports/RuntimeVerification/codeupdate0353_direct_native_give_verification.json"
       ]
     },
     {
       "id": "transactions.no-native-trade-escrow",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "The retained stock command surface exposes direct GIVE and AUCTION as a communication channel, not a separate accept/cancel escrow TRADE transaction. Reforged direct TRADE remains available only outside Classic and is excluded from MajorMUD parity.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL exposes 78 native _cmd_ handlers including GIVE and AUCTION but no _cmd_trade. Official stock help exposes GIVE as the direct player-transfer command and AUCTION as a communication channel, not an accept/cancel escrow transaction. Reforged TRADE remains non-Classic only; the stock absence boundary is native-closed.",
       "evidence": [
         "Librarium/Parity/majormud_give_shops_transport_evidence_0288.json",
         "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart6.cs",
-        "Apps/Source/Reforged.Server/RuntimeCharacterLifecycle.cs"
+        "Apps/Source/Reforged.Server/RuntimeCharacterLifecycle.cs",
+        "Librarium/Parity/majormud_native_break_extension_scope_evidence_0351.json",
+        "Reports/RuntimeVerification/codeupdate0351_direct_native_evidence_verification.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicExtensionBoundaryAuthority.cs"
       ]
     },
     {
       "id": "economy.no-native-repair-service",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "No stock REPAIR command/service is projected by the official MajorMUD shop command surface or the decoded Classic service-kind corpus. Reforged durability repair is isolated to non-Classic worlds and receives no MajorMUD parity credit.",
+      "state": "PASS",
+      "description": "Original WCCMMUD.DLL exposes 78 native _cmd_ handlers with no _cmd_repair, and the fully classified Classic service corpus contains 204 services with zero repair owners. Official shop help likewise exposes no REPAIR operation. Reforged durability REPAIR remains non-Classic only; the stock absence boundary is native-closed.",
       "evidence": [
         "Librarium/Parity/majormud_give_shops_transport_evidence_0288.json",
         "Reports/RuntimeVerification/classic_economy_service_coverage.json",
-        "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart6.cs"
+        "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart6.cs",
+        "Librarium/Parity/majormud_native_break_extension_scope_evidence_0351.json",
+        "Reports/RuntimeVerification/codeupdate0351_direct_native_evidence_verification.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicExtensionBoundaryAuthority.cs"
       ]
     },
     {
@@ -2184,5 +2237,6 @@
         "Apps/Source/Reforged.Server/WorldgroupRngDirectCallsiteRegistry.cs"
       ]
     }
-  ]
+  ],
+  "generated_at_utc": "2026-08-30T06:40:00Z"
 }

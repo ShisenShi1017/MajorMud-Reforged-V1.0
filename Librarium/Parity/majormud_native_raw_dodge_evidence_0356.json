@@ -1,0 +1,46 @@
+{
+  "schema": "majormud.native-raw-dodge-closure.v1",
+  "update": "CodeUpdate0356",
+  "target": "stock MajorMUD / Classic",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "artifact": "ImportedDatabasesAndEvidence.LocalOnly(2).rar -> original WCCMMUD.DLL",
+      "bundled": false,
+      "bytes": 643072,
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "image_base": "0x00400000",
+      "move_player_to_fighter_rva": "0x0002A19D",
+      "get_user_ability_value_rva": "0x0003D038",
+      "calculate_attack_rva": "0x0002B800"
+    },
+    "MegaMUD": "MegaMUD-Decode-Pass28-megamud-EXE-Native-Closure/STRING_INVENTORY.csv (local-only imported evidence)",
+    "prior_formula_evidence": "Librarium/Parity/majormud_character_advancement_evidence_0279.json"
+  },
+  "native_contract": {
+    "owner": "_move_player_to_fighter",
+    "fighter_dodge_field": "fighter +0x20",
+    "base_sequence": [
+      "_get_user_ability_value(user,-1,34,0,0) -> fighter Dodge",
+      "add trunc(Level/5)",
+      "add trunc((Charm-50)/5)",
+      "add trunc((Agility-50)/3)"
+    ],
+    "effective_character_offsets": {
+      "Level": "user +0x94",
+      "Agility": "user +0xAA",
+      "Charm": "user +0xAC",
+      "encumbrance_percent": "user +0x708"
+    },
+    "light_encumbrance": "when encumbrance percent < 33 and the character is living, add 10-trunc(encumbrancePercent/10)",
+    "dead_branch": "non-living fighter construction stores raw Dodge -1",
+    "consumer": "_calculate_attack reads fighter +0x20, computes trunc(rawDodge*10 / trunc(accuracy/8)), caps at 95%, and divides by 5 for Backstab."
+  },
+  "supersedes": "CodeUpdate0334 did not identify the matching base-stat/encumbrance raw-Dodge callsite; 0356 directly identifies it inside exported _move_player_to_fighter.",
+  "runtime": "RuntimeClassicCharacterFormulaCalculator.CalculateRawDodge already matches native signed/truncating arithmetic and the <33 encumbrance boundary. 0356 upgrades its evidence authority rather than inventing a replacement formula.",
+  "megamud_compatibility": "MegaMUD contains Dodge recognition strings and consumes ordinary server combat outcomes; no client-side raw-Dodge calculation is required.",
+  "borin_compatibility": "Borin consumes authoritative server combat outcomes/state and must not substitute a private raw-Dodge formula.",
+  "promotion": {
+    "character.raw-dodge-formula": "PASS"
+  },
+  "verification": "Reports/RuntimeVerification/codeupdate0356_direct_native_raw_dodge_verification.json"
+}

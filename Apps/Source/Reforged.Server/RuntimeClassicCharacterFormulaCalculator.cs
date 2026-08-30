@@ -7,7 +7,7 @@ namespace Reforged.Server;
 public static class RuntimeClassicCharacterFormulaCalculator
 {
     public const string MagicResistanceFormulaId = "character.magic_resistance.mmud_explorer_0279";
-    public const string RawDodgeFormulaId = "character.raw_dodge.mmud_explorer_0279";
+    public const string RawDodgeFormulaId = "character.raw_dodge.native_0356";
 
     private const int DodgeAbilityId = 34;
     private const int MagicResistanceAbilityId = 36;
@@ -24,8 +24,8 @@ public static class RuntimeClassicCharacterFormulaCalculator
     }
 
     /// <summary>
-    /// Stock character raw Dodge builder recovered from MMUD Explorer CalcDodge.
-    /// The light-encumbrance bonus applies only below 33 percent encumbrance.
+    /// Stock character raw Dodge builder directly verified in WCCMMUD.DLL _move_player_to_fighter.
+    /// Native fighter construction reads ability 34 plus Level/Charm/Agility and applies the light-encumbrance bonus only below 33 percent.
     /// Do not clamp the raw value here; the downstream stock avoidance calculation owns its cap/floor behavior.
     /// </summary>
     public static int CalculateRawDodge(
@@ -158,6 +158,8 @@ public static class RuntimeClassicCharacterFormulaAudit
             "raw-dodge-33-percent-boundary");
         Check(RuntimeClassicCharacterFormulaCalculator.CalculateRawDodge(1, 50, 50, 0, 0) == 10,
             "raw-dodge-level-one-neutral-vector");
+        Check(RuntimeClassicCharacterFormulaCalculator.CalculateRawDodge(1, 40, 40, 0, 33) == -5,
+            "raw-dodge-native-signed-truncation-vector");
 
         Check(RuntimeClassicCharacterProgressionFormula.RequiredExperienceForChart(1, 100) == 0,
             "stock-xp-level-one-zero");

@@ -52,6 +52,11 @@ public sealed record RuntimeClassicNativePlayerCommandSmokeReport(
         else
             checks.Add("reroll-routes-to-interactive-character-replacement-lifecycle");
 
+        if (RuntimeCommandRuntimeRouteCatalog.Require("suicide").Kind != RuntimeCommandRouteKind.SessionLifecycle)
+            failures.Add("SUICIDE must execute through the interactive password/death lifecycle rather than the native evidence placeholder.");
+        else
+            checks.Add("suicide-routes-to-interactive-password-death-lifecycle");
+
         if (failures.Count == 0)
         {
             checks.Add("63-native-help-command-identities-resolve-through-live-parser");

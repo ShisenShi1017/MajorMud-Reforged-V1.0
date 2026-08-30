@@ -80,11 +80,24 @@ public static class RuntimeClassicDeathLawPvpAuthority
         return targetIsLawful ? checked(basePenalty * LawfulAttackPenaltyMultiplier) : basePenalty;
     }
 
-    public static bool IsLevelRangeAllowed(int attackerLevel, int defenderLevel, int maximumLevelDifference)
+    public static bool IsPvpEnabled(int maximumLevelDifference)
+    {
+        if (maximumLevelDifference < RuntimeClassicConfigurationAuthority.MinimumPvpLevelDifference ||
+            maximumLevelDifference > RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifferenceAllowed)
+            throw new ArgumentOutOfRangeException(nameof(maximumLevelDifference), "Classic LVLDIFF must be in the native -1..100 range.");
+        return maximumLevelDifference != RuntimeClassicConfigurationAuthority.PvpDisabledLevelDifference;
+    }
+
+    public static bool IsLevelRangeAllowed(int attackerLevel, int defenderLevel, int maximumLevelDifference, bool defenderIsFiend = false)
     {
         if (attackerLevel < 1 || defenderLevel < 1) throw new ArgumentOutOfRangeException(nameof(attackerLevel), "PvP levels must be positive.");
-        // Setup examples use -1 to mean unrestricted; zero is also treated as no configured range.
-        return maximumLevelDifference <= 0 || Math.Abs(attackerLevel - defenderLevel) <= maximumLevelDifference;
+        if (!IsPvpEnabled(maximumLevelDifference)) return false;
+
+        // Native WCCMMUD setup: lower-level FIENDS do not receive level-range protection.
+        if (defenderIsFiend && defenderLevel < attackerLevel) return true;
+
+        // Zero is a valid native setting and therefore permits same-level PvP only.
+        return Math.Abs(attackerLevel - defenderLevel) <= maximumLevelDifference;
     }
 
     public static int RequirePracticeArenaEntryHitPoints(RuntimeCharacterRecord character)

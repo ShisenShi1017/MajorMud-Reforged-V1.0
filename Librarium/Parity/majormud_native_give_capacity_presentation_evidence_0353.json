@@ -1,0 +1,48 @@
+{
+  "schema": "majormud.native-give-capacity-presentation-evidence.v1",
+  "update": "CodeUpdate0353",
+  "scope": "Player-visible Classic GIVE item-transfer admission, rejection, success presentation, and MegaMUD/Borin compatibility. Raw imported binaries remain local-only.",
+  "sources": {
+    "WCCMMUD.DLL": {
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "bundled": false,
+      "cmd_give_rva": "0x00067744",
+      "add_item_to_inventory_rva": "0x0001B111"
+    },
+    "MegaMUD Pass28 STRING_INVENTORY.csv": {
+      "sha256": "5dbeb8eaa51d0f14c1442c53db6b1e097434304f69f29947b2e97b63522eafc6",
+      "bundled": false,
+      "corroborated_tokens": [
+        "You cannot carry that much",
+        "You just gave "
+      ]
+    },
+    "retained_priority_evidence": "Librarium/Parity/majormud_native_set_messages_priority_evidence_0349.json"
+  },
+  "native_contract": {
+    "pre_target_item_rejection": "You may not give that item away!",
+    "receive_off_sender": "%s refuses your offer.",
+    "recipient_capacity_failure": "You cannot carry that much!",
+    "sender_capacity_failure": "%s cannot accept your offer.",
+    "sender_success": "You just gave %s to %s.",
+    "recipient_success": "%s just gave you %s.",
+    "observer_success": "%s just gave %s something.",
+    "observer_priority": "High",
+    "inventory_root_slots": 100,
+    "capacity_order": "add_item_to_inventory evaluates carried encumbrance plus incoming item weight before committing; failure removes/rolls back the attempted add and returns false to _cmd_give, which emits the sender-side cannot-accept line.",
+    "restriction_order": "The item-level may-not-give branch occurs in the item GIVE path before the item-target recipient parse/admission branch. SET RECEIVE refusal occurs before remove/add commit.",
+    "limited_item_policy": "Limited status alone is not a blanket GIVE rejection; evidence-backed item ownership/no-give restrictions remain authoritative."
+  },
+  "reforged_integration": {
+    "runtime_authority": "Apps/Source/Reforged.Server/RuntimeClassicGiveAuthority.cs",
+    "runtime_command": "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs",
+    "recipient_filtering": "Successful room-observer GIVE text is sent at High priority and excludes the source and direct recipient to avoid duplicate presentation.",
+    "capacity": "Recipient root inventory admission is capped at the native 100 carried-root slots and the recovered encumbrance capacity is checked before cross-character commit.",
+    "failure_translation": "Reforged metadata restriction terminology is not exposed on the Classic terminal stream; item GIVE restriction failures map to the native may-not-give line.",
+    "mega_mud": "MegaMUD remains on the ordinary MajorMUD terminal stream; its retained executable inventory independently recognizes the recovered capacity and GIVE-success tokens.",
+    "borin": "Borin must not depend on a private GIVE compatibility shim. Persistent inventory/client-data is authoritative for ownership; ordinary native GIVE terminal lines remain available for human/client presentation."
+  },
+  "promotion": {
+    "transactions.classic-give-capacity-restrictions": "PASS"
+  }
+}

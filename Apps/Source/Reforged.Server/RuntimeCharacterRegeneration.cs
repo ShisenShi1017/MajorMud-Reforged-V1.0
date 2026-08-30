@@ -115,6 +115,26 @@ public static class RuntimeCharacterRegenerationAuthority
     }
 }
 
+public static class RuntimeClassicRegenerationCommandAuthority
+{
+    public const string RestTooSickMessage = "You are too sick to rest!";
+    public const string MeditateTooSickMessage = "You are too sick to meditate!";
+    public const string MeditationNotHelpfulMessage = "Meditation will not help at this time.";
+    public const string RestSuccessMessage = "You are now resting.";
+    public const string MeditateSuccessMessage = "You are now meditating.";
+
+    public static bool IsTooSick(RuntimeCharacterRecord character) =>
+        RuntimeClassicStatusProjection.Flag(character, "poisoned");
+
+    public static bool MeditationWillNotHelp(RuntimeCharacterRecord character) =>
+        character.Mana >= character.MaximumMana;
+
+    public static string ObserverMessage(string actorName, string mode) =>
+        mode.Equals("rest", StringComparison.OrdinalIgnoreCase)
+            ? $"{actorName} stops to rest."
+            : $"{actorName} kneels to meditate.";
+}
+
 public sealed partial class RuntimeLiveGameplayFacade
 {
     private readonly RuntimeClassicNativeSchedulerClock _classicNativeSchedulerClock = new();
@@ -128,17 +148,48 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
         if (_liveCombats.ContainsKey(session.Id) || _livePvpEncounterBySession.ContainsKey(session.Id)) return "You cannot rest or meditate while in combat.";
+
         var mode = command.Name.Equals("rest", StringComparison.OrdinalIgnoreCase) ? "rest" : "meditate";
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
+
+        // Native WCCMMUD checks the Meditate capability before the shared sickness gate.
         if (mode == "meditate")
         {
-            var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
             var abilities = RuntimeCharacterQuestAbilityCatalog.Load(_characters.ProjectRoot, character.WorldId);
             var gates = new RuntimeCharacterWorldRewardCatalog();
             if (!abilities.CanUseCapability(character, RuntimeCharacterQuestAbilityCatalog.MeditateAbilityId, gates))
                 return "You have not learned the Meditate ability for your class and level.";
         }
+
+        // WCCMMUD user +0xBE is the active poison/illness damage accumulator. The same
+        // field is reduced by native Cure Poison (ability 20), consumed by the slow
+        // `You feel ill.` damage owner, and blocks both REST and MEDITATE while positive.
+        if (RuntimeClassicRegenerationCommandAuthority.IsTooSick(character))
+            return mode == "rest"
+                ? RuntimeClassicRegenerationCommandAuthority.RestTooSickMessage
+                : RuntimeClassicRegenerationCommandAuthority.MeditateTooSickMessage;
+
+        if (mode == "meditate" && RuntimeClassicRegenerationCommandAuthority.MeditationWillNotHelp(character))
+        {
+            // Native clamps an over-max current mana value back to max before rejecting.
+            if (character.Mana > character.MaximumMana)
+                _characters.SaveCharacter(character with { Mana = character.MaximumMana, UpdatedAtUtc = DateTimeOffset.UtcNow });
+            return RuntimeClassicRegenerationCommandAuthority.MeditationNotHelpfulMessage;
+        }
+
+        var alreadyFocusedInMode = _focusedRegeneration.TryGetValue(actor.Id, out var current)
+            && current.Mode.Equals(mode, StringComparison.OrdinalIgnoreCase);
         _focusedRegeneration[actor.Id] = new(mode, DateTimeOffset.UtcNow, 0);
-        return mode == "rest" ? "You are now resting." : "You are now meditating.";
+
+        if (!alreadyFocusedInMode)
+        {
+            var observerMessage = RuntimeClassicRegenerationCommandAuthority.ObserverMessage(session.Actor.DisplayName, mode);
+            _sessions.BroadcastRoom(session, observerMessage, includeSource: false, priority: RuntimeClassicRoomMessagePriority.High);
+        }
+
+        return mode == "rest"
+            ? RuntimeClassicRegenerationCommandAuthority.RestSuccessMessage
+            : RuntimeClassicRegenerationCommandAuthority.MeditateSuccessMessage;
     }
 
     /// <summary>

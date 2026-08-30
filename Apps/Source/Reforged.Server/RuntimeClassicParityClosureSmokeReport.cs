@@ -14,6 +14,8 @@ public sealed record RuntimeClassicParityClosureSmokeReport(bool Passed, IReadOn
         var extensionBoundary = RuntimeClassicExtensionBoundarySmokeReport.Run();
         var deathExperience = RuntimeClassicDeathExperienceSmokeReport.Run(projectRoot);
         var rerollWarning = RuntimeRerollWarningSmokeReport.Run();
+        var communicationRendering = RuntimeClassicCommunicationRenderingSmokeReport.Run();
+        var breakAuthorityFailures = RuntimeClassicBreakAutocombatAuthority.Validate();
         var checks = new List<string>
         {
             "identity-law-parity:" + identityLaw.Passed,
@@ -21,6 +23,8 @@ public sealed record RuntimeClassicParityClosureSmokeReport(bool Passed, IReadOn
             "classic-extension-boundary:" + extensionBoundary.Passed,
             "classic-death-experience:" + deathExperience.Passed,
             "classic-reroll-warning:" + rerollWarning.Passed,
+            "classic-communication-rendering:" + communicationRendering.Passed,
+            "classic-break-autocombat-authority:" + (breakAuthorityFailures.Count == 0),
             "remaining-system-owner-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.RemainingSystemOwnerCount == 36),
             "native-dependency-group-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.NativeDependencyGroupCount == 40),
             "native-artifact-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.NativeArtifactRecordCount == 396),

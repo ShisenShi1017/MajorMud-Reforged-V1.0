@@ -70,6 +70,7 @@ public sealed record BorinGameStateSnapshot(
     int ManaCurrent,
     int ManaMaximum,
     bool InCombat,
+    bool AutocombatActive,
     bool IsResting,
     bool IsMoving,
     int CharacterLevel,
@@ -118,6 +119,7 @@ public sealed record BorinGameStateSnapshot(
         0,
         0,
         0,
+        false,
         false,
         false,
         false,
@@ -218,7 +220,8 @@ public sealed record BorinGameStateSnapshot(
             ? SnapshotItems(session.EquippedItems)
             : Array.Empty<string>();
 
-        var inCombat = ready && session?.InCombat == true;
+        var inCombat = ready && (session?.InCombat == true || session?.PvpState?.Active == true);
+        var autocombatActive = ready && session?.AutoCombatActive == true;
         var moving = ready && session?.IsMoving == true;
         var healthCurrent = ready ? session?.HealthCurrent ?? 0 : 0;
         var healthMaximum = ready ? session?.HealthMaximum ?? 0 : 0;
@@ -271,6 +274,7 @@ public sealed record BorinGameStateSnapshot(
             ready ? session?.ManaCurrent ?? 0 : 0,
             ready ? session?.ManaMaximum ?? 0 : 0,
             inCombat,
+            autocombatActive,
             ready && session?.IsResting == true,
             moving,
             ready ? session?.CharacterLevel ?? 0 : 0,
@@ -349,7 +353,7 @@ public sealed record BorinGameStateSnapshot(
 - Room key: {Display(CurrentRoomKey, "not recognized")}.
 - Current visible exits: {(HasVerifiedExits ? FormatItems(CurrentExits) : "not verified")} ({ExitFreshness}).
 - Vitals: HP {FormatVital(HealthCurrent, HealthMaximum, HealthPercent)}; MP {FormatVital(ManaCurrent, ManaMaximum, ManaPercent)}.
-- Activity: {(InCombat ? "in combat" : IsMoving ? "moving" : IsResting ? "resting" : "not recognized as fighting, moving, or resting")}.
+- Activity: {(InCombat ? "in combat" : IsMoving ? "moving" : IsResting ? "resting" : "not recognized as fighting, moving, or resting")}; autocombat={(AutocombatActive ? "on" : "off")}.
 - Level/experience: {(CharacterLevel > 0 ? $"level {CharacterLevel}; XP {ExperienceCurrent:N0}" + (ExperienceNeeded > 0 ? $"/{ExperienceNeeded:N0}" : string.Empty) : "not captured")}.
 - Carried currency: {(CarriedCurrency > 0 ? CarriedCurrency.ToString("N0") : "not captured or zero")}.
 - Captured inventory ({InventoryFreshness}): {FormatItems(InventoryItems)}.

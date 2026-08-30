@@ -127,6 +127,37 @@ public sealed partial class RuntimeLivingWorldService
     public IReadOnlyList<RuntimeLivingWorldEvent> EventsAfter(long sequence){lock(_gate)return _recentEvents.Where(x=>x.Sequence>sequence).OrderBy(x=>x.Sequence).ToArray();}
     public IReadOnlyList<RuntimeLivingCorpseState> CorpsesInRoom(string roomId){lock(_gate)return _corpses.Values.Where(x=>x.RoomId.Equals(roomId,StringComparison.OrdinalIgnoreCase)).OrderBy(x=>x.CreatedAtUtc).ToArray();}
 
+    private const string ClassicTrapStateKeyPrefix = "classic.trap-state.";
+
+    public int ReadClassicTrapState(string exitId, int initialState)
+    {
+        if (string.IsNullOrWhiteSpace(exitId)) throw new ArgumentException("exit-id-required", nameof(exitId));
+        if (!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(initialState))
+            throw new ArgumentOutOfRangeException(nameof(initialState), initialState, "Classic trap state must be in the native 0-4 range.");
+        lock (_gate)
+        {
+            var key = ClassicTrapStateKeyPrefix + exitId.Trim();
+            if (!_nativeActionStates.TryGetValue(key, out var state))
+            {
+                state = initialState;
+                _nativeActionStates[key] = state;
+            }
+            return state;
+        }
+    }
+
+    public void WriteClassicTrapState(string exitId, int state)
+    {
+        if (string.IsNullOrWhiteSpace(exitId)) throw new ArgumentException("exit-id-required", nameof(exitId));
+        if (!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(state))
+            throw new ArgumentOutOfRangeException(nameof(state), state, "Classic trap state must be in the native 0-4 range.");
+        lock (_gate)
+        {
+            _nativeActionStates[ClassicTrapStateKeyPrefix + exitId.Trim()] = state;
+            SaveLivingWorldCompletionLocked();
+        }
+    }
+
     public void RecordQuestRemoteAction(string remoteActionId,string roomId,string source,IReadOnlyDictionary<string,string>? metadata=null)
     {
         if(string.IsNullOrWhiteSpace(remoteActionId))throw new ArgumentException("remote-action-id-required",nameof(remoteActionId));
@@ -467,5 +498,5 @@ public sealed partial class RuntimeLivingWorldService
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
     private string CompletionPersistencePath=>Path.Combine(_persistenceRoot,WorldId,"living-world-completion.json");
     private void SaveLivingWorldCompletionLocked(){var path=CompletionPersistencePath;Directory.CreateDirectory(Path.GetDirectoryName(path)!);var snapshot=new RuntimeLivingWorldCompletionSnapshot(WorldId,_eventSequence,_npcAi.Values.ToArray(),_corpses.Values.ToArray(),_recentEvents.ToArray(),new Dictionary<string,int>(_nativeActionStates,StringComparer.OrdinalIgnoreCase),DateTimeOffset.UtcNow);var temp=path+".tmp";File.WriteAllText(temp,JsonSerializer.Serialize(snapshot,new JsonSerializerOptions{WriteIndented=true}));File.Move(temp,path,true);}
-    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);if(x.NativeActionStates is not null)foreach(var state in x.NativeActionStates)if(_nativeActionStates.ContainsKey(state.Key))_nativeActionStates[state.Key]=state.Value;}catch(JsonException){}}}
+    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);if(x.NativeActionStates is not null)foreach(var state in x.NativeActionStates)if(_nativeActionStates.ContainsKey(state.Key)||state.Key.StartsWith(ClassicTrapStateKeyPrefix,StringComparison.OrdinalIgnoreCase))_nativeActionStates[state.Key]=state.Value;}catch(JsonException){}}}
 }

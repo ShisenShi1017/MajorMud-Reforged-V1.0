@@ -163,7 +163,11 @@ public sealed class ServerNetworkHost
                         break;
                     }
 
-                    if (string.Equals(input.Trim(), "reroll", StringComparison.OrdinalIgnoreCase))
+                    var lifecycleInput = input.Trim();
+                    var rerollRequested = lifecycleInput.Equals("reroll", StringComparison.OrdinalIgnoreCase);
+                    var suicideRequested = lifecycleInput.Equals("suicide", StringComparison.OrdinalIgnoreCase);
+                    var suicideNowRequested = lifecycleInput.Equals("suicide now", StringComparison.OrdinalIgnoreCase);
+                    if (rerollRequested || suicideRequested || suicideNowRequested)
                     {
                         var previous = _characters.LoadCharacter(session.Actor.Id);
                         if (previous is null)
@@ -172,17 +176,56 @@ public sealed class ServerNetworkHost
                             continue;
                         }
 
-                        // Native REROLL executes immediately unless the player has configured a
-                        // suicide password. Reforged does not yet expose SET SUICIDE, so do not add
-                        // a non-native Y/N prompt that would stall an unchanged MegaMUD client.
-                        await telnet.WriteLineAsync("Rerolling character. Create your replacement character.", hostCancellationToken).ConfigureAwait(false);
-                        var replacement = await CreateRerolledCharacterAsync(account, selectedWorld, previous, telnet, hostCancellationToken).ConfigureAwait(false);
-                        if (replacement is null)
+                        // Native SET SUICIDE configures one credential gate shared by SUICIDE and
+                        // REROLL. There is no Reforged-only Y/N confirmation in this lifecycle.
+                        if (_commands.ClassicSuicideRequiresPassword(session))
                         {
-                            await telnet.WriteLineAsync("Reroll cancelled; your current character remains unchanged.", hostCancellationToken).ConfigureAwait(false);
+                            await telnet.WriteAsync("Enter your suicide password:", hostCancellationToken).ConfigureAwait(false);
+                            var suicidePassword = await telnet.ReadLineAsync(hideInput: true, hostCancellationToken).ConfigureAwait(false);
+                            if (suicidePassword is null) break;
+                            if (!_commands.ValidateClassicSuicidePassword(session, suicidePassword))
+                            {
+                                await telnet.WriteLineAsync("Invalid password!", hostCancellationToken).ConfigureAwait(false);
+                                continue;
+                            }
+                        }
+
+                        // Plain SUICIDE consumes one life through the authoritative death engine.
+                        // That path owns room-local currency/item drops and retained-on-death roots.
+                        // SUICIDE NOW is the native immediate-reroll form and follows REROLL below.
+                        if (suicideRequested && !_commands.ClassicSuicideIsFinalLife(session))
+                        {
+                            await telnet.WriteLineAsync(_commands.ExecuteClassicSuicide(session), hostCancellationToken).ConfigureAwait(false);
+                            await telnet.WriteLineAsync(_commands.Dispatch(session, "look"), hostCancellationToken).ConfigureAwait(false);
                             continue;
                         }
 
+                        var finalLifeSuicide = suicideRequested;
+                        if (finalLifeSuicide)
+                        {
+                            await telnet.WriteLineAsync(_commands.ExecuteClassicSuicide(session), hostCancellationToken).ConfigureAwait(false);
+                            previous = _characters.LoadCharacter(session.Actor.Id);
+                            if (previous is null)
+                            {
+                                await telnet.WriteLineAsync("Character save was not found after suicide.", hostCancellationToken).ConfigureAwait(false);
+                                continue;
+                            }
+                        }
+
+                        await telnet.WriteLineAsync(finalLifeSuicide
+                            ? "Create your replacement character."
+                            : "Rerolling character. Create your replacement character.", hostCancellationToken).ConfigureAwait(false);
+                        var replacement = await CreateRerolledCharacterAsync(account, selectedWorld, previous, telnet, hostCancellationToken).ConfigureAwait(false);
+                        if (replacement is null)
+                        {
+                            await telnet.WriteLineAsync(finalLifeSuicide
+                                ? "Replacement creation cancelled; the dead character remains unavailable."
+                                : "Reroll cancelled; your current character remains unchanged.", hostCancellationToken).ConfigureAwait(false);
+                            continue;
+                        }
+
+                        if (finalLifeSuicide)
+                            _ = RuntimeClassicPermanentDeathInfoStore.Consume(_characters.ProjectRoot, previous.AccountId, previous.WorldId);
                         var oldCharacterId = previous.CharacterId;
                         _commands.HandleCharacterRerollCleanup(session, oldCharacterId);
                         _sessions.ReplaceCharacter(session, replacement);

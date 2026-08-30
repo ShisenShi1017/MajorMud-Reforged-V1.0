@@ -1,0 +1,57 @@
+{
+  "schema": "majormud.native-pvp-lvldiff-working-install-closure.v1",
+  "update": "CodeUpdate0358",
+  "target": "stock MajorMUD 1.11p / Classic",
+  "sources": {
+    "working_worldgroup_install": {
+      "artifact": "WGSERV.rar (user supplied working Worldgroup + MajorMUD install)",
+      "bundled": false,
+      "rar_sha256": "1b98f5702f6f12a31cf8c202af832be927d6175219a2e7e9e3cc30389744a7a6",
+      "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "wccmmud_version": "1.11p-WG3NT",
+      "configured_lvldiff": 10,
+      "wccmmud_msg_sha256": "ffa4a40614510d6cd770d7477adbde0bd90901ccf77510afb7ad1accc4a3c949",
+      "wccmmud_mcv_sha256": "cbb572452bc38df003774301fc8e449f2df14304e1dcf99c228585ded76ed1c2"
+    },
+    "retained_default_install": {
+      "artifact": "ImportedDatabasesAndEvidence.LocalOnly(2).rar -> WCCDefaultInstall/wcc default",
+      "bundled": false,
+      "rar_sha256": "2326208857727a8606e71bc5cc2531608f66819ccf96b92816f513bc0d0e8c44",
+      "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "wccmmud_version": "1.11p-WG3NT",
+      "default_lvldiff": 100,
+      "wccmmud_msg_sha256": "2fb64b4db8df0cd081541e04d4d7c447bc0f95072f2968550719f9da6262a040",
+      "wccmmud_mcv_sha256": "8e0daa7cd59fdf1aec947ad46a1e7c61b3eb519d2bb084ee05a5324d2038a30b"
+    },
+    "direct_verification": "Reports/RuntimeVerification/codeupdate0358_working_install_pvp_direct_verification.json"
+  },
+  "native_contract": {
+    "setting": "LVLDIFF",
+    "default": 100,
+    "allowed_range": [
+      -1,
+      100
+    ],
+    "disable_sentinel": -1,
+    "zero_semantics": "valid setting; only same-level attacks satisfy abs(level difference) <= 0",
+    "configured_working_example": 10,
+    "persistence_evidence": "Default and working installs use the byte-identical WCCMMUD.DLL while WCCMMUD.MSG/MCV retain different LVLDIFF values (100 versus 10), proving site configuration without binary replacement.",
+    "fiend_exception": "A lower-level FIEND does not receive the LVLDIFF level-range protection when targeted by a higher-level player.",
+    "protected_room_semantics": "An over-range attack is treated as though the players were in a protected room."
+  },
+  "runtime_change": [
+    "Classic PvP now defaults to enabled with LVLDIFF=100 instead of a Reforged-only disabled default.",
+    "LVLDIFF=-1 is the sole Classic disable sentinel; 0 is no longer treated as unrestricted.",
+    "The working store keeps its compatibility Enabled field synchronized with the native LVLDIFF sentinel and migrates older Reforged disabled records to -1.",
+    "Lower-level FIEND defenders are not protected by the level-range gate.",
+    "The Classic live path no longer re-applies Reforged generic same-party/guild/level-range policy after the native admission gate."
+  ],
+  "megamud_compatibility": "MegaMUD continues to use ordinary attack commands and receives server-authoritative PvP admission/results; no private range protocol is introduced.",
+  "borin_compatibility": "Borin treats the server PvP admission and authoritative character state as final and must not impose a private level-range rule.",
+  "promotion": {
+    "pvp.realm-level-range-configuration": "PASS"
+  },
+  "still_open": [
+    "native.pvp-policy remains STRONG for Lawful record encoding/admission order, exact safe-zone encoding, any native party/gang restriction, kill/death/corpse ordering, guard/bounty reactions, and exact PvP messages/branch order."
+  ]
+}

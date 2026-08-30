@@ -20,6 +20,7 @@ public sealed record RuntimeLiveCombatEncounter(
     int PlayerCurrentEnergy,
     int RoundNumber,
     ClassicAttackType PlayerAttackType,
+    bool PlayerAutocombatActive,
     DateTimeOffset StartedAtUtc);
 
 public sealed partial class RuntimeLiveGameplayFacade
@@ -129,7 +130,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var profile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(character);
         if (!profile.Ready) return "Player combat profile blocked: " + string.Join(", ", profile.Blockers);
         var npcDefense = RuntimeNpcDefensiveProfileResolver.Resolve(ResolveEncounterNpc(session, encounter));
-        return $"Player combat profile ready: AV {profile.AttackValue}, DV {profile.DefenseValue}, AC {profile.ArmorClass}, DR {profile.DamageResistance}, Dodge {profile.DodgeBonus}, Damage {profile.MinimumDamage}-{profile.MaximumDamage} (STR {profile.StrengthMaximumDamageBonus:+#;-#;0}), Speed {profile.WeaponSpeed}, Energy {profile.AttackEnergyCost}, Accuracy class={profile.ClassCombatAccuracy} ability={profile.AbilityAccuracyModifier} weapon={profile.WeaponAccuracyModifier}. NPC defense ready: AC {npcDefense.ArmorClass}, DR {npcDefense.DamageResistance}, Backstab DV {npcDefense.BackstabDefense}; no separate NPC dodge input is defined by the authoritative schema.";
+        return $"Player combat profile ready: AV {profile.AttackValue}, DV {profile.DefenseValue}, AC {profile.ArmorClass}, DR {profile.DamageResistance}, Dodge {profile.DodgeBonus}, Damage {profile.MinimumDamage}-{profile.MaximumDamage} (STR {profile.StrengthMaximumDamageBonus:+#;-#;0}), Speed {profile.WeaponSpeed}, Energy {profile.AttackEnergyCost}, Accuracy nativeBase={profile.ClassCombatAccuracy} plus={profile.AbilityAccuracyModifier} equippedWeapon={profile.WeaponAccuracyModifier} (folded into nativeBase). NPC defense ready: AC {npcDefense.ArmorClass}, DR {npcDefense.DamageResistance}, Backstab DV {npcDefense.BackstabDefense}; no separate NPC dodge input is defined by the authoritative schema.";
     }
 
 
@@ -145,11 +146,19 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (string.IsNullOrWhiteSpace(query)) return "Attack what?";
         if (TryResolveExactPvpTarget(session, query.Trim(), out var playerTarget) && playerTarget is not null)
             return BeginLivePvpCombat(session, playerTarget, attackType);
+        RuntimeLiveCombatEncounter? brokenEncounter = null;
         if (_liveCombats.TryGetValue(session.Id, out var current))
-            return $"You are already fighting {current.NpcName}.";
+        {
+            if (current.PlayerAutocombatActive)
+                return $"You are already fighting {current.NpcName}.";
+            brokenEncounter = current;
+        }
         if (session.Actor is RuntimeCharacterActor restingActor) CancelFocusedRegeneration(restingActor.Id);
 
         var target = ResolveCombatTarget(session, query.Trim());
+        if (brokenEncounter is not null &&
+            !brokenEncounter.NpcInstanceId.Equals(target.Instance.InstanceId, StringComparison.OrdinalIgnoreCase))
+            return $"{brokenEncounter.NpcName} is still engaged with you.";
         var protection = RuntimeNpcProtectionAdmission.Admit(
             target.Instance.InstanceId,
             session.CurrentRoom.Id,
@@ -165,7 +174,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (!backstabProfile.Ready) return "Backstab blocked: " + string.Join(", ", backstabProfile.Blockers);
             var prepared = ClassicAttackPreparationPolicy.PrepareBackstab(
                 IsCharacterHidden(backstabCharacter),
-                alreadyEngaged: false,
+                alreadyEngaged: brokenEncounter is not null,
                 backstabProfile.Barehanded,
                 backstabProfile.WeaponSupportsBackstab,
                 backstabProfile.WeaponIsTwoHanded);
@@ -217,6 +226,19 @@ public sealed partial class RuntimeLiveGameplayFacade
                 _characters.SaveCharacter(revealed);
         }
 
+        if (brokenEncounter is not null)
+        {
+            var resumed = brokenEncounter with
+            {
+                PlayerAttackType = attackType,
+                PlayerAutocombatActive = true
+            };
+            _liveCombats[session.Id] = resumed;
+            _combatOwners[session.Id] = new RuntimeCombatOwnerState(session.World.Definition.Id, session.Actor.Id, resumed.NpcInstanceId);
+            var resumedEngagement = RuntimeClassicCombatAnsi.Engagement(resumed.NpcName);
+            return string.IsNullOrWhiteSpace(preparationMessage) ? resumedEngagement : preparationMessage + Environment.NewLine + resumedEngagement;
+        }
+
         var encounter = new RuntimeLiveCombatEncounter(
             session.Id,
             session.World.Definition.Id,
@@ -234,6 +256,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             0,
             0,
             attackType,
+            true,
             DateTimeOffset.UtcNow);
         if (!_liveCombats.TryAdd(session.Id, encounter)) throw new InvalidOperationException("LIVE_COMBAT_DUPLICATE_SESSION");
         RegisterCombatEngagement(session, encounter, initialThreat: 1);
@@ -289,19 +312,32 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (_livePvpEncounterBySession.TryGetValue(session.Id, out var pvpEncounterId) &&
             _livePvpEncounters.TryGetValue(pvpEncounterId, out var pvpEncounter))
         {
-            var opponentId = pvpEncounter.AttackerSessionId.Equals(session.Id, StringComparison.OrdinalIgnoreCase)
-                ? pvpEncounter.DefenderSessionId : pvpEncounter.AttackerSessionId;
-            EndLivePvpEncounter(pvpEncounter);
-            _sessions.ActiveSessions.FirstOrDefault(candidate => candidate.Id.Equals(opponentId, StringComparison.OrdinalIgnoreCase))
-                ?.EnqueueMessage("*Combat Off*");
-            return "*Combat Off*";
+            if (!IsLivePvpAutocombatActive(pvpEncounter, session.Id)) return string.Empty;
+            PresentClassicManualCombatBreak(session);
+            StopLivePvpAutocombatForSession(pvpEncounter, session.Id);
+            return string.Empty;
         }
-        if (_liveCombats.TryRemove(session.Id, out var encounter))
+        if (_liveCombats.TryGetValue(session.Id, out var encounter))
         {
-            ReleaseCombatEngagement(session, encounter, "player-break");
-            return "*Combat Off*";
+            if (!encounter.PlayerAutocombatActive) return string.Empty;
+            PresentClassicManualCombatBreak(session);
+            _liveCombats[session.Id] = encounter with { PlayerAutocombatActive = false };
+            // Native BREAK calls _kill_autocombat(user, 1), not _kill_autocombat_against(user).
+            // Keep NPC threat/engagement intact so the monster may continue attacking the player.
+            return string.Empty;
         }
         return string.Empty;
+    }
+
+    private void PresentClassicManualCombatBreak(RuntimeSession session)
+    {
+        // Native visible BREAK presents the player/room lines before _kill_autocombat.
+        session.EnqueueMessage(RuntimeClassicBreakAutocombatAuthority.PlayerMessage);
+        _sessions.BroadcastRoom(
+            session,
+            RuntimeClassicBreakAutocombatAuthority.ObserverMessage(session.Actor.DisplayName),
+            includeSource: false,
+            priority: RuntimeClassicBreakAutocombatAuthority.ObserverPriority);
     }
 
     private string FleeLiveCombat(RuntimeSession session)

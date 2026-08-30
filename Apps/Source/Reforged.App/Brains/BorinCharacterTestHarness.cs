@@ -142,6 +142,22 @@ public sealed class BorinCharacterTestHarness
                 "[HP=41]: Shisenshi gossips, \"Welcome, Borin\"", out speaker, out channel, out message) &&
                speaker == "Shisenshi" && channel == "gossip" && message == "Welcome, Borin",
             "Omniverse global GOS conversation was not recognized.");
+        Assert(BorinPlayerResearch.TryParseConversationLine(
+                "Shisenshi telepaths: @join", out speaker, out channel, out message) &&
+               speaker == "Shisenshi" && channel == "telepath" && message == "@join",
+            "Native MajorMUD telepath rendering was not recognized.");
+        Assert(BorinPlayerResearch.TryParseConversationLine(
+                "Shisenshi says (to you) \"{ok}\"", out speaker, out channel, out message) &&
+               speaker == "Shisenshi" && channel == "say" && message == "{ok}",
+            "Native MajorMUD directed-message rendering was not recognized.");
+        Assert(BorinPlayerResearch.TryParseConversationLine(
+                "Gryndak gossips: Good hunting.", out speaker, out channel, out message) &&
+               speaker == "Gryndak" && channel == "gossip" && message == "Good hunting.",
+            "Native MajorMUD gossip rendering was not recognized.");
+        Assert(BorinPlayerResearch.TryParseConversationLine(
+                "Gryndak auctions: Selling blade", out speaker, out channel, out message) &&
+               speaker == "Gryndak" && channel == "auction" && message == "Selling blade",
+            "Native MajorMUD auction rendering was not recognized.");
         return Task.CompletedTask;
     }
 
@@ -236,7 +252,7 @@ public sealed class BorinCharacterTestHarness
             "Conversational guidance containing the word 'type' was sent literally to the game terminal.");
         var composedIntroduction = BorinForgeActionRouter.CreatePlan("type gos then his introduction");
         Assert(composedIntroduction.CanExecute && composedIntroduction.Commands.Count == 1 &&
-               composedIntroduction.Commands[0].StartsWith("GOS Hail, I'm Borin", StringComparison.Ordinal),
+               composedIntroduction.Commands[0].StartsWith("GOSSIP Hail, I'm Borin", StringComparison.Ordinal),
             "Borin did not compose his own introduction for the requested Omniverse GOS channel.");
 
         var unresolvedPronoun = BorinForgeActionRouter.CreatePlan("equip it");
@@ -941,6 +957,8 @@ public sealed class BorinCharacterTestHarness
             "Autonomous safety allowed Borin to quit/log off his own player session.");
         Assert(!BorinAutonomousSafetyPolicy.Validate("SYS GOTO 100", live).Allowed,
             "Autonomous safety allowed a privilege-control alias.");
+        Assert(!BorinAutonomousSafetyPolicy.Validate("SET SUICIDE swordfish", live).Allowed,
+            "Autonomous safety allowed Borin to configure a suicide credential.");
         Assert(!BorinAutonomousSafetyPolicy.Validate("LOOK;N", live).Allowed,
             "Autonomous safety accepted more than one command in a single model action.");
         Assert(BorinAutonomousSafetyPolicy.Validate("KILL GOBLIN", live).Allowed,

@@ -34,6 +34,17 @@ public sealed record RuntimeIdentityLawParitySmokeReport(bool Passed, IReadOnlyL
         Check(RuntimeClassicDeathLawPvpAuthority.ResolveLawConsequence("Fiend", 300) == RuntimeClassicLawConsequence.AttackInitiationLocked,
             "fiend-300-ep-attack-lockout-preserved");
 
+        Check(!RuntimeClassicDeathLawPvpAuthority.IsPvpEnabled(-1), "pvp-lvldiff-minus1-disabled");
+        Check(RuntimeClassicDeathLawPvpAuthority.IsPvpEnabled(0), "pvp-lvldiff-zero-enabled");
+        Check(RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(10, 10, 0), "pvp-lvldiff-zero-same-level");
+        Check(!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(10, 11, 0), "pvp-lvldiff-zero-blocks-different-level");
+        Check(RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(20, 10, 10), "pvp-lvldiff-boundary-admitted");
+        Check(!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(21, 10, 10), "pvp-lvldiff-over-boundary-denied");
+        Check(RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(50, 10, 10, defenderIsFiend: true),
+            "pvp-lower-level-fiend-not-protected");
+        Check(!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(10, 50, 10, defenderIsFiend: true),
+            "pvp-higher-level-fiend-no-exception");
+
         return new(failures.Count == 0, checks, failures);
     }
 }

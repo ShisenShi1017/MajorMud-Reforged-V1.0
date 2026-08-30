@@ -59,7 +59,7 @@ public sealed class RuntimePlayerCombatProfileResolver
     public RuntimePlayerCombatProfile Resolve(RuntimeCharacterRecord character)
     {
         var blockers = new List<string>();
-        var attackValue = checked(CombatValue(character, "combat.attack_value", DerivedAttackValue(character)) + RuntimeClassicStatusProjection.Numeric(character, "accuracy"));
+        var attackValue = CombatValue(character, "combat.attack_value", 0);
         var conditionBackstabAccuracyBonus = Optional(character.Conditions, "combat.backstab_accuracy_bonus");
         var defenseValue = CombatValue(character, "combat.defense_value", DerivedDefenseValue(character));
         var dodgeBonus = 0;
@@ -74,6 +74,7 @@ public sealed class RuntimePlayerCombatProfileResolver
         var minimumDamage = Optional(character.Conditions, "combat.minimum_damage");
         var maximumDamage = Optional(character.Conditions, "combat.maximum_damage");
         var weaponAccuracy = 0;
+        var equippedAccuracy = 0;
         var equippedBackstabAccuracyBonus = 0;
         var barehanded = true;
         var weaponIsTwoHanded = false;
@@ -86,9 +87,8 @@ public sealed class RuntimePlayerCombatProfileResolver
         var weaponItemId = string.Empty;
         var weaponStrengthRequirement = 0;
         IReadOnlyList<RuntimeWeaponOnHitSpell> weaponOnHitSpells = Array.Empty<RuntimeWeaponOnHitSpell>();
-        var classCombatAccuracy = ResolveClassCombatAccuracy(character);
         var questBonuses = ResolveQuestCombatBonuses(character);
-        var abilityAccuracy = questBonuses.AccuracyPercentBonus;
+        var abilityAccuracy = checked(questBonuses.AccuracyPercentBonus + RuntimeClassicStatusProjection.Numeric(character, "accuracy"));
         armorClass = checked(armorClass + questBonuses.ArmourClassBonus);
         var encumbrancePercent = ResolveCombatEncumbrancePercent(character);
         dodgeBonus = character.Conditions.TryGetValue("combat.raw_dodge_override", out var rawDodgeOverride)
@@ -109,12 +109,27 @@ public sealed class RuntimePlayerCombatProfileResolver
             armorClass = checked(armorClass + profile.ArmorClassBonus);
             damageResistance = checked(damageResistance + profile.DamageResistanceBonus);
             criticalChance = checked(criticalChance + profile.CriticalChanceBonus);
+            equippedAccuracy = checked(equippedAccuracy + profile.Accuracy);
             equippedBackstabAccuracyBonus = checked(equippedBackstabAccuracyBonus + profile.BackstabAccuracyBonus);
             equipmentHitMagicRank = checked(equipmentHitMagicRank + profile.HitMagicRank);
             if (profile.MaximumDamage > 0) weaponProfiles.Add(profile);
         }
         damageResistance = ApplyDamageResistancePercent(
             damageResistance, RuntimeClassicStatusProjection.Numeric(character, "damage_resistance_percent"));
+
+        // CodeUpdate0357: stock fighter Accuracy is constructed once from the native
+        // _move_player_to_fighter owner. Direct equipped Accuracy is already folded here,
+        // so normal live combat must not add the wielded weapon Accuracy a second time.
+        var classCombatAccuracy = character.Conditions.ContainsKey("combat.attack_value")
+            ? 0
+            : RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(
+                ResolveClassCombatCode(character),
+                character.Level,
+                AdjustedStat(character, "strength", "str"),
+                AdjustedStat(character, "agility", "agi", "agl"),
+                equippedAccuracy,
+                encumbrancePercent,
+                character.HitPoints > 0);
 
         if (weaponProfiles.Count > 1)
         {
@@ -301,8 +316,6 @@ public sealed class RuntimePlayerCombatProfileResolver
         return RuntimeMajorMudCompatibility.CalculateEncumberancePercent(carried, maximum);
     }
 
-    private int ResolveClassCombatAccuracy(RuntimeCharacterRecord character)
-        => checked(ResolveClassCombatCode(character) * character.Level);
 
     private int ResolveClassCombatCode(RuntimeCharacterRecord character)
     {
@@ -336,8 +349,6 @@ public sealed class RuntimePlayerCombatProfileResolver
             ? value
             : fallback;
 
-    private static int DerivedAttackValue(RuntimeCharacterRecord character)
-        => Math.Max(1, (AdjustedStat(character, "strength", "str") + AdjustedStat(character, "agility", "agi", "agl")) / 2 + character.Level);
 
     private static int DerivedDefenseValue(RuntimeCharacterRecord character)
         => Math.Max(1, (AdjustedStat(character, "agility", "agi", "agl") + AdjustedStat(character, "health", "hea")) / 2 + character.Level);

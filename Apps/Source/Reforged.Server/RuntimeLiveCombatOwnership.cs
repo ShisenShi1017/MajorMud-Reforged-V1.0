@@ -188,6 +188,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             PlayerCurrentEnergy = 0,
             RoundNumber = 0,
             PlayerAttackType = ClassicAttackType.NormalWeapon,
+            PlayerAutocombatActive = true,
             StartedAtUtc = DateTimeOffset.UtcNow
         };
         if (!_liveCombats.TryAdd(session.Id, encounter)) return "You could not join that combat.";

@@ -19,6 +19,15 @@ public sealed record RuntimeClassicExtensionBoundaryRow(
 /// </summary>
 public static class RuntimeClassicExtensionBoundaryAuthority
 {
+    // CodeUpdate0351 direct WCCMMUD.DLL export census plus decoded Classic service corpus.
+    public static readonly int NativeCommandExportCount = 78;
+    public static readonly int DecodedClassicServiceCount = 204;
+    public static readonly bool NativeGiveCommandPresent = true;
+    public static readonly bool NativeAuctionCommandPresent = true;
+    public static readonly bool NativeTradeCommandPresent = false;
+    public static readonly bool NativeRepairCommandPresent = false;
+    public static readonly int DecodedRepairServiceCount = 0;
+
     private static readonly HashSet<string> ReforgedOnlyCommands =
         new(StringComparer.OrdinalIgnoreCase) { "trade", "repair" };
 
@@ -26,10 +35,10 @@ public static class RuntimeClassicExtensionBoundaryAuthority
     [
         new("command.trade-escrow", RuntimeClassicExtensionBoundaryKind.ReforgedOnly,
             "The direct TRADE convenience transaction is unavailable in Classic; stock GIVE remains the player-transfer owner.",
-            "Official command help plus majormud_give_shops_transport_evidence_0288.json."),
+            "Original WCCMMUD.DLL exports _cmd_give/_cmd_auction but no _cmd_trade; official command help plus majormud_give_shops_transport_evidence_0288.json."),
         new("service.repair", RuntimeClassicExtensionBoundaryKind.ReforgedOnly,
             "Generated durability REPAIR is unavailable in Classic because no stock repair command or service is projected.",
-            "Official shop command help and the decoded Classic service-kind inventory."),
+            "Original WCCMMUD.DLL has no _cmd_repair; official shop command help and 204 decoded Classic services contain no repair owner."),
         new("random.generic-streams", RuntimeClassicExtensionBoundaryKind.ReforgedOnly,
             "RuntimeGlobalRandomService is generic Reforged infrastructure and cannot satisfy Classic PRNG parity.",
             "majormud_native_rng_evidence_0305.json."),
@@ -72,6 +81,10 @@ public static class RuntimeClassicExtensionBoundaryAuthority
             failures.Add("extension-boundary-classic-owner-count");
         if (Rows.Count(row => row.Kind == RuntimeClassicExtensionBoundaryKind.CompatibilityUnresolved) != 1)
             failures.Add("extension-boundary-unresolved-count");
+        if (NativeCommandExportCount != 78 || DecodedClassicServiceCount != 204 ||
+            !NativeGiveCommandPresent || !NativeAuctionCommandPresent || NativeTradeCommandPresent ||
+            NativeRepairCommandPresent || DecodedRepairServiceCount != 0)
+            failures.Add("native-extension-absence-evidence");
         if (IsCommandAvailable("Classic", "trade") || IsCommandAvailable("Classic", "repair"))
             failures.Add("classic-extension-command-admission");
         if (!IsCommandAvailable("Classic", "give") || !IsCommandAvailable("Custom", "trade") || !IsCommandAvailable("AI", "repair"))

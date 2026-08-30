@@ -5187,35 +5187,28 @@
     {
       "id": "communications.classic-range-rendering",
       "ownerSubsystem": "communications",
-      "status": "owner-boundary-closed-exact-details-delegated",
-      "requiredEvidence": [
-        "exact shout/yell distance and adjacency rules",
-        "exact local/tell/whisper failure and success rendering",
-        "color, language, invisibility, and moderation rules"
-      ],
+      "status": "exact-behavior-closed",
+      "requiredEvidence": [],
       "safeFallback": "preserve unknown and fail closed",
-      "finalClosurePass": "Pass 61 / Update 0332",
-      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "finalClosurePass": "CodeUpdate0345",
+      "ownerEvidence": "Librarium/Parity/majormud_native_communication_rendering_evidence_0345.json",
       "parityAssertions": [
-        "native.communications.classic-range-rendering",
-        "native.communications.persistence-logging"
+        "native.communications.classic-range-rendering"
       ],
-      "exactBehaviorComplete": false
+      "exactBehaviorComplete": true
     },
     {
       "id": "communications.persistence-logging",
       "ownerSubsystem": "communications",
       "status": "owner-boundary-closed-exact-details-delegated",
       "requiredEvidence": [
-        "ignore/mute persistence owner",
-        "communication logging and flood thresholds",
-        "Worldgroup versus MajorMUD moderation boundary"
+        "exact Worldgroup PAGE/telegram host handoff and presentation",
+        "exact per-message priority/logging membership"
       ],
       "safeFallback": "preserve unknown and fail closed",
       "finalClosurePass": "Pass 61 / Update 0332",
-      "ownerEvidence": "Reports/RemainingSystems/communication_persistence_limits_exhaustion_0034.md",
+      "ownerEvidence": "Librarium/Parity/majormud_native_communication_rendering_evidence_0345.json",
       "parityAssertions": [
-        "native.communications.classic-range-rendering",
         "native.communications.persistence-logging"
       ],
       "exactBehaviorComplete": false
