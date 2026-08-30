@@ -9,7 +9,7 @@
   "generatedClassicDataTrackedInGit": false,
   "importedDatabasesArchivedLocalOnly": true,
   "savesPreserved": true,
-  "purpose": "Continue CodeUpdate0140 Classic parity closure by integrating accepted parity passes 0345 through 0358: communication, traps, TALK/PAGE scope, message filtering, REST/MEDITATE, BREAK, GIVE, pricing, physical combat, Dodge, Accuracy, and native PvP LVLDIFF while preserving Librarium and server authority.",
+  "purpose": "Continue CodeUpdate0140 Classic parity closure and Creator Studio by retaining the accepted native runtime baseline and adding a Custom1-only Nightmare Redux MDB import/export plus read-only WCC/WGS evidence bridge.",
   "currentValidation": {
     "entrypoint": "python Tools/validator.py",
     "runtimeParityGate": "--smoke-classic-parity-closure",
@@ -67,6 +67,6 @@
     "GitHub Actions remains the official gate after push.",
     "The broader item smoke retains two pre-existing corpse-resurrection equipment failures: the death equipment slot is not recorded and occupied-slot restoration does not yet displace safely."
   ],
-  "verificationStatus": "LOCAL_DOTNET_VERIFIED_WITH_KNOWN_ITEM_LIMITATION: Reforged.Server and Reforged.App Release builds pass with warnings as errors and zero warnings/errors; Core tests build and run; Classic parity closure and MegaMUD connection gates pass. The current-health validator passes 44/45 executed stages and stops at the two pre-existing corpse-resurrection equipment assertions in server_items. Consolidated supplied native verification retains 2,495 checks with zero reported failures. GitHub Actions pending push.",
-  "updatedUtc": "2026-08-30T06:30:19Z"
+  "verificationStatus": "LOCAL_DOTNET_VERIFIED_WITH_KNOWN_ITEM_LIMITATION: Reforged.Server and Reforged.App Release builds pass with warnings as errors and zero warnings/errors; Classic parity closure and services/economy gates pass. Nightmare Jet MDB verification reads the installed 188-row ability.mdb and passes a temporary write/read round trip. No Custom1 import was performed. The current-health validator's pre-existing corpse-resurrection item limitation remains open. GitHub Actions pending push.",
+  "updatedUtc": "2026-08-30T19:04:57Z"
 }

@@ -15,6 +15,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Verification: Reforged.Server, Reforged.App, Reforged.Client, and core/server test Release builds PASS with warnings as errors; MegaMUD, native-command, communication, organization, gang-house, and parity-closure gates PASS.
 - Guardian Hall engineering direction: Borin's phases 1-10 are permanent deterministic infrastructure with independent planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP, repository-update, and overnight controls. Candidate ZIP generation defaults on; autonomous and repository-update controls default off.
 - Current parity continuation: 144 PASS / 56 STRONG / 0 UNKNOWN = 200 (72.0% strict / 100.0% evidence-backed). The remaining 56 STRONG assertions define the evidence-driven closure queue.
+- Creator Studio continuation: the Custom1-only Nightmare MDB/WCC bridge is integrated and locally build/round-trip verified. The next editor validation should use a user-selected complete custom-world MDB/WCC pair, review its conflict/gap report, and import only after explicit approval; Classic remains immutable.
 
 ## CodeUpdate0139 Runtime Scope
 
@@ -97,5 +98,4 @@ Do not restore large historical doc trees unless the user asks.
 The generated authenticated command catalog and safe dispatch boundary are complete. Next recover exact invasion syntax/payload and GOTO room targets, then implement remaining command-owner services. Native gang commands require a data-backed MajorMUD gang runtime; do not substitute a generic guild subsystem.
 Latest local continuation: grouped ability audit 123-124 is complete. HPRegen reuses the authoritative cadence; NegateAbility now suppresses only its evidence-backed target ability for spell and NPC owners, with zero-valued evidence kept fail-closed.
 Latest local continuation: grouped ability audit 125-134 is complete. The ten consecutive quest-progress fields are canonical persistent character state, not combat or command abilities; runtime regression enforces both persistence and the non-power boundary.
-
 

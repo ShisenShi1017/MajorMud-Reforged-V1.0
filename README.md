@@ -12,6 +12,8 @@ Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict**, **
 
 Creator Studio full-control editing is integrated into the Reforged app with Quick Create, nested field editing, expanded runtime Librarium families, Custom1 cloning, and protected Classic identity/runtime metadata.
 
+Creator Studio also includes a Custom1-only Nightmare Redux MDB/WCC bridge. It previews and imports supported MDB tables, exports supported Custom1 records to a new Jet MDB, preserves unmapped legacy fields, and uses original WCC/WGS files only as read-only provenance and conservative correlation evidence.
+
 ## Pass 27 compile hotfix
 
 The latest Trainer/Editor-integrated Pass 27 baseline now includes two C# build repairs: the Bundle D audit evaluates the non-nullable `StrengthAlternative` Boolean directly, and `RuntimeLiveWorld.ConfigureCommunicationFlag` no longer redeclares `enabled` in an overlapping scope. These are compile-only corrections and do not change parity scoring or gameplay behavior.

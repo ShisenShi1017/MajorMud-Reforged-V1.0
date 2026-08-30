@@ -1,3 +1,7 @@
+## Creator Studio Nightmare MDB / WCC bridge
+
+Creator Studio now provides a Custom1-only bridge for Nightmare Redux Access/MDB worlds. It previews table mappings and conflicts, imports supported records without touching Classic, preserves unmapped legacy columns, exports supported Custom1 records to a new MDB, and can attach hashes plus exact unique text anchors from a matching read-only WCC/WGS folder. Local Release builds, Classic parity/economy gates, a real Nightmare `ability.mdb` read, and a temporary MDB write/read round trip pass. No Custom1 import was performed as part of verification.
+
 ## Native parity promotion and combat authority repair
 
 Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **144 PASS / 56 STRONG / 0 UNKNOWN**. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.

@@ -1,6 +1,8 @@
 # AI Context for Reforged
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
+- Creator Studio now includes a Custom1-only Nightmare Redux MDB bridge. It analyzes/imports supported MDB tables, exports supported Custom1 records to a new Jet MDB, preserves unmapped fields and raw provenance, and treats WCC/WGS files as read-only evidence. Classic is never an import target.
+- The bridge was locally verified against the installed Nightmare Redux `ability.mdb` (188 rows through Jet 4.0) and a temporary write/read round trip. Reforged.App and Reforged.Server build with zero warnings/errors; Classic parity and services/economy smoke gates pass. No live Custom1 import was run.
 - Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**).
 - Parity passes 0345-0358 are accepted into the cumulative ledger under CodeUpdate0140. Their 1,575 supplied checks are consolidated into the generic native runtime verification report; numbered one-off validators and reports are retired.
 - The exact original WCCMMUD 1.11p DLL plus wccknms2.dat trace proves both Nahr message-8480 caller arguments are empty strings for all five attacks. Preserve the native empty spacing.

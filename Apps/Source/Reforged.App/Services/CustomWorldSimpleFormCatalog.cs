@@ -49,6 +49,8 @@ public static class CustomWorldSimpleFormCatalog
         new(path, label, CustomWorldSimpleFieldKind.Choice, required, defaultValue, help, options);
     private static CustomWorldSimpleFieldDefinition L(string path, string label, bool required = false, string help = "") =>
         new(path, label, CustomWorldSimpleFieldKind.Lines, required, "", help);
+    private static CustomWorldSimpleFieldDefinition IL(string path, string label, bool required = false, string help = "") =>
+        new(path, label, CustomWorldSimpleFieldKind.IntegerLines, required, "", help);
 
     private static readonly IReadOnlyDictionary<string, CustomWorldSimpleFormDefinition> Forms =
         new Dictionary<string, CustomWorldSimpleFormDefinition>(StringComparer.OrdinalIgnoreCase)
@@ -83,7 +85,7 @@ public static class CustomWorldSimpleFormCatalog
                 L("commands", "Accepted commands", false, "One command per line, for command-activated exits.")
             ]),
 
-            ["npcs"] = new("npcs", "NPC / Monster", "npc.custom", "Create a monster or NPC with normal gameplay stats. Advanced abilities can be added later without touching JSON.",
+            ["npcs"] = new("npcs", "NPC / Monster", "npc.custom", "Create a monster or NPC with normal fields. Attacks and abilities are edited visually in the dedicated Monster editor.",
             [
                 T("name", "Name", true, "New NPC"),
                 I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a Reforged-only NPC."),
@@ -94,14 +96,26 @@ public static class CustomWorldSimpleFormCatalog
                 I("combat.damage_resistance", "Damage resistance", false, "0"),
                 I("combat.magic_resistance", "Magic resistance", false, "0"),
                 I("combat.attack_count", "Number of attacks", false, "1"),
+                I("combat.spell_ref_count", "Number of spells", false, "0"),
                 C("behavior.alignment", "Alignment", [O("lawful_good","Lawful Good"),O("neutral_good","Neutral Good"),O("chaotic_good","Chaotic Good"),O("lawful_neutral","Lawful Neutral"),O("neutral","Neutral"),O("chaotic_neutral","Chaotic Neutral"),O("lawful_evil","Lawful Evil"),O("neutral_evil","Neutral Evil"),O("chaotic_evil","Chaotic Evil")], false, "neutral"),
+                I("behavior.group_id", "Group / faction number", false, "0"),
+                I("behavior.follow", "Follow value", false, "0"),
+                I("behavior.charm_level", "Charm level", false, "0"),
+                I("behavior.charm_resistance", "Charm resistance", false, "0"),
                 B("behavior.undead", "Undead", false),
                 I("behavior.regen_time", "Regen time", false, "0"),
                 I("behavior.respawn_hours", "Respawn hours", false, "0"),
+                I("public_reference_0139.fields.hp_regen", "HP regeneration", false, "0"),
+                I("public_reference_0139.fields.backstab_defense", "Backstab defense", false, "0"),
+                I("public_reference_0139.fields.game_limit", "Game limit", false, "0"),
+                I("public_reference_0139.fields.gender", "Gender code", false, "0"),
+                L("public_reference_0139.fields.descriptions", "Descriptions", false, "One description line per row."),
                 I("rewards.xp_base", "Experience reward", false, "0"),
                 I("rewards.gold", "Gold reward", false, "0"),
                 I("rewards.silver", "Silver reward", false, "0"),
-                I("rewards.copper", "Copper reward", false, "0")
+                I("rewards.copper", "Copper reward", false, "0"),
+                I("rewards.platinum", "Platinum reward", false, "0"),
+                I("rewards.runic", "Runic reward", false, "0")
             ]),
 
             ["spawns"] = new("spawns", "Spawn", "spawn.custom", "Place an NPC in a room and control how it respawns.",
@@ -115,27 +129,34 @@ public static class CustomWorldSimpleFormCatalog
                 I("spawn_model.linked_spawn_room", "Linked spawn room", false, "0")
             ]),
 
-            ["items"] = new("items", "Item", "item.custom", "Create weapons, armor, containers, consumables, or ordinary items. Runtime fields are generated automatically.",
+            ["items"] = new("items", "Item", "item.custom", "Create weapons, armor, containers, consumables, or ordinary items. The dedicated Item editor separates equipment, combat, effects, restrictions, and economy.",
             [
                 T("name", "Item name", true, "New Item"),
                 I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a Reforged-only item."),
                 C("classification.type", "Item type", [O("misc","Miscellaneous"),O("weapon","Weapon"),O("armor","Armor"),O("container","Container"),O("consumable","Consumable"),O("food","Food"),O("drink","Drink")], true, "misc"),
                 B("flags.gettable", "Player can pick it up", true),
                 I("economy.weight", "Weight", false, "0"),
-                I("public_reference_0139.fields.cost", "Value / cost", false, "0"),
+                I("economy.cost", "Value / cost", false, "0"),
                 C("equipment.worn_on", "Equipment slot", [O("0","Not wearable"),O("2","Head"),O("3","Face"),O("4","Neck"),O("5","Back"),O("6","Torso"),O("7","Arms"),O("8","Hands"),O("9","Waist"),O("10","Legs"),O("11","Feet"),O("12","Wield"),O("13","Off hand"),O("14","Finger"),O("15","Wrist"),O("16","Shield"),O("19","Light")], false, "0"),
                 I("equipment.str_requirement", "Minimum strength", false, "0"),
-                I("public_reference_0139.fields.min_hit", "Minimum damage", false, "0"),
-                I("public_reference_0139.fields.max_hit", "Maximum damage", false, "0"),
+                I("combat.minimum_damage", "Minimum damage", false, "0"),
+                I("combat.maximum_damage", "Maximum damage", false, "0"),
                 I("combat.armor_class_bonus", "Armor class bonus", false, "0"),
                 I("combat.damage_resistance_bonus", "Damage resistance bonus", false, "0"),
                 I("combat.accuracy", "Accuracy", false, "0"),
                 I("combat.speed", "Speed", false, "0"),
-                I("public_reference_0139.fields.max_uses", "Maximum uses", false, "0"),
-                I("public_reference_0139.fields.game_limit", "Game limit", false, "0")
+                I("public_reference_0139.fields.max_uses", "Maximum uses", false, "-1", "-1 means unlimited / not use-limited."),
+                B("public_reference_0139.fields.uses_consumed_on_use", "Consumes a use when activated", false),
+                B("public_reference_0139.fields.retain_after_uses", "Keep item when uses reach zero", false),
+                B("public_reference_0139.fields.destroy_on_death", "Destroy on death", true),
+                B("public_reference_0139.fields.not_droppable", "Cannot be dropped", false),
+                I("public_reference_0139.fields.game_limit", "Game limit", false, "0"),
+                L("public_reference_0139.fields.class_restrictions", "Class restrictions", false, "One class number/name per line."),
+                L("public_reference_0139.fields.race_restrictions", "Race restrictions", false, "One race number/name per line."),
+                L("public_reference_0139.fields.descriptions", "Descriptions", false, "One description line per row.")
             ]),
 
-            ["spells"] = new("spells", "Spell", "spell.custom", "Create a spell by entering its level, costs, target type, and effect range.",
+            ["spells"] = new("spells", "Spell", "spell.custom", "Create or fully tune a spell with the dedicated Spell editor. Targeting, resistance, scaling, messages, and recovered gameplay controls stay available without JSON.",
             [
                 T("name", "Spell name", true, "New Spell"),
                 T("short_name", "Short name", false, ""),
@@ -148,32 +169,85 @@ public static class CustomWorldSimpleFormCatalog
                 I("costs.energy_cost", "Energy cost", false, "1000"),
                 I("effect.min_effect", "Minimum effect", false, "0"),
                 I("effect.max_effect", "Maximum effect", false, "0"),
-                I("effect.duration", "Duration", false, "0")
+                I("effect.duration", "Duration", false, "0"),
+                I("public_reference_0139.fields.resist_type", "Resistance type", false, "0"),
+                I("public_reference_0139.fields.resist_ability", "Resistance ability", false, "0"),
+                I("public_reference_0139.fields.difficulty", "Difficulty", false, "0"),
+                I("public_reference_0139.fields.magery_requirement_a", "Magery requirement A", false, "0"),
+                I("public_reference_0139.fields.magery_requirement_b", "Magery requirement B", false, "0"),
+                I("public_reference_0139.fields.level_cap", "Level cap", false, "0"),
+                I("public_reference_0139.fields.levels_for_max_increase", "Levels per maximum-effect increase", false, "0"),
+                I("public_reference_0139.fields.max_increase", "Maximum-effect increase", false, "0"),
+                I("public_reference_0139.fields.levels_for_min_increase", "Levels per minimum-effect increase", false, "0"),
+                I("public_reference_0139.fields.min_increase", "Minimum-effect increase", false, "0"),
+                I("public_reference_0139.fields.levels_for_duration_increase", "Levels per duration increase", false, "0"),
+                I("public_reference_0139.fields.duration_increase", "Duration increase", false, "0"),
+                L("public_reference_0139.fields.descriptions", "Descriptions", false, "One description line per row."),
+                T("public_reference_0139.fields.message_style", "Message style", false, ""),
+                L("public_reference_0139.fields.abilities_named", "Applied abilities", false, "One named ability per line.")
             ]),
 
-            ["abilities"] = new("abilities", "Ability", "ability.custom", "Create an ability identity and description. It can then be referenced by other Custom1 content.",
+            ["abilities"] = new("abilities", "Ability", "ability.custom", "Create or fully tune an ability with the dedicated Ability editor. Description, display color, implementation controls, relationships, and every decoded gameplay field stay available without JSON.",
             [
                 T("name", "Ability name", true, "New Ability"),
                 I("legacy_id", "Legacy number", false, "0"),
                 M("public_reference_0139.fields.description", "Description", false, ""),
+                I("public_reference_0139.fields.color_red", "Display red", false, "200"),
+                I("public_reference_0139.fields.color_green", "Display green", false, "200"),
+                I("public_reference_0139.fields.color_blue", "Display blue", false, "200"),
+                T("public_reference_0139.fields.impl_status", "Implementation status", false, "implemented"),
+                M("public_reference_0139.fields.dll_notes", "Implementation notes", false, ""),
                 T("category", "Category", false, "custom")
             ]),
 
-            ["classes"] = new("classes", "Class", "class.custom", "Create a playable or NPC class identity for Custom1.",
+            ["native_message_payloads"] = new("native_message_payloads", "Message", "native_message_payload", "Create or edit player-facing MajorMUD message slots with a dedicated Message editor. Custom1 can override or add messages without changing Classic.",
+            [
+                I("message_id", "Message number", true, "1", "Use an unused number for a new Custom1 message."),
+                M("player_payload", "Player message", false, "", "Message shown to the acting player."),
+                M("secondary_payload", "Secondary message", false, "", "Alternate/observer message slot used by decoded native message calls."),
+                M("tertiary_payload", "Tertiary message", false, "", "Third decoded message slot when the native message provides one."),
+                T("encoding", "Encoding", false, "cp437")
+            ]),
+
+            ["native_textblock_payloads"] = new("native_textblock_payloads", "Textblock", "native_textblock_payload", "Create or edit long-form MajorMUD textblocks with a dedicated Textblock editor. Enter normal text; the editor handles the Custom1 record.",
+            [
+                I("textblock_id", "Textblock number", true, "1", "Use an unused number for a new Custom1 textblock."),
+                M("payload", "Textblock text", true, "", "The complete text shown or consumed by scripts/quests."),
+                T("encoding", "Encoding", false, "cp437")
+            ]),
+
+            ["room_interactions"] = new("room_interactions", "Action / Room Interaction", "room_interaction.custom", "Create room actions, remote actions, traps, switches, command interactions, and other decoded room behaviors with a dedicated Action editor.",
+            [
+                T("name", "Action name", true, "New Action"),
+                T("interaction_kind", "Action type", true, "custom_command"),
+                T("relationships.from_room", "Source room", true, "", "Choose the room where this action exists. Use Find Rooms so you do not need to know the ID."),
+                T("relationships.to_room", "Destination room", false, "", "Optional room destination or target."),
+                T("direction", "Direction", false, "", "Optional direction when the action belongs to an exit."),
+                L("commands", "Accepted commands", false, "One command or phrase per line."),
+                T("command_semantics.required_item_id", "Required item", false, ""),
+                I("command_semantics.minimum_level", "Minimum level", false, "0"),
+                I("command_semantics.maximum_level", "Maximum level", false, "0"),
+                I("command_semantics.native_textblock_id", "Textblock number", false, "0"),
+                IL("command_semantics.success_message_ids", "Success message numbers", false, "One message number per line."),
+                T("command_semantics.return_room_id", "Return / fallback room", false, ""),
+                T("runtime_disposition", "Runtime status", false, "active_runtime")
+            ]),
+
+            ["classes"] = new("classes", "Class", "class.custom", "Create or edit a class in the dedicated Class editor. Every currently decoded class gameplay field is grouped into readable tabs, and newly decoded fields appear automatically.",
             [
                 T("name", "Class name", true, "New Class"),
                 M("description", "Description", false, ""),
                 T("classification", "Class category", false, "custom_playable_class")
             ]),
 
-            ["races"] = new("races", "Race", "race.custom", "Create a race identity for Custom1.",
+            ["races"] = new("races", "Race", "race.custom", "Create or edit a race in the dedicated Race editor. Every currently decoded racial gameplay field is exposed without requiring JSON.",
             [
                 T("name", "Race name", true, "New Race"),
                 M("description", "Description", false, ""),
                 T("classification", "Race category", false, "custom_playable_race")
             ]),
 
-            ["shops"] = new("shops", "Shop / Service", "shop.custom", "Create a merchant, trainer, spell shop, or other room service. Enter item IDs one per line to stock a merchant.",
+            ["shops"] = new("shops", "Shop / Service", "shop.custom", "Create a merchant, trainer, spell shop, bank, healer, or other service. The dedicated Shop editor includes a normal stock-item editor with quantity and regeneration controls.",
             [
                 T("name", "Shop name", true, "New Shop"),
                 I("legacy_id", "Legacy number", false, "0"),
@@ -184,7 +258,10 @@ public static class CustomWorldSimpleFormCatalog
                 I("level_range.max", "Maximum level", false, "99"),
                 I("class_limit", "Class limit", false, "0"),
                 I("markup_percent", "Price percent", false, "100"),
-                L("@inventory_items", "Inventory item IDs", false, "One item ID per line. Default stock and regen values are filled in automatically.")
+                M("public_reference_0139.fields.descriptions.description_a", "Description A", false, ""),
+                M("public_reference_0139.fields.descriptions.description_b", "Description B", false, ""),
+                M("public_reference_0139.fields.descriptions.description_c", "Description C", false, ""),
+                L("@inventory_items", "Inventory item IDs", false, "One item ID per line. The dedicated Inventory tab provides full stock quantities and regeneration controls.")
             ]),
 
             ["quests"] = new("quests", "Quest", "quest.custom", "Create a Custom1 quest definition without hand-writing structured data.",
@@ -252,6 +329,9 @@ public static class CustomWorldSimpleFormCatalog
         ["items"] = "Items / Weapons / Armor",
         ["spells"] = "Spells",
         ["abilities"] = "Abilities",
+        ["native_message_payloads"] = "Messages",
+        ["native_textblock_payloads"] = "Textblocks",
+        ["room_interactions"] = "Actions / Room Interactions",
         ["classes"] = "Classes",
         ["races"] = "Races",
         ["shops"] = "Shops / Services",

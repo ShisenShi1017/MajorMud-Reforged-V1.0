@@ -87,6 +87,16 @@
         "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
         "Reports/RuntimeVerification/native_runtime_verification.json"
       ]
+    },
+    {
+      "name": "Creator Studio Nightmare MDB/WCC bridge",
+      "status": "accepted",
+      "summary": "Integrated the Custom1-only Nightmare Redux MDB analyze/import/export bridge and read-only WCC/WGS evidence correlation. Reforged.App and Reforged.Server Release builds pass with warnings as errors; Classic parity and services/economy gates pass; the installed Nightmare ability.mdb reads 188 rows through Jet 4.0; and a temporary MDB write/read round trip preserves integer, text, and Boolean values. No Custom1 import was performed during verification.",
+      "evidence": [
+        "Apps/Source/Reforged.App/Services/NightmareMdbBridgeService.cs",
+        "Tools/NightmareBridge/Read-NightmareMdb.ps1",
+        "Tools/NightmareBridge/Write-NightmareMdb.ps1"
+      ]
     }
   ]
 }

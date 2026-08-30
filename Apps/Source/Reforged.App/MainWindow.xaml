@@ -4,7 +4,7 @@
         Title="MajorMUD Reforged" Width="1180" Height="760" MinWidth="900" MinHeight="560"
         WindowStartupLocation="CenterScreen">
   <Grid Background="{StaticResource ShellBackground}" TextElement.Foreground="{StaticResource TextBrush}">
-    <Grid.RowDefinitions><RowDefinition Height="66"/><RowDefinition/><RowDefinition Height="34"/></Grid.RowDefinitions>
+    <Grid.RowDefinitions><RowDefinition Height="{Binding HeaderHeight}"/><RowDefinition/><RowDefinition Height="{Binding FooterHeight}"/></Grid.RowDefinitions>
     <Border Background="{StaticResource PanelBackground}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1" Padding="20,10" TextElement.Foreground="{StaticResource TextBrush}">
       <Grid>
         <StackPanel VerticalAlignment="Center">
@@ -20,7 +20,7 @@
       </Grid>
     </Border>
     <Grid Grid.Row="1">
-      <Grid.ColumnDefinitions><ColumnDefinition Width="220"/><ColumnDefinition/></Grid.ColumnDefinitions>
+      <Grid.ColumnDefinitions><ColumnDefinition Width="{Binding NavigationWidth}"/><ColumnDefinition/></Grid.ColumnDefinitions>
       <Border Background="#10161D" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0" Padding="12" TextElement.Foreground="{StaticResource TextBrush}">
         <DockPanel>
           <Button DockPanel.Dock="Bottom" Content="Exit" Command="{Binding ExitCommand}" Style="{StaticResource NavigationButtonStyle}"/>
@@ -38,7 +38,7 @@
         </DockPanel>
       </Border>
       <Grid Grid.Column="1" Background="{StaticResource ShellBackground}">
-        <Grid.RowDefinitions><RowDefinition Height="54"/><RowDefinition/></Grid.RowDefinitions>
+        <Grid.RowDefinitions><RowDefinition Height="{Binding PageTitleHeight}"/><RowDefinition/></Grid.RowDefinitions>
         <Border Background="{StaticResource PanelBackground}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1" TextElement.Foreground="{StaticResource TextBrush}">
           <TextBlock Text="{Binding ActiveTitle}" FontSize="21" FontWeight="SemiBold" Margin="20,13" Foreground="{StaticResource TextBrush}"/>
         </Border>

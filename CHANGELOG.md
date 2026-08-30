@@ -1,3 +1,10 @@
+## Creator Studio Nightmare MDB / WCC bridge
+
+- Added a Custom1-only Nightmare Redux MDB analyze/import/export workflow, paired with read-only WCC/WGS evidence selection and conservative gap reporting.
+- Core MDB fields map into normal Custom1 records; unmapped columns remain under `legacy_sources.nightmare_mdb.unmapped_fields`, and unique WCC text anchors retain file hashes and offsets without activating guessed semantics.
+- Added creator utilities for visual maps, cross-references, NPC/room reports, shop reset, room-stack cleanup, textblock batch editing, and exact room currency editing while keeping Classic protected.
+- Verified zero-warning Release builds for Reforged.App and Reforged.Server, the Classic parity and services/economy smoke gates, a real read of Nightmare Redux `ability.mdb` (188 rows), and a temporary Jet MDB write/read round trip. No Custom1 import was performed during verification.
+
 ## Native parity promotion and combat authority repair
 
 - Integrated the reviewed cumulative native exit, formula, NPC combat, scheduler/regeneration, character death, and death-floor evidence and runtime ownership changes.

@@ -255,6 +255,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 ## Current Baseline
 
 - Current Code Update: `0140`.
+- Creator Studio includes the integrated Nightmare MDB/WCC bridge for Custom1. Supported MDB rows map to normal override families, unmapped fields remain lossless legacy metadata, and matching WCC/WGS files are hashed/correlated as read-only evidence. Reforged.App and Reforged.Server Release builds, services/economy, Classic parity, a real 188-row Nightmare MDB read, and a temporary MDB round trip pass locally.
 - Current Database Version: `0010`.
 - Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
 - Milestone 1: complete and frozen.

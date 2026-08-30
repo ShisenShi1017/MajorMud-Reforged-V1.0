@@ -50,6 +50,21 @@ public static class RuntimeClassicRoomCurrencyStore
         }
     }
 
+    public static void SetExact(string projectRoot, string worldId, string roomId, long runic, long platinum, long gold, long silver, long copper)
+    {
+        if (runic < 0 || platinum < 0 || gold < 0 || silver < 0 || copper < 0)
+            throw new InvalidOperationException("Classic room currency amounts cannot be negative.");
+        var replacement = new RuntimeClassicRoomCurrencyBalance(runic, platinum, gold, silver, copper);
+        lock (Gate)
+        {
+            var document = Load(projectRoot);
+            var key = Key(worldId, roomId);
+            if (replacement.IsEmpty) document.Rooms.Remove(key);
+            else document.Rooms[key] = replacement;
+            Save(projectRoot, document);
+        }
+    }
+
     public static string AddExact(string projectRoot, string worldId, string roomId, long runic, long platinum, long gold, long silver, long copper)
     {
         if (runic < 0 || platinum < 0 || gold < 0 || silver < 0 || copper < 0)

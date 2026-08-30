@@ -12,6 +12,7 @@ Current baseline:
 - Compatibility: MegaMUD/Borin CP437 Telnet, client-data negotiation, route compatibility, REROLL/SET KEEP, and SET WARNING are locally verified.
 - Limitation: two pre-existing corpse-resurrection equipment item-smoke assertions remain open.
 - Current-health validator: 44/45 executed stages pass; execution stops truthfully at those two `server_items` assertions.
+- Creator Studio bridge: supported Nightmare Redux MDB tables can be analyzed/imported into Custom1 and exported to a new Jet MDB. Original MDB and WCC/WGS inputs are read-only; unmapped columns and evidence anchors are retained rather than guessed into gameplay. Real `ability.mdb` read and temporary write/read round-trip checks pass locally. No Custom1 import was performed during this intake.
 
 Current authority and validation:
 
