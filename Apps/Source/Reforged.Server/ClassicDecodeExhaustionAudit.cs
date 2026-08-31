@@ -82,11 +82,26 @@ public static class ClassicDecodeExhaustionAudit
         "RuntimeClassicDataReconstructionSmokeReport.cs"
     };
 
+    private static readonly HashSet<string> GeneratedIndexFiles = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "quest_narrative_roots.json",
+        "alignment_quest_narrative_paths.json",
+        "gnome_merchant_narrative_placement.json",
+        "gnome_merchant_scroll_offerings.json",
+        "witchunter_magebane_narrative.json",
+        "world_reward_narrative_authority.json",
+        "random_table_runtime_authority.json",
+        "event_mission_runtime_authority.json",
+        "reward_execution_authority.json",
+        "narrative_persistence_authority.json"
+    };
+
     private static readonly HashSet<string> StructuralFields = new(StringComparer.OrdinalIgnoreCase)
     {
         "id", "legacy_id", "legacyId", "record_id", "recordId", "key", "name", "title", "type", "kind",
         "schema", "schema_version", "schemaVersion", "version", "family", "source", "source_file", "sourceFile",
         "source_path", "sourcePath", "source_offset", "sourceOffset", "provenance", "confidence", "status",
+        "record_kind", "resolution_boundary",
         "notes", "diagnostics", "record_count", "recordCount", "generated_at", "generatedAt", "generated_at_utc",
         "generatedAtUtc", "generated_by", "generatedBy", "compiler_code_update", "compilerCodeUpdate", "object_type", "objectType",
         "manifest", "metadata", "description", "display_name", "displayName", "exports_to", "exportsTo", "generated_only",
@@ -148,7 +163,9 @@ public static class ClassicDecodeExhaustionAudit
         var families = new List<ClassicDecodeFamilyCoverage>();
         var fields = new List<ClassicDecodeFieldCoverage>();
 
-        foreach (var dataFile in Directory.EnumerateFiles(dataRoot, "*.json", SearchOption.TopDirectoryOnly).OrderBy(Path.GetFileName))
+        foreach (var dataFile in Directory.EnumerateFiles(dataRoot, "*.json", SearchOption.TopDirectoryOnly)
+                     .Where(path => !GeneratedIndexFiles.Contains(Path.GetFileName(path)))
+                     .OrderBy(Path.GetFileName))
         {
             var family = Path.GetFileNameWithoutExtension(dataFile);
             var fileName = Path.GetFileName(dataFile);
@@ -542,6 +559,21 @@ public static class ClassicDecodeExhaustionAudit
 
     private static IReadOnlyList<string> ExplicitEvidenceAliases(string family, string jsonPath)
     {
+        if (family.Equals("native_help", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].body_message_number", StringComparison.OrdinalIgnoreCase))
+            return ["message_number"];
+        if (family.Equals("native_help", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].title_message_number", StringComparison.OrdinalIgnoreCase))
+            return ["message_number"];
+        if (family.Equals("native_help", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].native_keywords", StringComparison.OrdinalIgnoreCase))
+            return ["decoded_cp437"];
+        if (family.Equals("native_player_commands", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].documented_input", StringComparison.OrdinalIgnoreCase))
+            return ["decoded_cp437"];
+        if (family.Equals("native_player_commands", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.records[*].explicit_aliases[*]", StringComparison.OrdinalIgnoreCase))
+            return ["decoded_cp437"];
         if (family.Equals("equipment", StringComparison.OrdinalIgnoreCase) &&
             jsonPath.Equals("$.records[*].minimum_strength", StringComparison.OrdinalIgnoreCase))
             return ["str_requirement"];

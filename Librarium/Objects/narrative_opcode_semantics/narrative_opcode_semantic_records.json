@@ -1,0 +1,977 @@
+{
+  "schema": "librarium_narrative_opcode_semantics_v1",
+  "authority": "Librarium",
+  "family": "narrative_opcode_semantics",
+  "source": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+  "record_count": 42,
+  "operation_count": 12676,
+  "records": [
+    {
+      "id": "narrative_opcode_semantic.addability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "addability",
+      "operation_count": 19,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "ability_id",
+        "delta"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.adddelay",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "adddelay",
+      "operation_count": 256,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "delay_value"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.addevil",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "addevil",
+      "operation_count": 22,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "amount"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.addexp",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "addexp",
+      "operation_count": 80,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "amount"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.break",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "break",
+      "operation_count": 2,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "target"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.cast",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "cast",
+      "operation_count": 963,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "spell_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.check",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "check",
+      "operation_count": 130,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "condition_name"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.checkability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "checkability",
+      "operation_count": 218,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "ability_id",
+        "required_value"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.checkitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "checkitem",
+      "operation_count": 259,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.checkspell",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "checkspell",
+      "operation_count": 9,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "spell_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.class",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "class",
+      "operation_count": 424,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "class_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.clearitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "clearitem",
+      "operation_count": 69,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.delay",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "delay",
+      "operation_count": 20,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "delay_value"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.evilaligned",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "evilaligned",
+      "operation_count": 96,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "maximum_alignment",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.failability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "failability",
+      "operation_count": 273,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "ability_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.failitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "failitem",
+      "operation_count": 106,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.failroomitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "failroomitem",
+      "operation_count": 23,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.giveability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "giveability",
+      "operation_count": 150,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "ability_id",
+        "value"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.givecoins",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "givecoins",
+      "operation_count": 43,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "amount",
+        "denomination"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.giveitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "giveitem",
+      "operation_count": 1035,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.goodability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "goodability",
+      "operation_count": 2,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "minimum_alignment",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.goodaligned",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "goodaligned",
+      "operation_count": 119,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "minimum_alignment",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.levelcheck",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "levelcheck",
+      "operation_count": 2,
+      "argument_counts": [
+        0
+      ],
+      "operand_roles": [],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.maxlevel",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "maxlevel",
+      "operation_count": 44,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "maximum_level"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.message",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "message",
+      "operation_count": 2866,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "message_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.minlevel",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "minlevel",
+      "operation_count": 289,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "minimum_level",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.monsters",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "monsters",
+      "operation_count": 152,
+      "argument_counts": [
+        0
+      ],
+      "operand_roles": [],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.needmonster",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "needmonster",
+      "operation_count": 36,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "npc_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.nomonsters",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "nomonsters",
+      "operation_count": 202,
+      "argument_counts": [
+        0,
+        1
+      ],
+      "operand_roles": [
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.price",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "price",
+      "operation_count": 347,
+      "argument_counts": [
+        1,
+        2,
+        3
+      ],
+      "operand_roles": [
+        "required_copper",
+        "failure_textblock_id",
+        "argument_3"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.race",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "race",
+      "operation_count": 61,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "race_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.random",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "random",
+      "operation_count": 595,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.remoteaction",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "remoteaction",
+      "operation_count": 139,
+      "argument_counts": [
+        4
+      ],
+      "operand_roles": [
+        "arg0",
+        "arg1",
+        "arg2",
+        "arg3"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.removeability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "removeability",
+      "operation_count": 7,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "ability_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.roomitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "roomitem",
+      "operation_count": 204,
+      "argument_counts": [
+        1,
+        2
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.route",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "route",
+      "operation_count": 1,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "target_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.summon",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "summon",
+      "operation_count": 343,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "npc_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.takeitem",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "takeitem",
+      "operation_count": 1197,
+      "argument_counts": [
+        1,
+        2,
+        3
+      ],
+      "operand_roles": [
+        "item_id",
+        "failure_textblock_id",
+        "argument_3"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.teleport",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "teleport",
+      "operation_count": 851,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "room_number",
+        "map_number"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.testability",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "testability",
+      "operation_count": 206,
+      "argument_counts": [
+        2
+      ],
+      "operand_roles": [
+        "ability_id",
+        "minimum_value"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.testskill",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "testskill",
+      "operation_count": 215,
+      "argument_counts": [
+        2,
+        3
+      ],
+      "operand_roles": [
+        "skill_name",
+        "difficulty_modifier",
+        "failure_textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    },
+    {
+      "id": "narrative_opcode_semantic.text",
+      "object_type": "narrative_opcode_semantic",
+      "world_scope": [
+        "classic"
+      ],
+      "opcode": "text",
+      "operation_count": 601,
+      "argument_counts": [
+        1
+      ],
+      "operand_roles": [
+        "textblock_id"
+      ],
+      "evidence": "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json",
+      "source_sha256": "2c2737dcb43848c7272fcc66e0347158f250938c4a32ac8b7f07a9bb696b089b",
+      "confidence": "verified_decoded_source",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/narrative_opcode_semantics.json",
+        "runtime_reads_generated_data": true
+      }
+    }
+  ]
+}

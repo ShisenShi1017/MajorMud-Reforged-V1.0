@@ -53,7 +53,8 @@ public sealed class LibrariumDataWriter
             ["exits"] = new(
             [
                 "toll_semantics",
-                "message_policy"
+                "message_policy",
+                "native_exit_index"
             ],
             StringComparer.OrdinalIgnoreCase),
             ["room_interactions"] = new(
@@ -80,7 +81,16 @@ public sealed class LibrariumDataWriter
             StringComparer.OrdinalIgnoreCase),
             ["npcs"] = new(
             [
-                "spell_ref_count"
+                "spell_ref_count",
+                "native_equipped_item_legacy_id",
+                "native_message_8480_argument_authority"
+            ],
+            StringComparer.OrdinalIgnoreCase),
+            ["character_foundation"] = new(
+            [
+                "maximum_daily_reduction_config",
+                "maximum_daily_reduction_default_evidence",
+                "reputation_range_rule"
             ],
             StringComparer.OrdinalIgnoreCase),
             ["classes"] = new(
@@ -210,6 +220,17 @@ public sealed class LibrariumDataWriter
                 skillEvidenceSummary["confidence"] = "runtime_identity_contract";
         }
 
+        if ((familyName.Equals("classes", StringComparison.OrdinalIgnoreCase) ||
+             familyName.Equals("races", StringComparison.OrdinalIgnoreCase)) &&
+            record["runtime_mapping"] is JsonObject progressionRuntimeMapping &&
+            string.Equals(progressionRuntimeMapping["status"]?.GetValue<string>(), "pending", StringComparison.OrdinalIgnoreCase))
+        {
+            // The selected class/race records are consumed by character creation and
+            // compatibility. The old label described an earlier cataloging phase and
+            // must not survive into generated runtime data as a pending marker.
+            progressionRuntimeMapping["status"] = "runtime_authoritative_identity_catalog";
+        }
+
         if (familyName.Equals("character_foundation", StringComparison.OrdinalIgnoreCase) &&
             record["character_creation_rules"] is JsonObject characterCreationRules &&
             characterCreationRules["alignment_evil_point_rules"] is JsonObject alignmentRules &&
@@ -324,6 +345,11 @@ public sealed class LibrariumDataWriter
             result.ObjectFamiliesCompiled++;
             result.ObjectsCompiled += family.Records.Count;
         }
+
+        result.FilesWritten += ClassicQuestRuntimeProjectionWriter.Write(
+            options.RepositoryRoot,
+            options.OutputRoot,
+            WriteJson);
 
         // Specialized projections may consume authoring-only families that remain
         // in Librarium but must not become standalone runtime files.

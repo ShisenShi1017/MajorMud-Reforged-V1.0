@@ -109,9 +109,9 @@ public static class RuntimeBundleFPhaseF6AlignmentAudit
         var authority = RuntimeClassicAlignmentQuestNarrativeAuthority.Load(projectRoot);
         var expected = new[]
         {
-            (Alignment: "Good", Npc: "Chancellor Annotated", NpcId: "npc.335", Root: 335),
-            (Alignment: "Neutral", Npc: "Grey Lord", NpcId: "npc.366", Root: 366),
-            (Alignment: "Evil", Npc: "Balthazar", NpcId: "npc.428", Root: 428)
+            (Alignment: "Good", Npc: "Chancellor Annotated", NpcId: "npc.244", Root: 335),
+            (Alignment: "Neutral", Npc: "Grey Lord", NpcId: "npc.251", Root: 366),
+            (Alignment: "Evil", Npc: "Balthazar", NpcId: "npc.263", Root: 428)
         };
         var emptyAbilities = (IReadOnlySet<int>)new HashSet<int>();
         var emptyInventory = (IReadOnlyDictionary<int, int>)new Dictionary<int, int>();

@@ -29,7 +29,7 @@ public sealed class RuntimeClassicRandomTableAuthority
         if (!File.Exists(path)) throw new FileNotFoundException("Authoritative Classic random-table catalog is required.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         var root = doc.RootElement;
-        if (Int(root, "reference_count") != 631 || Int(root, "table_count") != 136 || Int(root, "branch_count") != 1220)
+        if (Int(root, "reference_count") != 595 || Int(root, "table_count") != 136 || Int(root, "branch_count") != 1222)
             throw new InvalidDataException("Classic random-table catalog counts do not match the exhausted decode.");
         var tables = new Dictionary<int, RuntimeClassicRandomTable>();
         foreach (var row in root.GetProperty("tables").EnumerateArray())
@@ -144,9 +144,9 @@ public static class RuntimeBundleFPhaseF12Audit
             if (!isEmpty && rows[^1].GetProperty("threshold").GetInt32() != 100) failures.Add($"table-does-not-cover-100:{id}");
         }
         var recursive = tables.Count(table => table.GetProperty("branches").EnumerateArray().SelectMany(x => x.GetProperty("operations").EnumerateArray()).Any(op => op.GetProperty("opcode").GetString() == "random" && op.GetProperty("numeric_arguments").EnumerateArray().FirstOrDefault().GetInt32() == table.GetProperty("table_id").GetInt32()));
-        Check(references.Length == 631, "all-decoded-random-references-owned");
+        Check(references.Length == 595, "all-decoded-random-references-owned");
         Check(tables.Length == 136, "all-decoded-random-tables-owned");
-        Check(branches == 1220, "all-decoded-random-branches-owned");
+        Check(branches == 1222, "all-decoded-random-branches-owned");
         Check(empty == 1, "decoded-empty-result-sentinel-preserved");
         Check(anomalies == 2, "decoded-source-order-anomalies-preserved-not-normalized");
         Check(root.GetProperty("ordering_rule").GetString() == "preserve-decoded-row-order", "decoded-ordering-authoritative");

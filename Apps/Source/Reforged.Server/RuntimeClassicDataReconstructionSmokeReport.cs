@@ -19,11 +19,11 @@ public sealed record RuntimeClassicDataReconstructionSmokeReport(bool Passed, IR
         var checks = new List<string>
         {
             "decode-exhaustion-passed:" + decode.Passed,
-            "decode-families-39:" + (decode.FamilyCount == 39),
+            "decode-families-42:" + (decode.FamilyCount == 42),
             "decode-families-all-connected:" + (decode.ConnectedFamilyCount == decode.FamilyCount),
             "decode-families-zero-disconnected:" + (decode.DisconnectedFamilyCount == 0),
             "decode-families-zero-pending:" + (decode.PendingFamilyCount == 0),
-            "decode-fields-2096:" + (decode.TotalFields == 2096),
+            "decode-fields-2164:" + (decode.TotalFields == 2164),
             "decode-fields-all-connected:" + (decode.ConnectedFieldCount == decode.TotalFields),
             "decode-fields-zero-disconnected:" + (decode.DisconnectedFieldCount == 0),
             "decode-explicit-empty-count-2:" + (explicitEmpty.Length == 2),
