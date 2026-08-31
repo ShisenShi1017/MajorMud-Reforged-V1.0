@@ -394,11 +394,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 Random.Shared.Next(1, 101));
                             if (resistance.Resisted)
                             {
-                                // A single-target resistance aborts that cast and earns the decoded half-cost refund.
-                                // An area cast still executes against the remaining room targets, so one resistant
-                                // character cannot refund the shared cast's energy.
+                                // Native _monster_cast has already passed its pre-cast roll and paid the full
+                                // AttEnergy here. A single-target effect-admission/resistance rejection restores
+                                // that full cost (net zero). Area casts keep the shared cast cost because other
+                                // room targets may still receive effects.
                                 if (attack.Type == 2 && !IsNpcRoomAreaSpell(hitSpell))
-                                    npcEnergy = RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(energyBeforeAttack, attack);
+                                    npcEnergy = RuntimeClassicNpcCombatCadence.RefundRejectedSpellCost(energyBeforeAttack, attack);
                                 var spellResistMessage = RuntimeClassicCombatAnsi.Effect($"{actor.DisplayName} resists {encounter.NpcName}'s {hitSpell.SpellName}.");
                                 messages.Add(spellResistMessage);
                                 roomMessagePriorities[spellResistMessage] = RuntimeClassicRoomMessagePriority.Medium;
@@ -775,7 +776,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         int currentEnergyBeforeAttack, RuntimeNpcAttackDefinition attack, int energyPerRound)
     {
         if (energyPerRound < 0) throw new ArgumentOutOfRangeException(nameof(energyPerRound));
-        return RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(currentEnergyBeforeAttack, attack);
+        return RuntimeClassicNpcCombatCadence.RefundRejectedSpellCost(currentEnergyBeforeAttack, attack);
     }
 
     internal static RuntimeNpcHitSpellSelection? ResolveNpcHitSpell(
@@ -1467,11 +1468,11 @@ public sealed class RuntimeLiveCombatRoundSmokeReport
             Require(RuntimeLiveGameplayFacade.SelectNpcAttack(new[] { deterministicEnergyAttack }, deterministicEnergyAttack.EnergyCost) == deterministicEnergyAttack, "npc-affordable-attack-selected"); report.Checks.Add("npc-affordable-attack-selected");
             Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterAttack(energyAttack.EnergyCost + 3, energyAttack) == 3, "npc-attack-energy-deducted"); report.Checks.Add("npc-attack-energy-deducted");
             var directSpellEnergyAttack = energyAttack with { Type = 2, EnergyCost = 100 };
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(103, directSpellEnergyAttack, 1000) == 53, "npc-resisted-spell-half-energy-cost"); report.Checks.Add("npc-resisted-spell-half-energy-cost");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(103, directSpellEnergyAttack, 1000) == 103, "npc-resisted-spell-full-refund"); report.Checks.Add("npc-resisted-spell-full-refund");
             var oddCostAttack = energyAttack with { Type = 2, EnergyCost = 125 };
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, oddCostAttack, 1000) == 138, "npc-spell-half-cost-floor-odd"); report.Checks.Add("npc-spell-half-cost-floor-odd");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, oddCostAttack, 1000) == 200, "npc-resisted-spell-odd-cost-full-refund"); report.Checks.Add("npc-resisted-spell-odd-cost-full-refund");
             var odd127CostAttack = energyAttack with { Type = 2, EnergyCost = 127 };
-            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, odd127CostAttack, 1000) == 137, "npc-spell-half-cost-no-bankers-rounding"); report.Checks.Add("npc-spell-half-cost-no-bankers-rounding");
+            Require(RuntimeLiveGameplayFacade.ResolveNpcEnergyAfterResistedHitSpell(200, odd127CostAttack, 1000) == 200, "npc-resisted-spell-127-cost-full-refund"); report.Checks.Add("npc-resisted-spell-127-cost-full-refund");
             Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(250, 333) == 583, "npc-energy-below-baseline-adds-quantum"); report.Checks.Add("npc-energy-below-baseline-adds-quantum");
             Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(333, 333) == 333, "npc-energy-idle-does-not-accumulate"); report.Checks.Add("npc-energy-idle-does-not-accumulate");
             Require(RuntimeClassicNpcCombatCadence.RefreshRoundEnergy(500, 333) == 333, "npc-energy-above-baseline-clamps"); report.Checks.Add("npc-energy-above-baseline-clamps");

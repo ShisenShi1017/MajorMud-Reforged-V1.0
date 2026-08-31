@@ -24,6 +24,8 @@ public static class RuntimeItemLocations
     public static readonly IReadOnlySet<string> All = new HashSet<string>(new[] { Character, Equipment, Room, Container, Corpse, Npc, Trade, Bank, Merchant, Quest }, StringComparer.OrdinalIgnoreCase);
 }
 
+public sealed record RuntimeItemAbilityEntry(int Slot, int AbilityId, int Value, string Name);
+
 public sealed record RuntimeItemDefinition(
     string Id,
     string Name,
@@ -60,6 +62,7 @@ public sealed record RuntimeItemDefinition(
     public RuntimeCurrencyBundle OpenRewards { get; init; } = RuntimeCurrencyBundle.Zero;
     public IReadOnlySet<int> NegatedAbilityIds { get; init; } = new HashSet<int>();
     public IReadOnlyDictionary<int, int> EquipmentAbilityModifiers { get; init; } = new Dictionary<int, int>();
+    public IReadOnlyList<RuntimeItemAbilityEntry> OrderedAbilities { get; init; } = Array.Empty<RuntimeItemAbilityEntry>();
 }
 
 public sealed record RuntimeEquipmentDefinition(string ItemId, string Slot, bool TwoHanded, bool ClassRestricted, bool RaceRestricted, int MinimumLevel, int MaximumLevel, int MinimumStrength, string? Alignment, string? Gender);
@@ -220,6 +223,11 @@ public sealed partial class RuntimeItemCatalog
             var id = S(x, "id");
             if (string.IsNullOrWhiteSpace(id)) throw new InvalidOperationException("Generated item projection contains a record without id.");
             var combat = x.TryGetProperty("combat", out var combatElement) && combatElement.ValueKind == JsonValueKind.Object ? combatElement : default;
+            var orderedAbilities = ReadOrderedAbilities(x);
+            var maxUses = ReadPublicInt(x, "max_uses");
+            var defaultCharges = maxUses < 0
+                ? maxUses
+                : Math.Max(I(x, "default_charges"), Math.Max(0, maxUses));
             _items[id] = new(
                 id,
                 S(x, "name") ?? string.Empty,
@@ -228,7 +236,7 @@ public sealed partial class RuntimeItemCatalog
                 B(x, "container"),
                 B(x, "consumable"),
                 B(x, "stackable"),
-                Math.Max(I(x, "default_charges"), Math.Max(0, ReadPublicInt(x, "max_uses"))),
+                defaultCharges,
                 EconomyWeight(x),
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "armor_class_bonus") : 0,
                 combat.ValueKind == JsonValueKind.Object ? I(combat, "damage_resistance_bonus") : 0,
@@ -249,13 +257,14 @@ public sealed partial class RuntimeItemCatalog
                 RetainAfterUses = ReadPublicBool(x, "retain_after_uses"),
                 UsesConsumedOnUse = ReadPublicBool(x, "uses_consumed_on_use"),
                 MaximumUses = ReadPublicInt(x, "max_uses"),
-                RechargeAtCleanup = ReadAbilities(x).GetValueOrDefault(121),
+                RechargeAtCleanup = CollapseAbilities(orderedAbilities).GetValueOrDefault(121),
                 GameLimit = ReadPublicInt(x, "game_limit"),
                 CurrentInstances = ReadPublicInt(x, "current_instances"),
                 Robable = ReadPublicPropertyBool(x, "robable"),
                 OpenRewards = ReadOpenRewards(x),
                 NegatedAbilityIds = ReadNegatedAbilities(x),
-                EquipmentAbilityModifiers = ReadAbilities(x)
+                EquipmentAbilityModifiers = CollapseAbilities(orderedAbilities),
+                OrderedAbilities = orderedAbilities
             };
         }
     }
@@ -346,21 +355,37 @@ public sealed partial class RuntimeItemCatalog
         return new RuntimeCurrencyBundle(I(r,"copper"),I(r,"silver"),I(r,"gold"),I(r,"platinum"),I(r,"runic"));
     }
 
-    private static IReadOnlyDictionary<int, int> ReadAbilities(JsonElement item)
+    private static IReadOnlyList<RuntimeItemAbilityEntry> ReadOrderedAbilities(JsonElement item)
     {
-        var result = new Dictionary<int, int>();
+        var result = new List<RuntimeItemAbilityEntry>();
         if (!item.TryGetProperty("public_reference_0139", out var reference) || reference.ValueKind != JsonValueKind.Object ||
             !reference.TryGetProperty("fields", out var fields) || fields.ValueKind != JsonValueKind.Object ||
             !fields.TryGetProperty("abilities_named", out var abilities) || abilities.ValueKind != JsonValueKind.Array) return result;
+        var slot = 0;
         foreach (var ability in abilities.EnumerateArray())
         {
+            slot++;
             if (!ability.TryGetProperty("ability_id", out var idElement)) continue;
             var id = ReadInt(idElement);
             if (id <= 0 || !ability.TryGetProperty("value", out var valueElement)) continue;
-            result[id] = ReadInt(valueElement);
+            var name = ability.TryGetProperty("name", out var nameElement) && nameElement.ValueKind == JsonValueKind.String
+                ? nameElement.GetString() ?? string.Empty
+                : string.Empty;
+            result.Add(new RuntimeItemAbilityEntry(slot, id, ReadInt(valueElement), name));
         }
         return result;
     }
+
+    private static IReadOnlyDictionary<int, int> CollapseAbilities(IReadOnlyList<RuntimeItemAbilityEntry> abilities)
+    {
+        var result = new Dictionary<int, int>();
+        foreach (var ability in abilities)
+            result[ability.AbilityId] = ability.Value;
+        return result;
+    }
+
+    private static IReadOnlyDictionary<int, int> ReadAbilities(JsonElement item) =>
+        CollapseAbilities(ReadOrderedAbilities(item));
 
     private static bool HasAbility(JsonElement item, int abilityId)
     {
@@ -1808,14 +1833,24 @@ public static class RuntimeItemValidator
         var ids = list.Select(x => x.InstanceId).ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var item in list)
         {
-            try { var definition = catalog.Require(item.CanonicalItemId); if (item.StackQuantity < 1 || (!definition.Stackable && item.StackQuantity != 1)) issues.Add(new("INVALID_STACK", "Invalid stack quantity.", item.InstanceId)); } catch (Exception ex) { issues.Add(new("UNKNOWN_CANONICAL_ITEM", ex.Message, item.InstanceId)); }
+            RuntimeItemDefinition? definition = null;
+            try
+            {
+                definition = catalog.Require(item.CanonicalItemId);
+                if (item.StackQuantity < 1 || (!definition.Stackable && item.StackQuantity != 1))
+                    issues.Add(new("INVALID_STACK", "Invalid stack quantity.", item.InstanceId));
+            }
+            catch (Exception ex) { issues.Add(new("UNKNOWN_CANONICAL_ITEM", ex.Message, item.InstanceId)); }
             if (item.Metadata?.TryGetValue("maximum_owned_quantity", out var maximumOwnedRaw) == true && (!int.TryParse(maximumOwnedRaw, out var maximumOwned) || maximumOwned <= 0)) issues.Add(new("INVALID_MAXIMUM_OWNED_QUANTITY", "Projected maximum_owned_quantity must be a positive integer.", item.InstanceId));
             if (item.Metadata?.TryGetValue("maximum_stack", out var maximumStackRaw) == true)
             {
                 if (!int.TryParse(maximumStackRaw, out var maximumStack) || maximumStack <= 0) issues.Add(new("INVALID_MAXIMUM_STACK", "Projected maximum_stack must be a positive integer.", item.InstanceId));
                 else if (item.StackQuantity > maximumStack) issues.Add(new("STACK_EXCEEDS_MAXIMUM", "Item stack exceeds projected maximum stack quantity.", item.InstanceId));
             }
-            if (item.Charges < 0) issues.Add(new("INVALID_CHARGES", "Item charges cannot be negative.", item.InstanceId));
+            var permitsNativeMinusOne = definition is not null &&
+                (definition.MaximumUses < 0 || definition.RetainAfterUses);
+            if (item.Charges < -1 || (item.Charges == -1 && !permitsNativeMinusOne))
+                issues.Add(new("INVALID_CHARGES", "Item charges may be -1 only for a native unlimited-use or retained-use item.", item.InstanceId));
             if (item.Durability is < 0) issues.Add(new("INVALID_DURABILITY", "Item durability cannot be negative.", item.InstanceId));
             if (item.Metadata?.TryGetValue("maximum_durability", out var maximumDurabilityRaw) == true && int.TryParse(maximumDurabilityRaw, out var maximumDurability) && maximumDurability >= 0 && item.Durability is not null && item.Durability > maximumDurability) issues.Add(new("DURABILITY_EXCEEDS_MAXIMUM", "Item durability exceeds projected maximum durability.", item.InstanceId));
             if (item.Metadata?.TryGetValue("broken", out var brokenRaw) == true && bool.TryParse(brokenRaw, out var broken) && broken && item.Durability != 0) issues.Add(new("BROKEN_STATE_MISMATCH", "Broken metadata requires zero durability.", item.InstanceId));

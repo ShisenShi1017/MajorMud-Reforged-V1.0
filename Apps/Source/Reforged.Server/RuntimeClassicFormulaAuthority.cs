@@ -1147,16 +1147,16 @@ public sealed class RuntimeClassicFormulaAuthority
             new(
                 RuntimeLiveGameplayFacade.GuardAssistFormulaId,
                 "combat_npc_ai",
-                RuntimeFormulaEvidenceGrade.StronglyCorroborated,
+                RuntimeFormulaEvidenceGrade.Verified,
                 true,
                 nameof(RuntimeLivingWorldService),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_relationship", "Librarium/Validation0003/monster_ability_relationships_verified_0003.json", "Ability 146 is MonsGuards and its value resolves to a specific monster legacy id"),
-                    new RuntimeFormulaEvidenceSource("runtime_projection", "Apps/Source/Reforged.Server/RuntimeNpcModels.cs", "Ability 146 values project to GuardedNpcLegacyIds and living metadata"),
-                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs", "Classic guard assistance admits only an ability-146 owner guarding the attacked NPC legacy id; generic Reforged assist links are isolated to non-Classic worlds")
+                    new RuntimeFormulaEvidenceSource("decoded_relationship", "Librarium/Validation0003/monster_ability_relationships_verified_0003.json", "Ability 146 is MonsGuards and its ordered values resolve to monster legacy ids"),
+                    new RuntimeFormulaEvidenceSource("native_owner", "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json", "WCCMMUD _cast_monster_target proves MonsGuards is same-room spell-target substitution, not physical-attack admission or generic assist propagation"),
+                    new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeNpcProtectionAdmission.cs", "Classic spell targeting scans ordered ability-146 values and native room-slot order; generic protector/assist metadata is isolated to non-Classic worlds")
                 },
-                "Classic guard relationship admission is data-owned by decoded ability 146 (MonsGuards). Exact native acquisition timing, propagation, retry cadence and priority relative to other AI decisions remain unresolved, so the relationship/consumer is STRONG rather than Verified."),
+                "Classic MonsGuards is native-verified as ordered same-room spell-target substitution. It does not create a generic combat assistant, threat propagation rule, or physical ATTACK body-block."),
             new(
                 RuntimeLiveGameplayFacade.KillRewardAttributionFormulaId,
                 "combat_rewards",

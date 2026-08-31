@@ -3,7 +3,7 @@
 - Evidence disposition is archive-only, not source deletion. Imported/reference databases and raw evidence now live in the local-only archive `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar`; committed gameplay authority is Librarium plus generated-data tooling.
 - The user-supplied MudPlay 3.18.8 archive is now an approved MIT-licensed implementation reference for MegaMUD automation and MMExplorer-style client browsing. Its Avalonia/.NET 10 UI is not embedded into the WPF/.NET 8 client; headless engines and tests are ported by capability and bound to authoritative generated Classic data under the acceptance gates in `Docs/Audits/MUDPLAY_CLIENT_PARITY_IMPORT_0140.md`.
 
-- CodeUpdate0358 closes native PvP `LVLDIFF` realm configuration from the retained default + working 1.11p install pair; Reforged remains Worldgroup-independent. Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN (72.0% strict)**.
+- CodeUpdate0359-0363 cumulatively close Data Reconstruction (3/3), Economy & Services (16/16), Host / Persistence / Worldgroup (9/9), Import / Export / Limits / Recovery (4/4), and Items & Inventory (6/6). Reforged remains Worldgroup-independent; supplied Worldgroup files are evidence only. Current parity: **167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict)**.
 This is the compact roadmap for the current repository. Historical update chains should not be recreated here.
 
 ## Current Milestone
@@ -14,7 +14,7 @@ This is the compact roadmap for the current repository. Historical update chains
 - Status: native organization/session and MegaMUD/Borin compatibility work applied locally; cumulative parity packages remain local, with repository push/merge handled only by the user or Codex
 - Verification: Reforged.Server, Reforged.App, Reforged.Client, and core/server test Release builds PASS with warnings as errors; MegaMUD, native-command, communication, organization, gang-house, and parity-closure gates PASS.
 - Guardian Hall engineering direction: Borin's phases 1-10 are permanent deterministic infrastructure with independent planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP, repository-update, and overnight controls. Candidate ZIP generation defaults on; autonomous and repository-update controls default off.
-- Current parity continuation: 144 PASS / 56 STRONG / 0 UNKNOWN = 200 (72.0% strict / 100.0% evidence-backed). The remaining 56 STRONG assertions define the evidence-driven closure queue.
+- Current parity continuation: 167 PASS / 33 STRONG / 0 UNKNOWN = 200 (83.5% strict / 100.0% evidence-backed). The remaining 39 STRONG assertions define the evidence-driven closure queue.
 - Creator Studio continuation: the Custom1-only Nightmare MDB/WCC bridge is integrated and locally build/round-trip verified. The next editor validation should use a user-selected complete custom-world MDB/WCC pair, review its conflict/gap report, and import only after explicit approval; Classic remains immutable.
 
 ## CodeUpdate0139 Runtime Scope
@@ -98,4 +98,10 @@ Do not restore large historical doc trees unless the user asks.
 The generated authenticated command catalog and safe dispatch boundary are complete. Next recover exact invasion syntax/payload and GOTO room targets, then implement remaining command-owner services. Native gang commands require a data-backed MajorMUD gang runtime; do not substitute a generic guild subsystem.
 Latest local continuation: grouped ability audit 123-124 is complete. HPRegen reuses the authoritative cadence; NegateAbility now suppresses only its evidence-backed target ability for spell and NPC owners, with zero-valued evidence kept fail-closed.
 Latest local continuation: grouped ability audit 125-134 is complete. The ten consecutive quest-progress fields are canonical persistent character state, not combat or command abilities; runtime regression enforces both persistence and the non-power boundary.
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.
 

@@ -1,9 +1,9 @@
 {
   "schema": "reforged.native-runtime-verification.v1",
-  "authority": "consolidated retained native-verifier results supplied with cumulative runtime packages through CodeUpdate0358",
+  "authority": "Consolidated retained native/runtime verification through CodeUpdate0364 NPC & AI closure.",
   "all_passed": true,
-  "subsystem_count": 25,
-  "check_count": 2495,
+  "subsystem_count": 29,
+  "check_count": 2713,
   "failure_count": 0,
   "verifications": [
     {
@@ -12544,6 +12544,947 @@
         },
         {
           "name": "codeupdate0358_working_install_pvp_direct_verification:imported-rar-sha",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "subsystem": "parity-0359-data-reconstruction",
+      "passed": true,
+      "check_count": 34,
+      "failure_count": 0,
+      "execution_provenance": "Direct raw WGSERV WCCMSG2 parse plus repository static/data-report reconciliation performed for CodeUpdate0359. No .NET SDK was available, so no new C# build/runtime execution is claimed; raw native artifacts are intentionally not packaged.",
+      "retired_source_reports": [],
+      "source_schemas": [
+        "majormud.data-reconstruction-closure.v1"
+      ],
+      "checks": [
+        {
+          "name": "codeupdate0359_data_reconstruction:working-rar-sha",
+          "passed": true,
+          "detail": "1b98f5702f6f12a31cf8c202af832be927d6175219a2e7e9e3cc30389744a7a6"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-wccmmud-sha",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-wccmsg2-sha",
+          "passed": true,
+          "detail": "ebfb744f98e4cb0673ed702bac13ab928a77bb299bcbd53fc73193c03f2cf820"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-physical-3898",
+          "passed": true,
+          "detail": "3898"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-logical-3867",
+          "passed": true,
+          "detail": "3867"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-duplicates-31",
+          "passed": true,
+          "detail": "31"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-conflicts-zero",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-source-sha",
+          "passed": true,
+          "detail": "7bcc4ce3fb34038ac5623892148f3af01a5ef51b3909ae92678010b7a62283e2"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-physical-3887",
+          "passed": true,
+          "detail": "3887"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-logical-3869",
+          "passed": true,
+          "detail": "3869"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-duplicates-18",
+          "passed": true,
+          "detail": "18"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:shared-logical-3867",
+          "passed": true,
+          "detail": "3867"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:shared-payload-mismatches-zero",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-extra-zero",
+          "passed": true,
+          "detail": "[]"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:working-missing-exact-1-66",
+          "passed": true,
+          "detail": "[1, 66]"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-id1-empty",
+          "passed": true,
+          "detail": "('', '', '')"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:canonical-id66-empty",
+          "passed": true,
+          "detail": "('', '', '')"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:decode-families-39",
+          "passed": true,
+          "detail": "39"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:decode-all-families-connected",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:decode-fields-2096",
+          "passed": true,
+          "detail": "2096"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:decode-all-fields-connected",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:explicit-empty-count-two",
+          "passed": true,
+          "detail": "2"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:explicit-empty-exact-paths",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:explicit-empty-evidence-consumers",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:native-coverage-passed",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:native-coverage-3869",
+          "passed": true,
+          "detail": "3869"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:audit-connected-empty-counted",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:audit-pass-requires-all-fields",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:program-exits-from-report-passed",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:parity-closure-includes-data-reconstruction",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:focused-smoke-asserts-3869",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:ledger-counts",
+          "passed": true,
+          "detail": "Counter({'PASS': 147, 'STRONG': 53})"
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:ledger-three-data-pass",
+          "passed": true
+        },
+        {
+          "name": "codeupdate0359_data_reconstruction:audit-smoke-excluded-from-consumer-scan",
+          "passed": true
+        }
+      ],
+      "failures": []
+    },
+    {
+      "subsystem": "codeupdate0362-import-export-limits-recovery",
+      "passed": true,
+      "check_count": 86,
+      "failure_count": 0,
+      "execution_provenance": "CodeUpdate0362 direct source/data/native-archive inventory verification. WCCMMUD.DLL bytes are intentionally not packaged; the supplied WGSERV archive was used for size/inventory corroboration and retained hash evidence anchors the binary identity. No local .NET runtime claim is included.",
+      "checks": [
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicCapacityResourceLimitsAuthority.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoverySmokeReport.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/Program.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicParityClosureSmokeReport.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs",
+          "passed": true
+        },
+        {
+          "name": "file-Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs",
+          "passed": true
+        },
+        {
+          "name": "capacity-inventory-100",
+          "passed": true
+        },
+        {
+          "name": "capacity-secondary-50",
+          "passed": true
+        },
+        {
+          "name": "capacity-visible-17",
+          "passed": true
+        },
+        {
+          "name": "capacity-hidden-15",
+          "passed": true
+        },
+        {
+          "name": "capacity-party-6",
+          "passed": true
+        },
+        {
+          "name": "capacity-gang-no-fixed-cap",
+          "passed": true
+        },
+        {
+          "name": "capacity-character-slots-excluded",
+          "passed": true
+        },
+        {
+          "name": "capacity-buffers-not-world-max",
+          "passed": true
+        },
+        {
+          "name": "capacity-global-object-cap-excluded",
+          "passed": true
+        },
+        {
+          "name": "capacity-global-npc-cap-excluded",
+          "passed": true
+        },
+        {
+          "name": "capacity-generic-extension-excluded",
+          "passed": true
+        },
+        {
+          "name": "capacity-no-live-synthetic-config",
+          "passed": true
+        },
+        {
+          "name": "capacity-give-message",
+          "passed": true
+        },
+        {
+          "name": "capacity-all-resolved",
+          "passed": true
+        },
+        {
+          "name": "failure-five-proven",
+          "passed": true
+        },
+        {
+          "name": "failure-zero-unknown-validation",
+          "passed": true
+        },
+        {
+          "name": "failure-owner-local-text",
+          "passed": true
+        },
+        {
+          "name": "failure-owner-local-reference",
+          "passed": true
+        },
+        {
+          "name": "failure-partial-save",
+          "passed": true
+        },
+        {
+          "name": "failure-no-universal-text",
+          "passed": true
+        },
+        {
+          "name": "failure-no-universal-rollback",
+          "passed": true
+        },
+        {
+          "name": "failure-no-save-transaction-rollback",
+          "passed": true
+        },
+        {
+          "name": "failure-host-crash-excluded",
+          "passed": true
+        },
+        {
+          "name": "classification-noop",
+          "passed": true
+        },
+        {
+          "name": "classification-hard-load",
+          "passed": true
+        },
+        {
+          "name": "classification-owner-local",
+          "passed": true
+        },
+        {
+          "name": "classification-record-local-save",
+          "passed": true
+        },
+        {
+          "name": "import-export-no-classic-migration",
+          "passed": true
+        },
+        {
+          "name": "import-export-exact-replacement",
+          "passed": true
+        },
+        {
+          "name": "compat-classic-external-replacement",
+          "passed": true
+        },
+        {
+          "name": "compat-version-hard-failure",
+          "passed": true
+        },
+        {
+          "name": "compat-file-hard-failure",
+          "passed": true
+        },
+        {
+          "name": "save-no-transactions",
+          "passed": true
+        },
+        {
+          "name": "save-partial-exact",
+          "passed": true
+        },
+        {
+          "name": "save-shutdown-exact",
+          "passed": true
+        },
+        {
+          "name": "save-crash-replay-excluded",
+          "passed": true
+        },
+        {
+          "name": "program-smoke-flag",
+          "passed": true
+        },
+        {
+          "name": "closure-includes-smoke",
+          "passed": true
+        },
+        {
+          "name": "smoke-combined-authority",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
+          "passed": true
+        },
+        {
+          "name": "evidence-proven",
+          "passed": true
+        },
+        {
+          "name": "evidence-wcc-sha",
+          "passed": true
+        },
+        {
+          "name": "evidence-fixed-inventory",
+          "passed": true
+        },
+        {
+          "name": "evidence-fixed-secondary",
+          "passed": true
+        },
+        {
+          "name": "evidence-fixed-room",
+          "passed": true
+        },
+        {
+          "name": "evidence-fixed-party",
+          "passed": true
+        },
+        {
+          "name": "evidence-two-promotions",
+          "passed": true
+        },
+        {
+          "name": "evidence-category-4-pass",
+          "passed": true
+        },
+        {
+          "name": "evidence-overall-159",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
+          "passed": true
+        },
+        {
+          "name": "prior-give-inventory-100",
+          "passed": true
+        },
+        {
+          "name": "prior-give-failure",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+          "passed": true
+        },
+        {
+          "name": "prior-death-100-slot",
+          "passed": true
+        },
+        {
+          "name": "prior-death-17-visible",
+          "passed": true
+        },
+        {
+          "name": "prior-death-15-hidden",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+          "passed": true
+        },
+        {
+          "name": "prior-party-six",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
+          "passed": true
+        },
+        {
+          "name": "prior-gang-join-count",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/Parity/majormud_parity_assertions.json",
+          "passed": true
+        },
+        {
+          "name": "ledger-update-0362",
+          "passed": true
+        },
+        {
+          "name": "ledger-overall-159-pass",
+          "passed": true
+        },
+        {
+          "name": "ledger-overall-41-strong",
+          "passed": true
+        },
+        {
+          "name": "ledger-zero-unknown",
+          "passed": true
+        },
+        {
+          "name": "ledger-category-four",
+          "passed": true
+        },
+        {
+          "name": "ledger-category-4-pass",
+          "passed": true
+        },
+        {
+          "name": "ledger-promoted-pass",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/RemainingSystems/capacity_resource_limits_catalog.json",
+          "passed": true
+        },
+        {
+          "name": "capacity-catalog-pass",
+          "passed": true
+        },
+        {
+          "name": "capacity-catalog-no-native-deps",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/RemainingSystems/error_handling_recovery_catalog.json",
+          "passed": true
+        },
+        {
+          "name": "error-catalog-no-native-deps",
+          "passed": true
+        },
+        {
+          "name": "json-Librarium/RemainingSystems/import_export_compatibility_catalog.json",
+          "passed": true
+        },
+        {
+          "name": "import-catalog-no-native-deps",
+          "passed": true
+        },
+        {
+          "name": "rar-wccmmud-one",
+          "passed": true
+        },
+        {
+          "name": "rar-wccmmud-size",
+          "passed": true
+        },
+        {
+          "name": "rar-files-3605",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "subsystem": "codeupdate0363-items-inventory",
+      "check_count": 66,
+      "failure_count": 0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "evidence-pass",
+          "passed": true
+        },
+        {
+          "name": "evidence-native-sha",
+          "passed": true
+        },
+        {
+          "name": "evidence-record-size-1072",
+          "passed": true
+        },
+        {
+          "name": "items-ledger-count-6",
+          "passed": true
+        },
+        {
+          "name": "items-ledger-all-pass",
+          "passed": true
+        },
+        {
+          "name": "items-ledger-zero-strong",
+          "passed": true
+        },
+        {
+          "name": "items-ledger-zero-unknown",
+          "passed": true
+        },
+        {
+          "name": "canonical-items-1950",
+          "passed": true
+        },
+        {
+          "name": "food-count-18",
+          "passed": true,
+          "detail": "18"
+        },
+        {
+          "name": "drink-count-34",
+          "passed": true,
+          "detail": "34"
+        },
+        {
+          "name": "key-count-99",
+          "passed": true,
+          "detail": "99"
+        },
+        {
+          "name": "duplicate-ability-records-92",
+          "passed": true,
+          "detail": "92"
+        },
+        {
+          "name": "firegut-first-cast-119",
+          "passed": true,
+          "detail": "[(43, 119), (43, 317), (119, 0)]"
+        },
+        {
+          "name": "firegut-second-cast-317",
+          "passed": true,
+          "detail": "[(43, 119), (43, 317), (119, 0)]"
+        },
+        {
+          "name": "small-vial-no-abilities",
+          "passed": true
+        },
+        {
+          "name": "small-vial-type-drink",
+          "passed": true
+        },
+        {
+          "name": "compiler-prefers-item-records",
+          "passed": true
+        },
+        {
+          "name": "compiler-does-not-use-timestamp-for-items",
+          "passed": true
+        },
+        {
+          "name": "runtime-ordered-ability-record",
+          "passed": true
+        },
+        {
+          "name": "runtime-ordered-ability-property",
+          "passed": true
+        },
+        {
+          "name": "runtime-read-abilities-as-list",
+          "passed": true
+        },
+        {
+          "name": "uses-minus-one-specialcase",
+          "passed": true
+        },
+        {
+          "name": "uses-signed-short-decrement",
+          "passed": true
+        },
+        {
+          "name": "retain-at-zero",
+          "passed": true
+        },
+        {
+          "name": "eat-counter-ce",
+          "passed": true
+        },
+        {
+          "name": "drink-counter-d0",
+          "passed": true
+        },
+        {
+          "name": "counter-initial-1000",
+          "passed": true
+        },
+        {
+          "name": "counter-slow-tick",
+          "passed": true
+        },
+        {
+          "name": "first-no-target-cast-helper",
+          "passed": true
+        },
+        {
+          "name": "percent-spell-barrier",
+          "passed": true
+        },
+        {
+          "name": "single-cast-execution",
+          "passed": true
+        },
+        {
+          "name": "drop-notdroppable",
+          "passed": true
+        },
+        {
+          "name": "drop-native-message",
+          "passed": true
+        },
+        {
+          "name": "appraise-live-route",
+          "passed": true
+        },
+        {
+          "name": "eat-live-route",
+          "passed": true
+        },
+        {
+          "name": "drink-live-route",
+          "passed": true
+        },
+        {
+          "name": "route-items-appraise",
+          "passed": true
+        },
+        {
+          "name": "generic-use-first-cast",
+          "passed": true
+        },
+        {
+          "name": "items-smoke-command",
+          "passed": true
+        },
+        {
+          "name": "items-smoke-in-parity-closure",
+          "passed": true
+        },
+        {
+          "name": "smoke-zero-to-minus-one",
+          "passed": true
+        },
+        {
+          "name": "no-all-casts-loop-in-eatdrink",
+          "passed": true
+        },
+        {
+          "name": "no-all-casts-array-in-generic-use",
+          "passed": true
+        },
+        {
+          "name": "native-file-exists",
+          "passed": true
+        },
+        {
+          "name": "native-sha-exact",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "native-eat-type4",
+          "passed": true
+        },
+        {
+          "name": "native-eat-calls-use-no-target",
+          "passed": true
+        },
+        {
+          "name": "native-eat-fallback-ce",
+          "passed": true
+        },
+        {
+          "name": "native-eat-calls-deduct",
+          "passed": true
+        },
+        {
+          "name": "native-drink-type5",
+          "passed": true
+        },
+        {
+          "name": "native-drink-calls-use-no-target",
+          "passed": true
+        },
+        {
+          "name": "native-drink-fallback-d0",
+          "passed": true
+        },
+        {
+          "name": "native-drink-calls-deduct",
+          "passed": true
+        },
+        {
+          "name": "native-use-slot-id-offset-2f6",
+          "passed": true
+        },
+        {
+          "name": "native-use-slot-value-offset-3e2",
+          "passed": true
+        },
+        {
+          "name": "native-use-ability18",
+          "passed": true
+        },
+        {
+          "name": "native-use-ability42",
+          "passed": true
+        },
+        {
+          "name": "native-use-ability43",
+          "passed": true
+        },
+        {
+          "name": "native-use-ability114-mode11",
+          "passed": true
+        },
+        {
+          "name": "native-castsp-immediate-return",
+          "passed": true
+        },
+        {
+          "name": "native-deduct-minus-one-special",
+          "passed": true
+        },
+        {
+          "name": "native-deduct-primary-100-array",
+          "passed": true
+        },
+        {
+          "name": "native-deduct-decrements-word",
+          "passed": true
+        },
+        {
+          "name": "native-deduct-retain-offset-42a",
+          "passed": true
+        },
+        {
+          "name": "native-drop-notdroppable-offset-428",
+          "passed": true
+        },
+        {
+          "name": "native-appraise-delegates-sell",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "subsystem": "codeupdate0364-npc-ai",
+      "check_count": 32,
+      "failure_count": 0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "evidence-pass",
+          "passed": true
+        },
+        {
+          "name": "evidence-sha",
+          "passed": true
+        },
+        {
+          "name": "npc-count-13",
+          "passed": true
+        },
+        {
+          "name": "npc-all-pass",
+          "passed": true
+        },
+        {
+          "name": "npc-zero-strong",
+          "passed": true
+        },
+        {
+          "name": "npc-corpus-1100",
+          "passed": true
+        },
+        {
+          "name": "type4-probabilistic",
+          "passed": true
+        },
+        {
+          "name": "type4-not-hold",
+          "passed": true
+        },
+        {
+          "name": "medium-cap-3",
+          "passed": true
+        },
+        {
+          "name": "retry-15",
+          "passed": true
+        },
+        {
+          "name": "confusion71",
+          "passed": true
+        },
+        {
+          "name": "monsguards146",
+          "passed": true
+        },
+        {
+          "name": "pending-cap",
+          "passed": true
+        },
+        {
+          "name": "move-cap-runtime",
+          "passed": true
+        },
+        {
+          "name": "confusion-runtime",
+          "passed": true
+        },
+        {
+          "name": "monsguards-target-resolver",
+          "passed": true
+        },
+        {
+          "name": "spell-target-wired",
+          "passed": true
+        },
+        {
+          "name": "classic-physical-no-protector",
+          "passed": true
+        },
+        {
+          "name": "classic-no-threat",
+          "passed": true
+        },
+        {
+          "name": "full-refund-helper",
+          "passed": true
+        },
+        {
+          "name": "resist-full-refund",
+          "passed": true
+        },
+        {
+          "name": "lane-pump-live",
+          "passed": true
+        },
+        {
+          "name": "npc-smoke-route",
+          "passed": true
+        },
+        {
+          "name": "npc-smoke-parity",
+          "passed": true
+        },
+        {
+          "name": "native-exists",
+          "passed": true
+        },
+        {
+          "name": "native-sha",
+          "passed": true,
+          "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+        },
+        {
+          "name": "native-medium-move-cap-3",
+          "passed": true
+        },
+        {
+          "name": "native-medium-type-table",
+          "passed": true
+        },
+        {
+          "name": "native-fast-retry-15",
+          "passed": true
+        },
+        {
+          "name": "native-fast-follow-roll",
+          "passed": true
+        },
+        {
+          "name": "native-confusion-function",
+          "passed": true
+        },
+        {
+          "name": "native-cast-target-function",
           "passed": true
         }
       ]

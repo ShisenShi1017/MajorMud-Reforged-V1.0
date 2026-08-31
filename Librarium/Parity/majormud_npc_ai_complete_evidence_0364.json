@@ -1,0 +1,110 @@
+{
+  "schema": "majormud.npc-ai-complete-evidence.v0364",
+  "update": "CodeUpdate0364",
+  "status": "PASS",
+  "native_module": {
+    "path": "WGSERV/WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "expected_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+  },
+  "corpus": {
+    "npc_records": 1100,
+    "monsguards_owner_records": 112,
+    "monster_type_counts": {
+      "0": 476,
+      "1": 184,
+      "2": 186,
+      "3": 254
+    },
+    "stock_monster_types": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "native_findings": {
+    "attack_storage": {
+      "physical_slots": 5,
+      "dispatcher_attempts": 6,
+      "attack_count_disposition": "generated projection integrity count; not a native cadence/storage controller"
+    },
+    "spell_energy": {
+      "insufficient_energy": "no debit",
+      "precast_failure": "max(1,floor(AttEnergy/2)) for positive costs",
+      "paid_cast_then_rejected_effect": "full AttEnergy refund; net zero",
+      "committed_effect": "full cost retained"
+    },
+    "slow_generation": {
+      "hp_regen": "authored HPRegen applied once per admitted slow generation, capped at maximum",
+      "ownership": "timer starts at most one pending generation; host loop advances one active slot per lane cursor"
+    },
+    "medium_generation": {
+      "move_attempt_cap": 3,
+      "probabilistic_types": [
+        1,
+        3,
+        4
+      ],
+      "unconditional_type": 5,
+      "greater_than_5": "probabilistic",
+      "hold_types": [
+        0,
+        2
+      ],
+      "follow_rule": "threshold = trunc((100-Follow)/2); native [0,100) roll must be below threshold",
+      "confusion_ability": 71,
+      "direction_candidates": 10,
+      "replacement_chance_percent": 40
+    },
+    "fast_generation": {
+      "purpose": "followed-user tracking, not generic perception/threat acquisition",
+      "retry_limit": 15,
+      "follow_probability": "forced follow or native [0,100) roll < Follow",
+      "see_hidden_ability": 57
+    },
+    "monsguards": {
+      "ability_id": 146,
+      "value": "guard monster legacy id",
+      "owner": "_cast_monster_target",
+      "behavior": "scan requested target ordered ability slots then current room native monster slots; substitute first matching live guard as spell target",
+      "not_behavior": [
+        "physical ATTACK body block",
+        "generic post-admission combat assist",
+        "threat propagation"
+      ]
+    },
+    "generic_ai_extensions": {
+      "threat_score_switching": "not present in recovered Classic background lanes",
+      "perception_radius_aggro": "not present",
+      "low_hp_flee": "not present",
+      "generic_patrol_paths": "not present"
+    },
+    "target_helper_boundary": {
+      "_find_action_target": "player command/parser target resolver",
+      "_find_any_action_target": "player command/parser target resolver",
+      "not_autonomous_npc_ai": true
+    }
+  },
+  "runtime_files": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSemanticsAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNpcAiUpdateRuntime0364.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcProtectionAdmission.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePowers.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveCombat.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNpcCombatCadence.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcModels.cs"
+  ],
+  "promoted_assertions": [
+    "npc.attack-row-count",
+    "npc.failed-spell-half-energy",
+    "npc.hp-regen-stock-interval",
+    "npc.monsguards-relationship",
+    "npc.native-ai-semantics",
+    "npc.runtime-lifecycle"
+  ],
+  "verification_boundary": "Direct native/static verification plus target-machine .NET smoke. Reforged-only generic threat/perception/flee/patrol/assist extensions are isolated from Classic parity rather than treated as native behavior."
+}

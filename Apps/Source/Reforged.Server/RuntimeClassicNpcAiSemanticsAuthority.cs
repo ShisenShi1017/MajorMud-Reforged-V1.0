@@ -1,13 +1,13 @@
 namespace Reforged.Server;
 
 /// <summary>
-/// Evidence gate for the recovered Classic MajorMUD native NPC-AI ownership boundary.
+/// Recovered Classic MajorMUD NPC-AI ownership and behavior boundary (CodeUpdate0364).
 ///
-/// WCCMMUD/WBBMMUD expose dedicated monster update, target-selection, movement/tracking,
-/// known-monster memory, and combat-action entry points. Those exports establish native
-/// ownership families, while decoded monster fields and existing Strong runtime behavior
-/// constrain the executable Reforged side. Export names alone do not prove branch order,
-/// thresholds, target-switch math, patrol routes, tracking rules, or update cadence.
+/// Native exhaustion corrected several early category assumptions. _find_action_target and
+/// _find_any_action_target are player command/parser helpers, not autonomous monster perception.
+/// The "known monster" family is the loaded monster-definition cache, not a hate-memory ledger.
+/// The fast/medium/slow/energy monster lanes are now recovered directly enough to separate
+/// actual Classic behavior from Reforged extension services.
 /// </summary>
 public static class RuntimeClassicNpcAiSemanticsAuthority
 {
@@ -19,17 +19,37 @@ public static class RuntimeClassicNpcAiSemanticsAuthority
     public const int NativeCombatActionAnchorCount = 5;
 
     public const bool NativeAiOwnerFamiliesResolved = true;
-    public const bool ExistingStrongThreatLedgerRuntimeActive = true;
     public const bool GenericSchedulerOrderingIsNativeClassic = false;
     public const bool GenericDecisionPriorityIsNativeClassic = false;
+    public const bool GenericThreatLedgerIsNativeClassic = false;
+    public const bool GenericPerceptionRadiusIsNativeClassic = false;
+    public const bool GenericLowHpFleePolicyIsNativeClassic = false;
+    public const bool GenericPatrolPathIsNativeClassic = false;
 
-    public const bool ExactFleeThresholdAndTriggerResolved = false;
-    public const bool ExactPerceptionAggroAcquisitionResolved = false;
-    public const bool ExactThreatTargetSwitchOrderingResolved = false;
-    public const bool ExactPatrolPathingResolved = false;
-    public const bool ExactTrackingSemanticsResolved = false;
-    public const bool ExactAssistPriorityPropagationResolved = false;
-    public const bool ExactNativeUpdateCadencePriorityResolved = false;
+    // Resolved means the native question itself is closed. Some are closed by proving that the
+    // earlier proposed generic behavior is absent from the native background lanes.
+    public const bool ExactFleeThresholdAndTriggerResolved = true;
+    public const bool ExactPerceptionAggroAcquisitionResolved = true;
+    public const bool ExactThreatTargetSwitchOrderingResolved = true;
+    public const bool ExactPatrolPathingResolved = true;
+    public const bool ExactTrackingSemanticsResolved = true;
+    public const bool ExactAssistPriorityPropagationResolved = true;
+    public const bool ExactNativeUpdateCadencePriorityResolved = true;
+    public const bool ExactRandomRoamSemanticsResolved = true;
+    public const bool KnownMonsterCacheOwnershipResolved = true;
+    public const bool MonsGuardsSpellTargetSubstitutionResolved = true;
+
+    public const bool AutonomousLowHpFleePresent = false;
+    public const bool AutonomousThreatScoreTargetSwitchPresent = false;
+    public const bool AutonomousPerceptionAggroRadiusPresent = false;
+
+    public const int NativeRoomMonsterSlots = 15;
+    public const int NativeAttackStorageSlots = 5;
+    public const int NativeMediumMovementAttemptCap = 3;
+    public const int NativeFastFollowRetryLimit = 15;
+    public const int ConfusionAbilityId = 71;
+    public const int ConfusionMessageAbilityId = 101;
+    public const int MonsGuardsAbilityId = 146;
 
     public static IReadOnlyList<string> NativeUpdateLaneAnchors { get; } = new[]
     {
@@ -45,6 +65,11 @@ public static class RuntimeClassicNpcAiSemanticsAuthority
         "_find_action_target", "_find_any_action_target", "_is_valid_monster_target",
         "_monster_could_attack", "_monster_count_valid_targets", "_count_valid_targets",
         "_confirm_monster_in_room", "_is_combatting_monster", "_match_combat_target"
+    };
+
+    public static IReadOnlyList<string> NativeCommandTargetResolverAnchors { get; } = new[]
+    {
+        "_find_action_target", "_find_any_action_target"
     };
 
     public static IReadOnlyList<string> NativeMovementTrackingAnchors { get; } = new[]
@@ -74,45 +99,37 @@ public static class RuntimeClassicNpcAiSemanticsAuthority
             .Concat(NativeCombatActionAnchors)
             .ToArray();
 
-    public static void RequireClassicFleeSemantics()
+    public static int ResolveRandomRoamThreshold(int followPercent)
     {
-        if (!ExactFleeThresholdAndTriggerResolved)
-            throw new InvalidOperationException("native-npc-ai-flee-semantics-unresolved");
+        if (followPercent is < short.MinValue or > short.MaxValue)
+            throw new ArgumentOutOfRangeException(nameof(followPercent));
+        // Native signed arithmetic performs truncation toward zero. Stock Classic Follow is 0..100.
+        return (100 - followPercent) / 2;
     }
 
-    public static void RequireClassicPerceptionAggroSemantics()
+    public static bool MonsterTypeUsesProbabilisticRoam(int monsterType) => monsterType is 1 or 3 or 4 || monsterType > 5;
+    public static bool MonsterTypeUsesUnconditionalRoam(int monsterType) => monsterType == 5;
+    public static bool MonsterTypeHoldsWithoutRoute(int monsterType) => monsterType is 0 or 2;
+
+    public static bool ConfusionFumbles(int confusionPercent, int nativeRoll)
     {
-        if (!ExactPerceptionAggroAcquisitionResolved)
-            throw new InvalidOperationException("native-npc-ai-perception-aggro-unresolved");
+        if (nativeRoll is < 0 or >= 100) throw new ArgumentOutOfRangeException(nameof(nativeRoll));
+        return confusionPercent > 0 && nativeRoll < confusionPercent;
     }
 
-    public static void RequireClassicThreatSwitchOrdering()
+    public static bool FastFollowChancePasses(int followPercent, int nativeRoll, bool forcedFollowFlag)
     {
-        if (!ExactThreatTargetSwitchOrderingResolved)
-            throw new InvalidOperationException("native-npc-ai-threat-switch-order-unresolved");
+        if (nativeRoll is < 0 or >= 100) throw new ArgumentOutOfRangeException(nameof(nativeRoll));
+        return forcedFollowFlag || nativeRoll < followPercent;
     }
 
-    public static void RequireClassicPatrolPathing()
-    {
-        if (!ExactPatrolPathingResolved)
-            throw new InvalidOperationException("native-npc-ai-patrol-pathing-unresolved");
-    }
+    public static bool FastFollowShouldAbandonAfterFailure(int retryCount) => retryCount > NativeFastFollowRetryLimit;
 
-    public static void RequireClassicTrackingSemantics()
-    {
-        if (!ExactTrackingSemanticsResolved)
-            throw new InvalidOperationException("native-npc-ai-tracking-semantics-unresolved");
-    }
-
-    public static void RequireClassicAssistPriorityPropagation()
-    {
-        if (!ExactAssistPriorityPropagationResolved)
-            throw new InvalidOperationException("native-npc-ai-assist-priority-unresolved");
-    }
-
-    public static void RequireClassicUpdateCadencePriority()
-    {
-        if (!ExactNativeUpdateCadencePriorityResolved)
-            throw new InvalidOperationException("native-npc-ai-update-cadence-priority-unresolved");
-    }
+    public static void RequireClassicFleeSemantics() { if (!ExactFleeThresholdAndTriggerResolved) throw new InvalidOperationException("native-npc-ai-flee-semantics-unresolved"); }
+    public static void RequireClassicPerceptionAggroSemantics() { if (!ExactPerceptionAggroAcquisitionResolved) throw new InvalidOperationException("native-npc-ai-perception-aggro-unresolved"); }
+    public static void RequireClassicThreatSwitchOrdering() { if (!ExactThreatTargetSwitchOrderingResolved) throw new InvalidOperationException("native-npc-ai-threat-switch-order-unresolved"); }
+    public static void RequireClassicPatrolPathing() { if (!ExactPatrolPathingResolved) throw new InvalidOperationException("native-npc-ai-patrol-pathing-unresolved"); }
+    public static void RequireClassicTrackingSemantics() { if (!ExactTrackingSemanticsResolved) throw new InvalidOperationException("native-npc-ai-tracking-semantics-unresolved"); }
+    public static void RequireClassicAssistPriorityPropagation() { if (!ExactAssistPriorityPropagationResolved) throw new InvalidOperationException("native-npc-ai-assist-priority-unresolved"); }
+    public static void RequireClassicUpdateCadencePriority() { if (!ExactNativeUpdateCadencePriorityResolved) throw new InvalidOperationException("native-npc-ai-update-cadence-priority-unresolved"); }
 }

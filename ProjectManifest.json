@@ -26,7 +26,7 @@
       "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0140 continues exact Classic parity closure at 144 PASS / 56 STRONG / 0 UNKNOWN. MegaMUD/Borin compatibility and Creator Studio full-control Custom1 authoring remain integrated. Creator Studio now includes a Custom1-only Nightmare Redux MDB import/export and read-only WCC/WGS evidence bridge with lossless unmapped-field retention. Generated Data/Classic remains untracked. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "milestone2Status": "CodeUpdate0140 continues exact Classic parity closure at 169 PASS / 31 STRONG / 0 UNKNOWN. Data Reconstruction, Economy & Services, Host / Persistence / Worldgroup, Import / Export / Limits / Recovery, Items & Inventory, NPC & AI, and Quests / Scripts / Triggers are complete at their scoped Classic boundaries; owner-local remaining STRONG assertions stay fail-closed.",
     "lastUpdateName": "CodeUpdate0140-ClassicParityClosure-CreatorStudio",
     "nextRecommendedWork": [
       "Review and commit the consolidated Classic parity closure and Creator Studio continuation when approved.",
@@ -52,7 +52,7 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_DOTNET_VERIFIED_PARITY_144_56; Reforged.Server and Reforged.App pass Release compilation with warnings as errors. Classic parity closure and services/economy gates pass. Nightmare MDB verification reads the installed 188-row ability.mdb through Jet 4.0 and passes a temporary write/read round trip; no Custom1 import was performed. GitHub Actions remains pending. Broader item smoke retains its pre-existing corpse-resurrection equipment limitation.",
+  "buildVerification": "CUMULATIVE_PARITY_167_33; retained earlier Release build verification remains recorded. CodeUpdate0359-0364 add raw/static/native verification including NPC/AI 32/32. The current analysis environment has no .NET SDK, so no new 0364 build claim is made; target installer performs Release build and runtime gates.",
   "current_codeupdate": "0140",
   "last_update": "Classic parity closure, validator/runtime consolidation, and Creator Studio local integration",
   "subsystems_completed": [
@@ -93,7 +93,7 @@
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Imported/reference databases and raw evidence are local-only archival material after approved cleanup. Retain Archive/ImportedDatabasesAndEvidence.LocalOnly.rar locally for future decode, provenance, or source-retirement audits; do not commit loose ImportedDatabases/Evidence contents.",
   "savePolicy": "Runtime saves are realm-scoped. Classic realm state lives under Saves/Classic, custom realm state lives under Saves/Custom/<realm>, host account credential state lives under Saves/Host, and one login may keep up to three characters per world.",
-  "updatedUtc": "2026-08-29T14:26:36Z",
+  "updatedUtc": "2026-08-31T04:30:00Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited or committed as canonical source. Clean validation environments regenerate /Data from Librarium before runtime bootstrap.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

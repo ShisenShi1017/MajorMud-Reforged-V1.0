@@ -83,16 +83,16 @@ public partial class App : Application
                 clientWorkspaceProfiles);
             await playViewModel.InitializeAsync();
 
-            manager.Register(new Workspace("home", "Dashboard", new DashboardView { DataContext = dashboardViewModel }));
-            manager.Register(new Workspace("play", "Play", new PlayView { DataContext = playViewModel }, true));
-            manager.Register(new Workspace("host", "Host", new HostView { DataContext = hostViewModel }));
-            manager.Register(new Workspace("editor", "Editor", new EditorView(), true));
-            manager.Register(new Workspace("librarium", "Librarium", new LibrariumView(), true));
-            manager.Register(new Workspace("characters", "Characters", new CharacterView(), true));
-            manager.Register(new Workspace("server", "Server", new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
-            manager.Register(new Workspace("settings", "Settings", new SettingsView { DataContext = settingsViewModel }));
-            manager.Register(new Workspace("tools", "Tools", new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
-            manager.Register(new Workspace("diagnostics", "Diagnostics", new ClientDiagnosticsView { DataContext = clientDiagnosticsViewModel }, true));
+            manager.Register(new LazyWorkspace("home", "Dashboard", () => new DashboardView { DataContext = dashboardViewModel }));
+            manager.Register(new LazyWorkspace("play", "Play", () => new PlayView { DataContext = playViewModel }, true));
+            manager.Register(new LazyWorkspace("host", "Host", () => new HostView { DataContext = hostViewModel }));
+            manager.Register(new LazyWorkspace("editor", "Editor", () => new EditorView(), true));
+            manager.Register(new LazyWorkspace("librarium", "Librarium", () => new LibrariumView(), true));
+            manager.Register(new LazyWorkspace("characters", "Characters", () => new CharacterView(), true));
+            manager.Register(new LazyWorkspace("server", "Server", () => new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
+            manager.Register(new LazyWorkspace("settings", "Settings", () => new SettingsView { DataContext = settingsViewModel }));
+            manager.Register(new LazyWorkspace("tools", "Tools", () => new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
+            manager.Register(new LazyWorkspace("diagnostics", "Diagnostics", () => new ClientDiagnosticsView { DataContext = clientDiagnosticsViewModel }, true));
 
             _services = new ServiceRegistry()
                 .Add<IApplicationSettingsService>(settings)

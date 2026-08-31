@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Reforged.App.ViewModels;
 
 namespace Reforged.App.Views;
@@ -16,10 +17,20 @@ public partial class EditorView : UserControl
     private double _dragStartX;
     private double _dragStartY;
     private bool _dragMoved;
+    private bool _hasLoaded;
 
     public EditorView()
     {
         InitializeComponent();
+        Loaded += EditorView_Loaded;
+    }
+
+    private async void EditorView_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (_hasLoaded || DataContext is not EditorViewModel viewModel) return;
+        _hasLoaded = true;
+        await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
+        viewModel.Load();
     }
 
     private void MapRoom_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

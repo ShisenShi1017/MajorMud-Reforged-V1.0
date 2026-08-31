@@ -7,10 +7,13 @@ public sealed record RuntimeClassicWorldgroupPrngDraw(
     long Sequence);
 
 /// <summary>
-/// Executable Classic Worldgroup/Borland C runtime PRNG core recovered from the
-/// bound CW3220MT.DLL runtime. This class intentionally owns only the proven
-/// raw rand()/srand() contract. High-level MajorMUD call ordering and the exact
-/// _genrdn/_lngrnd range-transformation loop remain separate evidence boundaries.
+/// Executable Classic Worldgroup/Borland C runtime PRNG for one native CRT thread.
+///
+/// The supplied Worldgroup 3 NT WGSERVER exports _genrdn at RVA 0x0000739C and
+/// _lngrnd at RVA 0x000073EE. Both use the same accumulated-remainder loop over
+/// CW3220MT rand(). A RuntimeClassicWorldgroupPrng instance therefore models one
+/// native thread-local CRT random stream; callers must not treat it as proof of a
+/// single process-global Classic stream.
 /// </summary>
 public sealed class RuntimeClassicWorldgroupPrng
 {
@@ -45,12 +48,52 @@ public sealed class RuntimeClassicWorldgroupPrng
     public RuntimeClassicWorldgroupPrngDraw Rand()
     {
         lock (_gate)
+            return RandLocked();
+    }
+
+    /// <summary>
+    /// Instruction-equivalent semantic port of WGSERVER!_genrdn for the recovered
+    /// integer domain. exclusiveMaximum == 0 returns 0 without consuming rand();
+    /// exclusiveMaximum &lt;= minimum returns minimum without consuming rand().
+    /// Otherwise rand()%exclusiveMaximum is accumulated with further
+    /// rand()%(exclusiveMaximum-current) draws until current &gt;= minimum.
+    /// </summary>
+    public int Genrdn(int minimum, int exclusiveMaximum)
+    {
+        lock (_gate)
+            return RangeLocked(minimum, exclusiveMaximum);
+    }
+
+    /// <summary>WGSERVER!_lngrnd has the same recovered machine-code algorithm.</summary>
+    public int Lngrnd(int minimum, int exclusiveMaximum)
+    {
+        lock (_gate)
+            return RangeLocked(minimum, exclusiveMaximum);
+    }
+
+    private int RangeLocked(int minimum, int exclusiveMaximum)
+    {
+        if (exclusiveMaximum == 0)
+            return 0;
+        if (exclusiveMaximum <= minimum)
+            return minimum;
+
+        var current = RandLocked().Value % exclusiveMaximum;
+        while (current < minimum)
         {
-            var previous = _seed;
-            var next = WorldgroupPrngRuntimeRegistry.AdvanceSeed(previous);
-            _seed = next;
-            _sequence++;
-            return new(previous, next, WorldgroupPrngRuntimeRegistry.ProjectRand15(next), _sequence);
+            var remaining = exclusiveMaximum - current;
+            current += RandLocked().Value % remaining;
         }
+
+        return current;
+    }
+
+    private RuntimeClassicWorldgroupPrngDraw RandLocked()
+    {
+        var previous = _seed;
+        var next = WorldgroupPrngRuntimeRegistry.AdvanceSeed(previous);
+        _seed = next;
+        _sequence++;
+        return new(previous, next, WorldgroupPrngRuntimeRegistry.ProjectRand15(next), _sequence);
     }
 }

@@ -1,0 +1,106 @@
+{
+  "schema": "majormud.data-reconstruction-closure.v1",
+  "update": "CodeUpdate0359",
+  "target": "Stock MajorMUD 1.11p / Classic",
+  "generated_at_utc": "2026-08-30T20:02:37Z",
+  "summary": "Closes all three Data Reconstruction parity assertions without inventing absent data. The decode gate now treats evidence-linked/runtime-consumed all-null optional projections as connected-empty, the gate itself fails closed on incomplete field coverage, and the supplied working 1.11p WCCMSG2 independently corroborates every non-reserved canonical logical message payload.",
+  "decode_reconstruction": {
+    "report": "Reports/RuntimeVerification/classic_decode_exhaustion_report.json",
+    "family_count": 39,
+    "connected_family_count": 39,
+    "disconnected_family_count": 0,
+    "pending_family_count": 0,
+    "generated_record_count": 104198,
+    "scalar_field_count": 2096,
+    "connected_structural_or_explicit_empty_field_count": 2096,
+    "disconnected_field_count": 0,
+    "explicit_empty_connected_fields": [
+      {
+        "family": "equipment",
+        "json_path": "$.records[*].alignment",
+        "occurrences": 914,
+        "non_null": 0,
+        "evidence_reference_count": 53,
+        "runtime_consumer_count": 27,
+        "disposition": "Optional direct scalar is present in the generated contract but has no populated Classic records; do not synthesize values. Existing decoded alignment restrictions remain enforced through their separate authoritative ability relationships."
+      },
+      {
+        "family": "equipment",
+        "json_path": "$.records[*].gender",
+        "occurrences": 914,
+        "non_null": 0,
+        "evidence_reference_count": 6,
+        "runtime_consumer_count": 6,
+        "disposition": "Optional direct scalar is present in the generated contract but has no populated Classic records; do not synthesize values. Runtime support remains fail-closed/dormant unless authoritative data populates the field."
+      }
+    ],
+    "gate_changes": [
+      "connected-empty now contributes to connected field totals at family and report scope",
+      "ClassicDecodeExhaustionReport.Passed requires every family and every scalar field to be connected",
+      "--audit-decode-exhaustion now exits from report.Passed instead of top-level diagnostics alone",
+      "Classic parity closure now executes a focused Data Reconstruction smoke gate",
+      "RuntimeClassicDataReconstructionSmokeReport.cs is excluded from the decode consumer scanner so the focused audit cannot satisfy its own gameplay-consumer evidence."
+    ]
+  },
+  "canonical_message_catalog": {
+    "catalog": "Librarium/Objects/native_message_payloads/native_message_payload_records.json",
+    "source_file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat",
+    "source_size": 1220608,
+    "source_sha256": "7bcc4ce3fb34038ac5623892148f3af01a5ef51b3909ae92678010b7a62283e2",
+    "physical_record_count": 3887,
+    "logical_message_count": 3869,
+    "duplicate_identical_record_count": 18,
+    "runtime_authority": "Apps/Source/Reforged.Server/RuntimeClassicNativeTextblockPayloadAuthority.cs",
+    "runtime_required_logical_count": 3869,
+    "coverage_report": "Reports/RuntimeVerification/classic_native_message_coverage.json"
+  },
+  "working_install_corroboration": {
+    "source": "user-supplied WGSERV(4).rar; same working 1.11p install fingerprint already accepted by CodeUpdate0358",
+    "raw_archive_packaged": false,
+    "rar_sha256": "1b98f5702f6f12a31cf8c202af832be927d6175219a2e7e9e3cc30389744a7a6",
+    "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wccmsg2_size": 1220608,
+    "wccmsg2_sha256": "ebfb744f98e4cb0673ed702bac13ab928a77bb299bcbd53fc73193c03f2cf820",
+    "physical_record_count": 3898,
+    "logical_message_count": 3867,
+    "duplicate_identical_record_count": 31,
+    "conflicting_duplicate_count": 0,
+    "shared_logical_message_count": 3867,
+    "shared_payload_mismatch_count": 0,
+    "working_only_message_ids": [],
+    "canonical_only_message_ids": [
+      1,
+      66
+    ],
+    "canonical_only_payload_disposition": {
+      "1": "all three payload slots are empty",
+      "66": "all three payload slots are empty"
+    },
+    "conclusion": "All 3,867 logical message IDs present in the working install match the canonical default-install three-slot CP437 payloads exactly. The working install omits only canonical IDs 1 and 66, which are empty reserved records; it supplies no conflicting payload and does not replace the canonical 3,869-message runtime authority."
+  },
+  "assertion_promotions": [
+    {
+      "id": "decode.families-connected",
+      "from": "STRONG",
+      "to": "PASS"
+    },
+    {
+      "id": "decode.scalar-fields",
+      "from": "STRONG",
+      "to": "PASS"
+    },
+    {
+      "id": "messages.catalog",
+      "from": "STRONG",
+      "to": "PASS"
+    }
+  ],
+  "verification_boundary": {
+    "direct_checks": "Raw WGSERV WCCMSG2 parsing, hashes, retained report reconciliation, canonical catalog comparison, and repository static integration were performed in this pass.",
+    "dotnet_sdk_available": false,
+    "new_csharp_build_or_runtime_execution_claimed": false,
+    "raw_native_artifacts_packaged": false,
+    "note": "Existing prior local .NET build/runtime results remain historical evidence; this pass makes no new .NET execution claim because the analysis environment has no dotnet SDK.",
+    "direct_check_count": 34
+  }
+}

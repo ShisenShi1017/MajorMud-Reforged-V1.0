@@ -1,6 +1,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Windows;
+using System.Windows.Threading;
 using Reforged.App.Brains;
 using Reforged.App.Services;
 using Reforged.App.Forge;
@@ -71,7 +72,6 @@ public partial class App : Application
             var clientDiagnostics = new ClientDiagnosticsService(settings.RootPath, clientSessions, clientParsing);
             var clientDiagnosticsViewModel = new ClientDiagnosticsViewModel(clientDiagnostics);
             var playViewModel = new PlayViewModel(clientData, clientAutomation, clientCoordination, megaMudPaths, clientSessions, clientParsing, clientLibrariumBridge, clientSysGoto, clientMapProfiles, clientWorkspaceProfiles);
-            await playViewModel.InitializeAsync();
             var forgeStore = new ForgeStateStore(settings.RootPath);
             var forgeRepository = new ForgeRepositoryService();
             var repositoryRoot = forgeRepository.DiscoverRepositoryRoot();
@@ -223,31 +223,28 @@ public partial class App : Application
                 rawUltraProvider,
                 aiRoutingSettings,
                 localGgufBrain);
-            await forgeViewModel.InitializeAsync();
             var guardianStore = new BorinCapabilityStateStore(settings.RootPath);
             var borinCapabilities = new BorinCapabilityCoordinator(
                 guardianStore,
                 forgeRepository.DiscoverRepositoryRoot(),
                 borinPlayerResearch);
-            await borinCapabilities.InitializeAsync();
             forgeViewModel.AttachGuardianCapabilities(borinCapabilities);
 
-            var editorViewModel = new EditorViewModel(
+            var editorViewModel = new Lazy<EditorViewModel>(() => new EditorViewModel(
                 new ClassicAdministrationEditorService(repositoryRoot, host),
-                new CustomWorldEditorService(repositoryRoot));
-            editorViewModel.Load();
+                new CustomWorldEditorService(repositoryRoot)));
 
-            manager.Register(new Workspace("home", "Dashboard", new DashboardView { DataContext = dashboardViewModel }));
-            manager.Register(new Workspace("play", "Play", new PlayView { DataContext = playViewModel }, true));
-            manager.Register(new Workspace("host", "Host", new HostView { DataContext = hostViewModel }));
-            manager.Register(new Workspace("editor", "Editor", new EditorView { DataContext = editorViewModel }, true));
-            manager.Register(new Workspace("librarium", "Librarium", new LibrariumView(), true));
-            manager.Register(new Workspace("forge", "Borin", new BorinForgeView { DataContext = forgeViewModel }));
-            manager.Register(new Workspace("characters", "Characters", new CharacterView(), true));
-            manager.Register(new Workspace("server", "Server", new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
-            manager.Register(new Workspace("settings", "Settings", new SettingsView { DataContext = settingsViewModel }));
-            manager.Register(new Workspace("tools", "Tools", new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
-            manager.Register(new Workspace("diagnostics", "Diagnostics", new ClientDiagnosticsView { DataContext = clientDiagnosticsViewModel }, true));
+            manager.Register(new LazyWorkspace("home", "Dashboard", () => new DashboardView { DataContext = dashboardViewModel }));
+            manager.Register(new LazyWorkspace("play", "Play", () => new PlayView { DataContext = playViewModel }, true));
+            manager.Register(new LazyWorkspace("host", "Host", () => new HostView { DataContext = hostViewModel }));
+            manager.Register(new LazyWorkspace("editor", "Editor", () => new EditorView { DataContext = editorViewModel.Value }, true));
+            manager.Register(new LazyWorkspace("librarium", "Librarium", () => new LibrariumView(), true));
+            manager.Register(new LazyWorkspace("forge", "Borin", () => new BorinForgeView { DataContext = forgeViewModel }));
+            manager.Register(new LazyWorkspace("characters", "Characters", () => new CharacterView(), true));
+            manager.Register(new LazyWorkspace("server", "Server", () => new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
+            manager.Register(new LazyWorkspace("settings", "Settings", () => new SettingsView { DataContext = settingsViewModel }));
+            manager.Register(new LazyWorkspace("tools", "Tools", () => new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
+            manager.Register(new LazyWorkspace("diagnostics", "Diagnostics", () => new ClientDiagnosticsView { DataContext = clientDiagnosticsViewModel }, true));
 
             _services = new ServiceRegistry()
                 .Add<IApplicationSettingsService>(settings)
@@ -330,6 +327,13 @@ public partial class App : Application
                     errors.Report(exception, "Configured Host auto-start failed");
                 }
             }
+
+            _ = InitializeDeferredWorkspacesAsync(
+                playViewModel,
+                forgeViewModel,
+                borinCapabilities,
+                errors,
+                logger);
         }
         catch (Exception exception)
         {
@@ -341,6 +345,51 @@ public partial class App : Application
                 MessageBoxImage.Error);
             Shutdown(91);
         }
+    }
+
+    private async Task InitializeDeferredWorkspacesAsync(
+        PlayViewModel playViewModel,
+        BorinForgeViewModel forgeViewModel,
+        IBorinCapabilities borinCapabilities,
+        IErrorReporter errors,
+        IAppLogger logger)
+    {
+        // Let WPF render the shell before loading the large private knowledge and world catalogs.
+        await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);
+
+        try
+        {
+            await playViewModel.InitializeAsync();
+            logger.Info("Deferred Play workspace initialization completed.");
+        }
+        catch (Exception exception)
+        {
+            errors.Report(exception, "Deferred Play workspace initialization failed");
+        }
+
+        try
+        {
+            await forgeViewModel.InitializeAsync();
+            logger.Info("Deferred Borin workspace initialization completed.");
+        }
+        catch (Exception exception)
+        {
+            errors.Report(exception, "Deferred Borin workspace initialization failed");
+        }
+
+        try
+        {
+            await borinCapabilities.InitializeAsync(_applicationLifetime.Token);
+            logger.Info("Deferred Borin capability initialization completed.");
+        }
+        catch (OperationCanceledException) when (_applicationLifetime.IsCancellationRequested)
+        {
+        }
+        catch (Exception exception)
+        {
+            errors.Report(exception, "Deferred Borin capability initialization failed");
+        }
+
     }
 
     public async Task ShutdownApplicationAsync(int exitCode = 0)

@@ -324,7 +324,10 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task InitializeAsync()
     {
-        await Task.WhenAll(_data.LoadAsync(), _automation.LoadAsync(), _coordination.LoadAsync(), _paths.LoadAsync(), _parsing.LoadAsync(), _workspaceProfiles.LoadAsync(), _connectionProfiles.LoadAsync(), LoadSavedBuildsAsync());
+        // Generated Classic catalogs are large. Parse them away from the WPF dispatcher so
+        // startup and terminal interaction remain responsive while reference data is loaded.
+        var dataLoad = Task.Run(() => _data.LoadAsync());
+        await Task.WhenAll(dataLoad, _automation.LoadAsync(), _coordination.LoadAsync(), _paths.LoadAsync(), _parsing.LoadAsync(), _workspaceProfiles.LoadAsync(), _connectionProfiles.LoadAsync(), LoadSavedBuildsAsync());
         Categories.Clear();
         foreach (var category in _data.Categories) Categories.Add(category);
         SelectedCategory = Categories.FirstOrDefault(c => c.Records.Count > 0) ?? Categories.FirstOrDefault();

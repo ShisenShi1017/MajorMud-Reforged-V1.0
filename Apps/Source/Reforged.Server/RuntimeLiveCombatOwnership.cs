@@ -27,26 +27,32 @@ public sealed partial class RuntimeLiveGameplayFacade
         var living = Living(session);
         _combatOwners[session.Id] = new RuntimeCombatOwnerState(session.World.Definition.Id, session.Actor.Id, encounter.NpcInstanceId);
         living.AcquireNpcTarget(encounter.NpcInstanceId, session.Actor.Id, session.CurrentRoom.Id, DateTimeOffset.UtcNow);
-        living.ApplyNpcThreatGenerationSnapshot(new RuntimeNpcThreatGenerationSnapshot(
-            encounter.NpcInstanceId,
-            NextCombatOwnershipTick(),
-            encounter.RoomId,
-            [new RuntimeNpcThreatGenerationEvent(
-                $"combat-admission:{session.Id}:{encounter.RoundNumber}",
-                session.Actor.Id,
-                session.CurrentRoom.Id,
-                true,
-                true,
-                true,
-                Math.Max(0, initialThreat),
-                "explicit-combat-admission",
-                "runtime.live_combat")]
-        ));
+        // Classic WCC background AI has no recovered threat-score acquisition/switch owner.
+        // The explicit autocombat target is authoritative. Keep Reforged threat scoring only
+        // for custom worlds where it is an intentional extension.
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+        {
+            living.ApplyNpcThreatGenerationSnapshot(new RuntimeNpcThreatGenerationSnapshot(
+                encounter.NpcInstanceId,
+                NextCombatOwnershipTick(),
+                encounter.RoomId,
+                [new RuntimeNpcThreatGenerationEvent(
+                    $"combat-admission:{session.Id}:{encounter.RoundNumber}",
+                    session.Actor.Id,
+                    session.CurrentRoom.Id,
+                    true,
+                    true,
+                    true,
+                    Math.Max(0, initialThreat),
+                    "explicit-combat-admission",
+                    "runtime.live_combat")]
+            ));
+        }
     }
 
     private void RegisterCombatDamageThreat(RuntimeSession session, RuntimeLiveCombatEncounter encounter, int damage, int swing)
     {
-        if (damage <= 0) return;
+        if (damage <= 0 || session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)) return;
         Living(session).ApplyNpcThreatGenerationSnapshot(new RuntimeNpcThreatGenerationSnapshot(
             encounter.NpcInstanceId,
             NextCombatOwnershipTick(),
@@ -123,27 +129,20 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private void AuthorizeExplicitNpcAssistance(RuntimeSession session, RuntimeLiveCombatEncounter encounter)
     {
+        var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        // Native MonsGuards is handled at Classic spell-target resolution. It never adds a
+        // post-admission assistant to ordinary combat.
+        if (classicWorld) return;
         var living = Living(session);
         var caller = living.InspectNpc(encounter.NpcInstanceId);
         if (caller is null) return;
-        var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
         caller.Metadata.TryGetValue("assist_group_id", out var callerGroup);
-        caller.Metadata.TryGetValue("npc_legacy_id", out var callerLegacyId);
         foreach (var candidate in LivingNpcsInRoom(session))
         {
             if (candidate.InstanceId.Equals(encounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase)) continue;
 
-            // Classic admission is data-owned by native ability 146 (MonsGuards), whose value is
-            // the guarded monster legacy id. Reforged assist groups/instance links are extensions
-            // and must not alter Classic behavior.
-            var explicitlyLinked = !string.IsNullOrWhiteSpace(callerLegacyId)
-                && candidate.Metadata.TryGetValue("guarded_npc_legacy_ids", out var guardedIds)
-                && guardedIds.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                    .Contains(callerLegacyId, StringComparer.OrdinalIgnoreCase);
-
-            if (!classicWorld && !explicitlyLinked)
-            {
-                if (candidate.Metadata.TryGetValue("assist_target_instance_id", out var linked)
+            var explicitlyLinked = false;
+            if (candidate.Metadata.TryGetValue("assist_target_instance_id", out var linked)
                     && linked.Equals(encounter.NpcInstanceId, StringComparison.OrdinalIgnoreCase))
                     explicitlyLinked = true;
                 if (!explicitlyLinked
@@ -151,7 +150,6 @@ public sealed partial class RuntimeLiveGameplayFacade
                     && candidate.Metadata.TryGetValue("assist_group_id", out var candidateGroup)
                     && candidateGroup.Equals(callerGroup, StringComparison.OrdinalIgnoreCase))
                     explicitlyLinked = true;
-            }
             if (!explicitlyLinked) continue;
 
             living.ApplyNpcAssistSnapshot(new RuntimeNpcAssistSnapshot(
@@ -166,7 +164,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 true,
                 true,
                 true,
-                classicWorld ? "classic.ability-146-monsguards" : "runtime.live_combat.explicit-guard-assist"));
+                "runtime.live_combat.explicit-guard-assist"));
         }
     }
 

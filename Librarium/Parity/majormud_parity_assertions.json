@@ -1,6 +1,6 @@
 {
   "schema": "majormud.parity-assertions.v0311",
-  "update": "CodeUpdate0358",
+  "update": "CodeUpdate0365",
   "scoring": {
     "PASS": "Exact/captured/recovered behavior with executable regression proof.",
     "STRONG": "Implementation/data connection is strongly evidenced but not yet exact native parity.",
@@ -747,28 +747,31 @@
     {
       "id": "decode.families-connected",
       "category": "Data Reconstruction",
-      "state": "STRONG",
-      "description": "All 39 generated decode families are connected in the current decode exhaustion report.",
+      "state": "PASS",
+      "description": "All 39 generated decode families are connected with zero disconnected, invalid, or pending families; the decode exhaustion gate now requires complete family coverage.",
       "evidence": [
-        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json"
+        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json",
+        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json"
       ]
     },
     {
       "id": "decode.scalar-fields",
       "category": "Data Reconstruction",
-      "state": "STRONG",
-      "description": "2,094 of 2,096 generated scalar fields are connected/structural in the current decode exhaustion report.",
+      "state": "PASS",
+      "description": "All 2,096 generated scalar fields are connected, structural, or explicitly empty. Equipment alignment/gender are evidence-linked and runtime-consumed optional-null projections with no populated direct Classic records; no values are invented.",
       "evidence": [
-        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json"
+        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json",
+        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json"
       ]
     },
     {
       "id": "messages.catalog",
       "category": "Data Reconstruction",
-      "state": "STRONG",
-      "description": "WCCMSG2 runtime binding loads 3,869 logical native messages.",
+      "state": "PASS",
+      "description": "Canonical default WCCMSG2 runtime binding loads 3,869 logical native messages; the supplied working 1.11p install independently matches all 3,867 shared payloads and differs only by omission of empty reserved IDs 1 and 66.",
       "evidence": [
-        "Reports/RuntimeVerification/classic_native_message_coverage.json"
+        "Reports/RuntimeVerification/classic_native_message_coverage.json",
+        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json"
       ]
     },
     {
@@ -798,10 +801,13 @@
     {
       "id": "economy.non-item-service-cost-order",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Healer-shop healing is the only required Classic non-item purchasable service. Native help proves BUY HEALING; decoded room action scripts now provide executable monsters -> price -> cast healer transactions for spells 219-224 with exact decoded prices and native insufficient-funds message references. Generic ShopType 5 pricing and decoded adddelay timing remain unresolved, so this stays STRONG rather than PASS.",
+      "state": "PASS",
+      "description": "Native ShopType-5 non-item service ownership is exact. BUY HEALING costs two copper per missing HP, checks funds before mutation, debits before setting current HP to maximum, and uses the native direct insufficient-funds string. BUY CURING and BUY CURE POISON share the curing branch: 15 silver when not poisoned and 25 silver when poisoned, debit before the poison-clear effect, with exact native success/failure strings. Decoded scripted healer PRICE/CAST/ADDDELAY service lines remain separately executable; ADDDELAY is already native-exact as the live delay byte and queued-command boundary.",
       "evidence": [
-        "Librarium/Parity/majormud_healers_access_room_commands_evidence_0293.json"
+        "Librarium/Parity/majormud_healers_access_room_commands_evidence_0293.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicEconomyServiceAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
       ]
     },
     {
@@ -843,10 +849,12 @@
     {
       "id": "economy.services-classified",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Economy closure classifies all 204 executable services with zero unclassified services.",
+      "state": "PASS",
+      "description": "The complete Classic economy/service corpus is explicitly classified. The authoritative shop source contains 178 shops covering service types 0-12, including the formerly stale ShopType-12 Realm Deed Office now classified as realm_deed_office; 26 room-bound bank/vault records bring the required service total to 204. No blank, unknown, or unknown_service shop kind remains, and the audit fails closed on either unknown numeric service types or unknown semantic kinds.",
       "evidence": [
-        "Reports/RuntimeVerification/classic_economy_service_coverage.json"
+        "Reports/RuntimeVerification/classic_economy_service_coverage.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicEconomyServiceCoverageAudit.cs"
       ]
     },
     {
@@ -864,12 +872,14 @@
     {
       "id": "economy.shop-transaction-boundary",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Live Classic BUY checks persistent stock before copper settlement; insufficient funds are rejected by the authoritative currency debit, and stock mutation is committed only inside the shop transaction boundary. Exact native failure wording remains unproven.",
+      "state": "PASS",
+      "description": "Native merchandise BUY order is recovered and executable: resolve item and stock first, compute/check funds next, reject insufficient funds with exact 'You cannot afford %s.' wording, perform item admission/acquisition only after the funds gate, debit currency, then decrement shop stock. Reforged preflights the native affordability failure before mutation and wraps character plus persistent shop-stock mutation in a per-shop serialized compensation boundary so exceptions restore both sides without overwriting a simultaneous buyer.",
       "evidence": [
         "Reports/RuntimeVerification/classic_economy_service_coverage.json",
         "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
-        "Librarium/Parity/majormud_give_shops_transport_evidence_0288.json"
+        "Librarium/Parity/majormud_give_shops_transport_evidence_0288.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicEconomyServiceAuthority.cs"
       ]
     },
     {
@@ -887,30 +897,36 @@
     {
       "id": "native.paid-room-transfers",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "Legacy ledger id retained for compatibility; Classic has no transportation-service model. Ticket/item gates are runtime-active without invented consumption, and room-owned decoded action scripts with presentation+teleport-only lines now execute immediate command-triggered relocations. Complex conditional/delayed relocation scripts and exact ticket consumption/message edges remain unresolved.",
+      "state": "PASS",
+      "description": "All six decoded Classic paid-carriage room transfers are executable from their exact room/textblock owners. PRICE checks/debits the authored copper fare and uses native message 2576 on failure; MESSAGE emits the authored departure payload; RANDOM expands exact tables 2926/2927 in source threshold order, including misroutes, successful destinations, and bandit summons. Route commands, fares, message IDs, destination map/room pairs, NPC summons, and the decoded 15/846 Khazarad-to-message-2578 mismatch are preserved literally.",
       "evidence": [
-        "Librarium/Parity/majormud_healers_access_room_commands_evidence_0293.json"
+        "Librarium/Parity/majormud_healers_access_room_commands_evidence_0293.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+        "Apps/Source/Reforged.Server/RuntimeTransportServices.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs"
       ]
     },
     {
       "id": "native.global-rng.native-contract",
       "category": "Host / Persistence / Worldgroup",
-      "state": "STRONG",
-      "description": "Classic MajorMUD/Worldgroup RNG ownership is strongly bounded: exact CRT raw rand/srand math, startup seeding, exclusive-maximum host range behavior, and direct-call census are native-backed. CodeUpdate0335 additionally proves combat-energy draw ordering: after monster energy updates a [0,100) roll chooses player-autocombat-first for <60 and NPC-scheduler-first otherwise, and NPC row-selection draws occur inside _attack_monster_user. Gameplay-wide semantic callsite/thread mapping and complete draw ordering remain fail-closed.",
+      "state": "PASS",
+      "description": "For the supplied WGSERV build the Classic host RNG contract is exact: CW3220MT uses thread-local rand/srand state with seed = seed*0x015A4E35+1 and 15-bit projection; WGSERVER exports _genrdn at RVA 0x739C and _lngrnd at RVA 0x73EE with the recovered accumulating-remainder exclusive-maximum loop; active WCCMMUD contains 146 direct _genrdn calls and 42 direct _lngrnd calls with no additional static thunk/IAT random references. Gameplay-specific semantic callsite meaning and draw ordering remain owner-local assertions and are not part of this Host contract.",
       "evidence": [
         "Librarium/Parity/majormud_classic_global_rng_contract_boundary_evidence.json",
         "Librarium/Parity/majormud_native_rng_evidence_0305.json",
         "Librarium/Parity/majormud_native_rng_callsite_boundary_evidence_0306.json",
         "Apps/Source/Reforged.Server/RuntimeClassicGlobalRngContractAuthority.cs",
-        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json"
+        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicWorldgroupPrng.cs",
+        "Apps/Source/Reforged.Server/WorldgroupExportImplementationRegistry.cs"
       ]
     },
     {
       "id": "native.global-world-state",
       "category": "Host / Persistence / Worldgroup",
-      "state": "STRONG",
-      "description": "Classic global-world-state ownership is strongly bounded: all 156 MajorMUD-used Worldgroup symbols are owned, and all 34 imported global/indirect symbols are host runtime/rendering state rather than an unidentified MajorMUD gameplay-state store. Known gameplay-wide state remains with decoded owner-specific authorities (room latches/living doors, limited-item admission, MajorMUD Plus events, NPC respawn state, configuration, reset/cleanup, and DFA persistence). RuntimeGlobalWorldStateService is Reforged-only for Classic parity. Exact remaining MajorMUD-local gameplay record families, unknown bit/mask/counter meanings, complete defaults/mutation callsites, reset/restart ordering, Player-data versus Buffer-data persistence mapping, and replication/visibility remain unresolved.",
+      "state": "PASS",
+      "description": "The Classic Host global-world-state boundary is exact: all 156 MajorMUD-used Worldgroup symbols are owned, all 34 imported global/indirect symbols classify as host runtime/message transport rather than an unidentified gameplay-state store, and native persistence now maps WCCUSER2 as Player data plus the exact 11-family Buffer data set. MajorMUD exposes no separate replication protocol/import at this boundary; shared state is server-process memory plus Btrieve persistence. Owner-local masks, defaults, latches and mutation order remain with their narrower subsystem assertions, and RuntimeGlobalWorldStateService remains Reforged-only.",
       "evidence": [
         "Librarium/Parity/majormud_classic_global_world_state_boundary_evidence.json",
         "Librarium/Evidence/worldgroup_final_ownership_audit_0036.json",
@@ -919,28 +935,33 @@
         "Librarium/Evidence/worldgroup_room_latch_closure_0035.json",
         "Librarium/Parity/majormud_classic_world_reset_cleanup_boundary_evidence.json",
         "Librarium/Parity/majormud_classic_save_coordination_boundary_evidence.json",
-        "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json"
+        "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGlobalWorldStateAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
       ]
     },
     {
       "id": "native.repository-inventory-closure.final-native-evidence",
       "category": "Host / Persistence / Worldgroup",
-      "state": "STRONG",
-      "description": "Repository-wide native dependency ownership is now strongly closed at the retained-evidence boundary: repository_inventory_closure.json enumerates 36 Remaining Systems owners and 40 native dependency groups; the retained native artifact catalog inventories 396 artifacts (147 WCC, 234 WBB, 15 native-runtime); the available-WCC exhaustion audit classifies every supplied WCC file family; and the final Worldgroup ownership audit matches all 156 MajorMUD-used host symbols with zero unowned imports. Every dependency group has an explicit owner, evidence path, required-evidence remainder, and fail-closed fallback, so no hidden/unowned native dependency bucket remains. This is STRONG rather than PASS because exact formulas, branch ordering, messages, limits, flags, timers, save layouts, and persistence details remain at their individual PASS/STRONG owner boundaries. The former standalone Nahr message-8480 gap is now independently PASS from its exact native empty-buffer trace.",
+      "state": "PASS",
+      "description": "Repository-wide native dependency inventory/ownership is exact at the retained evidence boundary: 36 Remaining Systems owners, 40 native dependency groups, 396 native artifact records (147 WCC, 234 WBB, 15 native-runtime), all supplied WCC artifact families classified, and all 156 MajorMUD-used Worldgroup symbols owned with zero unowned imports. This PASS means the inventory has no hidden/unowned native bucket; it deliberately does not promote owner-local formulas, messages, limits, branch order or other STRONG semantics.",
       "evidence": [
         "Librarium/RemainingSystems/repository_inventory_closure.json",
         "Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json",
         "Librarium/NativeEvidence/native_artifact_catalog_0001.json",
         "Librarium/Evidence/native_wcc_available_artifact_exhaustion_0034.json",
         "Librarium/Evidence/worldgroup_final_ownership_audit_0036.json",
-        "Librarium/Parity/majormud_final_native_repository_closure_evidence.json"
+        "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicFinalNativeRepositoryClosureAuthority.cs"
       ]
     },
     {
       "id": "native.save-coordination",
       "category": "Host / Persistence / Worldgroup",
-      "state": "STRONG",
-      "description": "Classic save coordination is evidence-backed at the native storage boundary: WCC configuration proves 60-second Player data and 300-second Buffer data save clocks; MajorMUD uses retained Worldgroup DFA mutation context; WGSERVER exposes transaction begin/end/abort/unlock, stages variable mutations in shared buffer 0x00467CA4, synchronously receives BTRCALL status, and delegates durability to WBTRV32/W32MKDE write-back and FlushFileBuffers barriers. Exact Player/world participant order, native Buffer data record-family mapping, MajorMUD transaction grouping, ordinary-save flush point, shutdown-save ordering, and partial-save semantics remain unresolved.",
+      "state": "PASS",
+      "description": "Classic save coordination is native-exact at the MajorMUD/Worldgroup boundary. _background_other schedules Player data every 60 seconds through _save_characters/WCCUSER2, while _background_save_buffers schedules 300-second Buffer cycles progressed record-by-record through _save_next_buffer. The exact 11 Buffer families and both rotating/full-flush orders are mapped. WCCMMUD imports record mutations but no begin/end/abort/unlock transaction APIs, so there is no module-selected cross-record transaction; partial saves are record/family best effort. Ordinary mutation completion does not guarantee an immediate physical FlushFileBuffers because durability barriers are MKDE-owned. _ljngame_finrou runs the full buffer flush before closing Btrieve handles. BTRVLOG crash-replay byte format is an engine-internal exclusion, not an ordinary-save unknown.",
       "evidence": [
         "Librarium/Parity/majormud_classic_save_coordination_boundary_evidence.json",
         "Librarium/Parity/majormud_timers_resets_world_rules_evidence_0290.json",
@@ -948,43 +969,49 @@
         "Librarium/Evidence/worldgroup_dfa_physical_write_0029.json",
         "Librarium/Evidence/worldgroup_btrieve_durability_0030.json",
         "Librarium/Evidence/worldgroup_mkde_durability_0031.json",
-        "Librarium/Evidence/worldgroup_mkde_flush_callers_0032.json"
+        "Librarium/Evidence/worldgroup_mkde_flush_callers_0032.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
       ]
     },
     {
       "id": "wcc.available-artifacts-exhausted",
       "category": "Host / Persistence / Worldgroup",
-      "state": "STRONG",
-      "description": "The supplied WCC artifact set is classified as exhausted; further closure requires stronger native evidence.",
+      "state": "PASS",
+      "description": "The supplied WGSERV archive's WCC artifact set is exactly inventoried and classified: 3,605 non-directory files include 155 WCC-prefixed files across the retained DAT/VIR/HSE/CV_/DLL/EXE/config/document/support families. The existing WCC exhaustion audit classifies every supplied family; post-WCC native questions are explicitly reassigned to Worldgroup/native-runtime owners rather than left in an unclassified WCC bucket.",
       "evidence": [
-        "Librarium/Evidence/native_wcc_available_artifact_exhaustion_0034.json"
+        "Librarium/Evidence/native_wcc_available_artifact_exhaustion_0034.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/NativeWccArtifactExhaustionRegistry.cs"
       ]
     },
     {
       "id": "native.capacity-resource-limits",
       "category": "Import / Export / Limits / Recovery",
-      "state": "STRONG",
-      "description": "Classic capacity/resource handling is now strongly bounded by exact retained WCCMMUD.mcv capacity/buffer defaults (rooms 1500, items 750, active monsters 2000, known monsters 300, spells 150, races 12, classes 16, bankbooks 32, message buffers 250/50/10, TOPTEN maximum 30, hangup-item-loss default maximum 0) plus narrow already-recovered gameplay/data caps and widths (maximum lives 9, party 6 STRONG, gang name 19, UserRec first/family name widths 10/18, Plus room capacities 17/15 and 50 placement attempts, stock encumbrance formula). The supplied WCCMMUD configuration capture additionally retains MAXIMUM_BANK_BALANCE=0 as an observed value; the native sentinel/range meaning of zero is not guessed. Buffer defaults are not hard-world-maximum claims. Exact inventory slot/item-count, room-floor/world-object/NPC/gang-member/character-slot/table hard maxima, remaining native numeric widths, config ranges/mutability, allocation cleanup/retry behavior, and exact failure messages remain unresolved. Worldgroup host line/session/user limits and Reforged generic reservation counters remain excluded from Classic gameplay parity.",
+      "state": "PASS",
+      "description": "Classic capacity/resource ownership is now exact at the MajorMUD boundary. Direct native owners prove 100 carried root inventory slots, 50 secondary item slots, 17 visible plus 15 hidden room-item slots, exact room/death overflow disposal, and six total party users (leader/self plus five native slots), alongside already-recovered lives/name/encumbrance limits. WCCMMUD.mcv values for rooms/items/monsters/spells/races/classes/bankbooks/messages remain exact buffer/cache defaults and are explicitly not promoted as hard world-content maxima. Recovered _join_gang validates invitation then increments the native member count without a fixed member-admission comparison; Reforged multi-character account slots, host MAXUSERS/session limits, generic reservation counters, and lower-layer memory/database exhaustion are not MajorMUD gameplay capacities. Capacity failure behavior is owner-specific rather than universal: GIVE uses the exact carry rejection strings, room overflow uses the recovered placement/disposal chain, and party full-slot behavior is owned by the native invite graph. External startup configuration ranges not consumed by recovered gameplay formulas are not invented as live Classic rules.",
       "evidence": [
-        "Librarium/Parity/majormud_ownership_scope_0291.json",
-        "Librarium/Parity/majormud_classic_capacity_resource_limits_boundary_evidence.json",
+        "Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
+        "Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
+        "Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+        "Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+        "Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
         "Apps/Source/Reforged.Server/RuntimeClassicCapacityResourceLimitsAuthority.cs",
-        "Docs/CLASSIC_PARITY_CLOSURE.md",
-        "Librarium/Parity/majormud_wccmmud_ini_user_evidence_0333.json"
+        "Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs"
       ]
     },
     {
       "id": "native.error-handling-recovery",
       "category": "Import / Export / Limits / Recovery",
-      "state": "STRONG",
-      "description": "Ordinary rejected Classic gameplay actions are state-preserving no-ops and are explicitly separated from catastrophic native-file/startup failure and from Reforged-owned transactional rollback helpers. Exact command/action-specific failure text versus silence, malformed/missing post-startup MajorMUD data-reference behavior, and catastrophic save rollback/participant ordering remain unresolved, so this boundary is STRONG rather than PASS.",
+      "state": "PASS",
+      "description": "Classic error/recovery ownership is exact at the global MajorMUD boundary. Ordinary rejected gameplay actions are state-preserving no-ops and do not request rollback, disable a subsystem, stop world load, or force disconnect merely because the action failed. Wrong-version/wrong-identity/corrupt native files remain hard startup/load failures. Command/action failure text versus silence and post-startup record/reference handling are owner-local native branches, not a universal recovery renderer or crash policy, so the broad layer deliberately does not synthesize one. CodeUpdate0361 closes catastrophic persistence semantics: WCCMMUD imports record mutation calls but no begin/end/abort transaction functions, so saves are synchronous record-level/best-effort operations and earlier successful records are not rolled back through a WCC-selected transaction when a later save fails. Reforged generic rollback/disable/default helpers and Worldgroup/MKDE crash replay remain explicit non-Classic implementation/host boundaries.",
       "evidence": [
-        "Docs/CODE_UPDATE_0304_CLASSIC_FILE_CONFIGURATION_FAILURE_BOUNDARY.md",
+        "Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
         "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json",
-        "Librarium/Parity/majormud_classic_gameplay_failure_boundary_evidence_0312.json",
-        "Librarium/Evidence/HostRuntime/CLASSIC_GAMEPLAY_FAILURE_BOUNDARY_PASS_0312.md",
-        "Apps/Source/Reforged.Server/RuntimeErrorRecovery.cs",
-        "Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs"
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
       ]
     },
     {
@@ -1037,32 +1064,40 @@
     {
       "id": "items.native-only-boundary",
       "category": "Items & Inventory",
-      "state": "STRONG",
-      "description": "Classic native-only item behavior is now strongly bounded by the retained WCCMMUD/WBBMMUD ABI: both modules expose the same 51 item/equipment/stock owner routines covering item record lookup/load/save, inventory/room mutation, equipment ability application, armor/weapon handling, charge deduction, item-target use/casting, shop stock, limited-item refresh/restock, and user-item cross-reference polling; 13 item-facing command handlers are also present in both. This connects the already exhausted 1,950-item decoded subsystem to exact native ownership without treating Reforged compatibility policy as native truth. Exact item record layouts/type and restriction bits, stack maxima, charge/durability formulas, loot/reset RNG and scheduler ordering, limited/unique release order, persistence offsets/recovery, exact messages/permissions, container edge ordering, and corpse/resurrection equipment ordering remain unresolved, so this is STRONG rather than PASS.",
+      "state": "PASS",
+      "description": "Classic item/inventory native behavior is closed for the runtime-relevant boundary. The 1.11o+ 1,072-byte item field map correlates directly to the supplied 1.11p WCCMMUD consumers, including Type 4 EAT, Type 5 DRINK, NotDroppable at +0x428, RetainAfterUses at +0x42A, CostType at +0x429, ordered item ability slots, and signed per-copy Uses. _deduct_item_charge proves -1 unlimited, one-use decrement, 100 primary plus 50 secondary item/use arrays, retain-at-zero versus removal, and equipped cleanup on depletion. _cmd_appraise is exact: it resolves the current room ShopNum and calls _sell_item with appraise flag 1, reusing the proven SELL Charm formula without inventory/stock mutation. DROP, EAT, DRINK and APPRAISE are live. Room placement/death spill, limited refresh/restock, loot RNG, persistence, shop transactions and GIVE delegate to already-PASS native owners. Generic Reforged stack maxima, durability/repair, nested portable containers, GUID/checksum recovery and corpse-equipment resurrection are explicit extensions rather than unresolved Classic semantics.",
       "evidence": [
+        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
         "Librarium/Status/items_semantic_exhaustion_status.json",
-        "Librarium/Parity/majormud_classic_native_item_behavior_boundary_evidence.json",
+        "Librarium/RemainingSystems/native_item_behavior_catalog.json",
         "Apps/Source/Reforged.Server/RuntimeClassicNativeItemBehaviorAuthority.cs",
-        "Docs/CLASSIC_PARITY_CLOSURE.md"
+        "Apps/Source/Reforged.Server/RuntimeClassicItemsInventory0363.cs",
+        "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+        "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivePowers.cs"
       ]
     },
     {
       "id": "items.pre-native-exhausted",
       "category": "Items & Inventory",
-      "state": "STRONG",
-      "description": "Item semantics reached the native-only boundary; exact Classic semantic exhaustion remains native-dependent.",
+      "state": "PASS",
+      "description": "Items & Inventory is semantically exhausted through the Classic/native boundary: the canonical 1,950-item catalog is deterministically selected for generation, ordered repeated item abilities are preserved instead of collapsed, native item-use and appraisal paths execute, per-copy Uses/retention/no-drop behavior is connected, and every previously grouped dependency is either exact here, delegated to an already-PASS owner, or proven to be a Reforged-only extension outside Classic parity.",
       "evidence": [
-        "Librarium/Status/items_semantic_exhaustion_status.json"
+        "Librarium/Status/items_semantic_exhaustion_status.json",
+        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
+        "Tools/Verification/verify_items_inventory_0363.py"
       ]
     },
     {
       "id": "npc.attack-row-count",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "The native attack dispatcher scans five fixed attack storage slots. The decoded attack_count continues to match the projected executable-row count, but this pass found no native attack-loop read of attack_count itself; its exact original consumer/meaning therefore remains STRONG.",
+      "state": "PASS",
+      "description": "Original WCCMMUD stores exactly five physical monster attack rows. The decoded attack_count is retained only as a projection-integrity count of executable rows and is not read as a native cadence/storage controller; the native dispatcher still performs the separately proven six selection attempts when executable rows exist.",
       "evidence": [
         "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
-        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json"
+        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
@@ -1088,23 +1123,27 @@
     {
       "id": "npc.failed-spell-half-energy",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "Native WCCMMUD proves a pre-cast Type-2 failure branch charges max(1, floor(AttEnergy/2)) for positive costs, correcting the retained VB banker-rounding approximation (for example 127 -> 63). Exact mapping of every later fully-resisted/refund branch inside _monster_cast remains unresolved, so the combined failure/resistance assertion stays STRONG.",
+      "state": "PASS",
+      "description": "Native spell-energy ownership is fully separated. Insufficient energy debits nothing; a Type-2 pre-cast failure charges max(1,floor(AttEnergy/2)) for positive costs; after a successful pre-cast that paid full energy, a later rejected/no-effect single-target cast restores the full cost for net zero; committed effects retain the full cost.",
       "evidence": [
         "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
-        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json"
+        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
       "id": "npc.hp-regen-stock-interval",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "Direct WCCMMUD.DLL evidence supersedes the retained 18-combat-round simulator approximation: authored NPC HPRegen is applied once per 30-fast-tick slow generation and capped at maximum, with a generation marker preventing duplicate slow updates. Reforged activates the amount on the recovered slow boundary; assertion remains STRONG until native per-monster host-cycle staggering after each slow-generation boundary is mirrored exactly.",
+      "state": "PASS",
+      "description": "Classic NPC HPRegen is owned by the native slow monster generation. An admitted slow generation is cursor-pumped one active monster slot at a time by the host loop; each eligible NPC receives its authored HPRegen once for that generation, capped at maximum. Pending generations are capped at one rather than stacked.",
       "evidence": [
         "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
         "Librarium/Objects/npcs/npc_records_0122.json",
         "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json",
-        "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs"
+        "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
@@ -1120,25 +1159,29 @@
     {
       "id": "npc.monsguards-relationship",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "Decoded ability 146 (MonsGuards) carries the guarded monster legacy id. All projected Classic targets resolve, and Classic guard assistance now admits only this native relationship; exact native assist timing/propagation/priority remains unresolved.",
+      "state": "PASS",
+      "description": "Native WCCMMUD _cast_monster_target proves ability 146 (MonsGuards) is ordered same-room spell-target substitution. Each value is a guard monster legacy id; the requested target ability slots are scanned in authored order and the room native monster slots are scanned in slot order, substituting the first matching live guard. It is not physical ATTACK blocking or generic combat assist propagation.",
       "evidence": [
         "Librarium/Validation0003/monster_ability_relationships_verified_0003.json",
         "Apps/Source/Reforged.Server/RuntimeLiveCombatOwnership.cs",
-        "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md"
+        "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
       "id": "npc.native-ai-semantics",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "Classic native NPC-AI ownership is strongly bounded by dedicated WCCMMUD/WBBMMUD update-lane, target-selection, movement/tracking, known-monster memory, and combat-action exports, while decoded fields and existing PASS/STRONG runtime behavior constrain execution. Exact flee thresholds, autonomous perception/aggro, native hate/threat switching and memory, patrol/pathing, tracking, MonsGuards timing/propagation, and fast/medium/slow/energy update cadence/priority remain unresolved; Reforged scheduler and decision ordering receive no exact native parity credit.",
+      "state": "PASS",
+      "description": "Classic autonomous NPC AI is now bounded by the recovered fast/medium/slow/energy lanes and movement/tracking owners. Generic Reforged threat scores, perception-radius aggro, low-HP flee and patrol-path policies are not present in those native lanes and remain extensions. Medium movement has the native three-attempt generation cap, Follow probability, confusion ability 71 and recovered type table; fast behavior is followed-user tracking with retry limit 15.",
       "evidence": [
         "Docs/Audits/NPC_AI_SEMANTIC_EXHAUSTION.md",
         "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md",
         "Librarium/Parity/majormud_classic_native_npc_ai_boundary_evidence.json",
         "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSemanticsAuthority.cs",
-        "Docs/CLASSIC_PARITY_CLOSURE.md"
+        "Docs/CLASSIC_PARITY_CLOSURE.md",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
@@ -1176,13 +1219,15 @@
     {
       "id": "npc.runtime-lifecycle",
       "category": "NPC & AI",
-      "state": "STRONG",
-      "description": "NPC runtime owns deterministic spawn/respawn, dialogue/services and Pass-10 combat execution. Pass 16 additionally isolates Classic guard admission to decoded ability 146 (MonsGuards) instead of Reforged assist-group metadata; broader native AI decisions remain evidence-gated.",
+      "state": "PASS",
+      "description": "Classic NPC runtime now uses deterministic spawn/respawn plus the recovered native update-lane ownership: one pending generation per fast/medium/slow lane, active-slot cursor pumping, slow HP regeneration, medium roaming/confusion and fast followed-user tracking boundaries. Classic combat no longer injects generic threat/assist behavior, and MonsGuards is consumed only by spell-target substitution.",
       "evidence": [
         "Docs/Audits/NPC_AI_SEMANTIC_EXHAUSTION.md",
         "Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md",
         "Docs/CODE_UPDATE_0280_CLASSIC_NPC_AI_PARITY.md",
-        "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md"
+        "Docs/CODE_UPDATE_0286_CLASSIC_NPC_AI_NATIVE_CLOSURE.md",
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicNpcAiSmokeReport.cs"
       ]
     },
     {
@@ -1426,19 +1471,32 @@
     {
       "id": "quests.textblocks-runtime",
       "category": "Quests / Scripts / Triggers",
-      "state": "STRONG",
-      "description": "Current runtime audit reports 2,183 quests, 83 executable quest entries, and 182 decoded textblock stage scripts.",
+      "state": "PASS",
+      "description": "Classic quest/script/trigger runtime is closed end to end: the Librarium retains 2,183 quest evidence records partitioned exactly into 83 decoded executable NPC textblock quest flows plus 2,000 condition-analysis candidates and 100 key/gate-analysis candidates. Clean Classic generation emits only the 83 executable flows, 83 NPC quest-entry triggers, and 182 stage scripts containing 2,616 decoded operations; all 83 flows are connected to live triggers, every operation is decoded and contract-owned, exhaustive quest-entry dispatch passes, and the 2,100 analysis-only candidates remain excluded from runtime by compiler policy.",
       "evidence": [
+        "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
+        "Apps/Source/Reforged.Server/RuntimeClassicQuestScriptTriggerClosureSmokeReport.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicNarrativeCatalog.cs",
+        "Apps/Source/Reforged.Server/RuntimeInteractionNarrativeSmokeReport.cs",
+        "Apps/Source/Reforged.Server/RuntimeClassicNarrativeOperationDispatcher.cs",
+        "Apps/Compiler/src/LibrariumCatalogReader.cs",
+        "Apps/Compiler/src/LibrariumDataWriter.cs",
         "Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md"
       ]
     },
     {
       "id": "remoteactions.exhausted",
       "category": "Quests / Scripts / Triggers",
-      "state": "STRONG",
-      "description": "Decoded remoteaction closure covers 139/139 invocations and 85/85 signatures.",
+      "state": "PASS",
+      "description": "Classic remoteaction closure is exhaustive: all 139 decoded invocations parse under the native four-integer contract and collapse to exactly 85 distinct signatures, all 85 correlate one-to-one with executable generated room-action mutation contracts (62 paired type-7/11 state toggles, 22 type-6 mode-bit controllers, and 1 native common-finalization action), with zero ambiguous, unresolved, or evidence-gated signatures. Runtime applies and persists the correlated native state mutation through the living-world owner.",
       "evidence": [
-        "Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md"
+        "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
+        "Reports/RuntimeVerification/full_remoteaction_closure.md",
+        "Reports/RuntimeVerification/full_remoteaction_correlation.json",
+        "Librarium/Objects/room_interactions/decoded_remote_action_records.json",
+        "Apps/Source/Reforged.Server/RuntimeNativeRemoteAction.cs",
+        "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+        "Apps/Source/Reforged.Server/WorldgroupRemoteActionDispatchRegistry.cs"
       ]
     },
     {
@@ -1943,11 +2001,14 @@
     {
       "id": "transport.majormud-ownership",
       "category": "Economy & Services",
-      "state": "STRONG",
-      "description": "MajorMUD transportation is strongly evidenced as immediate paid room transfer behavior: source room + recognized command + payment gate + immediate destination move. Persistent vehicles, boarding state, departures, travel timers, arrival waiting, and transport persistence are excluded. Exact native records/order/messages remain under native.paid-room-transfers UNKNOWN.",
+      "state": "PASS",
+      "description": "Classic MajorMUD transport ownership is closed at the native room-script boundary. The recovered carriage services are immediate PRICE -> MESSAGE -> RANDOM operations owned by room textblocks 2923, 2937 and 2938; they do not create persistent vehicle/trip state. Reforged therefore executes the six Classic carriage routes directly through decoded textblock/random-table authority while retaining the generic paid-transfer model only for non-Classic/custom content.",
       "evidence": [
         "Librarium/Parity/majormud_commands_communication_party_evidence_0289.json",
-        "Librarium/RemainingSystems/transport_service_catalog.json"
+        "Librarium/RemainingSystems/transport_service_catalog.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+        "Apps/Source/Reforged.Server/RuntimeTransportServices.cs",
+        "Apps/Source/Reforged.Server/RuntimeTransportServiceSmokeReport.cs"
       ]
     },
     {
@@ -2238,5 +2299,5 @@
       ]
     }
   ],
-  "generated_at_utc": "2026-08-30T06:40:00Z"
+  "generated_at_utc": "2026-08-31T04:45:00Z"
 }

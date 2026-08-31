@@ -239,9 +239,19 @@ public sealed partial class RuntimeLiveGameplayFacade
             : ResolvePowerTarget(session, targetArguments, spell.TargetType);
         if (spell.TargetType == "12" && !IsClassicPartyHostileRoomSpellTarget(session, target))
             return "That character is not a valid hostile room-spell target.";
+        var roomNpcs = target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase) ? LivingNpcsInRoom(session) : Array.Empty<RuntimeLivingNpcState>();
         var targetNpc = target.Kind.Equals("npc", StringComparison.OrdinalIgnoreCase)
-            ? LivingNpcsInRoom(session).FirstOrDefault(npc => npc.InstanceId.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
+            ? roomNpcs.FirstOrDefault(npc => npc.InstanceId.Equals(target.Id, StringComparison.OrdinalIgnoreCase))
             : null;
+        if (targetNpc is not null && session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+        {
+            var monsGuards = RuntimeNpcProtectionAdmission.ResolveClassicSpellTarget(targetNpc, roomNpcs);
+            if (monsGuards.Redirected)
+            {
+                target = new RuntimeSpellTarget("npc", monsGuards.EffectiveTargetNpcInstanceId);
+                targetNpc = roomNpcs.First(npc => npc.InstanceId.Equals(monsGuards.EffectiveTargetNpcInstanceId, StringComparison.OrdinalIgnoreCase));
+            }
+        }
         if (!IsDecodedSpellTargetAdmitted(spell, target, targetNpc))
         {
             if (targetNpc is not null && IsDecodedAbilityNegated(spell, ReadNegatedAbilityIds(targetNpc.Metadata)))
@@ -376,78 +386,37 @@ public sealed partial class RuntimeLiveGameplayFacade
             .Where(item =>
             {
                 var definition = itemCatalog.Require(item.CanonicalItemId);
-                return definition.MaximumUses > 0 && definition.EquipmentAbilityModifiers.TryGetValue(43, out var spellId) && spellId > 0;
+                return FindClassicNoTargetCastAbility(definition) is not null
+                    || definition.OrderedAbilities.Any(entry => entry.AbilityId == 181 && entry.Value > 0);
             })
             .Where(item => item.InstanceId.Equals(query.Trim(), StringComparison.OrdinalIgnoreCase) || itemCatalog.Matches(item.CanonicalItemId, query))
-            .Take(2).ToArray();
+            .Take(2)
+            .ToArray();
         if (matches.Length == 0) return false;
         if (matches.Length > 1) throw new InvalidOperationException($"Multiple active spell items match '{query}'.");
 
         var selected = matches[0];
         var definition = itemCatalog.Require(selected.CanonicalItemId);
-        if (selected.Charges <= 0) throw new InvalidOperationException($"{definition.Name} has no uses remaining.");
-        if (definition.EquipmentAbilityModifiers.GetValueOrDefault(181) > 0)
+        if (definition.OrderedAbilities.Any(entry => entry.AbilityId == 181 && entry.Value > 0))
         {
             result = ActivateGangHouseDeed(character, state, itemCatalog, engine, selected, definition);
             return true;
         }
-        var legacySpellId = definition.EquipmentAbilityModifiers[43];
-        var spell = _liveSpellCatalog!.Spells.SingleOrDefault(candidate => candidate.LegacyId.Equals(legacySpellId.ToString(), StringComparison.OrdinalIgnoreCase))
-            ?? throw new InvalidDataException($"ITEM_CAST_SPELL_UNRESOLVED:{selected.CanonicalItemId}:{legacySpellId}");
-        if (!spell.TargetType.Equals("1", StringComparison.OrdinalIgnoreCase) && !spell.TargetType.Equals("self", StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException($"ITEM_CAST_NON_SELF_TARGET_UNSUPPORTED:{selected.CanonicalItemId}:{spell.Id}");
 
-        var now = DateTimeOffset.UtcNow;
-        var target = new RuntimeSpellTarget("character", character.CharacterId);
-        _liveSpellEngine!.SetResources(character.CharacterId, new RuntimeSpellResources(character.Mana, ReadEnergy(character)));
-        var execution = new RuntimeSpellExecutionEngine(_liveSpellCatalog, _liveSpellEngine,
-            new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
-        var powerBefore = _liveSpellEngine.Snapshot();
-        try
-        {
-            var temporarilyLearned = !_liveSpellEngine.Knows(character.CharacterId, spell.Id);
-            if (temporarilyLearned)
-                _liveSpellEngine.Learn(character.CharacterId, spell.Id,
-                    new Dictionary<string, string> { ["source"] = $"decoded-item-cast:{selected.CanonicalItemId}" });
-            var cast = execution.Cast(new RuntimeSpellCastRequest(character.CharacterId, spell.Id, target, now));
-            if (!cast.Succeeded) throw new InvalidOperationException(cast.FailureMessage ?? cast.FailureCode ?? "The item spell failed.");
-            if (temporarilyLearned) _liveSpellEngine.Forget(character.CharacterId, spell.Id);
-            _ = NormalizeDecodedPlayerStatusCast(session, cast.Cast.Effect, now);
-            var recoveredWorldAction = ResolveRecoveredItemSpellWorldAction(session, selected, spell);
-            var spent = engine.SpendCharges(selected.InstanceId, character.CharacterId);
-            var effects = _liveSpellEngine.EffectsFor(character.CharacterId);
-            var synchronized = RuntimeCharacterStatusEffectResolver.Synchronize(character, effects, now,
-                $"runtime.item_cast:{selected.CanonicalItemId}:{spell.Id}");
-            synchronized = RuntimeClassicStatusProjection.Apply(synchronized, effects, ClassicLiveStatusCatalog(session), now,
-                $"runtime.item_cast:{selected.CanonicalItemId}:{spell.Id}");
-            synchronized = synchronized with
-            {
-                ItemState = engine.Snapshot(state.Gold, state.ActiveItemState),
-                UpdatedAtUtc = now
-            };
-            _characters.SaveCharacter(synchronized, $"use-decoded-spell-item:{selected.CanonicalItemId}");
-            PersistLivePowers(character.WorldId);
-            if (recoveredWorldAction.Handled && recoveredWorldAction.BeforeMessageId > 0)
-                BroadcastRecoveredNativeSecondaryMessage(session, recoveredWorldAction.BeforeMessageId);
-            if (recoveredWorldAction.Destination is not null)
-            {
-                session.MoveToWorld(session.World, recoveredWorldAction.Destination,
-                    $"decoded-item-spell:{selected.CanonicalItemId}:{spell.Id}:textblock.1421");
-                _characters.SaveSession(session);
-                AdmitClassicRoomEntryNpcRespawns(session);
-            }
-            if (recoveredWorldAction.Handled && recoveredWorldAction.AfterMessageId > 0)
-                BroadcastRecoveredNativeSecondaryMessage(session, recoveredWorldAction.AfterMessageId);
-            result = recoveredWorldAction.Handled
-                ? recoveredWorldAction.Output
-                : $"You use {definition.Name}. {spell.Name} takes effect. Uses remaining: {spent.Charges}.";
-            return true;
-        }
-        catch
-        {
-            _liveSpellEngine.RestoreSnapshot(powerBefore);
-            throw;
-        }
+        var castAbility = FindClassicNoTargetCastAbility(definition);
+        if (castAbility is null) return false;
+
+        var cast = ExecuteClassicFirstNoTargetItemSpellUse(
+            session,
+            character,
+            state,
+            itemCatalog,
+            engine,
+            selected,
+            definition,
+            castAbility);
+        result = cast.Output;
+        return cast.Succeeded;
     }
 
     private RecoveredItemSpellWorldAction ResolveRecoveredItemSpellWorldAction(
@@ -502,7 +471,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             _ = itemCatalog.Require(itemId);
             engine.Create(itemId, RuntimeItemLocations.Character, character.CharacterId, ownerId: character.CharacterId);
         }
-        var spent = engine.SpendCharges(deed.InstanceId, character.CharacterId);
+        var spent = engine.SpendClassicUse(deed.InstanceId, character.CharacterId);
         var updated = character with
         {
             ItemState = engine.Snapshot(state.Gold, state.ActiveItemState),
@@ -519,7 +488,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             throw;
         }
         var message = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot).RequireMessage(house.ActivationMessageId);
-        return $"{message}{Environment.NewLine}{gang.Name} now owns {house.Name}. Four decoded house items were granted. Uses remaining: {spent.Charges}.";
+        return $"{message}{Environment.NewLine}{gang.Name} now owns {house.Name}. Four decoded house items were granted. Uses remaining: {spent.RemainingUses}.";
     }
 
     private bool TryUseSpellLearningItem(RuntimeCharacterRecord character, string query, out string result)
@@ -557,9 +526,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         foreach (var relationship in missing)
             updated = _liveLearningCatalog.GrantSpell(updated, relationship.SpellId, sourceId);
 
-        engine.Remove(selected.InstanceId);
-        if (selected.StackQuantity > 1)
-            engine.Add(selected with { StackQuantity = selected.StackQuantity - 1 });
+        _ = engine.SpendClassicUse(selected.InstanceId, character.CharacterId);
         updated = updated with
         {
             ItemState = engine.Snapshot(state.Gold, state.ActiveItemState),

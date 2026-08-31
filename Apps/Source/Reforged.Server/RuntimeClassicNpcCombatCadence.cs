@@ -3,8 +3,8 @@ namespace Reforged.Server;
 /// <summary>
 /// Recovered Classic NPC combat cadence. CodeUpdate0335 ties the attack loop, energy refresh,
 /// direct-spell roll/cost fields and physical early-end branch to the original WCCMMUD.DLL.
-/// These rules remain separate from broader NPC perception/aggro/assist/flee semantics, which
-/// are still evidence-gated.
+/// CodeUpdate0364 completes the broader native NPC-AI ownership boundary and keeps generic
+/// Reforged perception/threat/flee/patrol policies isolated from Classic behavior.
 /// </summary>
 public static class RuntimeClassicNpcCombatCadence
 {
@@ -23,12 +23,15 @@ public static class RuntimeClassicNpcCombatCadence
         ArgumentNullException.ThrowIfNull(npc);
         if (npc.AttackCount < 0)
             throw new InvalidDataException($"NPC_COMBAT_ATTACK_COUNT_NEGATIVE:{npc.Id}:{npc.AttackCount}");
-        if (npc.AttackCount == 0) return 0;
-        if (npc.Attacks.Count == 0)
-            throw new InvalidDataException($"NPC_COMBAT_ATTACK_COUNT_WITHOUT_ROWS:{npc.Id}:{npc.AttackCount}");
+        // Classic stores five physical attack rows. The generated attack_count field is a
+        // Reforged projection-integrity count of executable decoded rows, not a sixth native
+        // combat control field. Validate it, but never use it to change native storage width
+        // or the six-attempt dispatcher.
+        if (npc.Attacks.Count > 5)
+            throw new InvalidDataException($"NPC_COMBAT_ATTACK_ROWS_EXCEED_NATIVE_FIVE:{npc.Id}:{npc.Attacks.Count}");
         if (npc.Attacks.Count != npc.AttackCount)
             throw new InvalidDataException($"NPC_COMBAT_ATTACK_ROW_COUNT_MISMATCH:{npc.Id}:{npc.AttackCount}:{npc.Attacks.Count}");
-        return AttemptsPerRound;
+        return npc.Attacks.Count == 0 ? 0 : AttemptsPerRound;
     }
 
     public static int RefreshRoundEnergy(int currentEnergy, int authoredEnergy)
@@ -79,6 +82,17 @@ public static class RuntimeClassicNpcCombatCadence
         return checked(currentEnergyBeforeAttack - halfCost);
     }
 
+    public static int RefundRejectedSpellCost(int currentEnergyBeforeAttack, RuntimeNpcAttackDefinition attack)
+    {
+        if (attack.Type != 2) throw new InvalidOperationException("NPC_COMBAT_REFUND_ONLY_FOR_DIRECT_SPELL");
+        if (!CanAfford(attack, currentEnergyBeforeAttack)) throw new InvalidOperationException("NPC_COMBAT_INSUFFICIENT_ENERGY");
+        // Native _monster_cast first debits the full AttEnergy after the pre-cast success roll.
+        // Later effect-admission/no-effect exits add that exact full signed-word cost back.
+        // Net energy for those branches is therefore unchanged; this is distinct from the
+        // pre-cast failure branch above, which retains the half-cost penalty.
+        return currentEnergyBeforeAttack;
+    }
+
     public static bool ShouldEndRoundAfterPhysicalSelection(RuntimeNpcAttackDefinition attack, int remainingEnergy)
     {
         ArgumentNullException.ThrowIfNull(attack);
@@ -95,7 +109,7 @@ public static class RuntimeClassicNpcCombatCadenceAudit
     {
         var checks = new List<string>();
         var physical = new RuntimeNpcAttackDefinition(1, 1, 5, 10, 25, 50, 0, 125, 0, 0, 0);
-        var spell = new RuntimeNpcAttackDefinition(2, 2, 100, 15, 75, 376, 0, 127, 0, 0, 0);
+        var spell = new RuntimeNpcAttackDefinition(2, 2, 75, 15, 75, 376, 0, 127, 0, 0, 0);
         var catchAll = new RuntimeNpcAttackDefinition(3, 1, 8, 12, 232, 60, 0, 50, 0, 0, 0);
 
         Require(RuntimeClassicNpcCombatCadence.AttemptsPerRound == 6, "six-attempt-slots"); checks.Add("six-attempt-slots");
@@ -114,6 +128,7 @@ public static class RuntimeClassicNpcCombatCadenceAudit
         Require(RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(200, spell with { EnergyCost = 125 }) == 138, "spell-half-cost-floor-125"); checks.Add("spell-half-cost-floor-125");
         Require(RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(2, spell with { EnergyCost = 1 }) == 1, "spell-half-cost-minimum-one"); checks.Add("spell-half-cost-minimum-one");
         Require(RuntimeClassicNpcCombatCadence.DeductFailedSpellCost(2, spell with { EnergyCost = 0 }) == 2, "spell-zero-cost-remains-free"); checks.Add("spell-zero-cost-remains-free");
+        Require(RuntimeClassicNpcCombatCadence.RefundRejectedSpellCost(200, spell) == 200, "spell-effect-rejection-full-refund"); checks.Add("spell-effect-rejection-full-refund");
         Require(RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection(physical, 124), "physical-early-end"); checks.Add("physical-early-end");
         Require(!RuntimeClassicNpcCombatCadence.ShouldEndRoundAfterPhysicalSelection(spell, 0), "spell-does-not-use-physical-early-end"); checks.Add("spell-does-not-use-physical-early-end");
         return new RuntimeClassicNpcCombatCadenceAuditResult("PASS", checks);

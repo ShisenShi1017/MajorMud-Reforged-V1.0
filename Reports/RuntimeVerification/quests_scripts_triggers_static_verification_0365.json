@@ -1,0 +1,387 @@
+{
+  "update": "CodeUpdate0365",
+  "subsystem": "Quests / Scripts / Triggers",
+  "verification_mode": "source/static/data-correlation; target installer performs clean .NET generation and runtime smokes",
+  "generated_at_utc": "2026-08-31T04:45:00Z",
+  "passed": true,
+  "check_count": 65,
+  "passed_check_count": 65,
+  "failure_count": 0,
+  "checks": [
+    {
+      "name": "quest-source-record-count-2183",
+      "passed": true,
+      "actual": 2183,
+      "expected": 2183
+    },
+    {
+      "name": "quest-source-declared-count-2183",
+      "passed": true,
+      "actual": 2183,
+      "expected": 2183
+    },
+    {
+      "name": "quest-flow-source-count-83",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "condition-analysis-count-2000",
+      "passed": true,
+      "actual": 2000,
+      "expected": 2000
+    },
+    {
+      "name": "key-gate-analysis-count-100",
+      "passed": true,
+      "actual": 100,
+      "expected": 100
+    },
+    {
+      "name": "pending-analysis-count-2100",
+      "passed": true,
+      "actual": 2100,
+      "expected": 2100
+    },
+    {
+      "name": "quest-partition-exact",
+      "passed": true,
+      "actual": {
+        "flow": 83,
+        "condition": 2000,
+        "key_gate": 100
+      },
+      "expected": 2183
+    },
+    {
+      "name": "all-analysis-candidates-pending",
+      "passed": true
+    },
+    {
+      "name": "executable-flows-not-pending",
+      "passed": true
+    },
+    {
+      "name": "decoded-flow-count-83",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "decoded-flow-id-set-equals-source",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "decoded-stage-reference-count-182",
+      "passed": true,
+      "actual": 182,
+      "expected": 182
+    },
+    {
+      "name": "decoded-operation-count-2616",
+      "passed": true,
+      "actual": 2616,
+      "expected": 2616
+    },
+    {
+      "name": "all-decoded-operations-status-decoded",
+      "passed": true
+    },
+    {
+      "name": "decoded-opcode-vocabulary-count-25",
+      "passed": true,
+      "actual": 25,
+      "expected": 25
+    },
+    {
+      "name": "edge-opcode-counts-exact",
+      "passed": true,
+      "actual": {
+        "random": 2,
+        "cast": 11,
+        "summon": 3,
+        "teleport": 2,
+        "remoteaction": 1
+      },
+      "expected": {
+        "random": 2,
+        "cast": 11,
+        "summon": 3,
+        "teleport": 2,
+        "remoteaction": 1
+      }
+    },
+    {
+      "name": "authoritative-opcode-contract-present",
+      "passed": true,
+      "actual": 25
+    },
+    {
+      "name": "quest-opcodes-covered-by-contract",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "stage-script-count-182",
+      "passed": true,
+      "actual": 182,
+      "expected": 182
+    },
+    {
+      "name": "stage-script-ids-unique",
+      "passed": true,
+      "actual": 182,
+      "expected": 182
+    },
+    {
+      "name": "stage-script-operation-count-2616",
+      "passed": true,
+      "actual": 2616,
+      "expected": 2616
+    },
+    {
+      "name": "stage-script-all-ops-decoded",
+      "passed": true
+    },
+    {
+      "name": "stage-script-quest-set-equals-flows",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "trigger-source-count-367",
+      "passed": true,
+      "actual": 367,
+      "expected": 367
+    },
+    {
+      "name": "quest-entry-trigger-count-83",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "room-exit-trigger-source-count-284",
+      "passed": true,
+      "actual": 284,
+      "expected": 284
+    },
+    {
+      "name": "quest-trigger-linked-script-reference-count-182",
+      "passed": true,
+      "actual": 182,
+      "expected": 182
+    },
+    {
+      "name": "quest-trigger-script-set-exact",
+      "passed": true,
+      "actual": 182,
+      "expected": 182
+    },
+    {
+      "name": "quest-trigger-quest-set-exact",
+      "passed": true,
+      "actual": 83,
+      "expected": 83
+    },
+    {
+      "name": "quest-trigger-unique-npcs-43",
+      "passed": true,
+      "actual": 43,
+      "expected": 43
+    },
+    {
+      "name": "remoteaction-invocation-count-139",
+      "passed": true,
+      "actual": 139,
+      "expected": 139
+    },
+    {
+      "name": "remoteaction-distinct-signature-count-85",
+      "passed": true,
+      "actual": 85,
+      "expected": 85
+    },
+    {
+      "name": "remoteaction-contract-count-85",
+      "passed": true,
+      "actual": 85,
+      "expected": 85
+    },
+    {
+      "name": "remoteaction-signature-set-exact",
+      "passed": true,
+      "actual": 85,
+      "expected": 85
+    },
+    {
+      "name": "remoteaction-effect-split-62-22-1",
+      "passed": true,
+      "actual": {
+        "clear_native_state_bit": 22,
+        "toggle_paired_door_state": 62,
+        "native_common_finalization": 1
+      },
+      "expected": {
+        "toggle_paired_door_state": 62,
+        "clear_native_state_bit": 22,
+        "native_common_finalization": 1
+      }
+    },
+    {
+      "name": "remoteaction-all-active-runtime",
+      "passed": true
+    },
+    {
+      "name": "compiler-promotes-decoded-quest-flows",
+      "passed": true
+    },
+    {
+      "name": "compiler-excludes-pending-quests",
+      "passed": true
+    },
+    {
+      "name": "compiler-projects-only-live-quest-triggers",
+      "passed": true
+    },
+    {
+      "name": "compiler-projects-stage-scripts",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-missing-quest-flow",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-noncontract-opcode",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-nondecoded-operation",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-trigger-without-scripts",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-missing-script",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-scope-disagreement",
+      "passed": true
+    },
+    {
+      "name": "runtime-rejects-untriggered-flow",
+      "passed": true
+    },
+    {
+      "name": "existing-interaction-smoke-expects-83-quests",
+      "passed": true
+    },
+    {
+      "name": "existing-interaction-smoke-expects-182-stage-scripts",
+      "passed": true
+    },
+    {
+      "name": "existing-interaction-smoke-expects-83-triggers",
+      "passed": true
+    },
+    {
+      "name": "existing-interaction-smoke-exhausts-trigger-records",
+      "passed": true
+    },
+    {
+      "name": "remoteaction-runtime-expects-139-invocations",
+      "passed": true
+    },
+    {
+      "name": "remoteaction-runtime-expects-85-signatures",
+      "passed": true
+    },
+    {
+      "name": "remoteaction-runtime-requires-signature-set-equality",
+      "passed": true
+    },
+    {
+      "name": "remoteaction-runtime-requires-62-22-effect-counts",
+      "passed": true
+    },
+    {
+      "name": "0365-closure-smoke-source-present",
+      "passed": true
+    },
+    {
+      "name": "0365-program-switch-present",
+      "passed": true
+    },
+    {
+      "name": "0365-main-parity-smoke-includes-closure",
+      "passed": true
+    },
+    {
+      "name": "0365-evidence-status-pass",
+      "passed": true
+    },
+    {
+      "name": "quest-category-two-assertions-pass",
+      "passed": true,
+      "actual": [
+        [
+          "quests.textblocks-runtime",
+          "PASS"
+        ],
+        [
+          "remoteactions.exhausted",
+          "PASS"
+        ]
+      ],
+      "expected": 2
+    },
+    {
+      "name": "overall-ledger-169-pass",
+      "passed": true,
+      "actual": 169,
+      "expected": 169
+    },
+    {
+      "name": "overall-ledger-31-strong",
+      "passed": true,
+      "actual": 31,
+      "expected": 31
+    },
+    {
+      "name": "overall-ledger-zero-unknown",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "name": "scorecard-169-31-0",
+      "passed": true,
+      "actual": {
+        "PassCount": 169,
+        "StrongCount": 31,
+        "UnknownCount": 0
+      },
+      "expected": {
+        "PassCount": 169,
+        "StrongCount": 31,
+        "UnknownCount": 0
+      }
+    },
+    {
+      "name": "scorecard-strict-84.5",
+      "passed": true,
+      "actual": 84.5,
+      "expected": 84.5
+    }
+  ],
+  "failures": []
+}

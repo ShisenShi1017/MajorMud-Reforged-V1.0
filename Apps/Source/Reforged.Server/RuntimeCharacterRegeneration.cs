@@ -233,7 +233,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             // _fast_update_character. A 30-tick slow callback therefore regenerates
             // passive HP/MP before same-cycle REST/MEDITATE fast-counter work.
             if (schedulerStep.SlowDue)
+            {
                 updated = RuntimeCharacterRegenerationAuthority.ApplyPassiveTick(updated, definition, nowUtc).Character;
+                // Native slow-character update decrements the two persistent EAT/DRINK
+                // fallback words at user +0xCE/+0xD0 once per 30-fast-tick generation.
+                updated = TickClassicFoodDrinkFallbackCounters(updated);
+            }
 
             if (_focusedRegeneration.TryGetValue(character.CharacterId, out var focused))
             {
@@ -251,7 +256,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 _focusedRegeneration[character.CharacterId] = focused with { FastTickCounter = counter };
             }
 
-            if (updated.HitPoints != character.HitPoints || updated.Mana != character.Mana)
+            if (updated != character)
                 _characters.SaveCharacter(updated);
         }
     }

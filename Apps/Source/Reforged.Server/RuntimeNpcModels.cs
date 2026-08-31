@@ -165,7 +165,7 @@ public sealed class RuntimeNpcDefinition
             SeeHidden = HasAbility(element, 57),
             Animal = HasAbility(element, 78),
             NegatedAbilityIds = ReadAbilityValues(element, 124).Where(value => value > 0).Distinct().OrderBy(value => value).ToArray(),
-            GuardedNpcLegacyIds = ReadAbilityValues(element, 146).Where(value => value > 0).Distinct().OrderBy(value => value).ToArray(),
+            GuardedNpcLegacyIds = ReadAbilityValues(element, 146).Where(value => value > 0).ToArray(),
             WaterResistance = ReadAbilityValues(element, 147).Where(value => value > 0).DefaultIfEmpty(0).Max(),
             SpellImmunityLevel = ReadAbilityValues(element, 139).Where(value => value > 0).DefaultIfEmpty(0).Max(),
             MagicalRequirement = ReadAbilityValue(element, 28),

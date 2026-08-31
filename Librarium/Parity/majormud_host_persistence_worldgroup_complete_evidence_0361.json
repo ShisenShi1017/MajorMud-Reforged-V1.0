@@ -1,0 +1,242 @@
+{
+  "schema": "majormud.host-persistence-worldgroup-complete-evidence.v1",
+  "update": "CodeUpdate0361",
+  "classification": "PROVEN",
+  "scope": "Exact Host / Persistence / Worldgroup boundary for the supplied WGSERV build; owner-local gameplay formulas and crash-replay record bytes remain delegated/excluded.",
+  "native_artifacts": {
+    "wccmmud.dll": {
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+    },
+    "wgserver.exe": {
+      "sha256": "7f8d7e3675e5b754d146fad69f2a7d4cd667d87eef4ceafc62d7253b55dd79cb"
+    },
+    "CW3220MT.DLL": {
+      "sha256": "89eaa381a4a1c358f5c711fc31d873dd9a3c833af721a66cfaf01240bb4d9fd5"
+    },
+    "WBTRV32.DLL": {
+      "sha256": "3f9cbe699b685f48db550bad43b875bd11ed5ec2b091a0a2d76eb79c3b1e478d"
+    },
+    "W32MKDE.EXE": {
+      "sha256": "50453af66f993518cc45172dd0828257b220985a1aaad904f08b9bd11f0bbaa1"
+    }
+  },
+  "rng": {
+    "wgserver_exports": {
+      "_genrdn_rva": "0x0000739C",
+      "_lngrnd_rva": "0x000073EE"
+    },
+    "cw_rand": {
+      "multiplier": "0x015A4E35",
+      "increment": 1,
+      "projection": "(seed >> 16) & 0x7fff",
+      "ownership": "thread-local CRT state"
+    },
+    "range_algorithm": "If maximum is zero return 0 with no draw; if maximum <= minimum return minimum with no draw; otherwise start rand()%maximum and repeatedly add rand()%(maximum-current) while current < minimum.",
+    "active_wcc_direct_calls": {
+      "_genrdn": 146,
+      "_lngrnd": 42
+    },
+    "static_indirect_random_import_references": 0,
+    "owner_local_exclusions": [
+      "gameplay semantic callsite meaning",
+      "gameplay-wide draw ordering",
+      "single process-global Classic stream"
+    ]
+  },
+  "save_coordination": {
+    "player": {
+      "scheduler": "_background_other",
+      "scheduler_va": "0x004218E0",
+      "interval_seconds": 60,
+      "save_sweep": "_save_characters",
+      "save_sweep_va": "0x00423DFD",
+      "persistent_cursor_va": "0x0047FBAC",
+      "max_slots_visited_per_sweep": 300,
+      "default_successful_players_per_sweep": 1,
+      "record_file": "WCCUSER2.DAT",
+      "save_player_va": "0x0046DF70"
+    },
+    "buffer": {
+      "scheduler": "_background_save_buffers",
+      "scheduler_va": "0x00421909",
+      "interval_seconds": 300,
+      "next_record_owner": "_save_next_buffer",
+      "next_record_va": "0x00431907",
+      "pending_cycle_counter_va": "0x00482144",
+      "background_rotation_order": [
+        "room",
+        "monster",
+        "known-monster",
+        "spell",
+        "class",
+        "race",
+        "shop",
+        "bankbook",
+        "message-text",
+        "gang",
+        "item"
+      ],
+      "full_flush_owner": "_save_buffers",
+      "full_flush_va": "0x00431B86",
+      "full_flush_order": [
+        "room",
+        "item",
+        "monster",
+        "known-monster",
+        "spell",
+        "class",
+        "race",
+        "shop",
+        "bankbook",
+        "message-text",
+        "gang"
+      ]
+    },
+    "buffer_family_files": {
+      "room": [
+        "WCCMP002.DAT"
+      ],
+      "item": [
+        "WCCITEM2.DAT"
+      ],
+      "monster": [
+        "WCCACMS2.DAT"
+      ],
+      "known-monster": [
+        "WCCKNMS2.DAT"
+      ],
+      "spell": [
+        "WCCSPEL2.DAT"
+      ],
+      "class": [
+        "WCCCLAS2.DAT"
+      ],
+      "race": [
+        "WCCRACE2.DAT"
+      ],
+      "shop": [
+        "WCCSHOP2.DAT"
+      ],
+      "bankbook": [
+        "WCCBANK2.DAT"
+      ],
+      "message-text": [
+        "WCCMSG2.DAT",
+        "WCCTEXT2.DAT"
+      ],
+      "gang": [
+        "WCCGANG2.DAT"
+      ]
+    },
+    "explicit_non_buffer_files": [
+      "WCCITOW2.DAT",
+      "WCCACTS2.DAT",
+      "WCCVACN2.DAT"
+    ],
+    "transaction_boundary": {
+      "wcc_mutation_imports": [
+        "_dfaInsertV",
+        "_dfaInsertDup",
+        "_dfaUpdateDup",
+        "_dfaDelete"
+      ],
+      "wcc_transaction_imports": [],
+      "conclusion": "No MajorMUD-selected begin/end/abort/unlock transaction grouping; record mutations are synchronous DFA/BTRCALL operations and full buffer save is best-effort per record/family."
+    },
+    "durability": "Successful ordinary WCC/DFA mutation does not imply immediate physical FlushFileBuffers; write-through/flush barriers are MKDE-owned.",
+    "shutdown": {
+      "owner": "_ljngame_finrou",
+      "owner_va": "0x004027FE",
+      "ordering": "full _save_buffers(0) flush before Btrieve handle closure; no direct _save_characters call in module finalization"
+    },
+    "excluded": [
+      "exact BTRVLOG crash replay record bytes/algorithm"
+    ]
+  },
+  "global_world_state": {
+    "majormud_used_worldgroup_symbols": 156,
+    "unowned_worldgroup_symbols": 0,
+    "imported_global_or_indirect_symbols": 34,
+    "classification": {
+      "host_general_runtime": 32,
+      "host_message_rendering_transport": 2
+    },
+    "unknown_imported_gameplay_state_store": false,
+    "persistent_boundary": "WCCUSER2 is Player data; the 11 mapped buffer families own Buffer data; no separate MajorMUD replication protocol/import exists at the Host boundary.",
+    "owner_local_delegations": [
+      "room latches/living doors",
+      "limited-item admission",
+      "MMPLUS event state",
+      "NPC respawn state",
+      "world-rule configuration",
+      "reset/cleanup owners",
+      "owner-specific masks/defaults/callsites"
+    ]
+  },
+  "repository_inventory": {
+    "remaining_system_owners": 36,
+    "native_dependency_groups": 40,
+    "native_artifact_records": 396,
+    "native_artifact_breakdown": {
+      "WCC": 147,
+      "WBB": 234,
+      "native-runtime": 15
+    },
+    "majormud_used_worldgroup_symbols": 156,
+    "unowned_worldgroup_symbols": 0,
+    "closure_meaning": "Exact inventory/ownership only; not a shortcut for owner-local semantic parity.",
+    "native_dependency_report_records": 41,
+    "native_dependency_report_note": "Reports/RemainingSystems/native_dependencies.json contains the 40 dependency groups plus one repository-inventory-closure meta-record; the dependency-group inventory remains 40."
+  },
+  "wcc_artifact_exhaustion": {
+    "supplied_wgserv_non_directory_files": 3605,
+    "supplied_wcc_prefixed_files": 155,
+    "extension_counts": {
+      ".HSE": 53,
+      ".CV_": 19,
+      ".VIR": 16,
+      ".DAT": 16,
+      ".AD": 7,
+      ".ZIP": 5,
+      ".H": 4,
+      ".MCV": 4,
+      ".MSG": 4,
+      ".BIN": 3,
+      ".SYS": 2,
+      ".TXT": 2,
+      ".DLL": 2,
+      ".DOC": 2,
+      ".MDF": 2,
+      ".REL": 2,
+      ".NOT": 2,
+      ".FLG": 1,
+      ".RES": 1,
+      ".ANS": 1,
+      ".INI": 1,
+      ".LIC": 1,
+      ".LOG": 1,
+      ".RLN": 1,
+      ".UIC": 1,
+      ".EXE": 1,
+      ".NU1": 1
+    },
+    "classification": "All supplied WCC-prefixed artifact families are inventoried/classified; post-WCC host dependencies are assigned to Worldgroup/native-runtime owners."
+  },
+  "parity_promotions_to_pass": [
+    "native.global-rng.native-contract",
+    "native.global-world-state",
+    "native.repository-inventory-closure.final-native-evidence",
+    "native.save-coordination",
+    "wcc.available-artifacts-exhausted"
+  ],
+  "expected_host_category": {
+    "PASS": 9,
+    "STRONG": 0,
+    "UNKNOWN": 0
+  },
+  "expected_overall": {
+    "PASS": 157,
+    "STRONG": 43,
+    "UNKNOWN": 0
+  }
+}

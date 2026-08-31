@@ -1,7 +1,13 @@
 # MajorMUD Reforged Project Status
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**).
+- Current parity: **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**).
+- CodeUpdate0365 Quests / Scripts / Triggers: 2/2 PASS; source/static/data-correlation verifier is 65/65 with exact 83 executable quests, 83 live quest triggers, 182 linked stage scripts, 2,616 decoded operations, and 139/139 remoteaction invocations across 85/85 executable signatures.
+- CodeUpdate0363 Items & Inventory: 6/6 PASS; native/source/data verifier is 66/66 with exact ordered item abilities, signed Uses state, EAT/DRINK fallback counters, DROP, and APPRAISE boundaries.
+- CodeUpdate0362 Import / Export / Limits / Recovery: 4/4 PASS; native/data/static verifier is 86/86 with exact capacity ownership, external native-file replacement, state-preserving rejection, owner-local failure boundaries, and record-local persistence recovery.
+- CodeUpdate0361 Host / Persistence / Worldgroup: 9/9 PASS; native/static verifier is 92/92 with exact Player/Buffer save ownership, host RNG, transaction/durability boundary, repository inventory closure, and WCC exhaustion.
+- CodeUpdate0360 Economy & Services: 16/16 PASS; 204/204 services are classified and the cumulative verifier is 41/41.
+- CodeUpdate0359 Data Reconstruction: 3/3 PASS; decode gate is 39/39 families and 2,096/2,096 fields, and working WCCMSG2 corroborates all 3,867 shared canonical payloads.
 - The cumulative parity ledger is Librarium/Parity/majormud_parity_assertions.json; historical pass ledgers and validation snapshots are retired.
 - Tools/validator.py is the single current-health entrypoint. Runtime parity closure is exposed as --smoke-classic-parity-closure.
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
@@ -285,7 +291,7 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - The living-world audit now binds all 206/206 action gates with zero native/passive placeholders and zero ordinary action-semantic gaps.
 - Static room-item reconciliation now generates and materializes 363 shared-world placements across 287 rooms: 102 visible and 261 hidden-searchable. Room rendering, pickup, visible re-drop, Search, and living-world persistence are connected. Seven BBS-only Sysop-room rows and one invalid item-zero row are rejected.
 - Static room-item reset is explicit and idempotent at the host maintenance boundary: missing ordinary placements restore once even when another copy is character-owned, existing ground placements do not duplicate, and decoded positive item `game_limit` values block restoration only when the global world-plus-owned count is already at the limit. No global wall-clock schedule or unlinked dedicated item timer is guessed.
-- Current local verification: Reforged.Server and Reforged.App Release builds pass with warnings as errors; core/server tests pass; `--smoke-classic-parity-closure` and `--smoke-megamud-connection` pass. The generic native verification report retains 2,495 supplied checks with zero failures.
+- Current local verification: Reforged.Server and Reforged.App Release builds pass with warnings as errors; core/server tests pass; `--smoke-classic-parity-closure` and `--smoke-megamud-connection` pass. The generic native/direct-static verification report retains 2,529 supplied checks with zero failures; 34 CodeUpdate0359 Data Reconstruction checks are raw/static only because this analysis environment has no .NET SDK.
 - GitHub Actions status for CodeUpdate0140: pending until pushed and confirmed green.
 - Guardian Hall engineering department is implemented locally across phases 1-10 with persisted sessions/tasks/memory/reports/statistics, isolated workspaces, guarded build/validation/runtime commands, repository analysis, diagnosis, and cumulative candidate ZIP packaging.
 - Current Guardian Hall policy: planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight execution are independently controlled. Candidate ZIP generation defaults on; autonomous and repository-update capabilities default off. Emergency Stop cancels execution without changing saved preferences.
@@ -468,3 +474,9 @@ Latest local continuation: grouped abilities 125-134 are complete as persistent 
 - The current native parity baseline is 137 PASS / 63 STRONG / 0 UNKNOWN = 200 (68.5% strict / 100.0% evidence-backed), including native exit, formula, NPC combat, scheduler/regeneration, REST/MEDITATE presentation, character death, session, party, gang, and organization promotions.
 - The cumulative PASS50-61 payload and Creator Studio full-control editor payload are integrated with no overlap and no changes to generated Data, saves, imported evidence, archives, releases, or build output.
 - Explicit server and Reforged.App Release builds pass with zero warnings/errors. The consolidated parity closure and full live-combat smoke pass, including Nahr native-empty rendering and Blacknight timed-status lifecycle coverage. Python validators could not run because no interpreter is registered.
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.

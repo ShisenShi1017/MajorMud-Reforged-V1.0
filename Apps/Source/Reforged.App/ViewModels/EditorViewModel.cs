@@ -620,17 +620,6 @@ public sealed class EditorViewModel : ViewModelBase
         CombineSelectedRoomItemsCommand = new RelayCommand(CombineSelectedRoomItems, () => SelectedRoomCleanupObject is not null);
         PreviewTextblockStripCommand = new RelayCommand(PreviewTextblockStrip);
         ApplyTextblockStripCommand = new RelayCommand(ApplyTextblockStrip, () => TextblockStripPreviewRows.Count > 0);
-        BrowseToolReferenceObjects();
-        BrowseNpcToolObjects();
-        BrowseWeaponToolObjects();
-        BrowseKeyDoors();
-        BrowseCoinRooms();
-        BrowseMonsterIndex();
-        BrowseControlRooms();
-        BrowseShopResetObjects();
-        BrowseRoomCleanupObjects();
-        foreach (var row in _customService.BuildNightmareParityAudit()) NightmareParityRows.Add(row);
-        StartNewSimpleObject();
     }
 
     public ObservableCollection<ClassicCharacterAccessRow> Characters { get; } = [];
@@ -1181,6 +1170,18 @@ public sealed class EditorViewModel : ViewModelBase
     {
         LoadClassic();
         LoadCustom();
+        BrowseToolReferenceObjects();
+        BrowseNpcToolObjects();
+        BrowseWeaponToolObjects();
+        BrowseKeyDoors();
+        BrowseCoinRooms();
+        BrowseMonsterIndex();
+        BrowseControlRooms();
+        BrowseShopResetObjects();
+        BrowseRoomCleanupObjects();
+        NightmareParityRows.Clear();
+        foreach (var row in _customService.BuildNightmareParityAudit()) NightmareParityRows.Add(row);
+        StartNewSimpleObject();
     }
 
     private void LoadClassic()

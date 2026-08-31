@@ -1,0 +1,226 @@
+{
+  "schema": "majormud.items-inventory-completion-evidence.v0363",
+  "code_update": "0363",
+  "status": "PASS",
+  "scope": "Items & Inventory",
+  "native_module": {
+    "file": "WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "source": "user-supplied WGSERV(4).rar",
+    "version_family": "MajorMUD 1.11p working install"
+  },
+  "public_layout_corroboration": {
+    "source": "syntax53/Nightmare-Redux/modFieldmaps_vO.bas",
+    "version_note": "WorksWithN=False; 1.11o+ field map",
+    "item_record_size_bytes": 1072,
+    "runtime_relevant_offsets": {
+      "number": 0,
+      "game_limit": 6,
+      "weight": 754,
+      "type": 756,
+      "uses": 798,
+      "cost": 802,
+      "not_droppable": 1064,
+      "cost_type": 1065,
+      "retain_after_uses": 1066,
+      "robable": 1067,
+      "destroy_on_death": 1068
+    },
+    "native_correlations": [
+      {
+        "field": "type",
+        "native_offset": "0x2F4",
+        "proof": "_cmd_eat compares 4; _cmd_drink compares 5"
+      },
+      {
+        "field": "not_droppable",
+        "native_offset": "0x428",
+        "proof": "_cmd_drop gates exact 'You may not drop that item!' path"
+      },
+      {
+        "field": "retain_after_uses",
+        "native_offset": "0x42A",
+        "proof": "_deduct_item_charge retains zero-use item when nonzero"
+      },
+      {
+        "field": "cost_type",
+        "native_offset": "0x429",
+        "proof": "_sell_item expands item Cost into native denomination conversion"
+      }
+    ]
+  },
+  "canonical_item_catalog": {
+    "source": "Librarium/Objects/items/item_records_0122.json",
+    "record_count": 1950,
+    "food_count": 18,
+    "drink_count": 34,
+    "key_count": 99,
+    "container_labeled_count": 36,
+    "records_with_duplicate_ability_ids": 92,
+    "ordered_ability_requirement": "abilities_named is an ordered slot list; repeated ability_id values are valid and must not be collapsed",
+    "examples": {
+      "item.1728": [
+        {
+          "slot": 1,
+          "ability_id": 43,
+          "name": "CastsSp",
+          "value": 119
+        },
+        {
+          "slot": 2,
+          "ability_id": 43,
+          "name": "CastsSp",
+          "value": 317
+        }
+      ],
+      "item.2018": [
+        {
+          "ability_id": 43,
+          "name": "CastsSp",
+          "value": 316
+        },
+        {
+          "ability_id": 43,
+          "name": "CastsSp",
+          "value": 1410
+        }
+      ]
+    }
+  },
+  "native_command_traces": {
+    "eat": {
+      "export": "_cmd_eat",
+      "rva": "0x673C3",
+      "vma": "0x4673C3",
+      "type_code": 4,
+      "success_user": "You eat the %s.",
+      "success_room": "%s eats %s.",
+      "effect_owner": "_use_no_target",
+      "charge_owner": "_deduct_item_charge only when _use_no_target succeeds"
+    },
+    "drink": {
+      "export": "_cmd_drink",
+      "rva": "0x67574",
+      "vma": "0x467574",
+      "type_code": 5,
+      "success_user": "You drink the %s.",
+      "success_room": "%s drinks %s.",
+      "effect_owner": "_use_no_target",
+      "charge_owner": "_deduct_item_charge only when _use_no_target succeeds"
+    },
+    "drop": {
+      "export": "_cmd_drop",
+      "rva": "0x66522",
+      "vma": "0x466522",
+      "not_droppable_offset": "0x428",
+      "failure": "You may not drop that item!"
+    },
+    "appraise": {
+      "export": "_cmd_appraise",
+      "rva": "0x6973F",
+      "vma": "0x46973F",
+      "room_shop_offset": "0x440",
+      "delegate": "_sell_item(room.ShopNum, query, 1)",
+      "mutation": "appraise flag does not remove inventory or add shop stock",
+      "price_formula": "same _sell_item value path as SELL; Charm factor floor(Charm/2)+25 over 100",
+      "output": "You would get %s %s for your %s.",
+      "currency_owner": "converted native sell value is rendered as copper farthing(s)"
+    }
+  },
+  "native_charge_contract": {
+    "export": "_deduct_item_charge",
+    "rva": "0x1B4D2",
+    "vma": "0x41B4D2",
+    "unlimited_uses": -1,
+    "decrement_per_successful_use": 1,
+    "primary_slots": {
+      "count": 100,
+      "item_id_offset": "player+0xD8",
+      "uses_offset": "player+0x268",
+      "uses_width": "signed int16"
+    },
+    "secondary_slots": {
+      "count": 50,
+      "item_id_offset": "player+0x334",
+      "uses_offset": "player+0x3FC",
+      "uses_width": "signed int16"
+    },
+    "zero_behavior": "A successful use decrements the signed int16 current Uses first. At transition to exactly zero, retain iff RetainAfterUses is nonzero; otherwise clear the copy. A retained zero-use copy is not the -1 sentinel, so its next successful use decrements 0 to -1 and becomes unlimited.",
+    "equipment_behavior": "native zero-use removal traverses equipment cleanup before/with slot clearing",
+    "unlimited_rule": "Only the current per-copy value -1 bypasses decrement; other signed values are processed normally."
+  },
+  "shop_sell_appraise_contract": {
+    "shop_merchandise_slots": 20,
+    "eligibility": "item id must match one of the shop's 20 merchandise entries",
+    "stock_behavior": "current stock increments only while below max on SELL; APPRAISE never mutates stock; full stock does not invalidate the merchandise match",
+    "gang_shop": "ShopType 11 rejects sell/appraise with 'You may not sell items to a gang shop.'",
+    "native_currency_names": {
+      "singular": "copper farthing",
+      "plural": "copper farthings"
+    }
+  },
+  "delegated_exact_owners": {
+    "room_item_slots_and_unlimited_room_stacking": "Character death/room placement native pass (17 visible, 15 hidden; unlimited-use room QTY stacking)",
+    "loot_rng_and_drop_roll": "NPC/Combat native owner",
+    "limited_item_refresh_and_restock": "native limited/restock owner",
+    "item_definition_and_buffer_persistence": "Host/Persistence/Worldgroup pass",
+    "buy_sell_stock_transactions": "Economy & Services pass",
+    "give": "Gang/GIVE owner",
+    "death_floor_disposal": "Character & Status native death owner"
+  },
+  "reforged_extensions_excluded_from_classic_parity": [
+    "generic durability/wear/repair/breakage model",
+    "generic portable nested-container ownership and depth rules",
+    "generic item instance GUID/checksum/journal recovery",
+    "corpse resurrection equipment-slot restoration/displacement",
+    "generic stack maximum/split/merge policy"
+  ],
+  "runtime_changes": [
+    "Apps/Compiler/src/LibrariumCatalogReader.cs",
+    "Apps/Source/Reforged.Server/RuntimeItemsEquipment.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicItemsInventory0363.cs",
+    "Apps/Source/Reforged.Server/RuntimeCommandRouting.cs",
+    "Apps/Source/Reforged.Server/RuntimeLiveGameplayPart2.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivePowers.cs",
+    "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeItemBehaviorAuthority.cs"
+  ],
+  "native_use_no_target_contract": {
+    "export": "_use_no_target",
+    "rva": "0x4A630",
+    "vma": "0x44A630",
+    "ordered_slots": 20,
+    "ability_id_offset": "item+0x2F6",
+    "ability_value_offset": "item+0x3E2",
+    "handled_first_scan": {
+      "18": "Heal",
+      "42": "LearnSp",
+      "43": "CastsSp",
+      "54": "IlluTarget",
+      "55": "AlterGeneralLightDuration",
+      "114": "%Spell",
+      "150": "HealMana"
+    },
+    "casts_sp": "Ability 43 resolves the spell, invokes the native cast helper, and returns immediately with that helper boolean; later CastsSp slots are not executed by the same no-target use.",
+    "percent_spell": "Ability 114 stops ordinary no-target scanning unless caller mode is 11.",
+    "food_drink_corpus": "Canonical food/drink records use CastsSp plus unrelated maintenance/magical flags; no-effect drink item.1608 follows the fallback-counter path."
+  },
+  "eat_drink_fallback_contract": {
+    "native_initial_value": 1000,
+    "eat_user_word": "player+0xCE",
+    "drink_user_word": "player+0xD0",
+    "slow_update": "both words decrement once in the native 30-fast-tick slow character update",
+    "no_effect": "success text is already emitted; counter increments by one; item Uses is not deducted",
+    "runtime_projection": [
+      "classic.native.item.counter_ce",
+      "classic.native.item.counter_d0"
+    ],
+    "naming_boundary": "Neutral runtime marker names are retained because the public 1.11o+ field map does not authoritatively name these two words."
+  },
+  "verification": {
+    "tool": "Tools/Verification/verify_items_inventory_0363.py",
+    "direct_native_static_checks": 66,
+    "failures": 0,
+    "status": "PASS"
+  }
+}

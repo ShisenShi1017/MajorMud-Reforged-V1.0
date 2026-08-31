@@ -1,0 +1,144 @@
+{
+  "schema": "majormud.import-export-limits-recovery-complete-evidence.v1",
+  "update": "CodeUpdate0362",
+  "classification": "PROVEN",
+  "scope": "Complete Import / Export / Limits / Recovery parity boundary for Classic MajorMUD 1.11p using retained native evidence plus CodeUpdate0353/0338/0340/0342/0361 exact owners.",
+  "sources": {
+    "wccmmud": {
+      "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+      "size": 643072,
+      "supplied_archive": "WGSERV(4).rar",
+      "archive_entry": "WGSERV/wccmmud.dll"
+    },
+    "configuration": [
+      "Librarium/Evidence/native_support_catalog_0020.json",
+      "Librarium/Parity/majormud_wccmmud_ini_user_evidence_0333.json",
+      "Apps/Source/Reforged.Server/RuntimeClassicConfigurationAuthority.cs"
+    ],
+    "capacity": [
+      "Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
+      "Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+      "Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+      "Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json"
+    ],
+    "import_export": [
+      "Librarium/Parity/majormud_classic_file_configuration_boundary_evidence_0304.json",
+      "Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs"
+    ],
+    "recovery": [
+      "Librarium/Parity/majormud_classic_gameplay_failure_boundary_evidence_0312.json",
+      "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+      "Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
+    ]
+  },
+  "import_export": {
+    "native_in_game_import_export_migration": false,
+    "workflow": "external editor -> exact native file/version replacement -> server start/restart",
+    "wrong_file_or_version": "hard startup/load failure; no conversion/migration path",
+    "reforged_classic_policy": "inspect/validate exact identity only; reject Classic import/export/migrate operations",
+    "extension_boundary": "Custom/AI compatibility operations remain explicit Reforged features and receive no Classic parity credit"
+  },
+  "capacity": {
+    "buffer_defaults": {
+      "rooms": 1500,
+      "items": 750,
+      "active_monsters": 2000,
+      "known_monsters": 300,
+      "spells": 150,
+      "races": 12,
+      "classes": 16,
+      "bankbooks": 32,
+      "message_buffers": [
+        250,
+        50,
+        10
+      ],
+      "topten_maximum": 30,
+      "hangup_item_loss_default_maximum": 0,
+      "classification": "exact native configuration defaults; buffer/cache sizes are not hard world-record maxima"
+    },
+    "fixed_gameplay_limits": {
+      "carried_root_inventory_slots": 100,
+      "secondary_item_slots": 50,
+      "room_visible_item_slots": 17,
+      "room_hidden_item_slots": 15,
+      "party_total_users": 6,
+      "maximum_lives": 9,
+      "gang_name_characters": 19,
+      "userrec_given_name_bytes": 10,
+      "userrec_family_name_bytes": 18,
+      "plus_placement_attempts": 50
+    },
+    "overflow_and_admission": {
+      "give": "_add_item_to_inventory checks the native 100 root slots and encumbrance before commit; recipient failure text is `You cannot carry that much!`; sender sees `%s cannot accept your offer.`",
+      "room_floor": "fixed 17 visible/15 hidden arrays; death spill follows the recovered DFS -> trail -> inventory-only room 164 fallback/loss contract rather than a generic capacity recovery manager",
+      "party": "leader/self plus five native WORD group slots; pending invitation consumes a slot; full-slot INVITE quirk remains exact",
+      "gang": "recovered _join_gang validates invitation then increments the native member count; no fixed member-admission comparison is present in that owner"
+    },
+    "resolved_negative_boundaries": {
+      "hard_world_record_maxima": "not inferred from buffer defaults; lower-layer memory/database capacity is host ownership rather than a Classic gameplay rule",
+      "global_world_object_instance_cap": "no separate MajorMUD gameplay cap promoted",
+      "global_npc_instance_cap": "2000 is a buffer default, not a gameplay admission maximum",
+      "gang_member_hard_cap": "no fixed _join_gang admission-cap branch; generic Reforged organization limits excluded",
+      "account_character_slot_cap": "Reforged multi-character account selection is standalone-host behavior, not a native WCCMMUD gameplay capacity",
+      "configuration_ranges_live_mutability": "external setup/startup configuration boundary; Reforged does not invent live Classic mutation or undocumented setup-UI validation ranges"
+    },
+    "observed_ini_nonclaim": {
+      "MAXIMUM_BANK_BALANCE": "0",
+      "meaning": "preserved as an observed configuration value only; 0362 does not invent sentinel semantics from the literal"
+    }
+  },
+  "recovery": {
+    "ordinary_gameplay_rejection": "state-preserving NoOp; no rollback, subsystem disable, world-load stop, or forced disconnect merely because the action was rejected",
+    "command_failure_presentation": "owner-local; there is no universal MajorMUD recovery failure-text renderer",
+    "post_startup_missing_reference": "owner-local caller behavior; broad recovery layer does not invent universal crash or silent-continue semantics",
+    "incompatible_native_data": "hard startup/load failure, separate from ordinary gameplay rejection",
+    "persistence_failure": {
+      "wcc_transaction_imports": [],
+      "mutation_imports": [
+        "_dfaInsertV",
+        "_dfaInsertDup",
+        "_dfaUpdateDup",
+        "_dfaDelete"
+      ],
+      "semantics": "synchronous record-level DFA mutations; no WCC-selected begin/end/abort rollback grouping; earlier successful records are not rolled back by a later failure",
+      "full_buffer_save": "best effort by record/family",
+      "shutdown": "full buffer flush occurs before Btrieve handle closure",
+      "physical_crash_replay": "MKDE/Worldgroup host-engine ownership; excluded from MajorMUD gameplay recovery"
+    },
+    "reforged_extension_boundary": "generic rollback/disable/default recovery helpers remain Reforged safety features and do not become native Classic truth"
+  },
+  "runtime": {
+    "capacity_authority": "Apps/Source/Reforged.Server/RuntimeClassicCapacityResourceLimitsAuthority.cs",
+    "failure_registry": "Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs",
+    "combined_authority": "Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs",
+    "smoke": "Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoverySmokeReport.cs",
+    "flag": "--smoke-classic-import-export-limits-recovery"
+  },
+  "parity_promotions": [
+    {
+      "id": "native.capacity-resource-limits",
+      "from": "STRONG",
+      "to": "PASS"
+    },
+    {
+      "id": "native.error-handling-recovery",
+      "from": "STRONG",
+      "to": "PASS"
+    }
+  ],
+  "category_after": {
+    "PASS": 4,
+    "STRONG": 0,
+    "UNKNOWN": 0,
+    "TOTAL": 4,
+    "STRICT_PERCENT": 100.0
+  },
+  "overall_after": {
+    "PASS": 159,
+    "STRONG": 41,
+    "UNKNOWN": 0,
+    "TOTAL": 200,
+    "STRICT_PERCENT": 79.5
+  }
+}

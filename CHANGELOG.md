@@ -1,3 +1,66 @@
+## CodeUpdate0365 Quests / Scripts / Triggers closure
+
+- Integrated the cumulative closure into CodeUpdate0140 and verified Reforged.Server Release with zero warnings/errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and parity gates pass locally.
+- Corrected the NPC cadence audit fixture to exercise the recovered `roll < AttMin` 75% boundary and admitted native retained-use item charge `-1` without weakening ordinary item validation.
+- Deferred heavy Play, Borin, Editor, and Librarium initialization until their surfaces are opened, restoring responsive application startup.
+- The consolidated current-health validator passes 44/45 stages; its only failure remains the two documented corpse-equipment restoration assertions.
+- Promoted `quests.textblocks-runtime` and `remoteactions.exhausted` to PASS; the category is now **2/2 PASS** and cumulative parity is **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**).
+- Closed the quest source/runtime partition at 2,183 retained evidence records = 83 executable decoded NPC quest flows + 2,100 analysis-only candidates; clean Classic generation requires exactly 83 quests, 83 NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations.
+- Preserved fail-closed graph validation: missing quest/script ownership, non-contract opcodes, non-decoded operations, unlinked flows, and trigger/script scope mismatches are rejected.
+- Closed RemoteAction exhaustively at 139/139 decoded invocations, 85/85 executable signatures, and exact 62/22/1 state-effect ownership.
+- Added `--smoke-classic-quests-scripts-triggers`, main parity-smoke composition, closure evidence, and **65/65 source/static/data-correlation verification**.
+
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.
+
+## CodeUpdate0363 — Items & Inventory closure (cumulative 0359-0363)
+
+- Promoted the final two Items & Inventory STRONG assertions to PASS; the category is now **6/6 PASS** and cumulative parity is **167 PASS / 33 STRONG / 0 UNKNOWN = 200** (**83.5% strict / 100.0% evidence-backed**).
+- Pinned item generation to the canonical 1,950-record `item_records_*` source and preserved repeated ordered ability slots.
+- Recovered exact `_use_no_target` first-CastsSp return and `%Spell` barrier behavior; EAT/DRINK now preserve native success ordering, +0xCE/+0xD0 fallback state, and conditional charge deduction.
+- Corrected `_deduct_item_charge` to signed-int16 behavior including retained zero -> -1 on the next successful use.
+- Connected native NotDroppable DROP behavior and APPRAISE-to-SELL valuation delegation.
+- Added 0363 smoke/verification and **66/66 direct native/source/data checks PASS**.
+
+## CodeUpdate0362 — Import / Export / Limits / Recovery closure (cumulative 0359-0362)
+
+- Promoted the final two Import / Export / Limits / Recovery STRONG assertions to PASS; the category is now **4/4 PASS** and cumulative parity is **159 PASS / 41 STRONG / 0 UNKNOWN = 200** (**79.5% strict / 100.0% evidence-backed**).
+- Recovered/classified exact fixed capacities: 100 carried root slots, 50 secondary slots, 17 visible + 15 hidden room floor slots, and six total party users.
+- Explicitly excluded configurable buffer defaults, Reforged multi-character account slots, host line/session maxima, and an invented gang-member admission maximum from the Classic gameplay-capacity contract.
+- Preserved exact external native-file replacement for Classic import/export; incompatible file/version input is a hard startup/load boundary rather than a migration path.
+- Closed recovery ownership: rejected gameplay actions are state-preserving no-ops; presentation/reference failures are owner-local; save failure is record-local/best-effort with no WCC-selected transaction rollback; Worldgroup/MKDE crash replay remains host-owned.
+- Added `--smoke-classic-import-export-limits-recovery` and included it in the full Classic parity-closure smoke.
+- Added CodeUpdate0362 evidence and verifier; **86/86 source/data/native checks PASS**.
+- This environment has no .NET SDK, so no new local C# build/runtime claim is made; the cumulative installer performs build, generation, and runtime gates on the target machine.
+
+## CodeUpdate0361 — Host / Persistence / Worldgroup closure (cumulative 0359-0361)
+
+- Promoted all five remaining Host / Persistence / Worldgroup STRONG assertions to PASS; the category is now **9/9 PASS** and cumulative parity is **157 PASS / 43 STRONG / 0 UNKNOWN = 200** (**78.5% strict / 100.0% evidence-backed**).
+- Recovered exact Player-versus-Buffer save ownership, 60s/300s schedulers, 11-family rotating/full-flush orders, shutdown ordering, record-level partial-save behavior, and the absence of WCC-selected begin/end/abort transaction grouping.
+- Corrected supplied WGSERVER `_genrdn`/`_lngrnd` export RVAs to **0x739C / 0x73EE** and connected the exact thread-local CW3220MT bounded-range loop plus the 146/42 active WCC call census.
+- Closed Host global-state ownership without using it as an owner-local gameplay shortcut: 156/156 MajorMUD-used Worldgroup symbols remain owned, Player/Buffer persistence families are exact, and there is no separate MajorMUD replication protocol at this boundary.
+- Exact repository inventory remains **40 native dependency groups**; the generated native-dependency report contains 41 rows because its final row is the closure meta-record itself.
+- Native/static Host verification is **92/92 PASS**; Librarium integrity, generation readiness, Remaining Systems validation, and cumulative Economy verification also pass. No new local .NET build/runtime claim is made because the SDK is unavailable here.
+
+## CodeUpdate0360 — Economy & Services closure
+
+- Promoted the five remaining Economy & Services assertions to PASS, producing **152 PASS / 48 STRONG / 0 UNKNOWN** and **16/16 Economy PASS**.
+- Recovered exact ShopType-5 healing/curing, merchandise affordability/rollback boundary, six paid carriage routes, and 204/204 explicit service classifications.
+- Economy source/data verification remains **41/41 PASS** under CodeUpdate0361's cumulative ledger.
+
+## CodeUpdate0359 — Data Reconstruction closure
+
+- Promoted all three Data Reconstruction assertions to PASS, moving cumulative parity to **147 PASS / 53 STRONG / 0 UNKNOWN = 200** (**73.5% strict / 100.0% evidence-backed**).
+- Corrected decode-exhaustion bookkeeping so evidence-linked/runtime-consumed `connected-empty` fields count as connected; all 39 families and all 2,096 scalar fields now reconcile with zero disconnected/pending state.
+- Preserved equipment `alignment` and `gender` as explicit nulls across all 914 equipment records instead of inventing absent Classic values.
+- Strengthened the decode gate: `Passed` requires complete family/field coverage, the audit command returns the full gate result, and Classic parity closure now runs a focused Data Reconstruction smoke.
+- Directly parsed the supplied working 1.11p WCCMSG2: all 3,867 shared logical payloads match the canonical default-install catalog exactly; the only omitted canonical IDs are 1 and 66, both empty reserved records.
+- Direct raw/static verification is **34/34 PASS**. No new C# build/runtime claim is made because this analysis environment has no .NET SDK.
+
 ## Creator Studio Nightmare MDB / WCC bridge
 
 - Added a Custom1-only Nightmare Redux MDB analyze/import/export workflow, paired with read-only WCC/WGS evidence selection and conservative gap reporting.

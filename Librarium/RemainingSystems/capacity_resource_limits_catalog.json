@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "subsystem": "capacity-resource-limits",
-  "pass": "Update0327",
-  "status": "evidence-backed-boundary",
-  "classification": "STRONG exact WCCMMUD buffer/default limits plus narrow gameplay/data caps; hard world/inventory/NPC/table maxima and exact failures remain open",
-  "classicRuntimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + narrower Character/Party/Gang/Plus/Encumbrance owners",
-  "reforgedExtensionOwner": "RuntimeCapacityLimitsService",
+  "pass": "CodeUpdate0362",
+  "status": "proven-owner-separated-closure",
+  "classification": "PASS exact fixed gameplay arrays + exact buffer defaults + explicit non-claims for non-MajorMUD/global host capacities",
+  "classicRuntimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + exact owning gameplay subsystems",
+  "reforgedExtensionOwner": "RuntimeCapacityLimitsService (excluded from Classic evidence)",
   "bufferDefaults": [
     {
       "prompt": "Number of rooms to buffer in memory? 1500",
@@ -75,10 +75,47 @@
   ],
   "narrowRecoveredLimits": [
     {
+      "id": "inventory.carried-root-slots",
+      "value": 100,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicGiveAuthority + RuntimeClassicNativeCharacterDeathAuthority"
+    },
+    {
+      "id": "inventory.secondary-item-slots",
+      "value": 50,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicNativeCharacterDeathAuthority"
+    },
+    {
+      "id": "room.visible-item-slots",
+      "value": 17,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicNativeCharacterDeathAuthority"
+    },
+    {
+      "id": "room.hidden-item-slots",
+      "value": 15,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicNativeCharacterDeathAuthority"
+    },
+    {
+      "id": "party.maximum-members",
+      "value": 6,
+      "classification": "PASS/native-executable",
+      "owner": "RuntimeClassicPartyCoordinationEvidenceRegistry"
+    },
+    {
       "id": "character.maximum-lives",
       "value": 9,
-      "classification": "STRONG",
+      "classification": "PASS/native-formula",
       "owner": "RuntimeClassicCharacterProgressionFormula"
+    },
+    {
+      "id": "gang.name-maximum",
+      "value": 19,
+      "unit": "characters",
+      "classification": "PASS/native-help-live-enforcement",
+      "owner": "RuntimeClassicGangStateService"
     },
     {
       "id": "character.given-name-storage-width",
@@ -95,31 +132,6 @@
       "owner": "RuntimeIdentity"
     },
     {
-      "id": "party.maximum-members",
-      "value": 6,
-      "classification": "STRONG",
-      "owner": "RuntimePartyPolicy.ClassicStrongEvidence"
-    },
-    {
-      "id": "gang.name-maximum",
-      "value": 19,
-      "unit": "characters",
-      "classification": "PASS/native-help-live-enforcement",
-      "owner": "RuntimeClassicGangStateService"
-    },
-    {
-      "id": "plus.visible-room-capacity",
-      "value": 17,
-      "classification": "PASS/native-executable",
-      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
-    },
-    {
-      "id": "plus.hidden-room-capacity",
-      "value": 15,
-      "classification": "PASS/native-executable",
-      "owner": "RuntimeClassicMajorMudPlusEventEvidenceRegistry"
-    },
-    {
       "id": "plus.maximum-placement-attempts",
       "value": 50,
       "classification": "PASS/native-executable",
@@ -128,35 +140,62 @@
     {
       "id": "encumbrance.str<=100",
       "formula": "STR * 48",
-      "classification": "PASS/strong-existing-formula-boundary",
+      "classification": "PASS/native-formula",
       "owner": "RuntimeMajorMudCompatibility"
     },
     {
       "id": "encumbrance.str>100",
       "formula": "4800 + (STR-100)*84",
-      "classification": "PASS/strong-existing-formula-boundary",
+      "classification": "PASS/native-formula",
       "owner": "RuntimeMajorMudCompatibility"
     }
   ],
-  "nativeDependencies": [
-    "exact carried inventory item-count/slot maximum separate from the proven encumbrance weight formula",
-    "exact room-floor object-count maximum and death-drop overflow destination/order",
-    "exact concurrent world object/item-instance hard maximum and allocation failure cleanup",
-    "exact active NPC/monster hard maximum beyond the retained 2000 active-monster buffer default",
-    "exact gang member hard maximum; the generic organization default of 256 is not native evidence",
-    "exact per-account/per-world character-slot hard maximum",
-    "exact hard world/data-record maxima for rooms, items, monsters, spells, races, classes, bankbooks, and related tables beyond retained buffer defaults",
-    "exact native numeric widths/signedness for capacity counters and table indices not already proven by a record layout",
-    "exact allowed ranges, startup-only versus live mutability, and restart semantics for WCCMMUD.mcv capacity prompts",
-    "exact behavior on allocation/admission exhaustion including cleanup/rollback/retry ordering",
-    "exact player-visible capacity/allocation failure messages and rendering order"
-  ],
+  "nativeDependencies": [],
   "antiClaims": [
     "1500 rooms is a hard world room maximum",
     "750 items is a hard world item maximum",
-    "2000 active monsters is a hard NPC instance maximum",
-    "generic RuntimeCapacityLimitsService Int64 counters are native widths",
-    "generic organization MaximumMembers=256 is the Classic gang member cap",
+    "2000 active monsters is a hard NPC gameplay maximum",
+    "generic RuntimeCapacityLimitsService counters are native Classic widths or limits",
+    "generic organization MaximumMembers=256 is the Classic gang cap",
+    "Reforged three-character account slots are a native MajorMUD capacity",
     "host MAXUSERS is a MajorMUD gameplay-data limit"
-  ]
+  ],
+  "resolvedNonNumericBoundaries": [
+    {
+      "id": "world-record-buffer-defaults",
+      "classification": "PASS-negative-boundary",
+      "finding": "WCCMMUD.mcv room/item/monster/spell/race/class/bankbook counts are in-memory buffer defaults and are not promoted as hard world-content maxima."
+    },
+    {
+      "id": "gang-member-admission-cap",
+      "classification": "PASS-negative-boundary",
+      "finding": "Recovered _join_gang increments native member count after invitation validation and contains no fixed member-admission cap branch; generic Reforged organization limits receive no Classic credit."
+    },
+    {
+      "id": "account-character-slot-cap",
+      "classification": "PASS-excluded",
+      "finding": "Reforged multi-character-per-account selection is a standalone host feature, not a native WCCMMUD gameplay capacity."
+    },
+    {
+      "id": "global-world-object-instance-cap",
+      "classification": "PASS-excluded",
+      "finding": "No separate MajorMUD gameplay hard cap is inferred from cache sizes; lower-layer memory/database exhaustion remains host-engine ownership."
+    },
+    {
+      "id": "global-npc-instance-cap",
+      "classification": "PASS-excluded",
+      "finding": "The 2000 active-monster setting is a buffer default, not a proven gameplay admission maximum."
+    },
+    {
+      "id": "capacity-configuration-range-mutability",
+      "classification": "PASS-owner-boundary",
+      "finding": "Native capacity settings are external startup/module configuration. Reforged does not invent a live Classic mutation API or setup-UI validation ranges as gameplay rules."
+    },
+    {
+      "id": "capacity-failure-owner",
+      "classification": "PASS-owner-boundary",
+      "finding": "There is no universal capacity-failure handler: GIVE has exact carry rejection text; room overflow follows recovered placement/disposal; party full behavior is owned by native invite slots; cache exhaustion is not promoted as player-visible gameplay semantics."
+    }
+  ],
+  "closure": "CodeUpdate0362: no unresolved Classic capacity/resource parity dependency remains in this category; lower-layer host resource exhaustion and unrelated owner-local numeric widths stay outside this global assertion."
 }

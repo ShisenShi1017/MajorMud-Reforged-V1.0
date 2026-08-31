@@ -24,14 +24,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         // Classic shops and trainers are room-owned services. A merchant NPC may be present
         // for atmosphere, but buying/selling/training do not require one. REPAIR is a
         // Reforged extension and is blocked from Classic at the command boundary.
-        // WCCMMHLP proves BUY HEALING at healer/temple rooms heals all wounds for a
-        // price. The generic type-5 healer price formula/order is still native-unknown,
-        // so recognize the service without inventing a debit. Exact scripted healer room
-        // commands are handled earlier by the decoded-room-command authority.
+        // Native ShopType-5 services are recovered independently from the decoded scripted
+        // healer rooms. PRICE semantics debit before the effect: full healing is 2 copper per
+        // missing HP; CURING/CURE POISON is 15 silver normally and 25 silver when poisoned.
         if (command.Name.Equals("buy", StringComparison.OrdinalIgnoreCase)
-            && command.ArgumentText.Trim().Equals("healing", StringComparison.OrdinalIgnoreCase)
-            && services.Any(service => ReadServiceKind(service).Equals("healer_or_temple", StringComparison.OrdinalIgnoreCase)))
-            return "BUY HEALING is available here, but the exact native healer price/debit formula is not yet recovered.";
+            && RuntimeClassicHealerServiceAuthority.IsCommand(command.ArgumentText)
+            && services.Any(service => JsonValueReader.ReadInt(service.GeneratedRecord, "service_type", -1) == 5))
+            return ExecuteClassicType5HealerService(session, character, command.ArgumentText);
 
         if (command.Name.Equals("buy", StringComparison.OrdinalIgnoreCase)
             && TryBuyClassicGangShopItem(session, command.ArgumentText, out var classicGangShopBuy))
@@ -68,7 +67,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var costMultiplier = CostTypeCopperMultiplier(ReadItemCostType(itemRecord));
         var baseUnitCopper = checked(cost * costMultiplier);
 
-        return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
+        return ExecuteClassicShopTransaction(shop, character.CharacterId, stock =>
         {
             if (!stock.TryGetValue(itemId, out var current) || current.Quantity < request.Quantity)
                 throw new InvalidOperationException($"{definition.Name} does not have {request.Quantity} in stock.");
@@ -77,6 +76,8 @@ public sealed partial class RuntimeLiveGameplayFacade
             var markedUnitCostCopper = RuntimeClassicEconomyPricing.QuoteBuyCopper(
                 baseUnitCopper, ReadShopMarkupPercent(shop.GeneratedRecord), ResolveEconomyCharm(before));
             var totalCostCopper = checked(markedUnitCostCopper * request.Quantity);
+            if (RuntimeBundleCInventoryAuthority.ReadCurrency(state).CopperValue < totalCostCopper)
+                throw new InvalidOperationException(RuntimeClassicShopTransactionAuthority.CannotAfford(definition.Name));
             var settledState = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, totalCostCopper);
             var engine = new RuntimeItemEngine(items, state.Items, state.Corpses);
             RuntimeItemInstance? created = null;
@@ -95,7 +96,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var shop = RequireShop(services);
         var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
         var request = ParseMerchantQuantity(query);
-        return GameplayStore(character.WorldId).ExecuteShopTransaction(shop, stock =>
+        return ExecuteClassicShopTransaction(shop, character.CharacterId, stock =>
         {
             var before = _characters.LoadCharacter(character.CharacterId) ?? throw new InvalidOperationException("Character save was not found.");
             var state = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string,string>(), Array.Empty<RuntimeCorpseState>());
@@ -109,6 +110,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             if (canonicalIds.Length != 1)
                 throw new InvalidOperationException($"Multiple carried item types match '{request.Query}'; use a longer name.");
             var canonicalId = canonicalIds[0];
+            var definition = items.Require(canonicalId);
+            if (!TryFindClassicShopInventoryEntry(shop.GeneratedRecord, canonicalId, out var nativeMerchandise))
+                throw new InvalidOperationException($"You cannot sell {definition.Name} here.");
             if (matching.Sum(x => x.StackQuantity) < request.Quantity)
                 throw new InvalidOperationException($"You do not carry {request.Quantity} {items.Require(canonicalId).Name}.");
             var itemRecord = RequireGeneratedItemRecord(_characters.ProjectRoot, before.WorldId, canonicalId);
@@ -128,10 +132,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             var settledState = RuntimeBundleCEconomyAuthority.CreditCopperValue(state, totalValueCopper);
             _characters.SaveCharacter(before with { ItemState = engine.Snapshot(settledState.Gold, settledState.ActiveItemState), UpdatedAtUtc = DateTimeOffset.UtcNow });
             if (stock.TryGetValue(canonicalId, out var current))
-                stock[canonicalId] = current with { Quantity = checked(current.Quantity + request.Quantity) };
-            else
-                stock[canonicalId] = new RuntimeShopStockEntry(canonicalId, request.Quantity, DateTimeOffset.MaxValue);
-            return $"You sell {request.Quantity} {items.Require(canonicalId).Name} for {RuntimeBundleCEconomyAuthority.FormatCopperValue(totalValueCopper)}.";
+            {
+                var maximum = Math.Max(ReadInt(nativeMerchandise, "max_qty"), ReadInt(nativeMerchandise, "normal_qty"));
+                var next = maximum > 0 ? Math.Min(maximum, checked(current.Quantity + request.Quantity)) : current.Quantity;
+                stock[canonicalId] = current with { Quantity = next };
+            }
+            return $"You sell {request.Quantity} {definition.Name} for {RuntimeBundleCEconomyAuthority.FormatCopperValue(totalValueCopper)}.";
         });
     }
 

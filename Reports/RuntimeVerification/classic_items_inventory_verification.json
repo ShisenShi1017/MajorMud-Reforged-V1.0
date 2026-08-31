@@ -1,0 +1,279 @@
+{
+  "schema": "majormud.items-inventory-verification.v0363",
+  "passed": true,
+  "check_count": 66,
+  "failure_count": 0,
+  "checks": [
+    {
+      "name": "evidence-pass",
+      "passed": true
+    },
+    {
+      "name": "evidence-native-sha",
+      "passed": true
+    },
+    {
+      "name": "evidence-record-size-1072",
+      "passed": true
+    },
+    {
+      "name": "items-ledger-count-6",
+      "passed": true
+    },
+    {
+      "name": "items-ledger-all-pass",
+      "passed": true
+    },
+    {
+      "name": "items-ledger-zero-strong",
+      "passed": true
+    },
+    {
+      "name": "items-ledger-zero-unknown",
+      "passed": true
+    },
+    {
+      "name": "canonical-items-1950",
+      "passed": true
+    },
+    {
+      "name": "food-count-18",
+      "passed": true,
+      "detail": "18"
+    },
+    {
+      "name": "drink-count-34",
+      "passed": true,
+      "detail": "34"
+    },
+    {
+      "name": "key-count-99",
+      "passed": true,
+      "detail": "99"
+    },
+    {
+      "name": "duplicate-ability-records-92",
+      "passed": true,
+      "detail": "92"
+    },
+    {
+      "name": "firegut-first-cast-119",
+      "passed": true,
+      "detail": "[(43, 119), (43, 317), (119, 0)]"
+    },
+    {
+      "name": "firegut-second-cast-317",
+      "passed": true,
+      "detail": "[(43, 119), (43, 317), (119, 0)]"
+    },
+    {
+      "name": "small-vial-no-abilities",
+      "passed": true
+    },
+    {
+      "name": "small-vial-type-drink",
+      "passed": true
+    },
+    {
+      "name": "compiler-prefers-item-records",
+      "passed": true
+    },
+    {
+      "name": "compiler-does-not-use-timestamp-for-items",
+      "passed": true
+    },
+    {
+      "name": "runtime-ordered-ability-record",
+      "passed": true
+    },
+    {
+      "name": "runtime-ordered-ability-property",
+      "passed": true
+    },
+    {
+      "name": "runtime-read-abilities-as-list",
+      "passed": true
+    },
+    {
+      "name": "uses-minus-one-specialcase",
+      "passed": true
+    },
+    {
+      "name": "uses-signed-short-decrement",
+      "passed": true
+    },
+    {
+      "name": "retain-at-zero",
+      "passed": true
+    },
+    {
+      "name": "eat-counter-ce",
+      "passed": true
+    },
+    {
+      "name": "drink-counter-d0",
+      "passed": true
+    },
+    {
+      "name": "counter-initial-1000",
+      "passed": true
+    },
+    {
+      "name": "counter-slow-tick",
+      "passed": true
+    },
+    {
+      "name": "first-no-target-cast-helper",
+      "passed": true
+    },
+    {
+      "name": "percent-spell-barrier",
+      "passed": true
+    },
+    {
+      "name": "single-cast-execution",
+      "passed": true
+    },
+    {
+      "name": "drop-notdroppable",
+      "passed": true
+    },
+    {
+      "name": "drop-native-message",
+      "passed": true
+    },
+    {
+      "name": "appraise-live-route",
+      "passed": true
+    },
+    {
+      "name": "eat-live-route",
+      "passed": true
+    },
+    {
+      "name": "drink-live-route",
+      "passed": true
+    },
+    {
+      "name": "route-items-appraise",
+      "passed": true
+    },
+    {
+      "name": "generic-use-first-cast",
+      "passed": true
+    },
+    {
+      "name": "items-smoke-command",
+      "passed": true
+    },
+    {
+      "name": "items-smoke-in-parity-closure",
+      "passed": true
+    },
+    {
+      "name": "smoke-zero-to-minus-one",
+      "passed": true
+    },
+    {
+      "name": "no-all-casts-loop-in-eatdrink",
+      "passed": true
+    },
+    {
+      "name": "no-all-casts-array-in-generic-use",
+      "passed": true
+    },
+    {
+      "name": "native-file-exists",
+      "passed": true
+    },
+    {
+      "name": "native-sha-exact",
+      "passed": true,
+      "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+    },
+    {
+      "name": "native-eat-type4",
+      "passed": true
+    },
+    {
+      "name": "native-eat-calls-use-no-target",
+      "passed": true
+    },
+    {
+      "name": "native-eat-fallback-ce",
+      "passed": true
+    },
+    {
+      "name": "native-eat-calls-deduct",
+      "passed": true
+    },
+    {
+      "name": "native-drink-type5",
+      "passed": true
+    },
+    {
+      "name": "native-drink-calls-use-no-target",
+      "passed": true
+    },
+    {
+      "name": "native-drink-fallback-d0",
+      "passed": true
+    },
+    {
+      "name": "native-drink-calls-deduct",
+      "passed": true
+    },
+    {
+      "name": "native-use-slot-id-offset-2f6",
+      "passed": true
+    },
+    {
+      "name": "native-use-slot-value-offset-3e2",
+      "passed": true
+    },
+    {
+      "name": "native-use-ability18",
+      "passed": true
+    },
+    {
+      "name": "native-use-ability42",
+      "passed": true
+    },
+    {
+      "name": "native-use-ability43",
+      "passed": true
+    },
+    {
+      "name": "native-use-ability114-mode11",
+      "passed": true
+    },
+    {
+      "name": "native-castsp-immediate-return",
+      "passed": true
+    },
+    {
+      "name": "native-deduct-minus-one-special",
+      "passed": true
+    },
+    {
+      "name": "native-deduct-primary-100-array",
+      "passed": true
+    },
+    {
+      "name": "native-deduct-decrements-word",
+      "passed": true
+    },
+    {
+      "name": "native-deduct-retain-offset-42a",
+      "passed": true
+    },
+    {
+      "name": "native-drop-notdroppable-offset-428",
+      "passed": true
+    },
+    {
+      "name": "native-appraise-delegates-sell",
+      "passed": true
+    }
+  ]
+}

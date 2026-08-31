@@ -4,6 +4,42 @@
   "activeGate": "current_health_validator",
   "acceptedValidations": [
     {
+      "name": "Quests / Scripts / Triggers closure",
+      "status": "accepted",
+      "summary": "Promoted both remaining Quests / Scripts / Triggers assertions after exact source/runtime graph reconciliation. The retained 2,183 quest evidence records partition into 83 executable decoded NPC quest flows plus 2,100 analysis-only candidates; clean Classic generation requires 83 live quest triggers, 182 linked scripts, and 2,616 decoded operations. RemoteAction is exhaustive at 139 invocations / 85 executable signatures. Direct source/static/data-correlation verification is 65/65 PASS.",
+      "evidence": [
+        "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
+        "Reports/RuntimeVerification/quests_scripts_triggers_static_verification_0365.json"
+      ]
+    },
+    {
+      "name": "NPC & AI closure",
+      "status": "accepted",
+      "summary": "Promoted all six remaining NPC & AI assertions after native owner reconciliation. MonsGuards is spell-target substitution, generic threat/perception/flee/patrol policies are isolated as Reforged extensions, fast/medium/slow generation ownership is connected, and spell-energy failure/refund classes are exact. Direct native/source/static verification is 32/32 PASS.",
+      "evidence": [
+        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+        "Reports/RuntimeVerification/classic_npc_ai_verification.json"
+      ]
+    },
+    {
+      "name": "Items & Inventory closure",
+      "status": "accepted",
+      "summary": "Promoted the two remaining Items & Inventory assertions after exact native reconciliation. The 1,072-byte item layout, ordered 20-slot abilities, Type 4/5 EAT/DRINK path, first-CastsSp no-target return, %Spell barrier, signed per-copy Uses state machine, NotDroppable DROP gate, and APPRAISE-to-SELL delegation are connected. Reforged generic durability/container/GUID/corpse-restoration policies remain explicit extensions. Direct native/source/data verification is 66/66 PASS.",
+      "evidence": [
+        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
+        "Reports/RuntimeVerification/classic_items_inventory_verification.json"
+      ]
+    },
+    {
+      "name": "Import / Export / Limits / Recovery closure",
+      "status": "accepted",
+      "summary": "Promoted the two remaining subsystem assertions after exact owner separation: native fixed capacities and overflow behavior are distinguished from configurable buffers/Reforged host features, while failure recovery distinguishes hard load failures, state-preserving gameplay rejection, owner-local presentation/reference failures, and record-local persistence without fabricated WCC transaction rollback. Verification is 86/86 PASS.",
+      "evidence": [
+        "Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
+        "Reports/RuntimeVerification/classic_import_export_limits_recovery_verification.json"
+      ]
+    },
+    {
       "name": "Classic room description recovery",
       "status": "accepted",
       "summary": "All 26666 Classic rooms have generated descriptions. WCCMP002 is the selected MajorMUD 1.11p room/map source for the final placeholder recovery; WBBMP002 is comparison evidence only.",
@@ -52,8 +88,12 @@
     {
       "name": "Classic parity repository closure",
       "status": "accepted",
-      "summary": "The cumulative assertion ledger contains 144 PASS, 56 STRONG, and zero UNKNOWN assertions. Accepted native closure through parity pass 0358 covers communication rendering, suicide traps, TALK/PAGE scope, host-only exclusions, message priority filtering, REST/MEDITATE, BREAK ownership, GIVE capacity/presentation, Charm pricing, physical combat ordering, raw Dodge, stock Accuracy, and PvP LVLDIFF. Historical per-pass validators and reports are retired after their 1,575 supplied checks were consolidated into the generic native runtime verification report.",
+      "summary": "The cumulative assertion ledger contains 161 PASS, 39 STRONG, and zero UNKNOWN assertions. Data Reconstruction is 3/3 PASS, Economy & Services 16/16 PASS, Host / Persistence / Worldgroup 9/9 PASS, Import / Export / Limits / Recovery 4/4 PASS, and Items & Inventory 6/6 PASS. The exact repository dependency inventory remains 40 groups; the current native-dependency report has 41 rows because it includes the closure meta-record.",
       "evidence": [
+        "Reports/RuntimeVerification/classic_items_inventory_verification.json",
+        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
+        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
         "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
         "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
         "Librarium/Parity/majormud_native_break_character_ownership_evidence_0352.json",
@@ -85,7 +125,8 @@
         "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
         "Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md",
         "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-        "Reports/RuntimeVerification/native_runtime_verification.json"
+        "Reports/RuntimeVerification/native_runtime_verification.json",
+        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json"
       ]
     },
     {
@@ -96,6 +137,17 @@
         "Apps/Source/Reforged.App/Services/NightmareMdbBridgeService.cs",
         "Tools/NightmareBridge/Read-NightmareMdb.ps1",
         "Tools/NightmareBridge/Write-NightmareMdb.ps1"
+      ]
+    },
+    {
+      "name": "Data Reconstruction closure",
+      "status": "accepted",
+      "summary": "Promoted all three Data Reconstruction assertions to PASS. The decode exhaustion gate now counts evidence-linked/runtime-consumed explicit-null fields as connected and fails closed unless all 39 families and all 2,096 scalar fields are connected. Direct parsing of the supplied working 1.11p WCCMSG2 matches all 3,867 shared canonical payloads; only empty reserved IDs 1 and 66 are omitted.",
+      "evidence": [
+        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json",
+        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json",
+        "Reports/RuntimeVerification/classic_native_message_coverage.json",
+        "Reports/RuntimeVerification/native_runtime_verification.json"
       ]
     }
   ]

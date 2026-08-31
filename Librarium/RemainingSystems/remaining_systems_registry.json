@@ -1049,7 +1049,7 @@
     },
     {
       "id": "import-export-compatibility",
-      "classification": "runtime-active-partially-exhausted",
+      "classification": "runtime-active-proven-classic-external-file-replacement-boundary",
       "status": "classic-native-boundary-closed; reforged-custom-ai-compatibility-extension-active",
       "runtimeOwner": "RuntimeImportExportCompatibilityService",
       "persistenceOwner": "Owning subsystem; coordinator stores no imported runtime payload",
@@ -1071,21 +1071,18 @@
       "flags": [
         "Classic exact file required",
         "Classic exact version required",
-        "Classic migration rejected",
-        "host authorized (Custom/AI)",
+        "Classic import/export/migration rejected",
         "Classic IDs preserved",
-        "dry run",
-        "owner commit required (Custom/AI)"
+        "Custom/AI host authorization",
+        "Custom/AI owner commit required"
       ],
-      "evidenceClassification": "Classic PASS boundary; Custom/AI Reforged extension",
-      "nativeDependencies": [
-        "exact native crash/log text and binary header encoding are optional evidence follow-up, not a migration/import parity blocker"
-      ],
-      "classicBoundary0304": {
+      "evidenceClassification": "PASS Classic boundary; Custom/AI Reforged extension",
+      "nativeDependencies": [],
+      "classicBoundary0362": {
         "state": "PASS",
         "workflow": "external editor -> exact native file/version replacement -> server start/restart",
         "wrongFileOrVersion": "hard startup/load failure; no conversion or migration",
-        "reforgedPolicy": "do not create a Classic import/export/migration subsystem"
+        "nativeInGameImportExportMigration": false
       }
     },
     {
@@ -1256,123 +1253,91 @@
     },
     {
       "id": "capacity-resource-limits",
-      "classification": "runtime-active-strong-exact-buffer-defaults-narrow-gameplay-limits-hard-maxima-open",
-      "status": "evidence-backed-boundary",
-      "runtimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + narrower native-backed owners; RuntimeCapacityLimitsService is Reforged-only extension coordination",
-      "persistenceOwner": "WCCMMUD.mcv retains setup defaults; exact runtime mutability/restart/persistence of capacity prompts remains native-dependent",
+      "classification": "runtime-active-proven-owner-separated-capacity-closure",
+      "status": "classic-native-boundary-closed; reforged-generic-capacity-extension-excluded",
+      "runtimeOwner": "RuntimeClassicCapacityResourceLimitsAuthority + exact owning gameplay subsystems; RuntimeCapacityLimitsService is Reforged-only extension coordination",
+      "persistenceOwner": "WCCMMUD.mcv/INI external startup configuration for buffer defaults; gameplay arrays live in their owning native records/state",
       "recordFamilies": [
         "WCCMMUD.mcv capacity/buffer prompts",
-        "native UserRec name-width fields",
-        "party member array correlation",
-        "gang-name help/live enforcement",
-        "MajorMUD Plus room-admission capacities",
+        "native 100-slot carried inventory",
+        "native 50-slot secondary item array",
+        "native 17 visible + 15 hidden room item arrays",
+        "native five-slot-plus-leader party graph",
+        "native gang member counter/join path",
+        "native UserRec name widths",
         "encumbrance weight capacity"
       ],
       "commands": [
         "native setup/configuration prompts",
-        "gang creation",
-        "party admission",
-        "item GIVE encumbrance admission",
-        "--smoke-capacity-limits"
+        "item GIVE capacity admission",
+        "death-floor overflow/disposal",
+        "INVITE/FOLLOW/JOIN party admission",
+        "gang JOIN",
+        "--smoke-classic-import-export-limits-recovery"
       ],
       "timers": [],
       "flags": [
-        "buffer default versus hard maximum distinction",
+        "buffer defaults are not world maxima",
+        "100 carried root slots",
+        "50 secondary item slots",
+        "17/15 room slots",
+        "party maximum 6",
+        "gang join has no fixed admission-cap branch",
+        "Reforged multi-character account slots excluded",
         "host line/session/user limits excluded",
         "generic reservation coordinator receives no Classic credit"
       ],
-      "evidenceClassification": "strong-exact-buffer-defaults-plus-narrow-gameplay-limits-hard-maxima-open",
-      "nativeDependencies": [
-        "exact carried inventory item-count/slot maximum separate from the proven encumbrance weight formula",
-        "exact room-floor object-count maximum and death-drop overflow destination/order",
-        "exact concurrent world object/item-instance hard maximum and allocation failure cleanup",
-        "exact active NPC/monster hard maximum beyond the retained 2000 active-monster buffer default",
-        "exact gang member hard maximum; the generic organization default of 256 is not native evidence",
-        "exact per-account/per-world character-slot hard maximum",
-        "exact hard world/data-record maxima for rooms, items, monsters, spells, races, classes, bankbooks, and related tables beyond retained buffer defaults",
-        "exact native numeric widths/signedness for capacity counters and table indices not already proven by a record layout",
-        "exact allowed ranges, startup-only versus live mutability, and restart semantics for WCCMMUD.mcv capacity prompts",
-        "exact behavior on allocation/admission exhaustion including cleanup/rollback/retry ordering",
-        "exact player-visible capacity/allocation failure messages and rendering order"
-      ],
-      "pass56NativeBoundary": {
-        "roomsBufferedDefault": 1500,
-        "itemsBufferedDefault": 750,
-        "activeMonstersBufferedDefault": 2000,
-        "knownMonstersBufferedDefault": 300,
-        "spellsBufferedDefault": 150,
-        "racesBufferedDefault": 12,
-        "classesBufferedDefault": 16,
-        "bankbooksBufferedDefault": 32,
-        "messageBufferDefaults": [
-          250,
-          50,
-          10
-        ],
-        "maximumLives": 9,
-        "partyMaximumMembersStrong": 6,
-        "gangNameMaximumCharacters": 19,
-        "givenNameStorageBytes": 10,
-        "familyNameStorageBytes": 18,
-        "plusVisibleRoomCapacity": 17,
-        "plusHiddenRoomCapacity": 15,
-        "plusMaximumPlacementAttempts": 50,
-        "genericRuntimeCapacityLimitsReceivesClassicParityCredit": false,
-        "bufferDefaultsAreHardWorldMaximumClaims": false
+      "evidenceClassification": "PASS exact fixed arrays + exact overflow behavior + explicit negative/excluded owner boundaries",
+      "nativeDependencies": [],
+      "closure0362": {
+        "state": "PASS",
+        "inventoryRootSlots": 100,
+        "secondaryItemSlots": 50,
+        "visibleRoomSlots": 17,
+        "hiddenRoomSlots": 15,
+        "partyMaximumMembers": 6,
+        "gangJoinFixedMemberAdmissionCap": false,
+        "multiCharacterAccountSlotCapMajorMudOwned": false,
+        "bufferDefaultsHardWorldMaxima": false,
+        "genericRuntimeCapacityLimitsReceivesClassicParityCredit": false
       }
     },
     {
       "id": "error-handling-recovery",
-      "classification": "runtime-active-partially-exhausted",
-      "status": "implemented-strong-classic-failure-boundary",
-      "runtimeOwner": "RuntimeErrorRecoveryService",
-      "persistenceOwner": "owning subsystem retains payload; recovery service owns decisions and disabled-subsystem runtime state",
+      "classification": "runtime-active-proven-owner-separated-recovery-closure",
+      "status": "classic-native-boundary-closed; reforged-generic-recovery-extension-retained",
+      "runtimeOwner": "RuntimeClassicImportExportLimitsRecoveryAuthority + owner-local native handlers; RuntimeErrorRecoveryService generic policies are Reforged extension except the exact Classic no-op branch",
+      "persistenceOwner": "RuntimeClassicSaveCoordinationAuthority owns native record-level save semantics; lower-layer physical crash replay remains MKDE/Worldgroup ownership",
       "recordFamilies": [
-        "runtime failure context",
-        "recovery decisions",
-        "disabled subsystem state"
+        "ordinary rejected gameplay action",
+        "native startup/load failure boundary",
+        "owner-local command/reference failure presentation",
+        "record-local persistence failure",
+        "excluded Worldgroup/MKDE crash recovery"
       ],
       "commands": [
-        "internal recovery decision",
-        "administrative recovery inspection"
+        "internal Classic failure classification",
+        "--smoke-classic-import-export-limits-recovery"
       ],
       "timers": [],
       "flags": [
-        "rollback available",
-        "validated default available",
-        "world-load critical",
-        "character scoped",
-        "subsystem disabled"
+        "ordinary rejection is NoOp",
+        "no universal Classic failure text renderer",
+        "no universal Classic gameplay rollback manager",
+        "no WCC-selected save transaction rollback",
+        "post-startup missing references are owner-local",
+        "host crash replay excluded"
       ],
-      "evidenceClassification": "strongly-correlated",
-      "nativeDependencies": [
-        "exact command/action-specific failure text versus silent no-op",
-        "malformed/missing post-startup MajorMUD data-reference behavior",
-        "catastrophic save rollback/participant ordering"
-      ],
-      "classicFailureBoundary0304": {
-        "state": "PASS-narrow",
-        "ordinaryRejectedGameplayAction": "no-op/state unchanged",
-        "syntheticRollback": "not invoked for ordinary rejected gameplay actions",
-        "remainingUnknown": [
-          "exact command-specific text versus silence",
-          "malformed/missing data-reference handling",
-          "catastrophic save rollback ordering"
-        ]
-      },
-      "classicFailureBoundary0312": {
-        "state": "STRONG",
-        "ordinaryRejectedGameplayAction": "no-op/state unchanged",
-        "ordinaryRejectionRollback": false,
-        "ordinaryRejectionDisablesSubsystem": false,
-        "ordinaryRejectionStopsWorldLoad": false,
-        "wrongCorruptNativeFile": "hard startup/load failure; not this no-op branch",
-        "reforgedTransactionalRollback": "implementation safety mechanism; not native ordinary-gameplay evidence",
-        "remainingUnknown": [
-          "exact command-specific text versus silence",
-          "malformed/missing post-startup data-reference handling",
-          "catastrophic save rollback/participant ordering"
-        ]
+      "evidenceClassification": "PASS exact global boundary with owner-local/excluded branches",
+      "nativeDependencies": [],
+      "closure0362": {
+        "state": "PASS",
+        "ordinaryRejectedGameplayAction": "state-preserving NoOp",
+        "wrongCorruptNativeFile": "hard startup/load failure",
+        "commandFailureText": "owner-local; no universal renderer",
+        "postStartupMissingReference": "owner-local; no universal crash/continue rule",
+        "persistenceFailure": "record-local best effort; no WCC begin/end/abort transaction rollback",
+        "worldgroupCrashRecovery": "excluded from MajorMUD gameplay"
       }
     },
     {

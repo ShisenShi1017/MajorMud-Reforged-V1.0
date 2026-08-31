@@ -31,7 +31,7 @@ public static class RuntimeBundleCItemAudit
             var items = catalog.Items.ToArray();
             Require(items.Length > 0, "generated-item-catalog-loaded");
             Require(items.All(x => !string.IsNullOrWhiteSpace(x.Id) && !string.IsNullOrWhiteSpace(x.Name)), "item-identity-complete");
-            Require(items.All(x => x.Weight >= 0 && x.DefaultCharges >= 0), "item-weight-charge-domain-valid");
+            Require(items.All(x => x.Weight >= 0 && x.DefaultCharges >= -1), "item-weight-charge-domain-valid");
             Require(items.Count(x => x.DeleteAtCleanup) == 460, "del-maint-ability-119-all-460-owners-projected");
             Require(items.Count(x => x.RechargeAtCleanup > 0) == 78, "recharge-ability-121-all-78-owners-projected");
             Require(items.Count(x => x.RechargeAtCleanup > 0 && x.MaximumUses > 0) == 77, "recharge-ability-121-77-capacity-backed-owners");
@@ -39,8 +39,9 @@ public static class RuntimeBundleCItemAudit
 
             var engine = File.ReadAllText(Path.Combine(projectRoot,"Apps","Source","Reforged.Server","RuntimeItemsEquipment.cs"));
             Require(engine.Contains("ConsumeQuantity", StringComparison.Ordinal), "consumable-runtime-consumer");
-            Require(engine.Contains("SpendCharges", StringComparison.Ordinal) && engine.Contains("Recharge", StringComparison.Ordinal), "charge-runtime-consumer");
+            Require(engine.Contains("SpendClassicUse", StringComparison.Ordinal) && engine.Contains("SpendCharges", StringComparison.Ordinal) && engine.Contains("Recharge", StringComparison.Ordinal), "classic-charge-runtime-consumer");
             Require(engine.Contains("Cannot consume a non-empty container", StringComparison.Ordinal), "container-destruction-guard");
+            Require(engine.Contains("OrderedAbilities", StringComparison.Ordinal), "ordered-item-ability-runtime-consumer");
             Require(engine.Contains("StackQuantity", StringComparison.Ordinal), "stack-runtime-consumer");
             Require(engine.Contains("Destroy(string instanceId", StringComparison.Ordinal), "destruction-runtime-consumer");
             Require(engine.Contains("RuntimeItemLocations.Container", StringComparison.Ordinal), "portable-container-runtime-consumer");

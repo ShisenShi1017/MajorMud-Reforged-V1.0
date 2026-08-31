@@ -1,0 +1,185 @@
+{
+  "schema": "majormud.economy-services-complete.v0360",
+  "update": "CodeUpdate0360",
+  "status": "PASS",
+  "scope": "Economy & Services strict parity closure",
+  "native_source": {
+    "path": "WGSERV(4).rar/WCCMMUD.DLL",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "bytes": 643072,
+    "format": "PE32 i386"
+  },
+  "promoted_assertions": [
+    "economy.non-item-service-cost-order",
+    "economy.services-classified",
+    "economy.shop-transaction-boundary",
+    "native.paid-room-transfers",
+    "transport.majormud-ownership"
+  ],
+  "shoptype5": {
+    "dispatcher_branch": "WCCMMUD 0x0041B8D8 compares ShopType to 5",
+    "keywords": {
+      "healing": {
+        "data": "0x0047E8A9",
+        "xref": "0x0041B8E6"
+      },
+      "curing": {
+        "data": "0x0047E96C",
+        "xref": "0x0041B9B8"
+      },
+      "cure poison": {
+        "data": "0x0047E973",
+        "xref": "0x0041B9CD"
+      }
+    },
+    "healing": {
+      "formula": "2 * max(0, MaxHP-CurrentHP)",
+      "denomination": "copper",
+      "funds_helper": "0x0041ED8A",
+      "debit_formatter": "0x0041EDCA",
+      "effect": "CurrentHP := MaxHP after debit",
+      "insufficient_funds": "You do not have sufficient funds to buy full healing!"
+    },
+    "curing": {
+      "not_poisoned_cost": {
+        "amount": 15,
+        "denomination": "silver",
+        "copper_equivalent": 150
+      },
+      "poisoned_cost": {
+        "amount": 25,
+        "denomination": "silver",
+        "copper_equivalent": 250
+      },
+      "funds_helper": "0x0041ED8A",
+      "debit_formatter": "0x0041EDCA",
+      "effect": "poison clear occurs after debit when poisoned",
+      "insufficient_funds": "You do not have sufficient funds to buy curing!",
+      "not_poisoned_suffix": "and find that you were not poisoned!",
+      "poisoned_suffix": "and your poisoning is cured."
+    },
+    "ownership_note": "Message 318 belongs to scripted healer PRICE lines; generic ShopType-5 uses direct DLL strings."
+  },
+  "merchandise_buy": {
+    "native_order": [
+      "resolve item",
+      "validate shop stock/admission",
+      "check currency",
+      "acquire/admit item",
+      "debit/format currency",
+      "decrement shop stock"
+    ],
+    "funds_check_range": "0x0041C187-0x0041C1A4",
+    "item_admission_call": "0x0041C2C2-0x0041C2D5",
+    "debit_formatter_call": "0x0041C364",
+    "stock_decrement": "0x0041C377",
+    "insufficient_funds_template": "You cannot afford %s.",
+    "template_data": "0x0047EB2D",
+    "reforged_boundary": "Per-shop serialized character + stock compensation boundary; affordability is rejected before mutation."
+  },
+  "service_classification": {
+    "shop_count": 178,
+    "room_bound_bank_count": 26,
+    "classified_service_count": 204,
+    "known_shop_types": "0-12",
+    "shoptype12": {
+      "id": "shop.124",
+      "name": "Realm Deed Office",
+      "service_kind": "realm_deed_office",
+      "markup_percent": 100
+    },
+    "unknown_shop_kinds": 0
+  },
+  "paid_carriages": {
+    "failure_message": {
+      "id": 2576,
+      "text": "You cannnot afford that service."
+    },
+    "routes": [
+      {
+        "root_textblock": 2923,
+        "source": "15/847",
+        "command": "buy passage to khazarad",
+        "fare_copper": 4000,
+        "departure_message": 2577,
+        "random_table": 2926
+      },
+      {
+        "root_textblock": 2923,
+        "source": "15/847",
+        "command": "buy passage to rhudaur",
+        "fare_copper": 4500,
+        "departure_message": 2578,
+        "random_table": 2927
+      },
+      {
+        "root_textblock": 2937,
+        "source": "15/846",
+        "command": "buy passage to silvermere",
+        "fare_copper": 8000,
+        "departure_message": 2596,
+        "random_table": 2926
+      },
+      {
+        "root_textblock": 2937,
+        "source": "15/846",
+        "command": "buy passage to khazarad",
+        "fare_copper": 10000,
+        "departure_message": 2578,
+        "random_table": 2926,
+        "note": "Decoded source mismatch preserved literally."
+      },
+      {
+        "root_textblock": 2938,
+        "source": "15/845",
+        "command": "buy passage to silvermere",
+        "fare_copper": 4500,
+        "departure_message": 2596,
+        "random_table": 2927
+      },
+      {
+        "root_textblock": 2938,
+        "source": "15/845",
+        "command": "buy passage to rhudaur",
+        "fare_copper": 6500,
+        "departure_message": 2578,
+        "random_table": 2927
+      }
+    ],
+    "random_tables": {
+      "2926": [
+        "1: message2580 teleport 6/215 summon 379 x2",
+        "5: message2580 teleport 6/144 summon 379",
+        "9: message2579 teleport 6/244",
+        "13: message2579 teleport 6/276",
+        "100: message2581 teleport 6/1249"
+      ],
+      "2927": [
+        "1: message2580 teleport 2/61 summon 227,223,225,224",
+        "7: message2580 teleport 2/63 summon 227 x2",
+        "12: message2579 teleport 2/150",
+        "15: message2579 teleport 2/69",
+        "100: message2581 teleport 2/2519"
+      ]
+    },
+    "runtime_model": "Immediate decoded PRICE -> MESSAGE -> RANDOM; no persistent Classic vehicle/trip state."
+  },
+  "adddelay": {
+    "status": "already PASS/native-exact",
+    "evidence": "Librarium/Parity/majormud_native_organization_persistence_services_evidence_0344.json",
+    "live_field": "user delay byte +0x6BB",
+    "behavior": "queued commands while delayed; exact queue warning/refusal boundaries retained"
+  },
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicEconomyServiceAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeWorldSystemsBundle.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicRoomActionScripts.cs",
+    "Apps/Source/Reforged.Server/RuntimeTransportServices.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicEconomyServiceCoverageAudit.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicEconomyParityAudit.cs"
+  ],
+  "verification_policy": {
+    "local_environment": ".NET SDK unavailable; native/data/static verification is authoritative here",
+    "installer": "Builds Release, regenerates Classic with authoritative .NET compiler, runs economy/service audit and carriage smoke on target."
+  }
+}

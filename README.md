@@ -1,6 +1,6 @@
 ## Current Classic parity continuation
 
-The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration evidence is integrated into executable runtime ownership. Current parity is **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
+The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration evidence is integrated into executable runtime ownership. Current parity is **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
 
 # MajorMUD Reforged
 
@@ -8,7 +8,7 @@ The reviewed native exit, formula, NPC combat, scheduler/regeneration, character
 
 The cumulative Classic parity ledger closes the repository-visible native ownership inventory at STRONG confidence. All 36 Remaining Systems owners, 40 native dependency groups, 396 retained native artifacts, supplied WCC families, and 156/156 MajorMUD-used Worldgroup symbols are explicitly owned and fail-closed where exact semantics remain unresolved.
 
-Current parity: **144 PASS / 56 STRONG / 0 UNKNOWN = 200** (**72.0% strict**, **100.0% evidence-backed**). The remaining 56 evidence-bounded STRONG assertions are not represented as exact-native PASS.
+Current parity: **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict**, **100.0% evidence-backed**). CodeUpdate0365 closes Quests / Scripts / Triggers at 2/2 PASS: clean Classic generation contains exactly 83 executable quest flows, 83 live NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations while 2,100 analysis-only candidates remain Librarium-only; remoteaction is exhaustive at 139/139 invocations and 85/85 executable signatures. CodeUpdate0363 closes Items & Inventory at 6/6 PASS with exact signed per-copy Uses, ordered no-target item abilities, EAT/DRINK fallback counters, APPRAISE delegation, and explicit Reforged-extension boundaries. CodeUpdate0362 closes Import / Export / Limits / Recovery at 4/4 PASS with native capacity/recovery ownership explicitly separated from Reforged/Worldgroup extensions. The remaining 31 evidence-bounded STRONG assertions are not represented as exact-native PASS.
 
 Creator Studio full-control editing is integrated into the Reforged app with Quick Create, nested field editing, expanded runtime Librarium families, Custom1 cloning, and protected Classic identity/runtime metadata.
 
@@ -117,3 +117,9 @@ Do not hand-edit generated `/Data` as canonical source. Update Librarium/source 
 
 One-time validation proofs are recorded in ValidationManifest.json.
 WCCMMUD online administration is exposed through authenticated `SYSOP` dispatch backed by generated Librarium data. The legacy SYSOP unlock value is configuration evidence and is never entered as a gameplay command.
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.

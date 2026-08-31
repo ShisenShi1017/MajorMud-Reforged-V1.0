@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "native-item-behavior",
-  "update": "0329",
-  "status": "evidence-backed-strong-native-owner-boundary",
+  "update": "0363",
+  "status": "PASS",
   "canonicalItemCount": 1950,
   "nativeItemEquipmentExports": [
     "_add_item_to_inventory",
@@ -72,20 +72,28 @@
     "_cmd_unstock",
     "_cmd_use"
   ],
-  "runtimeOwner": "decoded item/equipment runtime for evidence-backed behavior + RuntimeClassicNativeItemBehaviorAuthority for native-only claims",
-  "reforgedExtensionBoundary": "generic stack/durability/loot-seed/persistence/container/recovery policies do not become Classic-native truth without separate evidence",
-  "unresolved": [
-    "exact WCC/WBB native item record layout, field offsets, widths and category/type codes",
-    "exact unknown item flag/restriction bit mapping including stackability, binding, quest, limited, no-drop, no-sell, no-bank and no-remove edge cases",
-    "exact maximum stack quantities and split/merge branch ordering",
-    "exact charge-bearing item mapping, charge cost per use, zero-charge handling and recharge scheduling",
-    "exact durability eligibility, wear/breakage/repair formulas, caps, pricing and destruction/transformation behavior",
-    "exact native loot quantity/chance formulas and global RNG draw ordering",
-    "exact limited/unique count scope, release ordering and edge cases",
-    "exact room/container/NPC/merchant reset/restock scheduler ordering, player-presence suppression and retry behavior",
-    "exact native item save offsets/instance identity/checksum/recovery/version behavior",
-    "exact item command success/failure messages and native permission/exception ordering",
-    "exact container depth/weight edge behavior and nested ownership ordering",
-    "exact corpse/resurrection equipment restoration ordering and native permission timing"
-  ]
+  "runtimeOwner": "exact native item/inventory runtime plus delegated closed subsystem owners; Reforged-only policies remain explicitly excluded",
+  "reforgedExtensionBoundary": "generic stack/durability/portable-container/GUID-recovery/corpse-resurrection-equipment policies are Reforged extensions and are not Classic parity requirements",
+  "unresolved": [],
+  "resolved": [
+    "1,072-byte 1.11o+/1.11p item record with runtime-relevant field offsets correlated to WCCMMUD",
+    "native Type 4 food and Type 5 drink command gates",
+    "ordered 20-slot native item abilities preserved; repeated ability IDs are valid, while _use_no_target returns immediately after the first qualifying CastsSp result",
+    "%Spell (ability 114) blocks ordinary no-target scanning unless native caller mode is 11",
+    "signed per-copy Uses: only -1 is unlimited; successful uses decrement one; zero removes unless RetainAfterUses; retained zero becomes -1 on the next successful use",
+    "EAT/DRINK no-effect fallback increments persistent player +0xCE/+0xD0 words without deducting Uses; the native slow update decrements both words",
+    "NotDroppable exact DROP gate/message",
+    "APPRAISE delegates to _sell_item with appraise-only flag and identical sell-price arithmetic",
+    "100 primary plus 50 secondary player item/use arrays",
+    "shop merchandise 20-slot matching and appraise non-mutation",
+    "room placement, limited refresh, loot RNG, persistence, economy transactions, GIVE, and death-floor semantics delegated to already-closed native owners"
+  ],
+  "classicExcludedExtensions": [
+    "generic maximum-stack/split/merge policy",
+    "generic durability/wear/repair/breakage",
+    "portable nested-container depth/weight ownership",
+    "item GUID/checksum/journal recovery",
+    "corpse resurrection equipment restoration/displacement"
+  ],
+  "evidence": "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json"
 }

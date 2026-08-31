@@ -112,6 +112,9 @@ public sealed partial class RuntimeLivingWorldService
     private readonly Dictionary<string,RuntimeItemInstance> _items = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeItemInstance> _staticRoomItemDefinitions = new(StringComparer.OrdinalIgnoreCase);
     private readonly List<RuntimeSpawnPlacementIssue> _spawnPlacementIssues = [];
+    private int _classicSlowNpcCursor;
+    private int _classicMediumNpcCursor;
+    private int _classicFastNpcCursor;
 
     public RuntimeLivingWorldService(string projectRoot, RuntimeWorld world, string? persistenceRoot = null)
     {
@@ -137,22 +140,10 @@ public sealed partial class RuntimeLivingWorldService
     /// </summary>
     public int ApplyNativeSlowNpcRegeneration(DateTimeOffset nowUtc)
     {
-        lock (_gate)
-        {
-            var changed = 0;
-            foreach (var pair in _npcs.ToArray())
-            {
-                var npc = pair.Value;
-                if (!npc.Alive || npc.CurrentHitPoints >= npc.MaximumHitPoints) continue;
-                if (!npc.Metadata.TryGetValue("hp_regen", out var raw) || !int.TryParse(raw, out var amount) || amount <= 0) continue;
-                var next = Math.Min(npc.MaximumHitPoints, checked(npc.CurrentHitPoints + amount));
-                if (next == npc.CurrentHitPoints) continue;
-                _npcs[pair.Key] = npc with { CurrentHitPoints = next };
-                changed++;
-            }
-            if (changed > 0) Save();
-            return changed;
-        }
+        // Compatibility entry point retained for older smoke callers. Start exactly one slow
+        // generation and run it through the same slot/cursor adapter as the live scheduler.
+        var result = PumpClassicNpcAiUpdateLanes(new RuntimeClassicSchedulerStep(0, false, false, false, false, true), nowUtc);
+        return result.HitPointRegenerations;
     }
 
     public string WorldId => _world.Definition.Id;
@@ -560,11 +551,18 @@ public sealed partial class RuntimeLivingWorldService
         lock (_gate) return _spawnPlacementIssues.ToArray();
     }
 
+    private static int ReadClassicActiveSlot(RuntimeLivingNpcState npc) =>
+        npc.Metadata.TryGetValue("classic_active_slot", out var raw) && int.TryParse(raw, out var slot) && slot >= 0
+            ? slot : int.MaxValue;
+
+    private int NextClassicActiveSlotLocked() =>
+        _npcs.Count == 0 ? 0 : checked(_npcs.Values.Select(ReadClassicActiveSlot).Where(slot => slot != int.MaxValue).DefaultIfEmpty(-1).Max() + 1);
+
     public IReadOnlyList<RuntimeLivingNpcState> NpcsInRoom(string roomId)
     {
         lock (_gate)
             return _npcs.Values.Where(x => x.Alive && x.RoomId.Equals(roomId,StringComparison.OrdinalIgnoreCase))
-                .OrderBy(x=>x.Name,StringComparer.OrdinalIgnoreCase).ThenBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray();
+                .OrderBy(ReadClassicActiveSlot).ThenBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     public RuntimeLivingNpcState SummonNpc(string npcId, string roomId, string source)
@@ -607,7 +605,8 @@ public sealed partial class RuntimeLivingWorldService
                 ["game_limit"] = definition.GameLimit.ToString(),
                 ["gender"] = definition.Gender.ToString(),
                 ["monster_type"] = definition.MonsterType.ToString(),
-                ["experience_multiplier"] = definition.ExperienceMultiplier.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                ["experience_multiplier"] = definition.ExperienceMultiplier.ToString(System.Globalization.CultureInfo.InvariantCulture),
+                ["classic_active_slot"] = NextClassicActiveSlotLocked().ToString()
             };
             var state = new RuntimeLivingNpcState(
                 instanceId,
@@ -869,6 +868,7 @@ public sealed partial class RuntimeLivingWorldService
     private void LoadGeneratedNpcInstances()
     {
         var spawnTimingCatalog = RuntimeMajorMudSpawnTimingCatalog.Load(_projectRoot);
+        var classicActiveSlot = 0;
         foreach(var spawn in _world.Spawns)
         {
             if (!TryResolveSpawnRoom(spawn, out var room, out var reason))
@@ -936,10 +936,12 @@ public sealed partial class RuntimeLivingWorldService
                     ["gender"] = npc.Gender.ToString(),
                     ["monster_type"] = npc.MonsterType.ToString(),
                     ["experience_multiplier"] = npc.ExperienceMultiplier.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                    ["maximum_area_population"] = spawn.MaximumAreaPopulation.ToString()
+                    ["maximum_area_population"] = spawn.MaximumAreaPopulation.ToString(),
+                    ["classic_active_slot"] = classicActiveSlot.ToString()
                 };
                 _npcs[id]=new(id,spawn.Id,npc.Id,npc.Name,room.Id,room.Id,
                     Math.Max(1,npc.HitPoints),Math.Max(1,npc.HitPoints),true,null,aiRelationship.InteractionModel,spawnTiming.EffectiveMinutes,metadata);
+                classicActiveSlot++;
             }
         }
     }
@@ -1722,7 +1724,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         foreach(var world in _livingWorlds.Values)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if(schedulerStep.SlowDue) world.ApplyNativeSlowNpcRegeneration(now);
+            world.PumpClassicNpcAiUpdateLanes(schedulerStep, now);
             world.Tick(now);
         }
         return Task.CompletedTask;

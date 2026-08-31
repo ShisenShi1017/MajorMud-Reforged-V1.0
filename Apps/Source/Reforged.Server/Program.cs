@@ -364,7 +364,7 @@ if (args.Any(arg => string.Equals(arg, "--audit-decode-exhaustion", StringCompar
     File.WriteAllText(Path.Combine(outputRoot, "classic_decode_exhaustion_report.json"), ClassicDecodeExhaustionAudit.ToJson(exhaustionReport));
     File.WriteAllText(Path.Combine(outputRoot, "CLASSIC_DECODE_EXHAUSTION_REPORT.md"), ClassicDecodeExhaustionAudit.RenderMarkdown(exhaustionReport));
     Console.WriteLine(ClassicDecodeExhaustionAudit.RenderMarkdown(exhaustionReport));
-    return exhaustionReport.Diagnostics.Count == 0 ? 0 : 31;
+    return exhaustionReport.Passed ? 0 : 31;
 }
 
 if (args.Any(arg => string.Equals(arg, "--audit-combat-bundle", StringComparison.OrdinalIgnoreCase)))
@@ -1598,6 +1598,41 @@ if (args.Any(arg => string.Equals(arg, "--smoke-megamud-connection", StringCompa
     }
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-host-persistence-worldgroup", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicHostPersistenceWorldgroupSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-import-export-limits-recovery", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicImportExportLimitsRecoverySmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-items-inventory", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicItemsInventorySmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-npc-ai", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicNpcAiSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-quests-scripts-triggers", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicQuestScriptTriggerClosureSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-parity-closure", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeClassicParityClosureSmokeReport.Run(projectRoot);
@@ -1708,7 +1743,7 @@ if (args.Any(arg => string.Equals(arg, "--smoke-player-transactions", StringComp
 
 if (args.Any(arg => string.Equals(arg, "--smoke-transport-services", StringComparison.OrdinalIgnoreCase)))
 {
-    var smoke = RuntimeTransportServiceSmokeReport.Run();
+    var smoke = RuntimeTransportServiceSmokeReport.Run(projectRoot);
     Console.WriteLine(smoke.ToJson());
     return smoke.Passed ? 0 : 1;
 }

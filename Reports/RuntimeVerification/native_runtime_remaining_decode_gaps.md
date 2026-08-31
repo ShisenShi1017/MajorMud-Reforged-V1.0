@@ -13,7 +13,7 @@ Date: 2026-07-29
 - Classic compiler output contains `26,668/26,668` room descriptions.
 - Classic runtime audit loads `26,668/26,668` room descriptions.
 - Runtime audit loads `1,015` live NPC instances and `628` live monster instances with hard map-qualified placement validation.
-- Interaction/narrative smoke passes with `2,183` quests, `83` executable quest entries, `182` decoded textblock stage scripts, and exhaustive NPC quest-entry dispatch validation.
+- Librarium retains `2,183` quest evidence records partitioned into `83` decoded executable NPC quest flows plus `2,100` analysis-only candidates. Clean Classic generation emits exactly `83` executable quests, `83` live NPC quest-entry triggers, and `182` linked stage scripts containing `2,616` decoded operations; exhaustive NPC quest-entry dispatch validates all executable flows while the analysis candidates remain Librarium-only.
 - Full current-health validator passes `13/13`.
 
 ## Decode Work Still Needed
@@ -31,7 +31,7 @@ Date: 2026-07-29
 
 ### Native Actions and Messages
 
-- Full remoteaction closure covers 139/139 decoded invocations and 85/85 signatures with zero unresolved or evidence-gated contracts.
+- Full remoteaction closure covers `139/139` decoded invocations and `85/85` distinct signatures with zero ambiguous, unresolved, or evidence-gated contracts: `62` paired-door toggles, `22` native state-bit clears, and `1` native common-finalization action.
 - The verified 3,467-record WCCTEXT2 payload catalog is now promoted into Librarium and reproducibly regenerated as one `Data/Classic/native_textblock_payloads.json` runtime file. Clean compilation no longer deletes the F10 payload authority.
 - WCCMSG2 promotion and runtime binding are complete for 3,869 logical messages. Map 17 pedestal IDs 3318-3322 render in exact decoded order.
 - Map 17 boulder failure textblock 4235 executes message 3309 followed by self-targeted fire-damage spell 1324. The spell consumes decoded +5/+7 per-level magnitude growth and persists character HP damage.

@@ -47,7 +47,12 @@ public sealed record ClassicDecodeExhaustionReport(
     IReadOnlyList<ClassicDecodeFieldCoverage> Fields,
     IReadOnlyList<string> Diagnostics)
 {
-    public bool Passed => Diagnostics.Count == 0 && DisconnectedFamilyCount == 0 && PendingFamilyCount == 0 && DisconnectedFieldCount == 0;
+    public bool Passed => Diagnostics.Count == 0
+        && DisconnectedFamilyCount == 0
+        && PendingFamilyCount == 0
+        && DisconnectedFieldCount == 0
+        && ConnectedFamilyCount == FamilyCount
+        && ConnectedFieldCount == TotalFields;
 }
 
 /// <summary>
@@ -73,7 +78,8 @@ public static class ClassicDecodeExhaustionAudit
     private static readonly HashSet<string> AuditOnlyFiles = new(StringComparer.OrdinalIgnoreCase)
     {
         "ClassicDecodeExhaustionAudit.cs", "ClassicRuntimeAudit.cs", "ClassicParityAudit.cs",
-        "GeneratedWorldSmokeReport.cs", "RuntimeLivingWorldSmokeReport.cs"
+        "GeneratedWorldSmokeReport.cs", "RuntimeLivingWorldSmokeReport.cs",
+        "RuntimeClassicDataReconstructionSmokeReport.cs"
     };
 
     private static readonly HashSet<string> StructuralFields = new(StringComparer.OrdinalIgnoreCase)
@@ -235,7 +241,7 @@ public static class ClassicDecodeExhaustionAudit
             }
 
             var familyCoverage = fields.Where(item => string.Equals(item.Family, family, StringComparison.OrdinalIgnoreCase)).ToArray();
-            var connectedFields = familyCoverage.Count(item => item.Status is "connected" or "structural-metadata");
+            var connectedFields = familyCoverage.Count(item => IsConnectedFieldStatus(item.Status));
             var disconnectedFields = familyCoverage.Count(item => item.Status is "generated-unconsumed" or "consumed-without-field-evidence");
             var structuralOnly = familyCoverage.Length > 0 && familyCoverage.All(item => item.Status == "structural-metadata");
 
@@ -280,7 +286,7 @@ public static class ClassicDecodeExhaustionAudit
             families.Count(item => item.Status == "connected-with-unresolved-records"),
             families.Sum(item => item.RecordCount),
             fields.Count,
-            fields.Count(item => item.Status is "connected" or "structural-metadata"),
+            fields.Count(item => IsConnectedFieldStatus(item.Status)),
             fields.Count(item => item.Status is "generated-unconsumed" or "consumed-without-field-evidence"),
             evidenceFiles.Length,
             families,
@@ -302,7 +308,7 @@ public static class ClassicDecodeExhaustionAudit
         builder.AppendLine($"- Families with unresolved records: {report.PendingFamilyCount}");
         builder.AppendLine($"- Generated records: {report.TotalClassicRecords}");
         builder.AppendLine($"- Generated scalar fields: {report.TotalFields}");
-        builder.AppendLine($"- Connected/structural fields: {report.ConnectedFieldCount}");
+        builder.AppendLine($"- Connected/structural/explicit-empty fields: {report.ConnectedFieldCount}");
         builder.AppendLine($"- Disconnected fields: {report.DisconnectedFieldCount}");
         builder.AppendLine($"- Evidence files scanned: {report.TotalEvidenceFiles}");
         builder.AppendLine();
@@ -311,6 +317,14 @@ public static class ClassicDecodeExhaustionAudit
         foreach (var family in report.Families)
         {
             builder.AppendLine($"| {family.Family} | {family.RecordCount} | {family.FieldCount} | {family.ConnectedFieldCount} | {family.DisconnectedFieldCount} | {family.EvidenceFileCount} | {family.RuntimeConsumerCount} | {family.PendingMarkerCount} | {family.UnresolvedMarkerCount} | {family.Status} |");
+        }
+
+        builder.AppendLine();
+        builder.AppendLine("## Explicit-empty connected fields");
+        foreach (var field in report.Fields.Where(item => item.Status == "connected-empty")
+                     .OrderBy(item => item.Family).ThenBy(item => item.JsonPath))
+        {
+            builder.AppendLine($"- `{field.Family}:{field.JsonPath}` — evidence-linked and runtime-consumed; occurrences={field.OccurrenceCount}; non-null={field.NonNullCount}; evidence={field.EvidenceReferenceCount}; consumers={field.RuntimeConsumerCount}");
         }
 
         builder.AppendLine();
@@ -323,7 +337,7 @@ public static class ClassicDecodeExhaustionAudit
 
         builder.AppendLine();
         builder.AppendLine("## Disconnected or unresolved families");
-        foreach (var family in report.Families.Where(item => item.Status != "connected"))
+        foreach (var family in report.Families.Where(item => item.Status is "disconnected" or "invalid" or "connected-with-unresolved-records"))
         {
             builder.AppendLine();
             builder.AppendLine($"### {family.Family}");
@@ -545,6 +559,9 @@ public static class ClassicDecodeExhaustionAudit
             return ["new_character_start", "room_id"];
         return Array.Empty<string>();
     }
+
+    private static bool IsConnectedFieldStatus(string status) =>
+        status is "connected" or "structural-metadata" or "connected-empty";
 
     private static bool IsStructuralPath(string jsonPath) =>
         jsonPath.Contains(".metadata.", StringComparison.OrdinalIgnoreCase) ||

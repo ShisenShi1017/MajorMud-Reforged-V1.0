@@ -1,52 +1,39 @@
 {
   "schemaVersion": 1,
-  "updatedByPass": "RemainingSystems-0034-ErrorRecovery",
+  "updatedByPass": "CodeUpdate0362-ImportExportLimitsRecovery",
   "subsystem": "error-handling-recovery",
-  "runtimeOwner": "RuntimeErrorRecoveryService",
+  "runtimeOwner": "RuntimeClassicImportExportLimitsRecoveryAuthority + owner-local Classic handlers; RuntimeErrorRecoveryService remains a Reforged generic extension except the explicit no-op mapping",
   "failureKinds": [
-    "invalid-record",
-    "missing-reference",
-    "corrupt-save",
-    "duplicate-runtime-id",
-    "timer-overflow",
-    "arithmetic-overflow",
-    "persistence-failure",
-    "partial-world-load",
-    "script-failure",
-    "event-failure",
-    "reset-failure",
-    "unknown"
+    "gameplay-action-rejected",
+    "incompatible-native-startup/load",
+    "owner-local-post-startup-reference/action-failure",
+    "record-local-persistence-failure",
+    "outside-MajorMUD-host-crash-recovery"
   ],
   "recoveryActions": [
-    "reject",
-    "skip-record",
-    "use-validated-default",
-    "rollback",
-    "disconnect-character",
-    "disable-subsystem",
-    "stop-world-load",
-    "log-and-continue"
+    "state-preserving-no-op",
+    "hard-startup/load-failure",
+    "owner-local-failure",
+    "record-local-best-effort-save-failure",
+    "excluded-host-engine-recovery"
   ],
   "policies": [
-    "world-load-critical failures stop admission/load",
-    "duplicate runtime IDs stop world load",
-    "rollback only when explicitly available",
-    "validated defaults only when declared",
-    "unknown failures fail closed",
-    "all decisions require audit"
+    "ordinary rejected Classic gameplay actions preserve state and do not invoke synthetic rollback",
+    "wrong-version/wrong-identity/corrupt native input is a hard startup/load boundary",
+    "failure text versus silence is command/action-owner specific; no universal Classic error renderer exists",
+    "post-startup missing/malformed references stay with their native owner/caller path rather than a fabricated global recovery rule",
+    "WCCMMUD ordinary saves use synchronous record mutations with no WCC-selected begin/end/abort transaction rollback",
+    "successful earlier record saves are not rolled back by a later record failure",
+    "Worldgroup/MKDE crash replay is below the MajorMUD gameplay recovery assertion"
   ],
   "ownership": {
-    "decision": "RuntimeErrorRecoveryService",
-    "rollbackExecution": "owning subsystem or SaveCoordination",
-    "logging": "RuntimeLoggingDiagnosticsService",
-    "payload": "owning subsystem"
+    "globalBoundary": "RuntimeClassicImportExportLimitsRecoveryAuthority",
+    "ordinaryRejection": "RuntimeErrorRecoveryService GameplayActionRejected -> NoOp",
+    "commandPresentation": "owning native command/action subsystem",
+    "nativeFileStartup": "RuntimeImportExportCompatibilityService + startup/load owner",
+    "persistence": "RuntimeClassicSaveCoordinationAuthority + DFA/BTRCALL/MKDE layers",
+    "reforgedGenericRecovery": "RuntimeErrorRecoveryService extension; not native parity evidence beyond explicit no-op branch"
   },
-  "nativeDependencies": [
-    "exact Classic failure behavior",
-    "exact native messages",
-    "save corruption recovery",
-    "partial-load tolerance",
-    "script/event/reset recovery",
-    "native subsystem disable behavior"
-  ]
+  "nativeDependencies": [],
+  "closure": "PASS: the former unknowns were either closed by CodeUpdate0361 save evidence or reclassified to their actual owner instead of being treated as one global recovery contract."
 }

@@ -10,23 +10,40 @@ namespace Reforged.App.Views;
 
 public partial class LibrariumView : UserControl
 {
-    private readonly LibrariumBrowserModel _model = new();
+    private LibrariumBrowserModel _model = new();
+    private bool _hasLoaded;
+    private bool _isLoading;
 
     public LibrariumView()
     {
         InitializeComponent();
         DataContext = _model;
-        Refresh();
+        Loaded += LibrariumView_Loaded;
     }
 
-    private void Refresh_Click(object sender, RoutedEventArgs e) => Refresh();
+    private async void LibrariumView_Loaded(object sender, RoutedEventArgs e) =>
+        await RefreshAsync(force: false);
 
-    private void Refresh()
+    private async void Refresh_Click(object sender, RoutedEventArgs e) =>
+        await RefreshAsync(force: true);
+
+    private async Task RefreshAsync(bool force)
     {
+        if (_isLoading || (_hasLoaded && !force)) return;
+        _isLoading = true;
+        _model.Summary = "Loading Librarium...";
+
         try
         {
-            var root = FindRepositoryRoot();
-            _model.Load(root);
+            var loaded = await Task.Run(() =>
+            {
+                var model = new LibrariumBrowserModel();
+                model.Load(FindRepositoryRoot());
+                return model;
+            });
+            _model = loaded;
+            DataContext = _model;
+            _hasLoaded = true;
         }
         catch (Exception exception)
         {
@@ -34,6 +51,10 @@ public partial class LibrariumView : UserControl
             _model.ListHeader = "No records loaded.";
             _model.FilteredRecords.Clear();
             _model.SelectedRecord = LibrariumRecordRow.FromError(exception);
+        }
+        finally
+        {
+            _isLoading = false;
         }
     }
 

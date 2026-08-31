@@ -21,12 +21,13 @@
     "special_service": 1,
     "spell_shop": 36,
     "trainer": 44,
-    "unknown_service": 1,
+    "realm_deed_office": 1,
     "vault_or_bank": 21,
     "weapon_or_armor_shop": 7
   },
   "Checks": [
     "all-generated-shops-classified",
+    "shoptype12-realm-deed-office-classified",
     "all-generated-room-bound-banks-classified",
     "all-generated-trainers-classified",
     "all-shop-inventory-relationships-resolved",
@@ -37,7 +38,7 @@
     "zero-regen-fields-classified-as-non-restocking",
     "five-denomination-bank-deposit-withdraw-authority",
     "trainer-level-class-and-progression-authority",
-    "no-native-repair-service-projected",
+    "repair-fails-closed-without-generated-cost",
     "buy-sell-stock-and-currency-rollback-boundaries"
   ],
   "Failures": [],

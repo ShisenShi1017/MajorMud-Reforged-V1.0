@@ -9,20 +9,32 @@
   "generatedClassicDataTrackedInGit": false,
   "importedDatabasesArchivedLocalOnly": true,
   "savesPreserved": true,
-  "purpose": "Continue CodeUpdate0140 Classic parity closure and Creator Studio by retaining the accepted native runtime baseline and adding a Custom1-only Nightmare Redux MDB import/export plus read-only WCC/WGS evidence bridge.",
+  "purpose": "Continue CodeUpdate0140 Classic parity closure with cumulative Data Reconstruction, Economy & Services, Host / Persistence / Worldgroup, Import / Export / Limits / Recovery, Items & Inventory, NPC & AI, and Quests / Scripts / Triggers closure while retaining Creator Studio.",
   "currentValidation": {
     "entrypoint": "python Tools/validator.py",
     "runtimeParityGate": "--smoke-classic-parity-closure",
     "assertionLedger": "Librarium/Parity/majormud_parity_assertions.json",
     "scorecard": "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-    "pass": 144,
-    "strong": 56,
+    "pass": 169,
+    "strong": 31,
     "unknown": 0,
-    "strictPercent": 72.0,
+    "strictPercent": 84.5,
     "evidenceBackedPercent": 100.0
   },
   "reports": [
+    "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
+    "Reports/RuntimeVerification/quests_scripts_triggers_static_verification_0365.json",
+    "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
+    "Reports/RuntimeVerification/classic_npc_ai_verification.json",
     "Docs/CLASSIC_PARITY_CLOSURE.md",
+    "Reports/RuntimeVerification/classic_items_inventory_verification.json",
+    "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
+    "Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
+    "Reports/RuntimeVerification/classic_import_export_limits_recovery_verification.json",
+    "Reports/RuntimeVerification/classic_host_persistence_worldgroup_verification.json",
+    "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
+    "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
+    "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json",
     "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
     "Librarium/Parity/majormud_native_break_character_ownership_evidence_0352.json",
     "Librarium/Parity/majormud_native_break_extension_scope_evidence_0351.json",
@@ -61,12 +73,12 @@
   ],
   "evidencePolicy": "Librarium is authoritative. Data is generated runtime output and is not committed as source. Imported databases and raw evidence are local-only archives. Classic behavior is evidence-locked; unresolved exact behavior must not be guessed.",
   "knownLimitations": [
-    "The 56 STRONG assertions are evidence-bounded and are not represented as exact-native PASS.",
+    "The 31 STRONG assertions are evidence-bounded and are not represented as exact-native PASS.",
     "Generated Data/Classic must be regenerated from Librarium in clean environments before server bootstrap.",
-    "The consolidated native verification report retains 2,495 supplied checks with zero reported failures; raw native artifacts are intentionally not packaged.",
+    "The consolidated native verification report retains 2,681 supplied checks with zero reported failures; raw native artifacts are intentionally not packaged.",
     "GitHub Actions remains the official gate after push.",
     "The broader item smoke retains two pre-existing corpse-resurrection equipment failures: the death equipment slot is not recorded and occupied-slot restoration does not yet displace safely."
   ],
-  "verificationStatus": "LOCAL_DOTNET_VERIFIED_WITH_KNOWN_ITEM_LIMITATION: Reforged.Server and Reforged.App Release builds pass with warnings as errors and zero warnings/errors; Classic parity closure and services/economy gates pass. Nightmare Jet MDB verification reads the installed 188-row ability.mdb and passes a temporary write/read round trip. No Custom1 import was performed. The current-health validator's pre-existing corpse-resurrection item limitation remains open. GitHub Actions pending push.",
-  "updatedUtc": "2026-08-30T19:04:57Z"
+  "verificationStatus": "LOCAL_VERIFIED_WITH_KNOWN_ITEM_GAP: Reforged.Server Release builds with zero warnings and zero errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and cumulative parity gates pass. The consolidated validator completes 44/45 stages and stops truthfully on the two documented corpse-equipment restoration assertions. Static/source checks pass for Data Reconstruction 34/34, Economy 40/40, Host/Persistence/Worldgroup 38/38, Items/Inventory 43/43, NPC/AI 24/24, and Quests/Scripts/Triggers 65/65; the retired 0362 verifier's three failures were stale intermediate-version totals rather than runtime/data failures.",
+  "updatedUtc": "2026-08-31T07:30:00Z"
 }

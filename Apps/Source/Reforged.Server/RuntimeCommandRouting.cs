@@ -63,7 +63,7 @@ internal static class RuntimeCommandRuntimeRouteCatalog
         Add(routes, RuntimeCommandRouteKind.CharacterState, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade character/item-state renderers",
             "score", "health", "character", "wealth", "experience", "inventory", "keys", "equipment", "party", "profile", "scan", "whohome", "librarium", "roomdata", "clientdata", "save", "rest", "meditate");
         Add(routes, RuntimeCommandRouteKind.ItemRuntime, "RuntimeCommandDispatcher", "RuntimeLiveGameplayFacade.ExecuteItemCommand",
-            "get", "drop", "put", "give", "equip", "wear", "wield", "ready", "remove");
+            "get", "drop", "put", "give", "equip", "wear", "wield", "ready", "remove", "appraise", "eat", "drink");
         Add(routes, RuntimeCommandRouteKind.CombatRuntime, "RuntimeLiveGameplayFacade.ExecutePolicyCommand", "RuntimeLiveGameplayFacade combat/stealth runtime",
             "attack", "kill", "flee", "combat", "round", "assist", "break", "bash", "smash", "backstab", "punch", "kick", "jumpkick", "hide", "sneak");
         Add(routes, RuntimeCommandRouteKind.PowerRuntime, "RuntimeLiveGameplayFacade.ExecutePolicyCommand", "RuntimeLiveGameplayFacade.ExecuteLivePowerCommand",
@@ -88,7 +88,7 @@ internal static class RuntimeCommandRuntimeRouteCatalog
             "reroll", "suicide");
         Add(routes, RuntimeCommandRouteKind.NativeEvidenceGate, "RuntimeCommandDispatcher", "Evidence-gated native command identity; execute decoded contextual action when available",
             "drag", "go", "map", "track", "aid", "light", "stash", "mana", "read",
-            "appraise", "eat", "drink", "rob", "page", "quiet", "stock", "unstock", "markup");
+            "rob", "page", "quiet", "stock", "unstock", "markup");
         Add(routes, RuntimeCommandRouteKind.RuntimeDiagnostics, "RuntimeCommandDispatcher", "Runtime host/live-world diagnostic renderers",
             "worldstate", "audit", "where", "world", "worlds", "sessions", "state", "events");
         Add(routes, RuntimeCommandRouteKind.Help, "RuntimeCommandDispatcher", "Runtime command help catalog",

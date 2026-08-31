@@ -1,10 +1,26 @@
+## CodeUpdate0365 Quests / Scripts / Triggers
+
+Quests / Scripts / Triggers is now **2/2 PASS**. The Librarium retains all 2,183 quest evidence records but partitions them exactly into 83 decoded executable NPC quest flows plus 2,000 condition-analysis and 100 key/gate-analysis candidates. Clean Classic generation emits only the 83 executable quests, 83 live NPC quest-entry triggers, and 182 linked stage scripts containing 2,616 decoded operations; all executable operations are decoded and contract-owned, and the 2,100 analysis-only candidates remain Librarium-only. RemoteAction closure is exhaustive at 139/139 decoded invocations and 85/85 distinct executable signatures with an exact 62 paired-door / 22 state-bit-clear / 1 common-finalization split. Direct source/static/data-correlation verification is **65/65 PASS**. Cumulative parity is **169 PASS / 31 STRONG / 0 UNKNOWN (84.5% strict / 100.0% evidence-backed)**. No new local .NET build/runtime claim is made because this environment has no .NET SDK.
+
+## CodeUpdate0363 Items & Inventory
+
+Items & Inventory is now **6/6 PASS**. The canonical 1,950-item catalog is deterministically generated from `item_records_*`; repeated ordered ability slots are preserved; native `_use_no_target` executes the first qualifying `CastsSp` and returns immediately; `%Spell` blocks ordinary manual proc use; EAT/DRINK preserve Type 4/5 gates, success-message order, +0xCE/+0xD0 fallback counters, slow-counter decrement, and conditional Uses deduction; `_deduct_item_charge` follows signed-int16 semantics including -1 unlimited and retained zero -> -1; DROP honors NotDroppable; and APPRAISE delegates to the proven SELL valuation owner without mutation. Generic Reforged durability, nested-container, GUID recovery, generic stack, and corpse-resurrection equipment restoration remain extensions outside Classic parity. Direct native/source/data verification is **66/66 PASS**. Cumulative parity is **167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict / 100.0% evidence-backed)**. No new local .NET build/runtime claim is made because this environment has no .NET SDK.
+
+## CodeUpdate0362 Import / Export / Limits / Recovery
+
+Import / Export / Limits / Recovery is now **4/4 PASS**. Exact fixed gameplay capacities are 100 carried root-item slots, 50 secondary item slots, 17 visible + 15 hidden room-item slots, and six total party users. Buffer/cache defaults are not promoted into fabricated world maxima; the gang join path has no recovered fixed member-admission cap, and Reforged multi-character account slots remain a standalone-host feature. Classic import/export remains exact external native-file replacement with incompatible file/version input as a hard load boundary. Ordinary rejected gameplay actions are state-preserving no-ops; command presentation and malformed post-startup references remain owner-local; persistence is record-local/best-effort with no WCC-selected begin/end/abort transaction rollback. Source/data/native verification is **86/86 PASS**. Cumulative parity is **159 PASS / 41 STRONG / 0 UNKNOWN (79.5% strict / 100.0% evidence-backed)**. No new local .NET build/runtime claim is made because this environment has no .NET SDK.
+
+## CodeUpdate0361 Host / Persistence / Worldgroup
+
+Host / Persistence / Worldgroup is now **9/9 PASS**. The supplied native build closes the exact 60-second Player-data scheduler, 300-second Buffer-data cycle, 11 persistent Buffer families, rotating/full-flush orders, shutdown flush-before-close behavior, record-level transaction boundary, deferred MKDE durability ownership, corrected WGSERVER RNG entry points and range algorithm, Host global-state ownership, and supplied-WCC artifact inventory. Cumulative parity after 0359 Data Reconstruction and 0360 Economy & Services is **159 PASS / 41 STRONG / 0 UNKNOWN (79.5% strict / 100.0% evidence-backed)**. Native/static Host verification is **92/92 PASS**; this environment has no .NET SDK, so the package installer performs the Release build and runtime gates on the target machine.
+
 ## Creator Studio Nightmare MDB / WCC bridge
 
 Creator Studio now provides a Custom1-only bridge for Nightmare Redux Access/MDB worlds. It previews table mappings and conflicts, imports supported records without touching Classic, preserves unmapped legacy columns, exports supported Custom1 records to a new MDB, and can attach hashes plus exact unique text anchors from a matching read-only WCC/WGS folder. Local Release builds, Classic parity/economy gates, a real Nightmare `ability.mdb` read, and a temporary MDB write/read round trip pass. No Custom1 import was performed as part of verification.
 
 ## Native parity promotion and combat authority repair
 
-Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **144 PASS / 56 STRONG / 0 UNKNOWN**. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
+Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **159 PASS / 41 STRONG / 0 UNKNOWN** after the cumulative Data Reconstruction, Economy & Services, and Host / Persistence / Worldgroup closures. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
 
 ## PASS61 / Update 0332 — Final Native Repository Closure
 
@@ -396,3 +412,9 @@ CodeUpdate0139 now includes the complete decoded WCCMMUD SYSOP/GAMEOP command ca
 
 ## Pass 38 — Classic scheduler boundary
 MajorMUD timing is now represented as owner-specific recovered clocks rather than one synthetic global tick. The broad scheduler bucket advances to STRONG while exact host phase and simultaneous event order remain evidence-gated.
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.

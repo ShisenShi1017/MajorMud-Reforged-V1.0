@@ -1,0 +1,450 @@
+{
+  "schema": "majormud.import-export-limits-recovery-verification.v1",
+  "update": "CodeUpdate0362",
+  "passed": true,
+  "check_count": 86,
+  "failure_count": 0,
+  "checks": [
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicCapacityResourceLimitsAuthority.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicCapacityResourceLimitsAuthority.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicGameplayFailureEvidenceRegistry.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoveryAuthority.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoverySmokeReport.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicImportExportLimitsRecoverySmokeReport.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/Program.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/Program.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicParityClosureSmokeReport.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicParityClosureSmokeReport.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
+    },
+    {
+      "name": "file-Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeImportExportCompatibility.cs"
+    },
+    {
+      "name": "capacity-inventory-100",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-secondary-50",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-visible-17",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-hidden-15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-party-6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-gang-no-fixed-cap",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-character-slots-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-buffers-not-world-max",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-global-object-cap-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-global-npc-cap-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-generic-extension-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-no-live-synthetic-config",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-give-message",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-all-resolved",
+      "passed": true,
+      "detail": 11
+    },
+    {
+      "name": "failure-five-proven",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-zero-unknown-validation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-owner-local-text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-owner-local-reference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-partial-save",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-no-universal-text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-no-universal-rollback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-no-save-transaction-rollback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "failure-host-crash-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "classification-noop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "classification-hard-load",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "classification-owner-local",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "classification-record-local-save",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "import-export-no-classic-migration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "import-export-exact-replacement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compat-classic-external-replacement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compat-version-hard-failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "compat-file-hard-failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-no-transactions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-partial-exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-shutdown-exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-crash-replay-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "program-smoke-flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "closure-includes-smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "smoke-combined-authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json"
+    },
+    {
+      "name": "evidence-proven",
+      "passed": true,
+      "detail": "PROVEN"
+    },
+    {
+      "name": "evidence-wcc-sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-fixed-inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-fixed-secondary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-fixed-room",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-fixed-party",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-two-promotions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-category-4-pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-overall-159",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json"
+    },
+    {
+      "name": "prior-give-inventory-100",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-give-failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_native_death_floor_evidence_0338.json"
+    },
+    {
+      "name": "prior-death-100-slot",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-death-17-visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "prior-death-15-hidden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_native_party_coordination_evidence_0340.json"
+    },
+    {
+      "name": "prior-party-six",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json"
+    },
+    {
+      "name": "prior-gang-join-count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/Parity/majormud_parity_assertions.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_parity_assertions.json"
+    },
+    {
+      "name": "ledger-update-0362",
+      "passed": true,
+      "detail": "CodeUpdate0362"
+    },
+    {
+      "name": "ledger-overall-159-pass",
+      "passed": true,
+      "detail": {
+        "STRONG": 41,
+        "PASS": 159
+      }
+    },
+    {
+      "name": "ledger-overall-41-strong",
+      "passed": true,
+      "detail": {
+        "STRONG": 41,
+        "PASS": 159
+      }
+    },
+    {
+      "name": "ledger-zero-unknown",
+      "passed": true,
+      "detail": {
+        "STRONG": 41,
+        "PASS": 159
+      }
+    },
+    {
+      "name": "ledger-category-four",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "name": "ledger-category-4-pass",
+      "passed": true,
+      "detail": {
+        "PASS": 4
+      }
+    },
+    {
+      "name": "ledger-promoted-pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/RemainingSystems/capacity_resource_limits_catalog.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/RemainingSystems/capacity_resource_limits_catalog.json"
+    },
+    {
+      "name": "capacity-catalog-pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "capacity-catalog-no-native-deps",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/RemainingSystems/error_handling_recovery_catalog.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/RemainingSystems/error_handling_recovery_catalog.json"
+    },
+    {
+      "name": "error-catalog-no-native-deps",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "json-Librarium/RemainingSystems/import_export_compatibility_catalog.json",
+      "passed": true,
+      "detail": "/mnt/data/work0362/MajorMud-Reforged-V1.0-main/Librarium/RemainingSystems/import_export_compatibility_catalog.json"
+    },
+    {
+      "name": "import-catalog-no-native-deps",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rar-wccmmud-one",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "rar-wccmmud-size",
+      "passed": true,
+      "detail": 643072
+    },
+    {
+      "name": "rar-files-3605",
+      "passed": true,
+      "detail": 3605
+    }
+  ]
+}

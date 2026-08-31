@@ -1,7 +1,12 @@
+- CodeUpdate0363 Items & Inventory verification: **66/66 native/source/data PASS**; category 6/6 PASS with canonical 1,950-item generation, ordered ability slots, exact first-CastsSp no-target return, EAT/DRINK +0xCE/+0xD0 fallback state, signed Uses/retention, DROP gating, and APPRAISE delegation. No .NET SDK is available here, so no new local C# build/runtime claim is made.
 # Classic Parity Validation
+- CodeUpdate0362 Import / Export / Limits / Recovery verification: **86/86 native/data/static PASS**; category 4/4 PASS with exact capacity ownership, external native-file replacement, state-preserving rejected gameplay, owner-local failure boundaries, and record-local persistence semantics. No .NET SDK is available here, so no new local C# build/runtime claim is made.
+- CodeUpdate0361 Host / Persistence / Worldgroup verification: **92/92 native/static PASS**; category 9/9 PASS, exact Player/Buffer save ownership, transaction/durability boundary, RNG host contract, repository inventory closure, and supplied-WCC exhaustion. No .NET SDK is available here, so no new local C# build/runtime claim is made.
+- CodeUpdate0360 Economy & Services verification: **41/41 source/native-data PASS** under the cumulative 0361 ledger; category 16/16 PASS and 204/204 services classified.
+- CodeUpdate0359 Data Reconstruction verification: **34/34 direct raw/static PASS**; 39/39 decode families, 2,096/2,096 connected/structural/explicit-empty scalar fields, and canonical 3,869-message WCCMSG2 authority independently corroborated by all 3,867 shared payloads in the supplied working install. No .NET SDK is available here, so no new C# build/runtime claim is made.
 - CodeUpdate0358 working-install/native LVLDIFF verification: **14/14 direct PASS**, **124/124 static/integration PASS**; default 100, working 10, -1 disable sentinel, 0 same-level-only, lower-level FIEND exception; Worldgroup remains evidence-only.
 
-The cumulative ledger now retains **144 PASS / 56 STRONG / 0 UNKNOWN** assertions. Native verifier results for character death, death-floor placement, session lifecycle, party coordination, gang communications, modal invitations, daily cleanup, and organization services are retained in one generic consolidated report.
+The cumulative ledger now retains **167 PASS / 33 STRONG / 0 UNKNOWN** assertions. Native verifier results for character death, death-floor placement, session lifecycle, party coordination, gang communications, modal invitations, daily cleanup, and organization services are retained in one generic consolidated report.
 
 The historical pass-specific validators and smoke command aliases are retired. `Tools/validator.py` is the single current-health entrypoint, and `--smoke-classic-parity-closure` is the retained runtime parity gate. Current build and smoke results are recorded in the repository manifests and continuity documents.
 
@@ -33,8 +38,8 @@ The historical pass-specific validators and smoke command aliases are retired. `
 - Retained 0336 package native scheduler/regeneration fingerprint/callsite/source result: **PASS 69/69**, 0 failures.
 - Retained 0335 package native NPC combat/RNG result: **PASS 49/49**, 0 failures.
 - Retained 0334 package native DLL formula/callsite result: **PASS 66/66**, 0 failures.
-- Assertion ledger/scorecard reconciliation: **PASS**, 144 PASS / 56 STRONG / 0 UNKNOWN.
-- Consolidated retained native verifier results: **PASS**, 920 checks across 11 subsystems, 0 failures.
+- Assertion ledger/scorecard reconciliation: **PASS**, 167 PASS / 33 STRONG / 0 UNKNOWN.
+- Consolidated native/direct-static verification results: **PASS**, 2,529 checks across 26 subsystems, 0 failures.
 - Reforged.Server, Reforged.App, Reforged.Client, and core/server test Release builds with warnings as errors: **PASS**, 0 warnings / 0 errors.
 - Clean Classic generation: **PASS**, 103,330 objects across 36 families and 26,668/26,668 room descriptions.
 - Bundle D trap audit: **PASS**, 295/295 traps with 293 active and 2 hidden native states.
@@ -44,3 +49,9 @@ The historical pass-specific validators and smoke command aliases are retired. `
 - GitHub Actions/build validation is owned by the user or Codex after they choose to push; this parity pass performs no GitHub write.
 
 - CodeUpdate0346 static suicide/trap verification: see `codeupdate0346_suicide_traps_static_verification.json`; this environment has no .NET SDK, so no new local build claim is made.
+## CodeUpdate0364 NPC & AI closure
+
+- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
+- Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
+- Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
+- Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.

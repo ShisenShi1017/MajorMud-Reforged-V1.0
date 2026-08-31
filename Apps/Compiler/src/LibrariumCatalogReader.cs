@@ -497,6 +497,18 @@ public sealed class LibrariumCatalogReader
             if (executable is not null) return [executable];
         }
 
+        // Items also retain MMExplorer SQL/MDB reference records beside the executable
+        // canonical item catalog. Checkout timestamps are not authority; always select the
+        // promoted item_records source so native flags, ordered ability slots, and uses reach
+        // Data/Classic/items.json deterministically.
+        if (familyName.Equals("items", StringComparison.OrdinalIgnoreCase))
+        {
+            var executable = Directory.GetFiles(familyDirectory, "item_records_*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (executable is not null) return [executable];
+        }
+
         // Shops have both raw SQL/MDB imports and the executable Librarium projection.
         // The raw import is newer on disk, but it is evidence input rather than runtime authority.
         if (familyName.Equals("shops", StringComparison.OrdinalIgnoreCase))

@@ -35,6 +35,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             return true;
         }
 
+        if (plans.Count == 1
+            && RuntimeClassicPaidCarriageAuthority.TryResolve(session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber, entered, out var carriageRoute)
+            && RuntimeClassicPaidCarriageAuthority.MatchesPlan(carriageRoute, plans[0]))
+        {
+            result = ExecuteRecoveredPaidCarriagePlan(session, plans[0], carriageRoute);
+            return true;
+        }
+
         if (plans.Count == 1 && IsRecoveredImmediateRelocationPlan(plans[0]))
         {
             result = ExecuteRecoveredImmediateRelocationPlan(session, plans[0]);
@@ -276,6 +284,101 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         BroadcastRecoveredNativeSecondaryMessage(session, 2519);
         return _nativePayloads.RequireMessage(2519);
+    }
+
+    private sealed class RuntimeRoomActionRandomSource : IRuntimeClassicDialogueRandomSource
+    {
+        public int NextInclusive(int minimum, int maximum) => Random.Shared.Next(minimum, checked(maximum + 1));
+    }
+
+    private string ExecuteRecoveredPaidCarriagePlan(
+        RuntimeSession session,
+        RuntimeClassicTextblockExecutionPlan plan,
+        RuntimeClassicPaidCarriageRouteDefinition route)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor)
+            throw new InvalidOperationException("A persistent character is required for a decoded paid carriage route.");
+        var before = _characters.LoadCharacter(actor.Id)
+            ?? throw new InvalidOperationException("Character save was not found for the paid carriage route.");
+        var beforeState = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0,
+            new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        if (RuntimeBundleCInventoryAuthority.ReadCurrency(beforeState).CopperValue < route.FareCopper)
+            return _nativePayloads.RequireMessage(route.InsufficientFundsMessageId);
+
+        var sourceRoom = session.CurrentRoom;
+        var debitedState = RuntimeBundleCEconomyAuthority.DebitCopperValue(beforeState, route.FareCopper);
+        _characters.SaveCharacter(before with { ItemState = debitedState, UpdatedAtUtc = DateTimeOffset.UtcNow },
+            $"classic-carriage:{route.Id}:fare");
+        try
+        {
+            var output = new List<string>();
+            var departure = _nativePayloads.RequireMessage(route.DepartureMessageId);
+            if (!string.IsNullOrWhiteSpace(departure)) output.Add(departure);
+            BroadcastRecoveredNativeSecondaryMessage(session, route.DepartureMessageId);
+
+            var randomOperation = plan.Operations.Single(operation => operation.Opcode.Equals("random", StringComparison.OrdinalIgnoreCase));
+            var randomTables = RuntimeClassicRandomTableAuthority.Load(_characters.ProjectRoot, new RuntimeRoomActionRandomSource());
+            var outcome = randomTables.Expand(new[] { randomOperation }, out var selectionCount);
+            if (selectionCount != 1) throw new InvalidDataException($"Decoded carriage route {route.Id} selected {selectionCount} random tables instead of one.");
+
+            // Validate all references before applying the authored outcome.
+            foreach (var operation in outcome)
+            {
+                if (operation.Opcode.Equals("teleport", StringComparison.OrdinalIgnoreCase))
+                {
+                    var roomNumber = operation.RoomNumber ?? operation.NumericArguments.FirstOrDefault();
+                    var mapNumber = operation.MapNumber ?? operation.NumericArguments.Skip(1).FirstOrDefault();
+                    _ = session.World.FindRoom(mapNumber, roomNumber)
+                        ?? throw new InvalidDataException($"Decoded carriage destination {mapNumber}/{roomNumber} is unavailable.");
+                }
+                else if (operation.Opcode.Equals("summon", StringComparison.OrdinalIgnoreCase))
+                {
+                    var npcId = operation.NpcId ?? operation.NumericArguments.FirstOrDefault();
+                    if (npcId <= 0 || !session.World.Npcs.ContainsKey(npcId))
+                        throw new InvalidDataException($"Decoded carriage encounter npc.{npcId} is unavailable.");
+                }
+                else if (!operation.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase))
+                    throw new InvalidDataException($"Unsupported decoded carriage outcome opcode '{operation.Opcode}'.");
+            }
+
+            foreach (var operation in outcome)
+            {
+                if (operation.Opcode.Equals("message", StringComparison.OrdinalIgnoreCase))
+                {
+                    var messageId = operation.TargetTextblockId ?? operation.NumericArguments.FirstOrDefault();
+                    if (messageId > 0)
+                    {
+                        var message = _nativePayloads.RequireMessage(messageId);
+                        if (!string.IsNullOrWhiteSpace(message)) output.Add(message);
+                    }
+                }
+                else if (operation.Opcode.Equals("teleport", StringComparison.OrdinalIgnoreCase))
+                {
+                    var roomNumber = operation.RoomNumber ?? operation.NumericArguments.FirstOrDefault();
+                    var mapNumber = operation.MapNumber ?? operation.NumericArguments.Skip(1).FirstOrDefault();
+                    var destination = session.World.FindRoom(mapNumber, roomNumber)!;
+                    session.MoveToWorld(session.World, destination, $"classic-carriage:{route.Id}");
+                    _characters.SaveSession(session);
+                    AdmitClassicRoomEntryNpcRespawns(session);
+                }
+                else if (operation.Opcode.Equals("summon", StringComparison.OrdinalIgnoreCase))
+                {
+                    var npcId = operation.NpcId ?? operation.NumericArguments.FirstOrDefault();
+                    _ = SummonLivingNpc(session, $"npc.{npcId}", $"classic-carriage:{route.Id}");
+                }
+            }
+            return string.Join(Environment.NewLine, output);
+        }
+        catch
+        {
+            if (!session.CurrentRoom.Id.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase))
+            {
+                session.MoveToWorld(session.World, sourceRoom, $"classic-carriage:{route.Id}:rollback");
+                _characters.SaveSession(session);
+            }
+            _characters.SaveCharacter(before, $"classic-carriage:{route.Id}:rollback");
+            throw;
+        }
     }
 
     private static bool IsRecoveredImmediateRelocationPlan(RuntimeClassicTextblockExecutionPlan plan)

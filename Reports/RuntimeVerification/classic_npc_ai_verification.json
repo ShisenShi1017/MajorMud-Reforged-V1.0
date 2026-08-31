@@ -1,0 +1,137 @@
+{
+  "schema": "majormud.npc-ai-verification.v0364",
+  "passed": true,
+  "check_count": 32,
+  "failure_count": 0,
+  "checks": [
+    {
+      "name": "evidence-pass",
+      "passed": true
+    },
+    {
+      "name": "evidence-sha",
+      "passed": true
+    },
+    {
+      "name": "npc-count-13",
+      "passed": true
+    },
+    {
+      "name": "npc-all-pass",
+      "passed": true
+    },
+    {
+      "name": "npc-zero-strong",
+      "passed": true
+    },
+    {
+      "name": "npc-corpus-1100",
+      "passed": true
+    },
+    {
+      "name": "type4-probabilistic",
+      "passed": true
+    },
+    {
+      "name": "type4-not-hold",
+      "passed": true
+    },
+    {
+      "name": "medium-cap-3",
+      "passed": true
+    },
+    {
+      "name": "retry-15",
+      "passed": true
+    },
+    {
+      "name": "confusion71",
+      "passed": true
+    },
+    {
+      "name": "monsguards146",
+      "passed": true
+    },
+    {
+      "name": "pending-cap",
+      "passed": true
+    },
+    {
+      "name": "move-cap-runtime",
+      "passed": true
+    },
+    {
+      "name": "confusion-runtime",
+      "passed": true
+    },
+    {
+      "name": "monsguards-target-resolver",
+      "passed": true
+    },
+    {
+      "name": "spell-target-wired",
+      "passed": true
+    },
+    {
+      "name": "classic-physical-no-protector",
+      "passed": true
+    },
+    {
+      "name": "classic-no-threat",
+      "passed": true
+    },
+    {
+      "name": "full-refund-helper",
+      "passed": true
+    },
+    {
+      "name": "resist-full-refund",
+      "passed": true
+    },
+    {
+      "name": "lane-pump-live",
+      "passed": true
+    },
+    {
+      "name": "npc-smoke-route",
+      "passed": true
+    },
+    {
+      "name": "npc-smoke-parity",
+      "passed": true
+    },
+    {
+      "name": "native-exists",
+      "passed": true
+    },
+    {
+      "name": "native-sha",
+      "passed": true,
+      "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+    },
+    {
+      "name": "native-medium-move-cap-3",
+      "passed": true
+    },
+    {
+      "name": "native-medium-type-table",
+      "passed": true
+    },
+    {
+      "name": "native-fast-retry-15",
+      "passed": true
+    },
+    {
+      "name": "native-fast-follow-roll",
+      "passed": true
+    },
+    {
+      "name": "native-confusion-function",
+      "passed": true
+    },
+    {
+      "name": "native-cast-target-function",
+      "passed": true
+    }
+  ]
+}

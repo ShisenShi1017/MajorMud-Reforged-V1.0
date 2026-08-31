@@ -1,0 +1,486 @@
+{
+  "schema": "majormud.host-persistence-worldgroup-verification.v1",
+  "update": "CodeUpdate0361",
+  "passed": true,
+  "check_count": 92,
+  "failure_count": 0,
+  "checks": [
+    {
+      "name": "source-exists-rng",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicGlobalRngContractAuthority.cs"
+    },
+    {
+      "name": "source-exists-prng",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicWorldgroupPrng.cs"
+    },
+    {
+      "name": "source-exists-exports",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/WorldgroupExportImplementationRegistry.cs"
+    },
+    {
+      "name": "source-exists-save",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicSaveCoordinationAuthority.cs"
+    },
+    {
+      "name": "source-exists-world",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicGlobalWorldStateAuthority.cs"
+    },
+    {
+      "name": "source-exists-repo",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicFinalNativeRepositoryClosureAuthority.cs"
+    },
+    {
+      "name": "source-exists-wcc",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/NativeWccArtifactExhaustionRegistry.cs"
+    },
+    {
+      "name": "source-exists-smoke",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Apps/Source/Reforged.Server/RuntimeClassicHostPersistenceWorldgroupSmokeReport.cs"
+    },
+    {
+      "name": "source-exists-evidence",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json"
+    },
+    {
+      "name": "source-exists-ledger",
+      "passed": true,
+      "detail": "/mnt/data/host_work/repo/MajorMud-Reforged-V1.0-main/Librarium/Parity/majormud_parity_assertions.json"
+    },
+    {
+      "name": "rng-rva-genrdn-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rng-rva-lngrnd-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rng-call-count-gen-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rng-call-count-lng-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "rng-thread-local-nonclaim",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-player-clock-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-buffer-clock-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-family-count-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-no-transaction-imports-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "save-crash-replay-excluded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "world-host-boundary-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "world-no-replication-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "repository-exact-inventory-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "repository-owner-local-nonclaim",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-exhausted-source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ledger-update-0361",
+      "passed": true,
+      "detail": "CodeUpdate0361"
+    },
+    {
+      "name": "ledger-host-nine",
+      "passed": true,
+      "detail": 9
+    },
+    {
+      "name": "ledger-host-9-pass",
+      "passed": true,
+      "detail": {
+        "PASS": 9
+      }
+    },
+    {
+      "name": "ledger-overall-157-pass",
+      "passed": true,
+      "detail": {
+        "STRONG": 43,
+        "PASS": 157
+      }
+    },
+    {
+      "name": "ledger-overall-43-strong",
+      "passed": true,
+      "detail": {
+        "STRONG": 43,
+        "PASS": 157
+      }
+    },
+    {
+      "name": "ledger-overall-zero-unknown",
+      "passed": true,
+      "detail": {
+        "STRONG": 43,
+        "PASS": 157
+      }
+    },
+    {
+      "name": "ledger-five-host-promotions",
+      "passed": true,
+      "detail": [
+        "native.global-rng.native-contract",
+        "native.global-world-state",
+        "native.repository-inventory-closure.final-native-evidence",
+        "native.save-coordination",
+        "wcc.available-artifacts-exhausted"
+      ]
+    },
+    {
+      "name": "evidence-classification-proven",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-player-file",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-background-order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-full-order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-no-wcc-transactions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "evidence-wcc-files-155",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-hash",
+      "passed": true,
+      "detail": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077"
+    },
+    {
+      "name": "wcc-import-_dfaInsertV",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-import-_dfaInsertDup",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-import-_dfaUpdateDup",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-import-_dfaDelete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-no-import-_dfaBegTrans",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-no-import-_dfaEndTrans",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-no-import-_dfaAbtTrans",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wcc-no-import-_dfaUnlock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-background-other-save-characters",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-background-other-60-option",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-background-buffer-next",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-background-buffer-300-option",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-player-sweep-cap-300",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-player-sweep-save-player",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-00",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-01",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-02",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-03",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-04",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-05",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-06",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-07",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-08",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-09",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-rotation-call-10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-00",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-01",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-02",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-03",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-04",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-05",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-06",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-07",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-08",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-09",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-full-flush-call-10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-shutdown-flush-first",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-logoff-save-player",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-hangup-save-player",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "native-genrdn-direct-count",
+      "passed": true,
+      "detail": 146
+    },
+    {
+      "name": "native-lngrnd-direct-count",
+      "passed": true,
+      "detail": 42
+    },
+    {
+      "name": "native-genrdn-iat-only-thunk",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "native-lngrnd-iat-only-thunk",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "wgserver-hash",
+      "passed": true,
+      "detail": "7f8d7e3675e5b754d146fad69f2a7d4cd667d87eef4ceafc62d7253b55dd79cb"
+    },
+    {
+      "name": "wgserver-genrdn-entry-40739c",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "wgserver-lngrnd-entry-4073ee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "cw-hash",
+      "passed": true,
+      "detail": "89eaa381a4a1c358f5c711fc31d873dd9a3c833af721a66cfaf01240bb4d9fd5"
+    },
+    {
+      "name": "cw-rand-multiplier",
+      "passed": true,
+      "detail": "machine hash + source vector is authoritative if textual immediate formatting differs"
+    },
+    {
+      "name": "rar-files-3605",
+      "passed": true,
+      "detail": 3605
+    },
+    {
+      "name": "rar-wcc-155",
+      "passed": true,
+      "detail": 155
+    },
+    {
+      "name": "rar-wcc-dat-16",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "name": "rar-wcc-hse-53",
+      "passed": true,
+      "detail": 53
+    },
+    {
+      "name": "rar-wcc-cv-19",
+      "passed": true,
+      "detail": 19
+    }
+  ]
+}

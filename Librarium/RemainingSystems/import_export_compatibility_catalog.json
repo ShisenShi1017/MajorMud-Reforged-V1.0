@@ -25,18 +25,14 @@
     "compatibilityBoundary": "RuntimeImportExportCompatibilityService"
   },
   "classicRules": [
-    "preserve canonical identifiers",
-    "reject Reforged extension package",
-    "require host authorization for mutation",
-    "owner validation before commit"
+    "Classic exposes inspect/validate only inside Reforged compatibility tooling",
+    "Classic native import/export/migrate requests are rejected because native workflow is external exact-file replacement",
+    "exact source/target native version must match",
+    "WCC/WBB validation requires exact expected native file identity",
+    "canonical Classic identifiers are preserved",
+    "Reforged extension packages are rejected in Classic mode"
   ],
-  "safeFallback": "Reject unauthorized, malformed, oversized, binary, version-invalid, Classic-incompatible, or owner-unvalidated requests.",
-  "nativeDependencies": [
-    "exact WCC/WBB record versioning",
-    "native import/export commands",
-    "legacy save migrations",
-    "duplicate and missing-reference behavior",
-    "rollback semantics",
-    "binary checksums and packing"
-  ]
+  "safeFallback": "Classic: reject conversion/migration and wrong file/version identity. Custom/AI: retain Reforged authorization/validation policies.",
+  "nativeDependencies": [],
+  "classification": "PASS Classic boundary; Custom/AI import/export/migration remains an explicit Reforged extension"
 }

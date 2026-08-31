@@ -744,7 +744,8 @@ public sealed class BorinForgeViewModel : ViewModelBase
         Raise(nameof(VerifiedLearningSummary));
         RaiseAcademyProperties();
         Raise(nameof(KnowledgeBootstrapSummary)); Raise(nameof(KnowledgeBootstrapRecallSummary));
-        await ScanAsync();
+        Status = "Borin is ready. Scan the repository when a fresh map is needed.";
+        Raise(nameof(RepositorySummary));
         await PersistAsync();
         StartForgeNaturalInitiativeMonitor();
         StartAcademyIdleMonitor();

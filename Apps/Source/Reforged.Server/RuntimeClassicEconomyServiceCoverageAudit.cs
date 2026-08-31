@@ -31,6 +31,15 @@ public static class RuntimeClassicEconomyServiceCoverageAudit
         var serviceTypes=shops.Select(shop=>JsonValueReader.ReadInt(shop,"service_type",-1)).ToArray();
         foreach(var type in serviceTypes.Where(type=>!KnownServiceTypes.Contains(type)).Distinct())
             failures.Add($"unknown-service-type:{type}");
+        var unknownKindRows=shops.Where(shop=>
+        {
+            var kind=JsonValueReader.ReadString(shop,"service_kind",string.Empty);
+            return string.IsNullOrWhiteSpace(kind)||kind.Equals("unknown",StringComparison.OrdinalIgnoreCase)||kind.Equals("unknown_service",StringComparison.OrdinalIgnoreCase);
+        }).ToArray();
+        if(unknownKindRows.Length>0)failures.Add($"unclassified-service-kind:{unknownKindRows.Length}");
+        var realmDeedOffices=shops.Where(shop=>JsonValueReader.ReadInt(shop,"service_type",-1)==12
+            &&JsonValueReader.ReadString(shop,"service_kind",string.Empty).Equals("realm_deed_office",StringComparison.OrdinalIgnoreCase)).ToArray();
+        if(realmDeedOffices.Length==1)checks.Add("shoptype12-realm-deed-office-classified");else failures.Add($"shoptype12-realm-deed-office-count:{realmDeedOffices.Length}:expected:1");
         var missingItems=inventory.Where(pair=>!pair.entry.TryGetProperty("item_exists",out var exists)||exists.ValueKind!=JsonValueKind.True).ToArray();
         if(missingItems.Length>0)failures.Add($"unresolved-shop-item-references:{missingItems.Length}");
         var malformedRestock=inventory.Where(pair=>
@@ -61,7 +70,7 @@ public static class RuntimeClassicEconomyServiceCoverageAudit
             .OrderBy(group=>group.Key,StringComparer.Ordinal).ToDictionary(group=>group.Key,group=>group.Count(),StringComparer.Ordinal);
         return new(failures.Count==0,shops.Length,banks.Length,trainers,inventory.Length,priced,rules.Length,
             restocking,inventory.Length-restocking,shops.Count(shop=>shop.TryGetProperty("markup_percent",out _)),
-            shops.Length+banks.Length,failures.Count(x=>x.StartsWith("unknown-service-type:",StringComparison.Ordinal)),
+            shops.Length+banks.Length,serviceTypes.Count(type=>!KnownServiceTypes.Contains(type))+unknownKindRows.Length,
             kinds,checks,failures);
     }
 }

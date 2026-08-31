@@ -159,12 +159,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (brokenEncounter is not null &&
             !brokenEncounter.NpcInstanceId.Equals(target.Instance.InstanceId, StringComparison.OrdinalIgnoreCase))
             return $"{brokenEncounter.NpcName} is still engaged with you.";
-        var protection = RuntimeNpcProtectionAdmission.Admit(
-            target.Instance.InstanceId,
-            session.CurrentRoom.Id,
-            LivingNpcsInRoom(session));
-        if (!protection.Allowed)
-            return $"{protection.BlockingNpcName ?? "Another creature"} moves between you and {target.Definition.Name}, blocking your attack.";
+        // Native MonsGuards (ability 146) is a spell-target substitution rule, not a
+        // physical ATTACK body-block. Keep generic protector admission only for custom worlds.
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+        {
+            var protection = RuntimeNpcProtectionAdmission.Admit(
+                target.Instance.InstanceId,
+                session.CurrentRoom.Id,
+                LivingNpcsInRoom(session));
+            if (!protection.Allowed)
+                return $"{protection.BlockingNpcName ?? "Another creature"} moves between you and {target.Definition.Name}, blocking your attack.";
+        }
         string? preparationMessage = null;
         if (attackType == ClassicAttackType.Backstab)
         {

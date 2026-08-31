@@ -81,7 +81,6 @@ public sealed partial class RuntimeLiveGameplayFacade
     public string ExecuteItemCommand(RuntimeSession session, RuntimeCommand command)
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "A persistent character is required.";
-        if (_liveCombats.ContainsKey(session.Id) || _livePvpEncounterBySession.ContainsKey(session.Id)) return "You cannot hide or sneak while in combat.";
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found.");
         character = RuntimeClassicRoomCurrencyStore.MigrateLegacyCurrency(_characters.ProjectRoot, character);
         var state = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
@@ -112,6 +111,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeClassicRoomMessagePriority roomObserverPriority = RuntimeClassicRoomMessagePriority.High;
         switch (command.Name)
         {
+            case "appraise":
+                return ExecuteClassicAppraise(session, actor, character, state, catalog, engine, command.ArgumentText);
+            case "eat":
+            case "drink":
+                return ExecuteClassicEatDrink(session, actor, character, state, catalog, engine, command);
             case "get":
             {
                 var livingGround=Living(session).GroundItems(session.CurrentRoom.Id)
@@ -145,6 +149,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             case "drop":
             {
                 var item = Resolve(engine.Inventory(actor.Id), catalog, command.ArgumentText);
+                var definition = catalog.Require(item.CanonicalItemId);
+                if (definition.NotDroppable)
+                    throw new InvalidOperationException("You may not drop that item!");
                 var moved = engine.Drop(item.InstanceId, actor.Id, session.CurrentRoom.Id);
                 engine.AdministrativeRemove(moved.InstanceId);
                 Living(session).DropGroundItem(moved,session.CurrentRoom.Id);
