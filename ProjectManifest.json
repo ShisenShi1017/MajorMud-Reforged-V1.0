@@ -26,7 +26,7 @@
       "CodeUpdate0139 - Telnet Runtime Cohesion local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0140 continues exact Classic parity closure at 169 PASS / 31 STRONG / 0 UNKNOWN. Data Reconstruction, Economy & Services, Host / Persistence / Worldgroup, Import / Export / Limits / Recovery, Items & Inventory, NPC & AI, and Quests / Scripts / Triggers are complete at their scoped Classic boundaries; owner-local remaining STRONG assertions stay fail-closed.",
+    "milestone2Status": "CodeUpdate0140 Classic parity ledger is 200 PASS / 0 STRONG / 0 UNKNOWN (100.0% strict). Character/Status, Rooms/World, Timers/Resets/World Rules, and the final supplied closure are executable and locally verified. Borin continuously guards this accepted baseline; MegaMUD remains separately tester-certified.",
     "lastUpdateName": "CodeUpdate0140-ClassicParityClosure-CreatorStudio",
     "nextRecommendedWork": [
       "Review and commit the consolidated Classic parity closure and Creator Studio continuation when approved.",
@@ -52,9 +52,9 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "CUMULATIVE_PARITY_167_33; retained earlier Release build verification remains recorded. CodeUpdate0359-0364 add raw/static/native verification including NPC/AI 32/32. The current analysis environment has no .NET SDK, so no new 0364 build claim is made; target installer performs Release build and runtime gates.",
+  "buildVerification": "CUMULATIVE_PARITY_200_0; Release server and Reforged.App builds succeed locally with zero warnings/errors. Character/Status passes 47/47, Rooms/World passes 29/29, Timers/Resets/World Rules passes 22/22, final STRONG closure passes 18/18, and the cumulative parity gate passes.",
   "current_codeupdate": "0140",
-  "last_update": "Classic parity closure, validator/runtime consolidation, and Creator Studio local integration",
+  "last_update": "CodeUpdate0369 final 11 STRONG -> PASS exact boundary closure integrated into the CodeUpdate0140 cumulative baseline",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -93,7 +93,7 @@
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Imported/reference databases and raw evidence are local-only archival material after approved cleanup. Retain Archive/ImportedDatabasesAndEvidence.LocalOnly.rar locally for future decode, provenance, or source-retirement audits; do not commit loose ImportedDatabases/Evidence contents.",
   "savePolicy": "Runtime saves are realm-scoped. Classic realm state lives under Saves/Classic, custom realm state lives under Saves/Custom/<realm>, host account credential state lives under Saves/Host, and one login may keep up to three characters per world.",
-  "updatedUtc": "2026-08-31T04:30:00Z",
+  "updatedUtc": "2026-08-31T20:43:34Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited or committed as canonical source. Clean validation environments regenerate /Data from Librarium before runtime bootstrap.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

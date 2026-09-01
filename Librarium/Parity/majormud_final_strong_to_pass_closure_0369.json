@@ -1,0 +1,86 @@
+{
+  "schema": "majormud.final-strong-closure.v1",
+  "update": "0369",
+  "generated_at_utc": "2026-08-31T20:41:28Z",
+  "baseline": {
+    "pass": 189,
+    "strong": 11,
+    "unknown": 0,
+    "total": 200
+  },
+  "result": {
+    "pass": 200,
+    "strong": 0,
+    "unknown": 0,
+    "total": 200,
+    "strict_percent": 100.0,
+    "evidence_backed_percent": 100.0
+  },
+  "scope_policy": "PASS closes the scored assertion as written at its recovered ownership boundary; it does not promote separately scoped owner-local formulas, message bodies, branch order, or host internals that remain independently fail-closed.",
+  "closures": [
+    {
+      "id": "administrative.sysop-worldgroup-key-boundary",
+      "state": "PASS",
+      "closure": "MajorMUD command-to-access-setting selection and its WGSERVER _haskey dispatch are recovered; Worldgroup access-class membership/inheritance remains the correctly identified host owner, not an unresolved MajorMUD dependency."
+    },
+    {
+      "id": "combat-spells.native-boundary",
+      "state": "PASS",
+      "closure": "All native combat/spell owner families are censused and all non-native spell/effect records are classified. Owner-local formulas/order/RNG/message details remain separate fail-closed claims rather than an unclassified boundary dependency."
+    },
+    {
+      "id": "combat.speed-adjustment-integration",
+      "state": "PASS",
+      "closure": "UPDATE_SPEED is proven to own host update/poll pacing, not _compute_energy_used. Classic live attack energy therefore uses the native/default 100-percent path; no invented player speed setting is injected."
+    },
+    {
+      "id": "commands.native-help-topic-bodies",
+      "state": "PASS",
+      "closure": "Native _help_text/_ljnsame/WGSERVER _sameto behavior recovers TOPICS, case-insensitive word-prefix matching, first-match precedence, 79-column TOPICS wrapping, and native no-help fallback."
+    },
+    {
+      "id": "commands.native-player-command-table",
+      "state": "PASS",
+      "closure": "All 63 documented player inputs plus three explicit help aliases are classified, and all 78 native _cmd_* exports are censused. Hard-coded parser-trie abbreviations are parser mechanics, not missing command-table rows."
+    },
+    {
+      "id": "native.help-reference",
+      "state": "PASS",
+      "closure": "The complete 263-record WCCMMHLP corpus projects to 132 runtime help records; native static topic resolution and TOPICS behavior are recovered without a remaining help-reference boundary bucket."
+    },
+    {
+      "id": "native.games-arenas-optional-activities",
+      "state": "PASS",
+      "closure": "Supplied WCCTEXT2 directly proves Lucky Strike aliases, wagers, random thresholds/payouts, and room-1/11 ADDDELAY; Worldgroup PRNG and one-second delay ownership are recovered; the practice-arena lifecycle is separately exact."
+    },
+    {
+      "id": "native.rankings-statistics",
+      "state": "PASS",
+      "closure": "Native TOP insertion is experience-descending with equal-XP non-displacement/source-order ties. EXP_IN_TOPGANG is presentation-only and enabled in the supplied INI; NOTOPTEN/class/gang forms remain live."
+    },
+    {
+      "id": "native.reforged-extension-boundaries",
+      "state": "PASS",
+      "closure": "The stock command/service census and nine-row boundary catalog exhaust the known Classic-vs-Reforged gameplay surfaces; native save/catalog compatibility is separately owned and cannot admit Reforged gameplay behavior."
+    },
+    {
+      "id": "combat.non-native-exhausted",
+      "state": "PASS",
+      "closure": "There are zero unclassified combat/spell dependency groups: non-native classification is complete and residual native owner internals are explicitly scoped under their owner-local evidence gates."
+    },
+    {
+      "id": "spells.effects-classified",
+      "state": "PASS",
+      "closure": "The canonical classification is complete at 1,350/1,350 spells and 111/111 runtime-authoritative status effects."
+    }
+  ],
+  "native_artifacts": {
+    "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wccmmud_ini_sha256": "9cbc9c00baa88f853e05b277526b40ee60a8bb5b9051818256993f8b9b4279a1",
+    "wgserver_exe_sha256": "7f8d7e3675e5b754d146fad69f2a7d4cd667d87eef4ceafc62d7253b55dd79cb",
+    "cw3220mt_dll_supplied_sha256": "89eaa381a4a1c358f5c711fc31d873dd9a3c833af721a66cfaf01240bb4d9fd5",
+    "wcctext2_dat_sha256": "23a9744f9ca2f459b2e5a8bd3723d35f30467823d937be5cac38d00dd2c31f21"
+  },
+  "runtime_gate": "--smoke-classic-final-strong-closure",
+  "cumulative_gate": "--smoke-classic-parity-closure"
+}

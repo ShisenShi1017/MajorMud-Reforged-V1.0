@@ -171,7 +171,7 @@ public sealed class RuntimePlayerCombatProfileResolver
         if (maximumDamage < minimumDamage) maximumDamage = minimumDamage;
         var attackEnergyCost = barehanded || weaponSpeed <= 0
             ? 0
-            : RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(
+            : RuntimeClassicPhysicalFormulaCalculator.CalculateClassicLiveAttackEnergyCost(
                 ResolveClassCombatCode(character),
                 character.Level,
                 weaponSpeed,
@@ -179,7 +179,6 @@ public sealed class RuntimePlayerCombatProfileResolver
                 AdjustedStat(character, "strength", "str"),
                 encumbrancePercent,
                 weaponStrengthRequirement,
-                100,
                 false);
         var quickAndDeadlyCriticalBonus = barehanded || weaponSpeed <= 0
             ? 0

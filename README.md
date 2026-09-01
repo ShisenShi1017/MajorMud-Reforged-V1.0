@@ -1,6 +1,6 @@
 ## Current Classic parity continuation
 
-The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration evidence is integrated into executable runtime ownership. Current parity is **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
+The reviewed native exit, formula, NPC combat, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration evidence is integrated into executable runtime ownership. Current verified parity is **200 PASS / 0 STRONG / 0 UNKNOWN = 200** (**100.0% strict / 100.0% evidence-backed**). Combat formula authority consumes the Librarium ability catalog and does not require loose imported evidence.
 
 # MajorMUD Reforged
 
@@ -8,7 +8,10 @@ The reviewed native exit, formula, NPC combat, scheduler/regeneration, character
 
 The cumulative Classic parity ledger closes the repository-visible native ownership inventory at STRONG confidence. All 36 Remaining Systems owners, 40 native dependency groups, 396 retained native artifacts, supplied WCC families, and 156/156 MajorMUD-used Worldgroup symbols are explicitly owned and fail-closed where exact semantics remain unresolved.
 
-Current parity: **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict**, **100.0% evidence-backed**). CodeUpdate0365 closes Quests / Scripts / Triggers at 2/2 PASS: clean Classic generation contains exactly 83 executable quest flows, 83 live NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations while 2,100 analysis-only candidates remain Librarium-only; remoteaction is exhaustive at 139/139 invocations and 85/85 executable signatures. CodeUpdate0363 closes Items & Inventory at 6/6 PASS with exact signed per-copy Uses, ordered no-target item abilities, EAT/DRINK fallback counters, APPRAISE delegation, and explicit Reforged-extension boundaries. CodeUpdate0362 closes Import / Export / Limits / Recovery at 4/4 PASS with native capacity/recovery ownership explicitly separated from Reforged/Worldgroup extensions. The remaining 31 evidence-bounded STRONG assertions are not represented as exact-native PASS.
+Current parity: **200 PASS / 0 STRONG / 0 UNKNOWN = 200** (**100.0% strict**, **100.0% evidence-backed**). Character/Status, Rooms/World, Timers/Resets/World Rules, and the final 11-boundary closure are executable and locally verified.
+
+
+Borin headless training is synchronized with the accepted 200/0/0 Classic baseline: it validates the scorecard, runs the focused and cumulative parity gates before unattended learning and at each completed cycle, then probes HELP/TOP/TOPTEN through the restarted live headless player runtime. Parity regressions become tester defects rather than training adaptations. MegaMUD compatibility remains a separate real-client certification surface.
 
 Creator Studio full-control editing is integrated into the Reforged app with Quick Create, nested field editing, expanded runtime Librarium families, Custom1 cloning, and protected Classic identity/runtime metadata.
 

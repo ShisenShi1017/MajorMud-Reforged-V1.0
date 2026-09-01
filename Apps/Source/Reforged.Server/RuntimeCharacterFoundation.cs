@@ -1,7 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace Reforged.Server;
 
@@ -948,6 +947,7 @@ public sealed class RuntimeCharacterService
         string eyeColor,
         int creationPointsRemaining)
     {
+        ValidateClassicGivenNameAvailability(world, givenName);
         var character = BuildCharacterRecord(account, world, name, sex, race, characterClass, selectedStats, givenName, familyName, hairLength, hairColor, eyeColor, creationPointsRemaining);
         return _repository.CreateCharacter(account, character);
     }
@@ -982,12 +982,28 @@ public sealed class RuntimeCharacterService
         var retainedExperience = RuntimeClassicDeathExperienceAuthority.CalculateFinalRerollRetainedExperience(
             previous.Experience, previous.Level, chart, keepEnabled, RuntimeClassicConfigurationAuthority.KeepExperienceAfterFinalDeath);
 
+        ValidateClassicGivenNameAvailability(world, givenName, previous.CharacterId);
         var replacement = BuildCharacterRecord(account, world, name, sex, race, characterClass, selectedStats, givenName, familyName, hairLength, hairColor, eyeColor, creationPointsRemaining) with
         {
             Experience = retainedExperience,
             UpdatedAtUtc = DateTimeOffset.UtcNow
         };
         return _repository.ReplaceCharacter(account, previous, replacement);
+    }
+
+    private void ValidateClassicGivenNameAvailability(RuntimeWorld world, string givenName, string? excludedCharacterId = null)
+    {
+        var requested = givenName.Trim();
+        var playerCollision = _repository.ListAllCharacters().Any(character =>
+            (excludedCharacterId is null || !character.CharacterId.Equals(excludedCharacterId, StringComparison.OrdinalIgnoreCase)) &&
+            RuntimeIdentity.ClassicGivenNameFromDisplayName(character.DisplayName).Equals(requested, StringComparison.OrdinalIgnoreCase));
+        var monsterCollision = world.Npcs.Values.Any(npc => npc.Name.Trim().Equals(requested, StringComparison.OrdinalIgnoreCase));
+        var commandCollision = RuntimeClassicNativePlayerCommandRegistry.Load(_projectRoot).Records
+            .Select(record => RuntimeCommand.Parse(record.DocumentedInput).Name)
+            .Any(command => command.Equals(requested, StringComparison.OrdinalIgnoreCase));
+
+        if (playerCollision || monsterCollision || commandCollision)
+            throw new InvalidOperationException(RuntimeIdentity.ClassicNameAlreadyInUseMessage);
     }
 
     private RuntimeCharacterRecord BuildCharacterRecord(
@@ -1169,32 +1185,47 @@ public sealed class RuntimeCharacterService
 
 public static class RuntimeIdentity
 {
-    // Native UserRecType / AddUserFieldMap: FirstName is 10 bytes, LastName is 18 bytes.
-    // The lower bound and allowed-character policy are still compatibility policy, not promoted native proof.
+    // Native UserRecType / AddUserFieldMap plus WCCMMUD.DLL creation validation.
+    public const int ClassicGivenNameMinimumLength = 1;
     public const int ClassicGivenNameMaximumLength = 10;
+    public const int ClassicFamilyNameMinimumLength = 1;
     public const int ClassicFamilyNameMaximumLength = 18;
-    private static readonly Regex CharacterNamePattern = new("^[A-Za-z][A-Za-z'-]{2,19}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+    // User-supplied WCCMMUD.INI capture for the target installation has BLANK_LASTNAME_ALLOWED=1.
+    public const bool ClassicBlankLastNameAllowed = true;
+    public const string ClassicInvalidGivenNameMessage = "You have entered an invalid name!";
+    public const string ClassicLastNameRequiredMessage = "You MUST have a last name!";
+    public const string ClassicInvalidFamilyNameMessage = "Your last name contains invalid characters!";
+    public const string ClassicNameAlreadyInUseMessage = "The name you have chosen is already in use!";
 
-    public static void ValidateCharacterName(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name) || !CharacterNamePattern.IsMatch(name.Trim()))
-        {
-            throw new InvalidOperationException("Character names must satisfy the current compatibility name-shape policy (3-20 characters, starting with a letter, letters/apostrophes/hyphens only).");
-        }
-    }
+    private static bool IsClassicAlphabeticToken(string value) =>
+        value.All(character => character is >= 'A' and <= 'Z' or >= 'a' and <= 'z');
+
+    public static void ValidateCharacterName(string name) => ValidateClassicGivenName(name);
 
     public static void ValidateClassicGivenName(string name)
     {
-        ValidateCharacterName(name);
-        if (name.Trim().Length > ClassicGivenNameMaximumLength)
-            throw new InvalidOperationException($"Given Name may not exceed {ClassicGivenNameMaximumLength} characters in Classic MajorMUD.");
+        var value = (name ?? string.Empty).Trim();
+        if (value.Length < ClassicGivenNameMinimumLength || value.Length > ClassicGivenNameMaximumLength || !IsClassicAlphabeticToken(value))
+            throw new InvalidOperationException(ClassicInvalidGivenNameMessage);
     }
 
-    public static void ValidateClassicFamilyName(string name)
+    public static void ValidateClassicFamilyName(string name, bool allowBlank = ClassicBlankLastNameAllowed)
     {
-        ValidateCharacterName(name);
-        if (name.Trim().Length > ClassicFamilyNameMaximumLength)
-            throw new InvalidOperationException($"Family Name may not exceed {ClassicFamilyNameMaximumLength} characters in Classic MajorMUD.");
+        var value = (name ?? string.Empty).Trim();
+        if (value.Length == 0)
+        {
+            if (allowBlank) return;
+            throw new InvalidOperationException(ClassicLastNameRequiredMessage);
+        }
+        if (value.Length < ClassicFamilyNameMinimumLength || value.Length > ClassicFamilyNameMaximumLength || !IsClassicAlphabeticToken(value))
+            throw new InvalidOperationException(ClassicInvalidFamilyNameMessage);
+    }
+
+    public static string ClassicGivenNameFromDisplayName(string displayName)
+    {
+        var value = (displayName ?? string.Empty).Trim();
+        var separator = value.IndexOf(' ');
+        return separator < 0 ? value : value[..separator];
     }
 
     public static string CharacterId(string worldId, string name) => $"{Normalize(worldId, "world")}:{Normalize(name, "character")}";

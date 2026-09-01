@@ -1,7 +1,11 @@
 # MajorMUD Reforged Version
 
+- Current verified closure: 200 PASS / 0 STRONG / 0 UNKNOWN (100.0% strict). Character/Status, Rooms/World, Timers/Resets/World Rules, and the final 11-boundary closure pass locally.
+- CodeUpdate0368 Timers / Resets / World Rules closure: 15/15 PASS; source/static/native verification 108/108 PASS; overall parity 189 PASS / 11 STRONG / 0 UNKNOWN (94.5% strict). Exact native one-shot scheduler/restart ownership, Room.Delay minute gates and respawn admission, SYSOP RESET generation-counter ownership, WCCMMUTL contest RNG/draw order, and the 44-option WCCMMUD configuration boundary are integrated; no new .NET build claim in this environment.
+
 - Current Code Update: `0140`
 - Current Database Version: `0010`
+- Rooms & World closure is complete at 21 PASS / 0 STRONG; its focused runtime gate passes 29/29.
 - Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`
 - Current baseline: parity passes 0345-0359 plus native session, party, gang communication, modal invitation, daily cleanup, organization-service, and MegaMUD/Borin compatibility work are integrated locally; GitHub Actions remains pending push.
 - CodeUpdate0365 Quests / Scripts / Triggers closure: 2/2 PASS; source/static/data-correlation verification 65/65 PASS; overall parity 169 PASS / 31 STRONG / 0 UNKNOWN (84.5% strict). Runtime generation is exactly 83 executable quest flows, 83 NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations; 2,100 analysis-only quest candidates remain Librarium-only; remoteaction is exhaustive at 139/139 invocations and 85/85 executable signatures.
@@ -11,7 +15,7 @@
 - CodeUpdate0361 Host / Persistence / Worldgroup closure: 9/9 PASS with exact Player/Buffer persistence ownership, save scheduling/shutdown order, host RNG contract, repository inventory closure, and WCC artifact exhaustion.
 - CodeUpdate0360 Economy & Services closure: 16/16 PASS with exact ShopType-5 healer behavior, paid carriage ownership, and 204/204 service classification.
 - CodeUpdate0359 Data Reconstruction closure: 3/3 PASS with complete family/field decode coverage and canonical WCCMSG2 working-install corroboration.
-- Current parity continuation: 169 PASS / 31 STRONG / 0 UNKNOWN = 200 (84.5% strict / 100.0% evidence-backed).
+- Current parity continuation: 189 PASS / 11 STRONG / 0 UNKNOWN = 200 (94.5% strict / 100.0% evidence-backed).
 - Creator Studio: full-control Custom1 authoring integrated; Quick Create retained; Classic structural identity and runtime metadata remain protected.
 - Nightmare compatibility: Creator Studio can analyze/import supported Nightmare Redux MDB tables into Custom1, export supported Custom1 records to a new Jet MDB, and correlate a matching WCC/WGS folder as read-only evidence while retaining unmapped fields. A real 188-row Nightmare MDB read and a temporary MDB round trip pass locally; no Custom1 data was imported during verification.
 - Local parity verification: Reforged.Server and Reforged.App Release builds PASS with warnings as errors; core test build and run PASS; MegaMUD connection and Classic parity-closure gates PASS. The current-health validator passes 44/45 executed stages and stops at the two documented item-smoke failures. Retained native/direct-static verifier results are consolidated in Reports/RuntimeVerification/native_runtime_verification.json with 2,529 supplied checks and zero failures; the 34 CodeUpdate0359 Data Reconstruction checks are raw/static only in this environment.

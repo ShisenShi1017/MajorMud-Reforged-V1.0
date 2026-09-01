@@ -1,0 +1,37 @@
+{
+  "schema": "majormud.final-strong.casino-arena.v1",
+  "update": "0369",
+  "state": "PASS",
+  "supplied_native": {
+    "wcctext2_size": 7477248,
+    "wcctext2_sha256": "23a9744f9ca2f459b2e5a8bd3723d35f30467823d937be5cac38d00dd2c31f21",
+    "decode": "2048-byte pages; record marker 0x5600; payload starts at +0x10; byte_plus_0xE0_mod_256; CP437"
+  },
+  "casino_payload_records": [
+    {"record_header_id": 818, "page_index": 820, "page_offset": 1679360, "owner": "room 1/2 dragon-dice random table", "logical_random_target": 998},
+    {"record_header_id": 820, "page_index": 825, "page_offset": 1689600, "owner": "room 1/2 casino command aliases/wagers"},
+    {"record_header_id": 844, "page_index": 849, "page_offset": 1738752, "owner": "room 1/2 crowns/skulls random table", "logical_random_target": 1020},
+    {"record_header_id": 2992, "page_index": 3002, "page_offset": 6148096, "owner": "room 1/10 Dead Jester aliases/wager", "logical_random_target": 9134},
+    {"record_header_id": 2993, "page_index": 3003, "page_offset": 6150144, "owner": "room 1/10 Dead Jester random table"},
+    {"record_header_id": 2994, "page_index": 3007, "page_offset": 6158336, "owner": "Dead Jester rules presentation"},
+    {"record_header_id": 2995, "page_index": 3005, "page_offset": 6154240, "owner": "room 1/11 dragon-dice random table", "logical_random_target": 9136},
+    {"record_header_id": 2996, "page_index": 3006, "page_offset": 6156288, "owner": "room 1/11 crowns/skulls random table", "logical_random_target": 9137},
+    {"record_header_id": 2997, "page_index": 3010, "page_offset": 6164480, "owner": "room 1/11 casino command aliases/wagers/adddelay"}
+  ],
+  "mechanics": {
+    "room_1_2_command_wagers_and_thresholds_directly_recovered": true,
+    "room_1_10_command_wagers_and_thresholds_directly_recovered": true,
+    "room_1_11_command_wagers_thresholds_and_adddelay_directly_recovered": true,
+    "worldgroup_genrdn_contract_recovered": true,
+    "adddelay_session_byte_offset": "0x6BB",
+    "adddelay_storage": "unsigned byte; additive wrap semantics",
+    "adddelay_decrement_owner": "one-second fast-character callback",
+    "practice_arena_owner": "arena enabled + RoomType 5; entry HP and max mana restore; death destination before drop/life-loss branch",
+    "unknown_optional_activity_mechanics_count": 0
+  },
+  "presentation_boundary": {
+    "casino_terminal_logical_text_target_ids_retained": true,
+    "casino_authority_claims_terminal_body_mapping": false,
+    "reason": "logical TEXT target numbering is not equated to WCCTEXT2 physical page-header IDs; no synthetic terminal prose is credited as parity"
+  }
+}

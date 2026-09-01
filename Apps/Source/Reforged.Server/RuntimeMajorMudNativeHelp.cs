@@ -1,18 +1,26 @@
+using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace Reforged.Server;
 
 /// <summary>
 /// Runtime projection of the compiler-generated WCCMMHLP help family.
-/// Bodies are returned verbatim (including ANSI) so the wire presentation remains
-/// MajorMUD-compatible. Topic matching outside the explicit native main-menu aliases
-/// is deliberately conservative and is not treated as proof of the original resolver.
+///
+/// CodeUpdate0369 closes the retained native resolver boundary from WCCMMUD.DLL:
+/// _help_text checks _ljnsame(query,"Topics") first; _ljnsame scans the whitespace
+/// separated title words and WGSERVER!_sameto performs a case-insensitive prefix
+/// comparison. The first title record that matches wins. HELP TOPICS walks native
+/// title records in message-number order, emits the first word of each title, wraps
+/// at the native 79-column threshold, and terminates on the "Help ?" sentinel.
+/// Static WCCMMHLP topic iteration is not permission filtered.
 /// </summary>
 public sealed class RuntimeMajorMudNativeHelpCatalog
 {
     private const string GeneratedRelativePath = "Data/Classic/native_help.json";
-    private static readonly Regex Whitespace = new(@"\s+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+    private const int NativeTopicsWrapColumn = 79;
+    private const string NativeTopicsHeader = "The following help topics are currently available: \r";
+    private const string NativeNoHelp = "Sorry, no help is available for that topic!\r";
+    private const string NativeTopicsSentinel = "Help ?";
 
     private readonly string _mainBody;
     private readonly IReadOnlyDictionary<int, string> _bodies;
@@ -52,87 +60,111 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
             var body = ReadString(topic, "body");
             if (keywords.Length == 0 || body.Length == 0) continue;
             bodies[bodyNumber] = body;
-            topics.Add(new RuntimeMajorMudHelpTopic(titleNumber, bodyNumber, keywords, Tokenize(keywords)));
+            topics.Add(new RuntimeMajorMudHelpTopic(titleNumber, bodyNumber, keywords));
         }
 
-        if (topics.Count != 131 || !bodies.ContainsKey(3))
-            throw new InvalidDataException($"Generated MajorMUD help catalog expected 131 topics including COMMANDS; found {topics.Count}.");
+        if (topics.Count != 131 || !bodies.ContainsKey(3) ||
+            !topics.Any(topic => topic.NativeKeywords.Equals(NativeTopicsSentinel, StringComparison.Ordinal)))
+            throw new InvalidDataException($"Generated MajorMUD help catalog expected 131 topics including COMMANDS and Help ?; found {topics.Count}.");
+
         return new RuntimeMajorMudNativeHelpCatalog(ReadString(main, "body"), bodies, topics);
     }
 
     public string Main() => _mainBody;
+    public string NoHelpMessage() => NativeNoHelp;
 
     public bool TryResolve(string query, out string body)
     {
         body = string.Empty;
-        var canonical = Canonicalize(query);
-        if (canonical.Length == 0)
+        query = NormalizeNativeQuery(query);
+        if (query.Length == 0)
         {
             body = _mainBody;
             return true;
         }
 
-        // Labels printed by the native HELP main screen. These are direct evidence,
-        // not inferred aliases.
-        var nativeMainAliasBody = canonical switch
+        if (NativeSameTo(query, "Topics"))
         {
-            "commands" => 3,
-            "commun" or "communications" => 5,
-            "combat" => 7,
-            "races" => 9,
-            "classes" => 11,
-            "info" => 19,
-            "spells" => 21,
-            "shops" => 23,
-            "laws" => 31,
-            "movement" => 25,
-            "party" => 27,
-            "tips" => 33,
-            "items" => 35,
-            "profile" => 37,
-            "misc" => 111,
-            "set" => 117,
-            "stats1" => 45,
-            "stats2" => 47,
-            "help" => 263,
-            _ => 0
-        };
-        if (nativeMainAliasBody > 0 && _bodies.TryGetValue(nativeMainAliasBody, out var aliasBody))
-        {
-            body = aliasBody;
+            body = RenderTopics();
             return true;
         }
 
-        // The decoded title records contain MajorMUD's search words. Exact token hits
-        // are useful runtime behavior, but the original ambiguity/prefix resolver is
-        // still evidence-gated and therefore not scored as strict parity.
-        var exact = _topics.Where(topic => topic.Tokens.Contains(canonical, StringComparer.OrdinalIgnoreCase)).ToArray();
-        if (exact.Length == 1 && _bodies.TryGetValue(exact[0].BodyNumber, out var exactBody))
+        foreach (var topic in _topics)
         {
-            body = exactBody;
-            return true;
+            if (!NativeLjnsame(query, topic.NativeKeywords)) continue;
+            if (_bodies.TryGetValue(topic.BodyNumber, out var resolvedBody))
+            {
+                body = resolvedBody;
+                return true;
+            }
         }
 
         return false;
     }
 
-    public bool HasNativeMainAndCommands() => _mainBody.Length > 0 && _bodies.ContainsKey(3);
+    public string RenderTopics()
+    {
+        var builder = new StringBuilder(NativeTopicsHeader);
+        var width = 0;
 
+        foreach (var topic in _topics)
+        {
+            var title = topic.NativeKeywords.Replace('\0', ' ').Trim();
+            if (title.Equals(NativeTopicsSentinel, StringComparison.Ordinal))
+            {
+                var terminal = title + ".\r";
+                if (width + terminal.Length > NativeTopicsWrapColumn)
+                {
+                    builder.Append('\r');
+                    width = 0;
+                }
+                builder.Append(terminal);
+                break;
+            }
+
+            var firstWord = FirstNativeWord(title);
+            if (firstWord.Length == 0) continue;
+            var rendered = firstWord + ", ";
+            if (width + rendered.Length > NativeTopicsWrapColumn)
+            {
+                builder.Append('\r');
+                width = 0;
+            }
+
+            builder.Append(rendered);
+            width += rendered.Length;
+        }
+
+        return builder.ToString();
+    }
+
+    public bool HasNativeMainAndCommands() => _mainBody.Length > 0 && _bodies.ContainsKey(3);
     public int TopicCount => _topics.Count;
 
-    private static IReadOnlyList<string> Tokenize(string value) =>
-        Whitespace.Replace(value.Replace('\0', ' '), " ").Trim()
-            .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Select(Canonicalize)
-            .Where(token => token.Length > 0)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
-
-    private static string Canonicalize(string value)
+    internal static bool NativeSameTo(string query, string candidate)
     {
-        var normalized = Whitespace.Replace(value.Trim().ToLowerInvariant(), " ");
-        return new string(normalized.Where(character => char.IsLetterOrDigit(character) || character is ' ' or '.').ToArray()).Trim();
+        query = NormalizeNativeQuery(query);
+        candidate = candidate.Replace('\0', ' ').Trim();
+        return query.Length > 0
+            && query.Length <= candidate.Length
+            && candidate.StartsWith(query, StringComparison.OrdinalIgnoreCase);
     }
+
+    internal static bool NativeLjnsame(string query, string nativeKeywords)
+    {
+        foreach (var word in NativeWords(nativeKeywords))
+            if (NativeSameTo(query, word)) return true;
+        return false;
+    }
+
+    private static IEnumerable<string> NativeWords(string value) =>
+        value.Replace('\0', ' ')
+            .Split(new[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+    private static string FirstNativeWord(string value) => NativeWords(value).FirstOrDefault() ?? string.Empty;
+
+    private static string NormalizeNativeQuery(string value) =>
+        (value ?? string.Empty).Replace('\0', ' ').Trim();
 
     private static string ReadString(JsonElement element, string propertyName) =>
         element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.String
@@ -143,8 +175,7 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
 public sealed record RuntimeMajorMudHelpTopic(
     int TitleNumber,
     int BodyNumber,
-    string NativeKeywords,
-    IReadOnlyList<string> Tokens);
+    string NativeKeywords);
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
@@ -154,5 +185,11 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         _majorMudNativeHelp ??= RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot);
         return _majorMudNativeHelp.TryResolve(query, out output);
+    }
+
+    public string RenderMajorMudNativeNoHelp()
+    {
+        _majorMudNativeHelp ??= RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot);
+        return _majorMudNativeHelp.NoHelpMessage();
     }
 }

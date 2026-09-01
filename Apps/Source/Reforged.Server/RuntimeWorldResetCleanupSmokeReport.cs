@@ -35,13 +35,20 @@ public sealed record RuntimeWorldResetCleanupSmokeReport(bool Passed, IReadOnlyL
         if (!RuntimeClassicWorldResetCleanupAuthority.GenericCoordinatorOwnsClassicOrdering) checks.Add("generic-coordinator-receives-no-classic-ordering-credit"); else failures.Add("generic-coordinator-misclassified");
         try
         {
-            RuntimeClassicWorldResetCleanupAuthority.RequireUniversalClassicResetOrder();
-            failures.Add("classic-universal-order-should-remain-gated");
+            RuntimeClassicWorldResetCleanupAuthority.RequireExhaustedClassicResetBoundary();
+            checks.Add("classic-reset-boundary-exhausted-as-owner-specific");
         }
-        catch (InvalidOperationException ex) when (ex.Message == "native-world-reset-order-unresolved")
+        catch (InvalidOperationException ex)
         {
-            checks.Add("classic-universal-order-remains-fail-closed");
+            failures.Add("classic-reset-boundary:" + ex.Message);
         }
+        RecordCheck(!RuntimeClassicWorldResetCleanupAuthority.UniversalResetTransactionExists,
+            "classic-no-universal-reset-transaction", "classic-universal-reset-transaction-invented", checks, failures);
         return new(failures.Count == 0, checks, failures);
+    }
+
+    private static void RecordCheck(bool condition, string check, string failure, List<string> checks, List<string> failures)
+    {
+        if (condition) checks.Add(check); else failures.Add(failure);
     }
 }

@@ -22,8 +22,9 @@ public sealed record RuntimeMajorMudTimerAuditReport(
     IReadOnlyList<string> Diagnostics);
 
 /// <summary>
-/// Conservative MajorMUD timer/reset audit. It reports proven timer values separately
-/// from still-unresolved host-clock, room-entry, reset-order, and restart semantics.
+/// MajorMUD timer/reset audit after CodeUpdate0368 native scheduler, room-delay,
+/// generation-admission, reset-owner, and configuration closure. Legacy pending counters
+/// remain visible only to identify snapshots written before the closure.
 /// </summary>
 public static class RuntimeMajorMudTimerAudit
 {
@@ -51,16 +52,15 @@ public static class RuntimeMajorMudTimerAudit
             diagnostics.Add($"Spell/system round mismatch: runtime={runtimeSpellRoundSeconds}s, recovered=3s.");
         if (runtimeSpellSystemRoundMilliseconds != runtimeSpellRoundSeconds * 1000)
             diagnostics.Add($"Spell/status scheduler mismatch: runtime={runtimeSpellSystemRoundMilliseconds}ms, recovered={runtimeSpellRoundSeconds * 1000}ms.");
-        diagnostics.Add("Ordinary lair room Delay is projected in minutes, but exact wall-clock-minute gating remains evidence-gated.");
-        diagnostics.Add("Last Killed/regen evidence is now active as room-entry admission: elapsed NPC respawn timers do not materialize from the global heartbeat; a player entering the home room admits due spawns.");
-        diagnostics.Add("Zero-delay room semantics remain disputed and receive no parity credit.");
-        diagnostics.Add("WCCMMUD.DLL drives a one-second one-shot background-fast callback; internal medium/energy/monster-create/slow buckets are due at 3/5/5/30 logical fast ticks respectively.");
-        diagnostics.Add("Delayed background-fast service increments the logical tick once and re-arms from the execution moment; elapsed wall-clock catch-up is not synthesized while running.");
+        diagnostics.Add("Native _generate_monster proves Room Delay is an integer-minute gate: Delay 0 is immediately eligible; positive Delay is blocked while elapsed whole minutes <= Delay and becomes eligible only when elapsed > Delay.");
+        diagnostics.Add("Native generation has two live admission paths: _user_allowed_in_room on room entry and _background_monster_create against active-user rooms every five-second owner generation.");
+        diagnostics.Add("WCCMMUD.DLL freshly arms fast/medium/energy/monster-create/slow and save-related one-shot callbacks on module startup; callback deadlines are not restored or caught up across restart.");
+        diagnostics.Add("Delayed one-shot owner service executes one generation and re-arms that owner from execution time; independent owner deadlines are not derived from fast-tick modulo phase.");
         diagnostics.Add("REST increments its native fast counter and fires when it exceeds 20 (21st fast callback). MEDITATE fires when its counter exceeds 14 (15th fast callback), despite historical HELP saying at least 20 seconds for both.");
         diagnostics.Add("There is no evidence-backed single universal 10-second Classic gameplay phase: combat, spell/status, regeneration, save, exit, and room-entry respawn owners use distinct recovered boundaries.");
-        diagnostics.Add("Room reset ordering, hard-reset exceptions, world reset ordering, restart deadline persistence, and full cross-owner simultaneous-event ordering remain unresolved.");
-        diagnostics.Add($"Native WCCMMUD player-data save interval is {RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds}s; native buffer-data prompt is {RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds}s, but exact buffer ownership/order remains UNKNOWN.");
-        diagnostics.Add("Existing in-flight respawn deadlines are preserved across upgrade/restore; the new timer authority is guaranteed for newly scheduled deaths rather than retroactively rewriting uncertain persisted deadlines.");
+        diagnostics.Add("SYSOP RESET is not a universal reset transaction: ROOM clears only the room generation count; AREA clears only the linked area population count. Cleanup/recharge/restock/initialize/player/combat/corpse owners remain separate.");
+        diagnostics.Add($"Native background_other owns Player-data save at {RuntimeClassicTimingAuthority.PlayerDataSaveIntervalSeconds}s; background_save_buffers owns Buffer-data save at {RuntimeClassicTimingAuthority.BufferDataSaveIntervalSeconds}s. Both are freshly armed one-shot owners.");
+        diagnostics.Add("Persisted Reforged NPC respawn deadlines survive application restart because they represent native Last-Killed-derived eligibility, while native scheduler callback phase itself is freshly armed on startup.");
 
         return new RuntimeMajorMudTimerAuditReport(
             catalog.RoomBossTimerCount,
@@ -93,10 +93,10 @@ public static class RuntimeMajorMudTimerAudit
         builder.AppendLine("LIVE TIMER AUTHORITY");
         foreach (var pair in report.LiveTimerModes)
             builder.AppendLine($"- {pair.Key}: {pair.Value}");
-        builder.AppendLine($"- Native minute gate pending: {report.NativeMinuteGatePendingCount}");
-        builder.AppendLine($"- Native room-entry admission pending: {report.NativeRoomEntryPendingCount}");
-        builder.AppendLine($"- Zero-delay UNKNOWN: {report.ZeroDelayUnknownCount}");
-        builder.AppendLine($"- Direct NPCs still using unverified room-delay minutes: {report.UnverifiedDirectRoomDelayCount}");
+        builder.AppendLine($"- Legacy pre-0368 minute-gate-pending metadata: {report.NativeMinuteGatePendingCount}");
+        builder.AppendLine($"- Legacy pre-0368 room-entry-pending metadata: {report.NativeRoomEntryPendingCount}");
+        builder.AppendLine($"- Legacy pre-0368 zero-delay UNKNOWN mode: {report.ZeroDelayUnknownCount}");
+        builder.AppendLine($"- Legacy pre-0368 unverified direct-delay mode: {report.UnverifiedDirectRoomDelayCount}");
         builder.AppendLine();
         builder.AppendLine("RECOVERED CADENCES (implementation/evidence; not all receive strict parity credit)");
         builder.AppendLine($"- Passive HP regen cadence: {report.PassiveRegenSeconds}s");
@@ -106,7 +106,7 @@ public static class RuntimeMajorMudTimerAudit
         builder.AppendLine($"- Runtime spell/system round: {report.SpellRoundSeconds}s");
         builder.AppendLine($"- Recovered MajorMUD combat round evidence: {report.RecoveredCombatRoundSeconds}s");
         builder.AppendLine($"- Native WCCMMUD player-data save interval: {report.NativePlayerSaveSeconds}s");
-        builder.AppendLine($"- Native WCCMMUD buffer-data save interval: {report.NativeBufferSaveSeconds}s (owner/order still evidence-gated)");
+        builder.AppendLine($"- Native WCCMMUD buffer-data save interval: {report.NativeBufferSaveSeconds}s (background_save_buffers owner)");
         builder.AppendLine();
         builder.AppendLine("KNOWN NATIVE BOUNDARIES");
         foreach (var diagnostic in report.Diagnostics)

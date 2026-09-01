@@ -1,0 +1,24 @@
+{
+  "schema": "majormud.final-strong.rankings.v1",
+  "update": "0369",
+  "state": "PASS",
+  "native": {
+    "wccmmud_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "generate_top_list_va": "0x004770B1",
+    "experience_compare_va": "0x004772B0",
+    "equal_or_greater_skip_va": "0x004772B6",
+    "exp_in_topgang_global_va": "0x004906C0",
+    "exp_header_xref_va": "0x004342C2",
+    "exp_row_xref_va": "0x004343AD"
+  },
+  "closure": {
+    "metric": "experience descending",
+    "ties": "existing/source order retained when equal",
+    "notopten": "live exclusion retained",
+    "class_filter": "live",
+    "gang_forms": "TOPTEN/TOP <n> GANGS live",
+    "exp_in_topgang": "presentation-only; supplied default 1",
+    "refresh": "TOP is generated from current persisted runtime state on each Reforged command",
+    "unknown_mechanical_boundary_count": 0
+  }
+}

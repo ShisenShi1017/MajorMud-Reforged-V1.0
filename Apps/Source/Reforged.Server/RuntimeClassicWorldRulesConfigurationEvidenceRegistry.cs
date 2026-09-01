@@ -15,10 +15,10 @@ public sealed record RuntimeClassicWorldRulesConfigurationEvidenceRow(
     string EvidenceBoundary);
 
 /// <summary>
-/// Pass 42 promotes the broad Classic world-rules/configuration ownership boundary without
-/// inventing WCCMMUD.INI parsing, undocumented ranges, or live-reload semantics.  The retained
-/// WCCMMUD.mcv catalog proves the native setup surface and exact defaults; six recovered defaults
-/// are already consumed by live Classic runtime owners.
+/// CodeUpdate0368 closes the visible WCCMMUD world-rules/configuration boundary.
+/// The retained 44-prompt MCV catalog is mapped to native option IDs, exact numeric ranges,
+/// and _reload__wccmmud versus _init__wccmmud ownership. Reforged still does not parse the
+/// legacy INI; the native map is evidence and typed compatibility authority.
 /// </summary>
 public static class RuntimeClassicWorldRulesConfigurationEvidenceRegistry
 {
@@ -51,15 +51,15 @@ public static class RuntimeClassicWorldRulesConfigurationEvidenceRegistry
         new("projection.ep-per-cycle-1", RuntimeClassicWorldRulesConfigurationEvidenceState.Proven,
             "The exact native Evil Points forgiven per cycle default is 1 and is consumed by the alignment authority.",
             "WCCMMUD.mcv prompt at offset 1825 -> RuntimeCharacterAlignmentAuthority."),
-        new("remaining.range-contracts", RuntimeClassicWorldRulesConfigurationEvidenceState.Unknown,
-            "Exact allowed ranges for setup values other than separately recovered contracts such as LVLDIFF remain incomplete.",
-            "Do not infer ranges from Reforged's generic typed rule service."),
-        new("remaining.mutability-restart", RuntimeClassicWorldRulesConfigurationEvidenceState.Unknown,
-            "Exact native live-mutable versus restart-only semantics for the remaining setup values.",
-            "SYSOP RELOAD proves a native configuration reload command exists, but not each setting's live effect boundary."),
-        new("remaining.owner-effect-map", RuntimeClassicWorldRulesConfigurationEvidenceState.Unknown,
-            "Exact runtime owner/effect mapping for setup prompts that are cataloged but not yet connected to a proven gameplay owner.",
-            "Cataloged defaults are evidence, not permission to activate guessed behavior."),
+        new("native.range-contracts", RuntimeClassicWorldRulesConfigurationEvidenceState.Proven,
+            "Every visible numeric setup option consumed by WCCMMUD has its executable numopt minimum/maximum retained.",
+            "RuntimeClassicConfigurationAuthority.VisibleOptionAuthorities mirrors _reload__wccmmud/_init__wccmmud call operands."),
+        new("native.mutability-restart", RuntimeClassicWorldRulesConfigurationEvidenceState.Proven,
+            "Visible setup options are classified by executable load owner: reloadable, startup-only, or retained catalog-only with no native read call.",
+            "29 visible options are reloadable, 13 are startup-only, and the 2 coin-sweep prompts have no direct 1.11p load call."),
+        new("native.owner-effect-map", RuntimeClassicWorldRulesConfigurationEvidenceState.Proven,
+            "All 44 visible prompts map to their WCCMMUD.h option identity and native reader/load boundary without importing Reforged generic rule semantics.",
+            "The two retained-but-unconsumed prompts are explicitly represented as such rather than assigned guessed runtime effects."),
         new("reforged.generic-world-rule-contract", RuntimeClassicWorldRulesConfigurationEvidenceState.Excluded,
             "Reforged Custom/AI typed rule ranges and mutability metadata are not native MajorMUD evidence.",
             "They may remain as Reforged features but cannot fill Classic evidence gaps.")
@@ -71,8 +71,8 @@ public static class RuntimeClassicWorldRulesConfigurationEvidenceRegistry
         if (RuntimeClassicConfigurationAuthority.ReforgedUsesNativeConfigurationFile) failures.Add("reforged-must-not-use-native-ini");
         if (RuntimeClassicConfigurationAuthority.NativePrompts.Count != RetainedNativePromptCount) failures.Add("native-prompt-count");
         if (Rows.Count != 12) failures.Add("expected-twelve-world-rules-evidence-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicWorldRulesConfigurationEvidenceState.Proven) != 8) failures.Add("expected-eight-proven-world-rules-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicWorldRulesConfigurationEvidenceState.Unknown) != 3) failures.Add("expected-three-open-world-rules-rows");
+        if (Rows.Count(row => row.State == RuntimeClassicWorldRulesConfigurationEvidenceState.Proven) != 11) failures.Add("expected-eleven-proven-world-rules-rows");
+        if (Rows.Any(row => row.State == RuntimeClassicWorldRulesConfigurationEvidenceState.Unknown)) failures.Add("world-rules-open-row-remains");
         if (Rows.Count(row => row.State == RuntimeClassicWorldRulesConfigurationEvidenceState.Excluded) != 1) failures.Add("expected-one-excluded-world-rules-row");
         return failures;
     }

@@ -1,0 +1,98 @@
+{
+  "schema": "majormud_rooms_world_complete_evidence_v1",
+  "code_update": "0367",
+  "generated_at_utc": "2026-08-31T17:39:33.229520+00:00",
+  "status": "verified_native_runtime_and_corpus_closure",
+  "description_audit": {
+    "canonical_room_count": 26668,
+    "mmexplorer_room_count": 26666,
+    "inline_imported_anchor_count": 2,
+    "inline_nonempty_count": 2,
+    "librarium_resolved_count": 26666,
+    "unresolved_count": 0,
+    "empty_count": 0,
+    "duplicate_canonical_room_id_count": 0,
+    "selected_source_counts": {
+      "native_map_room_description_records.json": 2417,
+      "reference_room_description_records.json": 800,
+      "wccmp002_placeholder_room_description_records.json": 140,
+      "wccmp002_room_description_records.json": 23309
+    },
+    "resolver": "Apps/Compiler/src/NativeMapRoomTextResolver.cs::RoomDescriptionSourcePriority"
+  },
+  "native_exit_audit": {
+    "special_exit_record_count": 3490,
+    "room_type_counts": {
+      "0": 1,
+      "2": 73,
+      "6": 1380,
+      "7": 1576,
+      "9": 273,
+      "10": 1,
+      "11": 164,
+      "24": 22
+    },
+    "trap_count": 295,
+    "damage_trap_count": 273,
+    "spell_trap_count": 22,
+    "type2_key_exit_count": 73,
+    "door_count_type7": 1576,
+    "gate_count_type11": 164,
+    "rug_record": {
+      "exit_id": "exit.map12.2248.d",
+      "from_map_number": 12,
+      "from_room_number": 2248,
+      "direction": "D",
+      "to_map_number": 12,
+      "canonical_to_room_number": 2255,
+      "canonical_gate_kind": "hidden",
+      "native_record_offset": 47011346,
+      "native_direction_index": 9,
+      "room_exit": 2255,
+      "room_type": 6,
+      "para1": 16,
+      "para2": 0,
+      "para3": 2687,
+      "para4": 2688
+    }
+  },
+  "closure_assertions": [
+    {
+      "id": "native.doors-locks-access",
+      "closure": "direct WGSERV RoomRec + _move_user/_cmd_picklock/_cmd_bash/_cmd_open/_cmd_close/_cmd_lock; type-2 key possession is non-consuming; no door durability owner"
+    },
+    {
+      "id": "native.traps",
+      "closure": "exact SEARCH/DISARM formulas, five-state owner, message operands, and 300-second rearm"
+    },
+    {
+      "id": "rooms.description-corpus",
+      "closure": "26,668/26,668 nonempty under compiler priority; 0 unresolved/empty/duplicates"
+    },
+    {
+      "id": "rooms.hidden-2248-command-activation",
+      "closure": "MOVE/PULL RUG aliases; RoomType6 16->8; message 2687"
+    },
+    {
+      "id": "traps.damage-exit-runtime",
+      "closure": "type9 exact movement/disarm presentation, half-to-full Para1 damage roll, lethal consumer, state/reset"
+    },
+    {
+      "id": "traps.spell-exit-runtime",
+      "closure": "type24 exact failed-disarm/movement cast behavior and presentation ownership; successful disarm does not cast"
+    },
+    {
+      "id": "rooms.hidden-2248-normal-door-timer",
+      "closure": "legacy label retained; executable evidence disproves timer assumption for 12/2248 because Para2=0; state8 persists"
+    }
+  ],
+  "evidence_files": [
+    "Librarium/Parity/majormud_rooms_world_native_authority_0367.json",
+    "Apps/Source/Reforged.Server/RuntimeClassicRoomsWorldNativeAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicExitTraps.cs",
+    "Apps/Source/Reforged.Server/RuntimeBundleDSearch.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorldCompletion.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Compiler/src/NativeMapRoomTextResolver.cs"
+  ]
+}

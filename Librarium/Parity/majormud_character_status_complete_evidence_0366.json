@@ -1,0 +1,114 @@
+{
+  "schema": "majormud_character_status_complete_evidence.v1",
+  "update": "CodeUpdate0366",
+  "generated_at_utc": "2026-08-31T15:28:27Z",
+  "scope": "Character & Status exact closure against the supplied MajorMUD 1.11p WGSERV installation.",
+  "native_source": {
+    "artifact": "WGSERV(5).rar/wccmmud.dll",
+    "sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "matching_runtime": "MajorMUD 1.11p WG3NT target installation",
+    "retained_companion_sources": [
+      "WCCMMUD.DOC",
+      "WCCMMUD.mcv",
+      "WCCMMHLP.h",
+      "WCCMSG2.dat",
+      "WCCSPEL2.dat",
+      "WCCACTS2.dat"
+    ]
+  },
+  "native_findings": {
+    "identity": {
+      "given_name": "1-10 alphabetic characters",
+      "family_name": "1-18 alphabetic characters when required",
+      "blank_family_gate": "BLANK_LASTNAME_ALLOWED; retained target capture is 1",
+      "first_name_uniqueness": "players plus monster identities plus game-command roots",
+      "exact_messages": [
+        "You have entered an invalid name!",
+        "You MUST have a last name!",
+        "Your last name contains invalid characters!",
+        "The name you have chosen is already in use!"
+      ],
+      "string_file_offsets_hex": [
+        "0x7900b",
+        "0x7936b",
+        "0x793b6",
+        "0x7947c"
+      ]
+    },
+    "shadow": {
+      "ability_id": 9,
+      "look_payload": "A shadowy figure",
+      "string_file_offset_hex": "0x83ab2",
+      "precedence": "positive Shadow short-circuits ordinary LOOK identity/description rendering; hidden room-list owner remains separate and exposes the real first name"
+    },
+    "modifier_order": {
+      "universal_pipeline_exists": false,
+      "authority": "formula/owner-local ordering",
+      "update_dynamic_stats": "direct native traversal includes character dynamic abilities, equipped-object abilities, class abilities, race abilities, additional object-reference groups, and a deferred ability-0x7C pass"
+    },
+    "pvp_law": {
+      "minimum_player_level": 4,
+      "lvldiff_disable_sentinel": -1,
+      "practice_arena_room_type": 5,
+      "practice_arena_boundary": "bypasses ordinary level-range and Evil-Point assessment",
+      "fiend_attack_lockout": "strict EP > 300; EP 300 is still admitted",
+      "player_attack_base_ep": 10,
+      "robbery_base_ep": 1,
+      "evil_relation_slow_rounds": 11,
+      "attack_callsite": "_attack_user_user 0x42bf76..0x42bf82 pushes timer 0x0B and base EP 0x0A into _add_evil_points 0x44e49c",
+      "lawful_marker_hex": "0xF6",
+      "evil_gate_order": "evil-warning gate -> attacker EP >300 gate -> Lawful way-of-life gate -> target EP/Lawful multiplier/suppression -> EP mutation/timer recording",
+      "target_ep_award": "target EP >=30 => 0; Lawful or EP<-200 => 30; -200..-51 =>20; -50..29 =>10",
+      "exact_messages": [
+        "To do this action, you must turn off your evil warnings.",
+        "You have progressed too far to the evil side to do this action.",
+        "You have chosen a way of life which does not allow this action.",
+        "A dark cloud passes over you"
+      ],
+      "forgive": "native relation stores the actual charged EP amount; FORGIVE removes precisely that still-live amount and relation inside the 11 slow-update-round window",
+      "non_native_generic_policies": [
+        "generic witness radius",
+        "generic monetary bounty arithmetic",
+        "generic same-party PvP ban",
+        "generic same-guild PvP ban",
+        "synthetic attack cooldown",
+        "synthetic logout restriction"
+      ]
+    },
+    "guard_jail": {
+      "graph": "spell 583 -> TextBlock 1509 -> TextBlock 9624 -> jail-time spells 586/641/642/643/644 -> teleport 584",
+      "jail_rooms": "map 1 rooms 541-545",
+      "exit_graph": "spell 585 -> TextBlock 9113 -> spell 929 -> map 1 room 1076",
+      "owner_boundary": "guard spawn/AI cadence remains NPC & AI-owned and is not duplicated as a Character modifier/law scheduler"
+    },
+    "runtime_exhaustion": {
+      "character_owned": "identity, character stat/status projection, alignment/EP admission, PvP character admission, persistence-visible character state",
+      "routed_existing_owners": [
+        "death/corpse -> Character death + Items",
+        "party/gang -> Parties/Communication/Organizations",
+        "session/logout -> Host/Persistence/Worldgroup",
+        "guard movement/spawn cadence -> NPC & AI",
+        "trade escrow/repair -> explicit Reforged extensions"
+      ]
+    }
+  },
+  "runtime_changes": [
+    "Exact Classic name-token validation and first-name collision admission.",
+    "Shadow LOOK payload corrected to exact native punctuation.",
+    "Fiend initiation lockout corrected from >=300 to >300.",
+    "PvP minimum level 4 and practice-arena ordering connected.",
+    "Native player-vs-player EP calculation connected as a separate owner from generic attack reputation tables.",
+    "Lawful attacker and exact warning/lockout messages connected in the live PvP admission path.",
+    "Modifier-order closure records the proven absence of a universal cross-category pipeline."
+  ],
+  "promoted_assertions": [
+    "character.cross-category-modifier-order",
+    "character.modifier-projection-order",
+    "character.runtime-exhausted",
+    "native.character-identity-policy",
+    "native.law-bounty-guards",
+    "native.pvp-policy",
+    "law.reputation-enforcement-contract"
+  ],
+  "verification_note": "The current analysis environment has no .NET SDK. CodeUpdate0366 therefore makes no new compiled/runtime execution claim; source/static assertions are recorded separately and the existing target-machine parity smoke includes --smoke-classic-character-status."
+}

@@ -45,8 +45,8 @@ public sealed record RuntimeClassicHostPersistenceWorldgroupSmokeReport(bool Pas
             checks.Add("host-pass-count-9:" + (pass == 9));
             checks.Add("host-strong-zero:" + (strong == 0));
             checks.Add("host-unknown-zero:" + (unknown == 0));
-            checks.Add("overall-pass-169:" + (allPass == 169));
-            checks.Add("overall-strong-31:" + (allStrong == 31));
+            checks.Add("overall-pass-200:" + (allPass == 200));
+            checks.Add("overall-strong-zero:" + (allStrong == 0));
             checks.Add("overall-unknown-zero:" + (allUnknown == 0));
         }
         catch (Exception ex)

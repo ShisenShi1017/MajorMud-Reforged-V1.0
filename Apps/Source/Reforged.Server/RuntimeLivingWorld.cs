@@ -156,6 +156,35 @@ public sealed partial class RuntimeLivingWorldService
             && room.RoomNumber >= minimumRoom && room.RoomNumber <= maximumRoom
             && (room.EnvironmentAttributes & excludedAttributeMask) == 0).ToArray();
     }
+    public bool TryPlaceClassicContestItemByLegacyRoom(string canonicalItemId, int mapId, int roomNumber, bool hidden,
+        int excludedRoomAttributeMask, int roomCapacity, string contestId, out RuntimeRoom? placedRoom)
+    {
+        lock (_gate)
+        {
+            placedRoom = _world.AllRooms().FirstOrDefault(room => room.MapId == mapId && room.RoomNumber == roomNumber);
+            if (placedRoom is null || (placedRoom.EnvironmentAttributes & excludedRoomAttributeMask) != 0) return false;
+            var resolvedRoom = placedRoom;
+            var occupied = _items.Values.Count(item => item.LocationKind.Equals(RuntimeItemLocations.Room, StringComparison.OrdinalIgnoreCase)
+                && item.LocationId.Equals(resolvedRoom.Id, StringComparison.OrdinalIgnoreCase)
+                && RuntimeClassicHiddenSearchService.IsHidden(item) == hidden);
+            if (occupied >= roomCapacity) return false;
+            var definition = _itemCatalog.Require(canonicalItemId);
+            var metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["majormud_plus_contest"] = contestId,
+                ["native_contest_item"] = "true",
+                ["native_contest_map"] = mapId.ToString(),
+                ["native_contest_room"] = roomNumber.ToString()
+            };
+            if (hidden) metadata["hidden_at_cleanup"] = "true";
+            var item = new RuntimeItemInstance(Guid.NewGuid().ToString("N"), definition.Id, null,
+                RuntimeItemLocations.Room, resolvedRoom.Id, null, definition.DefaultCharges, 1, null, metadata);
+            _items.Add(item.InstanceId, item);
+            Save();
+            return true;
+        }
+    }
+
     public bool TryPlaceContestItem(string canonicalItemId, string roomId, bool hidden, int roomCapacity, string contestId)
     {
         lock (_gate)
@@ -787,6 +816,12 @@ public sealed partial class RuntimeLivingWorldService
                     _ => throw new InvalidOperationException("unsupported-world-interaction")
                 };
                 _objects[definition.Id]=after; Save();
+                if(definition.Id.Equals("interaction.map12.2248.e.271",StringComparison.OrdinalIgnoreCase)
+                   &&MatchesAlias(definition,command.Name,query))
+                {
+                    WriteClassicActionHiddenExitState(RuntimeClassicRoomsWorldNativeAuthority.RugExitId,8,DateTimeOffset.UtcNow);
+                    successOutput ??= "A large hole in the floor is revealed!";
+                }
                 if (successOutput is not null) return successOutput;
                 return $"You {command.Name} {definition.Name}.";
             }
@@ -1604,108 +1639,114 @@ public sealed partial class RuntimeLiveGameplayFacade
         result=string.Empty;
         var action=command.Name.ToLowerInvariant();
         var direction=command.ArgumentText.Trim();
-        if(action.Equals("disarm",StringComparison.OrdinalIgnoreCase))
+        if(action=="disarm")
         {
             if(command.Arguments.Count<2||!command.Arguments[0].Equals("trap",StringComparison.OrdinalIgnoreCase))
             {
-                result="DISARM TRAP <direction>";
-                return true;
+                result="DISARM TRAP <direction>"; return true;
             }
             direction=command.Arguments[1];
         }
         if(string.IsNullOrWhiteSpace(direction))
         {
-            result=action.Equals("disarm",StringComparison.OrdinalIgnoreCase)?"DISARM TRAP <direction>":$"{action.ToUpperInvariant()} <direction>";
-            return true;
+            result=action switch
+            {
+                "disarm" => "DISARM TRAP <direction>",
+                "picklock" => "Syntax: PICKLOCK {direction}",
+                "bash" => "BASH <direction>",
+                "open" => "Syntax: OPEN {direction}",
+                "close" => "Syntax: CLOSE {direction}",
+                "lock" => "Syntax: LOCK {direction}",
+                _ => string.Empty
+            };
+            return result.Length>0;
+        }
+        var exit=session.World.FindExit(session.CurrentRoom,direction);
+        if(exit is null)return false;
+        var authority=RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot);
+        if(!authority.TryGet(exit.Id,out var native))return false;
+
+        if(action=="disarm")
+        {
+            if(native.RoomType is not (9 or 24)){result=$"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";return true;}
+            if(session.Actor is not RuntimeCharacterActor){result="Only characters can disarm traps.";return true;}
+            result=ExecuteClassicTrapDisarm(session,direction); return true;
         }
 
+        if(action is not ("picklock" or "bash" or "open" or "close" or "lock"))return false;
+        if(session.Actor is not RuntimeCharacterActor actor){result="Character state is unavailable.";return true;}
+        var character=_characters.LoadCharacter(actor.Id);
+        if(character is null){result="Character state is unavailable.";return true;}
         var living=Living(session);
-        if(!living.TryGetClassicExitActionEvidence(session.CurrentRoom,direction,out var evidence))
-            return false;
 
-        if(action.Equals("disarm",StringComparison.OrdinalIgnoreCase))
+        if(action is "open" or "close" or "lock")
         {
-            if(!evidence.GateKind.Equals("damage_trap",StringComparison.OrdinalIgnoreCase)
-                &&!evidence.GateKind.Equals("spell_trap",StringComparison.OrdinalIgnoreCase))
+            if(native.RoomType is not (2 or 7 or 11))return false;
+            var label=native.RoomType==11?"gate":"door";
+            var initial=native.RoomType==2?native.Para2:native.Para1;
+            var state=living.ReadClassicDoorExitState(exit.Id,initial);
+            if(action=="open")
             {
-                result="No decoded exit trap is present in that direction.";
-                return true;
+                if(state==0){result=$"The {label} was already open.";return true;}
+                if(state==2){result=$"The {label} is locked.";return true;}
+                var timer=native.RoomType==2?native.Para4:native.Para3;
+                living.WriteClassicDoorExitStateWithNativeReset(exit.Id,0,Math.Max(1,timer),DateTimeOffset.UtcNow);
+                result=$"The {label} is now open.";return true;
             }
-
-            RuntimeCharacterRecord? trapCharacter=session.Actor is RuntimeCharacterActor trapActor?_characters.LoadCharacter(trapActor.Id):null;
-            if(trapCharacter is null)
+            if(action=="close")
             {
-                result="Character state is unavailable.";
-                return true;
+                if(state!=0){result=$"The {label} is already closed.";return true;}
+                living.WriteClassicDoorExitStateWithoutNewTimer(exit.Id,1,DateTimeOffset.UtcNow);
+                result=$"The {label} is now closed.";return true;
             }
-            if(!HasClassicDisarmTrapsAbility(trapCharacter))
+            if(state==2){result=$"The {label} is already locked.";return true;}
+            if(state==0){result=$"You must close the {label} before you may lock it.";return true;}
+            if(native.RoomType is 7 or 11 && native.Para2>0){result=$"The {label} cannot be locked from here.";return true;}
+            living.WriteClassicDoorExitStateWithoutNewTimer(exit.Id,2,DateTimeOffset.UtcNow);
+            result=$"The {label} is now locked.";return true;
+        }
+
+        if(action=="picklock")
+        {
+            if(native.RoomType is not (2 or 7 or 11))return false;
+            var initial=native.RoomType==2?native.Para2:native.Para1;
+            var state=living.ReadClassicDoorExitState(exit.Id,initial);
+            if(native.RoomType is 7 or 11 && state!=2){result=$"The {(native.RoomType==11?"gate":"door")} was not locked.";return true;}
+            var picklocks=RuntimeClassicCharacterProgressionFormula.PicklocksValue(character);
+            if(picklocks<=0){result="Your skill fails you this time.";return true;}
+            var modifier=native.RoomType==2?native.Para3:native.Para2;
+            if(Random.Shared.Next(0,100)>=checked(picklocks+modifier)){result="Your skill fails you this time.";return true;}
+            var timer=native.RoomType==2?native.Para4:native.Para3;
+            living.WriteClassicDoorExitStateWithNativeReset(exit.Id,1,Math.Max(1,timer),DateTimeOffset.UtcNow);
+            result=$"You successfully unlocked the {(native.RoomType==11?"gate":"door")}."; return true;
+        }
+
+        // Native door BASH handles RoomType 7/11 directly; combat Bash ability 31 is only the fallback branch.
+        if(native.RoomType is not (7 or 11))return false;
+        var doorState=living.ReadClassicDoorExitState(exit.Id,native.Para1);
+        if(doorState==0){result=$"The {(native.RoomType==11?"gate":"door")} is already open.";return true;}
+        var strength=ReadCharacterSkillValue(character,"strength");
+        var success=Random.Shared.Next(0,100)<checked(strength+native.Para2);
+        if(success)living.WriteClassicDoorExitStateWithNativeReset(exit.Id,0,Math.Max(1,native.Para3),DateTimeOffset.UtcNow);
+        var lines=new List<string>{success?$"You bashed the {(native.RoomType==11?"gate":"door")} open.":"Your attempts to bash through fail!"};
+        if(Random.Shared.Next(0,100)<25)
+        {
+            var damage=Random.Shared.Next(1,5);
+            var next=Math.Max(0,character.HitPoints-damage);
+            if(next==0)lines.Add($"You take {damage} damage for bashing the door! "+CompletePlayerDefeat(session,character));
+            else
             {
-                result="DISARM TRAP requires the Traps skill.";
-                return true;
-            }
-
-            result=ExecuteClassicTrapDisarm(session,direction);
-            return true;
-        }
-
-        if(!evidence.GateKind.Equals("door",StringComparison.OrdinalIgnoreCase)
-            &&!evidence.GateKind.Equals("key",StringComparison.OrdinalIgnoreCase))
-            return false;
-
-        RuntimeCharacterRecord? character=session.Actor is RuntimeCharacterActor actor?_characters.LoadCharacter(actor.Id):null;
-        if(character is null)
-        {
-            result="Character state is unavailable.";
-            return true;
-        }
-
-        var allowsAction=action.Equals("picklock",StringComparison.OrdinalIgnoreCase)?evidence.AllowsPicklock:evidence.AllowsBash;
-        if(!allowsAction)
-        {
-            result=$"No recovered {action.ToUpperInvariant()} path exists for that door.";
-            return true;
-        }
-
-        var actionValue=0;
-        var actionStat=string.Empty;
-        if(action.Equals("picklock",StringComparison.OrdinalIgnoreCase))
-        {
-            actionValue=RuntimeClassicCharacterProgressionFormula.PicklocksValue(character);
-            actionStat="Picklocks";
-            if(actionValue<=0)
-            {
-                result="PICKLOCK requires the Picklocks skill.";
-                return true;
+                _characters.SaveCharacter(character with{HitPoints=next,UpdatedAtUtc=DateTimeOffset.UtcNow},$"classic-door-bash:{exit.Id}");
+                lines.Add($"You take {damage} damage for bashing the door!");
             }
         }
-        else
-        {
-            actionValue=ReadCharacterSkillValue(character,"strength");
-            actionStat="Strength";
-        }
-
-        // The decoded room qualifier is authoritative about whether a door has a numeric
-        // Picklocks/Strength requirement or permits any value to attempt the action.
-        // Do not reinterpret this as a traversal check and do not invent the remaining
-        // native random/success dispatcher around a character that meets the requirement.
-        if(evidence.RequirementFor(action) is int requirement&&actionValue<requirement)
-        {
-            result=$"{action.ToUpperInvariant()} does not meet this door's recovered {actionStat} requirement ({requirement}).";
-            return true;
-        }
-
-        var requirementText=evidence.RequirementFor(action) is int recovered
-            ?$"recovered {actionStat} requirement {recovered} is met"
-            :evidence.IsAnyRequirementFor(action)
-                ?$"this door permits any {actionStat} value to attempt the action"
-                :$"the {actionStat} requirement is not separately projected";
-        result=$"{action.ToUpperInvariant()} is recognized and {requirementText}, but the native success roll, exact failure text, and state transition remain evidence-gated.";
-        return true;
+        result=string.Join(Environment.NewLine,lines); return true;
     }
 
     public string ExecuteLivingWorldCommand(RuntimeSession session,RuntimeCommand command)
     {
-        if((command.Name is "picklock" or "disarm")&&TryExecuteClassicExitAction(session,command,out var nativeExitAction))return nativeExitAction;
+        if((command.Name is "picklock" or "disarm" or "bash" or "open" or "close" or "lock")
+           &&TryExecuteClassicExitAction(session,command,out var nativeExitAction))return nativeExitAction;
         return TryExecuteDecodedWorldCommand(session,command,out var decoded)
             ? decoded
             : Living(session).Interact(session,command,LoadItemState(session));
@@ -1724,6 +1765,17 @@ public sealed partial class RuntimeLiveGameplayFacade
         foreach(var world in _livingWorlds.Values)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            if (schedulerStep.MonsterCreateDue)
+            {
+                // Native _background_monster_create reaches _generate_monster through the
+                // active-user room scan. Room entry is an additional admission path, not the
+                // sole one. Duplicate users in one room still share the same spawn-slot owner.
+                foreach (var roomId in _sessions.ActiveSessions
+                    .Where(session => session.World.Definition.Id.Equals(world.WorldId, StringComparison.OrdinalIgnoreCase))
+                    .Select(session => session.CurrentRoom.Id)
+                    .Distinct(StringComparer.OrdinalIgnoreCase))
+                    world.AdmitDueNpcRespawnsForRoom(roomId, now, schedulerStep.LogicalFastTick);
+            }
             world.PumpClassicNpcAiUpdateLanes(schedulerStep, now);
             world.Tick(now);
         }

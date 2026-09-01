@@ -96,7 +96,7 @@ public sealed class BorinHeadlessTrainingService
             var process = Process.Start(start);
             if (process is null) return "The continuous headless trainer process could not be started.";
             File.WriteAllText(pidPath, process.Id.ToString(System.Globalization.CultureInfo.InvariantCulture));
-            return "Continuous headless training and testing started. I will keep cycling through survival, exploration and hazards, combat, spells/powers/item use, NPCs/dialogue/quests, inventory/equipment/repairs, progression, and economy until you tell me to stop. Each full cycle is about 4 hours. I will keep 10 gold carried, bank surplus, never withdraw just to refill that reserve, and I will record reproducible runtime defects while I train.";
+            return "Continuous headless training and testing started against the 100% Classic parity runtime. Before normal learning and again at every full-cycle boundary, I will run the final-strong and cumulative Classic parity smoke gates, then probe HELP/TOP/TOPTEN through the live player runtime. I will keep cycling through survival, exploration and hazards, combat, spells/powers/item use, NPCs/dialogue/quests, inventory/equipment/repairs, progression, and economy until you tell me to stop. Each learning cycle is about 4 hours, plus parity-gate time. I will keep 10 gold carried, bank surplus, never withdraw just to refill that reserve, and I will record any parity regression or reproducible runtime defect while I train.";
         }
         catch (Exception ex)
         {
@@ -172,8 +172,13 @@ public sealed class BorinHeadlessTrainingService
             var defects = tester.ValueKind == JsonValueKind.Object ? Read(tester, "uniqueDefects", "0") : "0";
             var critical = tester.ValueKind == JsonValueKind.Object ? Read(tester, "critical", "0") : "0";
             var high = tester.ValueKind == JsonValueKind.Object ? Read(tester, "high", "0") : "0";
+            var parity = rootElement.TryGetProperty("parityRegression", out var parityElement) && parityElement.ValueKind == JsonValueKind.Object
+                ? parityElement
+                : default;
+            var parityPassed = parity.ValueKind == JsonValueKind.Object ? Read(parity, "passed", "pending") : "pending";
+            var parityChecked = parity.ValueKind == JsonValueKind.Object ? Read(parity, "lastCheckedUtc", "not checked") : "not checked";
             var state = running ? $"running (PID {process!.Id})" : "not running";
-            return $"Headless training is {state} in {mode} mode. Cycle {cycle}; phase: {phase}; total elapsed: {elapsed}; phase remaining: {phaseRemaining}; learning steps: {steps}; total reward: {reward}. Economy: carried {carried} gold; banked {banked}. Tester: {defects} unique findings ({critical} critical, {high} high). Say 'Borin, what have you found broken?' for the defect report.";
+            return $"Headless training is {state} in {mode} mode. Cycle {cycle}; phase: {phase}; total elapsed: {elapsed}; phase remaining: {phaseRemaining}; learning steps: {steps}; total reward: {reward}. Economy: carried {carried} gold; banked {banked}. Classic parity regression gate: {parityPassed}; last checked: {parityChecked}. Tester: {defects} unique findings ({critical} critical, {high} high). Say 'Borin, what have you found broken?' for the defect report.";
         }
         catch (Exception ex)
         {

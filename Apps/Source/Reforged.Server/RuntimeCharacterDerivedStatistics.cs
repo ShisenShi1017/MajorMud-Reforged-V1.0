@@ -202,6 +202,8 @@ public static class RuntimeCharacterCombatStatisticProjector
         derived["backstab_accuracy_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 116);
         derived["backstab_minimum_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 117);
         derived["backstab_maximum_damage_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 118);
+        derived["find_traps_ability_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 40);
+        derived["disarm_traps_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 41);
         derived["find_traps_bonus"] = RuntimeCharacterAbilityValues.Read(abilities, 179);
         // Native WCCMMUD Picklocks composes ability 37 itself plus paired PickLocksValue ability 180.
         // Keep both projections distinct so the grant (class ability.37 value 0) is not mistaken for a bonus.

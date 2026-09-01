@@ -175,10 +175,10 @@ public sealed class RuntimeClassicGangGameplayService
 
     private string RenderTop(RuntimeCharacterRecord actor, IReadOnlyList<string> args)
     {
-        // Native help proves TOPTEN adventurers and TOPTEN/TOP <n> GANGS. Operator-confirmed
-        // play proves class-filtered forms such as TOP 10 WITCHHUNTER. Retained WCC setup also
-        // has an "Include experience in topten command?" switch. Experience-descending is
-        // therefore active as STRONG behavior; exact tie order/output remain unresolved.
+        // Native help and _cmd_topten recover TOPTEN adventurers, TOPTEN/TOP <n> GANGS,
+        // numeric limits and class-filtered forms. _generate_top_list is experience-descending;
+        // its JAE insertion comparison preserves source order on equal experience. EXP_IN_TOPGANG
+        // is presentation-only and the supplied WCCMMUD.INI default is enabled.
         int count;
         if (args.Count == 1 && args[0].Equals("gangs", StringComparison.OrdinalIgnoreCase)) count = 10;
         else if (args.Count == 2 && int.TryParse(args[0], out count) && args[1].Equals("gangs", StringComparison.OrdinalIgnoreCase)) { }
@@ -207,7 +207,8 @@ public sealed class RuntimeClassicGangGameplayService
                     || character.ClassId.Equals(classFilter, StringComparison.OrdinalIgnoreCase));
             var ranked = characters
                 .OrderByDescending(character => character.Experience)
-                .ThenBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase)
+                // LINQ OrderByDescending is stable: equal XP retains ListAllCharacters source order,
+                // matching the native "existing >= candidate -> do not displace" insertion rule.
                 .Take(Math.Clamp(count, 1, 100))
                 .ToArray();
             if (ranked.Length == 0) return "No TOPTEN-eligible adventurers match that list.";
@@ -218,6 +219,7 @@ public sealed class RuntimeClassicGangGameplayService
         if (count < 1) return "TOP count must be at least 1.";
         var gangs = _gangs.Top(count);
         if (gangs.Count == 0) return "No TOPTEN-eligible gangs exist.";
-        return string.Join(Environment.NewLine, gangs.Select((gang, index) => $"{index + 1}. {gang.Name}; experience={gang.Experience}; members={gang.Members.Count}"));
+        return string.Join(Environment.NewLine, gangs.Select((gang, index) =>
+            $"{index + 1}. {gang.Name}; experience={gang.Experience}; members={gang.Members.Count}"));
     }
 }

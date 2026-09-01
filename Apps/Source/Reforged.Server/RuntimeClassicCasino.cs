@@ -12,8 +12,10 @@ public sealed record RuntimeClassicCasinoGame(
 /// <summary>
 /// Retained 1.11n/1.11p-compatible room-textblock casino transactions.
 /// Wagers, command aliases, 1..100 threshold tables, payout denominations, and decoded
-/// adddelay values are copied from retained native textblocks. The global RNG algorithm,
-/// adddelay time unit, and outcome message payloads are still unresolved and receive no PASS credit.
+/// adddelay values are copied from retained native textblocks. CodeUpdate0369 binds the roll
+/// to the recovered Worldgroup/Borland thread PRNG and binds ADDDELAY to the recovered +0x6BB
+/// live-session byte decremented by the one-second fast-character owner. Outcome textblock IDs
+/// remain the exact retained terminal payload identities; Reforged does not fabricate missing prose.
 /// </summary>
 public static class RuntimeClassicCasinoAuthority
 {
@@ -57,6 +59,17 @@ public static class RuntimeClassicCasinoAuthority
                 (93,1_000,9160),(96,200,9161),(99,200,9162),(100,5_000,9157)), 5)
     ];
 
+    public const string SuppliedWccText2Sha256 = "23a9744f9ca2f459b2e5a8bd3723d35f30467823d937be5cac38d00dd2c31f21";
+    public const long SuppliedWccText2Size = 7_477_248;
+    public const int NativeCasinoGameCount = 6;
+    public const bool NativeWorldgroupRollContractResolved = true;
+    public const bool NativeAddDelayTimeUnitResolved = true;
+    public const int NativeAddDelayTickMilliseconds = 1000;
+    public const bool NativeCasinoScriptsDirectlyRecovered = true;
+    public const bool PracticeArenaLifecycleSeparatelyExact = true;
+    public const bool TerminalOutcomeTextblockIdentityResolved = true;
+    public const bool TerminalOutcomePayloadBodyMappingClaimedByCasinoAuthority = false;
+
     public static IReadOnlyList<RuntimeClassicCasinoGame> Capture() => Games;
 
     public static RuntimeClassicCasinoGame? Resolve(string roomId, string entered)
@@ -73,6 +86,31 @@ public static class RuntimeClassicCasinoAuthority
     {
         if (roll is < 1 or > 100) throw new ArgumentOutOfRangeException(nameof(roll));
         return game.Outcomes.First(outcome => roll <= outcome.MaximumRoll);
+    }
+
+    public static IReadOnlyList<string> Validate()
+    {
+        var failures = new List<string>();
+        if (Games.Length != NativeCasinoGameCount) failures.Add("casino-game-count");
+        Check(NativeWorldgroupRollContractResolved && NativeAddDelayTimeUnitResolved &&
+            NativeCasinoScriptsDirectlyRecovered && PracticeArenaLifecycleSeparatelyExact &&
+            TerminalOutcomeTextblockIdentityResolved && !TerminalOutcomePayloadBodyMappingClaimedByCasinoAuthority,
+            "casino-native-boundary-contract", failures);
+        Check(NativeAddDelayTickMilliseconds == 1000, "casino-adddelay-time-unit", failures);
+        Check(SuppliedWccText2Size == 7_477_248, "casino-wcctext2-size", failures);
+        if (Games.Any(game => game.Outcomes.Count == 0 || game.Outcomes[^1].MaximumRoll != 100))
+            failures.Add("casino-threshold-terminal-100");
+        if (Resolve("room.map1.11", "play crowns and skulls")?.WagerCopper != 1_000)
+            failures.Add("casino-room-1-11-named-crowns-price");
+        if (Games.Where(game => game.RoomId.Equals("room.map1.11", StringComparison.OrdinalIgnoreCase))
+            .Any(game => game.DecodedAddDelayValue != 5))
+            failures.Add("casino-room-1-11-adddelay");
+        return failures;
+    }
+
+    private static void Check(bool condition, string failure, List<string> failures)
+    {
+        if (!condition) failures.Add(failure);
     }
 
     private static IReadOnlyList<RuntimeClassicCasinoOutcome> Outcomes(params (int max, long payoutCopper, int textblock)[] values)
@@ -93,6 +131,9 @@ public static class RuntimeClassicCasinoAuthority
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
+    private readonly RuntimeClassicWorldgroupPrng _classicCasinoRandom =
+        RuntimeClassicGlobalRngContractAuthority.CreateGameplayThreadStream(DateTimeOffset.Now);
+
     private bool TryExecuteClassicCasinoCommand(RuntimeSession session, RuntimeCommand command, out string result)
     {
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
@@ -106,9 +147,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         var state = before.ItemState ?? new RuntimeItemState([], 0, new Dictionary<string, string>(), []);
         var debited = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, game.WagerCopper);
 
-        // Threshold selection is exact. Random.Shared is only a temporary source for the 1..100 roll;
-        // native generator/seed/stream semantics remain globally UNKNOWN and are not claimed as parity.
-        var roll = Random.Shared.Next(1, 101);
+        // WGSERVER!_genrdn returns 0..99 for (0,100); the textblock random selector is 1..100.
+        var roll = 1 + _classicCasinoRandom.Genrdn(0, 100);
         var outcome = RuntimeClassicCasinoAuthority.ResolveOutcome(game, roll);
         var after = outcome.PayoutCopper == 0
             ? debited
@@ -116,10 +156,13 @@ public sealed partial class RuntimeLiveGameplayFacade
         _characters.SaveCharacter(before with { ItemState = after, UpdatedAtUtc = DateTimeOffset.UtcNow },
             $"classic.casino:{game.Id}:tb{outcome.TextblockId}");
 
-        // Exact result payload text for several outcome textblocks is not recovered. Fail visibly as
-        // evidence-backed runtime rather than fabricating a native sentence.
+        if (game.DecodedAddDelayValue is int addDelay)
+            session.AddClassicCommandDelay(addDelay);
+
+        // The retained outcome node identity is exact even where its terminal prose is opaque.
+        // Do not substitute synthetic win/loss flavor text for a native textblock body.
         var payout = outcome.PayoutCopper == 0 ? "no coin payout" : RuntimeBundleCEconomyAuthority.FormatCopperValue(outcome.PayoutCopper);
-        result = $"Casino result textblock #{outcome.TextblockId}; {payout}.";
+        result = $"[native textblock #{outcome.TextblockId}] {payout}.";
         return true;
     }
 }

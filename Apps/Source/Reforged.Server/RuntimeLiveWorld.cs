@@ -1426,6 +1426,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public void BroadcastDeparture(RuntimeSession session, string roomId, string direction)
     {
+        if (ShouldSuppressClassicTrapDeparture(session)) return;
         var expanded = RuntimeMajorMudCompatibility.ExpandDirection(direction);
         foreach (var target in _sessions.ActiveSessions.Where(target =>
             target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
@@ -1438,6 +1439,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     public void BroadcastArrival(RuntimeSession session, string movementDirection)
     {
+        if (ConsumeClassicTrapArrivalSuppression(session)) return;
         var message = $"{session.Actor.DisplayName} walks into the room from the {RuntimeMajorMudCompatibility.OppositeDirection(movementDirection)}.";
         _sessions.BroadcastRoom(session, message);
     }

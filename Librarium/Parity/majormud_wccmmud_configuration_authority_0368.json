@@ -1,0 +1,480 @@
+{
+  "schema": "majormud_wccmmud_configuration_authority_0368_v1",
+  "code_update": "0368",
+  "generated_at_utc": "2026-08-31T18:44:59.392384+00:00",
+  "native_source": {
+    "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wgserv_mcv_sha256": "cbb572452bc38df003774301fc8e449f2df14304e1dcf99c228585ded76ed1c2",
+    "wgserv_ini_sha256": "9cbc9c00baa88f853e05b277526b40ee60a8bb5b9051818256993f8b9b4279a1",
+    "reload_owner": "_reload__wccmmud",
+    "reload_disassembly_range": "0x004011FF..0x00401A61",
+    "startup_owner": "_init__wccmmud"
+  },
+  "visible_prompt_count": 44,
+  "load_owner_counts": {
+    "reloadable": 29,
+    "startup_only": 13,
+    "catalog_only_no_native_load_call": 2
+  },
+  "policy": [
+    "Retained defaults are the canonical/default compatibility profile; a WGSERV install may legitimately use different operator-selected values.",
+    "Numeric min/max values are executable numopt operands, not inferred UI validation.",
+    "Reloadable means the option is read by _reload__wccmmud; StartupOnly means it is read by _init__wccmmud after reload; catalog-only prompts have no direct option-read call in this 1.11p DLL.",
+    "Reforged does not parse or write WCCMMUD.INI; native configuration records are evidence/compatibility authority, not a requirement to recreate legacy file I/O."
+  ],
+  "options": [
+    {
+      "option_id": 4,
+      "symbol": "GAMCRD",
+      "value_type": "integer",
+      "retained_default": "60",
+      "minimum": 0,
+      "maximum": 32767,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 5,
+      "symbol": "REALCRD",
+      "value_type": "integer",
+      "retained_default": "0",
+      "minimum": 0,
+      "maximum": 32767,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 19,
+      "symbol": "SECOTH",
+      "value_type": "integer",
+      "retained_default": "60",
+      "minimum": 1,
+      "maximum": 20000,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 20,
+      "symbol": "SECBUFF",
+      "value_type": "integer",
+      "retained_default": "300",
+      "minimum": 1,
+      "maximum": 20000,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 21,
+      "symbol": "BUFTOSAV",
+      "value_type": "integer",
+      "retained_default": "1",
+      "minimum": 1,
+      "maximum": 32767,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 22,
+      "symbol": "ROOMBUF",
+      "value_type": "integer",
+      "retained_default": "1500",
+      "minimum": 10,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 23,
+      "symbol": "ITEMBUF",
+      "value_type": "integer",
+      "retained_default": "750",
+      "minimum": 10,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 24,
+      "symbol": "MONSBUF",
+      "value_type": "integer",
+      "retained_default": "2000",
+      "minimum": 10,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 25,
+      "symbol": "KMONSBUF",
+      "value_type": "integer",
+      "retained_default": "300",
+      "minimum": 10,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 26,
+      "symbol": "SPELBUF",
+      "value_type": "integer",
+      "retained_default": "150",
+      "minimum": 10,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 27,
+      "symbol": "RACEBUF",
+      "value_type": "integer",
+      "retained_default": "12",
+      "minimum": 5,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 28,
+      "symbol": "CLASSBUF",
+      "value_type": "integer",
+      "retained_default": "16",
+      "minimum": 5,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 29,
+      "symbol": "BANKBUF",
+      "value_type": "integer",
+      "retained_default": "32",
+      "minimum": 5,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 30,
+      "symbol": "MESSBUF",
+      "value_type": "integer",
+      "retained_default": "250",
+      "minimum": 5,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 31,
+      "symbol": "SHOPBUF",
+      "value_type": "integer",
+      "retained_default": "50",
+      "minimum": 5,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 32,
+      "symbol": "GANGBUF",
+      "value_type": "integer",
+      "retained_default": "10",
+      "minimum": 3,
+      "maximum": 32767,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 33,
+      "symbol": "TALKCHAR",
+      "value_type": "character",
+      "retained_default": ".",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "chropt"
+    },
+    {
+      "option_id": 34,
+      "symbol": "YELLCHAR",
+      "value_type": "character",
+      "retained_default": "\"",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "chropt"
+    },
+    {
+      "option_id": 36,
+      "symbol": "DEATHHP",
+      "value_type": "integer",
+      "retained_default": "-100",
+      "minimum": -20000,
+      "maximum": 0,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 37,
+      "symbol": "XTRALVL",
+      "value_type": "integer",
+      "retained_default": "10",
+      "minimum": 0,
+      "maximum": 16,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 38,
+      "symbol": "PUNHUP",
+      "value_type": "choice",
+      "retained_default": "NONE",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "add_multiple_option"
+    },
+    {
+      "option_id": 49,
+      "symbol": "MAXTOP",
+      "value_type": "integer",
+      "retained_default": "30",
+      "minimum": 10,
+      "maximum": 3000,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 50,
+      "symbol": "EVILKEEP",
+      "value_type": "integer",
+      "retained_default": "50",
+      "minimum": 0,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 52,
+      "symbol": "PROFCHEK",
+      "value_type": "boolean",
+      "retained_default": "NO",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 53,
+      "symbol": "INITRATE",
+      "value_type": "integer",
+      "retained_default": "80",
+      "minimum": 10,
+      "maximum": 20000,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 54,
+      "symbol": "POLLRATE",
+      "value_type": "integer",
+      "retained_default": "750",
+      "minimum": 10,
+      "maximum": 2000,
+      "load_owner": "StartupOnly",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 55,
+      "symbol": "DEMOLVL",
+      "value_type": "integer",
+      "retained_default": "2",
+      "minimum": 1,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 56,
+      "symbol": "EXPINTEN",
+      "value_type": "boolean",
+      "retained_default": "YES",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 57,
+      "symbol": "LVLDIFF",
+      "value_type": "integer",
+      "retained_default": "100",
+      "minimum": -1,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 58,
+      "symbol": "MINHUPHP",
+      "value_type": "integer",
+      "retained_default": "0",
+      "minimum": 0,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 59,
+      "symbol": "MAXHUPHP",
+      "value_type": "integer",
+      "retained_default": "0",
+      "minimum": 0,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 60,
+      "symbol": "MAXHUPIT",
+      "value_type": "integer",
+      "retained_default": "0",
+      "minimum": 0,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 61,
+      "symbol": "INACTIVE",
+      "value_type": "integer",
+      "retained_default": "5000",
+      "minimum": 60,
+      "maximum": 32000,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 63,
+      "symbol": "KEEPEXP",
+      "value_type": "boolean",
+      "retained_default": "YES",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 64,
+      "symbol": "LIGHTEVY",
+      "value_type": "boolean",
+      "retained_default": "YES",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 65,
+      "symbol": "GENDERGO",
+      "value_type": "integer",
+      "retained_default": "5000",
+      "minimum": -1,
+      "maximum": 32000,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 66,
+      "symbol": "GANGEXP",
+      "value_type": "integer",
+      "retained_default": "1000",
+      "minimum": 0,
+      "maximum": 32767,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 67,
+      "symbol": "DELUSER",
+      "value_type": "boolean",
+      "retained_default": "NO",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 68,
+      "symbol": "MAXEPDAY",
+      "value_type": "integer",
+      "retained_default": "18",
+      "minimum": 4,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 69,
+      "symbol": "EPCYCLE",
+      "value_type": "integer",
+      "retained_default": "60",
+      "minimum": 15,
+      "maximum": 360,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 70,
+      "symbol": "EPAMOUNT",
+      "value_type": "integer",
+      "retained_default": "1",
+      "minimum": 1,
+      "maximum": 100,
+      "load_owner": "Reloadable",
+      "native_reader": "numopt"
+    },
+    {
+      "option_id": 71,
+      "symbol": "ENABLAWF",
+      "value_type": "boolean",
+      "retained_default": "YES",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "Reloadable",
+      "native_reader": "ynopt"
+    },
+    {
+      "option_id": 72,
+      "symbol": "COINSWP",
+      "value_type": "choice",
+      "retained_default": "GOLD",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "CatalogOnlyNoNativeLoadCall",
+      "native_reader": "none"
+    },
+    {
+      "option_id": 73,
+      "symbol": "GCOINSW",
+      "value_type": "boolean",
+      "retained_default": "NO",
+      "minimum": null,
+      "maximum": null,
+      "load_owner": "CatalogOnlyNoNativeLoadCall",
+      "native_reader": "none"
+    }
+  ],
+  "wgserv_profile_examples": {
+    "races_buffer": 14,
+    "classes_buffer": 17,
+    "extra_training_levels": 16,
+    "topten_entries": 50,
+    "evil_keep_percent": 75,
+    "pvp_level_difference": 10,
+    "allow_sysop_lightning_all_players": false,
+    "delete_majorMUD_user_with_bbs_user": true,
+    "max_ep_forgiven_per_day": 4,
+    "coin_sweep_threshold": "PLATINUM",
+    "sweep_gang_house_coins": true
+  }
+}

@@ -97,3 +97,14 @@ public sealed class RuntimeClassicWorldgroupPrng
         return new(previous, next, WorldgroupPrngRuntimeRegistry.ProjectRand15(next), _sequence);
     }
 }
+
+
+/// <summary>
+/// WCCMMUTL.EXE contest-specific CRT stream. The utility seeds once from time(NULL)
+/// before command dispatch, so contest draws are not interleaved with WCCMMUD gameplay RNG.
+/// </summary>
+public static class RuntimeClassicMajorMudPlusContestRandom
+{
+    public static RuntimeClassicWorldgroupPrng Create(DateTimeOffset utilityStartUtc) =>
+        new(unchecked((uint)utilityStartUtc.ToUnixTimeSeconds()));
+}

@@ -415,11 +415,11 @@ public sealed class RuntimeCommandDispatcher
             return nativeHelp;
 
         var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
-        // Do not fabricate synthetic HELP output in Classic when the retained native topic
-        // resolver cannot establish one unique topic. Custom/AI may expose Reforged command
-        // help, but Classic fails closed until native fuzzy/prefix/ambiguity behavior is proven.
+        // CodeUpdate0369 recovers the native prefix/first-match resolver. A failed
+        // static WCCMMHLP lookup uses the retained native no-help sentence rather than
+        // exposing Reforged's synthetic command documentation in Classic.
         if (classicWorld)
-            return $"Native HELP topic resolution for '{topic}' is not yet recovered.";
+            return _gameplay?.RenderMajorMudNativeNoHelp() ?? "Sorry, no help is available for that topic!\r";
 
         if (topic.Length == 0)
         {

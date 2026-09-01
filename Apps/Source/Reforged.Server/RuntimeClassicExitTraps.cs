@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Text.Json;
 
 namespace Reforged.Server;
@@ -157,6 +158,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 {
     private RuntimeClassicExitTrapCatalog? _classicExitTraps;
     private readonly object _classicExitTrapGate = new();
+    private readonly ConcurrentDictionary<string, byte> _classicTrapMovementPresentationSuppressions = new(StringComparer.OrdinalIgnoreCase);
 
     private RuntimeClassicExitTrapCatalog ClassicExitTraps()
     {
@@ -192,8 +194,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap) || trap.NativeActivationState is null) return false;
         var state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
         if (state != 2) return false;
-        Living(session).WriteClassicTrapState(trap.ExitId, 0);
-        return true;
+        // Native directional SEARCH reports type-9 traps from the shared RoomRec but does not mutate
+        // Para2 and does not create a separate per-user discovery node. Hidden state 2 therefore
+        // remains movement-blocking after the SEARCH presentation, exactly as the executable does.
+        return false;
     }
 
     public string ExecuteClassicTrapDisarm(RuntimeSession session, string direction)
@@ -212,21 +216,40 @@ public sealed partial class RuntimeLiveGameplayFacade
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found for trap disarm.");
         var skill = ResolveClassicDisarmTrapsSkill(character);
         var roll = Random.Shared.Next(0, 100);
+        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot).Require(trap.ExitId);
         if (roll < skill)
         {
-            Living(session).WriteClassicTrapState(trap.ExitId, state == 0 ? 1 : 4);
-            return $"You successfully disarmed the trap to the {ClassicDirectionWord(direction)}.";
+            Living(session).WriteClassicTrapStateWithNativeReset(trap.ExitId, state == 0 ? 1 : 4, DateTimeOffset.UtcNow);
+            var success = $"You successfully disarmed the trap to the {ClassicDirectionWord(direction)}.";
+            // Native type 24 additionally renders Para3 after a successful DISARM.  This is an
+            // executable quirk of the stock data even when the authored message wording sounds like
+            // a trigger; the success branch does NOT cast the spell.
+            if (native.RoomType != 24 || native.Para3 <= 0) return success;
+            var successPresentation = EmitClassicTrapMessage(session, trap, native.Para3, suppressOrdinaryMovement: false);
+            return JoinClassicTrapOutput(success, successPresentation);
         }
 
         var failure = $"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";
-        // Native exit type 9 has a ten-point non-triggering failure band. Exit type 24
-        // enters its effect path on every failed disarm roll. Generated damage/spell traps
-        // are the retained type-9/type-24 projections respectively.
-        var triggers = trap.TrapKind.Equals("spell_trap", StringComparison.OrdinalIgnoreCase) || roll - 10 >= skill;
+        // Native type 9 has a ten-point non-triggering failure band. Type 24 enters its trigger
+        // branch on every failed roll. No separate ability-presence gate exists in _cmd_disarm;
+        // a zero Traps value simply fails this comparison naturally.
+        var triggers = native.RoomType == 24 || roll - 10 >= skill;
         if (!triggers) return failure;
 
-        var effect = ApplyClassicExitTrapEffect(session, actor, trap);
-        return string.IsNullOrWhiteSpace(effect) ? failure : failure + Environment.NewLine + effect;
+        var presentation = native.Para4 > 0
+            ? EmitClassicTrapMessage(session, trap, native.Para4, suppressOrdinaryMovement: false)
+            : string.Empty;
+
+        if (state == 3)
+        {
+            // Native failed DISARM on movement-state 3 calls _move_user(..., mode 7), which bypasses
+            // a second trap effect and completes the exit traversal after the Para4 presentation.
+            var moved = ForceClassicTrapState3Movement(session, direction);
+            return JoinClassicTrapOutput(failure, presentation, moved);
+        }
+
+        var effect = ApplyClassicExitTrapEffect(session, actor, trap, native);
+        return JoinClassicTrapOutput(failure, presentation, effect);
     }
 
     public string ApplyExitTrap(RuntimeSession session, RuntimeRoom sourceRoom, string direction)
@@ -248,28 +271,49 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (state is not (0 or 3))
             throw new InvalidOperationException($"Unsupported native trap state {state} for {trap.ExitId}.");
 
-        return ApplyClassicExitTrapEffect(session, actor, trap);
+        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot).Require(trap.ExitId);
+        var messageId = native.RoomType == 9 ? native.Para3 : native.RoomType == 24 ? native.Para4 : 0;
+        var presentation = messageId > 0
+            ? EmitClassicTrapMessage(session, trap, messageId, suppressOrdinaryMovement: true)
+            : string.Empty;
+        var effect = ApplyClassicExitTrapEffect(session, actor, trap, native);
+        return JoinClassicTrapOutput(presentation, effect);
     }
 
     public bool ClassicTrapStoppedMovement(RuntimeSession session, RuntimeRoom sourceRoom)
     {
-        if (!session.CurrentRoom.Id.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase)) return true;
-        if (session.Actor is not RuntimeCharacterActor actor) return false;
-        var character = _characters.LoadCharacter(actor.Id);
-        return character is null || character.HitPoints <= 0 || RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead);
+        var stopped = !session.CurrentRoom.Id.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase);
+        if (!stopped && session.Actor is RuntimeCharacterActor actor)
+        {
+            var character = _characters.LoadCharacter(actor.Id);
+            stopped = character is null || character.HitPoints <= 0 || RuntimeCharacterFlagResolver.IsSet(character, RuntimeCharacterFlagIds.Dead);
+        }
+        if (stopped) CancelClassicTrapMovementPresentation(session);
+        return stopped;
     }
 
-    private string ApplyClassicExitTrapEffect(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap) =>
-        trap.TrapKind.Equals("damage_trap", StringComparison.OrdinalIgnoreCase)
-            ? ApplyDecodedDamageExitTrap(session, actor, trap)
-            : ApplyDecodedSpellExitTrap(session, actor, trap);
+    public bool ShouldSuppressClassicTrapDeparture(RuntimeSession session) =>
+        _classicTrapMovementPresentationSuppressions.ContainsKey(session.Id);
 
-    private static int ResolveClassicDisarmTrapsSkill(RuntimeCharacterRecord character)
-    {
-        foreach (var key in new[] { "traps", "disarmtraps", "disarm_traps", "41" })
-            if (character.Skills.TryGetValue(key, out var value)) return Math.Clamp(value, 0, 100);
-        return 0;
-    }
+    public bool ConsumeClassicTrapArrivalSuppression(RuntimeSession session) =>
+        _classicTrapMovementPresentationSuppressions.TryRemove(session.Id, out _);
+
+    public void CancelClassicTrapMovementPresentation(RuntimeSession session) =>
+        _classicTrapMovementPresentationSuppressions.TryRemove(session.Id, out _);
+
+    private string ApplyClassicExitTrapEffect(
+        RuntimeSession session,
+        RuntimeCharacterActor actor,
+        RuntimeClassicExitTrapDefinition trap,
+        RuntimeClassicNativeExitRecord native) =>
+        native.RoomType == 9
+            ? ApplyDecodedDamageExitTrap(session, actor, trap, native)
+            : native.RoomType == 24
+                ? ApplyDecodedSpellExitTrap(session, actor, trap, native)
+                : throw new InvalidOperationException($"Unsupported native trap room type {native.RoomType}: {trap.ExitId}");
+
+    private static int ResolveClassicDisarmTrapsSkill(RuntimeCharacterRecord character) =>
+        RuntimeClassicCharacterProgressionFormula.DisarmTrapsValue(character);
 
     private static string ClassicDirectionWord(string direction) =>
         (direction ?? string.Empty).Trim().ToLowerInvariant() switch
@@ -279,20 +323,65 @@ public sealed partial class RuntimeLiveGameplayFacade
             "u" => "up", "d" => "down", var value => value
         };
 
-    private string ApplyDecodedDamageExitTrap(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap)
+    private string EmitClassicTrapMessage(
+        RuntimeSession session,
+        RuntimeClassicExitTrapDefinition trap,
+        int messageId,
+        bool suppressOrdinaryMovement)
     {
-        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found for decoded exit trap.");
-        var nextHitPoints = Math.Max(0, character.HitPoints - trap.Damage);
-        if (nextHitPoints == 0)
-            return $"{trap.Qualifier} You take {trap.Damage} damage. {CompletePlayerDefeat(session, character)}";
-        _characters.SaveCharacter(character with { HitPoints = nextHitPoints, UpdatedAtUtc = DateTimeOffset.UtcNow }, $"decoded-exit-trap:{trap.ExitId}");
-        return $"{trap.Qualifier} You take {trap.Damage} damage. HP: {nextHitPoints}/{character.MaximumHitPoints}.";
+        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var player = payloads.RequireMessage(messageId);
+        var actorName = session.Actor.DisplayName;
+        if (payloads.TryResolveSecondaryMessage(messageId, out var sourceTemplate) && !string.IsNullOrWhiteSpace(sourceTemplate))
+        {
+            var sourceMessage = FormatClassicTrapObserverMessage(sourceTemplate, actorName);
+            foreach (var target in _sessions.ActiveSessions.Where(target =>
+                target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+                && target.CurrentRoom.Id.Equals(trap.FromRoomId, StringComparison.OrdinalIgnoreCase)
+                && !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+                target.EnqueueMessage(sourceMessage);
+        }
+        if (payloads.TryResolveTertiaryMessage(messageId, out var destinationTemplate) && !string.IsNullOrWhiteSpace(destinationTemplate))
+        {
+            var destinationMessage = FormatClassicTrapObserverMessage(destinationTemplate, actorName);
+            foreach (var target in _sessions.ActiveSessions.Where(target =>
+                target.World.Definition.Id.Equals(session.World.Definition.Id, StringComparison.OrdinalIgnoreCase)
+                && target.CurrentRoom.Id.Equals(trap.ToRoomId, StringComparison.OrdinalIgnoreCase)
+                && !target.Id.Equals(session.Id, StringComparison.OrdinalIgnoreCase)))
+                target.EnqueueMessage(destinationMessage);
+        }
+        if (suppressOrdinaryMovement) _classicTrapMovementPresentationSuppressions[session.Id] = 0;
+        return player;
     }
 
-    private string ApplyDecodedSpellExitTrap(RuntimeSession session, RuntimeCharacterActor actor, RuntimeClassicExitTrapDefinition trap)
+    private static string FormatClassicTrapObserverMessage(string template, string actorName) =>
+        template.Replace("%s", actorName, StringComparison.Ordinal);
+
+    private string ApplyDecodedDamageExitTrap(
+        RuntimeSession session,
+        RuntimeCharacterActor actor,
+        RuntimeClassicExitTrapDefinition trap,
+        RuntimeClassicNativeExitRecord native)
     {
+        if (native.Para1 <= 0) throw new InvalidOperationException($"Native damage trap has non-positive Para1: {trap.ExitId}");
+        // WCCMMUD.DLL type-9 movement and failed-DISARM owners call genrdn(Para1>>1, Para1+1).
+        var damage = Random.Shared.Next(native.Para1 >> 1, checked(native.Para1 + 1));
+        var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found for decoded exit trap.");
+        var nextHitPoints = Math.Max(0, character.HitPoints - damage);
+        if (nextHitPoints == 0) return CompletePlayerDefeat(session, character);
+        _characters.SaveCharacter(character with { HitPoints = nextHitPoints, UpdatedAtUtc = DateTimeOffset.UtcNow }, $"decoded-exit-trap:{trap.ExitId}");
+        return string.Empty;
+    }
+
+    private string ApplyDecodedSpellExitTrap(
+        RuntimeSession session,
+        RuntimeCharacterActor actor,
+        RuntimeClassicExitTrapDefinition trap,
+        RuntimeClassicNativeExitRecord native)
+    {
+        if (native.Para1 <= 0) throw new InvalidOperationException($"Native spell trap has non-positive Para1 spell ID: {trap.ExitId}");
         EnsureLivePowers(session);
-        var spell = ResolveSpell(trap.SpellId.ToString());
+        var spell = ResolveSpell(native.Para1.ToString());
         var casterId = trap.TrapId;
         if (!_liveSpellEngine!.Knows(casterId, spell.Id)) _liveSpellEngine.Learn(casterId, spell.Id);
         _liveSpellEngine.SetResources(casterId, new RuntimeSpellResources(int.MaxValue / 4, int.MaxValue / 4));
@@ -300,10 +389,32 @@ public sealed partial class RuntimeLiveGameplayFacade
             new GeneratedLiveSpellOperationPolicy(this, session), new LiveSpellEventSink(this, session));
         var now = DateTimeOffset.UtcNow;
         var result = execution.Cast(new RuntimeSpellCastRequest(casterId, spell.Id, new RuntimeSpellTarget("character", actor.Id), now));
-        if (!result.Succeeded) throw new InvalidOperationException($"Decoded spell trap {trap.ExitId} failed to execute spell {trap.SpellId}: {result.FailureCode} {result.FailureMessage}");
+        if (!result.Succeeded) throw new InvalidOperationException($"Decoded spell trap {trap.ExitId} failed to execute spell {native.Para1}: {result.FailureCode} {result.FailureMessage}");
         NormalizeDecodedPlayerStatusCast(session, result.Cast.Effect, now);
         SynchronizeCharacterSpellStatuses(new RuntimeSpellTarget("character", actor.Id), now, $"decoded-exit-spell-trap:{trap.ExitId}");
         PersistLivePowers(session.World.Definition.Id);
-        return $"{trap.Qualifier} {spell.Name} strikes you. " + string.Join(" ", result.Events.Select(RenderSpellEvent));
+        var after = _characters.LoadCharacter(actor.Id);
+        if (after is not null && after.HitPoints <= 0 && !RuntimeCharacterFlagResolver.IsSet(after, RuntimeCharacterFlagIds.Dead))
+            return CompletePlayerDefeat(session, after);
+        // Player/source/destination wording belongs to the WCCMSG Para4 payload emitted by the
+        // movement/failed-DISARM caller, not to a synthetic spell-name wrapper.
+        return string.Empty;
     }
+
+    private string ForceClassicTrapState3Movement(RuntimeSession session, string direction)
+    {
+        if (!session.TryMove(direction, out _)) return string.Empty;
+        if (session.Actor is RuntimeCharacterActor actor && _characters.LoadCharacter(actor.Id) is { } character)
+            _characters.SaveCharacter(character with
+            {
+                WorldId = session.World.Definition.Id,
+                RoomId = session.CurrentRoom.Id,
+                RoomNumber = session.CurrentRoom.RoomNumber,
+                UpdatedAtUtc = DateTimeOffset.UtcNow
+            }, "classic-trap-state3-forced-move");
+        return RenderRoom(session);
+    }
+
+    private static string JoinClassicTrapOutput(params string[] values) =>
+        string.Join(Environment.NewLine, values.Where(value => !string.IsNullOrWhiteSpace(value)));
 }

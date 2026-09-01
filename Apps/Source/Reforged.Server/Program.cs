@@ -1633,6 +1633,34 @@ if (args.Any(arg => string.Equals(arg, "--smoke-classic-quests-scripts-triggers"
     return smoke.Passed ? 0 : 1;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-character-status", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicCharacterStatusClosureSmokeReport.Run();
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-rooms-world", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicRoomsWorldClosureSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-timers-resets-world-rules", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicTimersResetsWorldRulesClosureSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-final-strong-closure", StringComparison.OrdinalIgnoreCase)))
+{
+    var smoke = RuntimeClassicFinalStrongClosureSmokeReport.Run(projectRoot);
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 1;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-parity-closure", StringComparison.OrdinalIgnoreCase)))
 {
     var smoke = RuntimeClassicParityClosureSmokeReport.Run(projectRoot);

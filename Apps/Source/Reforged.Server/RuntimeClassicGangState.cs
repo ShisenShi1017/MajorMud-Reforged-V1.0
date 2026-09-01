@@ -299,7 +299,8 @@ public sealed class RuntimeClassicGangStateService
     public IReadOnlyList<RuntimeClassicGangRecord> Top(int count) => List()
         .Where(gang => !gang.Disbanded && gang.ToptenEnabled)
         .OrderByDescending(gang => gang.Experience)
-        .ThenBy(gang => gang.Name, StringComparer.OrdinalIgnoreCase)
+        // Stable ordering keeps the existing source order for equal experience,
+        // matching WCCMMUD!_generate_top_list's JAE non-displacement rule.
         .Take(Math.Clamp(count, 1, 100))
         .ToArray();
 

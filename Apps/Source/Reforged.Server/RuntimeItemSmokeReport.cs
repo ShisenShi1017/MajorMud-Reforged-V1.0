@@ -226,7 +226,7 @@ public static class RuntimeItemSmokeReport
             var kaiMeditate = RuntimeCharacterRegenerationAuthority.ApplyMeditateTick(regenerationCharacter, kai, DateTimeOffset.UnixEpoch);
             if (kaiPassive.ManaRate != 2 || kaiMeditate.ManaRate != 1)
                 throw new InvalidOperationException("Native Kai/type-5 passive/meditation MPRegen ordering is incomplete.");
-            if (RuntimeClassicNativeSchedulerClockAudit.Run().Count != 5)
+            if (RuntimeClassicNativeSchedulerClockAudit.Run().Count != 6)
                 throw new InvalidOperationException("Native scheduler clock regression audit did not complete.");
         });
 

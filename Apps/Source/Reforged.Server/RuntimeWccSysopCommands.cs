@@ -664,20 +664,30 @@ public sealed class RuntimeWccSysopService
         IReadOnlyList<string> arguments,
         RuntimeLivingWorldService living)
     {
+        var now = DateTimeOffset.UtcNow;
+        if (arguments.Count > 0 && arguments[0].Equals("area", StringComparison.OrdinalIgnoreCase))
+        {
+            var source = session.CurrentRoom;
+            if (source.EnvironmentLinkedSpawnRoom <= 0)
+                return "No linked native monster area is defined for this room; no state changed.";
+            var anchorRoomNumber = source.EnvironmentLinkedSpawnRoom;
+            var areaRooms = session.World.AllRooms().Where(room => room.MapId == source.MapId
+                && (room.RoomNumber == anchorRoomNumber || room.EnvironmentLinkedSpawnRoom == anchorRoomNumber))
+                .Select(room => room.Id).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
+            var transitions = areaRooms.Sum(roomId => living.RequestNativeRoomGenerationReset(roomId, now).Transitions.Count);
+            return $"Area Reset - monsters will start generating appropriately. ({areaRooms.Length} linked room(s); {transitions} due spawn(s) admitted.)";
+        }
+
         RuntimeRoom? room;
         if (arguments.Count == 0 || arguments[0].Equals("room", StringComparison.OrdinalIgnoreCase) && arguments.Count == 1)
             room = session.CurrentRoom;
-        else if (arguments[0].Equals("area", StringComparison.OrdinalIgnoreCase))
-            return "WCCMMUD RESET AREA is cataloged but area boundaries are not proven in generated runtime data; no state changed.";
         else
             room = ResolveRoom(session.World,
                 arguments[0].Equals("room", StringComparison.OrdinalIgnoreCase) ? arguments.Skip(1).ToArray() : arguments);
         if (room is null) return "The requested map-qualified room was not found.";
 
-        var slots = living.CaptureNpcSpawnSlots().Where(slot => slot.HomeRoomId.Equals(room.Id, StringComparison.OrdinalIgnoreCase)).ToArray();
-        foreach (var slot in slots)
-            living.ResetNpcSpawnSlot(slot.SpawnId, DateTimeOffset.UtcNow, "wccmmud-sysop-reset-room");
-        return $"Reset {slots.Length} generated NPC spawn slot(s) for {room.Id}.";
+        var reset = living.RequestNativeRoomGenerationReset(room.Id, now);
+        return $"Room reset - monsters will start generating appropriately. ({reset.Transitions.Count} due spawn(s) admitted.)";
     }
 
     private static string ExecuteInitialize(IReadOnlyList<string> arguments, RuntimeLivingWorldService living)

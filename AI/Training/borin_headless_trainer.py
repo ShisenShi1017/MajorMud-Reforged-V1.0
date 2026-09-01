@@ -40,6 +40,29 @@ PHASE_ACTIONS: list[list[str]] = [
     ["wealth", "services", "list", "bank", "deposit_surplus", "buy_candidate", "sell_candidate", "equip_candidate", "repair_candidate", "get_all", "attack", "explore"],
 ]
 
+# CodeUpdate0369 parity-complete regression contract. Borin still learns through the
+# same player runtime, but he now refuses to silently train around a Classic parity
+# regression. The cumulative gate already includes the final-strong gate; both are
+# run so the tester report can localize a failure immediately.
+PARITY_SCORECARD_EXPECTED = {
+    "PassCount": 200,
+    "StrongCount": 0,
+    "UnknownCount": 0,
+    "ScoredRequirementCount": 200,
+    "StrictPercent": 100.0,
+}
+DEFAULT_PARITY_GATES = [
+    "--smoke-classic-final-strong-closure",
+    "--smoke-classic-parity-closure",
+]
+PLAYER_VISIBLE_PARITY_PROBES = [
+    "help topics",
+    "help top",
+    "topten",
+    "top 10",
+    "top 10 gangs",
+]
+
 
 def clean(text: str) -> str:
     return ANSI.sub("", text or "")
@@ -61,6 +84,88 @@ def write_json_atomic(path: Path, value: Any) -> None:
 
 def utc_now() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+
+def _extract_json_object(text: str) -> dict[str, Any] | None:
+    decoder = json.JSONDecoder()
+    for match in re.finditer(r"\{", text or ""):
+        try:
+            value, _ = decoder.raw_decode((text or "")[match.start():])
+        except json.JSONDecodeError:
+            continue
+        if isinstance(value, dict) and ("Passed" in value or "passed" in value):
+            return value
+    return None
+
+
+def validate_parity_scorecard(repo: Path) -> tuple[bool, str]:
+    scorecard_path = repo / "Reports" / "RuntimeVerification" / "majormud_parity_scorecard.json"
+    scorecard = read_json(scorecard_path, None)
+    if not isinstance(scorecard, dict):
+        return False, f"Parity scorecard is missing or invalid: {scorecard_path}"
+    mismatches = [
+        f"{key}: expected {expected!r}, got {scorecard.get(key)!r}"
+        for key, expected in PARITY_SCORECARD_EXPECTED.items()
+        if scorecard.get(key) != expected
+    ]
+    if mismatches:
+        return False, "; ".join(mismatches)
+    return True, "200 PASS / 0 STRONG / 0 UNKNOWN; strict parity 100%."
+
+
+def run_parity_smoke(repo: Path, gate: str, timeout_seconds: float, log_path: Path) -> dict[str, Any]:
+    project = repo / "Apps" / "Source" / "Reforged.Server" / "Reforged.Server.csproj"
+    cmd = ["dotnet", "run", "--project", str(project), "--", str(repo), gate]
+    started = time.time()
+    try:
+        completed = subprocess.run(
+            cmd,
+            cwd=str(repo),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=max(30.0, timeout_seconds),
+            check=False,
+        )
+        combined = (completed.stdout or "") + "\n" + (completed.stderr or "")
+        parsed = _extract_json_object(completed.stdout or "")
+        passed_value = None if parsed is None else parsed.get("Passed", parsed.get("passed"))
+        passed = completed.returncode == 0 and passed_value is True
+        failures = []
+        if isinstance(parsed, dict):
+            raw_failures = parsed.get("Failures", parsed.get("failures", []))
+            if isinstance(raw_failures, list):
+                failures = [str(x) for x in raw_failures]
+            if not failures:
+                raw_checks = parsed.get("Checks", parsed.get("checks", []))
+                if isinstance(raw_checks, list):
+                    failures = [str(x) for x in raw_checks if str(x).lower().endswith(":false")]
+        detail = "; ".join(failures) if failures else clean(combined)[-1200:].strip()
+        with log_path.open("a", encoding="utf-8") as log:
+            log.write(f"PARITY GATE {gate}: exit={completed.returncode}; passed={passed}; elapsed={time.time()-started:.2f}s\n")
+            if not passed and combined.strip():
+                log.write(clean(combined)[-4000:] + "\n")
+        return {
+            "gate": gate,
+            "passed": passed,
+            "exitCode": completed.returncode,
+            "elapsedSeconds": round(time.time() - started, 2),
+            "failures": failures,
+            "detail": detail[:1200],
+            "checkedUtc": utc_now(),
+        }
+    except Exception as exc:
+        with log_path.open("a", encoding="utf-8") as log:
+            log.write(f"PARITY GATE {gate} ERROR: {exc}\n")
+        return {
+            "gate": gate,
+            "passed": False,
+            "exitCode": None,
+            "elapsedSeconds": round(time.time() - started, 2),
+            "failures": [type(exc).__name__],
+            "detail": str(exc)[:1200],
+            "checkedUtc": utc_now(),
+        }
 
 
 class HeadlessClient:
@@ -517,6 +622,49 @@ class TrainingTester:
         if cmd_low.startswith("sell ") and "you sell" in low and after.wealth_copper < before.wealth_copper:
             self.record("high", "economy-invariant", "Successful sale reduced carried wealth", command, room, phase, cycle, f"before={before.wealth_copper}; after={after.wealth_copper}; {response}")
 
+    def observe_parity_gate(self, result: dict[str, Any], cycle: int) -> None:
+        if bool(result.get("passed")):
+            return
+        gate = str(result.get("gate") or "parity-gate")
+        detail = str(result.get("detail") or result.get("failures") or "Parity regression gate failed")
+        self.record(
+            "critical",
+            "classic-parity-regression",
+            "Authoritative Classic parity smoke gate failed",
+            gate,
+            "preflight",
+            "100% Classic parity regression",
+            cycle,
+            detail,
+        )
+
+    def observe_player_parity_probe(self, command: str, state: dict[str, Any], cycle: int) -> bool:
+        response = clean(str(state.get("response", ""))).strip()
+        low = response.lower()
+        room = str((state.get("room") or {}).get("id") or "unknown")
+        if state.get("error"):
+            self.record("high", "parity-player-probe", "Player-visible parity probe returned an error", command, room, "100% Classic parity regression", cycle, str(state.get("error")))
+            return False
+        if not response:
+            self.record("high", "parity-player-probe", "Player-visible parity probe returned an empty response", command, room, "100% Classic parity regression", cycle, "empty response")
+            return False
+        if any(marker in low for marker in (
+            "recognized, but its exact runtime behavior is not yet recovered",
+            "not implemented",
+            "not supported by this runtime",
+            "has no executable dispatcher branch",
+        )):
+            self.record("high", "parity-player-probe", "Player-visible parity probe regressed to a placeholder", command, room, "100% Classic parity regression", cycle, response)
+            return False
+        command_low = command.lower()
+        if command_low.startswith("help ") and "the following help topics are currently available:" not in low:
+            self.record("medium", "parity-player-probe", "HELP TOPICS/prefix no longer renders the recovered native topic surface", command, room, "100% Classic parity regression", cycle, response)
+            return False
+        if command_low.startswith("top") and not any(marker in low for marker in ("experience=", "no topten-eligible", "top count")):
+            self.record("medium", "parity-player-probe", "TOP/TOPTEN response no longer matches the recovered ranking surface", command, room, "100% Classic parity regression", cycle, response)
+            return False
+        return True
+
     def record_restart(self, command: str, room: str, phase: str, cycle: int, error: Exception) -> None:
         self.record("critical", "server-restart", "Headless server failed and had to be restarted", command, room or "unknown", phase, cycle, str(error))
 
@@ -829,6 +977,13 @@ def main() -> int:
     checkpoint_seconds = float(config.get("checkpoint_seconds", 60))
     status_seconds = float(config.get("status_seconds", 15))
     restart_delay = float(config.get("runtime_restart_delay_seconds", 2.0))
+    parity_config = config.get("parity_regression", {}) if isinstance(config.get("parity_regression", {}), dict) else {}
+    parity_enabled = bool(parity_config.get("enabled", True))
+    parity_run_startup = bool(parity_config.get("run_on_startup", True))
+    parity_run_each_cycle = bool(parity_config.get("run_each_cycle", True))
+    parity_timeout = float(parity_config.get("gate_timeout_seconds", 300.0))
+    parity_gates = [str(x) for x in parity_config.get("gates", DEFAULT_PARITY_GATES) if str(x).strip()]
+    parity_player_probes = [str(x) for x in parity_config.get("player_visible_probes", PLAYER_VISIBLE_PARITY_PROBES) if str(x).strip()]
 
     runtime.mkdir(parents=True, exist_ok=True)
     pid_path = runtime / "trainer.pid"
@@ -861,6 +1016,68 @@ def main() -> int:
     phase_started = started
     last_command = ""
     state: dict[str, Any] = {}
+    parity_status: dict[str, Any] = {
+        "enabled": parity_enabled,
+        "scorecardPassed": False,
+        "scorecardDetail": "not checked",
+        "gates": [],
+        "playerProbes": [],
+        "lastCheckedUtc": None,
+    }
+
+    def run_parity_regression(
+        current_cycle: int,
+        current_client: HeadlessClient | None = None,
+        *,
+        run_gates: bool = True,
+        run_player_probes: bool = True,
+    ) -> None:
+        nonlocal parity_status
+        if not parity_enabled:
+            return
+        scorecard_passed, scorecard_detail = validate_parity_scorecard(repo)
+        if not scorecard_passed:
+            tester.record(
+                "critical", "classic-parity-scorecard", "100% Classic parity scorecard no longer matches 0369",
+                "majormud_parity_scorecard.json", "preflight", "100% Classic parity regression", current_cycle, scorecard_detail,
+            )
+
+        existing_gates = parity_status.get("gates", []) if isinstance(parity_status.get("gates"), list) else []
+        gate_results = existing_gates
+        if run_gates:
+            gate_results = [run_parity_smoke(repo, gate, parity_timeout, log_path) for gate in parity_gates]
+            for result in gate_results:
+                tester.observe_parity_gate(result, current_cycle)
+
+        existing_probes = parity_status.get("playerProbes", []) if isinstance(parity_status.get("playerProbes"), list) else []
+        player_results = existing_probes
+        if run_player_probes and current_client is not None:
+            player_results = []
+            for probe in parity_player_probes:
+                try:
+                    probe_state = current_client.send(probe)
+                    probe_passed = tester.observe_player_parity_probe(probe, probe_state, current_cycle)
+                    response = clean(str(probe_state.get("response", ""))).strip()
+                    player_results.append({
+                        "command": probe,
+                        "passed": probe_passed,
+                        "response": response[:300],
+                    })
+                except Exception as exc:
+                    tester.record("high", "parity-player-probe", "Player-visible parity probe failed to execute", probe, "unknown", "100% Classic parity regression", current_cycle, str(exc))
+                    player_results.append({"command": probe, "passed": False, "response": str(exc)[:300]})
+
+        parity_status = {
+            "enabled": True,
+            "scorecardPassed": scorecard_passed,
+            "scorecardDetail": scorecard_detail,
+            "gates": gate_results,
+            "playerProbes": player_results,
+            "passed": scorecard_passed and bool(gate_results) and all(bool(x.get("passed")) for x in gate_results) and bool(player_results) and all(bool(x.get("passed")) for x in player_results),
+            "lastCheckedUtc": utc_now(),
+        }
+        write_json_atomic(runtime / "parity_regression.json", parity_status)
+        tester.save(force=True)
 
     def write_status(current_state: dict[str, Any], current_phase: str, phase_index: int,
                      phase_duration: float, phase_start: float, command: str, response: str) -> None:
@@ -898,6 +1115,7 @@ def main() -> int:
             "lastCommand": command,
             "lastResponse": clean(response)[:500],
             "tester": tester_summary,
+            "parityRegression": parity_status,
             "lastDefect": last_defect,
             "updatedUtc": utc_now(),
         }
@@ -915,10 +1133,18 @@ def main() -> int:
             "carriedGold": 0,
             "bankedGold": 0,
             "tester": tester.summary(),
+            "parityRegression": parity_status,
             "updatedUtc": utc_now(),
         })
+        if parity_enabled and parity_run_startup:
+            phase_name = "100% Classic parity preflight"
+            run_parity_regression(cycle, None, run_gates=True, run_player_probes=False)
         client = HeadlessClient(repo, args.player, log_path)
         state = client.state
+        if parity_enabled and parity_run_startup:
+            phase_name = "100% Classic player-visible parity probes"
+            run_parity_regression(cycle, client, run_gates=False, run_player_probes=True)
+            state = client.state
 
         while not should_stop(stop, stop_request):
             for phase_index, (phase_name, phase_duration) in enumerate(schedule):
@@ -1009,6 +1235,16 @@ def main() -> int:
                 break
             if not continuous:
                 break
+            if parity_enabled and parity_run_each_cycle:
+                phase_name = "100% Classic parity regression"
+                if client is not None:
+                    client.close()
+                    client = None
+                run_parity_regression(cycle, None, run_gates=True, run_player_probes=False)
+                client = HeadlessClient(repo, args.player, log_path)
+                state = client.state
+                run_parity_regression(cycle, client, run_gates=False, run_player_probes=True)
+                state = client.state
             cycle += 1
 
         learner.save()
@@ -1027,6 +1263,7 @@ def main() -> int:
             "carriedGold": round(carried_copper_from_state(final_state) / 100.0, 2) if final_state else 0,
             "bankedGold": "see last bank snapshot",
             "tester": tester.summary(),
+            "parityRegression": parity_status,
             "lastDefect": tester.last_defect(),
             "lastCommand": last_command,
             "room": snap.room,
@@ -1047,6 +1284,7 @@ def main() -> int:
             "carriedGold": "unknown",
             "bankedGold": "unknown",
             "tester": tester.summary(),
+            "parityRegression": parity_status,
             "error": str(exc),
             "updatedUtc": utc_now(),
         })

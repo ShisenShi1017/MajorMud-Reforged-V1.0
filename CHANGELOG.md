@@ -1,4 +1,39 @@
+# Classic Parity Headless Regression Refresh
+
+- Updated Borin's continuous headless trainer to verify the accepted 200 PASS / 0 STRONG / 0 UNKNOWN Classic parity baseline before unattended learning and at every completed learning-cycle boundary.
+- Added final-strong + cumulative parity smoke execution, deterministic HELP/TOP/TOPTEN player probes, parity regression persistence/status, and defect escalation instead of adaptive learning around regressions.
+- Cycle-boundary parity checks now gracefully restart the headless runtime first, adding continuous persistence/restart coverage.
+- Static/behavioral Borin verification: 44/44 PASS. Re-run CodeUpdate0369 source/static/native verification: 92/92 PASS.
+- MegaMUD compatibility testing is deliberately not part of Borin headless certification.
+
+
+## Final STRONG -> PASS closure
+
+- Promotes the final 11 scored assertions to PASS at their recovered native/host ownership boundaries. With Character, Rooms/World, and Timer authorities integrated, the verified repository baseline is **200 PASS / 0 STRONG / 0 UNKNOWN**.
+- Adds exact native HELP/TOPICS prefix-first-match recovery, 78 `_cmd_*` handler census, SYSOP -> Worldgroup `_haskey` boundary, UPDATE_SPEED ownership correction, TOP stable-tie/EXP_IN_TOPGANG closure, and direct WCCTEXT2 casino mechanics with recovered Worldgroup PRNG/ADDDELAY ownership.
+- Adds `--smoke-classic-final-strong-closure`, composed into `--smoke-classic-parity-closure`.
+- Dedicated source/static/native verification: **91/91 PASS**. No .NET SDK was available here, so no new C# build/runtime-execution claim is made.
+- Owner-local combat/spell formula/order/RNG/message details and casino terminal-body mapping remain separately fail-closed outside the completed 200-assertion parity ledger.
+
 ## CodeUpdate0365 Quests / Scripts / Triggers closure
+
+## CodeUpdate0368 Timers / Resets / World Rules closure
+
+- Promoted all six remaining Timers / Resets / World Rules assertions; the category is now **15/15 PASS**.
+- Cumulative parity is **189 PASS / 11 STRONG / 0 UNKNOWN** (**94.5% strict / 100.0% evidence-backed**).
+- Recovered WCCMMUD one-shot scheduler/restart behavior, ordinary Room.Delay minute gates and both respawn-admission paths, narrow SYSOP RESET ROOM/AREA generation-counter ownership, WCCMMUTL rune-contest RNG/draw order, and all 44 visible WCCMMUD configuration prompts/ranges/load owners.
+- Added focused `--smoke-classic-timers-resets-world-rules` and composed it into the cumulative Classic parity gate; independent source/static/native verification passes **108/108** checks.
+- This analysis environment has no .NET SDK, so CodeUpdate0368 makes no new C# build/runtime-execution claim.
+
+
+## CodeUpdate0367 Rooms & World closure
+
+- Promotes all seven remaining Rooms & World assertions to PASS: **21/21 PASS**.
+- The advertised Rooms & World promotion is not accepted because its runtime authority and evidence payload were absent; those seven assertions remain STRONG.
+- Recovers 3,490 WGSERV special exit records and cross-validates all 295 traps; closes native key/door/gate access, SEARCH, DISARM, PICKLOCK, BASH, timer/reset and trap-presentation ownership.
+- Audits **26,668/26,668** room descriptions with zero unresolved, empty, or duplicate canonical IDs.
+- Corrects the legacy 12/2248 timer assumption: MOVE/PULL RUG changes native state 16->8, and Para2=0 means the background dispatcher schedules no 300-second reset for that record.
+- Source/static/native verifier: **61/61 PASS**. No .NET SDK was available in this environment, so no new C# compilation claim is made.
 
 - Integrated the cumulative closure into CodeUpdate0140 and verified Reforged.Server Release with zero warnings/errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and parity gates pass locally.
 - Corrected the NPC cadence audit fixture to exercise the recovered `roll < AttMin` 75% boundary and admitted native retained-use item charge `-1` without weakening ordinary item validation.

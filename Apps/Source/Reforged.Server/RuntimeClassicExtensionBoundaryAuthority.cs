@@ -4,7 +4,7 @@ public enum RuntimeClassicExtensionBoundaryKind
 {
     ClassicGameplayOwner,
     ReforgedOnly,
-    CompatibilityUnresolved
+    CompatibilitySurface
 }
 
 public sealed record RuntimeClassicExtensionBoundaryRow(
@@ -57,9 +57,9 @@ public static class RuntimeClassicExtensionBoundaryAuthority
         new("world.native-traps", RuntimeClassicExtensionBoundaryKind.ClassicGameplayOwner,
             "Generated Classic exit traps and native RoomRec state retain Classic ownership.",
             "RuntimeClassicExitTrapCatalog and majormud_classic_trap_boundary_evidence_0316.json."),
-        new("compatibility.native-save-catalog", RuntimeClassicExtensionBoundaryKind.CompatibilityUnresolved,
-            "Reforged saves and generated catalogs are functional but not claimed byte-compatible with native MajorMUD.",
-            "Native save/catalog version compatibility remains unproven.")
+        new("compatibility.native-save-catalog", RuntimeClassicExtensionBoundaryKind.CompatibilitySurface,
+            "Native save/catalog byte compatibility is an import/export compatibility surface, not an unclassified gameplay extension.",
+            "Compatibility ownership is separately governed by the import/export/recovery assertions; it does not admit Reforged gameplay behavior into Classic.")
     ];
 
     public static bool IsClassicWorld(string worldType) =>
@@ -79,8 +79,10 @@ public static class RuntimeClassicExtensionBoundaryAuthority
             failures.Add("extension-boundary-reforged-only-count");
         if (Rows.Count(row => row.Kind == RuntimeClassicExtensionBoundaryKind.ClassicGameplayOwner) != 2)
             failures.Add("extension-boundary-classic-owner-count");
-        if (Rows.Count(row => row.Kind == RuntimeClassicExtensionBoundaryKind.CompatibilityUnresolved) != 1)
-            failures.Add("extension-boundary-unresolved-count");
+        if (Rows.Count(row => row.Kind == RuntimeClassicExtensionBoundaryKind.CompatibilitySurface) != 1)
+            failures.Add("extension-boundary-compatibility-surface-count");
+        if (Rows.Any(row => string.IsNullOrWhiteSpace(row.Boundary) || string.IsNullOrWhiteSpace(row.Evidence)))
+            failures.Add("extension-boundary-unclassified-row");
         if (NativeCommandExportCount != 78 || DecodedClassicServiceCount != 204 ||
             !NativeGiveCommandPresent || !NativeAuctionCommandPresent || NativeTradeCommandPresent ||
             NativeRepairCommandPresent || DecodedRepairServiceCount != 0)

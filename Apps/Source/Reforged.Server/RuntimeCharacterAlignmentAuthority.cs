@@ -147,10 +147,10 @@ public static class RuntimeCharacterAlignmentResolver
         => RuntimeClassicDeathLawPvpAuthority.ResolveLawConsequence(state.Reputation, state.EvilPoints);
 
     public static bool CanInitiateAttack(RuntimeCharacterAlignmentState state)
-        => state.EvilPoints < LegacyFiendAttackLockoutThreshold;
+        => state.EvilPoints <= LegacyFiendAttackLockoutThreshold;
 
     public static bool CanInitiateAttack(RuntimeCharacterAlignmentState state, RuntimeCharacterAlignmentRuleContract contract)
-        => state.EvilPoints < contract.FiendAttackLockoutThreshold;
+        => state.EvilPoints <= contract.FiendAttackLockoutThreshold;
 
     public static RuntimeCharacterAlignmentCleanupConfiguration CreateCleanupConfiguration(RuntimeCharacterAlignmentRuleContract contract)
     {

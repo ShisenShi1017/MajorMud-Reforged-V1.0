@@ -23,7 +23,7 @@ public sealed record RuntimeClassicExtensionBoundarySmokeReport(
             checks.Add("custom-and-ai-extension-commands-retained");
             checks.Add("generic-infrastructure-receives-no-classic-parity-credit");
             checks.Add("native-gameplay-owners-remain-classified");
-            checks.Add("native-save-catalog-compatibility-remains-unresolved");
+            checks.Add("native-save-catalog-byte-compatibility-is-separately-owned-not-an-extension-gap");
         }
 
         return new RuntimeClassicExtensionBoundarySmokeReport(

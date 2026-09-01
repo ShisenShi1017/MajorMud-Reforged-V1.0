@@ -1,4 +1,31 @@
+
+## Final STRONG -> PASS closure
+
+- Promotes the final 11 scored assertions to PASS at their recovered native/host ownership boundaries. The verified repository baseline is **200 PASS / 0 STRONG / 0 UNKNOWN**.
+- Adds exact native HELP/TOPICS prefix-first-match recovery, 78 `_cmd_*` handler census, SYSOP -> Worldgroup `_haskey` boundary, UPDATE_SPEED ownership correction, TOP stable-tie/EXP_IN_TOPGANG closure, and direct WCCTEXT2 casino mechanics with recovered Worldgroup PRNG/ADDDELAY ownership.
+- Adds `--smoke-classic-final-strong-closure`, composed into `--smoke-classic-parity-closure`.
+- Dedicated source/static/native verification after the Borin parity-training refresh: **92/92 PASS**. No .NET SDK was available here, so no new C# build/runtime-execution claim is made.
+- Owner-local combat/spell formula/order/RNG/message details and casino terminal-body mapping remain separately fail-closed outside the completed 200-assertion parity ledger.
+
+
+## Borin parity headless refresh
+
+- Synchronizes Borin's continuous trainer with the accepted **200 PASS / 0 STRONG / 0 UNKNOWN** Classic baseline.
+- Runs `--smoke-classic-final-strong-closure` and `--smoke-classic-parity-closure` before learning and after each completed learning cycle.
+- Restarts the headless runtime at cycle boundaries before the gates, then verifies persistence and player-visible `HELP TOPICS`, `HELP TOP`, `TOPTEN`, `TOP 10`, and `TOP 10 GANGS` behavior after restart.
+- Records scorecard, smoke-gate, and deterministic player-probe failures into Borin's normal tester defect queue; adds `runtime/parity_regression.json` and exposes the result through Forge status.
+- Borin parity-training verification: **44/44 PASS**. MegaMUD certification remains intentionally separate and is not claimed by headless training.
+
 ## CodeUpdate0365 Quests / Scripts / Triggers
+
+## CodeUpdate0368 Timers / Resets / World Rules closure
+
+Timers / Resets / World Rules is now **15/15 PASS** and cumulative parity is **189 PASS / 11 STRONG / 0 UNKNOWN**. Native WCCMMUD scheduler/restart ownership, ordinary Room.Delay eligibility and admission, narrow SYSOP RESET behavior, MajorMUD Plus rune-contest RNG/draw ordering, and the full visible 44-option WCCMMUD configuration surface are closed at their executable boundaries. Worldgroup callback arbitration and idle-poll wall-clock frequency remain host-owned rather than being guessed. Independent source/static/native verification passes **108/108** checks, and a focused Timers/Resets/World Rules smoke is composed into the cumulative parity gate. No new C# build is claimed because this analysis environment has no .NET SDK.
+
+
+## CodeUpdate0367 Rooms & World closure
+
+Rooms & World is **21 PASS / 0 STRONG**. The focused runtime gate passes 29/29 across the native exit authority, traps, doors, hidden exits, reset timing, and the complete room-description corpus.
 
 Quests / Scripts / Triggers is now **2/2 PASS**. The Librarium retains all 2,183 quest evidence records but partitions them exactly into 83 decoded executable NPC quest flows plus 2,000 condition-analysis and 100 key/gate-analysis candidates. Clean Classic generation emits only the 83 executable quests, 83 live NPC quest-entry triggers, and 182 linked stage scripts containing 2,616 decoded operations; all executable operations are decoded and contract-owned, and the 2,100 analysis-only candidates remain Librarium-only. RemoteAction closure is exhaustive at 139/139 decoded invocations and 85/85 distinct executable signatures with an exact 62 paired-door / 22 state-bit-clear / 1 common-finalization split. Direct source/static/data-correlation verification is **65/65 PASS**. Cumulative parity is **169 PASS / 31 STRONG / 0 UNKNOWN (84.5% strict / 100.0% evidence-backed)**. No new local .NET build/runtime claim is made because this environment has no .NET SDK.
 

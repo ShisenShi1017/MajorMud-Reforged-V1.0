@@ -15,6 +15,7 @@ public sealed record RuntimeClassicNativePlayerCommandSmokeReport(
     {
         var registry = RuntimeClassicNativePlayerCommandRegistry.Load(projectRoot);
         var failures = registry.Validate().ToList();
+        failures.AddRange(RuntimeClassicNativePlayerCommandBoundaryAuthority.Validate(registry));
         var checks = new List<string>();
 
         if (RuntimeCommandRuntimeRouteCatalog.Require("health").Kind != RuntimeCommandRouteKind.CharacterState)
@@ -61,7 +62,8 @@ public sealed record RuntimeClassicNativePlayerCommandSmokeReport(
         {
             checks.Add("63-native-help-command-identities-resolve-through-live-parser");
             checks.Add("explicit-native-aliases-bs-br-bg-resolve-to-documented-command");
-            checks.Add("undocumented-prefix-and-precedence-rules-remain-unclaimed");
+            checks.Add("native-parser-character-trie-bounds-prefix-and-precedence-mechanics");
+            checks.Add("native-78-cmd-handler-export-census-bounded");
         }
 
         return new RuntimeClassicNativePlayerCommandSmokeReport(

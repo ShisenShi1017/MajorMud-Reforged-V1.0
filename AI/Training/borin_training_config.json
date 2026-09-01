@@ -1,14 +1,38 @@
 {
   "continuous": true,
   "curriculum": [
-    {"name": "Survival & Recovery", "minutes": 30},
-    {"name": "Exploration & Hazard Avoidance", "minutes": 30},
-    {"name": "Combat & Tactics", "minutes": 30},
-    {"name": "Spells, Powers & Item Use", "minutes": 30},
-    {"name": "NPCs, Dialogue & Quests", "minutes": 30},
-    {"name": "Inventory, Equipment & Item Care", "minutes": 30},
-    {"name": "Progression & Character Mastery", "minutes": 30},
-    {"name": "Economy & Macro Strategy", "minutes": 30}
+    {
+      "name": "Survival & Recovery",
+      "minutes": 30
+    },
+    {
+      "name": "Exploration & Hazard Avoidance",
+      "minutes": 30
+    },
+    {
+      "name": "Combat & Tactics",
+      "minutes": 30
+    },
+    {
+      "name": "Spells, Powers & Item Use",
+      "minutes": 30
+    },
+    {
+      "name": "NPCs, Dialogue & Quests",
+      "minutes": 30
+    },
+    {
+      "name": "Inventory, Equipment & Item Care",
+      "minutes": 30
+    },
+    {
+      "name": "Progression & Character Mastery",
+      "minutes": 30
+    },
+    {
+      "name": "Economy & Macro Strategy",
+      "minutes": 30
+    }
   ],
   "economy": {
     "carried_gold_reserve": 10,
@@ -25,5 +49,22 @@
   "checkpoint_seconds": 60,
   "status_seconds": 15,
   "action_delay_seconds": 0.15,
-  "runtime_restart_delay_seconds": 2.0
+  "runtime_restart_delay_seconds": 2.0,
+  "parity_regression": {
+    "enabled": true,
+    "run_on_startup": true,
+    "run_each_cycle": true,
+    "gate_timeout_seconds": 300,
+    "gates": [
+      "--smoke-classic-final-strong-closure",
+      "--smoke-classic-parity-closure"
+    ],
+    "player_visible_probes": [
+      "help topics",
+      "help top",
+      "topten",
+      "top 10",
+      "top 10 gangs"
+    ]
+  }
 }

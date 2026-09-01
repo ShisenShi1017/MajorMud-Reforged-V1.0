@@ -1,0 +1,120 @@
+{
+  "schema": "majormud_timers_resets_world_rules_complete_evidence_v1",
+  "code_update": "0368",
+  "generated_at_utc": "2026-08-31T18:44:59.392773+00:00",
+  "status": "verified_native_module_boundary_closure",
+  "native_sources": {
+    "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wccmmutl_exe_sha256": "e509a3f73bd032e5bed8218f100ce0e664d5d22a6b0be30e0853a031788dc4b7",
+    "wccmmud_mcv_wgserv_sha256": "cbb572452bc38df003774301fc8e449f2df14304e1dcf99c228585ded76ed1c2"
+  },
+  "scheduler": {
+    "owners": {
+      "fast_seconds": 1,
+      "medium_seconds": 3,
+      "energy_seconds": 5,
+      "monster_create_seconds": 5,
+      "slow_seconds": 30,
+      "player_save_default_seconds": 60,
+      "buffer_save_default_seconds": 300
+    },
+    "callback_model": "independent one-shot owners; one serviced generation then re-arm from execution time; no elapsed catch-up generations",
+    "startup_restart": "_init__wccmmud freshly registers/arms fast, medium, energy, monster-create, slow, other/save, inactivity, and buffer-save callbacks; callback deadlines are not persisted/restored",
+    "wccmmud_internal_order": [
+      "due queue before fast character/monster work inside background_fast",
+      "system-cycle monster lanes slow-next -> fast-next -> medium-next, one slot per pending lane per host poll"
+    ],
+    "host_boundaries": [
+      "simultaneous delivery order among separately registered callbacks is Worldgroup host-owned",
+      "wall-clock idle/system-cycle polling frequency is Worldgroup host-owned"
+    ],
+    "rejected_universal_claims": [
+      "one universal ten-second gameplay phase",
+      "newly generated NPC must universally wait one later logical tick before any action opportunity"
+    ]
+  },
+  "spawn_and_respawn": {
+    "ordinary_room_delay": "Delay 0 immediately eligible; positive Delay blocks while elapsed whole minutes <= Delay; eligible only when elapsed > Delay",
+    "eligibility_timestamp_projection": "floor(last-killed timestamp to minute) + Delay + 1 minutes for positive Delay",
+    "admission_owners": [
+      "room entry via _user_allowed_in_room",
+      "five-second _background_monster_create scan of active-user rooms"
+    ],
+    "restart": "Last-Killed-derived eligibility is world state and may persist; scheduler callback phase itself freshly arms on restart",
+    "fixed_observed_boss_timers": "remain separate owner-specific external observations and do not replace ordinary Room.Delay semantics"
+  },
+  "reset_cleanup": {
+    "universal_transaction_exists": false,
+    "sysop_reset_room": "zero room generated-monster count field +0x606 and dirty/save marker +0x5F8; does not kill existing monsters or run cleanup",
+    "sysop_reset_area": "follow linked-area reference +0x5C4, zero area population word +0x5C0, mark dirty; does not run cleanup",
+    "separate_owners": [
+      "ground item/currency cleanup",
+      "Recharge",
+      "Evil-Point forgiveness",
+      "limited item refresh/restock",
+      "invasion maintenance removal",
+      "INITIALIZE/buffer recovery",
+      "door/trap exit timers",
+      "active player/combat/corpse state"
+    ]
+  },
+  "majormud_plus": {
+    "process": "WCCMMUTL.EXE separate process",
+    "rng": "srand(time(NULL)) once at utility start; Borland CRT stream; accumulated-remainder genrdn helper",
+    "draw_order": "placement range table order -> quantity -> raw inclusive room number draw -> room admission test -> retry, maximum 50 attempts per rune",
+    "room_admission": {
+      "excluded_attribute_mask": 16,
+      "visible_capacity": 17,
+      "hidden_capacity": 15
+    },
+    "automatic_prize_or_ranking_mutation": false,
+    "universal_event_scheduler": false
+  },
+  "configuration": {
+    "authority_file": "Librarium/Parity/majormud_wccmmud_configuration_authority_0368.json",
+    "visible_prompts": 44,
+    "reloadable": 29,
+    "startup_only": 13,
+    "catalog_only_no_native_load_call": 2
+  },
+  "closure_assertions": [
+    {
+      "id": "native.clock-scheduling",
+      "closure": "WCCMMUD-owned clocks, callback/restart model, save owners, monster polling order, and host-owned boundary explicitly exhausted"
+    },
+    {
+      "id": "native.events",
+      "closure": "WCCMMUTL contest RNG process/seed/draw/admission/retry order recovered and connected"
+    },
+    {
+      "id": "native.world-reset-cleanup",
+      "closure": "SYSOP RESET proven narrow generation-counter mutation; cleanup/initialize/player/corpse/exit timers remain separate owners"
+    },
+    {
+      "id": "native.world-rules-configuration",
+      "closure": "44 visible prompts mapped to option IDs, exact numeric ranges, readers, and reload/startup/catalog-only ownership"
+    },
+    {
+      "id": "timers.ordinary-lair-delay-minutes",
+      "closure": "exact strict whole-minute Delay gate including zero-delay edge and restart semantics"
+    },
+    {
+      "id": "timers.room-entry-respawn-admission",
+      "closure": "room-entry plus five-second background generation are the two recovered admission paths"
+    }
+  ],
+  "runtime_owners": [
+    "Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicSchedulerEvidenceRegistry.cs",
+    "Apps/Source/Reforged.Server/RuntimeMajorMudSpawnTiming.cs",
+    "Apps/Source/Reforged.Server/RuntimeNpcSpawnLifecycle.cs",
+    "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicWorldResetCleanupAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeWccSysopCommands.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicConfigurationAuthority.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicWorldRulesConfigurationEvidenceRegistry.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicWorldgroupPrng.cs",
+    "Apps/Source/Reforged.Server/RuntimeMajorMudPlus.cs",
+    "Apps/Source/Reforged.Server/RuntimeClassicMajorMudPlusEventEvidenceRegistry.cs"
+  ]
+}

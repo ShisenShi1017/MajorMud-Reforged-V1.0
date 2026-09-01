@@ -21,6 +21,10 @@ public sealed record RuntimeClassicParityClosureSmokeReport(bool Passed, IReadOn
         var itemsInventory = RuntimeClassicItemsInventorySmokeReport.Run(projectRoot);
         var npcAi = RuntimeClassicNpcAiSmokeReport.Run(projectRoot);
         var questsScriptsTriggers = RuntimeClassicQuestScriptTriggerClosureSmokeReport.Run(projectRoot);
+        var characterStatus = RuntimeClassicCharacterStatusClosureSmokeReport.Run();
+        var roomsWorld = RuntimeClassicRoomsWorldClosureSmokeReport.Run(projectRoot);
+        var timersResetsWorldRules = RuntimeClassicTimersResetsWorldRulesClosureSmokeReport.Run(projectRoot);
+        var finalStrongClosure = RuntimeClassicFinalStrongClosureSmokeReport.Run(projectRoot);
         var breakAuthorityFailures = RuntimeClassicBreakAutocombatAuthority.Validate();
         var checks = new List<string>
         {
@@ -36,6 +40,10 @@ public sealed record RuntimeClassicParityClosureSmokeReport(bool Passed, IReadOn
             "classic-items-inventory:" + itemsInventory.Passed,
             "classic-npc-ai:" + npcAi.Passed,
             "classic-quests-scripts-triggers:" + questsScriptsTriggers.Passed,
+            "classic-character-status:" + characterStatus.Passed,
+            "classic-rooms-world:" + roomsWorld.Passed,
+            "classic-timers-resets-world-rules:" + timersResetsWorldRules.Passed,
+            "classic-final-strong-closure:" + finalStrongClosure.Passed,
             "classic-break-autocombat-authority:" + (breakAuthorityFailures.Count == 0),
             "remaining-system-owner-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.RemainingSystemOwnerCount == 36),
             "native-dependency-group-count:" + (RuntimeClassicFinalNativeRepositoryClosureAuthority.NativeDependencyGroupCount == 40),

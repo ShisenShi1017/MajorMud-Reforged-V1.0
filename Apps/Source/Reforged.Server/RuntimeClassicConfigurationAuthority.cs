@@ -4,8 +4,28 @@ namespace Reforged.Server;
 /// Native MajorMUD 1.11p configuration evidence retained from WCCMMUD.mcv / WCCMMUD.INI.
 /// Reforged does not ship, read, or write a WCCMMUD.INI file. These values are evidence-backed
 /// Classic defaults that are projected into Reforged's own typed/runtime configuration owners.
-/// Unknown native ranges and live-reload semantics remain outside this authority.
+/// CodeUpdate0368 recovers the exact 44-prompt visible setup map, native option IDs,
+/// value types/ranges, and reload-vs-startup ownership from _reload__wccmmud/_init__wccmmud.
+/// The two retained coin-sweep prompts have no direct setup-read call in this 1.11p DLL and
+/// are cataloged explicitly as retained-but-unconsumed rather than assigned guessed behavior.
 /// </summary>
+public enum RuntimeClassicConfigurationLoadOwner
+{
+    Reloadable,
+    StartupOnly,
+    CatalogOnlyNoNativeLoadCall
+}
+
+public sealed record RuntimeClassicConfigurationOptionAuthority(
+    int OptionId,
+    string Symbol,
+    string ValueType,
+    string DefaultValue,
+    int? Minimum,
+    int? Maximum,
+    RuntimeClassicConfigurationLoadOwner LoadOwner,
+    string NativeReader);
+
 public static class RuntimeClassicConfigurationAuthority
 {
     public const string NativeConfigurationFileName = "WCCMMUD.INI";
@@ -85,6 +105,64 @@ public static class RuntimeClassicConfigurationAuthority
         (1922, "Sweep coins from gang houses? NO")
     };
 
+    /// <summary>
+    /// Exact visible WCCMMUD.mcv setup map. Reloadable rows are consumed inside
+    /// _reload__wccmmud (0x4011FF..0x401A61). StartupOnly rows are consumed by
+    /// _init__wccmmud after reload. COINSWP/GCOINSW are retained in the visible MCV
+    /// catalog but have no direct option-read call in either routine in this DLL.
+    /// </summary>
+    public static IReadOnlyList<RuntimeClassicConfigurationOptionAuthority> VisibleOptionAuthorities { get; } =
+    [
+        new(4, "GAMCRD", "integer", "60", 0, 32767, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(5, "REALCRD", "integer", "0", 0, 32767, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(19, "SECOTH", "integer", "60", 1, 20000, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(20, "SECBUFF", "integer", "300", 1, 20000, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(21, "BUFTOSAV", "integer", "1", 1, 32767, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(22, "ROOMBUF", "integer", "1500", 10, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(23, "ITEMBUF", "integer", "750", 10, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(24, "MONSBUF", "integer", "2000", 10, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(25, "KMONSBUF", "integer", "300", 10, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(26, "SPELBUF", "integer", "150", 10, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(27, "RACEBUF", "integer", "12", 5, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(28, "CLASSBUF", "integer", "16", 5, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(29, "BANKBUF", "integer", "32", 5, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(30, "MESSBUF", "integer", "250", 5, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(31, "SHOPBUF", "integer", "50", 5, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(32, "GANGBUF", "integer", "10", 3, 32767, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(33, "TALKCHAR", "character", ".", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "chropt"),
+        new(34, "YELLCHAR", "character", "\"", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "chropt"),
+        new(36, "DEATHHP", "integer", "-100", -20000, 0, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(37, "XTRALVL", "integer", "10", 0, 16, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(38, "PUNHUP", "choice", "NONE", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "add_multiple_option"),
+        new(49, "MAXTOP", "integer", "30", 10, 3000, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(50, "EVILKEEP", "integer", "50", 0, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(52, "PROFCHEK", "boolean", "NO", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(53, "INITRATE", "integer", "80", 10, 20000, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(54, "POLLRATE", "integer", "750", 10, 2000, RuntimeClassicConfigurationLoadOwner.StartupOnly, "numopt"),
+        new(55, "DEMOLVL", "integer", "2", 1, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(56, "EXPINTEN", "boolean", "YES", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(57, "LVLDIFF", "integer", "100", -1, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(58, "MINHUPHP", "integer", "0", 0, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(59, "MAXHUPHP", "integer", "0", 0, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(60, "MAXHUPIT", "integer", "0", 0, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(61, "INACTIVE", "integer", "5000", 60, 32000, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(63, "KEEPEXP", "boolean", "YES", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(64, "LIGHTEVY", "boolean", "YES", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(65, "GENDERGO", "integer", "5000", -1, 32000, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(66, "GANGEXP", "integer", "1000", 0, 32767, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(67, "DELUSER", "boolean", "NO", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(68, "MAXEPDAY", "integer", "18", 4, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(69, "EPCYCLE", "integer", "60", 15, 360, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(70, "EPAMOUNT", "integer", "1", 1, 100, RuntimeClassicConfigurationLoadOwner.Reloadable, "numopt"),
+        new(71, "ENABLAWF", "boolean", "YES", null, null, RuntimeClassicConfigurationLoadOwner.Reloadable, "ynopt"),
+        new(72, "COINSWP", "choice", "GOLD", null, null, RuntimeClassicConfigurationLoadOwner.CatalogOnlyNoNativeLoadCall, "none"),
+        new(73, "GCOINSW", "boolean", "NO", null, null, RuntimeClassicConfigurationLoadOwner.CatalogOnlyNoNativeLoadCall, "none")
+    ];
+
+    public const int VisibleReloadableOptionCount = 29;
+    public const int VisibleStartupOnlyOptionCount = 13;
+    public const int VisibleCatalogOnlyOptionCount = 2;
+
     public static IReadOnlyList<string> ValidateEvidenceCatalog()
     {
         var failures = new List<string>();
@@ -92,6 +170,12 @@ public static class RuntimeClassicConfigurationAuthority
         if (NativePrompts.Count != NativeConfigurationPromptCount) failures.Add("native-configuration-prompt-count");
         if (NativePrompts.Select(row => row.Offset).Distinct().Count() != NativePrompts.Count) failures.Add("native-configuration-prompt-offset-duplicate");
         if (NativePrompts.Any(row => string.IsNullOrWhiteSpace(row.PromptWithDefault))) failures.Add("native-configuration-prompt-empty");
+        if (VisibleOptionAuthorities.Count != NativeConfigurationPromptCount) failures.Add("visible-option-authority-count");
+        if (VisibleOptionAuthorities.Select(row => row.OptionId).Distinct().Count() != NativeConfigurationPromptCount) failures.Add("visible-option-id-duplicate");
+        if (VisibleOptionAuthorities.Count(row => row.LoadOwner == RuntimeClassicConfigurationLoadOwner.Reloadable) != VisibleReloadableOptionCount) failures.Add("visible-reloadable-count");
+        if (VisibleOptionAuthorities.Count(row => row.LoadOwner == RuntimeClassicConfigurationLoadOwner.StartupOnly) != VisibleStartupOnlyOptionCount) failures.Add("visible-startup-count");
+        if (VisibleOptionAuthorities.Count(row => row.LoadOwner == RuntimeClassicConfigurationLoadOwner.CatalogOnlyNoNativeLoadCall) != VisibleCatalogOnlyOptionCount) failures.Add("visible-catalog-only-count");
+        if (VisibleOptionAuthorities.Where(row => row.ValueType == "integer").Any(row => row.Minimum is null || row.Maximum is null)) failures.Add("numeric-range-missing");
         return failures;
     }
 }

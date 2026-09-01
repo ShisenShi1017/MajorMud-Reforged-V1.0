@@ -4,6 +4,56 @@
   "activeGate": "current_health_validator",
   "acceptedValidations": [
     {
+      "name": "Borin Classic parity headless regression refresh",
+      "status": "accepted",
+      "summary": "Borin validates the accepted 200 PASS / 0 STRONG / 0 UNKNOWN scorecard, runs the focused and cumulative Classic parity smoke gates before unattended learning and at each completed cycle boundary, gracefully restarts the headless runtime for persistence coverage, probes HELP/TOP/TOPTEN through the live player dispatcher, and records parity regressions in the persistent tester queue. MegaMUD certification remains separate.",
+      "evidence": [
+        "Librarium/Parity/majormud_parity_assertions.json",
+        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+      ]
+    },
+    {
+      "name": "Final STRONG to PASS closure",
+      "status": "accepted",
+      "summary": "Promoted the final 11 scored parity assertions from STRONG to PASS at their recovered native/host ownership boundaries. Together with the Character, Rooms/World, and Timer authorities, the ledger is 200 PASS / 0 STRONG / 0 UNKNOWN. Owner-local combat/spell internals and casino terminal body mapping remain separately fail-closed.",
+      "evidence": [
+        "Librarium/Parity/majormud_final_strong_to_pass_closure_0369.json",
+        "Librarium/Parity/majormud_sysop_worldgroup_access_closure_0369.json",
+        "Librarium/Parity/majormud_rankings_native_closure_0369.json",
+        "Librarium/Parity/majormud_casino_arena_native_closure_0369.json",
+        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+      ]
+    },
+    {
+      "name": "Timers / Resets / World Rules closure",
+      "status": "accepted",
+      "summary": "Promoted all six remaining Timers / Resets / World Rules assertions. Direct WCCMMUD/WCCMMUTL evidence closes independent one-shot scheduler/restart ownership, strict whole-minute Room.Delay semantics, room-entry plus five-second background respawn admission, narrow SYSOP RESET ROOM/AREA generation-counter mutations, the MajorMUD Plus rune-contest RNG/draw/admission/retry order, and all 44 visible WCCMMUD configuration prompts with exact ranges and load ownership. The focused local runtime gate passes 22/22.",
+      "evidence": [
+        "Librarium/Parity/majormud_timers_resets_world_rules_complete_evidence_0368.json",
+        "Librarium/Parity/majormud_wccmmud_configuration_authority_0368.json",
+        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+      ]
+    },
+    {
+      "name": "Rooms & World closure",
+      "status": "accepted",
+      "summary": "Promoted all seven remaining Rooms & World assertions. Direct WGSERV RoomRec/WCCMMUD evidence closes 3,490 special exits, 295 traps, type-2 non-consuming key traversal, door/gate PICKLOCK/BASH/reset ownership, trap SEARCH/DISARM/presentation/rearm, the 26,668/26,668 room-description corpus, and map 12/2248 MOVE/PULL RUG state 16->8. The focused local runtime gate passes 29/29.",
+      "evidence": [
+        "Librarium/Parity/majormud_rooms_world_native_authority_0367.json",
+        "Librarium/Parity/majormud_rooms_world_complete_evidence_0367.json",
+        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+      ]
+    },
+    {
+      "name": "Character & Status closure",
+      "status": "accepted",
+      "summary": "Promoted all seven remaining Character & Status assertions. Exact native identity/name validation, Shadow LOOK precedence, formula-owner modifier ordering, level-4 PvP admission, strict EP>300 Fiend lockout, practice-arena ordering, player-attack Evil-Point calculation, Lawful/warning admission, FORGIVE relation accounting, and guard/jail ownership are closed. The focused local runtime gate passes 47/47.",
+      "evidence": [
+        "Librarium/Parity/majormud_character_status_complete_evidence_0366.json",
+        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+      ]
+    },
+    {
       "name": "Quests / Scripts / Triggers closure",
       "status": "accepted",
       "summary": "Promoted both remaining Quests / Scripts / Triggers assertions after exact source/runtime graph reconciliation. The retained 2,183 quest evidence records partition into 83 executable decoded NPC quest flows plus 2,100 analysis-only candidates; clean Classic generation requires 83 live quest triggers, 182 linked scripts, and 2,616 decoded operations. RemoteAction is exhaustive at 139 invocations / 85 executable signatures. Direct source/static/data-correlation verification is 65/65 PASS.",

@@ -12,6 +12,8 @@ Say:
 
 The trainer launches `Reforged.Server` with `--headless-json`, uses the same authoritative runtime as normal play, and exchanges one JSON object per line over stdin/stdout. It does not need a normal client session or MegaMUD connection.
 
+Beginning with the completed CodeUpdate0369 parity baseline, Borin also owns a **100% Classic parity regression preflight**. Before unattended learning starts, and again at every completed learning-cycle boundary, the trainer runs both `--smoke-classic-final-strong-closure` and `--smoke-classic-parity-closure`. The cycle-boundary check gracefully restarts the headless runtime first so the smoke gates run against an unlocked build tree and persistence is exercised as part of the long run. After the server comes back, Borin probes `HELP TOPICS`, the native `HELP TOP` prefix path, `TOPTEN`, `TOP 10`, and `TOP 10 GANGS` through the same live player command dispatcher. Any smoke-gate, scorecard, or player-probe regression is recorded as a normal training-tester defect instead of being learned around.
+
 Training is continuous. One default cycle is four hours and contains eight 30-minute phases:
 
 1. Survival & Recovery
@@ -33,7 +35,8 @@ Persistent learning is stored in `AI/Training/checkpoints/borin_qlearning.json`.
 
 Generated runtime files:
 
-- `AI/Training/runtime/status.json` — live training status.
+- `AI/Training/runtime/status.json` — live training status, including the last Classic parity regression result.
+- `AI/Training/runtime/parity_regression.json` — 200/200 scorecard check, smoke-gate results, and deterministic player-visible parity probes.
 - `AI/Training/runtime/trainer.pid` — active trainer PID.
 - `AI/Training/runtime/stop.request` — graceful-stop request (normally removed automatically).
 - `AI/Training/runtime/defects.json` — machine-readable aggregated tester findings.

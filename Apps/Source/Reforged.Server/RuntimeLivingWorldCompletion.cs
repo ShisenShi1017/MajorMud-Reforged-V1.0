@@ -79,7 +79,10 @@ public sealed record RuntimeClassicExitActionEvidence(
         return false;
     }
 }
-public sealed record RuntimeLivingWorldCompletionSnapshot(string WorldId,long EventSequence,IReadOnlyList<RuntimeNpcAiState> AiStates,IReadOnlyList<RuntimeLivingCorpseState> Corpses,IReadOnlyList<RuntimeLivingWorldEvent> RecentEvents,IReadOnlyDictionary<string,int>? NativeActionStates,DateTimeOffset SavedAtUtc);
+public sealed record RuntimeLivingWorldCompletionSnapshot(string WorldId,long EventSequence,IReadOnlyList<RuntimeNpcAiState> AiStates,IReadOnlyList<RuntimeLivingCorpseState> Corpses,IReadOnlyList<RuntimeLivingWorldEvent> RecentEvents,IReadOnlyDictionary<string,int>? NativeActionStates,DateTimeOffset SavedAtUtc)
+{
+    public IReadOnlyDictionary<string,DateTimeOffset>? NativeActionResetDeadlines { get; init; }
+}
 public sealed record RuntimeRemoteActionMutationDefinition(string Signature,string SourceExitId,string ReciprocalExitId,string StateEffect,string NativeStateKey,int InitialNativeState,int Selector);
 
 public sealed partial class RuntimeLivingWorldService
@@ -89,6 +92,7 @@ public sealed partial class RuntimeLivingWorldService
     private readonly Dictionary<string,RuntimeExitGateDefinition> _gates = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string,RuntimeRemoteActionMutationDefinition> _remoteActionMutations = new(StringComparer.Ordinal);
     private readonly Dictionary<string,int> _nativeActionStates = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string,DateTimeOffset> _nativeActionResetDeadlines = new(StringComparer.OrdinalIgnoreCase);
     private readonly Queue<RuntimeLivingWorldEvent> _recentEvents = new();
     private long _eventSequence;
     private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
@@ -128,34 +132,145 @@ public sealed partial class RuntimeLivingWorldService
     public IReadOnlyList<RuntimeLivingCorpseState> CorpsesInRoom(string roomId){lock(_gate)return _corpses.Values.Where(x=>x.RoomId.Equals(roomId,StringComparison.OrdinalIgnoreCase)).OrderBy(x=>x.CreatedAtUtc).ToArray();}
 
     private const string ClassicTrapStateKeyPrefix = "classic.trap-state.";
+    private const string ClassicHiddenStateKeyPrefix = "classic.hidden-state.";
+    private const string ClassicDoorStateKeyPrefix = "classic.door-state.";
 
-    public int ReadClassicTrapState(string exitId, int initialState)
+    private RuntimeClassicRoomsWorldNativeAuthority ClassicRoomsWorldAuthority() => RuntimeClassicRoomsWorldNativeAuthority.Load(_projectRoot);
+
+    private int ReadClassicNativeExitState(string prefix,string exitId,int initialState)
     {
-        if (string.IsNullOrWhiteSpace(exitId)) throw new ArgumentException("exit-id-required", nameof(exitId));
-        if (!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(initialState))
-            throw new ArgumentOutOfRangeException(nameof(initialState), initialState, "Classic trap state must be in the native 0-4 range.");
-        lock (_gate)
+        if(string.IsNullOrWhiteSpace(exitId))throw new ArgumentException("exit-id-required",nameof(exitId));
+        lock(_gate)
         {
-            var key = ClassicTrapStateKeyPrefix + exitId.Trim();
-            if (!_nativeActionStates.TryGetValue(key, out var state))
+            var key=prefix+exitId.Trim();
+            if(!_nativeActionStates.TryGetValue(key,out var state))
             {
-                state = initialState;
-                _nativeActionStates[key] = state;
+                state=initialState;
+                _nativeActionStates[key]=state;
             }
             return state;
         }
     }
 
-    public void WriteClassicTrapState(string exitId, int state)
+    private void WriteClassicNativeExitState(string prefix,string exitId,int state,DateTimeOffset? resetAtUtc)
     {
-        if (string.IsNullOrWhiteSpace(exitId)) throw new ArgumentException("exit-id-required", nameof(exitId));
-        if (!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(state))
-            throw new ArgumentOutOfRangeException(nameof(state), state, "Classic trap state must be in the native 0-4 range.");
-        lock (_gate)
+        if(string.IsNullOrWhiteSpace(exitId))throw new ArgumentException("exit-id-required",nameof(exitId));
+        lock(_gate)
         {
-            _nativeActionStates[ClassicTrapStateKeyPrefix + exitId.Trim()] = state;
+            var key=prefix+exitId.Trim();
+            _nativeActionStates[key]=state;
+            if(resetAtUtc.HasValue)_nativeActionResetDeadlines[key]=resetAtUtc.Value;
+            else _nativeActionResetDeadlines.Remove(key);
             SaveLivingWorldCompletionLocked();
         }
+    }
+
+    public int ReadClassicTrapState(string exitId,int initialState)
+    {
+        if(!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(initialState))
+            throw new ArgumentOutOfRangeException(nameof(initialState),initialState,"Classic trap state must be in the native 0-4 range.");
+        return ReadClassicNativeExitState(ClassicTrapStateKeyPrefix,exitId,initialState);
+    }
+
+    public void WriteClassicTrapState(string exitId,int state)
+    {
+        if(!RuntimeClassicRoomExitNativeFieldContract.IsKnownTrapState(state))
+            throw new ArgumentOutOfRangeException(nameof(state),state,"Classic trap state must be in the native 0-4 range.");
+        WriteClassicNativeExitState(ClassicTrapStateKeyPrefix,exitId,state,null);
+    }
+
+    public void WriteClassicTrapStateWithNativeReset(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        if(state is not (1 or 4))throw new ArgumentOutOfRangeException(nameof(state),state,"Only native disarmed trap states 1/4 schedule reset.");
+        WriteClassicNativeExitState(ClassicTrapStateKeyPrefix,exitId,state,nowUtc.AddSeconds(RuntimeClassicRoomsWorldNativeAuthority.ExitTimerQuantumSeconds));
+    }
+
+    public int ReadClassicHiddenExitState(string exitId,int initialState) => ReadClassicNativeExitState(ClassicHiddenStateKeyPrefix,exitId,initialState);
+
+    public void WriteClassicHiddenExitStateWithNativeReset(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        var record=ClassicRoomsWorldAuthority().Require(exitId);
+        if(record.RoomType!=6)throw new InvalidOperationException($"Native hidden-state owner is not type 6: {exitId}");
+        var resetAt=RuntimeClassicRoomsWorldNativeAuthority.ResetHiddenState(state,record.Para2)==state
+            ? (DateTimeOffset?)null
+            : nowUtc.AddSeconds(RuntimeClassicRoomsWorldNativeAuthority.ExitTimerQuantumSeconds);
+        WriteClassicNativeExitState(ClassicHiddenStateKeyPrefix,exitId,state,resetAt);
+    }
+
+    public int ReadClassicDoorExitState(string exitId,int initialState) => ReadClassicNativeExitState(ClassicDoorStateKeyPrefix,exitId,initialState);
+
+    public void WriteClassicDoorExitStateWithNativeReset(string exitId,int state,int timerCount,DateTimeOffset nowUtc)
+    {
+        var record=ClassicRoomsWorldAuthority().Require(exitId);
+        if(record.RoomType is not (2 or 7 or 11))throw new InvalidOperationException($"Native door/key state owner is unsupported: {exitId}");
+        lock(_gate)
+        {
+            WriteClassicDoorExitStateLocked(exitId,state,timerCount,nowUtc);
+            if(_gates.TryGetValue(exitId,out var gate)&&!string.IsNullOrWhiteSpace(gate.ReciprocalExitId)
+               &&ClassicRoomsWorldAuthority().TryGet(gate.ReciprocalExitId!,out var reciprocal)
+               &&reciprocal.RoomType is 2 or 7 or 11)
+            {
+                var reciprocalTimer=reciprocal.RoomType==2?reciprocal.Para4:reciprocal.Para3;
+                WriteClassicDoorExitStateLocked(reciprocal.ExitId,state,Math.Max(1,reciprocalTimer),nowUtc);
+            }
+            SaveLivingWorldCompletionLocked();
+        }
+    }
+
+    private void WriteClassicDoorExitStateLocked(string exitId,int state,int timerCount,DateTimeOffset nowUtc)
+    {
+        var key=ClassicDoorStateKeyPrefix+exitId.Trim();
+        _nativeActionStates[key]=state;
+        _nativeActionResetDeadlines[key]=nowUtc.AddSeconds(RuntimeClassicRoomsWorldNativeAuthority.TimerSeconds(timerCount));
+        SynchronizeClassicDoorObjectLocked(exitId,state,nowUtc);
+    }
+
+    public void WriteClassicDoorExitStateWithoutNewTimer(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        var record=ClassicRoomsWorldAuthority().Require(exitId);
+        if(record.RoomType is not (2 or 7 or 11))throw new InvalidOperationException($"Native door/key state owner is unsupported: {exitId}");
+        lock(_gate)
+        {
+            WriteClassicDoorExitStateWithoutNewTimerLocked(exitId,state,nowUtc);
+            if(_gates.TryGetValue(exitId,out var gate)&&!string.IsNullOrWhiteSpace(gate.ReciprocalExitId)
+               &&ClassicRoomsWorldAuthority().TryGet(gate.ReciprocalExitId!,out var reciprocal)
+               &&reciprocal.RoomType is 2 or 7 or 11)
+                WriteClassicDoorExitStateWithoutNewTimerLocked(reciprocal.ExitId,state,nowUtc);
+            SaveLivingWorldCompletionLocked();
+        }
+    }
+
+    private void WriteClassicDoorExitStateWithoutNewTimerLocked(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        var key=ClassicDoorStateKeyPrefix+exitId.Trim();
+        _nativeActionStates[key]=state;
+        // CLOSE/LOCK mutate the RoomRec but do not call add_exit_to_list.  Preserve an
+        // already-scheduled native deadline if one exists; do not synthesize a new timer.
+        SynchronizeClassicDoorObjectLocked(exitId,state,nowUtc);
+    }
+
+    public void WriteClassicActionHiddenExitState(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        var record=ClassicRoomsWorldAuthority().Require(exitId);
+        if(record.RoomType!=6)throw new InvalidOperationException($"Native action-hidden owner is not type 6: {exitId}");
+        // Native common action finalization uses state 8 once all required action bits clear.
+        // The background exit dispatcher only restores state-8 exits when Para2 is non-zero.
+        var resetState=RuntimeClassicRoomsWorldNativeAuthority.ResetHiddenState(state,record.Para2);
+        DateTimeOffset? resetAt=resetState==state?null:nowUtc.AddSeconds(RuntimeClassicRoomsWorldNativeAuthority.ExitTimerQuantumSeconds);
+        WriteClassicNativeExitState(ClassicHiddenStateKeyPrefix,exitId,state,resetAt);
+    }
+
+    private void SynchronizeClassicDoorObjectLocked(string exitId,int state,DateTimeOffset nowUtc)
+    {
+        if(!_objects.TryGetValue(exitId,out var current))return;
+        _objects[exitId]=state switch
+        {
+            0=>current with{Open=true,Locked=false,UpdatedAtUtc=nowUtc},
+            1=>current with{Open=false,Locked=false,UpdatedAtUtc=nowUtc},
+            2=>current with{Open=false,Locked=true,UpdatedAtUtc=nowUtc},
+            _=>current
+        };
+        Save();
     }
 
     public void RecordQuestRemoteAction(string remoteActionId,string roomId,string source,IReadOnlyDictionary<string,string>? metadata=null)
@@ -275,6 +390,28 @@ public sealed partial class RuntimeLivingWorldService
             if(exit is null)return new(false,false,"exit-not-found",0,0,0,0,0);
             if(_world.ResolveExitDestination(exit) is null)return new(false,false,"destination-blocked",0,0,0,0,0);
             if(!_gates.TryGetValue(exit.Id,out var gate))return new(true,false,"open",0,0,0,0,0);
+            if(ClassicRoomsWorldAuthority().TryGet(exit.Id,out var nativeExit))
+            {
+                if(nativeExit.RoomType==6)
+                {
+                    var state=ReadClassicNativeExitState(ClassicHiddenStateKeyPrefix,exit.Id,nativeExit.Para1);
+                    if(!RuntimeClassicRoomsWorldNativeAuthority.HiddenStateAllowsTraversal(state))
+                        return new(false,false,"hidden-native-blocked",0,0,0,0,0);
+                    if(gate.GateKind.Equals("hidden",StringComparison.OrdinalIgnoreCase))
+                        return new(true,false,"hidden-native-open",0,0,0,0,0);
+                }
+                if(nativeExit.RoomType is 2 or 7 or 11 && gate.GateKind is "door" or "key")
+                {
+                    var initial=nativeExit.RoomType==2?nativeExit.Para2:nativeExit.Para1;
+                    var state=ReadClassicNativeExitState(ClassicDoorStateKeyPrefix,exit.Id,initial);
+                    if(state==0)return new(true,false,"door-open",0,0,0,0,0);
+                    if(nativeExit.RoomType==2 && nativeExit.Para1>0
+                       &&context.ItemIds.Any(id=>ParseClassicLegacyId(id)==nativeExit.Para1))
+                        return new(true,false,"native-key-present",0,0,0,0,0);
+                    if(state==2)return new(false,false,"door-locked",0,0,0,0,0);
+                    if(state==1)return new(false,false,"door-closed",0,0,0,0,0);
+                }
+            }
             if (gate.AllowedClassId is int allowedClass && context.ClassId != allowedClass) return new(false,false,"class-not-allowed",0,0,0,0,0);
             if (gate.DeniedClassId is int deniedClass && context.ClassId == deniedClass) return new(false,false,"class-denied",0,0,0,0,0);
             if (gate.AllowedRaceId is int allowedRace && context.RaceId != allowedRace) return new(false,false,"race-not-allowed",0,0,0,0,0);
@@ -368,6 +505,35 @@ public sealed partial class RuntimeLivingWorldService
     private IReadOnlyList<string> TickLivingWorldCompletionLocked(DateTimeOffset nowUtc)
     {
         var results=new List<string>();
+        foreach(var deadline in _nativeActionResetDeadlines.Where(pair=>pair.Value<=nowUtc).ToArray())
+        {
+            var key=deadline.Key;
+            if(!_nativeActionStates.TryGetValue(key,out var current)){_nativeActionResetDeadlines.Remove(key);continue;}
+            if(key.StartsWith(ClassicTrapStateKeyPrefix,StringComparison.OrdinalIgnoreCase))
+            {
+                var reset=current switch{1=>0,4=>3,_=>current};
+                _nativeActionStates[key]=reset;
+                results.Add($"classic-trap-reset:{key[ClassicTrapStateKeyPrefix.Length..]}:{current}->{reset}");
+            }
+            else if(key.StartsWith(ClassicHiddenStateKeyPrefix,StringComparison.OrdinalIgnoreCase))
+            {
+                var exitId=key[ClassicHiddenStateKeyPrefix.Length..];
+                var record=ClassicRoomsWorldAuthority().Require(exitId);
+                var reset=RuntimeClassicRoomsWorldNativeAuthority.ResetHiddenState(current,record.Para2);
+                _nativeActionStates[key]=reset;
+                results.Add($"classic-hidden-reset:{exitId}:{current}->{reset}");
+            }
+            else if(key.StartsWith(ClassicDoorStateKeyPrefix,StringComparison.OrdinalIgnoreCase))
+            {
+                var exitId=key[ClassicDoorStateKeyPrefix.Length..];
+                var record=ClassicRoomsWorldAuthority().Require(exitId);
+                var reset=RuntimeClassicRoomsWorldNativeAuthority.ResetDoorState(record,current);
+                _nativeActionStates[key]=reset;
+                SynchronizeClassicDoorObjectLocked(exitId,reset,nowUtc);
+                results.Add($"classic-door-reset:{exitId}:{current}->{reset}");
+            }
+            _nativeActionResetDeadlines.Remove(key);
+        }
         foreach(var corpse in _corpses.Values.Where(x=>x.ExpiresAtUtc<=nowUtc).ToArray())
         {
             _corpses.Remove(corpse.CorpseId); results.Add("corpse-expired:"+corpse.CorpseId); PublishLivingWorldEventLocked("corpse-expired",corpse.CorpseId,corpse.RoomId,nowUtc);
@@ -496,7 +662,15 @@ public sealed partial class RuntimeLivingWorldService
     private static int CompareAlignment(string actual,string required){static int Rank(string value)=>value.Trim().ToLowerInvariant() switch{"evil" or "fiend" or "villain"=>-1,"neutral"=>0,"good" or "saint"=>1,_=>0};return Rank(actual).CompareTo(Rank(required));}
     private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
+    private static int ParseClassicLegacyId(string? value)
+    {
+        if(string.IsNullOrWhiteSpace(value))return 0;
+        var normalized=value.Trim();
+        var separator=normalized.LastIndexOf('.');
+        if(separator>=0)normalized=normalized[(separator+1)..];
+        return int.TryParse(normalized,out var parsed)?parsed:0;
+    }
     private string CompletionPersistencePath=>Path.Combine(_persistenceRoot,WorldId,"living-world-completion.json");
-    private void SaveLivingWorldCompletionLocked(){var path=CompletionPersistencePath;Directory.CreateDirectory(Path.GetDirectoryName(path)!);var snapshot=new RuntimeLivingWorldCompletionSnapshot(WorldId,_eventSequence,_npcAi.Values.ToArray(),_corpses.Values.ToArray(),_recentEvents.ToArray(),new Dictionary<string,int>(_nativeActionStates,StringComparer.OrdinalIgnoreCase),DateTimeOffset.UtcNow);var temp=path+".tmp";File.WriteAllText(temp,JsonSerializer.Serialize(snapshot,new JsonSerializerOptions{WriteIndented=true}));File.Move(temp,path,true);}
-    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);if(x.NativeActionStates is not null)foreach(var state in x.NativeActionStates)if(_nativeActionStates.ContainsKey(state.Key)||state.Key.StartsWith(ClassicTrapStateKeyPrefix,StringComparison.OrdinalIgnoreCase))_nativeActionStates[state.Key]=state.Value;}catch(JsonException){}}}
+    private void SaveLivingWorldCompletionLocked(){var path=CompletionPersistencePath;Directory.CreateDirectory(Path.GetDirectoryName(path)!);var snapshot=new RuntimeLivingWorldCompletionSnapshot(WorldId,_eventSequence,_npcAi.Values.ToArray(),_corpses.Values.ToArray(),_recentEvents.ToArray(),new Dictionary<string,int>(_nativeActionStates,StringComparer.OrdinalIgnoreCase),DateTimeOffset.UtcNow){NativeActionResetDeadlines=new Dictionary<string,DateTimeOffset>(_nativeActionResetDeadlines,StringComparer.OrdinalIgnoreCase)};var temp=path+".tmp";File.WriteAllText(temp,JsonSerializer.Serialize(snapshot,new JsonSerializerOptions{WriteIndented=true}));File.Move(temp,path,true);}
+    private void RestoreLivingWorldCompletion(){lock(_gate){if(!File.Exists(CompletionPersistencePath))return;try{var x=JsonSerializer.Deserialize<RuntimeLivingWorldCompletionSnapshot>(File.ReadAllText(CompletionPersistencePath));if(x is null||!x.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;_eventSequence=x.EventSequence;foreach(var ai in x.AiStates)if(_npcAi.ContainsKey(ai.InstanceId))_npcAi[ai.InstanceId]=ai;foreach(var c in x.Corpses)if(_npcs.ContainsKey(c.NpcInstanceId))_corpses[c.CorpseId]=c;foreach(var e in x.RecentEvents.OrderBy(e=>e.Sequence))_recentEvents.Enqueue(e);if(x.NativeActionStates is not null)foreach(var state in x.NativeActionStates)if(_nativeActionStates.ContainsKey(state.Key)||state.Key.StartsWith(ClassicTrapStateKeyPrefix,StringComparison.OrdinalIgnoreCase)||state.Key.StartsWith(ClassicHiddenStateKeyPrefix,StringComparison.OrdinalIgnoreCase)||state.Key.StartsWith(ClassicDoorStateKeyPrefix,StringComparison.OrdinalIgnoreCase))_nativeActionStates[state.Key]=state.Value;if(x.NativeActionResetDeadlines is not null)foreach(var deadline in x.NativeActionResetDeadlines)_nativeActionResetDeadlines[deadline.Key]=deadline.Value;foreach(var state in _nativeActionStates.Where(pair=>pair.Key.StartsWith(ClassicDoorStateKeyPrefix,StringComparison.OrdinalIgnoreCase)).ToArray())SynchronizeClassicDoorObjectLocked(state.Key[ClassicDoorStateKeyPrefix.Length..],state.Value,DateTimeOffset.UtcNow);}catch(JsonException){}}}
 }

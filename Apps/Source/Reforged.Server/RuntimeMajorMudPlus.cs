@@ -617,19 +617,26 @@ public sealed class RuntimeMajorMudPlusService
             var contestId = started.ToUnixTimeMilliseconds().ToString(System.Globalization.CultureInfo.InvariantCulture);
             var hidden = mode == "hidden";
             var contract = catalog.ContestContract;
+            // WCCMMUTL is a separate utility process. It calls srand(time(NULL)) once, then
+            // consumes its own Borland CRT rand stream through the native accumulated-remainder
+            // range helper. It draws the raw room number first and only then tests room admission;
+            // there is no prefiltered candidate list.
+            var contestRandom = RuntimeClassicMajorMudPlusContestRandom.Create(started);
             var placed = new List<string>();
             foreach (var range in contract.PlacementRanges)
             {
-                var candidates = livingWorld.ContestRooms(range.Map, range.MinimumRoom, range.MaximumRoom, contract.ExcludedRoomAttributeMask);
+                var minimumRoom = Math.Min(range.MinimumRoom, range.MaximumRoom);
+                var maximumRoom = Math.Max(range.MinimumRoom, range.MaximumRoom);
                 for (var quantity = 0; quantity < range.Quantity; quantity++)
                 {
                     var success = false;
-                    for (var attempt = 0; attempt < contract.MaximumAttemptsPerItem && candidates.Count > 0; attempt++)
+                    for (var attempt = 0; attempt < contract.MaximumAttemptsPerItem; attempt++)
                     {
-                        var room = candidates[Random.Shared.Next(candidates.Count)];
-                        if (!livingWorld.TryPlaceContestItem(contract.CanonicalItemId, room.Id, hidden,
-                            hidden ? contract.HiddenRoomCapacity : contract.VisibleRoomCapacity, contestId)) continue;
-                        placed.Add($"Placed a {mode} rune in map {room.MapId} room {room.RoomNumber}.");
+                        var roomNumber = contestRandom.Genrdn(minimumRoom, checked(maximumRoom + 1));
+                        if (!livingWorld.TryPlaceClassicContestItemByLegacyRoom(contract.CanonicalItemId, range.Map, roomNumber, hidden,
+                            contract.ExcludedRoomAttributeMask, hidden ? contract.HiddenRoomCapacity : contract.VisibleRoomCapacity,
+                            contestId, out var room)) continue;
+                        placed.Add($"Placed a {mode} rune in map {room!.MapId} room {room.RoomNumber}.");
                         success = true;
                         break;
                     }

@@ -1,9 +1,13 @@
 # AI Context for Reforged
+Current verified integration: **200 PASS / 0 STRONG / 0 UNKNOWN**. Character/Status passes 47/47, Rooms/World passes 29/29, Timers/Resets/World Rules passes 22/22, and the final STRONG closure passes 18/18 locally.
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
 - Creator Studio now includes a Custom1-only Nightmare Redux MDB bridge. It analyzes/imports supported MDB tables, exports supported Custom1 records to a new Jet MDB, preserves unmapped fields and raw provenance, and treats WCC/WGS files as read-only evidence. Classic is never an import target.
 - The bridge was locally verified against the installed Nightmare Redux `ability.mdb` (188 rows through Jet 4.0) and a temporary write/read round trip. Reforged.App and Reforged.Server build with zero warnings/errors; Classic parity and services/economy smoke gates pass. No live Custom1 import was run.
-- Current parity: **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**).
+- Current parity: **200 PASS / 0 STRONG / 0 UNKNOWN = 200** (**100.0% strict / 100.0% evidence-backed**).
+- Borin continuous headless training validates the accepted 200/0/0 scorecard, runs the focused and cumulative parity gates before learning and at every completed cycle, restarts the headless runtime at cycle boundaries, and probes HELP/TOP/TOPTEN through the live player dispatcher. MegaMUD remains a separate real-client test surface.
+- CodeUpdate0368 closes Timers / Resets / World Rules at **15/15 PASS** with **108/108** source/static/native checks. WCCMMUD scheduling/restart, ordinary lair timing/admission, narrow RESET ownership, WCCMMUTL contest RNG/draw order, and the visible 44-option configuration boundary are exhausted; the focused gate is `--smoke-classic-timers-resets-world-rules`.
+- Rooms & World is executable and locally verified: 3,490 native exits, 295 traps, and 26,668/26,668 room descriptions pass the focused runtime gate.
 - CodeUpdate0359 closes Data Reconstruction at 3/3 PASS: 39/39 generated families, 2,096/2,096 scalar fields, and the canonical 3,869-message WCCMSG2 catalog, with working-install corroboration and no invented empty equipment values.
 - CodeUpdate0360 closes Economy & Services at 16/16 PASS with 204/204 services classified; CodeUpdate0361 closes Host / Persistence / Worldgroup at 9/9 PASS with exact Player/Buffer save ownership, native transaction/durability boundaries, host RNG contract, repository inventory closure, and supplied-WCC exhaustion.
 - CodeUpdate0363 closes Items & Inventory at 6/6 PASS: exact ordered native item abilities, signed per-copy Uses/retention, Type 4/5 EAT/DRINK fallback counters, DROP gating, APPRAISE delegation, and Reforged-extension exclusions are verified 66/66.
@@ -24,7 +28,7 @@
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
 - Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
-- Current local status: parity closure through Quests / Scripts / Triggers is integrated at 169 PASS / 31 STRONG / 0 UNKNOWN. Reforged.Server Release builds with zero warnings/errors; focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and cumulative parity gates pass. GitHub Actions remains pending push.
+- Current local status: parity is 200 PASS / 0 STRONG / 0 UNKNOWN; Character & Status is 46/46 PASS, Rooms & World is 21/21 PASS, and Timers / Resets / World Rules is 15/15 PASS. Release server and Reforged.App builds are clean, all four focused gates pass locally, and the cumulative parity gate passes. GitHub Actions remains pending push.
 - CodeUpdate0138: pushed and green by user report.
 - Latest local verification for CodeUpdate0140: Reforged.Server Release builds with zero warnings/errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and cumulative parity gates pass. The consolidated current-health validator completes 44/45 stages and stops at the two known corpse-equipment restoration assertions. The Reforged.App startup path is deferred/lazy so the shell appears before Play, Borin, Editor, or Librarium perform heavy loading; its Release publish opened a responsive `MajorMUD Reforged` window locally. GitHub Actions remains pending until pushed and confirmed green.
 - Decode Exhaustion Bundle F Revision 0033 and Bundle G Revision 0002 are installed locally into the dirty CodeUpdate0139 repo without commit or push. Bundle G closes the prior F10 native payload gap: server Release build passes, `--audit-bundle-f-phase-f10-native-payloads` now reports 0 disconnects, and Bundle F F10 complete through F15 audits pass locally.
@@ -165,3 +169,5 @@ Latest local continuation: abilities 125-134 are explicitly modeled as the ten d
 - Evidence: `Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json`.
 - Verification: `Reports/RuntimeVerification/classic_npc_ai_verification.json`.
 - Target runtime gate: `--smoke-classic-npc-ai`; full gate: `--smoke-classic-parity-closure`.
+
+- CodeUpdate0366 Character & Status closure: 46/46 PASS; cumulative parity 176/24/0 (88.0% strict). Exact name/Shadow/modifier/PvP/law character ownership is connected; focused gate `--smoke-classic-character-status`; no new .NET build claim in this environment.

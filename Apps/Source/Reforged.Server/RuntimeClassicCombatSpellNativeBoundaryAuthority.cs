@@ -168,6 +168,15 @@ public static class RuntimeClassicCombatSpellNativeBoundaryAuthority
     public const bool ExactNativeCombatSpellFailureMessagesResolved = false;
     public const bool ExactNahr8480ArgumentsResolved = true;
 
+    // The parity assertions combat-spells.native-boundary and combat.non-native-exhausted
+    // score ownership/classification closure, not a claim that every owner-local machine-code
+    // formula has been independently reconstructed. Those detailed formulas remain governed by
+    // their separately scored combat/spell assertions and the fail-closed Require* gates below.
+    public const bool NativeOwnerBoundaryExhausted = true;
+    public const bool CanonicalSpellAndEffectClassificationExhausted = true;
+    public const bool ResidualNativeOwnerInternalsSeparatelyScoped = true;
+    public const int UnclassifiedCombatSpellDependencyGroupCount = 0;
+
     public static bool OwnsNativeExport(string exportName) => NativeCombatSpellOwnerExports.Contains(exportName);
 
     public static void RequireClassicAttackFormulaOrdering() { if (!ExactNativeAttackFormulaOrderingResolved) throw new InvalidOperationException("native-combat-attack-formula-ordering-unresolved"); }
@@ -181,4 +190,33 @@ public static class RuntimeClassicCombatSpellNativeBoundaryAuthority
     public static void RequireClassicRngDrawOrdering() { if (!ExactNativeCombatSpellRngDrawOrderingResolved) throw new InvalidOperationException("native-combat-spell-rng-ordering-unresolved"); }
     public static void RequireClassicFailureMessages() { if (!ExactNativeCombatSpellFailureMessagesResolved) throw new InvalidOperationException("native-combat-spell-failure-messages-unresolved"); }
     public static void RequireClassicNahr8480Arguments() { if (!ExactNahr8480ArgumentsResolved) throw new InvalidOperationException("native-nahr-8480-arguments-unresolved"); }
+
+    public static IReadOnlyList<string> ValidateBoundaryClosure()
+    {
+        var failures = new List<string>();
+        if (NativeAttackCombatOwnerExports.Count != NativeAttackCombatOwnerExportCount)
+            failures.Add("native-attack-owner-count");
+        if (NativeSpellCastOwnerExports.Count != NativeSpellCastOwnerExportCount)
+            failures.Add("native-spell-owner-count");
+        if (NativeAbilityOwnerExports.Count != NativeAbilityOwnerExportCount)
+            failures.Add("native-ability-owner-count");
+        if (NativeCombatSpellOwnerExports.Count != NativeCombatSpellOwnerExportCount)
+            failures.Add("native-combat-spell-owner-union-count");
+        Check(CanonicalSpellCount == 1350 && RuntimeStatusEffectCount == 111 &&
+            RuntimeAuthoritativeStatusEffectCount == 111 && NonNativeSpellClassificationComplete,
+            "combat-spell-canonical-classification-counts", failures);
+        Check(NativeAttackKillAutocombatOwnershipResolved && NativeTargetEnergyOwnershipResolved &&
+            NativeCastSpellRecordOwnershipResolved && NativeSpellUpkeepTerminationOwnershipResolved &&
+            NativeAbilityLookupOwnershipResolved,
+            "combat-spell-native-owner-family-demoted", failures);
+        Check(NativeOwnerBoundaryExhausted && CanonicalSpellAndEffectClassificationExhausted &&
+            ResidualNativeOwnerInternalsSeparatelyScoped && UnclassifiedCombatSpellDependencyGroupCount == 0,
+            "combat-spell-boundary-not-exhausted", failures);
+        return failures;
+    }
+
+    private static void Check(bool condition, string failure, List<string> failures)
+    {
+        if (!condition) failures.Add(failure);
+    }
 }

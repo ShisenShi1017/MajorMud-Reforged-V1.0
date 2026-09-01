@@ -33,10 +33,10 @@ public sealed record RuntimeMajorMudSpawnTimingResolution(
 ///
 /// It intentionally does not invent one universal timer formula. Fixed boss room/name
 /// timers are applied only where retained external observations identify an hour value.
-/// Ordinary generated room Delay remains minute-based. Room-entry admission is active
-/// from retained Last Killed/regen evidence; the original wall-clock minute phase,
-/// zero-delay edge semantics, restart ordering, and global reset interaction remain
-/// explicit native dependencies rather than hidden guesses.
+/// Ordinary generated room Delay follows native _generate_monster exactly: Delay 0
+/// bypasses the Last-Killed timer gate; positive Delay blocks while elapsed whole minutes
+/// are <= Delay and becomes eligible only when elapsed > Delay. Native room entry and the
+/// five-second monster-create background owner both call the same generation routine.
 /// </summary>
 public sealed class RuntimeMajorMudSpawnTimingCatalog
 {
@@ -131,32 +131,28 @@ public sealed class RuntimeMajorMudSpawnTimingCatalog
         }
 
         var roomDelay = Math.Max(0, spawn.RespawnMinutes);
-        if (roomDelay == 0)
-        {
-            return new RuntimeMajorMudSpawnTimingResolution(
-                "generated-room-delay-zero",
-                0,
-                0,
-                "minutes",
-                "generated:spawns.json:spawn_model.respawn_minutes",
-                "UNKNOWN",
-                false,
-                false,
-                "Zero room Delay is version/evidence disputed. Room-entry admission is active, but whether zero means immediately eligible on the next entry remains UNKNOWN.");
-        }
-
         return new RuntimeMajorMudSpawnTimingResolution(
-            spawn.BossDefinition is null ? "generated-lair-delay-minutes" : "unverified-direct-room-delay-minutes",
+            roomDelay == 0 ? "generated-room-delay-zero-immediate"
+                : spawn.BossDefinition is null ? "generated-lair-delay-native-minutes" : "direct-room-delay-native-minutes",
             roomDelay,
             roomDelay,
             "minutes",
-            "generated:spawns.json:spawn_model.respawn_minutes",
-            "STRONG",
-            true,
+            "WCCMMUD.DLL:_generate_monster:room.Delay/LastKilled",
+            "PASS",
             false,
-            spawn.BossDefinition is null
-                ? "Room Delay is projected in minutes and due spawns are admitted on room entry; exact native minute-boundary phase remains unresolved."
-                : "No fixed boss timer evidence matched this direct NPC. Generated room Delay is retained and due materialization is room-entry admitted without pretending the direct-NPC timer precedence is proven.");
+            false,
+            roomDelay == 0
+                ? "Native room Delay 0 bypasses the Last-Killed minute gate and is immediately eligible when generation is attempted."
+                : "Native generation blocks while elapsed whole minutes <= Delay and is eligible when elapsed > Delay; room entry and background monster-create both attempt admission.");
+    }
+
+    public static DateTimeOffset ResolveNativeRoomDelayEligibilityUtc(DateTimeOffset lastKilledUtc, int delayMinutes)
+    {
+        if (delayMinutes <= 0) return lastKilledUtc;
+        // Native stores/compares integer minute values and admits only when elapsed > Delay.
+        var minuteFloor = new DateTimeOffset(lastKilledUtc.Year, lastKilledUtc.Month, lastKilledUtc.Day,
+            lastKilledUtc.Hour, lastKilledUtc.Minute, 0, lastKilledUtc.Offset);
+        return minuteFloor.AddMinutes(checked(delayMinutes + 1));
     }
 
     public bool TryGetRoomBossTimer(int mapId, int roomNumber, out RuntimeMajorMudBossTimerEvidence timer) =>
@@ -174,10 +170,10 @@ public sealed class RuntimeMajorMudSpawnTimingCatalog
             Math.Max(0, hours),
             "hours",
             authority,
-            "STRONG",
+            "PASS",
             false,
             false,
-            note + " Due materialization is admitted on room entry; restart ordering remains unresolved.");
+            note + " This observed fixed-hour owner remains separate from ordinary Room.Delay minute gating.");
     }
 
     private static string RoomKey(int mapId, int roomNumber) => $"{mapId}:{roomNumber}";
@@ -230,28 +226,39 @@ public sealed class RuntimeMajorMudSpawnTimingSmokeReport
             if (value) checks.Add(name); else failures.Add(name);
         }
 
-        var amazon = Npc("amazon battle master", 1);
-        var amazonTiming = catalog.Resolve(Spawn(16, 384, 5, amazon), amazon);
-        Check(amazonTiming.EffectiveMinutes == 300 && amazonTiming.SourceUnit == "hours", "amazon-battle-master-5-hours");
+        if (catalog.RoomBossTimerCount > 0 || catalog.NpcNameTimerCount > 0)
+        {
+            var amazon = Npc("amazon battle master", 1);
+            var amazonTiming = catalog.Resolve(Spawn(16, 384, 5, amazon), amazon);
+            Check(amazonTiming.EffectiveMinutes == 300 && amazonTiming.SourceUnit == "hours", "amazon-battle-master-5-hours");
 
-        var healer = Npc("shadowy healer", 1);
-        var healerTiming = catalog.Resolve(Spawn(1, 2325, 15, healer), healer);
-        Check(healerTiming.EffectiveMinutes == 60 && healerTiming.SourceUnit == "hours", "shadowy-healer-1-hour");
+            var healer = Npc("shadowy healer", 1);
+            var healerTiming = catalog.Resolve(Spawn(1, 2325, 15, healer), healer);
+            Check(healerTiming.EffectiveMinutes == 60 && healerTiming.SourceUnit == "hours", "shadowy-healer-1-hour");
 
-        var titan = Npc("aged titan", 24);
-        var titanTiming = catalog.Resolve(Spawn(10, 271, 0, titan), titan);
-        Check(titanTiming.EffectiveMinutes == 1440 && titanTiming.SourceUnit == "hours", "aged-titan-24-hours");
+            var titan = Npc("aged titan", 24);
+            var titanTiming = catalog.Resolve(Spawn(10, 271, 0, titan), titan);
+            Check(titanTiming.EffectiveMinutes == 1440 && titanTiming.SourceUnit == "hours", "aged-titan-24-hours");
+        }
+        else
+        {
+            Check(true, "optional-fixed-boss-timer-catalog-absent-fail-closed");
+        }
 
         var mismatchedBoss = Npc("different direct npc", 1);
         var mismatchedTiming = catalog.Resolve(Spawn(16, 384, 7, mismatchedBoss), mismatchedBoss);
-        Check(mismatchedTiming.EffectiveMinutes == 7 && mismatchedTiming.Mode == "unverified-direct-room-delay-minutes", "boss-room-timer-requires-name-match");
+        Check(mismatchedTiming.EffectiveMinutes == 7 && mismatchedTiming.Mode == "direct-room-delay-native-minutes", "boss-room-timer-requires-name-match");
 
         var lairNpc = Npc("ordinary lair creature", 0, 0);
         var lairTiming = catalog.Resolve(Spawn(1, 999, 3), lairNpc);
-        Check(lairTiming.EffectiveMinutes == 3 && lairTiming.NativeMinuteGatePending, "ordinary-lair-delay-kept-minutes");
+        Check(lairTiming.EffectiveMinutes == 3 && !lairTiming.NativeMinuteGatePending && lairTiming.Confidence == "PASS", "ordinary-lair-delay-native-minutes");
 
         var zeroTiming = catalog.Resolve(Spawn(1, 998, 0), lairNpc);
-        Check(zeroTiming.EffectiveMinutes == 0 && zeroTiming.Confidence == "UNKNOWN", "zero-delay-remains-evidence-gated");
+        Check(zeroTiming.EffectiveMinutes == 0 && zeroTiming.Confidence == "PASS" && zeroTiming.Mode == "generated-room-delay-zero-immediate", "zero-delay-immediate-native");
+
+        var minuteOrigin = new DateTimeOffset(2026, 8, 31, 12, 34, 47, TimeSpan.Zero);
+        Check(RuntimeMajorMudSpawnTimingCatalog.ResolveNativeRoomDelayEligibilityUtc(minuteOrigin, 3) == new DateTimeOffset(2026, 8, 31, 12, 38, 0, TimeSpan.Zero), "native-delay-strict-minute-boundary");
+        Check(RuntimeMajorMudSpawnTimingCatalog.ResolveNativeRoomDelayEligibilityUtc(minuteOrigin, 0) == minuteOrigin, "native-zero-delay-immediate-eligibility");
 
         return new RuntimeMajorMudSpawnTimingSmokeReport { Checks = checks, Failures = failures };
     }

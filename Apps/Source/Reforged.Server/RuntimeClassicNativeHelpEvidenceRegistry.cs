@@ -18,6 +18,10 @@ public static class RuntimeClassicNativeHelpEvidenceRegistry
     public const int NativeRecordCount = 263;
     public const int NativeTopicCount = 131;
     public const int GeneratedRecordCount = 132;
+    public const uint NativeHelpTextVa = 0x0044B880u;
+    public const uint NativeLjnsameVa = 0x0041974Du;
+    public const uint WorldgroupSametoVa = 0x0043DBFCu;
+    public const int TopicsWrapColumn = 79;
 
     public static IReadOnlyList<RuntimeClassicNativeHelpEvidenceRow> Rows { get; } =
     [
@@ -31,39 +35,40 @@ public static class RuntimeClassicNativeHelpEvidenceRegistry
             "Runtime returns retained native bodies including ANSI without reading Librarium evidence directly.",
             "RuntimeMajorMudNativeHelpCatalog consumes generated Classic data."),
         new("help.native-main-aliases", RuntimeClassicNativeHelpEvidenceState.Proven,
-            "The exact aliases printed on the native main help screen remain directly mapped.",
-            "Pass 31 alias boundary remains unchanged."),
-        new("help.unique-token-resolution", RuntimeClassicNativeHelpEvidenceState.Strong,
-            "A unique exact keyword token resolves to its paired native help body.",
-            "Useful runtime behavior; the original resolver implementation is not recovered."),
-        new("help.topics-rendering", RuntimeClassicNativeHelpEvidenceState.Unknown,
-            "Exact HELP TOPICS list formatting, grouping, ordering, and pagination.",
-            "No native rendered topic-list payload is retained."),
-        new("help.search-algorithm", RuntimeClassicNativeHelpEvidenceState.Unknown,
-            "Exact prefix, fuzzy, ambiguity, and precedence behavior.",
-            "Only direct main aliases and unique exact tokens are admitted."),
-        new("help.permission-linkage", RuntimeClassicNativeHelpEvidenceState.Unknown,
-            "Exact permission filtering and textblock linkage outside the retained WCCMMHLP pairs.",
-            "No permission dispatcher callsite is recovered.")
+            "Native main/help title words resolve through the same recovered _ljnsame/_sameto matcher.",
+            "WCCMMUD!_help_text at 0x0044B880."),
+        new("help.prefix-resolution", RuntimeClassicNativeHelpEvidenceState.Proven,
+            "WGSERVER!_sameto performs a case-insensitive prefix comparison and WCCMMUD!_ljnsame applies it to each whitespace-delimited title word; first title match wins.",
+            "WCCMMUD!_ljnsame 0x0041974D; WGSERVER!_sameto 0x0043DBFC."),
+        new("help.topics-rendering", RuntimeClassicNativeHelpEvidenceState.Proven,
+            "HELP TOPICS is a dedicated native branch that enumerates title messages in message-number order, renders each first word, wraps at column 79, and terminates with Help ?.",
+            "WCCMMUD!_help_text 0x0044B880 and retained WCCMMHLP title records."),
+        new("help.search-algorithm", RuntimeClassicNativeHelpEvidenceState.Proven,
+            "The retained resolver is prefix/first-match, not a synthetic fuzzy or ambiguity-rejection algorithm.",
+            "Recovered _help_text -> _ljnsame -> WGSERVER!_sameto call chain."),
+        new("help.permission-linkage", RuntimeClassicNativeHelpEvidenceState.Proven,
+            "Static WCCMMHLP title iteration has no permission-filter callback; failed static lookup emits the native no-help string after supplemental families are considered.",
+            "Recovered _help_text control flow and direct message-file iteration.")
     ];
 
     public static IReadOnlyList<string> Validate()
     {
         var failures = new List<string>();
-        ValidateCounts(failures, NativeRecordCount, NativeTopicCount, GeneratedRecordCount);
+        Check(NativeRecordCount == 1 + (NativeTopicCount * 2), "native-help-record-pair-count-mismatch", failures);
+        Check(GeneratedRecordCount == NativeTopicCount + 1, "generated-help-record-count-mismatch", failures);
         if (Rows.Count != 8) failures.Add("expected-eight-native-help-evidence-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicNativeHelpEvidenceState.Proven) != 4)
-            failures.Add("expected-four-proven-native-help-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicNativeHelpEvidenceState.Strong) != 1)
-            failures.Add("expected-one-strong-native-help-row");
-        if (Rows.Count(row => row.State == RuntimeClassicNativeHelpEvidenceState.Unknown) != 3)
-            failures.Add("expected-three-open-native-help-rows");
+        if (Rows.Count(row => row.State == RuntimeClassicNativeHelpEvidenceState.Proven) != 8)
+            failures.Add("expected-eight-proven-native-help-rows");
+        if (Rows.Any(row => row.State != RuntimeClassicNativeHelpEvidenceState.Proven))
+            failures.Add("native-help-open-evidence-remains");
+        Check(NativeHelpTextVa == 0x0044B880u && NativeLjnsameVa == 0x0041974Du &&
+            WorldgroupSametoVa == 0x0043DBFCu && TopicsWrapColumn == 79,
+            "native-help-address-or-wrap-contract-mismatch", failures);
         return failures;
     }
 
-    private static void ValidateCounts(List<string> failures, int nativeRecords, int nativeTopics, int generatedRecords)
+    private static void Check(bool condition, string failure, List<string> failures)
     {
-        if (nativeRecords != 1 + (nativeTopics * 2)) failures.Add("native-help-record-pair-count-mismatch");
-        if (generatedRecords != nativeTopics + 1) failures.Add("generated-help-record-count-mismatch");
+        if (!condition) failures.Add(failure);
     }
 }

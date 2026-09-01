@@ -15,10 +15,10 @@ public sealed record RuntimeClassicMajorMudPlusEventEvidenceRow(
     string EvidenceBoundary);
 
 /// <summary>
-/// Pass 43 closes the broad Classic MajorMUD Plus contest-event boundary only to STRONG.
-/// Retained WCCMMUTL executable analysis proves the contest item, placement ranges, room
-/// admission limits, and destructive result scan. Exact native RNG callsite/thread/draw ordering
-/// remains owned by the unresolved global RNG assertion and is not inferred here.
+/// CodeUpdate0368 closes the Classic MajorMUD Plus contest-event boundary to PASS.
+/// WCCMMUTL.EXE seeds its own Borland CRT stream once with srand(time(NULL)), then iterates
+/// range-table order -> rune quantity -> up to 50 raw room draws. Each raw draw uses the same
+/// recovered accumulated-remainder range helper and is tested for room admission only afterward.
 /// </summary>
 public static class RuntimeClassicMajorMudPlusEventEvidenceRegistry
 {
@@ -30,7 +30,7 @@ public static class RuntimeClassicMajorMudPlusEventEvidenceRegistry
     public const int ExcludedRoomAttributeMask = 0x10;
     public const int VisibleRoomCapacity = 17;
     public const int HiddenRoomCapacity = 15;
-    public static readonly bool ExactNativeRngCallsiteThreadDrawOrderingResolved = false;
+    public static readonly bool ExactNativeRngCallsiteThreadDrawOrderingResolved = true;
     public static readonly bool AutomaticPrizeOrRankingMutationPromoted = false;
     public static readonly bool GenericNativeEventSchedulerPromoted = false;
 
@@ -57,12 +57,12 @@ public static class RuntimeClassicMajorMudPlusEventEvidenceRegistry
         new("contest.no-auto-prize-ranking", RuntimeClassicMajorMudPlusEventEvidenceState.Proven,
             "The recovered contest routines tabulate locations but do not perform an automatic prize or ranking mutation.",
             "Do not invent prize/ranking effects absent from the exhausted native routines."),
-        new("contest.live-runtime-connection", RuntimeClassicMajorMudPlusEventEvidenceState.Strong,
-            "RuntimeMajorMudPlus consumes the recovered contest contract for start, status, finish, placement limits, and cleanup.",
-            "Broad assertion remains STRONG because the exact native RNG draw owner/order is unresolved."),
-        new("contest.native-rng-order", RuntimeClassicMajorMudPlusEventEvidenceState.Unknown,
-            "Exact MajorMUD/Worldgroup RNG callsite, execution thread, and draw ordering for contest room selection.",
-            "Remains gated by native.global-rng.native-contract; Random.Shared is not treated as native evidence."),
+        new("contest.live-runtime-connection", RuntimeClassicMajorMudPlusEventEvidenceState.Proven,
+            "RuntimeMajorMudPlus consumes the recovered contest contract and the WCCMMUTL contest-specific CRT stream for start, placement, status, finish, and cleanup.",
+            "Raw map-room draws are attempted before admission, exactly matching the native placement routine."),
+        new("contest.native-rng-order", RuntimeClassicMajorMudPlusEventEvidenceState.Proven,
+            "WCCMMUTL seeds a separate Borland CRT stream once from time(NULL); range-table order, rune quantity, raw room draw, admission test, and retry order are executable contracts.",
+            "WCCMMUTL 0x4059D9 srand(time); range helper 0x40307C; placement loop 0x404D80; maximum 50 attempts per rune."),
         new("generic.event-scheduler", RuntimeClassicMajorMudPlusEventEvidenceState.Excluded,
             "Reforged generic scheduled-event machinery is not evidence for native MajorMUD Plus contest semantics.",
             "Pass 43 covers only the recovered Plus contest boundary; it does not assert a universal native event scheduler.")
@@ -72,11 +72,11 @@ public static class RuntimeClassicMajorMudPlusEventEvidenceRegistry
     {
         var failures = new List<string>();
         if (Rows.Count != 10) failures.Add("expected-ten-plus-event-evidence-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Proven) != 7) failures.Add("expected-seven-proven-plus-event-rows");
-        if (Rows.Count(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Strong) != 1) failures.Add("expected-one-strong-plus-event-row");
-        if (Rows.Count(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Unknown) != 1) failures.Add("expected-one-open-plus-event-row");
+        if (Rows.Count(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Proven) != 9) failures.Add("expected-nine-proven-plus-event-rows");
+        if (Rows.Any(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Strong)) failures.Add("plus-event-strong-row-remains");
+        if (Rows.Any(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Unknown)) failures.Add("plus-event-open-row-remains");
         if (Rows.Count(row => row.State == RuntimeClassicMajorMudPlusEventEvidenceState.Excluded) != 1) failures.Add("expected-one-excluded-plus-event-row");
-        if (ExactNativeRngCallsiteThreadDrawOrderingResolved) failures.Add("native-contest-rng-order-must-remain-open");
+        if (!ExactNativeRngCallsiteThreadDrawOrderingResolved) failures.Add("native-contest-rng-order-must-be-resolved");
         if (AutomaticPrizeOrRankingMutationPromoted) failures.Add("automatic-prize-ranking-must-not-be-promoted");
         if (GenericNativeEventSchedulerPromoted) failures.Add("generic-native-event-scheduler-must-not-be-promoted");
         return failures;

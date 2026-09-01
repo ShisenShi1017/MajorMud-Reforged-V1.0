@@ -10,6 +10,9 @@ public static class RuntimeClassicCharacterProgressionFormula
     public const string CharacterPointAwardFormulaId = "character.stock_cp_award";
     public const string PicklocksFormulaId = "character.stock_picklocks";
     public const int PicklocksGrantAbilityId = 37;
+    public const int FindTrapsGrantAbilityId = 40;
+    public const int DisarmTrapsAbilityId = 41;
+    public const int FindTrapsValueAbilityId = 179;
     public const int MaximumLives = 9;
     public const int LivesPerPromotion = 5;
 
@@ -114,6 +117,13 @@ public static class RuntimeClassicCharacterProgressionFormula
         return total;
     }
 
+    public static int TrapsBase(int level, int agility, int intellect, int charm)
+    {
+        if (level < 0) throw new ArgumentOutOfRangeException(nameof(level));
+        var effectiveLevel = level <= 15 ? level : ((level - 15) / 2) + 15;
+        return checked((agility + intellect + checked(charm * 2) + checked(effectiveLevel * 28)) / 7);
+    }
+
     public static int PicklocksBase(int level, int agility, int intellect)
     {
         if (level < 0) throw new ArgumentOutOfRangeException(nameof(level));
@@ -158,6 +168,54 @@ public static class RuntimeClassicCharacterProgressionFormula
         value = checked(value + acquiredPicklocksValue + equipmentPicklocksValue);
         value = checked(value + RuntimeClassicStatusProjection.Numeric(character, "picklocks"));
         return Math.Max(0, value);
+    }
+
+    public static bool HasFindTrapsGrant(RuntimeCharacterRecord character)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        return character.Skills.Keys.Any(key => LegacyAbilityId(key) == FindTrapsGrantAbilityId)
+            || character.Skills.ContainsKey("traps")
+            || character.Skills.ContainsKey("findtraps")
+            || character.Skills.ContainsKey("find_traps");
+    }
+
+    public static int FindTrapsValue(RuntimeCharacterRecord character)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        if (!HasFindTrapsGrant(character)) return 0;
+        if (!character.Skills.Keys.Any(key => LegacyAbilityId(key) == FindTrapsGrantAbilityId))
+        {
+            if (character.Skills.TryGetValue("findtraps", out var imported)) return Math.Max(0, imported);
+            if (character.Skills.TryGetValue("find_traps", out imported)) return Math.Max(0, imported);
+            if (character.Skills.TryGetValue("traps", out imported)) return Math.Max(0, imported);
+        }
+        var agility = ReadStat(character.BaseStats, "agility", "agi", "agl");
+        var intellect = ReadStat(character.BaseStats, "intellect", "intelligence", "int");
+        var charm = ReadStat(character.BaseStats, "charm", "cha");
+        var values = RuntimeCharacterAbilityValues.Restore(character.Conditions);
+        var grant = RuntimeCharacterAbilityValues.Read(values, FindTrapsGrantAbilityId);
+        var grantEquipment = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "find_traps_ability_bonus", grant);
+        var find = RuntimeCharacterAbilityValues.Read(values, FindTrapsValueAbilityId);
+        var findEquipment = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "find_traps_bonus", find);
+        return Math.Max(0, checked(TrapsBase(character.Level, agility, intellect, charm) + grant + grantEquipment + find + findEquipment + RuntimeClassicStatusProjection.Numeric(character, "find_traps")));
+    }
+
+    public static int DisarmTrapsValue(RuntimeCharacterRecord character)
+    {
+        ArgumentNullException.ThrowIfNull(character);
+        if (!HasFindTrapsGrant(character)) return 0;
+        if (!character.Skills.Keys.Any(key => LegacyAbilityId(key) == FindTrapsGrantAbilityId))
+        {
+            foreach (var key in new[] { "traps", "disarmtraps", "disarm_traps" })
+                if (character.Skills.TryGetValue(key, out var imported)) return Math.Max(0, imported);
+        }
+        var agility = ReadStat(character.BaseStats, "agility", "agi", "agl");
+        var intellect = ReadStat(character.BaseStats, "intellect", "intelligence", "int");
+        var charm = ReadStat(character.BaseStats, "charm", "cha");
+        var values = RuntimeCharacterAbilityValues.Restore(character.Conditions);
+        var disarm = RuntimeCharacterAbilityValues.Read(values, DisarmTrapsAbilityId);
+        var equipment = RuntimeClassicCharacterFormulaCalculator.ResolveProjectedEquipmentContribution(character, "disarm_traps_bonus", disarm);
+        return Math.Max(0, checked(TrapsBase(character.Level, agility, intellect, charm) + disarm + equipment + RuntimeClassicStatusProjection.Numeric(character, "traps")));
     }
 
     public static int LivesAfterPromotion(int currentLives)

@@ -51,8 +51,9 @@ public static class RuntimeBundleDSearchRuntime
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    public string ExecuteClassicSearch(RuntimeSession session)
+    public string ExecuteClassicSearch(RuntimeSession session, string? direction = null)
     {
+        if (!string.IsNullOrWhiteSpace(direction)) return ExecuteClassicDirectionalSearch(session, direction);
         if (session.Actor is not RuntimeCharacterActor actor) return "Only characters can search.";
         RuntimeBundleDSearchRuntime.EnsureLoaded(_characters.ProjectRoot, session.World.Definition.Id);
         var character = _characters.LoadCharacter(actor.Id);
@@ -91,17 +92,6 @@ public sealed partial class RuntimeLiveGameplayFacade
                 100, false, false, new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase) { ["gate_kind"] = exit.GateKind, ["qualifier"] = exit.Qualifier });
         }
 
-        // Native trap state 2 is a hidden exit trap. SEARCH is the discovery owner; the exact
-        // native SEARCH probability remains separately evidence-gated, so it uses the existing
-        // Bundle-D search roll until that arithmetic is recovered. A successful find exposes the
-        // trap globally by moving its native state from hidden (2) to active (0).
-        foreach (var exit in session.CurrentRoom.Exits)
-        {
-            if (!TryGetClassicExitTrap(session, exit.Direction, out var trap, out var trapState) || trapState != 2) continue;
-            targets[trap.ExitId] = new(trap.ExitId, session.CurrentRoom.Id, "exit_trap", 100, false, false,
-                new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase) { ["native_trap_state"] = "2", ["direction"] = trap.Direction });
-        }
-
         foreach (var npc in LivingNpcsInRoom(session).Where(npc =>
             npc.Metadata.TryGetValue("hidden", out var hidden) && bool.TryParse(hidden, out var isHidden) && isHidden))
         {
@@ -122,13 +112,64 @@ public sealed partial class RuntimeLiveGameplayFacade
             Read(character.BaseStats, "int", "intellect"), Read(character.BaseStats, "cha", "charm"), capability.Modifiers),
             targets.Values, Random.Shared);
 
-        foreach (var found in result.NewlyDiscoveredTargetIds)
-            RevealClassicExitTrap(session, found);
-
         RuntimeBundleDSearchRuntime.Save(_characters.ProjectRoot, session.World.Definition.Id,
             _sessions.ActiveSessions.Where(x => x.Actor is RuntimeCharacterActor).Select(x => x.Actor.Id).Append(actor.Id));
         return result.Message;
     }
+
+    private string ExecuteClassicDirectionalSearch(RuntimeSession session, string direction)
+    {
+        if (session.Actor is not RuntimeCharacterActor actor) return "Only characters can search.";
+        var character = _characters.LoadCharacter(actor.Id);
+        if (character is null) return "Your character record is unavailable.";
+        if (RuntimeClassicStatusProjection.IsVisionBlocked(character)) return RuntimeClassicCombatAnsi.Warning("You are blind.");
+        var normalized = NormalizeClassicSearchDirection(direction);
+        if (normalized is null) return "SEARCH <direction>";
+        var word = ClassicDirectionWord(normalized);
+        var nothing = normalized switch
+        {
+            "U" => "You notice nothing different above you.",
+            "D" => "You notice nothing different below you.",
+            _ => $"You notice nothing different to the {word}."
+        };
+        var exit = session.World.FindExit(session.CurrentRoom, normalized);
+        if (exit is null) return nothing;
+        var authority = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot);
+        if (!authority.TryGet(exit.Id, out var native)) return nothing;
+        if (native.RoomType == 6)
+        {
+            var state = Living(session).ReadClassicHiddenExitState(exit.Id, native.Para1);
+            if ((state & 2) == 0) return nothing;
+            var threshold = Math.Max(3, ResolveEffectiveSearchPerception(character) - 15);
+            if (Random.Shared.Next(0, 100) >= threshold) return nothing;
+            Living(session).WriteClassicHiddenExitStateWithNativeReset(exit.Id, 4, DateTimeOffset.UtcNow);
+            return normalized switch
+            {
+                "U" => "You found an exit upwards!",
+                "D" => "You found an exit downwards!",
+                _ => $"You found an exit to the {word}!"
+            };
+        }
+        if (native.RoomType == 9)
+        {
+            var threshold = RuntimeClassicCharacterProgressionFormula.FindTrapsValue(character);
+            if (Random.Shared.Next(0, 100) >= threshold) return nothing;
+            return normalized switch
+            {
+                "U" => "You found a trap above you!",
+                "D" => "You found a trap below you!",
+                _ => $"You found a trap to the {word}!"
+            };
+        }
+        return nothing;
+    }
+
+    private static string? NormalizeClassicSearchDirection(string value) => value.Trim().ToUpperInvariant() switch
+    {
+        "N" or "NORTH" => "N", "S" or "SOUTH" => "S", "E" or "EAST" => "E", "W" or "WEST" => "W",
+        "NE" or "NORTHEAST" => "NE", "NW" or "NORTHWEST" => "NW", "SE" or "SOUTHEAST" => "SE", "SW" or "SOUTHWEST" => "SW",
+        "U" or "UP" => "U", "D" or "DOWN" => "D", _ => null
+    };
 
     private static int Read(IReadOnlyDictionary<string, int> values, params string[] keys)
     {

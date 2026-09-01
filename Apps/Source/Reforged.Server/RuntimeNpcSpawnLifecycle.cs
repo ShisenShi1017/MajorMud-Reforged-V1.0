@@ -199,6 +199,34 @@ public sealed partial class RuntimeLivingWorldService
         }
     }
 
+    public RuntimeNpcLifecycleTickResult RequestNativeRoomGenerationReset(string roomId, DateTimeOffset nowUtc, long? worldTick = null)
+    {
+        if (string.IsNullOrWhiteSpace(roomId)) throw new ArgumentException("Room id is required.", nameof(roomId));
+        lock (_gate)
+        {
+            // Native SYSOP RESET ROOM clears the room's generated-monster count; it does not
+            // kill active monsters. Reforged therefore leaves living instances untouched and
+            // makes only absent/dead materialized slots immediately generation-eligible.
+            foreach (var current in _npcs.Values.Where(npc => !npc.Alive
+                         && npc.HomeRoomId.Equals(roomId.Trim(), StringComparison.OrdinalIgnoreCase)
+                         && !IsSpawnSlotDisabled(npc.Metadata)).ToArray())
+            {
+                var metadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase)
+                {
+                    ["npc_lifecycle_state"] = "waiting_to_respawn",
+                    ["npc_respawn_scheduled_at_utc"] = nowUtc.ToString("O"),
+                    ["native_sysop_reset_room_requested_at_utc"] = nowUtc.ToString("O")
+                };
+                _npcs[current.InstanceId] = current with { RespawnAtUtc = nowUtc, Metadata = metadata };
+            }
+            PublishLivingWorldEventLocked("native-sysop-reset-room-generation", roomId.Trim(), roomId.Trim(), nowUtc);
+            var result = TickNpcSpawnLifecycleLocked(nowUtc, worldTick, roomId.Trim());
+            Save();
+            SaveLivingWorldCompletionLocked();
+            return result;
+        }
+    }
+
     public RuntimeNpcLifecycleTransition? EnterNpcRespawnWait(string instanceId, DateTimeOffset nowUtc, string reason)
     {
         lock (_gate)
@@ -260,7 +288,7 @@ public sealed partial class RuntimeLivingWorldService
         ClearRespawnBlockMetadata(metadata);
         ClearNpcTimedStatuses(metadata);
         var suppressed = IsSpawnSlotDisabled(metadata);
-        var due = suppressed ? (DateTimeOffset?)null : nowUtc.AddMinutes(Math.Max(0, current.RespawnMinutes));
+        var due = suppressed ? (DateTimeOffset?)null : ResolveNpcRespawnEligibilityUtc(current, nowUtc);
         metadata["npc_lifecycle_state"] = suppressed ? "respawn_suppressed" : "waiting_to_respawn";
         metadata["npc_lifecycle_owner"] = "world-runtime-spawn-slot";
         metadata["npc_last_despawn_reason"] = NormalizeReason(reason, "runtime-despawn");
@@ -295,9 +323,9 @@ public sealed partial class RuntimeLivingWorldService
         if (worldTick is < 0) throw new ArgumentOutOfRangeException(nameof(worldTick));
         lock (_gate)
         {
-            // Explicit diagnostic/admin tick retains the ability to admit every due slot.
-            // The live world heartbeat does not call this path; native gameplay admission
-            // is room-entry driven through AdmitDueNpcRespawnsForRoom.
+            // Explicit diagnostic/admin tick admits every due slot. Native gameplay uses
+            // two admission paths into the same _generate_monster owner: room entry and the
+            // five-second background monster-create scan of active user rooms.
             var result = TickNpcSpawnLifecycleLocked(nowUtc, worldTick, admissionRoomId: null);
             if (result.Transitions.Count > 0)
             {
@@ -421,6 +449,21 @@ public sealed partial class RuntimeLivingWorldService
                     "RuntimeLivingWorldService",
                     ordered.Select(x => x.InstanceId).ToArray());
             }).ToArray();
+    }
+
+    private static DateTimeOffset ResolveNpcRespawnEligibilityUtc(RuntimeLivingNpcState current, DateTimeOffset nowUtc)
+    {
+        var mode = ReadMetadata(current.Metadata, "npc_respawn_timer_mode", string.Empty);
+        var nativeRoomDelay = mode.Equals("generated-room-delay-zero-immediate", StringComparison.OrdinalIgnoreCase)
+            || mode.Equals("generated-lair-delay-native-minutes", StringComparison.OrdinalIgnoreCase)
+            || mode.Equals("direct-room-delay-native-minutes", StringComparison.OrdinalIgnoreCase)
+            // Upgrade compatibility for snapshots written before CodeUpdate0368.
+            || mode.Equals("generated-room-delay-zero", StringComparison.OrdinalIgnoreCase)
+            || mode.Equals("generated-lair-delay-minutes", StringComparison.OrdinalIgnoreCase)
+            || mode.Equals("unverified-direct-room-delay-minutes", StringComparison.OrdinalIgnoreCase);
+        return nativeRoomDelay
+            ? RuntimeMajorMudSpawnTimingCatalog.ResolveNativeRoomDelayEligibilityUtc(nowUtc, Math.Max(0, current.RespawnMinutes))
+            : nowUtc.AddMinutes(Math.Max(0, current.RespawnMinutes));
     }
 
     private static RuntimeNpcLifecycleTransition CreateTransition(RuntimeNpcLifecycleTransitionKind kind,

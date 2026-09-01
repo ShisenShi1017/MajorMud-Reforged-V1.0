@@ -1,49 +1,49 @@
 {
-  "GeneratedAtUtc": "2026-08-31T04:45:00Z",
+  "GeneratedAtUtc": "2026-08-31T20:41:45Z",
   "ProjectRoot": "repository-local",
-  "PassCount": 169,
-  "StrongCount": 31,
+  "PassCount": 200,
+  "StrongCount": 0,
   "UnknownCount": 0,
   "ScoredRequirementCount": 200,
-  "StrictPercent": 84.5,
+  "StrictPercent": 100.0,
   "EvidenceBackedPercent": 100.0,
   "PartialSystemShellCount": 27,
   "RemainingSystemCount": 27,
   "Categories": [
     {
       "Category": "Administration & Host",
-      "Pass": 1,
-      "Strong": 1,
+      "Pass": 2,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 2,
-      "StrictPercent": 50.0,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Character & Status",
-      "Pass": 39,
-      "Strong": 7,
+      "Pass": 46,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 46,
-      "StrictPercent": 84.8,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Combat",
-      "Pass": 16,
-      "Strong": 2,
+      "Pass": 18,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 18,
-      "StrictPercent": 88.9,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Commands & Help",
-      "Pass": 10,
-      "Strong": 3,
+      "Pass": 13,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 13,
-      "StrictPercent": 76.9,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
@@ -102,11 +102,11 @@
     },
     {
       "Category": "Optional / Rankings / Extensions",
-      "Pass": 0,
-      "Strong": 3,
+      "Pass": 3,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 3,
-      "StrictPercent": 0.0,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
@@ -138,29 +138,29 @@
     },
     {
       "Category": "Rooms & World",
-      "Pass": 14,
-      "Strong": 7,
+      "Pass": 21,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 21,
-      "StrictPercent": 66.7,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Spells & Effects",
-      "Pass": 1,
-      "Strong": 2,
+      "Pass": 3,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 3,
-      "StrictPercent": 33.3,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     },
     {
       "Category": "Timers / Resets / World Rules",
-      "Pass": 9,
-      "Strong": 6,
+      "Pass": 15,
+      "Strong": 0,
       "Unknown": 0,
       "Total": 15,
-      "StrictPercent": 60.0,
+      "StrictPercent": 100.0,
       "EvidenceBackedPercent": 100.0
     }
   ]

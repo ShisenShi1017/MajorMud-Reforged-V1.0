@@ -861,12 +861,20 @@ public sealed class ServerNetworkHost
             try
             {
                 RuntimeIdentity.ValidateClassicGivenName(given.Trim());
-                if (!string.IsNullOrWhiteSpace(family))
-                    RuntimeIdentity.ValidateClassicFamilyName(family.Trim());
             }
             catch (InvalidOperationException exception)
             {
-                selected = string.IsNullOrWhiteSpace(given) ? 1 : 2;
+                selected = 1;
+                message = exception.Message;
+                return null;
+            }
+            try
+            {
+                RuntimeIdentity.ValidateClassicFamilyName(family.Trim());
+            }
+            catch (InvalidOperationException exception)
+            {
+                selected = 2;
                 message = exception.Message;
                 return null;
             }

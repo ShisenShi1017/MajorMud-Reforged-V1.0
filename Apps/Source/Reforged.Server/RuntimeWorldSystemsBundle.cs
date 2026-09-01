@@ -289,10 +289,10 @@ public sealed partial class RuntimeLiveGameplayFacade
             var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
             var context = new RuntimeQuestDialogueContext(character, items);
             var result = authority.Execute(ParseLegacyId(npc.NpcId), keyword, context);
-            if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(character, result.Character))
+            if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, result.Character, out var evilActionBlock))
             {
-                CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "warning-blocked-evil-action");
-                return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+                CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "blocked-evil-action");
+                return evilActionBlock;
             }
             _characters.SaveCharacter(result.Character);
             AwardCommittedGangExperience(character, result.Character);
@@ -360,10 +360,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
 
         var updatedCharacter = context.ToCharacterRecord();
-        if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(character, updatedCharacter))
+        if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, updatedCharacter, out var evilActionBlock))
         {
-            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "warning-blocked-evil-action");
-            return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+            CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "blocked-evil-action");
+            return evilActionBlock;
         }
         var hostIntents = ApplyQuestWorldIntents(session, updatedCharacter, result.Events, result.TriggerId, result.ScriptId);
         updatedCharacter = hostIntents.Character;

@@ -79,7 +79,7 @@ public static class RuntimeClassicCharacterAppearance
     }
 
     public const int ShadowAbilityId = 9;
-    public const string ShadowLookPayload = "A shadowy figure!";
+    public const string ShadowLookPayload = "A shadowy figure";
 
     public static bool TryResolveEquippedShadowLookOverride(
         RuntimeCharacterRecord character,

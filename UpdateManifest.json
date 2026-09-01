@@ -9,19 +9,32 @@
   "generatedClassicDataTrackedInGit": false,
   "importedDatabasesArchivedLocalOnly": true,
   "savesPreserved": true,
-  "purpose": "Continue CodeUpdate0140 Classic parity closure with cumulative Data Reconstruction, Economy & Services, Host / Persistence / Worldgroup, Import / Export / Limits / Recovery, Items & Inventory, NPC & AI, and Quests / Scripts / Triggers closure while retaining Creator Studio.",
+  "purpose": "Continue CodeUpdate0140 Classic parity closure by integrating the supplied Character/Status, Rooms/World, Timers/Resets/World Rules, and final STRONG closure packages. Borin headless training is synchronized with the verified 200 PASS / 0 STRONG baseline and treats parity regressions as tester defects.",
   "currentValidation": {
     "entrypoint": "python Tools/validator.py",
     "runtimeParityGate": "--smoke-classic-parity-closure",
     "assertionLedger": "Librarium/Parity/majormud_parity_assertions.json",
     "scorecard": "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-    "pass": 169,
-    "strong": 31,
+    "pass": 200,
+    "strong": 0,
     "unknown": 0,
-    "strictPercent": 84.5,
-    "evidenceBackedPercent": 100.0
+    "strictPercent": 100.0,
+    "evidenceBackedPercent": 100.0,
+    "focusedRuntimeGate": "--smoke-classic-final-strong-closure",
+    "borinParityTrainingGate": "--smoke-classic-parity-closure",
+    "borinParityTrainingStatic": "44/44 PASS",
+    "finalStrongStaticNativeAfterBorin": "92/92 PASS"
   },
   "reports": [
+    "Librarium/Parity/majormud_final_strong_to_pass_closure_0369.json",
+    "Librarium/Parity/majormud_sysop_worldgroup_access_closure_0369.json",
+    "Librarium/Parity/majormud_rankings_native_closure_0369.json",
+    "Librarium/Parity/majormud_casino_arena_native_closure_0369.json",
+    "Librarium/Parity/majormud_timers_resets_world_rules_complete_evidence_0368.json",
+    "Librarium/Parity/majormud_wccmmud_configuration_authority_0368.json",
+    "Librarium/Parity/majormud_rooms_world_native_authority_0367.json",
+    "Librarium/Parity/majormud_rooms_world_complete_evidence_0367.json",
+    "Librarium/Parity/majormud_character_status_complete_evidence_0366.json",
     "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
     "Reports/RuntimeVerification/quests_scripts_triggers_static_verification_0365.json",
     "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
@@ -73,12 +86,12 @@
   ],
   "evidencePolicy": "Librarium is authoritative. Data is generated runtime output and is not committed as source. Imported databases and raw evidence are local-only archives. Classic behavior is evidence-locked; unresolved exact behavior must not be guessed.",
   "knownLimitations": [
-    "The 31 STRONG assertions are evidence-bounded and are not represented as exact-native PASS.",
+    "Character/Status, Rooms/World, Timers/Resets/World Rules, and the 11 final-closure assertions pass their focused local gates.",
     "Generated Data/Classic must be regenerated from Librarium in clean environments before server bootstrap.",
     "The consolidated native verification report retains 2,681 supplied checks with zero reported failures; raw native artifacts are intentionally not packaged.",
     "GitHub Actions remains the official gate after push.",
     "The broader item smoke retains two pre-existing corpse-resurrection equipment failures: the death equipment slot is not recorded and occupied-slot restoration does not yet displace safely."
   ],
-  "verificationStatus": "LOCAL_VERIFIED_WITH_KNOWN_ITEM_GAP: Reforged.Server Release builds with zero warnings and zero errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and cumulative parity gates pass. The consolidated validator completes 44/45 stages and stops truthfully on the two documented corpse-equipment restoration assertions. Static/source checks pass for Data Reconstruction 34/34, Economy 40/40, Host/Persistence/Worldgroup 38/38, Items/Inventory 43/43, NPC/AI 24/24, and Quests/Scripts/Triggers 65/65; the retired 0362 verifier's three failures were stale intermediate-version totals rather than runtime/data failures.",
-  "updatedUtc": "2026-08-31T07:30:00Z"
+  "verificationStatus": "LOCAL_PARITY_VERIFIED: Release server and Reforged.App builds succeed with zero warnings/errors; Character/Status passes 47/47, Rooms/World passes 29/29, Timers/Resets/World Rules passes 22/22, final STRONG closure passes 18/18, host persistence passes at 200/0/0, and the cumulative parity gate passes. The broader current-health validator passes 44/45 stages and stops at the two documented corpse-resurrection equipment assertions.",
+  "updatedUtc": "2026-08-31T20:43:34Z"
 }

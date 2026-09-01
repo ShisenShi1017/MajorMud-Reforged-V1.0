@@ -25,6 +25,9 @@ public static class RuntimeClassicDeathLawPvpAuthority
     public const int GracefulExitDelaySeconds = RuntimeClassicTimingAuthority.GracefulExitDelaySeconds;
     public const int FiendAttackLockoutEvilPoints = 300;
     public const int LawfulAttackPenaltyMultiplier = 3;
+    public const int MinimumPvpLevel = 4;
+    public const int PlayerAttackBaseEvilPoints = 10;
+    public const int EvilRelationSlowUpdateRounds = 11;
     public const int NativePracticeArenaRoomType = 5;
     public const int DefaultGoodRespawnMap = 1;
     public const int DefaultGoodRespawnRoom = 2189;
@@ -69,7 +72,7 @@ public static class RuntimeClassicDeathLawPvpAuthority
             "FIEND" => RuntimeClassicLawConsequence.None,
             _ => RuntimeClassicLawConsequence.None
         };
-        if (evilPoints >= FiendAttackLockoutEvilPoints)
+        if (evilPoints > FiendAttackLockoutEvilPoints)
             consequence |= RuntimeClassicLawConsequence.AttackInitiationLocked;
         return consequence;
     }
@@ -92,12 +95,25 @@ public static class RuntimeClassicDeathLawPvpAuthority
     {
         if (attackerLevel < 1 || defenderLevel < 1) throw new ArgumentOutOfRangeException(nameof(attackerLevel), "PvP levels must be positive.");
         if (!IsPvpEnabled(maximumLevelDifference)) return false;
+        if (attackerLevel < MinimumPvpLevel || defenderLevel < MinimumPvpLevel) return false;
 
         // Native WCCMMUD setup: lower-level FIENDS do not receive level-range protection.
         if (defenderIsFiend && defenderLevel < attackerLevel) return true;
 
         // Zero is a valid native setting and therefore permits same-level PvP only.
         return Math.Abs(attackerLevel - defenderLevel) <= maximumLevelDifference;
+    }
+
+
+    public static int CalculatePlayerAttackEvilPoints(int defenderEvilPoints, bool defenderIsLawful)
+    {
+        // _attack_user_user passes base 10 into _add_evil_points. _add_evil_points suppresses
+        // the award for Seedy-or-worse targets (EP >= 30), triples it for Lawful/Saint,
+        // doubles it for Good, and otherwise preserves the ten-point base.
+        if (defenderEvilPoints >= 30) return 0;
+        if (defenderIsLawful || defenderEvilPoints < -200) return PlayerAttackBaseEvilPoints * 3;
+        if (defenderEvilPoints < -50) return PlayerAttackBaseEvilPoints * 2;
+        return PlayerAttackBaseEvilPoints;
     }
 
     public static int RequirePracticeArenaEntryHitPoints(RuntimeCharacterRecord character)

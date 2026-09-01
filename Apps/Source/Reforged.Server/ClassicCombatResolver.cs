@@ -397,6 +397,10 @@ public static class RuntimeClassicPhysicalFormulaCalculator
     }
 
     // MMUD Explorer modMMudFunc.bas 4678 and Nightmare Redux frmSwingCalc.frm 2006.
+    // The speedAdjustmentPercent parameter is retained for tooling/compatibility calculators.
+    // CodeUpdate0369 proves WCCMMUD.INI UPDATE_SPEED belongs to Worldgroup update/poll pacing
+    // and is not read by WCCMMUD!_compute_energy_used; live Classic gameplay therefore enters
+    // this formula through CalculateClassicLiveAttackEnergyCost at the native 100% branch.
     public static int CalculateAttackEnergyCost(
         int combatCode,
         int level,
@@ -425,7 +429,7 @@ public static class RuntimeClassicPhysicalFormulaCalculator
         if (strength > 0 && strength < itemStrengthRequirement)
             energy = checked(((((itemStrengthRequirement - strength) * 3) + 200) * energy) / 200);
 
-        // A non-default Speed adjustment is percentage-based and does not apply to Backstab.
+        // Analysis/compatibility branch only. It is not sourced from WCCMMUD.INI UPDATE_SPEED.
         if (speedAdjustmentPercent > 0 && speedAdjustmentPercent != 100 && !isBackstab)
             energy = checked((energy * speedAdjustmentPercent) / 100);
 
@@ -436,6 +440,20 @@ public static class RuntimeClassicPhysicalFormulaCalculator
 
         return energy;
     }
+
+    public static int CalculateClassicLiveAttackEnergyCost(
+        int combatCode,
+        int level,
+        int weaponSpeed,
+        int agility,
+        int strength = 0,
+        int encumbrancePercent = -1,
+        int itemStrengthRequirement = 0,
+        bool isBackstab = false) =>
+        CalculateAttackEnergyCost(
+            combatCode, level, weaponSpeed, agility, strength, encumbrancePercent,
+            itemStrengthRequirement, RuntimeClassicAttackSpeedBoundaryAuthority.ClassicLiveAttackSpeedPercent, isBackstab);
+
     // MMUD Explorer frmMain.frm 27917-27951 and MudInfo formula publication.
     // Classic natural critical chance is capped before Quick-and-Deadly, quest, and item modifiers.
     public static int CalculateNaturalCriticalChance(int level, int intellect, int agility, int charm)
@@ -580,8 +598,9 @@ public sealed class RuntimeClassicPhysicalFormulaSmokeReport
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 0, 50) == 18, "attack-energy-zero-encumbrance-75-percent"); report.Checks.Add("attack-energy-zero-encumbrance-75-percent");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 40, 50, 60) == 31, "attack-energy-strength-requirement-and-medium-encumbrance"); report.Checks.Add("attack-energy-strength-requirement-and-medium-encumbrance");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 100, 50) == 30, "attack-energy-heavy-encumbrance-125-percent"); report.Checks.Add("attack-energy-heavy-encumbrance-125-percent");
-            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80) == 19, "attack-energy-speed-adjustment"); report.Checks.Add("attack-energy-speed-adjustment");
-            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80, true) == 24, "backstab-ignores-speed-adjustment"); report.Checks.Add("backstab-ignores-speed-adjustment");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80) == 19, "attack-energy-analysis-speed-adjustment"); report.Checks.Add("attack-energy-analysis-speed-adjustment");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateAttackEnergyCost(2, 20, 100, 50, 50, 50, 50, 80, true) == 24, "backstab-analysis-ignores-speed-adjustment"); report.Checks.Add("backstab-analysis-ignores-speed-adjustment");
+            Require(RuntimeClassicPhysicalFormulaCalculator.CalculateClassicLiveAttackEnergyCost(2, 20, 100, 50, 50, 50, 50) == 24, "attack-energy-live-classic-native-default"); report.Checks.Add("attack-energy-live-classic-native-default");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(1, 50, 50, 50) == 1, "natural-critical-minimum-one"); report.Checks.Add("natural-critical-minimum-one");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(50, 100, 90, 80) == 13, "natural-critical-stat-vector"); report.Checks.Add("natural-critical-stat-vector");
             Require(RuntimeClassicPhysicalFormulaCalculator.CalculateNaturalCriticalChance(500, 500, 500, 500) == 75, "natural-critical-cap-75"); report.Checks.Add("natural-critical-cap-75");

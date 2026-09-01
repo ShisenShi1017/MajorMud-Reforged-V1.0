@@ -29533,7 +29533,7 @@
         "pull rug"
       ],
       "raw_value": "Action [on the D exit of this room]: move rug, pull rug",
-      "runtime_disposition": "command_alias_trigger_enabled_temporary_shared_door_timer_family",
+      "runtime_disposition": "command_alias_trigger_enabled_native_hidden_action_state",
       "evidence_refs": [
         {
           "source": "MMUD-Explorer",
@@ -29568,9 +29568,7 @@
         "source_room_required",
         "commands_preserved",
         "command_alias_semantics_promoted_0182",
-        "command_alias_semantics_promoted_0182",
-        "command_alias_semantics_promoted_0182",
-        "temporary_door_timer_family_confirmed_0288"
+        "native_hidden_action_state_recovered_0367"
       ],
       "accepted_commands": [
         "move rug",
@@ -29616,22 +29614,26 @@
           "source_room_match": "required",
           "exit_direction_match": "required"
         },
-        "state_effect": "temporarily_reveals_bound_exit_via_shared_classic_door_timer",
-        "repeatability": "temporary_retriggerable_after_normal_door_timer_reset",
-        "reset_timing": "shared_classic_door_timer_authority_exact_duration_not_yet_recovered",
-        "failure_message": "not_yet_decoded"
+        "state_effect": "reveals_bound_exit_native_state_16_to_8",
+        "repeatability": "idempotent_after_native_state_8",
+        "reset_timing": "none_in_native_exit_timer_dispatch_when_para2_zero",
+        "failure_message": "native_action_requires_exact_room_and_alias_match"
       },
-      "semantic_status": "strongly_correlated_command_activation",
-      "semantic_confidence": "strongly_correlated",
+      "semantic_status": "verified_native_command_activation",
+      "semantic_confidence": "proven",
       "semantic_provenance": [
         "MMExplorer Rooms-table Action value binds commands to a named exit direction",
-        "comma-separated variants contain abbreviations/synonyms and duplicates, supporting alias rather than sequence semantics"
+        "comma-separated variants contain abbreviations/synonyms and duplicates, supporting alias rather than sequence semantics",
+        "WGSERV RoomRec exit.map12.2248.d is RoomType 6 Para1=16 Para2=0 Para3=2687 Para4=2688",
+        "WCCMMUD native type-6 movement allows state bit 8 and background reset leaves state 8 unchanged when Para2=0"
       ],
-      "state_effect": "temporarily_reveals_bound_exit_via_shared_classic_door_timer",
-      "repeatability": "temporary_retriggerable_after_normal_door_timer_reset",
-      "reset_timing": "shared_classic_door_timer_authority_exact_duration_not_yet_recovered",
-      "failure_message": "not_yet_decoded",
-      "evidence_note_0288": "Operator-confirmed stock behavior: move/pull rug is temporary and follows normal MajorMUD door timers."
+      "state_effect": "reveals_bound_exit_native_state_16_to_8",
+      "repeatability": "idempotent_after_native_state_8",
+      "reset_timing": "none_in_native_exit_timer_dispatch_when_para2_zero",
+      "failure_message": "native_action_requires_exact_room_and_alias_match",
+      "evidence_note_0288": "Operator-confirmed stock behavior: move/pull rug is temporary and follows normal MajorMUD door timers.",
+      "bound_exit_id": "exit.map12.2248.d",
+      "evidence_note_0367": "Executable evidence supersedes the older operator timer-family assumption: this exact rug exit does not schedule/reset through the native background exit timer because Para2 is zero."
     },
     {
       "id": "interaction.map12.2256.w.272",

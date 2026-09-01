@@ -33,3 +33,23 @@ The repository inventory closure changes `native.repository-inventory-closure.fi
 
 - strict parity: **49.0%**
 - evidence-backed parity: **100.0%**
+
+
+## CodeUpdate0366 Character & Status closure
+
+Character & Status is now **46/46 PASS**. Direct target-build disassembly closes identity/name validation, Shadow LOOK precedence, the absence of a universal modifier pipeline, player-vs-player level/Evil-Point/Lawful admission, FORGIVE relation accounting, and the character-side law boundary. Guard spawn/movement cadence stays owned by the already-closed NPC & AI subsystem; generic Reforged bounty/witness/cooldown/logout policy is not Classic evidence.
+
+Current cumulative parity: **176 PASS / 24 STRONG / 0 UNKNOWN = 200** (**88.0% strict / 100.0% evidence-backed**).
+## CodeUpdate0367 Rooms & World closure
+
+Rooms & World is now **21/21 PASS**. Direct WGSERV RoomRec/WCCMMUD evidence closes the 3,490 special-exit authority, all 295 trap rows, non-consuming type-2 key traversal, native PICKLOCK/BASH and door reset semantics, SEARCH/DISARM/trap presentation and 300-second rearm, and the 26,668/26,668 room-description corpus. The legacy 12/2248 timer assertion is corrected by executable evidence: state 16 opens to state 8, but Para2=0 means no background 300-second reset is scheduled.
+
+The Rooms & World authority and evidence payload are integrated. Its focused runtime gate passes 29/29.
+
+
+
+## CodeUpdate0368 Timers / Resets / World Rules closure
+
+Timers / Resets / World Rules is now **15/15 PASS**. Direct WCCMMUD/WCCMMUTL evidence closes independent one-shot scheduler and fresh-start ownership, strict whole-minute Room.Delay semantics, both room-entry and five-second background monster-generation admission, narrow SYSOP RESET ROOM/AREA generation-counter mutations, the MajorMUD Plus rune-contest RNG/draw/admission/retry order, and all 44 visible WCCMMUD configuration prompts with exact numeric ranges and reload/startup ownership. Worldgroup arbitration between separately registered callbacks and its idle-poll wall-clock frequency remain explicitly host-owned boundaries rather than invented MajorMUD timing rules.
+
+Current verified parity: **200 PASS / 0 STRONG / 0 UNKNOWN = 200** (**100.0% strict / 100.0% evidence-backed**). Character/Status, Rooms/World, Timers/Resets/World Rules, and the final 11-boundary closure are locally executable.

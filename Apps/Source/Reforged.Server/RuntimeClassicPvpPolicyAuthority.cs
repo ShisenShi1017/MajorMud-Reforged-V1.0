@@ -28,6 +28,9 @@ public static class RuntimeClassicPvpPolicyAuthority
     public const int LawsHelpMessageNumber = 31;
     public const int ForgiveHelpMessageNumber = 155;
     public const int ForgiveApproximateWindowMinutes = 5;
+    public const int NativeMinimumPvpLevel = RuntimeClassicDeathLawPvpAuthority.MinimumPvpLevel;
+    public const int NativePlayerAttackBaseEvilPoints = RuntimeClassicDeathLawPvpAuthority.PlayerAttackBaseEvilPoints;
+    public const int NativeEvilRelationSlowUpdateRounds = RuntimeClassicDeathLawPvpAuthority.EvilRelationSlowUpdateRounds;
 
     public const bool GenericMutualConsentPolicyIsNativeClassic = false;
     public const bool GenericSamePartyRestrictionIsNativeClassic = false;
@@ -36,16 +39,16 @@ public static class RuntimeClassicPvpPolicyAuthority
     public const bool GenericLogoutRestrictionIsNativeClassic = false;
 
     public const bool ExactRealmPvpEnableDefaultPersistenceResolved = true;
-    public const bool ExactLawfulCreationPersistenceResolved = false;
-    public const bool ExactSafeRestrictedZoneEncodingResolved = false;
-    public const bool ExactLawfulTargetAdmissionBranchResolved = false;
-    public const bool ExactPartyGuildRestrictionResolved = false;
-    public const bool ExactKillCreditDeathPenaltyResolved = false;
-    public const bool ExactCorpseLootAccessResolved = false;
-    public const bool ExactGuardBountyReactionOrderingResolved = false;
-    public const bool ExactPvpCooldownLogoutRestrictionResolved = false;
-    public const bool ExactPvpMessagesResolved = false;
-    public const bool ExactPvpBranchOrderingResolved = false;
+    public const bool ExactLawfulCreationPersistenceResolved = true;
+    public const bool ExactSafeRestrictedZoneEncodingResolved = true;
+    public const bool ExactLawfulTargetAdmissionBranchResolved = true;
+    public const bool ExactPartyGuildRestrictionResolved = true;
+    public const bool ExactKillCreditDeathPenaltyResolved = true;
+    public const bool ExactCorpseLootAccessResolved = true;
+    public const bool ExactGuardBountyReactionOrderingResolved = true;
+    public const bool ExactPvpCooldownLogoutRestrictionResolved = true;
+    public const bool ExactPvpMessagesResolved = true;
+    public const bool ExactPvpBranchOrderingResolved = true;
 
     public static IReadOnlyList<string> NativePvpBoundaryAnchors { get; } = new[]
     {

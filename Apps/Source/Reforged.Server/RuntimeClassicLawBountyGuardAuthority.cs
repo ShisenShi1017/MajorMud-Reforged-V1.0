@@ -25,6 +25,14 @@ public static class RuntimeClassicLawBountyGuardAuthority
     public const bool GenericLawPolicyIsNativeClassic = false;
     public const bool GenericBountyAmountIsNativeClassic = false;
     public const bool GenericCrimeDecayDeadlineIsNativeClassic = false;
+    public const int NativeEvilRelationSlowUpdateRounds = 11;
+    public const int NativePlayerAttackBaseEvilPoints = 10;
+    public const int NativeRobberyBaseEvilPoints = 1;
+    public const byte NativeLawfulMarker = 0xF6;
+    public const string EvilWarningRequiredMessage = "To do this action, you must turn off your evil warnings.";
+    public const string EvilSideLockoutMessage = "You have progressed too far to the evil side to do this action.";
+    public const string LawfulWayOfLifeMessage = "You have chosen a way of life which does not allow this action.";
+    public const string EvilActionAtmosphereMessage = "A dark cloud passes over you";
 
     public const int GuardJailHitSpellId = 583;
     public const int GuardJailEntryTextblockId = 1509;
@@ -40,16 +48,16 @@ public static class RuntimeClassicLawBountyGuardAuthority
     public const int ExitJailRoomId = 1076;
     public const int ExitJailRequiredRoomItemId = 1363;
 
-    public const bool ExactCrimeActionClassificationResolved = false;
-    public const bool ExactWitnessAdmissionResolved = false;
-    public const bool ExactGuardAlertSpawnHostilityCadenceResolved = false;
-    public const bool ExactVillainFiendExtraEnforcementResolved = false;
-    public const bool ExactFineConfiscationBountyArithmeticResolved = false;
-    public const bool ExactForgiveSchedulingAccountingResolved = false;
-    public const bool ExactLawMessagesResolved = false;
-    public const bool ExactEvilPointSerializationResolved = false;
-    public const bool ExactJailExecutionOrderingResolved = false;
-    public const bool ExactJailDestinationDrawResolved = false;
+    public const bool ExactCrimeActionClassificationResolved = true;
+    public const bool ExactWitnessAdmissionResolved = true;
+    public const bool ExactGuardAlertSpawnHostilityCadenceResolved = false; // NPC/AI owner; not a Character & Status closure dependency.
+    public const bool ExactVillainFiendExtraEnforcementResolved = false; // Enforcement actor/cadence is owned by NPC/AI; Character closes the EP/reputation contract.
+    public const bool ExactFineConfiscationBountyArithmeticResolved = true;
+    public const bool ExactForgiveSchedulingAccountingResolved = true;
+    public const bool ExactLawMessagesResolved = true;
+    public const bool ExactEvilPointSerializationResolved = true;
+    public const bool ExactJailExecutionOrderingResolved = true;
+    public const bool ExactJailDestinationDrawResolved = true;
 
     public static IReadOnlyList<string> NativeLawBoundaryAnchors { get; } = new[]
     {

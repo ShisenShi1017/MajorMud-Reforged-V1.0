@@ -154,25 +154,25 @@ public sealed partial class RuntimeLiveGameplayFacade
             return "PvP is disabled by the SYSOP.";
         var attacker = _characters.LoadCharacter(attackerActor.Id) ?? throw new InvalidOperationException("PvP attacker save was not found.");
         var defender = _characters.LoadCharacter(defenderActor.Id) ?? throw new InvalidOperationException("PvP defender save was not found.");
-        var defenderReputation = defender.SemanticState?.Alignment?.Reputation ?? "Neutral";
+        var defenderAlignment = defender.SemanticState?.Alignment;
+        var defenderReputation = defenderAlignment?.Reputation ?? "Neutral";
         var defenderIsFiend = defenderReputation.Equals("Fiend", StringComparison.OrdinalIgnoreCase);
-        if (!RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(
+        var practiceArena = IsClassicPracticeArena(attackerSession);
+        if (!practiceArena && !RuntimeClassicDeathLawPvpAuthority.IsLevelRangeAllowed(
                 attacker.Level, defender.Level, pvpConfiguration.MaximumLevelDifference, defenderIsFiend))
-            return $"PvP attack denied: maximum level difference is {pvpConfiguration.MaximumLevelDifference}.";
+            return $"PvP attack denied: both players must be level {RuntimeClassicDeathLawPvpAuthority.MinimumPvpLevel}+ and within {pvpConfiguration.MaximumLevelDifference} level(s).";
+
         var characterCatalog = _characters.GetCatalog(attacker.WorldId);
         var attackerAlignment = attacker.SemanticState?.Alignment ?? RuntimeCharacterAlignmentResolver.CreateInitial(characterCatalog.AlignmentRuleContract);
-        if (!RuntimeCharacterAlignmentResolver.CanInitiateAttack(attackerAlignment, characterCatalog.AlignmentRuleContract))
-            return $"PvP attack denied: characters at {characterCatalog.AlignmentRuleContract.FiendAttackLockoutThreshold} evil points cannot initiate another attack.";
-        var practiceArena = IsClassicPracticeArena(attackerSession);
         RuntimeCharacterAlignmentState? projectedAlignment = null;
         if (!practiceArena)
         {
-            var defenderIsLawful = defender.Conditions.TryGetValue("lawful", out var lawfulRaw) &&
-                (lawfulRaw.Equals("1", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("true", StringComparison.OrdinalIgnoreCase) || lawfulRaw.Equals("yes", StringComparison.OrdinalIgnoreCase));
-            projectedAlignment = RuntimeCharacterAlignmentResolver.ApplyAttack(attackerAlignment, defenderReputation, defenderIsLawful, characterCatalog.AlignmentRuleContract);
-            if (RuntimeClassicWarningAuthority.ShouldBlockPositiveEvilPointAction(
-                    attacker, attackerAlignment.EvilPoints, projectedAlignment.EvilPoints))
-                return "Warning: That action would give you evil points. Use SET WARNING OFF if you really want to do it.";
+            var defenderIsLawful = RuntimeClassicWarningAuthority.IsLawful(defender);
+            var evilPointAward = RuntimeClassicDeathLawPvpAuthority.CalculatePlayerAttackEvilPoints(defenderAlignment?.EvilPoints ?? 0, defenderIsLawful);
+            projectedAlignment = RuntimeCharacterAlignmentResolver.ApplyEvilPointDelta(attackerAlignment, evilPointAward, characterCatalog.AlignmentRuleContract);
+            if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(
+                    attacker, attackerAlignment.EvilPoints, projectedAlignment.EvilPoints, out var evilActionBlock))
+                return evilActionBlock;
         }
 
         var policy = _livePvpPolicies.GetOrAdd(attacker.WorldId, worldId =>

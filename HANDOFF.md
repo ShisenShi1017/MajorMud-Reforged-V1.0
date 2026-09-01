@@ -1,4 +1,5 @@
 # Handoff
+Current verified closure: **200 PASS / 0 STRONG / 0 UNKNOWN**. Character/Status passes 47/47, Rooms/World passes 29/29, Timers/Resets/World Rules passes 22/22, and final STRONG closure passes 18/18 locally.
 
 Current baseline:
 
@@ -6,7 +7,10 @@ Current baseline:
 - Database Version: `0010`
 - Milestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio
 - Status: locally built and smoke-verified repository update; GitHub Actions pending push.
-- Parity: 169 PASS / 31 STRONG / 0 UNKNOWN (84.5% strict / 100.0% evidence-backed).
+- Parity: 200 PASS / 0 STRONG / 0 UNKNOWN (100.0% strict / 100.0% evidence-backed).
+- Borin headless training is parity-aware: startup and every completed cycle run the final-strong and cumulative parity smoke gates, restart/persistence continuity, and deterministic HELP/TOP/TOPTEN probes. Borin-specific verification is 44/44 PASS. MegaMUD remains a separate real-client tester responsibility.
+- CodeUpdate0368 Timers / Resets / World Rules: 15/15 PASS; source/static/native verifier 108/108 PASS; focused gate `--smoke-classic-timers-resets-world-rules` is composed into the cumulative parity gate. Native scheduler/restart, lair timing/admission, RESET ownership, Plus contest RNG, and the full visible WCCMMUD configuration boundary are closed. No .NET SDK was available for a new build in this analysis environment.
+- CodeUpdate0367 Rooms & World: 21/21 PASS; focused source/static/native verifier 61/61; target runtime gate `--smoke-classic-rooms-world` is composed into the cumulative parity gate. No .NET SDK was available for a new build in this analysis environment.
 - CodeUpdate0365 Quests / Scripts / Triggers: 2/2 PASS; source/static/data-correlation verification 65/65 PASS; runtime projection requires 83 executable quests, 83 live quest triggers, 182 linked stage scripts, and 2,616 decoded operations; remoteaction is 139/139 invocations / 85/85 executable signatures.
 - CodeUpdate0363 Items & Inventory: 6/6 PASS; direct native/source/data verification 66/66 PASS.
 - CodeUpdate0362 Import / Export / Limits / Recovery: 4/4 PASS; source/data/native verification 86/86 PASS.

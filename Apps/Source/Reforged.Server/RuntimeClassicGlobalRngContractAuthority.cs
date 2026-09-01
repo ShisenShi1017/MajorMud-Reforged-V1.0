@@ -41,6 +41,9 @@ public static class RuntimeClassicGlobalRngContractAuthority
     public static uint AdvanceSeed(uint seed) => unchecked(seed * BorlandMultiplier + BorlandIncrement);
     public static ushort ProjectRand15(uint seed) => (ushort)((seed >> 16) & RandMaximum);
 
+    public static RuntimeClassicWorldgroupPrng CreateGameplayThreadStream(DateTimeOffset localStart)
+        => new(PackStartupTimeSeed(localStart.Hour, localStart.Minute, localStart.Second));
+
     public static ushort PackStartupTimeSeed(int hour, int minute, int second)
     {
         if (hour is < 0 or > 23) throw new ArgumentOutOfRangeException(nameof(hour));

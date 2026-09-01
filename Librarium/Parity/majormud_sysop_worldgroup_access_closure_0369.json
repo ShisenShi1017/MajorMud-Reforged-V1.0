@@ -1,0 +1,44 @@
+{
+  "schema": "majormud.final-strong.sysop-worldgroup-access.v1",
+  "update": "0369",
+  "state": "PASS",
+  "supplied_artifacts": {
+    "wccmmud_dll_sha256": "5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077",
+    "wccmmud_ini_sha256": "9cbc9c00baa88f853e05b277526b40ee60a8bb5b9051818256993f8b9b4279a1"
+  },
+  "closure": {
+    "recognized_sys_access_settings": 21,
+    "recognized_non_access_sys_settings": ["SYS_LOG_DEATHS"],
+    "supplied_explicit_sys_access_settings": 21,
+    "native_loader_optional_settings_absent_from_supplied_ini": [],
+    "worldgroup_haskey_thunk_va": "0x004789EE",
+    "cmd_sysop_haskey_callsites": ["0x00462DD9", "0x00463009"],
+    "major_mud_owner": "setting names, command-to-setting selection, configured access-class string, and native _haskey dispatch",
+    "worldgroup_owner": "access-class membership and inheritance",
+    "reforged_policy": "authenticated role/capability authorization; legacy plaintext-key authentication is not exposed",
+    "unknown_boundary_count": 0
+  },
+  "supplied_defaults": {
+    "SYS_DISABLE_GANGS": "WCCGAMEOP",
+    "SYS_RESET_ROOMS": "WCCGAMEOP",
+    "SYS_LIGHTNING_KEY": "WCCGAMEOP",
+    "SYS_STATUS_KEY": "WCCGAMEOP",
+    "SYS_ADDLIFE_KEY": "WCCGAMEOP",
+    "SYS_RETRAIN_KEY": "WCCGAMEOP",
+    "SYS_ALIGNMENT_KEY": "WCCGAMEOP",
+    "SYS_EDITEVIL_KEY": "WCCGAMEOP",
+    "SYS_SPEAK_KEY": "WCCGAMEOP",
+    "SYS_LISTUSER_KEY": "WCCGAMEOP",
+    "SYS_LISTLIMIT_KEY": "WCCGAMEOP",
+    "SYS_USERINFO_KEY": "WCCGAMEOP",
+    "SYS_JAIL_KEY": "WCCGAMEOP",
+    "SYS_CHANGE_KEY": "WCCGAMEOP",
+    "SYS_BUFFERS_KEY": "WCCGAMEOP",
+    "SYS_CLEARSUICIDE_KEY": "WCCGAMEOP",
+    "SYS_REPORT_KEY": "WCCGAMEOP",
+    "SYS_TOPTEN_KEY": "WCCGAMEOP",
+    "SYS_DISBAND_KEY": "WCCGAMEOP",
+    "SYS_GOTO_KEY": "DEMO",
+    "SYS_MAP_KEY": "DEMO"
+  }
+}
