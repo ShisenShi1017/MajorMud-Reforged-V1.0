@@ -45,7 +45,7 @@ The historical pass-specific validators and smoke command aliases are retired. `
 - Bundle D trap audit: **PASS**, 295/295 traps with 293 active and 2 hidden native states.
 - Combat completion, combat runtime, full live-combat round, clock scheduling, and Classic parity closure smokes: **PASS**, 0 failures.
 - Numbered one-off native validators were not restored. Their supplied results are retained in `native_runtime_verification.json` and are not presented as a new local execution.
-- Broader item smoke: **FAIL**, two pre-existing corpse-resurrection equipment assertions remain open; all newly affected focused gates pass.
+- Broader item smoke: **PASS**. The fixture now selects non-retained equipment, so both corpse-resurrection equipment restoration assertions exercise the intended death path.
 - GitHub Actions/build validation is owned by the user or Codex after they choose to push; this parity pass performs no GitHub write.
 
 - CodeUpdate0346 static suicide/trap verification: see `codeupdate0346_suicide_traps_static_verification.json`; this environment has no .NET SDK, so no new local build claim is made.

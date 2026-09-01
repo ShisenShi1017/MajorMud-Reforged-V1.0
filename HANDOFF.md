@@ -6,7 +6,7 @@ Current baseline:
 - Code Update: `0140`
 - Database Version: `0010`
 - Milestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio
-- Status: locally built and smoke-verified repository update; GitHub Actions pending push.
+- Status: locally built and fully validator-verified repository update; GitHub Actions pending push.
 - Parity: 200 PASS / 0 STRONG / 0 UNKNOWN (100.0% strict / 100.0% evidence-backed).
 - Borin headless training is parity-aware: startup and every completed cycle run the final-strong and cumulative parity smoke gates, restart/persistence continuity, and deterministic HELP/TOP/TOPTEN probes. Borin-specific verification is 44/44 PASS. MegaMUD remains a separate real-client tester responsibility.
 - CodeUpdate0368 Timers / Resets / World Rules: 15/15 PASS; source/static/native verifier 108/108 PASS; focused gate `--smoke-classic-timers-resets-world-rules` is composed into the cumulative parity gate. Native scheduler/restart, lair timing/admission, RESET ownership, Plus contest RNG, and the full visible WCCMMUD configuration boundary are closed. No .NET SDK was available for a new build in this analysis environment.
@@ -17,8 +17,8 @@ Current baseline:
 - Runtime: native exit, formula, NPC combat, scheduler/regeneration, character death, death-floor, session lifecycle, party coordination, gang communications/invitations, daily gang-house cleanup, organization services, communication rendering, character-only BREAK, GIVE, PvP LVLDIFF, Economy & Services, and the Host/Persistence/Worldgroup boundary are evidence-verified.
 - Evidence: parity passes 0345-0362 are folded into the cumulative ledger; the generic earlier native/direct-static verification report retains 2,681 supplied checks with zero failures, and supplemental 0359/0360/0361/0362/0363 verification is 34/34, 41/41, 92/92, 86/86, and 66/66.
 - Compatibility: MegaMUD/Borin CP437 Telnet, client-data negotiation, route compatibility, REROLL/SET KEEP, and SET WARNING are locally verified.
-- Limitation: two pre-existing corpse-resurrection equipment item-smoke assertions remain open.
-- Current-health validator: 44/45 executed stages pass; execution stops truthfully at those two `server_items` assertions.
+- Corrective closure: corpse-resurrection smoke uses non-retained equipment, and spell generation selects canonical `spell_records_*` deterministically on clean checkouts.
+- Current-health validator: 56/56 PASS; retained Classic parity gate: 32/32 PASS.
 - Local integration gates: Reforged.Server Release builds with zero warnings/errors; focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and cumulative parity gates pass.
 - Application startup: heavy Play/Borin/Editor/Librarium work is deferred until use; the published app opens a responsive `MajorMUD Reforged` window locally.
 - Creator Studio bridge: supported Nightmare Redux MDB tables can be analyzed/imported into Custom1 and exported to a new Jet MDB. Original MDB and WCC/WGS inputs are read-only; unmapped columns and evidence anchors are retained rather than guessed into gameplay. Real `ability.mdb` read and temporary write/read round-trip checks pass locally. No Custom1 import was performed during this intake.

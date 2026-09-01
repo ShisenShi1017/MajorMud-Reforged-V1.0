@@ -9,7 +9,7 @@
   "generatedClassicDataTrackedInGit": false,
   "importedDatabasesArchivedLocalOnly": true,
   "savesPreserved": true,
-  "purpose": "Continue CodeUpdate0140 Classic parity closure by integrating the supplied Character/Status, Rooms/World, Timers/Resets/World Rules, and final STRONG closure packages. Borin headless training is synchronized with the verified 200 PASS / 0 STRONG baseline and treats parity regressions as tester defects.",
+  "purpose": "Complete CodeUpdate0140 Classic parity closure by repairing the final current-health smoke fixture and making canonical spell generation deterministic on clean checkouts. Borin headless training remains synchronized with the verified 200 PASS / 0 STRONG baseline and treats parity regressions as tester defects.",
   "currentValidation": {
     "entrypoint": "python Tools/validator.py",
     "runtimeParityGate": "--smoke-classic-parity-closure",
@@ -89,9 +89,8 @@
     "Character/Status, Rooms/World, Timers/Resets/World Rules, and the 11 final-closure assertions pass their focused local gates.",
     "Generated Data/Classic must be regenerated from Librarium in clean environments before server bootstrap.",
     "The consolidated native verification report retains 2,681 supplied checks with zero reported failures; raw native artifacts are intentionally not packaged.",
-    "GitHub Actions remains the official gate after push.",
-    "The broader item smoke retains two pre-existing corpse-resurrection equipment failures: the death equipment slot is not recorded and occupied-slot restoration does not yet displace safely."
+    "GitHub Actions remains the official gate after push."
   ],
-  "verificationStatus": "LOCAL_PARITY_VERIFIED: Release server and Reforged.App builds succeed with zero warnings/errors; Character/Status passes 47/47, Rooms/World passes 29/29, Timers/Resets/World Rules passes 22/22, final STRONG closure passes 18/18, host persistence passes at 200/0/0, and the cumulative parity gate passes. The broader current-health validator passes 44/45 stages and stops at the two documented corpse-resurrection equipment assertions.",
-  "updatedUtc": "2026-08-31T20:43:34Z"
+  "verificationStatus": "LOCAL_PARITY_VERIFIED: Full Release solution build succeeds with zero warnings/errors; clean Classic generation emits 37 families, 103372 objects, 52 files, and 26668/26668 room descriptions; item, spell, and spell-execution smokes pass; the retained Classic parity closure gate passes 32/32; and the complete current-health validator passes 56/56.",
+  "updatedUtc": "2026-09-01T00:41:28Z"
 }

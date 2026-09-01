@@ -27,7 +27,7 @@ public static class RuntimeItemSmokeReport
         const string merchantId = "smoke:merchant";
         var gettable = catalog.Items.First(x => x.Gettable && !x.Container && !x.RetainedOnDeath);
         var containerDef = catalog.Items.FirstOrDefault(x => x.Container && x.Gettable);
-        var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender));
+        var equipDef = catalog.EquipmentDefinitions.First(x => x.Slot != "NONE" && !x.ClassRestricted && !x.RaceRestricted && x.MinimumLevel == 0 && x.MinimumStrength == 0 && string.IsNullOrWhiteSpace(x.Alignment) && string.IsNullOrWhiteSpace(x.Gender) && !catalog.Require(x.ItemId).RetainedOnDeath);
         var character = SmokeCharacter(owner, worldId);
 
         Check("decoded-curse-remove-and-death-retention", () =>

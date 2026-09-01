@@ -509,6 +509,18 @@ public sealed class LibrariumCatalogReader
             if (executable is not null) return [executable];
         }
 
+        // Spells retain raw MMExplorer SQL/MDB evidence beside the executable canonical
+        // spell projection. Clean checkouts flatten/replace authoring timestamps, so the
+        // generic timestamp fallback can incorrectly select sql_mdb_records_* and export
+        // mmud_sql_spell_* evidence identities instead of canonical spell.* runtime ids.
+        if (familyName.Equals("spells", StringComparison.OrdinalIgnoreCase))
+        {
+            var executable = Directory.GetFiles(familyDirectory, "spell_records_*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (executable is not null) return [executable];
+        }
+
         // Shops have both raw SQL/MDB imports and the executable Librarium projection.
         // The raw import is newer on disk, but it is evidence input rather than runtime authority.
         if (familyName.Equals("shops", StringComparison.OrdinalIgnoreCase))

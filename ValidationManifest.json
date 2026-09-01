@@ -4,6 +4,16 @@
   "activeGate": "current_health_validator",
   "acceptedValidations": [
     {
+      "name": "Classic parity corrective closure",
+      "status": "accepted",
+      "summary": "The corpse-resurrection smoke fixture selects non-retained equipment so both restoration assertions exercise the intended death path. Spell compilation selects canonical spell_records_* deterministically instead of timestamp-sensitive raw SQL/MDB evidence. Full Release solution build, clean Classic generation, item/spell/spell-execution smokes, the 32/32 Classic parity closure gate, and the 56/56 current-health validator pass locally.",
+      "evidence": [
+        "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
+        "Apps/Compiler/src/LibrariumCatalogReader.cs",
+        "Reports/RuntimeVerification/validator_latest.json"
+      ]
+    },
+    {
       "name": "Borin Classic parity headless regression refresh",
       "status": "accepted",
       "summary": "Borin validates the accepted 200 PASS / 0 STRONG / 0 UNKNOWN scorecard, runs the focused and cumulative Classic parity smoke gates before unattended learning and at each completed cycle boundary, gracefully restarts the headless runtime for persistence coverage, probes HELP/TOP/TOPTEN through the live player dispatcher, and records parity regressions in the persistent tester queue. MegaMUD certification remains separate.",

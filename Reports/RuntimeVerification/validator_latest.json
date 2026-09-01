@@ -1,9 +1,9 @@
 {
   "gate": "current_health_validator",
-  "timestamp_utc": "2026-09-01T00:17:30.487644+00:00",
-  "status": "FAIL",
-  "passed": 44,
-  "total": 45,
+  "timestamp_utc": "2026-09-01T00:41:28.633437+00:00",
+  "status": "PASS",
+  "passed": 56,
+  "total": 56,
   "results": [
     {
       "name": "librarium_catalog",
@@ -13,7 +13,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.953,
+      "seconds": 0.938,
       "output": "{\n  \"status\": \"PASS\",\n  \"source\": \"Librarium/Assertions/knowledge_*_0011.json\",\n  \"nodes\": 20826,\n  \"relationships\": 71026,\n  \"missingSources\": 0,\n  \"missingEntityTargets\": 0,\n  \"duplicateEdgesDiagnostic\": 0\n}\n"
     },
     {
@@ -24,7 +24,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.562,
+      "seconds": 0.531,
       "output": ""
     },
     {
@@ -35,7 +35,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.203,
+      "seconds": 0.156,
       "output": ""
     },
     {
@@ -46,7 +46,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.141,
+      "seconds": 0.157,
       "output": ""
     },
     {
@@ -57,7 +57,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.188,
+      "seconds": 0.187,
       "output": ""
     },
     {
@@ -68,7 +68,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.093,
+      "seconds": 0.094,
       "output": ""
     },
     {
@@ -79,7 +79,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.157,
+      "seconds": 0.14,
       "output": ""
     },
     {
@@ -90,7 +90,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.171,
+      "seconds": 0.172,
       "output": ""
     },
     {
@@ -101,7 +101,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.125,
+      "seconds": 0.141,
       "output": ""
     },
     {
@@ -123,7 +123,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.235,
+      "seconds": 0.218,
       "output": ""
     },
     {
@@ -134,7 +134,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.203,
+      "seconds": 0.188,
       "output": ""
     },
     {
@@ -145,7 +145,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.14,
+      "seconds": 0.156,
       "output": ""
     },
     {
@@ -167,7 +167,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.14,
+      "seconds": 0.156,
       "output": ""
     },
     {
@@ -178,7 +178,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.172,
+      "seconds": 0.187,
       "output": ""
     },
     {
@@ -200,7 +200,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.156,
+      "seconds": 0.172,
       "output": ""
     },
     {
@@ -211,7 +211,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.203,
+      "seconds": 0.172,
       "output": ""
     },
     {
@@ -222,7 +222,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.156,
+      "seconds": 0.203,
       "output": ""
     },
     {
@@ -233,7 +233,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.172,
+      "seconds": 0.187,
       "output": ""
     },
     {
@@ -255,7 +255,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.109,
+      "seconds": 0.094,
       "output": "{\n  \"status\": \"PASS\",\n  \"object_families\": 32,\n  \"failures\": []\n}\n"
     },
     {
@@ -266,7 +266,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.11,
+      "seconds": 0.109,
       "output": "{\n  \"passed\": true,\n  \"systems\": 27,\n  \"inventorySystems\": 36,\n  \"nativeDependencies\": 41,\n  \"retainedFiles\": 37\n}\n"
     },
     {
@@ -299,7 +299,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.203,
+      "seconds": 0.25,
       "output": "{\n  \"passed\": true,\n  \"skill_count\": 13,\n  \"npc_count\": 1100,\n  \"errors\": []\n}\n"
     },
     {
@@ -310,7 +310,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.156,
+      "seconds": 0.172,
       "output": "{\n  \"passed\": true,\n  \"quest_count\": 83,\n  \"text_record_count\": 183,\n  \"errors\": []\n}\n"
     },
     {
@@ -321,7 +321,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.125,
+      "seconds": 0.109,
       "output": "{\n  \"passed\": true,\n  \"shop_count\": 178,\n  \"bank_count\": 26,\n  \"economy_rule_count\": 23,\n  \"errors\": []\n}\n"
     },
     {
@@ -332,7 +332,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.094,
+      "seconds": 0.11,
       "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
     },
     {
@@ -354,7 +354,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.484,
+      "seconds": 0.453,
       "output": ".NET SDK:\n Version:           8.0.424\n Commit:            5cbde90d8f\n Workload version:  8.0.400-manifests.d7d8d4b1\n MSBuild version:   17.11.48+02bf66295\n\nRuntime Environment:\n OS Name:     Windows\n OS Version:  10.0.19045\n OS Platform: Windows\n RID:         win-x64\n Base Path:   C:\\Program Files\\dotnet\\sdk\\8.0.424\\\n\n.NET workloads installed:\nConfigured to use loose manifests when installing new manifests.\nThere are no installed workloads to display.\n\nHost:\n  Version:      10.0.10\n  Architecture: x64\n  Commit:       f7d90799ce\n\n.NET SDKs installed:\n  8.0.424 [C:\\Program Files\\dotnet\\sdk]\n  10.0.301 [C:\\Program Files\\dotnet\\sdk]\n  10.0.302 [C:\\Program Files\\dotnet\\sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.30 [C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.AspNetCore.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.AspNetCore.App 10.0.10 [C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 6.0.36 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 8.0.30 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 9.0.14 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 9.0.18 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 10.0.10 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.WindowsDesktop.App 8.0.30 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n  Microsoft.WindowsDesktop.App 9.0.14 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n  Microsoft.WindowsDesktop.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n  Microsoft.WindowsDesktop.App 10.0.10 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n\nOther architectures found:\n  x86   [C:\\Program Files (x86)\\dotnet]\n    registered at [HKLM\\SOFTWARE\\dotnet\\Setup\\InstalledVersions\\x86\\InstallLocation]\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  E:\\MajorMud-Reforged Github\\global.json\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n"
     },
     {
@@ -366,7 +366,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.391,
+      "seconds": 0.437,
       "output": "  Determining projects to restore...\nC:\\Program Files\\dotnet\\sdk\\8.0.424\\NuGet.targets(174,5): warning : Unable to find a project to restore! [E:\\MajorMud-Reforged Github\\MajorMud.Reforged.sln]\n"
     },
     {
@@ -381,8 +381,8 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.406,
-      "output": "\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:00.14\n"
+      "seconds": 0.36,
+      "output": "\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:00.12\n"
     },
     {
       "name": "classic_generation",
@@ -402,7 +402,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 48.156,
+      "seconds": 47.968,
       "output": "World: Classic\nOutput: E:\\MajorMud-Reforged Github\\Data\\Classic\nFamilies: 37\nObjects: 103372\nFiles written: 52\nInfo LIBGANGHOUSE: Native WCC gang-house HSE files are archived locally; using 57 promoted Librarium locations.\nInfo HELP100: Generated one native help main record and 131 exact title/body topic records.\nInfo CMD100: Generated 63 native player-command identities with three explicit aliases.\nInfo ROOMTEXT001: Native room text recovery emitted 26,668/26,668 non-empty descriptions; unresolved 0; missing native map files 0.\n"
     },
     {
@@ -417,7 +417,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 0.61,
+      "seconds": 0.657,
       "output": ""
     },
     {
@@ -429,7 +429,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 1.109,
+      "seconds": 1.062,
       "output": "  Determining projects to restore...\n  All projects are up-to-date for restore.\n"
     },
     {
@@ -444,8 +444,8 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 6.781,
-      "output": "  Reforged.Core -> E:\\MajorMud-Reforged Github\\Core\\Source\\Reforged.Core\\bin\\Release\\net8.0\\Reforged.Core.dll\n  Reforged.Server.Runtime -> E:\\MajorMud-Reforged Github\\Apps\\Source\\Reforged.Server.Runtime\\bin\\Release\\net8.0\\Reforged.Server.Runtime.dll\n  Reforged.Core.Tests -> E:\\MajorMud-Reforged Github\\Tests\\Source\\Reforged.Core.Tests\\bin\\Release\\net8.0\\Reforged.Core.Tests.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:06.51\n"
+      "seconds": 6.313,
+      "output": "  Reforged.Core -> E:\\MajorMud-Reforged Github\\Core\\Source\\Reforged.Core\\bin\\Release\\net8.0\\Reforged.Core.dll\n  Reforged.Server.Runtime -> E:\\MajorMud-Reforged Github\\Apps\\Source\\Reforged.Server.Runtime\\bin\\Release\\net8.0\\Reforged.Server.Runtime.dll\n  Reforged.Core.Tests -> E:\\MajorMud-Reforged Github\\Tests\\Source\\Reforged.Core.Tests\\bin\\Release\\net8.0\\Reforged.Core.Tests.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:06.05\n"
     },
     {
       "name": "core_smoke",
@@ -460,7 +460,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 33.75,
+      "seconds": 34.609,
       "output": "PASS dependency-injection resolves required services\nPASS configuration loads defaults and flattened json\nPASS event system publishes and disposes\nPASS repository health checks run\nPASS startup diagnostics run\nPASS server startup diagnostics run\nPASS server bootstrap runs\nPASS server host configuration enables runtime\nPASS server data catalog loads canonical data\nPASS server world projection indexes map-qualified rooms\nPASS server module readiness enables current host boundary\nPASS server host lifecycle reports runtime-enabled readiness\nPASS server scheduler bootstrap enables channels\nPASS server scheduler status commands are runtime-enabled read-only\nPASS server runtime state and event dispatcher track host-owned changes\nPASS classic parity audit inventories canonical and imported data\nPASS classic bug-fix policies enforce corrected behavior\nAll Reforged core/server smoke tests passed.\n"
     },
     {
@@ -477,7 +477,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 13.438,
+      "seconds": 13.781,
       "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\n========== CLASSIC COMPILER OUTPUT AUDIT ==========\nDataRoot: E:\\MajorMud-Reforged Github\\Data/Classic\nRooms: 26668\nRooms with descriptions: 26668\nRooms without descriptions: 0\nNPC definitions: 1100\nMonster definitions: 1089\nSpawn groups: 18\nSpawn records: 962\nItems: 1950\nObjects: 397\nDoors: 1814\nQuests: 83\nTriggers: 83\nShops: 178\nBanks: 26\nTrainers: 44\nRequired room probes:\n  Village Entrance: room.map1.2140 descLength=324\n  Weapons Shop: room.map1.2141 descLength=329\n  Arena: room.map1.203 descLength=361\n  Adventurer's Guild: room.map1.348 descLength=462\n  room.map1.2150: room.map1.2150 descLength=332\n===================================================\n\n"
     },
     {
@@ -494,7 +494,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 29.297,
+      "seconds": 29.641,
       "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nGenerated World Smoke Report\n{\n  \"WorldCount\": 2,\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"Name\": \"Classic World\",\n      \"Type\": \"Classic\",\n      \"RoomCount\": 26668,\n      \"DataRoot\": \"E:\\\\MajorMud-Reforged Github\\\\Data/Classic\",\n      \"FamilyCount\": 52,\n      \"TotalGeneratedRecords\": 112808,\n      \"StartRoomId\": \"room.map1.2140\",\n      \"StartRoomName\": \"Newhaven, Village Entrance\",\n      \"StartRoomNumber\": 2140,\n      \"StartRoomExitCount\": 4,\n      \"StartRoomResolved\": true,\n      \"StartRoomExits\": [\n        \"N-\\u003E2141\",\n        \"S-\\u003E2142\",\n        \"SE-\\u003E2148\",\n        \"W-\\u003E2143\"\n      ],\n      \"Diagnostics\": []\n    },\n    {\n      \"Id\": \"Custom1\",\n      \"Name\": \"Custom World 1\",\n      \"Type\": \"ReforgedCustom\",\n      \"RoomCount\": 26668,\n      \"DataRoot\": \"E:\\\\MajorMud-Reforged Github\\\\Data/Custom1\",\n      \"FamilyCount\": 52,\n      \"TotalGeneratedRecords\": 112808,\n      \"StartRoomId\": \"room.map1.2140\",\n      \"StartRoomName\": \"Newhaven, Village Entrance\",\n      \"StartRoomNumber\": 2140,\n      \"StartRoomExitCount\": 4,\n      \"StartRoomResolved\": true,\n      \"StartRoomExits\": [\n        \"N-\\u003E2141\",\n        \"S-\\u003E2142\",\n        \"SE-\\u003E2148\",\n        \"W-\\u003E2143\"\n      ],\n      \"Diagnostics\": []\n    }\n  ],\n  \"Passed\": true\n}\n"
     },
     {
@@ -511,7 +511,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 29.234,
+      "seconds": 29.297,
       "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Room/Exit Smoke Report\n{\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"Name\": \"Classic World\",\n      \"StartRoomId\": \"room.map1.1\",\n      \"StartRoomName\": \"Town Gates\",\n      \"StartRoomNumber\": 1,\n      \"StartRoomExitCount\": 4,\n      \"MovementChecks\": [\n        {\n          \"Direction\": \"E\",\n          \"TargetRoomNumber\": 1381,\n          \"TargetRoomId\": \"room.map1.1381\",\n          \"TargetRoomName\": \"Town Gates, Inner Bailey\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"N\",\n          \"TargetRoomNumber\": 3,\n          \"TargetRoomId\": \"room.map1.3\",\n          \"TargetRoomName\": \"Estwall Street\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"S\",\n          \"TargetRoomNumber\": 100,\n          \"TargetRoomId\": \"room.map1.100\",\n          \"TargetRoomName\": \"Estwall Street\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"W\",\n          \"TargetRoomNumber\": 101,\n          \"TargetRoomId\": \"room.map1.101\",\n          \"TargetRoomName\": \"Silver Street, Eastern End\",\n          \"Resolved\": true\n        }\n      ],\n      \"Passed\": true\n    },\n    {\n      \"Id\": \"Custom1\",\n      \"Name\": \"Custom World 1\",\n      \"StartRoomId\": \"room.map1.1\",\n      \"StartRoomName\": \"Town Gates\",\n      \"StartRoomNumber\": 1,\n      \"StartRoomExitCount\": 4,\n      \"MovementChecks\": [\n        {\n          \"Direction\": \"E\",\n          \"TargetRoomNumber\": 1381,\n          \"TargetRoomId\": \"room.map1.1381\",\n          \"TargetRoomName\": \"Town Gates, Inner Bailey\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"N\",\n          \"TargetRoomNumber\": 3,\n          \"TargetRoomId\": \"room.map1.3\",\n          \"TargetRoomName\": \"Estwall Street\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"S\",\n          \"TargetRoomNumber\": 100,\n          \"TargetRoomId\": \"room.map1.100\",\n          \"TargetRoomName\": \"Estwall Street\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"W\",\n          \"TargetRoomNumber\": 101,\n          \"TargetRoomId\": \"room.map1.101\",\n          \"TargetRoomName\": \"Silver Street, Eastern End\",\n          \"Resolved\": true\n        }\n      ],\n      \"Passed\": true\n    }\n  ],\n  \"WorldCount\": 2,\n  \"Passed\": true\n}\n"
     },
     {
@@ -528,7 +528,7 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 28.844,
+      "seconds": 28.968,
       "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime NPC Smoke Report\n{\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"NpcDefinitionCount\": 1100,\n      \"SpawnCount\": 962,\n      \"GroupSpawnCount\": 934,\n      \"BossSpawnCount\": 114,\n      \"ResolvedSpawnCount\": 962,\n      \"UnresolvedSpawnCount\": 0,\n      \"UnresolvedGroupCount\": 0,\n      \"UnresolvedBossCount\": 0,\n      \"SpawnRoomCount\": 962,\n      \"AvailablePrimaryRoomCount\": 962,\n      \"UnavailablePrimaryRoomCount\": 0,\n      \"MissingMapIdentityCount\": 0,\n      \"LinkedPopulationRecordCount\": 748,\n      \"MapQualifiedLinkedPopulationCount\": 748,\n      \"MissingLinkedMapContextCount\": 0,\n      \"Diagnostics\": [],\n      \"Passed\": true\n    },\n    {\n      \"Id\": \"Custom1\",\n      \"NpcDefinitionCount\": 1100,\n      \"SpawnCount\": 962,\n      \"GroupSpawnCount\": 934,\n      \"BossSpawnCount\": 114,\n      \"ResolvedSpawnCount\": 962,\n      \"UnresolvedSpawnCount\": 0,\n      \"UnresolvedGroupCount\": 0,\n      \"UnresolvedBossCount\": 0,\n      \"SpawnRoomCount\": 962,\n      \"AvailablePrimaryRoomCount\": 962,\n      \"UnavailablePrimaryRoomCount\": 0,\n      \"MissingMapIdentityCount\": 0,\n      \"LinkedPopulationRecordCount\": 748,\n      \"MapQualifiedLinkedPopulationCount\": 748,\n      \"MissingLinkedMapContextCount\": 0,\n      \"Diagnostics\": [],\n      \"Passed\": true\n    }\n  ],\n  \"Passed\": true\n}\n"
     },
     {
@@ -545,8 +545,8 @@
       ],
       "status": "PASS",
       "exit_code": 0,
-      "seconds": 29.015,
-      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Character Foundation Smoke Report\n{\n  \"Passed\": true,\n  \"AccountId\": \"smoke-4e7ddc7e\",\n  \"CharacterId\": \"classic:smeohnnmho\",\n  \"StartRoomId\": \"room.map1.2140\",\n  \"RestoredRoomId\": \"room.map1.2140\",\n  \"Checks\": [\n    \"account-created\",\n    \"generated-race-selected\",\n    \"generated-class-selected\",\n    \"generated-start-room-used\",\n    \"character-atomically-saved\",\n    \"character-restored\"\n  ]\n}\n"
+      "seconds": 29.0,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Character Foundation Smoke Report\n{\n  \"Passed\": true,\n  \"AccountId\": \"smoke-360f5105\",\n  \"CharacterId\": \"classic:smdgapfbaf\",\n  \"StartRoomId\": \"room.map1.2140\",\n  \"RestoredRoomId\": \"room.map1.2140\",\n  \"Checks\": [\n    \"account-created\",\n    \"generated-race-selected\",\n    \"generated-class-selected\",\n    \"generated-start-room-used\",\n    \"character-atomically-saved\",\n    \"character-restored\"\n  ]\n}\n"
     },
     {
       "name": "server_items",
@@ -560,10 +560,197 @@
         "--",
         "--smoke-items"
       ],
-      "status": "FAIL",
-      "exit_code": 8,
-      "seconds": 14.953,
-      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Item Smoke Report\n{\n  \"Passed\": false,\n  \"Checks\": [\n    \"decoded-curse-remove-and-death-retention\",\n    \"decoded-loyal-item-death-retention\",\n    \"blacknight-decoded-active-item\",\n    \"decoded-shadowform-equipment-selector\",\n    \"universal-defensive-equipment-ability-projection\",\n    \"universal-resource-equipment-ability-projection-and-removal\",\n    \"decoded-passive-regeneration-cadence-and-equipment-percentages\",\n    \"decoded-timed-maximum-resource-and-encumbrance-effects\",\n    \"decoded-rolled-status-effect-persistence\",\n    \"decoded-confusion-chance-and-native-message\",\n    \"decoded-regeneration-and-negate-ability-coverage\",\n    \"decoded-fear-forces-combat-flee\",\n    \"decoded-hold-person-immobilizes-without-paralyzing\",\n    \"decoded-perception-status-feeds-hidden-search\",\n    \"decoded-affects-animals-target-admission\",\n    \"decoded-spell-alignment-admission\",\n    \"decoded-affects-living-target-admission\",\n    \"decoded-spell-backstab-accuracy-projection\",\n    \"decoded-spell-backstab-damage-range-projection\",\n    \"decoded-mute-and-mage-bind-separation\",\n    \"decoded-blind-user-presentation-boundary\",\n    \"decoded-spell-immunity-inclusive-level-boundary\",\n    \"decoded-ability-scoped-and-general-dispel-classification\",\n    \"decoded-alignment-equipment-and-retaliation-effects\",\n    \"decoded-martial-equipment-modifiers\",\n    \"create-ground\",\n    \"get\",\n    \"find-lookup\",\n    \"drop\",\n    \"get-all\",\n    \"give\",\n    \"give-back\",\n    \"equip\",\n    \"unequip\",\n    \"wear-remove\",\n    \"corpse-exclusive-loot-permission-and-expiry\",\n    \"container-put-get\",\n    \"container-open-close\",\n    \"classic-cleanup-container-subtree-delete\",\n    \"corpse-create-transfer\",\n    \"corpse-loot\",\n    \"stack-split-merge-partial-transfer\",\n    \"charges-consumption-and-recharge-rollback\",\n    \"decoded-cleanup-recharge-ability-121-cap-and-cadence\",\n    \"durability-damage-break-and-repair\",\n    \"equipment-and-transfer-restriction-integrity\",\n    \"binding-quest-trade-and-destruction-integrity\",\n    \"bank-and-merchant-transfer-integrity\",\n    \"owner-quantity-limit-and-release\",\n    \"corpse-resurrection-item-restoration\",\n    \"corpse-resurrection-explicit-gold-restoration\",\n    \"corpse-limited-item-reservation-and-release\",\n    \"corpse-death-protection-and-partial-stack-loot\",\n    \"corpse-container-hierarchy-preservation\",\n    \"corpse-decay-recursive-container-cleanup\",\n    \"merchant-restock-target-and-identity\",\n    \"room-item-reset-target-and-identity\",\n    \"portable-container-restock-target-and-identity\",\n    \"npc-inventory-reset-target-and-identity\",\n    \"npc-death-corpse-transfer-and-retention\",\n    \"npc-corpse-loot-target-and-identity\",\n    \"deterministic-npc-random-loot-table\",\n    \"npc-corpse-gold-deterministic-idempotent-and-conflict-safe\",\n    \"quest-item-grant-consume-and-rollback\",\n    \"quest-item-lifecycle-cleanup-target-and-rollback\",\n    \"duplicate-prevention-and-rollback\",\n    \"event-item-reward-cleanup-target-and-rollback\",\n    \"save-load-world-state\",\n    \"validated-world-item-persistence-and-corruption-rejection\",\n    \"validated-world-item-backup-recovery\",\n    \"validated-world-item-integrity-sidecar\",\n    \"validated-world-item-integrity-backup-recovery\",\n    \"exact-duplicate-item-and-corpse-reconciliation\",\n    \"missing-container-parent-reconciliation\",\n    \"missing-corpse-parent-validation\",\n    \"owner-location-state-reconciliation\",\n    \"container-owner-mismatch-reconciliation\",\n    \"cross-save-ownership-coordination\",\n    \"coordinated-save-generation-recovery\",\n    \"global-limited-item-reconciliation\",\n    \"administrative-item-runtime\",\n    \"disconnect-reconnect-snapshot\",\n    \"runtime-validator\"\n  ],\n  \"Failures\": [\n    \"corpse-resurrection-explicit-equipment-restoration: death equipment slot was not recorded\",\n    \"corpse-resurrection-equipment-conflict-displacement: Equipment slot is occupied.\"\n  ]\n}\n"
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 14.344,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Item Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"decoded-curse-remove-and-death-retention\",\n    \"decoded-loyal-item-death-retention\",\n    \"blacknight-decoded-active-item\",\n    \"decoded-shadowform-equipment-selector\",\n    \"universal-defensive-equipment-ability-projection\",\n    \"universal-resource-equipment-ability-projection-and-removal\",\n    \"decoded-passive-regeneration-cadence-and-equipment-percentages\",\n    \"decoded-timed-maximum-resource-and-encumbrance-effects\",\n    \"decoded-rolled-status-effect-persistence\",\n    \"decoded-confusion-chance-and-native-message\",\n    \"decoded-regeneration-and-negate-ability-coverage\",\n    \"decoded-fear-forces-combat-flee\",\n    \"decoded-hold-person-immobilizes-without-paralyzing\",\n    \"decoded-perception-status-feeds-hidden-search\",\n    \"decoded-affects-animals-target-admission\",\n    \"decoded-spell-alignment-admission\",\n    \"decoded-affects-living-target-admission\",\n    \"decoded-spell-backstab-accuracy-projection\",\n    \"decoded-spell-backstab-damage-range-projection\",\n    \"decoded-mute-and-mage-bind-separation\",\n    \"decoded-blind-user-presentation-boundary\",\n    \"decoded-spell-immunity-inclusive-level-boundary\",\n    \"decoded-ability-scoped-and-general-dispel-classification\",\n    \"decoded-alignment-equipment-and-retaliation-effects\",\n    \"decoded-martial-equipment-modifiers\",\n    \"create-ground\",\n    \"get\",\n    \"find-lookup\",\n    \"drop\",\n    \"get-all\",\n    \"give\",\n    \"give-back\",\n    \"equip\",\n    \"unequip\",\n    \"wear-remove\",\n    \"corpse-exclusive-loot-permission-and-expiry\",\n    \"container-put-get\",\n    \"container-open-close\",\n    \"classic-cleanup-container-subtree-delete\",\n    \"corpse-create-transfer\",\n    \"corpse-loot\",\n    \"stack-split-merge-partial-transfer\",\n    \"charges-consumption-and-recharge-rollback\",\n    \"decoded-cleanup-recharge-ability-121-cap-and-cadence\",\n    \"durability-damage-break-and-repair\",\n    \"equipment-and-transfer-restriction-integrity\",\n    \"binding-quest-trade-and-destruction-integrity\",\n    \"bank-and-merchant-transfer-integrity\",\n    \"owner-quantity-limit-and-release\",\n    \"corpse-resurrection-item-restoration\",\n    \"corpse-resurrection-explicit-equipment-restoration\",\n    \"corpse-resurrection-equipment-conflict-displacement\",\n    \"corpse-resurrection-explicit-gold-restoration\",\n    \"corpse-limited-item-reservation-and-release\",\n    \"corpse-death-protection-and-partial-stack-loot\",\n    \"corpse-container-hierarchy-preservation\",\n    \"corpse-decay-recursive-container-cleanup\",\n    \"merchant-restock-target-and-identity\",\n    \"room-item-reset-target-and-identity\",\n    \"portable-container-restock-target-and-identity\",\n    \"npc-inventory-reset-target-and-identity\",\n    \"npc-death-corpse-transfer-and-retention\",\n    \"npc-corpse-loot-target-and-identity\",\n    \"deterministic-npc-random-loot-table\",\n    \"npc-corpse-gold-deterministic-idempotent-and-conflict-safe\",\n    \"quest-item-grant-consume-and-rollback\",\n    \"quest-item-lifecycle-cleanup-target-and-rollback\",\n    \"duplicate-prevention-and-rollback\",\n    \"event-item-reward-cleanup-target-and-rollback\",\n    \"save-load-world-state\",\n    \"validated-world-item-persistence-and-corruption-rejection\",\n    \"validated-world-item-backup-recovery\",\n    \"validated-world-item-integrity-sidecar\",\n    \"validated-world-item-integrity-backup-recovery\",\n    \"exact-duplicate-item-and-corpse-reconciliation\",\n    \"missing-container-parent-reconciliation\",\n    \"missing-corpse-parent-validation\",\n    \"owner-location-state-reconciliation\",\n    \"container-owner-mismatch-reconciliation\",\n    \"cross-save-ownership-coordination\",\n    \"coordinated-save-generation-recovery\",\n    \"global-limited-item-reconciliation\",\n    \"administrative-item-runtime\",\n    \"disconnect-reconnect-snapshot\",\n    \"runtime-validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_spells",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-spells"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.328,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Spell Smoke Report\n{\n  \"Passed\": true,\n  \"CatalogSpellCount\": 1350,\n  \"Checks\": [\n    \"catalog-load\",\n    \"learn\",\n    \"duplicate-learn-prevention\",\n    \"resources\",\n    \"cast\",\n    \"generated-cost-deduction\",\n    \"active-effect\",\n    \"unknown-spell-prevention\",\n    \"save-load\",\n    \"forget\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_spell_execution",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-spell-execution"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.86,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Spell Execution Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"target-policy\",\n    \"execute-cast\",\n    \"event-sink\",\n    \"dispel\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_combat",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.984,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nClassic Combat Smoke Report\n{\n  \"Checks\": [\n    \"normal-hit-formula\",\n    \"backstab-ignores-ac\",\n    \"backstab-dodge-divided-by-five\",\n    \"dr-produces-glance\",\n    \"dodge-negates-post-dr-hit\",\n    \"smash-multiplier-after-dr\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_combat_runtime",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat-runtime"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 36.188,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Combat Smoke Report\n{\n  \"Checks\": [\n    \"participants\",\n    \"round\",\n    \"initiative\",\n    \"attack\",\n    \"death\",\n    \"corpse-hook\",\n    \"complete\",\n    \"validator\",\n    \"rollback\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_combat_runtime_part2",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat-runtime-part2"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 29.437,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Combat Part 2 Smoke Report\n{\n  \"Checks\": [\n    \"round-effects\",\n    \"threat\",\n    \"npc-ai\",\n    \"persistence\",\n    \"rewards\",\n    \"validator\",\n    \"reward-rollback\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_actors_abilities",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-actors-abilities"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.578,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Actors and Abilities Smoke Report\n{\n  \"Checks\": [\n    \"ability-catalog\",\n    \"learn\",\n    \"duplicate-prevention\",\n    \"execute\",\n    \"cooldown\",\n    \"ability-persistence\",\n    \"ability-validator\",\n    \"npc-register\",\n    \"npc-death\",\n    \"npc-respawn\",\n    \"npc-persistence\",\n    \"npc-validator\",\n    \"ability-rollback\",\n    \"trainer-policy-contract\"\n  ],\n  \"Failures\": [],\n  \"AbilityDefinitionCount\": 188,\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_interaction_narrative",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-interaction-narrative"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 141.813,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Interaction and Narrative Smoke Report\n{\n  \"Passed\": true,\n  \"QuestCount\": 83,\n  \"ExecutableQuestCount\": 83,\n  \"TextRecordCount\": 183,\n  \"Checks\": [\n    \"compact-executable-quest-catalog\",\n    \"decoded-executable-quests\",\n    \"text-catalog\",\n    \"authoritative-script-graph\",\n    \"ordered-stages\",\n    \"accept\",\n    \"progress\",\n    \"complete-reward\",\n    \"persistence\",\n    \"abandon\",\n    \"pending-evidence-resolved\",\n    \"rollback\",\n    \"quest-dialogue-stage-scripts-182\",\n    \"npc-quest-entry-triggers-83\",\n    \"npc-quest-linked-stage-scripts-182\",\n    \"npc-dialogue-branch-dispatch\",\n    \"quest-item-consume-reward-transition\",\n    \"quest-world-intent-cast-summon\",\n    \"quest-random-textblock-tables\",\n    \"quest-world-intent-remoteaction\",\n    \"quest-world-intent-target-validation\",\n    \"quest-remoteaction-arity-validation\",\n    \"quest-remoteaction-action-slot-validation\",\n    \"quest-failure-no-mutation\",\n    \"quest-edge-opcode-coverage\",\n    \"quest-entry-exhaustive-dispatch-validation\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_services_economy",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-services-economy"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.172,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Services and Economy Smoke Report\n{\n  \"Passed\": true,\n  \"ServiceCount\": 204,\n  \"EconomyRuleCount\": 23,\n  \"Checks\": [\n    \"catalog\",\n    \"shop-buy\",\n    \"shop-sell\",\n    \"trainer-contract\",\n    \"bank-deposit-withdraw\",\n    \"gang-house-tax-exact-bank-gold\",\n    \"ledger-persistence\",\n    \"trade-confirmation\",\n    \"rollback\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_world_multiplayer",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-world-multiplayer"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.406,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime World and Multiplayer Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"world-interaction\",\n    \"movement\",\n    \"party\",\n    \"reputation\",\n    \"communication\",\n    \"scheduler\",\n    \"persistence\",\n    \"validator\",\n    \"rollback\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_live_gameplay",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-live-gameplay"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 10.437,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\nRuntime Live Gameplay Integration Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"parse-look\",\n    \"parse-look-abbreviations\",\n    \"parse-arguments\",\n    \"movement-alias\",\n    \"movement-abbreviations\",\n    \"command-alias\",\n    \"get-g-alias\",\n    \"equipment-alias\",\n    \"keys-command-routing\",\n    \"equipment-equip-context-alias\",\n    \"equip-command-route\",\n    \"stat-command-aliases\",\n    \"interaction-command-prefixes\",\n    \"native-status-st-alias\",\n    \"save-command\",\n    \"session-exit-command-routing\",\n    \"audit-command\",\n    \"audit-parity-command\",\n    \"audit-timers-command\",\n    \"audit-combat-command\",\n    \"audit-parity-percent\",\n    \"classic-statline-command-routing\",\n    \"majormud-native-inventory-encumbrance-format\",\n    \"megamud-room-signature-compatibility\",\n    \"majormud-native-prompt-and-presence-format\",\n    \"supported-command-catalog\",\n    \"runtime-route-catalog-count\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "classic_parity_closure",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-classic-parity-closure"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 332.36,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0140\nDatabaseVersion: 0010\nMilestone: CodeUpdate0140 - Classic Parity Closure and Creator Studio\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: runtime-enabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=5000; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True; configFileExists=True\nServerDataCatalog: runtime-ready; categories=37/37; runtimeReady=37; runtimeBlocked=0; placeholders=0; records=104297\nWorldProjection: projection-ready; worldRooms=26668; uniqueWorldRooms=26668; canonicalRooms=26668; missingRooms=0; duplicateWorldRooms=0; startRoom=room.map1.2140; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=1; gameplayDisabled=0\nModuleReadiness: runtime-enabled; modules=1; hostReady=1; gameplayEnabled=1; runtimeRuleProfilesEnabled=1\nHostLifecycle: runtime-enabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=False; gameplayEnabled=True; networkingEnabled=True; worldSimulationEnabled=True\nSchedulerBootstrap: scheduler-runtime-enabled; channels=10; runtimeEnabled=10; runtimeDisabled=0; hostLifecycleReady=True; diagnosticOnly=False\nSchedulerStatusCommands: scheduler-status-command-runtime-enabled; commands=7; runtimeEnabled=7; runtimeDisabled=0; guarded=0; mutating=0; schedulerReady=True; diagnosticOnly=False\nClassicParity: inventory-ready; canonicalFiles=359; importedReferenceFiles=1; exactNameMatches=1\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"identity-law-parity:True\",\n    \"evil-reputation-parity:True\",\n    \"classic-extension-boundary:True\",\n    \"classic-death-experience:True\",\n    \"classic-reroll-warning:True\",\n    \"classic-communication-rendering:True\",\n    \"classic-data-reconstruction:True\",\n    \"classic-host-persistence-worldgroup:True\",\n    \"classic-import-export-limits-recovery:True\",\n    \"classic-items-inventory:True\",\n    \"classic-npc-ai:True\",\n    \"classic-quests-scripts-triggers:True\",\n    \"classic-character-status:True\",\n    \"classic-rooms-world:True\",\n    \"classic-timers-resets-world-rules:True\",\n    \"classic-final-strong-closure:True\",\n    \"classic-break-autocombat-authority:True\",\n    \"remaining-system-owner-count:True\",\n    \"native-dependency-group-count:True\",\n    \"native-artifact-count:True\",\n    \"worldgroup-symbol-count:True\",\n    \"worldgroup-unowned-zero:True\",\n    \"all-wcc-families-exhausted:True\",\n    \"dependency-inventory-owned:True\",\n    \"dependency-inventory-classified:True\",\n    \"hidden-dependency-bucket-denied:True\",\n    \"standalone-unknowns-zero:True\",\n    \"not-all-formulas-exact:True\",\n    \"not-all-branch-order-exact:True\",\n    \"not-all-messages-exact:True\",\n    \"nahr-8480-native-empty-arguments-recovered:True\",\n    \"exact-repository-inventory-closure:True\"\n  ]\n}\n"
     }
   ]
 }

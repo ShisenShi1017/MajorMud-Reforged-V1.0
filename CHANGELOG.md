@@ -1,3 +1,9 @@
+# Classic parity corrective closure
+
+- Repaired the corpse-resurrection smoke fixture so its death/restoration checks select equipment that is not retained on death.
+- Pinned generated spell selection to canonical `spell_records_*`, preventing clean-checkout timestamps from selecting raw MMExplorer SQL/MDB evidence identities.
+- Verified the full Release solution build with zero warnings/errors, clean Classic generation at 37 families / 103,372 objects / 52 files, item/spell/spell-execution smokes, the 32/32 Classic parity gate, and the complete current-health validator at 56/56 PASS.
+
 # Classic Parity Headless Regression Refresh
 
 - Updated Borin's continuous headless trainer to verify the accepted 200 PASS / 0 STRONG / 0 UNKNOWN Classic parity baseline before unattended learning and at every completed learning-cycle boundary.
@@ -38,7 +44,7 @@
 - Integrated the cumulative closure into CodeUpdate0140 and verified Reforged.Server Release with zero warnings/errors. Focused Host/Persistence, Import/Export/Limits/Recovery, Items/Inventory, NPC/AI, Quests/Scripts/Triggers, and parity gates pass locally.
 - Corrected the NPC cadence audit fixture to exercise the recovered `roll < AttMin` 75% boundary and admitted native retained-use item charge `-1` without weakening ordinary item validation.
 - Deferred heavy Play, Borin, Editor, and Librarium initialization until their surfaces are opened, restoring responsive application startup.
-- The consolidated current-health validator passes 44/45 stages; its only failure remains the two documented corpse-equipment restoration assertions.
+- The consolidated current-health validator now passes all 56/56 stages after the corrective closure above.
 - Promoted `quests.textblocks-runtime` and `remoteactions.exhausted` to PASS; the category is now **2/2 PASS** and cumulative parity is **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**).
 - Closed the quest source/runtime partition at 2,183 retained evidence records = 83 executable decoded NPC quest flows + 2,100 analysis-only candidates; clean Classic generation requires exactly 83 quests, 83 NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations.
 - Preserved fail-closed graph validation: missing quest/script ownership, non-contract opcodes, non-decoded operations, unlinked flows, and trigger/script scope mismatches are rejected.
@@ -112,7 +118,7 @@
 - Updated the retained remaining-systems validator to inspect current Librarium catalogs and consolidated inventory instead of deleted provenance sidecars and pass-era owner strings.
 - Updated the live-gameplay part 5 validator to require the five-denomination bank authority and reject the retired gold-only account bypass.
 - Corrected the character-foundation smoke name to obey the production ten-character Classic given-name limit.
-- Current-health validation passes 44/45 executed stages and stops at the two pre-existing corpse-resurrection equipment assertions in `--smoke-items`; this limitation remains open and is not reported as green.
+- The two corpse-resurrection smoke-fixture failures recorded at this point were repaired by the later corrective closure; current-health validation now passes 56/56.
 - Added unchanged MegaMUD connection compatibility, interactive REROLL/SET KEEP, SET WARNING, client-data negotiation, and Borin player-runtime contracts while preserving live Borin state.
 - Recovered exact WCCMP002 native trap state for all 295 trap exits: 293 active and 2 hidden. Generated Classic and the Bundle D trap audit now preserve that distribution.
 - Replaced the combat formula authority's hard dependency on retired `ImportedDatabases` OmniVerse ability data with `Librarium/Objects/abilities/ability_records.json`; combat no longer blocks when loose imported evidence is archived.

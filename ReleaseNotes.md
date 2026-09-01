@@ -1,4 +1,8 @@
 
+## Classic parity corrective closure
+
+The last two current-health failures were validator/generation defects rather than gameplay parity gaps. Corpse-resurrection smoke now selects a non-retained equipment definition, and the compiler deterministically selects canonical `spell_records_*` instead of timestamp-sensitive raw SQL/MDB spell evidence. The full Release solution build, clean Classic generation, item/spell/spell-execution smokes, 32/32 Classic parity closure gate, and complete 56/56 current-health validator pass locally.
+
 ## Final STRONG -> PASS closure
 
 - Promotes the final 11 scored assertions to PASS at their recovered native/host ownership boundaries. The verified repository baseline is **200 PASS / 0 STRONG / 0 UNKNOWN**.
@@ -47,7 +51,7 @@ Creator Studio now provides a Custom1-only bridge for Nightmare Redux Access/MDB
 
 ## Native parity promotion and combat authority repair
 
-Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **159 PASS / 41 STRONG / 0 UNKNOWN** after the cumulative Data Reconstruction, Economy & Services, and Host / Persistence / Worldgroup closures. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. Local Release builds and focused runtime gates pass; the broader item smoke retains two pre-existing corpse-resurrection equipment failures.
+Integrated exact native exit storage, formula callsites, NPC combat ordering, scheduler/regeneration, character death, session, party, gang, organization, communication, item-transfer, and PvP configuration behavior. Parity is **159 PASS / 41 STRONG / 0 UNKNOWN** after the cumulative Data Reconstruction, Economy & Services, and Host / Persistence / Worldgroup closures. MegaMUD/Borin compatibility includes CP437 Telnet behavior, client-data negotiation, interactive REROLL/SET KEEP, SET WARNING, native communication rendering, character-only BREAK, GIVE, and combat parity refinements. Combat reads the Librarium ability catalog instead of requiring the retired loose OmniVerse ability file. The two historical item-smoke fixture failures described here are resolved by the later corrective closure.
 
 ## PASS61 / Update 0332 — Final Native Repository Closure
 
