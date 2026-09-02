@@ -10,10 +10,7 @@ public sealed class ApplicationCoreReferenceHealthCheck
     private static readonly string[] ExpectedApplications =
     {
         "Reforged.Server",
-        "Reforged.Importer",
-        "Reforged.Editor",
-        "Reforged.Launcher",
-        "Reforged.Client"
+        "Reforged.Server.Runtime"
     };
 
     public ValidationResult Validate(string appsSourceFolder)

@@ -11,7 +11,7 @@
   "savesPreserved": true,
   "purpose": "Complete CodeUpdate0140 Classic parity closure by repairing the final current-health smoke fixture and making canonical spell generation deterministic on clean checkouts. Borin headless training remains synchronized with the verified 200 PASS / 0 STRONG baseline and treats parity regressions as tester defects.",
   "currentValidation": {
-    "entrypoint": "python Tools/validator.py",
+    "entrypoint": "& Tools/ReforgedValidator/Validate.ps1",
     "runtimeParityGate": "--smoke-classic-parity-closure",
     "assertionLedger": "Librarium/Parity/majormud_parity_assertions.json",
     "scorecard": "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",

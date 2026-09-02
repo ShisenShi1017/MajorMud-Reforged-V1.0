@@ -24,11 +24,17 @@ jobs:
       - name: Restore Reforged.Server
         run: dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj
 
+      - name: Restore Reforged.Validation
+        run: dotnet restore Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj
+
       - name: Restore Librarium compiler
         run: dotnet restore Apps/Compiler/MajorMud.Reforged.Compiler.csproj
 
       - name: Build Reforged.Server
         run: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore
+
+      - name: Build Reforged.Validation
+        run: dotnet build Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-restore
 
       - name: Build Librarium compiler
         run: dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore
@@ -40,10 +46,10 @@ jobs:
         run: dotnet run --project Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-build -- build --world Custom1 --clean
 
       - name: Verify MegaMUD Telnet connection contract
-        run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-megamud-connection
+        run: dotnet run --project Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-build -- --smoke-megamud-connection
 
       - name: Verify Classic parity closure
-        run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
+        run: dotnet run --project Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
 
       - name: Bootstrap diagnostics
         run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- .

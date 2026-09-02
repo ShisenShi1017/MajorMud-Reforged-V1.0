@@ -5,7 +5,7 @@ namespace MajorMud.Reforged.Compiler;
 
 internal static class ClassicQuestRuntimeProjectionWriter
 {
-    private const string DecodedTextblocks = "Librarium/SourceImports/MMExplorerSQLData/TextblocksDecoded0142/textblocks_decoded.json";
+    private const string DecodedTextblocks = "Librarium/Objects/textblocks/textblock_records.json";
     private const string NativeTextblockPayloads = "Librarium/Objects/native_textblock_payloads/native_textblock_payload_records.json";
 
     public static int Write(string repositoryRoot, string outputRoot, Action<string, JsonNode> writeJson)
@@ -790,7 +790,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
 
     private static IReadOnlyDictionary<int, string> LoadCanonicalItemNames(string repositoryRoot)
     {
-        var path = System.IO.Path.Combine(repositoryRoot, "Librarium", "Objects", "items", "item_records_0122.json");
+        var path = System.IO.Path.Combine(repositoryRoot, "Librarium", "Objects", "items", "item_records.json");
         if (!File.Exists(path))
             throw new FileNotFoundException("Canonical item catalog is required for Gnome Merchant offerings.", path);
 

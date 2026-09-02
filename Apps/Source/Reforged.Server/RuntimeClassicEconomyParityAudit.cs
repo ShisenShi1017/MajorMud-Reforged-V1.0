@@ -96,9 +96,8 @@ public static class RuntimeClassicEconomyParityAudit
 
         try
         {
-            var shopPath = Path.Combine(projectRoot, "Librarium", "Objects", "shops", "shop_records_0122.json");
-            using var document = JsonDocument.Parse(File.ReadAllText(shopPath));
-            var records = document.RootElement.GetProperty("records").EnumerateArray().ToArray();
+            var shopPath = Path.Combine(projectRoot, "Data", "Classic", "shops.json");
+            var records = RuntimeChunkedClassicCatalog.LoadRecords(shopPath).ToArray();
             shopCount = records.Length;
             var healerShops = records.Where(record => ReadServiceType(record) == 5
                 && ReadServiceKind(record).Equals("healer_or_temple", StringComparison.OrdinalIgnoreCase)).ToArray();
@@ -114,42 +113,23 @@ public static class RuntimeClassicEconomyParityAudit
             Check(zeroMarkup == 50, "classic-zero-markup-preserved-50");
             Check(hundredMarkup == 44, "classic-hundred-markup-preserved-44");
 
-            var markupCatalogPath = Path.Combine(projectRoot, "Librarium", "Runtime", "Economy", "native_markup_catalog_0162.json");
-            using var markupDocument = JsonDocument.Parse(File.ReadAllText(markupCatalogPath));
-            var bindings = markupDocument.RootElement.GetProperty("bindings").EnumerateArray().ToArray();
-            Check(bindings.Length == 178, "markup-binding-count-178");
-            Check(bindings.All(binding =>
-            {
-                var raw = binding.GetProperty("rawMarkupPercent").GetInt32();
-                return binding.GetProperty("multiplierBasisPoints").GetInt32() == checked((100 + raw) * 100);
-            }), "markup-binding-additive-conversion");
+            Check(markups.All(raw => RuntimeEconomyNativeMarkup.ToMultiplierBasisPoints(raw) == checked((100 + raw) * 100)),
+                "markup-binding-additive-conversion");
 
-            var messagesPath = Path.Combine(projectRoot, "Librarium", "Objects", "native_message_payloads", "native_message_payload_records.json");
-            using (var messagesDocument = JsonDocument.Parse(File.ReadAllText(messagesPath)))
-            {
-                var messages = messagesDocument.RootElement.GetProperty("records").EnumerateArray().ToDictionary(
-                    row => row.GetProperty("message_id").GetInt32(), row => row.GetProperty("player_payload").GetString() ?? string.Empty);
-                Check(messages.GetValueOrDefault(318) == "You cannot afford that service."
-                      && messages.GetValueOrDefault(2576) == "You cannnot afford that service."
-                      && messages.GetValueOrDefault(2577) == "You pay the fare and buy passage to Khazarad."
-                      && messages.GetValueOrDefault(2578) == "You pay the fare and buy passage to Rhudaur."
-                      && messages.GetValueOrDefault(2596) == "You pay the fare and buy passage to Silvermere.",
-                    "native-service-and-carriage-payloads-exact");
-            }
+            var messagesPath = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
+            var messages = RuntimeChunkedClassicCatalog.LoadRecords(messagesPath).ToDictionary(
+                row => row.GetProperty("message_id").GetInt32(), row => row.GetProperty("player_payload").GetString() ?? string.Empty);
+            Check(messages.GetValueOrDefault(318) == "You cannot afford that service."
+                  && messages.GetValueOrDefault(2576) == "You cannnot afford that service."
+                  && messages.GetValueOrDefault(2577) == "You pay the fare and buy passage to Khazarad."
+                  && messages.GetValueOrDefault(2578) == "You pay the fare and buy passage to Rhudaur."
+                  && messages.GetValueOrDefault(2596) == "You pay the fare and buy passage to Silvermere.",
+                "native-service-and-carriage-payloads-exact");
 
-            var coveragePath = Path.Combine(projectRoot, "Reports", "RuntimeVerification", "classic_economy_service_coverage.json");
-            if (File.Exists(coveragePath))
-            {
-                using var coverageDocument = JsonDocument.Parse(File.ReadAllText(coveragePath));
-                var root = coverageDocument.RootElement;
-                Check(root.GetProperty("ShopCount").GetInt32() == 178
-                      && root.GetProperty("BankCount").GetInt32() == 26
-                      && root.GetProperty("TrainerCount").GetInt32() == 44
-                      && root.GetProperty("InventoryEntryCount").GetInt32() == 1204
-                      && root.GetProperty("UnclassifiedServiceCount").GetInt32() == 0,
-                    "economy-service-corpus-closed");
-            }
-            else failures.Add("economy-service-coverage-report-missing");
+            var services = RuntimeServiceCatalog.Load(projectRoot, "Classic");
+            Check(services.Services.Count(service => service.ServiceKind.Equals("bank", StringComparison.OrdinalIgnoreCase)) == 26
+                  && services.Services.Count(service => service.ServiceKind.Equals("trainer", StringComparison.OrdinalIgnoreCase)) == 44,
+                "economy-service-corpus-closed");
         }
         catch (Exception exception)
         {

@@ -1,0 +1,1188 @@
+[
+  {
+    "id": "help.main",
+    "record_kind": "main",
+    "body_message_number": 1,
+    "body": "\u001b[0m\u001b[2JType \u001b[1;33mHELP \u001b[0mfollowed by a topic for help on that topic\n(\u001b[1;36mNOTE: \u001b[0mIf you are in the\nHelp Sub-menu, there is no need to type \u001b[1;33mHELP\u001b[0m, just the topic will be fine)\r\r\u001b[1;33mTips     \u001b[0m- A few tips to help you get started.\r\u001b[1;33mCommands \u001b[0m- A list of commands available within the game\r\u001b[1;33mStats1   \u001b[0m- An explanation of the statistics of your character\r\u001b[1;33mStats2   \u001b[0m- A continuation of stats1, including help on allocating your stats\r\u001b[1;33mCombat   \u001b[0m- Everything you need to know about killing others\r\u001b[1;33mRaces    \u001b[0m- A list of the various races\r\u001b[1;33mClasses  \u001b[0m- For help on a certain class, type Help <Classname>\r\u001b[1;33mCommun   \u001b[0m- Communicating with others in the realm\r\u001b[1;33mInfo     \u001b[0m- A list of information commands, and how to use them\r\u001b[1;33mSpells   \u001b[0m- Everything you need to know about spellcasting\r\u001b[1;33mShops    \u001b[0m- Buying and selling of items in the Realm\r\u001b[1;33mLaws     \u001b[0m- Before thinking of doing anything nasty, read this\r\u001b[1;33mMovement \u001b[0m- How to travel throughout the Realm\r\u001b[1;33mParty    \u001b[0m- You have friends? Well here's how to use them\r\u001b[1;33mItems    \u001b[0m- Commands related to items within the game\r\u001b[1;33mHelp     \u001b[0m- A quick description of how to use the help system\r\u001b[1;33mTopics   \u001b[0m- A list of all available topics\r\u001b[1;33mProfile  \u001b[0m- Setting up your personal options within the game\r\u001b[1;33mMisc     \u001b[0m- Miscellaneous commands\r\u001b[1;33mSet      \u001b[0m- Various toggleable profile options\r",
+    "evidence_classification": "proven_native_help_payload"
+  },
+  {
+    "id": "help.topic.3",
+    "record_kind": "topic",
+    "title_message_number": 2,
+    "body_message_number": 3,
+    "native_keywords": "Commands comands",
+    "body": "\u001b[0m\u001b[2J   \u001b[1mMovement: \u001b[0mNorth, East, South, West, Northeast, Southeast, Southwest,\r             Northwest, Sneak, Hide, Drag <Char Name>, Go <Location>\r\r       \u001b[1mInfo: \u001b[0mLook, Look <Direction>, Status, Inventory, Bank, Topten, Statline,\r             Help, Search, Health, Brief, Verbose, Map, Profile, Keys, Track <User>\r\r     \u001b[1mCombat: \u001b[0mAttack, Bash, Punch, Kick, Jumpkick, Backstab (BS), Break, Aid\r\r      \u001b[1mItems: \u001b[0mWear, Remove, Use, Get, Light, Drop, Stash, Give\r\r      \u001b[1mShops: \u001b[0mList, Buy, Sell, Inventory \r\r\u001b[1mCommunicate: \u001b[0m%c<Message>(Talking), %c<Message>(Yelling)\r\r      \u001b[1mParty: \u001b[0mInvite, Join, Follow, Party\r\r     \u001b[1mSpells: \u001b[0mSpells, Cast <Spellname>, Mana, Invoke <Kai Power>, Powers\r\r    \u001b[1mProfile: \u001b[0mStatline On/Off/Full/Custom, Brief, Verbose, Talk fast, Talk Slow\r\r       \u001b[1mMisc: \u001b[0mSuicide, Reroll, Train, Train Stats, Greet, Ask\r\nFor full detailed information on each command, type the according sub-header.\n(Ie... If you wanted to find out about sneak, type help movement)\r          ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.5",
+    "record_kind": "topic",
+    "title_message_number": 4,
+    "body_message_number": 5,
+    "native_keywords": "Communications telepaths talking forget communicate yelling speaking telepathy",
+    "body": "\u001b[0m\u001b[2J\r\u001b[1m%c<TEXT>             \u001b[0m- Allows you to communicate to others in the same room\r                      as yourself (Ie... .Hey Dakor, how's life?)\r\u001b[1m%c<TEXT>             \u001b[0m- Allows you to be heard in adjacent rooms, as well as\r                      the one you are currently in.\r\u001b[1m/Username <TEXT>    \u001b[0m- Allows you to telepath to someone. He/She will be the\r                      only one to hear your words.\r\u001b[1mAsk <NPC> <MESSAGE> \u001b[0m- To solve certain quests, etc... you will sometimes have\r                      to seek out information from various NPCs (Non-Player\r                      Characters). For example, if have heard that Jack the\r                      bartender knows a certain something about, say, the\r                      Holy Sword, you would type Ask Jack Holy Sword.\r\u001b[1mSay <MESSAGE>       \u001b[0m- Some areas in the game require you to say certain words\r                      or sentences. For example, if the password to the\r                      Thieves Guild was ORANGE you would stand before the\r                      entrance and type \u001b[1;36mSay Orange\u001b[0m.\r\u001b[1mGossip <MESSAGE>    \u001b[0m- Everything that you say in gossip will be heard by all\r                      who have their gossip flag turned on. You may toggle it\r                      on or off by simply typing \"Gossip\".\r\u001b[1mAuction <MESSAGE>   \u001b[0m- Exactly the same as gossip. Mostly used as a channel to\r                      trade or sell items to other adventurers.\r\u001b[1mForget <Player> \u001b[0m-Typing this once will cause any telepaths from the\r\t\t      player to be ignored. Typing this the second time with the same player\r                      specified will allow you to see their telepaths. Typing \"Forget\" by itself will show\r\t\t      all users you are not receiving telepaths from.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.7",
+    "record_kind": "topic",
+    "title_message_number": 6,
+    "body_message_number": 7,
+    "native_keywords": "Combat attacking bash punch kick jumpkick kill force autocombat fire fight kick killblow",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mAttack    Bash      Backstab    Fire    Cast\nKick      Punch     Jumpkick    Break\r\r\u001b[37mAttack <OPPONENT>   \u001b[0m- Basic attack command. Will attack with whatever weapon\r                      is readied. If you are unarmed, you will punch.\r\u001b[1mBash <OPPONENT>     \u001b[0m- More powerful attack. Does more damage, but harder to\r\u001b[1mForce                 \u001b[0mland.  Also good for knocking down doors.\r\u001b[1mBackstab <OPPONENT> \u001b[0m- Only allowed if you are successfully hiding or sneaking\r                      Easier to land, and does very high damage at higher\r                      levels.  (BS for short)\r\u001b[1mPunch               \u001b[0m- Basic Mystic attack command.\r\u001b[1mKick                \u001b[0m- Slower and less accurate than a punch, but will cause\r                      more damage. (Good for martial artists)\r\u001b[1mJumpkick            \u001b[0m- The most devastating martial arts attack. Can be used\r                      from the backrank very effectively. Mystics only.\r\u001b[1mBreak               \u001b[0m- Will break off autocombat.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.9",
+    "record_kind": "topic",
+    "title_message_number": 8,
+    "body_message_number": 9,
+    "native_keywords": "Races",
+    "body": "\u001b[0m\u001b[2J\nType \u001b[1;33mHELP \u001b[36m<Race Name> \u001b[0mfor specific help on a race.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.11",
+    "record_kind": "topic",
+    "title_message_number": 10,
+    "body_message_number": 11,
+    "native_keywords": "Classes",
+    "body": "\u001b[0m\u001b[2J\nType \u001b[1;33mHELP \u001b[36m<class name> \u001b[0mfor specific help on a class.\r\nType \u001b[1;33mHELP CLASS POWERS \u001b[0mfor descriptions of the powers assigned to classes.\r\nType \u001b[1;33mHELP CLASS SKILLS1 \u001b[0mor \u001b[1;33mHELP CLASS SKILLS2 \u001b[0mfor descriptions of the skills\nassigned to classes.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.13",
+    "record_kind": "topic",
+    "title_message_number": 12,
+    "body_message_number": 13,
+    "native_keywords": "Class Powers",
+    "body": "\u001b[0m\u001b[2J\r \u001b[1mHP/level: \u001b[0mThe number of Hit Points a class gains when going up a level, plus\r           or minus the Health adjustment.\r\r \u001b[1mMagic: \u001b[0mThe type and level of magic use the character has. The type of magic\r        'Mage, Druid, etc...' is self-explanatory. A magic level of 1\r        indicates minor magical abilities 'ie. Priest-1'. A magic level of 2\r        is average magical skill, and a magic level of 3 shows excellent\r        magical powers. Kai powers are a Mystic's mental powers, and a Mystic\r        will gain new ones as he gets more experienced.\r\r \u001b[1mCombat: \u001b[0mThis is a measure of the combat effectiveness of the class. A combat\r         of 1 is Poor, 2 is Fair, 3 is Average, 4 is Good, and 5 is\r         Excellent. This affects accuracy and speed of attacks.\r\r \u001b[1mWeapons: \u001b[0mThis shows what weapons a character may use. 1-handed means any\r          one-handed weapon, Any means, of course, any weapon. Blunt means\r          only blunt weapons may be used (mace, etc...) and Staff means only\r          the staff and dagger may be used.\r\r \u001b[1mArmour: \u001b[0mLike weaponry, this indicates what armour a class may use. Scale\r         means up to and including scale armour. Leather means up to and\r         including Studded Leather. Any class may wear robes.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.15",
+    "record_kind": "topic",
+    "title_message_number": 14,
+    "body_message_number": 15,
+    "native_keywords": "Class Skills1 class skills 1 traps",
+    "body": "\u001b[0m\u001b[2J\r \u001b[1mBash: \u001b[0mThis is the ability to deal a heavy, innacurate blow. See HELP COMBAT\r       for details. Any class may Bash, but character classes with weak combat\r       will rarely hit.\r\r \u001b[1mStealth: \u001b[0mThis is the skill of sneaking and concealment. A character with\r          this skill can lurk in wait, concealed in the shadows of the room\r          by typing HIDE. This can be used for a backstab. Also, you can\r          sneak into a room by typing SNEAK and then moving. If you are lucky,\r          no-one will see you, and then you can try to HIDE immediately or\r          backstab some unfortunate person.\r\r \u001b[1mTraps: \u001b[0mAnyone with the Traps skill is proficient in finding and disarming\r        traps. Normally anyone can find a trap by searching, but someone with\r        the Traps skill has a much higher chance. Also, a traps expert can\r        attempt to disarm any trap he finds.\r\r \u001b[1mLockpicking: \u001b[0mThis is the skill of unlocking locked doors. Some doors cannot\r              be picked, and some are harder to pick than others. Once a door\r              is successfully unlocked with this skill, it may be opened\r              quite easily (unless there is a trap also!). Most locks are\r              specially enchanted so that they will re-lock after a certain\r              amount of time, so don't get yourself stuck anywhere.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.17",
+    "record_kind": "topic",
+    "title_message_number": 16,
+    "body_message_number": 17,
+    "native_keywords": "Class Skills2 Class Skills 2 thievery martial arts dodge",
+    "body": "\u001b[0m\u001b[2J\r \u001b[1mThievery: \u001b[0mRobbing someone is a difficult skill, especially if the foe is not\r           just another mark. Thievery is the ability to steal cash or items\r           (non-equipped) from a character. A successful Thievery attempt will\r           either gain you one item, or a substantial amount of cash from the\r           target's money pouch.\r\r \u001b[1mTracking: \u001b[0mEveryone leaves a trail behind them while travelling around, even\r           while sneaking. With this skill, it is possible to track someone\r           wherever he goes. It is quite useful in setting up ambushes, to see\r           if the target has passed nearby recently.\r\r \u001b[1mDodge: \u001b[0mThis is the ability a Mystic has to dodge attacks and missiles\r        (including missile spells) by acrobatically leaping and rolling. This\r        ability increases as the character get more experienced.\r\r \u001b[1mMartial Arts: \u001b[0mThis is the skill Mystics use in their unarmed combat. This\r               ability allows you to attack with Punches, Kicks, and Jumpkicks\r               as opposed to only Punches from an ordinary unarmed foe. The\r               damage these attacks do increases with level, as does the\r               chance of a critical hit.\r\r No Magic Items: As a result of their vows, WitchHunter can not, and would not\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.19",
+    "record_kind": "topic",
+    "title_message_number": 18,
+    "body_message_number": 19,
+    "native_keywords": "Info topten search who scan maps status high",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mTopten  Bank    Map      Track   Who\nStats   Health  Save  Keys  Spells  Look     Search\r\r\u001b[37mLook        \u001b[0m- Will display all the current details of the room you are in. You\r              may look into adjacent rooms by typing Look <Direction>.\r\u001b[1mStatus      \u001b[0m- Will display your character's statistics, abilities, etc... For\r              those familiar to role-playing games, this would be called a\r              character sheet.\r\u001b[1mInventory   \u001b[0m- Displays your current possessions, including wealth on-hand, and\r              which items you have equipped.\r\u001b[1mMap         \u001b[0m- Displays a map of Silvermere. \u001b[44mANSI\u001b[40m required.\r\u001b[1mBank        \u001b[0m- Will display how much money you have stored in the bank.\r\u001b[1mWho         \u001b[0m- Displays all the current users in the Realm.\r\u001b[1mTopten      \u001b[0m- Will display the top ten adventurers in the game.\r\u001b[1mSearch      \u001b[0m- Will search the room for any hidden items, locations, etc... You\r              may also search specific objects by typing search <Object> (Ie...\r              Search Cabinet)\r\u001b[1mTrack       \u001b[0m- Allows you to pick up the trail of a certain user. You must have\r              the Track skill to use this ability.\r\u001b[1mKeys        \u001b[0m- Displays all the keys in your key-ring\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.21",
+    "record_kind": "topic",
+    "title_message_number": 20,
+    "body_message_number": 21,
+    "native_keywords": "Spells cast invoke magic chant",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mCast     Spells     Health    Break    Read <Scroll name>   Invoke\nBreak\r\r\u001b[37mCast <Spellname>   \u001b[0m- Will cast a spell accordingly, if you have enough mana\r                     points available. For combat spells, type Cast <Spellname>\r                     <Target>.  Cast by itself will re-initiate combat if\r                     appropriate.\r\u001b[1mInvoke <Kai Power> \u001b[0m- Will invoke the appropraite Kai power, if you are a Mystic\r                     and have enough Kai points to use it.\r\u001b[1mRead <Scroll name> \u001b[0m- If you are of the appropriate class and level to cast the\r                     spell in question, you will memorize the spell and the\r                     scroll will disappear\r\u001b[1mSpells             \u001b[0m- Will display all the spells currently known.\r\u001b[1mPowers             \u001b[0m- Will display all the Kai powers currently known.\r\u001b[1mHealth             \u001b[0m- Displays your current Health and Mana Points. Useful if\r                     you are not using the Statline option.\r\u001b[1mBreak              \u001b[0m- Will break off casting of auto-combat spells.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.23",
+    "record_kind": "topic",
+    "title_message_number": 22,
+    "body_message_number": 23,
+    "native_keywords": "Shops buy sell list order",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mList     Buy      Sell\r\r\u001b[37mList   \u001b[0m- Displays the public items that are currently available in the\r               current room. This will display all the necessary information on\r\u001b[s               purchasing an item, including it's going price and how many items\u001b[u\r\u001b[0;1m               \u001b[0mare available.\r\u001b[1mBuy <Item>   \u001b[0m- Will attempt to purchase an item at the best price possible\r               (based on your charm).\r\u001b[1mSell <Item>  \u001b[0m- Will attempt to sell an item at the best price possible (Again\r               this is based on your charm).\r\u001b[1mAppraise     \u001b[0m- Informs you on the selling price you will receive for\r                the item that you are appraising.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.25",
+    "record_kind": "topic",
+    "title_message_number": 24,
+    "body_message_number": 25,
+    "native_keywords": "Movement travel north south east west northeast northwest southeast southwest up down ne nw se sw",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mNorth      East     South    West    Northwest   Northeast   Southwest\nSoutheast  Up       Down     Sneak   Exits       Picklock    Go <Location>\r\r\u001b[37mN, E, S W, NE, SE, \u001b[0m- General movement commands (North, East, South, West,\r\u001b[1mSW, NW, Up, Down     \u001b[0metc...) To get to special locations, you may have to\r                     type a corresponding action command. (Ie... Go Hole,\r                     or Climb Tree). You should experiment with various\r                     commands.\r\u001b[1mHide               \u001b[0m- If your class permits it, you will be able to hide\r                     amongst the shadows.\r\u001b[1mSneak              \u001b[0m- If class permits, you will be able to effectively\r                     walk from room to room without being seen moving.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.27",
+    "record_kind": "topic",
+    "title_message_number": 26,
+    "body_message_number": 27,
+    "native_keywords": "Party frontrank backrank midrank invite uninvite rank parties partys",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mInvite     Uninvite    Party     Join    Backrank   Frontrank\r\r\u001b[37mInvite <USERNAME>   \u001b[0m- Will invite someone into your adventuring group.\r\u001b[1mUninvite <USERNAME> \u001b[0m- Will kick someone out of your adventuring group.\r\u001b[1mJoin <USERNAME>     \u001b[0m- Allows you to join another user, but ONLY if he/she\r                      has already invited you.\r\u001b[1mLeave               \u001b[0m- Pretty straightforward.\r\u001b[1mParty               \u001b[0m- Will display who is in your adventuring group, and what\r                      ranks they are in.\r\u001b[1mBackrank            \u001b[0m- If you are in someone's adventuring group, this will\r                      put you into the back rank. You will be harder to hit\r                      in combat, but will also have a harder time hitting\r                      opponents with close combat attacks. Great for magic\r                      users casting ranged spells, or players with missile\r                      weapons.\r\u001b[1mFrontrank           \u001b[0m- Will place you into the frontrank, if a spot is currently\r                      available. At least the same amount of users must be in the front\r                      rank as the back. You will have an easier time hitting opponents,\r\t\t      but will get hit easier as well.\t\t      \r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.29",
+    "record_kind": "topic",
+    "title_message_number": 28,
+    "body_message_number": 29,
+    "native_keywords": "Training room advancement",
+    "body": "\u001b[0m\nTo train to the next level, you must find the appropriate training room\nfor your class.  Once you have found it, you may purchase training if you\nhave adequate experience.\r\nAfter you have been trained, you may use the TRAIN STATS command to\nredistribute your new CP among your stats.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.31",
+    "record_kind": "topic",
+    "title_message_number": 30,
+    "body_message_number": 31,
+    "native_keywords": " chaos good evil reputation alignment criminals gods sins laws saints fiends outlaws villains seedy neutrality jail",
+    "body": "\u001b[0m\u001b[2J\u001b[sLike any respectful city, Silvermere has its laws. Some follow them, some\ndon't.\u001b[u\r\u001b[0mIf you are in the latter category, your stay in the realm may be cut short, in\nmore ways than one. There are two main criminal acts in the Realm. Attacking\n\"innocents\" (The town doesnt care if you slay a hated person), or stealing from\nothers. Although the latter is more tolerated of course. People will be\nclassified in the following titles, so watch who you trust.\r\r\u001b[1;37mLawful   \u001b[0;32m-  Attacking a lawful player will give thrice the evil points.\r\u001b[1;37mSaint    \u001b[0;32m-  A true saint, in society and in heart. A rarity in these times.\r\u001b[1;37mGood     \u001b[0;32m-  Someone with a noteworthy reputation of lawfulness.\r\u001b[36mNeutral  \u001b[32m-  An average citizen, you will be treated fairly within the realm.\r\u001b[37mSeedy    \u001b[32m-  The dregs of society. Bad deeds done to you will be ignored.\r\u001b[35mOutlaw   \u001b[32m-  Guards will attack you on sight, but will spare your life.\r\u001b[1;35mCriminal \u001b[0;32m-  Same as Outlaw, except that Guards will SLAY you on sight.\r\u001b[31mVillain  \u001b[32m-  Same as Criminal, except that the \"Gods\" may sometimes intervene.\r\u001b[1;31mFiend    \u001b[0;32m-  The utmost in evil. Don't count on living too long in this state.\r\r\u001b[37mCurrently, the only way to become a more \"respected\" citizen is to wait it off.\r\u001b[sIn times like these, your deeds will eventually be forgotten, and it is commonly\u001b[u\r\u001b[0mknown for an infamous villain to become a well respected townsman after a\r\u001b[scertain amount of time. \r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.33",
+    "record_kind": "topic",
+    "title_message_number": 32,
+    "body_message_number": 33,
+    "native_keywords": "Tips",
+    "body": "\u001b[0m\u001b[2JHere are some helpful \"hints\" or advice to get you started...\r\r\u001b[1;33m1. \u001b[0mRead all of the help files, or at least glance through them. This will save\r   you a lot of time and effort overall.\r\r\u001b[1;33m2. \u001b[0mPick a class that you feel comfortable with. We have tried to make ALL of\r   the classes equal in efficiency, but each one has its own unique features.\r\r\u001b[1;33m2. \u001b[0mOnce you have your character made, check out all of the stores in Newhaven\r   and equip yourself with weaponry, armour, and spells (if you are a\r   spellcaster). Don't go down into the arena until you are armed and ready.\r\r\u001b[1;33m3. \u001b[0mTo familiarize yourself with the combat system, go to the Newhaven Arena.\r   Here you will be able to earn experience for your next level, and gold to\r   purchase better weaponry and armour. Once you have enough experience to\r   obtain your next level, go to the guild and train.\r\r\u001b[1;33m4. \u001b[0mNow that you have completed these steps, you could try adventuring in\r   the dungeon past the north door in the Newhaven Arena. Type \"bash north\"\r   or \"picklock north\" (If you have the skill) to open the lock/door.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.35",
+    "record_kind": "topic",
+    "title_message_number": 34,
+    "body_message_number": 35,
+    "native_keywords": "Items give wear equipment remove get drop use light ready",
+    "body": "\u001b[0m\u001b[2J\u001b[1;33mBuy       Sell     Get      Drop    Use        Light      Rob\nEat       Drink    Search   Hide    Inventory  Keys       Give\nList      Ready    Remove\r\r\u001b[37mWear <Item>         \u001b[0m- Equips any item that must be readied to use. Ie..\r                      armour, weapons, etc... Optional words are Arm, Wear,\r                      Wield, etc...\r\u001b[1mRemove <Item>       \u001b[0m- Will remove an equipped item.\r\u001b[1mUse <Item>          \u001b[0m- If an item has a specific use (Ie... A potion), the most\r                      common command to activate it would be USE. Some items\r                      require you to use a different action word (Ie... LIGHT\r                      torch, or RUB Lamp), so experiment.\r\u001b[1mLook <OBJECT>       \u001b[0m- Displays the visible info on an object, creature, or\r                      item.\r\u001b[1mGet <Item>          \u001b[0m- Will pick up a visable item, if you can carry it.\r\u001b[1mDrop <Item>         \u001b[0m- Will drop an item on the ground.\r\u001b[1mGive <Item><Player> \u001b[0m- Will give an item to the according user.\r\u001b[1mInventory           \u001b[0m- Displays what items, money that you own, and if\r                      they are equipped or not.\r\u001b[1mBank                \u001b[0m- Will display your current bank rating and balance.\r\u001b[1mStash/Hide <Item>   \u001b[0m- Will hide an item in a room, which can only be found\r                      again if someone successfully searches that room.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.37",
+    "record_kind": "topic",
+    "title_message_number": 36,
+    "body_message_number": 37,
+    "native_keywords": "Profile statline page talk fast talk slow statusline",
+    "body": "\u001b[0;1;33mProfile    Statline   Verbose    Quiet     Brief\nJoin       Broadcast  Talk       Leave     Scan      Page\r\r\u001b[37mProfile              \u001b[0m- Will display your current profile settings\r\u001b[1mStatline On/Off/Full \u001b[0m- Will set your statline Prompt. On will display your\r                       current Hit Points at mana at every prompt, Off will\r                       display your standard BBS prompt, and Full acts the same\r                       as On, except that everytime you hit Enter, the brief\r                       description of your current room will be displayed.\r                       Look for help on CUSTOM for the custom statline.\r                       NOTE: Sneaking players will not show up when you hit\r                       Enter. You must type look.  \r\u001b[1mBrief                \u001b[0m- Will put on brief room descriptions\r\u001b[1mVerbose              \u001b[0m- Displays the full room description everytime that you\r                       enter a room.\r\u001b[1mTalk Fast            \u001b[0m- Turning this mode on will make it so that everything\r                       that you type, BESIDES commands, will show up as if you\r                       had spoken it. There will be no need to type . before\r                       every sentence if you wish to converse with others.\r\u001b[1mTalk Slow            \u001b[0m- If this option is used, the only way that you will be\r                       able to talk openly is by typing . before your message.\r\u001b[1mPage                 \u001b[0m- Typing page will toggle on/off the ability for other\r                       users on the system to page you while you are in the\r                       game.\r\u001b[1mSet Receive On/Off   \u001b[0m- Will toggle on your ability to receive items from other\r                       players when they use the give command. Helpful command  ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.39",
+    "record_kind": "topic",
+    "title_message_number": 38,
+    "body_message_number": 39,
+    "native_keywords": "Banking banks deposit withdraw bankbook",
+    "body": "\u001b[0;1;33m\r\nDeposit  <n> will deposit n copper into your account \nWithdraw <n> will withdraw n copper from your account\nBankbook     will display your current bank balance.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.41",
+    "record_kind": "topic",
+    "title_message_number": 40,
+    "body_message_number": 41,
+    "native_keywords": "Experience xp exp. exps",
+    "body": "The following is a table of experience for Your character:\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.43",
+    "record_kind": "topic",
+    "title_message_number": 42,
+    "body_message_number": 43,
+    "native_keywords": "Ninjas",
+    "body": "\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mNINJAS\u001b[58C\u001b[0;1mEXP: \u001b[0m185%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThe origins of the ninja are basically unknown, save for the fact that    \u001b[0;34m║\r║ \u001b[0mthey come from a distant and exotic land. They seem to have an animosity  \u001b[0;34m║\r║ \u001b[0magainst mystics, so they probably originate from the same area. Ninjas    \u001b[0;34m║\r║ \u001b[0mexcel in the art of stealth and subterfuge. While they can fight fairly   \u001b[0;34m║\r║ \u001b[0mwell in hand to hand combat, they prefer to immobilize their opponent\u001b[5C\u001b[0;34m║\r║ \u001b[0mbefore he would have time to react. After a deadly attack from the\u001b[8C\u001b[0;34m║\r║ \u001b[0mshadows, they will usually finish off their victim with their mastery of  \u001b[0;34m║\r║ \u001b[0mpressure point attacks. The ninjas of Silvermere have been rumoured to be \u001b[0;34m║\r║ \u001b[0min league with the thieves guild, and are usually hired by them to do the \u001b[0;34m║\r║ \u001b[0mbulk of their dirty work.\u001b[49C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-8  \u001b[0mMagic: \u001b[0;1mNone  \u001b[0mCombat: \u001b[0;1mAverage   \u001b[0mWeapons: \u001b[0;1mAny  \u001b[0mArmour: \u001b[0;1mNinja \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mStealth, Dodge, Enhanced Crits, Traps, Lockpicking, Tracking.  \u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.45",
+    "record_kind": "topic",
+    "title_message_number": 44,
+    "body_message_number": 45,
+    "native_keywords": "Stats1 stats 1 stat1 statname",
+    "body": "\u001b[0m\u001b[2J\r\u001b[0;1;33mPrimary Statistics\r\r\u001b[0mEvery character has six basic attributes, which govern the strengths and\nweaknesses of each particular character. The six stats are Strength, Agility,\nHealth, Intellect, Willpower and Charm. Each race starts out with a \u001b[0;1mbase \u001b[0mvalue\nand a \u001b[0;1mmaximum \u001b[0mvalue in each of the six stats. A character cannot have a stat\nlower than the Base value, and cannot increase a stat beyond the Maximum value.\nFor example, Elves are slim but graceful, and for \u001b[0;1mAgility \u001b[0mhave a base value of\r\u001b[0;31m50 \u001b[0mand a maximum value of \u001b[0;32m120\u001b[0m. In the \u001b[0;1;33mhelp \u001b[0mfiles, the base value in each stat\nis coloured \u001b[0;31mred\u001b[0m, and the maximum is coloured \u001b[0;32mgreen\u001b[0m. \u001b[0;1mHumans \u001b[0mform the \"benchmark\"\nfor all other races, and have a base value of \u001b[0;31m40 \u001b[0mand a maximum value of \u001b[0;32m100 \u001b[0min\nevery stat. A value of \u001b[0;1m50 \u001b[0mindicates an average value, giving no bonuses or\npenalties, while values above and below 50 give penalties or bonuses as\napplicable.\r\nStats can be changed by spending \u001b[0;1mCP \u001b[0m(character points) in character creation or\nafter Training. Since every character receives CP after increasing in level, it\nis generally a wise idea to use these gained CP in a \u001b[0;1mTraining Hall\u001b[0m, by typing\r'\u001b[0;1;33mTRAIN STATS\u001b[0m'. This will place you in the character editor (ANSI\nrecommended).\r\nType '\u001b[0;1;33mHELP STATS2\u001b[0m' for more information on allocating your stats and how to\nuse the character editor. There is also a seperate help topic for each stat,\nwhich will give information on what the stat does and what parts of the\ncharacter it affects. For example, you would type '\u001b[0;1;33mHELP STRENGTH\u001b[0m' to get info\non Strength.\r\u001b[0m\u001b[255D\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.47",
+    "record_kind": "topic",
+    "title_message_number": 46,
+    "body_message_number": 47,
+    "native_keywords": "Stats2 stats 2 stat2",
+    "body": "\u001b[0m\u001b[2J\r\u001b[0;1;33mPrimary Statistics, continued\r\r\u001b[0mThe cost to increase stats is as follows:\r\nThe first 1 to 10 points above your race's base stat:  1 CP each.\nThe second 1 to 10 points above your race's base stat: 2 CP each.\nThe third 1 to 10 points above your race's base stat:  3 CP each.\r\r... and so on. This means that to increase a stat \u001b[0;1m40 \u001b[0mpoints above its base\nlevel, say, \u001b[0;1mAgility 40 \u001b[0mto \u001b[0;1mAgility 80 \u001b[0m(a BIG leap!), you would have to spend\n10 CP's for the first 10 Agil, 20 CP's for the second 10 Agil, 30 CP's for the\nthird 10 Agil, and 40 CP's for the fourth set of 10 Agility. This adds up to\na grand total of 10 CP + 20 CP + 30 CP + 40 CP = \u001b[0;1m100 CP\u001b[0m! Very expensive, as\nyou can see, and not very wise: even though your character would be incredibly\nagile, he would be weak, fragile, stupid, etc... and that makes a big\ndifference. Having a one-dimensional character may be fun for a while, but\nyour character probably would not last very long. In the end a more balanced\ncharacter would be more enjoyable and would survive longer.\r\nNote that 'high' or 'low' stats are stats above or below 50, respectively.\nEach stat has a different use. Type \u001b[0;1;33mHELP STATNAME \u001b[0mfor details on a particular\nstat and its effects on your character and his abilities.\r\r\u001b[0m\u001b[255D\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.49",
+    "record_kind": "topic",
+    "title_message_number": 48,
+    "body_message_number": 49,
+    "native_keywords": "Strength",
+    "body": "\u001b[0m\r\u001b[1;33mSTRENGTH (STR)\r\r\u001b[0mStrength is a measure not just of your raw muscle mass, but also how well you\ncan use that strength. Good Strength adds to how easily you attack something in \ncombat, as well as the damage you do when you hit. Some weapons need a high \nStrength to use effectively. Conversely, low strength reduces how well you hit\nsomething, and the damage you do. A Halfling warrior may be extremely quick, \nbut he will do fairly poor damage when compared to a Dwarf! Strength also \ngoverns how much weight you can carry without being encumbered. Strength\nis a necessary stat for any fighting class, but is useful for magic-using\nclasses as well, because no-one has an unlimited supply of magic! It is used\nwhen bashing down doors and in some instances for moving heavy objects.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.51",
+    "record_kind": "topic",
+    "title_message_number": 50,
+    "body_message_number": 51,
+    "native_keywords": "Agility dexterity",
+    "body": "\u001b[0m\r\u001b[1;33mAGILITY (AGI)\r\r\u001b[0mAgility is basically how quick and accurate you are in your movements. It\ninvolves not only speed, but total body coordination as well. A character with\nhigh Agility attacks faster and more accurately, and a high Agility helps\ndefend against physical attacks. Low Agility, of course, makes you slower and\nless accurate. An Elf will hit far more often than a Half-Ogre, though a\nHalf-Ogre's incredible crushing blows may compensate. Agility is a component\nof most skills, and is extremely useful for a thief. A thief with high agility\nwill have very good skills! Again, Agility is a necessary stat for any\nfighting class.\r\nAgility is important for the following character skills: \u001b[1mStealth\u001b[0m, \u001b[1mThievery\u001b[0m,\r\u001b[1mTraps \u001b[0mand \u001b[1mPicklocks\u001b[0m. It contributes heavily to your \u001b[1mAccuracy \u001b[0mand \u001b[1mCritical Hit\nChance \u001b[0mas well. Characters with above-average Agility will gain a small \u001b[1mDodge\r\u001b[0mchance, while characters with low Agility will suffer from reduced defense.     ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.53",
+    "record_kind": "topic",
+    "title_message_number": 52,
+    "body_message_number": 53,
+    "native_keywords": "Intellect intelligence perception",
+    "body": "\u001b[0m\r\u001b[1;33mINTELLECT (INT)\r\r\u001b[0mIntellect is a combination of raw intelligence, creativity, reasoning and\nbasic awareness. Intellect is useful for all classes in respect to their\nPerception, which is a skill that helps notice hidden and concealed items\n(and people!). A character with a low Intellect may not notice things very\noften, such as people sneaking around, robbing them, etc. Intellect is a main\ncomponent in many skills, and is useful to a thief, but it is vital to a mage!\nMages use Intellect as the main stat for their spells. A Mage with low\nIntellect will be at a severe disadvantage with spells when compared to a mage\nwith higher Intellect. Druids use both Intellect and Wisdom for their spells,\nso they need to have good levels in both stats. Warrior-types can usually get\nalong without much Intellect, and historically many have done so -- but\nIntellect is also a component of Critical Hits, so a canny fighter will do\nheavy blows more often than a dull-witted opponent.\r\nIntellect directly affects the following skills and abilities: \u001b[1mStealth\u001b[0m,\r\u001b[1mThievery\u001b[0m, \u001b[1mTraps\u001b[0m, \u001b[1mPicklocks\u001b[0m, \u001b[1mTracking\u001b[0m, \u001b[1mPerception\u001b[0m, \u001b[1mMagic Resistance\u001b[0m,\r\u001b[1mSpellcasting\u001b[0m, and \u001b[1mCritical Hit Chance\u001b[0m.                                          ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.55",
+    "record_kind": "topic",
+    "title_message_number": 54,
+    "body_message_number": 55,
+    "native_keywords": "Willpower wisdom",
+    "body": "\u001b[0m\r\u001b[1;33mWILLPOWER (WIL)\r\r\u001b[0mThis stat is a measure of the character's cool-headedness, determination,\nmental focus and strength of faith. It is a must for any Priestly character,\nas this is the stat they use for their spell-casting. Druids use both\nWillpower and Intellect, so they need to have good levels in both stats.\nWillpower is the prime component in Magic Resistance, so anyone needing to\nresist spells had better have a good value in this stat. A Witchunter with\nhigh WIL would have a formidable MagicRes! As for Intellect, a Warrior-type\ncould probably get along with a low Wisdom, but would then be much more\nvulnerable to magic spells.\r\nWillpower directly affects the following skills and abilities: \u001b[1mSpellcasting\u001b[0m,\r\u001b[1mTracking\u001b[0m, \u001b[1mPerception \u001b[0mand \u001b[1mMagic Resistance\u001b[0m.                                      ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.57",
+    "record_kind": "topic",
+    "title_message_number": 56,
+    "body_message_number": 57,
+    "native_keywords": "Health constitution",
+    "body": "\u001b[0m\r\u001b[0;1;33mHEALTH (HEA)\r\r\u001b[0mHealth is a character's vitality, toughness, and general physical well-being.\nHealth governs how many Hit Points a character starts with, as well as how\nmany are gained each time a new Level is reached. Poison is less effective on\na healthier person, and Health is a component in Magic Resistance. Where\nWillpower is the toughness of the mind, Health is the toughness of the body.\nHealth is a prime stat for any fighting classes, but is very useful for all\ncharacters, as everyone will sustain damage at some point in their perilous\ncareers.\r\nHaving a high Health increases the rate at which you naturally heal, and the\nrate at which you gain HP through resting. It may also confer an increased\nresistance to some poisons and diseases. Characters with above- or below-\naverage Health will notice a change in their Hit Points, which will vary\ndepending on your Level and your Health. Health no longer has \"stat breaks\"\nwhere you must have a certain level of Health to obtain the increases (in the\npast, you needed to have 65, 80 or 95 Health for the bonuses), and now works as\na gradual process that increases your HP as both your Health and Level increase.\nTherefore, it is possible that even a one-point increase in Health could \nincrease your total HP.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.59",
+    "record_kind": "topic",
+    "title_message_number": 58,
+    "body_message_number": 59,
+    "native_keywords": "Charm",
+    "body": "\u001b[0m\r\u001b[1;33mCHARM (CHA)\r\r\u001b[0mCharm is a hard stat to pin down -- it is not an actual measure of a person's\ngood looks, but people with high charm are quite attractive to others. It\nhelps with interpersonal relations, such as buying items from store-owners,\nas a charming person can lower the price of an item substantially. Charm helps\nin combat, because people are more likely to attack an offensive person than\nsomeone with a disarming smile. Charm is a component in some skills, as Charm\nis not only a measure of a character's charm, but a person with good Charm\nleads a Charmed life, so to speak, and in general is much luckier than other\ncharacters. Such a one would find himself miraculously dodging out of the way\nof some attacks, where others would have been hit. Charm is the main stat for\nuse in Bard spells, and a Bard with low Charm will be a very poor Bard indeed.\nAll characters can use a good dose of Charm.\r\nCharm directly affects the following skills and abilities: \u001b[1mStealth\u001b[0m, \u001b[1mTraps\u001b[0m,\r\u001b[1mTracking\u001b[0m, \u001b[1mCritical Hit Chance \u001b[0mand \u001b[1mPerception\u001b[0m.                                   ",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.61",
+    "record_kind": "topic",
+    "title_message_number": 60,
+    "body_message_number": 61,
+    "native_keywords": "Thief theif thieves theives",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mTHIEVES\u001b[58C\u001b[0;1mEXP: \u001b[0m80%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThe Thief class is fairly self-explanatory. Thieves steal, for different  \u001b[0;34m║\r║ \u001b[0mreasons, and are very good at it. Not all thieves rob for personal gain:  \u001b[0;34m║\r║ \u001b[0mmany are vigilantes, robbing sleazy nobles to help the poor. Others\u001b[7C\u001b[0;34m║\r║ \u001b[0mrarely use their thieving skills and are basically scouts, creeping ahead \u001b[0;34m║\r║ \u001b[0mto survey enemies. Of course most thieves rob for their own benefit, and  \u001b[0;34m║\r║ \u001b[0mthus it is usually good to keep an eye on all Thieves in your party, even \u001b[0;34m║\r║ \u001b[0mif they have given their word they will not rob you. Thieves have a\u001b[7C\u001b[0;34m║\r║ \u001b[0mnumber of useful abilites, including Thievery, Stealth, Lockpicking,\u001b[6C\u001b[0;34m║\r║ \u001b[0mand Traps. They can use any one-handed weapon, and will wear no armour    \u001b[0;34m║\r║ \u001b[0mgreater than leather due to their need for stealth. Thieves can\u001b[11C\u001b[0;34m║\r║ \u001b[0malso Backstab from the shadows when they are hidden, as can any class\u001b[5C\u001b[0;34m║\r║ \u001b[0mwith Stealth.\u001b[61C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-7  \u001b[0mMagic: \u001b[0;1mNone   \u001b[0mCombat: \u001b[0;1mFair   \u001b[0mWeapons: \u001b[0;1m1-H  \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mStealth, Thievery, Traps, Lockpicking.\u001b[25C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.63",
+    "record_kind": "topic",
+    "title_message_number": 62,
+    "body_message_number": 63,
+    "native_keywords": "Warriors warroirs",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mWARRIORS\u001b[56C\u001b[0;1mEXP: \u001b[0m100%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mWarriors are the basic front-line fighters in any party. They are able to \u001b[0;34m║\r║ \u001b[0muse any weapons and wear any armour, and have good Combat and Hit Points. \u001b[0;34m║\r║ \u001b[0mEven though they are a basically simple class, they are quite effective   \u001b[0;34m║\r║ \u001b[0mand can be varied: Warriors are guardsmen, mercenaries, infantry, bowmen, \u001b[0;34m║\r║ \u001b[0mgladiators, and a multitude of other professions. They have no magical    \u001b[0;34m║\r║ \u001b[0mpowers but can use any magical weapon or armour piece they can find, as   \u001b[0;34m║\r║ \u001b[0mwell as all the standard potions.\u001b[41C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m6-10   \u001b[0mMagic: \u001b[0;1mNone   \u001b[0mCombat: \u001b[0;1mGood   \u001b[0mWeapons: \u001b[0;1mAny    \u001b[0mArmour: \u001b[0;1mAny \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.65",
+    "record_kind": "topic",
+    "title_message_number": 64,
+    "body_message_number": 65,
+    "native_keywords": "Paladins Paladines",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mPALADINS\u001b[56C\u001b[0;1mEXP: \u001b[0m220%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThese are the holy warriors of the realm. Dedicated to fighting for their \u001b[0;34m║\r║ \u001b[0mdeity (which can be good OR evil, take note!), they are serious fighters  \u001b[0;34m║\r║ \u001b[0mwith minor priestly powers. They can use any weapon or armour, but prefer \u001b[0;34m║\r║ \u001b[0mswords. The Knights of the King are Paladins, as are many of the\u001b[10C\u001b[0;34m║\r║ \u001b[0mwandering warriors you see patrolling the roads. Most Paladins will\u001b[7C\u001b[0;34m║\r║ \u001b[0mactively help anyone in need, even risking their own lives to save the    \u001b[0;34m║\r║ \u001b[0mones they aid. Evil Paladins, of course, further their deity's will by    \u001b[0;34m║\r║ \u001b[0mslaying all people not of their own faith, so be wary when meeting a\u001b[6C\u001b[0;34m║\r║ \u001b[0mstranger offering help.\u001b[51C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m5-9   \u001b[0mMagic: \u001b[0;1mPriest-1  \u001b[0mCombat: \u001b[0;1mGood  \u001b[0mWeapons: \u001b[0;1mAny   \u001b[0mArmour: \u001b[0;1mAny \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.67",
+    "record_kind": "topic",
+    "title_message_number": 66,
+    "body_message_number": 67,
+    "native_keywords": "Witchunters witchhunters witch hunters",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mWITCHUNTERS\u001b[53C\u001b[0;1mEXP: \u001b[0m130%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mWitchunters are a breed of elite warriors who have taken a vow to destroy \u001b[0;34m║\r║ \u001b[0mall magical enemies. They will use no magical weapons, armour or items,   \u001b[0;34m║\r║ \u001b[0mand will only grudgingly accept beneficial spells being cast on them.\u001b[5C\u001b[0;34m║\r║ \u001b[0mThey are trained from birth to be ferocious and efficient fighters, and   \u001b[0;34m║\r║ \u001b[0mwill give no quarter when faced with an enemy spell-caster. During their  \u001b[0;34m║\r║ \u001b[0mtraining to become Witchunters they develop a strong anti-magic aura,\u001b[5C\u001b[0;34m║\r║ \u001b[0mwhich interferes with spells being cast on them. This is due to their\u001b[5C\u001b[0;34m║\r║ \u001b[0mnear-fanatical focus and their strong willpower. They will use any non-   \u001b[0;34m║\r║ \u001b[0mmagical weapon, but will wear no armour heavier than Scale because they   \u001b[0;34m║\r║ \u001b[0mfavour quick, complex attacks that heavy armour will not permit.\u001b[10C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m6-10  \u001b[0mMagic: \u001b[0;1mn/a \u001b[0mCombat: \u001b[0;1mExcellent  \u001b[0mWeapons: \u001b[0;1mAny  \u001b[0mArmour: \u001b[0;1mScale \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: No Magic Items, Anti-Magic.\u001b[12C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.69",
+    "record_kind": "topic",
+    "title_message_number": 68,
+    "body_message_number": 69,
+    "native_keywords": "Bards",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mBARDS\u001b[59C\u001b[0;1mEXP: \u001b[0m210%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mBards are the wandering entertainers of the realm, travelling from city   \u001b[0;34m║\r║ \u001b[0mto city while playing songs of merriment and bringing information. In\u001b[5C\u001b[0;34m║\r║ \u001b[0mthat last respect, Bards are very important: few people travel far, and   \u001b[0;34m║\r║ \u001b[0mfor some places Bards are the only source of outside information. Thus,   \u001b[0;34m║\r║ \u001b[0mthey are often warmly greeted and usually stay free of charge at any\u001b[6C\u001b[0;34m║\r║ \u001b[0mplace they frequent. Bards are trained in exclusive colleges, where they  \u001b[0;34m║\r║ \u001b[0mare taught a multitude of things, from swordplay, to stealth, to magic.   \u001b[0;34m║\r║ \u001b[0mBards practise a unique form of magic by using their considerable musical \u001b[0;34m║\r║ \u001b[0mtalents to weave spells. These spells usually take the form of charming   \u001b[0;34m║\r║ \u001b[0mmagic. They can only use one-handed weapons, as they disdain heavy, slow  \u001b[0;34m║\r║ \u001b[0mweapons, and will wear only leather armour.\u001b[31C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-7 \u001b[0mMagic: \u001b[0;1mBardic  \u001b[0mCombat: \u001b[0;1mAverage \u001b[0mWeapons: \u001b[0;1m1-H \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mStealth, Traps, Thievery, Lockpicking.\u001b[25C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.71",
+    "record_kind": "topic",
+    "title_message_number": 70,
+    "body_message_number": 71,
+    "native_keywords": "Gypsy gypsies gyspy",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mGYPSIES\u001b[57C\u001b[0;1mEXP: \u001b[0m220%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mGypsies, if it is at all possible, travel even more than the Bards. In    \u001b[0;34m║\r║ \u001b[0mmany respects, the two classes are quite similar: they both have the same \u001b[0;34m║\r║ \u001b[0massortment of weapons, armour and skills. There is a profound difference, \u001b[0;34m║\r║ \u001b[0mthough, and that is the fact that Gypsies are not nearly as welcome as    \u001b[0;34m║\r║ \u001b[0mBards. This is because when a Gypsy band comes through town, things\u001b[7C\u001b[0;34m║\r║ \u001b[0malways disappear. They are almost compulsive thieves -- but they are not  \u001b[0;34m║\r║ \u001b[0mevil. Gypsies just make their money by 'alternate means', as they say.    \u001b[0;34m║\r║ \u001b[0mThey also command respectable magics, and this has saved many a Gypsy\u001b[5C\u001b[0;34m║\r║ \u001b[0mskin when the authorities have come to get them. Gypsies use the same\u001b[5C\u001b[0;34m║\r║ \u001b[0mweapons as thieves, for they need stealth to use their abilites, and\u001b[6C\u001b[0;34m║\r║ \u001b[0mbecause they need freedom in all things they do.\u001b[26C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-7  \u001b[0mMagic: \u001b[0;1mMage-2  \u001b[0mCombat: \u001b[0;1mFair  \u001b[0mWeapons: \u001b[0;1m1-H  \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mStealth, Traps, Thievery, Lockpicking.\u001b[25C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.73",
+    "record_kind": "topic",
+    "title_message_number": 72,
+    "body_message_number": 73,
+    "native_keywords": "Mages",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mMAGES\u001b[59C\u001b[0;1mEXP: \u001b[0m140%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThere are as many kinds of Mages as there are other classes: Wizards,\u001b[5C\u001b[0;34m║\r║ \u001b[0mSorcerors, Necromancers, Summoners, Transmuters, Elementalists, and a\u001b[5C\u001b[0;34m║\r║ \u001b[0mdozen more. Most of these specialists, though, never venture forth from   \u001b[0;34m║\r║ \u001b[0mtheir respective towers as they are not very well suited to adventuring.  \u001b[0;34m║\r║ \u001b[0mFor this reason, most magic-users you meet in cities will be general\u001b[6C\u001b[0;34m║\r║ \u001b[0mMages. These people are quite powerful, and wield a potent magical\u001b[8C\u001b[0;34m║\r║ \u001b[0marsenal. Mages have at their command mostly combat and defense spells, as \u001b[0;34m║\r║ \u001b[0mthey are either adventurers, searching for fortune, or are the emissaries \u001b[0;34m║\r║ \u001b[0mof other Wizards, who need them to search out lost artifacts or spell\u001b[5C\u001b[0;34m║\r║ \u001b[0mcomponents. Either way, they are formidable and unpredictable foes. Mages \u001b[0;34m║\r║ \u001b[0muse only staves (including the staff-sling) and daggers in combat, as\u001b[5C\u001b[0;34m║\r║ \u001b[0mthey need as much mobility as possible. For this reason also, they will   \u001b[0;34m║\r║ \u001b[0monly wear robes for protection, and thus rely on their magic for\u001b[10C\u001b[0;34m║\r║ \u001b[0mprotection.\u001b[63C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m3-6  \u001b[0mMagic: \u001b[0;1mMage-3  \u001b[0mCombat: \u001b[0;1mPoor  \u001b[0mWeapons: \u001b[0;1mStaff  \u001b[0mArmour: \u001b[0;1mRobes \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.75",
+    "record_kind": "topic",
+    "title_message_number": 74,
+    "body_message_number": 75,
+    "native_keywords": "Warlocks",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mWARLOCKS\u001b[56C\u001b[0;1mEXP: \u001b[0m185%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mWarlocks are the front-line fighters in any magical conflict. They\u001b[8C\u001b[0;34m║\r║ \u001b[0mcombine the best abilites of both the Warrior and Mage classes, but as a  \u001b[0;34m║\r║ \u001b[0mresult are not quite as effective as either of those 'pure' classes.\u001b[6C\u001b[0;34m║\r║ \u001b[0mThe Warlock class is quite a powerful one, though, when you think of what \u001b[0;34m║\r║ \u001b[0ma good fighter could do with potent magical spells! The King's Battle-    \u001b[0;34m║\r║ \u001b[0mMage corps is comprised almost exclusively of Warlocks. They eschew the   \u001b[0;34m║\r║ \u001b[0mheavier armour in favour of lighter armour, as speed is a necessity when  \u001b[0;34m║\r║ \u001b[0mcasting spells. They need one hand free to direct their ranged spells, so \u001b[0;34m║\r║ \u001b[0mthey may only use one-handed weapons.\u001b[37C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-8  \u001b[0mMagic: \u001b[0;1mMage-2 \u001b[0mCombat: \u001b[0;1mAverage \u001b[0mWeapons: \u001b[0;1m1-H \u001b[0mArmour: \u001b[0;1mChain   \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.77",
+    "record_kind": "topic",
+    "title_message_number": 76,
+    "body_message_number": 77,
+    "native_keywords": "Priests",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mPRIESTS\u001b[57C\u001b[0;1mEXP: \u001b[0m140%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mPriests embody the virtue of their deities, be they good or evil. They    \u001b[0;34m║\r║ \u001b[0mchannel the power of the gods to cast their spells and are notably\u001b[8C\u001b[0;34m║\r║ \u001b[0mintolerant of Priests of a different faith. Good Priests are welcome in   \u001b[0;34m║\r║ \u001b[0mall cities for their invaluable healing services, and for their spiritual \u001b[0;34m║\r║ \u001b[0mguidance. Evil Priests are universally shunned, for their magical\u001b[9C\u001b[0;34m║\r║ \u001b[0mpractices often require human sacrifice. In fact, evil Priest seems to    \u001b[0;34m║\r║ \u001b[0menjoy these disgusting rites, which only perpetuates the disgust felt for \u001b[0;34m║\r║ \u001b[0mthem. Priests wear only robes and use blunt weapons, for good priests do  \u001b[0;34m║\r║ \u001b[0mnot wish to kill needlessly, and evil priests do not want the victims to  \u001b[0;34m║\r║ \u001b[0mbleed to death before they can use them.\u001b[34C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m3-6  \u001b[0mMagic: \u001b[0;1mPriest-3 \u001b[0mCombat: \u001b[0;1mPoor \u001b[0mWeapons: \u001b[0;1mBlunt  \u001b[0mArmour: \u001b[0;1mRobes \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.79",
+    "record_kind": "topic",
+    "title_message_number": 78,
+    "body_message_number": 79,
+    "native_keywords": "Clerics cleriks",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mCLERICS\u001b[57C\u001b[0;1mEXP: \u001b[0m220%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mClerics are martial Priests. While Priests prefer using spells, Clerics   \u001b[0;34m║\r║ \u001b[0mprefer to fight. And they are quite good at it, too. Like Priests, they   \u001b[0;34m║\r║ \u001b[0mdo not enjoy bloodshed (although a little maiming is just fine), and will \u001b[0;34m║\r║ \u001b[0monly use blunt weapons. They will wear any armour in the fight against    \u001b[0;34m║\r║ \u001b[0mtheir foes, and quite a few wear the most armour they can get. Clerics    \u001b[0;34m║\r║ \u001b[0mare an effective class, and have a strong survival rate due to their good \u001b[0;34m║\r║ \u001b[0marmour and healing spells. They are a valuable addition to any party.\u001b[5C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-8  \u001b[0mMagic: \u001b[0;1mPriest-2 \u001b[0mCombat: \u001b[0;1mAverage \u001b[0mWeapons: \u001b[0;1mBlunt \u001b[0mArmour: \u001b[0;1mAny \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.81",
+    "record_kind": "topic",
+    "title_message_number": 80,
+    "body_message_number": 81,
+    "native_keywords": "Druids",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mDRUIDS\u001b[58C\u001b[0;1mEXP: \u001b[0m190%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mDruids are the traditional protectors of the forest. They worship and\u001b[5C\u001b[0;34m║\r║ \u001b[0mrevere all forms of wildlife and nature. They are usually solitary folk,  \u001b[0;34m║\r║ \u001b[0meach keeping watch of a different part of the wilderness, but in times of \u001b[0;34m║\r║ \u001b[0mneed they come forth to preserve the balance of nature. Normally they are \u001b[0;34m║\r║ \u001b[0mquite pacifistic, and avoid combat, but when the balance of things is in  \u001b[0;34m║\r║ \u001b[0mdanger or their wilderness is threatened, they will retaliate with force. \u001b[0;34m║\r║ \u001b[0mDruids command substantial magics, and will not hesitate to use them in   \u001b[0;34m║\r║ \u001b[0mthe process of cleansing their lands from intruders. Druids use only\u001b[6C\u001b[0;34m║\r║ \u001b[0mblunt weapons as they find bloodshed distasteful, but if they are caught  \u001b[0;34m║\r║ \u001b[0munaware they will use their sickles to defend themselves. They will wear  \u001b[0;34m║\r║ \u001b[0monly natural armour. The Druids and the Rangers are very close, and they  \u001b[0;34m║\r║ \u001b[0moften consult each other on the ways of the world.\u001b[24C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-7 \u001b[0mMagic: \u001b[0;1mDruid-3 \u001b[0mCombat: \u001b[0;1mFair  \u001b[0mWeapons: \u001b[0;1mBlunt \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mNone.\u001b[58C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.83",
+    "record_kind": "topic",
+    "title_message_number": 82,
+    "body_message_number": 83,
+    "native_keywords": "Rangers",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mRANGERS\u001b[57C\u001b[0;1mEXP: \u001b[0m250%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mRangers are the hunters and protectors of the wilderness, along with the  \u001b[0;34m║\r║ \u001b[0mDruids. They will never wilingly harm an animal, but will fight in self-  \u001b[0;34m║\r║ \u001b[0mdefense if necessary. Rangers share the same attitudes as the Druids in   \u001b[0;34m║\r║ \u001b[0mrespect to what they believe in, and in fact, Rangers are just more\u001b[7C\u001b[0;34m║\r║ \u001b[0madventurous and militant Druids. Some unscrupulous Rangers use their\u001b[6C\u001b[0;34m║\r║ \u001b[0mabilities for man-hunting, at which they excel. All of them practice some \u001b[0;34m║\r║ \u001b[0mform of druidic magic, and this combined with their formidable combat\u001b[5C\u001b[0;34m║\r║ \u001b[0mabilities and their stealth makes them powerful characters. Rangers are   \u001b[0;34m║\r║ \u001b[0mexcellent sneakers and can plan an ambush quite well if it is necessary.  \u001b[0;34m║\r║ \u001b[0mThey wear only leather armour, for they need stealth and mobility to\u001b[6C\u001b[0;34m║\r║ \u001b[0memploy their powers, but they will use any weapon. Overall, Rangers are   \u001b[0;34m║\r║ \u001b[0ma powerful and expensive class.\u001b[43C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m5-9  \u001b[0mMagic: \u001b[0;1mDruid-1 \u001b[0mCombat: \u001b[0;1mGood  \u001b[0mWeapons: \u001b[0;1mAny  \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mTracking, Stealth.\u001b[45C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.85",
+    "record_kind": "topic",
+    "title_message_number": 84,
+    "body_message_number": 85,
+    "native_keywords": "Mystic mystics",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mMYSTICS\u001b[57C\u001b[0;1mEXP: \u001b[0m250%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mMystics are a rare and unusual class. They are the students of ancient    \u001b[0;34m║\r║ \u001b[0munarmed combat arts, and develop considerable mental powers (called Kai   \u001b[0;34m║\r║ \u001b[0mpowers) in the course of their training. The source of these Mystics is   \u001b[0;34m║\r║ \u001b[0mnot well known, but it is generally assumed to be an ancient teacher in   \u001b[0;34m║\r║ \u001b[0msome secluded cave. Of course, this Mystic teacher could live right in a  \u001b[0;34m║\r║ \u001b[0mcity for all that is known. There are fairly advanced disciples in most   \u001b[0;34m║\r║ \u001b[0mcities, and they teach these exotic skills to any they deem worthy. They  \u001b[0;34m║\r║ \u001b[0mhave yet to divulge the location of their master, however. Mystics'\u001b[7C\u001b[0;34m║\r║ \u001b[0munarmed combat is effective against weapons and armour due to their\u001b[7C\u001b[0;34m║\r║ \u001b[0mknowledge of critical points. Usually use no weapons at all, but some\u001b[5C\u001b[0;34m║\r║ \u001b[0mhave become proficient in the staff. They will wear no armour except for  \u001b[0;34m║\r║ \u001b[0mrobes, as speed is the main element of their art.\u001b[25C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-8  \u001b[0mMagic: \u001b[0;1mKai  \u001b[0mCombat: \u001b[0;1mAverage  \u001b[0mWeapons: \u001b[0;1mStaff  \u001b[0mArmour: \u001b[0;1mRobes \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mMartial Arts, Dodge, Stealth, Enhanced Criticals, Kai Powers.  \u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.87",
+    "record_kind": "topic",
+    "title_message_number": 86,
+    "body_message_number": 87,
+    "native_keywords": "Missionary",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔═══════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mMISSIONARIES\u001b[52C\u001b[0;1mEXP: \u001b[0m220%% \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mMissionaries are almost a contradictory class -- they essentially are\u001b[5C\u001b[0;34m║\r║ \u001b[0mThieves with Priestly powers. This may seem an odd combination, but the   \u001b[0;34m║\r║ \u001b[0mneed is there -- Missionaries need some stealth when voyaging into\u001b[8C\u001b[0;34m║\r║ \u001b[0mheathen lands to convert others to their faith. They have good Priest\u001b[5C\u001b[0;34m║\r║ \u001b[0mmagic and knowledge, and also the trouble-solving thief skills. Overall,  \u001b[0;34m║\r║ \u001b[0mthey are more skulkers than fighters, but can fight well when the need    \u001b[0;34m║\r║ \u001b[0marises. Often they make good spies, as they already have good stealth\u001b[5C\u001b[0;34m║\r║ \u001b[0mand evasion skills. Missionaries will use any one-handed weapon, and can  \u001b[0;34m║\r║ \u001b[0mwear only leather armour.\u001b[49C\u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHP/Level: \u001b[0;1m4-7  \u001b[0mMagic: \u001b[0;1mPriest-2 \u001b[0mCombat: \u001b[0;1mFair  \u001b[0mWeapons: \u001b[0;1m1-H \u001b[0mArmour: \u001b[0;1mLeather \u001b[0;34m║\r╠═══════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAbilities: \u001b[0;1mStealth, Traps, Lockpicking.\u001b[35C\u001b[0;34m║\r╚═══════════════════════════════════════════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.89",
+    "record_kind": "topic",
+    "title_message_number": 88,
+    "body_message_number": 89,
+    "native_keywords": "Humans",
+    "body": "\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mHUMANS\u001b[59C\u001b[0;1mEXP: \u001b[0m+0%%  \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThe origins of humanity are shrouded in obscurity. This may seem a\u001b[9C\u001b[0;34m║\r║ \u001b[0mludicrous statement, but the fact is there -- humans just mysteriously\u001b[5C\u001b[0;34m║\r║ \u001b[0mappeared one day. Theories on this event are numerous. Some say the Elves  \u001b[0;34m║\r║ \u001b[0mfound humanity's ancestors roaming in the woods, and nurtured them over    \u001b[0;34m║\r║ \u001b[0mthe ages until they were mature enough to survive as a sentient species.   \u001b[0;34m║\r║ \u001b[0mAnother hypothesis is that humans are from a distant star, and that one    \u001b[0;34m║\r║ \u001b[0mday a great sky-craft collided with this land and created the barren\u001b[7C\u001b[0;34m║\r║ \u001b[0mwasteland to the east. Whatever the solution is, the Elves will not, or    \u001b[0;34m║\r║ \u001b[0mcannot say. In any case humans have flourished in the past four hundred    \u001b[0;34m║\r║ \u001b[0myears, and now their domain is such that they are the most numerous people \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0min the realm. Human males average\u001b[5C\u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mjust under six feet tall, and females \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mabout five and a half. They have no   \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mNone.\u001b[11C\u001b[0;34m║ \u001b[0mextra special abilities or aptitudes  \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0msave for their versatility and drive. \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mThey do equally well in any class,    \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mbut are nicely suited for the Ranger  \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mand Druid classes, which require well \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mdeveloped statistics all around.\u001b[6C\u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.91",
+    "record_kind": "topic",
+    "title_message_number": 90,
+    "body_message_number": 91,
+    "native_keywords": "Dwarf dwarves",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mDWARVES\u001b[58C\u001b[0;1mEXP: \u001b[0m+30%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mDwarves are the second oldest race known today. The Elves, of course, are  \u001b[0;34m║\r║ \u001b[0mthe first. Dwarves average about four and a half feet in height, and tip   \u001b[0;34m║\r║ \u001b[0mthe scales at around two hundred pounds each. They are a solitary folk,    \u001b[0;34m║\r║ \u001b[0mand do not easily welcome strange people -- but do not mistake this for    \u001b[0;34m║\r║ \u001b[0mhostility. Once you have gained a Dwarf's friendship, that bond will last  \u001b[0;34m║\r║ \u001b[0mto the death (or betrayal). They are cautious and slow to anger, but once  \u001b[0;34m║\r║ \u001b[0mtheir wrath is roused they are terrible enemies. Dwarves love and craft    \u001b[0;34m║\r║ \u001b[0mprecious gems and metals of all sorts, and are great worksmiths. They\u001b[6C\u001b[0;34m║\r║ \u001b[0mmanufacture worthy and elaborate suits of mail, and craft gleaming axes    \u001b[0;34m║\r║ \u001b[0mwith blades of true-silver. These items seldom leave the underground homes \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mof the Dwarves, but there are stories \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mof heroes who have done some great    \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mservice and have received such a\u001b[6C\u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m50\u001b[0m-\u001b[0;32m110 \u001b[0;34m║ \u001b[0mNight Vision    \u001b[0;34m║ \u001b[0mgift. Dwarves make excellent Clerics, \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║ \u001b[0mMagicRes+10\u001b[5C\u001b[0;34m║ \u001b[0mPaladins and Warriors. Their stubborn \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m50\u001b[0m-\u001b[0;32m120 \u001b[0;34m║ \u001b[0mEncumbrance+20%% \u001b[0;34m║ \u001b[0mnature and strong willpower give them \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║\u001b[17C║ \u001b[0mgood defense against magic. Overall,  \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m50\u001b[0m-\u001b[0;32m120 \u001b[0;34m║\u001b[17C║ \u001b[0mDwarves are a resilient folk who\u001b[6C\u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m30\u001b[0m-\u001b[0;32m85  \u001b[0;34m║\u001b[17C║ \u001b[0mshould not lightly be trifled with.   \u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.93",
+    "record_kind": "topic",
+    "title_message_number": 92,
+    "body_message_number": 93,
+    "native_keywords": "Gnomes",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mGNOMES\u001b[59C\u001b[0;1mEXP: \u001b[0m+20%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mGnomes are distant cousins of the Dwarves. They are about the same height  \u001b[0;34m║\r║ \u001b[0mas Dwarves, but are considerably slimmer. Long ago a tribe of Dwarves made \u001b[0;34m║\r║ \u001b[0mits home on the surface, far from the ancient homeland. Over the centuries \u001b[0;34m║\r║ \u001b[0mthis tribe changed, becoming less dependent on their muscles and more on   \u001b[0;34m║\r║ \u001b[0mtheir wits. As this progressed, the natural technological ability of the   \u001b[0;34m║\r║ \u001b[0mDwarves was changed into something more refined than metallurgy or mining: \u001b[0;34m║\r║ \u001b[0mmachinery. Where an Elf sees a waterfall and reflects on its natural\u001b[7C\u001b[0;34m║\r║ \u001b[0mbeauty, and a Dwarf sees only the precious stones being smoothed in its    \u001b[0;34m║\r║ \u001b[0mwaters, a Gnome plots water-wheels and dams. Gnomes are cunning and\u001b[8C\u001b[0;34m║\r║ \u001b[0minventive, always thinking up new plots and trying to devise more and more \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mefficient ways to do things. They\u001b[5C\u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mmake proficient Mages and Thieves,    \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mbecause they have natural cunning and \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m35\u001b[0m-\u001b[0;32m90  \u001b[0;34m║ \u001b[0mNight Vision    \u001b[0;34m║ \u001b[0mcuriosity. Gnomes can see well in the \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m45\u001b[0m-\u001b[0;32m110 \u001b[0;34m║ \u001b[0mMagicRes+5      \u001b[0;34m║ \u001b[0mdark due to their Dwarven ancestry,   \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mPicklocks(+10)  \u001b[0;34m║ \u001b[0mas well as having an inborn facility  \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m45\u001b[0m-\u001b[0;32m110 \u001b[0;34m║\u001b[17C║ \u001b[0mwith locks and a slightly increased   \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mresistance to hostile magics.\u001b[9C\u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m35\u001b[0m-\u001b[0;32m90  \u001b[0;34m║\u001b[17C║\u001b[39C║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.95",
+    "record_kind": "topic",
+    "title_message_number": 94,
+    "body_message_number": 95,
+    "native_keywords": "Halflings haflings",
+    "body": "\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mHALFLINGS\u001b[56C\u001b[0;1mEXP: \u001b[0m+25%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mLittle is known about this shy, reclusive folk. Physically, they average   \u001b[0;34m║\r║ \u001b[0maround three feet high, about half the height of a human (hence the name)  \u001b[0;34m║\r║ \u001b[0mand are therefore quite weak. They are surprisingly tough and incredibly   \u001b[0;34m║\r║ \u001b[0magile -- halfling quickness is deceptive, and some adventurers get more    \u001b[0;34m║\r║ \u001b[0mthan they bargain for when they tangle with a Halfling. They are fond of   \u001b[0;34m║\r║ \u001b[0mgood company and good drink, and are very soft-hearted overall. But when a \u001b[0;34m║\r║ \u001b[0mHalfling is cornered, or his home (or food and drink!) is threatened, they \u001b[0;34m║\r║ \u001b[0mwill fight with a ferocity that would startle any but the most seasoned of \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0madventurers. Halflings do not take    \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mtoo well to magic, and seldom is a    \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mHalfling seen who can demonstrate\u001b[5C\u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m20\u001b[0m-\u001b[0;32m60  \u001b[0;34m║ \u001b[0mRacial Stealth  \u001b[0;34m║ \u001b[0mmagical powers of any sort. Show a    \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m60\u001b[0m-\u001b[0;32m150 \u001b[0;34m║ \u001b[0mDodge+10\u001b[8C\u001b[0;34m║ \u001b[0mHalfling a good beer, a comfortable   \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mHP/Level-1\u001b[6C\u001b[0;34m║ \u001b[0mseat, and pleasant company, and you   \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║\u001b[17C║ \u001b[0mwill have a friend for life! They\u001b[5C\u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mmake incredible Thieves, due to their \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0minnate agility and stealth.\u001b[11C\u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.97",
+    "record_kind": "topic",
+    "title_message_number": 96,
+    "body_message_number": 97,
+    "native_keywords": "Elf elves",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[1;33mELVES\u001b[60C\u001b[37mEXP: \u001b[0m+45%% \u001b[34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[37mElves are the Elder race. They are as old as the trees and the rivers they \u001b[34m║\r║ \u001b[37mlove so dearly. Ever since time has been recorded, the Elves have been\u001b[5C\u001b[34m║\r║ \u001b[37mthere, singing and tending to the forest animals. Nowadays the Elves are   \u001b[34m║\r║ \u001b[37mfew in number, their folk slowly dwindling as the groves they live in are  \u001b[34m║\r║ \u001b[37mhewn down. They do not begrudge this, though, but see it as the passing of \u001b[34m║\r║ \u001b[37man age, the time of Humans. The Elves seen in cities are the very young,   \u001b[34m║\r║ \u001b[37mhigh-spirited and short on experience. They seem almost like children --   \u001b[34m║\r║ \u001b[37mexcitable and inquisitive, even though some of them may be older than\u001b[6C\u001b[34m║\r║ \u001b[37mentire human lineages. Physically, Elves are quite tall, the same height   \u001b[34m║\r║ \u001b[37mas humans, but seem much taller due to their slimness. They are extremely  \u001b[34m║\r╠════════════════════════════════════╗ \u001b[37mmagical creatures, and many are\u001b[7C\u001b[34m║\r║ \u001b[1;37mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[37mpacifistic -- unless there is some    \u001b[34m║\r╠══════════════════╦═════════════════╣ \u001b[37mcause for action. In that case, they  \u001b[34m║\r║ \u001b[37mStrength  \u001b[31m35\u001b[37m-\u001b[32m90  \u001b[34m║ \u001b[37mRacial Stealth  \u001b[34m║ \u001b[37mmake savage fighters, both with spell \u001b[34m║\r║ \u001b[37mAgility   \u001b[31m50\u001b[37m-\u001b[32m120 \u001b[34m║ \u001b[37mNight Vision    \u001b[34m║ \u001b[37mand sword. Elves make great Mages,    \u001b[34m║\r║ \u001b[37mHealth    \u001b[31m30\u001b[37m-\u001b[32m80  \u001b[34m║ \u001b[37mMana+10\u001b[9C\u001b[34m║ \u001b[37mWarlocks and Gypsies, due to their    \u001b[34m║\r║ \u001b[37mIntellect \u001b[31m50\u001b[37m-\u001b[32m120 \u001b[34m║\u001b[17C║ \u001b[37mquick wits and grace. They can see    \u001b[34m║\r║ \u001b[37mWillpower \u001b[31m40\u001b[37m-\u001b[32m100 \u001b[34m║\u001b[17C║ \u001b[37mwell in the dark, and have increased  \u001b[34m║\r║ \u001b[37mCharm\u001b[5C\u001b[31m50\u001b[37m-\u001b[32m120 \u001b[34m║\u001b[17C║ \u001b[37mpower in spellcasting professions.    \u001b[34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.99",
+    "record_kind": "topic",
+    "title_message_number": 98,
+    "body_message_number": 99,
+    "native_keywords": "Half-elfs halfelfs half elfs",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[1;33mHALF-ELVES\u001b[55C\u001b[37mEXP: \u001b[0m+15%% \u001b[34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[37mHalf-Elves are the offspring of a Human and an Elf. Most are born from\u001b[5C\u001b[34m║\r║ \u001b[37mHuman raids into Elven lands -- Humans can sometimes be despicable -- but  \u001b[34m║\r║ \u001b[37msome are the result of an Elf and Human partnership. This is a rare\u001b[8C\u001b[34m║\r║ \u001b[37moccasion, for though Elves are very beautiful to Humans, they are aloof,   \u001b[34m║\r║ \u001b[37mand rarely mix with others. This dubious background makes many Half-Elves  \u001b[34m║\r║ \u001b[37mbitter and so they remain loners, not wanting to be part of any culture    \u001b[34m║\r║ \u001b[37m(and in their minds, not welcome). These are usually ferocious and un-\u001b[5C\u001b[34m║\r║ \u001b[37mtrusting, but make good allies if you can gain their respect. They look    \u001b[34m║\r╠════════════════════════════════════╗ \u001b[37mmuch like humans, except they are\u001b[5C\u001b[34m║\r║ \u001b[1;37mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[37mslimmer and more attractive, with\u001b[5C\u001b[34m║\r╠══════════════════╦═════════════════╣ \u001b[37mslightly Elven features. They mix the \u001b[34m║\r║ \u001b[37mStrength  \u001b[31m40\u001b[37m-\u001b[32m90  \u001b[34m║ \u001b[37mMana+10\u001b[9C\u001b[34m║ \u001b[37mgood qualities of both races, and are \u001b[34m║\r║ \u001b[37mAgility   \u001b[31m45\u001b[37m-\u001b[32m110 \u001b[34m║\u001b[17C║ \u001b[37mquite versatile. Half-Elves have the  \u001b[34m║\r║ \u001b[37mHealth    \u001b[31m30\u001b[37m-\u001b[32m100 \u001b[34m║\u001b[17C║ \u001b[37msame increased magical power as their \u001b[34m║\r║ \u001b[37mIntellect \u001b[31m45\u001b[37m-\u001b[32m110 \u001b[34m║\u001b[17C║ \u001b[37mElven cousins, and often choose the   \u001b[34m║\r║ \u001b[37mWillpower \u001b[31m40\u001b[37m-\u001b[32m100 \u001b[34m║\u001b[17C║ \u001b[37mpath of the Ranger or Druid, due to   \u001b[34m║\r║ \u001b[37mCharm\u001b[5C\u001b[31m50\u001b[37m-\u001b[32m110 \u001b[34m║\u001b[17C║ \u001b[37mtheir preference for solitude.\u001b[8C\u001b[34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.101",
+    "record_kind": "topic",
+    "title_message_number": 100,
+    "body_message_number": 101,
+    "native_keywords": "Dark-elf dark elf darkelf",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mDARK-ELVES\u001b[55C\u001b[0;1mEXP: \u001b[0m+45%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mDark-Elves are not actually a seperate race, but are in fact a fanatic\u001b[5C\u001b[0;34m║\r║ \u001b[0msect of Elves who believe that the other races of the realm are destroying \u001b[0;34m║\r║ \u001b[0mthe ancient homelands of the Elves, and must be stopped for this. They are \u001b[0;34m║\r║ \u001b[0mthe enemy of all other races (save Elves), and will wage war with anyone   \u001b[0;34m║\r║ \u001b[0mwho threatens the forests and their homes. Dark-Elves do not accept the    \u001b[0;34m║\r║ \u001b[0mtraditional Elven belief that this is the natual course of time, and are   \u001b[0;34m║\r║ \u001b[0mdetermined to stop it. Consequently, they are driven from any already-\u001b[5C\u001b[0;34m║\r║ \u001b[0mpopulated area, and so make their homes far from the wooded groves they    \u001b[0;34m║\r║ \u001b[0mlove. Most live in the mountains, or in caves, and thus have a much more   \u001b[0;34m║\r║ \u001b[0mpallid complexion than their sylvan brethren. Due to their harsher lives   \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mthey are tougher and less friendly    \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mbetween themselves. Any Dark-Elf seen \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0moutside of a stronghold is one who    \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m40\u001b[0m-\u001b[0;32m90  \u001b[0;34m║ \u001b[0mRacial Stealth  \u001b[0;34m║ \u001b[0mdoes not agree with the intolerant    \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m50\u001b[0m-\u001b[0;32m120 \u001b[0;34m║ \u001b[0mNight Vision    \u001b[0;34m║ \u001b[0mviews of his people -- an outcast.    \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║ \u001b[0mCritical Hits+1 \u001b[0;34m║ \u001b[0mDark-Elves are more skilled in combat \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m50\u001b[0m-\u001b[0;32m120 \u001b[0;34m║ \u001b[0mAccuracy Bonus  \u001b[0;34m║ \u001b[0mthan the Elves, but are less powerful \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m30\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mmagically, making them ideally suited \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m40\u001b[0m-\u001b[0;32m110 \u001b[0;34m║\u001b[17C║ \u001b[0mto be Warlocks, Gypsies or Ninjas.    \u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.103",
+    "record_kind": "topic",
+    "title_message_number": 102,
+    "body_message_number": 103,
+    "native_keywords": "Half-Orcs halforcs half orcs",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mHALF-ORCS\u001b[56C\u001b[0;1mEXP: \u001b[0m+0%%  \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHalf-Orcs are almost exclusively the result of an Orc raid on a Human\u001b[6C\u001b[0;34m║\r║ \u001b[0mvillage. They are not terrible-looking, having only the squinty eyes,\u001b[6C\u001b[0;34m║\r║ \u001b[0mpronounced canines and coarse hair of an orc, but the innate Orcish poor   \u001b[0;34m║\r║ \u001b[0mtemper is passed on to these offspring. They are much better behaved than  \u001b[0;34m║\r║ \u001b[0mOrcs, and do not have the homicidal hatred for the other races that Orcs   \u001b[0;34m║\r║ \u001b[0mdo (unless they have been raised by Orcs, and then you will see them only  \u001b[0;34m║\r║ \u001b[0mas your foes). They are somewhat dull-witted, and are not terribly patient \u001b[0;34m║\r║ \u001b[0mbut they are tough as nails and are relentless in battle. Having a\u001b[9C\u001b[0;34m║\r║ \u001b[0mtrustworthy Half-Orc companion is like having your own personal army. They \u001b[0;34m║\r║ \u001b[0mexcel in all things martial, especially in the Witchunter class, where\u001b[5C\u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mtheir instinctive fear of magic can   \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mbe used to advantage. Half-Orcs are   \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0malmost universally mistrusted, which  \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m45\u001b[0m-\u001b[0;32m110 \u001b[0;34m║ \u001b[0mNone.\u001b[11C\u001b[0;34m║ \u001b[0mis quite unfortunate since they are   \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mnot horrible by nature, and so must   \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m50\u001b[0m-\u001b[0;32m120 \u001b[0;34m║\u001b[17C║ \u001b[0mcontinually prove their worth. Many   \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║\u001b[17C║ \u001b[0mHalf-Orcs seek mercenary service,\u001b[5C\u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m30\u001b[0m-\u001b[0;32m95  \u001b[0;34m║\u001b[17C║ \u001b[0mwhere no questions are asked and\u001b[6C\u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m30\u001b[0m-\u001b[0;32m80  \u001b[0;34m║\u001b[17C║ \u001b[0mwhere their strength is in demand.    \u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.105",
+    "record_kind": "topic",
+    "title_message_number": 104,
+    "body_message_number": 105,
+    "native_keywords": "Goblins",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mGOBLINS\u001b[58C\u001b[0;1mEXP: \u001b[0m+35%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mGoblins have a decidedly mixed reputation. First off, they average about   \u001b[0;34m║\r║ \u001b[0mfive feet tall, have pale green or grey skin, and save for the fine,\u001b[7C\u001b[0;34m║\r║ \u001b[0mluxuriant hair on their heads they have little or no body hair. They are   \u001b[0;34m║\r║ \u001b[0malmost always smiling, in that white, sharp-toothed grin of theirs, and    \u001b[0;34m║\r║ \u001b[0mmore often than not you cannot tell whether or not they are eyeing you\u001b[5C\u001b[0;34m║\r║ \u001b[0mlike a side of meat. Despite their unsettling near-savagery they have a    \u001b[0;34m║\r║ \u001b[0mdisarming charm which almost offsets their strange appearance. Almost.\u001b[5C\u001b[0;34m║\r║ \u001b[0mGoblins are thin and wiry, small and compact but very tough for their\u001b[6C\u001b[0;34m║\r║ \u001b[0msize. They are extremely intelligent, and are exceedingly agile -- they    \u001b[0;34m║\r║ \u001b[0mare well-suited for any Mage or Thief class, though are in their element   \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0min the Gypsy class. Goblins are fond  \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mof bartering, and will sit for hours  \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mto haggle down the price of a loaf of \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m30\u001b[0m-\u001b[0;32m70  \u001b[0;34m║ \u001b[0mRacial Stealth  \u001b[0;34m║ \u001b[0mbread by one copper coin. Many\u001b[8C\u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m55\u001b[0m-\u001b[0;32m125 \u001b[0;34m║ \u001b[0mNight Vision    \u001b[0;34m║ \u001b[0mwealthy merchants hire a Goblin to    \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mdeal with others of his kind, and the \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m45\u001b[0m-\u001b[0;32m115 \u001b[0;34m║\u001b[17C║ \u001b[0msight of two goblins in a haggling    \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mcontest is a sight to see! They are   \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mstealthy, and have night vision.\u001b[6C\u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.107",
+    "record_kind": "topic",
+    "title_message_number": 106,
+    "body_message_number": 107,
+    "native_keywords": "Half-Ogres halfogres half ogre",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mHALF-OGRES\u001b[55C\u001b[0;1mEXP: \u001b[0m+30%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mHalf-Ogres are the offspring of an Orc and an Ogre. No-one really knows,   \u001b[0;34m║\r║ \u001b[0mor wants to know how this comes about. They are about seven feet tall,\u001b[5C\u001b[0;34m║\r║ \u001b[0mand are quite hairless. Their bodies are nearly all muscle, and their\u001b[6C\u001b[0;34m║\r║ \u001b[0mstrength is unmatched for creatures their size. Unfortunately, they have   \u001b[0;34m║\r║ \u001b[0mall the cunning and tact of a six-year-old-human, and the coordination of  \u001b[0;34m║\r║ \u001b[0ma drunk. Half-Ogres have a rash temper, but are easily distracted, and so  \u001b[0;34m║\r║ \u001b[0mif you are careful it is possible to avoid conflict with one. Many store-  \u001b[0;34m║\r║ \u001b[0mowners have Half-Ogre workers, for they can work tirelessly and can lift   \u001b[0;34m║\r║ \u001b[0mhundred-pound barrels with ease. They have neither the near-berserk fury   \u001b[0;34m║\r║ \u001b[0mof Ogres, nor the animal intelligence of Orcs, but have a simple kind of   \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mpersonality which is almost pitiable. \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mThey are not truly evil, but are\u001b[6C\u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mfrequently exploited due to their\u001b[5C\u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m70\u001b[0m-\u001b[0;32m150 \u001b[0;34m║ \u001b[0mToughness+2\u001b[5C\u001b[0;34m║ \u001b[0mstupidity. Half-Ogres are almost\u001b[6C\u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m20\u001b[0m-\u001b[0;32m60  \u001b[0;34m║ \u001b[0mHP/Level+1\u001b[6C\u001b[0;34m║ \u001b[0mexclusively Warriors. Due to their    \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m60\u001b[0m-\u001b[0;32m150 \u001b[0;34m║ \u001b[0mMagicRes+15\u001b[5C\u001b[0;34m║ \u001b[0mlack of focus, they cannot learn Kai  \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m20\u001b[0m-\u001b[0;32m60  \u001b[0;34m║ \u001b[0mNo Kai Forms    \u001b[0;34m║ \u001b[0mskills, but can learn powers. All     \u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m25\u001b[0m-\u001b[0;32m70  \u001b[0;34m║\u001b[17C║ \u001b[0mare quite resistant to hostile magic. \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m25\u001b[0m-\u001b[0;32m60  \u001b[0;34m║\u001b[17C║ \u001b[0mA powerful, but extremely slow race.  \u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.109",
+    "record_kind": "topic",
+    "title_message_number": 108,
+    "body_message_number": 109,
+    "native_keywords": "Kang",
+    "body": "\u001b[0m\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[1;33mKANG\u001b[61C\u001b[37mEXP: \u001b[0m+35%% \u001b[34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[37mImagine a cross between a snake and a lizard, standing on two feet like a  \u001b[34m║\r║ \u001b[37mhuman and with predatory intelligence, and what you have is the Kang. They \u001b[34m║\r║ \u001b[37mare a mysterious folk that live in the depths of secluded swamps and\u001b[7C\u001b[34m║\r║ \u001b[37mjungles, and are rarely seen in mannish cities. When they do venture forth \u001b[34m║\r║ \u001b[37mit is to see the odd splendour of the outside world, and so the specimens  \u001b[34m║\r║ \u001b[37mencountered outside of their homes are usually more intelligent and\u001b[8C\u001b[34m║\r║ \u001b[37mfriendly than their exotic swamp neighbours. Kang are tall, many nearing   \u001b[34m║\r║ \u001b[37mseven feet in height, and are broadly muscled. Their scaly skin is much    \u001b[34m║\r║ \u001b[37mthicker than human skin, and is a different colour for each tribe. They    \u001b[34m║\r║ \u001b[37mhave a strange loping walk, and are not very flexible, which is odd since  \u001b[34m║\r╠════════════════════════════════════╗ \u001b[37mthey are snake-like. Kang apparently  \u001b[34m║\r║ \u001b[1;37mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[37mworship a deity of Peace and Healing, \u001b[34m║\r╠══════════════════╦═════════════════╣ \u001b[37mand many of them are Paladins, on\u001b[5C\u001b[34m║\r║ \u001b[37mStrength  \u001b[31m55\u001b[37m-\u001b[32m120 \u001b[34m║ \u001b[37mResist Poisons  \u001b[34m║ \u001b[37msome personal crusade to extinguish   \u001b[34m║\r║ \u001b[37mAgility   \u001b[31m30\u001b[37m-\u001b[32m90  \u001b[34m║ \u001b[37mNatural Armour  \u001b[34m║ \u001b[37mall evil in the land. They are fierce \u001b[34m║\r║ \u001b[37mHealth    \u001b[31m50\u001b[37m-\u001b[32m110 \u001b[34m║\u001b[17C║ \u001b[37mfighters, and excel as Clerics,\u001b[7C\u001b[34m║\r║ \u001b[37mIntellect \u001b[31m30\u001b[37m-\u001b[32m90  \u001b[34m║\u001b[17C║ \u001b[37mWarriors and Witchunters. Kang are    \u001b[34m║\r║ \u001b[37mWillpower \u001b[31m45\u001b[37m-\u001b[32m110 \u001b[34m║\u001b[17C║ \u001b[37mapparently immune to, or at least\u001b[5C\u001b[34m║\r║ \u001b[37mCharm\u001b[5C\u001b[31m30\u001b[37m-\u001b[32m85  \u001b[34m║\u001b[17C║ \u001b[37mresistant to, all known poisons.\u001b[6C\u001b[34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.111",
+    "record_kind": "topic",
+    "title_message_number": 110,
+    "body_message_number": 111,
+    "native_keywords": "Misc1 greet ask train stats",
+    "body": "\u001b[0;1;33mSuicide     Reroll    Train     Train Stats    Greet    Ask    Rest\r\r\u001b[37mSuicide     \u001b[0m- Suicides *1* of your lives. This will have the exact same effects\r              as if you had died normally. Handy command if you are trapped,\r              stuck, or don't want to give another player the pleasure of\r              killing you.\r\u001b[1mReroll      \u001b[0m- Will reroll your current character, and ALL his lives. This will\r              take you to the MajorMUD main menu, and the next time that you\r              enter the game, you will have to create a new character.\r\u001b[1mTrain       \u001b[0m- Will train you to the next level, provided that you have enough\r              experience. You must be in an appropriate training hall to do\r              this. Remember, you get 10 or more extra character points (CPs) \r              every time that you train.  (Max of 20 CP/level after level 20)\r\u001b[1mTrain Stats \u001b[0m- Will put you into the stat editor, where you can allocate unspent\r              character points, change your physical description, etc... (\u001b[1;36mANSI\r              RECOMMENDED\u001b[0m)\r\u001b[1mGreet/Ask   \u001b[0m- Used for communicating with NPCs\r\u001b[1mRest        \u001b[0m- Puts you in rest mode. You will regenerate hit points at a faster\r              rate. You may only perform certain commands or rest mode will be\r              broken.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.113",
+    "record_kind": "topic",
+    "title_message_number": 112,
+    "body_message_number": 113,
+    "native_keywords": "Gangs top gangs guilds groups gruops bands topten gangs",
+    "body": "\u001b[0m\r\u001b[1mCreate Gang <gang name>     \u001b[0m- Requires \u001b[1;36m100000 \u001b[0mexperience\r                            [ Max name length of 19 characters ]\r\r\u001b[1mInvite Member <user name>   \u001b[0m- Only the gang leader can invite members\r\r\u001b[1mUninvite Member <user name> \u001b[0m- Only the gang leader can invite members\r\r\u001b[1mBroadgang _or_ BG [<text>]  \u001b[0m- Broadcast will echo to all online gangmembers\r\r\u001b[1mTopten Gangs/Top <n> Gangs  \u001b[0m- A listing of the most noteworth gangs\r\r\u001b[1mDisband Gang                \u001b[0m- Only the gang leader can disband the gang\r\r-- \u001b[1;31mNote that after a gang is disbanded, the name may not be used\r   until the day after all ex gang members have entered the game\r\r\u001b[37mLeave Gang                  \u001b[0m- Leave your gang\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.115",
+    "record_kind": "topic",
+    "title_message_number": 114,
+    "body_message_number": 115,
+    "native_keywords": "Stash hide",
+    "body": "\u001b[0m\nSTASH or HIDE are used when you want to hide an item in a room out of\nvisible sight.  To recover these items later on, you will have to SEARCH\nfor them prior to GETting them.\r\nHIDE is also used to hide in the shadows.  If you are successful at hiding,\nnobody will see you until you do a noticable action, or until they SEARCH\nand find you.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.117",
+    "record_kind": "topic",
+    "title_message_number": 116,
+    "body_message_number": 117,
+    "native_keywords": "Set Warnings set maxpages set interrupts set receive warn on evil",
+    "body": "\u001b[0m\nThe \u001b[1;33mSET \u001b[0mcommand is used to change a number of your profile options:\r\r\u001b[1mSet Suicide       \u001b[0m- Sets your suicide password in case of an accident\r\u001b[1mSet Maxpages \u001b[36m<n>  \u001b[0m- Limits the number of pages or telegrams you want to\r                    receive in each 3 second period\r\u001b[1mSet Interrupt     \u001b[0m- On forces the game to cancel all of your input and\r                    output when you are attacked by another user.  Very\r                    useful for low speed lines.\r\u001b[1mSet Messages      \u001b[0m- [Low/Medium/High] Toggles the extent of messages you will\r                    receive in the game.\r\u001b[1mSet Receive       \u001b[0m- On will prevent other players from giving you items, etc.\r\u001b[1mSet Warning       \u001b[0m- On prevents you from performing evil/unlawful actions\r\u001b[1mSet Telepath      \u001b[0m- [On/Off] To disallow other users from sending you telepaths\r\u001b[1mSet Follow        \u001b[0m- [Blind/Normal] Blind reduces the ammount of messages you\r                    receive while following in a party.\r\u001b[1mSet Entrances     \u001b[0m- [On/Off] Leaving this option on will notify you whenever\r                    an adventurer enters or leaves The Realm.\r\u001b[1mSet Speech        \u001b[0m- [Fast/Slow] Setting this option to slow will require you\r                    to use the appointed character before your message to speak\r                    (\"\u001b[1;33m.\u001b[0m\", \"\u001b[1;33m,\u001b[0m\", etc...). If you leave this option as \"Fast\",\r                    anything that you type which is not a command or action\r                    will be said by yourself to everyone in the room.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.119",
+    "record_kind": "topic",
+    "title_message_number": 118,
+    "body_message_number": 119,
+    "native_keywords": "Set2 Set entrances set speech speach set follow",
+    "body": "\nThe SET command is used to change a number of your profile options:\r\nSET FOLLOW (Blind/Normal) -- To reduce the number of messages when following\r\nSET ENTRANCES (On/Off) -- To disable or enable the messages you receive  \r                          whenever someone enters or exits the game\r\nSET SPEECH -- Toggles fast and slow talking on and off\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.121",
+    "record_kind": "topic",
+    "title_message_number": 120,
+    "body_message_number": 121,
+    "native_keywords": "Messages Set Messages",
+    "body": "Use the Set Messages command to control the level of messages \nwhich you receive in the game:\r\nSET MESSAGES (Low/Medium/High) \r\nIn general: \na Low message setting will only display high priority messages; \na Medium message setting will display high and medium priortity messages; \na High message setting will disply high, medium, and low priority messages.\r\nThe list of messages given at each level is too exhaustive to list here,\nso it is up to you to determine which setting is right for you.  Start at\na high setting, and if you get too much on your screen then move down to\na medium setting and then low.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.123",
+    "record_kind": "topic",
+    "title_message_number": 122,
+    "body_message_number": 123,
+    "native_keywords": "Broadcasting broadgang bg",
+    "body": "\nThere are several different ways to broadcast to a group of players.\r\nOne is to type JOIN <n> where n is a number between 1 and 127.  This will\nset your broadcast channel.  To broadcast to all members on this channel,\njust type BROADCAST <whatever>.  If you have not already got another \nglobal command using the ' symbol, you can type ' <whatever> as well.\nBROADCAST (or BR) by itself will give you a list of all the current people\non your broadcast channel.\r\nOnce you have formed a gang, you may also use the BROADGANG (BG) command\nto broadcast to all members of your gang.  BG by itself will display a list\nof all the people in your gang, telling you which ones are online currently.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.125",
+    "record_kind": "topic",
+    "title_message_number": 124,
+    "body_message_number": 125,
+    "native_keywords": "Borrow repay identity donate loan",
+    "body": "\nThis option not implemented.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.127",
+    "record_kind": "topic",
+    "title_message_number": 126,
+    "body_message_number": 127,
+    "native_keywords": "Kai Powers mystic powers",
+    "body": "\nSee help Mystic\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.129",
+    "record_kind": "topic",
+    "title_message_number": 128,
+    "body_message_number": 129,
+    "native_keywords": "Keys",
+    "body": "\nKEYS - This command will display a list of the keys on your keyring\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.131",
+    "record_kind": "topic",
+    "title_message_number": 130,
+    "body_message_number": 131,
+    "native_keywords": "Drag",
+    "body": "\nIf another user is unconscious, you may drag them from room to room.\nThis can be used to drag them away from attacking monsters and closer to\nhealers.\r\nThere are two ways to begin dragging someone:\r\n1) Type DRAG USER.  You will go into drag mode for the user.  Each time\r   you move after that, you will be dragging the user.\n2) Type DRAG USER <direction>.  You will drag the user through the exit\r   to <direction>.  You will also go into drag mode after which all moves\r   will drag the user along with you.\r\nNote that you may move slower than normal while dragging someone.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.133",
+    "record_kind": "topic",
+    "title_message_number": 132,
+    "body_message_number": 133,
+    "native_keywords": "Backstab bs",
+    "body": "\nIf you have the ability, BACKSTAB may be used while hiding or sneaking to \nget a chance at a hit which does a lot more damage than normal.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.135",
+    "record_kind": "topic",
+    "title_message_number": 134,
+    "body_message_number": 135,
+    "native_keywords": "Practice Arena colliseum",
+    "body": "\nIf you are in the practice arena, you may fight with other players with\nno fear of evil points or loss of life.  If you are killed in the arena\nyou will revive in the Halls Of The Dead with as many HP as you had the\nlast time you entered the arena.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.137",
+    "record_kind": "topic",
+    "title_message_number": 136,
+    "body_message_number": 137,
+    "native_keywords": "Actions",
+    "body": "\nType \u001b[37mACTION LIST\u001b[33m to list the actions available.\r\nType \u001b[37mACTION ON\u001b[33m to turn on the use of actions.\r\nType \u001b[37mACTION OFF\u001b[33m to turn off the use of actions.\r\nIf actions are turned off, you will not be able to do use any action\ncommands.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.139",
+    "record_kind": "topic",
+    "title_message_number": 138,
+    "body_message_number": 139,
+    "native_keywords": "Weapons armour class armor class AC DR glance glancing blows",
+    "body": "\r\u001b[0;1;33mWEAPONS AND ARMOUR\r\r\u001b[0mThe realm is a dangerous place, and no character will survive long without\nprotection. Most character will need a good weapon-- usually the more \nexpensive, the better, but try out many different ones until you find one that\nseems right for you. One factor you must keep in mind is that all weapons have\na minimum strength, and anyone with a lower strength will suffer from slower\nattacks. When you ready the weapon, if it says \"This weapon feels heavy in your\nhands.\", then you need more strength to wield it effectively.\r\nArmour is important for everyone. The best armours are the heavier ones, but\noften force your \u001b[0;1mencumbrance\u001b[0m up to uncomfortable levels. You should never \nneglect to wear armour, and make sure you are wearing a piece of armour on\nevery location you can! Your AC/DR stat is a measure of how protected you are:\nAC stands for Armour Class, and DR stands for Damage Reduction. AC makes you \nharder to hit, as your armour deflects blows. DR absorbs the damage of\nthe attack when you do get hit. If you have high DR, the attack may do no damage at\nall! Note that your AC and DR do not affect the damage you take from spells-- \nincrease your \u001b[0;1mMagic Resistance\u001b[0m for that!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.141",
+    "record_kind": "topic",
+    "title_message_number": 140,
+    "body_message_number": 141,
+    "native_keywords": "Look read scrolls",
+    "body": "\nThe look command may be used to look at a variety of things.  Just type LOOK\nfollowed by what you want to look at.  The following are a few of the things\nwhich you may look at:\r - Rooms\r - Users\r - Monsters\r - NPCs\r - Weapons\r - Armour\r - Spells\r - Scrolls\r - Items\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.143",
+    "record_kind": "topic",
+    "title_message_number": 142,
+    "body_message_number": 143,
+    "native_keywords": "Healer temple store monsters healing rope lantern",
+    "body": "\nYou will have to look around and speak to the NPCs to find out more \ninformation about this topic.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.145",
+    "record_kind": "topic",
+    "title_message_number": 144,
+    "body_message_number": 145,
+    "native_keywords": "HP Hitpoints Hits",
+    "body": "\r\u001b[0;1;33mHIT POINTS (HP)\r\r\u001b[0mHit points are a measure of how much physical punishment you can take. Every\ntime you are hit in combat with a weapon or damage spell, your hit points will\ndrop. Naturally, you will want to have the most hit points possible! Once you\nreach 0 HP, you will drop to the ground, mortally wounded, and slowly lose\nfurther as you bleed. Once your HP reaches a certain negative number, usually\r-15, you will die. Another character may \u001b[0;1m aid \u001b[0myou to prevent further loss of\nblood and allow you to begin to slowly regain HP until you reach 1 HP once \nmore. \r\nHP may be regained through magical healing, or by natural healing which \neveryone has to some degree. Using the \u001b[0;1m rest \u001b[0mcommand will increase your natural\nhealing, but only while you remain still and out of combat.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.147",
+    "record_kind": "topic",
+    "title_message_number": 146,
+    "body_message_number": 147,
+    "native_keywords": "Follow Mode",
+    "body": "\nTo join a party, first you must be invited by the leader (with the INVITE \ncommand).  Once you have been invited, you may type FOLLOW <username> to\nstart following that person.  While following you will move where they move\nand will show up in their PARTY command.\r\nTo stop following, you may type LEAVE, your leader may type UNINVITE <you>,\nor you may exit the game.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.149",
+    "record_kind": "topic",
+    "title_message_number": 148,
+    "body_message_number": 149,
+    "native_keywords": "Reroll Suicide password die",
+    "body": "\nWhen you type REROLL, your current character will die and you will return \nto the main MMUD menu.\r\nIf you have previously set a suicide password (with the SET SUICIDE command)\nthen you will have to enter the correct password to perform this command.\r\nThe SUICIDE command will kill your current character and you will lose 1\nlife.  If this is your last life, then it will be the same as typing REROLL.\nIf you type SUICIDE NOW, this will also be the same as typing REROLL.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.151",
+    "record_kind": "topic",
+    "title_message_number": 150,
+    "body_message_number": 151,
+    "native_keywords": "Title",
+    "body": "\nYour title will depend on a combination of your level and your class.  As\nyou progress through the game you will learn the meanings of each title.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.153",
+    "record_kind": "topic",
+    "title_message_number": 152,
+    "body_message_number": 153,
+    "native_keywords": "Follow set follow blind set follow normal",
+    "body": "\nThere are two types of following, BLIND and NORMAL.  If you are following \r'BLIND', then you will not see any room descriptions as you move with\nyour party.  If you are following 'NORMAL', then you will see all the \nroom descriptions normally as you move.\r\nSyntax:\r\nSET FOLLOW BLIND\nSET FOLLOW NORMAL\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.155",
+    "record_kind": "topic",
+    "title_message_number": 154,
+    "body_message_number": 155,
+    "native_keywords": "Forgive",
+    "body": "\nIf you are attacked by accident, you may use the forgive command to \ncounter the evil points which they gained when attacking you.  You have\napproximately 5 minutes in which to do this.\r\nSyntax:\r\nFORGIVE <user>\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.157",
+    "record_kind": "topic",
+    "title_message_number": 156,
+    "body_message_number": 157,
+    "native_keywords": "Join",
+    "body": "\nThe JOIN command does one of three things:  Join a broadcast group, Join\na party, or join a gang.  \r\nTo join a broadcast group, type JOIN <n> where <n> is a number \nbetween 1 and 126.  (You can type JOIN 0 to go back to the default\nbroadcast group)\r\nTo join a party, wait until you are invited, and type JOIN <username>.\r\nTo join a gang, wait until you are invited and type JOIN GANG <gangname>.\r\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.159",
+    "record_kind": "topic",
+    "title_message_number": 158,
+    "body_message_number": 159,
+    "native_keywords": "Drink eat",
+    "body": "\nSome items in the game need to be either eaten or drunk.  To do so, use the\ncommands EAT and DRINK.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.161",
+    "record_kind": "topic",
+    "title_message_number": 160,
+    "body_message_number": 161,
+    "native_keywords": "Stealth sneaking sneeking hiding",
+    "body": "\r\u001b[0;1;33mSTEALTH\r\r\u001b[0mThe art of stealth manifests itself in many forms, providing additional\noffensive and defensive options the stealthy character. Using the sneak and\nhide commands, a character is able to move unseen throughout the realm. A\nsneaking character will not be seen when entering a room (provided he makes his\nstealth check), but may be seen by anyone actively looking around. It is harder\nto sneak into a well-lit or heavily populated room. A hiding character lurks in\nthe shadows, and cannot be seen at all provided a stealth check is passed. Only\nwhen someone uses the \u001b[0;1msearch\u001b[0m command will the hider be found. Neither sneak nor\nhide may be used while in combat. These two commands provide effective ways to\navoid combat, but when used in conjunction with the \u001b[0;1mbackstab\u001b[0m command, allow\nthe stealthy character to attempt devastating surprise attacks. Backstabs may\nbe attempted after a successful sneak roll, or while hidden, and if successful\nwill do massive damage to the target. Not all weapons may be used to backstab\nwith, as some are either too big or heavy, or both. A target with high \r\u001b[0;1mperception\u001b[0m or \u001b[0;1mAC\u001b[0m will prove to be a difficult target.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.163",
+    "record_kind": "topic",
+    "title_message_number": 162,
+    "body_message_number": 163,
+    "native_keywords": "Brief quiet mode verbose silent",
+    "body": "\nPlease see help for PROFILE\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.165",
+    "record_kind": "topic",
+    "title_message_number": 164,
+    "body_message_number": 165,
+    "native_keywords": "Rob steal thievery robbing stealing",
+    "body": "\r\u001b[0;1;33mTHIEVERY\r\r\u001b[0mCharacters with this ability may attempt to rob other users of their hard-\nearned items and currency. The following commands may be used:\r\r\u001b[0;1;33mROB <user>\r or\nROB <user> OF <item/currency>\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.167",
+    "record_kind": "topic",
+    "title_message_number": 166,
+    "body_message_number": 167,
+    "native_keywords": "Tracking",
+    "body": "\r\u001b[0;1;33mTRACKING\r\r\u001b[0mThis useful skill allows you to follow the trail of another character. When \nused, the tracking skill will tell you whether or not the character has passed\nthrough the room you are in, and what direction he was headed-- useful if you\nare hunting someone, or to find out where someone has been so you can run in\nthe opposite direction!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.169",
+    "record_kind": "topic",
+    "title_message_number": 168,
+    "body_message_number": 169,
+    "native_keywords": "Lives life",
+    "body": "\r\u001b[0;1;33mLIVES\r\r\u001b[0mEach player starts the game with 9 lives.  Every time your train to the \nnext level, you will gain additional lives, up to the maximum. Each time you\ndie, you will lose one life and be re-incarnated somewhere in the realm.\r\nWhen you run out of lives, your character will die permanently-- it is a wise\nidea to keep careful track of how many lives you have left!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.171",
+    "record_kind": "topic",
+    "title_message_number": 170,
+    "body_message_number": 171,
+    "native_keywords": "Currency Silver copper gold platinum runic money $ cash mony coins",
+    "body": "\nThe currency of the realm consists of silver, copper, gold, and platinum\ncoins.  Every once in a while you will encounter a runic coin as well.\r\nGo to one of the banks in the land to find the conversion rates between\neach of the currencies.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.173",
+    "record_kind": "topic",
+    "title_message_number": 172,
+    "body_message_number": 173,
+    "native_keywords": "Fire throw",
+    "body": "\nRanged combat is not implemented yet.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.175",
+    "record_kind": "topic",
+    "title_message_number": 174,
+    "body_message_number": 175,
+    "native_keywords": "Gossip",
+    "body": "\nUse the GOSSIP command to send messages to everyone in the game.  You\ncan turn off the receipt of GOSSIP messages by either typing \r\nSET GOSSIP OFF \r\nor by typing\r\nSET GOSSIP   (to toggle it on/off)   or\nGOSSIP       (by itself, to toggle it on and off)\r\nYou may turn on the receipt of gossip messages with\r\nSET GOSSIP ON\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.177",
+    "record_kind": "topic",
+    "title_message_number": 176,
+    "body_message_number": 177,
+    "native_keywords": "Auction",
+    "body": "\nUse the AUCTION command to send messages to everyone in the game.  You\ncan turn off the receipt of AUCTION messages by either typing \r\nSET AUCTION OFF \r\nor by typing\r\nSET AUCTION  (to toggle it on/off)   or\nAUCTION      (by itself, to toggle it on and off)\r\nYou may turn on the receipt of auction messages with\r\nSET AUCTION ON\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.179",
+    "record_kind": "topic",
+    "title_message_number": 178,
+    "body_message_number": 179,
+    "native_keywords": "Encumbrance encumberance weight heavy",
+    "body": "\r\u001b[0;1;33mENCUMBRANCE\r\r\u001b[0mEvery character has a certain amount of weight that he can carry, based on his\nstrength. The number shown on your inventory sheet is the absolute maximum that\nyou can carry-- most people will not have this much stuff in their possession!\nThere are four levels of encumbrance, each with its own modifiers:\r\r    \u001b[0;1mNo Encumbrance: \u001b[0mthe character receives a small increase to attack speed.\r \u001b[0;1mLight Encumbrance: \u001b[0mthe standard-- no penalties or benefits.\r\u001b[0;1mMedium Encumbrance: \u001b[0myou receive a penalty to attack speed and accuracy.\r \u001b[0;1mHeavy Encumbrance: \u001b[0myou receive a larger penalty to attack speed and accuracy,\r                    and the time to move between rooms is doubled!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.181",
+    "record_kind": "topic",
+    "title_message_number": 180,
+    "body_message_number": 181,
+    "native_keywords": "Doors open close locks picklocks unlock",
+    "body": "\r\u001b[0;1;33mPICKLOCKS\r\r\u001b[0mThis useful ability allows you to pick the lock on a door or gate. Though some\nlocked doors may be bashed open, picking the lock will always be much easier,\nand some doors may ONLY be picked. Be aware that occasionally locks are trapped\nas well!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.183",
+    "record_kind": "topic",
+    "title_message_number": 182,
+    "body_message_number": 183,
+    "native_keywords": "Train training Levels lvls",
+    "body": "\r\u001b[0;1;33mTRAINING\r\r\u001b[0mCharacters may train to increase their levels when they have the appropriate\namount of experience (by typing Train), or to adjust their primary stats (by\ntyping Train Stats), when in a Training Room. Please see \u001b[0;1mStats1\u001b[0m for more\ninformation.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.185",
+    "record_kind": "topic",
+    "title_message_number": 184,
+    "body_message_number": 185,
+    "native_keywords": "Dying New fountain potions display wounded names characters spiders forest city moan pray casino necromancers location lord lady",
+    "body": "\nNot quite sure what help you wanted - please ask your sysop.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.187",
+    "record_kind": "topic",
+    "title_message_number": 186,
+    "body_message_number": 187,
+    "native_keywords": "Text Magician gamble enter notify description curio adventurer lord manhole pickup information stables",
+    "body": "\nNot quite sure what help you wanted - please ask your sysop.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.189",
+    "record_kind": "topic",
+    "title_message_number": 188,
+    "body_message_number": 189,
+    "native_keywords": "Jewellry Scroll jewelry orc bishops priests goblins tavern please detect magic",
+    "body": "\nNot quite sure what help you wanted - please ask your sysop.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.191",
+    "record_kind": "topic",
+    "title_message_number": 190,
+    "body_message_number": 191,
+    "native_keywords": "Shrine Toll cure gain smite amulets speed luck sorcerers npcs long clerk dungeon sheriff bishop create",
+    "body": "\nNot quite sure what help you wanted - please ask your sysop.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.193",
+    "record_kind": "topic",
+    "title_message_number": 192,
+    "body_message_number": 193,
+    "native_keywords": "Street harm bless rules",
+    "body": "\nNo help currently available.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.195",
+    "record_kind": "topic",
+    "title_message_number": 194,
+    "body_message_number": 195,
+    "native_keywords": "Release Notes",
+    "body": "\nChoose the option 'R' from the main menu for release notes on MajorMUD.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.197",
+    "record_kind": "topic",
+    "title_message_number": 196,
+    "body_message_number": 197,
+    "native_keywords": "Magic Resistance Magicres",
+    "body": "\r\u001b[0;1;33mMAGIC RESISTANCE (MagicRes)\r\r\u001b[0mEvery character has a certain level of Magic Resistance. It affects your\nchance of resisting offensive spells, and reduces the damage you take from\ncombat spells significantly. Having a low value in this stat will result in\nyou getting whomped by spellcasters! Witchunters will find that they resist\nbeneficial magic as well as the offensive kind, as they never willingly\nsubmit to the effects of magic. Having a high Willpower will greatly increase\nthis stat, while Intellect will also increase it a little. Though many \nWarrior-types neglect to increase these stats, they often regret it later.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.199",
+    "record_kind": "topic",
+    "title_message_number": 198,
+    "body_message_number": 199,
+    "native_keywords": "CP Character Points lives/cps cps",
+    "body": "\r\u001b[0;1;33mCHARACTER POINTS (CP)\r\r\u001b[0mEach race starts with a certain amount of CPs (character points) which may\nbe assigned to your stats.  Use these wisely because they will define the\nway your character performs in the game.\r\nWhen you train, you will receive additional CPs to assign to your stats. To do\nso, type TRAIN STATS in your training hall. Also see \u001b[0;1mStats1\u001b[0m and \u001b[0;1mStats2\u001b[0m in the\nhelp files for more information on training.\r\nNote that you do not have to assign all of your CPs to create a character.\nIf you wish, you may wait until you have entered the game and talked to \nother people before typing TRAIN STATS in your training hall to allocate\nyour CPs.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.201",
+    "record_kind": "topic",
+    "title_message_number": 200,
+    "body_message_number": 201,
+    "native_keywords": "Exit Quit Save",
+    "body": "\nTyping X will start the process of exitting MajorMUD.  You will have to\nwait for 5 seconds prior to leaving the Realm.\r\nYour character will automatically be saved when you exit.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.203",
+    "record_kind": "topic",
+    "title_message_number": 202,
+    "body_message_number": 203,
+    "native_keywords": "Abilities",
+    "body": "\nNo help available yet.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.205",
+    "record_kind": "topic",
+    "title_message_number": 204,
+    "body_message_number": 205,
+    "native_keywords": "Rest Meditate",
+    "body": "\nThe REST command will increase your rate of HP regeneration.  You must\nremain resting for at least 20 seconds for the increase to take effect.\r\nThe MEDITATE command will increase your rate of Mana regeneration.\nYou must remain meditating for at least 20 seconds for the increase\nto take effect.\r\nIf you move, attack, or are attacked during this period, your restful/\nmeditative state will be terminated and you will get no bonus.  \r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.207",
+    "record_kind": "topic",
+    "title_message_number": 206,
+    "body_message_number": 207,
+    "native_keywords": "Buy healing temple healer chapel",
+    "body": "\nType buy healing in the appropriate room to heal all your wounds for a price.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.209",
+    "record_kind": "topic",
+    "title_message_number": 208,
+    "body_message_number": 209,
+    "native_keywords": "Attack interrupts",
+    "body": "\nPlease see help set.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.211",
+    "record_kind": "topic",
+    "title_message_number": 210,
+    "body_message_number": 211,
+    "native_keywords": "Critical hits",
+    "body": "\nA critical hit is a hit which lands on a vulnerable part of the defender,\ndoing up to four times the damage of a normal hit.\r\nMost characters have only a small chance of getting a critical hit,\nalthough Mystics and Ninjas receive the proper training to increase their \nchance of getting a critical hit.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.213",
+    "record_kind": "topic",
+    "title_message_number": 212,
+    "body_message_number": 213,
+    "native_keywords": "Quests",
+    "body": "\nThroughout the land, and over time, there are numerous quests in MajorMUD.\nThese include killing evil monsters, finding magical items, finding secret\ndoors and exits, and other things.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.215",
+    "record_kind": "topic",
+    "title_message_number": 214,
+    "body_message_number": 215,
+    "native_keywords": "Feedback bug bugs bugreport bugreports",
+    "body": "\nFor bugreports, please email Bugs@MajorMud.com\nFor any other feedback, please email info@MajorMud.com\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.217",
+    "record_kind": "topic",
+    "title_message_number": 216,
+    "body_message_number": 217,
+    "native_keywords": "Leave",
+    "body": "\nThe leave command does a number of things depending on its use:\r\nYou can leave a party which you are following by typing LEAVE.\r\nYou can leave your broadcast group and switch to group 0 (no group)\nby typing LEAVE when you are not in a party.\r\nYou can leave a gang by typing LEAVE GANG.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.219",
+    "record_kind": "topic",
+    "title_message_number": 218,
+    "body_message_number": 219,
+    "native_keywords": "Ansi",
+    "body": "\nANSI is a set of codes which allow your terminal to display colours and\nto move the cursor around on your screen.  Most terminal programs provide\nsupport for ANSI colours and we recommend that you enable ANSI while\nyou are playing MajorMUD\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.221",
+    "record_kind": "topic",
+    "title_message_number": 220,
+    "body_message_number": 221,
+    "native_keywords": "Spell Level",
+    "body": "\nEach spell has a specific level which you must attain before you may cast \nit.  This is because the spell is too powerful for you to control until\nyou reach that level.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.223",
+    "record_kind": "topic",
+    "title_message_number": 222,
+    "body_message_number": 223,
+    "native_keywords": "Apprentice",
+    "body": "\nAn apprentice is a user who is just starting in the world of MajorMUD\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.225",
+    "record_kind": "topic",
+    "title_message_number": 224,
+    "body_message_number": 225,
+    "native_keywords": "Aide",
+    "body": "\nYou can aid a fallen player by typing AID <username>\r\nThis will stop their bleeding and give them a chance to heal instead\nof bleed to death.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.227",
+    "record_kind": "topic",
+    "title_message_number": 226,
+    "body_message_number": 227,
+    "native_keywords": "Share",
+    "body": "\nThe SHARE command is used to share a certain amount of a currency\nwith either the members of your party or everyone in the room.  \nThe syntax of the command is:\r\nSHARE <amount> <currency> [WITH <ROOM/PARTY>]\r\nIf you do not specify WITH ROOM or WITH PARTY, then PARTY is assumed.\r\nIf the amount you are sharing does not divide evenly among the people\nin the room/party, then you will be left with the remainder.  In other\nwords, if you SHARE 5 GOLD and there are only 2 people other than yourself\nin your party, each will receive 2 gold and you will be left with 1.\r\nIf you attempt to SHARE with anyone who is hidden or has their RECEIVE\nset off, then they will not be included in the receipts of your sharing.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.229",
+    "record_kind": "topic",
+    "title_message_number": 228,
+    "body_message_number": 229,
+    "native_keywords": "Wealth",
+    "body": "\nWEALTH will display your current monetary situation.  It will also\ndisplay the equivalent value in Copper of all the currency which you\nare carrying.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.231",
+    "record_kind": "topic",
+    "title_message_number": 230,
+    "body_message_number": 231,
+    "native_keywords": "Set Response",
+    "body": "\nThe SET RESPONSE command has the following optional forms:\r\nSET RESPONSE -- Will toggle your talking responses between brief and verbose\nSET RESPONSE BRIEF   -- Will set your talking responses to BRIEF mode\nSET RESPONSE VERBOSE -- Will set your talking responses to VERBOSE mode\r\nBrief mode will only say 'well spoken' when you speak.\nVerbose mode will say 'You said \"...\"' when you speak.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.233",
+    "record_kind": "topic",
+    "title_message_number": 232,
+    "body_message_number": 233,
+    "native_keywords": "Keep Set Keep",
+    "body": "\nThe SET KEEP command has the following optional forms:\r\nSET KEEP -- Will toggle the keeping of some experience after your final death\nSET KEEP OFF -- Will disable the keeping of some experience after final death\nSET KEEP ON  -- Will enable the keeping of some experience after final death\r\nWith KEEP mode 'on', when you reroll or die your final death and create a\nnew character, your new character will start with some of the experience\nwhich you created in your original character.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.235",
+    "record_kind": "topic",
+    "title_message_number": 234,
+    "body_message_number": 235,
+    "native_keywords": "set statline custom statline full custom",
+    "body": "\nThe custom statline is set by typing SET STATLINE CUSTOM xxx or\nSET STATLINE FULL CUSTOM xxx.  If you choose the FULL option then pressing\nEnter will display the same room information as the FULL statline.  \nThe xxx can be up to 60 characters long and may include spaces, etc.\nYou may include the following variables in xxx:\r      %%h - current hit points\r      %%H - max hit points\r      %%m - current mana\r      %%M - max mana\r      %%c - current wealth on hand\r      %%x - current experience\r      %%X - experience to next level\r      %%r - resting flag \" (Resting) \" when resting\r      %%fn - set foreground colour (n = 0-7)\r      %%bn - set background colour (n = 0-7)\r      %%B - bold\r      %%N - normal\r      %%U - underline\r      %%L - blink\r      %%R - reverse\r      %%d - use default colours\r      %%n - line-break\r      %%w - warning flag\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.237",
+    "record_kind": "topic",
+    "title_message_number": 236,
+    "body_message_number": 237,
+    "native_keywords": "Nekojin cats",
+    "body": "\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mNEKOJIN\u001b[58C\u001b[0;1mEXP: \u001b[0m+50%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mThe feral folk known as the Nekojin hail from the far east, past the\u001b[7C\u001b[0;34m║\r║ \u001b[0mDwarven stronghold of Khazarad, where the burning desert wastes lay. They  \u001b[0;34m║\r║ \u001b[0mare a cat-like race, with long tufted ears and large oval eyes that\u001b[8C\u001b[0;34m║\r║ \u001b[0mglitter with a predatory intelligence. Nekojin stand about five feet tall  \u001b[0;34m║\r║ \u001b[0mon average, but weigh only slightly more than half a human's weight.\u001b[7C\u001b[0;34m║\r║ \u001b[0mBlindingly quick, they have a natural charm and speed that often over-\u001b[5C\u001b[0;34m║\r║ \u001b[0mwhelms all who meet them. Though they are not well-suited for scholarly    \u001b[0;34m║\r║ \u001b[0mpursuits, they are natural stalkers and excel in any stealthy profession.  \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mHailing from the desert, they resist  \u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mheat and fire, but are vulnerable to  \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mcold attacks. Nekojin are ferocious,  \u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mRacial Stealth  \u001b[0;34m║ \u001b[0mproud, extravagant, and extremely\u001b[5C\u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m60\u001b[0m-\u001b[0;32m130 \u001b[0;34m║ \u001b[0mNight Vision    \u001b[0;34m║ \u001b[0mcompetitive. They love to show off    \u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m30\u001b[0m-\u001b[0;32m80  \u001b[0;34m║ \u001b[0mTracking(+10)   \u001b[0;34m║ \u001b[0mand are quite friendly when the mood  \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mFireRes(+10%%)   \u001b[0;34m║ \u001b[0msuits them. All Nekojin are very\u001b[6C\u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m30\u001b[0m-\u001b[0;32m90  \u001b[0;34m║ \u001b[0mColdRes(-10%%)   \u001b[0;34m║ \u001b[0mstealthy, can see well in the dark,   \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m50\u001b[0m-\u001b[0;32m110 \u001b[0;34m║\u001b[17C║ \u001b[0mand have a natural tracking ability.  \u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.239",
+    "record_kind": "topic",
+    "title_message_number": 238,
+    "body_message_number": 239,
+    "native_keywords": "Gaunts Gaunt Ones",
+    "body": "\r\u001b[40m\u001b[2J\u001b[0;34m╔════════════════════════════════════════════════════════════════════════════╗\r║ \u001b[0;1;33mGAUNT ONES\u001b[55C\u001b[0;1mEXP: \u001b[0m+50%% \u001b[0;34m║\r╠════════════════════════════════════════════════════════════════════════════╣\r║ \u001b[0mAlso known simply as 'Gaunts', this mysterious and reclusive folk are by   \u001b[0;34m║\r║ \u001b[0mfar the least fathomable of the known races. Physically, they are\u001b[10C\u001b[0;34m║\r║ \u001b[0mimmediately recognizable-- they stand seven feet tall on average, but are  \u001b[0;34m║\r║ \u001b[0mincredibly thin. They have long limbs and an elongated face, with large    \u001b[0;34m║\r║ \u001b[0meyes that radiate a pale glow. Gaunts dwell in the most remote areas of    \u001b[0;34m║\r║ \u001b[0mthe realm, and rarely mix with other folk. When they do, it is most often  \u001b[0;34m║\r║ \u001b[0mto hire someone to obtain rare materials, which (it is rumored) they use   \u001b[0;34m║\r║ \u001b[0mfor highly magical purposes. As a race they are incredibly brilliant, with \u001b[0;34m║\r║ \u001b[0ma masterful grasp of all things arcane and forgotten. They are also quite  \u001b[0;34m║\r║ \u001b[0mdevious, and show little emotion -- a combination which makes folk fearful \u001b[0;34m║\r╠════════════════════════════════════╗ \u001b[0mand suspicious of their motives.\u001b[6C\u001b[0;34m║\r║ \u001b[0;1mStatistics\u001b[9CAbilities\u001b[7C\u001b[0;34m║ \u001b[0mOutsiders never see their concealed   \u001b[0;34m║\r╠══════════════════╦═════════════════╣ \u001b[0mhomes. Gaunts' eyes are extremely\u001b[5C\u001b[0;34m║\r║ \u001b[0mStrength  \u001b[0;31m40\u001b[0m-\u001b[0;32m100 \u001b[0;34m║ \u001b[0mDark Vision\u001b[5C\u001b[0;34m║ \u001b[0mmagical, allowing them perfect vision \u001b[0;34m║\r║ \u001b[0mAgility   \u001b[0;31m50\u001b[0m-\u001b[0;32m110 \u001b[0;34m║ \u001b[0mPerception+10   \u001b[0;34m║ \u001b[0min total darkness, as well as a\u001b[7C\u001b[0;34m║\r║ \u001b[0mHealth    \u001b[0;31m30\u001b[0m-\u001b[0;32m70  \u001b[0;34m║ \u001b[0mSee Hidden*\u001b[5C\u001b[0;34m║ \u001b[0mheightened perception. Rumours abound \u001b[0;34m║\r║ \u001b[0mIntellect \u001b[0;31m60\u001b[0m-\u001b[0;32m140 \u001b[0;34m║\u001b[17C║ \u001b[0mabout a secret ritual that allows\u001b[5C\u001b[0;34m║\r║ \u001b[0mWillpower \u001b[0;31m50\u001b[0m-\u001b[0;32m100 \u001b[0;34m║\u001b[17C║ \u001b[0mthem, after attaining a certain level \u001b[0;34m║\r║ \u001b[0mCharm\u001b[5C\u001b[0;31m30\u001b[0m-\u001b[0;32m80  \u001b[0;34m║ \u001b[0m*read text\u001b[6C\u001b[0;34m║ \u001b[0mof power, to see hidden people.\u001b[7C\u001b[0;34m║\r╚══════════════════╩═════════════════╩═══════════════════════════════════════╝\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.241",
+    "record_kind": "topic",
+    "title_message_number": 240,
+    "body_message_number": 241,
+    "native_keywords": "Spellcasting SC",
+    "body": "\r\u001b[0;1;33mSPELLCASTING (SC)\r\r\u001b[0m\"The\" stat to have for all spellcasters, Spellcasting is a measure of your\nknowledge and skill in casting spells. It is affected by the Magery level of\nyour class-- Mages will have a better Spellcasting than Warlocks. For Mage-\ntypes, Intellect is the main stat that increases SC, while Willpower helps\nsomewhat. For Priest-types, Willpower is the main stat, with Intellect helping\na bit. Druid-types use both Intellect and Willpower equally, while Bards use\nonly Charm for their spellcasting. Mystics do not use any stat at all-- their\nKai powers automatically succeed when used.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.243",
+    "record_kind": "topic",
+    "title_message_number": 242,
+    "body_message_number": 243,
+    "native_keywords": "Perception Sight",
+    "body": "\r\u001b[0;1;33mPERCEPTION\r\r\u001b[0mThis secondary stat is quite useful, in a variety of ways. Its most common\nfunction is used while searching for secret doors and traps, and while \nsearching rooms for concealed items. It also affects your chances of surviving\na backstab attempt-- characters with high Perception have a much greater\nprobability of foiling an ambusher's surprise attack.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.245",
+    "record_kind": "topic",
+    "title_message_number": 244,
+    "body_message_number": 245,
+    "native_keywords": "Traps Disarm",
+    "body": "\r\u001b[0;1;33mTRAPS\r\r\u001b[0mAlthough many characters do not commonly encounter traps, this skill can be\nvery useful, as many traps are simply deadly. Characters with the Traps skill\ncan attempt to disarm a trap after it is found with the \u001b[0;1msearch\u001b[0m command, by\nusing \u001b[0;1;33mDISARM TRAP \u001b[0;1;36m<direction>\u001b[0m.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.247",
+    "record_kind": "topic",
+    "title_message_number": 246,
+    "body_message_number": 247,
+    "native_keywords": "Mana",
+    "body": "\r\u001b[0;1;33mMANA\r\r\u001b[0mMana is the energy force that exists in all things, and very strongly so in\nliving, sentient beings. All living beings have Mana, but only a certain, \ntrained few can tap that power to cast spells. Every spell cast has a Mana\ncost, which is deducted from your current total-- when your Mana reaches 0, \nyou cannot cast any more spells. Fortunately, everyone regenerates it naturally\nover time, though a heavily Mana-depleted Mage may have to wait for some time.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.249",
+    "record_kind": "topic",
+    "title_message_number": 248,
+    "body_message_number": 249,
+    "native_keywords": "gender sex",
+    "body": "\nTo change your gender, use the command SET GENDER <male/female>\r\nNote that you may be charged up to 32000 gold to do this action\nor your sysop may have disabled this command.  If you are not\nwilling to spend the 32000 gold then check with your sysop\nbefore entering this command.\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.251",
+    "record_kind": "topic",
+    "title_message_number": 250,
+    "body_message_number": 251,
+    "native_keywords": "Changerace changeclass change",
+    "body": "\r\u001b[0;1;33mCHANGERACE\r\r\u001b[0mIf the ChangeRace menu command is enabled on the MajorMUD Main Menu, then you\nhave the option of changing your race for a limited time. To do so, simply\nexit the game to the main menu, select \u001b[1mCHANGERACE\u001b[0m, and follow the instructions.\nYou will be prompted to select a new race, and when you have done so, you will\nbe back at the main menu. Then enter MajorMUD once more to complete the change\nand to change your stats.\r\nThe time you have to change your race wil be displayed on the main menu beside\nthe ChangeRace menu command. The amount shown is the time your have, in\r\u001b[1mGAME MINUTES\u001b[0m, before you no longer have the option of changing your race. You\nmay change race any number of times during that period. Note that the time you\nare allowed does not tick down while you are not in the game-- it only gets\nused up while you are in MajorMUD playing, not while you are at the main menu\nor while logged off. A good use of this time is to try out a new race, test it\nto see if you like it, if its EXP chart is too high for you, and if it just\n\"feels right\". If you don't like it then you can simply change. But keep an eye\non the time!\r\nAlso note that the race have been carefully balanced in terms of power and EXP\ncost. Some races are more suited for certain roles than others, but ALL of them\nare good. Don't overlook a Human Mage just because he doesn't have any natural\nabilities-- he will be a few levels higher than everyone else!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.253",
+    "record_kind": "topic",
+    "title_message_number": 252,
+    "body_message_number": 253,
+    "native_keywords": "Purge",
+    "body": "\nThe purge command is used to remove a spell or power from your spellbook.\nOnce you have purged the spell it is gone - the only way to get it back is\nin the same manner in which you originally got it (i.e. purchase it or\ntrain for it in the case of powers)\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.255",
+    "record_kind": "topic",
+    "title_message_number": 254,
+    "body_message_number": 255,
+    "native_keywords": "Stock  Unstock  Markup",
+    "body": "\nThe Stock command is used to stock items in a House Shop, to stock an item\nyou must be the owner of that House Shop, by Stocking you add that item\nto the list of available items to buy.\r\u001b[0;1;33mStock <item> or\u001b[0m\r\u001b[0;1;33mStock <item> <currency> or\u001b[0m\r\u001b[0;1;33mStock <item> <price> or   \u001b[0m\r\u001b[0;1;33mStock <Item> <Price> <Currency>\nEx: Stock hatchet 1000 Gold \u001b[0m\r\nThe Unstock command is used to unstock items from a House Shop, to unstock\nan item you must be the owner of that House Shop, by Unstocking you remove\nthat item from the list of available items to buy.\r\u001b[0;1;33mUnstock <item>\u001b[0m\nEx: Unstock club\r\nThe Markup command is used to increase the percentage of cost that all items\nin the store. To markup the shop you must be the owner of that House Shop.\r\u001b[0;1;33mMarkup <percent>\u001b[0m\nEx: Markup 900\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.257",
+    "record_kind": "topic",
+    "title_message_number": 256,
+    "body_message_number": 257,
+    "native_keywords": "Promote Demote Lieutenant",
+    "body": "\r\u001b[0;1;33mPromote\u001b[0m and \u001b[0;1;33mDemote\u001b[0m are only usable by the gangleader on their gangmembers.\nPromote is used to promote a member to \u001b[0;1;33mLieutenant\u001b[0m. A \u001b[0;1;33mlieutenant\u001b[0m is\nable to invite and uninivte gangmembers when the gangleader is not online to\ndo it. This is useful to recruit more members without gangleader supervision,\nor to kick the player that is too rowdy out of the gang.\nDemote is used to demote a \u001b[0;1;33mLieutenant\u001b[0m to member, this is used if the\ngangleader sees that the \u001b[0;1;33mLieutenant\u001b[0m isn't doing their job!\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.259",
+    "record_kind": "topic",
+    "title_message_number": 258,
+    "body_message_number": 259,
+    "native_keywords": "Metro Metropolis",
+    "body": "\r\u001b[0;1;33m\nMetropolis BBS Inc.\nhttp://www.majormud.com\nhttp://www.mudcentral.com\nhttp://www.metrobbs.com/cgi-bin/dcforum/dcboard.cgi\r\u001b[0m\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.261",
+    "record_kind": "topic",
+    "title_message_number": 260,
+    "body_message_number": 261,
+    "native_keywords": "ganghouse house guildhouse",
+    "body": "\r\u001b[0;1;33mGanghouses\u001b[0m or \u001b[0;1;33mGuildhouses\u001b[0m are buildings that\ncan be purchased by the leader of a gang at the \u001b[0;1;33mDeed Shoppe\u001b[0m.\nEvery sundown \u001b[0;1;33mtax\u001b[0m is collected on the ganghouse, as is described in the\r\u001b[0;1;33mdeed agreement\u001b[0m. If the \u001b[0;1;33mdeed holder does not contain sufficient funds in\ntheir \u001b[0;1;33mSilvermere bank account\u001b[0m, the house is possessed along with any items\nheld within. All ganghouses contain guardians charged with keeping non-members\noutside of the house walls. Some ganghouses, depending on the type, have\nshops, healers, and such. All houses have rubbish rooms for sanitary disposal.\r\u001b[0m\r",
+    "evidence_classification": "proven_native_help_pair"
+  },
+  {
+    "id": "help.topic.263",
+    "record_kind": "topic",
+    "title_message_number": 262,
+    "body_message_number": 263,
+    "native_keywords": "Help ?",
+    "body": "\u001b[0m\nTo get general help, type \u001b[1;33mHELP\u001b[0m.\r\nTo get a list of topics available, type \u001b[1;33mHELP TOPICS\u001b[0m.\r\nTo get help on a specific topic, type \u001b[1;33mHELP \u001b[36m<topic> \u001b[0mwhere \u001b[1;36m<topic>\r\u001b[0mis whatever\nyou need help on.  There is a large amount of help available, so try a\nvariety of topics here.\r\nIf you are in help mode already (chosen from the main MajorMUD menu), then\nyou do not need to precede each topic with 'HELP' - merely type the topic\nname in.\r\nFor this help message, type \u001b[1;33mHELP HELP\u001b[0m, or just \u001b[1;33mHELP\u001b[0m when in\nhelp mode.\r",
+    "evidence_classification": "proven_native_help_pair"
+  }
+]

@@ -7,7 +7,7 @@ public sealed record RuntimeClassicNpcDialogueMatch(int NpcId, int RootTextblock
 
 /// <summary>
 /// Canonical Bundle F Phase F10 NPC-to-dialogue ownership and keyword-routing authority.
-/// Ownership is loaded from the retained decoded source; text execution remains owned by
+/// Ownership is loaded from generated Classic data; text execution remains owned by
 /// RuntimeClassicTextblockGraphAuthority so no parallel dialogue or quest engine is introduced.
 /// </summary>
 public sealed class RuntimeClassicNpcDialogueAuthority
@@ -23,15 +23,14 @@ public sealed class RuntimeClassicNpcDialogueAuthority
 
     public static RuntimeClassicNpcDialogueAuthority Load(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData", "TextblocksDecoded0142", "npc_textblock_links.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative decoded NPC dialogue ownership catalog is required.", path);
+        var path = Path.Combine(projectRoot, "Data", "Classic", "npc_dialogue.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic NPC dialogue ownership catalog is required.", path);
         var graph = RuntimeClassicTextblockGraphAuthority.Load(projectRoot);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (document.RootElement.ValueKind != JsonValueKind.Array) throw new InvalidDataException("NPC dialogue ownership root must be an array.");
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(path);
 
         var exactPairs = new HashSet<(int NpcId, int RootId)>();
         var rows = new List<RuntimeClassicNpcDialogueRoot>();
-        foreach (var row in document.RootElement.EnumerateArray())
+        foreach (var row in records)
         {
             var npcId = RequiredInt(row, "npc_id");
             var rootId = RequiredInt(row, "root_textblock_id");

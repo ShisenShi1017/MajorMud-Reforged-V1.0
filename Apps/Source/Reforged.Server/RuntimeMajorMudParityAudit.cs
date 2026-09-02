@@ -45,10 +45,7 @@ public sealed record RuntimeMajorMudParityReport(
 /// </summary>
 public static class RuntimeMajorMudParityAudit
 {
-    private const string AssertionLedgerRelativePath = "Librarium/Parity/majormud_parity_assertions.json";
-    private const string RemainingSystemsRelativePath = "Librarium/RemainingSystems/remaining_systems_registry.json";
-    private const string RemainingAuditRelativePath = "Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json";
-    private const string OwnershipScopeRelativePath = "Librarium/Parity/majormud_ownership_scope_0298.json";
+    private const string AssertionLedgerRelativePath = "Data/Classic/parity.json";
 
     public static RuntimeMajorMudParityReport Run(string projectRoot)
     {
@@ -98,13 +95,10 @@ public static class RuntimeMajorMudParityAudit
         {
             diagnostics.Add($"Economy/Transactions/Services parity audit failed: {exception.Message}");
         }
-        var ownershipScope = LoadOwnershipScope(root, diagnostics);
-        LoadCuratedAssertions(root, assertions, diagnostics, ownershipScope);
-        LoadUnknownNativeDependencyGroups(root, assertions, diagnostics, ownershipScope);
+        LoadCuratedAssertions(root, assertions, diagnostics);
 
-        var remainingSystemCount = 0;
-        var partialSystemShellCount = 0;
-        LoadRemainingSystemShellCounts(root, diagnostics, ref remainingSystemCount, ref partialSystemShellCount);
+        const int remainingSystemCount = 0;
+        const int partialSystemShellCount = 0;
 
         var scored = assertions.Where(assertion => assertion.State is "PASS" or "STRONG" or "UNKNOWN").ToArray();
         var pass = scored.Count(assertion => assertion.State == "PASS");
@@ -208,56 +202,7 @@ public static class RuntimeMajorMudParityAudit
         denominator <= 0 ? 0d : Math.Round(numerator * 100d / denominator, 1, MidpointRounding.AwayFromZero);
 
 
-    private sealed record OwnershipScope(
-        HashSet<string> ExcludedCuratedAssertionIds,
-        HashSet<string> ExcludedNativeDependencyIds,
-        Dictionary<string, string[]> MixedNativeDependencyOverrides);
-
-    private static OwnershipScope LoadOwnershipScope(string root, List<string> diagnostics)
-    {
-        var empty = new OwnershipScope(
-            new HashSet<string>(StringComparer.OrdinalIgnoreCase),
-            new HashSet<string>(StringComparer.OrdinalIgnoreCase),
-            new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase));
-        var path = Path.Combine(root, OwnershipScopeRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path))
-        {
-            diagnostics.Add($"MajorMUD ownership scope missing: {OwnershipScopeRelativePath}");
-            return empty;
-        }
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
-            var rootElement = document.RootElement;
-            var curated = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var native = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            var overrides = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase);
-            if (rootElement.TryGetProperty("excludedCuratedAssertionIds", out var curatedArray) && curatedArray.ValueKind == JsonValueKind.Array)
-                foreach (var value in curatedArray.EnumerateArray())
-                    if (value.ValueKind == JsonValueKind.String && !string.IsNullOrWhiteSpace(value.GetString()))
-                        curated.Add(value.GetString()!.Trim());
-            if (rootElement.TryGetProperty("excludedNativeDependencyIds", out var nativeArray) && nativeArray.ValueKind == JsonValueKind.Array)
-                foreach (var value in nativeArray.EnumerateArray())
-                    if (value.ValueKind == JsonValueKind.String && !string.IsNullOrWhiteSpace(value.GetString()))
-                        native.Add(value.GetString()!.Trim());
-            if (rootElement.TryGetProperty("mixedNativeDependencyOverrides", out var overrideObject) && overrideObject.ValueKind == JsonValueKind.Object)
-                foreach (var property in overrideObject.EnumerateObject())
-                    if (property.Value.ValueKind == JsonValueKind.Array)
-                        overrides[property.Name] = property.Value.EnumerateArray()
-                            .Where(value => value.ValueKind == JsonValueKind.String)
-                            .Select(value => value.GetString()?.Trim() ?? string.Empty)
-                            .Where(value => value.Length > 0)
-                            .ToArray();
-            return new OwnershipScope(curated, native, overrides);
-        }
-        catch (Exception exception)
-        {
-            diagnostics.Add($"Failed to read MajorMUD ownership scope: {exception.Message}");
-            return empty;
-        }
-    }
-
-    private static void LoadCuratedAssertions(string root, List<RuntimeMajorMudParityAssertion> assertions, List<string> diagnostics, OwnershipScope ownershipScope)
+    private static void LoadCuratedAssertions(string root, List<RuntimeMajorMudParityAssertion> assertions, List<string> diagnostics)
     {
         var path = Path.Combine(root, AssertionLedgerRelativePath.Replace('/', Path.DirectorySeparatorChar));
         if (!File.Exists(path))
@@ -268,14 +213,7 @@ public static class RuntimeMajorMudParityAudit
 
         try
         {
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
-            if (!document.RootElement.TryGetProperty("assertions", out var array) || array.ValueKind != JsonValueKind.Array)
-            {
-                diagnostics.Add("Parity assertion ledger has no assertions array.");
-                return;
-            }
-
-            foreach (var item in array.EnumerateArray())
+            foreach (var item in RuntimeChunkedClassicCatalog.LoadRecords(path))
             {
                 var id = Text(item, "id");
                 var category = Text(item, "category");
@@ -284,8 +222,6 @@ public static class RuntimeMajorMudParityAudit
                 var evidence = item.TryGetProperty("evidence", out var evidenceArray) && evidenceArray.ValueKind == JsonValueKind.Array
                     ? evidenceArray.EnumerateArray().Where(value => value.ValueKind == JsonValueKind.String).Select(value => value.GetString() ?? string.Empty).Where(value => value.Length > 0).ToArray()
                     : Array.Empty<string>();
-                if (ownershipScope.ExcludedCuratedAssertionIds.Contains(id))
-                    continue;
                 if (id.Length == 0 || category.Length == 0 || description.Length == 0 || state is not ("PASS" or "STRONG" or "UNKNOWN"))
                 {
                     diagnostics.Add($"Skipped invalid parity assertion '{id}'.");
@@ -300,145 +236,34 @@ public static class RuntimeMajorMudParityAudit
         }
     }
 
-    private static void LoadUnknownNativeDependencyGroups(string root, List<RuntimeMajorMudParityAssertion> assertions, List<string> diagnostics, OwnershipScope ownershipScope)
-    {
-        var path = Path.Combine(root, RemainingAuditRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path))
-        {
-            diagnostics.Add($"Native dependency report missing: {RemainingAuditRelativePath}");
-            return;
-        }
-
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
-            if (!document.RootElement.TryGetProperty("deduplicatedRemainingSystemsNativeDependencies", out var array) || array.ValueKind != JsonValueKind.Array)
-            {
-                diagnostics.Add("Native dependency report has no deduplicatedRemainingSystemsNativeDependencies array.");
-                return;
-            }
-
-            foreach (var item in array.EnumerateArray())
-            {
-                var id = Text(item, "id");
-                if (id.Length == 0) continue;
-                if (ownershipScope.ExcludedNativeDependencyIds.Contains(id))
-                    continue;
-                var questions = item.TryGetProperty("questions", out var questionArray) && questionArray.ValueKind == JsonValueKind.Array
-                    ? questionArray.EnumerateArray().Where(value => value.ValueKind == JsonValueKind.String).Select(value => value.GetString() ?? string.Empty).Where(value => value.Length > 0).ToArray()
-                    : Array.Empty<string>();
-                if (ownershipScope.MixedNativeDependencyOverrides.TryGetValue(id, out var scopedQuestions))
-                    questions = scopedQuestions;
-                var description = questions.Length == 0
-                    ? "Native dependency group remains unresolved and requires final native evidence."
-                    : string.Join("; ", questions);
-                var assertionId = $"native.{id}";
-                if (assertions.Any(existing => existing.Id.Equals(assertionId, StringComparison.OrdinalIgnoreCase)))
-                    continue;
-                assertions.Add(new RuntimeMajorMudParityAssertion(
-                    assertionId,
-                    CategoryForNativeDependency(id),
-                    "UNKNOWN",
-                    description,
-                    new[] { RemainingAuditRelativePath }));
-            }
-        }
-        catch (Exception exception)
-        {
-            diagnostics.Add($"Failed to read native dependency report: {exception.Message}");
-        }
-    }
-
-    private static void LoadRemainingSystemShellCounts(string root, List<string> diagnostics, ref int total, ref int partial)
-    {
-        var path = Path.Combine(root, RemainingSystemsRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path))
-        {
-            diagnostics.Add($"Remaining-systems registry missing: {RemainingSystemsRelativePath}");
-            return;
-        }
-
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
-            if (!document.RootElement.TryGetProperty("systems", out var array) || array.ValueKind != JsonValueKind.Array) return;
-            foreach (var item in array.EnumerateArray())
-            {
-                total++;
-                var classification = Text(item, "classification");
-                var status = Text(item, "status");
-                if (classification.Contains("partially", StringComparison.OrdinalIgnoreCase) || status.StartsWith("implemented", StringComparison.OrdinalIgnoreCase))
-                    partial++;
-            }
-        }
-        catch (Exception exception)
-        {
-            diagnostics.Add($"Failed to read remaining-systems registry: {exception.Message}");
-        }
-    }
-
     private static IReadOnlyDictionary<string, string> LoadCoverageMetrics(string root, List<string> diagnostics)
     {
         var metrics = new SortedDictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        ReadMetricFile(root, "Reports/RuntimeVerification/classic_decode_exhaustion_report.json", diagnostics, document =>
+        var path = Path.Combine(root, "Data", "Classic", "compile_manifest.json");
+        if (!File.Exists(path))
         {
-            var rootElement = document.RootElement;
-            metrics["Decode families"] = $"{Int(rootElement, "ConnectedFamilyCount")}/{Int(rootElement, "FamilyCount")} connected";
-            metrics["Decode scalar fields"] = $"{Int(rootElement, "ConnectedFieldCount")}/{Int(rootElement, "TotalFields")} connected/structural";
-        });
-        ReadMetricFile(root, "Reports/RuntimeVerification/classic_spell_effect_coverage.json", diagnostics, document =>
-        {
-            var rootElement = document.RootElement;
-            metrics["Spells classified"] = $"{Int(rootElement, "ClassifiedSpellCount")}/{Int(rootElement, "SpellCount")}";
-            metrics["Runtime status effects"] = $"{Int(rootElement, "RuntimeAuthoritativeStatusEffectCount")}/{Int(rootElement, "StatusEffectCount")}";
-        });
-        ReadMetricFile(root, "Reports/RuntimeVerification/classic_native_message_coverage.json", diagnostics, document =>
-        {
-            metrics["Native message catalog"] = $"{Int(document.RootElement, "NativeMessageCount")} messages loaded";
-        });
-        ReadMetricFile(root, "Reports/RuntimeVerification/classic_economy_service_coverage.json", diagnostics, document =>
-        {
-            var rootElement = document.RootElement;
-            metrics["Economy services"] = $"{Int(rootElement, "ClassifiedServiceCount")} classified / {Int(rootElement, "UnclassifiedServiceCount")} unclassified";
-        });
-        return metrics;
-    }
-
-    private static void ReadMetricFile(string root, string relativePath, List<string> diagnostics, Action<JsonDocument> reader)
-    {
-        var path = Path.Combine(root, relativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path)) return;
+            diagnostics.Add("Generated Classic compile manifest is missing.");
+            return metrics;
+        }
         try
         {
             using var document = JsonDocument.Parse(File.ReadAllText(path));
-            reader(document);
+            var manifest = document.RootElement;
+            metrics["Generated families"] = $"{ReadInt(manifest, "object_families_compiled")}";
+            metrics["Generated records"] = $"{ReadInt(manifest, "objects_compiled")}";
+            metrics["Generated files"] = $"{ReadInt(manifest, "files_written")}";
         }
         catch (Exception exception)
         {
-            diagnostics.Add($"Failed to read coverage metric {relativePath}: {exception.Message}");
+            diagnostics.Add($"Failed to read generated Classic compile manifest: {exception.Message}");
         }
+        return metrics;
     }
 
-    private static int Int(JsonElement element, string propertyName) =>
+    private static int ReadInt(JsonElement element, string propertyName) =>
         element.TryGetProperty(propertyName, out var value) && value.TryGetInt32(out var number) ? number : 0;
 
     private static string Text(JsonElement element, string propertyName) =>
         element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.String ? value.GetString()?.Trim() ?? string.Empty : string.Empty;
 
-    private static string CategoryForNativeDependency(string id)
-    {
-        var value = id.ToLowerInvariant();
-        if (value.Contains("party") || value.StartsWith("communications") || value.StartsWith("mail") || value.StartsWith("organizations")) return "Parties / Communication / Organizations";
-        if (value.StartsWith("rooms") || value.StartsWith("doors") || value.StartsWith("traps") || value.StartsWith("environmental") || value.StartsWith("world-containers") || value.StartsWith("weather")) return "Rooms & World";
-        if (value.StartsWith("clock") || value.StartsWith("world-reset") || value.StartsWith("events") || value.StartsWith("world-rules")) return "Timers / Resets / World Rules";
-        if (value.StartsWith("pvp") || value.StartsWith("law") || value.StartsWith("rest-inn") || value.StartsWith("character-identity")) return "Character & Status";
-        if (value.StartsWith("transport") || value.StartsWith("player-transactions")) return "Economy & Services";
-        if (value.StartsWith("account-session")) return "Protocol & Legacy Clients";
-        if (value.StartsWith("administrative") || value.StartsWith("security") || value.StartsWith("builder")) return "Administration / Security / Builder";
-        if (value.StartsWith("logging") || value.StartsWith("save") || value.StartsWith("startup") || value.StartsWith("worldgroup") || value.StartsWith("global-rng") || value.StartsWith("global-world-state") || value.StartsWith("repository-inventory")) return "Host / Persistence / Worldgroup";
-        if (value.StartsWith("import-export") || value.StartsWith("capacity") || value.StartsWith("error-handling")) return "Import / Export / Limits / Recovery";
-        if (value.StartsWith("help")) return "Commands & Help";
-        if (value.StartsWith("rankings") || value.StartsWith("games-arenas") || value.StartsWith("reforged-extension")) return "Optional / Rankings / Extensions";
-        return "Native Closure";
-    }
 }

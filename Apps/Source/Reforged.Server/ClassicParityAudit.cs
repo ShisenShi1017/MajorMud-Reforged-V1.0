@@ -1,8 +1,7 @@
 namespace Reforged.Server;
 
 /// <summary>
-/// Builds a conservative Classic parity inventory from canonical Data/ and ImportedDatabases/.
-/// It intentionally performs file/category inventory only. Field-level MajorMUD parity requires follow-up parsers.
+/// Builds a conservative inventory from generated canonical Data only.
 /// </summary>
 public sealed class ClassicParityAudit
 {
@@ -24,46 +23,28 @@ public sealed class ClassicParityAudit
     {
         var root = Path.GetFullPath(projectRoot);
         var canonicalDataPath = Path.Combine(root, "Data");
-        var importedDatabasesPath = Path.Combine(root, "ImportedDatabases");
         var report = new ClassicParityAuditReport
         {
             ProjectRoot = root,
-            CanonicalDataPath = canonicalDataPath,
-            ImportedDatabasesPath = importedDatabasesPath
+            CanonicalDataPath = canonicalDataPath
         };
 
         var canonicalFiles = EnumerateFiles(canonicalDataPath).ToList();
-        var importedFiles = EnumerateFiles(importedDatabasesPath).ToList();
 
         report.CanonicalFileCount = canonicalFiles.Count;
-        report.ImportedReferenceFileCount = importedFiles.Count;
 
-        report.AddSource(BuildSourceSummary("Canonical Data", canonicalDataPath, "canonical-live-editable-data", canonicalFiles));
-        report.AddSource(BuildSourceSummary("Imported Reference Data", importedDatabasesPath, "read-only-reference-import-material", importedFiles));
-
-        var canonicalNames = new HashSet<string>(canonicalFiles.Select(file => Path.GetFileName(file)), StringComparer.OrdinalIgnoreCase);
-        foreach (var name in importedFiles.Select(file => Path.GetFileName(file)).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(name => name, StringComparer.OrdinalIgnoreCase))
-        {
-            if (canonicalNames.Contains(name))
-            {
-                report.AddExactNameMatch(name);
-            }
-        }
+        report.AddSource(BuildSourceSummary("Generated Classic Data", canonicalDataPath, "canonical-runtime-data", canonicalFiles));
 
         foreach (var category in Categories)
         {
             var canonicalCategoryFiles = canonicalFiles.Where(category.Matches).ToList();
-            var importedCategoryFiles = importedFiles.Where(category.Matches).ToList();
-            var canonicalCategoryNames = new HashSet<string>(canonicalCategoryFiles.Select(GetFileName), StringComparer.OrdinalIgnoreCase);
-            var matchCount = importedCategoryFiles.Select(GetFileName).Distinct(StringComparer.OrdinalIgnoreCase).Count(canonicalCategoryNames.Contains);
-
             report.AddCategory(new ClassicParityCategorySummary(
                 category.Name,
                 category.Description,
                 canonicalCategoryFiles.Count,
-                importedCategoryFiles.Count,
-                matchCount,
-                DetermineCategoryStatus(canonicalCategoryFiles.Count, importedCategoryFiles.Count, matchCount)));
+                0,
+                0,
+                canonicalCategoryFiles.Count > 0 ? "canonical-runtime-data-present" : "canonical-category-empty"));
         }
 
         return report;

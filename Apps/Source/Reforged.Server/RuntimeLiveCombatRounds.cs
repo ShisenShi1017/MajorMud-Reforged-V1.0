@@ -791,7 +791,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             spellLegacyId, string.Empty, string.Empty, false, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             ClassifyNpcHitSpell(0, 0, 0, 0), ResolveNpcHitSpellEffectRange(0, 0));
 
-        var catalogPath = Path.Combine(projectRoot, "Librarium", "CombatSpellReconstruction", "canonical_combat_spell_catalog_0184.json");
+        var catalogPath = Path.Combine(projectRoot, "Data", "Classic", "combat_spells.json");
         var catalog = RuntimeCanonicalCombatSpellCatalogLoader.Load(catalogPath);
         var canonicalId = $"spell.{spellLegacyId}";
         var spell = RuntimeCanonicalCombatSpellCatalogLoader.RequireSpell(catalog, canonicalId);

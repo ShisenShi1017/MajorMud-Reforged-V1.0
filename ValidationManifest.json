@@ -1,6 +1,6 @@
 {
   "policy": "One-time import, decode, promotion, and reconciliation checks are recorded here after they pass. They are not part of the recurring validator unless their source data changes.",
-  "currentValidator": "Tools/validator.py",
+  "currentValidator": "Tools/ReforgedValidator/Validate.ps1",
   "activeGate": "current_health_validator",
   "acceptedValidations": [
     {

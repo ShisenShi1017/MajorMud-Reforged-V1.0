@@ -11,12 +11,9 @@ public sealed class NativeMapRoomTextResolver
     public RoomTextAuditResult ApplyDescriptions(string repositoryRoot, LibrariumFamily family)
     {
         var librariumDescriptions = LoadLibrariumDescriptions(repositoryRoot);
-        if (librariumDescriptions.Count > 0)
-        {
-            return ApplyLibrariumDescriptions(repositoryRoot, family, librariumDescriptions);
-        }
-
-        return ApplyNativeDescriptions(repositoryRoot, family);
+        if (librariumDescriptions.Count == 0)
+            throw new InvalidDataException("Canonical Librarium room descriptions are required for generation.");
+        return ApplyLibrariumDescriptions(repositoryRoot, family, librariumDescriptions);
     }
 
     private RoomTextAuditResult ApplyNativeDescriptions(string repositoryRoot, LibrariumFamily family)

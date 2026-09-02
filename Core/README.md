@@ -1,10 +1,12 @@
 # Reforged Core
 
-Core is the shared foundation for every Reforged application.
+Core is the shared foundation for the active Reforged applications.
 
-Core owns cross-application contracts and helpers only. Server, Importer, Editor, Launcher, and Client may reference Core, but Core must never reference those applications.
+The compiled project is `Core/Source/Reforged.Core/Reforged.Core.csproj`; shared
+application contracts live in `Core/Applications`. Core owns cross-application contracts
+and helpers only and must never reference an application project.
 
-## Milestone 1 responsibilities
+## Responsibilities
 
 Core provides:
 
@@ -21,6 +23,8 @@ Core provides:
 - repository health checker
 - shared utility library
 
-## Runtime rule
+## Runtime Rule
 
-Normal runtime must never require the .NET SDK. Distributed applications launch from compiled/runtime-ready artifacts in `Bin/`. SDK-based commands may exist only for development/build environments and must not be the routine user launch path.
+Normal runtime must never require the .NET SDK. Distributed applications launch from
+published artifacts. SDK-based commands exist only for development, compilation, and
+validation.

@@ -27,7 +27,7 @@ Current authority and validation:
 
 - Librarium is the gameplay authority; generated Data is untracked runtime output.
 - Cumulative ledger: Librarium/Parity/majormud_parity_assertions.json.
-- Current validator: python Tools/validator.py.
+- Current validator: `& Tools/ReforgedValidator/Validate.ps1`; it runs the single .NET current-health pipeline and requires no Python installation.
 - Runtime parity gate: --smoke-classic-parity-closure.
 - Accepted one-time decode and parity validation is recorded in ValidationManifest.json; historical pass snapshots and validators are retired.
 - Distinct runtime authority classes remain separate because they own different behavior and evidence boundaries.

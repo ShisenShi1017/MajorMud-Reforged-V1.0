@@ -640,12 +640,12 @@ void ClassicParityAuditSmoke()
         throw new InvalidOperationException("Classic parity audit did not capture canonical Data path.");
     }
 
-    if (report.ImportedDatabasesPath is null || !report.ImportedDatabasesPath.EndsWith("ImportedDatabases", StringComparison.Ordinal))
+    if (report.ImportedDatabasesPath is not null || report.ImportedReferenceFileCount != 0)
     {
-        throw new InvalidOperationException("Classic parity audit did not capture ImportedDatabases path.");
+        throw new InvalidOperationException("Classic runtime data audit must not depend on ImportedDatabases.");
     }
 
-    if (report.Sources.Count != 2 || report.Categories.Count < 8)
+    if (report.Sources.Count != 1 || report.Categories.Count < 8)
     {
         throw new InvalidOperationException("Classic parity audit did not produce expected source/category inventory.");
     }

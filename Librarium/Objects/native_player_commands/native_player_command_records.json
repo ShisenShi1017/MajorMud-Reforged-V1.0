@@ -1,0 +1,512 @@
+[
+  {
+    "id": "native-command.north",
+    "documented_input": "north",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.east",
+    "documented_input": "east",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.south",
+    "documented_input": "south",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.west",
+    "documented_input": "west",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.northeast",
+    "documented_input": "northeast",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.southeast",
+    "documented_input": "southeast",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.southwest",
+    "documented_input": "southwest",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.northwest",
+    "documented_input": "northwest",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.sneak",
+    "documented_input": "sneak",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.hide",
+    "documented_input": "hide",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.drag",
+    "documented_input": "drag",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.go",
+    "documented_input": "go",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.look",
+    "documented_input": "look",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.status",
+    "documented_input": "status",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.inventory",
+    "documented_input": "inventory",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.bank",
+    "documented_input": "bank",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.topten",
+    "documented_input": "topten",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.statline",
+    "documented_input": "statline",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.help",
+    "documented_input": "help",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.search",
+    "documented_input": "search",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.health",
+    "documented_input": "health",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.brief",
+    "documented_input": "brief",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.verbose",
+    "documented_input": "verbose",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.map",
+    "documented_input": "map",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.profile",
+    "documented_input": "profile",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.keys",
+    "documented_input": "keys",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.track",
+    "documented_input": "track",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.attack",
+    "documented_input": "attack",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.bash",
+    "documented_input": "bash",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.punch",
+    "documented_input": "punch",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.kick",
+    "documented_input": "kick",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.jumpkick",
+    "documented_input": "jumpkick",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.backstab",
+    "documented_input": "backstab",
+    "explicit_aliases": [
+      "bs"
+    ],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_and_listed_aliases_proven_other_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.break",
+    "documented_input": "break",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.aid",
+    "documented_input": "aid",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.wear",
+    "documented_input": "wear",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.remove",
+    "documented_input": "remove",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.use",
+    "documented_input": "use",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.get",
+    "documented_input": "get",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.light",
+    "documented_input": "light",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.drop",
+    "documented_input": "drop",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.stash",
+    "documented_input": "stash",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.give",
+    "documented_input": "give",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.list",
+    "documented_input": "list",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.buy",
+    "documented_input": "buy",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.sell",
+    "documented_input": "sell",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.invite",
+    "documented_input": "invite",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.join",
+    "documented_input": "join",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.follow",
+    "documented_input": "follow",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.party",
+    "documented_input": "party",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.spells",
+    "documented_input": "spells",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.cast",
+    "documented_input": "cast",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.mana",
+    "documented_input": "mana",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.invoke",
+    "documented_input": "invoke",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.powers",
+    "documented_input": "powers",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.talk",
+    "documented_input": "talk",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.suicide",
+    "documented_input": "suicide",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.reroll",
+    "documented_input": "reroll",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.train",
+    "documented_input": "train",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.greet",
+    "documented_input": "greet",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.ask",
+    "documented_input": "ask",
+    "explicit_aliases": [],
+    "source_message_number": 3,
+    "resolution_boundary": "full_name_proven_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.broadcast",
+    "documented_input": "broadcast",
+    "explicit_aliases": [
+      "br"
+    ],
+    "source_message_number": 123,
+    "resolution_boundary": "full_name_and_listed_aliases_proven_other_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  },
+  {
+    "id": "native-command.broadgang",
+    "documented_input": "broadgang",
+    "explicit_aliases": [
+      "bg"
+    ],
+    "source_message_number": 123,
+    "resolution_boundary": "full_name_and_listed_aliases_proven_other_prefix_rules_open",
+    "evidence_classification": "proven_native_help_identity"
+  }
+]

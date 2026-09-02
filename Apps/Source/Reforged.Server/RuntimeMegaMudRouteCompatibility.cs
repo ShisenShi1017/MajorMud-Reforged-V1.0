@@ -11,11 +11,6 @@ internal sealed record RuntimeMegaMudRouteTransition(
     int ObservationCount,
     int SourceRouteCount);
 
-internal sealed record RuntimeMegaMudRouteCatalog(
-    string Schema,
-    int TransitionCount,
-    IReadOnlyList<RuntimeMegaMudRouteTransition> Transitions);
-
 /// <summary>
 /// Conservative fallback for legacy MegaMUD .mp special-route commands.
 /// Authoritative generated runtime actions always win. This catalog is used
@@ -68,23 +63,22 @@ internal static class RuntimeMegaMudRouteCompatibility
 
     private static IReadOnlyDictionary<string, RuntimeMegaMudRouteTransition> LoadCatalog(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "MegaMUDCompatibility", "megamud_route_transitions_compat.json");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "megamud_routes.json");
         if (!File.Exists(path))
             return new Dictionary<string, RuntimeMegaMudRouteTransition>(StringComparer.OrdinalIgnoreCase);
 
         try
         {
-            var json = File.ReadAllText(path);
-            var payload = JsonSerializer.Deserialize<RuntimeMegaMudRouteCatalog>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-            if (payload?.Transitions is null)
-                return new Dictionary<string, RuntimeMegaMudRouteTransition>(StringComparer.OrdinalIgnoreCase);
-
             var result = new Dictionary<string, RuntimeMegaMudRouteTransition>(StringComparer.OrdinalIgnoreCase);
-            foreach (var item in payload.Transitions)
+            foreach (var row in RuntimeChunkedClassicCatalog.LoadRecords(path))
             {
+                var item = new RuntimeMegaMudRouteTransition(
+                    JsonValueReader.ReadString(row, "fromSignature", string.Empty),
+                    JsonValueReader.ReadString(row, "command", string.Empty),
+                    JsonValueReader.ReadString(row, "normalizedCommand", string.Empty),
+                    JsonValueReader.ReadString(row, "toSignature", string.Empty),
+                    JsonValueReader.ReadInt(row, "observationCount", 0),
+                    JsonValueReader.ReadInt(row, "sourceRouteCount", 0));
                 if (string.IsNullOrWhiteSpace(item.FromSignature)
                     || string.IsNullOrWhiteSpace(item.ToSignature)
                     || string.IsNullOrWhiteSpace(item.NormalizedCommand))

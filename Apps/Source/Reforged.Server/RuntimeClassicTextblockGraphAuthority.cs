@@ -16,12 +16,11 @@ public sealed class RuntimeClassicTextblockGraphAuthority
 
     public static RuntimeClassicTextblockGraphAuthority Load(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData", "TextblocksDecoded0142", "textblocks_decoded.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative decoded Classic textblock graph is required.", path);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (document.RootElement.ValueKind != JsonValueKind.Array) throw new InvalidDataException("Decoded textblock graph root must be an array.");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic textblock graph is required.", path);
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(path);
         var nodes = new Dictionary<int, RuntimeClassicTextblockNode>();
-        foreach (var row in document.RootElement.EnumerateArray())
+        foreach (var row in records)
         {
             var id = Int(row, "textblock_id");
             if (id <= 0) continue;

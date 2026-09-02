@@ -20,9 +20,8 @@ public static class RuntimeClassicNpcAiNativeClosureAudit
         var failures = new List<string>();
         void Check(bool condition, string code) { checks.Add(code); if (!condition) failures.Add(code); }
 
-        var npcPath = Path.Combine(projectRoot, "Librarium", "Objects", "npcs", "npc_records_0122.json");
-        using var npcDocument = JsonDocument.Parse(File.ReadAllText(npcPath));
-        var rows = npcDocument.RootElement.GetProperty("records").EnumerateArray().ToArray();
+        var npcPath = Path.Combine(projectRoot, "Data", "Classic", "npcs.json");
+        var rows = RuntimeChunkedClassicCatalog.LoadRecords(npcPath);
         var npcs = rows.Select(RuntimeNpcDefinition.FromJson).ToArray();
 
         Check(npcs.Length == 1100, "classic-npc-count-1100");
@@ -44,9 +43,8 @@ public static class RuntimeClassicNpcAiNativeClosureAudit
         Check(bound8480.Length == 4 && bound8480.All(row => row.Npc.LegacyId == 59), "message-8480-thrag-four-rows-bound");
         Check(unbound8480.Length == 5 && unbound8480.All(row => row.Npc.LegacyId == 1006), "message-8480-nahr-five-rows-remain-unbound");
 
-        var payloadPath = Path.Combine(projectRoot, "Librarium", "Objects", "native_message_payloads", "native_message_payload_records.json");
-        using var payloadDocument = JsonDocument.Parse(File.ReadAllText(payloadPath));
-        var payload8480 = payloadDocument.RootElement.GetProperty("records").EnumerateArray()
+        var payloadPath = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
+        var payload8480 = RuntimeChunkedClassicCatalog.LoadRecords(payloadPath)
             .Single(row => JsonValueReader.ReadInt(row, "message_id", 0) == 8480);
         Check(JsonValueReader.ReadString(payload8480, "player_payload", string.Empty) == "%s %s %s with his %s, but %s dodges!", "message-8480-is-combat-dodge-template-not-assist-broadcast");
 

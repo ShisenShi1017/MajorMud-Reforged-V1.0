@@ -57,12 +57,8 @@ public sealed class RuntimeClassicFormulaAuthority
         var required = new[]
         {
             "Data/Classic/formulas.json",
-            "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json",
-            "Data/NativeDecodeReports/CodeUpdate0142CharacterStatistics/character_statistics_contract_0142.json",
-            "Data/NativeDecodeReports/CodeUpdate0155CharacterStatistics/character_statistics_contract_0155.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json",
-            "Librarium/Objects/abilities/ability_records.json"
+            "Data/Classic/combat_spells.json",
+            "Data/Classic/abilities.json"
         };
         foreach (var relative in required)
         {
@@ -780,7 +776,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("ability_catalog", "Data/Classic/abilities.json", "Abilities 3, 5, 65, and 66 modify cold, fire, stone, and lightning resistance by their stored values"),
-                    new RuntimeFormulaEvidenceSource("monster_resistance_inventory", "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv", "positive, negative, 100, and greater-than-100 elemental resistance values across Classic monsters"),
+                    new RuntimeFormulaEvidenceSource("monster_resistance_inventory", "Tools/ReforgedValidator/Baselines/DataSimVer/0008/MonsterAbilityInventory.csv", "positive, negative, 100, and greater-than-100 elemental resistance values across Classic monsters"),
                     new RuntimeFormulaEvidenceSource("retained_simulators", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ITEM_RESISTANCES.md", "resistance and vulnerability damage projections"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "CalculateResistDamage applies Fix(((100 - nBonusResist) * nDamage) / 100)"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveElementalSpellDamage and ApplyElementalSpellHitPoints")

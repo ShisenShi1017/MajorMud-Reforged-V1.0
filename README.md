@@ -66,8 +66,8 @@ Short version:
 - Current Code Update: `0140`.
 - Current Database Version: `0010`.
 - Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`.
-- Current validation entrypoint: `python Tools/validator.py`; retained runtime parity gate: `--smoke-classic-parity-closure`.
-- Local verification: Release server/compiler builds, compiler regression, Classic generation, generic parity closure, focused Nahr combat checks, and core/server smoke pass. Python validation is blocked locally because no interpreter is registered.
+- Current validation entrypoint: `& Tools/ReforgedValidator/Validate.ps1`. It regenerates Classic data and runs the authoritative .NET audits, gameplay smokes, parity closure, MegaMUD contract, and Borin harnesses.
+- Local verification: Release solution build, Classic generation, 48/48-family decode exhaustion, and the retained Classic parity closure pass. The validator no longer requires Python.
 - CodeUpdate0139 runtime cohesion is closed in the local baseline.
 - GitHub Actions is pending for CodeUpdate0140 until the pushed commit is confirmed green.
 - Librarium is authoritative.

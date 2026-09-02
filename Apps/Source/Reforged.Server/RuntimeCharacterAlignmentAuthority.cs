@@ -233,14 +233,10 @@ public sealed class RuntimeCharacterAlignmentNpcQuestCatalog
     public static RuntimeCharacterAlignmentNpcQuestCatalog Load(string projectRoot)
     {
         var catalog = new RuntimeCharacterAlignmentNpcQuestCatalog();
-        var path = Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData",
-            "TextblocksDecoded0142", "textblocks_decoded.json");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
         if (!File.Exists(path)) return catalog;
 
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (document.RootElement.ValueKind != JsonValueKind.Array) return catalog;
-
-        var records = document.RootElement.EnumerateArray()
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(path)
             .Where(x => ReadInt(x, "textblock_id") > 0)
             .ToDictionary(x => ReadInt(x, "textblock_id"), x => x.Clone());
 
@@ -1209,13 +1205,10 @@ public sealed class RuntimeCharacterAlignmentFullRewardCatalog
     public static RuntimeCharacterAlignmentFullRewardCatalog Load(string projectRoot)
     {
         var catalog = new RuntimeCharacterAlignmentFullRewardCatalog();
-        var path = Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData",
-            "TextblocksDecoded0142", "textblocks_decoded.json");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
         if (!File.Exists(path)) return catalog;
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        if (document.RootElement.ValueKind != JsonValueKind.Array) return catalog;
 
-        var records = document.RootElement.EnumerateArray()
+        var records = RuntimeChunkedClassicCatalog.LoadRecords(path)
             .Where(x => ReadInt39(x, "textblock_id") > 0)
             .ToDictionary(x => ReadInt39(x, "textblock_id"), x => x.Clone());
         var ownedChildren = BuildOwnedChildren(records);

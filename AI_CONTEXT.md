@@ -15,7 +15,7 @@ Current verified integration: **200 PASS / 0 STRONG / 0 UNKNOWN**. Character/Sta
 - Parity passes 0345-0363 are accepted into the cumulative ledger under CodeUpdate0140. The 1,575 historical supplied checks from passes 0345-0358 plus the 0359 Data Reconstruction verification are consolidated into the generic native runtime verification report; numbered one-off validators and reports are retired.
 - The exact original WCCMMUD 1.11p DLL plus wccknms2.dat trace proves both Nahr message-8480 caller arguments are empty strings for all five attacks. Preserve the native empty spacing.
 - Librarium/Parity/majormud_parity_assertions.json is the cumulative retained ledger. ValidationManifest.json records accepted one-time validation.
-- Tools/validator.py is the only current-health entrypoint. Runtime parity closure uses --smoke-classic-parity-closure.
+- `Tools/ReforgedValidator/Validate.ps1` is the only current-health entrypoint. It orchestrates the validation-only .NET project, Classic generation, parity closure, MegaMUD contract, and Borin harnesses without a Python dependency. Runtime parity closure uses `--smoke-classic-parity-closure`.
 - Historical pass-numbered validators, scorecards, ledgers, validation reports, and runtime smoke aliases are retired. Distinct production authority classes remain separate by subsystem.
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
 - Generated Data is untracked. Local Borin state, saves, imported-data archives, and release output are preserved and excluded from this cleanup commit.

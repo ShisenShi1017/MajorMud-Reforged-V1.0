@@ -40,8 +40,6 @@ public sealed record RuntimeMajorMudSpawnTimingResolution(
 /// </summary>
 public sealed class RuntimeMajorMudSpawnTimingCatalog
 {
-    public const string EvidenceRelativePath = "Librarium/Parity/majormud_spawn_timer_evidence_0277.json";
-
     private readonly IReadOnlyDictionary<string, RuntimeMajorMudBossTimerEvidence> _roomBossTimers;
     private readonly IReadOnlyDictionary<string, RuntimeMajorMudNpcTimerEvidence> _npcNameTimers;
 
@@ -58,44 +56,10 @@ public sealed class RuntimeMajorMudSpawnTimingCatalog
 
     public static RuntimeMajorMudSpawnTimingCatalog Load(string projectRoot)
     {
-        var path = Path.Combine(Path.GetFullPath(projectRoot), EvidenceRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path))
-            return new RuntimeMajorMudSpawnTimingCatalog(
-                new Dictionary<string, RuntimeMajorMudBossTimerEvidence>(StringComparer.OrdinalIgnoreCase),
-                new Dictionary<string, RuntimeMajorMudNpcTimerEvidence>(StringComparer.OrdinalIgnoreCase));
-
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root = document.RootElement;
-        var roomTimers = new Dictionary<string, RuntimeMajorMudBossTimerEvidence>(StringComparer.OrdinalIgnoreCase);
-        var nameTimers = new Dictionary<string, RuntimeMajorMudNpcTimerEvidence>(StringComparer.OrdinalIgnoreCase);
-
-        if (root.TryGetProperty("room_boss_timers", out var roomArray) && roomArray.ValueKind == JsonValueKind.Array)
-        {
-            foreach (var item in roomArray.EnumerateArray())
-            {
-                var mapId = ReadInt(item, "map_id");
-                var roomNumber = ReadInt(item, "room_number");
-                var hours = ReadInt(item, "hours");
-                var name = ReadText(item, "name");
-                var evidenceId = ReadText(item, "evidence_id");
-                if (mapId <= 0 || roomNumber <= 0 || hours < 0 || string.IsNullOrWhiteSpace(name)) continue;
-                roomTimers[RoomKey(mapId, roomNumber)] = new(name, mapId, roomNumber, hours, evidenceId);
-            }
-        }
-
-        if (root.TryGetProperty("npc_name_timers", out var nameArray) && nameArray.ValueKind == JsonValueKind.Array)
-        {
-            foreach (var item in nameArray.EnumerateArray())
-            {
-                var name = ReadText(item, "name");
-                var hours = ReadInt(item, "hours");
-                var evidenceId = ReadText(item, "evidence_id");
-                if (string.IsNullOrWhiteSpace(name) || hours < 0) continue;
-                nameTimers[name.Trim()] = new(name.Trim(), hours, evidenceId);
-            }
-        }
-
-        return new RuntimeMajorMudSpawnTimingCatalog(roomTimers, nameTimers);
+        ArgumentException.ThrowIfNullOrWhiteSpace(projectRoot);
+        return new RuntimeMajorMudSpawnTimingCatalog(
+            new Dictionary<string, RuntimeMajorMudBossTimerEvidence>(StringComparer.OrdinalIgnoreCase),
+            new Dictionary<string, RuntimeMajorMudNpcTimerEvidence>(StringComparer.OrdinalIgnoreCase));
     }
 
     public RuntimeMajorMudSpawnTimingResolution Resolve(RuntimeNpcSpawn spawn, RuntimeNpcDefinition npc)

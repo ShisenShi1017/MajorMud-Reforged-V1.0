@@ -36,9 +36,7 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
     public static RuntimeClassicNativeTextblockPayloadAuthority Load(string projectRoot)
     {
         var path = Path.Combine(projectRoot, "Data", "Classic", "native_textblock_payloads.json");
-        if (!File.Exists(path))
-            path = Path.Combine(projectRoot, "Librarium", "Objects", "native_textblock_payloads", "native_textblock_payload_records.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative WCCTEXT2 payload catalog is missing.", path);
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic WCCTEXT2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
             throw new InvalidOperationException("WCCTEXT2 payload catalog has no records array.");
@@ -64,13 +62,11 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
 
     private static IReadOnlySet<int> LoadVerifiedNoOutputTextblocks(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "Evidence", "native_presentation_reference_mapping_0140.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Bundle G native presentation mapping evidence is missing.", path);
-        using var doc = JsonDocument.Parse(File.ReadAllText(path));
-        if (!doc.RootElement.TryGetProperty("records", out var rows) || rows.ValueKind != JsonValueKind.Array)
-            throw new InvalidDataException("Bundle G native presentation mapping has no records array.");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "native_presentation.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic native presentation mapping is missing.", path);
+        var rows = RuntimeChunkedClassicCatalog.LoadRecords(path);
         var ids = new HashSet<int>();
-        foreach (var row in rows.EnumerateArray())
+        foreach (var row in rows)
         {
             var state = row.GetProperty("runtime_state").GetString() ?? string.Empty;
             var namespaceName = row.GetProperty("namespace").GetString() ?? string.Empty;
@@ -91,9 +87,7 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
     private static IReadOnlyDictionary<int, RuntimeClassicNativeDialogueMessagePayload> LoadNativeDialogueMessages(string projectRoot)
     {
         var path = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
-        if (!File.Exists(path))
-            path = Path.Combine(projectRoot, "Librarium", "Objects", "native_message_payloads", "native_message_payload_records.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative WCCMSG2 payload catalog is missing.", path);
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic WCCMSG2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var rows) || rows.ValueKind != JsonValueKind.Array)
             throw new InvalidDataException("WCCMSG2 payload catalog has no records array.");

@@ -50,19 +50,6 @@ public sealed class LibrariumCatalogReader
                     }
                 }
 
-                if (familyName.Equals("quests", StringComparison.OrdinalIgnoreCase))
-                {
-                    AppendDecodedQuestFlows(librariumRoot, records, diagnostics);
-                }
-                if (familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase))
-                {
-                    EnrichRoomsWithDecodedEnvironment(librariumRoot, records, recordsById, diagnostics);
-                    AppendImportedClassicRoomAnchors(librariumRoot, records, recordsById, diagnostics);
-                }
-                if (familyName.Equals("race_descriptions", StringComparison.OrdinalIgnoreCase))
-                {
-                    AttachNativeRaceDescriptionPayloads(librariumRoot, records, diagnostics);
-                }
                 if (familyName.Equals("gang_houses", StringComparison.OrdinalIgnoreCase))
                 {
                     AttachNativeGangHouseInteriorLocations(librariumRoot, records, diagnostics);
@@ -162,53 +149,6 @@ public sealed class LibrariumCatalogReader
         if (attached == 0)
             diagnostics.Add(new(DiagnosticSeverity.Error, "LIBGANGHOUSE",
                 "No native WCC gang-house interior locations were attached.", sourceRoot));
-    }
-
-    private static void AttachNativeRaceDescriptionPayloads(
-        string librariumRoot,
-        IReadOnlyList<JsonObject> records,
-        List<CompilerDiagnostic> diagnostics)
-    {
-        var evidencePath = Path.Combine(librariumRoot, "Evidence", "native_message_catalog_correlation_0022.json");
-        if (!File.Exists(evidencePath))
-        {
-            diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
-                "Required native race-description evidence was not found.", evidencePath));
-            return;
-        }
-
-        using var document = JsonDocument.Parse(File.ReadAllText(evidencePath));
-        var entries = document.RootElement.GetProperty("catalogs").EnumerateArray()
-            .Where(catalog => string.Equals(catalog.GetProperty("mcv_file").GetString(), "WCCMMHLP.mcv", StringComparison.OrdinalIgnoreCase))
-            .SelectMany(catalog => catalog.GetProperty("entries").EnumerateArray())
-            .ToDictionary(entry => entry.GetProperty("symbol").GetString() ?? string.Empty, entry => entry.Clone(), StringComparer.OrdinalIgnoreCase);
-
-        foreach (var record in records)
-        {
-            var symbol = record["native_symbol"]?.GetValue<string>() ?? string.Empty;
-            if (!entries.TryGetValue(symbol, out var entry))
-            {
-                diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
-                    $"Native race-description symbol '{symbol}' was not found.", evidencePath));
-                continue;
-            }
-
-            var expectedNumber = record["native_message_number"]?.GetValue<int>() ?? -1;
-            var actualNumber = entry.GetProperty("message_number").GetInt32();
-            var expectedHash = record["native_sha256"]?.GetValue<string>() ?? string.Empty;
-            var actualHash = entry.GetProperty("sha256").GetString() ?? string.Empty;
-            if (expectedNumber != actualNumber ||
-                (expectedHash.Length > 0 && !string.Equals(expectedHash, actualHash, StringComparison.OrdinalIgnoreCase)))
-            {
-                diagnostics.Add(new(DiagnosticSeverity.Error, "LIBRACEDESC",
-                    $"Native race-description evidence mismatch for '{symbol}'.", evidencePath));
-                continue;
-            }
-
-            record["description"] = entry.GetProperty("decoded_cp437").GetString() ?? string.Empty;
-            record["source_file"] = "WCCMMHLP.mcv";
-            record["native_sha256"] = actualHash;
-        }
     }
 
     private static void EnrichRoomsWithDecodedEnvironment(
@@ -486,11 +426,19 @@ public sealed class LibrariumCatalogReader
 
     private static IReadOnlyList<string> SelectSourceFiles(string familyDirectory, string familyName)
     {
+        if (familyName.Equals("quests", StringComparison.OrdinalIgnoreCase))
+        {
+            var canonical = Path.Combine(familyDirectory, "quest_records.json");
+            if (File.Exists(canonical)) return [canonical];
+        }
+
         // NPCs retain MMExplorer SQL/MDB rows as reference evidence beside the
         // executable canonical projection. Worktree checkout timestamps are not
         // a valid authority signal, so always select the canonical NPC records.
         if (familyName.Equals("npcs", StringComparison.OrdinalIgnoreCase))
         {
+            var canonical = Path.Combine(familyDirectory, "npc_records.json");
+            if (File.Exists(canonical)) return [canonical];
             var executable = Directory.GetFiles(familyDirectory, "npc_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
@@ -503,6 +451,8 @@ public sealed class LibrariumCatalogReader
         // Data/Classic/items.json deterministically.
         if (familyName.Equals("items", StringComparison.OrdinalIgnoreCase))
         {
+            var canonical = Path.Combine(familyDirectory, "item_records.json");
+            if (File.Exists(canonical)) return [canonical];
             var executable = Directory.GetFiles(familyDirectory, "item_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
@@ -515,6 +465,8 @@ public sealed class LibrariumCatalogReader
         // mmud_sql_spell_* evidence identities instead of canonical spell.* runtime ids.
         if (familyName.Equals("spells", StringComparison.OrdinalIgnoreCase))
         {
+            var canonical = Path.Combine(familyDirectory, "spell_records.json");
+            if (File.Exists(canonical)) return [canonical];
             var executable = Directory.GetFiles(familyDirectory, "spell_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
@@ -525,6 +477,8 @@ public sealed class LibrariumCatalogReader
         // The raw import is newer on disk, but it is evidence input rather than runtime authority.
         if (familyName.Equals("shops", StringComparison.OrdinalIgnoreCase))
         {
+            var canonical = Path.Combine(familyDirectory, "shop_records.json");
+            if (File.Exists(canonical)) return [canonical];
             var executable = Directory.GetFiles(familyDirectory, "shop_records_*.json")
                 .OrderByDescending(Path.GetFileName)
                 .FirstOrDefault();
@@ -552,6 +506,12 @@ public sealed class LibrariumCatalogReader
         if (familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase) ||
             familyName.Equals("exits", StringComparison.OrdinalIgnoreCase))
         {
+            var canonicalName = familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase)
+                ? "room_records.json"
+                : "exit_records.json";
+            var canonical = Path.Combine(familyDirectory, canonicalName);
+            if (File.Exists(canonical)) return [canonical];
+
             var promotedPattern = familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase)
                 ? "mmexplorer_room_records_*.json"
                 : "mmexplorer_exit_records_*.json";
@@ -566,11 +526,6 @@ public sealed class LibrariumCatalogReader
                 .ToArray();
             if (promotedParts.Length > 0) return promotedParts;
 
-            var librariumRoot = Directory.GetParent(Directory.GetParent(familyDirectory)!.FullName)!.FullName;
-            var decodedRoot = Path.Combine(librariumRoot, "SourceImports", "MMExplorerSQLData", "DecodedRooms0138");
-            var decoded = Path.Combine(decodedRoot,
-                familyName.Equals("rooms", StringComparison.OrdinalIgnoreCase) ? "rooms_decoded.json" : "exits_decoded.json");
-            if (File.Exists(decoded)) return [decoded];
         }
 
         if (familyName.Equals("room_interactions", StringComparison.OrdinalIgnoreCase))

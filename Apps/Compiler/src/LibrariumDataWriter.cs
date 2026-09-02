@@ -134,6 +134,11 @@ public sealed class LibrariumDataWriter
                 "player_payload_is_empty",
                 "slot_offsets"
             ],
+                StringComparer.OrdinalIgnoreCase),
+            ["textblocks"] = new(
+            [
+                "unknown_opcodes"
+            ],
             StringComparer.OrdinalIgnoreCase),
             ["rooms"] = new(
             [
@@ -318,12 +323,6 @@ public sealed class LibrariumDataWriter
             .Where(family => !IsExcludedFromRuntime(result.WorldId, family.Name))
             .Select(family => ProjectRuntimeRecords(family, result.WorldId))
             .ToList();
-        var nativeHelp = NativeHelpProjectionBuilder.Build(options.RepositoryRoot, result.Diagnostics);
-        if (nativeHelp is not null)
-            projectedFamilies.Add(nativeHelp);
-        var nativePlayerCommands = NativePlayerCommandProjectionBuilder.Build(options.RepositoryRoot, result.Diagnostics);
-        if (nativePlayerCommands is not null)
-            projectedFamilies.Add(nativePlayerCommands);
         var families = projectedFamilies
             .OrderBy(family => family.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();

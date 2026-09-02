@@ -56,9 +56,8 @@ public static class RuntimeNativeRemoteActionAudit
         var checks = new List<string>();
         var failures = new List<string>();
         var invocationArguments = new List<IReadOnlyList<string>>();
-        var decodedPath = Path.Combine(projectRoot, "Librarium", "SourceImports", "MMExplorerSQLData", "TextblocksDecoded0142", "textblocks_decoded.json");
-        using var decoded = JsonDocument.Parse(File.ReadAllText(decodedPath));
-        foreach (var script in decoded.RootElement.EnumerateArray())
+        var decodedPath = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
+        foreach (var script in RuntimeChunkedClassicCatalog.LoadRecords(decodedPath))
         {
             if (!script.TryGetProperty("operations", out var operations) || operations.ValueKind != JsonValueKind.Array)
                 continue;

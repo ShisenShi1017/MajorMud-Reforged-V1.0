@@ -1,8 +1,7 @@
 namespace Reforged.Server;
 
 /// <summary>
-/// Read-only inventory summary used to measure Classic data readiness against imported reference sources.
-/// This does not parse proprietary binary formats and does not claim exact gameplay parity.
+/// Read-only inventory summary for generated Classic runtime data.
 /// </summary>
 public sealed class ClassicParityAuditReport
 {
@@ -32,22 +31,11 @@ public sealed class ClassicParityAuditReport
     {
         get
         {
-            if (CanonicalFileCount == 0 && ImportedReferenceFileCount == 0)
-            {
-                return "no-data-found";
-            }
-
             if (CanonicalFileCount == 0)
             {
                 return "canonical-data-missing";
             }
-
-            if (ImportedReferenceFileCount == 0)
-            {
-                return "reference-data-missing";
-            }
-
-            return "inventory-ready";
+            return "runtime-data-ready";
         }
     }
 

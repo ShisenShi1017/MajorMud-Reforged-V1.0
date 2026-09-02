@@ -21,22 +21,22 @@ public static class RuntimeCanonicalCombatSpellCatalogLoader
     public static RuntimeCanonicalCombatSpellCatalog Load(string path)
     {
         if (string.IsNullOrWhiteSpace(path)) throw new InvalidOperationException("CANONICAL_CATALOG_PATH_REQUIRED");
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root=document.RootElement;
+        var records=RuntimeChunkedClassicCatalog.LoadRecords(path);
         var spells=new Dictionary<string,RuntimeCanonicalSpellRecord>(StringComparer.OrdinalIgnoreCase);
         var weapons=new Dictionary<string,RuntimeCanonicalWeaponRecord>(StringComparer.OrdinalIgnoreCase);
         var abilities=new Dictionary<string,RuntimeCanonicalAbilityRecord>(StringComparer.OrdinalIgnoreCase);
-        foreach(var e in root.GetProperty("spells").EnumerateArray())
+        foreach(var e in records.Where(e=>S(e,"record_type").Equals("spell",StringComparison.OrdinalIgnoreCase)))
         {
             var r=new RuntimeCanonicalSpellRecord(S(e,"id"),S(e,"legacy_id"),S(e,"name"),I(e,"spell_level"),I(e,"spell_type_raw"),I(e,"target_type_raw"),I(e,"attack_type_raw"),I(e,"mana_cost"),I(e,"energy_cost"),I(e,"minimum_effect"),I(e,"maximum_effect"),I(e,"duration_raw"),I(e,"resist_type_raw"),I(e,"resist_ability_raw"),I(e,"difficulty_raw"),Refs(e),S(e,"confidence"));
             ValidateSpell(r); if(!spells.TryAdd(r.Id,r)) throw new InvalidOperationException("CANONICAL_SPELL_DUPLICATE");
         }
-        foreach(var e in root.GetProperty("weapons").EnumerateArray())
+        foreach(var e in records.Where(e=>S(e,"record_type").Equals("weapon",StringComparison.OrdinalIgnoreCase)))
         {
             var r=new RuntimeCanonicalWeaponRecord(S(e,"id"),S(e,"legacy_id"),S(e,"name"),I(e,"minimum_damage"),I(e,"maximum_damage"),I(e,"accuracy"),I(e,"speed"),I(e,"weapon_type_raw"),Refs(e),S(e,"confidence"));
             Validate(r.Id,ItemId,r.MinimumDamage,r.MaximumDamage,r.EvidenceReferences); if(!weapons.TryAdd(r.Id,r)) throw new InvalidOperationException("CANONICAL_WEAPON_DUPLICATE");
         }
-        foreach(var e in root.GetProperty("abilities").EnumerateArray())
+        foreach(var e in records.Where(e=>S(e,"record_type").Equals("abilitie",StringComparison.OrdinalIgnoreCase)
+            || S(e,"record_type").Equals("ability",StringComparison.OrdinalIgnoreCase)))
         {
             var r=new RuntimeCanonicalAbilityRecord(S(e,"id"),S(e,"legacy_id"),S(e,"name"),N(e,"description"),N(e,"implementation_status"),Refs(e),S(e,"confidence"));
             if(!AbilityId.IsMatch(r.Id)||r.EvidenceReferences.Count==0) throw new InvalidOperationException("CANONICAL_ABILITY_INVALID"); if(!abilities.TryAdd(r.Id,r)) throw new InvalidOperationException("CANONICAL_ABILITY_DUPLICATE");

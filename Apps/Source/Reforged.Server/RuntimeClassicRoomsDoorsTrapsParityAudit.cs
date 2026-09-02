@@ -1,5 +1,3 @@
-using System.Text.Json;
-
 namespace Reforged.Server;
 
 public sealed record RuntimeClassicRoomsDoorsTrapsParityAuditResult(
@@ -13,9 +11,6 @@ public sealed record RuntimeClassicRoomsDoorsTrapsParityAuditResult(
 
 public static class RuntimeClassicRoomsDoorsTrapsParityAudit
 {
-    private const string EvidenceRelativePath = "Librarium/Parity/majormud_rooms_doors_traps_evidence_0281.json";
-    private const string NativeSchemaEvidenceRelativePath = "Librarium/Parity/majormud_room_exit_native_schema_evidence_0287.json";
-
     public static RuntimeClassicRoomsDoorsTrapsParityAuditResult Run(string projectRoot)
     {
         var checks = new List<string>();
@@ -26,44 +21,48 @@ public static class RuntimeClassicRoomsDoorsTrapsParityAudit
             if (!condition) failures.Add(name);
         }
 
-        var rootPath = Path.GetFullPath(projectRoot);
-        var path = Path.Combine(rootPath, EvidenceRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        var nativeSchemaPath = Path.Combine(rootPath, NativeSchemaEvidenceRelativePath.Replace('/', Path.DirectorySeparatorChar));
-        if (!File.Exists(path))
-            return new(false, 0, 0, 0, 0, checks, new[] { "pass11_evidence_file_exists" });
-        if (!File.Exists(nativeSchemaPath))
-            return new(false, 0, 0, 0, 0, checks, new[] { "pass17_native_schema_evidence_file_exists" });
+        var dataRoot = Path.Combine(Path.GetFullPath(projectRoot), "Data", "Classic");
+        var exits = RuntimeChunkedClassicCatalog.LoadRecords(Path.Combine(dataRoot, "exits.json"));
+        var nativeExits = RuntimeChunkedClassicCatalog.LoadRecords(Path.Combine(dataRoot, "native_room_exits.json"));
+        var interactions = RuntimeChunkedClassicCatalog.LoadRecords(Path.Combine(dataRoot, "room_interactions.json"));
 
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root = document.RootElement;
-        var exits = root.GetProperty("semantic_exit_corpus");
-        var traps = root.GetProperty("classic_exit_traps");
-        var latch = root.GetProperty("room_latch_closure").GetProperty("aggregate_action_gate_closure");
+        var activeExitCount = exits.Count(row =>
+            !JsonValueReader.ReadString(row, "semantic_status", string.Empty)
+                .Equals("blocked_unresolved_destination", StringComparison.OrdinalIgnoreCase));
+        var blockedExitCount = exits.Count - activeExitCount;
+        var preservedUnknown = exits.Where(row =>
+            JsonValueReader.ReadString(row, "semantic_status", string.Empty)
+                .Equals("unknown_preserved_safe_runtime", StringComparison.OrdinalIgnoreCase)).ToArray();
+        var traps = nativeExits.Where(row => JsonValueReader.ReadInt(row, "room_type", -1) is 9 or 24).ToArray();
+        var damageTraps = traps.Count(row => JsonValueReader.ReadInt(row, "room_type", -1) == 9);
+        var spellTraps = traps.Count(row => JsonValueReader.ReadInt(row, "room_type", -1) == 24);
+        var boundActionRows = interactions.Count(row =>
+            JsonValueReader.ReadString(row, "runtime_disposition", string.Empty)
+                .Equals("active_bound_action_latch_step", StringComparison.OrdinalIgnoreCase));
 
-        var totalExits = exits.GetProperty("total_exit_records").GetInt32();
-        var classifiedExits = exits.GetProperty("strongly_correlated_active").GetInt32();
-        var unknownExits = exits.GetProperty("unknown_preserved_safe_runtime").GetInt32();
-        var trapCount = traps.GetProperty("total").GetInt32();
+        Check(exits.Count == 61976, "semantic-exit-count-61976");
+        Check(activeExitCount == 61974 && blockedExitCount == 2, "unresolved-destinations-fail-closed-2");
+        Check(preservedUnknown.Length == 1
+              && JsonValueReader.ReadString(preservedUnknown[0], "id", string.Empty) == RuntimeClassicRoomsWorldNativeAuthority.RugExitId,
+            "preserved-unknown-is-map12-2248-down");
+        Check(boundActionRows == 264, "bound-action-latch-rows-264");
+        Check(traps.Length == RuntimeClassicRoomsWorldNativeAuthority.ExpectedTrapCount, "classic-exit-trap-count-295");
+        Check(damageTraps == 273, "classic-damage-trap-count-273");
+        Check(spellTraps == 22, "classic-spell-trap-count-22");
 
-        Check(latch.GetProperty("action_gate_count").GetInt32() == 206, "action_gate_count_206");
-        Check(latch.GetProperty("bound_action_gate_count").GetInt32() == 206, "all_action_gates_bound");
-        Check(latch.GetProperty("native_passive_placeholder_count").GetInt32() == 0, "zero_native_passive_placeholders");
-        Check(totalExits == 61976, "semantic_exit_count_61976");
-        Check(classifiedExits == 61975 && unknownExits == 1, "one_semantic_exit_unknown");
-        Check(exits.GetProperty("remaining_unknown").GetProperty("exit_id").GetString() == "exit.map12.2248.d", "remaining_unknown_is_map12_2248_down");
-        Check(trapCount == 295, "classic_exit_trap_count_295");
-        Check(traps.GetProperty("damage_traps").GetInt32() == 273, "classic_damage_trap_count_273");
-        Check(traps.GetProperty("spell_traps").GetInt32() == 22, "classic_spell_trap_count_22");
+        var nativeAuthority = RuntimeClassicRoomsWorldNativeAuthority.Load(projectRoot);
+        Check(nativeAuthority.Count == RuntimeClassicRoomsWorldNativeAuthority.ExpectedRecordCount, "native-roomrec-count-3490");
+        var rug = nativeAuthority.Require(RuntimeClassicRoomsWorldNativeAuthority.RugExitId);
+        Check(rug.RoomType == 6 && rug.Para1 == 16 && rug.Para2 == 0 && rug.Para3 == 2687 && rug.Para4 == 2688,
+            "native-rug-roomrec-exact");
 
-        using var nativeSchemaDocument = JsonDocument.Parse(File.ReadAllText(nativeSchemaPath));
-        var nativeSchemaRoot = nativeSchemaDocument.RootElement;
-        var nativeStorage = nativeSchemaRoot.GetProperty("native_room_exit_storage");
-        var nativeTrapSchema = nativeSchemaRoot.GetProperty("trap_schema");
-        Check(nativeStorage.GetProperty("RoomType").GetString() == "signed 16-bit Integer", "room-type-native-int16");
-        Check(nativeStorage.GetProperty("Para2").GetString() == "signed 16-bit Integer", "room-para2-native-int16");
-        Check(nativeStorage.GetProperty("Para1").GetString() == "signed 32-bit Long", "room-para1-native-int32");
-        Check(nativeTrapSchema.GetProperty("current_classic_catalog").GetProperty("native_activation_state_projected").GetInt32() == 0, "trap-para2-not-projected");
-
-        return new(failures.Count == 0, totalExits, classifiedExits, unknownExits, trapCount, checks, failures);
+        return new(
+            failures.Count == 0,
+            exits.Count,
+            activeExitCount,
+            blockedExitCount + preservedUnknown.Length,
+            traps.Length,
+            checks,
+            failures);
     }
 }

@@ -1,7 +1,7 @@
 # MajorMUD Reforged Project Status
 
 - Current milestone: **CodeUpdate0140 - Classic Parity Closure and Creator Studio**.
-- Current parity: **169 PASS / 31 STRONG / 0 UNKNOWN = 200** (**84.5% strict / 100.0% evidence-backed**).
+- Current parity: **200 PASS / 0 STRONG / 0 UNKNOWN = 200** (**100.0% strict / 100.0% evidence-backed**).
 - CodeUpdate0365 Quests / Scripts / Triggers: 2/2 PASS; source/static/data-correlation verifier is 65/65 with exact 83 executable quests, 83 live quest triggers, 182 linked stage scripts, 2,616 decoded operations, and 139/139 remoteaction invocations across 85/85 executable signatures.
 - CodeUpdate0363 Items & Inventory: 6/6 PASS; native/source/data verifier is 66/66 with exact ordered item abilities, signed Uses state, EAT/DRINK fallback counters, DROP, and APPRAISE boundaries.
 - CodeUpdate0362 Import / Export / Limits / Recovery: 4/4 PASS; native/data/static verifier is 86/86 with exact capacity ownership, external native-file replacement, state-preserving rejection, owner-local failure boundaries, and record-local persistence recovery.
@@ -9,7 +9,7 @@
 - CodeUpdate0360 Economy & Services: 16/16 PASS; 204/204 services are classified and the cumulative verifier is 41/41.
 - CodeUpdate0359 Data Reconstruction: 3/3 PASS; decode gate is 39/39 families and 2,096/2,096 fields, and working WCCMSG2 corroborates all 3,867 shared canonical payloads.
 - The cumulative parity ledger is Librarium/Parity/majormud_parity_assertions.json; historical pass ledgers and validation snapshots are retired.
-- Tools/validator.py is the single current-health entrypoint. Runtime parity closure is exposed as --smoke-classic-parity-closure.
+- `Tools/ReforgedValidator/Validate.ps1` is the single current-health entrypoint. Runtime parity closure is exposed as `--smoke-classic-parity-closure`.
 - Creator Studio full-control Custom1 authoring is integrated. Classic remains immutable and evidence-locked.
 - Generated Data/Classic remains untracked and must be regenerated from Librarium in clean environments.
 - GitHub Actions remains an optional post-push validation gate run by the user or Codex; parity passes here do not push.

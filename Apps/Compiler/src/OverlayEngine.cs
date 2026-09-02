@@ -9,9 +9,9 @@ public sealed class OverlayEngine
     public OverlayDefinition LoadOverlay(string repositoryRoot, string worldId)
     {
         var normalized = LibrariumCompilerOptions.NormalizeWorld(worldId);
-        var path = Path.Combine(repositoryRoot, "Librarium", "Overlays", normalized, "overlay_manifest_0127.json");
+        var path = Path.Combine(repositoryRoot, "Librarium", "Overlays", normalized, "overlay_manifest.json");
         if (!File.Exists(path) && normalized.Equals("Classic", StringComparison.OrdinalIgnoreCase))
-            path = Path.Combine(repositoryRoot, "Librarium", "Overlays", "Classic", "overlay_manifest_0127.json");
+            path = Path.Combine(repositoryRoot, "Librarium", "Overlays", "Classic", "overlay_manifest.json");
         if (!File.Exists(path))
             throw new FileNotFoundException($"Overlay manifest not found for world '{worldId}'.", path);
         return JsonSerializer.Deserialize<OverlayDefinition>(File.ReadAllText(path), Options)

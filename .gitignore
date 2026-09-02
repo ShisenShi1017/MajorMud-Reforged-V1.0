@@ -76,11 +76,19 @@ Saves/Custom/
 /Backups/
 
 # OS/editor noise
+.vs/
+.codex-remote-attachments/
 .vscode/
 .idea/
+__pycache__/
+*.py[cod]
 *.swp
 .DS_Store
 Thumbs.db
+
+# Retired local upgrade/backup artifacts
+/Backup/
+/UpgradeLog.htm
 # /Data is generated from Librarium. Keep only the folder marker/docs in Git; do not hand-edit or commit generated worlds.
 /Data/*
 !/Data/.gitkeep
@@ -98,6 +106,8 @@ Thumbs.db
 # Local Borin runtime logs and character-test output.
 /Reports/BorinBrain/RuntimeLogs/*
 !/Reports/BorinBrain/RuntimeLogs/.gitkeep
+/Reports/RuntimeVerification/validator_python_latest.*
+/Reports/Validation/
 
 # Local-only imported/reference evidence archives.
 # Authoritative runtime source is Librarium plus generated Data.
@@ -106,4 +116,5 @@ Thumbs.db
 /Evidence/*
 !/Evidence/README.md
 # Local Borin trainer process state
-/AI/Training/runtime/trainer.pid
+/AI/Training/runtime/
+/AI/Workspaces/Borin/Jobs/

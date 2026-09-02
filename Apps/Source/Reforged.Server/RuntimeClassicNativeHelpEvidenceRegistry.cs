@@ -27,7 +27,7 @@ public static class RuntimeClassicNativeHelpEvidenceRegistry
     [
         new("help.native-corpus", RuntimeClassicNativeHelpEvidenceState.Proven,
             "WCCMMHLP retains 263 nonempty native records: one main body and 131 complete title/body pairs.",
-            "Librarium/Evidence/native_message_catalog_correlation_0022.json"),
+            "Librarium/Objects/native_help/native_help_records.json"),
         new("help.generated-projection", RuntimeClassicNativeHelpEvidenceState.Proven,
             "The compiler emits one main record and 131 topic records into generated Classic data.",
             "Data/Classic/native_help.json is generated and never edited manually."),

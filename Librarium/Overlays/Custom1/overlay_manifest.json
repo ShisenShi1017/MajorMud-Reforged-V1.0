@@ -1,0 +1,13 @@
+{
+  "ai_editable": false,
+  "base_source": "Classic",
+  "base_world": "Classic",
+  "description": "First enabled host-editable custom world. Inherits Classic and stores only world-scoped differences.",
+  "host_editable": true,
+  "locked": false,
+  "overlay_id": "custom1",
+  "overrides": [],
+  "precedence": 10,
+  "world_id": "Custom1",
+  "world_type": "ReforgedCustom"
+}

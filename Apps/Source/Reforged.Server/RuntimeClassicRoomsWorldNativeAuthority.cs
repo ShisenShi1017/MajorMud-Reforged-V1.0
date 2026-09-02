@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace Reforged.Server;
 
 /// <summary>
-/// CodeUpdate 0367 direct RoomRec authority recovered from the stock WGSERV MajorMUD 1.11p
+/// Direct RoomRec authority recovered from the stock WGSERV MajorMUD 1.11p
 /// WCCMP002.dat and WCCMMUD.DLL.  This is deliberately separate from the MMUD-Explorer
 /// display projection because the latter loses native Para fields needed by SEARCH,
 /// PICKLOCK, BASH, trap reset, and hidden-exit state transitions.
@@ -45,7 +45,7 @@ public sealed class RuntimeClassicRoomsWorldNativeAuthority
         _records.TryGetValue(exitId ?? string.Empty, out record!);
 
     public RuntimeClassicNativeExitRecord Require(string exitId) =>
-        TryGet(exitId, out var record) ? record : throw new KeyNotFoundException($"No CodeUpdate0367 native exit authority row exists for {exitId}.");
+        TryGet(exitId, out var record) ? record : throw new KeyNotFoundException($"No native exit authority row exists for {exitId}.");
 
     public static RuntimeClassicRoomsWorldNativeAuthority Load(string projectRoot)
     {
@@ -55,15 +55,12 @@ public sealed class RuntimeClassicRoomsWorldNativeAuthority
 
     private static RuntimeClassicRoomsWorldNativeAuthority LoadUncached(string projectRoot)
     {
-        var path = Path.Combine(projectRoot, "Librarium", "Parity", "majormud_rooms_world_native_authority_0367.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("CodeUpdate0367 Rooms & World native authority is required.", path);
-        using var document = JsonDocument.Parse(File.ReadAllText(path));
-        var root = document.RootElement;
-        if (!root.TryGetProperty("records", out var recordsElement) || recordsElement.ValueKind != JsonValueKind.Array)
-            throw new InvalidOperationException("CodeUpdate0367 Rooms & World native authority has no records array.");
+        var path = Path.Combine(projectRoot, "Data", "Classic", "native_room_exits.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic native exit authority is required.", path);
+        var recordsElement = RuntimeChunkedClassicCatalog.LoadRecords(path);
 
         var records = new Dictionary<string, RuntimeClassicNativeExitRecord>(StringComparer.OrdinalIgnoreCase);
-        foreach (var value in recordsElement.EnumerateArray())
+        foreach (var value in recordsElement)
         {
             var record = new RuntimeClassicNativeExitRecord(
                 JsonValueReader.ReadString(value, "exit_id", string.Empty),
@@ -93,12 +90,12 @@ public sealed class RuntimeClassicRoomsWorldNativeAuthority
     private void Validate()
     {
         if (_records.Count != ExpectedRecordCount)
-            throw new InvalidOperationException($"CodeUpdate0367 native exit authority expected {ExpectedRecordCount} rows but found {_records.Count}.");
+            throw new InvalidOperationException($"Native exit authority expected {ExpectedRecordCount} rows but found {_records.Count}.");
         if (_records.Values.Count(record => record.RoomType is 9 or 24) != ExpectedTrapCount)
-            throw new InvalidOperationException("CodeUpdate0367 native exit authority trap count mismatch.");
+            throw new InvalidOperationException("Native exit authority trap count mismatch.");
         var rug = Require(RugExitId);
         if (rug.RoomType != 6 || rug.Para1 != 16 || rug.Para2 != 0 || rug.Para3 != 2687 || rug.Para4 != 2688)
-            throw new InvalidOperationException("CodeUpdate0367 native rug RoomRec does not match WGSERV evidence.");
+            throw new InvalidOperationException("Native rug RoomRec does not match WGSERV evidence.");
     }
 
     public static int TimerSeconds(int count) => checked(ExitTimerQuantumSeconds * Math.Max(1, count));
