@@ -175,7 +175,7 @@ public sealed class ForgeRepositoryService : IForgeRepositoryService
         EnsureRoot(rootPath);
         var output = new StringBuilder();
         output.AppendLine("REPOSITORY CONTEXT (read-only)");
-        foreach (var name in new[] { "AGENTS.md", "AI_CONTEXT.md", "DEVELOPMENT_PRINCIPLES.md", "HANDOFF.md", "README.md", "MANIFEST.md", "VERSION.md" })
+        foreach (var name in new[] { "AGENTS.md", "PROJECT_STATUS.md", "README.md", "VERSION.md", "CHANGELOG.md" })
         {
             var path = Path.Combine(rootPath, name);
             if (!File.Exists(path)) continue;

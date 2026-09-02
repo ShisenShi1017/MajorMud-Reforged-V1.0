@@ -1,214 +1,52 @@
 {
-  "policy": "One-time import, decode, promotion, and reconciliation checks are recorded here after they pass. They are not part of the recurring validator unless their source data changes.",
+  "policy": "Record the current accepted validation baseline. Historical pass-by-pass validation prose is retired unless an active runtime/tool still consumes a specific artifact.",
   "currentValidator": "Tools/ReforgedValidator/Validate.ps1",
-  "activeGate": "current_health_validator",
-  "acceptedValidations": [
-    {
-      "name": "Classic parity corrective closure",
-      "status": "accepted",
-      "summary": "The corpse-resurrection smoke fixture selects non-retained equipment so both restoration assertions exercise the intended death path. Spell compilation selects canonical spell_records_* deterministically instead of timestamp-sensitive raw SQL/MDB evidence. Full Release solution build, clean Classic generation, item/spell/spell-execution smokes, the 32/32 Classic parity closure gate, and the 56/56 current-health validator pass locally.",
-      "evidence": [
-        "Apps/Source/Reforged.Server/RuntimeItemSmokeReport.cs",
-        "Apps/Compiler/src/LibrariumCatalogReader.cs",
-        "Reports/RuntimeVerification/validator_latest.json"
-      ]
+  "currentCodeUpdate": "0141",
+  "acceptedBaseline": {
+    "releaseBuild": {
+      "Reforged.App": {
+        "status": "PASS",
+        "warnings": 0,
+        "errors": 0
+      },
+      "Reforged.Server": {
+        "status": "PASS",
+        "warnings": 0,
+        "errors": 0
+      }
     },
-    {
-      "name": "Borin Classic parity headless regression refresh",
-      "status": "accepted",
-      "summary": "Borin validates the accepted 200 PASS / 0 STRONG / 0 UNKNOWN scorecard, runs the focused and cumulative Classic parity smoke gates before unattended learning and at each completed cycle boundary, gracefully restarts the headless runtime for persistence coverage, probes HELP/TOP/TOPTEN through the live player dispatcher, and records parity regressions in the persistent tester queue. MegaMUD certification remains separate.",
-      "evidence": [
-        "Librarium/Parity/majormud_parity_assertions.json",
-        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
-      ]
+    "validator": {
+      "status": "PASS",
+      "passed": 26,
+      "total": 26
     },
-    {
-      "name": "Final STRONG to PASS closure",
-      "status": "accepted",
-      "summary": "Promoted the final 11 scored parity assertions from STRONG to PASS at their recovered native/host ownership boundaries. Together with the Character, Rooms/World, and Timer authorities, the ledger is 200 PASS / 0 STRONG / 0 UNKNOWN. Owner-local combat/spell internals and casino terminal body mapping remain separately fail-closed.",
-      "evidence": [
-        "Librarium/Parity/majormud_final_strong_to_pass_closure_0369.json",
-        "Librarium/Parity/majormud_sysop_worldgroup_access_closure_0369.json",
-        "Librarium/Parity/majormud_rankings_native_closure_0369.json",
-        "Librarium/Parity/majormud_casino_arena_native_closure_0369.json",
-        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
-      ]
+    "clientSmokes": {
+      "status": "PASS",
+      "passed": 14,
+      "total": 14
     },
-    {
-      "name": "Timers / Resets / World Rules closure",
-      "status": "accepted",
-      "summary": "Promoted all six remaining Timers / Resets / World Rules assertions. Direct WCCMMUD/WCCMMUTL evidence closes independent one-shot scheduler/restart ownership, strict whole-minute Room.Delay semantics, room-entry plus five-second background respawn admission, narrow SYSOP RESET ROOM/AREA generation-counter mutations, the MajorMUD Plus rune-contest RNG/draw/admission/retry order, and all 44 visible WCCMMUD configuration prompts with exact ranges and load ownership. The focused local runtime gate passes 22/22.",
-      "evidence": [
-        "Librarium/Parity/majormud_timers_resets_world_rules_complete_evidence_0368.json",
-        "Librarium/Parity/majormud_wccmmud_configuration_authority_0368.json",
-        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
-      ]
+    "classicParity": {
+      "pass": 200,
+      "strong": 0,
+      "unknown": 0
     },
-    {
-      "name": "Rooms & World closure",
-      "status": "accepted",
-      "summary": "Promoted all seven remaining Rooms & World assertions. Direct WGSERV RoomRec/WCCMMUD evidence closes 3,490 special exits, 295 traps, type-2 non-consuming key traversal, door/gate PICKLOCK/BASH/reset ownership, trap SEARCH/DISARM/presentation/rearm, the 26,668/26,668 room-description corpus, and map 12/2248 MOVE/PULL RUG state 16->8. The focused local runtime gate passes 29/29.",
-      "evidence": [
-        "Librarium/Parity/majormud_rooms_world_native_authority_0367.json",
-        "Librarium/Parity/majormud_rooms_world_complete_evidence_0367.json",
-        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
-      ]
-    },
-    {
-      "name": "Character & Status closure",
-      "status": "accepted",
-      "summary": "Promoted all seven remaining Character & Status assertions. Exact native identity/name validation, Shadow LOOK precedence, formula-owner modifier ordering, level-4 PvP admission, strict EP>300 Fiend lockout, practice-arena ordering, player-attack Evil-Point calculation, Lawful/warning admission, FORGIVE relation accounting, and guard/jail ownership are closed. The focused local runtime gate passes 47/47.",
-      "evidence": [
-        "Librarium/Parity/majormud_character_status_complete_evidence_0366.json",
-        "Reports/RuntimeVerification/majormud_parity_scorecard.json"
-      ]
-    },
-    {
-      "name": "Quests / Scripts / Triggers closure",
-      "status": "accepted",
-      "summary": "Promoted both remaining Quests / Scripts / Triggers assertions after exact source/runtime graph reconciliation. The retained 2,183 quest evidence records partition into 83 executable decoded NPC quest flows plus 2,100 analysis-only candidates; clean Classic generation requires 83 live quest triggers, 182 linked scripts, and 2,616 decoded operations. RemoteAction is exhaustive at 139 invocations / 85 executable signatures. Direct source/static/data-correlation verification is 65/65 PASS.",
-      "evidence": [
-        "Librarium/Parity/majormud_quests_scripts_triggers_complete_evidence_0365.json",
-        "Reports/RuntimeVerification/quests_scripts_triggers_static_verification_0365.json"
-      ]
-    },
-    {
-      "name": "NPC & AI closure",
-      "status": "accepted",
-      "summary": "Promoted all six remaining NPC & AI assertions after native owner reconciliation. MonsGuards is spell-target substitution, generic threat/perception/flee/patrol policies are isolated as Reforged extensions, fast/medium/slow generation ownership is connected, and spell-energy failure/refund classes are exact. Direct native/source/static verification is 32/32 PASS.",
-      "evidence": [
-        "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json",
-        "Reports/RuntimeVerification/classic_npc_ai_verification.json"
-      ]
-    },
-    {
-      "name": "Items & Inventory closure",
-      "status": "accepted",
-      "summary": "Promoted the two remaining Items & Inventory assertions after exact native reconciliation. The 1,072-byte item layout, ordered 20-slot abilities, Type 4/5 EAT/DRINK path, first-CastsSp no-target return, %Spell barrier, signed per-copy Uses state machine, NotDroppable DROP gate, and APPRAISE-to-SELL delegation are connected. Reforged generic durability/container/GUID/corpse-restoration policies remain explicit extensions. Direct native/source/data verification is 66/66 PASS.",
-      "evidence": [
-        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
-        "Reports/RuntimeVerification/classic_items_inventory_verification.json"
-      ]
-    },
-    {
-      "name": "Import / Export / Limits / Recovery closure",
-      "status": "accepted",
-      "summary": "Promoted the two remaining subsystem assertions after exact owner separation: native fixed capacities and overflow behavior are distinguished from configurable buffers/Reforged host features, while failure recovery distinguishes hard load failures, state-preserving gameplay rejection, owner-local presentation/reference failures, and record-local persistence without fabricated WCC transaction rollback. Verification is 86/86 PASS.",
-      "evidence": [
-        "Librarium/Parity/majormud_import_export_limits_recovery_complete_evidence_0362.json",
-        "Reports/RuntimeVerification/classic_import_export_limits_recovery_verification.json"
-      ]
-    },
-    {
-      "name": "Classic room description recovery",
-      "status": "accepted",
-      "summary": "All 26666 Classic rooms have generated descriptions. WCCMP002 is the selected MajorMUD 1.11p room/map source for the final placeholder recovery; WBBMP002 is comparison evidence only.",
-      "evidence": [
-        "Reports/DataDecode/wccmp002_placeholder_room_description_recovery.json",
-        "Reports/RuntimeVerification/classic_runtime_audit.md"
-      ]
-    },
-    {
-      "name": "Room semantic material",
-      "status": "accepted",
-      "summary": "Room interactions, exit semantics, edge states, action latches, reset/dependency semantics, and trigger/script/quest clauses were accepted into the generated Classic baseline.",
-      "evidence": [
-        "Reports/DataDecode/room_interaction_semantics.json",
-        "Reports/DataDecode/room_exit_semantics.json",
-        "Reports/DataDecode/room_edge_state.json"
-      ]
-    },
-    {
-      "name": "MMExplorer and OmniVerse reference reconciliation",
-      "status": "accepted",
-      "summary": "Reference-backed item, spell, NPC, shop, ability, and room evidence was reconciled into Librarium without overriding binary-backed Classic evidence.",
-      "evidence": [
-        "Reports/DataDecode/mmexplorer_omniverse_librarium_reconciliation.json"
-      ]
-    },
-    {
-      "name": "Room native effect and message decode closure",
-      "status": "accepted",
-      "summary": "Resolved 7 distinct native/passive room-effect linkage gaps across 12 exit rows without promoting invented player commands. MegaMUD /mp route replay found 0 command hits for the affected map-qualified exits. Native WCCMSG room action, door, hidden-exit, lock/key, search, and failure strings are cataloged as 117 unique offset-backed room message records.",
-      "evidence": [
-        "Reports/DataDecode/room_native_effect_linkage_and_message_decode.json",
-        "Reports/DataDecode/room_native_effect_linkage_and_message_decode.md"
-      ]
-    },
-    {
-      "name": "Quest dialogue dispatch intake",
-      "status": "accepted",
-      "summary": "Loaded cumulative quest/dialogue dispatch package material into Librarium source records. Generated 182 decoded textblock stage scripts, 83 NPC quest-entry triggers, and 182 linked stage script references. Runtime interaction narrative smoke verifies branch dispatch, item consumption/reward transition, random textblock table execution, cast/summon/remoteaction coverage, world-intent target validation, exhaustive NPC quest-entry dispatch validation, and failure/no-mutation behavior.",
-      "evidence": [
-        "Reports/DataDecode/quest_dialogue_dispatch_intake.json",
-        "Reports/DataDecode/quest_dialogue_dispatch_intake.md",
-        "Reports/RuntimeVerification/validator_latest.json"
-      ]
-    },
-    {
-      "name": "Classic parity repository closure",
-      "status": "accepted",
-      "summary": "The cumulative assertion ledger contains 161 PASS, 39 STRONG, and zero UNKNOWN assertions. Data Reconstruction is 3/3 PASS, Economy & Services 16/16 PASS, Host / Persistence / Worldgroup 9/9 PASS, Import / Export / Limits / Recovery 4/4 PASS, and Items & Inventory 6/6 PASS. The exact repository dependency inventory remains 40 groups; the current native-dependency report has 41 rows because it includes the closure meta-record.",
-      "evidence": [
-        "Reports/RuntimeVerification/classic_items_inventory_verification.json",
-        "Librarium/Parity/majormud_items_inventory_complete_evidence_0363.json",
-        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json",
-        "Librarium/Parity/majormud_economy_services_complete_evidence_0360.json",
-        "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
-        "Librarium/Parity/majormud_nahr_8480_native_empty_arguments_evidence.json",
-        "Librarium/Parity/majormud_native_break_character_ownership_evidence_0352.json",
-        "Librarium/Parity/majormud_native_break_extension_scope_evidence_0351.json",
-        "Librarium/Parity/majormud_native_character_death_lifecycle_evidence_0337.json",
-        "Librarium/Parity/majormud_native_charm_pricing_evidence_0354.json",
-        "Librarium/Parity/majormud_native_communication_rendering_evidence_0345.json",
-        "Librarium/Parity/majormud_native_daily_ganghouse_cleanup_evidence_0343.json",
-        "Librarium/Parity/majormud_native_death_floor_evidence_0338.json",
-        "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
-        "Librarium/Parity/majormud_native_gang_communications_edge_evidence_0341.json",
-        "Librarium/Parity/majormud_native_gang_modal_invitations_evidence_0342.json",
-        "Librarium/Parity/majormud_native_give_capacity_presentation_evidence_0353.json",
-        "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json",
-        "Librarium/Parity/majormud_native_organization_persistence_services_evidence_0344.json",
-        "Librarium/Parity/majormud_native_party_coordination_evidence_0340.json",
-        "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json",
-        "Librarium/Parity/majormud_native_pvp_lvldiff_working_install_evidence_0358.json",
-        "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json",
-        "Librarium/Parity/majormud_native_rest_meditate_command_evidence_0350.json",
-        "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json",
-        "Librarium/Parity/majormud_native_session_lifecycle_evidence_0339.json",
-        "Librarium/Parity/majormud_native_set_messages_priority_evidence_0349.json",
-        "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json",
-        "Librarium/Parity/majormud_native_talk_page_evidence_0347.json",
-        "Librarium/Parity/majormud_parity_assertions.json",
-        "Librarium/Parity/majormud_reforged_host_scope_builder_evidence_0348.json",
-        "Librarium/Parity/majormud_suicide_trap_native_evidence_0346.json",
-        "Librarium/Parity/majormud_wccmp002_native_exit_recovery_0333.json",
-        "Reports/RuntimeVerification/CLASSIC_PARITY_VALIDATION.md",
-        "Reports/RuntimeVerification/MAJORMUD_PARITY_SCORECARD.md",
-        "Reports/RuntimeVerification/native_runtime_verification.json",
-        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json"
-      ]
-    },
-    {
-      "name": "Creator Studio Nightmare MDB/WCC bridge",
-      "status": "accepted",
-      "summary": "Integrated the Custom1-only Nightmare Redux MDB analyze/import/export bridge and read-only WCC/WGS evidence correlation. Reforged.App and Reforged.Server Release builds pass with warnings as errors; Classic parity and services/economy gates pass; the installed Nightmare ability.mdb reads 188 rows through Jet 4.0; and a temporary MDB write/read round trip preserves integer, text, and Boolean values. No Custom1 import was performed during verification.",
-      "evidence": [
-        "Apps/Source/Reforged.App/Services/NightmareMdbBridgeService.cs",
-        "Tools/NightmareBridge/Read-NightmareMdb.ps1",
-        "Tools/NightmareBridge/Write-NightmareMdb.ps1"
-      ]
-    },
-    {
-      "name": "Data Reconstruction closure",
-      "status": "accepted",
-      "summary": "Promoted all three Data Reconstruction assertions to PASS. The decode exhaustion gate now counts evidence-linked/runtime-consumed explicit-null fields as connected and fails closed unless all 39 families and all 2,096 scalar fields are connected. Direct parsing of the supplied working 1.11p WCCMSG2 matches all 3,867 shared canonical payloads; only empty reserved IDs 1 and 66 are omitted.",
-      "evidence": [
-        "Librarium/Parity/majormud_data_reconstruction_closure_evidence_0359.json",
-        "Reports/RuntimeVerification/classic_decode_exhaustion_report.json",
-        "Reports/RuntimeVerification/classic_native_message_coverage.json",
-        "Reports/RuntimeVerification/native_runtime_verification.json"
-      ]
+    "decodeExhaustion": {
+      "familiesConnected": "48/48",
+      "scalarFieldsConnected": "2312/2312",
+      "unresolvedFamilies": 0,
+      "unresolvedRecords": 0
     }
+  },
+  "requiredRetainedRuntimeValidationArtifact": [
+    "Reports/RuntimeVerification/majormud_parity_scorecard.json"
+  ],
+  "notYetFieldCertified": [
+    "External non-Reforged BBS MDB overlay/import with a real board database",
+    "Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime"
+  ],
+  "notes": [
+    "Documentation-only consolidation does not require rerunning decode exhaustion.",
+    "Run build and affected client smokes after source changes.",
+    "Run the full current-health validator when runtime/data/validator authority changes."
   ]
 }

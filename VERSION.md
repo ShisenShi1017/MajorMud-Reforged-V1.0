@@ -1,63 +1,23 @@
 # MajorMUD Reforged Version
 
-- Current verified closure: 200 PASS / 0 STRONG / 0 UNKNOWN (100.0% strict). Character/Status, Rooms/World, Timers/Resets/World Rules, and the final 11-boundary closure pass locally.
-- CodeUpdate0368 Timers / Resets / World Rules closure: 15/15 PASS; source/static/native verification 108/108 PASS; overall parity 189 PASS / 11 STRONG / 0 UNKNOWN (94.5% strict). Exact native one-shot scheduler/restart ownership, Room.Delay minute gates and respawn admission, SYSOP RESET generation-counter ownership, WCCMMUTL contest RNG/draw order, and the 44-option WCCMMUD configuration boundary are integrated; no new .NET build claim in this environment.
-
-- Current Code Update: `0140`
+- Project Version: `0.1.0`
+- Current Code Update: `0141`
 - Current Database Version: `0010`
-- Rooms & World closure is complete at 21 PASS / 0 STRONG; its focused runtime gate passes 29/29.
-- Current Milestone: `CodeUpdate0140 - Classic Parity Closure and Creator Studio`
-- Current baseline: parity passes 0345-0359 plus native session, party, gang communication, modal invitation, daily cleanup, organization-service, and MegaMUD/Borin compatibility work are integrated locally; GitHub Actions remains pending push.
-- CodeUpdate0365 Quests / Scripts / Triggers closure: 2/2 PASS; source/static/data-correlation verification 65/65 PASS; overall parity 169 PASS / 31 STRONG / 0 UNKNOWN (84.5% strict). Runtime generation is exactly 83 executable quest flows, 83 NPC quest-entry triggers, 182 linked stage scripts, and 2,616 decoded operations; 2,100 analysis-only quest candidates remain Librarium-only; remoteaction is exhaustive at 139/139 invocations and 85/85 executable signatures.
-- CodeUpdate0364 NPC & AI closure: 13/13 PASS; direct native/source/static verification 32/32 PASS; overall parity 167 PASS / 33 STRONG / 0 UNKNOWN (83.5% strict). MonsGuards is ordered same-room spell-target substitution; native fast/medium/slow generation ownership is connected; generic threat/perception/flee/patrol remain non-Classic Reforged extensions.
-- CodeUpdate0363 Items & Inventory closure: 6/6 PASS with 66/66 direct native/source/data checks; canonical 1,950-item generation, ordered ability slots, exact EAT/DRINK no-target use, signed Uses/retention, DROP gating, and APPRAISE delegation are connected.
-- CodeUpdate0362 Import / Export / Limits / Recovery closure: 4/4 PASS with exact native capacity ownership, external native-file replacement semantics, state-preserving rejected actions, owner-local failure boundaries, and record-local persistence recovery.
-- CodeUpdate0361 Host / Persistence / Worldgroup closure: 9/9 PASS with exact Player/Buffer persistence ownership, save scheduling/shutdown order, host RNG contract, repository inventory closure, and WCC artifact exhaustion.
-- CodeUpdate0360 Economy & Services closure: 16/16 PASS with exact ShopType-5 healer behavior, paid carriage ownership, and 204/204 service classification.
-- CodeUpdate0359 Data Reconstruction closure: 3/3 PASS with complete family/field decode coverage and canonical WCCMSG2 working-install corroboration.
-- Current parity continuation: 189 PASS / 11 STRONG / 0 UNKNOWN = 200 (94.5% strict / 100.0% evidence-backed).
-- Creator Studio: full-control Custom1 authoring integrated; Quick Create retained; Classic structural identity and runtime metadata remain protected.
-- Nightmare compatibility: Creator Studio can analyze/import supported Nightmare Redux MDB tables into Custom1, export supported Custom1 records to a new Jet MDB, and correlate a matching WCC/WGS folder as read-only evidence while retaining unmapped fields. A real 188-row Nightmare MDB read and a temporary MDB round trip pass locally; no Custom1 data was imported during verification.
-- Local parity verification: full Release solution build PASS with zero warnings/errors; clean Classic generation PASS at 37 families / 103,372 objects / 52 files; current-health validator 56/56 PASS; Classic parity closure 32/32 PASS. The corpse-resurrection smoke fixture and deterministic canonical spell-source selection are repaired. Retained native/direct-static verifier results remain consolidated in Reports/RuntimeVerification/native_runtime_verification.json.
-- Classic death-experience boundary: ordinary non-final death preserves XP exactly. Interactive REROLL now creates a fresh replacement character and transfers only the evidence-backed SET KEEP retained experience.
-- Native command projection: 63 documented WCCMMHLP player-command inputs and explicit BS/BR/BG aliases compile into generated Classic data and resolve through the live parser; undocumented native prefix/precedence behavior remains open.
-- Economy/service closure: local PASS for 178 shops, 27 banks, 44 trainers, 1,204 inventory links, 1,950 item economy records, and 23 rules with zero unclassified services.
-- Spell/status closure: local PASS for 1,350/1,350 spells, 105/105 decoded ability IDs, and 111/111 status effects with zero unclassified records.
-- Remoteaction closure: local PASS for all 139 decoded invocations / 85 signatures; 85 executable generated contracts and 0 unresolved or evidence-gated signatures.
-- Guardian Hall engineering: all ten phased capabilities implemented with independent persisted switches for planning, engineering, build, validation, runtime/gameplay testing, optimization, documentation, candidate ZIP generation, repository updates, and overnight mode. Candidate ZIP generation defaults on; autonomous and repository-update capabilities default off.
-- Guardian Hall verification: full solution Release build PASS with warnings-as-errors after generated shop markup was connected to the native economy markup authority and strict nullable diagnostics were resolved.
-- CI bootstrap policy: generated `Data/Classic` is not tracked; clean validation regenerates it from Librarium before server bootstrap diagnostics.
-- Local verification: PASS Bundle H final audit sweep 63/63; PASS final smoke sweep across all resumed segments; PASS solution Release build with warnings-as-errors; PASS compiler tests; PASS core/server smoke tests; PASS server/app win-x64 publish; PASS published `Reforged.Server.exe` Classic data, item runtime, live gameplay, living-world, player combat profile, and telnet listener startup on `127.0.0.1:4000`; PASS published `MajorMudReforged.exe` shell/settings/cleanup smoke routes and brief GUI launch/startup check after desktop logger hardening; PASS `dotnet build MajorMud.Reforged.sln --configuration Release --no-restore` with 0 warnings/errors after imported/evidence archival cleanup; PASS `python Tools\validator.py` 15/15 current-health checks.
-- Room-text promotion: 2,417 native-backed descriptions, 800 lower-priority reference-backed descriptions, 23,309 WCCMP002 binary-backed gap fills, and 140 WCCMP002 placeholder room recoveries promoted to Librarium; compiler smoke and live Data/Classic output emit 26,668/26,668 descriptions
-- Spawn placement fix: live NPC materialization now requires exact map-qualified room resolution, skips unresolved spawns, avoids grouped-candidate leakage into rooms, and renders visible entities by runtime disposition/alignment.
-- Focused room audit: `room.map1.21` currently shows one neutral `guardsman` (`npc.14`) from `spawn.21.5`; user-expected `elite guardsman` requires separate evidence-backed data correction if the generated room source is wrong.
-- Current placement validation classification: `spawn.288.43` points to non-existent `room.map1.288`; `spawn.2306.213` points to `room.map1.2306`, which the user verified is a shop with no NPC. Both are logged and skipped.
-- Folded input material: room audit/semantic and trigger-script-quest material is integrated into the current baseline and recorded in ValidationManifest.json.
-- Current generated Classic counts: 26,668 rooms; 61,976 exits; 397 room interactions; 83 live quest-entry triggers; 182 executable stage scripts; 83 executable quests.
-- Equipment projection: 914 executable relationships cover all 383 generated weapons. `eq <weapon>` and `equip <weapon>` equip through the authoritative engine; bare `eq` displays current equipment.
-- Room native/passive effect closure: 7 distinct gaps across 12 exit rows resolved as `native_passive_effect_resolved`; MegaMUD `/mp` replay found 0 command hits, so no command was invented.
-- Room message decode: 117 unique native WCCMSG offset-backed records generated for room actions, doors, hidden exits, locks/keys, searches, and failures.
-- Quest dialogue dispatch: 182 decoded stage scripts and 83 NPC quest-entry triggers are generated, with 182 linked stage-script references; duplicate room/exit analysis triggers and the tooling script catalog remain Librarium-only.
-- Runtime quest execution: `talk <npc>` now dispatches to generated NPC quest-entry triggers, executes decoded stage clauses atomically, persists character-side quest flags/items/experience/alignment, and fails closed with rollback.
-- Quest/script edge closure: generated random textblock tables execute through decoded 1..100 threshold bindings; cast/summon/teleport/remoteaction targets validate against generated data; quest teleports update the active session/character; summon intents materialize generated NPCs; remoteaction and room/object commits are recorded as durable living-world events; Classic completed quests cannot repeat on the same character; exhaustive generated NPC quest-entry dispatch validation passes.
-- Final native closure/WCC decode archive: imported as repo evidence, Librarium/reference material, native registries, and active server runtime slices; duplicate runtime contracts were merged/replaced so there is one compiled definition per concept.
-- Verified/strong activation: generated `/Data` now includes verified/native and strongly-correlated Librarium sidecars where evidence supports execution. `room_interactions` compiles from three source files, generated `triggers` contains 367 strong records including 83 NPC quest-entry triggers, and unresolved exit targets are compiler-blocked.
-- App Librarium tab: the Reforged app now has a read-only searchable Classic data browser with Weapons, Armor, Spells, Abilities, Classes, Races, Items, Monsters, Quests, and Rooms tabs, name-only left-side record selection, character-foundation class/race gameplay details, nontechnical quest guidance, and dark readable parchment text.
-- App Client tab: the Play workspace now selects server/session profiles and opens a dedicated MegaMUD-style terminal window with command input, menu tools, status strip, and separate tabbed Client Options instead of showing the old oversized settings dashboard as the play surface.
-- Server/runtime audit repair: compiler room-description loading now recognizes `*_records.json` files, generated quest/item numeric strings are read safely by runtime catalog loaders, and the server smoke no longer crashes on JSON `String` versus `Number` generated values.
-- Current runtime audit counts: 26,668 rooms loaded, 26,668 descriptions loaded, 1,015 live NPC instances, 628 live monster instances, 1,648 doors, 178 shops, 27 banks, 44 trainers, 83 executable quests, 83 live quest-entry triggers, and 182 stage scripts.
-- Remaining native decode gaps: `Reports/RuntimeVerification/native_runtime_remaining_decode_gaps.md`
-- Single validator now covers current-health checks; one-time validation proofs live in ValidationManifest.json.
-- Decoded data evidence summary: `Reports/DataDecode/decoded_data_evidence_summary.md`
-- Latest local commands: `dotnet run --project Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj --configuration Release`; `dotnet build Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release`; `dotnet publish Apps/Source/Reforged.App/Reforged.App.csproj --configuration Release --no-restore`; `python Tools\validator.py`
-- Bundle F Revision 0033 and Bundle G Revision 0002 local intake: payloads overlaid into the dirty CodeUpdate0139 repo without commit/push, server Release build PASS, Bundle E zero-disconnect PASS, F10 native payload audit PASS with 0 disconnects, and Bundle F F10 complete through F15 audits PASS.
-- Bundle G native payload closure: verified no-output decoded text targets are evidence-mapped, `message 2044` and `message 3290` resolve through exact WCCMSG payload evidence, and unknown message IDs remain fail-closed.
-- Native payload regeneration closure: 3,467 WCCTEXT2 payloads are now canonical Librarium records; clean Classic output is 30 families / 101,731 objects / 35 files.
-- Latest focused placement commands: `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-living-world`; `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --audit-room "room.map1.21"`
-- Latest audit report: `Reports/RuntimeVerification/classic_runtime_audit.md`
-- Latest validator report: `Reports/RuntimeVerification/validator_latest.md`
-- Imported/reference archive: `Archive/ImportedDatabasesAndEvidence.LocalOnly.rar` is local-only and ignored by Git; loose `ImportedDatabases/` and `Evidence/` contents are no longer committed source.
-- Runtime save layout: Classic state uses `Saves/Classic`, custom realm state uses `Saves/Custom/<realm>`, host account credentials use `Saves/Host`, and one login may keep up to three characters per world.
-- GitHub Actions: pending for CodeUpdate0140 until pushed and confirmed green
+- Milestone: `CodeUpdate0141 - Validated Client and Repository Consolidation`
+- Classic Parity: `200 PASS / 0 STRONG / 0 UNKNOWN`
+- Current-Health Validator: `26/26 PASS`
+- Reforged Client Smokes: `14/14 PASS`
+- Release Build Baseline: `Reforged.App and Reforged.Server — 0 warnings / 0 errors` in the current local verification
 
-See [Docs/PROJECT_STATUS.md](Docs/PROJECT_STATUS.md) for the current verified state and verification commands.
+## Numbering
+
+`CodeUpdate0141` is the repository update number.
+
+The `038x` ZIP names used during the client implementation/testing conversation are patch-package sequence numbers only. They do not replace or advance the repository CodeUpdate number.
+
+## Remaining integration certification
+
+The automated baseline is clean. Real-file certification remains for:
+
+- an external non-Reforged BBS MDB; and
+- a Creator Studio custom-world MDB with its matching WCC/WGS source set.

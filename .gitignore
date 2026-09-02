@@ -118,3 +118,7 @@ Thumbs.db
 # Local Borin trainer process state
 /AI/Training/runtime/
 /AI/Workspaces/Borin/Jobs/
+
+# Generated client smoke diagnostics
+/Reports/Client/client-automation-smoke.txt
+/Reports/Client/client-batch3-smoke.txt

@@ -182,13 +182,21 @@ public static class SmokeRunner
 
         try
         {
-            var options = new HostLaunchOptions(Directory.GetCurrentDirectory());
-            await host.StartAsync(options, CancellationToken.None);
+            // First verify the normal developer/repository launch path.
+            var repositoryOptions = new HostLaunchOptions(Directory.GetCurrentDirectory());
+            await host.StartAsync(repositoryOptions, CancellationToken.None);
+            await host.StopAsync(CancellationToken.None);
+
+            // Then verify the same root shape used by the actual WPF Host view.
+            // AppContext.BaseDirectory points at bin/.../win-x64 during development,
+            // so the controller must discover the real Reforged repository root.
+            var appBaseOptions = new HostLaunchOptions(AppContext.BaseDirectory);
+            await host.StartAsync(appBaseOptions, CancellationToken.None);
 
             var duplicateRejected = false;
             try
             {
-                await host.StartAsync(options, CancellationToken.None);
+                await host.StartAsync(appBaseOptions, CancellationToken.None);
             }
             catch (InvalidOperationException)
             {

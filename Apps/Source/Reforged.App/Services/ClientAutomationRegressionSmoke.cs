@@ -107,7 +107,7 @@ public static class ClientAutomationRegressionSmoke
 
         capabilities.TextTriggers.Clear();
         capabilities.TextTriggersEnabled = true;
-        capabilities.TextTriggers.Add(new ClientTextTrigger
+        var captureTrigger = new ClientTextTrigger
         {
             Name = "Capture attacker",
             MatchMode = ClientTextTriggerMatchMode.Wildcard,
@@ -115,19 +115,80 @@ public static class ClientAutomationRegressionSmoke
             Command = "attack {target};look {target}",
             CooldownSeconds = 0,
             Priority = 1
-        });
-        var captureContext = context with { SessionId = "capture-session", LastLine = "A giant rat attacks you!", Timestamp = now.AddMinutes(5) };
-        var captured = service.Evaluate(captureContext);
-        Require(captured.Count == 1 && captured[0].Commands.SequenceEqual(["attack giant rat", "look giant rat"]), "wildcard-trigger-capture-and-batch");
+        };
+        capabilities.TextTriggers.Add(captureTrigger);
+
+        const string captureLine = "A giant rat attacks you!";
+        var wildcardMatched = ClientAutomationExpansionEngine.TryMatchTrigger(
+            captureTrigger,
+            captureLine,
+            out var wildcardCaptures,
+            out var wildcardError);
+        Require(
+            wildcardMatched &&
+            wildcardError is null &&
+            wildcardCaptures.TryGetValue("target", out var wildcardTarget) &&
+            wildcardTarget == "giant rat",
+            "wildcard-trigger-capture");
+
+        Require(
+            ClientAutomationExpansionEngine.TryExpandTriggerResponse(
+                captureTrigger.Command,
+                wildcardCaptures,
+                out var wildcardCommands) &&
+            wildcardCommands.SequenceEqual(["attack giant rat", "look giant rat"]),
+            "wildcard-trigger-batch-expansion");
+
+        var captureContext = context with
+        {
+            SessionId = "capture-session",
+            LastLine = captureLine,
+            Timestamp = now.AddMinutes(5)
+        };
+
+        // The legacy migration fixture intentionally enables PvP Alert, which also
+        // matches "attacks you" at priority 1. Isolate the text-trigger dispatch
+        // assertion so unrelated automation cannot win the deterministic tie-break.
+        var previousPvpCapability = capabilities.PvpAutomationEnabled;
+        capabilities.PvpAutomationEnabled = false;
+        try
+        {
+            var captured = service.Evaluate(captureContext);
+            Require(
+                captured.Count == 1 &&
+                string.Equals(captured[0].RuleId, captureTrigger.Id, StringComparison.OrdinalIgnoreCase) &&
+                captured[0].Commands.SequenceEqual(["attack giant rat", "look giant rat"]),
+                "wildcard-trigger-capture-and-batch");
+        }
+        finally
+        {
+            capabilities.PvpAutomationEnabled = previousPvpCapability;
+        }
         capabilities.TextTriggers.Clear();
-        capabilities.TextTriggers.Add(new ClientTextTrigger
+        var badRegexTrigger = new ClientTextTrigger
         {
             Name = "Bad Regex",
             MatchMode = ClientTextTriggerMatchMode.Regex,
             MatchText = "([",
             Command = "look"
-        });
-        Require(service.Evaluate(captureContext with { SessionId = "bad-regex", Timestamp = now.AddMinutes(6) }).Count == 0, "invalid-regex-trigger-fails-closed");
+        };
+        capabilities.TextTriggers.Add(badRegexTrigger);
+
+        var badRegexMatched = ClientAutomationExpansionEngine.TryMatchTrigger(
+            badRegexTrigger,
+            captureContext.LastLine,
+            out _,
+            out var badRegexError);
+        Require(!badRegexMatched && !string.IsNullOrWhiteSpace(badRegexError), "invalid-regex-pattern-rejected");
+
+        var badRegexEvaluation = service.Evaluate(
+            captureContext with { SessionId = "bad-regex", Timestamp = now.AddMinutes(6) });
+        Require(
+            badRegexEvaluation.All(request => !string.Equals(
+                request.RuleId,
+                badRegexTrigger.Id,
+                StringComparison.OrdinalIgnoreCase)),
+            "invalid-regex-trigger-fails-closed");
 
         capabilities.TimedEventsEnabled = true;
         service.Profile.Options.Events.ScheduledEvents.Clear();
@@ -144,6 +205,34 @@ public static class ClientAutomationRegressionSmoke
         await reloaded.LoadAsync();
         Require(reloaded.Profile.SchemaVersion == ClientAutomationService.CurrentProfileSchemaVersion, "schema-persists-after-restart");
         Require(reloaded.Profile.Capabilities.EmergencyStop && reloaded.Profile.Capabilities.TimedEventsEnabled, "switches-persist-after-restart");
-        return failures.Count == 0 ? 0 : 41;
+        var reportDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Reports", "Client");
+        Directory.CreateDirectory(reportDirectory);
+        var reportPath = Path.Combine(reportDirectory, "client-automation-smoke.txt");
+
+        if (failures.Count > 0)
+        {
+            var lines = new List<string>
+            {
+                $"Client automation smoke: FAIL ({failures.Count})",
+                $"UTC: {DateTimeOffset.UtcNow:O}",
+                $"SchemaVersion: {reloaded.Profile.SchemaVersion}",
+                $"EmergencyStop: {reloaded.Profile.Capabilities.EmergencyStop}",
+                $"TimedEventsEnabled: {reloaded.Profile.Capabilities.TimedEventsEnabled}",
+                "",
+                "Failures:"
+            };
+
+            lines.AddRange(failures.Select(failure => $"FAIL: {failure}"));
+            await File.WriteAllLinesAsync(reportPath, lines);
+            return 41;
+        }
+
+        await File.WriteAllLinesAsync(
+            reportPath,
+            [
+                "Client automation smoke: PASS",
+                $"UTC: {DateTimeOffset.UtcNow:O}"
+            ]);
+        return 0;
     }
 }

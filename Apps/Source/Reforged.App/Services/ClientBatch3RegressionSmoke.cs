@@ -76,13 +76,52 @@ public static class ClientBatch3RegressionSmoke
 
         var paths = new MegaMudPathService(settings);
         await paths.LoadAsync();
-        Require(paths.AvailablePaths.Count > 0, "megamud-path-corpus-loaded");
-        Require(paths.AvailablePaths.All(path => path.Steps.Count > 0), "megamud-paths-have-executable-steps");
-        Require(paths.AvailablePaths.SelectMany(path => path.Steps).All(step =>
-            step.Number > 0 && !string.IsNullOrWhiteSpace(step.Command)), "megamud-path-steps-structurally-valid");
 
-        if (failures.Count == 0) return 0;
-        Console.Error.WriteLine("Batch 3 client regression failures: " + string.Join(", ", failures));
+        var megaMudSourceUnavailable = paths.SourceDescription.Contains(
+            "source folder was not found",
+            StringComparison.OrdinalIgnoreCase);
+
+        if (megaMudSourceUnavailable)
+        {
+            // ImportedDatabases/MegaMudMP is retired local-only archival evidence in
+            // the cleaned repository. Its absence is valid; the client must degrade
+            // cleanly instead of treating the optional evidence archive as runtime data.
+            Require(paths.AvailablePaths.Count == 0, "megamud-optional-source-absence-clean");
+        }
+        else
+        {
+            // If a developer restores the local MegaMUD .mp archive, validate the
+            // corpus exactly as before.
+            Require(paths.AvailablePaths.Count > 0, "megamud-path-corpus-loaded");
+            Require(paths.AvailablePaths.All(path => path.Steps.Count > 0), "megamud-paths-have-executable-steps");
+            Require(paths.AvailablePaths.SelectMany(path => path.Steps).All(step =>
+                step.Number > 0 && !string.IsNullOrWhiteSpace(step.Command)), "megamud-path-steps-structurally-valid");
+        }
+
+        var reportDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Reports", "Client");
+        Directory.CreateDirectory(reportDirectory);
+        var reportPath = Path.Combine(reportDirectory, "client-batch3-smoke.txt");
+
+        if (failures.Count == 0)
+        {
+            await File.WriteAllLinesAsync(
+                reportPath,
+                [
+                    "Batch 3 client regression smoke: PASS",
+                    $"UTC: {DateTimeOffset.UtcNow:O}"
+                ]);
+            return 0;
+        }
+
+        var reportLines = new List<string>
+        {
+            $"Batch 3 client regression smoke: FAIL ({failures.Count})",
+            $"UTC: {DateTimeOffset.UtcNow:O}",
+            "",
+            "Failures:"
+        };
+        reportLines.AddRange(failures.Select(failure => $"FAIL: {failure}"));
+        await File.WriteAllLinesAsync(reportPath, reportLines);
         return 43;
     }
 }

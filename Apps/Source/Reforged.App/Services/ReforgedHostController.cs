@@ -40,9 +40,25 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                 throw new InvalidOperationException("A Host instance is already active.");
 
             Set(HostControllerState.Starting, "Starting");
-            var bootstrap = new ServerBootstrap().Run(options.ProjectRoot);
+            var resolvedProjectRoot = ResolveProjectRoot(options.ProjectRoot);
+            var bootstrap = new ServerBootstrap().Run(resolvedProjectRoot);
             if (!bootstrap.Passed || bootstrap.ProjectRoot is null)
-                throw new InvalidOperationException($"Host bootstrap failed with {bootstrap.ErrorCount} error(s).");
+            {
+                var details = bootstrap.Validation.Issues
+                    .Where(issue => issue.Severity is Reforged.Core.Validation.ValidationSeverity.Error
+                        or Reforged.Core.Validation.ValidationSeverity.Fatal)
+                    .Select(issue => $"{issue.Code}: {issue.Message}")
+                    .Take(4)
+                    .ToArray();
+
+                var suffix = details.Length == 0
+                    ? string.Empty
+                    : $" {string.Join(" | ", details)}";
+
+                throw new InvalidOperationException(
+                    $"Host bootstrap failed with {bootstrap.ErrorCount + bootstrap.FatalCount} error(s). " +
+                    $"Requested root: '{options.ProjectRoot}'. Resolved root: '{resolvedProjectRoot}'.{suffix}");
+            }
 
             var configured = ServerRuntimeOptions.Load(bootstrap.ProjectRoot);
             EnsureGeneratedCustomWorlds(bootstrap.ProjectRoot, configured);
@@ -134,6 +150,44 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
     {
         await StopAsync(token);
         await StartAsync(options, token);
+    }
+
+    private static string ResolveProjectRoot(string? startDirectory)
+    {
+        foreach (var start in new[]
+                 {
+                     startDirectory,
+                     Directory.GetCurrentDirectory(),
+                     AppContext.BaseDirectory,
+                 })
+        {
+            if (string.IsNullOrWhiteSpace(start)) continue;
+
+            DirectoryInfo? directory;
+            try
+            {
+                directory = new DirectoryInfo(Path.GetFullPath(start));
+            }
+            catch
+            {
+                continue;
+            }
+
+            while (directory is not null)
+            {
+                var root = directory.FullName;
+                if (File.Exists(Path.Combine(root, "ProjectManifest.json")) &&
+                    Directory.Exists(Path.Combine(root, "Apps")) &&
+                    Directory.Exists(Path.Combine(root, "Core")))
+                {
+                    return root;
+                }
+
+                directory = directory.Parent;
+            }
+        }
+
+        return Path.GetFullPath(startDirectory ?? Directory.GetCurrentDirectory());
     }
 
     private static void EnsureGeneratedCustomWorlds(string projectRoot, ServerRuntimeOptions options)
