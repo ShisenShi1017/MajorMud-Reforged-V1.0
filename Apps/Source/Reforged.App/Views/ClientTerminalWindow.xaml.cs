@@ -163,9 +163,14 @@ public partial class ClientTerminalWindow : Window
                 var family = string.IsNullOrWhiteSpace(presentation.FontFamily) ? "Lucida Console" : presentation.FontFamily;
                 if (!ClassicTerminalSurface.FontFamily.Source.Equals(family, StringComparison.OrdinalIgnoreCase))
                     ClassicTerminalSurface.FontFamily = new FontFamily(family);
-                ClassicTerminalSurface.FontSize = Math.Clamp(presentation.FontSize, 8, 36);
+                var effectiveFontSize = Math.Clamp(
+                    presentation.FontSize * Math.Clamp(presentation.OutputScalePercent, 75, 200) / 100d,
+                    8d,
+                    54d);
+                ClassicTerminalSurface.FontSize = effectiveFontSize;
                 ClassicCommandInput.FontFamily = ClassicTerminalSurface.FontFamily;
-                ClassicCommandInput.FontSize = Math.Clamp(presentation.FontSize, 8, 36);
+                ClassicCommandInput.FontSize = effectiveFontSize;
+                session.TerminalPreferences.ShowTimestamps = presentation.ShowTimestamps;
             }
             ClassicTerminalSurface.IsPasswordMode = _classicPasswordMode;
             ClassicTerminalSurface.InvalidateVisual();
@@ -782,6 +787,8 @@ public partial class ClientTerminalWindow : Window
 
     private void RequestClassicTerminalFocus()
     {
+        if (ViewModel?.AutomationOptions.Presentation.AutoFocusTerminal == false)
+            return;
         if (!IsActive ||
             ClassicTerminalSurface is null ||
             !ClassicTerminalSurface.IsVisible ||
@@ -1636,30 +1643,33 @@ public partial class ClientTerminalWindow : Window
         root.Children.Add(communicationsAutomation);
         root.Children.Add(emergency);
 
-        root.Children.Add(new TextBlock { Text = "Aliases — one per line: shortcut = command", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 14, 0, 3) });
+        root.Children.Add(new TextBlock { Text = "Aliases — summary (edit in Options → Aliases, Macros, Triggers & Events)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 14, 0, 3) });
         var aliasEditor = new TextBox
         {
             Text = string.Join(Environment.NewLine, capabilities.Aliases.Select(alias => $"{alias.Name} = {alias.Command}")),
             Height = 62,
             AcceptsReturn = true,
+            IsReadOnly = true,
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto
         };
         root.Children.Add(aliasEditor);
-        root.Children.Add(new TextBlock { Text = "Approved macros — one per line: name = command ; command", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
+        root.Children.Add(new TextBlock { Text = "Approved macros — summary (edit in the dedicated automation manager)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
         var macroEditor = new TextBox
         {
             Text = string.Join(Environment.NewLine, capabilities.Macros.Select(macro => $"{macro.Name} = {string.Join(" ; ", macro.Commands)}")),
             Height = 62,
             AcceptsReturn = true,
+            IsReadOnly = true,
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto
         };
         root.Children.Add(macroEditor);
-        root.Children.Add(new TextBlock { Text = "Text triggers — one per line: phrase => command | cooldown seconds", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
+        root.Children.Add(new TextBlock { Text = "Text triggers — summary (advanced match mode, captures, priority and context live in the dedicated automation manager)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
         var triggerEditor = new TextBox
         {
             Text = string.Join(Environment.NewLine, capabilities.TextTriggers.Select(trigger => $"{trigger.MatchText} => {trigger.Command} | {trigger.CooldownSeconds}")),
             Height = 72,
             AcceptsReturn = true,
+            IsReadOnly = true,
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto
         };
         root.Children.Add(triggerEditor);
@@ -1686,46 +1696,9 @@ public partial class ClientTerminalWindow : Window
             capabilities.PvpAutomationEnabled = pvpAutomation.IsChecked == true;
             capabilities.CommunicationsAutomationEnabled = communicationsAutomation.IsChecked == true;
             capabilities.EmergencyStop = emergency.IsChecked == true;
-            capabilities.Aliases.Clear();
-            foreach (var line in aliasEditor.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-            {
-                var separator = line.IndexOf('=');
-                if (separator <= 0 || separator == line.Length - 1) continue;
-                var name = line[..separator].Trim();
-                var command = line[(separator + 1)..].Trim();
-                if (name.Length > 0 && !name.Contains(' ') && command.Length > 0 && !capabilities.Aliases.Any(alias => alias.Name.Equals(name, StringComparison.OrdinalIgnoreCase)))
-                    capabilities.Aliases.Add(new ClientCommandAlias { Name = name, Command = command });
-            }
-            capabilities.Macros.Clear();
-            foreach (var line in macroEditor.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-            {
-                var separator = line.IndexOf('=');
-                if (separator <= 0 || separator == line.Length - 1) continue;
-                var name = line[..separator].Trim();
-                var commands = line[(separator + 1)..].Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-                if (name.Length == 0 || commands.Length == 0 || capabilities.Macros.Any(macro => macro.Name.Equals(name, StringComparison.OrdinalIgnoreCase))) continue;
-                var macro = new ClientCommandMacro { Name = name };
-                foreach (var command in commands.Take(25)) macro.Commands.Add(command);
-                capabilities.Macros.Add(macro);
-            }
-            capabilities.TextTriggers.Clear();
-            foreach (var line in triggerEditor.Text.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-            {
-                var separator = line.IndexOf("=>", StringComparison.Ordinal);
-                if (separator <= 0 || separator >= line.Length - 2) continue;
-                var matchText = line[..separator].Trim();
-                var commandAndCooldown = line[(separator + 2)..].Trim();
-                var cooldown = 5;
-                var cooldownSeparator = commandAndCooldown.LastIndexOf('|');
-                var command = commandAndCooldown;
-                if (cooldownSeparator > 0 && int.TryParse(commandAndCooldown[(cooldownSeparator + 1)..].Trim(), out var parsedCooldown))
-                {
-                    cooldown = Math.Clamp(parsedCooldown, 0, 86400);
-                    command = commandAndCooldown[..cooldownSeparator].Trim();
-                }
-                if (matchText.Length == 0 || command.Length == 0 || capabilities.TextTriggers.Any(trigger => trigger.MatchText.Equals(matchText, StringComparison.OrdinalIgnoreCase))) continue;
-                capabilities.TextTriggers.Add(new ClientTextTrigger { MatchText = matchText, Command = command, CooldownSeconds = cooldown });
-            }
+            // Alias/macro/trigger definitions are edited in the dedicated automation manager.
+            // Keep this legacy Client Options surface toggle-only so saving it cannot flatten
+            // advanced match modes, captures, priorities, per-rule enables, or parameter templates.
             if (capabilities.EmergencyStop)
                 await ViewModel.StopAllAutomationAsync();
             else
@@ -2452,50 +2425,50 @@ public partial class ClientTerminalWindow : Window
 
     private void ConversationsClicked(object sender, RoutedEventArgs e)
     {
+        if (ViewModel is null || BoundSession is not { } session) return;
+        var existing = Application.Current.Windows
+            .OfType<ReforgedConversationWindow>()
+            .FirstOrDefault(window => ReferenceEquals(window.Session, session));
+        if (existing is not null)
+        {
+            if (existing.WindowState == WindowState.Minimized) existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
+        }
+        new ReforgedConversationWindow(ViewModel, session) { Owner = this }.Show();
+    }
+
+    private void CreatureIntelClicked(object sender, RoutedEventArgs e)
+    {
         if (BoundSession is not { } session) return;
-        var dialog = new Window
+        var existing = Application.Current.Windows
+            .OfType<ReforgedCreatureIntelWindow>()
+            .FirstOrDefault(window => ReferenceEquals(window.Session, session));
+        if (existing is not null)
         {
-            Title = $"Reforged Conversations — {session.CharacterName}", Owner = this,
-            Width = 820, Height = 520, MinWidth = 560, MinHeight = 340,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
-            FontFamily = new FontFamily("Tahoma"), FontSize = 12
-        };
-        var root = new DockPanel { Margin = new Thickness(12) };
-        var footer = new DockPanel { Margin = new Thickness(0, 10, 0, 0), LastChildFill = false };
-        DockPanel.SetDock(footer, Dock.Bottom);
-        var status = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
-        var close = NewDialogButton("Close", 70);
-        DockPanel.SetDock(close, Dock.Right);
-        footer.Children.Add(close);
-        footer.Children.Add(status);
+            if (existing.WindowState == WindowState.Minimized) existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
+        }
+        new ReforgedCreatureIntelWindow(session) { Owner = this }.Show();
+    }
 
-        var tabs = new TabControl();
-        tabs.Items.Add(NewConversationTab("Chat", session.ChatEntries));
-        tabs.Items.Add(NewConversationTab("Tells", session.TellEntries));
-        tabs.Items.Add(NewConversationTab("Party", session.PartyEntries));
-        tabs.Items.Add(NewConversationTab("System", session.SystemEntries));
-        root.Children.Add(footer);
-        root.Children.Add(tabs);
-        dialog.Content = root;
-
-        void RefreshStatus() => status.Text =
-            $"Chat {session.ChatEntries.Count:N0}  ·  Tells {session.TellEntries.Count:N0}  ·  Party {session.PartyEntries.Count:N0}  ·  System {session.SystemEntries.Count:N0}";
-        NotifyCollectionChangedEventHandler changed = (_, _) => RefreshStatus();
-        session.ChatEntries.CollectionChanged += changed;
-        session.TellEntries.CollectionChanged += changed;
-        session.PartyEntries.CollectionChanged += changed;
-        session.SystemEntries.CollectionChanged += changed;
-        dialog.Closed += (_, _) =>
+    private void ReportProblemClicked(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel is null || BoundSession is not { } session) return;
+        var existing = Application.Current.Windows
+            .OfType<ReforgedBugReportWindow>()
+            .FirstOrDefault(window => ReferenceEquals(window.Session, session));
+        if (existing is not null)
         {
-            session.ChatEntries.CollectionChanged -= changed;
-            session.TellEntries.CollectionChanged -= changed;
-            session.PartyEntries.CollectionChanged -= changed;
-            session.SystemEntries.CollectionChanged -= changed;
-        };
-        close.Click += (_, _) => dialog.Close();
-        RefreshStatus();
-        dialog.Show();
+            if (existing.WindowState == WindowState.Minimized) existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
+        }
+        new ReforgedBugReportWindow(ViewModel, session) { Owner = this }.Show();
     }
 
     private static TabItem NewConversationTab(string title, IEnumerable<ClientTerminalEntry> entries)

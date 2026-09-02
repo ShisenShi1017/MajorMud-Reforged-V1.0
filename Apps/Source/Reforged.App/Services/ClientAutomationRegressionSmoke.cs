@@ -90,18 +90,52 @@ public static class ClientAutomationRegressionSmoke
         capabilities.AliasesEnabled = true;
         capabilities.Aliases.Add(new ClientCommandAlias { Name = "zz", Command = "look" });
         Require(service.TryResolveHumanInput("zz north", out var aliasCommands) && aliasCommands.SequenceEqual(["look north"]), "alias-expansion");
+        capabilities.Aliases.Add(new ClientCommandAlias { Name = "kt", Command = "kill {1};look {0}" });
+        Require(service.TryResolveHumanInput("kt goblin king", out var parameterAlias) &&
+                parameterAlias.SequenceEqual(["kill goblin", "look goblin king"]), "alias-positional-multistep-expansion");
+        capabilities.Aliases.Add(new ClientCommandAlias { Name = "offalias", Command = "score", Enabled = false });
+        Require(!service.TryResolveHumanInput("offalias", out _), "disabled-individual-alias-blocked");
+        Require(ClientAutomationExpansionEngine.AliasNameConflictReason("gos") is not null, "alias-chat-command-conflict-blocked");
         capabilities.AliasesEnabled = false;
         Require(!service.TryResolveHumanInput("zz north", out _), "disabled-alias-blocked");
         capabilities.MacrosEnabled = true;
         capabilities.Macros.Add(new ClientCommandMacro { Name = "safe", Commands = ["score", "inventory"] });
         Require(service.TryResolveHumanInput("/macro safe", out var macroCommands) && macroCommands.Count == 2, "macro-expansion");
+        capabilities.Macros.Add(new ClientCommandMacro { Name = "hunt", Commands = ["attack {1}", "look {0}"] });
+        Require(service.TryResolveHumanInput("/macro hunt giant rat", out var parameterMacro) &&
+                parameterMacro.SequenceEqual(["attack giant", "look giant rat"]), "macro-positional-expansion");
+
+        capabilities.TextTriggers.Clear();
+        capabilities.TextTriggersEnabled = true;
+        capabilities.TextTriggers.Add(new ClientTextTrigger
+        {
+            Name = "Capture attacker",
+            MatchMode = ClientTextTriggerMatchMode.Wildcard,
+            MatchText = "A {target} attacks you*",
+            Command = "attack {target};look {target}",
+            CooldownSeconds = 0,
+            Priority = 1
+        });
+        var captureContext = context with { SessionId = "capture-session", LastLine = "A giant rat attacks you!", Timestamp = now.AddMinutes(5) };
+        var captured = service.Evaluate(captureContext);
+        Require(captured.Count == 1 && captured[0].Commands.SequenceEqual(["attack giant rat", "look giant rat"]), "wildcard-trigger-capture-and-batch");
+        capabilities.TextTriggers.Clear();
+        capabilities.TextTriggers.Add(new ClientTextTrigger
+        {
+            Name = "Bad Regex",
+            MatchMode = ClientTextTriggerMatchMode.Regex,
+            MatchText = "([",
+            Command = "look"
+        });
+        Require(service.Evaluate(captureContext with { SessionId = "bad-regex", Timestamp = now.AddMinutes(6) }).Count == 0, "invalid-regex-trigger-fails-closed");
 
         capabilities.TimedEventsEnabled = true;
         service.Profile.Options.Events.ScheduledEvents.Clear();
-        service.Profile.Options.Events.ScheduledEvents.Add(new ClientScheduledEvent { Name = "smoke", Command = "score", Enabled = true, IntervalMinutes = 1 });
+        service.Profile.Options.Events.ScheduledEvents.Add(new ClientScheduledEvent { Name = "smoke", Command = "score;inventory", Enabled = true, IntervalSeconds = 60 });
         var timedContext = context with { SessionId = "timed-session", LastLine = string.Empty, Timestamp = now };
         Require(service.EvaluateTimedEvents(timedContext, true).Count == 0, "timed-event-primes-without-send");
-        Require(service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(2) }, true).Count == 1, "timed-event-sends-once");
+        var timedRequest = service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(2) }, true);
+        Require(timedRequest.Count == 1 && timedRequest[0].Commands.Count == 2, "timed-event-sends-multistep-once");
         capabilities.EmergencyStop = true;
         Require(service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(4) }, true).Count == 0, "emergency-stop-blocks-timed-event");
 

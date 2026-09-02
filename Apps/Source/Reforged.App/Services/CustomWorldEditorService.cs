@@ -551,6 +551,19 @@ public sealed class CustomWorldEditorService
             ["source"] = "Reforged Creator Studio",
             ["overrides"] = selected
         };
+        var sourceProvenancePath = Path.Combine(Path.GetDirectoryName(OverridePath)!, "source-provenance.json");
+        if (File.Exists(sourceProvenancePath))
+        {
+            try
+            {
+                if (JsonNode.Parse(File.ReadAllText(sourceProvenancePath)) is JsonObject provenance)
+                    document["source_provenance"] = provenance.DeepClone();
+            }
+            catch
+            {
+                // A malformed optional provenance sidecar must not block ordinary creator export.
+            }
+        }
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(path))!);
         File.WriteAllText(path, document.ToJsonString(JsonOptions) + Environment.NewLine);
         return selected.Count;
@@ -584,7 +597,8 @@ public sealed class CustomWorldEditorService
         var preview = PreviewImportPackage(path);
         if (preview.InvalidRecords > 0)
             throw new InvalidOperationException("Import contains invalid entries. Fix or remove them before applying the package.");
-        var imported = ReadImportPackage(path).OfType<JsonObject>().ToArray();
+        var importDocument = ReadImportDocument(path);
+        var imported = (importDocument["overrides"] as JsonArray ?? new JsonArray()).OfType<JsonObject>().ToArray();
         var root = ReadOverrideRoot(createIfMissing: true);
         var overrides = root["overrides"] as JsonArray ?? new JsonArray();
         root["overrides"] = overrides;
@@ -605,7 +619,23 @@ public sealed class CustomWorldEditorService
         }
         root["updated_at"] = DateTimeOffset.UtcNow.ToString("O");
         WriteOverrideRoot(root);
-        return preview with { Summary = $"Imported {preview.Records} Custom1 change(s). {preview.Conflicts} existing Custom1 override(s) were replaced. Backup: {backup}" };
+
+        var carriedProvenance = importDocument["source_provenance"] is JsonObject;
+        if (importDocument["source_provenance"] is JsonObject sourceProvenance)
+        {
+            var provenancePath = Path.Combine(Path.GetDirectoryName(OverridePath)!, "source-provenance.json");
+            if (File.Exists(provenancePath))
+            {
+                var provenanceBackup = provenancePath + ".pre-import-" + DateTimeOffset.Now.ToString("yyyyMMdd-HHmmss") + ".bak";
+                File.Copy(provenancePath, provenanceBackup, overwrite: false);
+            }
+            var carried = (JsonObject)sourceProvenance.DeepClone();
+            carried["portable_package_imported_at_utc"] = DateTimeOffset.UtcNow.ToString("O");
+            carried["portable_package_name"] = Path.GetFileName(path);
+            File.WriteAllText(provenancePath, carried.ToJsonString(JsonOptions) + Environment.NewLine);
+        }
+
+        return preview with { Summary = $"Imported {preview.Records} Custom1 change(s). {preview.Conflicts} existing Custom1 override(s) were replaced. Source provenance was {(carriedProvenance ? "carried forward" : "not present in the package")}. Backup: {backup}" };
     }
 
     public CustomWorldBulkEditResult BulkSetField(string family, IEnumerable<string> targetIds, string path, string rawValue, string valueKind)
@@ -1077,17 +1107,21 @@ public sealed class CustomWorldEditorService
         new("Monster EXP multiply/divide/combine", "MATCHED BY GENERAL TOOL", "Bulk Creator Tools", "Bulk field set/copy supports mass EXP balancing without a special one-purpose menu command."),
         new("Combine room items", "MATCHED / SAFER", "Custom1 Room Stack Cleanup", "Compacts duplicate dynamic room-ground stacks in the Custom1 living-world save while preserving generated static placement identities. Run with host stopped."),
         new("Textblock String Stripper", "MATCHED+", "Textblock Batch Strip / Replace", "Preview-first batch utility removes an exact suffix or replaces exact text across matching textblocks using Custom1 overrides only."),
-        new("Nightmare MDB import/export format", "MATCHED FOR CORE TABLES", "Nightmare MDB / WCC Bridge", "Analyzes and imports core Nightmare Access/MDB tables into Custom1, exports supported Custom1 records to Jet MDB, previews mapping/conflicts, preserves unmapped raw MDB data, and records original WCC/WGS DAT hashes without modifying those files."),
+        new("Nightmare MDB import/export format", "MATCHED+ FOR CORE TABLES", "Verified MDB + WCC Custom Import", "Reads core Access/MDB tables through the pure-managed reader, requires the matching WCC/WGS set before Custom1 import, fingerprints both sources, carries provenance in portable packages, preserves unmapped raw MDB data, and exports supported records to Jet MDB."),
     ];
 
-    private static JsonArray ReadImportPackage(string path)
+    private static JsonObject ReadImportDocument(string path)
     {
         if (!File.Exists(path)) throw new FileNotFoundException("Import package was not found.", path);
         var document = JsonNode.Parse(File.ReadAllText(path)) as JsonObject ?? throw new JsonException("Import package root must be a JSON object.");
         if (!string.Equals(document["schema"]?.GetValue<string>(), "reforged_custom1_export_v1", StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException("This is not a Reforged Custom1 export package.");
-        return document["overrides"] as JsonArray ?? throw new InvalidOperationException("Import package does not contain an overrides array.");
+        if (document["overrides"] is not JsonArray) throw new InvalidOperationException("Import package does not contain an overrides array.");
+        return document;
     }
+
+    private static JsonArray ReadImportPackage(string path) =>
+        ReadImportDocument(path)["overrides"] as JsonArray ?? throw new InvalidOperationException("Import package does not contain an overrides array.");
 
     private bool ValidateImportEntry(JsonObject item, out string key)
     {

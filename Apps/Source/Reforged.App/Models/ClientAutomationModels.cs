@@ -45,22 +45,41 @@ public sealed class ClientAutomationCapabilities
 
 public sealed class ClientCommandAlias
 {
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public bool Enabled { get; set; } = true;
     public string Name { get; set; } = string.Empty;
     public string Command { get; set; } = string.Empty;
 }
 
 public sealed class ClientCommandMacro
 {
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public bool Enabled { get; set; } = true;
     public string Name { get; set; } = string.Empty;
     public ObservableCollection<string> Commands { get; set; } = [];
+}
+
+public enum ClientTextTriggerMatchMode
+{
+    Contains,
+    Exact,
+    Wildcard,
+    Regex
 }
 
 public sealed class ClientTextTrigger
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string Name { get; set; } = string.Empty;
+    public bool Enabled { get; set; } = true;
+    public ClientTextTriggerMatchMode MatchMode { get; set; } = ClientTextTriggerMatchMode.Contains;
+    public bool CaseSensitive { get; set; }
     public string MatchText { get; set; } = string.Empty;
     public string Command { get; set; } = string.Empty;
     public int CooldownSeconds { get; set; } = 5;
+    public int Priority { get; set; } = 100;
+    public bool OnlyOutOfCombat { get; set; }
+    public bool OnlyInCombat { get; set; }
 }
 
 public sealed class ClientAutomationOptions
@@ -77,6 +96,8 @@ public sealed class ClientAutomationOptions
     public ClientPresentationOptions Presentation { get; set; } = new();
     public ClientSoundOptions Sounds { get; set; } = new();
     public ObservableCollection<ClientToolbarOption> Toolbar { get; set; } = [];
+    public ObservableCollection<ClientCommandKeyBindingOption> KeyBindings { get; set; } = [];
+    public ObservableCollection<ClientContextCommandOption> ContextCommands { get; set; } = [];
 }
 
 public sealed class HealthAutomationOptions
@@ -306,8 +327,12 @@ public sealed class ClientScheduledEvent
     public string Name { get; set; } = "New Event";
     public bool Enabled { get; set; }
     public int IntervalMinutes { get; set; } = 10;
+    public int IntervalSeconds { get; set; }
     public string Command { get; set; } = string.Empty;
+    public bool RunImmediately { get; set; }
     public bool OnlyOutOfCombat { get; set; } = true;
+    public bool OnlyInCombat { get; set; }
+    public int Priority { get; set; } = 100;
 }
 
 public sealed class ClientPresentationOptions
@@ -321,6 +346,12 @@ public sealed class ClientPresentationOptions
     public bool HighlightLoot { get; set; } = true;
     public bool ReduceAnimations { get; set; }
     public bool HighContrast { get; set; }
+    public int OutputScalePercent { get; set; } = 100;
+    public bool ShowToolbar { get; set; } = true;
+    public bool ShowStatusBar { get; set; } = true;
+    public bool AutoFocusTerminal { get; set; } = true;
+    public bool EnableCommandHotkeys { get; set; } = true;
+    public bool EnableCustomContextMenu { get; set; } = true;
 }
 
 public sealed class ClientSoundOptions
@@ -339,6 +370,25 @@ public sealed class ClientToolbarOption
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Label { get; set; } = string.Empty;
     public string AutomationArea { get; set; } = string.Empty;
+    public bool Visible { get; set; } = true;
+    public int Order { get; set; }
+}
+
+public sealed class ClientCommandKeyBindingOption
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string Label { get; set; } = "Command hotkey";
+    public string Gesture { get; set; } = string.Empty;
+    public string Command { get; set; } = string.Empty;
+    public bool Enabled { get; set; }
+    public int Order { get; set; }
+}
+
+public sealed class ClientContextCommandOption
+{
+    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string Label { get; set; } = "Command";
+    public string Command { get; set; } = string.Empty;
     public bool Visible { get; set; } = true;
     public int Order { get; set; }
 }
@@ -379,7 +429,11 @@ public sealed record ClientAutomationCommandRequest(
     string Command,
     AutomationArea Area,
     DateTimeOffset CreatedAt,
-    string SessionId = "");
+    string SessionId = "",
+    IReadOnlyList<string>? CommandBatch = null)
+{
+    public IReadOnlyList<string> Commands => CommandBatch is { Count: > 0 } ? CommandBatch : [Command];
+}
 
 public sealed class ClientAutomationPolicy
 {

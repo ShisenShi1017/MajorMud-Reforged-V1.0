@@ -902,14 +902,14 @@
 
                                 <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="20" Margin="0,0,0,18">
                                     <StackPanel>
-                                        <TextBlock Text="NIGHTMARE REDUX MDB / WCC BRIDGE" FontSize="20" FontWeight="Bold"/>
-                                        <TextBlock Text="Use Nightmare Redux MDB as the structured transport for a custom Worldgroup world. Pair it with the original WCC/WGS DAT files when available: Reforged can now compare the structured MDB against the native evidence, preserve unmapped fields, and capture repeatable binary correlations without modifying either source."
+                                        <TextBlock Text="CUSTOM WORLD MDB + WCC IMPORT" FontSize="20" FontWeight="Bold"/>
+                                        <TextBlock Text="Import a custom MajorMUD/Worldgroup world from its structured MDB only when the matching original WCC/WGS DAT/BIN source set is also present. Reforged reads the MDB with the same pure-managed reader used by Play, fingerprints both sources, verifies native family coverage and exact text anchors, then writes Custom1-only overlays. Neither source is modified."
                                                    TextWrapping="Wrap" Margin="0,5,0,14" Opacity="0.8"/>
 
                                         <TextBlock Text="1. Analyze the MDB" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
                                         <WrapPanel Margin="0,0,0,8">
-                                            <Button Content="Choose Nightmare MDB + Analyze" Command="{Binding AnalyzeNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,10,8"/>
-                                            <Button Content="Import Analyzed MDB to Custom1" Command="{Binding ImportNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8"/>
+                                            <Button Content="Choose Custom MDB + Analyze" Command="{Binding AnalyzeNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Import Verified MDB + WCC to Custom1" Command="{Binding ImportNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8" ToolTip="Locked until the selected WCC/WGS folder verifies as the source set for this MDB."/>
                                         </WrapPanel>
                                         <TextBlock Text="{Binding NightmareMdbPath}" TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,5"/>
                                         <TextBlock Text="{Binding NightmareMdbStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,12"/>
@@ -928,10 +928,10 @@
                                         </DataGrid>
 
                                         <Separator Margin="0,0,0,16"/>
-                                        <TextBlock Text="2. Optional original WCC/WGS evidence" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                                        <TextBlock Text="Choose any DAT/BIN file from the original installed custom world. Reforged scans that folder, classifies the known MajorMUD files, and records SHA-256 hashes alongside the MDB import archive."
+                                        <TextBlock Text="2. Required matching WCC/WGS source set" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                        <TextBlock Text="Choose any DAT/BIN file from the same custom world as the MDB. Reforged scans the whole folder, requires native file coverage for every supported MDB family, checks exact unique text anchors, and records SHA-256 fingerprints. A different or incomplete WCC/WGS set keeps import locked."
                                                    TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,8"/>
-                                        <Button Content="Choose Any WCC / WGS DAT File" Command="{Binding ChooseWccEvidenceCommand}" Style="{StaticResource EditorActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+                                        <Button Content="Choose Matching WCC / WGS DAT File" Command="{Binding ChooseWccEvidenceCommand}" Style="{StaticResource EditorActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
                                         <TextBlock Text="{Binding WccEvidenceFolder}" TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,4"/>
                                         <TextBlock Text="{Binding WccEvidenceStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,10"/>
                                         <DataGrid ItemsSource="{Binding WccEvidenceFiles}" SelectedItem="{Binding SelectedWccEvidenceFile, Mode=TwoWay}"
@@ -969,7 +969,7 @@
                                                 <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="2.2*"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <TextBlock Text="Import now promotes all explicitly understood MDB fields into normal Reforged properties. Any still-unknown MDB columns are retained on the imported Custom1 record under legacy_sources.nightmare_mdb.unmapped_fields. The gap report also stores name-anchored WCC byte windows so later decoding never has to guess from memory."
+                                        <TextBlock Text="Verified import promotes explicitly understood MDB fields into normal Reforged properties and preserves unknown columns under legacy_sources.nightmare_mdb.unmapped_fields. Every import archive stores the MDB hash, ordered WCC/WGS set fingerprint, combined source-pair fingerprint, and native anchor evidence; Custom1 also keeps a current source-provenance record."
                                                    TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,18"/>
 
                                         <Separator Margin="0,0,0,16"/>
@@ -980,7 +980,7 @@
                                             <Button Content="Export Changed Records to MDB" Command="{Binding ExportNightmareMdbChangedCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
                                             <Button Content="Export Full Effective Custom1 to MDB" Command="{Binding ExportNightmareMdbFullCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8"/>
                                         </WrapPanel>
-                                        <TextBlock Text="Import is always Custom1-only. Unknown MDB tables remain in the timestamped raw archive; unknown columns on mapped records are also carried into Custom1 under legacy-source metadata so they survive round-trip analysis instead of being discarded."
+                                        <TextBlock Text="Import is always Custom1-only and Classic remains immutable. The MDB is read directly without ACE/OLEDB. Unknown MDB tables remain in the timestamped raw archive; unknown mapped columns survive under legacy-source metadata. WCC/WGS is required for import as provenance and source-pair verification, not copied into runtime Data."
                                                    TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,5,0,0"/>
                                     </StackPanel>
                                 </Border>

@@ -1,9 +1,11 @@
+using System.Data;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
+using JetDatabaseReader;
 
 namespace Reforged.App.Services;
 
@@ -58,6 +60,18 @@ public sealed record NightmareWccEvidenceAnalysis(
     IReadOnlyList<NightmareWccEvidenceFile> Files,
     string Summary);
 
+public sealed record NightmareMdbWccPairValidation(
+    bool CanImport,
+    string MdbSha256,
+    string WccSetFingerprint,
+    string SourcePairFingerprint,
+    int MappedFamilies,
+    int CoveredFamilies,
+    int UniqueAnchorRows,
+    IReadOnlyList<string> MissingWccFamilies,
+    IReadOnlyList<string> UnanchoredFamilies,
+    string Summary);
+
 public sealed record NightmareWccGapRow(
     string TableName,
     string ReforgedFamily,
@@ -86,9 +100,10 @@ public sealed record NightmareWccGapAnalysis(
     string Summary);
 
 /// <summary>
-/// Bridge between Nightmare Redux Access/MDB exports and Reforged Custom1.
-/// MDB is the structured transport. Original WCC/WGS DAT files are retained only as provenance/evidence;
-/// the bridge never mutates them directly.
+/// Bridge between custom MajorMUD/Nightmare Access/MDB exports and Reforged Custom1.
+/// MDB is the structured transport, but import is intentionally locked until the matching original
+/// WCC/WGS DAT/BIN set is present and source-pair verification succeeds. Both sources remain read-only;
+/// Reforged writes only Custom1 overlay/provenance artifacts.
 /// </summary>
 public sealed class NightmareMdbBridgeService
 {
@@ -156,19 +171,21 @@ public sealed class NightmareMdbBridgeService
         return new NightmareMdbAnalysis(path, provider, tables.Count, totalRows, mappableRows, conflicts, rawOnlyRows, summaries, summary);
     }
 
-    public NightmareMdbImportResult ImportMdb(string path, string? wccEvidenceFolder = null)
+    public NightmareMdbImportResult ImportMdb(string path, string wccEvidenceFolder)
     {
         path = RequireMdb(path);
+        var pairValidation = ValidateMdbWccPair(path, wccEvidenceFolder);
+        if (!pairValidation.CanImport)
+            throw new InvalidOperationException("MDB import blocked because the required WCC/WGS source set could not be matched. " + pairValidation.Summary);
+        wccEvidenceFolder = Path.GetFullPath(wccEvidenceFolder);
         using var dump = ReadMdbDump(path);
         var tables = ReadTables(dump.Root);
         var entries = new JsonArray();
         var mappedRows = 0;
         var rawOnly = 0;
         var mappedRecords = new Dictionary<string, MappedRecord>(StringComparer.OrdinalIgnoreCase);
-        Dictionary<TableKind, IReadOnlyList<WccFileData>>? wccSourceCache = null;
+        var wccSourceCache = new Dictionary<TableKind, IReadOnlyList<WccFileData>>();
         var wccAnchoredRows = 0;
-        if (!string.IsNullOrWhiteSpace(wccEvidenceFolder) && Directory.Exists(wccEvidenceFolder))
-            wccSourceCache = new Dictionary<TableKind, IReadOnlyList<WccFileData>>();
         foreach (var table in tables)
         {
             var profile = ResolveProfile(table.Name);
@@ -185,7 +202,7 @@ public sealed class NightmareMdbBridgeService
                     continue;
                 }
 
-                if (wccSourceCache is not null && AttachWccAnchorEvidence(profile, row, record.Fields, wccEvidenceFolder!, wccSourceCache))
+                if (AttachWccAnchorEvidence(profile, row, record.Fields, wccEvidenceFolder, wccSourceCache))
                     wccAnchoredRows++;
                 mappedRows++;
                 var key = MakeKey(record.Family, record.TargetId);
@@ -237,20 +254,20 @@ public sealed class NightmareMdbBridgeService
         var rawArchive = Path.Combine(archiveFolder, "nightmare-mdb-raw.json");
         File.WriteAllText(rawArchive, dump.Root.ToJsonString(JsonOptions) + Environment.NewLine);
 
-        NightmareWccEvidenceAnalysis? evidence = null;
-        if (!string.IsNullOrWhiteSpace(wccEvidenceFolder) && Directory.Exists(wccEvidenceFolder))
-        {
-            evidence = AnalyzeWccEvidenceFolder(wccEvidenceFolder);
-            File.WriteAllText(Path.Combine(archiveFolder, "wcc-evidence-manifest.json"), JsonSerializer.Serialize(evidence, JsonOptions) + Environment.NewLine);
-        }
+        var evidence = AnalyzeWccEvidenceFolder(wccEvidenceFolder);
+        File.WriteAllText(Path.Combine(archiveFolder, "wcc-evidence-manifest.json"), JsonSerializer.Serialize(evidence, JsonOptions) + Environment.NewLine);
+        File.WriteAllText(Path.Combine(archiveFolder, "source-pair-validation.json"), JsonSerializer.Serialize(pairValidation, JsonOptions) + Environment.NewLine);
 
         var packagePath = Path.Combine(archiveFolder, "reforged-custom1-import-package.json");
         var package = new JsonObject
         {
             ["schema"] = "reforged_custom1_export_v1",
             ["world_id"] = CustomWorldEditorService.CustomWorldId,
-            ["source"] = "Nightmare Redux MDB Bridge",
+            ["source"] = "Reforged Custom World MDB + WCC Import",
             ["source_mdb"] = Path.GetFileName(path),
+            ["source_mdb_sha256"] = pairValidation.MdbSha256,
+            ["source_wcc_set_fingerprint"] = pairValidation.WccSetFingerprint,
+            ["source_pair_fingerprint"] = pairValidation.SourcePairFingerprint,
             ["imported_at_utc"] = DateTimeOffset.UtcNow.ToString("O"),
             ["overrides"] = entries
         };
@@ -259,20 +276,42 @@ public sealed class NightmareMdbBridgeService
         var preview = _custom.ApplyImportPackage(packagePath);
         var manifest = new JsonObject
         {
-            ["schema"] = "reforged_nightmare_mdb_bridge_manifest_v1",
+            ["schema"] = "reforged_custom_world_source_manifest_v2",
             ["source_mdb"] = Path.GetFullPath(path),
-            ["source_mdb_sha256"] = Sha256(path),
+            ["source_mdb_sha256"] = pairValidation.MdbSha256,
+            ["source_wcc_set_fingerprint"] = pairValidation.WccSetFingerprint,
+            ["source_pair_fingerprint"] = pairValidation.SourcePairFingerprint,
+            ["source_pair_verified"] = pairValidation.CanImport,
+            ["source_pair_covered_families"] = pairValidation.CoveredFamilies,
+            ["source_pair_mapped_families"] = pairValidation.MappedFamilies,
             ["mapped_rows"] = mappedRows,
             ["mapped_records"] = mapped,
             ["raw_only_rows"] = rawOnly,
             ["custom1_conflicts_replaced"] = preview.Conflicts,
-            ["wcc_evidence_folder"] = evidence?.Folder ?? string.Empty,
-            ["wcc_recognized_files"] = evidence?.RecognizedFiles ?? 0,
+            ["wcc_evidence_folder"] = evidence.Folder,
+            ["wcc_recognized_files"] = evidence.RecognizedFiles,
             ["wcc_unique_anchor_rows"] = wccAnchoredRows,
             ["raw_archive"] = rawArchive,
             ["package_archive"] = packagePath
         };
         File.WriteAllText(Path.Combine(archiveFolder, "bridge-manifest.json"), manifest.ToJsonString(JsonOptions) + Environment.NewLine);
+
+        var provenancePath = Path.Combine(_projectRoot, "Librarium", "WorldOverrides", CustomWorldEditorService.CustomWorldId, "source-provenance.json");
+        var provenance = new JsonObject
+        {
+            ["schema"] = "reforged_custom_world_source_provenance_v1",
+            ["world_id"] = CustomWorldEditorService.CustomWorldId,
+            ["source_pair_fingerprint"] = pairValidation.SourcePairFingerprint,
+            ["source_mdb_name"] = Path.GetFileName(path),
+            ["source_mdb_sha256"] = pairValidation.MdbSha256,
+            ["wcc_set_fingerprint"] = pairValidation.WccSetFingerprint,
+            ["wcc_file_count"] = evidence.FileCount,
+            ["wcc_recognized_files"] = evidence.RecognizedFiles,
+            ["unique_wcc_anchor_rows"] = wccAnchoredRows,
+            ["last_imported_at_utc"] = DateTimeOffset.UtcNow.ToString("O"),
+            ["latest_archive"] = archiveFolder
+        };
+        File.WriteAllText(provenancePath, provenance.ToJsonString(JsonOptions) + Environment.NewLine);
 
         return new NightmareMdbImportResult(
             path,
@@ -280,7 +319,7 @@ public sealed class NightmareMdbBridgeService
             preview.Conflicts,
             rawOnly,
             archiveFolder,
-            $"Imported {mapped} Custom1 record(s) from {mappedRows} mapped Nightmare MDB row(s); {preview.Conflicts} existing Custom1 override(s) were replaced. {rawOnly} row(s) remain preserved raw-only. {wccAnchoredRows} mapped row(s) received an exact unique WCC evidence anchor. Archive: {archiveFolder}");
+            $"Imported {mapped} Custom1 overlay record(s) from {mappedRows} mapped MDB row(s) after required WCC/WGS source verification; {preview.Conflicts} existing Custom1 override(s) were replaced. {rawOnly} row(s) remain preserved raw-only. {wccAnchoredRows} mapped row(s) received exact unique native anchors. Provenance fingerprint: {pairValidation.SourcePairFingerprint[..Math.Min(16, pairValidation.SourcePairFingerprint.Length)]}…. Archive: {archiveFolder}");
     }
 
     public NightmareMdbExportResult ExportMdb(string path, bool changedOnly)
@@ -333,6 +372,95 @@ public sealed class NightmareMdbBridgeService
             $"Found {files.Length} DAT/BIN file(s); {recognized} recognized as MajorMUD/Worldgroup evidence. These files are retained read-only and are never modified by the bridge.");
     }
 
+
+    public NightmareMdbWccPairValidation ValidateMdbWccPair(string mdbPath, string wccFolder)
+    {
+        mdbPath = RequireMdb(mdbPath);
+        wccFolder = Path.GetFullPath(string.IsNullOrWhiteSpace(wccFolder)
+            ? throw new InvalidOperationException("Choose the matching original WCC/WGS folder first. Custom-world imports require the MDB and its native WCC/WGS source set together.")
+            : wccFolder.Trim());
+        if (!Directory.Exists(wccFolder)) throw new DirectoryNotFoundException(wccFolder);
+
+        using var dump = ReadMdbDump(mdbPath);
+        var tables = ReadTables(dump.Root);
+        var mappedKinds = tables
+            .Where(table => table.Rows.Count > 0)
+            .Select(table => ResolveProfile(table.Name))
+            .Where(profile => profile is not null)
+            .Select(profile => profile!)
+            .GroupBy(profile => profile.Kind)
+            .Select(group => group.First())
+            .ToArray();
+        if (mappedKinds.Length == 0)
+            throw new InvalidOperationException("The MDB has no supported MajorMUD tables to pair with WCC/WGS source files.");
+
+        var evidence = AnalyzeWccEvidenceFolder(wccFolder);
+        if (evidence.RecognizedFiles == 0)
+            return new NightmareMdbWccPairValidation(false, Sha256(mdbPath), string.Empty, string.Empty,
+                mappedKinds.Length, 0, 0, mappedKinds.Select(profile => profile.Family).OrderBy(value => value).ToArray(),
+                Array.Empty<string>(), "No recognized MajorMUD WCC/WGS DAT/BIN files were found. Import is blocked.");
+
+        var wccFingerprint = FingerprintWccSet(evidence.Files);
+        var mdbSha = Sha256(mdbPath);
+        var pairFingerprint = Sha256Text(mdbSha + "\n" + wccFingerprint);
+        var missing = new List<string>();
+        var unanchored = new List<string>();
+        var covered = 0;
+        var uniqueAnchors = 0;
+        var cache = new Dictionary<TableKind, IReadOnlyList<WccFileData>>();
+
+        foreach (var profile in mappedKinds)
+        {
+            var files = LoadCandidateWccFiles(wccFolder, profile.Kind);
+            cache[profile.Kind] = files;
+            if (files.Count == 0)
+            {
+                missing.Add(profile.Family);
+                continue;
+            }
+            covered++;
+
+            var anchorableRows = tables
+                .Where(table => ResolveProfile(table.Name)?.Kind == profile.Kind)
+                .SelectMany(table => table.Rows)
+                .Select(row => (Row: row, Anchor: GapAnchor(profile.Kind, row)))
+                .Where(item => item.Anchor.Length >= 4)
+                .ToArray();
+            if (anchorableRows.Length == 0) continue;
+
+            var familyAnchors = 0;
+            foreach (var item in anchorableRows)
+            {
+                if (TryFindUniqueAnchor(files, item.Anchor, out _, out _))
+                {
+                    familyAnchors++;
+                    uniqueAnchors++;
+                }
+            }
+            if (familyAnchors == 0) unanchored.Add(profile.Family);
+        }
+
+        // A valid pair must provide the native file family for every supported MDB family.
+        // At least one exact unique text anchor somewhere in the set is also required; this
+        // prevents an unrelated WCC folder that merely happens to contain familiar filenames
+        // from being accepted as the source for the MDB.
+        var canImport = missing.Count == 0 && uniqueAnchors > 0;
+        var summary = canImport
+            ? $"Source pair verified: {covered}/{mappedKinds.Length} mapped MDB families have matching WCC/WGS files and {uniqueAnchors:N0} MDB row(s) have exact unique native-text anchors. Source fingerprint {pairFingerprint[..Math.Min(16, pairFingerprint.Length)]}…."
+            : $"Source pair rejected: {covered}/{mappedKinds.Length} mapped MDB families have WCC/WGS coverage, {uniqueAnchors:N0} exact unique anchor(s), missing families: {(missing.Count == 0 ? "none" : string.Join(", ", missing))}. Import remains blocked.";
+
+        return new NightmareMdbWccPairValidation(
+            canImport,
+            mdbSha,
+            wccFingerprint,
+            pairFingerprint,
+            mappedKinds.Length,
+            covered,
+            uniqueAnchors,
+            missing.OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray(),
+            unanchored.OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray(),
+            summary);
+    }
 
     public NightmareWccGapAnalysis AnalyzeMdbWccGaps(string mdbPath, string wccFolder)
     {
@@ -1628,21 +1756,79 @@ public sealed class NightmareMdbBridgeService
 
     private MdbDump ReadMdbDump(string path)
     {
-        var work = Path.Combine(Path.GetTempPath(), "Reforged-NightmareMDB-" + Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(work);
-        try
+        path = RequireMdb(path);
+        using AccessReader reader = AccessReader.Open(path);
+        var tables = new JsonArray();
+        foreach (var tableName in reader.ListTables()
+                     .Where(name => !string.IsNullOrWhiteSpace(name))
+                     .Where(name => !name.StartsWith("MSys", StringComparison.OrdinalIgnoreCase))
+                     .Where(name => !name.StartsWith('~'))
+                     .OrderBy(name => name, StringComparer.OrdinalIgnoreCase))
         {
-            var output = Path.Combine(work, "dump.json");
-            RunBridgeScript("Read-NightmareMdb.ps1", ["-MdbPath", Path.GetFullPath(path), "-OutputJson", output]);
-            if (!File.Exists(output)) throw new InvalidOperationException("Nightmare MDB reader completed without producing its JSON dump.");
-            var root = JsonNode.Parse(File.ReadAllText(output)) as JsonObject ?? throw new InvalidOperationException("Nightmare MDB reader produced invalid JSON.");
-            return new MdbDump(root, work);
+            DataTable table;
+            try
+            {
+                table = reader.ReadTable(tableName);
+            }
+            catch (Exception exception)
+            {
+                throw new InvalidOperationException($"JetDatabaseReader could not read MDB table '{tableName}': {exception.Message}", exception);
+            }
+
+            var columns = new JsonArray();
+            foreach (DataColumn column in table.Columns)
+                columns.Add(column.ColumnName);
+
+            var rows = new JsonArray();
+            foreach (DataRow dataRow in table.Rows)
+            {
+                var row = new JsonObject();
+                foreach (DataColumn column in table.Columns)
+                    row[column.ColumnName] = ToJsonCell(dataRow[column]);
+                rows.Add(row);
+            }
+
+            tables.Add(new JsonObject
+            {
+                ["name"] = tableName,
+                ["columns"] = columns,
+                ["rows"] = rows
+            });
         }
-        catch
+
+        return new MdbDump(new JsonObject
         {
-            try { Directory.Delete(work, recursive: true); } catch { }
-            throw;
-        }
+            ["schema"] = "nightmare_mdb_dump_v2",
+            ["provider"] = "JetDatabaseReader 2.2.0 (pure managed)",
+            ["source"] = Path.GetFullPath(path),
+            ["tables"] = tables
+        });
+    }
+
+    private static JsonNode? ToJsonCell(object? value)
+    {
+        if (value is null || value is DBNull) return null;
+        return value switch
+        {
+            byte[] bytes => JsonValue.Create(Convert.ToBase64String(bytes)),
+            DateTime dateTime => JsonValue.Create(dateTime.ToString("O")),
+            DateTimeOffset dateTimeOffset => JsonValue.Create(dateTimeOffset.ToString("O")),
+            Guid guid => JsonValue.Create(guid.ToString()),
+            bool boolean => JsonValue.Create(boolean),
+            byte number => JsonValue.Create(number),
+            sbyte number => JsonValue.Create(number),
+            short number => JsonValue.Create(number),
+            ushort number => JsonValue.Create(number),
+            int number => JsonValue.Create(number),
+            uint number => JsonValue.Create(number),
+            long number => JsonValue.Create(number),
+            ulong number => JsonValue.Create(number),
+            float number => JsonValue.Create(number),
+            double number => JsonValue.Create(number),
+            decimal number => JsonValue.Create(number),
+            string text => JsonValue.Create(text),
+            _ => JsonValue.Create(Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture))
+        };
     }
 
     private void RunBridgeScript(string scriptName, IReadOnlyList<string> args)
@@ -1726,22 +1912,23 @@ public sealed class NightmareMdbBridgeService
     private static string ClassifyWccFile(string fileName)
     {
         var name = Path.GetFileNameWithoutExtension(fileName).ToUpperInvariant();
-        if (name.StartsWith("WCCMP", StringComparison.Ordinal)) return "Rooms / Map";
-        if (name.StartsWith("WCCITEM", StringComparison.Ordinal)) return "Items";
-        if (name.StartsWith("WCCSPEL", StringComparison.Ordinal)) return "Spells";
-        if (name.StartsWith("WCCSHOP", StringComparison.Ordinal)) return "Shops";
-        if (name.StartsWith("WCCRACE", StringComparison.Ordinal)) return "Races";
-        if (name.StartsWith("WCCCLAS", StringComparison.Ordinal)) return "Classes";
-        if (name.StartsWith("WCCMSG", StringComparison.Ordinal)) return "Messages";
-        if (name.StartsWith("WCCTEXT", StringComparison.Ordinal)) return "Textblocks";
-        if (name.StartsWith("WCCACTS", StringComparison.Ordinal)) return "Actions";
-        if (name.StartsWith("WCCACMS", StringComparison.Ordinal)) return "Active Monster State / Monster Support";
-        if (name.StartsWith("WCCKNMS", StringComparison.Ordinal)) return "Monster Names / Monster Support";
-        if (name.StartsWith("WCCITOW", StringComparison.Ordinal)) return "Item Ownership / Item Support";
-        if (name.StartsWith("WCCUPDA", StringComparison.Ordinal)) return "Update / Runtime Support";
-        if (name.StartsWith("WCCBANK", StringComparison.Ordinal)) return "Bank / Economy Support";
-        if (name.StartsWith("WCCGANG", StringComparison.Ordinal)) return "Gang / Guild Support";
-        if (name.StartsWith("WCCUSER", StringComparison.Ordinal)) return "World User State";
+        static bool Prefix(string value, params string[] prefixes) => prefixes.Any(prefix => value.StartsWith(prefix, StringComparison.Ordinal));
+        if (Prefix(name, "WCCMP", "WBBMP")) return "Rooms / Map";
+        if (Prefix(name, "WCCITEM", "WBBITEM")) return "Items";
+        if (Prefix(name, "WCCSPEL", "WBBSPEL")) return "Spells";
+        if (Prefix(name, "WCCSHOP", "WBBSHOP")) return "Shops";
+        if (Prefix(name, "WCCRACE", "WBBRACE")) return "Races";
+        if (Prefix(name, "WCCCLAS", "WBBCLAS")) return "Classes";
+        if (Prefix(name, "WCCMSG", "WBBMSG")) return "Messages";
+        if (Prefix(name, "WCCTEXT", "WBBTEXT")) return "Textblocks";
+        if (Prefix(name, "WCCACT", "WBBACT")) return "Actions";
+        if (Prefix(name, "WCCABIL", "WBBABIL", "WCCDATA", "WBBDATA")) return "Abilities / Data";
+        if (Prefix(name, "WCCACMS", "WBBACMS", "WCCKNMS", "WBBKNMS", "WCCMON", "WBBMON")) return "Monsters / Monster Support";
+        if (Prefix(name, "WCCITOW", "WBBITOW")) return "Item Ownership / Item Support";
+        if (Prefix(name, "WCCUPDA", "WBBUPDA")) return "Update / Runtime Support";
+        if (Prefix(name, "WCCBANK", "WBBBANK")) return "Bank / Economy Support";
+        if (Prefix(name, "WCCGANG", "WBBGANG")) return "Gang / Guild Support";
+        if (Prefix(name, "WCCUSER", "WBBUSER")) return "World User State";
         if (name.StartsWith("WGS", StringComparison.Ordinal) || name.StartsWith("WOR", StringComparison.Ordinal)) return "Worldgroup Host Support";
         return string.Empty;
     }
@@ -1766,6 +1953,20 @@ public sealed class NightmareMdbBridgeService
     {
         using var stream = File.OpenRead(path);
         return Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
+    }
+
+    private static string Sha256Text(string value)
+    {
+        var bytes = Encoding.UTF8.GetBytes(value ?? string.Empty);
+        return Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant();
+    }
+
+    private static string FingerprintWccSet(IEnumerable<NightmareWccEvidenceFile> files)
+    {
+        var canonical = string.Join("\n", files
+            .OrderBy(file => file.FileName, StringComparer.OrdinalIgnoreCase)
+            .Select(file => $"{file.FileName.ToLowerInvariant()}|{file.Bytes}|{file.Sha256.ToLowerInvariant()}"));
+        return Sha256Text(canonical);
     }
 
     private static string MakeKey(string family, string targetId) => family.Trim().ToLowerInvariant() + "|" + targetId.Trim().ToLowerInvariant();
@@ -2032,10 +2233,9 @@ public sealed class NightmareMdbBridgeService
 
     private sealed class MdbDump : IDisposable
     {
-        private readonly string _work;
-        public MdbDump(JsonObject root, string work) { Root = root; _work = work; }
+        public MdbDump(JsonObject root) { Root = root; }
         public JsonObject Root { get; }
-        public void Dispose() { try { Directory.Delete(_work, recursive: true); } catch { } }
+        public void Dispose() { }
     }
 
     private sealed record MdbTable(string Name, IReadOnlyList<string> Columns, IReadOnlyList<JsonObject> Rows);

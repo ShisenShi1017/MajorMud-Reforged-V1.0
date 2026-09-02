@@ -17,6 +17,11 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly IClientMapProfileService _mapProfiles;
     private readonly IClientWorkspaceProfileService _workspaceProfiles;
     private readonly IClientConnectionProfileService _connectionProfiles = new ClientConnectionProfileService();
+    private readonly MudPlayNavigationService _mudPlayNavigation = new();
+    private readonly MudPlayInventoryAutomationService _mudPlayInventoryAutomation = new();
+    private readonly ReforgedRecoveryAutomationService _recoveryAutomation = new();
+    private readonly ReforgedCombatAutomationService _advancedCombatAutomation = new();
+    private readonly ReforgedPartyAutomationService _advancedPartyAutomation = new();
     private readonly Dictionary<string, string> _lastRecordedMapRoomBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, MegaMudPathRecord> _autoRoamRoutes = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _autoRoamRestarting = new(StringComparer.OrdinalIgnoreCase);
@@ -49,6 +54,21 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly Dictionary<string, (string Attacker, DateTimeOffset ObservedAt)> _pvpAttackers = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _pvpActionInFlight = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _authoritativeStateBootstrapped = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _scriptAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, MudPlayInventoryAutomationProfile> _mudPlayInventoryProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _inventoryAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextInventoryAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _lastInventoryAutomationFingerprint = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, ReforgedRecoveryAutomationProfile> _recoveryAutomationProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _recoveryAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextRecoveryAutomationAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, ReforgedCombatAutomationProfile> _advancedCombatProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _advancedCombatInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextAdvancedCombatAt = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, (string Command, string Target, DateTimeOffset ExpiresAt)> _pendingAdvancedCombatFallback = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, ReforgedPartyAutomationProfile> _advancedPartyProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _advancedPartyInFlight = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, DateTimeOffset> _nextAdvancedPartyAt = new(StringComparer.OrdinalIgnoreCase);
     private ClientDataCategory? _selectedCategory;
     private ClientDataRecord? _selectedRecord;
     private ClientAutomationRule? _selectedRule;
@@ -243,6 +263,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
 
         if (e.State != ClientConnectionState.Connected) return;
+        _advancedPartyAutomation.MarkReconnect(session, DateTimeOffset.UtcNow);
         var coordinated = CoordinationProfile.Sessions.FirstOrDefault(candidate =>
             candidate.SessionId.Equals(session.SessionId, StringComparison.OrdinalIgnoreCase));
         if (coordinated is not null && CoordinationProfile.AutoResyncOnReconnect)
@@ -286,6 +307,19 @@ public sealed class PlayViewModel : ViewModelBase
         _pvpAttackers.Remove(sessionId);
         _pvpActionInFlight.Remove(sessionId);
         _authoritativeStateBootstrapped.Remove(sessionId);
+        _scriptAutomationInFlight.Remove(sessionId);
+        _inventoryAutomationInFlight.Remove(sessionId);
+        _nextInventoryAutomationAt.Remove(sessionId);
+        _lastInventoryAutomationFingerprint.Remove(sessionId);
+        _recoveryAutomationInFlight.Remove(sessionId);
+        _nextRecoveryAutomationAt.Remove(sessionId);
+        _advancedCombatInFlight.Remove(sessionId);
+        _nextAdvancedCombatAt.Remove(sessionId);
+        _pendingAdvancedCombatFallback.Remove(sessionId);
+        _advancedCombatAutomation.ClearRuntime(sessionId);
+        _advancedPartyInFlight.Remove(sessionId);
+        _nextAdvancedPartyAt.Remove(sessionId);
+        _advancedPartyAutomation.ClearRuntime(sessionId);
     }
 
     private void EnsureAuthoritativeStateBootstrap(ClientSessionConnection session)
@@ -1579,13 +1613,17 @@ public sealed class PlayViewModel : ViewModelBase
         { Status = "Click-to-walk requires confirmed current and destination room keys."; return; }
         if (start.Equals(destination, StringComparison.OrdinalIgnoreCase))
         { Status = "The character is already in that room."; return; }
-        var route = _paths.CalculateReplacementRoute(start, destination);
+        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
+        var safePlan = _mudPlayNavigation.PlanRoute(session, destination, navigationProfile.Preferences);
+        var route = safePlan.Route ?? _paths.CalculateReplacementRoute(start, destination);
         if (route is null || route.Steps.Count == 0)
-        { Status = $"No verified route connects {start} to {destination}. Nothing was sent."; return; }
+        { Status = safePlan.Warnings.FirstOrDefault() ?? $"No verified route connects {start} to {destination}. Nothing was sent."; return; }
         try
         {
             await _sessions.StartRouteAsync(session.SessionId, route);
-            Status = $"Click-to-walk started a verified {route.Steps.Count}-step route to {destination}.";
+            Status = safePlan.Route is not null
+                ? $"Click-to-walk started a hazard-aware {route.Steps.Count}-step route to {destination}{(safePlan.UsedRiskyFallback ? " using the saved least-risk fallback policy" : string.Empty)}."
+                : $"Click-to-walk started a verified {route.Steps.Count}-step legacy path route to {destination}.";
         }
         catch (Exception exception) { Status = $"Click-to-walk stopped safely: {exception.Message}"; }
         Raise(nameof(SelectedLiveSession));
@@ -1728,15 +1766,19 @@ public sealed class PlayViewModel : ViewModelBase
 
         if (SelectedLiveSession is null) return;
         var session = SelectedLiveSession;
-        var replacement = _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
+        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
+        var safePlan = _mudPlayNavigation.PlanRoute(session, session.RouteDestinationKey, navigationProfile.Preferences);
+        var replacement = safePlan.Route ?? _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
         if (replacement is null || replacement.Steps.Count == 0)
         {
-            session.RouteRecoveryPlan = $"No replacement route was found from {session.CurrentRoomKey} to {session.RouteDestinationKey}.";
+            session.RouteRecoveryPlan = safePlan.Warnings.FirstOrDefault() ?? $"No replacement route was found from {session.CurrentRoomKey} to {session.RouteDestinationKey}.";
             Status = session.RouteRecoveryPlan;
             Raise(nameof(SelectedLiveSession));
             return;
         }
-        session.RouteRecoveryPlan = $"Replacement route calculated: {replacement.Steps.Count} step(s) from {replacement.NativeStartKey} to {replacement.NativeEndKey}.";
+        session.RouteRecoveryPlan = safePlan.Route is not null
+            ? $"Hazard-aware replacement route calculated: {replacement.Steps.Count} step(s) from {replacement.NativeStartKey} to {replacement.NativeEndKey}{(safePlan.UsedRiskyFallback ? " (least-risk fallback)" : string.Empty)}."
+            : $"Verified legacy replacement route calculated: {replacement.Steps.Count} step(s) from {replacement.NativeStartKey} to {replacement.NativeEndKey}.";
         try
         {
             await _sessions.StartRouteAsync(session.SessionId, replacement);
@@ -2030,8 +2072,24 @@ public sealed class PlayViewModel : ViewModelBase
             await RunManualMassActionAsync(session, "getcash");
             return;
         }
-        try { await _sessions.SendCommandAsAsync(session.SessionId, request.Command, ClientCommandOrigin.ClientAutomation); Status = $"{request.RuleName}: {request.Command}"; }
+        if (!_scriptAutomationInFlight.Add(session.SessionId)) return;
+        try
+        {
+            var sent = 0;
+            foreach (var command in request.Commands.Take(ClientAutomationExpansionEngine.MaximumCommandSteps))
+            {
+                if (AutomationProfile.Capabilities.EmergencyStop || session.ConnectionState != ClientConnectionState.Connected) break;
+                await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+                sent++;
+                if (request.Commands.Count > 1)
+                    await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            }
+            Status = sent <= 1
+                ? $"{request.RuleName}: {request.Command}"
+                : $"{request.RuleName}: completed {sent} command steps.";
+        }
         catch (Exception exception) { Status = $"Automation command failed: {exception.Message}"; }
+        finally { _scriptAutomationInFlight.Remove(session.SessionId); }
     }
 
     public void TickTimedEvents(ClientSessionConnection? session, DateTimeOffset timestamp)
@@ -2050,9 +2108,23 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async Task TickAutomationClockAsync(ClientSessionConnection session, DateTimeOffset timestamp)
     {
-        if (await TickSafeSurvivalAutomationAsync(session, timestamp)) return;
-        if (await TickSafeSpellMaintenanceAsync(session, timestamp)) return;
-        if (await TickSafePartyAutomationAsync(session, timestamp)) return;
+        var enhancedRecovery = GetRecoveryAutomationProfile(session).Preferences.Enabled;
+        if (enhancedRecovery)
+        {
+            if (await TickSafeEnhancedRecoveryAutomationAsync(session, timestamp)) return;
+        }
+        else
+        {
+            if (await TickSafeSurvivalAutomationAsync(session, timestamp)) return;
+            if (await TickSafeSpellMaintenanceAsync(session, timestamp)) return;
+        }
+        var advancedParty = GetAdvancedPartyAutomationProfile(session).Preferences.Enabled;
+        if (advancedParty)
+        {
+            if (await TickSafeAdvancedPartyAutomationAsync(session, timestamp)) return;
+        }
+        else if (await TickSafePartyAutomationAsync(session, timestamp)) return;
+        if (await TickSafeInventoryEquipmentAutomationAsync(session, timestamp)) return;
         if (await TickSafeLootAutomationAsync(session, timestamp)) return;
         if (await TickSafeRoamingAutomationAsync(session, timestamp)) return;
         await TickSafeCombatAutomationAsync(session, timestamp);
@@ -2218,6 +2290,668 @@ public sealed class PlayViewModel : ViewModelBase
         if (normalized.Contains("{leader}", StringComparison.OrdinalIgnoreCase))
             return normalized.Replace("{leader}", target, StringComparison.OrdinalIgnoreCase);
         return $"{normalized} {target}".Trim();
+    }
+
+
+    public ReforgedPartyAutomationProfile GetAdvancedPartyAutomationProfile(ClientSessionConnection session, bool reload = false)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (reload || !_advancedPartyProfiles.TryGetValue(session.SessionId, out var profile))
+        {
+            profile = _advancedPartyAutomation.LoadProfile(session);
+            _advancedPartyProfiles[session.SessionId] = profile;
+        }
+        return profile;
+    }
+
+    public void SaveAdvancedPartyAutomationProfile(ClientSessionConnection session, ReforgedPartyAutomationProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(profile);
+        _advancedPartyAutomation.SaveProfile(session, profile);
+        _advancedPartyProfiles[session.SessionId] = profile;
+        if (profile.Preferences.Enabled && !AutomationProfile.Capabilities.PartyAutomationEnabled)
+        {
+            AutomationProfile.Capabilities.PartyAutomationEnabled = true;
+            _ = _automation.SaveAsync();
+        }
+        _advancedPartyAutomation.ClearRuntime(session.SessionId);
+        _nextAdvancedPartyAt.Remove(session.SessionId);
+        session.PartyAutomationStatus = profile.Preferences.Enabled
+            ? "Advanced party coordinator enabled; waiting for fresh observed party state."
+            : "Advanced party coordinator disabled; classic party automation may be used instead.";
+    }
+
+    public async Task RefreshAdvancedPartyStateAsync(ClientSessionConnection session, bool includeOnline)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+        {
+            session.PartyAutomationStatus = "Party refresh is waiting for verified gameplay.";
+            return;
+        }
+        if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+        {
+            session.PartyAutomationStatus = "This external BBS has no Reforged private party protocol; only observed terminal state will be used.";
+            return;
+        }
+        await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
+        if (includeOnline)
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata who");
+    }
+
+    public async Task<ReforgedPartyAutomationPlan> RunAdvancedPartyAutomationNowAsync(ClientSessionConnection session)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        var profile = GetAdvancedPartyAutomationProfile(session);
+        var now = DateTimeOffset.UtcNow;
+        var plan = _advancedPartyAutomation.Plan(session, profile, now);
+        await ExecuteAdvancedPartyPlanAsync(session, profile, plan, now);
+        return plan;
+    }
+
+    private async Task<bool> TickSafeAdvancedPartyAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        var profile = GetAdvancedPartyAutomationProfile(session);
+        if (!profile.Preferences.Enabled || !AutomationProfile.Capabilities.PartyAutomationEnabled ||
+            AutomationProfile.Capabilities.EmergencyStop || session.ConnectionState != ClientConnectionState.Connected) return false;
+        if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return false;
+        if (_nextAdvancedPartyAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return false;
+        if (!_advancedPartyInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            var plan = _advancedPartyAutomation.Plan(session, profile, timestamp);
+            if (!plan.HasAction)
+            {
+                session.PartyAutomationStatus = plan.Summary;
+                _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(2);
+                return false;
+            }
+            await ExecuteAdvancedPartyPlanAsync(session, profile, plan, timestamp);
+            return true;
+        }
+        catch (Exception exception)
+        {
+            session.PartyAutomationStatus = $"Advanced party coordination stopped safely: {exception.Message}";
+            _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(5);
+            return true;
+        }
+        finally { _advancedPartyInFlight.Remove(session.SessionId); }
+    }
+
+    private async Task ExecuteAdvancedPartyPlanAsync(
+        ClientSessionConnection session,
+        ReforgedPartyAutomationProfile profile,
+        ReforgedPartyAutomationPlan plan,
+        DateTimeOffset timestamp)
+    {
+        if (!profile.Preferences.Enabled || !AutomationProfile.Capabilities.PartyAutomationEnabled ||
+            AutomationProfile.Capabilities.EmergencyStop || session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+
+        if (plan.RefreshParty || plan.RefreshOnlinePlayers)
+        {
+            if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+            {
+                session.PartyAutomationStatus = "Fresh private party/WHO state is unavailable on this external BBS; no protocol text was leaked into chat.";
+                _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(Math.Max(2, plan.CooldownSeconds));
+                return;
+            }
+            if (plan.RefreshParty)
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
+            if (plan.RefreshOnlinePlayers)
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata who");
+            session.PartyAutomationStatus = plan.Summary;
+            _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(Math.Max(2, plan.CooldownSeconds));
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(plan.Command))
+        {
+            session.PartyAutomationStatus = "Party action was suppressed because its configured command is blank.";
+            return;
+        }
+        if (plan.IsSpellCommand && !_advancedPartyAutomation.CanUseCommand(session, profile, plan.Command))
+        {
+            session.PartyAutomationStatus = "Party spell action was suppressed because the spell is not learned or would break the mana reserve.";
+            _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(profile.Preferences.CommandCooldownSeconds);
+            return;
+        }
+        if (plan.PauseRoute) _sessions.PauseRoute(session.SessionId);
+        await _sessions.SendCommandAsAsync(session.SessionId, plan.Command, ClientCommandOrigin.ClientAutomation);
+        if (plan.ResumeRoute) _sessions.ResumeRoute(session.SessionId);
+        _advancedPartyAutomation.MarkExecuted(session, plan, timestamp);
+        session.PartyAutomationStatus = plan.Summary;
+        _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(Math.Max(1, plan.CooldownSeconds));
+    }
+
+
+    public ReforgedCombatAutomationProfile GetAdvancedCombatAutomationProfile(ClientSessionConnection session, bool reload = false)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (reload || !_advancedCombatProfiles.TryGetValue(session.SessionId, out var profile))
+        {
+            profile = _advancedCombatAutomation.LoadProfile(session);
+            _advancedCombatProfiles[session.SessionId] = profile;
+        }
+        return profile;
+    }
+
+    public void SaveAdvancedCombatAutomationProfile(ClientSessionConnection session, ReforgedCombatAutomationProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(profile);
+        _advancedCombatAutomation.SaveProfile(session, profile);
+        _advancedCombatProfiles[session.SessionId] = profile;
+        _advancedCombatAutomation.ClearRuntime(session.SessionId);
+        _nextAdvancedCombatAt.Remove(session.SessionId);
+        _pendingAdvancedCombatFallback.Remove(session.SessionId);
+        Status = $"Saved advanced combat automation for {session.CharacterName}.";
+    }
+
+    public async Task RefreshAdvancedCombatStateAsync(ClientSessionConnection session)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (session.ConnectionState != ClientConnectionState.Connected || !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+        if (ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata spells");
+            return;
+        }
+
+        await _sessions.SendCommandAsAsync(session.SessionId, "look", ClientCommandOrigin.ClientAutomation);
+        session.CombatAutomationStatus = "External BBS combat refresh requested with native LOOK; no Reforged-private command was leaked into chat.";
+    }
+
+    public async Task<ReforgedCombatAutomationPlan> RunAdvancedCombatAutomationNowAsync(ClientSessionConnection session)
+    {
+        var profile = GetAdvancedCombatAutomationProfile(session);
+        var now = DateTimeOffset.Now;
+        var plan = _advancedCombatAutomation.Plan(session, profile, now);
+        await ExecuteAdvancedCombatAutomationPlanAsync(session, profile, plan, now);
+        return plan;
+    }
+
+    private async Task TickAdvancedCombatAutomationAsync(
+        ClientSessionConnection session,
+        ReforgedCombatAutomationProfile profile,
+        DateTimeOffset timestamp)
+    {
+        if (AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+        {
+            session.CombatAutomationStatus = AutomationProfile.Capabilities.EmergencyStop
+                ? "Advanced combat automation is blocked by Emergency Stop."
+                : "Advanced combat automation is waiting for verified MajorMUD gameplay.";
+            return;
+        }
+        if (_nextAdvancedCombatAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return;
+        if (!_advancedCombatInFlight.Add(session.SessionId)) return;
+        try
+        {
+            var plan = _advancedCombatAutomation.Plan(session, profile, timestamp);
+            if (!plan.HasAction)
+            {
+                session.CombatAutomationStatus = plan.Summary;
+                _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(1);
+                return;
+            }
+            await ExecuteAdvancedCombatAutomationPlanAsync(session, profile, plan, timestamp);
+        }
+        catch (Exception exception)
+        {
+            session.CombatAutomationStatus = $"Advanced combat automation stopped safely: {exception.Message}";
+            _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(5);
+        }
+        finally
+        {
+            _advancedCombatInFlight.Remove(session.SessionId);
+        }
+    }
+
+    private async Task ExecuteAdvancedCombatAutomationPlanAsync(
+        ClientSessionConnection session,
+        ReforgedCombatAutomationProfile profile,
+        ReforgedCombatAutomationPlan plan,
+        DateTimeOffset timestamp)
+    {
+        if (session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+        {
+            session.CombatAutomationStatus = "Combat action is waiting for a verified MajorMUD gameplay prompt.";
+            return;
+        }
+        if (AutomationProfile.Capabilities.EmergencyStop)
+        {
+            session.CombatAutomationStatus = "Combat action blocked by Emergency Stop.";
+            return;
+        }
+
+        if (plan.RefreshRoom)
+        {
+            if (ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+            {
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+                session.CombatAutomationStatus = plan.Summary;
+            }
+            else
+            {
+                session.CombatAutomationStatus = plan.Summary + " External BBS state will refresh from naturally parsed room text; no private command was sent.";
+            }
+            _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(2);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.EquipmentSetId))
+        {
+            var inventory = GetInventoryAutomationProfile(session);
+            var set = inventory.EquipmentSets.FirstOrDefault(candidate =>
+                candidate.Id.Equals(plan.EquipmentSetId, StringComparison.OrdinalIgnoreCase));
+            if (set is null)
+            {
+                session.CombatAutomationStatus = $"Combat equipment set '{plan.EquipmentSetId}' is not available; no combat command was sent.";
+                _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(3);
+                return;
+            }
+
+            var equipmentPlan = await ApplyInventoryEquipmentSetAsync(session, set);
+            if (equipmentPlan.RequiresInventoryRefresh || equipmentPlan.RequiresEquipmentRefresh || equipmentPlan.HasCommands)
+            {
+                session.CombatAutomationStatus = $"Preparing combat equipment set '{set.Name}' before {plan.Kind}.";
+                _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(2);
+                return;
+            }
+            _advancedCombatAutomation.MarkEquipmentSetApplied(session.SessionId, set.Id);
+            if (plan.Kind == ReforgedCombatActionKind.EquipSet)
+            {
+                session.CombatAutomationStatus = $"Combat equipment set '{set.Name}' is already satisfied.";
+                _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(1);
+                return;
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(plan.Command))
+        {
+            session.CombatAutomationStatus = plan.Summary;
+            return;
+        }
+        if (!_advancedCombatAutomation.CanUseConfiguredCommand(session, profile, plan.Command))
+        {
+            session.CombatAutomationStatus = $"{plan.ActionName}: configured cast is not learned, affordable above reserve, or currently castable; no command sent.";
+            _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(2);
+            return;
+        }
+
+        await _sessions.SendCommandAsAsync(session.SessionId, plan.Command.Trim(), ClientCommandOrigin.ClientAutomation);
+        _advancedCombatAutomation.MarkExecuted(session, profile, plan, timestamp);
+        if (!string.IsNullOrWhiteSpace(plan.FallbackCommand))
+            _pendingAdvancedCombatFallback[session.SessionId] =
+                (plan.FallbackCommand.Trim(), plan.Target, timestamp.AddSeconds(8));
+        session.CombatAutomationStatus = plan.Summary;
+        Status = plan.Summary;
+        _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(Math.Max(1, plan.CooldownSeconds));
+    }
+
+    public ReforgedRecoveryAutomationProfile GetRecoveryAutomationProfile(ClientSessionConnection session, bool reload = false)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (reload || !_recoveryAutomationProfiles.TryGetValue(session.SessionId, out var profile))
+        {
+            profile = _recoveryAutomation.LoadProfile(session);
+            _recoveryAutomationProfiles[session.SessionId] = profile;
+        }
+        return profile;
+    }
+
+    public void SaveRecoveryAutomationProfile(ClientSessionConnection session, ReforgedRecoveryAutomationProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(profile);
+        _recoveryAutomation.SaveProfile(session, profile);
+        _recoveryAutomationProfiles[session.SessionId] = profile;
+        _nextRecoveryAutomationAt.Remove(session.SessionId);
+        Status = $"Saved recovery/buff automation for {session.CharacterName}.";
+    }
+
+    public async Task RefreshRecoveryAutomationStateAsync(ClientSessionConnection session, bool includeParty)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (session.ConnectionState != ClientConnectionState.Connected || !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+        if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+        {
+            session.SurvivalAutomationStatus = "External BBS state refresh is waiting for naturally parsed gameplay data; no private Reforged command was leaked into chat.";
+            return;
+        }
+        await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+        await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata spells");
+        if (includeParty)
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
+    }
+
+    public async Task<ReforgedRecoveryAutomationPlan> RunRecoveryAutomationNowAsync(ClientSessionConnection session)
+    {
+        var profile = GetRecoveryAutomationProfile(session);
+        var plan = _recoveryAutomation.Plan(session, profile, DateTimeOffset.Now);
+        await ExecuteRecoveryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
+        return plan;
+    }
+
+    private async Task<bool> TickSafeEnhancedRecoveryAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+            return false;
+
+        var profile = GetRecoveryAutomationProfile(session);
+        if (!profile.Preferences.Enabled) return false;
+        if (_nextRecoveryAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return false;
+        if (!_recoveryAutomationInFlight.Add(session.SessionId)) return true;
+        try
+        {
+            var plan = _recoveryAutomation.Plan(session, profile, timestamp);
+            if (!plan.HasAction)
+            {
+                session.SurvivalAutomationStatus = plan.Summary;
+                _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+                return false;
+            }
+            await ExecuteRecoveryAutomationPlanAsync(session, profile, plan, timestamp);
+            return plan.HasAction;
+        }
+        catch (Exception exception)
+        {
+            session.SurvivalAutomationStatus = $"Enhanced recovery/buff automation stopped safely: {exception.Message}";
+            _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(5);
+            return true;
+        }
+        finally
+        {
+            _recoveryAutomationInFlight.Remove(session.SessionId);
+        }
+    }
+
+    private async Task ExecuteRecoveryAutomationPlanAsync(
+        ClientSessionConnection session,
+        ReforgedRecoveryAutomationProfile profile,
+        ReforgedRecoveryAutomationPlan plan,
+        DateTimeOffset timestamp)
+    {
+        if (session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+        {
+            session.SurvivalAutomationStatus = "Recovery/buff action is waiting for a verified MajorMUD gameplay prompt.";
+            return;
+        }
+        if (AutomationProfile.Capabilities.EmergencyStop)
+        {
+            session.SurvivalAutomationStatus = "Recovery/buff action blocked by Emergency Stop.";
+            return;
+        }
+
+        if (plan.NeedsRefresh)
+        {
+            if (ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+            {
+                if (plan.RefreshVitals || plan.RefreshEffects)
+                    await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
+                if (plan.RefreshSpellbook)
+                    await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata spells");
+                if (plan.RefreshParty)
+                    await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
+                session.SurvivalAutomationStatus = plan.Summary;
+            }
+            else
+            {
+                session.SurvivalAutomationStatus = plan.Summary + " External BBS refresh will use naturally captured text; no Reforged-private command was sent.";
+            }
+            _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.PreEquipmentSetId))
+        {
+            var inventory = GetInventoryAutomationProfile(session);
+            var set = inventory.EquipmentSets.FirstOrDefault(candidate =>
+                candidate.Id.Equals(plan.PreEquipmentSetId, StringComparison.OrdinalIgnoreCase));
+            if (set is not null)
+            {
+                var equipmentPlan = await ApplyInventoryEquipmentSetAsync(session, set);
+                if (equipmentPlan.RequiresInventoryRefresh || equipmentPlan.RequiresEquipmentRefresh || equipmentPlan.HasCommands)
+                {
+                    _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(Math.Max(2, profile.Preferences.CommandCooldownSeconds));
+                    session.SurvivalAutomationStatus = $"Preparing recovery equipment set '{set.Name}' before {plan.Kind}.";
+                    return;
+                }
+            }
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.Command))
+        {
+            await _sessions.SendCommandAsAsync(session.SessionId, plan.Command.Trim(), ClientCommandOrigin.ClientAutomation);
+            session.SurvivalAutomationStatus = plan.Summary;
+            if (plan.Kind == ReforgedRecoveryActionKind.MaintainBuff)
+                session.SpellAutomationStatus = plan.Summary;
+        }
+
+        if (plan.Kind == ReforgedRecoveryActionKind.FinishRecovery && !string.IsNullOrWhiteSpace(plan.PostEquipmentSetId))
+        {
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            if (session.ConnectionState == ClientConnectionState.Connected && !AutomationProfile.Capabilities.EmergencyStop)
+            {
+                var inventory = GetInventoryAutomationProfile(session);
+                var set = inventory.EquipmentSets.FirstOrDefault(candidate =>
+                    candidate.Id.Equals(plan.PostEquipmentSetId, StringComparison.OrdinalIgnoreCase));
+                if (set is not null)
+                    await ApplyInventoryEquipmentSetAsync(session, set);
+            }
+        }
+
+        _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(Math.Max(1, plan.CooldownSeconds));
+    }
+
+
+    public MudPlayInventoryAutomationProfile GetInventoryAutomationProfile(ClientSessionConnection session, bool reload = false)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (reload || !_mudPlayInventoryProfiles.TryGetValue(session.SessionId, out var profile))
+        {
+            profile = _mudPlayInventoryAutomation.LoadProfile(session);
+            _mudPlayInventoryProfiles[session.SessionId] = profile;
+        }
+        return profile;
+    }
+
+    public void SaveInventoryAutomationProfile(ClientSessionConnection session, MudPlayInventoryAutomationProfile profile)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        ArgumentNullException.ThrowIfNull(profile);
+        _mudPlayInventoryAutomation.SaveProfile(session, profile);
+        _mudPlayInventoryProfiles[session.SessionId] = profile;
+        _lastInventoryAutomationFingerprint.Remove(session.SessionId);
+        Status = $"Saved inventory/equipment automation for {session.CharacterName}.";
+    }
+
+    public MudPlayEquipmentSet CaptureCurrentEquipmentSet(ClientSessionConnection session, string name)
+    {
+        var profile = GetInventoryAutomationProfile(session);
+        var set = _mudPlayInventoryAutomation.CaptureEquipmentSet(session, profile, name);
+        SaveInventoryAutomationProfile(session, profile);
+        return set;
+    }
+
+    public async Task RefreshInventoryEquipmentStateAsync(ClientSessionConnection session)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        if (session.ConnectionState != ClientConnectionState.Connected || !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+        if (ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+        {
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata inventory");
+            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata equipment");
+            return;
+        }
+
+        await _sessions.SendCommandAsAsync(session.SessionId, "inventory", ClientCommandOrigin.ClientAutomation);
+        await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+        await _sessions.SendCommandAsAsync(session.SessionId, "equipment", ClientCommandOrigin.ClientAutomation);
+    }
+
+    public async Task<MudPlayInventoryAutomationPlan> ApplyInventoryEquipmentSetAsync(ClientSessionConnection session, MudPlayEquipmentSet set)
+    {
+        var profile = GetInventoryAutomationProfile(session);
+        var plan = _mudPlayInventoryAutomation.PlanEquipmentSet(session, profile, set);
+        await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
+        return plan;
+    }
+
+    public async Task<MudPlayInventoryAutomationPlan> ProcessInventoryAutomationRulesAsync(ClientSessionConnection session)
+    {
+        var profile = GetInventoryAutomationProfile(session);
+        var plan = _mudPlayInventoryAutomation.PlanInventoryRules(session, profile);
+        await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
+        return plan;
+    }
+
+    public async Task<MudPlayInventoryAutomationPlan> RecoverInventoryEquipmentAsync(ClientSessionConnection session, MudPlayEquipmentSet? set)
+    {
+        var profile = GetInventoryAutomationProfile(session);
+        var plan = _mudPlayInventoryAutomation.PlanRecovery(session, profile, set);
+        await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
+        return plan;
+    }
+
+    private async Task<bool> TickSafeInventoryEquipmentAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
+    {
+        if (AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected || !ClientCommandIsolationPolicy.HasVerifiedGameplay(session) ||
+            session.InCombat || session.IsResting || session.IsMoving)
+            return false;
+
+        var profile = GetInventoryAutomationProfile(session);
+        var preferences = profile.Preferences;
+        if (!preferences.EnableAutomaticInventoryRules && !preferences.AutoApplyEquipmentSet && !preferences.AutoReequipAfterInventoryChange)
+            return false;
+        if (_nextInventoryAutomationAt.TryGetValue(session.SessionId, out var next) && timestamp < next) return false;
+        if (!_inventoryAutomationInFlight.Add(session.SessionId)) return true;
+
+        try
+        {
+            if (preferences.AutoApplyEquipmentSet || preferences.AutoReequipAfterInventoryChange)
+            {
+                var set = _mudPlayInventoryAutomation.ResolveAutomaticSet(profile);
+                if (set is not null)
+                {
+                    var equipmentPlan = _mudPlayInventoryAutomation.PlanEquipmentSet(session, profile, set);
+                    if (equipmentPlan.RequiresInventoryRefresh || equipmentPlan.RequiresEquipmentRefresh)
+                    {
+                        await RefreshInventoryEquipmentStateAsync(session);
+                        _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+                        session.LootAutomationStatus = $"Refreshing inventory/equipment before checking set '{set.Name}'.";
+                        return true;
+                    }
+                    if (equipmentPlan.HasCommands && ShouldRunInventoryPlan(session, equipmentPlan))
+                    {
+                        await ExecuteInventoryAutomationPlanAsync(session, profile, equipmentPlan, timestamp);
+                        return true;
+                    }
+                }
+            }
+
+            if (preferences.EnableAutomaticInventoryRules)
+            {
+                var rulePlan = _mudPlayInventoryAutomation.PlanInventoryRules(session, profile);
+                if (rulePlan.RequiresInventoryRefresh || rulePlan.RequiresEquipmentRefresh)
+                {
+                    await RefreshInventoryEquipmentStateAsync(session);
+                    _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+                    session.LootAutomationStatus = "Refreshing inventory before evaluating inventory rules.";
+                    return true;
+                }
+                if (rulePlan.HasCommands && ShouldRunInventoryPlan(session, rulePlan))
+                {
+                    await ExecuteInventoryAutomationPlanAsync(session, profile, rulePlan, timestamp);
+                    return true;
+                }
+                if (rulePlan.Warnings.Count > 0)
+                    session.LootAutomationStatus = rulePlan.Warnings[0];
+            }
+
+            _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(Math.Max(1, preferences.CommandCooldownSeconds));
+            return false;
+        }
+        catch (Exception exception)
+        {
+            session.LootAutomationStatus = $"Inventory/equipment automation stopped safely: {exception.Message}";
+            _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(5);
+            return true;
+        }
+        finally
+        {
+            _inventoryAutomationInFlight.Remove(session.SessionId);
+        }
+    }
+
+    private bool ShouldRunInventoryPlan(ClientSessionConnection session, MudPlayInventoryAutomationPlan plan)
+    {
+        if (string.IsNullOrWhiteSpace(plan.Fingerprint)) return true;
+        return !_lastInventoryAutomationFingerprint.TryGetValue(session.SessionId, out var previous) ||
+               !previous.Equals(plan.Fingerprint, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private async Task ExecuteInventoryAutomationPlanAsync(
+        ClientSessionConnection session,
+        MudPlayInventoryAutomationProfile profile,
+        MudPlayInventoryAutomationPlan plan,
+        DateTimeOffset timestamp)
+    {
+        if (session.ConnectionState != ClientConnectionState.Connected) return;
+        if (!ClientCommandIsolationPolicy.HasVerifiedGameplay(session))
+        {
+            session.LootAutomationStatus = "Inventory/equipment action is waiting for a verified MajorMUD gameplay prompt.";
+            return;
+        }
+        if (AutomationProfile.Capabilities.EmergencyStop)
+        {
+            session.LootAutomationStatus = "Inventory/equipment action blocked by Emergency Stop.";
+            return;
+        }
+        if (plan.RequiresInventoryRefresh || plan.RequiresEquipmentRefresh)
+        {
+            await RefreshInventoryEquipmentStateAsync(session);
+            session.LootAutomationStatus = plan.Summary;
+            _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
+            return;
+        }
+        if (!plan.HasCommands)
+        {
+            session.LootAutomationStatus = plan.Summary;
+            return;
+        }
+
+        var sent = 0;
+        foreach (var command in plan.Commands.Take(profile.Preferences.MaximumCommandsPerPass))
+        {
+            if (session.ConnectionState != ClientConnectionState.Connected || AutomationProfile.Capabilities.EmergencyStop) break;
+            if (string.IsNullOrWhiteSpace(command)) continue;
+            await _sessions.SendCommandAsAsync(session.SessionId, command.Trim(), ClientCommandOrigin.ClientAutomation);
+            sent++;
+            if (plan.Commands.Count > 1)
+                await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+        }
+        _nextInventoryAutomationAt[session.SessionId] = timestamp.AddSeconds(Math.Max(1, profile.Preferences.CommandCooldownSeconds));
+        if (sent > 0 && !string.IsNullOrWhiteSpace(plan.Fingerprint))
+            _lastInventoryAutomationFingerprint[session.SessionId] = plan.Fingerprint;
+        session.LootAutomationStatus = $"{plan.Action}: sent {sent} approved command(s)" +
+            (plan.MissingItems.Count > 0 ? $"; {plan.MissingItems.Count} configured item(s) are still missing." : ".");
+
+        if (sent > 0)
+        {
+            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
+            await RefreshInventoryEquipmentStateAsync(session);
+        }
     }
 
     private async Task<bool> TickSafeLootAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
@@ -2454,11 +3188,16 @@ public sealed class PlayViewModel : ViewModelBase
         if (AutomationProfile.Capabilities.NavigationEnabled && options.AutoRecoverDesynchronizedRoute && session.RouteRecoveryAvailable &&
             session.RouteState is RouteExecutionState.Paused or RouteExecutionState.Faulted)
         {
-            var replacement = _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
+            var profile = _mudPlayNavigation.LoadProfile(session);
+            var strictPreferences = CopyNavigationPreferences(profile.Preferences, allowRiskyFallback: false);
+            var recoveryPlan = _mudPlayNavigation.PlanRoute(session, session.RouteDestinationKey, strictPreferences);
+            var replacement = recoveryPlan.Route ?? _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
             if (replacement is null || replacement.Steps.Count == 0)
-            { session.RoamingAutomationStatus = "Route recovery stopped: no verified replacement route exists."; return false; }
+            { session.RoamingAutomationStatus = "Route recovery stopped: no strict hazard-safe replacement route exists."; return false; }
             await _sessions.StartRouteAsync(session.SessionId, replacement);
-            session.RoamingAutomationStatus = $"Started verified {replacement.Steps.Count}-step route recovery.";
+            session.RoamingAutomationStatus = recoveryPlan.Route is not null
+                ? $"Started strict hazard-aware {replacement.Steps.Count}-step route recovery."
+                : $"Started verified {replacement.Steps.Count}-step legacy route recovery.";
             return true;
         }
 
@@ -2513,6 +3252,21 @@ public sealed class PlayViewModel : ViewModelBase
             _roamingAutomationInFlight.Remove(session.SessionId);
         }
     }
+
+    private static MudPlayNavigationPreferences CopyNavigationPreferences(MudPlayNavigationPreferences source, bool allowRiskyFallback) => new()
+    {
+        AvoidDamageTraps = source.AvoidDamageTraps,
+        AvoidSpellTraps = source.AvoidSpellTraps,
+        AvoidRestrictedExits = source.AvoidRestrictedExits,
+        AvoidHiddenExits = source.AvoidHiddenExits,
+        AllowOrdinaryDoors = source.AllowOrdinaryDoors,
+        AvoidHighLevelNpcRooms = source.AvoidHighLevelNpcRooms,
+        NpcLevelBuffer = source.NpcLevelBuffer,
+        AvoidRoomSpellEffects = source.AvoidRoomSpellEffects,
+        AllowRiskyFallback = allowRiskyFallback,
+        LoopMinimumSteps = source.LoopMinimumSteps,
+        LoopMaximumSteps = source.LoopMaximumSteps
+    };
 
     private bool CanContinueRoamingAutomation(ClientSessionConnection session) =>
         AutomationProfile.Capabilities.RoamingAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop &&
@@ -2591,6 +3345,13 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async Task TickSafeCombatAutomationAsync(ClientSessionConnection session, DateTimeOffset timestamp)
     {
+        var advancedProfile = GetAdvancedCombatAutomationProfile(session);
+        if (advancedProfile.Preferences.Enabled)
+        {
+            await TickAdvancedCombatAutomationAsync(session, advancedProfile, timestamp);
+            return;
+        }
+
         var options = AutomationOptions.Combat;
         if (!AutomationProfile.Capabilities.CombatEnabled || AutomationProfile.Capabilities.EmergencyStop || !options.AutoAttack)
         { session.CombatAutomationStatus = "Verified combat automation is off."; return; }
@@ -2599,8 +3360,15 @@ public sealed class PlayViewModel : ViewModelBase
         if (session.CurrentRoomNpcDetailsUpdatedAt is not { } npcCapturedAt ||
             (timestamp - npcCapturedAt).TotalSeconds > 2)
         {
-            await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
-            session.CombatAutomationStatus = "Refreshing authoritative hostile-target data.";
+            if (ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
+            {
+                await _sessions.SendClientProtocolCommandAsync(session.SessionId, "roomdata");
+                session.CombatAutomationStatus = "Refreshing authoritative hostile-target data.";
+            }
+            else
+            {
+                session.CombatAutomationStatus = "External BBS hostile state is stale; waiting for naturally parsed room text rather than leaking ROOMDATA into chat.";
+            }
             return;
         }
         if (ResolveCombatAutomationBlocker(session) is { } blocker)
@@ -2859,7 +3627,16 @@ public sealed class PlayViewModel : ViewModelBase
         var session = _sessions.Sessions.FirstOrDefault(s => s.SessionId == e.SessionId);
         if (session is null) return;
         EnsureAuthoritativeStateBootstrap(session);
-        _ = TryHandleCombatAutomationOutcomeAsync(session, e.Line, e.Timestamp);
+        var advancedCombatProfile = GetAdvancedCombatAutomationProfile(session);
+        if (advancedCombatProfile.Preferences.Enabled)
+        {
+            _advancedCombatAutomation.ObserveLine(session, advancedCombatProfile, e.Line, e.Timestamp);
+            _ = TryHandleAdvancedCombatAutomationOutcomeAsync(session, advancedCombatProfile, e.Line, e.Timestamp);
+        }
+        else
+        {
+            _ = TryHandleCombatAutomationOutcomeAsync(session, e.Line, e.Timestamp);
+        }
         _ = TryHandleRoamingObstacleAsync(session, e.Line, e.Timestamp);
         _ = TryHandleTrustedPartyInviteAsync(session, e.Line, e.Timestamp);
         _ = TryHandleMaintainedSpellOutcomeAsync(session, e.Line, e.Timestamp);
@@ -2903,6 +3680,46 @@ public sealed class PlayViewModel : ViewModelBase
         Raise(nameof(SelectedLiveSession));
     }
 
+    private async Task TryHandleAdvancedCombatAutomationOutcomeAsync(
+        ClientSessionConnection session,
+        ReforgedCombatAutomationProfile profile,
+        string line,
+        DateTimeOffset timestamp)
+    {
+        if (AutomationProfile.Capabilities.EmergencyStop ||
+            session.ConnectionState != ClientConnectionState.Connected ||
+            !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
+        if (!_pendingAdvancedCombatFallback.TryGetValue(session.SessionId, out var pending)) return;
+        if (timestamp > pending.ExpiresAt)
+        {
+            _pendingAdvancedCombatFallback.Remove(session.SessionId);
+            return;
+        }
+
+        var text = line.Trim();
+        var failed = text.Contains("failed to cast", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("cannot cast", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("can't cast", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("do not know", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("does no damage", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("no effect", StringComparison.OrdinalIgnoreCase) ||
+                     text.Contains("immune", StringComparison.OrdinalIgnoreCase);
+        if (!failed) return;
+        _pendingAdvancedCombatFallback.Remove(session.SessionId);
+        if (string.IsNullOrWhiteSpace(pending.Command) ||
+            !_advancedCombatAutomation.CanUseConfiguredCommand(session, profile, pending.Command))
+        {
+            session.CombatAutomationStatus = "Combat action failed; configured fallback is not currently safe/available.";
+            return;
+        }
+        var command = string.IsNullOrWhiteSpace(pending.Target)
+            ? pending.Command
+            : ExpandCombatTarget(pending.Command, pending.Target);
+        await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+        session.CombatAutomationStatus = $"Primary combat action failed; configured fallback sent{(string.IsNullOrWhiteSpace(pending.Target) ? "." : $" against {pending.Target}.")}";
+        _nextAdvancedCombatAt[session.SessionId] = timestamp.AddSeconds(3);
+    }
+
     private async Task TryHandleCombatAutomationOutcomeAsync(
         ClientSessionConnection session, string line, DateTimeOffset timestamp)
     {
@@ -2938,19 +3755,56 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async Task TryHandleTrustedPartyInviteAsync(ClientSessionConnection session, string line, DateTimeOffset timestamp)
     {
-        if (!AutomationProfile.Capabilities.PartyAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop ||
-            !AutomationOptions.Party.AutoAcceptTrustedInvites) return;
+        if (!AutomationProfile.Capabilities.PartyAutomationEnabled || AutomationProfile.Capabilities.EmergencyStop) return;
         const string marker = " has invited you to follow ";
         var markerAt = line.IndexOf(marker, StringComparison.OrdinalIgnoreCase);
         if (markerAt <= 0) return;
         var inviter = line[..markerAt].Trim(' ', '[', ']');
-        var explicitLeader = inviter.Equals(AutomationOptions.Party.LeaderName.Trim(), StringComparison.OrdinalIgnoreCase);
+
+        var advanced = GetAdvancedPartyAutomationProfile(session);
+        var useAdvanced = advanced.Preferences.Enabled;
+        if (useAdvanced && !advanced.Preferences.AutoAcceptTrustedInvites) return;
+        if (!useAdvanced && !AutomationOptions.Party.AutoAcceptTrustedInvites) return;
+
+        var configuredLeader = useAdvanced ? advanced.Preferences.LeaderName.Trim() : AutomationOptions.Party.LeaderName.Trim();
+        var explicitLeader = inviter.Equals(configuredLeader, StringComparison.OrdinalIgnoreCase);
         var trustedInvite = CoordinationProfile.TrustedControllers.Any(controller => controller.Enabled &&
             controller.PlayerName.Equals(inviter, StringComparison.OrdinalIgnoreCase) && controller.Permissions.HasFlag(RemoteControlPermission.Invite));
         if (!explicitLeader && !trustedInvite)
-        { session.PartyAutomationStatus = $"Invitation from {inviter} was not accepted because that player is not trusted for invitations."; return; }
+        { session.PartyAutomationStatus = $"Invitation from {inviter} was not accepted because that player lacks explicit leader/trusted Invite permission."; return; }
+
+        if (useAdvanced)
+        {
+            var command = ExpandAdvancedPartyTarget(advanced.Preferences.AcceptInviteCommandTemplate, inviter);
+            if (string.IsNullOrWhiteSpace(command))
+            { session.PartyAutomationStatus = "Trusted invitation matched, but the advanced accept-invite command is blank."; return; }
+            await _sessions.SendCommandAsAsync(session.SessionId, command, ClientCommandOrigin.ClientAutomation);
+            _advancedPartyAutomation.MarkExecuted(session, new ReforgedPartyAutomationPlan
+            {
+                Kind = ReforgedPartyActionKind.InviteMember,
+                Command = command,
+                Target = inviter,
+                Reason = $"Accepted exact party invitation from trusted player {inviter}.",
+                CooldownSeconds = advanced.Preferences.CommandCooldownSeconds
+            }, timestamp);
+            _nextAdvancedPartyAt[session.SessionId] = timestamp.AddSeconds(advanced.Preferences.CommandCooldownSeconds);
+            session.PartyAutomationStatus = $"Accepted exact party invitation from trusted player {inviter}.";
+            return;
+        }
+
         await SendPartyCommandAsync(session, AppendPartyTarget(AutomationOptions.Party.AcceptInviteCommand, inviter),
             $"Accepted an exact party invitation from trusted player {inviter}.", timestamp);
+    }
+
+    private static string ExpandAdvancedPartyTarget(string template, string target)
+    {
+        var command = (template ?? string.Empty).Trim();
+        if (command.Length == 0) return string.Empty;
+        if (command.Contains("{target}", StringComparison.OrdinalIgnoreCase))
+            return command.Replace("{target}", target, StringComparison.OrdinalIgnoreCase);
+        if (command.Contains("{leader}", StringComparison.OrdinalIgnoreCase))
+            return command.Replace("{leader}", target, StringComparison.OrdinalIgnoreCase);
+        return $"{command} {target}".Trim();
     }
 
     private async Task TryHandleMaintainedSpellOutcomeAsync(ClientSessionConnection session, string line, DateTimeOffset timestamp)

@@ -480,12 +480,13 @@ public sealed class EditorViewModel : ViewModelBase
     private CustomWorldImportPreview? _pendingImportPreview;
 
     private string _nightmareMdbPath = string.Empty;
-    private string _nightmareMdbStatus = "Choose a Nightmare Redux .mdb, analyze it, then import only after reviewing the table mapping.";
+    private string _nightmareMdbStatus = "Choose a custom-world MDB and analyze it. Import stays locked until its matching WCC/WGS source set is verified.";
     private NightmareMdbAnalysis? _pendingNightmareMdbAnalysis;
     private NightmareMdbTableSummary? _selectedNightmareMdbTable;
     private string _wccEvidenceFolder = string.Empty;
-    private string _wccEvidenceStatus = "Optional: choose any WCC/WGS DAT file from the original custom Worldgroup install. Files are hashed and retained read-only as evidence.";
+    private string _wccEvidenceStatus = "Required: choose a WCC/WGS DAT/BIN file from the same custom world as the MDB. Reforged fingerprints the complete source set and verifies native anchors before import.";
     private NightmareWccEvidenceFile? _selectedWccEvidenceFile;
+    private NightmareMdbWccPairValidation? _pendingNightmareSourcePairValidation;
     private NightmareWccGapAnalysis? _pendingWccGapAnalysis;
     private NightmareWccGapRow? _selectedWccGapRow;
     private string _wccGapStatus = "Choose the matching MDB and original WCC/WGS folder, then run gap analysis. Source files remain read-only.";
@@ -598,7 +599,7 @@ public sealed class EditorViewModel : ViewModelBase
         PreviewImportPackageCommand = new RelayCommand(PreviewImportPackage);
         ApplyImportPackageCommand = new RelayCommand(ApplyImportPackage, () => PendingImportPreview is not null && PendingImportPreview.InvalidRecords == 0);
         AnalyzeNightmareMdbCommand = new RelayCommand(AnalyzeNightmareMdb);
-        ImportNightmareMdbCommand = new RelayCommand(ImportNightmareMdb, () => PendingNightmareMdbAnalysis is not null && PendingNightmareMdbAnalysis.MappableRows > 0);
+        ImportNightmareMdbCommand = new RelayCommand(ImportNightmareMdb, () => PendingNightmareMdbAnalysis is not null && PendingNightmareMdbAnalysis.MappableRows > 0 && PendingNightmareSourcePairValidation?.CanImport == true);
         ExportNightmareMdbChangedCommand = new RelayCommand(() => ExportNightmareMdb(changedOnly: true));
         ExportNightmareMdbFullCommand = new RelayCommand(() => ExportNightmareMdb(changedOnly: false));
         ChooseWccEvidenceCommand = new RelayCommand(ChooseWccEvidence);
@@ -875,11 +876,22 @@ public sealed class EditorViewModel : ViewModelBase
         private set
         {
             if (!Set(ref _wccEvidenceFolder, value)) return;
+            PendingNightmareSourcePairValidation = null;
             (AnalyzeWccGapsCommand as RelayCommand)?.Raise();
+            (ImportNightmareMdbCommand as RelayCommand)?.Raise();
         }
     }
     public string WccEvidenceStatus { get => _wccEvidenceStatus; private set => Set(ref _wccEvidenceStatus, value); }
     public NightmareWccEvidenceFile? SelectedWccEvidenceFile { get => _selectedWccEvidenceFile; set => Set(ref _selectedWccEvidenceFile, value); }
+    public NightmareMdbWccPairValidation? PendingNightmareSourcePairValidation
+    {
+        get => _pendingNightmareSourcePairValidation;
+        private set
+        {
+            if (!Set(ref _pendingNightmareSourcePairValidation, value)) return;
+            (ImportNightmareMdbCommand as RelayCommand)?.Raise();
+        }
+    }
     public NightmareWccGapAnalysis? PendingWccGapAnalysis { get => _pendingWccGapAnalysis; private set => Set(ref _pendingWccGapAnalysis, value); }
     public NightmareWccGapRow? SelectedWccGapRow { get => _selectedWccGapRow; set => Set(ref _selectedWccGapRow, value); }
     public string WccGapStatus { get => _wccGapStatus; private set => Set(ref _wccGapStatus, value); }
@@ -1785,11 +1797,14 @@ public sealed class EditorViewModel : ViewModelBase
             NightmareMdbTables.Clear();
             foreach (var table in PendingNightmareMdbAnalysis.Tables) NightmareMdbTables.Add(table);
             SelectedNightmareMdbTable = NightmareMdbTables.FirstOrDefault();
-            NightmareMdbStatus = PendingNightmareMdbAnalysis.Summary + " Review the table list before importing.";
+            PendingNightmareSourcePairValidation = null;
+            NightmareMdbStatus = PendingNightmareMdbAnalysis.Summary + " Review the table list, then select the required matching WCC/WGS set.";
+            if (!string.IsNullOrWhiteSpace(WccEvidenceFolder)) RefreshNightmareSourcePairValidation();
         }
         catch (Exception exception)
         {
             PendingNightmareMdbAnalysis = null;
+            PendingNightmareSourcePairValidation = null;
             NightmareMdbTables.Clear();
             NightmareMdbStatus = "MDB analysis failed: " + exception.Message;
         }
@@ -1797,16 +1812,17 @@ public sealed class EditorViewModel : ViewModelBase
 
     private void ImportNightmareMdb()
     {
-        if (PendingNightmareMdbAnalysis is null || string.IsNullOrWhiteSpace(NightmareMdbPath)) return;
+        if (PendingNightmareMdbAnalysis is null || string.IsNullOrWhiteSpace(NightmareMdbPath) || PendingNightmareSourcePairValidation?.CanImport != true) return;
         try
         {
-            var result = _nightmareMdbBridge.ImportMdb(NightmareMdbPath, string.IsNullOrWhiteSpace(WccEvidenceFolder) ? null : WccEvidenceFolder);
+            var result = _nightmareMdbBridge.ImportMdb(NightmareMdbPath, WccEvidenceFolder);
             NightmareMdbStatus = result.Summary + " Build Custom1 when you are ready to test the imported world.";
             LoadCustom();
             BrowseSimpleObjects();
             PendingNightmareMdbAnalysis = _nightmareMdbBridge.AnalyzeMdb(NightmareMdbPath);
             NightmareMdbTables.Clear();
             foreach (var table in PendingNightmareMdbAnalysis.Tables) NightmareMdbTables.Add(table);
+            RefreshNightmareSourcePairValidation();
         }
         catch (Exception exception)
         {
@@ -1842,7 +1858,7 @@ public sealed class EditorViewModel : ViewModelBase
         {
             var dialog = new OpenFileDialog
             {
-                Title = "Choose Any Original WCC / WGS DAT File",
+                Title = "Choose Matching Original WCC / WGS DAT File",
                 Filter = "Worldgroup / MajorMUD data (*.dat;*.bin)|*.dat;*.bin|All files (*.*)|*.*"
             };
             if (dialog.ShowDialog() != true) return;
@@ -1853,10 +1869,34 @@ public sealed class EditorViewModel : ViewModelBase
             foreach (var file in analysis.Files) WccEvidenceFiles.Add(file);
             SelectedWccEvidenceFile = WccEvidenceFiles.FirstOrDefault();
             WccEvidenceStatus = analysis.Summary;
+            RefreshNightmareSourcePairValidation();
         }
         catch (Exception exception)
         {
+            PendingNightmareSourcePairValidation = null;
             WccEvidenceStatus = "WCC evidence scan failed: " + exception.Message;
+        }
+    }
+
+    private void RefreshNightmareSourcePairValidation()
+    {
+        if (PendingNightmareMdbAnalysis is null || string.IsNullOrWhiteSpace(NightmareMdbPath) || string.IsNullOrWhiteSpace(WccEvidenceFolder))
+        {
+            PendingNightmareSourcePairValidation = null;
+            return;
+        }
+        try
+        {
+            PendingNightmareSourcePairValidation = _nightmareMdbBridge.ValidateMdbWccPair(NightmareMdbPath, WccEvidenceFolder);
+            WccEvidenceStatus = PendingNightmareSourcePairValidation.Summary;
+            NightmareMdbStatus = PendingNightmareSourcePairValidation.CanImport
+                ? PendingNightmareMdbAnalysis.Summary + " Required MDB + WCC/WGS source verification passed; import is unlocked."
+                : PendingNightmareMdbAnalysis.Summary + " Import remains locked until the matching WCC/WGS set verifies.";
+        }
+        catch (Exception exception)
+        {
+            PendingNightmareSourcePairValidation = null;
+            WccEvidenceStatus = "MDB/WCC source verification failed: " + exception.Message;
         }
     }
 

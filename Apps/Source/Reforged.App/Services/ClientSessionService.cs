@@ -162,6 +162,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             runtime.TelnetTracePath = session.TerminalPreferences.CaptureTelnetTraffic
                 ? CreateTelnetTracePath(session)
                 : string.Empty;
+            session.TelnetTracePath = runtime.TelnetTracePath;
 
             var telnetStream = new TelnetNegotiationStream(
                 stream,
@@ -443,6 +444,7 @@ public sealed partial class ClientSessionService : IClientSessionService
                 session.LastCommandText = echoToTerminal ? text : "[hidden]";
                 session.LastCommandOrigin = origin;
                 session.LastCommandAt = sentAt;
+                AddProgramLog(session, "Command", echoToTerminal ? text : "[hidden]", origin, sentAt);
                 CommandSent?.Invoke(
                     this,
                     new ClientCommandSentEvent(
@@ -1660,6 +1662,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         {
             session.ConnectionState = state;
             session.ConnectionMessage = message;
+            AddProgramLog(session, "Connection", $"{state}: {message}", null, DateTimeOffset.Now);
             StateChanged?.Invoke(this, new ClientSessionStateEvent(session.SessionId, state, message));
         });
     }
@@ -1670,6 +1673,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         {
             session.RouteState = state;
             session.RouteMessage = message;
+            AddProgramLog(session, "Route", $"{state}: {message}", ClientCommandOrigin.RouteAutomation, DateTimeOffset.Now);
             RouteChanged?.Invoke(this, new RouteExecutionEvent(session.SessionId, state, session.RouteStep, session.RouteStepCount, message));
         });
     }
@@ -1832,10 +1836,22 @@ public sealed partial class ClientSessionService : IClientSessionService
         var text = AnsiSequence.Replace(line, string.Empty).Trim();
         if (Regex.IsMatch(text, @"^(You tell|.+ tells you|From .+:|.+ telepaths(?: to you)?\s*:)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Tell;
         if (Regex.IsMatch(text, @"^(Party|Group|\[Party\]|\[Group\])", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Party;
-        if (Regex.IsMatch(text, @"^(You say|.+ says|.+ chats|Chat:)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Chat;
+        if (Regex.IsMatch(text, @"^(?:You\s+)?(?:say|yell|gossip|auction|broadcast)\b|\b(?:says|yells|gossips|auctions|broadcasts)\b|\bgangpath\b|^Chat:", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Chat;
         if (Regex.IsMatch(text, @"(attacks|hits|misses|damage|combat|killed|slain|flee)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.Combat;
         if (Regex.IsMatch(text, @"^(Connected|Disconnected|Reconnecting|System|Warning|Error)", RegexOptions.IgnoreCase)) return ClientTerminalChannel.System;
         return ClientTerminalChannel.Main;
+    }
+
+    private static void AddProgramLog(
+        ClientSessionConnection session,
+        string area,
+        string message,
+        ClientCommandOrigin? origin,
+        DateTimeOffset timestamp)
+    {
+        session.ProgramLogEntries.Add(new ReforgedClientProgramLogEntry(timestamp, area, message, origin));
+        while (session.ProgramLogEntries.Count > 1000)
+            session.ProgramLogEntries.RemoveAt(0);
     }
 
     private static void AddTerminalEntry(ClientSessionConnection session, ClientTerminalEntry entry)

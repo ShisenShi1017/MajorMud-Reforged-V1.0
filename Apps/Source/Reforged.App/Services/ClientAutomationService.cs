@@ -21,7 +21,7 @@ public interface IClientAutomationService
 
 public sealed class ClientAutomationService : IClientAutomationService
 {
-    internal const int CurrentProfileSchemaVersion = 2;
+    internal const int CurrentProfileSchemaVersion = 3;
     private readonly IApplicationSettingsService _settings;
     private readonly Dictionary<string, DateTimeOffset> _lastCommandAtBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
@@ -77,35 +77,55 @@ public sealed class ClientAutomationService : IClientAutomationService
         if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
             && (context.Timestamp - lastCommandAt).TotalMilliseconds < delay) return [];
 
-        var ruleMatches = Profile.Rules
-            .Where(r => Profile.Capabilities.TextTriggersEnabled && r.Enabled && IsPermitted(r) && ContextAllowed(r, context) && CooldownReady(r, context.Timestamp, context.SessionId) && Matches(r, context) && !string.IsNullOrWhiteSpace(r.Command))
-            .OrderBy(r => r.Priority)
-            .Select(r => new ClientAutomationCommandRequest(r.Id, r.Name, r.Command.Trim(), r.Area, context.Timestamp, context.SessionId));
-
-        var customTextMatches = Profile.Capabilities.TextTriggers
-            .Where(trigger => Profile.Capabilities.TextTriggersEnabled
-                && !string.IsNullOrWhiteSpace(trigger.MatchText)
-                && !string.IsNullOrWhiteSpace(trigger.Command)
-                && context.LastLine.Contains(trigger.MatchText.Trim(), StringComparison.OrdinalIgnoreCase)
-                && (!_ruleLastRun.TryGetValue(RunKey(context.SessionId, trigger.Id), out var last)
-                    || (context.Timestamp - last).TotalSeconds >= Math.Max(0, trigger.CooldownSeconds)))
-            .Select(trigger => new ClientAutomationCommandRequest(
-                trigger.Id,
-                $"Text trigger: {trigger.MatchText.Trim()}",
-                trigger.Command.Trim(),
-                AutomationArea.Utility,
-                context.Timestamp,
-                context.SessionId));
-
-        var matches = customTextMatches.Concat(ruleMatches).Take(1).ToArray();
-
-        foreach (var request in matches)
+        var candidates = new List<(int Priority, ClientAutomationCommandRequest Request)>();
+        if (Profile.Capabilities.TextTriggersEnabled)
         {
-            _lastCommandAtBySession[context.SessionId] = context.Timestamp;
-            _ruleLastRun[RunKey(context.SessionId, request.RuleId)] = context.Timestamp;
-            CommandRequested?.Invoke(this, request);
+            foreach (var trigger in Profile.Capabilities.TextTriggers
+                         .Where(trigger => trigger.Enabled)
+                         .OrderBy(trigger => trigger.Priority)
+                         .ThenBy(trigger => trigger.Id, StringComparer.OrdinalIgnoreCase))
+            {
+                if (string.IsNullOrWhiteSpace(trigger.MatchText) || string.IsNullOrWhiteSpace(trigger.Command)) continue;
+                if (trigger.OnlyOutOfCombat && context.InCombat) continue;
+                if (trigger.OnlyInCombat && !context.InCombat) continue;
+                if (_ruleLastRun.TryGetValue(RunKey(context.SessionId, trigger.Id), out var last) &&
+                    (context.Timestamp - last).TotalSeconds < Math.Max(0, trigger.CooldownSeconds)) continue;
+                if (!ClientAutomationExpansionEngine.TryMatchTrigger(trigger, context.LastLine, out var captures, out _)) continue;
+                if (!ClientAutomationExpansionEngine.TryExpandTriggerResponse(trigger.Command, captures, out var commands)) continue;
+
+                var name = string.IsNullOrWhiteSpace(trigger.Name)
+                    ? $"Text trigger: {trigger.MatchText.Trim()}"
+                    : trigger.Name.Trim();
+                candidates.Add((trigger.Priority, new ClientAutomationCommandRequest(
+                    trigger.Id, name, commands[0], AutomationArea.Utility,
+                    context.Timestamp, context.SessionId, commands)));
+            }
         }
-        return matches;
+
+        foreach (var rule in Profile.Rules
+                     .Where(r => Profile.Capabilities.TextTriggersEnabled && r.Enabled && IsPermitted(r) &&
+                                 ContextAllowed(r, context) && CooldownReady(r, context.Timestamp, context.SessionId) &&
+                                 Matches(r, context) && !string.IsNullOrWhiteSpace(r.Command))
+                     .OrderBy(r => r.Priority)
+                     .ThenBy(r => r.Id, StringComparer.OrdinalIgnoreCase))
+        {
+            var commands = ClientAutomationExpansionEngine.SplitCommandSteps(rule.Command);
+            if (commands.Count == 0) continue;
+            candidates.Add((rule.Priority, new ClientAutomationCommandRequest(
+                rule.Id, rule.Name, commands[0], rule.Area, context.Timestamp, context.SessionId, commands)));
+        }
+
+        var request = candidates
+            .OrderBy(candidate => candidate.Priority)
+            .ThenBy(candidate => candidate.Request.RuleId, StringComparer.OrdinalIgnoreCase)
+            .Select(candidate => candidate.Request)
+            .FirstOrDefault();
+        if (request is null) return [];
+
+        _lastCommandAtBySession[context.SessionId] = context.Timestamp;
+        _ruleLastRun[RunKey(context.SessionId, request.RuleId)] = context.Timestamp;
+        CommandRequested?.Invoke(this, request);
+        return [request];
     }
 
     public IReadOnlyList<ClientAutomationCommandRequest> EvaluateTimedEvents(ClientAutomationContext context, bool connected)
@@ -116,19 +136,30 @@ public sealed class ClientAutomationService : IClientAutomationService
         if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
             && (context.Timestamp - lastCommandAt).TotalMilliseconds < delay) return [];
 
-        foreach (var scheduledEvent in Profile.Options.Events.ScheduledEvents.Where(item => item.Enabled && !string.IsNullOrWhiteSpace(item.Command)))
+        foreach (var scheduledEvent in Profile.Options.Events.ScheduledEvents
+                     .Where(item => item.Enabled && !string.IsNullOrWhiteSpace(item.Command))
+                     .OrderBy(item => item.Priority)
+                     .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase))
         {
             if (scheduledEvent.OnlyOutOfCombat && context.InCombat) continue;
+            if (scheduledEvent.OnlyInCombat && !context.InCombat) continue;
+            var commands = ClientAutomationExpansionEngine.SplitCommandSteps(scheduledEvent.Command);
+            if (commands.Count == 0) continue;
+
             var runKey = RunKey(context.SessionId, scheduledEvent.Id);
+            var intervalSeconds = scheduledEvent.IntervalSeconds > 0
+                ? Math.Max(1, scheduledEvent.IntervalSeconds)
+                : Math.Max(1, scheduledEvent.IntervalMinutes) * 60;
             if (!_ruleLastRun.TryGetValue(runKey, out var lastRun))
             {
                 _ruleLastRun[runKey] = context.Timestamp;
-                continue;
+                if (!scheduledEvent.RunImmediately) continue;
             }
-            if ((context.Timestamp - lastRun).TotalMinutes < Math.Max(1, scheduledEvent.IntervalMinutes)) continue;
+            else if ((context.Timestamp - lastRun).TotalSeconds < intervalSeconds) continue;
+
             var request = new ClientAutomationCommandRequest(
-                scheduledEvent.Id, scheduledEvent.Name, scheduledEvent.Command.Trim(), AutomationArea.Events,
-                context.Timestamp, context.SessionId);
+                scheduledEvent.Id, scheduledEvent.Name, commands[0], AutomationArea.Events,
+                context.Timestamp, context.SessionId, commands);
             _lastCommandAtBySession[context.SessionId] = context.Timestamp;
             _ruleLastRun[runKey] = context.Timestamp;
             CommandRequested?.Invoke(this, request);
@@ -146,23 +177,24 @@ public sealed class ClientAutomationService : IClientAutomationService
         const string macroPrefix = "/macro ";
         if (Profile.Capabilities.MacrosEnabled && text.StartsWith(macroPrefix, StringComparison.OrdinalIgnoreCase))
         {
-            var name = text[macroPrefix.Length..].Trim();
-            var macro = Profile.Capabilities.Macros.FirstOrDefault(candidate => candidate.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var invocation = text[macroPrefix.Length..].Trim();
+            var separator = invocation.IndexOf(' ');
+            var name = separator < 0 ? invocation : invocation[..separator];
+            var arguments = separator < 0 ? string.Empty : invocation[(separator + 1)..].Trim();
+            var macro = Profile.Capabilities.Macros.FirstOrDefault(candidate => candidate.Enabled && candidate.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
             if (macro is null) return false;
-            commands = macro.Commands.Select(command => command.Trim()).Where(command => command.Length > 0).ToArray();
+            commands = ClientAutomationExpansionEngine.ExpandMacro(macro.Commands, arguments);
             return commands.Count > 0;
         }
 
         if (!Profile.Capabilities.AliasesEnabled) return false;
-        var separator = text.IndexOf(' ');
-        var namePart = separator < 0 ? text : text[..separator];
-        var arguments = separator < 0 ? string.Empty : text[(separator + 1)..].Trim();
-        var alias = Profile.Capabilities.Aliases.FirstOrDefault(candidate => candidate.Name.Equals(namePart, StringComparison.OrdinalIgnoreCase));
+        var aliasSeparator = text.IndexOf(' ');
+        var namePart = aliasSeparator < 0 ? text : text[..aliasSeparator];
+        var argumentsPart = aliasSeparator < 0 ? string.Empty : text[(aliasSeparator + 1)..].Trim();
+        var alias = Profile.Capabilities.Aliases.FirstOrDefault(candidate => candidate.Enabled && candidate.Name.Equals(namePart, StringComparison.OrdinalIgnoreCase));
         if (alias is null || string.IsNullOrWhiteSpace(alias.Command)) return false;
-        var expanded = alias.Command.Trim();
-        if (arguments.Length > 0) expanded = $"{expanded} {arguments}";
-        commands = [expanded];
-        return true;
+        commands = ClientAutomationExpansionEngine.ExpandAlias(alias.Command, argumentsPart);
+        return commands.Count > 0;
     }
 
     public void SetMasterEnabled(bool enabled)
@@ -417,8 +449,28 @@ public sealed class ClientAutomationService : IClientAutomationService
         profile.Capabilities.Aliases ??= [];
         profile.Capabilities.Macros ??= [];
         profile.Capabilities.TextTriggers ??= [];
+        foreach (var alias in profile.Capabilities.Aliases)
+        {
+            alias.Id = string.IsNullOrWhiteSpace(alias.Id) ? Guid.NewGuid().ToString("N") : alias.Id;
+            alias.Name = alias.Name?.Trim() ?? string.Empty;
+            alias.Command ??= string.Empty;
+        }
         foreach (var macro in profile.Capabilities.Macros)
+        {
+            macro.Id = string.IsNullOrWhiteSpace(macro.Id) ? Guid.NewGuid().ToString("N") : macro.Id;
+            macro.Name = macro.Name?.Trim() ?? string.Empty;
             macro.Commands ??= [];
+        }
+        foreach (var trigger in profile.Capabilities.TextTriggers)
+        {
+            trigger.Id = string.IsNullOrWhiteSpace(trigger.Id) ? Guid.NewGuid().ToString("N") : trigger.Id;
+            trigger.Name ??= string.Empty;
+            trigger.MatchText ??= string.Empty;
+            trigger.Command ??= string.Empty;
+            trigger.CooldownSeconds = Math.Clamp(trigger.CooldownSeconds, 0, 86400);
+            trigger.Priority = Math.Clamp(trigger.Priority, -100000, 100000);
+            if (trigger.OnlyOutOfCombat && trigger.OnlyInCombat) trigger.OnlyInCombat = false;
+        }
         profile.Options.Health ??= new HealthAutomationOptions();
         profile.Options.Spells ??= new SpellAutomationOptions();
         profile.Options.Combat ??= new CombatAutomationOptions();
@@ -457,7 +509,59 @@ public sealed class ClientAutomationService : IClientAutomationService
             for (var index = 0; index < labels.Length; index++)
                 profile.Options.Toolbar.Add(new ClientToolbarOption { Label = labels[index], AutomationArea = labels[index].Replace(" & ", "And"), Order = index });
         }
+        profile.Options.Presentation.OutputScalePercent = Math.Clamp(profile.Options.Presentation.OutputScalePercent, 75, 200);
+        foreach (var item in profile.Options.Toolbar)
+        {
+            item.Id = string.IsNullOrWhiteSpace(item.Id) ? Guid.NewGuid().ToString("N") : item.Id;
+            item.Label = string.IsNullOrWhiteSpace(item.Label) ? "Tool" : item.Label.Trim();
+            item.AutomationArea = item.AutomationArea?.Trim() ?? string.Empty;
+            item.Order = Math.Clamp(item.Order, -1000, 1000);
+        }
+        profile.Options.KeyBindings ??= [];
+        if (profile.Options.KeyBindings.Count == 0)
+        {
+            profile.Options.KeyBindings.Add(new ClientCommandKeyBindingOption { Label = "Look", Gesture = "Ctrl+1", Command = "look", Order = 0 });
+            profile.Options.KeyBindings.Add(new ClientCommandKeyBindingOption { Label = "Inventory", Gesture = "Ctrl+2", Command = "inventory", Order = 10 });
+            profile.Options.KeyBindings.Add(new ClientCommandKeyBindingOption { Label = "Equipment", Gesture = "Ctrl+3", Command = "equipment", Order = 20 });
+            profile.Options.KeyBindings.Add(new ClientCommandKeyBindingOption { Label = "Party", Gesture = "Ctrl+4", Command = "party", Order = 30 });
+        }
+        foreach (var binding in profile.Options.KeyBindings)
+        {
+            binding.Id = string.IsNullOrWhiteSpace(binding.Id) ? Guid.NewGuid().ToString("N") : binding.Id;
+            binding.Label = string.IsNullOrWhiteSpace(binding.Label) ? "Command hotkey" : binding.Label.Trim();
+            binding.Gesture = binding.Gesture?.Trim() ?? string.Empty;
+            binding.Command = binding.Command?.Trim() ?? string.Empty;
+            binding.Order = Math.Clamp(binding.Order, -1000, 1000);
+        }
+        profile.Options.ContextCommands ??= [];
+        if (profile.Options.ContextCommands.Count == 0)
+        {
+            var commands = new (string Label, string Command)[]
+            {
+                ("Look", "look"), ("Inventory", "inventory"), ("Equipment", "equipment"),
+                ("Stats", "stats"), ("Party", "party")
+            };
+            for (var index = 0; index < commands.Length; index++)
+                profile.Options.ContextCommands.Add(new ClientContextCommandOption { Label = commands[index].Label, Command = commands[index].Command, Order = index * 10 });
+        }
+        foreach (var command in profile.Options.ContextCommands)
+        {
+            command.Id = string.IsNullOrWhiteSpace(command.Id) ? Guid.NewGuid().ToString("N") : command.Id;
+            command.Label = string.IsNullOrWhiteSpace(command.Label) ? "Command" : command.Label.Trim();
+            command.Command = command.Command?.Trim() ?? string.Empty;
+            command.Order = Math.Clamp(command.Order, -1000, 1000);
+        }
         profile.Options.Events.ScheduledEvents ??= [];
+        foreach (var scheduledEvent in profile.Options.Events.ScheduledEvents)
+        {
+            scheduledEvent.Id = string.IsNullOrWhiteSpace(scheduledEvent.Id) ? Guid.NewGuid().ToString("N") : scheduledEvent.Id;
+            scheduledEvent.Name = string.IsNullOrWhiteSpace(scheduledEvent.Name) ? "Event" : scheduledEvent.Name.Trim();
+            scheduledEvent.Command ??= string.Empty;
+            scheduledEvent.IntervalMinutes = Math.Max(1, scheduledEvent.IntervalMinutes);
+            scheduledEvent.IntervalSeconds = Math.Clamp(scheduledEvent.IntervalSeconds, 0, 86400);
+            scheduledEvent.Priority = Math.Clamp(scheduledEvent.Priority, -100000, 100000);
+            if (scheduledEvent.OnlyOutOfCombat && scheduledEvent.OnlyInCombat) scheduledEvent.OnlyInCombat = false;
+        }
         profile.Options.Spells.PriorityActions ??= [];
         profile.Options.Spells.DebuffPriorityActions ??= [];
         profile.Options.Spells.NukePriorityActions ??= [];

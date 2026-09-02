@@ -212,6 +212,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     private string _livePromptText = string.Empty;
     private ClassicTerminalSnapshot _classicScreen = ClassicTerminalSnapshot.Empty;
     private string _telnetStatus = "Not connected";
+    private string _telnetTracePath = string.Empty;
     private int _terminalColumns = 80;
     private int _terminalRows = 25;
     private int _healthPercent = 100;
@@ -309,6 +310,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<ClientTerminalEntry> TellEntries { get; } = [];
     public ObservableCollection<ClientTerminalEntry> PartyEntries { get; } = [];
     public ObservableCollection<ClientTerminalEntry> SystemEntries { get; } = [];
+    public ObservableCollection<ReforgedClientProgramLogEntry> ProgramLogEntries { get; } = [];
     public ClientTerminalPreferences TerminalPreferences { get; } = new();
     public ClassicPartyAutomationPreferences ClassicPartyPreferences { get; set; } = new();
     public ClassicCombatAutomationPreferences ClassicCombatPreferences { get; set; } = new();
@@ -318,6 +320,7 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public string LivePromptText { get => _livePromptText; set => Set(ref _livePromptText, value); }
     public ClassicTerminalSnapshot ClassicScreen { get => _classicScreen; set => Set(ref _classicScreen, value); }
     public string TelnetStatus { get => _telnetStatus; set => Set(ref _telnetStatus, value); }
+    public string TelnetTracePath { get => _telnetTracePath; set => Set(ref _telnetTracePath, value?.Trim() ?? string.Empty); }
     public int TerminalColumns { get => _terminalColumns; set { if (Set(ref _terminalColumns, Math.Clamp(value, 20, ushort.MaxValue))) Raise(nameof(TerminalSizeSummary)); } }
     public int TerminalRows { get => _terminalRows; set { if (Set(ref _terminalRows, Math.Clamp(value, 5, ushort.MaxValue))) Raise(nameof(TerminalSizeSummary)); } }
     public string TerminalSizeSummary => $"{TerminalColumns}x{TerminalRows}";
@@ -463,6 +466,9 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
         return true;
     }
 }
+
+public sealed record ReforgedClientProgramLogEntry(
+    DateTimeOffset Timestamp, string Area, string Message, ClientCommandOrigin? Origin = null);
 
 public sealed record ClientCommandSentEvent(
     string SessionId,

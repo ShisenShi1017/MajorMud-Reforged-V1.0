@@ -27,6 +27,12 @@
     <ProjectReference Include="../../Compiler/MajorMud.Reforged.Compiler.csproj" />
   </ItemGroup>
 
+  <!-- Pure-managed MDB/ACCDB reader used only to compare an external BBS database
+       against the immutable Classic base and generate a small local overlay. -->
+  <ItemGroup>
+    <PackageReference Include="JetDatabaseReader" Version="2.2.0" />
+  </ItemGroup>
+
   <!-- Private/development-only AI dependencies. Public releases do not restore them. -->
   <ItemGroup Condition="'$(PublicRelease)' != 'true'">
     <PackageReference Include="LLamaSharp" Version="0.27.0" />

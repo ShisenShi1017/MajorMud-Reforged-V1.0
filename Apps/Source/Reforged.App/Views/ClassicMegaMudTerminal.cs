@@ -199,6 +199,11 @@ public sealed class ClassicMegaMudTerminal : Control
         _caretIndex = _input.Length;
         _caretVisible = true;
         InvalidateVisual();
+        if (e.ChangedButton == MouseButton.Right && ContextMenu is not null)
+        {
+            ContextMenu.PlacementTarget = this;
+            ContextMenu.IsOpen = true;
+        }
         e.Handled = true;
     }
 

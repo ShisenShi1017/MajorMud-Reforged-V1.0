@@ -44,6 +44,36 @@ public static class SmokeRunner
             return await ClientBatch3RegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
         }
 
+        if (HasArgument(args, "--smoke-client-inventory-automation"))
+        {
+            return await MudPlayInventoryAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-recovery-automation"))
+        {
+            return await ReforgedRecoveryAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-combat-automation"))
+        {
+            return await ReforgedCombatAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+        }
+
+        if (HasArgument(args, "--smoke-client-party-automation"))
+        {
+            return ReforgedPartyAutomationRegressionSmoke.Run();
+        }
+
+        if (HasArgument(args, "--smoke-client-diagnostics"))
+        {
+            return ReforgedClientDiagnosticsRegressionSmoke.Run();
+        }
+
+        if (HasArgument(args, "--smoke-client-parity-completion"))
+        {
+            return await ReforgedParityCompletionRegressionSmoke.RunAsync();
+        }
+
         if (HasArgument(args, "--smoke-client-help"))
         {
             return ClientHelpRegressionSmoke.Run();
