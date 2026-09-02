@@ -7,7 +7,7 @@ public static class RuntimeCombatSpellResourceLifecycleSmoke
         var policy = new RuntimeSpellResourcePolicy(
             "policy.smoke.spell.999999", "spell.999999", "mana", 12,
             RuntimeSpellResourceTiming.ReserveAtStartCommitAtCompletion, true, true,
-            new[] { "Evidence/CombatSpellReconstruction/combat_spell_resource_lifecycle_evidence_0152.json#smoke-policy" },
+            new[] { "Librarium/Objects/combat_spells/combat_spell_records.json#smoke-policy" },
             RuntimeResolutionConfidence.StronglyCorrelated,
             "Reject when a canonical spell lacks an evidence-backed timing policy.");
         var sink = new SmokeResourceSink(40);

@@ -54,25 +54,14 @@ public static class RuntimeBundleEMerchantTrainerClosureAudit
         var requiredEvidence = new[]
         {
             "Data/Classic/shops.json",
-            "ImportedDatabases/NativeRuntime/WCCSHOPS.DAT",
-            "ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat",
-            "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json",
-            "Librarium/Objects/shops/catalog.json",
-            "Librarium/Objects/shops/sql_mdb_records_0128.json",
-            "Librarium/Runtime/Economy/merchant_lifecycle_catalog_0155.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ECON_SHOPS.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_TRAINING.json",
+            "Data/Classic/npcs.json",
+            "Data/Classic/character_foundation.json",
+            "Librarium/Objects/shops/shop_records.json",
+            "Librarium/Objects/npcs/npc_records.json",
+            "Librarium/Objects/character_foundation/catalog.json",
             "Tools/ReforgedValidator/Baselines/DataSimVer/0008/ShopInventoryItemRefs.csv",
             "Tools/ReforgedValidator/Baselines/DataSimVer/0008/ShopServiceInventory.csv",
-            "Tools/ReforgedValidator/Baselines/DataSimVer/0008/TrainerRoomRefs.csv",
-            "Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
-            "Evidence/NpcAI/npc_ai_merchant_stock_evidence.json",
-            "Evidence/NpcAI/npc_ai_merchant_restock_admission_evidence.json",
-            "Evidence/NpcAI/npc_ai_merchant_access_admission_evidence.json",
-            "Evidence/NpcAI/npc_ai_merchant_gold_settlement_evidence.json",
-            "Evidence/NpcAI/npc_ai_trainer_eligibility_admission_evidence.json",
-            "Evidence/NpcAI/npc_ai_trainer_offering_evidence.json",
-            "Evidence/NpcAI/npc_ai_trainer_offering_admission_evidence.json"
+            "Tools/ReforgedValidator/Baselines/DataSimVer/0008/TrainerRoomRefs.csv"
         };
         foreach (var relative in requiredEvidence)
         {

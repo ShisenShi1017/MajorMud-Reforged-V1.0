@@ -38,7 +38,7 @@ public static class RuntimeClassicRegenerationEvidenceRegistry
             "Exact WCCMMHLP message plus native command/state branches."),
         new("hp.stock-base", RuntimeClassicRegenerationEvidenceState.Proven,
             "Stock HP regeneration uses max(1, trunc(((Level + 20) * Health) / 750)).",
-            "Direct WCCMMUD.DLL _slow_update_character arithmetic, CodeUpdate0336."),
+            "Direct WCCMMUD.DLL _slow_update_character arithmetic."),
         new("hp.greatermud-divisor", RuntimeClassicRegenerationEvidenceState.RejectedForClassic,
             "Use divisor 500 for Classic MajorMUD HP regeneration.",
             "Direct DLL uses /750; retained /500 branch belongs to GreaterMUD reference code."),

@@ -6,7 +6,7 @@ public static class WorldgroupSchedulingRuntimeRegistry
     public const uint StopPolling = 0x0041FA73;
     public const int SessionPollingCallbackOffset = 0x48;
     public const byte PollingSentinelByte = 0xC0;
-    [Obsolete("Update0026 proved 0xC0 is an injected polling sentinel, not a delay value.")]
+    [Obsolete("Native evidence proves 0xC0 is an injected polling sentinel, not a delay value.")]
     public const int PollingRearmDelayRaw = PollingSentinelByte;
     public const uint PollingInvokeSite = 0x004231EC;
     public const uint PollingRearmSite = 0x00423204;

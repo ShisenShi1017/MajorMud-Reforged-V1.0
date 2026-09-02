@@ -83,16 +83,10 @@ public static class RuntimeBundleDFinalExhaustionAudit
         {
             "Data/Classic/rooms.json",
             "Data/Classic/exits.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/rooms_decoded.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",
-            "Librarium/Objects/rooms/mmexplorer_room_records_0140.json",
-            "Librarium/Objects/exits/mmexplorer_exit_records_0140.json",
-            "Librarium/RemainingSystems/door_lock_access_catalog.json",
-            "Librarium/RemainingSystems/world_reset_cleanup_catalog.json",
-            "Evidence/DataSimVer0017-SearchCleanupEvidence.json",
-            "Evidence/ExternalSources/Validation0008/search_hidden_exit_trace.csv",
-            "Evidence/ExternalSources/Validation0012/cleanup_hidden_snippets.json",
+            "Data/Classic/abilities.json",
+            "Librarium/Objects/rooms/room_records.json",
+            "Librarium/Objects/exits/exit_records.json",
+            "Librarium/Objects/room_interactions/room_interaction_records.json",
             "Librarium/Objects/abilities/ability_records.json"
         };
         foreach (var source in sourceFamilies) Check(Exists(source), "source-present:" + source);
@@ -103,7 +97,7 @@ public static class RuntimeBundleDFinalExhaustionAudit
         Check(Directory.GetFiles(Path.Combine(projectRoot, "Apps", "Source", "Reforged.Server"), "RuntimeClassicHiddenSearch.cs", SearchOption.TopDirectoryOnly).Length == 1, "one-hidden-search-authority-file");
         Check(Read("Apps/Source/Reforged.Server/RuntimeLivingWorld.cs").Contains("TryResolveExit", StringComparison.Ordinal), "live-movement-uses-authoritative-exit-resolution");
         Check(Read("Apps/Source/Reforged.Server/RuntimeClassicCleanup.cs").Contains("DeleteAtCleanup", StringComparison.Ordinal), "runtime-cleanup-consumes-del-maint-semantic");
-        Check(Read("Apps/Source/Reforged.Server/RuntimeBundleDCorrectiveExhaustionAudit.cs").Contains("Del@Maint", StringComparison.Ordinal), "decoded-del-maint-provenance-preserved");
+        Check(Read("Tools/ReforgedValidator/DotNet/Checks/RuntimeBundleDCorrectiveExhaustionAudit.cs").Contains("Del@Maint", StringComparison.Ordinal), "decoded-del-maint-provenance-preserved");
 
         // Earlier phase reports intentionally retain historical decode notes. Closure is now
         // determined by the D-only semantic audit, which distinguishes executable gameplay

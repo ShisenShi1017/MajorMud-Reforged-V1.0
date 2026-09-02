@@ -65,10 +65,10 @@ public static class RuntimeClassicPartyCoordinationEvidenceRegistry
             "WCCMMUD.DLL _fast_update_character calls _move_user(follower, leaderExit, 3) at 0x4230fb..0x42310d."),
         new("party.leader-leave", RuntimeClassicPartyCoordinationEvidenceState.Proven,
             "Bare LEAVE and session departure are distinct: a following member LEAVEs via _stop_following; a leader's bare LEAVE does not dissolve the travel party. QUIT/disconnect/death lifecycle departure still detaches all followers and dissolves the group with no successor.",
-            "WCCMMUD.DLL _cmd_leave 0x453e37..0x453e59 plus CodeUpdate0339 shared _cleanup_when_user_leaves ownership."),
+            "WCCMMUD.DLL _cmd_leave 0x453e37..0x453e59 plus shared _cleanup_when_user_leaves ownership."),
         new("party.disconnect-death-teleport-pvp", RuntimeClassicPartyCoordinationEvidenceState.Proven,
             "Unexpected disconnect and death converge on native party cleanup; generic special/direct movement does not carry followers because propagation is owned only by the ordinary fast-update mode-3 path; death cleanup precedes respawn/resurrection; spell target type 12 excludes self/party while type 13 admits self/party.",
-            "CodeUpdate0339 lifecycle proof; WCCMMUD.DLL _fast_update_character/_move_user and _is_valid_target target-type branches 0x43f15b/0x43f19c."),
+            "Native lifecycle proof; WCCMMUD.DLL _fast_update_character/_move_user and _is_valid_target target-type branches 0x43f15b/0x43f19c."),
         new("party.megamud-wait", RuntimeClassicPartyCoordinationEvidenceState.Excluded,
             "MegaMUD client-side wait timers are not MajorMUD party-server evidence and are not promoted into Classic runtime behavior.",
             "Client automation behavior is outside the native MajorMUD server parity boundary.")

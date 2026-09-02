@@ -7,7 +7,7 @@ public static class RuntimeCombatSpellBindingSmoke
         var weaponBinding = new RuntimeCombatSpellDefinitionBinding(
             "binding.item.1622", RuntimeCombatSpellDefinitionKind.Weapon, "item.1622", "profile.item.1622",
             14, 33, "physical", null, null,
-            new[] { "Data/Classic/items.json#item.1622", "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-item-wcc.json#1622" },
+            new[] { "Data/Classic/items.json#item.1622", "Librarium/Objects/items/item_records.json#item.1622" },
             RuntimeResolutionConfidence.Proven, "Reject when canonical binding or profile is unavailable.");
         var profile = new RuntimeResolutionProfile(
             "profile.item.1622", RuntimeResolutionConfidence.Proven, "physical", null, null,

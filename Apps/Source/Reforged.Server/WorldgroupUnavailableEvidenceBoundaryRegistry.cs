@@ -2,7 +2,7 @@ namespace Reforged.Server;
 
 public static class WorldgroupUnavailableEvidenceBoundaryRegistry
 {
-    public const string EvidenceUpdate = "WorldgroupNativeClosureUpdate0039";
+    public const string EvidenceUpdate = "worldgroup-unavailable-evidence-boundary";
     public const string BoundaryId = "worldgroup.btrieve.recovery-format.live-capture-unavailable";
     public const string Status = "ConclusiveExternalEvidenceBoundary";
     public const bool RequiresLiveWorldgroup = true;

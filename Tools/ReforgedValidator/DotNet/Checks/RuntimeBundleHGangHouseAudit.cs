@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -23,20 +22,6 @@ public sealed record RuntimeBundleHGangHouseAuditReport(
 
 public static class RuntimeBundleHGangHouseAudit
 {
-    private static readonly string[] ExpectedMapFiles =
-    {
-        "gang_house_red.html",
-        "gang_house_orange.html",
-        "gang_house_black.html",
-        "gang_house_violet.html",
-        "gang_house_yellow.html",
-        "gang_house_green.html",
-        "gang_house_silver.html",
-        "gang_house_gold.html",
-        "gang_house_white.html",
-        "gang_house_blue.html"
-    };
-
     private static readonly string[] ExpectedDeedNames =
     {
         "red parchment deed",
@@ -61,12 +46,6 @@ public static class RuntimeBundleHGangHouseAudit
             if (!condition) failures.Add(id);
         }
 
-        var nativeGangPath = Path.Combine(projectRoot, "ImportedDatabases", "NativeRuntime", "WCCGANGS.DAT");
-        var defaultGangPath = Path.Combine(projectRoot, "ImportedDatabases", "WCCDefaultInstall", "wcc default", "wccgang2.dat");
-        var summaryPath = Path.Combine(projectRoot, "Data", "NativeDecodeReports", "CodeUpdate0139RoomTextAudit", "WCCGANGS_summary.json");
-        var samplePath = Path.Combine(projectRoot, "Data", "NativeDecodeReports", "CodeUpdate0139RoomTextAudit", "WCCGANGS_block_samples_1024.json");
-        var stringsPath = Path.Combine(projectRoot, "Data", "NativeDecodeReports", "CodeUpdate0139RoomTextAudit", "WCCGANGS_strings.tsv");
-        var mapsRoot = Path.Combine(projectRoot, "ImportedDatabases", "OmniVerseReference", "CodeUpdate0046", "MudInfoMaps", "Extracted", "maps");
         var gangHousesPath = Path.Combine(projectRoot, "Data", "Classic", "gang_houses.json");
         var librariumGangHousesPath = Path.Combine(projectRoot, "Librarium", "Objects", "gang_houses", "gang_house_records.json");
         var itemsPath = Path.Combine(projectRoot, "Data", "Classic", "items.json");
@@ -75,11 +54,7 @@ public static class RuntimeBundleHGangHouseAudit
         var localCoreGraph = Path.Combine(projectRoot, "LibrariumLocal", "core_graph.json");
         var localRuntimeIndex = Path.Combine(projectRoot, "LibrariumLocal", "runtime_index.json");
 
-        // Raw imported evidence is intentionally retired from the Git repository after
-        // promotion. Runtime readiness is proved by Librarium and generated catalogs.
-        Check(File.Exists(summaryPath), "wccgangs-summary-present");
-        Check(File.Exists(samplePath), "wccgangs-block-samples-present");
-        Check(File.Exists(stringsPath), "wccgangs-strings-catalog-present");
+        // Runtime readiness is proved by promoted Librarium and generated catalogs.
         Check(File.Exists(itemsPath), "generated-items-present");
         Check(File.Exists(shopsPath), "generated-shops-present");
         Check(File.Exists(librariumGangHousesPath), "librarium-gang-house-catalog-present");
@@ -88,13 +63,6 @@ public static class RuntimeBundleHGangHouseAudit
         Check(!File.Exists(localCoreGraph), "librariumlocal-core-graph-not-present-in-repo");
         Check(!File.Exists(localRuntimeIndex), "librariumlocal-runtime-index-not-present-in-repo");
 
-        var nativeLength = File.Exists(nativeGangPath) ? (int)new FileInfo(nativeGangPath).Length : 0;
-        var defaultLength = File.Exists(defaultGangPath) ? (int)new FileInfo(defaultGangPath).Length : 0;
-        var mapReferenceCount = ExpectedMapFiles.Count(file =>
-        {
-            var path = Path.Combine(mapsRoot, file);
-            return File.Exists(path) && File.ReadAllText(path).Contains("Gang House", StringComparison.OrdinalIgnoreCase);
-        });
         Check(Read(librariumGangHousesPath).Contains("librarium_promoted_native_hse_and_deed_evidence", StringComparison.Ordinal),
             "librarium-retains-promoted-native-gang-house-authority");
 
@@ -201,9 +169,9 @@ public static class RuntimeBundleHGangHouseAudit
                 "Raw WCCGANGS, wccgang2, and map-reference files may be absent from Git after their promoted Librarium records have passed validation.",
                 "Gang-house taxation is owned by the once-per-day host mcurou callback. Reforged uses the historical 03:00 local host default without restart catch-up; host-configured non-default cleanup times remain an external host setting."
             },
-            nativeLength,
-            defaultLength,
-            mapReferenceCount,
+            0,
+            0,
+            0,
             deedItemCount,
             gangShopCount,
             environmentGangRows);

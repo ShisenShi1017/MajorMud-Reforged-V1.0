@@ -46,7 +46,7 @@ public static class RuntimeClassicGameplayFailureEvidenceRegistry
             "The broad recovery assertion therefore fails closed on unbound references without claiming that every owner crashes or every owner silently continues."),
         new("persistence.record-local-partial-save", RuntimeClassicGameplayFailureEvidenceState.Proven,
             "Catastrophic/failed MajorMUD persistence does not roll back earlier successful records through a WCC-selected transaction; saves are synchronous record-level DFA mutations and full buffer saves are best effort by record/family.",
-            "CodeUpdate0361 proves zero _dfaBegTrans/_dfaEndTrans/_dfaAbtTrans/_dfaUnlock imports, exact player/buffer save ownership, exact partial-save semantics, and shutdown buffer-flush ordering."),
+            "Native persistence analysis proves zero _dfaBegTrans/_dfaEndTrans/_dfaAbtTrans/_dfaUnlock imports, exact player/buffer save ownership, exact partial-save semantics, and shutdown buffer-flush ordering."),
         new("reforged.transactional-rollback", RuntimeClassicGameplayFailureEvidenceState.Excluded,
             "Reforged transactional rollback helpers are implementation safety mechanisms, not proof of a native ordinary-gameplay rollback subsystem.",
             "May remain for Custom/AI or atomic internal mutations but cannot define Classic rejection or persistence semantics."),

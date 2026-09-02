@@ -298,12 +298,12 @@ public sealed class LibrariumDataWriter
                 commandEvidenceSummary["confidence"] = "user_confirmed_classic_room_action";
             if (record["evidence"] is JsonArray commandEvidence && !commandEvidence.Any(item =>
                     item is JsonObject evidenceObject &&
-                    string.Equals(evidenceObject["source"]?.GetValue<string>(), "UserConfirmationCodeUpdate0139", StringComparison.OrdinalIgnoreCase)))
+                    string.Equals(evidenceObject["source"]?.GetValue<string>(), "UserConfirmedRoomActionVerbs", StringComparison.OrdinalIgnoreCase)))
             {
                 commandEvidence.Add(new JsonObject
                 {
-                    ["source"] = "UserConfirmationCodeUpdate0139",
-                    ["path"] = "Evidence/CodeUpdate0139-UserConfirmedRoomActionVerbs.md",
+                    ["source"] = "UserConfirmedRoomActionVerbs",
+                    ["path"] = "Librarium/Objects/parity/parity_records.json",
                     ["classification"] = "contextual_room_action_verb",
                     ["scope"] = "verb vocabulary only; exact room phrases and effects remain decoded-data-bound"
                 });
@@ -729,7 +729,7 @@ public sealed class LibrariumDataWriter
             ["object_families_compiled"] = result.ObjectFamiliesCompiled,
             ["objects_compiled"] = result.ObjectsCompiled,
             ["families"] = new JsonArray(families.Select(f => JsonValue.Create(f.Name)).ToArray()),
-            ["runtime_loader_contract"] = "Librarium/RuntimeContracts/generated_world_loader_contract_0127.json",
+            ["runtime_loader_contract"] = "generated_world_manifest_v1",
             ["source_of_truth"] = "Librarium",
             ["generated_output"] = true
         };

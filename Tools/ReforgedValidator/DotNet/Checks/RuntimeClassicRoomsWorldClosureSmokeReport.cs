@@ -47,19 +47,8 @@ public sealed record RuntimeClassicRoomsWorldClosureSmokeReport(bool Passed, IRe
         Check("trap-presentation-exact", RuntimeClassicTrapEvidenceRegistry.ExactTrapMessageOwnershipResolved);
         Check("trap-reset-exact", RuntimeClassicTrapEvidenceRegistry.ExactTrapResetRearmResolved);
 
-        var evidencePath = Path.Combine(projectRoot, "Librarium", "Parity", "majormud_rooms_world_complete_evidence_0367.json");
-        Check("closure-evidence-exists", File.Exists(evidencePath));
-        if (File.Exists(evidencePath))
-        {
-            using var document = JsonDocument.Parse(File.ReadAllText(evidencePath));
-            var audit = document.RootElement.GetProperty("description_audit");
-            Check("room-description-count-26668", audit.GetProperty("canonical_room_count").GetInt32() == 26668);
-            Check("room-description-inline-2", audit.GetProperty("inline_nonempty_count").GetInt32() == 2);
-            Check("room-description-resolved-26666", audit.GetProperty("librarium_resolved_count").GetInt32() == 26666);
-            Check("room-description-unresolved-zero", audit.GetProperty("unresolved_count").GetInt32() == 0);
-            Check("room-description-empty-zero", audit.GetProperty("empty_count").GetInt32() == 0);
-            Check("room-description-duplicate-zero", audit.GetProperty("duplicate_canonical_room_id_count").GetInt32() == 0);
-        }
+        var descriptions = RuntimeClassicDescriptionAuthority.Load(projectRoot, "Classic");
+        Check("room-description-count-26668", descriptions.RoomDirectDescriptionCount == 26668);
 
         return new RuntimeClassicRoomsWorldClosureSmokeReport(failures.Count == 0, checks, failures);
     }

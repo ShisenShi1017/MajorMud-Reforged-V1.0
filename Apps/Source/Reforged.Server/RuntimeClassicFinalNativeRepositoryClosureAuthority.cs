@@ -47,13 +47,9 @@ public static class RuntimeClassicFinalNativeRepositoryClosureAuthority
 
     public static IReadOnlyList<string> EvidenceFiles { get; } = new[]
     {
-        "Librarium/RemainingSystems/repository_inventory_closure.json",
-        "Librarium/Reports/COMBINED_DECODE_REMAINING_AUDIT_AFTER_REMAINING_SYSTEMS.json",
-        "Librarium/NativeEvidence/native_artifact_catalog_0001.json",
-        "Librarium/Evidence/native_wcc_available_artifact_exhaustion_0034.json",
-        "Librarium/Evidence/worldgroup_final_ownership_audit_0036.json",
-        "Librarium/Parity/majormud_final_native_repository_closure_evidence.json",
-        "Librarium/Parity/majormud_host_persistence_worldgroup_complete_evidence_0361.json"
+        "Librarium/Objects/parity/parity_records.json",
+        "Librarium/Objects/evidence_records/catalog.json",
+        "Librarium/Objects/formulas/catalog.json"
     };
 
     public static IReadOnlyList<string> OwnerLocalNonClaims { get; } = new[]

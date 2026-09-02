@@ -119,7 +119,7 @@ try
         }
 
         var outputPath = outputArg is null
-            ? Path.Combine(root, "Librarium", "Objects", "room_descriptions", "native_map_room_description_records_0139.json")
+            ? Path.Combine(root, "Librarium", "Objects", "room_descriptions", "native_map_room_description_records.json")
             : Path.GetFullPath(Path.Combine(root, outputArg));
         var count = new NativeMapRoomTextResolver().ExportPromotedDescriptions(root, rooms, outputPath);
         Console.WriteLine($"Exported {count:N0} room description records to {Path.GetRelativePath(root, outputPath)}");

@@ -184,7 +184,7 @@ public sealed class RuntimeCharacterProgressionSchedule
             race.Id,
             null,
             "proven",
-            "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json",
+            "Librarium/Objects/formulas/catalog.json",
             "native WCCMMUD.DLL stock formula/callsite recovery");
 
         var matches = _rows.Where(row => row.TargetLevel == targetLevel

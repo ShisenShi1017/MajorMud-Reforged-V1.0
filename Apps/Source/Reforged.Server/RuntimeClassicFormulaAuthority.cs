@@ -78,9 +78,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeCharacterDerivedStatisticCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_decode", "Data/NativeDecodeReports/CodeUpdate0142CharacterStatistics/character_statistics_contract_0142.json"),
+                    new RuntimeFormulaEvidenceSource("native_decode", "Librarium/Objects/evidence_records/catalog.json"),
                     new RuntimeFormulaEvidenceSource("runtime_native_trace", "Apps/Source/Reforged.Server/RuntimeCharacterDerivedStatistics.cs", "wccmmud.dll calculate_secondary_stats @0x0041a424"),
-                    new RuntimeFormulaEvidenceSource("imported_wcc", "ImportedDatabases/WCCDefaultInstall")
+                    new RuntimeFormulaEvidenceSource("imported_wcc", "Librarium/Objects/evidence_records/catalog.json")
                 },
                 "Creation and promotion HP/mana math is already native-traced and executable."),
             new(
@@ -91,8 +91,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeCharacterCombatStatisticProjector),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_decode", "Data/NativeDecodeReports/CodeUpdate0155CharacterStatistics/character_statistics_contract_0155.json"),
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/SourceImports/MMExplorer"),
+                    new RuntimeFormulaEvidenceSource("native_decode", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json")
                 },
                 "Only explicit equipment and ability modifiers are executable; unknown base-stat ordering remains quarantined."),
@@ -104,10 +104,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicCharacterFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcMR line 4270: Fix((INT + (WIL * 3)) / 4) + modifiers"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "retained CalcMR implementation at source line 4270"),
-                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "MR weighting conflict resolved in favor of retained implementation evidence"),
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_formula_callsite_evidence_0334.json", "WCCMMUD.DLL 0x0041ab17..0x0041ab3f computes (INT + WIL*3)/4 then adds the native modifier output")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalcMR line 4270: Fix((INT + (WIL * 3)) / 4) + modifiers"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/Objects/evidence_records/catalog.json", "retained CalcMR implementation at source line 4270"),
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Objects/parity/parity_records.json", "MR weighting conflict resolved in favor of retained implementation evidence"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "WCCMMUD.DLL 0x0041ab17..0x0041ab3f computes (INT + WIL*3)/4 then adds the native modifier output")
                 },
                 "Character Magic Resistance is native-verified: WCCMMUD.DLL computes signed Fix((INT + WIL*3)/4) and then adds the modifier result. The executable runtime and regression vectors match that ordering."),
             new(
@@ -118,10 +118,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicCharacterFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json", "_move_player_to_fighter directly calls _get_user_ability_value for ability 34, adds Level/5, (Charm-50)/5 and (Agility-50)/3, then applies the <33% encumbrance bonus to fighter +0x20"),
-                    new RuntimeFormulaEvidenceSource("native_consumer", "Librarium/Parity/majormud_native_raw_dodge_evidence_0356.json", "_calculate_attack directly consumes fighter +0x20 as raw Dodge, applies the recovered accuracy divisor/95% cap and Backstab /5"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcDodge lines 2482-2495 independently match the direct DLL arithmetic"),
-                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Parity/majormud_character_advancement_evidence_0279.json", "retained stock formula and regression vectors")
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_move_player_to_fighter directly calls _get_user_ability_value for ability 34, adds Level/5, (Charm-50)/5 and (Agility-50)/3, then applies the <33% encumbrance bonus to fighter +0x20"),
+                    new RuntimeFormulaEvidenceSource("native_consumer", "Librarium/Objects/parity/parity_records.json", "_calculate_attack directly consumes fighter +0x20 as raw Dodge, applies the recovered accuracy divisor/95% cap and Backstab /5"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalcDodge lines 2482-2495 independently match the direct DLL arithmetic"),
+                    new RuntimeFormulaEvidenceSource("pass9_evidence", "Librarium/Objects/parity/parity_records.json", "retained stock formula and regression vectors")
                 },
                 "Player raw Dodge is native-verified end-to-end: the original DLL constructs fighter Dodge from effective ability 34 plus Level/Charm/Agility, applies the below-33-percent encumbrance bonus, and passes that exact fighter field to the stock Dodge-vs-Accuracy resolver."),
             new(
@@ -132,8 +132,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeCharacterRegenerationAuthority),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "_slow_update_character and _fast_update_character exact HP/mana arithmetic, modifiers, counters and owner ordering"),
-                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "REST/MEDITATE historical HELP boundary retained separately from executable MEDITATE timing"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_slow_update_character and _fast_update_character exact HP/mana arithmetic, modifiers, counters and owner ordering"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/parity/parity_records.json", "REST/MEDITATE historical HELP boundary retained separately from executable MEDITATE timing"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeCharacterRegeneration.cs", "native combined percent arithmetic, passive/rest/meditate formulas, exact counters and response"),
                     new RuntimeFormulaEvidenceSource("runtime_clock", "Apps/Source/Reforged.Server/RuntimeClassicNativeSchedulerClock.cs", "one-shot one-second fast clock with 3/5/5/30 owner buckets and no elapsed catch-up")
                 },
@@ -146,8 +146,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimePlayerCombatProfileResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json", "_move_player_to_fighter directly constructs fighter +0x00 from class +0x48, floor-sqrt(Level), Level/2, the folded equipped-Accuracy/encumbrance bucket, STR/3 and AGI/6"),
-                    new RuntimeFormulaEvidenceSource("native_plus_accuracy", "Librarium/Parity/majormud_native_stock_accuracy_evidence_0357.json", "_move_player_to_fighter adds user +0x70A after base fighter Accuracy construction; martial accuracy remains a later attack-type-specific path"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_move_player_to_fighter directly constructs fighter +0x00 from class +0x48, floor-sqrt(Level), Level/2, the folded equipped-Accuracy/encumbrance bucket, STR/3 and AGI/6"),
+                    new RuntimeFormulaEvidenceSource("native_plus_accuracy", "Librarium/Objects/parity/parity_records.json", "_move_player_to_fighter adds user +0x70A after base fighter Accuracy construction; martial accuracy remains a later attack-type-specific path"),
                     new RuntimeFormulaEvidenceSource("mmud_explorer", "https://github.com/syntax53/MMUD-Explorer/blob/master/modMMudFunc.bas", "read-only CalculateAccuracy cross-check for stock class/level/STR/AGI/encumbrance semantics"),
                     new RuntimeFormulaEvidenceSource("decoded_class_catalog", "Data/Classic/character_foundation.json", "public combat_bonus supplies the class combat value consumed by the native formula")
                 },
@@ -160,9 +160,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/frmMain.frm", "line 27694: Fix((Strength - 50) / 10), explicitly matching MajorMUD"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained MMUD Explorer source line and provenance"),
-                    new RuntimeFormulaEvidenceSource("item_schema", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ITEM_FIELD_SCHEMA.json", "item authoring warning confirms Strength maximum-damage bonus is a distinct component that must be included")
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "line 27694: Fix((Strength - 50) / 10), explicitly matching MajorMUD"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/Objects/evidence_records/catalog.json", "retained MMUD Explorer source line and provenance"),
+                    new RuntimeFormulaEvidenceSource("item_schema", "Librarium/Objects/evidence_records/catalog.json", "item authoring warning confirms Strength maximum-damage bonus is a distinct component that must be included")
                 },
                 "Classic Strength contributes Fix((Strength - 50) / 10) to maximum physical damage. Negative values are retained in Classic; C# integer division matches VB6 Fix truncation for integer inputs."),
             new(
@@ -173,9 +173,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "lines 4663-4678: weapon energy formula"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm", "lines 1995-2006: independent matching implementation"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained source formula and provenance")
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 4663-4678: weapon energy formula"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "Librarium/Objects/evidence_records/catalog.json", "lines 1995-2006: independent matching implementation"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/Objects/evidence_records/catalog.json", "retained source formula and provenance")
                 },
                 "Player attack energy starts with Fix((weaponSpeed * 1000) / Fix((((level * (combatCode + 2)) + 45) * (agility + 150)) / 6)), applies the recovered below-STR-requirement penalty, optional Speed percentage branch, and ((Encumbrance/2)+75)% modifier, then feeds the authoritative per-round swing scheduler."),
             new(
@@ -186,10 +186,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "lines 1587-1593: swings = 1000 / energy, capped by MAX_SWINGS=5"),
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/frmSwingCalc.frm", "lines 2006-2041: 1000/energy swing calculation and cap"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm", "independent matching 1000/energy swing model"),
-                    new RuntimeFormulaEvidenceSource("librarium", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_ATTACK_ENERGY.json", "high-confidence verified attack-energy/action loop")
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 1587-1593: swings = 1000 / energy, capped by MAX_SWINGS=5"),
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 2006-2041: 1000/energy swing calculation and cap"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "Librarium/Objects/evidence_records/catalog.json", "independent matching 1000/energy swing model"),
+                    new RuntimeFormulaEvidenceSource("librarium", "Librarium/Objects/evidence_records/catalog.json", "high-confidence verified attack-energy/action loop")
                 },
                 "Normal weapon rounds receive 1000 action-energy units, execute whole affordable swings, carry unused energy forward, and cap execution at five swings per round."),
             new(
@@ -200,9 +200,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "lines 1564-1595: Backstab/Smash force 1000 energy and one swing; Bash doubles calculated energy; all attacks retain the five-swing cap"),
-                    new RuntimeFormulaEvidenceSource("dll_native_trace", "Evidence/Combat/DLLCombatResolutionOrder_0130.md", "Bash -15 accuracy, +10% pre-roll, x3 after DR; Smash -25 accuracy, +20% pre-roll, x5 after DR; criticals disabled and Dodge remains last"),
-                    new RuntimeFormulaEvidenceSource("native_help", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMHLP.MSG", "Bash is a heavy inaccurate attack available to any class; Smash is ability-gated"),
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 1564-1595: Backstab/Smash force 1000 energy and one swing; Bash doubles calculated energy; all attacks retain the five-swing cap"),
+                    new RuntimeFormulaEvidenceSource("dll_native_trace", "Librarium/Objects/evidence_records/catalog.json", "Bash -15 accuracy, +10% pre-roll, x3 after DR; Smash -25 accuracy, +20% pre-roll, x5 after DR; criticals disabled and Dodge remains last"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_help/native_help_records.json", "Bash is a heavy inaccurate attack available to any class; Smash is ability-gated"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs", "ResolvePhysicalAttackSchedule drives Bash, Smash, Backstab, and normal weapon rounds")
                 },
                 "Classic special timing is closed: Backstab and Smash each consume a full 1000-energy round and execute once; Bash doubles normal weapon energy and executes whole affordable swings up to the five-swing cap. Bash/Smash accuracy, pre-roll damage, post-DR multipliers, critical suppression, hit/DR/Dodge ordering, ability gate, and return-to-normal behavior execute through the single resolver and live encounter."),
@@ -214,10 +214,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/frmMain.frm", "lines 27917-27951: level, Intellect, Agility, and Charm components; natural cap 75 and minimum 1 before later modifiers"),
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 27917-27951: level, Intellect, Agility, and Charm components; natural cap 75 and minimum 1 before later modifiers"),
                     new RuntimeFormulaEvidenceSource("mudinfo", "MajorMUD Critical Hit Chance Formula", "Fix(Level/10) + Fix((Intellect-50)/10) + Fix((Agility-50)/20) + Fix((Charm-50)/30), capped 1..75"),
-                    new RuntimeFormulaEvidenceSource("native_help", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMHLP.MSG", "Intellect is explicitly a component of Critical Hit Chance"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained MMUD Explorer calculation sequence and cap provenance")
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_help/native_help_records.json", "Intellect is explicitly a component of Critical Hit Chance"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/Objects/evidence_records/catalog.json", "retained MMUD Explorer calculation sequence and cap provenance")
                 },
                 "Classic natural critical chance is Fix(Level/10) + Fix((Intellect-50)/10) + Fix((Agility-50)/20) + Fix((Charm-50)/30), capped from 1 through 75 before Quick-and-Deadly, quest, and item bonuses."),
             new(
@@ -228,7 +228,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json", "retained Classic percentage-roll behavior"),
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/formulas/catalog.json", "retained Classic percentage-roll behavior"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "inclusive 1..100 critical roll")
                 },
                 "Critical chance uses an inclusive 1 through 100 roll and succeeds when the roll is less than or equal to final critical chance."),
@@ -240,7 +240,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("formula_roll_convention", "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json", "Classic percentage checks use inclusive 1 through 100 boundaries"),
+                    new RuntimeFormulaEvidenceSource("formula_roll_convention", "Librarium/Objects/formulas/catalog.json", "Classic percentage checks use inclusive 1 through 100 boundaries"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "inclusive 1..100 dodge roll")
                 },
                 "Final Dodge chance uses an inclusive 1 through 100 roll and succeeds when the roll is less than or equal to the clamped Dodge percentage."),
@@ -252,10 +252,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer_formula", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcBSDamage lines 4196-4198"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer_consumers", "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm", "minimum and maximum endpoint calls lines 1123-1124"),
-                    new RuntimeFormulaEvidenceSource("librarium_evidence", "Evidence/FormulaBehavior0072/candidate_references_0072.json", "retained formula and Classic level-scaling branch"),
-                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json", "_move_player_to_fighter 0x42B064-0x42B119 directly proves both Backstab endpoint formulas, race-only 75% penalty, and Classic level scale")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer_formula", "Librarium/Objects/evidence_records/catalog.json", "CalcBSDamage lines 4196-4198"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer_consumers", "Librarium/Objects/evidence_records/catalog.json", "minimum and maximum endpoint calls lines 1123-1124"),
+                    new RuntimeFormulaEvidenceSource("librarium_evidence", "Librarium/Objects/evidence_records/catalog.json", "retained formula and Classic level-scaling branch"),
+                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Objects/parity/parity_records.json", "_move_player_to_fighter 0x42B064-0x42B119 directly proves both Backstab endpoint formulas, race-only 75% penalty, and Classic level scale")
                 },
                 "Native _move_player_to_fighter directly closes both Classic Backstab endpoints: 2*normal + 2*Level + floor(Stealth/10) + ability 117/118, race-only Stealth at 75%, then (Level+100)% scaling."),
             new(
@@ -266,8 +266,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Evidence/native_message_catalog_correlation_0022.json", "critical hits do up to four times normal damage"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "stock CalculateAttack: critical range is 2x through 4x normal maximum, then DR is subtracted"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_message_payloads/native_message_payload_records.json", "critical hits do up to four times normal damage"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "stock CalculateAttack: critical range is 2x through 4x normal maximum, then DR is subtracted"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "critical damage range is two through four times normal maximum")
                 },
                 "Critical damage rolls inclusively from twice through four times the normal maximum damage before damage resistance."),
@@ -279,8 +279,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("uploaded_mmexplorer_evidence", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json", "retained MMUD Explorer critical calculation provenance"),
-                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT", "critical formulas reworked; normal critical percentage remains distinct from Quick-and-Deadly"),
+                    new RuntimeFormulaEvidenceSource("uploaded_mmexplorer_evidence", "Librarium/Objects/evidence_records/catalog.json", "retained MMUD Explorer critical calculation provenance"),
+                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "Librarium/Objects/evidence_records/catalog.json", "critical formulas reworked; normal critical percentage remains distinct from Quick-and-Deadly"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/RuntimeClassicPhysicalFormulaCalculator.cs", "over 40, excess critical points count at one-third; final cap 99")
                 },
                 "After all critical bonuses are combined, values through 40 are unchanged; excess critical points count at one-third using truncation, with a final cap of 99."),
@@ -292,7 +292,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(ClassicCombatResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT", "Version 1.11j: critical hit is determined only after a hit has been determined"),
+                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "Librarium/Objects/evidence_records/catalog.json", "Version 1.11j: critical hit is determined only after a hit has been determined"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "hit -> critical range -> damage roll -> DR -> Dodge -> final damage")
                 },
                 "Classic first determines whether the attack hits, then rolls critical, rolls critical or normal damage, subtracts DR, checks Dodge last, and applies any post-DR special multiplier."),
@@ -317,7 +317,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("generated_class_catalog", "Data/Classic/classes.json", "Ninja and Mystic records contain no separate hardcoded critical progression field"),
-                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT", "most Mystic forms no longer give critical bonuses; critical changes are authored through stats and abilities")
+                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "Librarium/Objects/evidence_records/catalog.json", "most Mystic forms no longer give critical bonuses; critical changes are authored through stats and abilities")
                 },
                 "Ninja and Mystic do not receive a separate hardcoded critical progression. Any form, item, quest, or condition critical adjustment must arrive through the shared Ability 58/critical modifier path."),
             new(
@@ -339,10 +339,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmexplorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "lines 4564-4566: (200 - EU) + Fix((AGL - 50) / 10), cap 20, halve at encumbrance >= 33"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm", "lines 2064-2067: independent matching implementation"),
-                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT", "Quick and Deadly critical bonus capped and tied to attack speed"),
-                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained source formula and provenance")
+                    new RuntimeFormulaEvidenceSource("mmexplorer", "Librarium/Objects/evidence_records/catalog.json", "lines 4564-4566: (200 - EU) + Fix((AGL - 50) / 10), cap 20, halve at encumbrance >= 33"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "Librarium/Objects/evidence_records/catalog.json", "lines 2064-2067: independent matching implementation"),
+                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "Librarium/Objects/evidence_records/catalog.json", "Quick and Deadly critical bonus capped and tied to attack speed"),
+                    new RuntimeFormulaEvidenceSource("librarium_import", "Librarium/Objects/evidence_records/catalog.json", "retained source formula and provenance")
                 },
                 "Quick-and-Deadly critical bonus is (200 - attack energy) + Fix((Agility - 50) / 10), capped at 20 and halved when encumbrance is at least 33%. The result is added to the authoritative player critical chance."),
             new(
@@ -378,9 +378,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("generated_item_catalog", "Data/Classic/items.json", "weapon minimum/maximum damage and damage resistance fields"),
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json", "physical range, critical range, and post-roll DR"),
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json", "physical range, critical range, and post-roll DR"),
                     new RuntimeFormulaEvidenceSource("runtime_authority", "Apps/Source/Reforged.Server/ClassicCombatResolver.cs", "one roll, DR subtraction, attack-type scaling, and non-negative final damage"),
-                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Parity/majormud_native_physical_combat_evidence_0355.json", "_calculate_attack 0x42B800-0x42BB23 directly proves pre-DR special scaling, critical-before-roll, DR, Bash/Smash post-DR multiplier, Dodge, and final clamp order")
+                    new RuntimeFormulaEvidenceSource("native_dll", "Librarium/Objects/parity/parity_records.json", "_calculate_attack 0x42B800-0x42BB23 directly proves pre-DR special scaling, critical-before-roll, DR, Bash/Smash post-DR multiplier, Dodge, and final clamp order")
                 },
                 "Native _calculate_attack directly closes Classic physical resolution ordering: attack-type pre-DR scaling, hit, critical range expansion, damage roll, DR subtraction, Bash/Smash post-DR multiplier, Dodge resolution, then non-negative glance/hit clamp."),
             new(
@@ -404,10 +404,10 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(ClassicCombatResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer"),
-                    new RuntimeFormulaEvidenceSource("nightmare_redux", "ImportedDatabases/OmniVerseReference"),
-                    new RuntimeFormulaEvidenceSource("gap_resolution", "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json")
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("nightmare_redux", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("gap_resolution", "Librarium/Objects/formulas/catalog.json")
                 },
                 "The decoded stock hit/AC equation, 8..99 clamp, inclusive d100 roll (roll <= chance succeeds), and live resolver are promoted as one authoritative path."),
             new(
@@ -431,9 +431,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(ClassicCombatResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_CRITICAL.json"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer"),
-                    new RuntimeFormulaEvidenceSource("gap_resolution", "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json")
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("gap_resolution", "Librarium/Objects/formulas/catalog.json")
                 },
                 "Critical eligibility, chance roll, and damage-range multiplier are strongly corroborated and execute through the authoritative ClassicCombatResolver."),
             new(
@@ -445,7 +445,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("creator_or_community_reference", "MUDInfo topic 1647"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json")
                 },
                 "Per-10 relationships are accepted as strongly corroborated, but activation waits for exact baseline, truncation, and fixed-point rules from decoded data."),
@@ -458,7 +458,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 2115"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer", "CalcResistedDamage consumers"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalcResistedDamage consumers"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "AntiMagic ability 51")
                 },
                 "Equation is strongly corroborated; runtime activation waits for decoded rounding, caps, and anti-magic branch ordering."),
@@ -471,8 +471,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 2624"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer/clsMonsterAttackSim.cls"),
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json")
                 },
                 "Recovered stock dodge scaling, 95 cap, Backstab /5 reduction, and inclusive roll boundary execute through the authoritative ClassicCombatResolver."),
             new(
@@ -484,7 +484,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 2624"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer/clsMonsterAttackSim.cls")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json")
                 },
                 "Base dodge scaling is calculated once from attacker attack value and the defender's resolved dodge value."),
             new(
@@ -495,7 +495,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimePlayerCombatProfileResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "GeneratedData/Classic/abilities.json", "Ability 34 Dodge"),
+                    new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Data/Classic/abilities.json", "Ability 34 Dodge"),
                     new RuntimeFormulaEvidenceSource("character_runtime", "RuntimeCharacterQuestAbilities.cs")
                 },
                 "Decoded Ability 34 is promoted into the defender DodgeBonus before the authoritative avoidance check."),
@@ -507,8 +507,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(ClassicCombatResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer/clsMonsterAttackSim.cls"),
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/COMBAT_HIT_AC.json")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json"),
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json")
                 },
                 "The final avoidance stage applies the 95 percent cap and the distinct Backstab reduction before the inclusive avoidance roll."),
             new(
@@ -532,7 +532,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user increments an attempt counter and loops while counter <= 5, yielding attempts 1..6"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_attack_monster_user increments an attempt counter and loops while counter <= 5, yielding attempts 1..6"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "AttemptsPerRound = 6")
                 },
                 "Original WCCMMUD.DLL proves six NPC attack-selection attempts: the native counter is incremented before each selection and loops while its completed value is <= 5."),
@@ -544,7 +544,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_generate_monster seeds current +0x16 and authored +0x114 from Energy; _energy_update_monster performs add-below/clamp-above/equality-hold"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_generate_monster seeds current +0x16 and authored +0x114 from Energy; _energy_update_monster performs add-below/clamp-above/equality-hold"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "RefreshRoundEnergy")
                 },
                 "Native active-monster energy starts at the authored Energy value. On each native energy update: if current is below authored, add one authored-energy quantum; if current is above authored, clamp to authored; if equal, leave it unchanged. Idle energy therefore does not accumulate without bound."),
@@ -556,7 +556,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeNpcAttackSelector),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user calls range(0,100), scans five Att% bytes in slot order, and selects on roll < threshold"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_attack_monster_user calls range(0,100), scans five Att% bytes in slot order, and selects on roll < threshold"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeNpcModels.cs", "RuntimeNpcAttackSelector")
                 },
                 "Each native attempt draws one [0,100) value and scans the five authored Att% bytes in slot order. The first slot satisfying roll < threshold is selected. Energy affordability is evaluated after selection, so rows are not re-normalized; thresholds above 100 are always true when reached."),
@@ -568,7 +568,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_monster_cast resolves AttAcc spell id at +0x12e, AttMin success at +0x13e, AttMax cast level at +0x148, then draws [0,100) and tests roll < AttMin"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_monster_cast resolves AttAcc spell id at +0x12e, AttMin success at +0x13e, AttMax cast level at +0x148, then draws [0,100) and tests roll < AttMin"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "SpellCastSucceeds")
                 },
                 "For native Type-2 rows, AttAcc is spell id, AttMin is cast-success percentage, and AttMax is cast level. _monster_cast performs a separate [0,100) roll and succeeds on roll < AttMin."),
@@ -580,7 +580,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_monster_cast reads per-row AttEnergy and its failed-cast path deducts max(1, floor(AttEnergy/2)) for positive costs"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_monster_cast reads per-row AttEnergy and its failed-cast path deducts max(1, floor(AttEnergy/2)) for positive costs"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "DeductFailedSpellCost")
                 },
                 "The native pre-cast failure path deducts max(1, floor(AttEnergy / 2)) for a non-zero positive attack cost, correcting the retained simulator's banker-rounding approximation. Exact mapping of every later spell-resolution/resistance refund branch is still being held STRONG."),
@@ -592,7 +592,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicNpcCombatCadence),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_attack_monster_user checks affordability before physical execution, deducts AttEnergy, then sets the attempt-loop early-end flag when remaining energy is below the same cost"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_attack_monster_user checks affordability before physical execution, deducts AttEnergy, then sets the attempt-loop early-end flag when remaining energy is below the same cost"),
                     new RuntimeFormulaEvidenceSource("runtime", "RuntimeClassicNpcCombatCadence.cs", "ShouldEndRoundAfterPhysicalSelection")
                 },
                 "Native Type-1 selection terminates when the row cannot be afforded; after an affordable physical attack it deducts the full cost and ends further attempts when remaining energy is below that same row cost. Type-2 rows use _monster_cast instead."),
@@ -604,7 +604,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_npc_combat_rng_evidence_0335.json", "_generate_monster copies authored Energy to both active current and authored-baseline fields"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_generate_monster copies authored Energy to both active current and authored-baseline fields"),
                     new RuntimeFormulaEvidenceSource("live_combat", "RuntimeLiveCombat.cs", "ResolveNpcEncounterStartingEnergy")
                 },
                 "A native active monster starts with current energy equal to authored Energy, so a newly admitted Reforged encounter now starts at the decoded Energy value rather than zero."),
@@ -616,9 +616,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLivingWorldService),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "_slow_update_monster adds authored +0x130 HP regeneration once per slow generation and caps at maximum"),
-                    new RuntimeFormulaEvidenceSource("native_scheduler", "Librarium/Parity/majormud_native_scheduler_regeneration_evidence_0336.json", "slow generation is rooted at 30 logical fast ticks; per-monster generation markers prevent duplicate updates"),
-                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Librarium/Objects/npcs/npc_records_0122.json", "public_reference_0139.fields.hp_regen retains the authored per-monster amount"),
+                    new RuntimeFormulaEvidenceSource("native_wccmmud", "Librarium/Objects/parity/parity_records.json", "_slow_update_monster adds authored +0x130 HP regeneration once per slow generation and caps at maximum"),
+                    new RuntimeFormulaEvidenceSource("native_scheduler", "Librarium/Objects/parity/parity_records.json", "slow generation is rooted at 30 logical fast ticks; per-monster generation markers prevent duplicate updates"),
+                    new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Librarium/Objects/npcs/npc_records.json", "public_reference_0139.fields.hp_regen retains the authored per-monster amount"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeLivingWorld.cs", "ApplyNativeSlowNpcRegeneration")
                 },
                 "The retained 18-combat-round simulator approximation is rejected for Classic. WCCMMUD.DLL applies authored NPC HP regeneration once per 30-fast-tick slow generation. Reforged now activates the amount on the recovered slow boundary, while exact native per-monster host-cycle staggering remains under the broader scheduler assertion."),
@@ -657,7 +657,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "attacks.hit_spell_legacy_id"),
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "raw spell type, target, attack, effect, duration, resistance, and difficulty fields"),
+                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/Objects/combat_spells/combat_spell_records.json", "raw spell type, target, attack, effect, duration, resistance, and difficulty fields"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpell")
                 },
                 "Successful NPC hit-spell relationships now bind to the canonical combat-spell catalog and carry the decoded spell classification, effect range, duration, resistance, and difficulty metadata into the live outcome path. Effect execution remains quarantined until the branch semantics are individually verified."),
@@ -670,7 +670,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("decoded_npc_catalog", "Data/Classic/npcs.json", "attacks.hit_spell_legacy_id"),
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "spell_type_raw, target_type_raw, attack_type_raw, resist_type_raw"),
+                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/Objects/combat_spells/combat_spell_records.json", "spell_type_raw, target_type_raw, attack_type_raw, resist_type_raw"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ClassifyNpcHitSpell")
                 },
                 "Every resolved NPC hit spell is assigned deterministic typed buckets for its decoded spell type, target type, attack type, and resistance type. The buckets preserve the original numeric values and intentionally do not invent semantic names before the branch meanings are independently verified."),
@@ -682,7 +682,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "attack_type_raw correlated with spell names"),
+                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/Objects/combat_spells/combat_spell_records.json", "attack_type_raw correlated with spell names"),
                     new RuntimeFormulaEvidenceSource("generated_spell_catalog", "Data/Classic/spells.json", "classification.attack_type and spell name clusters"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellAttackElement")
                 },
@@ -695,7 +695,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "minimum_effect and maximum_effect"),
+                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/Objects/combat_spells/combat_spell_records.json", "minimum_effect and maximum_effect"),
                     new RuntimeFormulaEvidenceSource("canonical_spell_loader", "RuntimeCanonicalCombatSpellCatalog.cs", "EffectRollMinimum and EffectRollMaximum"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellEffectRange")
                 },
@@ -721,9 +721,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalculateResistDamage documents 0-never, 1-antimagic only, 2-everyone"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls", "IsSpellResisted branch for TypeOfResists"),
-                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "retained TypeOfResists implementation excerpts"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalculateResistDamage documents 0-never, 1-antimagic only, 2-everyone"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "IsSpellResisted branch for TypeOfResists"),
+                    new RuntimeFormulaEvidenceSource("knowledge_base", "Librarium/Objects/evidence_records/catalog.json", "retained TypeOfResists implementation excerpts"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellResistanceScope")
                 },
                 "Decoded resistance type semantics are verified from retained MMUD Explorer implementation evidence: 0 never permits a resistance check, 1 permits resistance only for anti-magic targets, and 2 permits the normal magic-resistance branch for everyone. Exact roll, rounding, total-resist, and damage-reduction ordering remain separately unresolved."),
@@ -735,8 +735,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalcMR: MR=(INT+WIL*3)/4+modifiers; resist chance MR/2 capped at 97 percent"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer", "IsSpellResisted and CalcResistedDamage consumers corroborate resistance gating"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalcMR: MR=(INT+WIL*3)/4+modifiers; resist chance MR/2 capped at 97 percent"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "IsSpellResisted and CalcResistedDamage consumers corroborate resistance gating"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellResistance")
                 },
                 "For eligible NPC hit spells, target magic resistance uses the Pass 9 character authority: integer-truncated (Intellect + Willpower*3)/4 plus resolved MagicRes modifiers. Full-resist chance is integer-truncated MR/2, clamped from 0 through 97 percent, and succeeds on an inclusive 1-100 roll. Resistance type 0 bypasses the check; type 1 requires Ability 51 Anti-Magic; type 2 checks everyone. Partial damage reduction and resisted energy cost remain separately unresolved."),
@@ -750,7 +750,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("generated_spell_catalog", "Data/Classic/spells.json", "spell_type correlated with effect and attack branches"),
                     new RuntimeFormulaEvidenceSource("existing_live_spell_policy", "RuntimeLivePowers.cs", "spell type 1 healing/non-damage branch and attack-type damage branch"),
-                    new RuntimeFormulaEvidenceSource("retained_spell_clusters", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "type 0 immediate attacks, type 1 poison delivery, type 3 status/scripted records"),
+                    new RuntimeFormulaEvidenceSource("retained_spell_clusters", "Librarium/Objects/combat_spells/combat_spell_records.json", "type 0 immediate attacks, type 1 poison delivery, type 3 status/scripted records"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellTypeMeaning")
                 },
                 "NPC hit-spell type 0 is the immediate-effect branch, type 1 is poison delivery, and type 3 is status or scripted behavior. The mapping is strongly corroborated by retained consumers and complete spell clusters; only the immediate positive hostile branch is executable here."),
@@ -762,7 +762,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/CombatSpellReconstruction/canonical_combat_spell_catalog_0184.json", "spell type, target scope, attack element, and effect endpoints"),
+                    new RuntimeFormulaEvidenceSource("canonical_spell_catalog", "Librarium/Objects/combat_spells/combat_spell_records.json", "spell type, target scope, attack element, and effect endpoints"),
                     new RuntimeFormulaEvidenceSource("existing_live_spell_policy", "RuntimeLivePowers.cs", "nonzero attack types execute damage operations"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellEffect")
                 },
@@ -777,8 +777,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("ability_catalog", "Data/Classic/abilities.json", "Abilities 3, 5, 65, and 66 modify cold, fire, stone, and lightning resistance by their stored values"),
                     new RuntimeFormulaEvidenceSource("monster_resistance_inventory", "Tools/ReforgedValidator/Baselines/DataSimVer/0008/MonsterAbilityInventory.csv", "positive, negative, 100, and greater-than-100 elemental resistance values across Classic monsters"),
-                    new RuntimeFormulaEvidenceSource("retained_simulators", "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ITEM_RESISTANCES.md", "resistance and vulnerability damage projections"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.csv", "CalculateResistDamage applies Fix(((100 - nBonusResist) * nDamage) / 100)"),
+                    new RuntimeFormulaEvidenceSource("retained_simulators", "Librarium/Objects/evidence_records/catalog.json", "resistance and vulnerability damage projections"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalculateResistDamage applies Fix(((100 - nBonusResist) * nDamage) / 100)"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveElementalSpellDamage and ApplyElementalSpellHitPoints")
                 },
                 "Cold, fire, stone, and lightning resistance values modify immediate elemental spell damage with the retained signed Classic percentage formula. Positive values reduce damage, negative values increase damage, exactly 100 yields zero damage, and values above 100 produce negative damage that restores hit points up to the target's maximum. Integer division truncates toward zero. Acid and untyped damage remain unchanged because no corresponding decoded player resistance field is established. Water resistance remains projected and stackable but has no decoded NPC hit-spell attack-type consumer in the canonical Classic spell catalog."),
@@ -791,7 +791,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("ability_catalog", "Data/Classic/abilities.json", "Ability 21 ImmuPoison"),
-                    new RuntimeFormulaEvidenceSource("spell_ability_evidence", "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv", "ImmuPoison applied by Classic spells and effects"),
+                    new RuntimeFormulaEvidenceSource("spell_ability_evidence", "Librarium/Objects/evidence_records/catalog.json", "ImmuPoison applied by Classic spells and effects"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveElementalSpellDamage")
                 },
                 "Ability 21 Poison Immunity suppresses both immediate poison-element damage and persistent poison delivery before an active effect can be created."),
@@ -804,7 +804,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("spell_catalog", "Data/Classic/spells.json", "spell type, hostile target scope, authored duration, and effect endpoints"),
-                    new RuntimeFormulaEvidenceSource("poison_evidence", "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv", "Poison, cure poison, duration, and immunity relationships"),
+                    new RuntimeFormulaEvidenceSource("poison_evidence", "Librarium/Objects/evidence_records/catalog.json", "Poison, cure poison, duration, and immunity relationships"),
                     new RuntimeFormulaEvidenceSource("spell_persistence", "RuntimeSpells.cs", "RuntimeActiveSpellEffect persistence and expiration"),
                     new RuntimeFormulaEvidenceSource("character_projection", "RuntimeCharacterStatusEffects.cs", "active spell effects projected into character status and timers"),
                     new RuntimeFormulaEvidenceSource("live_combat_round", "RuntimeLiveCombatRounds.cs", "ResolveNpcHitSpellStatusDelivery and ApplyNpcHitSpellStatusDelivery")
@@ -833,7 +833,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("spell_catalog", "Data/Classic/spells.json", "spell.31 Antidote and spell.222 Cure Poison"),
-                    new RuntimeFormulaEvidenceSource("native_spell_text", "Data/NativeDecodeReports/CodeUpdate0139RoomTextAudit/WCCSPELS_block_samples_512.json", "Cure Poison removes all poison from the target's system"),
+                    new RuntimeFormulaEvidenceSource("native_spell_text", "Librarium/Objects/evidence_records/catalog.json", "Cure Poison removes all poison from the target's system"),
                     new RuntimeFormulaEvidenceSource("decoded_ability", "Data/Classic/spells.json", "Ability 20 Cure Poison and RemovesSpell relationships on Antidote"),
                     new RuntimeFormulaEvidenceSource("live_power_consumer", "RuntimeLivePowers.cs", "IsCurePoisonSpell and RemovePoisonEffects")
                 },
@@ -907,8 +907,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicPhysicalFormulaCalculator),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas:2111-2132", "Stock: Fix((Stealth + Agility) / 2) + Fix(PlusBSAccu / 2) + class/race stealth adjustment + normal accuracy bonuses"),
-                    new RuntimeFormulaEvidenceSource("librarium", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "Retained CalculateBackstabAccuracy source and call sites")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "Stock: Fix((Stealth + Agility) / 2) + Fix(PlusBSAccu / 2) + class/race stealth adjustment + normal accuracy bonuses"),
+                    new RuntimeFormulaEvidenceSource("librarium", "Librarium/Objects/evidence_records/catalog.json", "Retained CalculateBackstabAccuracy source and call sites")
                 },
                 "Stock Classic Backstab uses Fix((Stealth + Agility) / 2), half of decoded Ability 116 BSAccu, +5 for class stealth or -15 for race-only stealth, followed by normal accuracy bonuses. The resulting rating is consumed by the authoritative Backstab hit branch."),
             new(
@@ -920,8 +920,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("generated_npc_catalog", "Data/Classic/npcs.json", "public_reference_0139.fields.backstab_defense"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas:1980-2140", "Stock NPC Backstab defense is AC/4 + Backstab Defense, or full AC + Backstab Defense for See Hidden targets; Dodge is checked last at one-fifth strength"),
-                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Evidence/native_message_catalog_correlation_0022.json", "High Perception or AC makes a target difficult to Backstab; generated NPC Backstab Defense is the dedicated DV input"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "Stock NPC Backstab defense is AC/4 + Backstab Defense, or full AC + Backstab Defense for See Hidden targets; Dodge is checked last at one-fifth strength"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_message_payloads/native_message_payload_records.json", "High Perception or AC makes a target difficult to Backstab; generated NPC Backstab Defense is the dedicated DV input"),
                     new RuntimeFormulaEvidenceSource("runtime_consumer", "Apps/Source/Reforged.Server/RuntimeLiveCombatRounds.cs", "Backstab defender uses decoded AC quarter/full See Hidden branch plus BackstabDefense as DV")
                 },
                 "NPC Backstab Defense is loaded from generated Classic data. Stock Classic adds one quarter of NPC AC, or full AC when the NPC has See Hidden, then applies Backstab Defense as the defender value before the final one-fifth Dodge check."),
@@ -947,8 +947,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("status_modifier_contract", "Librarium/CombatSpellReconstruction/combat_status_modifiers_0171.json", "physical attacks emit the hidden-break signal"),
-                    new RuntimeFormulaEvidenceSource("status_modifier_evidence", "Evidence/CombatSpellReconstruction/combat_status_modifiers_evidence_0171.json", "hidden break remains owned by the character visibility subsystem"),
+                    new RuntimeFormulaEvidenceSource("status_modifier_contract", "Librarium/Objects/combat_spells/combat_spell_records.json", "physical attacks emit the hidden-break signal"),
+                    new RuntimeFormulaEvidenceSource("status_modifier_evidence", "Librarium/Objects/evidence_records/catalog.json", "hidden break remains owned by the character visibility subsystem"),
                     new RuntimeFormulaEvidenceSource("live_combat_entry", "RuntimeLiveCombat.cs", "BreakPhysicalAttackConcealment persists concealment removal before engagement")
                 },
                 "Beginning any physical attack clears persisted hidden and sneaking condition flags before the encounter is admitted. Backstab qualification is evaluated first, so a qualified opening attack is retained for that round but concealment cannot be reused on a later attack."),
@@ -987,7 +987,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicStealthResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas", "CalculateStealth: level progression +20 + Fix(Agility/4) + Fix(Intellect/8) + Fix(Charm/6), class/race adjustments, then Ability 27"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json", "CalculateStealth: level progression +20 + Fix(Agility/4) + Fix(Intellect/8) + Fix(Charm/6), class/race adjustments, then Ability 27"),
                     new RuntimeFormulaEvidenceSource("decoded_abilities", "Data/Classic/abilities.json", "Abilities 27, 102, and 103 provide Stealth modifier, RaceStealth, and ClassStealth inputs"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "RuntimeClassicStealthResolution.cs", "CalculateModifiedStealth and TryReadModifiedStealth")
                 },
@@ -1013,9 +1013,9 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeClassicStealthResolver),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT", "Version 1.1 12/24/95: every Hide/Sneak attempt is a new roll and repeated macros converge on the actual percentage chance"),
+                    new RuntimeFormulaEvidenceSource("wcc_release_notes", "Librarium/Objects/evidence_records/catalog.json", "Version 1.1 12/24/95: every Hide/Sneak attempt is a new roll and repeated macros converge on the actual percentage chance"),
                     new RuntimeFormulaEvidenceSource("user_classic_evidence", "Bundle B stealth handoff", "Modified Stealth is opposed by modified Perception; failure leaves the actor visible and immediately exposes them to hostile monsters"),
-                    new RuntimeFormulaEvidenceSource("native_help", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMHLP.MSG", "Stealth checks, high Perception opposition, and harder checks in populated rooms"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_help/native_help_records.json", "Stealth checks, high Perception opposition, and harder checks in populated rooms"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "RuntimeLiveGameplayPart2.cs", "independent inclusive 1..100 checks against each hostile observer")
                 },
                 "Every ordinary Hide/Sneak command performs a fresh inclusive percentile roll. Success chance is clamped modified Stealth minus modified Perception (and any decoded clearance adjustment). Each hostile observer checks independently, so additional observers reduce the chance of remaining unseen without a fabricated population multiplier."),
@@ -1027,7 +1027,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLiveGameplayFacade),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("native_help", "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMHLP.MSG", "Neither sneak nor hide may be used while in combat"),
+                    new RuntimeFormulaEvidenceSource("native_help", "Librarium/Objects/native_help/native_help_records.json", "Neither sneak nor hide may be used while in combat"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "RuntimeLiveGameplayPart2.cs", "ExecuteStealthCommand rejects Hide/Sneak while a live combat encounter exists")
                 },
                 "Classic Hide and Sneak are unavailable during combat. The command is rejected before Perfect Stealth, See Hidden, or ordinary percentile resolution runs."),
@@ -1040,7 +1040,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 new[]
                 {
                     new RuntimeFormulaEvidenceSource("decoded_ability", "Data/Classic/abilities.json", "Ability 57 allows monsters to see hidden players, attack while they hide or sneak, and continue following after escape and re-sneak"),
-                    new RuntimeFormulaEvidenceSource("npc_relationships", "Librarium/Validation0003/monster_ability_relationships_verified_0003.json", "Decoded NPC-to-SeeHidden relationships identify which monsters own the capability"),
+                    new RuntimeFormulaEvidenceSource("npc_relationships", "Librarium/Objects/evidence_records/catalog.json", "Decoded NPC-to-SeeHidden relationships identify which monsters own the capability"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "RuntimeLiveGameplayPart2.cs", "Detected Hide/Sneak clears concealment, immediately engages, and persists the detecting NPC's target relationship")
                 },
                 "Ability 57 See Hidden bypasses Hide/Sneak concealment for the owning monster. Detection leaves the player visible, initiates hostile combat, and persists current_target_id/see_hidden_target_id so escaping and re-sneaking does not erase that monster's awareness."),
@@ -1081,8 +1081,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("decoded_item_catalog", "Data/Classic/items.json", "Shield items expose authored AC/equipment data but no block chance, block strength, or block-roll field"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "No Classic ability defines shield block; ability.35 is JumpKick"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer_exhaustion", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "No executable shield-block percentage or ordering calculation was retained"),
-                    new RuntimeFormulaEvidenceSource("runtime_reconstruction", "Librarium/CombatSpellReconstruction/physical_weapon_attack_execution_0160.json", "Parry/block were explicitly listed as unresolved speculative outcomes, not decoded formulas"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer_exhaustion", "Librarium/Objects/evidence_records/catalog.json", "No executable shield-block percentage or ordering calculation was retained"),
+                    new RuntimeFormulaEvidenceSource("runtime_reconstruction", "Librarium/Objects/combat_spells/combat_spell_records.json", "Parry/block were explicitly listed as unresolved speculative outcomes, not decoded formulas"),
                     new RuntimeFormulaEvidenceSource("dll_formula_catalog", "Data/Classic/formulas.json", "No separate shield-block formula or branch is present in the promoted Classic formula catalog")
                 },
                 "After exhausting decoded WCC data, imported databases, MMUD Explorer evidence, item/ability catalogs, DLL-derived formulas, and supporting documents, no separate Classic shield-block roll exists in the available decode. Shields contribute through their authored Armor Class and other explicit item modifiers only."),
@@ -1096,8 +1096,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("decoded_item_catalog", "Data/Classic/items.json", "Weapons expose authored accuracy, damage, speed, type, and explicit abilities but no parry chance or parry-capable flag"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "No Classic ability defines a general parry mechanic"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer_exhaustion", "Librarium/MajorMUDKnowledgeBase/phase1_exhaustive_evidence_hits.json", "No executable parry percentage or branch-order calculation was retained"),
-                    new RuntimeFormulaEvidenceSource("runtime_reconstruction", "Librarium/CombatSpellReconstruction/physical_weapon_attack_execution_0160.json", "Parry/block were explicitly listed as unresolved speculative outcomes, not decoded formulas"),
+                    new RuntimeFormulaEvidenceSource("mmud_explorer_exhaustion", "Librarium/Objects/evidence_records/catalog.json", "No executable parry percentage or branch-order calculation was retained"),
+                    new RuntimeFormulaEvidenceSource("runtime_reconstruction", "Librarium/Objects/combat_spells/combat_spell_records.json", "Parry/block were explicitly listed as unresolved speculative outcomes, not decoded formulas"),
                     new RuntimeFormulaEvidenceSource("dll_formula_catalog", "Data/Classic/formulas.json", "No separate parry formula or branch is present in the promoted Classic formula catalog")
                 },
                 "After exhausting decoded WCC data, imported databases, MMUD Explorer evidence, item/ability catalogs, DLL-derived formulas, and supporting documents, no separate Classic parry roll exists in the available decode. Physical avoidance remains hit/AC plus the verified Dodge branch unless later native evidence directly proves another check."),
@@ -1148,8 +1148,8 @@ public sealed class RuntimeClassicFormulaAuthority
                 nameof(RuntimeLivingWorldService),
                 new[]
                 {
-                    new RuntimeFormulaEvidenceSource("decoded_relationship", "Librarium/Validation0003/monster_ability_relationships_verified_0003.json", "Ability 146 is MonsGuards and its ordered values resolve to monster legacy ids"),
-                    new RuntimeFormulaEvidenceSource("native_owner", "Librarium/Parity/majormud_npc_ai_complete_evidence_0364.json", "WCCMMUD _cast_monster_target proves MonsGuards is same-room spell-target substitution, not physical-attack admission or generic assist propagation"),
+                    new RuntimeFormulaEvidenceSource("decoded_relationship", "Librarium/Objects/evidence_records/catalog.json", "Ability 146 is MonsGuards and its ordered values resolve to monster legacy ids"),
+                    new RuntimeFormulaEvidenceSource("native_owner", "Librarium/Objects/parity/parity_records.json", "WCCMMUD _cast_monster_target proves MonsGuards is same-room spell-target substitution, not physical-attack admission or generic assist propagation"),
                     new RuntimeFormulaEvidenceSource("live_consumer", "Apps/Source/Reforged.Server/RuntimeNpcProtectionAdmission.cs", "Classic spell targeting scans ordered ability-146 values and native room-slot order; generic protector/assist metadata is isolated to non-Classic worlds")
                 },
                 "Classic MonsGuards is native-verified as ordered same-room spell-target substitution. It does not create a generic combat assistant, threat propagation rule, or physical ATTACK body-block."),
@@ -1176,7 +1176,7 @@ public sealed class RuntimeClassicFormulaAuthority
                 {
                     new RuntimeFormulaEvidenceSource("mudinfo", "MUDInfo topic 3122"),
                     new RuntimeFormulaEvidenceSource("decoded_ability_catalog", "Librarium/Objects/abilities/ability_records.json", "Ability 22 Accuracy"),
-                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Evidence/MMUDExplorer")
+                    new RuntimeFormulaEvidenceSource("mmud_explorer", "Librarium/Objects/evidence_records/catalog.json")
                 },
                 "Highest non-item Ability 22 selection is corroborated; item stacking and category ordering require exact decoded implementation."),
         };

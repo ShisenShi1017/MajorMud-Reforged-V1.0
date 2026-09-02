@@ -7,7 +7,7 @@ public static class RuntimeCombatSpellCastLifecycleSmoke
         var synthetic = new RuntimeSpellCastTimingPolicy(
             "policy.smoke.spell.999999", "spell.999999", 3,
             new HashSet<RuntimeSpellInterruptionReason> { RuntimeSpellInterruptionReason.ExplicitCancel, RuntimeSpellInterruptionReason.ActorMoved },
-            new[] { "Evidence/CombatSpellReconstruction/combat_spell_cast_lifecycle_evidence_0153.json#smoke-policy" },
+            new[] { "Librarium/Objects/combat_spells/combat_spell_records.json#smoke-policy" },
             RuntimeResolutionConfidence.StronglyCorrelated,
             "Reject unpromoted duration and interruption branches.");
         var lifecycle = new RuntimeSpellCastLifecycle(new[] { synthetic });

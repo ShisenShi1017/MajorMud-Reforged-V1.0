@@ -47,7 +47,7 @@ public static class RuntimeSessionSpawnResolver
             throw new InvalidOperationException(
                 $"Session entry could not be resolved for world '{world.Definition.Id}'. " +
                 "No valid saved character exists and the developer test avatar is disabled. " +
-                "Normal new-character creation is not implemented in CodeUpdate0133.");
+                "Normal new-character creation is unavailable through this diagnostic spawn path.");
         }
 
         var displayName = string.Equals(requestedName, "LocalConsole", StringComparison.OrdinalIgnoreCase)

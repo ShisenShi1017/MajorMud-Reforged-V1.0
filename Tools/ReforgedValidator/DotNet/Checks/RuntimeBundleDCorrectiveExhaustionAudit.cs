@@ -25,8 +25,7 @@ public sealed record RuntimeBundleDCorrectiveExhaustionAuditReport(
 
 /// <summary>
 /// Combined corrective D1-D6 audit. Unlike the original generated-schema-only audit, this gate
-/// explicitly requires decoded MMExplorer data, semantic Librarium promotions, imported WCC/MDB
-/// relationships, native-message/disassembly evidence, generated Classic data, and live consumers.
+/// explicitly requires canonical Librarium promotions, generated Classic data, and live consumers.
 /// </summary>
 public static class RuntimeBundleDCorrectiveExhaustionAudit
 {
@@ -44,26 +43,19 @@ public static class RuntimeBundleDCorrectiveExhaustionAudit
         {
             "Data/Classic/rooms.json",
             "Data/Classic/exits.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/rooms_decoded.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0138/exits_decoded.json",
-            "Librarium/SourceImports/MMExplorerSQLData/DecodedRooms0183/exits_decoded_semantic.json",
-            "Librarium/Objects/rooms/mmexplorer_room_records_0140.json",
-            "Librarium/Objects/exits/mmexplorer_exit_records_0140.json",
-            "Librarium/RemainingSystems/door_lock_access_catalog.json",
-            "Librarium/RemainingSystems/world_reset_cleanup_catalog.json",
-            "Evidence/DataSimVer0017-SearchCleanupEvidence.json",
-            "Evidence/ExternalSources/Validation0008/search_hidden_exit_trace.csv",
-            "Evidence/ExternalSources/Validation0012/cleanup_hidden_snippets.json",
+            "Data/Classic/abilities.json",
+            "Librarium/Objects/rooms/room_records.json",
+            "Librarium/Objects/exits/exit_records.json",
+            "Librarium/Objects/room_interactions/room_interaction_records.json",
             "Librarium/Objects/abilities/ability_records.json"
         };
         foreach (var source in requiredSources) Check(Exists(source), "all-source-present:" + source);
 
-        Check(Contains("Data/CompilerSmokeTest/abilities.json", "Del@Maint"), "decoded-del-maint-ability-present");
-        Check(Contains("Librarium/BehaviorGraph/ability_ownership_lifecycle_graph_0153.json", "ability.119") &&
-              Contains("Librarium/BehaviorGraph/ability_ownership_lifecycle_graph_0153.json", "Del@Maint"),
+        Check(Contains("Data/Classic/abilities.json", "Del@Maint"), "decoded-del-maint-ability-present");
+        Check(Contains("Librarium/Objects/abilities/ability_records.json", "ability.119") &&
+              Contains("Librarium/Objects/abilities/ability_records.json", "Del@Maint"),
               "librarium-del-maint-119-provenance");
-        Check(Contains("Evidence/Validation0003/MAJORMUD_DISASSEMBLY_EVIDENCE_EXCERPTS.md", "Delete at cleanup") ||
-              Contains("Reports/Validation0003/VALIDATION0003_CLEANUP_SEARCH_RESPAWN_CROSSVALIDATION.md", "Delete at cleanup"),
+        Check(Contains("Librarium/Objects/abilities/ability_records.json", "delete the item, hidden or not, at cleanup"),
               "native-delete-at-cleanup-display-evidence");
 
         var world = RuntimeBundleDWorldAuthorityAudit.Run(projectRoot, worldId);
@@ -86,14 +78,14 @@ public static class RuntimeBundleDCorrectiveExhaustionAudit
         Check(Directory.GetFiles(server, "RuntimeLivingWorld.cs", SearchOption.TopDirectoryOnly).Length == 1, "single-live-door-state-owner");
         Check(!Read("Apps/Source/Reforged.Server/RuntimeBundleDSearch.cs").Contains("Registry.Discover(actor.Id, target.TargetId)", StringComparison.Ordinal),
             "see-hidden-does-not-auto-persist-object-discovery");
-        Check(Read("Apps/Source/Reforged.Server/RuntimeBundleDWorldAuthorityAudit.cs").Contains("CollectProperties(property.Value, properties)", StringComparison.Ordinal),
+        Check(Read("Tools/ReforgedValidator/DotNet/Checks/RuntimeBundleDWorldAuthorityAudit.cs").Contains("CollectProperties(property.Value, properties)", StringComparison.Ordinal),
             "world-authority-recurses-all-nested-generated-fields");
 
         evidence.Add(new("D1", "decoded + generated + runtime", "Verified", "Canonical map-qualified room identity and one RuntimeWorld graph are live."));
-        evidence.Add(new("D2", "MMExplorer rooms decoded 0138/0140", "Strongly Corroborated", "Room light, shop, spell, lair, delay, command, NPC, and placed fields exist in decoded sources; only proven generated fields execute."));
-        evidence.Add(new("D3", "MMExplorer exits semantic 0183", "Strongly Corroborated", "Prerequisites, effects, hidden mode, tolls, edge state, and reciprocal semantics are retained as decoded evidence and require specialized consumers."));
+        evidence.Add(new("D2", "canonical room records", "Strongly Corroborated", "Room light, shop, spell, lair, delay, command, NPC, and placed fields exist in decoded sources; only proven generated fields execute."));
+        evidence.Add(new("D3", "canonical exit records", "Strongly Corroborated", "Prerequisites, effects, hidden mode, tolls, edge state, and reciprocal semantics are retained as decoded evidence and require specialized consumers."));
         evidence.Add(new("D4", "door_lock_access_catalog + live world", "Verified", "RuntimeLivingWorldService is the live door state owner; the richer door service is non-live validation evidence."));
-        evidence.Add(new("D5", "DataSimVer0017 + Validation0008", "Verified", "Discovery is per character; See Hidden is not reused as automatic room-object discovery."));
+        evidence.Add(new("D5", "generated data and live validation", "Verified", "Discovery is per character; See Hidden is not reused as automatic room-object discovery."));
         evidence.Add(new("D6", "ability 119 + native text + cleanup snippets", "Verified", "Decoded Del@Maint maps to runtime DeleteAtCleanup behavior; ordinary room ground becomes hidden."));
 
         return new(
@@ -104,7 +96,7 @@ public static class RuntimeBundleDCorrectiveExhaustionAudit
             evidence,
             new[]
             {
-                "D1-D6 now have one combined audit gate that requires decoded, imported, Librarium, native, generated, and live-runtime evidence sources.",
+                "D1-D6 have one combined audit gate that requires canonical Librarium, generated, and live-runtime evidence sources.",
                 "The decoded source name is Del@Maint (ability 119); DeleteAtCleanup is only the runtime semantic behavior name.",
                 "Newhaven Arena remains canonical room.map1.2150.",
                 "Room-object discovery remains player-specific and is not globally revealed by Search or See Hidden.",

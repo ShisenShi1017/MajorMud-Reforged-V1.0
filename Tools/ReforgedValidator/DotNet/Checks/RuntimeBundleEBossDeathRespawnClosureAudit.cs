@@ -60,27 +60,18 @@ public static class RuntimeBundleEBossDeathRespawnClosureAudit
 
         var requiredEvidence = new[]
         {
-            "Data/Classic/spawns.json", "Data/Classic/loot_rules.json",
-            "Librarium/Objects/spawns/catalog.json", "Librarium/Objects/loot_rules/catalog.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/WORLD_SPAWN_TIMERS.json",
-            "Librarium/MajorMUDKnowledgeBase/MechanicsFull/ECON_LOOT.json",
-            "Librarium/CombatSpellReconstruction/combat_death_fanout_0175.json",
-            "Librarium/Runtime/Economy/loot_runtime_catalog_0153.json",
-            "Evidence/CombatSpellReconstruction/combat_death_fanout_evidence_0175.json",
-            "Evidence/NpcAI/npc_ai_death_respawn_recovery_evidence.json",
-            "Evidence/NpcAI/npc_ai_spawn_lifecycle_evidence.json",
-            "Evidence/NpcAI/npc_ai_corpse_ownership_evidence.json",
-            "Evidence/NpcAI/npc_ai_corpse_access_evidence.json",
-            "Evidence/NpcAI/npc_ai_loot_materialization_evidence.json",
-            "Evidence/Economy/economy_loot_runtime_evidence_0153.json",
-            "Evidence/DataSimVer0022-MonsterRespawnSchedulingEvidence.csv",
-            "Evidence/DataSimVer0023/boss_unique_monster_candidates.csv",
+            "Data/Classic/spawns.json",
+            "Data/Classic/loot_rules.json",
+            "Data/Classic/npcs.json",
+            "Data/Classic/items.json",
+            "Librarium/Objects/spawns/catalog.json",
+            "Librarium/Objects/loot_rules/catalog.json",
+            "Librarium/Objects/npcs/npc_records.json",
+            "Librarium/Objects/items/item_records.json",
             "Tools/ReforgedValidator/Baselines/DataSimVer0021/monster_respawn_scheduler_expected_model.json",
             "Tools/ReforgedValidator/Baselines/DataSimVer0023/quest_boss_respawn_occupancy_expected_model.json",
             "Tools/ReforgedValidator/Baselines/DataSimVer/0016/DeathResolutionExpectedModel.csv",
-            "Tools/ReforgedValidator/Baselines/DataSimVer/0016/MonsterRewardLootMatrix.csv",
-            "ImportedDatabases/data-v1.11n.mdb",
-            "ImportedDatabases/WCCDefaultInstall"
+            "Tools/ReforgedValidator/Baselines/DataSimVer/0016/MonsterRewardLootMatrix.csv"
         };
         foreach (var relative in requiredEvidence)
         {

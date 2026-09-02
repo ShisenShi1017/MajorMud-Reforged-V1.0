@@ -12,7 +12,7 @@ public static class RuntimeCombatSpellResolutionSmoke
             "combat-spell-resolution-vector-0001", RuntimeResolutionConfidence.StronglyCorrelated,
             "physical", "physical_dr", "evasion", 4, 9, 2, 1, 80, 50, 0, 999,
             true, 95, 2, 1,
-            new[] { "Evidence/Combat/DLLCombatResolutionOrder_0130.md", "Librarium/Evidence/Combat/dll_calculate_attack_evidence_0130.json" },
+            new[] { "Librarium/Objects/formulas/catalog.json", "Librarium/Objects/parity/parity_records.json" },
             "Reject resolution when profile or evidence is unavailable.");
         var request = new RuntimeCombatSpellResolutionRequest(
             "vector-0001", "combat-0001", 17, "character:1", "npc:1", "weapon:1",
