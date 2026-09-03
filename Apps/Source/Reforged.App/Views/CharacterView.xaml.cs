@@ -59,7 +59,7 @@ public partial class CharacterView : UserControl
             CharacterSubtitle.Text = "Open or configure a Play session to populate this Character area.";
             AuthorityStatus.Text = "Character planning is read-only.";
             IdentityText.Text = VitalsText.Text = ProgressText.Text = StatusText.Text = StatisticsText.Text = BonusBreakdownText.Text = ProgressionDetailsText.Text = string.Empty;
-            CurrentEquipmentList.ItemsSource = KnownSpellsList.ItemsSource = ActiveEffectsList.ItemsSource = null;
+            CurrentEquipmentList.ItemsSource = KnownSpellsList.ItemsSource = ActiveEffectsList.ItemsSource = EquipmentSpellEffectsList.ItemsSource = null;
             PlannedEquipmentList.ItemsSource = null;
             ItemFinderSummary.Text = PlannedItemText.Text = LoadoutComparisonText.Text = CpPlanSummary.Text = string.Empty;
             return;
@@ -100,10 +100,15 @@ public partial class CharacterView : UserControl
             $"PvP:        {session.PvpRealmSummary}";
 
         CurrentEquipmentList.ItemsSource = session.EquippedItems;
-        KnownSpellsList.ItemsSource = session.LearnedSpells;
-        ActiveEffectsList.ItemsSource = session.ActiveEffects;
+        KnownSpellsList.ItemsSource = session.LearnedSpellDetails.Count > 0
+            ? session.LearnedSpellDetails.Select(x => $"{x.Name} • mana {x.ManaCost:N0} • energy {x.EnergyCost:N0}").ToArray()
+            : session.LearnedSpells.ToArray();
+        ActiveEffectsList.ItemsSource = session.ActiveEffectDetails.Count > 0
+            ? session.ActiveEffectDetails.Select(FormatActiveEffect).ToArray()
+            : session.ActiveEffects.ToArray();
 
         var matched = _catalog is null ? Array.Empty<MudPlayWorkshopItem>() : session.EquippedItems.Select(x => _catalog.FindByDisplayName(x)).Where(x => x is not null).Cast<MudPlayWorkshopItem>().ToArray();
+        EquipmentSpellEffectsList.ItemsSource = _catalog is null ? Array.Empty<string>() : BuildEquipmentSpellEffects(matched, _catalog).ToArray();
         EquipmentSummary.Text = _catalog is null
             ? $"Current captured equipment: {session.EquippedItems.Count:N0}. Loading effective item records…"
             : $"Matched {matched.Length:N0}/{session.EquippedItems.Count:N0} equipped entries • AC bonus sum {matched.Sum(x => x.ArmorClassBonus):+#;-#;0} • DR bonus sum {matched.Sum(x => x.DamageResistanceBonus):+#;-#;0} • catalog weight {matched.Sum(x => x.Weight):N0}.";
@@ -117,7 +122,9 @@ public partial class CharacterView : UserControl
             $"Equipment AC bonus    {matched.Sum(x => x.ArmorClassBonus):+#;-#;0}\n" +
             $"Equipment DR bonus    {matched.Sum(x => x.DamageResistanceBonus):+#;-#;0}\n" +
             $"Equipment accuracy    {matched.Sum(x => x.Accuracy):+#;-#;0}\n" +
-            $"Equipment weight      {matched.Sum(x => x.Weight):N0}";
+            $"Equipment weight      {matched.Sum(x => x.Weight):N0}\n" +
+            $"Decoded item abilities {matched.Sum(x => x.Abilities.Count):N0}\n" +
+            $"Equipment spell refs   {matched.Count(x => x.CastSpellLegacyId > 0):N0}";
 
         BonusBreakdownText.Text = BuildBonusBreakdown(matched);
         ProgressionDetailsText.Text = BuildProgression(session);
@@ -263,6 +270,15 @@ public partial class CharacterView : UserControl
         Append("AC", rows, x => x.ArmorClassBonus, lines);
         Append("DR", rows, x => x.DamageResistanceBonus, lines);
         Append("Accuracy", rows, x => x.Accuracy, lines);
+        var excluded = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "MinLevel", "CastsSp", "%Spell" };
+        foreach (var group in rows.SelectMany(item => item.Abilities.Select(a => (item, ability: a)))
+                     .Where(x => !excluded.Contains(x.ability.Name) && x.ability.NumericValue != 0)
+                     .GroupBy(x => x.ability.Name, StringComparer.OrdinalIgnoreCase)
+                     .OrderBy(x => x.Key, StringComparer.OrdinalIgnoreCase))
+        {
+            lines.Add($"{group.Key} {group.Sum(x => x.ability.NumericValue):+#;-#;0}");
+            foreach (var entry in group) lines.Add($"  {entry.item.Name} {entry.ability.NumericValue:+#;-#;0}");
+        }
         return lines.Count == 0 ? "Matched equipment currently exposes no non-zero decoded bonuses in these fields." : string.Join("\n", lines);
     }
 
@@ -274,6 +290,23 @@ public partial class CharacterView : UserControl
         foreach (var entry in contributing) lines.Add($"  {entry.item.Name} {entry.bonus:+#;-#;0}");
     }
 
+    private static IEnumerable<string> BuildEquipmentSpellEffects(IEnumerable<MudPlayWorkshopItem> items, MudPlayWorkshopDataCatalog catalog)
+    {
+        foreach (var item in items.Where(x => x.CastSpellLegacyId > 0))
+        {
+            var spell = catalog.FindSpellByLegacyId(item.CastSpellLegacyId);
+            var spellName = spell?.Name ?? $"spell #{item.CastSpellLegacyId}";
+            var chance = item.SpellChancePercent > 0 ? $" • chance {item.SpellChancePercent}%" : string.Empty;
+            yield return $"{item.Name} → {spellName}{chance} • decoded item spell reference";
+        }
+    }
+
+    private static string FormatActiveEffect(ClientActiveEffectState effect)
+    {
+        var expiry = effect.ExpiresAtUtc is null ? "no captured expiry" : $"expires {effect.ExpiresAtUtc.Value.LocalDateTime:g}";
+        return $"{effect.Name} • {expiry}";
+    }
+
     private static string BuildProgression(ClientSessionConnection session)
     {
         var elapsed = session.ConnectedAt is null ? TimeSpan.Zero : DateTimeOffset.UtcNow - session.ConnectedAt.Value;
@@ -281,6 +314,8 @@ public partial class CharacterView : UserControl
         var xpPerHour = hours > 0.01 ? session.SessionExperienceGained / hours : 0;
         var percent = session.ExperienceNeeded > 0 ? 100.0 * Math.Clamp((double)session.ExperienceCurrent / session.ExperienceNeeded, 0, 1) : 0;
         var eta = xpPerHour > 0 && session.ExperienceRemaining > 0 ? TimeSpan.FromHours(session.ExperienceRemaining / xpPerHour) : (TimeSpan?)null;
+        var samples = session.SessionExperienceSamples.Count;
+        var sampleSpan = samples >= 2 ? session.SessionExperienceSamples[^1].Timestamp - session.SessionExperienceSamples[0].Timestamp : TimeSpan.Zero;
         return
             $"Total/current XP      {session.ExperienceCurrent:N0}\n" +
             $"XP to next            {session.ExperienceRemaining:N0}\n" +
@@ -288,6 +323,7 @@ public partial class CharacterView : UserControl
             $"Session XP            {session.SessionExperienceGained:N0}\n" +
             $"Session duration      {elapsed:dd\\.hh\\:mm\\:ss}\n" +
             $"XP/hour               {xpPerHour:N0} (derived)\n" +
+            $"XP history samples     {samples:N0} over {sampleSpan:dd\\.hh\\:mm\\:ss}\n" +
             $"ETA at current rate   {(eta is null ? "—" : eta.Value.ToString("dd\\.hh\\:mm\\:ss"))}";
     }
 

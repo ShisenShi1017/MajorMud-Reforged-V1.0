@@ -13,13 +13,16 @@ namespace Reforged.App.Services;
 public sealed class MudPlayWorkshopDataCatalog
 {
     private readonly Dictionary<string, MudPlayWorkshopItem> _itemsByNormalizedName;
+    private readonly Dictionary<int, MudPlayWorkshopSpell> _spellsByLegacyId;
 
-    private MudPlayWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<MudPlayWorkshopItem> items)
+    private MudPlayWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<MudPlayWorkshopItem> items, IReadOnlyList<MudPlayWorkshopSpell> spells)
     {
         WorldName = worldName;
         DataRoot = dataRoot;
         AuthorityDescription = authorityDescription;
         Items = items;
+        Spells = spells;
+        _spellsByLegacyId = spells.Where(x => x.LegacyId > 0).GroupBy(x => x.LegacyId).ToDictionary(x => x.Key, x => x.First());
         _itemsByNormalizedName = items
             .Where(item => !string.IsNullOrWhiteSpace(item.Name))
             .GroupBy(item => NormalizeItemName(item.Name), StringComparer.OrdinalIgnoreCase)
@@ -31,6 +34,7 @@ public sealed class MudPlayWorkshopDataCatalog
     public string DataRoot { get; }
     public string AuthorityDescription { get; }
     public IReadOnlyList<MudPlayWorkshopItem> Items { get; }
+    public IReadOnlyList<MudPlayWorkshopSpell> Spells { get; }
 
     public static MudPlayWorkshopDataCatalog LoadClassic()
     {
@@ -42,13 +46,15 @@ public sealed class MudPlayWorkshopDataCatalog
             .Select(record => record.EffectiveRecord)
             .ToArray();
 
+        var spellRecords = overlayService.LoadClassicFamily("Spells").Select(record => record.EffectiveRecord).ToArray();
         var equipmentRules = LoadEquipmentRules(equipmentRecords);
         var items = LoadItems(itemRecords, equipmentRules)
             .OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        return new MudPlayWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items);
+        var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
+        return new MudPlayWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items, spells);
     }
 
     public static MudPlayWorkshopDataCatalog Load(ClientSessionConnection session)
@@ -63,14 +69,18 @@ public sealed class MudPlayWorkshopDataCatalog
             .Select(record => record.EffectiveRecord)
             .ToArray();
 
+        var spellRecords = overlayService.LoadFamily(session, "Spells").Select(record => record.EffectiveRecord).ToArray();
         var equipmentRules = LoadEquipmentRules(equipmentRecords);
         var items = LoadItems(itemRecords, equipmentRules)
             .OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        return new MudPlayWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items);
+        var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
+        return new MudPlayWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items, spells);
     }
+
+    public MudPlayWorkshopSpell? FindSpellByLegacyId(int legacyId) => legacyId > 0 && _spellsByLegacyId.TryGetValue(legacyId, out var spell) ? spell : null;
 
     public MudPlayWorkshopItem? FindByDisplayName(string? displayName)
     {
@@ -144,6 +154,10 @@ public sealed class MudPlayWorkshopDataCatalog
                 ["combat", "speed"],
                 ["public_reference_0139", "fields", "speed"]);
 
+            var abilities = ReadNamedAbilities(record);
+            var castSpell = abilities.FirstOrDefault(x => x.Name.Equals("CastsSp", StringComparison.OrdinalIgnoreCase));
+            var spellChance = abilities.FirstOrDefault(x => x.Name.Equals("%Spell", StringComparison.OrdinalIgnoreCase));
+
             yield return new MudPlayWorkshopItem(
                 id,
                 name,
@@ -162,8 +176,44 @@ public sealed class MudPlayWorkshopDataCatalog
                 rule?.MinimumStrength ?? 0,
                 rule?.TwoHanded ?? false,
                 rule?.ClassRestricted ?? false,
-                rule?.RaceRestricted ?? false);
+                rule?.RaceRestricted ?? false,
+                abilities,
+                castSpell?.NumericValue ?? 0,
+                spellChance?.NumericValue ?? 0);
         }
+    }
+
+    private static IEnumerable<MudPlayWorkshopSpell> LoadSpells(IEnumerable<JsonObject> records)
+    {
+        foreach (var objectRecord in records)
+        {
+            var record = ToElement(objectRecord);
+            var id = FirstText(record, ["id"]);
+            var legacyText = FirstText(record, ["legacy_id"]);
+            _ = int.TryParse(legacyText, NumberStyles.Integer, CultureInfo.InvariantCulture, out var legacyId);
+            var name = FirstText(record, ["name"], ["public_reference_0139", "fields", "name"]);
+            if (name.Length == 0) continue;
+            yield return new MudPlayWorkshopSpell(id, legacyId, name,
+                FirstInt(record, ["classification", "spell_level"], ["public_reference_0139", "fields", "spell_level"]),
+                FirstInt(record, ["costs", "mana_cost"], ["public_reference_0139", "fields", "mana_cost"]),
+                FirstInt(record, ["costs", "energy_cost"], ["public_reference_0139", "fields", "energy_cost"]));
+        }
+    }
+
+    private static IReadOnlyList<MudPlayWorkshopAbility> ReadNamedAbilities(JsonElement record)
+    {
+        if (!TryReadPath(record, ["public_reference_0139", "fields", "abilities_named"], out var node) || node.ValueKind != JsonValueKind.Array)
+            return Array.Empty<MudPlayWorkshopAbility>();
+        var result = new List<MudPlayWorkshopAbility>();
+        foreach (var entry in node.EnumerateArray())
+        {
+            if (entry.ValueKind != JsonValueKind.Object) continue;
+            var name = entry.TryGetProperty("name", out var n) ? n.ToString().Trim() : string.Empty;
+            var value = entry.TryGetProperty("value", out var v) ? v.ToString().Trim() : string.Empty;
+            var abilityId = entry.TryGetProperty("ability_id", out var a) && a.TryGetInt32(out var parsed) ? parsed : 0;
+            if (name.Length > 0) result.Add(new MudPlayWorkshopAbility(name, value, abilityId));
+        }
+        return result;
     }
 
     private static IReadOnlyDictionary<string, MudPlayWorkshopEquipmentRule> LoadEquipmentRules(IEnumerable<JsonObject> records)
@@ -301,7 +351,10 @@ public sealed record MudPlayWorkshopItem(
     int MinimumStrength,
     bool TwoHanded,
     bool ClassRestricted,
-    bool RaceRestricted)
+    bool RaceRestricted,
+    IReadOnlyList<MudPlayWorkshopAbility> Abilities,
+    int CastSpellLegacyId,
+    int SpellChancePercent)
 {
     public string Damage => MaximumDamage > 0 ? $"{MinimumDamage}-{MaximumDamage}" : "—";
     public string Restrictions
@@ -319,3 +372,11 @@ public sealed record MudPlayWorkshopItem(
         }
     }
 }
+
+
+public sealed record MudPlayWorkshopAbility(string Name, string Value, int AbilityId)
+{
+    public int NumericValue => int.TryParse(Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
+}
+
+public sealed record MudPlayWorkshopSpell(string Id, int LegacyId, string Name, int Level, int ManaCost, int EnergyCost);

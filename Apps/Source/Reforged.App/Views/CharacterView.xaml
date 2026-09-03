@@ -107,7 +107,7 @@
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
                         <GroupBox Header="Known spells"><ListBox x:Name="KnownSpellsList"/></GroupBox>
-                        <GroupBox Grid.Column="1" Header="Equipment-granted spells" Margin="8,0"><TextBlock Margin="8" TextWrapping="Wrap" Text="Awaiting a proven decoded equipment-spell source. No values are guessed."/></GroupBox>
+                        <GroupBox Grid.Column="1" Header="Equipment spell effects" Margin="8,0"><ListBox x:Name="EquipmentSpellEffectsList"/></GroupBox>
                         <GroupBox Grid.Column="2" Header="Active effects"><ListBox x:Name="ActiveEffectsList"/></GroupBox>
                     </Grid>
                 </TabItem>
