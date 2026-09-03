@@ -11,7 +11,7 @@ namespace Reforged.App.Views;
 /// Reforged combat-decision configuration. The layout and terminology are Reforged-owned;
 /// it edits the per-character planner introduced by CodeUpdate0378.
 /// </summary>
-public sealed class ReforgedCombatAutomationWindow : Window
+internal sealed class RealmGateCombatAutomationPane : UserControl
 {
     private readonly PlayViewModel _host;
     public ClientSessionConnection Session { get; }
@@ -22,7 +22,7 @@ public sealed class ReforgedCombatAutomationWindow : Window
     private readonly TextBlock _live = Text(string.Empty, FontWeights.Normal);
     private readonly TextBlock _status = Text("Ready.", FontWeights.Normal);
 
-    private readonly CheckBox _enabled = Check("Enable advanced Reforged combat decision engine");
+    private readonly CheckBox _enabled = Check("Enable advanced RealmGate combat decision engine");
     private readonly ComboBox _targetMode = Combo();
     private readonly TextBox _priorityTargets = Box();
     private readonly TextBox _avoidTargets = Box();
@@ -80,18 +80,11 @@ public sealed class ReforgedCombatAutomationWindow : Window
     private readonly ComboBox _actionSet = Combo();
     private readonly TextBox _actionFallback = Box();
 
-    public ReforgedCombatAutomationWindow(PlayViewModel host, ClientSessionConnection session)
+    public RealmGateCombatAutomationPane(PlayViewModel host, ClientSessionConnection session)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
         _profile = _host.GetAdvancedCombatAutomationProfile(session);
-
-        Title = $"Combat Decision Engine — {DisplayCharacter(session)}";
-        Width = 1050;
-        Height = 800;
-        MinWidth = 860;
-        MinHeight = 640;
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Background = SystemColors.ControlBrush;
         Foreground = SystemColors.ControlTextBrush;
         FontFamily = new FontFamily("Tahoma");
@@ -106,7 +99,7 @@ public sealed class ReforgedCombatAutomationWindow : Window
 
         _timer = new DispatcherTimer(TimeSpan.FromMilliseconds(750), DispatcherPriority.Background, (_, _) => RefreshLive(), Dispatcher);
         Loaded += (_, _) => _timer.Start();
-        Closing += (_, _) =>
+        Unloaded += (_, _) =>
         {
             _timer.Stop();
             CaptureControls();
@@ -177,7 +170,7 @@ public sealed class ReforgedCombatAutomationWindow : Window
         p.Children.Add(Row("Pre-attack command", _preAttackCommand, "Engage command", _engageCommand));
         p.Children.Add(_retarget);
         p.Children.Add(Row("Engage cooldown (s)", _engageCooldown, "Round minimum delay (s)", _roundDelay));
-        p.Children.Add(Note("Use {target} explicitly when you want precise placement. Otherwise Reforged appends the selected NPC name. Targets come only from observed hostile NPC state."));
+        p.Children.Add(Note("Use {target} explicitly when you want precise placement. Otherwise RealmGate appends the selected NPC name. Targets come only from observed hostile NPC state."));
         return Scroll(p);
     }
 

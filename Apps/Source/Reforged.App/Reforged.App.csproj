@@ -7,7 +7,7 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>MajorMudReforged</AssemblyName>
+    <AssemblyName>RealmGate</AssemblyName>
     <RootNamespace>Reforged.App</RootNamespace>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
@@ -18,8 +18,16 @@
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\MajorMudReforgedApp\</PublishDir>
+    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\RealmGate\</PublishDir>
     <PublicRelease Condition="'$(PublicRelease)' == ''">false</PublicRelease>
+  </PropertyGroup>
+
+  <!-- Release builds and publishes always land in the repo-level release application folder. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <OutputPath>$(MSBuildThisFileDirectory)..\..\..\Release\RealmGate\</OutputPath>
+    <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\RealmGate\</PublishDir>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +39,14 @@
        against the immutable Classic base and generate a small local overlay. -->
   <ItemGroup>
     <PackageReference Include="JetDatabaseReader" Version="2.2.0" />
+  </ItemGroup>
+
+  <!-- Bundled Classic navigation graph used by Goto/Auto-Roam in clean builds. -->
+  <ItemGroup>
+    <Content Include="Assets\Paths\classic_route_graph.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <!-- Private/development-only AI dependencies. Public releases do not restore them. -->

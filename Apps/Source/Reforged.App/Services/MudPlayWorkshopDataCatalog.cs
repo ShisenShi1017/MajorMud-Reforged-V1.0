@@ -14,10 +14,11 @@ public sealed class MudPlayWorkshopDataCatalog
 {
     private readonly Dictionary<string, MudPlayWorkshopItem> _itemsByNormalizedName;
 
-    private MudPlayWorkshopDataCatalog(string worldName, string dataRoot, IReadOnlyList<MudPlayWorkshopItem> items)
+    private MudPlayWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<MudPlayWorkshopItem> items)
     {
         WorldName = worldName;
         DataRoot = dataRoot;
+        AuthorityDescription = authorityDescription;
         Items = items;
         _itemsByNormalizedName = items
             .Where(item => !string.IsNullOrWhiteSpace(item.Name))
@@ -28,7 +29,27 @@ public sealed class MudPlayWorkshopDataCatalog
 
     public string WorldName { get; }
     public string DataRoot { get; }
+    public string AuthorityDescription { get; }
     public IReadOnlyList<MudPlayWorkshopItem> Items { get; }
+
+    public static MudPlayWorkshopDataCatalog LoadClassic()
+    {
+        var overlayService = new MudPlayClientGameDataOverlayService();
+        var equipmentRecords = overlayService.LoadClassicFamily("Equipment")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+        var itemRecords = overlayService.LoadClassicFamily("Items")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+
+        var equipmentRules = LoadEquipmentRules(equipmentRecords);
+        var items = LoadItems(itemRecords, equipmentRules)
+            .OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        return new MudPlayWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items);
+    }
 
     public static MudPlayWorkshopDataCatalog Load(ClientSessionConnection session)
     {
@@ -48,7 +69,7 @@ public sealed class MudPlayWorkshopDataCatalog
             .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        return new MudPlayWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, items);
+        return new MudPlayWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items);
     }
 
     public MudPlayWorkshopItem? FindByDisplayName(string? displayName)

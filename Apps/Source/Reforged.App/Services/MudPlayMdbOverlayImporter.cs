@@ -298,7 +298,7 @@ public sealed class MudPlayMdbOverlayImporter
         if (!context.IsEditable || context.Mode != MudPlayGameDataAuthorityMode.ExternalBbs)
         {
             return MudPlayMdbImportResult.Failure(
-                "MDB overlays are only for external BBS connections. Reforged servers use their server-selected Reforged world projection.",
+                "MDB overlays are only for external BBS connections. RealmGate servers use their server-selected RealmGate world projection.",
                 fileName);
         }
 

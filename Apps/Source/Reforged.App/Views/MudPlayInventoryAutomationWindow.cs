@@ -12,10 +12,10 @@ namespace Reforged.App.Views;
 
 /// <summary>
 /// Inventory/equipment automation manager. This is a client configuration tool, not
-/// a game-data editor. Every command is executed by PlayViewModel through Reforged's
+/// a game-data editor. Every command is executed by PlayViewModel through RealmGate's
 /// existing automation command origin, connection checks, and Emergency Stop.
 /// </summary>
-public sealed class MudPlayInventoryAutomationWindow : Window
+internal sealed class RealmGateInventoryAutomationPane : UserControl
 {
     private readonly PlayViewModel _host;
     private readonly MudPlayInventoryAutomationService _service = new();
@@ -69,18 +69,11 @@ public sealed class MudPlayInventoryAutomationWindow : Window
     private DateTimeOffset? _lastInventoryPickerUpdatedAt;
     private int _lastInventoryPickerCount = -1;
 
-    public MudPlayInventoryAutomationWindow(PlayViewModel host, ClientSessionConnection session)
+    public RealmGateInventoryAutomationPane(PlayViewModel host, ClientSessionConnection session)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
         _profile = _host.GetInventoryAutomationProfile(session);
-
-        Title = $"Inventory & Equipment Automation — {DisplayCharacter(session)}";
-        Width = 1080;
-        Height = 790;
-        MinWidth = 850;
-        MinHeight = 620;
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Background = SystemColors.ControlBrush;
         Foreground = SystemColors.ControlTextBrush;
         FontFamily = new FontFamily("Tahoma");
@@ -95,7 +88,7 @@ public sealed class MudPlayInventoryAutomationWindow : Window
 
         _timer = new DispatcherTimer(TimeSpan.FromMilliseconds(750), DispatcherPriority.Background, (_, _) => RefreshLiveState(), Dispatcher);
         Loaded += (_, _) => _timer.Start();
-        Closing += (_, _) =>
+        Unloaded += (_, _) =>
         {
             _timer.Stop();
             CapturePreferenceControls();

@@ -77,26 +77,19 @@ public static class ClientBatch3RegressionSmoke
         var paths = new MegaMudPathService(settings);
         await paths.LoadAsync();
 
-        var megaMudSourceUnavailable = paths.SourceDescription.Contains(
-            "source folder was not found",
-            StringComparison.OrdinalIgnoreCase);
+        // Clean installs must carry their own Classic destination/route graph. The
+        // recovered ImportedDatabases/MegaMudMP archive is optional evidence only.
+        Require(paths.AvailablePaths.Count > 0, "megamud-bundled-destination-catalog-loaded");
+        Require(paths.AvailablePaths.Any(path => path.Steps.Count == 0 && !string.IsNullOrWhiteSpace(path.NativeEndKey)),
+            "megamud-bundled-destinations-present");
+        Require(!paths.SourceDescription.Contains("source folder was not found", StringComparison.OrdinalIgnoreCase),
+            "megamud-no-imported-database-runtime-dependency");
+        Require(paths.CalculateReplacementRoute("1/1", "1/3") is { Steps.Count: > 0 },
+            "megamud-bundled-route-graph-executable");
 
-        if (megaMudSourceUnavailable)
-        {
-            // ImportedDatabases/MegaMudMP is retired local-only archival evidence in
-            // the cleaned repository. Its absence is valid; the client must degrade
-            // cleanly instead of treating the optional evidence archive as runtime data.
-            Require(paths.AvailablePaths.Count == 0, "megamud-optional-source-absence-clean");
-        }
-        else
-        {
-            // If a developer restores the local MegaMUD .mp archive, validate the
-            // corpus exactly as before.
-            Require(paths.AvailablePaths.Count > 0, "megamud-path-corpus-loaded");
-            Require(paths.AvailablePaths.All(path => path.Steps.Count > 0), "megamud-paths-have-executable-steps");
-            Require(paths.AvailablePaths.SelectMany(path => path.Steps).All(step =>
-                step.Number > 0 && !string.IsNullOrWhiteSpace(step.Command)), "megamud-path-steps-structurally-valid");
-        }
+        var recoveredExecutableRoutes = paths.AvailablePaths.Where(path => path.Steps.Count > 0).ToArray();
+        Require(recoveredExecutableRoutes.SelectMany(path => path.Steps).All(step =>
+            step.Number > 0 && !string.IsNullOrWhiteSpace(step.Command)), "megamud-recovered-path-steps-structurally-valid");
 
         var reportDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Reports", "Client");
         Directory.CreateDirectory(reportDirectory);

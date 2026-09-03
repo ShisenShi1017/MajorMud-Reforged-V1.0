@@ -8,10 +8,10 @@ using Reforged.App.ViewModels;
 namespace Reforged.App.Views;
 
 /// <summary>
-/// Reforged recovery/buff configuration window. The UI deliberately uses Reforged's
+/// Reforged recovery/buff configuration window. The UI deliberately uses RealmGate's
 /// own session model and terminology; it does not reproduce MudPlay's layout.
 /// </summary>
-public sealed class ReforgedRecoveryAutomationWindow : Window
+internal sealed class RealmGateRecoveryAutomationPane : UserControl
 {
     private readonly PlayViewModel _host;
     public ClientSessionConnection Session { get; }
@@ -80,18 +80,11 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
     private readonly TextBox _partyAge = Small();
     private readonly TextBox _cooldown = Small();
 
-    public ReforgedRecoveryAutomationWindow(PlayViewModel host, ClientSessionConnection session)
+    public RealmGateRecoveryAutomationPane(PlayViewModel host, ClientSessionConnection session)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
         _profile = _host.GetRecoveryAutomationProfile(session);
-
-        Title = $"Recovery & Buff Automation — {DisplayCharacter(session)}";
-        Width = 1000;
-        Height = 790;
-        MinWidth = 820;
-        MinHeight = 620;
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Background = SystemColors.ControlBrush;
         Foreground = SystemColors.ControlTextBrush;
         FontFamily = new FontFamily("Tahoma");
@@ -105,7 +98,7 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
 
         _timer = new DispatcherTimer(TimeSpan.FromMilliseconds(750), DispatcherPriority.Background, (_, _) => RefreshLive(), Dispatcher);
         Loaded += (_, _) => _timer.Start();
-        Closing += (_, _) =>
+        Unloaded += (_, _) =>
         {
             _timer.Stop();
             CaptureControls();
@@ -156,7 +149,6 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
         tabs.Items.Add(new TabItem { Header = "Cures / Recovery", Content = BuildRecoveryTab() });
         tabs.Items.Add(new TabItem { Header = "Buff Maintenance", Content = BuildBuffTab() });
         tabs.Items.Add(new TabItem { Header = "Buff Watchdog", Content = BuildBuffWatchdogTab() });
-        tabs.Items.Add(new TabItem { Header = "Party Hooks", Content = BuildPartyTab() });
         root.Children.Add(tabs);
         return root;
     }
@@ -165,7 +157,7 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
     {
         var panel = FormPanel();
         panel.Children.Add(_enabled);
-        panel.Children.Add(Note("When enabled, this Reforged planner owns the self-heal/recovery/buff lane for this character so the legacy rest/heal lane does not double-cast."));
+        panel.Children.Add(Note("When enabled, this RealmGate planner owns the self-heal/recovery/buff lane for this character so the legacy rest/heal lane does not double-cast."));
         panel.Children.Add(_healSelf);
         panel.Children.Add(_healCombat);
         panel.Children.Add(Row("Minor heal at HP %", _minorAt, "Command", _minorCommand));
@@ -198,7 +190,7 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
         panel.Children.Add(Row("Rest command", _restCommand, "Meditate command", _meditateCommand));
         panel.Children.Add(Row("Stand command", _standCommand, string.Empty, new TextBlock()));
         panel.Children.Add(Row("Pre-recovery equipment set", _preSet, "Post-recovery equipment set", _postSet));
-        panel.Children.Add(Note("Equipment-set hooks reuse Reforged's 0376 equipment planner; they never bypass inventory/equipment verification."));
+        panel.Children.Add(Note("Equipment-set hooks reuse RealmGate's 0376 equipment planner; they never bypass inventory/equipment verification."));
         return Scroll(panel);
     }
 
@@ -257,7 +249,7 @@ public sealed class ReforgedRecoveryAutomationWindow : Window
         panel.Children.Add(Row("Heal below HP %", _partyHealAt, "Command template", _partyHealCommand));
         panel.Children.Add(_partyPoison);
         panel.Children.Add(Row("Poison cure template", _partyPoisonCommand, "Party max age (s)", _partyAge));
-        panel.Children.Add(Note("Use {target} in party command templates. Reforged chooses only a member present in the captured party state; it does not invent names or infer ailments other than the explicit poisoned flag."));
+        panel.Children.Add(Note("Use {target} in party command templates. RealmGate chooses only a member present in the captured party state; it does not invent names or infer ailments other than the explicit poisoned flag."));
         return Scroll(panel);
     }
 

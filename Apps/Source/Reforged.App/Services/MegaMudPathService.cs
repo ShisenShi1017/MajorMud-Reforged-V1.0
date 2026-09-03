@@ -28,6 +28,7 @@ public interface IMegaMudPathService
 public sealed partial class MegaMudPathService(IApplicationSettingsService settings) : IMegaMudPathService
 {
     private readonly JsonSerializerOptions _json = new() { WriteIndented = true };
+    private readonly Dictionary<string, List<(string To, string Command)>> _bundledEdges = new(StringComparer.OrdinalIgnoreCase);
     public ObservableCollection<MegaMudPathRecord> AvailablePaths { get; } = [];
     public ImportedPathProfile ImportedProfile { get; private set; } = new();
     public RouteRecordingState Recording { get; } = new();
@@ -38,27 +39,47 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
     public async Task LoadAsync()
     {
         await LoadProfileAsync();
-        var root = FindRepositoryRoot();
-        var source = root is null ? null : Path.Combine(root, "ImportedDatabases", "MegaMudMP");
-        var rooms = root is null ? new Dictionary<string, LibrariumRoom>(StringComparer.OrdinalIgnoreCase) : LoadRooms(root);
         AvailablePaths.Clear();
-        if (source is null || !Directory.Exists(source))
+        _bundledEdges.Clear();
+
+        var root = FindRepositoryRoot();
+        var bundledPath = ResolveBundledRouteGraphPath(root);
+        var bundledDestinations = bundledPath is null ? 0 : LoadBundledRouteGraph(bundledPath);
+
+        // Developer/source-tree compatibility: if the original recovered .mp archive is
+        // present, expose those exact files as additional read-only routes. Normal builds
+        // no longer depend on ImportedDatabases/MegaMudMP.
+        var source = root is null ? null : Path.Combine(root, "ImportedDatabases", "MegaMudMP");
+        var originalCount = 0;
+        if (source is not null && Directory.Exists(source))
         {
-            SourceDescription = "MegaMUD .mp source folder was not found. Imported Client paths remain available.";
+            var rooms = LoadRooms(root!);
+            foreach (var file in Directory.EnumerateFiles(source, "*.mp", SearchOption.TopDirectoryOnly)
+                         .OrderBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase))
+            {
+                var route = Parse(file, rooms);
+                route.IsImported = ImportedProfile.Paths.Any(p => string.Equals(p.SourceFileName, route.FileName, StringComparison.OrdinalIgnoreCase));
+                AvailablePaths.Add(route);
+                originalCount++;
+            }
+        }
+
+        if (bundledDestinations == 0 && originalCount == 0)
+        {
+            SourceDescription = "RealmGate bundled route graph was not found. Only locally recorded/imported paths are available.";
             return;
         }
 
-        foreach (var file in Directory.EnumerateFiles(source, "*.mp", SearchOption.TopDirectoryOnly).OrderBy(Path.GetFileName, StringComparer.OrdinalIgnoreCase))
-        {
-            var route = Parse(file, rooms);
-            route.IsImported = ImportedProfile.Paths.Any(p => string.Equals(p.SourceFileName, route.FileName, StringComparison.OrdinalIgnoreCase));
-            AvailablePaths.Add(route);
-        }
-        SourceDescription = $"{AvailablePaths.Count:N0} MegaMUD .mp paths • read-only source • local imports stored per server/world profile";
+        SourceDescription = originalCount > 0
+            ? $"{bundledDestinations:N0} bundled Classic destinations • {originalCount:N0} recovered MegaMUD .mp routes • local imports stored per profile"
+            : $"{bundledDestinations:N0} bundled Classic destinations • RealmGate route graph • no ImportedDatabases dependency";
     }
 
     public async Task ImportAsync(MegaMudPathRecord route)
     {
+        if (route.Steps.Count == 0)
+            throw new InvalidOperationException("Bundled Goto destinations are calculated from the current room and are not importable .mp command files.");
+
         var existing = ImportedProfile.Paths.FirstOrDefault(p => string.Equals(p.SourceFileName, route.FileName, StringComparison.OrdinalIgnoreCase));
         if (existing is null)
         {
@@ -161,7 +182,12 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
             return new MegaMudPathRecord { FileName = "client-recovery.mp", StartLabel = start, EndLabel = destination, NativeStartKey = start, NativeEndKey = destination };
 
         var edges = new Dictionary<string, List<(string To, string Command)>>(StringComparer.OrdinalIgnoreCase);
-        foreach (var route in AvailablePaths)
+        foreach (var pair in _bundledEdges)
+            edges[pair.Key] = new List<(string To, string Command)>(pair.Value);
+
+        // Preserve exact recovered/recorded route transitions as additional edges when
+        // those routes are available. The bundled graph remains the clean-install base.
+        foreach (var route in AvailablePaths.Where(route => route.Steps.Count > 0))
         {
             foreach (var step in route.Steps.Where(step => step.IsMovement && !string.IsNullOrWhiteSpace(step.NativeRoomKey) && !string.IsNullOrWhiteSpace(step.ExpectedNativeRoomKey)))
             {
@@ -216,13 +242,74 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
         }
         return new MegaMudPathRecord
         {
-            FileName = $"client-recovery-{DateTimeOffset.UtcNow:yyyyMMddHHmmss}.mp", Author = "Reforged Client",
+            FileName = $"client-recovery-{DateTimeOffset.UtcNow:yyyyMMddHHmmss}.mp", Author = "RealmGate Client",
             StartLabel = start, EndLabel = destination, NativeStartKey = start, NativeEndKey = destination,
             DeclaredStepCount = steps.Count, Steps = steps,
         };
     }
 
     private static string NormalizeKey(string value) => value.Trim().Trim('[', ']', '(', ')').ToUpperInvariant();
+
+    private static string? ResolveBundledRouteGraphPath(string? root)
+    {
+        var output = Path.Combine(AppContext.BaseDirectory, "Assets", "Paths", "classic_route_graph.json");
+        if (File.Exists(output)) return output;
+        if (root is null) return null;
+        var source = Path.Combine(root, "Apps", "Source", "Reforged.App", "Assets", "Paths", "classic_route_graph.json");
+        return File.Exists(source) ? source : null;
+    }
+
+    private int LoadBundledRouteGraph(string path)
+    {
+        using var document = JsonDocument.Parse(File.ReadAllText(path));
+        var root = document.RootElement;
+        if (!root.TryGetProperty("rooms", out var rooms) || rooms.ValueKind != JsonValueKind.Array)
+            return 0;
+
+        foreach (var room in rooms.EnumerateArray())
+        {
+            var key = room.TryGetProperty("key", out var keyNode) ? NormalizeKey(keyNode.GetString() ?? string.Empty) : string.Empty;
+            var name = room.TryGetProperty("name", out var nameNode) ? nameNode.GetString()?.Trim() ?? string.Empty : string.Empty;
+            var map = room.TryGetProperty("map", out var mapNode) && mapNode.TryGetInt32(out var mapValue) ? mapValue : 0;
+            var number = room.TryGetProperty("room", out var roomNode) && roomNode.TryGetInt32(out var roomValue) ? roomValue : 0;
+            if (key.Length == 0) continue;
+            if (name.Length == 0) name = $"Room {key}";
+            AvailablePaths.Add(new MegaMudPathRecord
+            {
+                FileName = $"classic-destination-{map}-{number}.rgpath",
+                Author = "RealmGate Bundled Navigation",
+                StartLabel = "Current location",
+                EndLabel = name,
+                Start = new MegaMudPathEndpoint { Region = map > 0 ? $"Map {map}" : "Classic", Name = "Current location" },
+                End = new MegaMudPathEndpoint
+                {
+                    Region = map > 0 ? $"Map {map}" : "Classic",
+                    Name = name,
+                    MapNumber = map > 0 ? map : null,
+                    RoomNumber = number > 0 ? number : null,
+                    LibrariumRoomId = map > 0 && number > 0 ? $"room.map{map}.{number}" : null,
+                    LibrariumName = name
+                },
+                NativeEndKey = key
+            });
+        }
+
+        if (root.TryGetProperty("edges", out var edges) && edges.ValueKind == JsonValueKind.Array)
+        {
+            foreach (var edge in edges.EnumerateArray())
+            {
+                var from = edge.TryGetProperty("from", out var fromNode) ? NormalizeKey(fromNode.GetString() ?? string.Empty) : string.Empty;
+                var to = edge.TryGetProperty("to", out var toNode) ? NormalizeKey(toNode.GetString() ?? string.Empty) : string.Empty;
+                var command = edge.TryGetProperty("command", out var commandNode) ? commandNode.GetString()?.Trim() ?? string.Empty : string.Empty;
+                if (from.Length == 0 || to.Length == 0 || command.Length == 0) continue;
+                if (!_bundledEdges.TryGetValue(from, out var list)) _bundledEdges[from] = list = [];
+                if (!list.Any(existing => existing.To.Equals(to, StringComparison.OrdinalIgnoreCase) && existing.Command.Equals(command, StringComparison.OrdinalIgnoreCase)))
+                    list.Add((to, command));
+            }
+        }
+
+        return AvailablePaths.Count;
+    }
 
     private async Task LoadProfileAsync()
     {
@@ -382,7 +469,10 @@ public sealed partial class MegaMudPathService(IApplicationSettingsService setti
             var current = new DirectoryInfo(start);
             while (current is not null)
             {
-                if (Directory.Exists(Path.Combine(current.FullName, "ImportedDatabases", "MegaMudMP")) && Directory.Exists(Path.Combine(current.FullName, "Data", "Classic"))) return current.FullName;
+                if (File.Exists(Path.Combine(current.FullName, "ProjectManifest.json"))
+                    && Directory.Exists(Path.Combine(current.FullName, "Apps"))
+                    && Directory.Exists(Path.Combine(current.FullName, "Librarium")))
+                    return current.FullName;
                 current = current.Parent;
             }
         }

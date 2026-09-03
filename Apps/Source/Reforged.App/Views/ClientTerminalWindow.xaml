@@ -36,13 +36,16 @@
                             <MenuItem Header="Disconnect" Click="DisconnectClicked"/>
                             <MenuItem Header="Hangup" Click="DisconnectClicked"/>
                             <Separator/>
-                            <MenuItem Header="New character..." Click="NewCharacterProfileClicked"/>
-                            <MenuItem Header="Open character..." Click="OpenCharacterProfilesClicked"/>
-                            <MenuItem Header="Save character" Click="SaveCharacterProfileClicked" InputGestureText="Ctrl+S"/>
-                            <MenuItem Header="Save As..." Click="SaveCharacterAsProfileClicked"/>
-                            <Separator/>
                             <MenuItem Header="Exit" Click="CloseClicked"/>
                         </MenuItem>
+
+                        <MenuItem Header="_BBS Profiles">
+                            <MenuItem Header="New Profile..." Click="NewCharacterProfileClicked"/>
+                            <MenuItem Header="Open Profiles..." Click="OpenCharacterProfilesClicked"/>
+                            <MenuItem Header="Save Profile" Click="SaveCharacterProfileClicked" InputGestureText="Ctrl+S"/>
+                            <MenuItem Header="Save Profile As..." Click="SaveCharacterAsProfileClicked"/>
+                        </MenuItem>
+
                         <MenuItem Header="_Edit">
                             <MenuItem Header="Copy command input" Click="CopyClicked" ToolTip="Copies the current local command input. Password input is never copied."/>
                             <MenuItem Header="Paste command input" Click="PasteClicked"/>
@@ -50,47 +53,32 @@
                             <MenuItem Header="Back-scroll..." Click="BackScrollClicked" InputGestureText="Alt+B"/>
                             <MenuItem Header="Capture / Export Log..." Click="ExportLogClicked"/>
                             <MenuItem Header="Clear Screen" Click="ClearClicked"/>
-                            <Separator/>
-                            <MenuItem Header="Show Item Weights" Click="ShowItemWeightsClicked"/>
-                            <MenuItem Header="Reset Internals (@reset)" Click="ResetInternalsClicked" ToolTip="Resets local client caches; does not send @reset."/>
-                            <MenuItem Header="Reset Window Positions" Click="ResetWindowPositionsClicked"/>
-                            <MenuItem Header="Reset ANSI" Click="ResetAnsiClicked"/>
-                            <MenuItem Header="Reset custom profile" Click="ResetCustomProfileClicked"/>
-                            <Separator/>
-                            <MenuItem Header="Record path" Click="RecordPathClicked"/>
-                            <MenuItem Header="Import" Click="ImportPathClicked"/>
-                            <MenuItem Header="Fix path steps" Click="FixPathStepsClicked"/>
                         </MenuItem>
-                        <MenuItem Header="_View">
-                            <MenuItem Header="Communications Desk..." Click="ConversationsClicked"/>
-                            <MenuItem Header="Creature Intel..." Click="CreatureIntelClicked"/>
-                            <MenuItem Header="Online players" Click="OnlinePlayersClicked"/>
-                            <MenuItem Header="Live Map" Click="LiveMapClicked" InputGestureText="Alt+T"/>
-                            <Separator/>
-                            <MenuItem Header="Player statistics" Click="PlayerStatisticsClicked"/>
-                            <MenuItem Header="Session statistics" Click="SessionStatisticsClicked"/>
-                            <MenuItem Header="Time Analysis" Click="TimeAnalysisClicked"/>
-                            <MenuItem Header="Exp. Rate Graph" Click="ExperienceRateGraphClicked"/>
-                            <Separator/>
-                            <MenuItem Header="Party status" Click="PartyStatusClicked"/>
-                            <MenuItem Header="Quick Tools" Click="QuickToolsClicked"/>
-                        </MenuItem>
+
                         <MenuItem Header="_Action">
-                            <MenuItem Header="Goto..." Click="GotoClicked" InputGestureText="Alt+G" ToolTip="Browse decoded and imported routes. Execution remains governed by automation safety controls."/>
-                            <MenuItem Header="Loop..." Click="LoopClicked" InputGestureText="Alt+L" ToolTip="Browse decoded loop routes. Execution remains governed by automation safety controls."/>
-                            <MenuItem Header="Auto-Roam..." Click="AutoRoamClicked" InputGestureText="Alt+R" ToolTip="Repeat a decoded loop with exact room confirmation and safety controls."/>
+                            <MenuItem Header="Goto..." Click="GotoClicked" InputGestureText="Alt+G" ToolTip="Browse bundled Classic destinations and calculate a safe route from the current room."/>
+                            <MenuItem Header="Loop..." Click="LoopClicked" InputGestureText="Alt+L" ToolTip="Generate and run a safe closed loop from the current room."/>
+                            <MenuItem x:Name="AutoRoamMenu" Header="Auto-Roam" Click="AutoRoamClicked" InputGestureText="Alt+R" ToolTip="Start random safe movement from the current room. Click again to stop."/>
                             <MenuItem Header="Back Track" Click="BackTrackClicked" ToolTip="Reverse the last room-confirmed standard-direction route. Special exits fail closed."/>
                             <MenuItem Header="Stop" Click="StopAllClicked" ToolTip="Stops and pauses all client automation state."/>
+                            <Separator/>
+                            <MenuItem Header="Record Path" Click="RecordPathClicked"/>
+                            <MenuItem Header="Import Path" Click="ImportPathClicked"/>
+                            <MenuItem Header="Fix Path Steps" Click="FixPathStepsClicked"/>
                             <Separator/>
                             <MenuItem Header="Get All" Click="GetAllClicked"/>
                             <MenuItem Header="Drop All" Click="DropAllClicked"/>
                             <MenuItem Header="Equip All" Click="EquipAllClicked"/>
                             <MenuItem Header="Deposit All" Click="DepositAllClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Automation">
+                            <MenuItem Header="Configure Automation..." Click="AutomationControlsClicked" InputGestureText="Alt+M" ToolTip="Open the single RealmGate Automation window."/>
                             <Separator/>
-                            <MenuItem Header="All Auto-Responses Off" Click="StopAllClicked"/>
+                            <MenuItem Header="All Automation Off" Click="StopAllClicked"/>
                             <MenuItem x:Name="AutoCombatMenu" Header="Auto Combat" IsCheckable="True" Tag="combat" Click="QuickAutomationClicked"/>
-                            <MenuItem x:Name="AutoPreAttackMenu" Header="Auto Pre-Attack" IsCheckable="True" Tag="preattack" Click="QuickAutomationClicked" ToolTip="Runs the configured pre-attack command once before engaging a decoded hostile NPC."/>
-                            <MenuItem x:Name="AutoNukeMenu" Header="Auto Nuke" IsCheckable="True" Tag="nuke" Click="QuickAutomationClicked" ToolTip="Uses configured spell priorities against decoded hostile NPCs while preserving the mana reserve."/>
+                            <MenuItem x:Name="AutoPreAttackMenu" Header="Auto Pre-Attack" IsCheckable="True" Tag="preattack" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoNukeMenu" Header="Auto Nuke" IsCheckable="True" Tag="nuke" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoRestHealMenu" Header="Auto Rest / Heal" IsCheckable="True" Tag="restheal" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoBlessMenu" Header="Auto Bless" IsCheckable="True" Tag="bless" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoLightMenu" Header="Auto Light" IsCheckable="True" Tag="light" Click="QuickAutomationClicked"/>
@@ -100,35 +88,34 @@
                             <MenuItem x:Name="AutoHideMenu" Header="Auto Hide" IsCheckable="True" Tag="hide" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoSearchMenu" Header="Auto Search" IsCheckable="True" Tag="search" Click="QuickAutomationClicked"/>
                             <MenuItem x:Name="AutoTrackMenu" Header="Auto Track" IsCheckable="True" Tag="track" Click="QuickAutomationClicked"/>
+                            <Separator/>
+                            <MenuItem x:Name="EventsEnabledMenu" Header="Events Enabled" IsCheckable="True" Tag="events" Click="QuickAutomationClicked"/>
                         </MenuItem>
+
+                        <MenuItem Header="_Party">
+                            <MenuItem Header="Party..." Click="PartyOptionsClicked" InputGestureText="Alt+P" ToolTip="Open party status and configuration in one window."/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Librarium">
+                            <MenuItem Header="Librarium Reference..." Click="LibrariumReferenceClicked"/>
+                            <MenuItem Header="Live Map..." Click="LiveMapClicked" InputGestureText="Alt+T"/>
+                        </MenuItem>
+
                         <MenuItem Header="_Options">
                             <MenuItem Header="Settings..." Click="OptionsClicked"/>
-                            <MenuItem Header="Automation controls..." Click="AutomationControlsClicked" ToolTip="Configure independent client automation safety switches. Emergency Stop overrides every automatic command."/>
-                            <MenuItem Header="Combat configuration..." Click="CombatOptionsClicked" InputGestureText="Alt+M" ToolTip="Configure verified combat actions and safety thresholds."/>
-                            <MenuItem Header="Party configuration..." Click="PartyOptionsClicked" InputGestureText="Alt+P" ToolTip="Configure party following, assisting, healing, and recovery."/>
-                            <MenuItem Header="Health configuration..." Click="HealthOptionsClicked" ToolTip="Configure healing, rest, meditation, cures, and emergency actions."/>
-                            <Separator/>
-                            <MenuItem Header="Game Data..." Click="GameDataClicked"/>
-                            <MenuItem Header="Librarium Reference..." Click="LibrariumReferenceClicked"/>
-                            <MenuItem Header="Events..." Click="EventsClicked"/>
-                            <MenuItem x:Name="EventsEnabledMenu" Header="Events Enabled" IsCheckable="True" Tag="events" Click="QuickAutomationClicked"/>
-                            <MenuItem x:Name="AwayFromKeyboardMenu" Header="Away From Keyboard..." IsCheckable="True" Click="AwayFromKeyboardClicked"/>
-                            <Separator/>
                             <MenuItem Header="Font..." Click="FontClicked"/>
                             <MenuItem Header="Sound" Click="SoundClicked"/>
                             <Separator/>
-                            <MenuItem Header="CP/Exp. Calculator..." Click="CharacterProgressCalculatorClicked"/>
-                            <MenuItem Header="Inventory Calculator..." Click="InventoryCalculatorClicked"/>
-                            <MenuItem Header="Spell Book..." Click="SpellBookClicked"/>
-                            <MenuItem Header="Who Is Home?" Click="WhoIsHomeClicked"/>
+                            <MenuItem Header="Reset ANSI" Click="ResetAnsiClicked"/>
+                            <MenuItem Header="Reset Window Positions" Click="ResetWindowPositionsClicked"/>
                         </MenuItem>
+
                         <MenuItem Header="_Help">
-                            <MenuItem Header="Reforged Help Center..." Click="HelpCenterClicked" InputGestureText="F1"/>
-                            <MenuItem Header="Reforged client status..." Click="ClientStatusClicked"/>
-                            <MenuItem Header="Keyboard and input help..." Click="KeyboardHelpClicked"/>
+                            <MenuItem Header="RealmGate Help..." Click="HelpCenterClicked" InputGestureText="F1"/>
+                            <MenuItem Header="Keyboard and Input Help..." Click="KeyboardHelpClicked"/>
                             <MenuItem Header="Report a Problem..." Click="ReportProblemClicked"/>
                             <Separator/>
-                            <MenuItem Header="About Reforged Client..." Click="AboutClicked"/>
+                            <MenuItem Header="About RealmGate Client..." Click="AboutClicked"/>
                         </MenuItem>
                     </Menu>
                 </DockPanel>
@@ -138,15 +125,12 @@
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="▣" ToolTip="Connect" Click="ConnectClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⊠" ToolTip="Disconnect" Click="DisconnectClicked"/>
                         <Separator/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="➜" ToolTip="Browse Goto routes" Click="GotoClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="↻" ToolTip="Browse loop routes" Click="LoopClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="✣" ToolTip="Choose Auto-Roam loop" Click="AutoRoamClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚔" ToolTip="Combat configuration" Click="CombatOptionsClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♥" ToolTip="Health configuration" Click="HealthOptionsClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="✚" ToolTip="Toggle Auto Bless" Click="BlessToggleClicked"/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="☀" ToolTip="Toggle Auto Light" Click="LightToggleClicked"/>
-                        <Separator/>
-                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♟" ToolTip="Party configuration" Click="PartyOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="➜" ToolTip="Browse Goto destinations" Click="GotoClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="↻" ToolTip="Run a safe loop from the current room" Click="LoopClicked"/>
+                        <Button x:Name="AutoRoamToolbarButton" Style="{StaticResource ClassicToolbarButton}" Content="✣" ToolTip="Start Auto-Roam" Click="AutoRoamClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚡" ToolTip="Automation" Click="AutomationControlsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♟" ToolTip="Party" Click="PartyOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="▤" ToolTip="Librarium" Click="LibrariumReferenceClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⌕" ToolTip="Find in received scrollback" Click="FindClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⚙" ToolTip="Settings" Click="OptionsClicked"/>
                         <Button Style="{StaticResource ClassicToolbarButton}" Content="⊘" ToolTip="Stop All" Click="StopAllClicked"/>
@@ -179,84 +163,7 @@
                         TerminalSizeChanged="ClassicTerminalSizeChanged"/>
                 </Border>
             </DockPanel>
-            <!-- Retired pre-parity presentation kept collapsed until its remaining layout is removed mechanically. -->
-            <DockPanel x:Name="ReforgedWorkspace" Visibility="Collapsed">
-                <DockPanel.Style>
-                    <Style TargetType="DockPanel">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                    </Style>
-                </DockPanel.Style>
 
-                <Menu DockPanel.Dock="Top" Background="#20262C" Foreground="#F1F6FA">
-                    <MenuItem Header="_Connection">
-                        <MenuItem Header="_Connect" Click="ConnectClicked"/>
-                        <MenuItem Header="_Disconnect" Click="DisconnectClicked"/>
-                        <Separator/>
-                        <MenuItem Header="_Close Terminal" Click="CloseClicked"/>
-                    </MenuItem>
-                    <MenuItem Header="_Tools">
-                        <MenuItem Header="_Clear Screen" Click="ClearClicked"/>
-                        <MenuItem Header="_Export Log" Click="ExportLogClicked"/>
-                        <Separator/>
-                        <MenuItem Header="_Options..." Click="OptionsClicked"/>
-                    </MenuItem>
-                    <MenuItem Header="_Automation">
-                        <MenuItem Header="_Auto On/Off" Click="AutoToggleClicked"/>
-                        <MenuItem Header="_Stop All" Click="StopAllClicked"/>
-                    </MenuItem>
-                </Menu>
-
-                <StatusBar DockPanel.Dock="Bottom" Background="#173053" Foreground="#F1F6FA" TextElement.Foreground="#F1F6FA">
-                    <TextBlock DataContext="{Binding Session}" Text="{Binding VitalSummary}"/>
-                    <Separator/>
-                    <TextBlock DataContext="{Binding Session}" Text="{Binding ConnectionMessage}"/>
-                    <Separator/>
-                    <TextBlock DataContext="{Binding Session}" Text="{Binding CurrentRoomName}"/>
-                </StatusBar>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Border Padding="8" Background="#111417" BorderBrush="#2E3943" BorderThickness="0,0,0,1" DataContext="{Binding Session}">
-                        <DockPanel>
-                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <TextBlock Text="HP:" Foreground="#8EE48E"/>
-                                <TextBlock Text="{Binding HealthCurrent}" Foreground="#8EE48E" FontWeight="SemiBold"/>
-                                <TextBlock Text="/" Foreground="#8EE48E"/>
-                                <TextBlock Text="{Binding HealthMaximum}" Foreground="#8EE48E" Margin="0,0,12,0"/>
-                                <TextBlock Text="MA:" Foreground="#76C7FF"/>
-                                <TextBlock Text="{Binding ManaCurrent}" Foreground="#76C7FF" FontWeight="SemiBold"/>
-                                <TextBlock Text="/" Foreground="#76C7FF"/>
-                                <TextBlock Text="{Binding ManaMaximum}" Foreground="#76C7FF" Margin="0,0,12,0"/>
-                                <TextBlock Text="{Binding ConnectionState}" Foreground="#F6D36B"/>
-                            </StackPanel>
-                            <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" Foreground="#F1F6FA"/>
-                        </DockPanel>
-                    </Border>
-                    <ListBox Grid.Row="1" DataContext="{Binding Session}" ItemsSource="{Binding TerminalLines}"
-                             Background="#050608" Foreground="#E7EEF5" BorderThickness="0" FontFamily="Consolas" FontSize="16"
-                             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="Focusable" Value="False"/>
-                                <Setter Property="Foreground" Value="#E7EEF5"/>
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Padding" Value="2,0"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                    <DockPanel Grid.Row="2" Background="#050608">
-                        <TextBlock Text=">" DockPanel.Dock="Left" Margin="10,7,6,7" FontFamily="Consolas" FontSize="17" Foreground="#C6F27A"/>
-                        <Button Content="Send" DockPanel.Dock="Right" Margin="6" Padding="14,5" Click="SendClicked"/>
-                        <TextBox x:Name="ClassicCommandInput" Text="{Binding TerminalCommand, UpdateSourceTrigger=PropertyChanged}" KeyDown="TerminalCommandKeyDown"
-                                 Background="#050608" Foreground="#E7EEF5" BorderBrush="#2E3943" FontFamily="Consolas" FontSize="17"
-                                 CaretBrush="#FFFFFF" Margin="0,5"/>
-                    </DockPanel>
-                </Grid>
-            </DockPanel>
         </Grid>
     </DockPanel>
 </Window>

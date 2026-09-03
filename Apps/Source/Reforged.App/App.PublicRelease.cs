@@ -35,7 +35,7 @@ public partial class App : Application
                 args.Handled = true;
                 MessageBox.Show(
                     args.Exception.Message,
-                    "MajorMUD Reforged",
+                    "RealmGate",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             };
@@ -88,7 +88,7 @@ public partial class App : Application
             manager.Register(new LazyWorkspace("host", "Host", () => new HostView { DataContext = hostViewModel }));
             manager.Register(new LazyWorkspace("editor", "Editor", () => new EditorView(), true));
             manager.Register(new LazyWorkspace("librarium", "Librarium", () => new LibrariumView(), true));
-            manager.Register(new LazyWorkspace("characters", "Characters", () => new CharacterView(), true));
+            manager.Register(new LazyWorkspace("characters", "Characters", () => new CharacterView(clientSessions), true));
             manager.Register(new LazyWorkspace("server", "Server", () => new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
             manager.Register(new LazyWorkspace("settings", "Settings", () => new SettingsView { DataContext = settingsViewModel }));
             manager.Register(new LazyWorkspace("tools", "Tools", () => new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
@@ -246,7 +246,7 @@ public partial class App : Application
         {
             var root = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "MajorMUD Reforged",
+                "RealmGate",
                 "Logs");
             Directory.CreateDirectory(root);
             File.WriteAllText(Path.Combine(root, "startup-failure.log"), exception.ToString());

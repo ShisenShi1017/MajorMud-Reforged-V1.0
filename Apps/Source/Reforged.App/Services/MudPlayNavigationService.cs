@@ -324,6 +324,61 @@ public sealed partial class MudPlayNavigationService
         return riskyPlan;
     }
 
+    public MudPlayNavigationPlan PlanRandomSafeStep(
+        ClientSessionConnection session,
+        MudPlayNavigationPreferences preferences,
+        string? avoidDestinationRoomKey = null)
+    {
+        var snapshot = GetSnapshot(session);
+        var start = NormalizeRoomKey(session.CurrentRoomKey);
+        if (start.Length == 0 || !snapshot.Rooms.ContainsKey(start))
+            return Failed(start, string.Empty, "Auto-Roam is waiting for a confirmed map-qualified current room.");
+        if (!snapshot.Edges.TryGetValue(start, out var outgoing) || outgoing.Count == 0)
+            return Failed(start, string.Empty, "Auto-Roam found no decoded exits from the current room.");
+
+        var safe = outgoing
+            .Select(edge => (Edge: edge, Risk: EvaluateEdge(snapshot, session, edge, preferences, ignoreForbidden: false)))
+            .Where(candidate => !candidate.Risk.Forbidden)
+            .ToList();
+
+        var usedRiskyFallback = false;
+        if (safe.Count == 0 && preferences.AllowRiskyFallback)
+        {
+            usedRiskyFallback = true;
+            var risky = outgoing
+                .Select(edge => (Edge: edge, Risk: EvaluateEdge(snapshot, session, edge, preferences, ignoreForbidden: true)))
+                .OrderBy(candidate => candidate.Risk.Penalty)
+                .ToList();
+            if (risky.Count > 0)
+            {
+                var bestPenalty = risky[0].Risk.Penalty;
+                safe = risky.Where(candidate => candidate.Risk.Penalty == bestPenalty).ToList();
+            }
+        }
+
+        if (safe.Count == 0)
+            return Failed(start, string.Empty, "Auto-Roam is waiting because every decoded exit is blocked by the current navigation safety rules.");
+
+        var avoid = NormalizeRoomKey(avoidDestinationRoomKey);
+        if (avoid.Length > 0 && safe.Count > 1)
+        {
+            var withoutImmediateBacktrack = safe
+                .Where(candidate => !candidate.Edge.To.Equals(avoid, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            if (withoutImmediateBacktrack.Count > 0)
+                safe = withoutImmediateBacktrack;
+        }
+
+        var selected = safe[Random.Shared.Next(safe.Count)];
+        var edge = selected.Edge.WithHazards(selected.Risk.Hazards);
+        return BuildPlan(
+            snapshot,
+            start,
+            edge.To,
+            new SearchResult([edge], selected.Risk.Penalty),
+            usedRiskyFallback);
+    }
+
     public string DescribeRoom(ClientSessionConnection session, string roomKey)
     {
         var snapshot = GetSnapshot(session);

@@ -8,11 +8,11 @@ using Reforged.App.ViewModels;
 namespace Reforged.App.Views;
 
 /// <summary>
-/// Reforged-owned party coordination surface. It intentionally reuses the existing
+/// RealmGate party status and coordination surface. It intentionally reuses the existing
 /// ClientCoordinationService for permission-gated remote @ commands rather than
 /// duplicating MudPlay's UI or remote-command model.
 /// </summary>
-public sealed class ReforgedPartyAutomationWindow : Window
+public sealed class RealmGatePartyWindow : Window
 {
     private readonly PlayViewModel _host;
     public ClientSessionConnection Session { get; }
@@ -23,7 +23,7 @@ public sealed class ReforgedPartyAutomationWindow : Window
     private readonly TextBlock _live = Text(string.Empty, FontWeights.Normal);
     private readonly TextBlock _status = Text("Ready.", FontWeights.Normal);
 
-    private readonly CheckBox _enabled = Check("Enable advanced Reforged party coordinator");
+    private readonly CheckBox _enabled = Check("Enable advanced RealmGate party coordinator");
     private readonly ComboBox _role = Combo();
     private readonly TextBox _leader = Box();
     private readonly CheckBox _follow = Check("Automatically follow the configured leader");
@@ -71,13 +71,26 @@ public sealed class ReforgedPartyAutomationWindow : Window
     private readonly TextBox _cooldown = Small();
     private readonly TextBox _hold = Small();
 
-    public ReforgedPartyAutomationWindow(PlayViewModel host, ClientSessionConnection session)
+    private readonly CheckBox _classicHelpBash = Check("Help leader bash doors");
+    private readonly CheckBox _classicSayPanic = Check("Say @panic when leading");
+    private readonly CheckBox _classicIgnorePanic = Check("Ignore @panic when following");
+    private readonly CheckBox _classicIgnoreParty = Check("Ignore @party when following");
+    private readonly CheckBox _classicIgnoreWait = Check("Ignore @wait when leading");
+    private readonly TextBox _classicMaxMonsters = Small();
+    private readonly TextBox _classicMaxExperience = Small();
+    private readonly TextBox _classicWaitPercent = Small();
+    private readonly TextBox _classicWaitMinutes = Small();
+    private readonly TextBox _classicParFrequency = Small();
+    private readonly TextBox _classicWaitCommand = Box();
+    private readonly TextBox _classicResumeCommand = Box();
+
+    public RealmGatePartyWindow(PlayViewModel host, ClientSessionConnection session)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
         _profile = _host.GetAdvancedPartyAutomationProfile(session);
 
-        Title = $"Party Coordinator — {DisplayCharacter(session)}";
+        Title = $"RealmGate Party — {DisplayCharacter(session)}";
         Width = 930;
         Height = 720;
         MinWidth = 760;
@@ -92,15 +105,18 @@ public sealed class ReforgedPartyAutomationWindow : Window
         _preferredRank.ItemsSource = new[] { "Frontrank", "Backrank" };
         Content = BuildContent();
         LoadControls();
+        LoadClassicControls();
         RefreshLive();
 
         _timer = new DispatcherTimer(TimeSpan.FromMilliseconds(750), DispatcherPriority.Background, (_, _) => RefreshLive(), Dispatcher);
         Loaded += (_, _) => _timer.Start();
-        Closing += (_, _) =>
+        Closing += async (_, _) =>
         {
             _timer.Stop();
             CaptureControls();
+            CaptureClassicControls();
             _host.SaveAdvancedPartyAutomationProfile(Session, _profile);
+            await _host.SaveClassicPartyPreferencesAsync(Session);
         };
     }
 
@@ -120,7 +136,7 @@ public sealed class ReforgedPartyAutomationWindow : Window
             CaptureControls();
             _host.SaveAdvancedPartyAutomationProfile(Session, _profile);
             await _host.RefreshAdvancedPartyStateAsync(Session, includeOnline: _profile.Preferences.Role == ReforgedPartyRole.LeadParty);
-            _status.Text = "Fresh party state requested through the private Reforged protocol when supported.";
+            _status.Text = "Fresh party state requested through the private RealmGate protocol when supported.";
         };
         Grid.SetColumn(refresh, 1);
         header.Children.Add(refresh);
@@ -145,11 +161,57 @@ public sealed class ReforgedPartyAutomationWindow : Window
         root.Children.Add(footer);
 
         var tabs = new TabControl();
+        tabs.Items.Add(new TabItem { Header = "Status", Content = BuildStatusTab() });
+        tabs.Items.Add(new TabItem { Header = "MegaMUD Options", Content = Scroll(BuildClassicOptionsTab()) });
         tabs.Items.Add(new TabItem { Header = "Leader / Follower", Content = Scroll(BuildLeaderTab()) });
         tabs.Items.Add(new TabItem { Header = "Support / Rank", Content = Scroll(BuildSupportTab()) });
         tabs.Items.Add(new TabItem { Header = "Safety / Permissions", Content = Scroll(BuildSafetyTab()) });
         root.Children.Add(tabs);
         return root;
+    }
+
+    private UIElement BuildStatusTab()
+    {
+        var root = new DockPanel { Margin = new Thickness(10) };
+        var refresh = Button("Refresh Party State", 125);
+        refresh.Click += async (_, _) => await _host.SendClientProtocolCommandAsync(Session, "clientdata party");
+        DockPanel.SetDock(refresh, Dock.Bottom);
+        root.Children.Add(refresh);
+        var grid = new DataGrid
+        {
+            ItemsSource = Session.PartyMembers,
+            AutoGenerateColumns = false,
+            IsReadOnly = true,
+            CanUserAddRows = false,
+            CanUserDeleteRows = false,
+            HeadersVisibility = DataGridHeadersVisibility.Column,
+            Background = Brushes.White,
+            Foreground = Brushes.Black,
+            Margin = new Thickness(0, 0, 0, 8)
+        };
+        grid.Columns.Add(new DataGridTextColumn { Header = "Name", Binding = new System.Windows.Data.Binding(nameof(ClientPartyMemberState.Name)), Width = new DataGridLength(2, DataGridLengthUnitType.Star) });
+        grid.Columns.Add(new DataGridTextColumn { Header = "Class", Binding = new System.Windows.Data.Binding(nameof(ClientPartyMemberState.ClassName)), Width = new DataGridLength(1.2, DataGridLengthUnitType.Star) });
+        grid.Columns.Add(new DataGridTextColumn { Header = "Vitals", Binding = new System.Windows.Data.Binding(nameof(ClientPartyMemberState.Vitals)), Width = new DataGridLength(1.4, DataGridLengthUnitType.Star) });
+        grid.Columns.Add(new DataGridTextColumn { Header = "Rank", Binding = new System.Windows.Data.Binding(nameof(ClientPartyMemberState.Rank)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
+        grid.Columns.Add(new DataGridTextColumn { Header = "State", Binding = new System.Windows.Data.Binding(nameof(ClientPartyMemberState.State)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
+        root.Children.Add(grid);
+        return root;
+    }
+
+    private StackPanel BuildClassicOptionsTab()
+    {
+        var p = FormPanel();
+        p.Children.Add(Note("Classic MegaMUD-style party behavior lives here together with RealmGate's newer party coordination. There is no separate Party Status or Party Configuration window."));
+        p.Children.Add(_classicHelpBash);
+        p.Children.Add(_classicSayPanic);
+        p.Children.Add(_classicIgnorePanic);
+        p.Children.Add(_classicIgnoreParty);
+        p.Children.Add(_classicIgnoreWait);
+        p.Children.Add(Row("Max monsters when partying", _classicMaxMonsters, "Max monster experience", _classicMaxExperience));
+        p.Children.Add(Row("Wait below health %", _classicWaitPercent, "Leader wait minutes", _classicWaitMinutes));
+        p.Children.Add(Row("PAR frequency seconds", _classicParFrequency, string.Empty, new TextBlock()));
+        p.Children.Add(Row("Party wait command", _classicWaitCommand, "Party resume command", _classicResumeCommand));
+        return p;
     }
 
     private StackPanel BuildLeaderTab()
@@ -206,8 +268,8 @@ public sealed class ReforgedPartyAutomationWindow : Window
         p.Children.Add(Row("Command cooldown (s)", _cooldown, "Post-action hold (s)", _hold));
         p.Children.Add(new Separator { Margin = new Thickness(0, 9, 0, 7) });
         p.Children.Add(Text("Remote party commands", FontWeights.SemiBold));
-        p.Children.Add(Note("Trusted @ commands remain owned by Reforged's existing Coordination profile. Movement, invite, query, and raw-command permissions are checked per controller there; this window does not create a second remote-command authority."));
-        p.Children.Add(Note("Emergency Stop, verified-gameplay checks, and Reforged private-protocol isolation remain mandatory. External BBS connections never receive CLIENTDATA/ROOMDATA text as player chat."));
+        p.Children.Add(Note("Trusted @ commands remain owned by RealmGate's existing Coordination profile. Movement, invite, query, and raw-command permissions are checked per controller there; this window does not create a second remote-command authority."));
+        p.Children.Add(Note("Emergency Stop, verified-gameplay checks, and RealmGate private-protocol isolation remain mandatory. External BBS connections never receive CLIENTDATA/ROOMDATA text as player chat."));
         return p;
     }
 
@@ -307,6 +369,40 @@ public sealed class ReforgedPartyAutomationWindow : Window
         p.OnlineStateMaximumAgeSeconds = Int(_onlineAge, 30, 2, 300);
         p.CommandCooldownSeconds = Int(_cooldown, 4, 1, 60);
         p.ActionHoldSeconds = Int(_hold, 3, 1, 60);
+    }
+
+    private void LoadClassicControls()
+    {
+        var p = Session.ClassicPartyPreferences;
+        _classicHelpBash.IsChecked = p.HelpLeaderBashDoors;
+        _classicSayPanic.IsChecked = p.SayPanicWhenLeading;
+        _classicIgnorePanic.IsChecked = p.IgnorePanicWhenFollowing;
+        _classicIgnoreParty.IsChecked = p.IgnorePartyWhenFollowing;
+        _classicIgnoreWait.IsChecked = p.IgnoreWaitWhenLeading;
+        _classicMaxMonsters.Text = p.MaxMonstersWhenPartying.ToString();
+        _classicMaxExperience.Text = p.MaxMonsterExperience.ToString();
+        _classicWaitPercent.Text = p.WaitHealthPercent.ToString();
+        _classicWaitMinutes.Text = p.LeaderWaitMinutes.ToString();
+        _classicParFrequency.Text = p.PartyFrequencySeconds.ToString();
+        _classicWaitCommand.Text = p.PartyWaitCommand;
+        _classicResumeCommand.Text = p.PartyResumeCommand;
+    }
+
+    private void CaptureClassicControls()
+    {
+        var p = Session.ClassicPartyPreferences;
+        p.HelpLeaderBashDoors = _classicHelpBash.IsChecked == true;
+        p.SayPanicWhenLeading = _classicSayPanic.IsChecked == true;
+        p.IgnorePanicWhenFollowing = _classicIgnorePanic.IsChecked == true;
+        p.IgnorePartyWhenFollowing = _classicIgnoreParty.IsChecked == true;
+        p.IgnoreWaitWhenLeading = _classicIgnoreWait.IsChecked == true;
+        p.MaxMonstersWhenPartying = Int(_classicMaxMonsters, p.MaxMonstersWhenPartying, 0, 999);
+        p.MaxMonsterExperience = Int(_classicMaxExperience, p.MaxMonsterExperience, 0, int.MaxValue);
+        p.WaitHealthPercent = Int(_classicWaitPercent, p.WaitHealthPercent, 0, 100);
+        p.LeaderWaitMinutes = Int(_classicWaitMinutes, p.LeaderWaitMinutes, 0, 1440);
+        p.PartyFrequencySeconds = Int(_classicParFrequency, p.PartyFrequencySeconds, 1, 3600);
+        p.PartyWaitCommand = _classicWaitCommand.Text.Trim();
+        p.PartyResumeCommand = _classicResumeCommand.Text.Trim();
     }
 
     private void RefreshLive()

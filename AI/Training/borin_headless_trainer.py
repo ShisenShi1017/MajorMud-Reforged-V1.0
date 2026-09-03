@@ -114,7 +114,7 @@ def validate_parity_scorecard(repo: Path) -> tuple[bool, str]:
 
 
 def run_parity_smoke(repo: Path, gate: str, timeout_seconds: float, log_path: Path) -> dict[str, Any]:
-    project = repo / "Apps" / "Source" / "Reforged.Server" / "Reforged.Server.csproj"
+    project = repo / "Tools" / "ReforgedValidator" / "DotNet" / "Reforged.Validation.csproj"
     cmd = ["dotnet", "run", "--project", str(project), "--", str(repo), gate]
     started = time.time()
     try:

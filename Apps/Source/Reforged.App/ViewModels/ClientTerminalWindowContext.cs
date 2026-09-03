@@ -38,7 +38,7 @@ public sealed class ClientTerminalWindowContext : ViewModelBase, IDisposable
             var character = string.IsNullOrWhiteSpace(Session.CharacterName)
                 ? Session.DisplayName
                 : Session.CharacterName;
-            return $"MajorMUD Reforged Client — {character} — {Session.ServerProfileName} / {Session.WorldName}";
+            return $"RealmGate Client — {character} — {Session.ServerProfileName} / {Session.WorldName}";
         }
     }
 

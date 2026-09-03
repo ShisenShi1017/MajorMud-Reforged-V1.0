@@ -112,7 +112,7 @@ public sealed class MudPlayClientGameDataOverlayService
                 BuildServerKey(session),
                 string.Empty,
                 IsEditable: false,
-                $"Reforged server authority: {resolvedWorld}. Play reads that Reforged world projection directly; local BBS overrides are disabled.");
+                $"RealmGate server authority: {resolvedWorld}. The client reads that RealmGate world projection directly; local BBS overrides are disabled.");
         }
 
         var classicRoot = FindWorldDataRoot("Classic", allowClassicFallback: false, out _);
@@ -187,6 +187,34 @@ public sealed class MudPlayClientGameDataOverlayService
                 ResolveRecordName(effective),
                 effective,
                 Math.Max(1, count)));
+        }
+
+        return result
+            .OrderBy(record => record.DisplayName, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(record => record.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    public IReadOnlyList<MudPlayGameDataRecord> LoadClassicFamily(string family)
+    {
+        if (!FamilyFiles.TryGetValue(family, out var fileName))
+            return [];
+
+        var classicRoot = FindWorldDataRoot("Classic", allowClassicFallback: false, out _);
+        var basePath = Path.Combine(classicRoot, fileName);
+        if (!File.Exists(basePath))
+            return [];
+
+        var result = new List<MudPlayGameDataRecord>();
+        foreach (var record in EnumerateRecords(basePath))
+        {
+            if (record is not JsonObject source)
+                continue;
+            var id = ResolveRecordId(family, source);
+            if (id.Length == 0)
+                continue;
+            var clone = (JsonObject)source.DeepClone();
+            result.Add(new MudPlayGameDataRecord(family, id, ResolveRecordName(clone), clone, 0));
         }
 
         return result
@@ -718,7 +746,7 @@ public sealed class MudPlayClientGameDataOverlayService
 
         resolvedWorld = requestedWorld;
         throw new DirectoryNotFoundException(
-            $"Generated Data/{requestedWorld} was not found. Reforged world data fails closed instead of silently using Classic for a different world.");
+            $"Generated Data/{requestedWorld} was not found. RealmGate world data fails closed instead of silently using Classic for a different world.");
     }
 
     private static IEnumerable<DirectoryInfo> CandidateStarts()
@@ -736,13 +764,35 @@ public sealed class MudPlayClientGameDataOverlayService
 
     private static string BuildOverlayPath(ClientSessionConnection session, string serverKey)
     {
-        var root = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        var root = Path.Combine(local, "RealmGate", "Client", "GameDataOverlays", serverKey);
+        var path = Path.Combine(root, "overlay.json");
+
+        // One-time compatibility migration. Existing external-BBS deltas remain valid;
+        // moving the product identity must not force users to re-import their MDBs.
+        var legacyPath = Path.Combine(
+            local,
             "MajorMUD Reforged",
             "Client",
             "GameDataOverlays",
-            serverKey);
-        return Path.Combine(root, "overlay.json");
+            serverKey,
+            "overlay.json");
+        if (!File.Exists(path) && File.Exists(legacyPath))
+        {
+            try
+            {
+                Directory.CreateDirectory(root);
+                File.Copy(legacyPath, path, overwrite: false);
+            }
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+        }
+
+        return path;
     }
 
     private static bool IsLoopbackHost(string host)

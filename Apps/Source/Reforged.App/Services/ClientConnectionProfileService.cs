@@ -31,13 +31,19 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         WriteIndented = true
     };
     private ClientConnectionProfileCatalog _catalog = new();
+    private readonly string? _legacyProfilePath;
 
     public ClientConnectionProfileService(string? rootPath = null)
     {
-        var root = rootPath ?? Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
-        ProfilePath = Path.Combine(root, "Client", "ConnectionProfiles", "connection-profiles.json");
+        if (rootPath is not null)
+        {
+            ProfilePath = Path.Combine(rootPath, "Client", "ConnectionProfiles", "connection-profiles.json");
+            return;
+        }
+
+        var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        ProfilePath = Path.Combine(local, "RealmGate", "Client", "ConnectionProfiles", "connection-profiles.json");
+        _legacyProfilePath = Path.Combine(local, "MajorMUD Reforged", "Client", "ConnectionProfiles", "connection-profiles.json");
     }
 
     public ObservableCollection<ClientConnectionProfile> Profiles => _catalog.Profiles;
@@ -45,6 +51,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
 
     public async Task LoadAsync()
     {
+        TryMigrateLegacyProfile();
         if (!File.Exists(ProfilePath))
         {
             _catalog = CreateDefaultCatalog();
@@ -99,7 +106,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
     {
         var profile = new ClientConnectionProfile
         {
-            ProfileName = MakeUniqueName("New Character"),
+            ProfileName = MakeUniqueName("New BBS Profile"),
             SessionDisplayName = session?.DisplayName ?? $"Session {Math.Max(1, Profiles.Count + 1)}",
             ServerProfileName = session?.ServerProfileName ?? "Local Host",
             WorldName = session?.WorldName ?? "Classic",
@@ -262,7 +269,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
 
     public string MakeUniqueName(string requestedName)
     {
-        var baseName = string.IsNullOrWhiteSpace(requestedName) ? "Character Profile" : requestedName.Trim();
+        var baseName = string.IsNullOrWhiteSpace(requestedName) ? "BBS Profile" : requestedName.Trim();
         var candidate = baseName;
         var suffix = 2;
         while (Profiles.Any(profile => string.Equals(profile.ProfileName, candidate, StringComparison.OrdinalIgnoreCase)))
@@ -289,7 +296,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
             }
 
             profile.ProfileName = string.IsNullOrWhiteSpace(profile.ProfileName)
-                ? MakeUniqueName("Character Profile")
+                ? MakeUniqueName("BBS Profile")
                 : profile.ProfileName;
             profile.SessionDisplayName = profile.SessionDisplayName;
             profile.ServerProfileName = profile.ServerProfileName;
@@ -349,6 +356,24 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         try
         {
             await SaveAsync();
+        }
+        catch (IOException)
+        {
+        }
+        catch (UnauthorizedAccessException)
+        {
+        }
+    }
+
+    private void TryMigrateLegacyProfile()
+    {
+        if (string.IsNullOrWhiteSpace(_legacyProfilePath) || File.Exists(ProfilePath) || !File.Exists(_legacyProfilePath))
+            return;
+
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(ProfilePath)!);
+            File.Copy(_legacyProfilePath, ProfilePath, overwrite: false);
         }
         catch (IOException)
         {

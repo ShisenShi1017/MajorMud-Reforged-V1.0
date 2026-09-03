@@ -150,6 +150,12 @@ public partial class ClientTerminalWindow : Window
         var session = BoundSession;
         if (session is null) return;
 
+        var autoRoaming = ViewModel?.IsAutoRoaming(session) == true;
+        if (AutoRoamMenu is not null)
+            AutoRoamMenu.Header = autoRoaming ? "Stop Auto-Roam" : "Auto-Roam";
+        if (AutoRoamToolbarButton is not null)
+            AutoRoamToolbarButton.ToolTip = autoRoaming ? "Stop Auto-Roam" : "Start Auto-Roam";
+
         UpdateClassicPasswordMode(
             string.IsNullOrWhiteSpace(session.LastReceivedLine)
                 ? session.LivePromptText
@@ -168,8 +174,6 @@ public partial class ClientTerminalWindow : Window
                     8d,
                     54d);
                 ClassicTerminalSurface.FontSize = effectiveFontSize;
-                ClassicCommandInput.FontFamily = ClassicTerminalSurface.FontFamily;
-                ClassicCommandInput.FontSize = effectiveFontSize;
                 session.TerminalPreferences.ShowTimestamps = presentation.ShowTimestamps;
             }
             ClassicTerminalSurface.IsPasswordMode = _classicPasswordMode;
@@ -975,7 +979,7 @@ public partial class ClientTerminalWindow : Window
         var result = MessageBox.Show(
             this,
             "Reset the local typed room, combat, item, spell, party, and WHO caches?\n\nThe connection and terminal scrollback will remain open. No @reset command will be sent.",
-            "Reset Reforged client internals",
+            "Reset RealmGate client internals",
             MessageBoxButton.YesNo,
             MessageBoxImage.Question);
         if (result != MessageBoxResult.Yes) return;
@@ -1187,110 +1191,24 @@ public partial class ClientTerminalWindow : Window
         dialog.Content = root; dialog.ShowDialog();
     }
 
-    private void PartyOptionsClicked(object sender, RoutedEventArgs e)
+    private void PartyOptionsClicked(object sender, RoutedEventArgs e) => OpenPartyWindow();
+
+    private void OpenPartyWindow()
     {
-        var session = BoundSession;
-        if (session is null) return;
-        var prefs = session.ClassicPartyPreferences;
-
-        var dialog = new Window
+        if (ViewModel is null || BoundSession is not { } session) return;
+        var existing = Application.Current.Windows
+            .OfType<RealmGatePartyWindow>()
+            .FirstOrDefault(window => ReferenceEquals(window.Session, session));
+        if (existing is not null)
         {
-            Owner = this,
-            Title = "Party...",
-            Width = 610,
-            Height = 650,
-            MinWidth = 560,
-            MinHeight = 560,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            ResizeMode = ResizeMode.CanResizeWithGrip,
-            Background = SystemColors.ControlBrush,
-            Foreground = SystemColors.ControlTextBrush,
-            FontFamily = new FontFamily("Tahoma"),
-            FontSize = 12
-        };
-
-        var root = new DockPanel { Margin = new Thickness(10) };
-        var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Center, Margin = new Thickness(0, 12, 0, 0) };
-        DockPanel.SetDock(buttons, Dock.Bottom);
-        var ok = NewDialogButton("OK", 92);
-        var cancel = NewDialogButton("Cancel", 92);
-        var help = NewDialogButton("Help", 92);
-        buttons.Children.Add(ok); buttons.Children.Add(cancel); buttons.Children.Add(help);
-        root.Children.Add(buttons);
-
-        var scroll = new ScrollViewer { VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
-        var panel = new StackPanel();
-        scroll.Content = panel;
-        root.Children.Add(scroll);
-
-        var behavior = new GroupBox { Header = "Options", Margin = new Thickness(0, 0, 0, 10), Padding = new Thickness(8) };
-        var checks = new StackPanel();
-        behavior.Content = checks;
-        panel.Children.Add(behavior);
-
-        CheckBox AddCheck(string text, bool value)
-        {
-            var cb = new CheckBox { Content = text, IsChecked = value, Margin = new Thickness(0, 3, 0, 3) };
-            checks.Children.Add(cb);
-            return cb;
+            if (existing.WindowState == WindowState.Minimized) existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
         }
-
-        var helpBash = AddCheck("Help leader bash doors", prefs.HelpLeaderBashDoors);
-        var sayPanic = AddCheck("Say @panic when leading", prefs.SayPanicWhenLeading);
-        var ignorePanic = AddCheck("Ignore @panic when following", prefs.IgnorePanicWhenFollowing);
-        var ignoreParty = AddCheck("Ignore @party when following", prefs.IgnorePartyWhenFollowing);
-        var ignoreWait = AddCheck("Ignore @wait when leading", prefs.IgnoreWaitWhenLeading);
-
-        var grid = new Grid { Margin = new Thickness(8, 4, 8, 4) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(160) });
-        panel.Children.Add(grid);
-
-        for (var i = 0; i < 7; i++) grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        TextBox AddField(int row, string label, string value)
-        {
-            var text = new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 6, 10, 6) };
-            Grid.SetRow(text, row); Grid.SetColumn(text, 0); grid.Children.Add(text);
-            var box = new TextBox { Text = value, Height = 25, Margin = new Thickness(0, 4, 0, 4), VerticalContentAlignment = VerticalAlignment.Center };
-            Grid.SetRow(box, row); Grid.SetColumn(box, 1); grid.Children.Add(box);
-            return box;
-        }
-
-        var maxMonsters = AddField(0, "Max. monsters when partying", prefs.MaxMonstersWhenPartying.ToString());
-        var maxExperience = AddField(1, "Max. monster experience", prefs.MaxMonsterExperience.ToString());
-        var waitPercent = AddField(2, "Wait if members are below (%)", prefs.WaitHealthPercent.ToString());
-        var waitMinutes = AddField(3, "If leading, wait only (mins)", prefs.LeaderWaitMinutes.ToString());
-        var parFrequency = AddField(4, "'par' frequency (seconds)", prefs.PartyFrequencySeconds.ToString());
-        var waitCommand = AddField(5, "Party wait", prefs.PartyWaitCommand);
-        var resumeCommand = AddField(6, "Party resume", prefs.PartyResumeCommand);
-
-        help.Click += (_, _) => MessageBox.Show(dialog,
-            "These settings reproduce MegaMUD's Classic party automation controls. " +
-            "Incoming @wait and @ok directives pause and resume the active route unless their corresponding ignore option is enabled.",
-            "Party automation help", MessageBoxButton.OK, MessageBoxImage.Information);
-        cancel.Click += (_, _) => dialog.Close();
-        ok.Click += async (_, _) =>
-        {
-            static int Parse(TextBox box, int fallback) => int.TryParse(box.Text.Trim(), out var value) ? value : fallback;
-            prefs.HelpLeaderBashDoors = helpBash.IsChecked == true;
-            prefs.SayPanicWhenLeading = sayPanic.IsChecked == true;
-            prefs.IgnorePanicWhenFollowing = ignorePanic.IsChecked == true;
-            prefs.IgnorePartyWhenFollowing = ignoreParty.IsChecked == true;
-            prefs.IgnoreWaitWhenLeading = ignoreWait.IsChecked == true;
-            prefs.MaxMonstersWhenPartying = Parse(maxMonsters, prefs.MaxMonstersWhenPartying);
-            prefs.MaxMonsterExperience = Parse(maxExperience, prefs.MaxMonsterExperience);
-            prefs.WaitHealthPercent = Parse(waitPercent, prefs.WaitHealthPercent);
-            prefs.LeaderWaitMinutes = Parse(waitMinutes, prefs.LeaderWaitMinutes);
-            prefs.PartyFrequencySeconds = Parse(parFrequency, prefs.PartyFrequencySeconds);
-            prefs.PartyWaitCommand = waitCommand.Text;
-            prefs.PartyResumeCommand = resumeCommand.Text;
-            if (ViewModel is not null) await ViewModel.SaveClassicPartyPreferencesAsync(session);
-            dialog.Close();
-        };
-
-        dialog.Content = root;
-        dialog.ShowDialog();
+        new RealmGatePartyWindow(ViewModel, session) { Owner = this }.Show();
     }
+
 
 
     private void HealthOptionsClicked(object sender, RoutedEventArgs e)
@@ -1458,7 +1376,6 @@ public partial class ClientTerminalWindow : Window
         AutoSearchMenu.IsChecked = options.Roaming.AutoSearch;
         AutoTrackMenu.IsChecked = options.Roaming.AutoTrack;
         EventsEnabledMenu.IsChecked = ViewModel.AutomationProfile.Capabilities.TimedEventsEnabled;
-        AwayFromKeyboardMenu.IsChecked = ViewModel.AutomationProfile.Capabilities.AwayFromKeyboardEnabled;
     }
 
     private void AwayFromKeyboardClicked(object sender, RoutedEventArgs e)
@@ -1515,204 +1432,20 @@ public partial class ClientTerminalWindow : Window
 
     private void AutomationControlsClicked(object sender, RoutedEventArgs e)
     {
-        if (ViewModel is null) return;
-        var capabilities = ViewModel.AutomationProfile.Capabilities;
-        var dialog = new Window
+        if (ViewModel is null || BoundSession is not { } session) return;
+        var existing = Application.Current.Windows
+            .OfType<RealmGateAutomationWindow>()
+            .FirstOrDefault(window => ReferenceEquals(window.Session, session));
+        if (existing is not null)
         {
-            Title = "Reforged Automation Controls",
-            Owner = this,
-            Width = 470,
-            Height = 690,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            ResizeMode = ResizeMode.NoResize,
-            Background = Brushes.White
-        };
-        var root = new StackPanel { Margin = new Thickness(18) };
-        root.Children.Add(new TextBlock
-        {
-            Text = "Independent client automation switches",
-            FontSize = 18,
-            FontWeight = FontWeights.SemiBold,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-        root.Children.Add(new TextBlock
-        {
-            Text = "These settings are saved per client profile. Each verified command family can be enabled independently, and Emergency Stop overrides all of them.",
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 0, 0, 14)
-        });
-        var enabledNames = new List<string>();
-        if (capabilities.NavigationEnabled) enabledNames.Add("Navigation");
-        if (capabilities.CombatEnabled) enabledNames.Add("Combat");
-        if (capabilities.HealthRecoveryEnabled) enabledNames.Add("Recovery");
-        if (capabilities.SpellMaintenanceEnabled) enabledNames.Add("Maintained spells");
-        if (capabilities.PartyAutomationEnabled) enabledNames.Add("Party");
-        if (capabilities.LootAutomationEnabled) enabledNames.Add("Loot");
-        if (capabilities.RoamingAutomationEnabled) enabledNames.Add("Roaming");
-        if (capabilities.PvpAutomationEnabled) enabledNames.Add("PvP");
-        if (capabilities.CommunicationsAutomationEnabled) enabledNames.Add("Communication");
-        root.Children.Add(new TextBlock
-        {
-            Text = capabilities.EmergencyStop
-                ? "CURRENT STATUS: EMERGENCY STOP — all automatic commands are blocked."
-                : $"CURRENT STATUS: Running switches — {(enabledNames.Count == 0 ? "none" : string.Join(", ", enabledNames))}.",
-            Foreground = capabilities.EmergencyStop ? Brushes.DarkRed : Brushes.DarkGreen,
-            FontWeight = FontWeights.Bold,
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 0, 0, 12)
-        });
-
-        var aliases = new CheckBox { Content = "Aliases", IsChecked = capabilities.AliasesEnabled, Margin = new Thickness(3) };
-        var macros = new CheckBox { Content = "Approved macros", IsChecked = capabilities.MacrosEnabled, Margin = new Thickness(3) };
-        var triggers = new CheckBox { Content = "Text triggers", IsChecked = capabilities.TextTriggersEnabled, Margin = new Thickness(3) };
-        var eventsEnabled = new CheckBox { Content = "Timed events", IsChecked = capabilities.TimedEventsEnabled, Margin = new Thickness(3) };
-        var navigation = new CheckBox
-        {
-            Content = "Verified navigation (GOTO, loops, backtrack and recovery)",
-            IsChecked = capabilities.NavigationEnabled, Margin = new Thickness(3),
-            ToolTip = "Runs only decoded or calculated routes and stops when the confirmed room does not match."
-        };
-        var combat = new CheckBox
-        {
-            Content = "Verified combat automation",
-            IsChecked = capabilities.CombatEnabled, Margin = new Thickness(3),
-            ToolTip = "Targets only living hostile creatures reported by the connected server."
-        };
-        var healthRecovery = new CheckBox
-        {
-            Content = "Health, healing and recovery",
-            IsChecked = capabilities.HealthRecoveryEnabled, Margin = new Thickness(3),
-            ToolTip = "Uses captured HP, mana/Kai, learned spells and active effects."
-        };
-        var spellMaintenance = new CheckBox
-        {
-            Content = "Buffs and maintained spells",
-            IsChecked = capabilities.SpellMaintenanceEnabled, Margin = new Thickness(3),
-            ToolTip = "Maintains configured blessing, armor and room-light spells only when they are learned, affordable and absent from authoritative live state."
-        };
-        var partyAutomation = new CheckBox
-        {
-            Content = "Party coordination and Defend",
-            IsChecked = capabilities.PartyAutomationEnabled, Margin = new Thickness(3),
-            ToolTip = "Uses the authoritative party roster and only accepts invitations from the configured leader or trusted players."
-        };
-        var lootAutomation = new CheckBox
-        {
-            Content = "Loot, cash, selling and deposits",
-            IsChecked = capabilities.LootAutomationEnabled, Margin = new Thickness(3),
-            ToolTip = "Uses live room items, explicit filters, encumbrance limits and decoded bank/shop services."
-        };
-        var roamingAutomation = new CheckBox
-        {
-            Content = "Room-entry actions and roaming utility",
-            IsChecked = capabilities.RoamingAutomationEnabled, Margin = new Thickness(3),
-            ToolTip = "Runs configured search, sneak, hide, track and proven trap actions after a room is confirmed."
-        };
-        var pvpAutomation = new CheckBox
-        {
-            Content = "PvP responses and party defense",
-            IsChecked = capabilities.PvpAutomationEnabled, Margin = new Thickness(3),
-            ToolTip = "Responds only to verified same-room attackers when SYSOP PvP is enabled and the room is not proven safe."
-        };
-        var communicationsAutomation = new CheckBox
-        {
-            Content = "AFK replies and trusted communication",
-            IsChecked = capabilities.CommunicationsAutomationEnabled, Margin = new Thickness(3),
-            ToolTip = "Allows AFK replies and explicitly authorized coordination commands."
-        };
-        var emergency = new CheckBox
-        {
-            Content = "EMERGENCY STOP — block every automatic command",
-            IsChecked = capabilities.EmergencyStop,
-            Foreground = Brushes.DarkRed,
-            FontWeight = FontWeights.Bold,
-            Margin = new Thickness(3, 12, 3, 3)
-        };
-        root.Children.Add(aliases);
-        root.Children.Add(macros);
-        root.Children.Add(triggers);
-        root.Children.Add(eventsEnabled);
-        root.Children.Add(navigation);
-        root.Children.Add(combat);
-        root.Children.Add(healthRecovery);
-        root.Children.Add(spellMaintenance);
-        root.Children.Add(partyAutomation);
-        root.Children.Add(lootAutomation);
-        root.Children.Add(roamingAutomation);
-        root.Children.Add(pvpAutomation);
-        root.Children.Add(communicationsAutomation);
-        root.Children.Add(emergency);
-
-        root.Children.Add(new TextBlock { Text = "Aliases — summary (edit in Options → Aliases, Macros, Triggers & Events)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 14, 0, 3) });
-        var aliasEditor = new TextBox
-        {
-            Text = string.Join(Environment.NewLine, capabilities.Aliases.Select(alias => $"{alias.Name} = {alias.Command}")),
-            Height = 62,
-            AcceptsReturn = true,
-            IsReadOnly = true,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-        };
-        root.Children.Add(aliasEditor);
-        root.Children.Add(new TextBlock { Text = "Approved macros — summary (edit in the dedicated automation manager)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
-        var macroEditor = new TextBox
-        {
-            Text = string.Join(Environment.NewLine, capabilities.Macros.Select(macro => $"{macro.Name} = {string.Join(" ; ", macro.Commands)}")),
-            Height = 62,
-            AcceptsReturn = true,
-            IsReadOnly = true,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-        };
-        root.Children.Add(macroEditor);
-        root.Children.Add(new TextBlock { Text = "Text triggers — summary (advanced match mode, captures, priority and context live in the dedicated automation manager)", FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 10, 0, 3) });
-        var triggerEditor = new TextBox
-        {
-            Text = string.Join(Environment.NewLine, capabilities.TextTriggers.Select(trigger => $"{trigger.MatchText} => {trigger.Command} | {trigger.CooldownSeconds}")),
-            Height = 72,
-            AcceptsReturn = true,
-            IsReadOnly = true,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-        };
-        root.Children.Add(triggerEditor);
-
-        var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 18, 0, 0) };
-        var cancel = new Button { Content = "Cancel", MinWidth = 82, Margin = new Thickness(4), IsCancel = true };
-        var save = new Button { Content = "Save", MinWidth = 82, Margin = new Thickness(4), IsDefault = true };
-        buttons.Children.Add(cancel);
-        buttons.Children.Add(save);
-        root.Children.Add(buttons);
-        save.Click += async (_, _) =>
-        {
-            capabilities.AliasesEnabled = aliases.IsChecked == true;
-            capabilities.MacrosEnabled = macros.IsChecked == true;
-            capabilities.TextTriggersEnabled = triggers.IsChecked == true;
-            capabilities.TimedEventsEnabled = eventsEnabled.IsChecked == true;
-            capabilities.NavigationEnabled = navigation.IsChecked == true;
-            capabilities.CombatEnabled = combat.IsChecked == true;
-            capabilities.HealthRecoveryEnabled = healthRecovery.IsChecked == true;
-            capabilities.SpellMaintenanceEnabled = spellMaintenance.IsChecked == true;
-            capabilities.PartyAutomationEnabled = partyAutomation.IsChecked == true;
-            capabilities.LootAutomationEnabled = lootAutomation.IsChecked == true;
-            capabilities.RoamingAutomationEnabled = roamingAutomation.IsChecked == true;
-            capabilities.PvpAutomationEnabled = pvpAutomation.IsChecked == true;
-            capabilities.CommunicationsAutomationEnabled = communicationsAutomation.IsChecked == true;
-            capabilities.EmergencyStop = emergency.IsChecked == true;
-            // Alias/macro/trigger definitions are edited in the dedicated automation manager.
-            // Keep this legacy Client Options surface toggle-only so saving it cannot flatten
-            // advanced match modes, captures, priorities, per-rule enables, or parameter templates.
-            if (capabilities.EmergencyStop)
-                await ViewModel.StopAllAutomationAsync();
-            else
-            {
-                if (!capabilities.NavigationEnabled)
-                    foreach (var session in ViewModel.LiveSessions)
-                        ViewModel.StopRoute(session);
-                await ViewModel.SaveAutomationAsync();
-            }
-            dialog.Close();
-        };
-        dialog.Content = new ScrollViewer { Content = root, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
-        dialog.ShowDialog();
+            if (existing.WindowState == WindowState.Minimized) existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
+        }
+        new RealmGateAutomationWindow(ViewModel, session) { Owner = this }.Show();
     }
+
 
     private void CopyClicked(object sender, RoutedEventArgs e)
     {
@@ -1862,7 +1595,7 @@ public partial class ClientTerminalWindow : Window
     {
         MessageBox.Show(
             this,
-            "Reforged terminal input\n\n" +
+            "RealmGate terminal input\n\n" +
             "Enter — send the current command\n" +
             "Backspace / Delete — edit the command\n" +
             "Left / Right / Home / End — move the command caret\n" +
@@ -1880,19 +1613,28 @@ public partial class ClientTerminalWindow : Window
     {
         MessageBox.Show(
             this,
-            "MajorMUD Reforged Client\n\n" +
-            "The single per-session client for MajorMUD Reforged, incorporating the required MegaMUD automation and MMExplorer data features.\n\n" +
-            "Manual play, independent automation capabilities, verified routes, live maps, and server-backed Librarium reference tools are integrated in this client.",
-            "About Reforged Client",
+            "RealmGate Client\n\n" +
+            "A streamlined MajorMUD playing client built around MegaMUD-style terminal play, Automation, Party, Librarium, and BBS Profiles.\n\n" +
+            "Manual play, automation, verified navigation, Party controls, and Librarium reference tools are integrated without separate character-planning or editing surfaces.",
+            "About RealmGate Client",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }
 
     private void GotoClicked(object sender, RoutedEventArgs e) => ShowPathSelector(loopOnly: false);
 
-    private void LoopClicked(object sender, RoutedEventArgs e) => ShowPathSelector(loopOnly: true);
+    private async void LoopClicked(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel is null || BoundSession is null) return;
+        await ViewModel.StartGeneratedLoopAsync(BoundSession);
+    }
 
-    private void AutoRoamClicked(object sender, RoutedEventArgs e) => ShowPathSelector(loopOnly: true, autoRepeat: true);
+    private async void AutoRoamClicked(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel is null || BoundSession is null) return;
+        await ViewModel.ToggleAutoRoamAsync(BoundSession);
+        RefreshClassicTerminalState();
+    }
 
     private async void BackTrackClicked(object sender, RoutedEventArgs e)
     {
@@ -1931,12 +1673,6 @@ public partial class ClientTerminalWindow : Window
     private void ShowPathSelector(bool loopOnly, bool autoRepeat = false)
     {
         if (ViewModel is null) return;
-
-        var candidates = ViewModel.VisiblePaths
-            .Where(path => loopOnly ? IsLoop(path) : !IsLoop(path))
-            .OrderBy(path => RegionOf(path), StringComparer.OrdinalIgnoreCase)
-            .ThenBy(path => path.EndLabel, StringComparer.OrdinalIgnoreCase)
-            .ToList();
 
         var dialog = new Window
         {
@@ -1991,11 +1727,7 @@ public partial class ClientTerminalWindow : Window
         void Populate(string filter)
         {
             tree.Items.Clear();
-            var filtered = candidates.Where(path =>
-                string.IsNullOrWhiteSpace(filter) ||
-                path.DisplayName.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                path.FileName.Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                RegionOf(path).Contains(filter, StringComparison.OrdinalIgnoreCase));
+            var filtered = ViewModel.FindPaths(filter, loopOnly, maximum: 2500);
 
             foreach (var group in filtered.GroupBy(RegionOf, StringComparer.OrdinalIgnoreCase))
             {
@@ -2133,40 +1865,8 @@ public partial class ClientTerminalWindow : Window
         dialog.Show();
     }
 
-    private void PartyStatusClicked(object sender, RoutedEventArgs e)
-    {
-        if (BoundSession is not { } session || ViewModel is null) return;
-        var dialog = new Window
-        {
-            Title = $"Reforged Party Status — {session.CharacterName}", Owner = this,
-            Width = 720, Height = 430, MinWidth = 560, MinHeight = 300,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
-            FontFamily = new FontFamily("Tahoma"), FontSize = 12
-        };
-        var root = new DockPanel { Margin = new Thickness(12) };
-        var buttons = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 10, 0, 0) };
-        DockPanel.SetDock(buttons, Dock.Bottom);
-        var refresh = NewDialogButton("Refresh (PAR)", 100);
-        var close = NewDialogButton("Close", 70);
-        buttons.Children.Add(refresh); buttons.Children.Add(close); root.Children.Add(buttons);
-        var grid = new DataGrid
-        {
-            ItemsSource = session.PartyMembers, AutoGenerateColumns = false, IsReadOnly = true,
-            CanUserAddRows = false, HeadersVisibility = DataGridHeadersVisibility.Column,
-            Background = Brushes.White, Foreground = Brushes.Black
-        };
-        grid.Columns.Add(new DataGridTextColumn { Header = "Name", Binding = new Binding(nameof(ClientPartyMemberState.Name)), Width = new DataGridLength(2, DataGridLengthUnitType.Star) });
-        grid.Columns.Add(new DataGridTextColumn { Header = "Class", Binding = new Binding(nameof(ClientPartyMemberState.ClassName)), Width = new DataGridLength(1.2, DataGridLengthUnitType.Star) });
-        grid.Columns.Add(new DataGridTextColumn { Header = "Vitals", Binding = new Binding(nameof(ClientPartyMemberState.Vitals)), Width = new DataGridLength(1.4, DataGridLengthUnitType.Star) });
-        grid.Columns.Add(new DataGridTextColumn { Header = "Rank", Binding = new Binding(nameof(ClientPartyMemberState.Rank)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
-        grid.Columns.Add(new DataGridTextColumn { Header = "State", Binding = new Binding(nameof(ClientPartyMemberState.State)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
-        root.Children.Add(grid);
-        refresh.Click += async (_, _) => await ViewModel.SendClientProtocolCommandAsync(session, "clientdata party");
-        close.Click += (_, _) => dialog.Close();
-        dialog.Content = root;
-        dialog.Show();
-    }
+    private void PartyStatusClicked(object sender, RoutedEventArgs e) => OpenPartyWindow();
+
 
     private void PlayerStatisticsClicked(object sender, RoutedEventArgs e)
     {
@@ -3572,157 +3272,25 @@ public partial class ClientTerminalWindow : Window
 
     private void LibrariumReferenceClicked(object sender, RoutedEventArgs e)
     {
-        if (ViewModel is null || BoundSession is not { } session) return;
-        var dialog = new Window
-        {
-            Title = $"Librarium Reference - {session.DisplayName}", Owner = this,
-            Width = 1040, Height = 650, MinWidth = 720, MinHeight = 460,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner,
-            Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
-            FontFamily = new FontFamily("Tahoma"), FontSize = 12
-        };
-        var root = new Grid { Margin = new Thickness(12) };
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(12) });
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1.2, GridUnitType.Star) });
-        var controls = new Grid { Margin = new Thickness(0, 0, 0, 8) };
-        controls.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(220) });
-        controls.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(8) });
-        controls.ColumnDefinitions.Add(new ColumnDefinition());
-        controls.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(72) });
-        Grid.SetColumnSpan(controls, 3);
-        var family = new ComboBox { DisplayMemberPath = nameof(ClientServerCatalogFamily.DisplayName) };
-        var search = new TextBox { ToolTip = "Search names and descriptions." };
-        Grid.SetColumn(search, 2);
-        var searchButton = NewDialogButton("Search", 68); Grid.SetColumn(searchButton, 3);
-        controls.Children.Add(family); controls.Children.Add(search); controls.Children.Add(searchButton); root.Children.Add(controls);
-        var footer = new DockPanel { Margin = new Thickness(0, 10, 0, 0), LastChildFill = true };
-        Grid.SetRow(footer, 2); Grid.SetColumnSpan(footer, 3);
-        var previous = NewDialogButton("Previous", 76);
-        var next = NewDialogButton("Next", 64);
-        var back = NewDialogButton("Back", 58); back.IsEnabled = false;
-        var refresh = NewDialogButton("Refresh catalog", 110);
-        var close = NewDialogButton("Close", 70);
-        DockPanel.SetDock(close, Dock.Right); DockPanel.SetDock(next, Dock.Right); DockPanel.SetDock(previous, Dock.Right); DockPanel.SetDock(back, Dock.Right); DockPanel.SetDock(refresh, Dock.Right);
-        var status = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
-        footer.Children.Add(close); footer.Children.Add(next); footer.Children.Add(previous); footer.Children.Add(back); footer.Children.Add(refresh); footer.Children.Add(status);
-        var records = new ListBox { Background = Brushes.White, Foreground = Brushes.Black, DisplayMemberPath = nameof(ClientLibrariumRecord.Name) };
-        Grid.SetRow(records, 1); root.Children.Add(records);
-        var details = new TextBox
-        {
-            IsReadOnly = true, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto, Background = Brushes.White,
-            Foreground = Brushes.Black, FontFamily = new FontFamily("Consolas"), FontSize = 12, Padding = new Thickness(8)
-        };
-        var referenceList = new ListBox
-        {
-            Height = 105, Background = Brushes.White, Foreground = Brushes.Black,
-            DisplayMemberPath = nameof(ClientLibrariumLink.DisplayName),
-            ToolTip = "Double-click to open related information."
-        };
-        var detailPanel = new DockPanel();
-        DockPanel.SetDock(referenceList, Dock.Bottom);
-        detailPanel.Children.Add(referenceList);
-        detailPanel.Children.Add(details);
-        Grid.SetRow(detailPanel, 1); Grid.SetColumn(detailPanel, 2); root.Children.Add(detailPanel); root.Children.Add(footer);
-        var requestedOffset = 0;
-        string requestedFamily = string.Empty, requestedQuery = string.Empty;
-        var navigationHistory = new Stack<(string Family, string Query, int Offset)>();
+        if (ViewModel is null || BoundSession is not { } session)
+            return;
 
-        void Render()
+        var existing = OwnedWindows.OfType<RealmGateClientLibrariumWindow>().FirstOrDefault();
+        if (existing is not null)
         {
-            var selectedName = (family.SelectedItem as ClientServerCatalogFamily)?.Name;
-            family.ItemsSource = session.ServerCatalogFamilies.OrderBy(item => item.DisplayName, StringComparer.OrdinalIgnoreCase).ToArray();
-            if (selectedName is not null) family.SelectedItem = session.ServerCatalogFamilies.FirstOrDefault(item => item.Name == selectedName);
-            if (session.ConnectionState != ClientConnectionState.Connected)
-            {
-                status.Text = "Disconnected — reconnect to request current server information.";
-                records.IsEnabled = false;
-                searchButton.IsEnabled = false;
-                return;
-            }
-            records.IsEnabled = true;
-            searchButton.IsEnabled = true;
-            if (session.ServerCatalogUpdatedAt is null)
-            {
-                status.Text = "Waiting for the connected server catalog.";
-                return;
-            }
-            if (family.SelectedItem is null) family.SelectedItem = session.ServerCatalogFamilies.FirstOrDefault();
-            if (session.LibrariumPage is { } page && page.Family.Equals(requestedFamily, StringComparison.OrdinalIgnoreCase) &&
-                page.Query.Equals(requestedQuery, StringComparison.Ordinal) && page.Offset == requestedOffset)
-            {
-                records.ItemsSource = page.Records;
-                previous.IsEnabled = page.Offset > 0;
-                next.IsEnabled = page.Offset + page.Records.Count < page.TotalCount;
-                back.IsEnabled = navigationHistory.Count > 0;
-                var freshness = DateTimeOffset.Now - page.CapturedAt > TimeSpan.FromMinutes(2) ? " · stale; search again to refresh" : " · current server page";
-                status.Text = $"{session.ServerCatalogWorld} · showing {page.Offset + 1:N0}-{page.Offset + page.Records.Count:N0} of {page.TotalCount:N0} server records{freshness}";
-            }
-            else status.Text = $"{session.ServerCatalogWorld} · select Search to request a server page";
+            if (existing.WindowState == WindowState.Minimized)
+                existing.WindowState = WindowState.Normal;
+            existing.Show();
+            existing.Activate();
+            return;
         }
 
-        async Task RequestPage(int offset)
+        var window = new RealmGateClientLibrariumWindow(ViewModel, session)
         {
-            if (family.SelectedItem is not ClientServerCatalogFamily selected) return;
-            requestedFamily = selected.Name;
-            requestedQuery = search.Text.Trim();
-            if (requestedQuery.Length > 80) requestedQuery = requestedQuery[..80];
-            requestedOffset = Math.Max(0, offset);
-            await ViewModel.SendClientProtocolCommandAsync(session, $"librarium page {requestedFamily} {requestedOffset}" + (requestedQuery.Length > 0 ? $" {requestedQuery}" : string.Empty));
-        }
-
-        refresh.Click += async (_, _) => await ViewModel.SendClientProtocolCommandAsync(session, "librarium");
-        searchButton.Click += async (_, _) => await RequestPage(0);
-        search.KeyDown += async (_, args) => { if (args.Key == Key.Enter) { await RequestPage(0); args.Handled = true; } };
-        previous.Click += async (_, _) => await RequestPage(Math.Max(0, requestedOffset - (session.LibrariumPage?.PageSize ?? 25)));
-        next.Click += async (_, _) => await RequestPage(requestedOffset + (session.LibrariumPage?.PageSize ?? 25));
-        records.SelectionChanged += (_, _) =>
-        {
-            if (records.SelectedItem is not ClientLibrariumRecord record)
-            {
-                details.Text = string.Empty;
-                referenceList.ItemsSource = null;
-                return;
-            }
-            var formatted = FormatLibrariumRecord(record.Summary, out var references);
-            details.Text = $"{record.Name}\n{LibrariumFriendlyNames.Family(requestedFamily)}\n\n{formatted}";
-            referenceList.ItemsSource = references;
+            Owner = this
         };
-        referenceList.MouseDoubleClick += async (_, _) =>
-        {
-            if (referenceList.SelectedItem is not ClientLibrariumLink link || !link.Reference.Contains('.')) return;
-            var reference = link.Reference;
-            var prefix = reference[..reference.IndexOf('.')];
-            var targetFamily = session.ServerCatalogFamilies.FirstOrDefault(candidate =>
-                candidate.Name.Equals(prefix, StringComparison.OrdinalIgnoreCase) ||
-                candidate.Name.Equals(prefix + "s", StringComparison.OrdinalIgnoreCase) ||
-                candidate.Name.Contains(prefix, StringComparison.OrdinalIgnoreCase));
-            if (targetFamily is null) return;
-            if (!string.IsNullOrWhiteSpace(requestedFamily)) navigationHistory.Push((requestedFamily, requestedQuery, requestedOffset));
-            family.SelectedItem = targetFamily;
-            search.Text = reference;
-            await RequestPage(0);
-        };
-        back.Click += async (_, _) =>
-        {
-            if (!navigationHistory.TryPop(out var prior)) return;
-            var targetFamily = session.ServerCatalogFamilies.FirstOrDefault(candidate => candidate.Name.Equals(prior.Family, StringComparison.OrdinalIgnoreCase));
-            if (targetFamily is null) return;
-            family.SelectedItem = targetFamily;
-            search.Text = prior.Query;
-            await RequestPage(prior.Offset);
-        };
-        close.Click += (_, _) => dialog.Close();
-        var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        timer.Tick += (_, _) => Render();
-        dialog.Closed += (_, _) => timer.Stop();
-        dialog.Content = root;
-        Render(); timer.Start(); dialog.Show();
-        _ = ViewModel.SendClientProtocolCommandAsync(session, "librarium");
+        window.Show();
+        window.Activate();
     }
 
     private void EventsClicked(object sender, RoutedEventArgs e)
@@ -4069,7 +3637,7 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null) return;
         var dialog = new Window
         {
-            Title = "Import MegaMUD Path into Reforged", Owner = this,
+            Title = "Import MegaMUD Path into RealmGate", Owner = this,
             Width = 840, Height = 520, MinWidth = 600, MinHeight = 360,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -4078,7 +3646,7 @@ public partial class ClientTerminalWindow : Window
         var root = new DockPanel { Margin = new Thickness(12) };
         var note = new TextBlock
         {
-            Text = "Imports a read-only MegaMUD .mp route into the local Reforged profile. It does not run the path or change the source file.",
+            Text = "Imports a read-only MegaMUD .mp route into the local RealmGate profile. It does not run the path or change the source file.",
             TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 8)
         };
         DockPanel.SetDock(note, Dock.Top);
@@ -4126,7 +3694,7 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null || BoundSession is not { } session) return;
         var dialog = new Window
         {
-            Title = $"Record Reforged Path — {session.CharacterName}", Owner = this,
+            Title = $"Record RealmGate Path — {session.CharacterName}", Owner = this,
             Width = 620, Height = 470, MinWidth = 480, MinHeight = 350,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,

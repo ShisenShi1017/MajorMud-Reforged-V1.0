@@ -6,7 +6,7 @@ namespace Reforged.App.Models;
 
 public sealed class ClientConnectionProfile : INotifyPropertyChanged
 {
-    private string _profileName = "New Character";
+    private string _profileName = "New BBS Profile";
     private string _sessionDisplayName = "Session";
     private string _characterName = string.Empty;
     private string _serverProfileName = "Local Host";
@@ -29,9 +29,10 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     private int _maximumScrollbackLines = 10000;
     private bool _separateChannels = true;
     private string _notes = string.Empty;
+    private string _gameDataMdbPath = string.Empty;
 
     public string ProfileId { get; set; } = Guid.NewGuid().ToString("N");
-    public string ProfileName { get => _profileName; set => SetSummary(ref _profileName, Clean(value, "New Character")); }
+    public string ProfileName { get => _profileName; set => SetSummary(ref _profileName, Clean(value, "New BBS Profile")); }
     public string SessionDisplayName { get => _sessionDisplayName; set => SetSummary(ref _sessionDisplayName, Clean(value, "Session")); }
     public string CharacterName { get => _characterName; set => SetSummary(ref _characterName, value?.Trim() ?? string.Empty); }
     public string ServerProfileName { get => _serverProfileName; set => SetSummary(ref _serverProfileName, Clean(value, "Local Host")); }
@@ -54,6 +55,15 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     public int MaximumScrollbackLines { get => _maximumScrollbackLines; set => Set(ref _maximumScrollbackLines, Math.Clamp(value, 500, 100000)); }
     public bool SeparateChannels { get => _separateChannels; set => Set(ref _separateChannels, value); }
     public string Notes { get => _notes; set => Set(ref _notes, value ?? string.Empty); }
+    public string GameDataMdbPath
+    {
+        get => _gameDataMdbPath;
+        set
+        {
+            if (Set(ref _gameDataMdbPath, value?.Trim() ?? string.Empty))
+                Raise(nameof(GameDataSummary));
+        }
+    }
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.Now;
     public DateTimeOffset UpdatedAt { get; set; } = DateTimeOffset.Now;
 
@@ -67,6 +77,9 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     }
 
     public string EndpointSummary => $"{HostName}:{Port}";
+    public string GameDataSummary => string.IsNullOrWhiteSpace(GameDataMdbPath)
+        ? "Classic base data (no external MDB associated)"
+        : $"External MDB: {Path.GetFileName(GameDataMdbPath)}";
 
     public ClientConnectionProfile Clone(string profileName)
     {
@@ -95,6 +108,7 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
             LoggingEnabled = LoggingEnabled,
             MaximumScrollbackLines = MaximumScrollbackLines,
             SeparateChannels = SeparateChannels,
+            GameDataMdbPath = GameDataMdbPath,
             Notes = Notes,
             CreatedAt = DateTimeOffset.Now,
             UpdatedAt = DateTimeOffset.Now

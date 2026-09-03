@@ -23,7 +23,7 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly ReforgedCombatAutomationService _advancedCombatAutomation = new();
     private readonly ReforgedPartyAutomationService _advancedPartyAutomation = new();
     private readonly Dictionary<string, string> _lastRecordedMapRoomBySession = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Dictionary<string, MegaMudPathRecord> _autoRoamRoutes = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, string> _autoRoamPreviousRoomBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _autoRoamRestarting = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, CancellationTokenSource> _manualBatchCancellation = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _lastAwayReplyBySessionAndSender = new(StringComparer.OrdinalIgnoreCase);
@@ -736,7 +736,7 @@ public sealed class PlayViewModel : ViewModelBase
 
     public async Task StopAllAutomationAsync()
     {
-        _autoRoamRoutes.Clear();
+        _autoRoamPreviousRoomBySession.Clear();
         foreach (var cancellation in _manualBatchCancellation.Values) cancellation.Cancel();
         _manualBatchCancellation.Clear();
         foreach (var session in _sessions.Sessions)
@@ -1169,6 +1169,12 @@ public sealed class PlayViewModel : ViewModelBase
         if (session is null) return;
 
         var normalized = command?.Trim() ?? string.Empty;
+        if (_autoRoamPreviousRoomBySession.ContainsKey(session.SessionId) && IsRouteMovement(normalized))
+        {
+            StopAutoRoam(session, "Auto-Roam stopped by manual movement.");
+            _sessions.StopRoute(session.SessionId, "Auto-Roam stopped by manual movement");
+        }
+
         if (normalized.Equals("attack", StringComparison.OrdinalIgnoreCase) ||
             normalized.StartsWith("attack ", StringComparison.OrdinalIgnoreCase) ||
             normalized.Equals("backstab", StringComparison.OrdinalIgnoreCase) ||
@@ -1572,9 +1578,13 @@ public sealed class PlayViewModel : ViewModelBase
         var exactStart = currentKey.Length > 0 &&
             (destination.NativeStartKey.Equals(currentKey, StringComparison.OrdinalIgnoreCase)
              || destination.Start?.LibrariumRoomId?.Equals(currentKey, StringComparison.OrdinalIgnoreCase) == true);
-        MegaMudPathRecord? route = exactStart ? destination : null;
+        MegaMudPathRecord? route = exactStart && destination.Steps.Count > 0 ? destination : null;
         if (route is null && !requireExactStart && currentKey.Length > 0 && !string.IsNullOrWhiteSpace(destination.NativeEndKey))
-            route = _paths.CalculateReplacementRoute(currentKey, destination.NativeEndKey);
+        {
+            var navigationProfile = _mudPlayNavigation.LoadProfile(session);
+            var safePlan = _mudPlayNavigation.PlanRoute(session, destination.NativeEndKey, navigationProfile.Preferences);
+            route = safePlan.Route ?? _paths.CalculateReplacementRoute(currentKey, destination.NativeEndKey);
+        }
 
         if (!requireExactStart && route is not null && route.Steps.Count == 0)
         {
@@ -1634,6 +1644,33 @@ public sealed class PlayViewModel : ViewModelBase
         if (SelectedLiveSession is null) return;
         _sessions.PauseRoute(SelectedLiveSession.SessionId);
         Raise(nameof(SelectedLiveSession));
+    }
+
+    public async Task StartGeneratedLoopAsync(ClientSessionConnection? session)
+    {
+        if (!CanRunVerifiedNavigation()) return;
+        if (session is null || session.ConnectionState != ClientConnectionState.Connected)
+        {
+            Status = "Connect this character before starting a loop.";
+            return;
+        }
+        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
+        var plan = _mudPlayNavigation.BuildSafeLoop(session, navigationProfile.Preferences);
+        if (plan.Route is null || plan.Route.Steps.Count == 0)
+        {
+            Status = plan.Warnings.FirstOrDefault() ?? "No safe closed loop could be generated from the current room.";
+            return;
+        }
+        try
+        {
+            SelectedLiveSession = session;
+            await _sessions.StartRouteAsync(session.SessionId, plan.Route);
+            Status = $"Started a {plan.Route.Steps.Count}-step safe loop from {plan.Route.StartLabel}.";
+        }
+        catch (Exception exception)
+        {
+            Status = $"Loop stopped safely: {exception.Message}";
+        }
     }
 
     public async Task StartBackTrackAsync(ClientSessionConnection? session)
@@ -1699,57 +1736,150 @@ public sealed class PlayViewModel : ViewModelBase
     public void StopSelectedRoute()
     {
         if (SelectedLiveSession is null) return;
-        _autoRoamRoutes.Remove(SelectedLiveSession.SessionId);
+        StopAutoRoam(SelectedLiveSession, "Auto-Roam stopped.");
         _sessions.StopRoute(SelectedLiveSession.SessionId);
         Raise(nameof(SelectedLiveSession));
     }
 
     public void StopRoute(ClientSessionConnection session)
     {
-        _autoRoamRoutes.Remove(session.SessionId);
+        StopAutoRoam(session, "Verified navigation disabled");
         _sessions.StopRoute(session.SessionId, "Verified navigation disabled");
     }
 
-    public async Task StartAutoRoamAsync(ClientSessionConnection? session, MegaMudPathRecord loop)
+    public bool IsAutoRoaming(ClientSessionConnection? session) =>
+        session is not null && _autoRoamPreviousRoomBySession.ContainsKey(session.SessionId);
+
+    public async Task ToggleAutoRoamAsync(ClientSessionConnection? session)
+    {
+        if (session is null) return;
+        if (IsAutoRoaming(session))
+        {
+            StopAutoRoam(session, "Auto-Roam stopped.");
+            _sessions.StopRoute(session.SessionId, "Auto-Roam stopped");
+            return;
+        }
+        await StartAutoRoamAsync(session);
+    }
+
+    // Compatibility overload for the retired Navigation Assistant until that window is
+    // removed in the client-consolidation pass. Auto-Roam no longer repeats a selected loop.
+    public Task StartAutoRoamAsync(ClientSessionConnection? session, MegaMudPathRecord _unusedLoop) =>
+        StartAutoRoamAsync(session);
+
+    public async Task StartAutoRoamAsync(ClientSessionConnection? session)
     {
         if (!CanRunVerifiedNavigation()) return;
-        if (session is null || session.ConnectionState != ClientConnectionState.Connected) { Status = "Connect this character before auto-roaming."; return; }
-        var startKey = loop.NativeStartKey.Trim();
-        var endKey = loop.NativeEndKey.Trim();
-        if (startKey.Length == 0 || !startKey.Equals(session.CurrentRoomKey.Trim(), StringComparison.OrdinalIgnoreCase))
-        { Status = $"Auto-Roam loop '{loop.DisplayName}' must start at {loop.NativeStartKey}. Nothing was sent."; return; }
-        var finalKey = loop.Steps.LastOrDefault(step => step.IsMovement)?.ExpectedNativeRoomKey?.Trim() ?? string.Empty;
-        if (!endKey.Equals(startKey, StringComparison.OrdinalIgnoreCase) && !finalKey.Equals(startKey, StringComparison.OrdinalIgnoreCase))
-        { Status = $"'{loop.DisplayName}' does not return to its exact decoded start room, so it cannot repeat safely."; return; }
+        if (session is null || session.ConnectionState != ClientConnectionState.Connected)
+        {
+            Status = "Connect this character before auto-roaming.";
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(session.CurrentRoomKey))
+        {
+            Status = "Auto-Roam is waiting for a confirmed current room.";
+            return;
+        }
         if (!AutomationProfile.Capabilities.NavigationEnabled)
         {
             AutomationProfile.Capabilities.NavigationEnabled = true;
             await _automation.SaveAsync();
             Raise(nameof(AutomationProfile));
         }
-        _autoRoamRoutes[session.SessionId] = loop;
+
+        _autoRoamPreviousRoomBySession[session.SessionId] = string.Empty;
         SelectedLiveSession = session;
-        try { await _sessions.StartRouteAsync(session.SessionId, loop); Status = $"Auto-Roam started: {loop.DisplayName}."; }
-        catch (Exception exception) { _autoRoamRoutes.Remove(session.SessionId); Status = exception.Message; }
+        Status = "Auto-Roam started. RealmGate will choose random valid exits using the current navigation safety rules.";
+        await QueueNextAutoRoamStepAsync(session, immediate: true);
+    }
+
+    private void StopAutoRoam(ClientSessionConnection session, string message)
+    {
+        _autoRoamPreviousRoomBySession.Remove(session.SessionId);
+        _autoRoamRestarting.Remove(session.SessionId);
+        if (!string.IsNullOrWhiteSpace(message)) Status = message;
+    }
+
+    private async Task QueueNextAutoRoamStepAsync(ClientSessionConnection session, bool immediate = false)
+    {
+        if (!_autoRoamPreviousRoomBySession.ContainsKey(session.SessionId) || !_autoRoamRestarting.Add(session.SessionId))
+            return;
+        try
+        {
+            if (!immediate)
+                await Task.Delay(Math.Max(750, AutomationProfile.MinimumCommandDelayMs));
+
+            if (!_autoRoamPreviousRoomBySession.TryGetValue(session.SessionId, out var previousRoom)
+                || session.ConnectionState != ClientConnectionState.Connected
+                || !AutomationProfile.Capabilities.NavigationEnabled
+                || AutomationProfile.Capabilities.EmergencyStop)
+                return;
+
+            var navigationProfile = _mudPlayNavigation.LoadProfile(session);
+            var currentRoom = MudPlayNavigationService.NormalizeRoomKey(session.CurrentRoomKey);
+            var plan = _mudPlayNavigation.PlanRandomSafeStep(session, navigationProfile.Preferences, previousRoom);
+            if (plan.Route is null || plan.Route.Steps.Count == 0)
+            {
+                session.RoamingAutomationStatus = plan.Warnings.FirstOrDefault() ?? "Auto-Roam is waiting for a valid exit.";
+                Status = session.RoamingAutomationStatus;
+                _ = RetryAutoRoamAfterDelayAsync(session);
+                return;
+            }
+
+            _autoRoamPreviousRoomBySession[session.SessionId] = currentRoom;
+            await _sessions.StartRouteAsync(session.SessionId, plan.Route);
+            session.RoamingAutomationStatus = $"Auto-Roam: {plan.Route.StartLabel} → {plan.Route.EndLabel}.";
+            Status = session.RoamingAutomationStatus;
+        }
+        catch (DirectoryNotFoundException exception)
+        {
+            StopAutoRoam(session, $"Auto-Roam stopped because navigation data is unavailable: {exception.Message}");
+        }
+        catch (Exception exception)
+        {
+            if (_autoRoamPreviousRoomBySession.ContainsKey(session.SessionId))
+            {
+                Status = $"Auto-Roam is waiting after a movement failure: {exception.Message}";
+                _ = RetryAutoRoamAfterDelayAsync(session);
+            }
+        }
+        finally
+        {
+            _autoRoamRestarting.Remove(session.SessionId);
+        }
+    }
+
+    private async Task RetryAutoRoamAfterDelayAsync(ClientSessionConnection session)
+    {
+        await Task.Delay(Math.Max(1500, AutomationProfile.MinimumCommandDelayMs * 2));
+        if (_autoRoamPreviousRoomBySession.ContainsKey(session.SessionId))
+            await QueueNextAutoRoamStepAsync(session, immediate: true);
     }
 
     private async void SessionRouteChanged(object? sender, RouteExecutionEvent e)
     {
         Status = e.Message;
-        if (e.State != RouteExecutionState.Completed || !_autoRoamRoutes.TryGetValue(e.SessionId, out var loop)
-            || !AutomationProfile.Capabilities.NavigationEnabled || AutomationProfile.Capabilities.EmergencyStop || !_autoRoamRestarting.Add(e.SessionId)) return;
-        try
+        if (!_autoRoamPreviousRoomBySession.ContainsKey(e.SessionId)) return;
+
+        if (e.State == RouteExecutionState.Stopped)
         {
-            await Task.Delay(Math.Max(500, AutomationProfile.MinimumCommandDelayMs));
-            var session = _sessions.Sessions.FirstOrDefault(candidate => candidate.SessionId.Equals(e.SessionId, StringComparison.OrdinalIgnoreCase));
-            if (session is null || session.ConnectionState != ClientConnectionState.Connected || !_autoRoamRoutes.ContainsKey(e.SessionId)) return;
-            if (!session.CurrentRoomKey.Trim().Equals(loop.NativeStartKey.Trim(), StringComparison.OrdinalIgnoreCase))
-            { _autoRoamRoutes.Remove(e.SessionId); Status = "Auto-Roam stopped because the loop did not return to its exact start room."; return; }
-            await _sessions.StartRouteAsync(e.SessionId, loop);
-            Status = $"Auto-Roam repeating: {loop.DisplayName}.";
+            _autoRoamPreviousRoomBySession.Remove(e.SessionId);
+            return;
         }
-        catch (Exception exception) { _autoRoamRoutes.Remove(e.SessionId); Status = $"Auto-Roam stopped: {exception.Message}"; }
-        finally { _autoRoamRestarting.Remove(e.SessionId); }
+        if (e.State is not (RouteExecutionState.Completed or RouteExecutionState.Faulted)) return;
+        if (!AutomationProfile.Capabilities.NavigationEnabled || AutomationProfile.Capabilities.EmergencyStop)
+        {
+            _autoRoamPreviousRoomBySession.Remove(e.SessionId);
+            return;
+        }
+
+        var session = _sessions.Sessions.FirstOrDefault(candidate => candidate.SessionId.Equals(e.SessionId, StringComparison.OrdinalIgnoreCase));
+        if (session is null || session.ConnectionState != ClientConnectionState.Connected)
+        {
+            _autoRoamPreviousRoomBySession.Remove(e.SessionId);
+            return;
+        }
+        await QueueNextAutoRoamStepAsync(session);
     }
 
     public void PrepareSelectedRouteRecovery()
@@ -4018,6 +4148,29 @@ public sealed class PlayViewModel : ViewModelBase
 
     private bool CanContinueCommunications() =>
         AutomationProfile.Capabilities.CommunicationsAutomationEnabled && !AutomationProfile.Capabilities.EmergencyStop;
+
+    public IReadOnlyList<MegaMudPathRecord> FindPaths(string? filter, bool loopsOnly, int maximum = 2500)
+    {
+        var query = (filter ?? string.Empty).Trim();
+        static bool IsLoopPath(MegaMudPathRecord path) =>
+            path.FileName.Contains("LOOP", StringComparison.OrdinalIgnoreCase)
+            || string.IsNullOrWhiteSpace(path.EndLabel)
+            || (!string.IsNullOrWhiteSpace(path.StartLabel)
+                && path.StartLabel.Equals(path.EndLabel, StringComparison.OrdinalIgnoreCase));
+
+        return _paths.AvailablePaths
+            .Where(path => IsLoopPath(path) == loopsOnly)
+            .Where(path => query.Length == 0
+                || path.DisplayName.Contains(query, StringComparison.OrdinalIgnoreCase)
+                || path.FileName.Contains(query, StringComparison.OrdinalIgnoreCase)
+                || path.EndLabel.Contains(query, StringComparison.OrdinalIgnoreCase)
+                || (path.End?.Region?.Contains(query, StringComparison.OrdinalIgnoreCase) ?? false))
+            .OrderBy(path => path.End?.MapNumber ?? int.MaxValue)
+            .ThenBy(path => path.End?.RoomNumber ?? int.MaxValue)
+            .ThenBy(path => path.EndLabel, StringComparer.OrdinalIgnoreCase)
+            .Take(Math.Clamp(maximum, 1, 10000))
+            .ToArray();
+    }
 
     private void RefreshPaths()
     {

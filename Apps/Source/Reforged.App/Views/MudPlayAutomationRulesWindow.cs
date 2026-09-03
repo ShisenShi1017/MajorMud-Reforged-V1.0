@@ -9,11 +9,11 @@ using Reforged.App.ViewModels;
 namespace Reforged.App.Views;
 
 /// <summary>
-/// MudPlay-inspired client automation manager over Reforged's existing automation profile.
+/// RealmGate automation rules pane over the existing client automation profile.
 /// This is configuration UI only; all command transmission still flows through the
 /// authoritative ClientAutomationService and ClientCommandIsolationPolicy.
 /// </summary>
-public sealed class MudPlayAutomationRulesWindow : Window
+internal sealed class RealmGateAutomationRulesPane : UserControl
 {
     private readonly PlayViewModel _host;
     public ClientSessionConnection Session { get; }
@@ -27,16 +27,10 @@ public sealed class MudPlayAutomationRulesWindow : Window
     private readonly CheckBox _eventsEnabled = new() { Content = "Events enabled", Margin = new Thickness(4) };
     private readonly TextBlock _status = new() { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(8, 4, 8, 4) };
 
-    public MudPlayAutomationRulesWindow(PlayViewModel host, ClientSessionConnection session)
+    public RealmGateAutomationRulesPane(PlayViewModel host, ClientSessionConnection session)
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
-        Title = $"Client Automation — {session.DisplayName}";
-        Width = 1160;
-        Height = 760;
-        MinWidth = 920;
-        MinHeight = 620;
-        WindowStartupLocation = WindowStartupLocation.CenterOwner;
         LoadRows();
         Content = BuildUi();
     }
@@ -70,11 +64,8 @@ public sealed class MudPlayAutomationRulesWindow : Window
         var footer = new DockPanel { Margin = new Thickness(12, 6, 12, 12) };
         var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
         var save = new Button { Content = "Save", MinWidth = 90, Margin = new Thickness(4), IsDefault = true };
-        var close = new Button { Content = "Close", MinWidth = 90, Margin = new Thickness(4), IsCancel = true };
         save.Click += async (_, _) => await SaveAsync();
-        close.Click += (_, _) => Close();
         buttons.Children.Add(save);
-        buttons.Children.Add(close);
         DockPanel.SetDock(buttons, Dock.Right);
         footer.Children.Add(buttons);
         footer.Children.Add(_status);
@@ -307,7 +298,7 @@ public sealed class MudPlayAutomationRulesWindow : Window
             });
 
         await _host.SaveAutomationAsync();
-        _status.Text = "Saved. Reforged command isolation and Emergency Stop remain in force.";
+        _status.Text = "Saved. RealmGate command isolation and Emergency Stop remain in force.";
     }
 
     private sealed class AliasRow { public bool Enabled { get; set; } public string Name { get; set; } = string.Empty; public string Expansion { get; set; } = string.Empty; }
