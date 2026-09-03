@@ -783,7 +783,7 @@ try {
     if ($actual -ne ([string]$entry.Value).ToLowerInvariant()) { throw "Package checksum mismatch: $($entry.Name)" }
   }
 
-  Get-Process -Name 'MajorMudReforged' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+  Get-Process -Name 'RealmGate' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
   foreach ($entry in $manifest.payload.PSObject.Properties) {
     $source = Join-Path $UpdateRoot $entry.Name
     $target = Join-Path $RepositoryRoot $entry.Name
@@ -803,7 +803,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'dotnet restore failed.' }
     & dotnet publish $appProject -c Release -r win-x64 --self-contained false --no-restore --nologo -o $publish 2>&1 | Tee-Object -FilePath $LogPath -Append
     if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
-    foreach ($target in @((Join-Path $RepositoryRoot 'Release\MajorMudReforgedApp'))) {
+    foreach ($target in @((Join-Path $RepositoryRoot 'Release\RealmGate'))) {
       New-Item -ItemType Directory -Path $target -Force | Out-Null
       & robocopy $publish $target /E /R:2 /W:1 /NFL /NDL /NP /NJH /NJS | Out-Null
       if ($LASTEXITCODE -ge 8) { throw "Robocopy failed for $target." }

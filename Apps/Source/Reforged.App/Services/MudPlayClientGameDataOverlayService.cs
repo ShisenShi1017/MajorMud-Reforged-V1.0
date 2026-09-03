@@ -54,7 +54,7 @@ public sealed record MudPlayMdbImportMetadata(
     DateTimeOffset ImportedAtUtc);
 
 /// <summary>
-/// CodeUpdate0373 game-data authority boundary.
+/// CodeUpdate0142 game-data authority boundary.
 ///
 /// Reforged connections consume the generated Data/&lt;active world&gt; projection selected
 /// by the server's Reforged catalog identity. Those world projections are read-only in

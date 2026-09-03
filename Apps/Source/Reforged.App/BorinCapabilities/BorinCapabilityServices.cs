@@ -295,8 +295,8 @@ public sealed class RealmKeeperTelemetryService : IRealmKeeperTelemetryService
             : [];
 
         var validator = Path.Combine(_repositoryRoot, "Reports", "RuntimeVerification", "validator_latest.md");
-        var buildReports = Directory.Exists(Path.Combine(_repositoryRoot, "Release", "MajorMudReforged"))
-            ? Directory.EnumerateFiles(Path.Combine(_repositoryRoot, "Release", "MajorMudReforged"), "BUILD_REPORT*.txt").ToList()
+        var buildReports = Directory.Exists(Path.Combine(_repositoryRoot, "Release", "RealmGate"))
+            ? Directory.EnumerateFiles(Path.Combine(_repositoryRoot, "Release", "RealmGate"), "BUILD_REPORT*.txt").ToList()
             : [];
         var validatorSummary = ReadHealthMarker(validator);
         var latestBuild = buildReports.OrderByDescending(File.GetLastWriteTimeUtc).FirstOrDefault();
@@ -351,7 +351,7 @@ public sealed class RealmKeeperTelemetryService : IRealmKeeperTelemetryService
 
     private IEnumerable<string> FindRuntimeLogs()
     {
-        foreach (var directory in new[] { "Logs", "Diagnostics", "Reports/RuntimeVerification", "Reports/BorinBrain/RuntimeLogs", "Release/MajorMudReforgedApp" })
+        foreach (var directory in new[] { "Logs", "Diagnostics", "Reports/RuntimeVerification", "Reports/BorinBrain/RuntimeLogs", "Release/RealmGate" })
         {
             var path = Path.Combine(_repositoryRoot, directory.Replace('/', Path.DirectorySeparatorChar));
             if (!Directory.Exists(path)) continue;

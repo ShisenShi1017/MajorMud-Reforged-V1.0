@@ -340,7 +340,7 @@ public partial class App : Application
             WriteStartupFailure(exception);
             MessageBox.Show(
                 exception.ToString(),
-                "MajorMUD Reforged startup failure",
+                "RealmGate startup failure",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             Shutdown(91);
