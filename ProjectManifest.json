@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0141",
+  "codeUpdate": "0142",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0141 - Validated Client and Repository Consolidation",
+  "milestone": "CodeUpdate0142 - RealmGate Client and Character Integration",
   "sourceOfTruth": "Librarium is committed gameplay/data authority; Data is generated runtime output.",
   "runtimePolicy": "The Reforged server is gameplay-authoritative. Clients consume authoritative state and generated/effective game data.",
   "updatePolicy": "Repository commits/pushes require explicit user direction. Local validation does not imply pushed CI success.",
@@ -16,17 +16,17 @@
     "Reports/RuntimeVerification/majormud_parity_scorecard.json"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0141 - Validated Client and Repository Consolidation",
-    "currentCodeUpdate": "0141",
+    "currentMilestone": "CodeUpdate0142 - RealmGate Client and Character Integration",
+    "currentCodeUpdate": "0142",
     "currentDatabaseVersion": "0010",
     "classicParity": {
       "pass": 200,
       "strong": 0,
       "unknown": 0
     },
-    "validator": "26/26 PASS",
-    "clientSmokes": "14/14 PASS",
-    "releaseBuild": "Reforged.App and Reforged.Server locally verified at 0 warnings / 0 errors",
+    "validator": "PASS; 0 issues / 0 warnings / 0 errors (0142 bootstrap validation)",
+    "clientSmokes": "PENDING for CodeUpdate0142 closure",
+    "releaseBuild": "RealmGate app Release build and full solution build locally verified at 0 warnings / 0 errors",
     "remainingIntegrationTests": [
       "External non-Reforged BBS MDB overlay/import end-to-end test",
       "Creator Studio custom-world MDB plus matching WCC/WGS import/runtime test"

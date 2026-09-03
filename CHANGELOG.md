@@ -2,6 +2,14 @@
 
 This changelog is intentionally compact. Detailed historical pass-by-pass notes were retired during CodeUpdate0141; Git history remains the historical record.
 
+## CodeUpdate0142 — RealmGate Client and Character Integration
+
+- Continued visible client/release rebranding to RealmGate without destructive namespace/project-folder renames.
+- Added the bundled Classic route graph used by Goto/Auto-Roam and removed dangling route edges.
+- Consolidated the Character page around Summary, Equipment Planner, Statistics/source breakdowns, Spells & Effects, and Progression while preserving effective server/BBS overlay authority.
+- Hardened Borin persistent-character adoption and corrected parity-smoke/release target paths.
+- RealmGate app Release build and full solution build pass with 0 warnings / 0 errors; bootstrap validator passes with 0 issues. Client/parity smoke closure remains pending.
+
 ## CodeUpdate0141 — Validated Client and Repository Consolidation
 
 - Consolidated the active root documentation into `README.md`, `PROJECT_STATUS.md`, `CHANGELOG.md`, `VERSION.md`, and `AGENTS.md`.

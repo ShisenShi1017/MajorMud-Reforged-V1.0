@@ -4,9 +4,9 @@ MajorMUD Reforged is a standalone MajorMUD-compatible game platform built around
 
 ## Current baseline
 
-- Code Update: `0141`
+- Code Update: `0142`
 - Database Version: `0010`
-- Milestone: **CodeUpdate0141 - Validated Client and Repository Consolidation**
+- Milestone: **CodeUpdate0142 - RealmGate Client and Character Integration**
 - Classic parity ledger: **200 PASS / 0 STRONG / 0 UNKNOWN**
 - Core/current-health validator: **26/26 PASS**
 - Reforged client regression smokes: **14/14 PASS**

@@ -1,23 +1,24 @@
 {
-  "codeUpdate": "0141",
-  "name": "CodeUpdate0141-ValidatedClient-RepositoryConsolidation",
+  "codeUpdate": "0142",
+  "name": "CodeUpdate0142-RealmGate-Client-Character-Integration",
   "packageType": "repository-update",
   "publicRelease": false,
-  "automatedValidationComplete": true,
+  "automatedValidationComplete": false,
   "fieldIntegrationComplete": false,
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
   "generatedClassicDataTrackedInGit": false,
-  "purpose": "Consolidate current documentation and repository metadata around the fully passing automated Classic/client baseline while retaining real external-MDB and custom MDB+WCC/WGS tests as explicit field-integration gates.",
+  "purpose": "Integrate RealmGate client/release naming, pathing/navigation assets, Borin runtime fixes, and the consolidated Character system while preserving effective server/BBS overlay authority.",
   "currentValidation": {
     "entrypoint": "Tools/ReforgedValidator/Validate.ps1",
     "validator": {
-      "passed": 26,
-      "failed": 0
+      "status": "PASS",
+      "issues": 0,
+      "warnings": 0,
+      "errors": 0
     },
     "clientSmokes": {
-      "passed": 14,
-      "failed": 0
+      "status": "PENDING for CodeUpdate0142 closure"
     },
     "classicParity": {
       "pass": 200,
@@ -25,8 +26,8 @@
       "unknown": 0
     },
     "releaseBuild": {
-      "Reforged.App": "PASS; 0 warnings; 0 errors",
-      "Reforged.Server": "PASS; 0 warnings; 0 errors"
+      "RealmGate.App": "PASS; 0 warnings; 0 errors",
+      "MajorMud.Reforged.sln": "PASS; 0 warnings; 0 errors"
     }
   },
   "remainingIntegrationTests": [

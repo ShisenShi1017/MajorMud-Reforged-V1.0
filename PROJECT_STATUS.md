@@ -2,9 +2,11 @@
 
 ## Current position
 
-**CodeUpdate0141 - Validated Client and Repository Consolidation**
+**CodeUpdate0142 - RealmGate Client and Character Integration**
 
 Database version: `0010`
+
+CodeUpdate0142 closure status: the RealmGate app Release build and the full solution build both pass with 0 warnings / 0 errors. The current-health bootstrap validator also passes with 0 issues / 0 warnings / 0 errors. Client/parity smoke closure remains pending before marking 0142 automated validation complete.
 
 The repository has reached a clean automated verification baseline after the Classic parity closure, Reforged client expansion, Creator Studio MDB/WCC provenance work, and repository cleanup.
 
