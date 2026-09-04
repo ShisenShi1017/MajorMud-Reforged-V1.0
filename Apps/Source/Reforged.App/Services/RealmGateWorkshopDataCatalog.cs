@@ -10,12 +10,12 @@ namespace Reforged.App.Services;
 /// Reforged sessions read their server-selected world projection. External BBS sessions
 /// read Classic with their local field overlay applied.
 /// </summary>
-public sealed class MudPlayWorkshopDataCatalog
+public sealed class RealmGateWorkshopDataCatalog
 {
-    private readonly Dictionary<string, MudPlayWorkshopItem> _itemsByNormalizedName;
-    private readonly Dictionary<int, MudPlayWorkshopSpell> _spellsByLegacyId;
+    private readonly Dictionary<string, RealmGateWorkshopItem> _itemsByNormalizedName;
+    private readonly Dictionary<int, RealmGateWorkshopSpell> _spellsByLegacyId;
 
-    private MudPlayWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<MudPlayWorkshopItem> items, IReadOnlyList<MudPlayWorkshopSpell> spells)
+    private RealmGateWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<RealmGateWorkshopItem> items, IReadOnlyList<RealmGateWorkshopSpell> spells)
     {
         WorldName = worldName;
         DataRoot = dataRoot;
@@ -33,12 +33,12 @@ public sealed class MudPlayWorkshopDataCatalog
     public string WorldName { get; }
     public string DataRoot { get; }
     public string AuthorityDescription { get; }
-    public IReadOnlyList<MudPlayWorkshopItem> Items { get; }
-    public IReadOnlyList<MudPlayWorkshopSpell> Spells { get; }
+    public IReadOnlyList<RealmGateWorkshopItem> Items { get; }
+    public IReadOnlyList<RealmGateWorkshopSpell> Spells { get; }
 
-    public static MudPlayWorkshopDataCatalog LoadClassic()
+    public static RealmGateWorkshopDataCatalog LoadClassic()
     {
-        var overlayService = new MudPlayClientGameDataOverlayService();
+        var overlayService = new RealmGateClientGameDataOverlayService();
         var equipmentRecords = overlayService.LoadClassicFamily("Equipment")
             .Select(record => record.EffectiveRecord)
             .ToArray();
@@ -54,13 +54,13 @@ public sealed class MudPlayWorkshopDataCatalog
             .ToArray();
 
         var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
-        return new MudPlayWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items, spells);
+        return new RealmGateWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items, spells);
     }
 
-    public static MudPlayWorkshopDataCatalog Load(ClientSessionConnection session)
+    public static RealmGateWorkshopDataCatalog Load(ClientSessionConnection session)
     {
         ArgumentNullException.ThrowIfNull(session);
-        var overlayService = new MudPlayClientGameDataOverlayService();
+        var overlayService = new RealmGateClientGameDataOverlayService();
         var context = overlayService.ResolveContext(session);
         var equipmentRecords = overlayService.LoadFamily(session, "Equipment")
             .Select(record => record.EffectiveRecord)
@@ -77,12 +77,12 @@ public sealed class MudPlayWorkshopDataCatalog
             .ToArray();
 
         var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
-        return new MudPlayWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items, spells);
+        return new RealmGateWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items, spells);
     }
 
-    public MudPlayWorkshopSpell? FindSpellByLegacyId(int legacyId) => legacyId > 0 && _spellsByLegacyId.TryGetValue(legacyId, out var spell) ? spell : null;
+    public RealmGateWorkshopSpell? FindSpellByLegacyId(int legacyId) => legacyId > 0 && _spellsByLegacyId.TryGetValue(legacyId, out var spell) ? spell : null;
 
-    public MudPlayWorkshopItem? FindByDisplayName(string? displayName)
+    public RealmGateWorkshopItem? FindByDisplayName(string? displayName)
     {
         var normalized = NormalizeItemName(displayName ?? string.Empty);
         if (normalized.Length == 0)
@@ -101,9 +101,9 @@ public sealed class MudPlayWorkshopDataCatalog
             .FirstOrDefault();
     }
 
-    private static IEnumerable<MudPlayWorkshopItem> LoadItems(
+    private static IEnumerable<RealmGateWorkshopItem> LoadItems(
         IEnumerable<JsonObject> records,
-        IReadOnlyDictionary<string, MudPlayWorkshopEquipmentRule> equipmentRules)
+        IReadOnlyDictionary<string, RealmGateWorkshopEquipmentRule> equipmentRules)
     {
         foreach (var objectRecord in records)
         {
@@ -158,7 +158,7 @@ public sealed class MudPlayWorkshopDataCatalog
             var castSpell = abilities.FirstOrDefault(x => x.Name.Equals("CastsSp", StringComparison.OrdinalIgnoreCase));
             var spellChance = abilities.FirstOrDefault(x => x.Name.Equals("%Spell", StringComparison.OrdinalIgnoreCase));
 
-            yield return new MudPlayWorkshopItem(
+            yield return new RealmGateWorkshopItem(
                 id,
                 name,
                 itemType,
@@ -183,7 +183,7 @@ public sealed class MudPlayWorkshopDataCatalog
         }
     }
 
-    private static IEnumerable<MudPlayWorkshopSpell> LoadSpells(IEnumerable<JsonObject> records)
+    private static IEnumerable<RealmGateWorkshopSpell> LoadSpells(IEnumerable<JsonObject> records)
     {
         foreach (var objectRecord in records)
         {
@@ -193,32 +193,32 @@ public sealed class MudPlayWorkshopDataCatalog
             _ = int.TryParse(legacyText, NumberStyles.Integer, CultureInfo.InvariantCulture, out var legacyId);
             var name = FirstText(record, ["name"], ["public_reference_0139", "fields", "name"]);
             if (name.Length == 0) continue;
-            yield return new MudPlayWorkshopSpell(id, legacyId, name,
+            yield return new RealmGateWorkshopSpell(id, legacyId, name,
                 FirstInt(record, ["classification", "spell_level"], ["public_reference_0139", "fields", "spell_level"]),
                 FirstInt(record, ["costs", "mana_cost"], ["public_reference_0139", "fields", "mana_cost"]),
                 FirstInt(record, ["costs", "energy_cost"], ["public_reference_0139", "fields", "energy_cost"]));
         }
     }
 
-    private static IReadOnlyList<MudPlayWorkshopAbility> ReadNamedAbilities(JsonElement record)
+    private static IReadOnlyList<RealmGateWorkshopAbility> ReadNamedAbilities(JsonElement record)
     {
         if (!TryReadPath(record, ["public_reference_0139", "fields", "abilities_named"], out var node) || node.ValueKind != JsonValueKind.Array)
-            return Array.Empty<MudPlayWorkshopAbility>();
-        var result = new List<MudPlayWorkshopAbility>();
+            return Array.Empty<RealmGateWorkshopAbility>();
+        var result = new List<RealmGateWorkshopAbility>();
         foreach (var entry in node.EnumerateArray())
         {
             if (entry.ValueKind != JsonValueKind.Object) continue;
             var name = entry.TryGetProperty("name", out var n) ? n.ToString().Trim() : string.Empty;
             var value = entry.TryGetProperty("value", out var v) ? v.ToString().Trim() : string.Empty;
             var abilityId = entry.TryGetProperty("ability_id", out var a) && a.TryGetInt32(out var parsed) ? parsed : 0;
-            if (name.Length > 0) result.Add(new MudPlayWorkshopAbility(name, value, abilityId));
+            if (name.Length > 0) result.Add(new RealmGateWorkshopAbility(name, value, abilityId));
         }
         return result;
     }
 
-    private static IReadOnlyDictionary<string, MudPlayWorkshopEquipmentRule> LoadEquipmentRules(IEnumerable<JsonObject> records)
+    private static IReadOnlyDictionary<string, RealmGateWorkshopEquipmentRule> LoadEquipmentRules(IEnumerable<JsonObject> records)
     {
-        var result = new Dictionary<string, MudPlayWorkshopEquipmentRule>(StringComparer.OrdinalIgnoreCase);
+        var result = new Dictionary<string, RealmGateWorkshopEquipmentRule>(StringComparer.OrdinalIgnoreCase);
         foreach (var objectRecord in records)
         {
             var record = ToElement(objectRecord);
@@ -226,7 +226,7 @@ public sealed class MudPlayWorkshopDataCatalog
             if (itemId.Length == 0)
                 continue;
 
-            result[itemId] = new MudPlayWorkshopEquipmentRule(
+            result[itemId] = new RealmGateWorkshopEquipmentRule(
                 itemId,
                 FirstText(record, ["slot"]),
                 FirstBool(record, ["two_handed"]),
@@ -323,7 +323,7 @@ public sealed class MudPlayWorkshopDataCatalog
     }
 }
 
-public sealed record MudPlayWorkshopEquipmentRule(
+public sealed record RealmGateWorkshopEquipmentRule(
     string ItemId,
     string Slot,
     bool TwoHanded,
@@ -333,7 +333,7 @@ public sealed record MudPlayWorkshopEquipmentRule(
     int MaximumLevel,
     int MinimumStrength);
 
-public sealed record MudPlayWorkshopItem(
+public sealed record RealmGateWorkshopItem(
     string Id,
     string Name,
     string ItemType,
@@ -352,7 +352,7 @@ public sealed record MudPlayWorkshopItem(
     bool TwoHanded,
     bool ClassRestricted,
     bool RaceRestricted,
-    IReadOnlyList<MudPlayWorkshopAbility> Abilities,
+    IReadOnlyList<RealmGateWorkshopAbility> Abilities,
     int CastSpellLegacyId,
     int SpellChancePercent)
 {
@@ -374,9 +374,9 @@ public sealed record MudPlayWorkshopItem(
 }
 
 
-public sealed record MudPlayWorkshopAbility(string Name, string Value, int AbilityId)
+public sealed record RealmGateWorkshopAbility(string Name, string Value, int AbilityId)
 {
     public int NumericValue => int.TryParse(Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
 }
 
-public sealed record MudPlayWorkshopSpell(string Id, int LegacyId, string Name, int Level, int ManaCost, int EnergyCost);
+public sealed record RealmGateWorkshopSpell(string Id, int LegacyId, string Name, int Level, int ManaCost, int EnergyCost);

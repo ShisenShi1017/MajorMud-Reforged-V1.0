@@ -46,7 +46,7 @@ public static class SmokeRunner
 
         if (HasArgument(args, "--smoke-client-inventory-automation"))
         {
-            return await MudPlayInventoryAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
+            return await RealmGateInventoryAutomationRegressionSmoke.RunAsync(services.Get<IApplicationSettingsService>());
         }
 
         if (HasArgument(args, "--smoke-client-recovery-automation"))

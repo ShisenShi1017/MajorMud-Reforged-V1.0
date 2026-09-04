@@ -379,7 +379,6 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
         }
 
         await Task.WhenAll(_host.SaveAutomationOptionsAsync(), _host.SaveConnectionProfileAsync(_session));
-        MudPlayClientMenuBootstrap.ApplyCustomizations(_terminal);
         RefreshLiveViews();
         MessageBox.Show(this,
             _session.TerminalPreferences.CaptureTelnetTraffic

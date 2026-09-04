@@ -8,7 +8,7 @@ namespace Reforged.App.Services;
 /// This smoke intentionally avoids requiring generated game data so it can verify
 /// persistence and command-template safety in an isolated application-settings root.
 /// </summary>
-public static class MudPlayInventoryAutomationRegressionSmoke
+public static class RealmGateInventoryAutomationRegressionSmoke
 {
     public static Task<int> RunAsync(IApplicationSettingsService settings)
     {
@@ -19,10 +19,10 @@ public static class MudPlayInventoryAutomationRegressionSmoke
         }
 
         Require(
-            MudPlayInventoryAutomationService.ApplyTemplate("buy {item} {quantity}", "iron sword", 3, 0) == "buy iron sword 3",
+            RealmGateInventoryAutomationService.ApplyTemplate("buy {item} {quantity}", "iron sword", 3, 0) == "buy iron sword 3",
             "buy-template-quantity");
         Require(
-            MudPlayInventoryAutomationService.ApplyTemplate("deposit {amount}", string.Empty, 1, 1250) == "deposit 1250",
+            RealmGateInventoryAutomationService.ApplyTemplate("deposit {amount}", string.Empty, 1, 1250) == "deposit 1250",
             "deposit-template-amount");
 
         var sessionA = new ClientSessionConnection
@@ -42,14 +42,14 @@ public static class MudPlayInventoryAutomationRegressionSmoke
             CharacterName = "Beta"
         };
         Require(
-            !MudPlayInventoryAutomationService.BuildProfileKey(sessionA)
-                .Equals(MudPlayInventoryAutomationService.BuildProfileKey(sessionB), StringComparison.OrdinalIgnoreCase),
+            !RealmGateInventoryAutomationService.BuildProfileKey(sessionA)
+                .Equals(RealmGateInventoryAutomationService.BuildProfileKey(sessionB), StringComparison.OrdinalIgnoreCase),
             "profile-key-character-isolation");
 
-        var root = Path.Combine(settings.RootPath, "Smoke", "MudPlayInventoryAutomation", Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(settings.RootPath, "Smoke", "RealmGateInventoryAutomation", Guid.NewGuid().ToString("N"));
         try
         {
-            var service = new MudPlayInventoryAutomationService(root);
+            var service = new RealmGateInventoryAutomationService(root);
             var profile = service.LoadProfile(sessionA);
             Require(!profile.Preferences.AutoReequipAfterInventoryChange, "auto-reequip-default-off");
             Require(!profile.Preferences.AllowAutomaticDiscard, "discard-default-off");
@@ -59,12 +59,12 @@ public static class MudPlayInventoryAutomationRegressionSmoke
 
             profile.Preferences.AllowAutomaticSell = true;
             profile.Preferences.KeepCurrency = 10;
-            profile.EquipmentSets.Add(new MudPlayEquipmentSet { Name = "Default", Enabled = true, AutoApply = true });
-            profile.Rules.Add(new MudPlayInventoryRule
+            profile.EquipmentSets.Add(new RealmGateEquipmentSet { Name = "Default", Enabled = true, AutoApply = true });
+            profile.Rules.Add(new RealmGateInventoryRule
             {
                 Priority = 10,
-                Disposition = MudPlayInventoryDisposition.Keep,
-                MatchMode = MudPlayInventoryRuleMatchMode.ExactName,
+                Disposition = RealmGateInventoryDisposition.Keep,
+                MatchMode = RealmGateInventoryRuleMatchMode.ExactName,
                 MatchValue = "test item"
             });
             service.SaveProfile(sessionA, profile);

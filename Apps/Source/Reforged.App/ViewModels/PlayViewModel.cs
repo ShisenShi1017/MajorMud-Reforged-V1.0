@@ -17,8 +17,8 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly IClientMapProfileService _mapProfiles;
     private readonly IClientWorkspaceProfileService _workspaceProfiles;
     private readonly IClientConnectionProfileService _connectionProfiles = new ClientConnectionProfileService();
-    private readonly MudPlayNavigationService _mudPlayNavigation = new();
-    private readonly MudPlayInventoryAutomationService _mudPlayInventoryAutomation = new();
+    private readonly RealmGateNavigationService _realmGateNavigation = new();
+    private readonly RealmGateInventoryAutomationService _realmGateInventoryAutomation = new();
     private readonly ReforgedRecoveryAutomationService _recoveryAutomation = new();
     private readonly ReforgedCombatAutomationService _advancedCombatAutomation = new();
     private readonly ReforgedPartyAutomationService _advancedPartyAutomation = new();
@@ -55,7 +55,7 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly HashSet<string> _pvpActionInFlight = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _authoritativeStateBootstrapped = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _scriptAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Dictionary<string, MudPlayInventoryAutomationProfile> _mudPlayInventoryProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, RealmGateInventoryAutomationProfile> _mudPlayInventoryProfiles = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _inventoryAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _nextInventoryAutomationAt = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, string> _lastInventoryAutomationFingerprint = new(StringComparer.OrdinalIgnoreCase);
@@ -1581,8 +1581,8 @@ public sealed class PlayViewModel : ViewModelBase
         MegaMudPathRecord? route = exactStart && destination.Steps.Count > 0 ? destination : null;
         if (route is null && !requireExactStart && currentKey.Length > 0 && !string.IsNullOrWhiteSpace(destination.NativeEndKey))
         {
-            var navigationProfile = _mudPlayNavigation.LoadProfile(session);
-            var safePlan = _mudPlayNavigation.PlanRoute(session, destination.NativeEndKey, navigationProfile.Preferences);
+            var navigationProfile = _realmGateNavigation.LoadProfile(session);
+            var safePlan = _realmGateNavigation.PlanRoute(session, destination.NativeEndKey, navigationProfile.Preferences);
             route = safePlan.Route ?? _paths.CalculateReplacementRoute(currentKey, destination.NativeEndKey);
         }
 
@@ -1623,8 +1623,8 @@ public sealed class PlayViewModel : ViewModelBase
         { Status = "Click-to-walk requires confirmed current and destination room keys."; return; }
         if (start.Equals(destination, StringComparison.OrdinalIgnoreCase))
         { Status = "The character is already in that room."; return; }
-        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
-        var safePlan = _mudPlayNavigation.PlanRoute(session, destination, navigationProfile.Preferences);
+        var navigationProfile = _realmGateNavigation.LoadProfile(session);
+        var safePlan = _realmGateNavigation.PlanRoute(session, destination, navigationProfile.Preferences);
         var route = safePlan.Route ?? _paths.CalculateReplacementRoute(start, destination);
         if (route is null || route.Steps.Count == 0)
         { Status = safePlan.Warnings.FirstOrDefault() ?? $"No verified route connects {start} to {destination}. Nothing was sent."; return; }
@@ -1654,8 +1654,8 @@ public sealed class PlayViewModel : ViewModelBase
             Status = "Connect this character before starting a loop.";
             return;
         }
-        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
-        var plan = _mudPlayNavigation.BuildSafeLoop(session, navigationProfile.Preferences);
+        var navigationProfile = _realmGateNavigation.LoadProfile(session);
+        var plan = _realmGateNavigation.BuildSafeLoop(session, navigationProfile.Preferences);
         if (plan.Route is null || plan.Route.Steps.Count == 0)
         {
             Status = plan.Warnings.FirstOrDefault() ?? "No safe closed loop could be generated from the current room.";
@@ -1815,9 +1815,9 @@ public sealed class PlayViewModel : ViewModelBase
                 || AutomationProfile.Capabilities.EmergencyStop)
                 return;
 
-            var navigationProfile = _mudPlayNavigation.LoadProfile(session);
-            var currentRoom = MudPlayNavigationService.NormalizeRoomKey(session.CurrentRoomKey);
-            var plan = _mudPlayNavigation.PlanRandomSafeStep(session, navigationProfile.Preferences, previousRoom);
+            var navigationProfile = _realmGateNavigation.LoadProfile(session);
+            var currentRoom = RealmGateNavigationService.NormalizeRoomKey(session.CurrentRoomKey);
+            var plan = _realmGateNavigation.PlanRandomSafeStep(session, navigationProfile.Preferences, previousRoom);
             if (plan.Route is null || plan.Route.Steps.Count == 0)
             {
                 session.RoamingAutomationStatus = plan.Warnings.FirstOrDefault() ?? "Auto-Roam is waiting for a valid exit.";
@@ -1896,8 +1896,8 @@ public sealed class PlayViewModel : ViewModelBase
 
         if (SelectedLiveSession is null) return;
         var session = SelectedLiveSession;
-        var navigationProfile = _mudPlayNavigation.LoadProfile(session);
-        var safePlan = _mudPlayNavigation.PlanRoute(session, session.RouteDestinationKey, navigationProfile.Preferences);
+        var navigationProfile = _realmGateNavigation.LoadProfile(session);
+        var safePlan = _realmGateNavigation.PlanRoute(session, session.RouteDestinationKey, navigationProfile.Preferences);
         var replacement = safePlan.Route ?? _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
         if (replacement is null || replacement.Steps.Count == 0)
         {
@@ -2884,31 +2884,31 @@ public sealed class PlayViewModel : ViewModelBase
     }
 
 
-    public MudPlayInventoryAutomationProfile GetInventoryAutomationProfile(ClientSessionConnection session, bool reload = false)
+    public RealmGateInventoryAutomationProfile GetInventoryAutomationProfile(ClientSessionConnection session, bool reload = false)
     {
         ArgumentNullException.ThrowIfNull(session);
         if (reload || !_mudPlayInventoryProfiles.TryGetValue(session.SessionId, out var profile))
         {
-            profile = _mudPlayInventoryAutomation.LoadProfile(session);
+            profile = _realmGateInventoryAutomation.LoadProfile(session);
             _mudPlayInventoryProfiles[session.SessionId] = profile;
         }
         return profile;
     }
 
-    public void SaveInventoryAutomationProfile(ClientSessionConnection session, MudPlayInventoryAutomationProfile profile)
+    public void SaveInventoryAutomationProfile(ClientSessionConnection session, RealmGateInventoryAutomationProfile profile)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
-        _mudPlayInventoryAutomation.SaveProfile(session, profile);
+        _realmGateInventoryAutomation.SaveProfile(session, profile);
         _mudPlayInventoryProfiles[session.SessionId] = profile;
         _lastInventoryAutomationFingerprint.Remove(session.SessionId);
         Status = $"Saved inventory/equipment automation for {session.CharacterName}.";
     }
 
-    public MudPlayEquipmentSet CaptureCurrentEquipmentSet(ClientSessionConnection session, string name)
+    public RealmGateEquipmentSet CaptureCurrentEquipmentSet(ClientSessionConnection session, string name)
     {
         var profile = GetInventoryAutomationProfile(session);
-        var set = _mudPlayInventoryAutomation.CaptureEquipmentSet(session, profile, name);
+        var set = _realmGateInventoryAutomation.CaptureEquipmentSet(session, profile, name);
         SaveInventoryAutomationProfile(session, profile);
         return set;
     }
@@ -2929,26 +2929,26 @@ public sealed class PlayViewModel : ViewModelBase
         await _sessions.SendCommandAsAsync(session.SessionId, "equipment", ClientCommandOrigin.ClientAutomation);
     }
 
-    public async Task<MudPlayInventoryAutomationPlan> ApplyInventoryEquipmentSetAsync(ClientSessionConnection session, MudPlayEquipmentSet set)
+    public async Task<RealmGateInventoryAutomationPlan> ApplyInventoryEquipmentSetAsync(ClientSessionConnection session, RealmGateEquipmentSet set)
     {
         var profile = GetInventoryAutomationProfile(session);
-        var plan = _mudPlayInventoryAutomation.PlanEquipmentSet(session, profile, set);
+        var plan = _realmGateInventoryAutomation.PlanEquipmentSet(session, profile, set);
         await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
         return plan;
     }
 
-    public async Task<MudPlayInventoryAutomationPlan> ProcessInventoryAutomationRulesAsync(ClientSessionConnection session)
+    public async Task<RealmGateInventoryAutomationPlan> ProcessInventoryAutomationRulesAsync(ClientSessionConnection session)
     {
         var profile = GetInventoryAutomationProfile(session);
-        var plan = _mudPlayInventoryAutomation.PlanInventoryRules(session, profile);
+        var plan = _realmGateInventoryAutomation.PlanInventoryRules(session, profile);
         await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
         return plan;
     }
 
-    public async Task<MudPlayInventoryAutomationPlan> RecoverInventoryEquipmentAsync(ClientSessionConnection session, MudPlayEquipmentSet? set)
+    public async Task<RealmGateInventoryAutomationPlan> RecoverInventoryEquipmentAsync(ClientSessionConnection session, RealmGateEquipmentSet? set)
     {
         var profile = GetInventoryAutomationProfile(session);
-        var plan = _mudPlayInventoryAutomation.PlanRecovery(session, profile, set);
+        var plan = _realmGateInventoryAutomation.PlanRecovery(session, profile, set);
         await ExecuteInventoryAutomationPlanAsync(session, profile, plan, DateTimeOffset.Now);
         return plan;
     }
@@ -2971,10 +2971,10 @@ public sealed class PlayViewModel : ViewModelBase
         {
             if (preferences.AutoApplyEquipmentSet || preferences.AutoReequipAfterInventoryChange)
             {
-                var set = _mudPlayInventoryAutomation.ResolveAutomaticSet(profile);
+                var set = _realmGateInventoryAutomation.ResolveAutomaticSet(profile);
                 if (set is not null)
                 {
-                    var equipmentPlan = _mudPlayInventoryAutomation.PlanEquipmentSet(session, profile, set);
+                    var equipmentPlan = _realmGateInventoryAutomation.PlanEquipmentSet(session, profile, set);
                     if (equipmentPlan.RequiresInventoryRefresh || equipmentPlan.RequiresEquipmentRefresh)
                     {
                         await RefreshInventoryEquipmentStateAsync(session);
@@ -2992,7 +2992,7 @@ public sealed class PlayViewModel : ViewModelBase
 
             if (preferences.EnableAutomaticInventoryRules)
             {
-                var rulePlan = _mudPlayInventoryAutomation.PlanInventoryRules(session, profile);
+                var rulePlan = _realmGateInventoryAutomation.PlanInventoryRules(session, profile);
                 if (rulePlan.RequiresInventoryRefresh || rulePlan.RequiresEquipmentRefresh)
                 {
                     await RefreshInventoryEquipmentStateAsync(session);
@@ -3024,7 +3024,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
     }
 
-    private bool ShouldRunInventoryPlan(ClientSessionConnection session, MudPlayInventoryAutomationPlan plan)
+    private bool ShouldRunInventoryPlan(ClientSessionConnection session, RealmGateInventoryAutomationPlan plan)
     {
         if (string.IsNullOrWhiteSpace(plan.Fingerprint)) return true;
         return !_lastInventoryAutomationFingerprint.TryGetValue(session.SessionId, out var previous) ||
@@ -3033,8 +3033,8 @@ public sealed class PlayViewModel : ViewModelBase
 
     private async Task ExecuteInventoryAutomationPlanAsync(
         ClientSessionConnection session,
-        MudPlayInventoryAutomationProfile profile,
-        MudPlayInventoryAutomationPlan plan,
+        RealmGateInventoryAutomationProfile profile,
+        RealmGateInventoryAutomationPlan plan,
         DateTimeOffset timestamp)
     {
         if (session.ConnectionState != ClientConnectionState.Connected) return;
@@ -3318,9 +3318,9 @@ public sealed class PlayViewModel : ViewModelBase
         if (AutomationProfile.Capabilities.NavigationEnabled && options.AutoRecoverDesynchronizedRoute && session.RouteRecoveryAvailable &&
             session.RouteState is RouteExecutionState.Paused or RouteExecutionState.Faulted)
         {
-            var profile = _mudPlayNavigation.LoadProfile(session);
+            var profile = _realmGateNavigation.LoadProfile(session);
             var strictPreferences = CopyNavigationPreferences(profile.Preferences, allowRiskyFallback: false);
-            var recoveryPlan = _mudPlayNavigation.PlanRoute(session, session.RouteDestinationKey, strictPreferences);
+            var recoveryPlan = _realmGateNavigation.PlanRoute(session, session.RouteDestinationKey, strictPreferences);
             var replacement = recoveryPlan.Route ?? _paths.CalculateReplacementRoute(session.CurrentRoomKey, session.RouteDestinationKey);
             if (replacement is null || replacement.Steps.Count == 0)
             { session.RoamingAutomationStatus = "Route recovery stopped: no strict hazard-safe replacement route exists."; return false; }
@@ -3383,7 +3383,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
     }
 
-    private static MudPlayNavigationPreferences CopyNavigationPreferences(MudPlayNavigationPreferences source, bool allowRiskyFallback) => new()
+    private static RealmGateNavigationPreferences CopyNavigationPreferences(RealmGateNavigationPreferences source, bool allowRiskyFallback) => new()
     {
         AvoidDamageTraps = source.AvoidDamageTraps,
         AvoidSpellTraps = source.AvoidSpellTraps,

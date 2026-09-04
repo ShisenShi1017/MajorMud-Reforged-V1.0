@@ -95,16 +95,16 @@ public partial class ClientProfileWindow : Window
         await ViewModel.ApplySelectedConnectionProfileAsync();
         await ViewModel.SaveSelectedConnectionProfileAsync();
 
-        var overlay = new MudPlayClientGameDataOverlayService();
+        var overlay = new RealmGateClientGameDataOverlayService();
         var context = overlay.ResolveContext(session);
-        if (!context.IsEditable || context.Mode != MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (!context.IsEditable || context.Mode != RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             MdbStatusText.Text = "This is a RealmGate-hosted session. Its Librarium comes from the server-selected world, so an external MDB is not used.";
             return;
         }
 
-        var importer = new MudPlayMdbOverlayImporter(overlay);
-        var progress = new Progress<MudPlayMdbImportProgress>(update =>
+        var importer = new RealmGateMdbOverlayImporter(overlay);
+        var progress = new Progress<RealmGateMdbImportProgress>(update =>
             MdbStatusText.Text = update.Message);
 
         MdbStatusText.Text = "Importing external BBS MDB differences...";

@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace Reforged.App.Models;
 
-public enum MudPlayInventoryDisposition
+public enum RealmGateInventoryDisposition
 {
     Keep,
     Sell,
@@ -11,7 +11,7 @@ public enum MudPlayInventoryDisposition
     Buy
 }
 
-public enum MudPlayInventoryRuleMatchMode
+public enum RealmGateInventoryRuleMatchMode
 {
     ExactName,
     NameContains,
@@ -20,13 +20,13 @@ public enum MudPlayInventoryRuleMatchMode
     ItemType
 }
 
-public sealed class MudPlayInventoryRule
+public sealed class RealmGateInventoryRule
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public bool Enabled { get; set; } = true;
     public int Priority { get; set; } = 100;
-    public MudPlayInventoryDisposition Disposition { get; set; } = MudPlayInventoryDisposition.Keep;
-    public MudPlayInventoryRuleMatchMode MatchMode { get; set; } = MudPlayInventoryRuleMatchMode.ExactName;
+    public RealmGateInventoryDisposition Disposition { get; set; } = RealmGateInventoryDisposition.Keep;
+    public RealmGateInventoryRuleMatchMode MatchMode { get; set; } = RealmGateInventoryRuleMatchMode.ExactName;
     public string MatchValue { get; set; } = string.Empty;
     public int TargetQuantity { get; set; } = 1;
     public string Notes { get; set; } = string.Empty;
@@ -34,7 +34,7 @@ public sealed class MudPlayInventoryRule
     public string DisplayName => $"{Priority:0000} • {Disposition} • {MatchMode}: {MatchValue}";
 }
 
-public sealed class MudPlayEquipmentSetEntry
+public sealed class RealmGateEquipmentSetEntry
 {
     public string ItemId { get; set; } = string.Empty;
     public string ItemName { get; set; } = string.Empty;
@@ -44,19 +44,19 @@ public sealed class MudPlayEquipmentSetEntry
     public string DisplayName => string.IsNullOrWhiteSpace(Slot) ? ItemName : $"{Slot} • {ItemName}";
 }
 
-public sealed class MudPlayEquipmentSet
+public sealed class RealmGateEquipmentSet
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Name { get; set; } = "Default";
     public bool Enabled { get; set; } = true;
     public bool AutoApply { get; set; }
-    public ObservableCollection<MudPlayEquipmentSetEntry> Items { get; set; } = [];
+    public ObservableCollection<RealmGateEquipmentSetEntry> Items { get; set; } = [];
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
 
     public string DisplayName => $"{(Enabled ? "✓" : "—")} {Name} • {Items.Count} item(s)";
 }
 
-public sealed class MudPlayInventoryAutomationPreferences
+public sealed class RealmGateInventoryAutomationPreferences
 {
     public bool EnableAutomaticInventoryRules { get; set; }
     public bool AutoApplyEquipmentSet { get; set; }
@@ -83,20 +83,20 @@ public sealed class MudPlayInventoryAutomationPreferences
     public int MaximumCommandsPerPass { get; set; } = 40;
 }
 
-public sealed class MudPlayInventoryAutomationProfile
+public sealed class RealmGateInventoryAutomationProfile
 {
     public int Version { get; set; } = 1;
     public string ProfileKey { get; set; } = string.Empty;
     public string CharacterName { get; set; } = string.Empty;
     public string ServerProfileName { get; set; } = string.Empty;
     public string WorldName { get; set; } = string.Empty;
-    public MudPlayInventoryAutomationPreferences Preferences { get; set; } = new();
-    public ObservableCollection<MudPlayEquipmentSet> EquipmentSets { get; set; } = [];
-    public ObservableCollection<MudPlayInventoryRule> Rules { get; set; } = [];
+    public RealmGateInventoryAutomationPreferences Preferences { get; set; } = new();
+    public ObservableCollection<RealmGateEquipmentSet> EquipmentSets { get; set; } = [];
+    public ObservableCollection<RealmGateInventoryRule> Rules { get; set; } = [];
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
 }
 
-public sealed record MudPlayInventoryObservedItem(
+public sealed record RealmGateInventoryObservedItem(
     string DisplayText,
     string Name,
     string ItemId,
@@ -105,7 +105,7 @@ public sealed record MudPlayInventoryObservedItem(
     int Quantity,
     bool Equipped);
 
-public sealed class MudPlayInventoryAutomationPlan
+public sealed class RealmGateInventoryAutomationPlan
 {
     public string Action { get; init; } = string.Empty;
     public IReadOnlyList<string> Commands { get; init; } = [];

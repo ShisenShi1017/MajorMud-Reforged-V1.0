@@ -115,7 +115,7 @@ public static partial class ReforgedParityCompletionService
     public static IReadOnlyList<ReforgedCreatureIntelEntry> LoadCreatureIntel(ClientSessionConnection session)
     {
         ArgumentNullException.ThrowIfNull(session);
-        var overlay = new MudPlayClientGameDataOverlayService();
+        var overlay = new RealmGateClientGameDataOverlayService();
         var liveById = session.CurrentRoomNpcDetails
             .Where(npc => !string.IsNullOrWhiteSpace(npc.CanonicalNpcId))
             .GroupBy(npc => npc.CanonicalNpcId, StringComparer.OrdinalIgnoreCase)

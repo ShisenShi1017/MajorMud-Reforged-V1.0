@@ -18,7 +18,7 @@ public sealed class ReforgedCreatureIntelWindow : Window
     public ClientSessionConnection Session { get; }
     private readonly ObservableCollection<ReforgedCreatureIntelEntry> _rows = [];
     private IReadOnlyList<ReforgedCreatureIntelEntry> _all = [];
-    private MudPlayWorkshopDataCatalog? _itemCatalog;
+    private RealmGateWorkshopDataCatalog? _itemCatalog;
     private readonly TextBox _search = new() { MinWidth = 220 };
     private readonly TextBox _minLevel = new() { Width = 55, Text = "0" };
     private readonly TextBox _maxLevel = new() { Width = 55, Text = "999" };
@@ -111,7 +111,7 @@ public sealed class ReforgedCreatureIntelWindow : Window
         try
         {
             _all = ReforgedParityCompletionService.LoadCreatureIntel(Session);
-            try { _itemCatalog = MudPlayWorkshopDataCatalog.Load(Session); } catch { _itemCatalog = null; }
+            try { _itemCatalog = RealmGateWorkshopDataCatalog.Load(Session); } catch { _itemCatalog = null; }
             Filter();
         }
         catch (Exception ex)
@@ -155,7 +155,7 @@ public sealed class ReforgedCreatureIntelWindow : Window
             var weapons = Session.EquippedItems
                 .Select(value => _itemCatalog.FindByDisplayName(value))
                 .Where(item => item is not null && (item.MinimumDamage > 0 || item.MaximumDamage > 0))
-                .Cast<MudPlayWorkshopItem>()
+                .Cast<RealmGateWorkshopItem>()
                 .OrderByDescending(item => item.MaximumDamage)
                 .ThenByDescending(item => item.MinimumDamage)
                 .ToArray();

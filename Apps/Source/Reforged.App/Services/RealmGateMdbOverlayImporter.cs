@@ -8,7 +8,7 @@ using Reforged.App.Models;
 
 namespace Reforged.App.Services;
 
-public sealed record MudPlayMdbImportProgress(
+public sealed record RealmGateMdbImportProgress(
     string Phase,
     string Table,
     int TablesDone,
@@ -17,7 +17,7 @@ public sealed record MudPlayMdbImportProgress(
     int RowsTotal,
     string Message);
 
-public sealed record MudPlayMdbImportResult(
+public sealed record RealmGateMdbImportResult(
     bool Success,
     string FileName,
     int TablesFound,
@@ -33,7 +33,7 @@ public sealed record MudPlayMdbImportResult(
     int ClassicRowsNotPresentInMdb,
     string Message)
 {
-    public static MudPlayMdbImportResult Failure(string message, string fileName = "") =>
+    public static RealmGateMdbImportResult Failure(string message, string fileName = "") =>
         new(false, fileName, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, message);
 }
 
@@ -43,9 +43,9 @@ public sealed record MudPlayMdbImportResult(
 /// into the client data store. Re-import replaces only MDB-derived fields while
 /// preserving manual client overrides.
 /// </summary>
-public sealed class MudPlayMdbOverlayImporter
+public sealed class RealmGateMdbOverlayImporter
 {
-    private readonly MudPlayClientGameDataOverlayService _overlayService;
+    private readonly RealmGateClientGameDataOverlayService _overlayService;
 
     private static readonly IReadOnlyDictionary<string, string> TableFamilies =
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -258,53 +258,53 @@ public sealed class MudPlayMdbOverlayImporter
                 ("racename", "name"))
         };
 
-    public MudPlayMdbOverlayImporter(MudPlayClientGameDataOverlayService overlayService)
+    public RealmGateMdbOverlayImporter(RealmGateClientGameDataOverlayService overlayService)
     {
         _overlayService = overlayService ?? throw new ArgumentNullException(nameof(overlayService));
     }
 
-    public Task<MudPlayMdbImportResult> ImportAsync(
+    public Task<RealmGateMdbImportResult> ImportAsync(
         ClientSessionConnection session,
         string mdbPath,
-        IProgress<MudPlayMdbImportProgress>? progress = null,
+        IProgress<RealmGateMdbImportProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(session);
         if (string.IsNullOrWhiteSpace(mdbPath))
-            return Task.FromResult(MudPlayMdbImportResult.Failure("Choose an MDB or ACCDB file first."));
+            return Task.FromResult(RealmGateMdbImportResult.Failure("Choose an MDB or ACCDB file first."));
 
         var fullPath = Path.GetFullPath(mdbPath);
         return Task.Run(() => ImportCore(session, fullPath, progress, cancellationToken), cancellationToken);
     }
 
-    private MudPlayMdbImportResult ImportCore(
+    private RealmGateMdbImportResult ImportCore(
         ClientSessionConnection session,
         string mdbPath,
-        IProgress<MudPlayMdbImportProgress>? progress,
+        IProgress<RealmGateMdbImportProgress>? progress,
         CancellationToken cancellationToken)
     {
         var fileName = Path.GetFileName(mdbPath);
         if (!File.Exists(mdbPath))
-            return MudPlayMdbImportResult.Failure($"Database file not found: {mdbPath}", fileName);
+            return RealmGateMdbImportResult.Failure($"Database file not found: {mdbPath}", fileName);
 
         var extension = Path.GetExtension(mdbPath);
         if (!extension.Equals(".mdb", StringComparison.OrdinalIgnoreCase) &&
             !extension.Equals(".accdb", StringComparison.OrdinalIgnoreCase))
         {
-            return MudPlayMdbImportResult.Failure("Only Microsoft Access .mdb and .accdb files are supported.", fileName);
+            return RealmGateMdbImportResult.Failure("Only Microsoft Access .mdb and .accdb files are supported.", fileName);
         }
 
         var context = _overlayService.ResolveContext(session);
-        if (!context.IsEditable || context.Mode != MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (!context.IsEditable || context.Mode != RealmGateGameDataAuthorityMode.ExternalBbs)
         {
-            return MudPlayMdbImportResult.Failure(
+            return RealmGateMdbImportResult.Failure(
                 "MDB overlays are only for external BBS connections. RealmGate servers use their server-selected RealmGate world projection.",
                 fileName);
         }
 
         try
         {
-            progress?.Report(new MudPlayMdbImportProgress("Open", string.Empty, 0, 0, 0, 0, $"Opening {fileName}..."));
+            progress?.Report(new RealmGateMdbImportProgress("Open", string.Empty, 0, 0, 0, 0, $"Opening {fileName}..."));
             var sha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(mdbPath))).ToLowerInvariant();
             using AccessReader reader = AccessReader.Open(mdbPath);
 
@@ -321,7 +321,7 @@ public sealed class MudPlayMdbOverlayImporter
                 .Select(item => (item.Name, Family: item.Family!))
                 .ToArray();
 
-            var deltas = new List<MudPlayMdbImportRecordDelta>();
+            var deltas = new List<RealmGateMdbImportRecordDelta>();
             var rowsCompared = 0;
             var existingRecordsChanged = 0;
             var newRecordsAdded = 0;
@@ -336,7 +336,7 @@ public sealed class MudPlayMdbOverlayImporter
             foreach (var (tableName, family) in mappedTables)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                progress?.Report(new MudPlayMdbImportProgress(
+                progress?.Report(new RealmGateMdbImportProgress(
                     "Read", tableName, tablesDone, mappedTables.Length, 0, 0,
                     $"Reading {tableName}..."));
 
@@ -365,7 +365,7 @@ public sealed class MudPlayMdbOverlayImporter
                     rowsCompared++;
                     if (rowNumber == 1 || rowNumber % 250 == 0 || rowNumber == table.Rows.Count)
                     {
-                        progress?.Report(new MudPlayMdbImportProgress(
+                        progress?.Report(new RealmGateMdbImportProgress(
                             "Compare", tableName, tablesDone, mappedTables.Length,
                             rowNumber, table.Rows.Count,
                             $"Comparing {tableName}: {rowNumber:N0}/{table.Rows.Count:N0}"));
@@ -433,13 +433,13 @@ public sealed class MudPlayMdbOverlayImporter
                         var name = ReadName(row, normalizedColumns);
                         if (!string.IsNullOrWhiteSpace(name))
                             addedRecord!["name"] = name.Trim();
-                        deltas.Add(new MudPlayMdbImportRecordDelta(family, recordId, addedRecord, changedFields));
+                        deltas.Add(new RealmGateMdbImportRecordDelta(family, recordId, addedRecord, changedFields));
                         newRecordsAdded++;
                         fieldOverrides += CountLeafValues(addedRecord!);
                     }
                     else if (changedFields.Count > 0)
                     {
-                        deltas.Add(new MudPlayMdbImportRecordDelta(family, recordId, null, changedFields));
+                        deltas.Add(new RealmGateMdbImportRecordDelta(family, recordId, null, changedFields));
                         existingRecordsChanged++;
                         fieldOverrides += changedFields.Count;
                     }
@@ -460,7 +460,7 @@ public sealed class MudPlayMdbOverlayImporter
                 unmappedColumns += missingMappedColumns.Count;
                 classicRowsNotInMdb += baseRecords.Count(record => !seenBaseIds.Contains(record.Id));
                 tablesDone++;
-                progress?.Report(new MudPlayMdbImportProgress(
+                progress?.Report(new RealmGateMdbImportProgress(
                     "Compared", tableName, tablesDone, mappedTables.Length,
                     table.Rows.Count, table.Rows.Count,
                     $"Compared {tableName}."));
@@ -468,7 +468,7 @@ public sealed class MudPlayMdbOverlayImporter
 
             cancellationToken.ThrowIfCancellationRequested();
             var importedAt = DateTimeOffset.UtcNow;
-            var delta = new MudPlayMdbImportDelta(fileName, sha256, importedAt, deltas);
+            var delta = new RealmGateMdbImportDelta(fileName, sha256, importedAt, deltas);
             _overlayService.ReplaceImportedMdbDelta(session, delta);
 
             var ignoredTableCount = userTables.Length - mappedTables.Length;
@@ -487,11 +487,11 @@ public sealed class MudPlayMdbOverlayImporter
                 $"Unmapped/unsupported columns encountered: {unmappedColumns:N0}\n\n" +
                 "The MDB itself was not copied. Re-importing refreshes only MDB-derived overlay values; manual overrides are preserved.";
 
-            progress?.Report(new MudPlayMdbImportProgress(
+            progress?.Report(new RealmGateMdbImportProgress(
                 "Complete", string.Empty, mappedTables.Length, mappedTables.Length, 0, 0,
                 "MDB overlay updated."));
 
-            return new MudPlayMdbImportResult(
+            return new RealmGateMdbImportResult(
                 true, fileName, userTables.Length, mappedTables.Length, rowsCompared,
                 existingRecordsChanged, newRecordsAdded, fieldOverrides, equalFields,
                 unmappedColumns, rowsWithoutIdentity, rowsWithoutClassicMatch,
@@ -499,19 +499,19 @@ public sealed class MudPlayMdbOverlayImporter
         }
         catch (OperationCanceledException)
         {
-            return MudPlayMdbImportResult.Failure("MDB comparison was cancelled. The existing overlay was left unchanged.", fileName);
+            return RealmGateMdbImportResult.Failure("MDB comparison was cancelled. The existing overlay was left unchanged.", fileName);
         }
         catch (UnauthorizedAccessException exception)
         {
-            return MudPlayMdbImportResult.Failure($"Permission denied reading '{mdbPath}'. {exception.Message}", fileName);
+            return RealmGateMdbImportResult.Failure($"Permission denied reading '{mdbPath}'. {exception.Message}", fileName);
         }
         catch (IOException exception)
         {
-            return MudPlayMdbImportResult.Failure($"Could not read '{mdbPath}'. {exception.Message}", fileName);
+            return RealmGateMdbImportResult.Failure($"Could not read '{mdbPath}'. {exception.Message}", fileName);
         }
         catch (Exception exception)
         {
-            return MudPlayMdbImportResult.Failure($"MDB comparison failed: {exception.Message}", fileName);
+            return RealmGateMdbImportResult.Failure($"MDB comparison failed: {exception.Message}", fileName);
         }
     }
 
@@ -521,11 +521,11 @@ public sealed class MudPlayMdbOverlayImporter
         return TableFamilies.TryGetValue(key, out var family) ? family : null;
     }
 
-    private static Dictionary<string, MudPlayGameDataRecord> BuildBaseIndex(
+    private static Dictionary<string, RealmGateGameDataRecord> BuildBaseIndex(
         string family,
-        IReadOnlyList<MudPlayGameDataRecord> records)
+        IReadOnlyList<RealmGateGameDataRecord> records)
     {
-        var result = new Dictionary<string, MudPlayGameDataRecord>(StringComparer.OrdinalIgnoreCase);
+        var result = new Dictionary<string, RealmGateGameDataRecord>(StringComparer.OrdinalIgnoreCase);
         foreach (var record in records)
         {
             if (TryResolveBaseIdentity(family, record.EffectiveRecord, out var identity) &&
@@ -716,11 +716,11 @@ public sealed class MudPlayMdbOverlayImporter
         return record;
     }
 
-    private static IReadOnlyList<MudPlayMdbImportRecordDelta> BuildRoomExitDeltas(
+    private static IReadOnlyList<RealmGateMdbImportRecordDelta> BuildRoomExitDeltas(
         DataRow row,
         IReadOnlyDictionary<string, DataColumn> columns,
         string roomIdentity,
-        IReadOnlyDictionary<string, MudPlayGameDataRecord> baseIndex)
+        IReadOnlyDictionary<string, RealmGateGameDataRecord> baseIndex)
     {
         var roomParts = roomIdentity.Split('/');
         if (roomParts.Length != 2 ||
@@ -728,7 +728,7 @@ public sealed class MudPlayMdbOverlayImporter
             !int.TryParse(roomParts[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out var fromRoom))
             return [];
 
-        var results = new List<MudPlayMdbImportRecordDelta>();
+        var results = new List<RealmGateMdbImportRecordDelta>();
         var directionsSeen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var pair in columns)
         {
@@ -768,7 +768,7 @@ public sealed class MudPlayMdbOverlayImporter
 
             if (!baseIndex.TryGetValue(identity, out var baseRecord))
             {
-                results.Add(new MudPlayMdbImportRecordDelta("Exits / Paths", recordId, imported,
+                results.Add(new RealmGateMdbImportRecordDelta("Exits / Paths", recordId, imported,
                     new Dictionary<string, JsonNode?>(StringComparer.OrdinalIgnoreCase)));
                 continue;
             }
@@ -789,7 +789,7 @@ public sealed class MudPlayMdbOverlayImporter
             }
 
             if (fields.Count > 0)
-                results.Add(new MudPlayMdbImportRecordDelta("Exits / Paths", baseRecord.Id, null, fields));
+                results.Add(new RealmGateMdbImportRecordDelta("Exits / Paths", baseRecord.Id, null, fields));
         }
 
         return results;

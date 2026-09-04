@@ -12,9 +12,9 @@ public partial class CharacterView : UserControl
     private readonly IClientSessionService? _sessions;
     private readonly DispatcherTimer _refreshTimer;
     private ClientSessionConnection? _selected;
-    private MudPlayWorkshopDataCatalog? _catalog;
+    private RealmGateWorkshopDataCatalog? _catalog;
     private bool _catalogLoading;
-    private readonly List<MudPlayWorkshopItem> _plannedItems = new();
+    private readonly List<RealmGateWorkshopItem> _plannedItems = new();
 
     public CharacterView() : this(null) { }
 
@@ -107,7 +107,7 @@ public partial class CharacterView : UserControl
             ? session.ActiveEffectDetails.Select(FormatActiveEffect).ToArray()
             : session.ActiveEffects.ToArray();
 
-        var matched = _catalog is null ? Array.Empty<MudPlayWorkshopItem>() : session.EquippedItems.Select(x => _catalog.FindByDisplayName(x)).Where(x => x is not null).Cast<MudPlayWorkshopItem>().ToArray();
+        var matched = _catalog is null ? Array.Empty<RealmGateWorkshopItem>() : session.EquippedItems.Select(x => _catalog.FindByDisplayName(x)).Where(x => x is not null).Cast<RealmGateWorkshopItem>().ToArray();
         EquipmentSpellEffectsList.ItemsSource = _catalog is null ? Array.Empty<string>() : BuildEquipmentSpellEffects(matched, _catalog).ToArray();
         EquipmentSummary.Text = _catalog is null
             ? $"Current captured equipment: {session.EquippedItems.Count:N0}. Loading effective item records…"
@@ -140,7 +140,7 @@ public partial class CharacterView : UserControl
         var session = _selected;
         try
         {
-            _catalog = await Task.Run(() => MudPlayWorkshopDataCatalog.Load(session));
+            _catalog = await Task.Run(() => RealmGateWorkshopDataCatalog.Load(session));
         }
         catch (Exception exception)
         {
@@ -165,7 +165,7 @@ public partial class CharacterView : UserControl
         }
 
         var query = ItemSearchBox.Text.Trim();
-        IEnumerable<MudPlayWorkshopItem> items = _catalog.Items;
+        IEnumerable<RealmGateWorkshopItem> items = _catalog.Items;
         if (query.Length > 0)
             items = items.Where(item => item.Name.Contains(query, StringComparison.OrdinalIgnoreCase) || item.Slot.Contains(query, StringComparison.OrdinalIgnoreCase));
         if (_selected?.CharacterLevel > 0)
@@ -177,7 +177,7 @@ public partial class CharacterView : UserControl
 
     private void ItemFinderGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ItemFinderGrid.SelectedItem is not MudPlayWorkshopItem item)
+        if (ItemFinderGrid.SelectedItem is not RealmGateWorkshopItem item)
         {
             PlannedItemText.Text = "Select an item to inspect it as a hypothetical planning candidate.";
             return;
@@ -188,7 +188,7 @@ public partial class CharacterView : UserControl
 
     private void AddPlannedItem_OnClick(object sender, RoutedEventArgs e)
     {
-        if (ItemFinderGrid.SelectedItem is not MudPlayWorkshopItem item) return;
+        if (ItemFinderGrid.SelectedItem is not RealmGateWorkshopItem item) return;
         if (!string.IsNullOrWhiteSpace(item.Slot))
             _plannedItems.RemoveAll(existing => string.Equals(existing.Slot, item.Slot, StringComparison.OrdinalIgnoreCase));
         _plannedItems.Add(item);
@@ -197,7 +197,7 @@ public partial class CharacterView : UserControl
 
     private void RemovePlannedItem_OnClick(object sender, RoutedEventArgs e)
     {
-        if (PlannedEquipmentList.SelectedItem is MudPlayWorkshopItem item)
+        if (PlannedEquipmentList.SelectedItem is RealmGateWorkshopItem item)
             _plannedItems.Remove(item);
         RefreshPlannedLoadout();
     }
@@ -221,16 +221,16 @@ public partial class CharacterView : UserControl
         var current = _selected.EquippedItems
             .Select(text => _catalog.FindByDisplayName(text))
             .Where(item => item is not null)
-            .Cast<MudPlayWorkshopItem>()
+            .Cast<RealmGateWorkshopItem>()
             .ToArray();
         var planned = _plannedItems.ToArray();
 
-        static long Weight(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.Weight));
-        static int Ac(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => x.ArmorClassBonus);
-        static int Dr(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => x.DamageResistanceBonus);
-        static int Accuracy(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => x.Accuracy);
-        static int MinDamage(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.MinimumDamage));
-        static int MaxDamage(IEnumerable<MudPlayWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.MaximumDamage));
+        static long Weight(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.Weight));
+        static int Ac(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => x.ArmorClassBonus);
+        static int Dr(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => x.DamageResistanceBonus);
+        static int Accuracy(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => x.Accuracy);
+        static int MinDamage(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.MinimumDamage));
+        static int MaxDamage(IEnumerable<RealmGateWorkshopItem> rows) => rows.Sum(x => Math.Max(0, x.MaximumDamage));
 
         string Row(string name, long a, long b) => $"{name,-16} {a,10:N0} {b,10:N0} {b-a,10:+#;-#;0}";
         var aboveLevel = planned.Where(x => x.MinimumLevel > 0 && _selected.CharacterLevel > 0 && x.MinimumLevel > _selected.CharacterLevel).ToArray();
@@ -262,7 +262,7 @@ public partial class CharacterView : UserControl
             : $"Available CP: {available:N0} • planned reserve: {planned:N0} • over budget by {-remaining:N0}";
     }
 
-    private static string BuildBonusBreakdown(IEnumerable<MudPlayWorkshopItem> items)
+    private static string BuildBonusBreakdown(IEnumerable<RealmGateWorkshopItem> items)
     {
         var rows = items.ToArray();
         if (rows.Length == 0) return "No authoritative/effective equipped-item matches are available yet.";
@@ -282,7 +282,7 @@ public partial class CharacterView : UserControl
         return lines.Count == 0 ? "Matched equipment currently exposes no non-zero decoded bonuses in these fields." : string.Join("\n", lines);
     }
 
-    private static void Append(string label, IEnumerable<MudPlayWorkshopItem> items, Func<MudPlayWorkshopItem, int> value, ICollection<string> lines)
+    private static void Append(string label, IEnumerable<RealmGateWorkshopItem> items, Func<RealmGateWorkshopItem, int> value, ICollection<string> lines)
     {
         var contributing = items.Select(item => (item, bonus: value(item))).Where(x => x.bonus != 0).ToArray();
         if (contributing.Length == 0) return;
@@ -290,7 +290,7 @@ public partial class CharacterView : UserControl
         foreach (var entry in contributing) lines.Add($"  {entry.item.Name} {entry.bonus:+#;-#;0}");
     }
 
-    private static IEnumerable<string> BuildEquipmentSpellEffects(IEnumerable<MudPlayWorkshopItem> items, MudPlayWorkshopDataCatalog catalog)
+    private static IEnumerable<string> BuildEquipmentSpellEffects(IEnumerable<RealmGateWorkshopItem> items, RealmGateWorkshopDataCatalog catalog)
     {
         foreach (var item in items.Where(x => x.CastSpellLegacyId > 0))
         {

@@ -2,23 +2,23 @@ using System.Collections.ObjectModel;
 
 namespace Reforged.App.Models;
 
-public enum MudPlaySavedDestinationKind
+public enum RealmGateSavedDestinationKind
 {
     Favorite,
     Stash
 }
 
-public sealed class MudPlaySavedDestination
+public sealed class RealmGateSavedDestination
 {
     public string Id { get; set; } = Guid.NewGuid().ToString("N");
     public string Name { get; set; } = "Saved location";
     public string RoomKey { get; set; } = string.Empty;
-    public MudPlaySavedDestinationKind Kind { get; set; } = MudPlaySavedDestinationKind.Favorite;
+    public RealmGateSavedDestinationKind Kind { get; set; } = RealmGateSavedDestinationKind.Favorite;
     public DateTimeOffset SavedAtUtc { get; set; } = DateTimeOffset.UtcNow;
-    public string DisplayName => $"{(Kind == MudPlaySavedDestinationKind.Stash ? "Stash" : "Favorite")} • {Name} • {RoomKey}";
+    public string DisplayName => $"{(Kind == RealmGateSavedDestinationKind.Stash ? "Stash" : "Favorite")} • {Name} • {RoomKey}";
 }
 
-public sealed class MudPlayNavigationPreferences
+public sealed class RealmGateNavigationPreferences
 {
     public bool AvoidDamageTraps { get; set; } = true;
     public bool AvoidSpellTraps { get; set; } = true;
@@ -33,16 +33,16 @@ public sealed class MudPlayNavigationPreferences
     public int LoopMaximumSteps { get; set; } = 12;
 }
 
-public sealed class MudPlayNavigationProfile
+public sealed class RealmGateNavigationProfile
 {
     public int Version { get; set; } = 1;
     public string ServerKey { get; set; } = string.Empty;
-    public MudPlayNavigationPreferences Preferences { get; set; } = new();
-    public ObservableCollection<MudPlaySavedDestination> SavedDestinations { get; set; } = [];
+    public RealmGateNavigationPreferences Preferences { get; set; } = new();
+    public ObservableCollection<RealmGateSavedDestination> SavedDestinations { get; set; } = [];
     public DateTimeOffset UpdatedAtUtc { get; set; } = DateTimeOffset.UtcNow;
 }
 
-public sealed record MudPlayNavigationRoom(
+public sealed record RealmGateNavigationRoom(
     string Key,
     string Name,
     int MapNumber,
@@ -55,7 +55,7 @@ public sealed record MudPlayNavigationRoom(
     public string DisplayName => $"{Name} [{Key}]";
 }
 
-public sealed record MudPlayNavigationLair(
+public sealed record RealmGateNavigationLair(
     int LairId,
     string EntryRoomKey,
     string Name,
@@ -64,20 +64,20 @@ public sealed record MudPlayNavigationLair(
     public string DisplayName => $"Lair {LairId} • {Name} • {RoomCount:N0} room(s)";
 }
 
-public sealed record MudPlayNavigationBankLocation(
+public sealed record RealmGateNavigationBankLocation(
     string Name,
     string RoomKey)
 {
     public string DisplayName => $"{Name} • {RoomKey}";
 }
 
-public sealed record MudPlayNavigationHazard(
+public sealed record RealmGateNavigationHazard(
     string RoomKey,
     string Category,
     string Description,
     int Penalty);
 
-public sealed class MudPlayNavigationPlan
+public sealed class RealmGateNavigationPlan
 {
     public string StartRoomKey { get; init; } = string.Empty;
     public string DestinationRoomKey { get; init; } = string.Empty;
@@ -85,7 +85,7 @@ public sealed class MudPlayNavigationPlan
     public MegaMudPathRecord? Route { get; init; }
     public bool UsedRiskyFallback { get; init; }
     public int RiskScore { get; init; }
-    public IReadOnlyList<MudPlayNavigationHazard> Hazards { get; init; } = [];
+    public IReadOnlyList<RealmGateNavigationHazard> Hazards { get; init; } = [];
     public IReadOnlyList<string> Warnings { get; set; } = [];
     public bool Success => Route is not null;
     public string Summary

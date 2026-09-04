@@ -14,7 +14,7 @@ namespace Reforged.App.Services;
 /// It only persists per-character client preferences and produces ordinary MajorMUD commands
 /// for PlayViewModel to send through the existing command-isolation layer.
 /// </summary>
-public sealed partial class MudPlayInventoryAutomationService
+public sealed partial class RealmGateInventoryAutomationService
 {
     private static readonly HashSet<string> MultiOccupancySlots = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -23,19 +23,19 @@ public sealed partial class MudPlayInventoryAutomationService
 
     private readonly string _profileRoot;
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
-    private readonly MudPlayNavigationService _navigation;
-    private readonly MudPlayClientGameDataOverlayService _gameData = new();
+    private readonly RealmGateNavigationService _navigation;
+    private readonly RealmGateClientGameDataOverlayService _gameData = new();
 
-    public MudPlayInventoryAutomationService(string? rootPath = null)
+    public RealmGateInventoryAutomationService(string? rootPath = null)
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "InventoryAutomation");
-        _navigation = new MudPlayNavigationService(root);
+        _navigation = new RealmGateNavigationService(root);
     }
 
-    public MudPlayInventoryAutomationProfile LoadProfile(ClientSessionConnection session)
+    public RealmGateInventoryAutomationProfile LoadProfile(ClientSessionConnection session)
     {
         ArgumentNullException.ThrowIfNull(session);
         var key = BuildProfileKey(session);
@@ -44,7 +44,7 @@ public sealed partial class MudPlayInventoryAutomationService
 
         try
         {
-            var profile = JsonSerializer.Deserialize<MudPlayInventoryAutomationProfile>(File.ReadAllText(path), _json)
+            var profile = JsonSerializer.Deserialize<RealmGateInventoryAutomationProfile>(File.ReadAllText(path), _json)
                           ?? NewProfile(session, key);
             NormalizeProfile(profile, session, key);
             return profile;
@@ -64,7 +64,7 @@ public sealed partial class MudPlayInventoryAutomationService
         }
     }
 
-    public void SaveProfile(ClientSessionConnection session, MudPlayInventoryAutomationProfile profile)
+    public void SaveProfile(ClientSessionConnection session, RealmGateInventoryAutomationProfile profile)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
@@ -78,15 +78,15 @@ public sealed partial class MudPlayInventoryAutomationService
         File.Move(temp, path, true);
     }
 
-    public MudPlayEquipmentSet CaptureEquipmentSet(
+    public RealmGateEquipmentSet CaptureEquipmentSet(
         ClientSessionConnection session,
-        MudPlayInventoryAutomationProfile profile,
+        RealmGateInventoryAutomationProfile profile,
         string name)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
-        var catalog = MudPlayWorkshopDataCatalog.Load(session);
-        var set = new MudPlayEquipmentSet
+        var catalog = RealmGateWorkshopDataCatalog.Load(session);
+        var set = new RealmGateEquipmentSet
         {
             Name = string.IsNullOrWhiteSpace(name) ? "Captured Set" : name.Trim(),
             Enabled = true,
@@ -99,7 +99,7 @@ public sealed partial class MudPlayInventoryAutomationService
             var item = catalog.FindByDisplayName(display);
             var observedName = item?.Name ?? NormalizeDisplayName(display);
             if (observedName.Length == 0) continue;
-            set.Items.Add(new MudPlayEquipmentSetEntry
+            set.Items.Add(new RealmGateEquipmentSetEntry
             {
                 ItemId = item?.Id ?? string.Empty,
                 ItemName = observedName,
@@ -112,11 +112,11 @@ public sealed partial class MudPlayInventoryAutomationService
         return set;
     }
 
-    public IReadOnlyList<MudPlayInventoryObservedItem> ObserveInventory(ClientSessionConnection session)
+    public IReadOnlyList<RealmGateInventoryObservedItem> ObserveInventory(ClientSessionConnection session)
     {
         ArgumentNullException.ThrowIfNull(session);
-        var catalog = MudPlayWorkshopDataCatalog.Load(session);
-        var result = new List<MudPlayInventoryObservedItem>();
+        var catalog = RealmGateWorkshopDataCatalog.Load(session);
+        var result = new List<RealmGateInventoryObservedItem>();
         foreach (var display in session.InventoryItems)
             result.Add(Observe(display, equipped: false, catalog));
         foreach (var display in session.EquippedItems)
@@ -124,10 +124,10 @@ public sealed partial class MudPlayInventoryAutomationService
         return result;
     }
 
-    public MudPlayInventoryAutomationPlan PlanEquipmentSet(
+    public RealmGateInventoryAutomationPlan PlanEquipmentSet(
         ClientSessionConnection session,
-        MudPlayInventoryAutomationProfile profile,
-        MudPlayEquipmentSet set)
+        RealmGateInventoryAutomationProfile profile,
+        RealmGateEquipmentSet set)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
@@ -142,7 +142,7 @@ public sealed partial class MudPlayInventoryAutomationService
         {
             if (refreshInventory) warnings.Add("Inventory snapshot is stale or missing.");
             if (refreshEquipment) warnings.Add("Equipment snapshot is stale or missing.");
-            return new MudPlayInventoryAutomationPlan
+            return new RealmGateInventoryAutomationPlan
             {
                 Action = $"Refresh state before applying '{set.Name}'",
                 RequiresInventoryRefresh = refreshInventory,
@@ -152,7 +152,7 @@ public sealed partial class MudPlayInventoryAutomationService
             };
         }
 
-        var catalog = MudPlayWorkshopDataCatalog.Load(session);
+        var catalog = RealmGateWorkshopDataCatalog.Load(session);
         var inventory = session.InventoryItems.Select(text => Observe(text, false, catalog)).ToArray();
         var equipped = session.EquippedItems.Select(text => Observe(text, true, catalog)).ToArray();
         var desired = set.Items
@@ -193,7 +193,7 @@ public sealed partial class MudPlayInventoryAutomationService
         commands = commands.Distinct(StringComparer.OrdinalIgnoreCase)
             .Take(preferences.MaximumCommandsPerPass)
             .ToList();
-        return new MudPlayInventoryAutomationPlan
+        return new RealmGateInventoryAutomationPlan
         {
             Action = $"Apply equipment set '{set.Name}'",
             Commands = commands,
@@ -203,9 +203,9 @@ public sealed partial class MudPlayInventoryAutomationService
         };
     }
 
-    public MudPlayInventoryAutomationPlan PlanInventoryRules(
+    public RealmGateInventoryAutomationPlan PlanInventoryRules(
         ClientSessionConnection session,
-        MudPlayInventoryAutomationProfile profile)
+        RealmGateInventoryAutomationProfile profile)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
@@ -214,7 +214,7 @@ public sealed partial class MudPlayInventoryAutomationService
         var warnings = new List<string>();
         if (!IsFresh(session.InventoryUpdatedAt, now, preferences.StateMaximumAgeSeconds))
         {
-            return new MudPlayInventoryAutomationPlan
+            return new RealmGateInventoryAutomationPlan
             {
                 Action = "Refresh inventory before evaluating inventory rules",
                 RequiresInventoryRefresh = true,
@@ -223,7 +223,7 @@ public sealed partial class MudPlayInventoryAutomationService
             };
         }
 
-        var catalog = MudPlayWorkshopDataCatalog.Load(session);
+        var catalog = RealmGateWorkshopDataCatalog.Load(session);
         var inventory = session.InventoryItems.Select(text => Observe(text, false, catalog)).ToArray();
         var atShop = IsAtDecodedShop(session);
         var atBank = IsAtDecodedBank(session);
@@ -233,25 +233,25 @@ public sealed partial class MudPlayInventoryAutomationService
         foreach (var item in inventory)
         {
             var rule = profile.Rules
-                .Where(candidate => candidate.Enabled && candidate.Disposition != MudPlayInventoryDisposition.Buy)
+                .Where(candidate => candidate.Enabled && candidate.Disposition != RealmGateInventoryDisposition.Buy)
                 .OrderBy(candidate => candidate.Priority)
                 .ThenBy(candidate => candidate.Id, StringComparer.OrdinalIgnoreCase)
                 .FirstOrDefault(candidate => Matches(candidate, item));
-            if (rule is null || rule.Disposition == MudPlayInventoryDisposition.Keep) continue;
+            if (rule is null || rule.Disposition == RealmGateInventoryDisposition.Keep) continue;
 
             switch (rule.Disposition)
             {
-                case MudPlayInventoryDisposition.Sell:
+                case RealmGateInventoryDisposition.Sell:
                     if (!preferences.AllowAutomaticSell) continue;
                     if (!atShop) { warnings.Add($"Sell rule for {item.Name} is waiting for a decoded shop."); continue; }
                     commands.Add(ApplyTemplate(preferences.SellCommandTemplate, item.Name, item.Quantity, 0));
                     break;
-                case MudPlayInventoryDisposition.Stash:
+                case RealmGateInventoryDisposition.Stash:
                     if (!preferences.AllowAutomaticStash) continue;
                     if (!atStash) { warnings.Add($"Stash rule for {item.Name} is waiting for a saved stash room."); continue; }
                     commands.Add(ApplyTemplate(preferences.StashCommandTemplate, item.Name, item.Quantity, 0));
                     break;
-                case MudPlayInventoryDisposition.Discard:
+                case RealmGateInventoryDisposition.Discard:
                     if (!preferences.AllowAutomaticDiscard) continue;
                     commands.Add(ApplyTemplate(preferences.DiscardCommandTemplate, item.Name, item.Quantity, 0));
                     break;
@@ -261,7 +261,7 @@ public sealed partial class MudPlayInventoryAutomationService
         if (preferences.AllowAutomaticBuy && atShop)
         {
             foreach (var rule in profile.Rules
-                         .Where(candidate => candidate.Enabled && candidate.Disposition == MudPlayInventoryDisposition.Buy)
+                         .Where(candidate => candidate.Enabled && candidate.Disposition == RealmGateInventoryDisposition.Buy)
                          .OrderBy(candidate => candidate.Priority)
                          .ThenBy(candidate => candidate.Id, StringComparer.OrdinalIgnoreCase))
             {
@@ -299,7 +299,7 @@ public sealed partial class MudPlayInventoryAutomationService
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Take(preferences.MaximumCommandsPerPass)
             .ToList();
-        return new MudPlayInventoryAutomationPlan
+        return new RealmGateInventoryAutomationPlan
         {
             Action = "Process inventory/economy rules",
             Commands = commands,
@@ -308,10 +308,10 @@ public sealed partial class MudPlayInventoryAutomationService
         };
     }
 
-    public MudPlayInventoryAutomationPlan PlanRecovery(
+    public RealmGateInventoryAutomationPlan PlanRecovery(
         ClientSessionConnection session,
-        MudPlayInventoryAutomationProfile profile,
-        MudPlayEquipmentSet? set)
+        RealmGateInventoryAutomationProfile profile,
+        RealmGateEquipmentSet? set)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
@@ -319,7 +319,7 @@ public sealed partial class MudPlayInventoryAutomationService
         var commands = new List<string>();
         if (set is null)
         {
-            return new MudPlayInventoryAutomationPlan
+            return new RealmGateInventoryAutomationPlan
             {
                 Action = "Recovery",
                 Warnings = ["Select or configure an equipment set before starting recovery."],
@@ -342,7 +342,7 @@ public sealed partial class MudPlayInventoryAutomationService
             commands.AddRange(equipPlan.Commands);
         warnings.AddRange(equipPlan.Warnings);
 
-        return new MudPlayInventoryAutomationPlan
+        return new RealmGateInventoryAutomationPlan
         {
             Action = $"Recover and restore '{set.Name}'",
             Commands = commands.Distinct(StringComparer.OrdinalIgnoreCase).Take(profile.Preferences.MaximumCommandsPerPass).ToArray(),
@@ -354,7 +354,7 @@ public sealed partial class MudPlayInventoryAutomationService
         };
     }
 
-    public MudPlayEquipmentSet? ResolveAutomaticSet(MudPlayInventoryAutomationProfile profile)
+    public RealmGateEquipmentSet? ResolveAutomaticSet(RealmGateInventoryAutomationProfile profile)
     {
         var id = profile.Preferences.AutoEquipmentSetId.Trim();
         if (id.Length > 0)
@@ -426,7 +426,7 @@ public sealed partial class MudPlayInventoryAutomationService
         if (room.Length == 0) return false;
         var navigationProfile = _navigation.LoadProfile(session);
         return navigationProfile.SavedDestinations.Any(destination =>
-            destination.Kind == MudPlaySavedDestinationKind.Stash &&
+            destination.Kind == RealmGateSavedDestinationKind.Stash &&
             destination.RoomKey.Equals(room, StringComparison.OrdinalIgnoreCase));
     }
 
@@ -441,10 +441,10 @@ public sealed partial class MudPlayInventoryAutomationService
         return Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(raw))).ToLowerInvariant()[..24];
     }
 
-    private static MudPlayInventoryObservedItem Observe(string display, bool equipped, MudPlayWorkshopDataCatalog catalog)
+    private static RealmGateInventoryObservedItem Observe(string display, bool equipped, RealmGateWorkshopDataCatalog catalog)
     {
         var item = catalog.FindByDisplayName(display);
-        return new MudPlayInventoryObservedItem(
+        return new RealmGateInventoryObservedItem(
             display,
             item?.Name ?? NormalizeDisplayName(display),
             item?.Id ?? string.Empty,
@@ -454,43 +454,43 @@ public sealed partial class MudPlayInventoryAutomationService
             equipped);
     }
 
-    private static bool ItemMatches(MudPlayInventoryObservedItem item, MudPlayEquipmentSetEntry desired)
+    private static bool ItemMatches(RealmGateInventoryObservedItem item, RealmGateEquipmentSetEntry desired)
     {
         if (!string.IsNullOrWhiteSpace(desired.ItemId) && !string.IsNullOrWhiteSpace(item.ItemId))
             return item.ItemId.Equals(desired.ItemId, StringComparison.OrdinalIgnoreCase);
         return NormalizeName(item.Name).Equals(NormalizeName(desired.ItemName), StringComparison.OrdinalIgnoreCase);
     }
 
-    private static bool SameItem(MudPlayInventoryObservedItem item, MudPlayWorkshopItem target)
+    private static bool SameItem(RealmGateInventoryObservedItem item, RealmGateWorkshopItem target)
     {
         if (!string.IsNullOrWhiteSpace(item.ItemId))
             return item.ItemId.Equals(target.Id, StringComparison.OrdinalIgnoreCase);
         return NormalizeName(item.Name).Equals(NormalizeName(target.Name), StringComparison.OrdinalIgnoreCase);
     }
 
-    private static MudPlayWorkshopItem? ResolveRuleTarget(MudPlayInventoryRule rule, MudPlayWorkshopDataCatalog catalog)
+    private static RealmGateWorkshopItem? ResolveRuleTarget(RealmGateInventoryRule rule, RealmGateWorkshopDataCatalog catalog)
     {
         var value = rule.MatchValue.Trim();
         if (value.Length == 0) return null;
         return rule.MatchMode switch
         {
-            MudPlayInventoryRuleMatchMode.ItemId => catalog.Items.FirstOrDefault(item => item.Id.Equals(value, StringComparison.OrdinalIgnoreCase)),
-            MudPlayInventoryRuleMatchMode.ExactName => catalog.Items.FirstOrDefault(item => item.Name.Equals(value, StringComparison.OrdinalIgnoreCase)),
+            RealmGateInventoryRuleMatchMode.ItemId => catalog.Items.FirstOrDefault(item => item.Id.Equals(value, StringComparison.OrdinalIgnoreCase)),
+            RealmGateInventoryRuleMatchMode.ExactName => catalog.Items.FirstOrDefault(item => item.Name.Equals(value, StringComparison.OrdinalIgnoreCase)),
             _ => null
         };
     }
 
-    private static bool Matches(MudPlayInventoryRule rule, MudPlayInventoryObservedItem item)
+    private static bool Matches(RealmGateInventoryRule rule, RealmGateInventoryObservedItem item)
     {
         var value = rule.MatchValue.Trim();
         if (value.Length == 0) return false;
         return rule.MatchMode switch
         {
-            MudPlayInventoryRuleMatchMode.ExactName => item.Name.Equals(value, StringComparison.OrdinalIgnoreCase),
-            MudPlayInventoryRuleMatchMode.NameContains => item.Name.Contains(value, StringComparison.OrdinalIgnoreCase),
-            MudPlayInventoryRuleMatchMode.ItemId => item.ItemId.Equals(value, StringComparison.OrdinalIgnoreCase),
-            MudPlayInventoryRuleMatchMode.Slot => item.Slot.Equals(value, StringComparison.OrdinalIgnoreCase),
-            MudPlayInventoryRuleMatchMode.ItemType => item.ItemType.Contains(value, StringComparison.OrdinalIgnoreCase),
+            RealmGateInventoryRuleMatchMode.ExactName => item.Name.Equals(value, StringComparison.OrdinalIgnoreCase),
+            RealmGateInventoryRuleMatchMode.NameContains => item.Name.Contains(value, StringComparison.OrdinalIgnoreCase),
+            RealmGateInventoryRuleMatchMode.ItemId => item.ItemId.Equals(value, StringComparison.OrdinalIgnoreCase),
+            RealmGateInventoryRuleMatchMode.Slot => item.Slot.Equals(value, StringComparison.OrdinalIgnoreCase),
+            RealmGateInventoryRuleMatchMode.ItemType => item.ItemType.Contains(value, StringComparison.OrdinalIgnoreCase),
             _ => false
         };
     }
@@ -533,7 +533,7 @@ public sealed partial class MudPlayInventoryAutomationService
 
     private static string NormalizeName(string value) => Regex.Replace(NormalizeDisplayName(value).ToLowerInvariant(), @"^(a|an|the)\s+", string.Empty).Trim();
 
-    private MudPlayGameDataRecord? ResolveCurrentRoomRecord(ClientSessionConnection session)
+    private RealmGateGameDataRecord? ResolveCurrentRoomRecord(ClientSessionConnection session)
     {
         if (!TryParseRoomKey(session.CurrentRoomKey, out var map, out var room)) return null;
         return _gameData.LoadFamily(session, "Rooms")
@@ -585,7 +585,7 @@ public sealed partial class MudPlayInventoryAutomationService
             : node.ToString().Trim();
     }
 
-    private MudPlayInventoryAutomationProfile NewProfile(ClientSessionConnection session, string key) => new()
+    private RealmGateInventoryAutomationProfile NewProfile(ClientSessionConnection session, string key) => new()
     {
         ProfileKey = key,
         CharacterName = session.CharacterName,
@@ -593,14 +593,14 @@ public sealed partial class MudPlayInventoryAutomationService
         WorldName = session.WorldName
     };
 
-    private static void NormalizeProfile(MudPlayInventoryAutomationProfile profile, ClientSessionConnection session, string key)
+    private static void NormalizeProfile(RealmGateInventoryAutomationProfile profile, ClientSessionConnection session, string key)
     {
         profile.Version = 1;
         profile.ProfileKey = key;
         profile.CharacterName = session.CharacterName ?? string.Empty;
         profile.ServerProfileName = session.ServerProfileName ?? string.Empty;
         profile.WorldName = session.WorldName ?? string.Empty;
-        profile.Preferences ??= new MudPlayInventoryAutomationPreferences();
+        profile.Preferences ??= new RealmGateInventoryAutomationPreferences();
         profile.EquipmentSets ??= [];
         profile.Rules ??= [];
         profile.Preferences.KeepCurrency = Math.Max(0, profile.Preferences.KeepCurrency);

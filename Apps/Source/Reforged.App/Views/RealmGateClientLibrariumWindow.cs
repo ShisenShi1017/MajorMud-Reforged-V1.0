@@ -22,8 +22,8 @@ public sealed class RealmGateClientLibrariumWindow : Window
 {
     private readonly PlayViewModel _host;
     private readonly ClientSessionConnection _session;
-    private readonly MudPlayClientGameDataOverlayService _overlay = new();
-    private readonly MudPlayGameDataContext _context;
+    private readonly RealmGateClientGameDataOverlayService _overlay = new();
+    private readonly RealmGateGameDataContext _context;
     private readonly ComboBox _family = new();
     private readonly TextBox _search = new();
     private readonly ListBox _records = new();
@@ -63,7 +63,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
         _timer.Tick += (_, _) => RefreshServerState();
         Closed += (_, _) => _timer.Stop();
 
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ReforgedWorld)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ReforgedWorld)
         {
             _timer.Start();
             _ = _host.SendClientProtocolCommandAsync(_session, "librarium");
@@ -157,7 +157,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
 
     private void ConfigureSource()
     {
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             _authority.Text = $"External BBS · Read-only effective data: RealmGate Classic + local MDB differences for {_session.ServerProfileName} ({_session.HostName}:{_session.Port}).";
             _family.ItemsSource = _overlay.Families.OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
@@ -191,7 +191,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
         _requestedOffset = 0;
         _records.ItemsSource = null;
         _details.Clear();
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
             LoadExternalFamily();
         else if (_session.ConnectionState == ClientConnectionState.Connected)
             await RequestServerPageAsync(0);
@@ -199,7 +199,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
 
     private async void RefreshClicked(object sender, RoutedEventArgs e)
     {
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             LoadExternalFamily();
             return;
@@ -211,7 +211,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
 
     private Task SearchAsync()
     {
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             LoadExternalFamily();
             return Task.CompletedTask;
@@ -238,7 +238,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
             .Take(5000)
             .ToArray();
 
-        _records.DisplayMemberPath = nameof(MudPlayGameDataRecord.DisplayName);
+        _records.DisplayMemberPath = nameof(RealmGateGameDataRecord.DisplayName);
         _records.ItemsSource = records;
         _records.SelectedIndex = records.Length > 0 ? 0 : -1;
         _status.Text = $"{family} · {records.Length:N0} matching effective record(s) · read-only";
@@ -246,7 +246,7 @@ public sealed class RealmGateClientLibrariumWindow : Window
 
     private void RefreshServerState()
     {
-        if (_context.Mode != MudPlayGameDataAuthorityMode.ReforgedWorld)
+        if (_context.Mode != RealmGateGameDataAuthorityMode.ReforgedWorld)
             return;
 
         var selected = (_family.SelectedItem as ClientServerCatalogFamily)?.Name;
@@ -307,9 +307,9 @@ public sealed class RealmGateClientLibrariumWindow : Window
 
     private void RecordChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (_context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (_context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
         {
-            if (_records.SelectedItem is not MudPlayGameDataRecord record)
+            if (_records.SelectedItem is not RealmGateGameDataRecord record)
             {
                 _details.Clear();
                 return;

@@ -8,14 +8,14 @@ using Reforged.App.Models;
 
 namespace Reforged.App.Services;
 
-public enum MudPlayGameDataAuthorityMode
+public enum RealmGateGameDataAuthorityMode
 {
     ReforgedWorld,
     ExternalBbs
 }
 
-public sealed record MudPlayGameDataContext(
-    MudPlayGameDataAuthorityMode Mode,
+public sealed record RealmGateGameDataContext(
+    RealmGateGameDataAuthorityMode Mode,
     string BaseWorld,
     string BaseDataRoot,
     string ServerKey,
@@ -23,7 +23,7 @@ public sealed record MudPlayGameDataContext(
     bool IsEditable,
     string Description);
 
-public sealed record MudPlayGameDataRecord(
+public sealed record RealmGateGameDataRecord(
     string Family,
     string Id,
     string Name,
@@ -34,21 +34,21 @@ public sealed record MudPlayGameDataRecord(
     public bool HasOverrides => OverrideCount > 0;
 }
 
-public sealed record MudPlayGameDataField(string Path, string Value, bool IsOverridden);
+public sealed record RealmGateGameDataField(string Path, string Value, bool IsOverridden);
 
-public sealed record MudPlayMdbImportRecordDelta(
+public sealed record RealmGateMdbImportRecordDelta(
     string Family,
     string RecordId,
     JsonObject? AddedRecord,
     IReadOnlyDictionary<string, JsonNode?> Fields);
 
-public sealed record MudPlayMdbImportDelta(
+public sealed record RealmGateMdbImportDelta(
     string FileName,
     string Sha256,
     DateTimeOffset ImportedAtUtc,
-    IReadOnlyList<MudPlayMdbImportRecordDelta> Records);
+    IReadOnlyList<RealmGateMdbImportRecordDelta> Records);
 
-public sealed record MudPlayMdbImportMetadata(
+public sealed record RealmGateMdbImportMetadata(
     string FileName,
     string Sha256,
     DateTimeOffset ImportedAtUtc);
@@ -67,7 +67,7 @@ public sealed record MudPlayMdbImportMetadata(
 /// the MDB but absent from Classic are stored as overlay additions because the complete
 /// new record is itself a difference. No editable copy of the complete MDB/base data is created.
 /// </summary>
-public sealed class MudPlayClientGameDataOverlayService
+public sealed class RealmGateClientGameDataOverlayService
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
     {
@@ -97,7 +97,7 @@ public sealed class MudPlayClientGameDataOverlayService
 
     public IReadOnlyList<string> Families => FamilyFiles.Keys.ToArray();
 
-    public MudPlayGameDataContext ResolveContext(ClientSessionConnection session)
+    public RealmGateGameDataContext ResolveContext(ClientSessionConnection session)
     {
         ArgumentNullException.ThrowIfNull(session);
 
@@ -105,8 +105,8 @@ public sealed class MudPlayClientGameDataOverlayService
         {
             var activeWorld = FirstNonBlank(session.ServerCatalogWorld, session.WorldName, "Classic");
             var dataRoot = FindWorldDataRoot(activeWorld, allowClassicFallback: false, out var resolvedWorld);
-            return new MudPlayGameDataContext(
-                MudPlayGameDataAuthorityMode.ReforgedWorld,
+            return new RealmGateGameDataContext(
+                RealmGateGameDataAuthorityMode.ReforgedWorld,
                 resolvedWorld,
                 dataRoot,
                 BuildServerKey(session),
@@ -118,8 +118,8 @@ public sealed class MudPlayClientGameDataOverlayService
         var classicRoot = FindWorldDataRoot("Classic", allowClassicFallback: false, out _);
         var serverKey = BuildServerKey(session);
         var overlayPath = BuildOverlayPath(session, serverKey);
-        return new MudPlayGameDataContext(
-            MudPlayGameDataAuthorityMode.ExternalBbs,
+        return new RealmGateGameDataContext(
+            RealmGateGameDataAuthorityMode.ExternalBbs,
             "Classic",
             classicRoot,
             serverKey,
@@ -128,7 +128,7 @@ public sealed class MudPlayClientGameDataOverlayService
             $"External BBS authority: Classic base + local overlay for {session.ServerProfileName} ({session.HostName}:{session.Port}).");
     }
 
-    public IReadOnlyList<MudPlayGameDataRecord> LoadFamily(ClientSessionConnection session, string family)
+    public IReadOnlyList<RealmGateGameDataRecord> LoadFamily(ClientSessionConnection session, string family)
     {
         var context = ResolveContext(session);
         if (!FamilyFiles.TryGetValue(family, out var fileName))
@@ -138,15 +138,15 @@ public sealed class MudPlayClientGameDataOverlayService
         if (!File.Exists(basePath))
             return [];
 
-        var overlay = context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs
+        var overlay = context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs
             ? LoadOverlay(context)
-            : new MudPlayBbsOverlayDocument();
+            : new RealmGateBbsOverlayDocument();
 
         var familyOverrides = overlay.Families.TryGetValue(family, out var records)
             ? records
-            : new Dictionary<string, MudPlayRecordOverlay>(StringComparer.OrdinalIgnoreCase);
+            : new Dictionary<string, RealmGateRecordOverlay>(StringComparer.OrdinalIgnoreCase);
 
-        var result = new List<MudPlayGameDataRecord>();
+        var result = new List<RealmGateGameDataRecord>();
         var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var record in EnumerateRecords(basePath))
         {
@@ -163,7 +163,7 @@ public sealed class MudPlayClientGameDataOverlayService
             if (familyOverrides.TryGetValue(id, out var recordOverlay))
                 count = ApplyRecordOverlay(effective, recordOverlay);
 
-            result.Add(new MudPlayGameDataRecord(
+            result.Add(new RealmGateGameDataRecord(
                 family,
                 id,
                 ResolveRecordName(effective),
@@ -181,7 +181,7 @@ public sealed class MudPlayClientGameDataOverlayService
 
             var effective = (JsonObject)pair.Value.ImportedRecord.DeepClone();
             var count = ApplyRecordOverlay(effective, pair.Value, applyImportedRecordFields: false);
-            result.Add(new MudPlayGameDataRecord(
+            result.Add(new RealmGateGameDataRecord(
                 family,
                 pair.Key,
                 ResolveRecordName(effective),
@@ -195,7 +195,7 @@ public sealed class MudPlayClientGameDataOverlayService
             .ToArray();
     }
 
-    public IReadOnlyList<MudPlayGameDataRecord> LoadClassicFamily(string family)
+    public IReadOnlyList<RealmGateGameDataRecord> LoadClassicFamily(string family)
     {
         if (!FamilyFiles.TryGetValue(family, out var fileName))
             return [];
@@ -205,7 +205,7 @@ public sealed class MudPlayClientGameDataOverlayService
         if (!File.Exists(basePath))
             return [];
 
-        var result = new List<MudPlayGameDataRecord>();
+        var result = new List<RealmGateGameDataRecord>();
         foreach (var record in EnumerateRecords(basePath))
         {
             if (record is not JsonObject source)
@@ -214,7 +214,7 @@ public sealed class MudPlayClientGameDataOverlayService
             if (id.Length == 0)
                 continue;
             var clone = (JsonObject)source.DeepClone();
-            result.Add(new MudPlayGameDataRecord(family, id, ResolveRecordName(clone), clone, 0));
+            result.Add(new RealmGateGameDataRecord(family, id, ResolveRecordName(clone), clone, 0));
         }
 
         return result
@@ -223,7 +223,7 @@ public sealed class MudPlayClientGameDataOverlayService
             .ToArray();
     }
 
-    public IReadOnlyList<MudPlayGameDataRecord> LoadBaseFamily(ClientSessionConnection session, string family)
+    public IReadOnlyList<RealmGateGameDataRecord> LoadBaseFamily(ClientSessionConnection session, string family)
     {
         var context = ResolveContext(session);
         if (!FamilyFiles.TryGetValue(family, out var fileName))
@@ -233,7 +233,7 @@ public sealed class MudPlayClientGameDataOverlayService
         if (!File.Exists(basePath))
             return [];
 
-        var result = new List<MudPlayGameDataRecord>();
+        var result = new List<RealmGateGameDataRecord>();
         foreach (var record in EnumerateRecords(basePath))
         {
             if (record is not JsonObject source)
@@ -242,7 +242,7 @@ public sealed class MudPlayClientGameDataOverlayService
             if (id.Length == 0)
                 continue;
             var clone = (JsonObject)source.DeepClone();
-            result.Add(new MudPlayGameDataRecord(family, id, ResolveRecordName(clone), clone, 0));
+            result.Add(new RealmGateGameDataRecord(family, id, ResolveRecordName(clone), clone, 0));
         }
 
         return result
@@ -258,14 +258,14 @@ public sealed class MudPlayClientGameDataOverlayService
             ?.EffectiveRecord;
     }
 
-    public IReadOnlyList<MudPlayGameDataField> FlattenFields(
+    public IReadOnlyList<RealmGateGameDataField> FlattenFields(
         ClientSessionConnection session,
         string family,
-        MudPlayGameDataRecord record)
+        RealmGateGameDataRecord record)
     {
         var context = ResolveContext(session);
         var overridden = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        if (context.Mode == MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             var overlay = LoadOverlay(context);
             if (overlay.Families.TryGetValue(family, out var familyMap) &&
@@ -276,7 +276,7 @@ public sealed class MudPlayClientGameDataOverlayService
             }
         }
 
-        var fields = new List<MudPlayGameDataField>();
+        var fields = new List<RealmGateGameDataField>();
         FlattenNode(record.EffectiveRecord, string.Empty, fields, overridden);
         return fields.OrderBy(field => field.Path, StringComparer.OrdinalIgnoreCase).ToArray();
     }
@@ -306,7 +306,7 @@ public sealed class MudPlayClientGameDataOverlayService
         var familyMap = GetOrCreateFamily(overlay, family);
         if (!familyMap.TryGetValue(recordId, out var recordOverlay))
         {
-            recordOverlay = new MudPlayRecordOverlay();
+            recordOverlay = new RealmGateRecordOverlay();
             familyMap[recordId] = recordOverlay;
         }
 
@@ -365,7 +365,7 @@ public sealed class MudPlayClientGameDataOverlayService
     public int CountOverrides(ClientSessionConnection session)
     {
         var context = ResolveContext(session);
-        if (context.Mode != MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (context.Mode != RealmGateGameDataAuthorityMode.ExternalBbs)
             return 0;
 
         var overlay = LoadOverlay(context);
@@ -378,10 +378,10 @@ public sealed class MudPlayClientGameDataOverlayService
 
     public string GetOverlayPath(ClientSessionConnection session) => ResolveContext(session).OverlayPath;
 
-    public MudPlayMdbImportMetadata? GetLastImportMetadata(ClientSessionConnection session)
+    public RealmGateMdbImportMetadata? GetLastImportMetadata(ClientSessionConnection session)
     {
         var context = ResolveContext(session);
-        if (context.Mode != MudPlayGameDataAuthorityMode.ExternalBbs)
+        if (context.Mode != RealmGateGameDataAuthorityMode.ExternalBbs)
             return null;
         var overlay = LoadOverlay(context);
         if (string.IsNullOrWhiteSpace(overlay.LastImportedMdbFileName) ||
@@ -391,13 +391,13 @@ public sealed class MudPlayClientGameDataOverlayService
             return null;
         }
 
-        return new MudPlayMdbImportMetadata(
+        return new RealmGateMdbImportMetadata(
             overlay.LastImportedMdbFileName,
             overlay.LastImportedMdbSha256,
             overlay.LastImportedMdbAtUtc.Value);
     }
 
-    public void ReplaceImportedMdbDelta(ClientSessionConnection session, MudPlayMdbImportDelta delta)
+    public void ReplaceImportedMdbDelta(ClientSessionConnection session, RealmGateMdbImportDelta delta)
     {
         ArgumentNullException.ThrowIfNull(delta);
         var context = RequireEditableExternalContext(session);
@@ -420,7 +420,7 @@ public sealed class MudPlayClientGameDataOverlayService
             var familyMap = GetOrCreateFamily(overlay, deltaRecord.Family);
             if (!familyMap.TryGetValue(deltaRecord.RecordId, out var recordOverlay))
             {
-                recordOverlay = new MudPlayRecordOverlay();
+                recordOverlay = new RealmGateRecordOverlay();
                 familyMap[deltaRecord.RecordId] = recordOverlay;
             }
 
@@ -455,22 +455,22 @@ public sealed class MudPlayClientGameDataOverlayService
                IsLoopbackHost(session.HostName);
     }
 
-    private static MudPlayGameDataContext RequireEditableExternalContext(ClientSessionConnection session)
+    private static RealmGateGameDataContext RequireEditableExternalContext(ClientSessionConnection session)
     {
-        var context = new MudPlayClientGameDataOverlayService().ResolveContext(session);
+        var context = new RealmGateClientGameDataOverlayService().ResolveContext(session);
         if (!context.IsEditable)
             throw new InvalidOperationException("RealmGate world game data is server-authoritative and cannot be edited from Play.");
         return context;
     }
 
-    private static MudPlayBbsOverlayDocument LoadOverlay(MudPlayGameDataContext context)
+    private static RealmGateBbsOverlayDocument LoadOverlay(RealmGateGameDataContext context)
     {
         if (string.IsNullOrWhiteSpace(context.OverlayPath) || !File.Exists(context.OverlayPath))
             return NewOverlay(context);
 
         try
         {
-            var document = JsonSerializer.Deserialize<MudPlayBbsOverlayDocument>(File.ReadAllText(context.OverlayPath), JsonOptions)
+            var document = JsonSerializer.Deserialize<RealmGateBbsOverlayDocument>(File.ReadAllText(context.OverlayPath), JsonOptions)
                            ?? NewOverlay(context);
             NormalizeOverlay(document, context);
             return document;
@@ -483,7 +483,7 @@ public sealed class MudPlayClientGameDataOverlayService
         }
     }
 
-    private static void SaveOverlay(MudPlayGameDataContext context, MudPlayBbsOverlayDocument overlay)
+    private static void SaveOverlay(RealmGateGameDataContext context, RealmGateBbsOverlayDocument overlay)
     {
         NormalizeOverlay(overlay, context);
         var directory = Path.GetDirectoryName(context.OverlayPath)
@@ -494,7 +494,7 @@ public sealed class MudPlayClientGameDataOverlayService
         File.Move(temporary, context.OverlayPath, true);
     }
 
-    private static MudPlayBbsOverlayDocument NewOverlay(MudPlayGameDataContext context) => new()
+    private static RealmGateBbsOverlayDocument NewOverlay(RealmGateGameDataContext context) => new()
     {
         Version = 2,
         BaseWorld = "Classic",
@@ -503,19 +503,19 @@ public sealed class MudPlayClientGameDataOverlayService
         UpdatedAtUtc = DateTimeOffset.UtcNow
     };
 
-    private static void NormalizeOverlay(MudPlayBbsOverlayDocument overlay, MudPlayGameDataContext context)
+    private static void NormalizeOverlay(RealmGateBbsOverlayDocument overlay, RealmGateGameDataContext context)
     {
         overlay.Version = 2;
         overlay.BaseWorld = "Classic";
         overlay.ServerKey = context.ServerKey;
-        overlay.Families ??= new Dictionary<string, Dictionary<string, MudPlayRecordOverlay>>(StringComparer.OrdinalIgnoreCase);
+        overlay.Families ??= new Dictionary<string, Dictionary<string, RealmGateRecordOverlay>>(StringComparer.OrdinalIgnoreCase);
 
         overlay.Families = overlay.Families.ToDictionary(
             pair => pair.Key,
-            pair => (pair.Value ?? new Dictionary<string, MudPlayRecordOverlay>())
+            pair => (pair.Value ?? new Dictionary<string, RealmGateRecordOverlay>())
                 .ToDictionary(
                     record => record.Key,
-                    record => record.Value ?? new MudPlayRecordOverlay(),
+                    record => record.Value ?? new RealmGateRecordOverlay(),
                     StringComparer.OrdinalIgnoreCase),
             StringComparer.OrdinalIgnoreCase);
 
@@ -531,7 +531,7 @@ public sealed class MudPlayClientGameDataOverlayService
         }
     }
 
-    private static int ApplyRecordOverlay(JsonObject effective, MudPlayRecordOverlay overlay, bool applyImportedRecordFields = true)
+    private static int ApplyRecordOverlay(JsonObject effective, RealmGateRecordOverlay overlay, bool applyImportedRecordFields = true)
     {
         var paths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         if (applyImportedRecordFields)
@@ -551,7 +551,7 @@ public sealed class MudPlayClientGameDataOverlayService
         return paths.Count;
     }
 
-    private static void PruneEmptyOverlay(MudPlayBbsOverlayDocument overlay)
+    private static void PruneEmptyOverlay(RealmGateBbsOverlayDocument overlay)
     {
         foreach (var familyPair in overlay.Families.ToArray())
         {
@@ -571,11 +571,11 @@ public sealed class MudPlayClientGameDataOverlayService
         }
     }
 
-    private static Dictionary<string, MudPlayRecordOverlay> GetOrCreateFamily(MudPlayBbsOverlayDocument overlay, string family)
+    private static Dictionary<string, RealmGateRecordOverlay> GetOrCreateFamily(RealmGateBbsOverlayDocument overlay, string family)
     {
         if (!overlay.Families.TryGetValue(family, out var familyMap))
         {
-            familyMap = new Dictionary<string, MudPlayRecordOverlay>(StringComparer.OrdinalIgnoreCase);
+            familyMap = new Dictionary<string, RealmGateRecordOverlay>(StringComparer.OrdinalIgnoreCase);
             overlay.Families[family] = familyMap;
         }
         return familyMap;
@@ -671,7 +671,7 @@ public sealed class MudPlayClientGameDataOverlayService
         return string.Empty;
     }
 
-    private static void FlattenNode(JsonNode? node, string path, List<MudPlayGameDataField> output, HashSet<string> overridden)
+    private static void FlattenNode(JsonNode? node, string path, List<RealmGateGameDataField> output, HashSet<string> overridden)
     {
         switch (node)
         {
@@ -684,11 +684,11 @@ public sealed class MudPlayClientGameDataOverlayService
                 break;
             case JsonArray array:
                 if (path.Length > 0)
-                    output.Add(new MudPlayGameDataField(path, array.ToJsonString(), overridden.Contains(path)));
+                    output.Add(new RealmGateGameDataField(path, array.ToJsonString(), overridden.Contains(path)));
                 break;
             default:
                 if (path.Length > 0)
-                    output.Add(new MudPlayGameDataField(path, node?.ToJsonString() ?? "null", overridden.Contains(path)));
+                    output.Add(new RealmGateGameDataField(path, node?.ToJsonString() ?? "null", overridden.Contains(path)));
                 break;
         }
     }
@@ -852,7 +852,7 @@ public sealed class MudPlayClientGameDataOverlayService
     }
 }
 
-public sealed class MudPlayBbsOverlayDocument
+public sealed class RealmGateBbsOverlayDocument
 {
     public int Version { get; set; } = 2;
     public string BaseWorld { get; set; } = "Classic";
@@ -862,11 +862,11 @@ public sealed class MudPlayBbsOverlayDocument
     public string? LastImportedMdbFileName { get; set; }
     public string? LastImportedMdbSha256 { get; set; }
     public DateTimeOffset? LastImportedMdbAtUtc { get; set; }
-    public Dictionary<string, Dictionary<string, MudPlayRecordOverlay>> Families { get; set; } =
+    public Dictionary<string, Dictionary<string, RealmGateRecordOverlay>> Families { get; set; } =
         new(StringComparer.OrdinalIgnoreCase);
 }
 
-public sealed class MudPlayRecordOverlay
+public sealed class RealmGateRecordOverlay
 {
     // Manual edits are retained separately from MDB-derived values so a re-import
     // can refresh the imported layer without destroying user corrections.

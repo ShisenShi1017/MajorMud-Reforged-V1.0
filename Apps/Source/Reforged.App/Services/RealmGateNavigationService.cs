@@ -24,15 +24,15 @@ namespace Reforged.App.Services;
 /// avoidance has no path, an optional risky-fallback pass may return the least-risk route and
 /// surfaces every scored hazard before anything is sent.
 /// </summary>
-public sealed partial class MudPlayNavigationService
+public sealed partial class RealmGateNavigationService
 {
-    private readonly MudPlayClientGameDataOverlayService _gameData = new();
+    private readonly RealmGateClientGameDataOverlayService _gameData = new();
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly string _profileRoot;
     private NavigationSnapshot? _snapshot;
     private string _snapshotSignature = string.Empty;
 
-    public MudPlayNavigationService(string? rootPath = null)
+    public RealmGateNavigationService(string? rootPath = null)
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -40,9 +40,9 @@ public sealed partial class MudPlayNavigationService
         _profileRoot = Path.Combine(root, "Client", "Navigation");
     }
 
-    public MudPlayGameDataContext ResolveContext(ClientSessionConnection session) => _gameData.ResolveContext(session);
+    public RealmGateGameDataContext ResolveContext(ClientSessionConnection session) => _gameData.ResolveContext(session);
 
-    public MudPlayNavigationProfile LoadProfile(ClientSessionConnection session)
+    public RealmGateNavigationProfile LoadProfile(ClientSessionConnection session)
     {
         var key = BuildProfileKey(session);
         var path = ProfilePath(key);
@@ -51,7 +51,7 @@ public sealed partial class MudPlayNavigationService
 
         try
         {
-            var profile = JsonSerializer.Deserialize<MudPlayNavigationProfile>(File.ReadAllText(path), _json) ?? NewProfile(key);
+            var profile = JsonSerializer.Deserialize<RealmGateNavigationProfile>(File.ReadAllText(path), _json) ?? NewProfile(key);
             NormalizeProfile(profile, key);
             return profile;
         }
@@ -70,7 +70,7 @@ public sealed partial class MudPlayNavigationService
         }
     }
 
-    public void SaveProfile(ClientSessionConnection session, MudPlayNavigationProfile profile)
+    public void SaveProfile(ClientSessionConnection session, RealmGateNavigationProfile profile)
     {
         var key = BuildProfileKey(session);
         NormalizeProfile(profile, key);
@@ -82,7 +82,7 @@ public sealed partial class MudPlayNavigationService
         File.Move(temp, path, true);
     }
 
-    public IReadOnlyList<MudPlayNavigationRoom> GetRooms(ClientSessionConnection session)
+    public IReadOnlyList<RealmGateNavigationRoom> GetRooms(ClientSessionConnection session)
     {
         var snapshot = GetSnapshot(session);
         return snapshot.Rooms.Values
@@ -92,7 +92,7 @@ public sealed partial class MudPlayNavigationService
             .ToArray();
     }
 
-    public IReadOnlyList<MudPlayNavigationLair> GetLairs(ClientSessionConnection session)
+    public IReadOnlyList<RealmGateNavigationLair> GetLairs(ClientSessionConnection session)
     {
         var snapshot = GetSnapshot(session);
         var inbound = new Dictionary<int, List<RoomNode>>();
@@ -116,18 +116,18 @@ public sealed partial class MudPlayNavigationService
                 var entry = inbound.TryGetValue(group.Key, out var candidates) && candidates.Count > 0
                     ? candidates.OrderBy(room => room.Name, StringComparer.OrdinalIgnoreCase).First()
                     : group.OrderBy(room => room.Name, StringComparer.OrdinalIgnoreCase).First();
-                return new MudPlayNavigationLair(group.Key, entry.Key, entry.Name, group.Count());
+                return new RealmGateNavigationLair(group.Key, entry.Key, entry.Name, group.Count());
             })
             .OrderBy(lair => lair.Name, StringComparer.OrdinalIgnoreCase)
             .ThenBy(lair => lair.LairId)
             .ToArray();
     }
 
-    public IReadOnlyList<MudPlayNavigationBankLocation> GetBankLocations(ClientSessionConnection session)
+    public IReadOnlyList<RealmGateNavigationBankLocation> GetBankLocations(ClientSessionConnection session)
     {
         var snapshot = GetSnapshot(session);
         var banks = _gameData.LoadFamily(session, "Banks");
-        var result = new List<MudPlayNavigationBankLocation>();
+        var result = new List<RealmGateNavigationBankLocation>();
         foreach (var bank in banks)
         {
             var bankId = ReadInt(bank.EffectiveRecord, "legacy_id");
@@ -136,7 +136,7 @@ public sealed partial class MudPlayNavigationService
                 : Array.Empty<RoomNode>();
             if (serviceMatches.Length == 1)
             {
-                result.Add(new MudPlayNavigationBankLocation(bank.DisplayName, serviceMatches[0].Key));
+                result.Add(new RealmGateNavigationBankLocation(bank.DisplayName, serviceMatches[0].Key));
                 continue;
             }
 
@@ -144,15 +144,15 @@ public sealed partial class MudPlayNavigationService
             if (number <= 0) continue;
             if (!snapshot.RoomsByNumber.TryGetValue(number, out var matches) || matches.Count != 1)
                 continue; // Never invent a map number for an ambiguous legacy room id.
-            result.Add(new MudPlayNavigationBankLocation(bank.DisplayName, matches[0].Key));
+            result.Add(new RealmGateNavigationBankLocation(bank.DisplayName, matches[0].Key));
         }
         return result.OrderBy(bank => bank.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    public MudPlayNavigationPlan PlanRoute(
+    public RealmGateNavigationPlan PlanRoute(
         ClientSessionConnection session,
         string destinationRoomKey,
-        MudPlayNavigationPreferences preferences)
+        RealmGateNavigationPreferences preferences)
     {
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(preferences);
@@ -169,7 +169,7 @@ public sealed partial class MudPlayNavigationService
             return Failed(start, destination, $"Destination {destination} is not present in the effective game-data projection.");
         if (start.Equals(destination, StringComparison.OrdinalIgnoreCase))
         {
-            return new MudPlayNavigationPlan
+            return new RealmGateNavigationPlan
             {
                 StartRoomKey = start,
                 DestinationRoomKey = destination,
@@ -200,9 +200,9 @@ public sealed partial class MudPlayNavigationService
         return BuildPlan(snapshot, start, destination, fallback, true);
     }
 
-    public MudPlayNavigationPlan PlanNearestLair(
+    public RealmGateNavigationPlan PlanNearestLair(
         ClientSessionConnection session,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         string? nameFilter = null)
     {
         var snapshot = GetSnapshot(session);
@@ -228,9 +228,9 @@ public sealed partial class MudPlayNavigationService
             : Failed(start, string.Empty, "No reachable matching lair was found in the effective game-data graph.");
     }
 
-    public MudPlayNavigationPlan BuildSafeLoop(
+    public RealmGateNavigationPlan BuildSafeLoop(
         ClientSessionConnection session,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         int? requiredLairId = null)
     {
         var snapshot = GetSnapshot(session);
@@ -324,9 +324,9 @@ public sealed partial class MudPlayNavigationService
         return riskyPlan;
     }
 
-    public MudPlayNavigationPlan PlanRandomSafeStep(
+    public RealmGateNavigationPlan PlanRandomSafeStep(
         ClientSessionConnection session,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         string? avoidDestinationRoomKey = null)
     {
         var snapshot = GetSnapshot(session);
@@ -394,7 +394,7 @@ public sealed partial class MudPlayNavigationService
 
     public void Invalidate() => _snapshotSignature = string.Empty;
 
-    private MudPlayNavigationPlan BuildPlan(
+    private RealmGateNavigationPlan BuildPlan(
         NavigationSnapshot snapshot,
         string start,
         string destination,
@@ -402,7 +402,7 @@ public sealed partial class MudPlayNavigationService
         bool riskyFallback)
     {
         var steps = new ObservableCollection<MegaMudPathStep>();
-        var hazards = new List<MudPlayNavigationHazard>();
+        var hazards = new List<RealmGateNavigationHazard>();
         var warnings = new List<string>();
         var index = 1;
         foreach (var edge in result.Edges)
@@ -445,7 +445,7 @@ public sealed partial class MudPlayNavigationService
 
         var startName = snapshot.Rooms.TryGetValue(start, out var startRoom) ? startRoom.Name : start;
         var destinationName = snapshot.Rooms.TryGetValue(destination, out var endRoom) ? endRoom.Name : destination;
-        return new MudPlayNavigationPlan
+        return new RealmGateNavigationPlan
         {
             StartRoomKey = start,
             DestinationRoomKey = destination,
@@ -473,7 +473,7 @@ public sealed partial class MudPlayNavigationService
         ClientSessionConnection session,
         string start,
         string destination,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         bool strictAvoidance)
     {
         var distances = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase) { [start] = 0 };
@@ -520,16 +520,16 @@ public sealed partial class MudPlayNavigationService
         NavigationSnapshot snapshot,
         ClientSessionConnection session,
         NavEdge edge,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         bool ignoreForbidden = false)
     {
-        var hazards = new List<MudPlayNavigationHazard>();
+        var hazards = new List<RealmGateNavigationHazard>();
         var forbidden = false;
         var penalty = 0;
         void Add(string category, string description, int score, bool avoid)
         {
             penalty += score;
-            hazards.Add(new MudPlayNavigationHazard(edge.To, category, description, score));
+            hazards.Add(new RealmGateNavigationHazard(edge.To, category, description, score));
             if (avoid && !ignoreForbidden) forbidden = true;
         }
 
@@ -668,7 +668,7 @@ public sealed partial class MudPlayNavigationService
         return _snapshot;
     }
 
-    private string BuildSnapshotSignature(MudPlayGameDataContext context)
+    private string BuildSnapshotSignature(RealmGateGameDataContext context)
     {
         var builder = new StringBuilder();
         builder.Append(context.Mode).Append('|').Append(context.BaseDataRoot).Append('|').Append(context.ServerKey);
@@ -687,7 +687,7 @@ public sealed partial class MudPlayNavigationService
         ClientSessionConnection session,
         string start,
         HashSet<string> targets,
-        MudPlayNavigationPreferences preferences,
+        RealmGateNavigationPreferences preferences,
         bool strictAvoidance,
         out string destination)
     {
@@ -739,7 +739,7 @@ public sealed partial class MudPlayNavigationService
         return new SearchResult(chain, totalRisk);
     }
 
-    private static MudPlayNavigationPlan Failed(string start, string destination, string warning) => new()
+    private static RealmGateNavigationPlan Failed(string start, string destination, string warning) => new()
     {
         StartRoomKey = start,
         DestinationRoomKey = destination,
@@ -853,7 +853,7 @@ public sealed partial class MudPlayNavigationService
     private string BuildProfileKey(ClientSessionConnection session)
     {
         var context = _gameData.ResolveContext(session);
-        var raw = context.Mode == MudPlayGameDataAuthorityMode.ReforgedWorld
+        var raw = context.Mode == RealmGateGameDataAuthorityMode.ReforgedWorld
             ? $"reforged|{context.ServerKey}|{context.BaseWorld}"
             : $"bbs|{context.ServerKey}";
         var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(raw))).ToLowerInvariant()[..16];
@@ -863,13 +863,13 @@ public sealed partial class MudPlayNavigationService
 
     private string ProfilePath(string key) => Path.Combine(_profileRoot, key + ".json");
 
-    private static MudPlayNavigationProfile NewProfile(string key) => new() { ServerKey = key };
+    private static RealmGateNavigationProfile NewProfile(string key) => new() { ServerKey = key };
 
-    private static void NormalizeProfile(MudPlayNavigationProfile profile, string key)
+    private static void NormalizeProfile(RealmGateNavigationProfile profile, string key)
     {
         profile.Version = 1;
         profile.ServerKey = key;
-        profile.Preferences ??= new MudPlayNavigationPreferences();
+        profile.Preferences ??= new RealmGateNavigationPreferences();
         profile.Preferences.NpcLevelBuffer = Math.Clamp(profile.Preferences.NpcLevelBuffer, 0, 99);
         profile.Preferences.LoopMinimumSteps = Math.Clamp(profile.Preferences.LoopMinimumSteps, 2, 24);
         profile.Preferences.LoopMaximumSteps = Math.Clamp(profile.Preferences.LoopMaximumSteps, profile.Preferences.LoopMinimumSteps, 32);
@@ -922,7 +922,7 @@ public sealed partial class MudPlayNavigationService
         public int ShopId { get; init; }
         public int MaximumNpcLevel { get; set; }
         public int ExitCount { get; set; }
-        public MudPlayNavigationRoom Public => new(Key, Name, MapNumber, RoomNumber, LairId, RoomSpellId, MaximumNpcLevel, ExitCount);
+        public RealmGateNavigationRoom Public => new(Key, Name, MapNumber, RoomNumber, LairId, RoomSpellId, MaximumNpcLevel, ExitCount);
     }
 
     private sealed record NavEdge(
@@ -934,9 +934,9 @@ public sealed partial class MudPlayNavigationService
         IReadOnlyList<string> PreCommands,
         int BasePenalty,
         bool HasRestrictions,
-        IReadOnlyList<MudPlayNavigationHazard> Hazards)
+        IReadOnlyList<RealmGateNavigationHazard> Hazards)
     {
-        public NavEdge WithHazards(IReadOnlyList<MudPlayNavigationHazard> hazards) => this with { Hazards = hazards };
+        public NavEdge WithHazards(IReadOnlyList<RealmGateNavigationHazard> hazards) => this with { Hazards = hazards };
     }
 
     private sealed record NavigationSnapshot(
@@ -946,6 +946,6 @@ public sealed partial class MudPlayNavigationService
         IReadOnlyList<NavEdge> AllEdges);
 
     private sealed record SearchResult(IReadOnlyList<NavEdge> Edges, int Risk);
-    private sealed record RiskResult(bool Forbidden, int Penalty, IReadOnlyList<MudPlayNavigationHazard> Hazards);
+    private sealed record RiskResult(bool Forbidden, int Penalty, IReadOnlyList<RealmGateNavigationHazard> Hazards);
     private sealed record LoopState(string Room, IReadOnlyList<NavEdge> Edges, HashSet<string> Visited, int Risk);
 }

@@ -18,9 +18,9 @@ namespace Reforged.App.Views;
 internal sealed class RealmGateInventoryAutomationPane : UserControl
 {
     private readonly PlayViewModel _host;
-    private readonly MudPlayInventoryAutomationService _service = new();
+    private readonly RealmGateInventoryAutomationService _service = new();
     public ClientSessionConnection Session { get; }
-    private readonly MudPlayInventoryAutomationProfile _profile;
+    private readonly RealmGateInventoryAutomationProfile _profile;
     private readonly DispatcherTimer _timer;
 
     private readonly TextBlock _context = NewText(string.Empty, 12, FontWeights.SemiBold);
@@ -150,7 +150,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         left.Children.Add(NewText("Saved equipment sets", 12, FontWeights.SemiBold));
         _sets.Margin = new Thickness(0, 6, 0, 0);
-        _sets.DisplayMemberPath = nameof(MudPlayEquipmentSet.DisplayName);
+        _sets.DisplayMemberPath = nameof(RealmGateEquipmentSet.DisplayName);
         _sets.SelectionChanged += (_, _) => LoadSelectedSet();
         Grid.SetRow(_sets, 1);
         left.Children.Add(_sets);
@@ -204,7 +204,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         Grid.SetRow(picker, 1);
         right.Children.Add(picker);
 
-        _setItems.DisplayMemberPath = nameof(MudPlayEquipmentSetEntry.DisplayName);
+        _setItems.DisplayMemberPath = nameof(RealmGateEquipmentSetEntry.DisplayName);
         Grid.SetRow(_setItems, 2);
         right.Children.Add(_setItems);
 
@@ -241,7 +241,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         left.Children.Add(NewText("First matching enabled rule wins for each carried item.", 11, FontWeights.SemiBold));
         _rules.Margin = new Thickness(0, 6, 0, 0);
-        _rules.DisplayMemberPath = nameof(MudPlayInventoryRule.DisplayName);
+        _rules.DisplayMemberPath = nameof(RealmGateInventoryRule.DisplayName);
         _rules.SelectionChanged += (_, _) => LoadSelectedRule();
         Grid.SetRow(_rules, 1);
         left.Children.Add(_rules);
@@ -295,7 +295,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         }
 
         panel.Children.Add(NewText("Automatic equipment set", 11, FontWeights.SemiBold, new Thickness(0, 12, 0, 4)));
-        _automaticSet.DisplayMemberPath = nameof(MudPlayEquipmentSet.Name);
+        _automaticSet.DisplayMemberPath = nameof(RealmGateEquipmentSet.Name);
         panel.Children.Add(_automaticSet);
 
         var timing = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
@@ -368,9 +368,9 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         return root;
     }
 
-    private void RefreshSetList(MudPlayEquipmentSet? select = null)
+    private void RefreshSetList(RealmGateEquipmentSet? select = null)
     {
-        var chosen = select ?? _sets.SelectedItem as MudPlayEquipmentSet;
+        var chosen = select ?? _sets.SelectedItem as RealmGateEquipmentSet;
         _sets.ItemsSource = null;
         _sets.ItemsSource = _profile.EquipmentSets;
         if (chosen is not null && _profile.EquipmentSets.Contains(chosen)) _sets.SelectedItem = chosen;
@@ -382,7 +382,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void LoadSelectedSet()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set)
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set)
         {
             _setName.Text = string.Empty;
             _setItems.ItemsSource = null;
@@ -409,7 +409,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void AddEmptySet()
     {
-        var set = new MudPlayEquipmentSet { Name = $"Set {_profile.EquipmentSets.Count + 1}" };
+        var set = new RealmGateEquipmentSet { Name = $"Set {_profile.EquipmentSets.Count + 1}" };
         _profile.EquipmentSets.Add(set);
         RefreshSetList(set);
         SetStatus("New equipment set created locally. Save when finished.");
@@ -417,7 +417,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void DeleteSelectedSet()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set) return;
         _profile.EquipmentSets.Remove(set);
         if (_profile.Preferences.AutoEquipmentSetId.Equals(set.Id, StringComparison.OrdinalIgnoreCase))
             _profile.Preferences.AutoEquipmentSetId = string.Empty;
@@ -427,7 +427,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void SaveSelectedSet()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set) return;
         set.Name = string.IsNullOrWhiteSpace(_setName.Text) ? "Equipment Set" : _setName.Text.Trim();
         set.Enabled = _setEnabled.IsChecked == true;
         set.AutoApply = _setAuto.IsChecked == true;
@@ -438,7 +438,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void AddSelectedInventoryItem()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set || _inventoryItemPicker.SelectedItem is not string display) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set || _inventoryItemPicker.SelectedItem is not string display) return;
         var observed = _service.ObserveInventory(Session).FirstOrDefault(item => !item.Equipped && item.DisplayText.Equals(display, StringComparison.Ordinal));
         if (observed is null) return;
         if (set.Items.Any(item =>
@@ -448,7 +448,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
             SetStatus($"'{observed.Name}' is already in this set.");
             return;
         }
-        set.Items.Add(new MudPlayEquipmentSetEntry
+        set.Items.Add(new RealmGateEquipmentSetEntry
         {
             ItemId = observed.ItemId,
             ItemName = observed.Name,
@@ -461,7 +461,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void RemoveSelectedSetItem()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set || _setItems.SelectedItem is not MudPlayEquipmentSetEntry item) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set || _setItems.SelectedItem is not RealmGateEquipmentSetEntry item) return;
         set.Items.Remove(item);
         var order = 0;
         foreach (var entry in set.Items) entry.Order = order++;
@@ -471,14 +471,14 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
     private async Task ApplySelectedSetAsync()
     {
         SaveSelectedSet();
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set) return;
         var plan = await _host.ApplyInventoryEquipmentSetAsync(Session, set);
         SetStatus(DescribePlan(plan));
     }
 
     private void UseSelectedSetForAutomation()
     {
-        if (_sets.SelectedItem is not MudPlayEquipmentSet set) return;
+        if (_sets.SelectedItem is not RealmGateEquipmentSet set) return;
         _profile.Preferences.AutoEquipmentSetId = set.Id;
         _profile.Preferences.AutoApplyEquipmentSet = true;
         set.AutoApply = true;
@@ -501,9 +501,9 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         _lastInventoryPickerUpdatedAt = Session.InventoryUpdatedAt;
     }
 
-    private void RefreshRuleList(MudPlayInventoryRule? select = null)
+    private void RefreshRuleList(RealmGateInventoryRule? select = null)
     {
-        var chosen = select ?? _rules.SelectedItem as MudPlayInventoryRule;
+        var chosen = select ?? _rules.SelectedItem as RealmGateInventoryRule;
         _rules.ItemsSource = null;
         _rules.ItemsSource = _profile.Rules.OrderBy(rule => rule.Priority).ThenBy(rule => rule.Id).ToArray();
         if (chosen is not null && _profile.Rules.Contains(chosen)) _rules.SelectedItem = chosen;
@@ -512,7 +512,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void LoadSelectedRule()
     {
-        if (_rules.SelectedItem is not MudPlayInventoryRule rule) return;
+        if (_rules.SelectedItem is not RealmGateInventoryRule rule) return;
         _ruleDisposition.SelectedItem = rule.Disposition;
         _ruleMatchMode.SelectedItem = rule.MatchMode;
         _ruleMatchValue.Text = rule.MatchValue;
@@ -521,11 +521,11 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         _ruleEnabled.IsChecked = rule.Enabled;
     }
 
-    private MudPlayInventoryRule RuleFromControls(MudPlayInventoryRule? rule = null)
+    private RealmGateInventoryRule RuleFromControls(RealmGateInventoryRule? rule = null)
     {
-        rule ??= new MudPlayInventoryRule();
-        rule.Disposition = _ruleDisposition.SelectedItem is MudPlayInventoryDisposition disposition ? disposition : MudPlayInventoryDisposition.Keep;
-        rule.MatchMode = _ruleMatchMode.SelectedItem is MudPlayInventoryRuleMatchMode mode ? mode : MudPlayInventoryRuleMatchMode.ExactName;
+        rule ??= new RealmGateInventoryRule();
+        rule.Disposition = _ruleDisposition.SelectedItem is RealmGateInventoryDisposition disposition ? disposition : RealmGateInventoryDisposition.Keep;
+        rule.MatchMode = _ruleMatchMode.SelectedItem is RealmGateInventoryRuleMatchMode mode ? mode : RealmGateInventoryRuleMatchMode.ExactName;
         rule.MatchValue = _ruleMatchValue.Text.Trim();
         rule.Priority = ParseInt(_rulePriority.Text, 100, -100000, 100000);
         rule.TargetQuantity = ParseInt(_ruleQuantity.Text, 1, 1, 9999);
@@ -544,7 +544,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void UpdateSelectedRule()
     {
-        if (_rules.SelectedItem is not MudPlayInventoryRule rule) return;
+        if (_rules.SelectedItem is not RealmGateInventoryRule rule) return;
         RuleFromControls(rule);
         if (rule.MatchValue.Length == 0) { SetStatus("A rule needs an explicit match value."); return; }
         SaveProfile("Inventory rule updated.");
@@ -553,7 +553,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
 
     private void DeleteSelectedRule()
     {
-        if (_rules.SelectedItem is not MudPlayInventoryRule rule) return;
+        if (_rules.SelectedItem is not RealmGateInventoryRule rule) return;
         _profile.Rules.Remove(rule);
         SaveProfile("Inventory rule deleted.");
         RefreshRuleList();
@@ -592,10 +592,10 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         _stateAge.Text = p.StateMaximumAgeSeconds.ToString();
         _cooldown.Text = p.CommandCooldownSeconds.ToString();
         _maxCommands.Text = p.MaximumCommandsPerPass.ToString();
-        _ruleDisposition.ItemsSource = Enum.GetValues<MudPlayInventoryDisposition>();
-        _ruleMatchMode.ItemsSource = Enum.GetValues<MudPlayInventoryRuleMatchMode>();
-        if (_ruleDisposition.SelectedItem is null) _ruleDisposition.SelectedItem = MudPlayInventoryDisposition.Keep;
-        if (_ruleMatchMode.SelectedItem is null) _ruleMatchMode.SelectedItem = MudPlayInventoryRuleMatchMode.ExactName;
+        _ruleDisposition.ItemsSource = Enum.GetValues<RealmGateInventoryDisposition>();
+        _ruleMatchMode.ItemsSource = Enum.GetValues<RealmGateInventoryRuleMatchMode>();
+        if (_ruleDisposition.SelectedItem is null) _ruleDisposition.SelectedItem = RealmGateInventoryDisposition.Keep;
+        if (_ruleMatchMode.SelectedItem is null) _ruleMatchMode.SelectedItem = RealmGateInventoryRuleMatchMode.ExactName;
     }
 
     private void CapturePreferenceControls()
@@ -623,7 +623,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         p.StateMaximumAgeSeconds = ParseInt(_stateAge.Text, p.StateMaximumAgeSeconds, 5, 600);
         p.CommandCooldownSeconds = ParseInt(_cooldown.Text, p.CommandCooldownSeconds, 1, 60);
         p.MaximumCommandsPerPass = ParseInt(_maxCommands.Text, p.MaximumCommandsPerPass, 1, 100);
-        if (_automaticSet.SelectedItem is MudPlayEquipmentSet set) p.AutoEquipmentSetId = set.Id;
+        if (_automaticSet.SelectedItem is RealmGateEquipmentSet set) p.AutoEquipmentSetId = set.Id;
     }
 
     private void SavePreferences()
@@ -636,7 +636,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
     {
         CapturePreferenceControls();
         _host.SaveInventoryAutomationProfile(Session, _profile);
-        var set = _service.ResolveAutomaticSet(_profile) ?? _sets.SelectedItem as MudPlayEquipmentSet;
+        var set = _service.ResolveAutomaticSet(_profile) ?? _sets.SelectedItem as RealmGateEquipmentSet;
         var plan = await _host.RecoverInventoryEquipmentAsync(Session, set);
         SetStatus(DescribePlan(plan));
     }
@@ -683,7 +683,7 @@ internal sealed class RealmGateInventoryAutomationPane : UserControl
         SetStatus(message);
     }
 
-    private static string DescribePlan(MudPlayInventoryAutomationPlan plan)
+    private static string DescribePlan(RealmGateInventoryAutomationPlan plan)
     {
         var text = plan.Summary;
         if (plan.MissingItems.Count > 0) text += " Missing: " + string.Join(", ", plan.MissingItems.Take(8));
