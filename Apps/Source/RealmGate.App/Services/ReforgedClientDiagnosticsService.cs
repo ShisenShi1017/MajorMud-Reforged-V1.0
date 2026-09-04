@@ -146,7 +146,7 @@ public static partial class ReforgedClientDiagnosticsService
         Directory.CreateDirectory(folder);
         var safeName = string.Concat((string.IsNullOrWhiteSpace(session.CharacterName) ? session.DisplayName : session.CharacterName)
             .Select(ch => Path.GetInvalidFileNameChars().Contains(ch) ? '_' : ch));
-        destinationPath ??= Path.Combine(folder, $"reforged-client-support-{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.txt");
+        destinationPath ??= Path.Combine(folder, $"realmgate-client-support-{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.txt");
 
         var sb = new StringBuilder();
         sb.AppendLine("RealmGate Client Support Bundle");

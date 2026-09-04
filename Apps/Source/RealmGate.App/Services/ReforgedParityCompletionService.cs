@@ -233,8 +233,8 @@ public static partial class ReforgedParityCompletionService
         if (string.IsNullOrWhiteSpace(folder) || !Directory.Exists(folder))
             folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "Diagnostics");
         Directory.CreateDirectory(folder);
-        var realm = SafeFileName(string.IsNullOrWhiteSpace(session.ServerProfileName) ? "reforged" : session.ServerProfileName);
-        destinationPath ??= Path.Combine(folder, $"reforged-{realm}-{DateTime.Now:yyyyMMdd-HHmmss}.md");
+        var realm = SafeFileName(string.IsNullOrWhiteSpace(session.ServerProfileName) ? "realmgate" : session.ServerProfileName);
+        destinationPath ??= Path.Combine(folder, $"realmgate-{realm}-{DateTime.Now:yyyyMMdd-HHmmss}.md");
 
         var sb = new StringBuilder();
         sb.AppendLine("# RealmGate Problem Report");
