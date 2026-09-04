@@ -1,15 +1,15 @@
 {
   "policy": "Record the current accepted validation baseline. Historical pass-by-pass validation prose is retired unless an active runtime/tool still consumes a specific artifact.",
-  "currentValidator": "Tools/ReforgedValidator/Validate.ps1",
-  "currentCodeUpdate": "0141",
+  "currentValidator": "Tools/RealmGateValidator/Validate.ps1",
+  "currentCodeUpdate": "0142",
   "acceptedBaseline": {
     "releaseBuild": {
-      "Reforged.App": {
+      "RealmGate.App": {
         "status": "PASS",
         "warnings": 0,
         "errors": 0
       },
-      "Reforged.Server": {
+      "RealmGate.Server": {
         "status": "PASS",
         "warnings": 0,
         "errors": 0
