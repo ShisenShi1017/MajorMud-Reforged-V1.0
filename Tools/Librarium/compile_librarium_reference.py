@@ -63,7 +63,7 @@ def main():
             diagnostics.append({"severity":"Error","code":"PYLIB003","message":str(exc),"path":str(src)})
             continue
         payload = {
-            "generated_by":"MajorMud.Reforged.Compiler.ReferencePython",
+            "generated_by":"RealmGate.Compiler.ReferencePython",
             "compiler_code_update":"0126",
             "world_id":world,
             "family":fam_dir.name,
@@ -85,7 +85,7 @@ def main():
     files_written += 1
     manifest = {
         "code_update":"0126",
-        "compiler":"MajorMud.Reforged.Compiler",
+        "compiler":"RealmGate.Compiler",
         "reference_compiler":"Tools/Librarium/compile_librarium_reference.py",
         "world_id":world,
         "librarium_authority":"Librarium is source of truth; /Data is generated runtime output.",

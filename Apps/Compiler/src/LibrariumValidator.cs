@@ -1,6 +1,6 @@
 using System.Text.Json.Nodes;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public sealed class LibrariumValidator
 {

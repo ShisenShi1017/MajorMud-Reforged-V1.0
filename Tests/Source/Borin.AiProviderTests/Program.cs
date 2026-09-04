@@ -1,9 +1,9 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using Reforged.App.Brains;
-using Reforged.App.Forge;
-using Reforged.App.BorinCapabilities;
+using RealmGate.App.Brains;
+using RealmGate.App.Forge;
+using RealmGate.App.BorinCapabilities;
 
 var tests = new (string Name, Func<Task> Run)[]
 {
@@ -211,14 +211,14 @@ static async Task SysGotoEvidenceAsync()
         Directory.GetCurrentDirectory(),
         "investigate why Sys Goto does not stay checked",
         16);
-    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/Reforged.App/Views/EditorView.xaml", StringComparison.OrdinalIgnoreCase)),
+    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/RealmGate.App/Views/EditorView.xaml", StringComparison.OrdinalIgnoreCase)),
         "The real Sys Goto view was not retrieved within the bounded evidence budget.");
-    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs", StringComparison.OrdinalIgnoreCase)),
+    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/RealmGate.App/ViewModels/EditorViewModel.cs", StringComparison.OrdinalIgnoreCase)),
         "The real Sys Goto view model was not retrieved within the bounded evidence budget. Selected: " + string.Join(", ", evidence.Items.Select(item => item.RelativePath).Distinct()));
-    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/Reforged.App/ViewModels/EditorViewModel.cs", StringComparison.OrdinalIgnoreCase) &&
+    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/RealmGate.App/ViewModels/EditorViewModel.cs", StringComparison.OrdinalIgnoreCase) &&
         item.Snippet.Contains("public bool EveryoneCanUseSysGoto", StringComparison.Ordinal)),
         "The Sys Goto evidence did not include exact surrounding source needed for an applicable patch hunk.");
-    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/Reforged.App/App.xaml.cs", StringComparison.OrdinalIgnoreCase) && item.Snippet.Contains("new EditorView", StringComparison.Ordinal)),
+    True(evidence.Items.Any(item => item.RelativePath.Equals("Apps/Source/RealmGate.App/App.xaml.cs", StringComparison.OrdinalIgnoreCase) && item.Snippet.Contains("new EditorView", StringComparison.Ordinal)),
         "The construction reference for EditorView was not retrieved, so Borin could not trace the missing view-model attachment. Selected: " + string.Join(" | ", evidence.Items.Select(item => item.RelativePath + ": " + item.Snippet)));
 }
 
@@ -367,7 +367,7 @@ static Task RepositoryPrivacyAsync()
         100,
         3,
         4,
-        ["MajorMud.Reforged.sln"],
+        ["RealmGate.sln"],
         [@"Logs\latest.log"]);
     var context = BrainContext.ForBorin("Inspect architecture", new ForgeConversationState(), repository, "Developer repository analysis");
     var package = new BorinContextBuilder().Build(context);
@@ -379,7 +379,7 @@ static Task RepositoryPrivacyAsync()
 static Task DeveloperEvidenceAsync()
 {
     var evidence = new BorinReadOnlyEvidenceSnapshot(
-        [new BorinReadOnlyEvidenceItem("Apps/Source/Reforged.App/Example.cs", 42, "source", "verified-root-cause-marker", 1)],
+        [new BorinReadOnlyEvidenceItem("Apps/Source/RealmGate.App/Example.cs", 42, "source", "verified-root-cause-marker", 1)],
         1, 1, @"C:\private\repository", "evidence ready");
     var context = BrainContext.ForBorin(
         "Diagnose the verified defect", new ForgeConversationState(), null,
@@ -554,11 +554,11 @@ static async Task RepositoryContainmentAsync()
 {
     var root = FindRepositoryRootForTests();
     var reader = new BorinRepositoryReadTools();
-    var text = await reader.ReadFileAsync(root, "Apps/Source/Reforged.App/Brains/AiProviderContracts.cs");
+    var text = await reader.ReadFileAsync(root, "Apps/Source/RealmGate.App/Brains/AiProviderContracts.cs");
     True(text.Contains("interface IAiProvider", StringComparison.Ordinal), "Approved source file was not read.");
     await ThrowsAsync<InvalidOperationException>(() => reader.ReadFileAsync(root, "../outside.txt"));
     await ThrowsAsync<InvalidOperationException>(() => reader.ReadFileAsync(root, Path.Combine(root, "AGENTS.md")));
-    await ThrowsAsync<InvalidOperationException>(() => reader.ReadFileAsync(root, "Apps/Source/Reforged.App/Assets/Borin/BorinIronbeard.png"));
+    await ThrowsAsync<InvalidOperationException>(() => reader.ReadFileAsync(root, "Apps/Source/RealmGate.App/Assets/Borin/BorinIronbeard.png"));
 }
 
 static async Task PlayerDispatchAsync()
@@ -702,10 +702,10 @@ static async Task VerifiedIncorporationAsync()
 {
     var root = Path.Combine(Path.GetTempPath(), "borin-incorporation-test-" + Guid.NewGuid().ToString("N"));
     Directory.CreateDirectory(root);
-    Directory.CreateDirectory(Path.Combine(root, "Apps", "Source", "Reforged.App"));
-    Directory.CreateDirectory(Path.Combine(root, "Core", "Source", "Reforged.Core"));
-    File.WriteAllText(Path.Combine(root, "Apps", "Source", "Reforged.App", "Reforged.App.csproj"), "<Project />");
-    File.WriteAllText(Path.Combine(root, "Core", "Source", "Reforged.Core", "Reforged.Core.csproj"), "<Project />");
+    Directory.CreateDirectory(Path.Combine(root, "Apps", "Source", "RealmGate.App"));
+    Directory.CreateDirectory(Path.Combine(root, "Core", "Source", "RealmGate.Core"));
+    File.WriteAllText(Path.Combine(root, "Apps", "Source", "RealmGate.App", "RealmGate.App.csproj"), "<Project />");
+    File.WriteAllText(Path.Combine(root, "Core", "Source", "RealmGate.Core", "RealmGate.Core.csproj"), "<Project />");
     try
     {
         var workspace = new StubEngineeringWorkspace();
@@ -857,7 +857,7 @@ static string FindRepositoryRootForTests()
     var current = new DirectoryInfo(Environment.CurrentDirectory);
     while (current is not null)
     {
-        if (File.Exists(Path.Combine(current.FullName, "MajorMud.Reforged.sln"))) return current.FullName;
+        if (File.Exists(Path.Combine(current.FullName, "RealmGate.sln"))) return current.FullName;
         current = current.Parent;
     }
     throw new DirectoryNotFoundException("Test repository root was not found.");

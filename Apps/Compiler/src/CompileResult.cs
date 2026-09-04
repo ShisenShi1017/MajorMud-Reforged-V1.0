@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public sealed class CompileResult
 {

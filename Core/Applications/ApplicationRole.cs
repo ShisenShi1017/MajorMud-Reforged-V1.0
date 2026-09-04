@@ -1,4 +1,4 @@
-namespace Reforged.Core.Applications;
+namespace RealmGate.Core.Applications;
 
 /// <summary>
 /// Identifies the major executable roles that depend on Core.

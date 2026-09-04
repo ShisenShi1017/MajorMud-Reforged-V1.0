@@ -10,7 +10,7 @@ Say:
 - `Borin, training tester report.` — same defect-report path.
 - `Borin, stop headless training.` — requests a graceful stop and saves the latest checkpoint/report.
 
-The trainer launches `Reforged.Server` with `--headless-json`, uses the same authoritative runtime as normal play, and exchanges one JSON object per line over stdin/stdout. It does not need a normal client session or MegaMUD connection.
+The trainer launches `RealmGate.Server` with `--headless-json`, uses the same authoritative runtime as normal play, and exchanges one JSON object per line over stdin/stdout. It does not need a normal client session or MegaMUD connection.
 
 Beginning with the completed CodeUpdate0369 parity baseline, Borin also owns a **100% Classic parity regression preflight**. Before unattended learning starts, and again at every completed learning-cycle boundary, the trainer runs both `--smoke-classic-final-strong-closure` and `--smoke-classic-parity-closure`. The cycle-boundary check gracefully restarts the headless runtime first so the smoke gates run against an unlocked build tree and persistence is exercised as part of the long run. After the server comes back, Borin probes `HELP TOPICS`, the native `HELP TOP` prefix path, `TOPTEN`, `TOP 10`, and `TOP 10 GANGS` through the same live player command dispatcher. Any smoke-gate, scorecard, or player-probe regression is recorded as a normal training-tester defect instead of being learned around.
 

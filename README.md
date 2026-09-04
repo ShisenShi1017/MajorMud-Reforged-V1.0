@@ -32,11 +32,11 @@ Important boundaries:
 
 ## Main components
 
-- `Apps/Source/Reforged.Server/` — authoritative RealmGate game server/runtime (transitional internal path).
-- `Apps/Source/Reforged.App/` — RealmGate Windows/WPF client, Host, Editor, Librarium, Borin, settings, diagnostics, and client automation (transitional internal path).
+- `Apps/Source/RealmGate.Server/` — authoritative RealmGate game server/runtime (transitional internal path).
+- `Apps/Source/RealmGate.App/` — RealmGate Windows/WPF client, Host, Editor, Librarium, Borin, settings, diagnostics, and client automation (transitional internal path).
 - `Core/` — shared contracts, models, validation, and runtime foundations.
 - `Librarium/` — canonical decoded data, assertions, provenance, and runtime definitions.
-- `Tools/ReforgedValidator/` — single current-health validator entrypoint.
+- `Tools/RealmGateValidator/` — single current-health validator entrypoint.
 - `Tools/NightmareBridge/Write-NightmareMdb.ps1` — Custom-world MDB export bridge.
 - `AI/` — Borin runtime/training/workspace sources.
 - `Tests/` — source-level regression/test harnesses.
@@ -91,14 +91,14 @@ For a RealmGate server, the client instead consumes the exact generated RealmGat
 From the repository root:
 
 ```powershell
-dotnet restore .\MajorMud.Reforged.sln
-dotnet build .\MajorMud.Reforged.sln -c Release
+dotnet restore .\RealmGate.sln
+dotnet build .\RealmGate.sln -c Release
 ```
 
 The current validator entrypoint is:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Tools\ReforgedValidator\Validate.ps1 -Configuration Release
+powershell -ExecutionPolicy Bypass -File .\Tools\RealmGateValidator\Validate.ps1 -Configuration Release
 ```
 
 The validator is intentionally exhaustive and can take a long time when decode exhaustion is required.

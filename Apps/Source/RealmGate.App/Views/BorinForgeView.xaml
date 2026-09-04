@@ -1,0 +1,781 @@
+<UserControl x:Class="RealmGate.App.Views.BorinForgeView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:sys="clr-namespace:System;assembly=mscorlib">
+ <UserControl.Resources>
+  <SolidColorBrush x:Key="ForgePanel" Color="#E60E1214"/>
+  <SolidColorBrush x:Key="ForgePanel2" Color="#E6171C1F"/>
+  <SolidColorBrush x:Key="ForgeBorder" Color="#76552F"/>
+  <SolidColorBrush x:Key="ForgeGold" Color="#D5A75D"/>
+  <SolidColorBrush x:Key="ForgeText" Color="#F1E5D0"/>
+  <Style x:Key="ForgeButton" TargetType="Button">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+   <Setter Property="Background" Value="#242A2E"/>
+   <Setter Property="BorderBrush" Value="{StaticResource ForgeBorder}"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="11,8"/>
+   <Setter Property="Margin" Value="3"/>
+   <Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="Cursor" Value="Hand"/>
+   <Setter Property="Template">
+    <Setter.Value>
+     <ControlTemplate TargetType="Button">
+      <Border x:Name="Outer" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
+       <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </Border>
+      <ControlTemplate.Triggers>
+       <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Outer" Property="Background" Value="#49311D"/></Trigger>
+       <Trigger Property="IsPressed" Value="True"><Setter TargetName="Outer" Property="Background" Value="#6B3E1D"/></Trigger>
+       <Trigger Property="IsEnabled" Value="False"><Setter TargetName="Outer" Property="Opacity" Value="0.45"/></Trigger>
+      </ControlTemplate.Triggers>
+     </ControlTemplate>
+    </Setter.Value>
+   </Setter>
+  </Style>
+  <Style x:Key="ForgeTextBox" TargetType="TextBox">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+   <Setter Property="Background" Value="#111619"/>
+   <Setter Property="BorderBrush" Value="#5A6870"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="9"/>
+   <Setter Property="CaretBrush" Value="#F2B24D"/>
+  </Style>
+  <Style TargetType="TextBlock">
+   <Setter Property="Foreground" Value="{StaticResource ForgeText}"/>
+  </Style>
+  <Style TargetType="Expander">
+   <Setter Property="Foreground" Value="#E4A84E"/>
+   <Setter Property="Background" Value="#151B1E"/>
+   <Setter Property="BorderBrush" Value="#4F4030"/>
+   <Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="7"/>
+   <Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="Template">
+    <Setter.Value>
+     <ControlTemplate TargetType="Expander">
+      <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Margin="0,2">
+       <DockPanel>
+        <ToggleButton DockPanel.Dock="Top" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                      Background="#211A14" BorderThickness="0" Foreground="#E4A84E" Padding="9,7"
+                      HorizontalContentAlignment="Left" Content="{TemplateBinding Header}" FontWeight="SemiBold"/>
+        <ContentPresenter x:Name="ExpandSite" Visibility="Collapsed" Margin="{TemplateBinding Padding}"/>
+       </DockPanel>
+      </Border>
+      <ControlTemplate.Triggers>
+       <Trigger Property="IsExpanded" Value="True"><Setter TargetName="ExpandSite" Property="Visibility" Value="Visible"/></Trigger>
+      </ControlTemplate.Triggers>
+     </ControlTemplate>
+    </Setter.Value>
+   </Setter>
+  </Style>
+ </UserControl.Resources>
+
+ <Grid Background="#090C0E">
+  <Grid.RowDefinitions>
+   <RowDefinition Height="220"/>
+   <RowDefinition Height="*"/>
+   <RowDefinition Height="0"/>
+  </Grid.RowDefinitions>
+
+  <!-- Reserved live Borin stage. The image is the current fallback; animation and interaction layers belong here. -->
+  <Border x:Name="LiveBorinForgeStage" Grid.Row="0" Margin="8,8,8,6" BorderBrush="#8C6239" BorderThickness="1" CornerRadius="9" ClipToBounds="True"
+          ToolTip="Borin's live Forge stage">
+   <Grid>
+    <Image Source="pack://application:,,,/Assets/Borin/BorinLivingForgeHeader.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
+    <Rectangle>
+     <Rectangle.Fill>
+      <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+       <GradientStop Color="#DD090B0D" Offset="0"/>
+       <GradientStop Color="#55090B0D" Offset="0.35"/>
+       <GradientStop Color="#22090B0D" Offset="0.65"/>
+       <GradientStop Color="#CC090B0D" Offset="1"/>
+      </LinearGradientBrush>
+     </Rectangle.Fill>
+    </Rectangle>
+
+    <Grid Margin="18,12">
+     <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="360"/>
+     </Grid.ColumnDefinitions>
+
+     <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="4,3,28,0">
+      <TextBlock Text="BORIN" FontSize="28" FontWeight="Bold" Foreground="#F6D89A"/>
+      <TextBlock Text="{Binding ModeSummary}" FontSize="12" Foreground="#D2B079"/>
+     </StackPanel>
+
+     <Border Grid.Column="1" Background="#C7141110" BorderBrush="#76552F" BorderThickness="1" CornerRadius="7" Padding="11" Margin="0,0,18,0" VerticalAlignment="Bottom">
+      <StackPanel>
+       <TextBlock Text="{Binding Status}" Foreground="#F3B34F" FontWeight="SemiBold" TextWrapping="Wrap"/>
+       <TextBlock Text="Type naturally: ask Borin to play, investigate, fix, build, test, train, or explain." Foreground="#AFC7B7" FontSize="11" Margin="0,4,0,0" TextWrapping="Wrap"/>
+      </StackPanel>
+     </Border>
+
+     <StackPanel Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+      <Border Background="#D7141110" BorderBrush="#76552F" BorderThickness="1" CornerRadius="7" Padding="11">
+       <StackPanel>
+        <TextBlock Text="CURRENT TASK" FontWeight="Bold" Foreground="#E4A84E"/>
+        <TextBlock Text="{Binding CurrentTask}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+        <ProgressBar Height="6" Minimum="0" Maximum="100" Value="{Binding TaskProgress, Mode=OneWay}" Margin="0,7,0,0"
+                     Foreground="#62A84D" Background="#242A2E"/>
+        <TextBlock Text="{Binding TaskStage}" HorizontalAlignment="Right" FontSize="10" Margin="0,3,0,0" Foreground="#C7B28E"/>
+       </StackPanel>
+      </Border>
+     </StackPanel>
+    </Grid>
+   </Grid>
+  </Border>
+
+  <!-- Main workshop -->
+  <Grid Grid.Row="1" Margin="8,0,8,6">
+   <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="0"/>
+    <ColumnDefinition Width="0"/>
+    <ColumnDefinition Width="*"/>
+    <ColumnDefinition Width="8"/>
+    <ColumnDefinition Width="330"/>
+   </Grid.ColumnDefinitions>
+
+   <!-- Library / project rail: compact dropdown sections -->
+   <Border Grid.Column="0" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7" Padding="9">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+     <StackPanel>
+      <TextBlock Text="LIBRARY &amp; PROJECT" FontSize="14" FontWeight="Bold" Foreground="#E4A84E" Margin="3,2,3,8"/>
+      <Border Background="#151B1E" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="5" Padding="8" Margin="0,0,0,8">
+       <StackPanel>
+        <TextBlock Text="ACTIVE REPOSITORY" FontWeight="Bold" Foreground="#BDA57F" FontSize="11"/>
+        <TextBlock Text="{Binding Configuration.RepositoryPath}" TextWrapping="Wrap" FontSize="11.5" Margin="0,4,0,0"/>
+       </StackPanel>
+      </Border>
+
+      <Expander Header="&#x1F4DA;  Repository" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <Button Content="Scan Repository" Command="{Binding ScanCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Open Solution" Command="{Binding OpenSolutionCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Inspect Tools" Command="{Binding ToolStatusCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F56F;  Study &amp; Research" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <Button Content="Study Host / Server" Command="{Binding StudyHostCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Study Entire Repository" Command="{Binding StudyRepositoryCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x2692;  Borin Capabilities" IsExpanded="True" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <TextBlock Text="{Binding BorinCapabilitiesSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,2,3,6"/>
+        <Button Content="Capability Status" Command="{Binding CapabilityStatusCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Realm Health" Command="{Binding CapabilityRealmCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Analyze Progression" Command="{Binding CapabilityAnalysisCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Run Self-Test" Command="{Binding CapabilityDiagnosticsCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="STOP CAPABILITIES" Command="{Binding CapabilityStopCommand}" Style="{StaticResource ForgeButton}" Background="#651F1F" BorderBrush="#B54B4B"/>
+        <TextBlock Text="Worldsmith is installed but withheld. Patch incorporation remains William-only." TextWrapping="Wrap" Foreground="#D7B36A" FontSize="10" Margin="3,5,3,0"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F4DC;  Attached Scrolls" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,7">
+        <ItemsControl ItemsSource="{Binding Attachments}" Margin="0,2,0,5">
+         <ItemsControl.ItemTemplate>
+          <DataTemplate>
+           <Border Background="#1B2226" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="0,2">
+            <TextBlock Text="{Binding DisplayLabel}" TextWrapping="Wrap" FontSize="11"/>
+           </Border>
+          </DataTemplate>
+         </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Content="Attach File" Command="{Binding AttachFileCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Clear Attachments" Command="{Binding ClearAttachmentsCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+     </StackPanel>
+    </ScrollViewer>
+   </Border>
+
+   <!-- Conversation -->
+   <Border Grid.Column="2" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7">
+    <Grid>
+     <Grid.RowDefinitions>
+      <RowDefinition Height="46"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+     </Grid.RowDefinitions>
+     <Grid Grid.Row="0" Background="#171D20">
+      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+      <TextBlock Text="ASK BORIN" Margin="13,0" VerticalAlignment="Center" FontWeight="Bold" Foreground="#E4A84E"/>
+      <Button Grid.Column="1" Content="Clear" Command="{Binding ClearCommand}" Style="{StaticResource ForgeButton}" Padding="14,5" Margin="3,4,6,4"/>
+     </Grid>
+
+     <ScrollViewer x:Name="ChatScrollViewer" Grid.Row="1" Background="#0B0F12"
+                   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                   CanContentScroll="False" PanningMode="VerticalOnly" Padding="8">
+      <ItemsControl x:Name="ChatList" ItemsSource="{Binding Messages}" HorizontalContentAlignment="Stretch"
+                    TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType">
+       <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate><StackPanel/></ItemsPanelTemplate>
+       </ItemsControl.ItemsPanel>
+       <ItemsControl.ItemContainerStyle>
+        <Style TargetType="ContentPresenter">
+         <Setter Property="HorizontalAlignment" Value="Stretch"/>
+         <Setter Property="Margin" Value="0,0,0,7"/>
+        </Style>
+       </ItemsControl.ItemContainerStyle>
+       <ItemsControl.ItemTemplate>
+        <DataTemplate>
+         <Border Background="#10161A" BorderBrush="#69767C" BorderThickness="1" CornerRadius="6" Padding="12"
+                 HorizontalAlignment="Stretch">
+          <Grid>
+           <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+           <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+           <TextBlock Text="{Binding Role}" FontWeight="Bold" Foreground="#E4A84E"/>
+           <TextBlock Grid.Column="1" Text="{Binding TimeLabel}" Foreground="#8D9A9F" FontSize="11"/>
+           <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Text, Mode=OneWay}" TextWrapping="Wrap"
+                    Margin="0,7,0,0" Foreground="#FFFFFFFF" Background="Transparent" BorderThickness="0"
+                    Padding="0" FontSize="15" FontWeight="SemiBold" IsReadOnly="True" IsTabStop="False"
+                    VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                    TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType"/>
+          </Grid>
+         </Border>
+        </DataTemplate>
+       </ItemsControl.ItemTemplate>
+      </ItemsControl>
+     </ScrollViewer>
+
+     <Border Grid.Row="2" Background="#111619" BorderBrush="#39454A" BorderThickness="1,1,1,0" Padding="8">
+      <Grid>
+       <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+       </Grid.ColumnDefinitions>
+       <TextBox Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" MinHeight="70" MaxHeight="145"
+                VerticalScrollBarVisibility="Auto" Style="{StaticResource ForgeTextBox}" FontSize="14"
+                ToolTip="Ask Borin naturally to play, investigate, fix, build, test, train, or explain."/>
+       <Button Grid.Column="1" Content="Attach" Command="{Binding AttachFileCommand}" Style="{StaticResource ForgeButton}" Padding="13,12"/>
+       <Button Grid.Column="2" Content="Cancel" Command="{Binding CancelCommand}" Style="{StaticResource ForgeButton}" Padding="13,12"/>
+       <Button Grid.Column="3" Content="ASK BORIN" Command="{Binding SendCommand}" Style="{StaticResource ForgeButton}"
+               Background="#184E74" BorderBrush="#408FBD" Padding="18,12"/>
+      </Grid>
+     </Border>
+    </Grid>
+   </Border>
+
+   <!-- Workbench: dropdown action groups -->
+   <Border Grid.Column="4" Background="{StaticResource ForgePanel}" BorderBrush="{StaticResource ForgeBorder}" BorderThickness="1" CornerRadius="7" Padding="10">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+     <Grid>
+     <StackPanel>
+      <TextBlock Text="DETAILS &amp; SETTINGS" FontSize="14" FontWeight="Bold" Foreground="#E4A84E"/>
+      <TextBlock Text="Most work is controlled through chat. Open these sections only when direct status or configuration is needed."
+                 TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="0,5,0,8"/>
+
+      <Expander Header="&#x1F3AE;  Live Session" IsExpanded="True" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding PlayerLoginStatusSummary}" TextWrapping="Wrap" Foreground="#E4A84E" FontWeight="Bold" Margin="3,2"/>
+        <TextBlock Text="{Binding PlayerEnvironmentSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,2"/>
+        <TextBlock Text="{Binding PlayerPerceptionSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,2"/>
+        <TextBlock Text="{Binding PlayerAutonomousPlaySummary}" TextWrapping="Wrap" Foreground="#D7B36A" FontSize="10.5" Margin="3,0,3,5"/>
+        <TextBlock Text="GAME SERVER" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,5,3,2"/>
+        <Grid Margin="3,0,3,3">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="7"/><ColumnDefinition Width="82"/></Grid.ColumnDefinitions>
+         <TextBox Text="{Binding PlayerHostName, UpdateSourceTrigger=PropertyChanged}" ToolTip="IP address or hostname, such as omniversebbs.com" Style="{StaticResource ForgeTextBox}" MinHeight="30"/>
+         <TextBox Grid.Column="2" Text="{Binding PlayerPort, UpdateSourceTrigger=PropertyChanged}" ToolTip="Server port" Style="{StaticResource ForgeTextBox}" MinHeight="30"/>
+        </Grid>
+        <TextBlock Text="Enter an IP address or domain name without http:// or https://." TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="3,0,3,3"/>
+        <Button Content="Save Server Profile" Command="{Binding SavePlayerProfileCommand}" Style="{StaticResource ForgeButton}"/>
+        <UniformGrid Columns="2">
+         <Button Content="Connect &amp; Login" Command="{Binding ConnectPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Open Terminal" Click="OpenBorinTerminalClicked" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Play by Himself" Command="{Binding StartAutonomousPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Stop Playing" Command="{Binding StopAutonomousPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Disconnect" Command="{Binding DisconnectPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Emergency Stop" Command="{Binding EmergencyStopPlayerCommand}" Style="{StaticResource ForgeButton}" Background="#651F1F" BorderBrush="#B54B4B"/>
+        </UniformGrid>
+        <TextBlock Text="SECURE PLAYER PASSWORD" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,7,3,2"/>
+        <PasswordBox x:Name="CompactBorinPlayerPasswordBox" Foreground="{StaticResource ForgeText}" Background="#111619"
+                     BorderBrush="#5A6870" BorderThickness="1" Padding="9" MinHeight="30" Margin="3,0,3,3" PasswordChar="*"/>
+        <TextBlock Text="{Binding PlayerPasswordStatus}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="3,0,3,3"/>
+        <UniformGrid Columns="2">
+         <Button Content="Save Password" Click="SaveBorinPasswordClicked" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Clear Password" Click="ClearBorinPasswordClicked" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F6E0;  Engineering Review" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding EngineeringJobStage}" TextWrapping="Wrap" Foreground="#E4A84E" FontWeight="Bold" Margin="3,2"/>
+        <TextBlock Text="{Binding EngineeringJobSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="3,0,3,5"/>
+        <UniformGrid Columns="2">
+         <Button Content="Show Changes" Command="{Binding ShowEngineeringChangesCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Build &amp; Test" Command="{Binding BuildTestEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Reject" Command="{Binding RejectEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Review &amp; Incorporate" Command="{Binding IncorporateEngineeringJobCommand}" Style="{StaticResource ForgeButton}" Background="#6A3518" BorderBrush="#D58A3A"/>
+        </UniformGrid>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F4DA;  Knowledge" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding KnowledgeIndexSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="3,2"/>
+        <TextBlock Text="{Binding MajorMudKnowledgeSummary}" TextWrapping="Wrap" Foreground="#79C99E" Margin="3,2"/>
+        <TextBlock Text="{Binding AcademyMajorMudMastery}" TextWrapping="Wrap" Foreground="#D7B36A" Margin="3,2"/>
+        <TextBlock Text="{Binding AcademyReforgedMastery}" TextWrapping="Wrap" Foreground="#D7B36A" Margin="3,2"/>
+        <TextBlock Text="Ask Borin to reindex, train, test mastery, investigate gaps, or show conflicts." TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,5,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F9E0;  AI Engine" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <ComboBox ItemsSource="{Binding BrainModes}" SelectedItem="{Binding SelectedBrainMode, Mode=TwoWay}" Margin="3,2,3,5" Padding="7,3"/>
+        <TextBlock Text="{Binding LightningConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="3,2"/>
+        <TextBlock Text="{Binding SuperConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="3,2"/>
+        <TextBlock Text="{Binding UltraConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="3,2,3,5"/>
+        <UniformGrid Columns="2">
+         <Button Content="Change NVIDIA Key" Command="{Binding ChangeLightningKeyCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Lightning" Command="{Binding TestLightningCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Super" Command="{Binding TestSuperCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Ultra" Command="{Binding TestUltraCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <CheckBox Content="Automatic deep-reasoning escalation" IsChecked="{Binding AutomaticallyEscalateDifficultTasks, Mode=TwoWay}" Margin="5,6,3,2"/>
+        <CheckBox Content="Verify critical work with Super" IsChecked="{Binding VerifyCriticalTasks, Mode=TwoWay}" Margin="5,2,3,2"/>
+        <TextBlock Text="{Binding LastAiRouteSummary}" TextWrapping="Wrap" Foreground="#D7B36A" FontSize="10.5" Margin="3,5,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x2699;  Advanced" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <Button Content="Save Settings" Command="{Binding SaveSettingsCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Choose Borin Portrait" Command="{Binding ChoosePortraitCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Load / Tune Local Brain" Command="{Binding LoadModelsCommand}" Style="{StaticResource ForgeButton}"/>
+        <TextBlock Text="Repository tools, memory inspection, Academy operations, traces, diagnostics, and workspace operations are available by asking Borin in chat." TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,5,3,2"/>
+       </StackPanel>
+      </Expander>
+     </StackPanel>
+
+     <!-- Retained command bindings for compatibility; these legacy controls are intentionally hidden in the chat-first UI. -->
+     <StackPanel Visibility="Collapsed">
+      <TextBlock Text="DETAILS &amp; SETTINGS" FontSize="14" FontWeight="Bold" Foreground="#E4A84E"/>
+      <Border Background="#151B1E" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="5" Padding="9" Margin="0,7,0,8">
+       <StackPanel>
+        <TextBlock Text="CURRENT STATUS" FontWeight="Bold" Foreground="#BDA57F" FontSize="11"/>
+        <TextBlock Text="{Binding Status}" TextWrapping="Wrap" Margin="0,4,0,0" Foreground="#D6C3A6"/>
+       </StackPanel>
+      </Border>
+
+      <Expander Header="&#x1F3AE;  Borin Active Player &amp; Parity Research" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding PlayerStatusSummary}" TextWrapping="Wrap" Margin="3,2,3,3" Foreground="#E4A84E" FontWeight="Bold"/>
+        <TextBlock Text="{Binding PlayerSafetySummary}" TextWrapping="Wrap" Margin="3,0,3,3" Foreground="#AFC7B7"/>
+        <TextBlock Text="{Binding PlayerStatusDetail}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#9EAAA5" FontSize="10.5"/>
+
+        <TextBlock Text="EXISTING BORIN SESSION &#x2014; SECURE LOGIN" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold" Margin="3,2,3,3"/>
+        <TextBlock Text="{Binding PlayerLoginStatusSummary}" TextWrapping="Wrap" Foreground="#E4A84E" FontSize="10.5" FontWeight="Bold" Margin="3,0,3,2"/>
+        <TextBlock Text="{Binding PlayerLoginStatusDetail}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="3,0,3,5"/>
+        <Grid Margin="3,0,3,4">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="7"/><ColumnDefinition Width="92"/></Grid.ColumnDefinitions>
+         <TextBox Text="{Binding PlayerHostName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Omniverse BBS hostname" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+         <TextBox Grid.Column="2" Text="{Binding PlayerPort, UpdateSourceTrigger=PropertyChanged}" ToolTip="Omniverse BBS port" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+        </Grid>
+        <Grid Margin="3,0,3,4">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="7"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+         <TextBox Text="{Binding PlayerLoginName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Omniverse User-ID" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+         <TextBox Grid.Column="2" Text="{Binding PlayerCharacterName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Borin MajorMUD character name" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+        </Grid>
+        <Grid Margin="3,0,3,4">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="7"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+         <TextBox Text="{Binding PlayerSessionId, Mode=OneWay}" IsReadOnly="True" ToolTip="Existing Borin terminal session ID; this login pass does not create another session" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+         <TextBox Grid.Column="2" Text="{Binding PlayerServerProfileName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Server profile name" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+        </Grid>
+        <Grid Margin="3,0,3,4">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="7"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+         <TextBox Text="{Binding PlayerWorldName, UpdateSourceTrigger=PropertyChanged}" ToolTip="MajorMUD world name" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+         <TextBox Grid.Column="2" Text="{Binding PlayerPrimaryTeacher, UpdateSourceTrigger=PropertyChanged}" ToolTip="Primary human teacher" Style="{StaticResource ForgeTextBox}" MinHeight="28"/>
+        </Grid>
+        <TextBox Text="{Binding PlayerMentorAiName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Known AI mentor subject to the three-reply loop guard" Style="{StaticResource ForgeTextBox}" MinHeight="28" Margin="3,0,3,4"/>
+
+        <TextBlock Text="SECURE PASSWORD" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,2"/>
+        <PasswordBox x:Name="BorinPlayerPasswordBox" ToolTip="Saved only in Windows Credential Manager; never stored in RealmGate files or sent to Qwen"
+                     Foreground="{StaticResource ForgeText}" Background="#111619" BorderBrush="#5A6870" BorderThickness="1" Padding="9"
+                     MinHeight="30" Margin="3,0,3,3" PasswordChar="*"/>
+        <TextBlock Text="{Binding PlayerPasswordStatus}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="3,0,3,3"/>
+        <UniformGrid Columns="2" Margin="3,0,3,5">
+         <Button Content="Save Password Securely" Click="SaveBorinPasswordClicked" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Clear Saved Password" Click="ClearBorinPasswordClicked" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+
+        <WrapPanel Margin="3,1,3,5">
+         <CheckBox Content="Enabled" IsChecked="{Binding PlayerEnabled, Mode=TwoWay}" Margin="0,0,12,4"/>
+         <CheckBox Content="Safe combat allowed" IsChecked="{Binding PlayerAllowSafeCombat, Mode=TwoWay}" Margin="0,0,12,4"/>
+         <CheckBox Content="Reflection journal" IsChecked="{Binding PlayerReflectionJournalEnabled, Mode=TwoWay}" Margin="0,0,12,4"/>
+         <CheckBox Content="Auto reflection" IsChecked="{Binding PlayerAutomaticReflectionEnabled, Mode=TwoWay}" Margin="0,0,12,4"/>
+         <CheckBox Content="Conversation learning" IsChecked="{Binding PlayerConversationLearningEnabled, Mode=TwoWay}" Margin="0,0,12,4"/>
+        </WrapPanel>
+        <TextBlock Text="Connect &amp; Login starts the connection and automatically enables Borin&apos;s Active Player profile. A disconnected state does not disable this action." TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="3,0,3,4"/>
+        <UniformGrid Columns="2">
+         <Button Content="Save Profile" Command="{Binding SavePlayerProfileCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Connect &amp; Login" Command="{Binding ConnectPlayerCommand}" Style="{StaticResource ForgeButton}" ToolTip="Starts or resumes Borin&apos;s connection. Disconnected is the normal starting state."/>
+         <Button Content="Open Borin Terminal" Click="OpenBorinTerminalClicked" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Disconnect" Command="{Binding DisconnectPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Observe On / Off" Command="{Binding TogglePlayerObservationCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Conversation On / Off" Command="{Binding TogglePlayerConversationCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Journal On / Off" Command="{Binding TogglePlayerJournalCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Auto Reflection On / Off" Command="{Binding ToggleAutomaticReflectionCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Conversation Learning On / Off" Command="{Binding ToggleConversationLearningCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Player Help" Command="{Binding PlayerHelpCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+
+        <Border Background="#111619" BorderBrush="#6A5B42" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,7,3,5">
+         <StackPanel>
+          <TextBlock Text="ASSIGNMENT &amp; AUTONOMOUS PLAY" Foreground="#D0B47D" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding PlayerEnvironmentSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="0,2,0,2"/>
+          <TextBlock Text="{Binding PlayerPerceptionSummary}" TextWrapping="Wrap" Foreground="#E0E6E2" FontSize="10" Margin="0,0,0,2"/>
+          <TextBlock Text="{Binding PlayerAutonomousPlaySummary}" TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10" Margin="0,0,0,5"/>
+          <UniformGrid Columns="3">
+           <Button Content="Assignment Window" Click="OpenBorinAssignmentClicked" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Play by Himself" Command="{Binding StartAutonomousPlayerCommand}" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Stop Playing" Command="{Binding StopAutonomousPlayerCommand}" Style="{StaticResource ForgeButton}" Background="#651F1F" BorderBrush="#B54B4B"/>
+          </UniformGrid>
+          <TextBlock Text="Play by Himself remains locked until the exact active session has a fresh HP prompt, verified maximum HP, room title, and exit list. Human terminal input immediately returns control to William." TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10" Margin="0,4,0,0"/>
+         </StackPanel>
+        </Border>
+
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,7,3,5">
+         <StackPanel>
+          <TextBlock Text="NEXT SUPERVISED ACTION" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding PlayerDecisionSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,5"/>
+          <UniformGrid Columns="2">
+           <Button Content="Ask Next Action" Command="{Binding ProposePlayerActionCommand}" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Approve Action" Command="{Binding ApprovePlayerActionCommand}" Style="{StaticResource ForgeButton}"/>
+          </UniformGrid>
+         </StackPanel>
+        </Border>
+
+        <TextBox Text="{Binding PlayerCommandInput, UpdateSourceTrigger=PropertyChanged}" ToolTip="One supervised normal MajorMUD command" Style="{StaticResource ForgeTextBox}" MinHeight="30" Margin="3,0,3,3"/>
+        <Button Content="Send Supervised Command" Command="{Binding SendSupervisedPlayerCommand}" Style="{StaticResource ForgeButton}" Margin="3,0,3,5"/>
+        <UniformGrid Columns="3">
+         <Button Content="Pause" Command="{Binding PausePlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Resume" Command="{Binding ResumePlayerCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="EMERGENCY STOP" Command="{Binding EmergencyStopPlayerCommand}" Style="{StaticResource ForgeButton}" Background="#651F1F" BorderBrush="#B54B4B"/>
+        </UniformGrid>
+
+        <TextBlock Text="LAST CONVERSATION" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold" Margin="3,7,3,2"/>
+        <TextBlock Text="{Binding PlayerLastConversationSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,4"/>
+
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,6,3,5">
+         <StackPanel>
+          <TextBlock Text="BORIN'S PRIVATE REFLECTION &amp; CONVERSATION JOURNAL" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding PlayerReflectionJournalSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,4"/>
+          <TextBlock Text="CURRENT REFLECTION" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold"/>
+          <TextBox Text="{Binding PlayerCurrentReflection, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MinHeight="72" MaxHeight="150" Style="{StaticResource ForgeTextBox}" Margin="0,2,0,5"/>
+          <TextBlock Text="REFLECTION FOCUS" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold"/>
+          <TextBox Text="{Binding PlayerReflectionFocus, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MinHeight="48" MaxHeight="90" Style="{StaticResource ForgeTextBox}" Margin="0,2,0,4"/>
+          <UniformGrid Columns="2">
+           <Button Content="Write Reflection" Command="{Binding WritePlayerReflectionCommand}" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Show Journal Summary" Command="{Binding ShowPlayerJournalCommand}" Style="{StaticResource ForgeButton}"/>
+          </UniformGrid>
+          <TextBlock Text="LAST VERIFIED CONVERSATION LESSON" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="0,6,0,1"/>
+          <TextBlock Text="{Binding PlayerConversationLessonSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5"/>
+          <TextBlock Text="PLAYER PROFILE" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="0,5,0,1"/>
+          <TextBlock Text="{Binding PlayerSpeakerProfileSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5"/>
+          <TextBlock Text="WILLIAM'S REVIEW OF THE LAST DIRECT CONVERSATION" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="0,6,0,1"/>
+          <TextBox Text="{Binding PlayerConversationReviewNote, UpdateSourceTrigger=PropertyChanged}" ToolTip="Optional reason or correction. This becomes a William-verified social lesson." TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MinHeight="42" MaxHeight="82" Style="{StaticResource ForgeTextBox}" Margin="0,2,0,4"/>
+          <UniformGrid Columns="3">
+           <Button Content="Helpful" Command="{Binding MarkConversationHelpfulCommand}" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Awkward" Command="{Binding MarkConversationAwkwardCommand}" Style="{StaticResource ForgeButton}"/>
+           <Button Content="Incorrect" Command="{Binding MarkConversationIncorrectCommand}" Style="{StaticResource ForgeButton}"/>
+          </UniformGrid>
+          <TextBlock Text="{Binding PlayerReflectionJournalPath}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="0,5,0,0"/>
+          <TextBlock Text="Private journal entries are never broadcast in-game. They contain concise reflections and social lessons, not hidden chain-of-thought, credentials, or unreviewed player advice treated as fact." TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10" Margin="0,4,0,0"/>
+         </StackPanel>
+        </Border>
+
+        <TextBlock Text="LAST PARITY EVIDENCE" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold" Margin="3,3,3,2"/>
+        <TextBlock Text="{Binding PlayerLastEvidenceSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,3"/>
+        <TextBlock Text="{Binding PlayerJournalPath}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="3,0,3,4"/>
+        <TextBlock Text="Borin plays his own character through the exact active client session. Play by Himself uses only verified prompt, room, exit, command-ownership, and server evidence; it stops immediately when William types a terminal command or perception becomes stale."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,5,3,2"/>
+        <TextBlock Text="RealmGate is the application. Omniverse BBS, the RealmGate server, and other configured BBS hosts remain distinct. Borin reports the connected server exactly and never invents an exit destination."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F3AF;  MajorMUD Mastery Curriculum" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding MasterySummary}" TextWrapping="Wrap" Margin="3,2,3,4" Foreground="#E4A84E" FontWeight="Bold"/>
+        <TextBlock Text="Mastery is measured through five independent gates: explain, predict, perform live, retain after restart/context reset, and reject a false contradiction." TextWrapping="Wrap" Margin="3,0,3,6" Foreground="#AFC7B7" FontSize="10.5"/>
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,0,3,5">
+         <StackPanel>
+          <TextBlock Text="NEXT TRAINING TARGET" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding MasteryNextLesson}" TextWrapping="Wrap" Foreground="#E0E6E2" FontSize="10.5" Margin="0,3,0,0"/>
+         </StackPanel>
+        </Border>
+        <TextBlock Text="SKILL GRAPH" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,1"/>
+        <TextBox Text="{Binding MasterySkillGraphSummary, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MinHeight="120" MaxHeight="240" Style="{StaticResource ForgeTextBox}" Margin="3,0,3,5"/>
+        <TextBlock Text="UNVERIFIED GAMEPLAY LESSON CANDIDATES" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,1"/>
+        <TextBlock Text="{Binding MasteryCandidateSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,5"/>
+        <TextBlock Text="WILLIAM-VERIFIED LESSONS" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,1"/>
+        <TextBlock Text="{Binding MasteryVerifiedLessonSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="3,0,3,5"/>
+        <UniformGrid Columns="2">
+         <Button Content="Mastery Status" Command="{Binding MasteryStatusCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Skill Scores" Command="{Binding MasterySkillsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Next Lesson" Command="{Binding MasteryNextCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Lesson Candidates" Command="{Binding MasteryCandidatesCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Verified Lessons" Command="{Binding MasteryLessonsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Mastery Help" Command="{Binding MasteryHelpCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="{Binding MasteryStoragePath}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="3,5,3,1"/>
+        <TextBlock Text="Observed server results create candidates only. They become authoritative knowledge only after William verifies them. Server, world, character, command, and evidence paths remain attached to every compiled lesson." TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10" Margin="3,3,3,1"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F6E0;  Autonomous Engineering Job" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding EngineeringJobStage}" TextWrapping="Wrap" Margin="3,2,3,3" Foreground="#E4A84E" FontWeight="Bold"/>
+        <TextBlock Text="{Binding EngineeringJobSummary}" TextWrapping="Wrap" Margin="3,0,3,5" Foreground="#AFC7B7"/>
+        <TextBlock Text="{Binding EngineeringJobRequest}" TextWrapping="Wrap" Margin="3,0,3,5" Foreground="#D6C3A6"/>
+        <TextBlock Text="{Binding EngineeringJobFiles}" TextWrapping="Wrap" Margin="3,0,3,5" Foreground="#9EAAA5" FontSize="10.5"/>
+        <UniformGrid Columns="2">
+         <Button Content="Start from Input" Command="{Binding StartEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Job Status" Command="{Binding ShowEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Proposed Changes" Command="{Binding ShowEngineeringChangesCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Recent Jobs" Command="{Binding ListEngineeringJobsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Apply Draft (Legacy)" Command="{Binding ApproveEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Reject Draft" Command="{Binding RejectEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Build &amp; Test" Command="{Binding BuildTestEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Correct Build" Command="{Binding CorrectEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Correction Attempts" Command="{Binding ShowCorrectionAttemptsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Stop Correction" Command="{Binding StopEngineeringCorrectionCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Create Update ZIP" Command="{Binding PackageEngineeringJobCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Review &amp; Incorporate" Command="{Binding IncorporateEngineeringJobCommand}" Style="{StaticResource ForgeButton}" Background="#6A3518" BorderBrush="#D58A3A"/>
+        </UniformGrid>
+        <TextBlock Text="{Binding EngineeringCorrectionSummary}" TextWrapping="Wrap" Margin="3,6,3,2" Foreground="#D7B36A" FontSize="10.5"/>
+        <TextBlock Text="Natural workflow: say Fix ...; Borin gathers evidence, patches only his isolated workspace, builds, tests, and corrects it automatically. Review &amp; Incorporate becomes available only after verification."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,7,3,2"/>
+        <TextBlock Text="Build corrections are limited to three attempts and may touch only the drafted file set. Main-repository incorporation requires William's explicit confirmation, rejects conflicts with existing target-file changes, and never commits, pushes, publishes, installs, or deploys."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+        <TextBlock Text="{Binding EngineeringJobArtifact}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x2692;  Controlled Engineering Workspace" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding EngineeringWorkspaceSummary}" TextWrapping="Wrap" Margin="3,2,3,5" Foreground="#AFC7B7"/>
+        <TextBlock Text="{Binding EngineeringWorkspacePath}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#9EAAA5" FontSize="10.5"/>
+        <UniformGrid Columns="2">
+         <Button Content="Draft Input" Command="{Binding DraftEngineeringCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Engineering Help" Command="{Binding EngineeringHelpCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Create Snapshot" Command="{Binding CreateWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Status" Command="{Binding WorkspaceStatusCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Apply Draft" Command="{Binding ApplyProposedDiffCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Show Diff" Command="{Binding ShowDiffCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Build Snapshot" Command="{Binding BuildWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Snapshot" Command="{Binding TestWorkspaceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Package Draft ZIP" Command="{Binding PackageEngineeringDraftCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Inspect Tools" Command="{Binding ToolStatusCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="Stage 6 keeps these lower-level workspace controls available beneath the approval-gated job orchestrator. It can draft a unified diff, apply it only to a private snapshot, build/test that snapshot, and create a reviewable update ZIP. It cannot apply to the main repository, install, commit, or push."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,7,3,2"/>
+        <TextBlock Text="Type /draft &lt;request&gt; or use Draft Input. Then review the answer before using Apply Draft. Use /workspace recreate after the main repository changes."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F5C3;  Borin's Memory" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding MemorySummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
+        <UniformGrid Columns="2">
+         <Button Content="Show Memories" Command="{Binding ShowMemoriesCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Last Recall" Command="{Binding ShowRecallCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Project Rules" Command="{Binding ProjectAwarenessCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Memory Help" Command="{Binding MemoryHelpCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,7,3,2">
+         <StackPanel>
+          <TextBlock Text="LAST RECALL" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding MemoryRecallSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,5"/>
+          <TextBlock Text="REFORGED AWARENESS" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding ProjectAwarenessSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,0"/>
+         </StackPanel>
+        </Border>
+        <TextBlock Text="Permanent instructions and decisions are separate from temporary raw conversation. Older conversation turns are compacted into summaries."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,5,3,2"/>
+        <TextBlock Text="Use /edit, /mark, and /complete to maintain evidence and archive completed tasks. Discussed and decided memories are never treated as proof that work was installed, built, or validated."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F50E;  Read-Only RealmGate Access" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding ReadOnlyAccessSummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
+        <UniformGrid Columns="2">
+         <Button Content="Show Evidence" Command="{Binding ShowEvidenceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Access Help" Command="{Binding ReadOnlyAccessHelpCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="Borin may read approved source, Librarium/data, reports, logs, and project documentation. He cannot edit/delete files, execute scripts, build/test, restart services, install updates, or claim a fix is complete."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,6,3,2"/>
+        <TextBlock Text="Use /evidence to see the exact paths and line numbers used for the last answer, or /evidence &lt;question&gt; to search without invoking Qwen."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F4DA;  RealmGate Knowledge Index" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding KnowledgeIndexSummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
+        <TextBlock Text="{Binding MajorMudKnowledgeSummary}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#79C99E"/>
+        <TextBlock Text="{Binding VerifiedLearningSummary}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#79C99E"/>
+        <UniformGrid Columns="2">
+         <Button Content="Learn RealmGate" Command="{Binding LearnReforgedCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Learn Changed" Command="{Binding LearnChangedCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Index Status" Command="{Binding LearnStatusCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Knowledge Help" Command="{Binding KnowledgeHelpCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Run Mastery Test" Command="{Binding RunMasteryTestCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="View Conflicts" Command="{Binding ViewKnowledgeConflictsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="View Investigations" Command="{Binding ViewKnowledgeInvestigationsCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="{Binding MasteryEvaluationSummary}" TextWrapping="Wrap" Margin="3,7,3,2" Foreground="#C7B28E" FontSize="10.5"/>
+        <TextBlock Text="{Binding MasteryEvaluationDetails}" TextWrapping="Wrap" Margin="3,2,3,2" Foreground="#9EAAA5" FontSize="10.5"/>
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,7,3,2">
+         <StackPanel>
+          <TextBlock Text="LAST INDEXED RECALL" Foreground="#BDA57F" FontSize="10.5" FontWeight="Bold"/>
+          <TextBlock Text="{Binding KnowledgeRecallSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,0"/>
+         </StackPanel>
+        </Border>
+        <TextBlock Text="Use /learn realmgate for the first resumable scan, /learn changed after repository updates, and /knowledge &lt;question&gt; for a direct indexed search. The Cancel button saves a checkpoint."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,6,3,2"/>
+        <TextBlock Text="The index is stored under AI\Memory\Knowledge. It is retrieval, not Qwen retraining, and it never treats imported databases as authoritative gameplay data."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F393;  Borin Academy" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding AcademyMajorMudMastery}" Foreground="#79C99E" FontWeight="Bold" Margin="3,2"/>
+        <TextBlock Text="{Binding AcademyReforgedMastery}" Foreground="#79C99E" FontWeight="Bold" Margin="3,2,3,7"/>
+        <TextBlock Text="{Binding AcademyCounts}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="3,0,3,5"/>
+        <TextBlock Text="{Binding AcademySubjectSummary}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,0,3,7"/>
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="7" Margin="3,2,3,7">
+         <TextBlock Text="{Binding AcademyActivity}" TextWrapping="Wrap" Foreground="#C7B28E"/>
+        </Border>
+        <UniformGrid Columns="2">
+         <Button Content="Train" Command="{Binding AcademyTrainCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Mastery" Command="{Binding AcademyTestCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Investigate Gaps" Command="{Binding AcademyGapsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Replay History" Command="{Binding AcademyReplayCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <CheckBox Content="Train while Borin is idle" IsChecked="{Binding AcademyTrainWhileIdle}" Margin="5,7,3,3"/>
+        <StackPanel Orientation="Horizontal" Margin="5,2,3,2">
+         <TextBlock Text="Idle training max requests/minute:" VerticalAlignment="Center" Foreground="#AFC7B7"/>
+         <TextBox Text="{Binding AcademyIdleRequestsPerMinute, UpdateSourceTrigger=LostFocus}" Width="45" Margin="8,0,0,0"/>
+        </StackPanel>
+        <TextBlock Text="Academy scores come only from current evidence-based evaluations. Training yields immediately to user, gameplay, Sysop, or engineering work and never turns model output into authority."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,6,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x26D3;  Classic Trace Chain" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding ClassicTraceSummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
+        <UniformGrid Columns="2">
+         <Button Content="Show Last Trace" Command="{Binding ShowClassicTraceCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Trace Help" Command="{Binding ClassicTraceHelpCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="Use /trace &lt;question&gt; to follow decoded source &#x2192; Librarium &#x2192; generated Data/Classic &#x2192; runtime catalog &#x2192; live runtime consumer &#x2192; persistence/reset/cleanup &#x2192; parity validation."
+                   TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,6,3,2"/>
+        <TextBlock Text="Each stage is reported separately. Matching evidence never proves the next stage, and imported databases remain reference-only."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x1F9E0;  Local Brain &amp; NVIDIA" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <TextBlock Text="{Binding BrainStatus}" TextWrapping="Wrap" Margin="3,2,3,5"/>
+        <TextBlock Text="{Binding BrainPerformanceSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="11" Margin="3,0,3,7"/>
+        <UniformGrid Columns="2">
+         <Button Content="Load Local Brain" Command="{Binding LoadModelsCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Local Brain" Command="{Binding TestBrainCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <TextBlock Text="PERFORMANCE PRESET" Foreground="#BDA57F" FontSize="11" FontWeight="Bold" Margin="3,9,3,3"/>
+        <Grid Margin="3,0,3,3">
+         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+         <ComboBox ItemsSource="{Binding BrainPerformancePresets}" SelectedItem="{Binding SelectedBrainPerformancePreset, Mode=TwoWay}"
+                   MinHeight="28" Padding="7,3" VerticalContentAlignment="Center"/>
+         <Button Grid.Column="1" Content="Apply &amp; Reload" Command="{Binding ApplyBrainPerformancePresetCommand}"
+                 Style="{StaticResource ForgeButton}" Padding="10,5" Margin="6,0,0,0"/>
+        </Grid>
+        <TextBlock Text="Auto tunes memory use. Fast attempts maximum GPU offload, then falls back to the last working layer count."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,1,3,5"/>
+        <Border Background="#111619" BorderBrush="#3E4A50" BorderThickness="1" CornerRadius="4" Padding="8" Margin="3,7,3,0">
+         <StackPanel>
+          <TextBlock Text="MODEL" Foreground="#BDA57F" FontSize="11" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Configuration.ModelName}" TextWrapping="Wrap" Margin="0,3,0,0"/>
+          <TextBlock Text="Model folder: AI\Models" Foreground="#9EAAA5" FontSize="11" Margin="0,5,0,0"/>
+          <TextBlock Text="Direct in-app GGUF; LM Studio is not used." Foreground="#9EAAA5" FontSize="11" Margin="0,2,0,0" TextWrapping="Wrap"/>
+         </StackPanel>
+        </Border>
+        <Separator Margin="3,12,3,9" Background="#76552F"/>
+        <TextBlock Text="NVIDIA NIM / HYBRID AI" Foreground="#E4A84E" FontWeight="Bold"/>
+        <TextBlock Text="BRAIN MODE" Foreground="#BDA57F" FontSize="11" FontWeight="Bold" Margin="0,7,0,0"/>
+        <ComboBox ItemsSource="{Binding BrainModes}" SelectedItem="{Binding SelectedBrainMode, Mode=TwoWay}"
+                  Margin="3,4,3,8" Padding="7,3"/>
+        <TextBlock Text="NORMAL MODEL" Foreground="#BDA57F" FontSize="11" FontWeight="Bold"/>
+        <TextBlock Text="Nemotron 3.5 Lightning 30B A3B" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,0"/>
+        <TextBlock Text="Shared NVIDIA API Key: ••••••••••••••" Margin="0,7,0,0"/>
+        <TextBlock Text="{Binding LightningConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="0,2,0,0"/>
+        <TextBlock Text="{Binding LightningRateSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,7"/>
+        <UniformGrid Columns="2">
+         <Button Content="Change NVIDIA Key" Command="{Binding ChangeLightningKeyCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Test Lightning" Command="{Binding TestLightningCommand}" Style="{StaticResource ForgeButton}"/>
+        </UniformGrid>
+        <Separator Margin="3,10,3,8" Background="#76552F"/>
+        <TextBlock Text="INDEPENDENT VERIFIER" Foreground="#BDA57F" FontSize="11" FontWeight="Bold"/>
+        <TextBlock Text="Nemotron 3 Super 120B A12B" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,0"/>
+        <TextBlock Text="{Binding SuperConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="0,2,0,0"/>
+        <TextBlock Text="{Binding SuperRateSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,7"/>
+        <Button Content="Test Super" Command="{Binding TestSuperCommand}" Style="{StaticResource ForgeButton}"/>
+        <Separator Margin="3,10,3,8" Background="#76552F"/>
+        <TextBlock Text="DEEP REASONING MODEL" Foreground="#BDA57F" FontSize="11" FontWeight="Bold"/>
+        <TextBlock Text="Nemotron 3 Ultra 550B A55B" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,0"/>
+        <TextBlock Text="{Binding UltraConnectionStatus}" TextWrapping="Wrap" Foreground="#F3B34F" Margin="0,2,0,0"/>
+        <TextBlock Text="{Binding UltraRateSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="0,2,0,7"/>
+        <Button Content="Test Ultra" Command="{Binding TestUltraCommand}" Style="{StaticResource ForgeButton}"/>
+        <CheckBox Content="Automatically escalate difficult tasks" IsChecked="{Binding AutomaticallyEscalateDifficultTasks, Mode=TwoWay}" Foreground="#F1E5D0" Margin="3,8,3,3"/>
+        <CheckBox Content="Verify critical Ultra work independently with Super" IsChecked="{Binding VerifyCriticalTasks, Mode=TwoWay}" Foreground="#F1E5D0" Margin="3,3,3,3"/>
+        <TextBlock Text="{Binding OverallNvidiaRateSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" Margin="3,2,3,0"/>
+        <TextBlock Text="{Binding LastAiRouteSummary}" TextWrapping="Wrap" Foreground="#D7B36A" Margin="3,3,3,0"/>
+        <TextBlock Text="Local state remains authoritative. Lightning handles normal reasoning, Ultra handles deep work, and Super independently verifies only critical Ultra decisions. All three use one secure key."
+                   TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,6,3,2"/>
+       </StackPanel>
+      </Expander>
+
+      <Expander Header="&#x2699;  Borin &amp; Forge" IsExpanded="False" Margin="0,2">
+       <StackPanel Margin="5,4,0,8">
+        <Button Content="Choose Alternate Portrait" Command="{Binding ChoosePortraitCommand}" Style="{StaticResource ForgeButton}"/>
+        <Button Content="Save Forge Settings" Command="{Binding SaveSettingsCommand}" Style="{StaticResource ForgeButton}"/>
+       </StackPanel>
+      </Expander>
+     </StackPanel>
+     </Grid>
+    </ScrollViewer>
+   </Border>
+  </Grid>
+
+  <!-- Workstation dock -->
+  <Border Grid.Row="2" Margin="8,0,8,8" Background="#17110D" BorderBrush="#8C6239" BorderThickness="1" CornerRadius="7">
+   <UniformGrid Columns="6" Margin="7">
+    <Button Content="&#x1F4DA;  LIBRARY&#x0a;Study &amp; Research" Command="{Binding StudyRepositoryCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="&#x1F6E0;  JOB STATUS&#x0a;Tracked Workflow" Command="{Binding ShowEngineeringJobCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5" Background="#4B2A12"/>
+    <Button Content="&#x1F9E0;  LOCAL BRAIN&#x0a;Qwen GGUF" Command="{Binding LoadModelsCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="&#x2705;  INCORPORATE&#x0a;Verified Patch" Command="{Binding IncorporateEngineeringJobCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="&#x1F9EA;  BUILD &amp; TEST&#x0a;Isolated Snapshot" Command="{Binding BuildTestEngineeringJobCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+    <Button Content="&#x2699;  SETTINGS&#x0a;Borin &amp; System" Command="{Binding SaveSettingsCommand}" Style="{StaticResource ForgeButton}" FontSize="12.5"/>
+   </UniformGrid>
+  </Border>
+ </Grid>
+</UserControl>

@@ -1,0 +1,142 @@
+<UserControl x:Class="RealmGate.App.Views.CharacterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MinWidth="760" MinHeight="520">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Characters / Live Sessions">
+            <DockPanel Margin="6">
+                <TextBlock DockPanel.Dock="Top" Margin="0,0,0,8" TextWrapping="Wrap"
+                           Text="Select a live or configured player session. Character planning is read-only and never equips items or sends game commands."/>
+                <ListBox x:Name="SessionList" DisplayMemberPath="CharacterName" SelectionChanged="SessionList_OnSelectionChanged"/>
+            </DockPanel>
+        </GroupBox>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Padding="12" Background="#242A30" CornerRadius="4" Margin="0,0,0,10">
+                <StackPanel>
+                    <TextBlock x:Name="CharacterTitle" Foreground="White" FontSize="20" FontWeight="SemiBold" Text="No character selected"/>
+                    <TextBlock x:Name="CharacterSubtitle" Foreground="#C8D1DA" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="AuthorityStatus" Foreground="#C8D1DA" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <TabControl Grid.Row="1">
+                <TabItem Header="Summary">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <GroupBox Header="Identity"><TextBlock x:Name="IdentityText" Margin="8" TextWrapping="Wrap" FontFamily="Consolas"/></GroupBox>
+                                <GroupBox Header="Vitals" Margin="0,8,0,0"><TextBlock x:Name="VitalsText" Margin="8" TextWrapping="Wrap" FontFamily="Consolas"/></GroupBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                <GroupBox Header="Progress"><TextBlock x:Name="ProgressText" Margin="8" TextWrapping="Wrap" FontFamily="Consolas"/></GroupBox>
+                                <GroupBox Header="Status" Margin="0,8,0,0"><TextBlock x:Name="StatusText" Margin="8" TextWrapping="Wrap" FontFamily="Consolas"/></GroupBox>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="Equipment Planner">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <TextBlock x:Name="EquipmentSummary" TextWrapping="Wrap" Margin="0,0,0,8"/>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="0.8*"/><ColumnDefinition Width="10"/><ColumnDefinition Width="1.4*"/><ColumnDefinition Width="10"/><ColumnDefinition Width="0.9*"/></Grid.ColumnDefinitions>
+                            <GroupBox Header="Current captured equipment">
+                                <ListBox x:Name="CurrentEquipmentList"/>
+                            </GroupBox>
+                            <GroupBox Grid.Column="2" Header="Item Finder">
+                                <DockPanel Margin="6">
+                                    <StackPanel DockPanel.Dock="Top">
+                                        <TextBox x:Name="ItemSearchBox" Margin="0,0,0,6" TextChanged="ItemSearchBox_OnTextChanged" ToolTip="Search authoritative/effective item catalog"/>
+                                        <TextBlock x:Name="ItemFinderSummary" Margin="0,0,0,6" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <DataGrid x:Name="ItemFinderGrid" IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single" SelectionChanged="ItemFinderGrid_OnSelectionChanged">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                                            <DataGridTextColumn Header="Slot" Binding="{Binding Slot}" Width="85"/>
+                                            <DataGridTextColumn Header="Dmg" Binding="{Binding Damage}" Width="65"/>
+                                            <DataGridTextColumn Header="AC" Binding="{Binding ArmorClassBonus}" Width="45"/>
+                                            <DataGridTextColumn Header="DR" Binding="{Binding DamageResistanceBonus}" Width="45"/>
+                                            <DataGridTextColumn Header="Min Lvl" Binding="{Binding MinimumLevel}" Width="60"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DockPanel>
+                            </GroupBox>
+                            <GroupBox Grid.Column="4" Header="Planned loadout">
+                                <DockPanel Margin="6">
+                                    <StackPanel DockPanel.Dock="Bottom" Margin="0,6,0,0">
+                                        <Button Content="Add / Replace Slot" Click="AddPlannedItem_OnClick" Margin="0,0,0,4"/>
+                                        <Button Content="Remove Selected" Click="RemovePlannedItem_OnClick" Margin="0,0,0,4"/>
+                                        <Button Content="Clear Plan" Click="ClearPlannedItems_OnClick"/>
+                                    </StackPanel>
+                                    <ListBox x:Name="PlannedEquipmentList" DisplayMemberPath="Name"/>
+                                </DockPanel>
+                            </GroupBox>
+                        </Grid>
+                        <TextBlock Grid.Row="2" x:Name="PlannedItemText" Margin="0,8,0,0" TextWrapping="Wrap"/>
+                        <TextBlock Grid.Row="3" x:Name="LoadoutComparisonText" Margin="0,8,0,0" FontFamily="Consolas" TextWrapping="Wrap"/>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Statistics">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Live / decoded statistics" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock x:Name="StatisticsText" Margin="0,8,0,0" FontFamily="Consolas" TextWrapping="Wrap"/>
+                            <Separator Margin="0,12"/>
+                            <TextBlock Text="Bonus source breakdown" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="BonusBreakdownText" Margin="0,6,0,0" FontFamily="Consolas" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <TabItem Header="Spells &amp; Effects">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition/></Grid.ColumnDefinitions>
+                        <GroupBox Header="Known spells"><ListBox x:Name="KnownSpellsList"/></GroupBox>
+                        <GroupBox Grid.Column="1" Header="Equipment spell effects" Margin="8,0"><ListBox x:Name="EquipmentSpellEffectsList"/></GroupBox>
+                        <GroupBox Grid.Column="2" Header="Active effects"><ListBox x:Name="ActiveEffectsList"/></GroupBox>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Progress">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Progression / calculations" FontWeight="SemiBold" FontSize="15"/>
+                            <TextBlock x:Name="ProgressionDetailsText" Margin="0,8,0,0" FontFamily="Consolas" TextWrapping="Wrap"/>
+                            <Separator Margin="0,12"/>
+                            <TextBlock Text="Character Point scratch plan" FontWeight="SemiBold"/>
+                            <TextBlock Margin="0,4,0,6" TextWrapping="Wrap" Text="Planning budget only. No CP cost/stat formula is assumed."/>
+                            <WrapPanel>
+                                <TextBlock Text="Combat" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBox x:Name="CpCombatBox" Width="70" Text="0" TextChanged="CpPlan_OnTextChanged" Margin="0,0,12,0"/>
+                                <TextBlock Text="Physical" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBox x:Name="CpPhysicalBox" Width="70" Text="0" TextChanged="CpPlan_OnTextChanged" Margin="0,0,12,0"/>
+                                <TextBlock Text="Magic" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBox x:Name="CpMagicBox" Width="70" Text="0" TextChanged="CpPlan_OnTextChanged" Margin="0,0,12,0"/>
+                                <TextBlock Text="Other" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                <TextBox x:Name="CpOtherBox" Width="70" Text="0" TextChanged="CpPlan_OnTextChanged"/>
+                            </WrapPanel>
+                            <TextBlock x:Name="CpPlanSummary" Margin="0,7,0,0" FontFamily="Consolas" TextWrapping="Wrap"/>
+                            <TextBlock Margin="0,12,0,0" TextWrapping="Wrap" Foreground="DimGray"
+                                       Text="Only values captured from the live session or directly derived from those values are shown. Unproven CP/XP formulas are intentionally not fabricated."/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

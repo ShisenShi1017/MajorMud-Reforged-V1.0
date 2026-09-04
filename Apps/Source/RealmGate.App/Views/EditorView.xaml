@@ -1,0 +1,1516 @@
+<UserControl x:Class="RealmGate.App.Views.EditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <!-- Editor-only input styles. Segoe UI and taller controls prevent clipped dropdown text. -->
+        <Style x:Key="EditorTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditorComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="38"/>
+            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="EditorComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="MinHeight" Value="44"/>
+            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource EditorComboBoxItemStyle}"/>
+        </Style>
+        <Style x:Key="EditorActionButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+        </Style>
+        <Style x:Key="EditorPrimaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+            <Setter Property="MinHeight" Value="42"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <!-- One full-width field at a time: label, help, then a large control. -->
+        <DataTemplate x:Key="CreatorFieldTemplate">
+            <Border BorderBrush="#3A74502A" BorderThickness="0,0,0,1" Padding="0,0,0,16" Margin="0,0,0,18">
+                <StackPanel>
+                    <TextBlock Text="{Binding LabelWithRequired}"
+                               FontWeight="SemiBold" FontSize="15" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding HelpText}" FontSize="12" Opacity="0.72"
+                               TextWrapping="Wrap" Margin="0,3,0,8"/>
+                    <Grid Visibility="{Binding IsText, Converter={StaticResource BoolToVisibility}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource EditorTextBoxStyle}"
+                                 MinHeight="{Binding InputHeight}" TextWrapping="Wrap" AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+                        <Button Grid.Column="1" Content="{Binding ReferenceLookupLabel}"
+                                Command="{Binding DataContext.OpenReferenceLookupCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                CommandParameter="{Binding}"
+                                Style="{StaticResource EditorActionButtonStyle}" Margin="10,0,0,0"
+                                VerticalAlignment="Top" MinWidth="118"
+                                Visibility="{Binding HasReferenceLookup, Converter={StaticResource BoolToVisibility}}"
+                                ToolTip="Search Custom1 and Classic-derived records by name instead of typing an ID."/>
+                    </Grid>
+                    <ComboBox ItemsSource="{Binding Options}" DisplayMemberPath="Label" SelectedValuePath="Value"
+                              SelectedValue="{Binding TextValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource EditorComboBoxStyle}"
+                              Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}"/>
+                    <CheckBox Content="Yes / Enabled"
+                              IsChecked="{Binding BoolValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              FontFamily="Segoe UI" FontSize="15" MinHeight="38" Margin="0,2,0,0"
+                              VerticalContentAlignment="Center"
+                              Visibility="{Binding IsBoolean, Converter={StaticResource BoolToVisibility}}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CreatorSectionTemplate">
+            <Expander Margin="0,0,0,14" IsExpanded="False"
+                      Background="{StaticResource ParchmentLightBrush}"
+                      Foreground="{StaticResource ParchmentTextBrush}"
+                      BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                      FontWeight="SemiBold" FontSize="16">
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Margin="8,5">
+                        <TextBlock Text="{Binding Title}" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding FieldCount, StringFormat='  ({0} fields)'}" FontSize="13" Opacity="0.7" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Margin="18,8,18,18">
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Opacity="0.75" Margin="0,0,0,16"/>
+                    <ItemsControl ItemsSource="{Binding Fields}" ItemTemplate="{StaticResource CreatorFieldTemplate}"/>
+                </StackPanel>
+            </Expander>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NpcAttackNavigationTemplate">
+            <StackPanel Margin="2,4">
+                <TextBlock Text="{Binding DisplayName}" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Summary}" FontFamily="Segoe UI" FontSize="12" Opacity="0.70"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NpcAbilityNavigationTemplate">
+            <StackPanel Margin="2,5">
+                <TextBlock Text="{Binding DisplayName}" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding AbilityId, StringFormat='Ability # {0}'}" FontFamily="Segoe UI" FontSize="12" Opacity="0.70"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DedicatedTabHeaderTemplate">
+            <TextBlock Text="{Binding Title}" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold" Margin="8,4"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RoomMapTileTemplate">
+            <Border Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                    Padding="12" Margin="5" MinHeight="126">
+                <StackPanel>
+                    <TextBlock Text="{Binding DirectionLabel}" FontSize="13" FontWeight="Bold" Opacity="0.72"/>
+                    <TextBlock Text="{Binding DisplayText}" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,5,0,8"/>
+                    <TextBox Text="{Binding DestinationRoomId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Enter the destination room ID. Leave blank for no exit.">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource EditorTextBoxStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCenter}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RoomVisualMapNodeTemplate">
+            <Border Width="176" MinHeight="82" Padding="10" CornerRadius="4"
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                    Background="{StaticResource ParchmentBrush}"
+                    MouseLeftButtonDown="MapRoom_MouseLeftButtonDown"
+                    MouseMove="MapRoom_MouseMove"
+                    MouseLeftButtonUp="MapRoom_MouseLeftButtonUp"
+                    ToolTip="Click to select and show a route. Double-click to open this room. Drag to move it on the visual map.">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{StaticResource ParchmentBrush}"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTrail}" Value="True">
+                                <Setter Property="Background" Value="#FFF3E6BE"/>
+                                <Setter Property="BorderBrush" Value="#FF9B6B2F"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsCurrent}" Value="True">
+                                <Setter Property="Background" Value="#FFE7D2A3"/>
+                                <Setter Property="BorderBrush" Value="#FF6F4B24"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF2F5F87"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DockPanel LastChildFill="True">
+                        <TextBlock Text="{Binding RoomNumberLabel}" FontFamily="Segoe UI" FontSize="11" FontWeight="Bold" Opacity="0.68"/>
+                        <Border DockPanel.Dock="Right" Background="#2274502A" Padding="5,2" CornerRadius="3"
+                                Visibility="{Binding HasMarker, Converter={StaticResource BoolToVisibility}}">
+                            <TextBlock Text="{Binding Marker}" FontFamily="Segoe UI" FontSize="10" FontWeight="Bold"/>
+                        </Border>
+                    </DockPanel>
+                    <TextBlock Grid.Row="1" Text="{Binding DisplayName}" FontFamily="Segoe UI" FontSize="14" FontWeight="SemiBold"
+                               TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="38" Margin="0,4,0,2"/>
+                    <TextBlock Grid.Row="2" Text="{Binding RoomId}" FontFamily="Consolas" FontSize="10" Opacity="0.58" TextTrimming="CharacterEllipsis"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RoomVisualMapEdgeTemplate">
+            <Line X1="{Binding X1}" Y1="{Binding Y1}" X2="{Binding X2}" Y2="{Binding Y2}" IsHitTestVisible="False">
+                <Line.Style>
+                    <Style TargetType="Line">
+                        <Setter Property="Stroke" Value="#6674502A"/>
+                        <Setter Property="StrokeDashArray" Value="1,0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTrail}" Value="True">
+                                <Setter Property="Stroke" Value="#FF9B6B2F"/>
+                                <Setter Property="StrokeThickness" Value="4"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Line.Style>
+            </Line>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RoomVisualMapEdgeLabelTemplate">
+            <Border Background="#EAF4E8DE" BorderBrush="#5574502A" BorderThickness="1" CornerRadius="3" Padding="4,1" IsHitTestVisible="False">
+                <TextBlock Text="{Binding Direction}" FontFamily="Segoe UI" FontSize="10" FontWeight="Bold"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ShopInventoryNavigationTemplate">
+            <StackPanel Margin="2,5">
+                <TextBlock Text="{Binding DisplayName}" FontFamily="Segoe UI" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                <TextBlock FontFamily="Segoe UI" FontSize="12" Opacity="0.70">
+                    <Run Text="Normal "/><Run Text="{Binding NormalQty}"/><Run Text=" / Max "/><Run Text="{Binding MaxQty}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DedicatedTabContentTemplate">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="4,8,12,12">
+                <StackPanel MaxWidth="1180" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Title}" FontSize="22" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Description}" FontSize="13" Opacity="0.76" TextWrapping="Wrap" Margin="0,4,0,18"/>
+
+                    <!-- Full Nightmare-style visual map editor. The compass editor remains below for exact exit IDs. -->
+                    <Border Visibility="{Binding ShowsRoomMap, Converter={StaticResource BoolToVisibility}}"
+                            Background="#12FFFFFF" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                            Padding="16" Margin="0,0,0,18">
+                        <StackPanel>
+                            <TextBlock Text="VISUAL MAP EDITOR" FontSize="20" FontWeight="SemiBold"/>
+                            <TextBlock Text="Drag rooms to arrange the map. Click a room to highlight the route from the room you are editing. Double-click any room to open it. The visual layout is editor-only; changing where a box sits does not change gameplay exits."
+                                       TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,12"/>
+
+                            <WrapPanel Margin="0,0,0,10">
+                                <TextBlock Text="Map" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,7,0"/>
+                                <ComboBox ItemsSource="{Binding DataContext.VisualMapNumbers, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                          SelectedItem="{Binding DataContext.SelectedVisualMapNumber, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"
+                                          MinWidth="105" Height="42" FontFamily="Segoe UI" FontSize="15" Margin="0,0,12,0"/>
+                                <Button Content="Refresh" Command="{Binding DataContext.RefreshVisualMapCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        Style="{StaticResource EditorActionButtonStyle}"/>
+                                <Button Content="Auto Arrange" Command="{Binding DataContext.AutoArrangeVisualMapCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        Style="{StaticResource EditorActionButtonStyle}"/>
+                                <Button Content="Save Layout" Command="{Binding DataContext.SaveVisualMapLayoutCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        Style="{StaticResource EditorActionButtonStyle}"/>
+                                <Button Content="+ New Room on This Map" Command="{Binding DataContext.NewRoomFromMapCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                        Style="{StaticResource EditorActionButtonStyle}"/>
+                                <TextBlock Text="Zoom" VerticalAlignment="Center" FontWeight="SemiBold" Margin="12,0,6,0"/>
+                                <Slider Minimum="0.45" Maximum="1.75" Width="145" VerticalAlignment="Center"
+                                        Value="{Binding DataContext.VisualMapZoom, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"/>
+                            </WrapPanel>
+
+                            <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                                    Padding="10" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding DataContext.VisualMapStatus, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                               FontFamily="Segoe UI" FontSize="13" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding DataContext.VisualMapTrailText, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                               FontFamily="Segoe UI" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                          Height="690" Background="#0A000000" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+                                <Grid Width="{Binding VisualMapCanvasWidth}" Height="{Binding VisualMapCanvasHeight}" Background="Transparent"
+                                      DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                    <Grid.LayoutTransform>
+                                        <ScaleTransform ScaleX="{Binding VisualMapZoom}" ScaleY="{Binding VisualMapZoom}"/>
+                                    </Grid.LayoutTransform>
+
+                                    <ItemsControl ItemsSource="{Binding DataContext.RoomVisualMapEdges, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                  ItemTemplate="{StaticResource RoomVisualMapEdgeTemplate}" IsHitTestVisible="False"
+                                                  Width="{Binding VisualMapCanvasWidth}" Height="{Binding VisualMapCanvasHeight}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><Canvas/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+
+                                    <ItemsControl ItemsSource="{Binding DataContext.RoomVisualMapEdges, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                  ItemTemplate="{StaticResource RoomVisualMapEdgeLabelTemplate}" IsHitTestVisible="False"
+                                                  Width="{Binding VisualMapCanvasWidth}" Height="{Binding VisualMapCanvasHeight}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><Canvas/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="Canvas.Left" Value="{Binding LabelX}"/>
+                                                <Setter Property="Canvas.Top" Value="{Binding LabelY}"/>
+                                            </Style>
+                                        </ItemsControl.ItemContainerStyle>
+                                    </ItemsControl>
+
+                                    <ItemsControl ItemsSource="{Binding DataContext.RoomVisualMapNodes, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                  ItemTemplate="{StaticResource RoomVisualMapNodeTemplate}"
+                                                  Width="{Binding VisualMapCanvasWidth}" Height="{Binding VisualMapCanvasHeight}" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><Canvas/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemContainerStyle>
+                                            <Style TargetType="ContentPresenter">
+                                                <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                                                <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                                            </Style>
+                                        </ItemsControl.ItemContainerStyle>
+                                    </ItemsControl>
+                                </Grid>
+                            </ScrollViewer>
+
+                            <WrapPanel Margin="0,10,0,4">
+                                <TextBlock Text="LEGEND:" FontSize="12" FontWeight="Bold" Margin="0,0,10,0"/>
+                                <TextBlock Text="Current room = tan  •  Selected = blue outline  •  Route/trail = gold  •  SHOP / SPAWN / NPC / SAFE / DARK / WATER markers come from the room record."
+                                           FontSize="12" Opacity="0.72" TextWrapping="Wrap"/>
+                            </WrapPanel>
+
+                            <Expander Header="Direct Exit Links (exact room IDs)" IsExpanded="False" Margin="0,10,0,0"
+                                      Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+                                <StackPanel Margin="12">
+                                    <TextBlock Text="Use this when you want to wire an exact compass direction by room ID. Blank removes that Custom1 exit. Existing doors, traps, tolls, and gate details stay attached unless you edit Exits / Doors."
+                                               TextWrapping="Wrap" Opacity="0.74" Margin="0,0,0,10"/>
+                                    <ItemsControl ItemsSource="{Binding DataContext.RoomMapGridTiles, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                  ItemTemplate="{StaticResource RoomMapTileTemplate}" MaxWidth="930" HorizontalAlignment="Left">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><UniformGrid Columns="3"/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                    <TextBlock Text="Vertical exits" FontSize="15" FontWeight="SemiBold" Margin="5,14,0,4"/>
+                                    <ItemsControl ItemsSource="{Binding DataContext.RoomMapVerticalLinks, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                  ItemTemplate="{StaticResource RoomMapTileTemplate}" MaxWidth="620" HorizontalAlignment="Left">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate><UniformGrid Columns="2"/></ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                    <TextBlock Text="Save &amp; Build writes changed links as Custom1 exit records. Classic exits are never modified."
+                                               TextWrapping="Wrap" FontSize="12" Opacity="0.68" Margin="5,10,0,0"/>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Dedicated shop stock editor: no JSON and no field=value collection rows. -->
+                    <Border Visibility="{Binding ShowsShopInventory, Converter={StaticResource BoolToVisibility}}"
+                            Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}"
+                            BorderThickness="1" Padding="16" Margin="0,0,0,18">
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="270"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                <TextBlock Text="SHOP INVENTORY" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <ListBox Grid.Row="1"
+                                         ItemsSource="{Binding DataContext.ShopInventory, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                         SelectedItem="{Binding DataContext.SelectedShopInventory, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"
+                                         ItemTemplate="{StaticResource ShopInventoryNavigationTemplate}" MinHeight="240"/>
+                                <WrapPanel Grid.Row="2" Margin="0,10,0,0">
+                                    <Button Content="+ Stock Item" Command="{Binding DataContext.AddShopInventoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Style="{StaticResource EditorActionButtonStyle}"/>
+                                    <Button Content="Remove" Command="{Binding DataContext.RemoveShopInventoryCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Style="{StaticResource EditorActionButtonStyle}" Margin="0"/>
+                                </WrapPanel>
+                            </Grid>
+                            <Border Grid.Column="2" BorderBrush="#3374502A" BorderThickness="1" Padding="16">
+                                <StackPanel DataContext="{Binding DataContext.SelectedShopInventory, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                    <TextBlock Text="Selected Stock Item" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,14"/>
+                                    <TextBlock Text="Item ID" FontWeight="SemiBold"/>
+                                    <TextBox Text="{Binding ItemRef, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,14" ToolTip="Example: item.1234 or a Custom1 item ID."/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="1*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="1*"/></Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0"><TextBlock Text="Normal quantity" FontWeight="SemiBold"/><TextBox Text="{Binding NormalQty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,12"/></StackPanel>
+                                        <StackPanel Grid.Row="0" Grid.Column="2"><TextBlock Text="Maximum quantity" FontWeight="SemiBold"/><TextBox Text="{Binding MaxQty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,12"/></StackPanel>
+                                        <StackPanel Grid.Row="1"><TextBlock Text="Regenerate quantity" FontWeight="SemiBold"/><TextBox Text="{Binding RegenQty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,12"/></StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="2"><TextBlock Text="Regeneration time" FontWeight="SemiBold"/><TextBox Text="{Binding RegenTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,12"/></StackPanel>
+                                        <StackPanel Grid.Row="2"><TextBlock Text="Regeneration percent" FontWeight="SemiBold"/><TextBox Text="{Binding RegenPercent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/></StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Nightmare-style monster attack editor: select an attack slot, then edit normal fields. -->
+                    <Border Visibility="{Binding ShowsNpcAttacks, Converter={StaticResource BoolToVisibility}}"
+                            Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}"
+                            BorderThickness="1" Padding="16" Margin="0,0,0,18">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="18"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                <TextBlock Text="ATTACK SLOTS" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <ListBox Grid.Row="1"
+                                         ItemsSource="{Binding DataContext.NpcAttacks, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                         SelectedItem="{Binding DataContext.SelectedNpcAttack, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"
+                                         ItemTemplate="{StaticResource NpcAttackNavigationTemplate}" MinHeight="220"/>
+                                <WrapPanel Grid.Row="2" Margin="0,10,0,0">
+                                    <Button Content="+ Attack" Command="{Binding DataContext.AddNpcAttackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            Style="{StaticResource EditorActionButtonStyle}"/>
+                                    <Button Content="Remove" Command="{Binding DataContext.RemoveNpcAttackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            Style="{StaticResource EditorActionButtonStyle}" Margin="0"/>
+                                </WrapPanel>
+                            </Grid>
+
+                            <Border Grid.Column="2" BorderBrush="#3374502A" BorderThickness="1" Padding="16">
+                                <StackPanel DataContext="{Binding DataContext.SelectedNpcAttack, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                    <TextBlock Text="Selected Attack" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,14"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="160"/><ColumnDefinition Width="220"/>
+                                            <ColumnDefinition Width="32"/><ColumnDefinition Width="175"/><ColumnDefinition Width="220"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="Slot" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding Slot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Column="3" Text="Attack type" VerticalAlignment="Center"/><TextBox Grid.Column="4" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="1" Text="Minimum damage" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="1" Text="{Binding MinimumDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="3" Text="Maximum damage" VerticalAlignment="Center"/><TextBox Grid.Row="1" Grid.Column="4" Text="{Binding MaximumDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="2" Text="Selection %" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectionPercent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="3" Text="Accuracy" VerticalAlignment="Center"/><TextBox Grid.Row="2" Grid.Column="4" Text="{Binding Accuracy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="3" Text="Hit spell #" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="1" Text="{Binding HitSpellLegacyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="3" Text="Energy cost" VerticalAlignment="Center"/><TextBox Grid.Row="3" Grid.Column="4" Text="{Binding EnergyCost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="4" Text="Hit message #" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="1" Text="{Binding HitMessageLegacyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="4" Grid.Column="3" Text="Miss message #" VerticalAlignment="Center"/><TextBox Grid.Row="4" Grid.Column="4" Text="{Binding MissMessageLegacyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,0,0,10"/>
+                                        <TextBlock Grid.Row="5" Text="Dodge message #" VerticalAlignment="Center"/><TextBox Grid.Row="5" Grid.Column="1" Text="{Binding DodgeMessageLegacyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"/>
+                                    </Grid>
+                                    <Expander Header="Rare / recovered attack fields" Margin="0,16,0,0">
+                                        <StackPanel Margin="10">
+                                            <TextBlock Text="Any recovered attack properties that do not have a normal control above are preserved here. Most creators can leave this alone." TextWrapping="Wrap" Opacity="0.72" Margin="0,0,0,8"/>
+                                            <TextBox Text="{Binding ExtraFields, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" MinHeight="76" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                        </StackPanel>
+                                    </Expander>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Nightmare-style ability list: no field=value or JSON needed for ordinary abilities. -->
+                    <Border Visibility="{Binding ShowsNpcAbilities, Converter={StaticResource BoolToVisibility}}"
+                            Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}"
+                            BorderThickness="1" Padding="16" Margin="0,0,0,18">
+                        <Grid>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="260"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                <TextBlock Text="ABILITIES" FontSize="14" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <ListBox Grid.Row="1"
+                                         ItemsSource="{Binding DataContext.NpcAbilities, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                         SelectedItem="{Binding DataContext.SelectedNpcAbility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Mode=TwoWay}"
+                                         ItemTemplate="{StaticResource NpcAbilityNavigationTemplate}" MinHeight="180"/>
+                                <WrapPanel Grid.Row="2" Margin="0,10,0,0">
+                                    <Button Content="+ Ability" Command="{Binding DataContext.AddNpcAbilityCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Style="{StaticResource EditorActionButtonStyle}"/>
+                                    <Button Content="Remove" Command="{Binding DataContext.RemoveNpcAbilityCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Style="{StaticResource EditorActionButtonStyle}" Margin="0"/>
+                                </WrapPanel>
+                            </Grid>
+                            <Border Grid.Column="2" BorderBrush="#3374502A" BorderThickness="1" Padding="16">
+                                <StackPanel DataContext="{Binding DataContext.SelectedNpcAbility, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+                                    <TextBlock Text="Selected Ability" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,14"/>
+                                    <TextBlock Text="Ability name" FontWeight="SemiBold"/><TextBox Text="{Binding Ability, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,12"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="1*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="1*"/></Grid.ColumnDefinitions>
+                                        <StackPanel><TextBlock Text="Ability #" FontWeight="SemiBold"/><TextBox Text="{Binding AbilityId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/></StackPanel>
+                                        <StackPanel Grid.Column="2"><TextBlock Text="Value" FontWeight="SemiBold"/><TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/></StackPanel>
+                                    </Grid>
+                                    <Expander Header="Rare / recovered ability fields" Margin="0,16,0,0">
+                                        <TextBox Margin="10" Text="{Binding ExtraFields, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" MinHeight="70" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                    </Expander>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <ItemsControl ItemsSource="{Binding Fields}" ItemTemplate="{StaticResource CreatorFieldTemplate}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FamilyNavigationTemplate">
+            <TextBlock Text="{Binding Label}" TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="14"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ObjectNavigationTemplate">
+            <StackPanel Margin="0,2">
+                <TextBlock Text="{Binding Name}" FontFamily="Segoe UI" FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                <TextBlock Text="{Binding Id}" FontFamily="Segoe UI" FontSize="11" Opacity="0.68" TextTrimming="CharacterEllipsis"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <!-- No decorative page header: the editor uses the complete workspace. -->
+    <Grid Margin="0">
+        <TabControl Margin="0" Padding="0" SelectedIndex="{Binding EditorWorkspaceTabIndex, Mode=TwoWay}">
+            <!-- Nightmare Redux-style dedicated creator workspace. -->
+            <TabItem Header="CREATE / EDIT">
+                <Grid Margin="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="205"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Narrow navigation rail: editor type + search + records. -->
+                    <Border Grid.Column="0" Background="{StaticResource ParchmentLightBrush}"
+                            BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                            Padding="10" TextElement.Foreground="{StaticResource ParchmentTextBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="190"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="EDITORS" FontSize="15" FontWeight="Bold" Margin="2,0,0,7"/>
+                            <ListBox Grid.Row="1" ItemsSource="{Binding SimpleFamilies}"
+                                     ItemTemplate="{StaticResource FamilyNavigationTemplate}"
+                                     SelectedValuePath="Value" SelectedValue="{Binding SimpleFamily, Mode=TwoWay}"
+                                     FontFamily="Segoe UI" Margin="0"/>
+
+                            <TextBlock Grid.Row="2" Text="FIND EXISTING" FontSize="13" FontWeight="Bold" Margin="2,12,0,5"/>
+                            <TextBox Grid.Row="3" Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource EditorTextBoxStyle}" ToolTip="Search by name or object ID."/>
+                            <Button Grid.Row="4" Content="Find" Command="{Binding BrowseSimpleObjectsCommand}"
+                                    Style="{StaticResource EditorActionButtonStyle}" Margin="0,7,0,7"/>
+
+                            <ListBox Grid.Row="5" ItemsSource="{Binding SimpleObjects}"
+                                     SelectedItem="{Binding SelectedSimpleObject, Mode=TwoWay}"
+                                     ItemTemplate="{StaticResource ObjectNavigationTemplate}"
+                                     FontFamily="Segoe UI" Margin="0"/>
+
+                            <Button Grid.Row="6" Content="+ New" Command="{Binding NewSimpleObjectCommand}"
+                                    Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,8,0,0"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Large editor surface. -->
+                    <Border Grid.Column="2" Background="{StaticResource ParchmentLightBrush}"
+                            BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                            Padding="18" TextElement.Foreground="{StaticResource ParchmentTextBrush}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,16,0">
+                                    <TextBlock Text="{Binding DedicatedEditorName}" FontSize="12" FontWeight="Bold" Opacity="0.62"
+                                               Visibility="{Binding IsDedicatedEditor, Converter={StaticResource BoolToVisibility}}"/>
+                                    <TextBlock Text="{Binding SimpleFormTitle}" FontSize="24" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding SimpleFormHelp}" FontSize="13" Opacity="0.78" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                                </StackPanel>
+                                <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Button Content="Discard" Command="{Binding DiscardSimpleObjectCommand}" Style="{StaticResource EditorActionButtonStyle}"
+                                            ToolTip="Throw away unsaved changes and reload the current record."/>
+                                    <Button Content="Clone" Command="{Binding CloneSimpleObjectCommand}" Style="{StaticResource EditorActionButtonStyle}"
+                                            ToolTip="Make a new Custom1 copy of the current record."/>
+                                    <Button Content="Delete" Command="{Binding DeleteSimpleObjectCommand}" Style="{StaticResource EditorActionButtonStyle}"
+                                            ToolTip="Remove this object from Custom1. Classic remains unchanged."/>
+                                    <Button Content="Save &amp; Build" Command="{Binding SaveSimpleObjectCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                </WrapPanel>
+                            </Grid>
+
+                            <Border Grid.Row="1" Background="#20FFFFFF" BorderBrush="#3374502A" BorderThickness="1"
+                                    Padding="12" Margin="0,14,0,10">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="155"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Object ID" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Blank = automatic" FontSize="11" Opacity="0.68"/>
+                                    </StackPanel>
+                                    <TextBox Grid.Column="1" Text="{Binding SimpleObjectId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource EditorTextBoxStyle}"
+                                             ToolTip="Leave blank when creating something new and RealmGate will create the ID."/>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="2" Background="#18FFFFFF" BorderBrush="#3374502A" BorderThickness="0,0,0,1"
+                                    Padding="2,0,2,10" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding SimpleControlSummary}" FontSize="12" Opacity="0.7" Margin="0,3,0,0"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Universal linked-record selector. It only opens when a field requests it. -->
+                            <Border Grid.Row="3" Visibility="{Binding ReferenceLookupOpen, Converter={StaticResource BoolToVisibility}}"
+                                    Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                                    Padding="14" Margin="0,0,0,12">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="210"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding ReferenceLookupTitle}" FontSize="18" FontWeight="SemiBold"/>
+                                            <TextBlock Text="Search by name or ID, select a record, then click Use Selected." FontSize="12" Opacity="0.72" Margin="0,2,0,8"/>
+                                        </StackPanel>
+                                        <Button Grid.Column="1" Content="Close" Command="{Binding CloseReferenceLookupCommand}"
+                                                Style="{StaticResource EditorActionButtonStyle}" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                                    </Grid>
+                                    <Grid Grid.Row="1" Margin="0,2,0,8">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBox Text="{Binding ReferenceLookupSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{StaticResource EditorTextBoxStyle}" ToolTip="Type part of the name or ID."/>
+                                        <Button Grid.Column="1" Content="Search" Command="{Binding RefreshReferenceLookupCommand}"
+                                                Style="{StaticResource EditorActionButtonStyle}" Margin="10,0,0,0"/>
+                                    </Grid>
+                                    <ListBox Grid.Row="2" ItemsSource="{Binding ReferenceLookupResults}" SelectedItem="{Binding SelectedReferenceLookupResult, Mode=TwoWay}"
+                                             ItemTemplate="{StaticResource ObjectNavigationTemplate}" FontFamily="Segoe UI"/>
+                                    <Grid Grid.Row="3" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="The selected value is converted automatically to the ID/legacy number/name required by this field."
+                                                   TextWrapping="Wrap" Opacity="0.72" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="Use Selected" Command="{Binding ApplyReferenceLookupCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="12,0,0,0"/>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                            <Grid Grid.Row="4">
+                                <!-- Purpose-built Room/Map, Item, Monster, Spell, Ability, Message, Textblock, Action, Class, Race, and Shop editors. -->
+                                <Grid Visibility="{Binding IsDedicatedEditor, Converter={StaticResource BoolToVisibility}}">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                    <Border Visibility="{Binding IsRoomEditor, Converter={StaticResource BoolToVisibility}}"
+                                            Background="#18FFFFFF" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                                            Padding="12" Margin="0,0,0,10">
+                                        <StackPanel>
+                                            <TextBlock Text="ROOM TOOLS" FontSize="12" FontWeight="Bold" Opacity="0.70" Margin="0,0,0,7"/>
+                                            <WrapPanel>
+                                                <Button Content="Exits / Doors" Command="{Binding OpenExitEditorCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                                                <Button Content="NPC Spawns" Command="{Binding OpenSpawnEditorCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                                                <Button Content="Shops / Services" Command="{Binding OpenShopEditorCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                                                <Button Content="Triggers" Command="{Binding OpenTriggerEditorCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0"/>
+                                            </WrapPanel>
+                                        </StackPanel>
+                                    </Border>
+                                    <TabControl Grid.Row="1" ItemsSource="{Binding DedicatedTabs}" SelectedItem="{Binding SelectedDedicatedTab, Mode=TwoWay}"
+                                                ItemTemplate="{StaticResource DedicatedTabHeaderTemplate}" ContentTemplate="{StaticResource DedicatedTabContentTemplate}"
+                                                FontFamily="Segoe UI" Padding="8"/>
+                                </Grid>
+
+                                <!-- Generic editor remains for the other content families until each gets its own dedicated screen. -->
+                                <ScrollViewer Visibility="{Binding IsGenericEditor, Converter={StaticResource BoolToVisibility}}"
+                                              VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,2,10,8">
+                                    <StackPanel>
+                                        <Border Background="{StaticResource ParchmentBrush}" BorderBrush="{StaticResource BorderBrush}"
+                                                BorderThickness="1" Padding="18" Margin="0,0,0,16">
+                                            <StackPanel>
+                                                <TextBlock Text="Required" FontSize="19" FontWeight="SemiBold"/>
+                                                <TextBlock Text="Fill these fields first. Everything below is optional creator control."
+                                                           TextWrapping="Wrap" Opacity="0.74" Margin="0,3,0,16"/>
+                                                <ItemsControl ItemsSource="{Binding SimpleRequiredFields}" ItemTemplate="{StaticResource CreatorFieldTemplate}"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <TextBlock Text="More settings" FontSize="19" FontWeight="SemiBold" Margin="0,2,0,4"/>
+                                        <TextBlock Text="Open only the section you need. Every gameplay/content field discovered for this record is available here."
+                                                   TextWrapping="Wrap" Opacity="0.74" Margin="0,0,0,12"/>
+                                        <ItemsControl ItemsSource="{Binding SimpleSections}" ItemTemplate="{StaticResource CreatorSectionTemplate}"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="CREATOR TOOLS">
+                <TabControl Margin="8" Padding="6" FontFamily="Segoe UI">
+                    <TabItem Header="WHERE USED">
+                        <Grid Margin="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="270"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="FIND A RECORD" FontSize="17" FontWeight="Bold" Margin="0,0,0,10"/>
+                                    <ComboBox Grid.Row="1" ItemsSource="{Binding SimpleFamilies}" DisplayMemberPath="Label" SelectedValuePath="Value"
+                                              SelectedValue="{Binding ToolReferenceFamily, Mode=TwoWay}" Style="{StaticResource EditorComboBoxStyle}"/>
+                                    <TextBox Grid.Row="2" Text="{Binding ToolReferenceSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             Style="{StaticResource EditorTextBoxStyle}" Margin="0,10,0,0" ToolTip="Search by name or ID."/>
+                                    <Button Grid.Row="3" Content="Search" Command="{Binding BrowseToolReferenceObjectsCommand}"
+                                            Style="{StaticResource EditorActionButtonStyle}" Margin="0,8,0,8"/>
+                                    <ListBox Grid.Row="4" ItemsSource="{Binding ToolReferenceObjects}" SelectedItem="{Binding SelectedToolReferenceObject, Mode=TwoWay}"
+                                             ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    <Button Grid.Row="5" Content="Find Where Used" Command="{Binding FindWhereUsedCommand}"
+                                            Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,10,0,0"/>
+                                </Grid>
+                            </Border>
+
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                <StackPanel Margin="0,0,0,10">
+                                    <TextBlock Text="WHERE USED / CROSS-REFERENCE" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="See every creator-facing record that points at the selected object. Use this before renaming, deleting, or replacing content."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,6"/>
+                                    <TextBlock Text="{Binding CrossReferenceStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <DataGrid Grid.Row="1" ItemsSource="{Binding CrossReferenceHits}" SelectedItem="{Binding SelectedCrossReferenceHit, Mode=TwoWay}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                          HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Type" Binding="{Binding Family}" Width="130"/>
+                                        <DataGridTextColumn Header="Record" Binding="{Binding Name}" Width="1.3*"/>
+                                        <DataGridTextColumn Header="Object ID" Binding="{Binding Id}" Width="1.1*"/>
+                                        <DataGridTextColumn Header="Field" Binding="{Binding Path}" Width="1.5*"/>
+                                        <DataGridTextColumn Header="Reference" Binding="{Binding Value}" Width="1*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                    <Button Content="Open Selected Record" Command="{Binding OpenCrossReferenceHitCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                </WrapPanel>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="MONSTER SIMULATOR">
+                        <Grid Margin="12">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="270"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14">
+                                <Grid>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="CHOOSE MONSTER / NPC" FontSize="17" FontWeight="Bold" Margin="0,0,0,10"/>
+                                    <TextBox Grid.Row="1" Text="{Binding NpcToolSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"/>
+                                    <Button Grid.Row="2" Content="Search" Command="{Binding BrowseNpcToolObjectsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,8,0,8"/>
+                                    <ListBox Grid.Row="3" ItemsSource="{Binding NpcToolObjects}" SelectedItem="{Binding SelectedNpcToolObject, Mode=TwoWay}" ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    <Button Grid.Row="4" Content="Open Monster Editor" Command="{Binding OpenNpcToolObjectCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,10,0,0"/>
+                                </Grid>
+                            </Border>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="MONSTER ATTACK SIMULATOR" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Test the selected monster against a target defense using RealmGate's recovered Classic NPC attack-selection, energy, hit, dodge, DR, and damage rules."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,12"/>
+                                </StackPanel>
+                                <Grid Grid.Row="1" Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <StackPanel Margin="0,0,10,0"><TextBlock Text="Target defense" FontWeight="SemiBold"/><TextBox Text="{Binding NpcTargetDefense, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="0,0,10,0"><TextBlock Text="Target armor class" FontWeight="SemiBold"/><TextBox Text="{Binding NpcTargetArmorClass, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                    <StackPanel Grid.Column="2" Margin="0,0,10,0"><TextBlock Text="Target DR" FontWeight="SemiBold"/><TextBox Text="{Binding NpcTargetDamageResistance, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                    <StackPanel Grid.Column="3" Margin="0,0,10,0"><TextBlock Text="Target dodge" FontWeight="SemiBold"/><TextBox Text="{Binding NpcTargetDodge, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                    <StackPanel Grid.Column="4"><TextBlock Text="Rounds" FontWeight="SemiBold"/><TextBox Text="{Binding NpcSimulationRounds, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="2" Margin="0,0,0,12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding NpcSimulationSummary}" TextWrapping="Wrap" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,14,0"/>
+                                    <Button Grid.Column="1" Content="Run Simulation" Command="{Binding RunNpcSimulationCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                </Grid>
+                                <DataGrid Grid.Row="3" ItemsSource="{Binding NpcSimulationRows}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Slot" Binding="{Binding Slot}" Width="55"/>
+                                        <DataGridTextColumn Header="Attack" Binding="{Binding Kind}" Width="1.2*"/>
+                                        <DataGridTextColumn Header="Threshold" Binding="{Binding SelectionThreshold}" Width="85"/>
+                                        <DataGridTextColumn Header="Selected" Binding="{Binding Attempts}" Width="80"/>
+                                        <DataGridTextColumn Header="Hits" Binding="{Binding Hits}" Width="65"/>
+                                        <DataGridTextColumn Header="Misses" Binding="{Binding Misses}" Width="70"/>
+                                        <DataGridTextColumn Header="Dodges" Binding="{Binding Dodges}" Width="70"/>
+                                        <DataGridTextColumn Header="Spell OK" Binding="{Binding CastSuccesses}" Width="75"/>
+                                        <DataGridTextColumn Header="Spell Fail" Binding="{Binding CastFailures}" Width="80"/>
+                                        <DataGridTextColumn Header="Damage" Binding="{Binding TotalDamage}" Width="85"/>
+                                        <DataGridTextColumn Header="Avg / selection" Binding="{Binding AverageDamage, StringFormat=0.00}" Width="105"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="WEAPON / DAMAGE CALCULATOR">
+                        <Grid Margin="12">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="270"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14">
+                                <Grid>
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="CHOOSE ITEM / WEAPON" FontSize="17" FontWeight="Bold" Margin="0,0,0,10"/>
+                                    <TextBox Grid.Row="1" Text="{Binding WeaponToolSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"/>
+                                    <Button Grid.Row="2" Content="Search" Command="{Binding BrowseWeaponToolObjectsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,8,0,8"/>
+                                    <ListBox Grid.Row="3" ItemsSource="{Binding WeaponToolObjects}" SelectedItem="{Binding SelectedWeaponToolObject, Mode=TwoWay}" ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    <Button Grid.Row="4" Content="Open Item Editor" Command="{Binding OpenWeaponToolObjectCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,10,0,0"/>
+                                </Grid>
+                            </Border>
+                            <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel Margin="0,0,10,0">
+                                    <TextBlock Text="WEAPON / SWING / DAMAGE CALCULATOR" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Compare a weapon against a target without entering the game. The selected item's damage, accuracy, and speed are read automatically."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,14"/>
+                                    <UniformGrid Columns="4" Margin="0,0,0,12">
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Base attack value" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponBaseAttackValue, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Target defense" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponTargetDefense, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Target armor class" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponTargetArmorClass, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,0,10"><TextBlock Text="Target DR" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponTargetDamageResistance, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Target dodge" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponTargetDodge, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Critical chance %" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponCriticalChance, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <StackPanel Margin="0,0,10,10"><TextBlock Text="Swings" FontWeight="SemiBold"/><TextBox Text="{Binding WeaponSimulationSwings, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        <Button Content="Run Calculator" Command="{Binding RunWeaponSimulationCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,20,0,10" VerticalAlignment="Center"/>
+                                    </UniformGrid>
+                                    <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18" Margin="0,4,0,0">
+                                        <TextBlock Text="{Binding WeaponSimulationSummary}" TextWrapping="Wrap" FontSize="16" LineHeight="24"/>
+                                    </Border>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="VALIDATE CUSTOM1">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="CUSTOM1 CONTENT VALIDATOR" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Scan the effective Custom1 world for broken creator-facing links and common structural mistakes before you build/test it."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,6"/>
+                                    <TextBlock Text="{Binding ValidationStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="Run Full Validation" Command="{Binding RunCustomValidationCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="16,0,0,0" VerticalAlignment="Center"/>
+                            </Grid>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding ValidationIssues}" SelectedItem="{Binding SelectedValidationIssue, Mode=TwoWay}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="90"/>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Family}" Width="120"/>
+                                    <DataGridTextColumn Header="Record" Binding="{Binding Name}" Width="1.1*"/>
+                                    <DataGridTextColumn Header="Object ID" Binding="{Binding Id}" Width="1*"/>
+                                    <DataGridTextColumn Header="Field" Binding="{Binding Path}" Width="1.3*"/>
+                                    <DataGridTextColumn Header="Problem" Binding="{Binding Message}" Width="2.4*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,10,0,0">
+                                <Button Content="Open Selected Record" Command="{Binding OpenValidationIssueCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                            </WrapPanel>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="GLOBAL SEARCH">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <Grid Margin="0,0,0,12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="SEARCH EVERYTHING" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Search every creator database by name, ID, descriptions, flags, effects, relationships, messages, and other stored values."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,8"/>
+                                    <TextBox Text="{Binding GlobalSearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"
+                                             ToolTip="Examples: poison, dragon, item.952, safe, fire, King."/>
+                                </StackPanel>
+                                <Button Grid.Column="1" Content="Search All Databases" Command="{Binding RunGlobalSearchCommand}"
+                                        Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="14,34,0,0" VerticalAlignment="Top"/>
+                            </Grid>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding GlobalSearchHits}" SelectedItem="{Binding SelectedGlobalSearchHit, Mode=TwoWay}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Type" Binding="{Binding Family}" Width="140"/>
+                                    <DataGridTextColumn Header="Record" Binding="{Binding Name}" Width="1.2*"/>
+                                    <DataGridTextColumn Header="Object ID" Binding="{Binding Id}" Width="1.1*"/>
+                                    <DataGridTextColumn Header="Matched In" Binding="{Binding Match}" Width="2.1*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Grid Grid.Row="2" Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding GlobalSearchStatus}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1" Content="Open Selected Record" Command="{Binding OpenGlobalSearchHitCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="IMPORT / EXPORT">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel Margin="18" MaxWidth="1050" HorizontalAlignment="Left">
+                                <TextBlock Text="CUSTOM1 IMPORT / EXPORT" FontSize="22" FontWeight="SemiBold"/>
+                                <TextBlock Text="Move creator changes between RealmGate installs without touching Classic. Packages contain only Custom1 overrides."
+                                           TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,16"/>
+
+                                <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="20" Margin="0,0,0,18">
+                                    <StackPanel>
+                                        <TextBlock Text="CUSTOM WORLD MDB + WCC IMPORT" FontSize="20" FontWeight="Bold"/>
+                                        <TextBlock Text="Import a custom MajorMUD/Worldgroup world from its structured MDB only when the matching original WCC/WGS DAT/BIN source set is also present. RealmGate reads the MDB with the same pure-managed reader used by Play, fingerprints both sources, verifies native family coverage and exact text anchors, then writes Custom1-only overlays. Neither source is modified."
+                                                   TextWrapping="Wrap" Margin="0,5,0,14" Opacity="0.8"/>
+
+                                        <TextBlock Text="1. Analyze the MDB" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                        <WrapPanel Margin="0,0,0,8">
+                                            <Button Content="Choose Custom MDB + Analyze" Command="{Binding AnalyzeNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Import Verified MDB + WCC to Custom1" Command="{Binding ImportNightmareMdbCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8" ToolTip="Locked until the selected WCC/WGS folder verifies as the source set for this MDB."/>
+                                        </WrapPanel>
+                                        <TextBlock Text="{Binding NightmareMdbPath}" TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding NightmareMdbStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                                        <DataGrid ItemsSource="{Binding NightmareMdbTables}" SelectedItem="{Binding SelectedNightmareMdbTable, Mode=TwoWay}"
+                                                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal" MinHeight="180" MaxHeight="300" Margin="0,0,0,18">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="MDB Table" Binding="{Binding TableName}" Width="1.25*"/>
+                                                <DataGridTextColumn Header="Rows" Binding="{Binding RowCount}" Width="70"/>
+                                                <DataGridTextColumn Header="Maps To" Binding="{Binding ReforgedFamily}" Width="1.2*"/>
+                                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                                                <DataGridTextColumn Header="Mappable" Binding="{Binding MappableRows}" Width="80"/>
+                                                <DataGridTextColumn Header="Conflicts" Binding="{Binding Conflicts}" Width="80"/>
+                                                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="2.2*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <Separator Margin="0,0,0,16"/>
+                                        <TextBlock Text="2. Required matching WCC/WGS source set" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                        <TextBlock Text="Choose any DAT/BIN file from the same custom world as the MDB. RealmGate scans the whole folder, requires native file coverage for every supported MDB family, checks exact unique text anchors, and records SHA-256 fingerprints. A different or incomplete WCC/WGS set keeps import locked."
+                                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,8"/>
+                                        <Button Content="Choose Matching WCC / WGS DAT File" Command="{Binding ChooseWccEvidenceCommand}" Style="{StaticResource EditorActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{Binding WccEvidenceFolder}" TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,4"/>
+                                        <TextBlock Text="{Binding WccEvidenceStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                        <DataGrid ItemsSource="{Binding WccEvidenceFiles}" SelectedItem="{Binding SelectedWccEvidenceFile, Mode=TwoWay}"
+                                                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal" MinHeight="130" MaxHeight="230" Margin="0,0,0,18">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="File" Binding="{Binding FileName}" Width="1.5*"/>
+                                                <DataGridTextColumn Header="Recognized As" Binding="{Binding Family}" Width="1.7*"/>
+                                                <DataGridTextColumn Header="Bytes" Binding="{Binding Bytes}" Width="100"/>
+                                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="100"/>
+                                                <DataGridTextColumn Header="SHA-256" Binding="{Binding Sha256}" Width="2.2*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <Separator Margin="0,0,0,16"/>
+                                        <TextBlock Text="3. Compare MDB to the original WCC files" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                        <TextBlock Text="Run this after choosing both sources. RealmGate reports which MDB columns are already promoted, which legacy columns still need semantic decoding, how many WCC records can be uniquely anchored by name/text, and any repeatable byte correlations. The source MDB and WCC files remain read-only."
+                                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,8"/>
+                                        <Button Content="Analyze MDB + WCC Gaps" Command="{Binding AnalyzeWccGapsCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+                                        <TextBlock Text="{Binding WccGapStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                        <DataGrid ItemsSource="{Binding WccGapRows}" SelectedItem="{Binding SelectedWccGapRow, Mode=TwoWay}"
+                                                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal" MinHeight="170" MaxHeight="300" Margin="0,0,0,8">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="MDB Table" Binding="{Binding TableName}" Width="1.0*"/>
+                                                <DataGridTextColumn Header="Maps To" Binding="{Binding ReforgedFamily}" Width="1.0*"/>
+                                                <DataGridTextColumn Header="WCC File(s)" Binding="{Binding WccFiles}" Width="1.25*"/>
+                                                <DataGridTextColumn Header="MDB Cols" Binding="{Binding MdbColumns}" Width="72"/>
+                                                <DataGridTextColumn Header="Promoted" Binding="{Binding PromotedColumns}" Width="78"/>
+                                                <DataGridTextColumn Header="Legacy" Binding="{Binding PreservedColumns}" Width="70"/>
+                                                <DataGridTextColumn Header="Anchors" Binding="{Binding UniqueNameAnchors}" Width="70"/>
+                                                <DataGridTextColumn Header="Strong" Binding="{Binding StrongCorrelations}" Width="62"/>
+                                                <DataGridTextColumn Header="WCC-only" Binding="{Binding WccOnlyStringCandidates}" Width="72"/>
+                                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="115"/>
+                                                <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="2.2*"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <TextBlock Text="Verified import promotes explicitly understood MDB fields into normal RealmGate properties and preserves unknown columns under legacy_sources.nightmare_mdb.unmapped_fields. Every import archive stores the MDB hash, ordered WCC/WGS set fingerprint, combined source-pair fingerprint, and native anchor evidence; Custom1 also keeps a current source-provenance record."
+                                                   TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,18"/>
+
+                                        <Separator Margin="0,0,0,16"/>
+                                        <TextBlock Text="4. Export Custom1 to Nightmare MDB" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                        <TextBlock Text="Changed-only exports the records you edited in Custom1. Full exports the effective Custom1 content for supported Nightmare tables. RealmGate-only records without a numeric legacy/WCC key are skipped and reported instead of inventing IDs."
+                                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,10"/>
+                                        <WrapPanel>
+                                            <Button Content="Export Changed Records to MDB" Command="{Binding ExportNightmareMdbChangedCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Export Full Effective Custom1 to MDB" Command="{Binding ExportNightmareMdbFullCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8"/>
+                                        </WrapPanel>
+                                        <TextBlock Text="Import is always Custom1-only and Classic remains immutable. The MDB is read directly without ACE/OLEDB. Unknown MDB tables remain in the timestamped raw archive; unknown mapped columns survive under legacy-source metadata. WCC/WGS is required for import as provenance and source-pair verification, not copied into runtime Data."
+                                                   TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <TextBlock Text="REFORGED CUSTOM1 PACKAGE" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18" Margin="0,0,0,16">
+                                    <StackPanel>
+                                        <TextBlock Text="EXPORT" FontSize="18" FontWeight="Bold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Choose how much of your Custom1 work to package." TextWrapping="Wrap" Margin="0,0,0,12"/>
+                                        <WrapPanel>
+                                            <Button Content="Export Current Record" Command="{Binding ExportCurrentRecordCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Export Current Family" Command="{Binding ExportCurrentFamilyCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Export All Custom1 Changes" Command="{Binding ExportAllCustomChangesCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18">
+                                    <StackPanel>
+                                        <TextBlock Text="IMPORT" FontSize="18" FontWeight="Bold" Margin="0,0,0,8"/>
+                                        <TextBlock Text="Always preview first. Conflicts replace only the matching Custom1 override. The editor makes a timestamped backup before applying the package."
+                                                   TextWrapping="Wrap" Margin="0,0,0,12"/>
+                                        <WrapPanel>
+                                            <Button Content="Choose Package + Preview" Command="{Binding PreviewImportPackageCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
+                                            <Button Content="Apply Previewed Import" Command="{Binding ApplyImportPackageCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,0,8"/>
+                                        </WrapPanel>
+                                        <TextBlock Text="{Binding PendingImportPath}" TextWrapping="Wrap" FontSize="12" Opacity="0.7" Margin="0,8,0,4"/>
+                                        <TextBlock Text="{Binding ImportExportStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <TabItem Header="BULK TOOLS">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <Grid Margin="18" MaxWidth="1180" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="380"/><ColumnDefinition Width="20"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="BULK CREATOR TOOLS" FontSize="22" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Apply one field change to many Custom1 records. Enter one target object ID per line. Classic is never modified."
+                                               TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,16"/>
+                                    <TextBlock Text="Content type" FontWeight="SemiBold"/>
+                                    <ComboBox ItemsSource="{Binding SimpleFamilies}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding BulkFamily, Mode=TwoWay}"
+                                              Style="{StaticResource EditorComboBoxStyle}" Margin="0,5,0,12"/>
+                                    <TextBlock Text="Target object IDs (one per line)" FontWeight="SemiBold"/>
+                                    <TextBox Text="{Binding BulkTargetIds, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}" AcceptsReturn="True" TextWrapping="NoWrap"
+                                             MinHeight="270" VerticalContentAlignment="Top" Margin="0,5,0,0"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Field path" FontWeight="SemiBold"/>
+                                    <TextBox Text="{Binding BulkFieldPath, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,4"/>
+                                    <TextBlock Text="Use the same field names shown in Full Control/Advanced, for example stats.experience or value."
+                                               TextWrapping="Wrap" FontSize="12" Opacity="0.7" Margin="0,0,0,14"/>
+                                    <TextBlock Text="Set one value on every target" FontSize="17" FontWeight="SemiBold"/>
+                                    <Grid Margin="0,8,0,12">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                        <ComboBox ItemsSource="{Binding BulkValueKinds}" SelectedItem="{Binding BulkValueKind, Mode=TwoWay}" Style="{StaticResource EditorComboBoxStyle}"/>
+                                        <TextBox Grid.Column="2" Text="{Binding BulkValue, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/>
+                                    </Grid>
+                                    <Button Content="Set Field On All Targets" Command="{Binding RunBulkSetCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,22"/>
+
+                                    <TextBlock Text="Or copy this field from another record" FontSize="17" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Source object ID" FontWeight="SemiBold" Margin="0,8,0,5"/>
+                                    <TextBox Text="{Binding BulkSourceId, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/>
+                                    <Button Content="Copy Field From Source To All Targets" Command="{Binding RunBulkCopyCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,18"/>
+                                    <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14">
+                                        <TextBlock Text="{Binding BulkStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </ScrollViewer>
+                    </TabItem>
+
+                    <TabItem Header="KEYS / COINS">
+                        <TabControl Margin="10" Padding="5">
+                            <TabItem Header="KEYS &amp; DOORS">
+                                <Grid Margin="12">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="KEY / DOOR RELATIONSHIPS" FontSize="22" FontWeight="SemiBold"/>
+                                            <TextBox Text="{Binding KeyDoorSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,8,12,10"
+                                                     ToolTip="Search by room, exit, key item, direction, or qualifier."/>
+                                        </StackPanel>
+                                        <Button Grid.Column="1" Content="Search Keyed Doors" Command="{Binding BrowseKeyDoorsCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,0,10"/>
+                                    </Grid>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding KeyDoorRows}" SelectedItem="{Binding SelectedKeyDoor, Mode=TwoWay}" AutoGenerateColumns="False" IsReadOnly="True"
+                                              CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="From Room" Binding="{Binding FromRoomId}" Width="1.1*"/>
+                                            <DataGridTextColumn Header="Dir" Binding="{Binding Direction}" Width="60"/>
+                                            <DataGridTextColumn Header="To Room" Binding="{Binding ToRoomId}" Width="1.1*"/>
+                                            <DataGridTextColumn Header="Key" Binding="{Binding KeyItemName}" Width="1.2*"/>
+                                            <DataGridTextColumn Header="Key ID" Binding="{Binding KeyItemId}" Width="100"/>
+                                            <DataGridTextColumn Header="Rule" Binding="{Binding Qualifier}" Width="2*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding KeyDoorStatus}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        <WrapPanel Grid.Column="1">
+                                            <Button Content="Open Exit / Door" Command="{Binding OpenSelectedKeyDoorCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,0"/>
+                                            <Button Content="Open Key Item" Command="{Binding OpenSelectedKeyItemCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                        </WrapPanel>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="ROOM COINS">
+                                <Grid Margin="12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="300"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                        <TextBlock Text="CHOOSE ROOM" FontSize="18" FontWeight="Bold"/>
+                                        <TextBox Grid.Row="1" Text="{Binding CoinRoomSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,8,0,8"/>
+                                        <Button Grid.Row="2" Content="Search Rooms" Command="{Binding BrowseCoinRoomsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,0,8"/>
+                                        <ListBox Grid.Row="3" ItemsSource="{Binding CoinRoomObjects}" SelectedItem="{Binding SelectedCoinRoom, Mode=TwoWay}" ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    </Grid>
+                                    <StackPanel Grid.Column="2" MaxWidth="700" HorizontalAlignment="Left">
+                                        <TextBlock Text="CUSTOM1 ROOM CURRENCY" FontSize="22" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Set the current room currency state used by Custom1 during testing. This is runtime state, not a Classic database edit."
+                                                   TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,16"/>
+                                        <UniformGrid Columns="2">
+                                            <StackPanel Margin="0,0,12,12"><TextBlock Text="Runic coins" FontWeight="SemiBold"/><TextBox Text="{Binding CoinRunic, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                            <StackPanel Margin="0,0,0,12"><TextBlock Text="Platinum pieces" FontWeight="SemiBold"/><TextBox Text="{Binding CoinPlatinum, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                            <StackPanel Margin="0,0,12,12"><TextBlock Text="Gold crowns" FontWeight="SemiBold"/><TextBox Text="{Binding CoinGold, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                            <StackPanel Margin="0,0,0,12"><TextBlock Text="Silver nobles" FontWeight="SemiBold"/><TextBox Text="{Binding CoinSilver, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                            <StackPanel Margin="0,0,12,12"><TextBlock Text="Copper farthings" FontWeight="SemiBold"/><TextBox Text="{Binding CoinCopper, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}"/></StackPanel>
+                                        </UniformGrid>
+                                        <Button Content="Set Room Coins" Command="{Binding SetCoinRoomCurrencyCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,4,0,14"/>
+                                        <TextBlock Text="{Binding CoinStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </TabItem>
+
+                    <TabItem Header="PARITY CLEANUP">
+                        <TabControl Margin="10" Padding="5">
+                            <TabItem Header="MONSTER INDEX">
+                                <Grid Margin="12">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Margin="0,0,0,12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="110"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                                            <TextBlock Text="MONSTER INDEX / NPC-ROOM REPORT" FontSize="22" FontWeight="SemiBold"/>
+                                            <TextBox Text="{Binding MonsterIndexSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                     Style="{StaticResource EditorTextBoxStyle}" Margin="0,8,0,0"
+                                                     ToolTip="Search by monster name, ID, group, or room."/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Margin="0,31,10,0">
+                                            <TextBlock Text="Min level" FontWeight="SemiBold"/>
+                                            <TextBox Text="{Binding MonsterIndexMinimumLevel, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Margin="0,31,10,0">
+                                            <TextBlock Text="Max level" FontWeight="SemiBold"/>
+                                            <TextBox Text="{Binding MonsterIndexMaximumLevel, Mode=TwoWay}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"
+                                                     ToolTip="Leave blank for any level."/>
+                                        </StackPanel>
+                                        <Button Grid.Column="3" Content="Refresh Index" Command="{Binding BrowseMonsterIndexCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+                                    </Grid>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding MonsterIndexRows}" SelectedItem="{Binding SelectedMonsterIndexRow, Mode=TwoWay}"
+                                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                              HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Monster / NPC" Binding="{Binding Name}" Width="1.55*"/>
+                                            <DataGridTextColumn Header="ID" Binding="{Binding NpcId}" Width="1.05*"/>
+                                            <DataGridTextColumn Header="Lvl" Binding="{Binding Level}" Width="55"/>
+                                            <DataGridTextColumn Header="HP" Binding="{Binding HitPoints}" Width="75"/>
+                                            <DataGridTextColumn Header="EXP" Binding="{Binding Experience}" Width="85"/>
+                                            <DataGridTextColumn Header="Group" Binding="{Binding GroupId}" Width="70"/>
+                                            <DataGridTextColumn Header="Spawns" Binding="{Binding SpawnCount}" Width="70"/>
+                                            <DataGridTextColumn Header="Rooms" Binding="{Binding RoomCount}" Width="65"/>
+                                            <DataGridTextColumn Header="Room locations" Binding="{Binding Rooms}" Width="2.6*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding MonsterIndexStatus}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="Open Selected Monster" Command="{Binding OpenSelectedMonsterIndexCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Header="CONTROL ROOMS">
+                                <Grid Margin="12">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Grid Margin="0,0,0,12">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <StackPanel Margin="0,0,12,0">
+                                            <TextBlock Text="CONTROL ROOM REPORT" FontSize="22" FontWeight="SemiBold"/>
+                                            <TextBlock Text="Rooms referenced by room interactions, triggers, or scripts." TextWrapping="Wrap" Opacity="0.76" Margin="0,3,0,8"/>
+                                            <TextBox Text="{Binding ControlRoomSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"
+                                                     ToolTip="Search by room name, ID, or source record."/>
+                                        </StackPanel>
+                                        <Button Grid.Column="1" Content="Refresh Report" Command="{Binding BrowseControlRoomsCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}" VerticalAlignment="Bottom"/>
+                                    </Grid>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding ControlRoomRows}" SelectedItem="{Binding SelectedControlRoom, Mode=TwoWay}"
+                                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                              HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Room" Binding="{Binding RoomName}" Width="1.5*"/>
+                                            <DataGridTextColumn Header="Room ID" Binding="{Binding RoomId}" Width="1.05*"/>
+                                            <DataGridTextColumn Header="Interactions" Binding="{Binding InteractionCount}" Width="95"/>
+                                            <DataGridTextColumn Header="Triggers" Binding="{Binding TriggerCount}" Width="75"/>
+                                            <DataGridTextColumn Header="Scripts" Binding="{Binding ScriptCount}" Width="70"/>
+                                            <DataGridTextColumn Header="Referenced by" Binding="{Binding Sources}" Width="3*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding ControlRoomStatus}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="Open Selected Room" Command="{Binding OpenSelectedControlRoomCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Header="SHOP RESET">
+                                <Grid Margin="12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="300"/><ColumnDefinition Width="22"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                        <TextBlock Text="CHOOSE SHOP" FontSize="18" FontWeight="Bold"/>
+                                        <TextBox Grid.Row="1" Text="{Binding ShopResetSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,8,0,8"/>
+                                        <Button Grid.Row="2" Content="Search Shops" Command="{Binding BrowseShopResetObjectsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,0,8"/>
+                                        <ListBox Grid.Row="3" ItemsSource="{Binding ShopResetObjects}" SelectedItem="{Binding SelectedShopResetObject, Mode=TwoWay}"
+                                                 ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    </Grid>
+                                    <StackPanel Grid.Column="2" MaxWidth="820" HorizontalAlignment="Left">
+                                        <TextBlock Text="LIVE CUSTOM1 SHOP RESET" FontSize="22" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Reset the selected Custom1 shop's persistent stock to the normal quantities defined by the generated world data. Restock timers restart from now."
+                                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,5,0,14"/>
+                                        <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="16" Margin="0,0,0,16">
+                                            <StackPanel>
+                                                <TextBlock Text="Safe behavior" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                                <TextBlock Text="• Custom1 only — protected Classic is blocked.&#10;• Uses the shop's generated normal_qty values.&#10;• Clears prior applied restock-request IDs and restarts regeneration timing.&#10;• Build / Rebuild Custom1 first so the generated shop data matches your latest edits."
+                                                           TextWrapping="Wrap" LineHeight="23"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Button Content="Reset Selected Shop Stock" Command="{Binding ResetSelectedShopStockCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,14"/>
+                                        <TextBlock Text="{Binding ShopResetStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Header="ROOM ITEM CLEANUP">
+                                <Grid Margin="12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="300"/><ColumnDefinition Width="22"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                                        <TextBlock Text="CHOOSE ROOM" FontSize="18" FontWeight="Bold"/>
+                                        <TextBox Grid.Row="1" Text="{Binding RoomCleanupSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,8,0,8"/>
+                                        <Button Grid.Row="2" Content="Search Rooms" Command="{Binding BrowseRoomCleanupObjectsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,0,8"/>
+                                        <ListBox Grid.Row="3" ItemsSource="{Binding RoomCleanupObjects}" SelectedItem="{Binding SelectedRoomCleanupObject, Mode=TwoWay}"
+                                                 ItemTemplate="{StaticResource ObjectNavigationTemplate}"/>
+                                    </Grid>
+                                    <StackPanel Grid.Column="2" MaxWidth="860" HorizontalAlignment="Left">
+                                        <TextBlock Text="COMBINE LIKE ROOM ITEMS" FontSize="22" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Compact duplicate dynamic room-ground stacks in the saved Custom1 living world without changing authored room placements."
+                                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,5,0,14"/>
+                                        <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="16" Margin="0,0,0,16">
+                                            <StackPanel>
+                                                <TextBlock Text="Important" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                                                <TextBlock Text="Stop the Custom1 host before running this cleanup. Only stackable dynamic room items with identical item state are merged. Generated static placements are deliberately protected so room reset/cleanup ownership remains correct. A timestamped backup of living-world.json is created before a change is written."
+                                                           TextWrapping="Wrap" LineHeight="23"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Button Content="Combine Like Items In Selected Room" Command="{Binding CombineSelectedRoomItemsCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,14"/>
+                                        <TextBlock Text="{Binding RoomCleanupStatus}" TextWrapping="Wrap" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+
+                            <TabItem Header="TEXTBLOCK STRIPPER">
+                                <Grid Margin="12">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <StackPanel Margin="0,0,0,12">
+                                        <TextBlock Text="TEXTBLOCK BATCH STRIP / REPLACE" FontSize="22" FontWeight="SemiBold"/>
+                                        <TextBlock Text="Preview an exact text removal or replacement across effective Textblocks, then write only the changed Custom1 overrides. Classic is never changed."
+                                                   TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,12"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="18"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Exact text to find" FontWeight="SemiBold"/>
+                                                <TextBox Text="{Binding TextblockStripFind, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="2">
+                                                <TextBlock Text="Replace with (blank removes it)" FontWeight="SemiBold"/>
+                                                <TextBox Text="{Binding TextblockStripReplacement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="3" Margin="18,18,0,0">
+                                                <CheckBox Content="Suffix only" IsChecked="{Binding TextblockStripSuffixOnly, Mode=TwoWay}" FontSize="15" Margin="0,0,0,8"/>
+                                                <Button Content="Preview Changes" Command="{Binding PreviewTextblockStripCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                    <DataGrid Grid.Row="1" ItemsSource="{Binding TextblockStripPreviewRows}" SelectedItem="{Binding SelectedTextblockStripPreview, Mode=TwoWay}"
+                                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                              HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Textblock ID" Binding="{Binding TextblockId}" Width="1.05*"/>
+                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.2*"/>
+                                            <DataGridTextColumn Header="Matches" Binding="{Binding MatchCount}" Width="75"/>
+                                            <DataGridTextColumn Header="Before" Binding="{Binding BeforePreview}" Width="2.7*"/>
+                                            <DataGridTextColumn Header="After" Binding="{Binding AfterPreview}" Width="2.7*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Grid Grid.Row="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding TextblockStripStatus}" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Content="Apply Previewed Changes" Command="{Binding ApplyTextblockStripCommand}"
+                                                Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </TabItem>
+
+                    <TabItem Header="PARITY AUDIT">
+                        <Grid Margin="12">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <StackPanel Margin="0,0,0,12">
+                                <TextBlock Text="NIGHTMARE REDUX PARITY AUDIT" FontSize="22" FontWeight="SemiBold"/>
+                                <TextBlock Text="Feature-by-feature audit against the installed Nightmare Redux copy used as the workflow reference. MATCHED+ means RealmGate also exposes additional creator control."
+                                           TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,0"/>
+                            </StackPanel>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding NightmareParityRows}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                      HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nightmare Feature" Binding="{Binding NightmareFeature}" Width="1.25*"/>
+                                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
+                                    <DataGridTextColumn Header="RealmGate Equivalent" Binding="{Binding ReforgedEquivalent}" Width="1.35*"/>
+                                    <DataGridTextColumn Header="Audit Notes" Binding="{Binding Notes}" Width="2.5*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </TabItem>
+
+            <TabItem Header="WORLD SETTINGS">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="24" MaxWidth="1000" HorizontalAlignment="Left">
+                        <TextBlock Text="Custom World 1" FontSize="25" FontWeight="SemiBold"/>
+                        <TextBlock Text="These settings describe the custom realm itself. Classic remains protected."
+                                   TextWrapping="Wrap" Opacity="0.78" Margin="0,4,0,18"/>
+
+                        <TextBlock Text="World name" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding CustomWorldName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"/>
+
+                        <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,16,0,5"/>
+                        <TextBox Text="{Binding CustomDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"
+                                 TextWrapping="Wrap" AcceptsReturn="True" MinHeight="100" VerticalContentAlignment="Top"/>
+
+                        <TextBlock Text="Login banner" FontWeight="SemiBold" Margin="0,16,0,5"/>
+                        <TextBox Text="{Binding CustomLoginBanner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"/>
+
+                        <TextBlock Text="Message of the day" FontWeight="SemiBold" Margin="0,16,0,5"/>
+                        <TextBox Text="{Binding CustomMotd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}"
+                                 TextWrapping="Wrap" AcceptsReturn="True" MinHeight="120" VerticalContentAlignment="Top"/>
+
+                        <CheckBox Content="Runtime enabled" IsChecked="{Binding CustomRuntimeEnabled, Mode=TwoWay}" FontSize="15" Margin="0,18,0,4"/>
+                        <CheckBox Content="Allow Custom-world transfers" IsChecked="{Binding CustomTransfersAllowed, Mode=TwoWay}" FontSize="15" Margin="0,4,0,18"/>
+
+                        <WrapPanel>
+                            <Button Content="Save World Settings" Command="{Binding SaveCustomSettingsCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" Margin="0,0,10,0"/>
+                            <Button Content="Build / Rebuild Custom1" Command="{Binding BuildCustomWorldCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                        </WrapPanel>
+
+                        <Border Background="#18FFFFFF" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14" Margin="0,20,0,0">
+                            <StackPanel>
+                                <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding CustomGeneratedState, StringFormat='Generated runtime: {0}'}" Margin="0,4,0,0"/>
+                                <TextBlock Text="{Binding CustomGeneratedDataPath, StringFormat='Data: {0}'}" FontSize="12" Opacity="0.7" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="ADVANCED">
+                <Grid Margin="14">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0.9*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Browse Effective Librarium / Custom1 Record">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="1*"/><ColumnDefinition Width="1.3*"/></Grid.ColumnDefinitions>
+                            <Grid Grid.ColumnSpan="2" Margin="0,0,0,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="130"/><ColumnDefinition Width="190"/><ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Object family" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" ItemsSource="{Binding OverrideFamilies}" SelectedItem="{Binding OverrideFamily, Mode=TwoWay}"
+                                          Style="{StaticResource EditorComboBoxStyle}" Margin="6,0,12,0"/>
+                                <TextBlock Grid.Column="2" Text="Search" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="3" Text="{Binding ObjectSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         Style="{StaticResource EditorTextBoxStyle}" Margin="6,0,8,0"/>
+                                <Button Grid.Column="4" Content="Browse" Command="{Binding BrowseObjectsCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0"/>
+                            </Grid>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding BaseObjects}" SelectedItem="{Binding SelectedBaseObject, Mode=TwoWay}"
+                                      AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                                      HeadersVisibility="Column" GridLinesVisibility="Horizontal" Margin="0,0,6,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.4*"/>
+                                    <DataGridTextColumn Header="Object ID" Binding="{Binding Id}" Width="1.2*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding BaseRecordJson, Mode=OneWay}" IsReadOnly="True"
+                                     FontFamily="Consolas" AcceptsReturn="True" TextWrapping="NoWrap"
+                                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="6,0,0,0"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="1" Header="Custom1 Override" Margin="7,8,7,8">
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="130"/><ColumnDefinition Width="*"/><ColumnDefinition Width="90"/><ColumnDefinition Width="170"/></Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                            <TextBlock Text="Object ID" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" Text="{Binding OverrideTargetId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource EditorTextBoxStyle}" Margin="6,0,12,8"/>
+                            <TextBlock Grid.Column="2" Text="Operation" VerticalAlignment="Center"/>
+                            <ComboBox Grid.Column="3" ItemsSource="{Binding OverrideOperations}" SelectedItem="{Binding OverrideOperation, Mode=TwoWay}" Style="{StaticResource EditorComboBoxStyle}" Margin="6,0,0,8"/>
+                            <TextBlock Grid.Row="1" Text="Changed fields" VerticalAlignment="Top" Margin="0,8,0,0"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding OverrideFieldsJson, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     FontFamily="Consolas" AcceptsReturn="True" AcceptsTab="True" TextWrapping="NoWrap"
+                                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" MinHeight="110"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="2" Header="Authored Custom1 Overrides">
+                        <DataGrid Margin="10" ItemsSource="{Binding CustomOverrides}" SelectedItem="{Binding SelectedOverride, Mode=TwoWay}"
+                                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                                  HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Family" Binding="{Binding Family}" Width="1*"/>
+                                <DataGridTextColumn Header="Object ID" Binding="{Binding TargetId}" Width="2*"/>
+                                <DataGridTextColumn Header="Operation" Binding="{Binding Operation}" Width="110"/>
+                                <DataGridTextColumn Header="Fields" Binding="{Binding FieldCount}" Width="80"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <Grid Grid.Row="3" Margin="7,8,7,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding CustomStatus}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                        <WrapPanel Grid.Column="1">
+                            <Button Content="New" Command="{Binding NewOverrideCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                            <Button Content="Remove Selected" Command="{Binding RemoveOverrideCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                            <Button Content="Save Override" Command="{Binding SaveOverrideCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="CLASSIC ADMIN">
+                <Grid Margin="18">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <GroupBox Header="Classic Item Limits" Margin="0,0,7,0">
+                            <StackPanel Margin="10">
+                                <CheckBox Content="Unlimited items enabled" IsChecked="{Binding UnlimitedItemsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap"
+                                           Text="Turn this off to enforce each Classic item's decoded GameLimit when new items are created."/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Header="Global SYS GOTO" Margin="7,0,0,0">
+                            <StackPanel Margin="10">
+                                <CheckBox Content="Allow every logged-in character to use SYSOP GOTO"
+                                          IsChecked="{Binding EveryoneCanUseSysGoto, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Margin="0,8,0,0" TextWrapping="Wrap" Text="This grants only GOTO, not other SYSOP authority."/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+
+                    <GroupBox Grid.Row="1" Header="Character SYSOP Key Access">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <TextBlock Text="Select the Classic characters that should receive full SYSOP command access."
+                                       TextWrapping="Wrap" Margin="0,0,0,10"/>
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding Characters}" AutoGenerateColumns="False"
+                                      CanUserAddRows="False" CanUserDeleteRows="False" HeadersVisibility="Column" GridLinesVisibility="Horizontal">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="SYSOP Access" Width="120">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate><CheckBox IsChecked="{Binding HasSysopAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/></DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Character" Binding="{Binding CharacterName}" Width="2*" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="80" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Account" Binding="{Binding AccountId}" Width="1.5*" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Character ID" Binding="{Binding CharacterId}" Width="2*" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="1.5*" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </GroupBox>
+
+                    <Grid Grid.Row="2" Margin="7,12,7,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding ClassicStatus}" FontWeight="SemiBold" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                        <WrapPanel Grid.Column="1">
+                            <Button Content="Reload" Command="{Binding ReloadCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                            <Button Content="Save Classic Settings" Command="{Binding SaveClassicCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

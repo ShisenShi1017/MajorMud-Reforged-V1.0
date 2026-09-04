@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RealmGate.Server</AssemblyName>
+    <RootNamespace>RealmGate.Server</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
+    <ProjectReference Include="../../../Core/Source/RealmGate.Core/RealmGate.Core.csproj" />
+  </ItemGroup>
+</Project>

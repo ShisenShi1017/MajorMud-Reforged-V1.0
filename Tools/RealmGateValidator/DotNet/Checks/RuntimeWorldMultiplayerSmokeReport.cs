@@ -1,0 +1,21 @@
+using System.Text.Json;
+namespace RealmGate.Server;
+public sealed record RuntimeWorldMultiplayerSmokeReport(bool Passed,IReadOnlyList<string> Checks,IReadOnlyList<string> Failures){public string ToJson()=>JsonSerializer.Serialize(this,new JsonSerializerOptions{WriteIndented=true});
+public static RuntimeWorldMultiplayerSmokeReport Run(){var c=new List<string>();var f=new List<string>();try{
+var sink=new EventSink();var obj=new RuntimeWorldObjectState("object.1","room.1");var engine=new RuntimeWorldInteractionEngine(new InteractionPolicy(),sink);engine.Execute(new("actor.1","object.1","use","room.1",new Dictionary<string,string>()),obj);c.Add("world-interaction");
+var loc=new RuntimeActorLocation("actor.1","room.1");new RuntimeMovementEngine(new MovementPolicy(),sink).Move(new("actor.1","room.1","exit.1",null,new Dictionary<string,string>()),loc);if(loc.RoomId!="room.2")throw new Exception("movement-failed");c.Add("movement");
+var parties=new RuntimePartyRegistry();var party=new RuntimeParty("party.1","actor.1");parties.Register(party);parties.AddMember("party.1","actor.2");party.ChangeLeader("actor.2");c.Add("party");
+var rep=new RuntimeReputationState("actor.1");rep.Apply("faction.1",5);if(rep.Get("faction.1")!=5)throw new Exception("reputation-failed");c.Add("reputation");
+var ms=new MessageSink();new RuntimeCommunicationRouter(new CommunicationPolicy(),ms).Send(new("actor.1","party",null,null,"hello",new Dictionary<string,string>()));if(ms.Deliveries.Count!=2)throw new Exception("communication-failed");c.Add("communication");
+var sched=new RuntimeWorldSchedulerState();sched.Schedule(new("event.1",DateTimeOffset.UtcNow.AddSeconds(-1),"respawn",new Dictionary<string,string>()));if(sched.TakeDue(DateTimeOffset.UtcNow).Count!=1)throw new Exception("scheduler-failed");sched.Schedule(new("event.2",DateTimeOffset.UtcNow.AddMinutes(1),"reset",new Dictionary<string,string>()));c.Add("scheduler");
+var json=RuntimeWorldMultiplayerPersistence.Save(parties,sched,new[]{loc},new[]{rep});var save=RuntimeWorldMultiplayerPersistence.Load(json);if(save.Parties.Count!=1||save.Locations.Count!=1)throw new Exception("persistence-failed");c.Add("persistence");
+if(RuntimeWorldMultiplayerValidator.Validate(parties,sched,new[]{loc}).Count!=0)throw new Exception("validator-failed");c.Add("validator");
+var bad=new RuntimeWorldInteractionEngine(new InteractionPolicy(),new FailingSink());var before=obj.Capture();try{bad.Execute(new("actor.1","object.1","use","room.1",new Dictionary<string,string>()),obj);throw new Exception("rollback-not-triggered");}catch(InvalidOperationException){}if(obj.Capture()!=before && obj.State.Count!=before.State.Count)throw new Exception("rollback-failed");c.Add("rollback");
+}catch(Exception ex){f.Add(ex.GetType().Name+":"+ex.Message);}return new(f.Count==0,c,f);}
+private sealed class InteractionPolicy:IRuntimeWorldInteractionPolicy{public IReadOnlyList<RuntimeWorldEvent> Resolve(RuntimeWorldInteractionRequest r,RuntimeWorldObjectState s){s.Set("last-action",r.Action);return new[]{new RuntimeWorldEvent("interaction",r.ActorId,r.ObjectId,r.RoomId,r.Metadata)};}}
+private sealed class MovementPolicy:IRuntimeMovementPolicy{public RuntimeMovementDecision Resolve(RuntimeMovementRequest r)=>new(true,"room.2",new[]{new RuntimeWorldEvent("move",r.ActorId,null,"room.2",r.Metadata)},null);}
+private sealed class CommunicationPolicy:IRuntimeCommunicationPolicy{public IReadOnlyList<RuntimeMessageDelivery> Route(RuntimeMessageRequest r)=>new[]{new RuntimeMessageDelivery("actor.1",r.Channel,r.SenderId,r.Text,r.Metadata),new RuntimeMessageDelivery("actor.2",r.Channel,r.SenderId,r.Text,r.Metadata)};}
+private sealed class EventSink:IRuntimeWorldEventSink{public readonly List<RuntimeWorldEvent> Events=new();public void Apply(RuntimeWorldEvent e)=>Events.Add(e);public void Rollback(RuntimeWorldEvent e)=>Events.Remove(e);}
+private sealed class FailingSink:IRuntimeWorldEventSink{public void Apply(RuntimeWorldEvent e)=>throw new InvalidOperationException("sink-failure");public void Rollback(RuntimeWorldEvent e){}}
+private sealed class MessageSink:IRuntimeMessageSink{public readonly List<RuntimeMessageDelivery> Deliveries=new();public void Deliver(RuntimeMessageDelivery d)=>Deliveries.Add(d);public void Retract(RuntimeMessageDelivery d)=>Deliveries.Remove(d);}
+}

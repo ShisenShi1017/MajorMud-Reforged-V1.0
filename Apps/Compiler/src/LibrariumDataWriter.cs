@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public sealed class LibrariumDataWriter
 {
@@ -492,7 +492,7 @@ public sealed class LibrariumDataWriter
             var promoted = TryReadPromotedCharacterFoundation(family);
             if (promoted is not null)
             {
-                promoted["generated_by"] = "MajorMud.Reforged.Compiler";
+                promoted["generated_by"] = "RealmGate.Compiler";
                 promoted["compiler_code_update"] = "0138";
                 promoted["world_id"] = result.WorldId;
                 promoted["family"] = family.Name;
@@ -506,7 +506,7 @@ public sealed class LibrariumDataWriter
         var projection = new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["compiler_code_update"] = "0127",
             ["world_id"] = result.WorldId,
             ["family"] = family.Name,
@@ -581,7 +581,7 @@ public sealed class LibrariumDataWriter
         => new()
         {
             ["code_update"] = "0127",
-            ["compiler"] = "MajorMud.Reforged.Compiler",
+            ["compiler"] = "RealmGate.Compiler",
             ["world_id"] = result.WorldId,
             ["librarium_authority"] = "Librarium is source of truth; /Data is generated runtime output.",
             ["object_families_compiled"] = result.ObjectFamiliesCompiled,

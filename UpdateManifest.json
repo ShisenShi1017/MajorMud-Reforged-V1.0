@@ -10,7 +10,7 @@
   "generatedClassicDataTrackedInGit": false,
   "purpose": "Integrate RealmGate client/release naming, pathing/navigation assets, Borin runtime fixes, and the consolidated Character system while preserving effective server/BBS overlay authority.",
   "currentValidation": {
-    "entrypoint": "Tools/ReforgedValidator/Validate.ps1",
+    "entrypoint": "Tools/RealmGateValidator/Validate.ps1",
     "validator": {
       "status": "PASS",
       "issues": 0,
@@ -29,7 +29,7 @@
     },
     "releaseBuild": {
       "RealmGate.App": "PASS; 0 warnings; 0 errors",
-      "MajorMud.Reforged.sln": "PASS; 0 warnings; 0 errors"
+      "RealmGate.sln": "PASS; 0 warnings; 0 errors"
     },
     "githubClassicParityClosure": "PASS"
   },

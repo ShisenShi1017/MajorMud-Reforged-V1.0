@@ -1,4 +1,4 @@
-namespace Reforged.Core.Applications;
+namespace RealmGate.Core.Applications;
 
 /// <summary>
 /// Common contract implemented by all top-level Reforged applications.

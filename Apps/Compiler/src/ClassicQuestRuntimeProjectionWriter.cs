@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 internal static class ClassicQuestRuntimeProjectionWriter
 {
@@ -401,7 +401,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
         writeJson(System.IO.Path.Combine(outputRoot, "random_table_runtime_authority.json"), new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["world_id"] = "Classic",
             ["ordering_rule"] = "preserve-decoded-row-order",
             ["reference_count"] = references.Count,
@@ -471,7 +471,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
         writeJson(System.IO.Path.Combine(outputRoot, "world_reward_narrative_authority.json"), new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["world_id"] = "Classic",
             ["fixed_rewards"] = fixedRewards,
             ["class_reward_scripts"] = classScripts,
@@ -666,7 +666,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
         writeJson(System.IO.Path.Combine(outputRoot, "witchunter_magebane_narrative.json"), new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["world_id"] = "Classic",
             ["ability_id"] = 50,
             ["class_legacy_id"] = 2,
@@ -704,7 +704,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
         writeJson(System.IO.Path.Combine(outputRoot, "gnome_merchant_narrative_placement.json"), new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["world_id"] = "Classic",
             ["npc_legacy_id"] = 716,
             ["root_textblock_id"] = 2798,
@@ -735,7 +735,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
         writeJson(System.IO.Path.Combine(outputRoot, "gnome_merchant_scroll_offerings.json"), new JsonObject
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["world_id"] = "Classic",
             ["npc_legacy_id"] = 716,
             ["root_textblock_id"] = 2798,
@@ -834,7 +834,7 @@ internal static class ClassicQuestRuntimeProjectionWriter
     private static JsonObject Envelope(string family, JsonArray records) => new()
     {
         ["authority"] = "Librarium",
-        ["generated_by"] = "MajorMud.Reforged.Compiler",
+        ["generated_by"] = "RealmGate.Compiler",
         ["world_id"] = "Classic",
         ["family"] = family,
         ["source_file"] = DecodedTextblocks,

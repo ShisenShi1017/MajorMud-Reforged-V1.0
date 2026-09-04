@@ -45,7 +45,7 @@ Use `CHANGELOG.md` only when update history materially matters.
 The current full validator entrypoint is:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Tools\ReforgedValidator\Validate.ps1 -Configuration Release
+powershell -ExecutionPolicy Bypass -File .\Tools\RealmGateValidator\Validate.ps1 -Configuration Release
 ```
 
 The accepted CodeUpdate0142 closure baseline is:
@@ -58,7 +58,7 @@ The accepted CodeUpdate0142 closure baseline is:
 
 The decode-exhaustion phase is expensive. Do not rerun it simply to reconfirm documentation-only work. Rerun the full validator when runtime/data/validator authority changes or when a change could invalidate the accepted baseline.
 
-For client-only changes, build the transitional `Reforged.App` project and run the affected client smoke(s). Run the complete client smoke suite before declaring a client release candidate clean.
+For client-only changes, build the transitional `RealmGate.App` project and run the affected client smoke(s). Run the complete client smoke suite before declaring a client release candidate clean.
 
 ## Current client smoke flags
 

@@ -1,4 +1,4 @@
-namespace Reforged.Core.Applications;
+namespace RealmGate.Core.Applications;
 
 /// <summary>
 /// Minimal base class for application stubs and future compiled applications.

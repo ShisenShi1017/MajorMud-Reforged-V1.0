@@ -8,9 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Borin.CharacterTests</AssemblyName>
-    <RootNamespace>Reforged.Borin.CharacterTests</RootNamespace>
+    <RootNamespace>RealmGate.Borin.CharacterTests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Apps\Source\Reforged.App\Reforged.App.csproj" />
+    <ProjectReference Include="..\..\..\Apps\Source\RealmGate.App\RealmGate.App.csproj" />
   </ItemGroup>
 </Project>

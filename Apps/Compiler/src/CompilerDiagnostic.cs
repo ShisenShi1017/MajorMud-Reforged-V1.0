@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public enum DiagnosticSeverity
 {

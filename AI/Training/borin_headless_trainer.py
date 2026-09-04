@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Borin continuous headless reinforcement-learning trainer and runtime tester.
 
-The trainer talks only to Reforged.Server's newline-delimited JSON stdin/stdout
+The trainer talks only to RealmGate.Server's newline-delimited JSON stdin/stdout
 headless protocol. It uses dependency-free tabular Q-learning, continuously
 rotates through major gameplay systems, preserves learned state between runs,
 and writes an aggregated defect report while it plays.
@@ -114,7 +114,7 @@ def validate_parity_scorecard(repo: Path) -> tuple[bool, str]:
 
 
 def run_parity_smoke(repo: Path, gate: str, timeout_seconds: float, log_path: Path) -> dict[str, Any]:
-    project = repo / "Tools" / "ReforgedValidator" / "DotNet" / "Reforged.Validation.csproj"
+    project = repo / "Tools" / "RealmGateValidator" / "DotNet" / "RealmGate.Validation.csproj"
     cmd = ["dotnet", "run", "--project", str(project), "--", str(repo), gate]
     started = time.time()
     try:
@@ -170,9 +170,9 @@ def run_parity_smoke(repo: Path, gate: str, timeout_seconds: float, log_path: Pa
 
 class HeadlessClient:
     def __init__(self, repo: Path, player: str, log_path: Path):
-        project = repo / "Apps" / "Source" / "Reforged.Server" / "Reforged.Server.csproj"
+        project = repo / "Apps" / "Source" / "RealmGate.Server" / "RealmGate.Server.csproj"
         if not project.exists():
-            raise FileNotFoundError(f"Reforged.Server.csproj not found: {project}")
+            raise FileNotFoundError(f"RealmGate.Server.csproj not found: {project}")
         self.log = log_path.open("a", encoding="utf-8", buffering=1)
         cmd = [
             "dotnet", "run", "--project", str(project), "--",

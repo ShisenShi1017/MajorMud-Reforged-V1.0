@@ -2,7 +2,7 @@
 
 Core is the shared foundation for the active Reforged applications.
 
-The compiled project is `Core/Source/Reforged.Core/Reforged.Core.csproj`; shared
+The compiled project is `Core/Source/RealmGate.Core/RealmGate.Core.csproj`; shared
 application contracts live in `Core/Applications`. Core owns cross-application contracts
 and helpers only and must never reference an application project.
 

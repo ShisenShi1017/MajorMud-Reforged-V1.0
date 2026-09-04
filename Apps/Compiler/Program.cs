@@ -1,4 +1,4 @@
-using MajorMud.Reforged.Compiler;
+using RealmGate.Compiler;
 
 static string FindRepositoryRoot(string? start)
 {

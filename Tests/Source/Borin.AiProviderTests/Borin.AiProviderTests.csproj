@@ -7,10 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../../Apps/Source/Reforged.App/Reforged.App.csproj" />
+    <ProjectReference Include="../../../Apps/Source/RealmGate.App/RealmGate.App.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Roslyn 4.14 is a runtime dependency of Reforged.App; make its matching
+    <!-- Roslyn 4.14 is a runtime dependency of RealmGate.App; make its matching
          BCL dependencies primary in this executable test host. -->
     <PackageReference Include="System.Collections.Immutable" Version="9.0.0" />
     <PackageReference Include="System.Reflection.Metadata" Version="9.0.0" />

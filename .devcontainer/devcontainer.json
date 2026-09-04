@@ -8,5 +8,5 @@
       ]
     }
   },
-  "postCreateCommand": "dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj"
+  "postCreateCommand": "dotnet restore Apps/Source/RealmGate.Server/RealmGate.Server.csproj"
 }

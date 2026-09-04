@@ -1,0 +1,382 @@
+using System.Globalization;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using RealmGate.App.Models;
+
+namespace RealmGate.App.Services;
+
+/// <summary>
+/// Effective game-data projection used by the MudPlay-inspired Character Workshop.
+/// Reforged sessions read their server-selected world projection. External BBS sessions
+/// read Classic with their local field overlay applied.
+/// </summary>
+public sealed class RealmGateWorkshopDataCatalog
+{
+    private readonly Dictionary<string, RealmGateWorkshopItem> _itemsByNormalizedName;
+    private readonly Dictionary<int, RealmGateWorkshopSpell> _spellsByLegacyId;
+
+    private RealmGateWorkshopDataCatalog(string worldName, string dataRoot, string authorityDescription, IReadOnlyList<RealmGateWorkshopItem> items, IReadOnlyList<RealmGateWorkshopSpell> spells)
+    {
+        WorldName = worldName;
+        DataRoot = dataRoot;
+        AuthorityDescription = authorityDescription;
+        Items = items;
+        Spells = spells;
+        _spellsByLegacyId = spells.Where(x => x.LegacyId > 0).GroupBy(x => x.LegacyId).ToDictionary(x => x.Key, x => x.First());
+        _itemsByNormalizedName = items
+            .Where(item => !string.IsNullOrWhiteSpace(item.Name))
+            .GroupBy(item => NormalizeItemName(item.Name), StringComparer.OrdinalIgnoreCase)
+            .Where(group => group.Key.Length > 0)
+            .ToDictionary(group => group.Key, group => group.First(), StringComparer.OrdinalIgnoreCase);
+    }
+
+    public string WorldName { get; }
+    public string DataRoot { get; }
+    public string AuthorityDescription { get; }
+    public IReadOnlyList<RealmGateWorkshopItem> Items { get; }
+    public IReadOnlyList<RealmGateWorkshopSpell> Spells { get; }
+
+    public static RealmGateWorkshopDataCatalog LoadClassic()
+    {
+        var overlayService = new RealmGateClientGameDataOverlayService();
+        var equipmentRecords = overlayService.LoadClassicFamily("Equipment")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+        var itemRecords = overlayService.LoadClassicFamily("Items")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+
+        var spellRecords = overlayService.LoadClassicFamily("Spells").Select(record => record.EffectiveRecord).ToArray();
+        var equipmentRules = LoadEquipmentRules(equipmentRecords);
+        var items = LoadItems(itemRecords, equipmentRules)
+            .OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
+        return new RealmGateWorkshopDataCatalog("Classic", "Data/Classic", "Classic base data", items, spells);
+    }
+
+    public static RealmGateWorkshopDataCatalog Load(ClientSessionConnection session)
+    {
+        ArgumentNullException.ThrowIfNull(session);
+        var overlayService = new RealmGateClientGameDataOverlayService();
+        var context = overlayService.ResolveContext(session);
+        var equipmentRecords = overlayService.LoadFamily(session, "Equipment")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+        var itemRecords = overlayService.LoadFamily(session, "Items")
+            .Select(record => record.EffectiveRecord)
+            .ToArray();
+
+        var spellRecords = overlayService.LoadFamily(session, "Spells").Select(record => record.EffectiveRecord).ToArray();
+        var equipmentRules = LoadEquipmentRules(equipmentRecords);
+        var items = LoadItems(itemRecords, equipmentRules)
+            .OrderBy(item => item.Name, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        var spells = LoadSpells(spellRecords).OrderBy(x => x.Name, StringComparer.OrdinalIgnoreCase).ToArray();
+        return new RealmGateWorkshopDataCatalog(context.BaseWorld, context.BaseDataRoot, context.Description, items, spells);
+    }
+
+    public RealmGateWorkshopSpell? FindSpellByLegacyId(int legacyId) => legacyId > 0 && _spellsByLegacyId.TryGetValue(legacyId, out var spell) ? spell : null;
+
+    public RealmGateWorkshopItem? FindByDisplayName(string? displayName)
+    {
+        var normalized = NormalizeItemName(displayName ?? string.Empty);
+        if (normalized.Length == 0)
+            return null;
+
+        if (_itemsByNormalizedName.TryGetValue(normalized, out var exact))
+            return exact;
+
+        // Captured terminal inventory/equipment can contain quantities or short annotations.
+        // Prefer a deterministic longest-name containment match rather than guessing identity.
+        return _itemsByNormalizedName
+            .Where(pair => normalized.Contains(pair.Key, StringComparison.OrdinalIgnoreCase) ||
+                           pair.Key.Contains(normalized, StringComparison.OrdinalIgnoreCase))
+            .OrderByDescending(pair => pair.Key.Length)
+            .Select(pair => pair.Value)
+            .FirstOrDefault();
+    }
+
+    private static IEnumerable<RealmGateWorkshopItem> LoadItems(
+        IEnumerable<JsonObject> records,
+        IReadOnlyDictionary<string, RealmGateWorkshopEquipmentRule> equipmentRules)
+    {
+        foreach (var objectRecord in records)
+        {
+            var record = ToElement(objectRecord);
+            var id = FirstText(record, ["id"]);
+            if (id.Length == 0)
+            {
+                var legacy = FirstText(record, ["legacy_id"]);
+                if (legacy.Length > 0)
+                    id = "item." + legacy;
+            }
+
+            var name = FirstText(record,
+                ["name"],
+                ["public_reference_0139", "fields", "name"]);
+            if (name.Length == 0)
+                continue;
+
+            equipmentRules.TryGetValue(id, out var rule);
+
+            var itemType = FirstText(record,
+                ["classification", "type"],
+                ["public_reference_0139", "fields", "item_type"]);
+
+            var weight = FirstLong(record,
+                ["economy", "weight"],
+                ["public_reference_0139", "fields", "weight"]);
+            var cost = FirstLong(record,
+                ["economy", "cost"],
+                ["public_reference_0139", "fields", "cost"]);
+
+            var minDamage = FirstInt(record,
+                ["combat", "minimum_damage"],
+                ["public_reference_0139", "fields", "min_hit"]);
+            var maxDamage = FirstInt(record,
+                ["combat", "maximum_damage"],
+                ["public_reference_0139", "fields", "max_hit"]);
+            var armorClass = FirstInt(record,
+                ["combat", "armor_class_bonus"],
+                ["public_reference_0139", "fields", "ac_bonus"]);
+            var damageResistance = FirstInt(record,
+                ["combat", "damage_resistance_bonus"],
+                ["public_reference_0139", "fields", "dr_bonus"]);
+            var accuracy = FirstInt(record,
+                ["combat", "accuracy"],
+                ["public_reference_0139", "fields", "accuracy"]);
+            var speed = FirstInt(record,
+                ["combat", "speed"],
+                ["public_reference_0139", "fields", "speed"]);
+
+            var abilities = ReadNamedAbilities(record);
+            var castSpell = abilities.FirstOrDefault(x => x.Name.Equals("CastsSp", StringComparison.OrdinalIgnoreCase));
+            var spellChance = abilities.FirstOrDefault(x => x.Name.Equals("%Spell", StringComparison.OrdinalIgnoreCase));
+
+            yield return new RealmGateWorkshopItem(
+                id,
+                name,
+                itemType,
+                rule?.Slot ?? string.Empty,
+                weight,
+                cost,
+                minDamage,
+                maxDamage,
+                armorClass,
+                damageResistance,
+                accuracy,
+                speed,
+                rule?.MinimumLevel ?? 0,
+                rule?.MaximumLevel ?? 0,
+                rule?.MinimumStrength ?? 0,
+                rule?.TwoHanded ?? false,
+                rule?.ClassRestricted ?? false,
+                rule?.RaceRestricted ?? false,
+                abilities,
+                castSpell?.NumericValue ?? 0,
+                spellChance?.NumericValue ?? 0);
+        }
+    }
+
+    private static IEnumerable<RealmGateWorkshopSpell> LoadSpells(IEnumerable<JsonObject> records)
+    {
+        foreach (var objectRecord in records)
+        {
+            var record = ToElement(objectRecord);
+            var id = FirstText(record, ["id"]);
+            var legacyText = FirstText(record, ["legacy_id"]);
+            _ = int.TryParse(legacyText, NumberStyles.Integer, CultureInfo.InvariantCulture, out var legacyId);
+            var name = FirstText(record, ["name"], ["public_reference_0139", "fields", "name"]);
+            if (name.Length == 0) continue;
+            yield return new RealmGateWorkshopSpell(id, legacyId, name,
+                FirstInt(record, ["classification", "spell_level"], ["public_reference_0139", "fields", "spell_level"]),
+                FirstInt(record, ["costs", "mana_cost"], ["public_reference_0139", "fields", "mana_cost"]),
+                FirstInt(record, ["costs", "energy_cost"], ["public_reference_0139", "fields", "energy_cost"]));
+        }
+    }
+
+    private static IReadOnlyList<RealmGateWorkshopAbility> ReadNamedAbilities(JsonElement record)
+    {
+        if (!TryReadPath(record, ["public_reference_0139", "fields", "abilities_named"], out var node) || node.ValueKind != JsonValueKind.Array)
+            return Array.Empty<RealmGateWorkshopAbility>();
+        var result = new List<RealmGateWorkshopAbility>();
+        foreach (var entry in node.EnumerateArray())
+        {
+            if (entry.ValueKind != JsonValueKind.Object) continue;
+            var name = entry.TryGetProperty("name", out var n) ? n.ToString().Trim() : string.Empty;
+            var value = entry.TryGetProperty("value", out var v) ? v.ToString().Trim() : string.Empty;
+            var abilityId = entry.TryGetProperty("ability_id", out var a) && a.TryGetInt32(out var parsed) ? parsed : 0;
+            if (name.Length > 0) result.Add(new RealmGateWorkshopAbility(name, value, abilityId));
+        }
+        return result;
+    }
+
+    private static IReadOnlyDictionary<string, RealmGateWorkshopEquipmentRule> LoadEquipmentRules(IEnumerable<JsonObject> records)
+    {
+        var result = new Dictionary<string, RealmGateWorkshopEquipmentRule>(StringComparer.OrdinalIgnoreCase);
+        foreach (var objectRecord in records)
+        {
+            var record = ToElement(objectRecord);
+            var itemId = FirstText(record, ["item_id"]);
+            if (itemId.Length == 0)
+                continue;
+
+            result[itemId] = new RealmGateWorkshopEquipmentRule(
+                itemId,
+                FirstText(record, ["slot"]),
+                FirstBool(record, ["two_handed"]),
+                FirstBool(record, ["class_restricted"]),
+                FirstBool(record, ["race_restricted"]),
+                FirstInt(record, ["minimum_level"]),
+                FirstInt(record, ["maximum_level"]),
+                FirstInt(record, ["minimum_strength"]));
+        }
+        return result;
+    }
+
+    private static JsonElement ToElement(JsonObject record)
+    {
+        using var document = JsonDocument.Parse(record.ToJsonString());
+        return document.RootElement.Clone();
+    }
+
+    private static string NormalizeItemName(string value)
+    {
+        var text = value.Trim().ToLowerInvariant();
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"^\s*\d+\s*[xX]\s+", string.Empty);
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"^\s*\[[^\]]+\]\s*", string.Empty);
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+\(.*?\)\s*$", string.Empty);
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"^(a|an|the)\s+", string.Empty);
+        text = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ");
+        return text.Trim();
+    }
+
+    private static string FirstText(JsonElement root, params string[][] paths)
+    {
+        foreach (var path in paths)
+        {
+            if (!TryReadPath(root, path, out var value))
+                continue;
+            if (value.ValueKind == JsonValueKind.String)
+                return value.GetString()?.Trim() ?? string.Empty;
+            if (value.ValueKind is JsonValueKind.Number or JsonValueKind.True or JsonValueKind.False)
+                return value.ToString();
+        }
+        return string.Empty;
+    }
+
+    private static int FirstInt(JsonElement root, params string[][] paths)
+    {
+        foreach (var path in paths)
+        {
+            if (!TryReadPath(root, path, out var value))
+                continue;
+            if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
+                return number;
+            if (int.TryParse(value.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out number))
+                return number;
+        }
+        return 0;
+    }
+
+    private static long FirstLong(JsonElement root, params string[][] paths)
+    {
+        foreach (var path in paths)
+        {
+            if (!TryReadPath(root, path, out var value))
+                continue;
+            if (value.ValueKind == JsonValueKind.Number && value.TryGetInt64(out var number))
+                return number;
+            if (long.TryParse(value.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out number))
+                return number;
+        }
+        return 0;
+    }
+
+    private static bool FirstBool(JsonElement root, params string[][] paths)
+    {
+        foreach (var path in paths)
+        {
+            if (!TryReadPath(root, path, out var value))
+                continue;
+            if (value.ValueKind == JsonValueKind.True) return true;
+            if (value.ValueKind == JsonValueKind.False) return false;
+            if (bool.TryParse(value.ToString(), out var flag)) return flag;
+        }
+        return false;
+    }
+
+    private static bool TryReadPath(JsonElement root, IReadOnlyList<string> path, out JsonElement value)
+    {
+        value = root;
+        foreach (var part in path)
+        {
+            if (value.ValueKind != JsonValueKind.Object || !value.TryGetProperty(part, out value))
+                return false;
+        }
+        return true;
+    }
+}
+
+public sealed record RealmGateWorkshopEquipmentRule(
+    string ItemId,
+    string Slot,
+    bool TwoHanded,
+    bool ClassRestricted,
+    bool RaceRestricted,
+    int MinimumLevel,
+    int MaximumLevel,
+    int MinimumStrength);
+
+public sealed record RealmGateWorkshopItem(
+    string Id,
+    string Name,
+    string ItemType,
+    string Slot,
+    long Weight,
+    long Cost,
+    int MinimumDamage,
+    int MaximumDamage,
+    int ArmorClassBonus,
+    int DamageResistanceBonus,
+    int Accuracy,
+    int Speed,
+    int MinimumLevel,
+    int MaximumLevel,
+    int MinimumStrength,
+    bool TwoHanded,
+    bool ClassRestricted,
+    bool RaceRestricted,
+    IReadOnlyList<RealmGateWorkshopAbility> Abilities,
+    int CastSpellLegacyId,
+    int SpellChancePercent)
+{
+    public string Damage => MaximumDamage > 0 ? $"{MinimumDamage}-{MaximumDamage}" : "—";
+    public string Restrictions
+    {
+        get
+        {
+            var parts = new List<string>();
+            if (MinimumLevel > 0) parts.Add($"Lvl {MinimumLevel}+");
+            if (MaximumLevel > 0) parts.Add($"≤ Lvl {MaximumLevel}");
+            if (MinimumStrength > 0) parts.Add($"STR {MinimumStrength}+");
+            if (ClassRestricted) parts.Add("Class restricted");
+            if (RaceRestricted) parts.Add("Race restricted");
+            if (TwoHanded) parts.Add("Two-handed");
+            return parts.Count == 0 ? "None shown" : string.Join(" · ", parts);
+        }
+    }
+}
+
+
+public sealed record RealmGateWorkshopAbility(string Name, string Value, int AbilityId)
+{
+    public int NumericValue => int.TryParse(Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var value) ? value : 0;
+}
+
+public sealed record RealmGateWorkshopSpell(string Id, int LegacyId, string Name, int Level, int ManaCost, int EnergyCost);

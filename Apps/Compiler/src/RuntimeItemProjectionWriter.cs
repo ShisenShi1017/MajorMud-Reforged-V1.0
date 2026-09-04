@@ -1,6 +1,6 @@
 using System.Text.Json.Nodes;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 internal static class RuntimeItemProjectionWriter
 {
@@ -135,7 +135,7 @@ internal static class RuntimeItemProjectionWriter
         => new()
         {
             ["authority"] = "Librarium",
-            ["generated_by"] = "MajorMud.Reforged.Compiler",
+            ["generated_by"] = "RealmGate.Compiler",
             ["compiler_code_update"] = "0138",
             ["family"] = family,
             ["source_file"] = sourceFile.Replace('\\', '/'),

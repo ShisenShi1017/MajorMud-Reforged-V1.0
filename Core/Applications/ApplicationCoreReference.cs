@@ -1,4 +1,4 @@
-namespace Reforged.Core.Applications;
+namespace RealmGate.Core.Applications;
 
 /// <summary>
 /// Machine-readable declaration that an application source project references the Core project.

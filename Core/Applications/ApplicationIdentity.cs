@@ -1,4 +1,4 @@
-namespace Reforged.Core.Applications;
+namespace RealmGate.Core.Applications;
 
 /// <summary>
 /// Describes a Reforged application without depending on that application's project.

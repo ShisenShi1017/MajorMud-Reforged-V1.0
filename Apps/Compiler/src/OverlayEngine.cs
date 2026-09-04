@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public sealed class OverlayEngine
 {

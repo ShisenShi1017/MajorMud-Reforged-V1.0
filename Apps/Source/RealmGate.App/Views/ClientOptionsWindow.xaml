@@ -1,0 +1,341 @@
+<Window x:Class="RealmGate.App.Views.ClientOptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Client Options"
+        Width="860"
+        Height="620"
+        MinWidth="720"
+        MinHeight="480"
+        Background="{StaticResource ParchmentBrush}"
+        TextElement.Foreground="{StaticResource ParchmentTextBrush}">
+    <DockPanel Margin="12">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Save Profiles" Margin="4" Padding="14,7" Click="SaveProfilesClicked"/>
+            <Button Content="Close" Margin="4" Padding="14,7" Click="CloseClicked"/>
+        </StackPanel>
+
+        <TabControl>
+            <TabItem Header="Server">
+                <Grid Margin="12" DataContext="{Binding Session}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Session name"/>
+                    <TextBox Grid.Column="1" Margin="0,3" Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="1" Text="Character"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="0,3" Text="{Binding CharacterName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="2" Text="Server / BBS"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="0,3" Text="{Binding ServerProfileName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="3" Text="World"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="0,3" Text="{Binding WorldName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="4" Text="Host"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="0,3" Text="{Binding HostName, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Grid.Row="5" Text="Port"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="0,3" Width="90" HorizontalAlignment="Left" Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Terminal">
+                <Grid Margin="12" DataContext="{Binding Session.TerminalPreferences}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Content="Enable Telnet negotiation" IsChecked="{Binding EnableTelnetNegotiation}"/>
+                    <TextBlock Grid.Row="1" Text="Terminal type" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Width="180" HorizontalAlignment="Left"
+                             Text="{Binding TerminalType, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Row="2" Content="Use IBM CP437 character set" IsChecked="{Binding UseCodePage437}"/>
+                    <CheckBox Grid.Row="3" Content="Capture raw Telnet traffic" IsChecked="{Binding CaptureTelnetTraffic}"
+                              ToolTip="Writes diagnostic traffic to LocalAppData\RealmGate\TelnetLogs."/>
+                    <CheckBox Grid.Row="4" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}"/>
+                    <CheckBox Grid.Row="5" Content="Show timestamps" IsChecked="{Binding ShowTimestamps}"/>
+                    <CheckBox Grid.Row="6" Content="Log terminal output" IsChecked="{Binding LoggingEnabled}"/>
+                    <TextBlock Grid.Row="7" Text="Scrollback lines" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" Width="120" HorizontalAlignment="Left"
+                             Text="{Binding MaximumScrollbackLines, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Automation">
+                <ScrollViewer>
+                    <Grid Margin="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="220"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <CheckBox Content="Automation enabled" IsChecked="{Binding Host.AutomationProfile.Enabled}"/>
+                        <TextBlock Grid.Row="1" Text="Profile name" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Host.AutomationProfile.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Row="2" Text="Minimum command delay" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Width="120" HorizontalAlignment="Left" Text="{Binding Host.AutomationProfile.MinimumCommandDelayMs, UpdateSourceTrigger=PropertyChanged}"/>
+                        <GroupBox Grid.Row="3" Grid.ColumnSpan="2" Header="Hostile-target spell automation" Margin="0,14,0,0" Padding="10"
+                                  DataContext="{Binding Host.AutomationOptions.Spells}">
+                            <StackPanel>
+                                <WrapPanel Margin="0,0,0,8">
+                                    <CheckBox Content="Auto Nuke" IsChecked="{Binding AutoNuke}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <CheckBox Content="Maintain Bless" IsChecked="{Binding MaintainBless}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <CheckBox Content="Maintain Armor" IsChecked="{Binding MaintainArmor}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <CheckBox Content="Maintain Room Light" IsChecked="{Binding MaintainRoomLight}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <CheckBox Content="Retry Failed Cast Once" IsChecked="{Binding RetryFailedCast}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <CheckBox Content="Recast After Dispel" IsChecked="{Binding RecastAfterDispel}" Margin="0,0,18,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Reserve mana %" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding ReserveManaPercent, UpdateSourceTrigger=PropertyChanged}" Width="55" Margin="6,0,16,0"/>
+                                    <TextBlock Text="Cooldown seconds" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding NukeCooldownSeconds, UpdateSourceTrigger=PropertyChanged}" Width="55" Margin="6,0,16,0"/>
+                                    <TextBlock Text="Area minimum targets" VerticalAlignment="Center"/>
+                                    <TextBox Text="{Binding AreaNukeMinimumTargets, UpdateSourceTrigger=PropertyChanged}" Width="55" Margin="6,0,0,0"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="2" Margin="0,0,0,8">
+                                    <TextBlock Text="Bless command" VerticalAlignment="Center"/><TextBox Text="{Binding BlessCommand}" Margin="4"/>
+                                    <TextBlock Text="Armor command" VerticalAlignment="Center"/><TextBox Text="{Binding ArmorCommand}" Margin="4"/>
+                                    <TextBlock Text="Room-light command" VerticalAlignment="Center"/><TextBox Text="{Binding LightCommand}" Margin="4"/>
+                                    <TextBlock Text="Maintenance cooldown (seconds)" VerticalAlignment="Center"/><TextBox Text="{Binding MaintainedSpellCooldownSeconds}" Margin="4"/>
+                                    <CheckBox Content="Maintain only outside combat" IsChecked="{Binding CastMaintainedSpellsOnlyOutOfCombat}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Debuffs (lower priority number runs first)" FontWeight="SemiBold"/>
+                                <DataGrid ItemsSource="{Binding DebuffPriorityActions}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" Height="120" Margin="0,4,0,10">
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="40"/>
+                                        <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="65"/>
+                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                                        <DataGridTextColumn Header="Command ({target})" Binding="{Binding Command}" Width="*"/>
+                                        <DataGridTextColumn Header="Fallback" Binding="{Binding FallbackCommand}" Width="120"/>
+                                        <DataGridTextColumn Header="Mana %" Binding="{Binding MinimumManaPercent}" Width="65"/>
+                                        <DataGridTextColumn Header="Min NPCs" Binding="{Binding MinimumTargetCount}" Width="65"/>
+                                        <DataGridTextColumn Header="Max NPCs" Binding="{Binding MaximumTargetCount}" Width="65"/>
+                                        <DataGridCheckBoxColumn Header="Area" Binding="{Binding IsAreaAction}" Width="50"/>
+                                        <DataGridCheckBoxColumn Header="Target" Binding="{Binding AppendTarget}" Width="55"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <TextBlock Text="Attack spells (used when no eligible debuff is ready)" FontWeight="SemiBold"/>
+                                <DataGrid ItemsSource="{Binding NukePriorityActions}" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" Height="120" Margin="0,4,0,0">
+                                    <DataGrid.Columns>
+                                        <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="40"/>
+                                        <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="65"/>
+                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="120"/>
+                                        <DataGridTextColumn Header="Command ({target})" Binding="{Binding Command}" Width="*"/>
+                                        <DataGridTextColumn Header="Fallback" Binding="{Binding FallbackCommand}" Width="120"/>
+                                        <DataGridTextColumn Header="Mana %" Binding="{Binding MinimumManaPercent}" Width="65"/>
+                                        <DataGridTextColumn Header="Min NPCs" Binding="{Binding MinimumTargetCount}" Width="65"/>
+                                        <DataGridTextColumn Header="Max NPCs" Binding="{Binding MaximumTargetCount}" Width="65"/>
+                                        <DataGridCheckBoxColumn Header="Area" Binding="{Binding IsAreaAction}" Width="50"/>
+                                        <DataGridCheckBoxColumn Header="Target" Binding="{Binding AppendTarget}" Width="55"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <TextBlock Text="Commands are sent only to living NPCs the connected server explicitly identifies as hostile. Use {target} where the NPC name belongs; otherwise it is appended." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Row="4" Grid.ColumnSpan="2" Header="Health, recovery, and party survival" Margin="0,14,0,0" Padding="10">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="Auto Heal" IsChecked="{Binding Host.AutomationOptions.Health.AutoHeal}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Healing Item" IsChecked="{Binding Host.AutomationOptions.Health.AutoUseHealingItem}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Auto Flee" IsChecked="{Binding Host.AutomationOptions.Combat.AutoFlee}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Emergency Recall" IsChecked="{Binding Host.AutomationOptions.Health.AutoRecallAtCriticalHealth}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Auto Rest" IsChecked="{Binding Host.AutomationOptions.Health.AutoRest}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Auto Meditate" IsChecked="{Binding Host.AutomationOptions.Health.AutoMeditate}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Stand When Recovered" IsChecked="{Binding Host.AutomationOptions.Health.StopRestingWhenRecovered}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Wake" IsChecked="{Binding Host.AutomationOptions.Health.AutoWake}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Recover" IsChecked="{Binding Host.AutomationOptions.Utility.AutoRecover}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <WrapPanel Margin="0,5,0,3">
+                                    <CheckBox Content="Cure Poison" IsChecked="{Binding Host.AutomationOptions.Health.CurePoison}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Cure Disease" IsChecked="{Binding Host.AutomationOptions.Health.CureDisease}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Cure Blindness" IsChecked="{Binding Host.AutomationOptions.Health.CureBlindness}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Remove Silence" IsChecked="{Binding Host.AutomationOptions.Health.CureSilence}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Heal Party" IsChecked="{Binding Host.AutomationOptions.Party.AutoHealParty}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Rescue Party" IsChecked="{Binding Host.AutomationOptions.Combat.AutoRescueParty}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="4" Margin="0,6,0,0">
+                                    <TextBlock Text="Minor heal at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.MinorHealAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Major heal at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.MajorHealAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Healing item at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.HealingItemAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Flee at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Combat.FleeAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Recall at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.RecallAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Rest at mana %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.RestManaAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Stand at mana %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.StopRestingManaPercent}" Margin="4"/>
+                                    <TextBlock Text="Heal party below HP %" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Party.HealPartyBelowPercent}" Margin="4"/>
+                                </UniformGrid>
+                                <UniformGrid Columns="2" Margin="0,6,0,0">
+                                    <TextBlock Text="Minor heal command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Spells.MinorHealCommand}" Margin="4"/>
+                                    <TextBlock Text="Major heal command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Spells.MajorHealCommand}" Margin="4"/>
+                                    <TextBlock Text="Healing item command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.HealingItemCommand}" Margin="4"/>
+                                    <TextBlock Text="Poison cure command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.CurePoisonCommand}" Margin="4"/>
+                                    <TextBlock Text="Disease cure command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.CureDiseaseCommand}" Margin="4"/>
+                                    <TextBlock Text="Blindness cure command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.CureBlindnessCommand}" Margin="4"/>
+                                    <TextBlock Text="Silence-removal command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.CureSilenceCommand}" Margin="4"/>
+                                    <TextBlock Text="Recall command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Health.RecallCommand}" Margin="4"/>
+                                    <TextBlock Text="Party heal command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Party.HealPartyCommand}" Margin="4"/>
+                                    <TextBlock Text="Party rescue command" VerticalAlignment="Center"/><TextBox Text="{Binding Host.AutomationOptions.Combat.RescueCommand}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Healing and cure spells must appear in the server-captured learned spellbook and pass their exact mana-cost check. Emergency actions run before ordinary combat actions." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Row="5" Grid.ColumnSpan="2" Header="Roaming, rooms, doors, and route recovery" Margin="0,14,0,0" Padding="10"
+                                  DataContext="{Binding Host.AutomationOptions.Roaming}">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="Search each room" IsChecked="{Binding AutoSearch}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Sneak" IsChecked="{Binding AutoSneak}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Hide" IsChecked="{Binding DataContext.Host.AutomationOptions.Utility.AutoHide, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Track" IsChecked="{Binding AutoTrack}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Open closed doors" IsChecked="{Binding OpenClosedDoors}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Pick locked doors" IsChecked="{Binding PickLockedDoors}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Bash blocked doors" IsChecked="{Binding BashBlockedDoors}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Detect decoded traps" IsChecked="{Binding DetectTraps}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Disarm decoded traps" IsChecked="{Binding DisarmTraps}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Verified route recovery" IsChecked="{Binding AutoRecoverDesynchronizedRoute}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="2" Margin="0,6,0,0">
+                                    <TextBlock Text="Search command" VerticalAlignment="Center"/><TextBox Text="{Binding SearchCommand}" Margin="4"/>
+                                    <TextBlock Text="Sneak command" VerticalAlignment="Center"/><TextBox Text="{Binding SneakCommand}" Margin="4"/>
+                                    <TextBlock Text="Track command" VerticalAlignment="Center"/><TextBox Text="{Binding TrackCommand}" Margin="4"/>
+                                    <TextBlock Text="Open command ({direction})" VerticalAlignment="Center"/><TextBox Text="{Binding OpenDoorCommand}" Margin="4"/>
+                                    <TextBlock Text="Pick command ({direction})" VerticalAlignment="Center"/><TextBox Text="{Binding PickLockCommand}" Margin="4"/>
+                                    <TextBlock Text="Bash command ({direction})" VerticalAlignment="Center"/><TextBox Text="{Binding BashDoorCommand}" Margin="4"/>
+                                    <TextBlock Text="Detect command" VerticalAlignment="Center"/><TextBox Text="{Binding DetectTrapCommand}" Margin="4"/>
+                                    <TextBlock Text="Disarm command" VerticalAlignment="Center"/><TextBox Text="{Binding DisarmTrapCommand}" Margin="4"/>
+                                    <TextBlock Text="Room-action delay (ms)" VerticalAlignment="Center"/><TextBox Text="{Binding RoomActionDelayMilliseconds}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Trap commands run only where the server reports a decoded trap interaction. Route recovery runs only when an exact replacement path exists from the confirmed current room to the original destination." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Row="6" Grid.ColumnSpan="2" Header="Loot, inventory, shops, and banking" Margin="0,14,0,0" Padding="10"
+                                  DataContext="{Binding Host.AutomationOptions.LootAndCash}">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="Get currency" IsChecked="{Binding GetCash}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Get filtered items" IsChecked="{Binding GetItems}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Loot corpses" IsChecked="{Binding LootCorpses}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Ignore heavy items" IsChecked="{Binding IgnoreHeavyItems}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Deposit at decoded banks" IsChecked="{Binding DepositAtBank}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Sell at decoded shops" IsChecked="{Binding AutoSellAtShop}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Drop when overweight" IsChecked="{Binding DropWhenOverweight}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="2" Margin="0,6,0,0">
+                                    <TextBlock Text="Get-item command ({item})" VerticalAlignment="Center"/><TextBox Text="{Binding GetItemsCommand}" Margin="4"/>
+                                    <TextBlock Text="Corpse command" VerticalAlignment="Center"/><TextBox Text="{Binding LootCorpseCommand}" Margin="4"/>
+                                    <TextBlock Text="Loot include words" VerticalAlignment="Center"/><TextBox Text="{Binding IncludeWords}" Margin="4"/>
+                                    <TextBlock Text="Loot exclude words" VerticalAlignment="Center"/><TextBox Text="{Binding ExcludeWords}" Margin="4"/>
+                                    <TextBlock Text="Maximum item weight" VerticalAlignment="Center"/><TextBox Text="{Binding MaximumItemWeight}" Margin="4"/>
+                                    <TextBlock Text="Stop looting at weight %" VerticalAlignment="Center"/><TextBox Text="{Binding StopLootingAtWeightPercent}" Margin="4"/>
+                                    <TextBlock Text="Sell command ({item})" VerticalAlignment="Center"/><TextBox Text="{Binding SellCommand}" Margin="4"/>
+                                    <TextBlock Text="Sell include words (required)" VerticalAlignment="Center"/><TextBox Text="{Binding SellIncludeWords}" Margin="4"/>
+                                    <TextBlock Text="Sell exclude words" VerticalAlignment="Center"/><TextBox Text="{Binding SellExcludeWords}" Margin="4"/>
+                                    <TextBlock Text="Deposit when carrying" VerticalAlignment="Center"/><TextBox Text="{Binding DepositWhenCarrying}" Margin="4"/>
+                                    <TextBlock Text="Keep on character" VerticalAlignment="Center"/><TextBox Text="{Binding KeepOnCharacter}" Margin="4"/>
+                                    <TextBlock Text="Overweight drop command" VerticalAlignment="Center"/><TextBox Text="{Binding DropOverweightCommand}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Ground-item weight and gettable status come from the server. Auto Sell requires explicit include words. Depositing with a nonzero keep amount pauses rather than guessing across the five denominations." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Row="7" Grid.ColumnSpan="2" Header="Party coordination" Margin="0,14,0,0" Padding="10"
+                                  DataContext="{Binding Host.AutomationOptions.Party}">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="Accept trusted invitations" IsChecked="{Binding AutoAcceptTrustedInvites}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Follow leader" IsChecked="{Binding AutoFollowLeader}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Assist leader" IsChecked="{Binding AutoAssistLeader}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Wait when leader missing" IsChecked="{Binding WaitWhenLeaderMissing}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Resume when leader returns" IsChecked="{Binding ResumeWhenLeaderReturns}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Regroup when separated" IsChecked="{Binding RegroupWhenSeparated}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="2" Margin="0,6,0,0">
+                                    <TextBlock Text="Trusted leader name" VerticalAlignment="Center"/><TextBox Text="{Binding LeaderName}" Margin="4"/>
+                                    <TextBlock Text="Follow command" VerticalAlignment="Center"/><TextBox Text="{Binding FollowCommand}" Margin="4"/>
+                                    <TextBlock Text="Invitation command" VerticalAlignment="Center"/><TextBox Text="{Binding AcceptInviteCommand}" Margin="4"/>
+                                    <TextBlock Text="Assist command" VerticalAlignment="Center"/><TextBox Text="{Binding AssistCommand}" Margin="4"/>
+                                    <TextBlock Text="Wait command" VerticalAlignment="Center"/><TextBox Text="{Binding WaitCommand}" Margin="4"/>
+                                    <TextBlock Text="Resume command" VerticalAlignment="Center"/><TextBox Text="{Binding ResumeCommand}" Margin="4"/>
+                                    <TextBlock Text="Regroup command" VerticalAlignment="Center"/><TextBox Text="{Binding RegroupCommand}" Margin="4"/>
+                                    <TextBlock Text="Party data maximum age (seconds)" VerticalAlignment="Center"/><TextBox Text="{Binding PartyStateMaximumAgeSeconds}" Margin="4"/>
+                                    <TextBlock Text="Command cooldown (seconds)" VerticalAlignment="Center"/><TextBox Text="{Binding CommandCooldownSeconds}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Every action uses this session only. Stale party data is refreshed silently, invitations require the configured leader or Invite permission, and members are never automatically reinvited." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Grid.Row="8" Grid.ColumnSpan="2" Header="PvP and player safety" Margin="0,14,0,0" Padding="10"
+                                  DataContext="{Binding Host.AutomationOptions.PvP}">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <CheckBox Content="Enable PvP safety" IsChecked="{Binding Enabled}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Alert when attacked" IsChecked="{Binding AlertWhenAttacked}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Ignore trusted players" IsChecked="{Binding IgnoreTrustedPlayers}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Flee at low health" IsChecked="{Binding AutoFlee}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Defend party members" IsChecked="{Binding DefendPartyMembers}" Margin="0,3,16,3"
+                                              ToolTip="MegaMUD Defend: attack a verified same-room player who attacks a current party member."/>
+                                    <CheckBox Content="Return attack" IsChecked="{Binding AutoReturnAttack}" Margin="0,3,16,3"/>
+                                    <CheckBox Content="Chase fleeing attacker" IsChecked="{Binding ChaseFleeingAttacker}" Margin="0,3,16,3"/>
+                                </WrapPanel>
+                                <UniformGrid Columns="2" Margin="0,6,0,0">
+                                    <TextBlock Text="Flee at HP %" VerticalAlignment="Center"/><TextBox Text="{Binding FleeAtPercent}" Margin="4"/>
+                                    <TextBlock Text="Return attack at or above HP %" VerticalAlignment="Center"/><TextBox Text="{Binding ReturnAttackAtOrAbovePercent}" Margin="4"/>
+                                    <TextBlock Text="Flee command" VerticalAlignment="Center"/><TextBox Text="{Binding ReactionCommand}" Margin="4"/>
+                                    <TextBlock Text="Party defend action" VerticalAlignment="Center"/><TextBlock Text="attack {verified aggressor}" Margin="4" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Return command ({target})" VerticalAlignment="Center"/><TextBox Text="{Binding ReturnAttackCommand}" Margin="4"/>
+                                    <TextBlock Text="Chase command" VerticalAlignment="Center"/><TextBox Text="{Binding ChaseCommand}" Margin="4"/>
+                                    <TextBlock Text="Command cooldown (seconds)" VerticalAlignment="Center"/><TextBox Text="{Binding CommandCooldownSeconds}" Margin="4"/>
+                                    <TextBlock Text="Attacker data maximum age (seconds)" VerticalAlignment="Center"/><TextBox Text="{Binding AttackerStateMaximumAgeSeconds}" Margin="4"/>
+                                </UniformGrid>
+                                <TextBlock Text="Responses require a fresh player name from the authoritative same-room list. NPC attacks cannot enter this path. Chase remains fail-closed until the server exposes a supported chase route." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6C5A44"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Parsing">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Profile:" VerticalAlignment="Center"/>
+                        <ComboBox Width="320" Margin="8,0" ItemsSource="{Binding Host.AvailableParsingProfiles}" SelectedItem="{Binding Host.SelectedParsingProfileSummary}" DisplayMemberPath="DisplayName"/>
+                        <Button Content="Open" Padding="12,5" Click="SelectParsingProfileClicked"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" Margin="0,10,0,0" ItemsSource="{Binding Host.ParsingProfile.Rules}" SelectedItem="{Binding Host.SelectedParsingRule}" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="On" Binding="{Binding Enabled}" Width="55"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding Kind}" Width="150"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180"/>
+                            <DataGridTextColumn Header="Pattern" Binding="{Binding Pattern}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

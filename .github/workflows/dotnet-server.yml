@@ -21,35 +21,35 @@ jobs:
         with:
           global-json-file: global.json
 
-      - name: Restore Reforged.Server
-        run: dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj
+      - name: Restore RealmGate.Server
+        run: dotnet restore Apps/Source/RealmGate.Server/RealmGate.Server.csproj
 
-      - name: Restore Reforged.Validation
-        run: dotnet restore Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj
+      - name: Restore RealmGate.Validation
+        run: dotnet restore Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj
 
       - name: Restore Librarium compiler
-        run: dotnet restore Apps/Compiler/MajorMud.Reforged.Compiler.csproj
+        run: dotnet restore Apps/Compiler/RealmGate.Compiler.csproj
 
-      - name: Build Reforged.Server
-        run: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore
+      - name: Build RealmGate.Server
+        run: dotnet build Apps/Source/RealmGate.Server/RealmGate.Server.csproj --configuration Release --no-restore
 
-      - name: Build Reforged.Validation
-        run: dotnet build Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-restore
+      - name: Build RealmGate.Validation
+        run: dotnet build Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-restore
 
       - name: Build Librarium compiler
-        run: dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore
+        run: dotnet build Apps/Compiler/RealmGate.Compiler.csproj --configuration Release --no-restore
 
       - name: Generate Classic runtime data
-        run: dotnet run --project Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-build -- build --world Classic --clean
+        run: dotnet run --project Apps/Compiler/RealmGate.Compiler.csproj --configuration Release --no-build -- build --world Classic --clean
 
       - name: Generate Custom1 runtime data
-        run: dotnet run --project Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-build -- build --world Custom1 --clean
+        run: dotnet run --project Apps/Compiler/RealmGate.Compiler.csproj --configuration Release --no-build -- build --world Custom1 --clean
 
       - name: Verify MegaMUD Telnet connection contract
-        run: dotnet run --project Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-build -- --smoke-megamud-connection
+        run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-megamud-connection
 
       - name: Verify Classic parity closure
-        run: dotnet run --project Tools/ReforgedValidator/DotNet/Reforged.Validation.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
+        run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
 
       - name: Bootstrap diagnostics
-        run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- .
+        run: dotnet run --project Apps/Source/RealmGate.Server/RealmGate.Server.csproj --configuration Release --no-build -- .

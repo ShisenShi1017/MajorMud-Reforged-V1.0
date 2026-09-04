@@ -1,0 +1,169 @@
+<Window x:Class="RealmGate.App.Views.ClientTerminalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:RealmGate.App.Views"
+        Title="{Binding WindowTitle}"
+        Width="1040"
+        Height="760"
+        MinWidth="760"
+        MinHeight="500"
+        Background="#F0F0F0"
+        Foreground="#000000"
+        FontFamily="Tahoma"
+        FontSize="12">
+    <Window.Resources>
+        <Style x:Key="ClassicToolbarButton" TargetType="Button">
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Height" Value="23"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="BorderBrush" Value="#A0A0A0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#202020"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Grid>
+            <DockPanel x:Name="ClassicWorkspace" Background="#F0F0F0">
+
+                <DockPanel DockPanel.Dock="Top" Background="#F0F0F0" LastChildFill="True">
+                    <Menu x:Name="ClassicMenuBar" Background="#F0F0F0" Foreground="#111111" Padding="0">
+                        <MenuItem Header="_File">
+                            <MenuItem Header="Connect" Click="ConnectClicked"/>
+                            <MenuItem Header="Disconnect" Click="DisconnectClicked"/>
+                            <MenuItem Header="Hangup" Click="DisconnectClicked"/>
+                            <Separator/>
+                            <MenuItem Header="Exit" Click="CloseClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_BBS Profiles">
+                            <MenuItem Header="New Profile..." Click="NewCharacterProfileClicked"/>
+                            <MenuItem Header="Open Profiles..." Click="OpenCharacterProfilesClicked"/>
+                            <MenuItem Header="Save Profile" Click="SaveCharacterProfileClicked" InputGestureText="Ctrl+S"/>
+                            <MenuItem Header="Save Profile As..." Click="SaveCharacterAsProfileClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Edit">
+                            <MenuItem Header="Copy command input" Click="CopyClicked" ToolTip="Copies the current local command input. Password input is never copied."/>
+                            <MenuItem Header="Paste command input" Click="PasteClicked"/>
+                            <Separator/>
+                            <MenuItem Header="Back-scroll..." Click="BackScrollClicked" InputGestureText="Alt+B"/>
+                            <MenuItem Header="Capture / Export Log..." Click="ExportLogClicked"/>
+                            <MenuItem Header="Clear Screen" Click="ClearClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Action">
+                            <MenuItem Header="Goto..." Click="GotoClicked" InputGestureText="Alt+G" ToolTip="Browse bundled Classic destinations and calculate a safe route from the current room."/>
+                            <MenuItem Header="Loop..." Click="LoopClicked" InputGestureText="Alt+L" ToolTip="Generate and run a safe closed loop from the current room."/>
+                            <MenuItem x:Name="AutoRoamMenu" Header="Auto-Roam" Click="AutoRoamClicked" InputGestureText="Alt+R" ToolTip="Start random safe movement from the current room. Click again to stop."/>
+                            <MenuItem Header="Back Track" Click="BackTrackClicked" ToolTip="Reverse the last room-confirmed standard-direction route. Special exits fail closed."/>
+                            <MenuItem Header="Stop" Click="StopAllClicked" ToolTip="Stops and pauses all client automation state."/>
+                            <Separator/>
+                            <MenuItem Header="Record Path" Click="RecordPathClicked"/>
+                            <MenuItem Header="Import Path" Click="ImportPathClicked"/>
+                            <MenuItem Header="Fix Path Steps" Click="FixPathStepsClicked"/>
+                            <Separator/>
+                            <MenuItem Header="Get All" Click="GetAllClicked"/>
+                            <MenuItem Header="Drop All" Click="DropAllClicked"/>
+                            <MenuItem Header="Equip All" Click="EquipAllClicked"/>
+                            <MenuItem Header="Deposit All" Click="DepositAllClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Automation">
+                            <MenuItem Header="Configure Automation..." Click="AutomationControlsClicked" InputGestureText="Alt+M" ToolTip="Open the single RealmGate Automation window."/>
+                            <Separator/>
+                            <MenuItem Header="All Automation Off" Click="StopAllClicked"/>
+                            <MenuItem x:Name="AutoCombatMenu" Header="Auto Combat" IsCheckable="True" Tag="combat" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoPreAttackMenu" Header="Auto Pre-Attack" IsCheckable="True" Tag="preattack" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoNukeMenu" Header="Auto Nuke" IsCheckable="True" Tag="nuke" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoRestHealMenu" Header="Auto Rest / Heal" IsCheckable="True" Tag="restheal" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoBlessMenu" Header="Auto Bless" IsCheckable="True" Tag="bless" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoLightMenu" Header="Auto Light" IsCheckable="True" Tag="light" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoGetItemsMenu" Header="Auto Get Items" IsCheckable="True" Tag="getitems" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoGetCashMenu" Header="Auto Get Cash" IsCheckable="True" Tag="getcash" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoSneakMenu" Header="Auto Sneak" IsCheckable="True" Tag="sneak" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoHideMenu" Header="Auto Hide" IsCheckable="True" Tag="hide" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoSearchMenu" Header="Auto Search" IsCheckable="True" Tag="search" Click="QuickAutomationClicked"/>
+                            <MenuItem x:Name="AutoTrackMenu" Header="Auto Track" IsCheckable="True" Tag="track" Click="QuickAutomationClicked"/>
+                            <Separator/>
+                            <MenuItem x:Name="EventsEnabledMenu" Header="Events Enabled" IsCheckable="True" Tag="events" Click="QuickAutomationClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Party">
+                            <MenuItem Header="Party..." Click="PartyOptionsClicked" InputGestureText="Alt+P" ToolTip="Open party status and configuration in one window."/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Librarium">
+                            <MenuItem Header="Librarium Reference..." Click="LibrariumReferenceClicked"/>
+                            <MenuItem Header="Live Map..." Click="LiveMapClicked" InputGestureText="Alt+T"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Options">
+                            <MenuItem Header="Settings..." Click="OptionsClicked"/>
+                            <MenuItem Header="Font..." Click="FontClicked"/>
+                            <MenuItem Header="Sound" Click="SoundClicked"/>
+                            <Separator/>
+                            <MenuItem Header="Reset ANSI" Click="ResetAnsiClicked"/>
+                            <MenuItem Header="Reset Window Positions" Click="ResetWindowPositionsClicked"/>
+                        </MenuItem>
+
+                        <MenuItem Header="_Help">
+                            <MenuItem Header="RealmGate Help..." Click="HelpCenterClicked" InputGestureText="F1"/>
+                            <MenuItem Header="Keyboard and Input Help..." Click="KeyboardHelpClicked"/>
+                            <MenuItem Header="Report a Problem..." Click="ReportProblemClicked"/>
+                            <Separator/>
+                            <MenuItem Header="About RealmGate Client..." Click="AboutClicked"/>
+                        </MenuItem>
+                    </Menu>
+                </DockPanel>
+
+                <ToolBarTray x:Name="ClassicToolBarTray" DockPanel.Dock="Top" Background="#F0F0F0" IsLocked="True">
+                    <ToolBar Background="#F0F0F0" Padding="1" Band="0" BandIndex="0">
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="▣" ToolTip="Connect" Click="ConnectClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⊠" ToolTip="Disconnect" Click="DisconnectClicked"/>
+                        <Separator/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="➜" ToolTip="Browse Goto destinations" Click="GotoClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="↻" ToolTip="Run a safe loop from the current room" Click="LoopClicked"/>
+                        <Button x:Name="AutoRoamToolbarButton" Style="{StaticResource ClassicToolbarButton}" Content="✣" ToolTip="Start Auto-Roam" Click="AutoRoamClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚡" ToolTip="Automation" Click="AutomationControlsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="♟" ToolTip="Party" Click="PartyOptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="▤" ToolTip="Librarium" Click="LibrariumReferenceClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⌕" ToolTip="Find in received scrollback" Click="FindClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⚙" ToolTip="Settings" Click="OptionsClicked"/>
+                        <Button Style="{StaticResource ClassicToolbarButton}" Content="⊘" ToolTip="Stop All" Click="StopAllClicked"/>
+                    </ToolBar>
+                </ToolBarTray>
+
+                <StatusBar x:Name="ClassicStatusBar" DockPanel.Dock="Bottom" Height="23" Padding="2,0" Background="#F0F0F0" Foreground="#111111" TextElement.Foreground="#111111" DataContext="{Binding Session}">
+                    <TextBlock Text="●" Foreground="#16A040"/><TextBlock Text="{Binding DisplayName}" MinWidth="110"/><Separator/>
+                    <TextBlock Text="{Binding RouteStep}" MinWidth="28"/><Separator/><TextBlock Text="{Binding ConnectionMessage}" MinWidth="105" ToolTip="{Binding TelnetStatus}"/><TextBlock Text="{Binding TerminalSizeSummary}" Margin="8,0,0,0" ToolTip="{Binding TelnetStatus}"/><Separator/>
+                    <TextBlock Text="{Binding RouteProgress}" MinWidth="235"/><Separator/>
+                    <TextBlock Text="{Binding PvpRealmSummary}" Margin="4,0" ToolTip="{Binding PvpCombatSummary}"/><Separator/>
+                    <TextBlock Text="{Binding VitalSummary}"/>
+                </StatusBar>
+
+                <Border Background="#02050A"
+                        BorderBrush="#8A8A8A"
+                        BorderThickness="2"
+                        Margin="2,0,2,2"
+                        ClipToBounds="True">
+                    <views:ClassicMegaMudTerminal
+                        x:Name="ClassicTerminalSurface"
+                        Snapshot="{Binding Session.ClassicScreen}"
+                        IsPasswordMode="False"
+                        Background="#02050A"
+                        Foreground="#FFFFFF"
+                        FontFamily="Lucida Console"
+                        FontSize="18"
+                        CommandSubmitted="ClassicTerminalCommandSubmitted"
+                        KeySubmitted="ClassicTerminalKeySubmitted"
+                        TerminalSizeChanged="ClassicTerminalSizeChanged"/>
+                </Border>
+            </DockPanel>
+
+        </Grid>
+    </DockPanel>
+</Window>

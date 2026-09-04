@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace MajorMud.Reforged.Compiler;
+namespace RealmGate.Compiler;
 
 public sealed record OverlayDefinition(
     [property: JsonPropertyName("overlay_id")] string OverlayId,

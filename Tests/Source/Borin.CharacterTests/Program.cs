@@ -1,6 +1,6 @@
 using System.IO;
 using System.Text.Json;
-using Reforged.App.Brains;
+using RealmGate.App.Brains;
 
 var repositoryRoot = ReadArgument(args, "--repository") ?? FindRepositoryRoot(Environment.CurrentDirectory);
 var reportPath = ReadArgument(args, "--report") ?? Path.Combine(
@@ -58,7 +58,7 @@ static string FindRepositoryRoot(string start)
     var current = new DirectoryInfo(Path.GetFullPath(start));
     while (current is not null)
     {
-        if (File.Exists(Path.Combine(current.FullName, "MajorMud.Reforged.sln")))
+        if (File.Exists(Path.Combine(current.FullName, "RealmGate.sln")))
             return current.FullName;
         current = current.Parent;
     }

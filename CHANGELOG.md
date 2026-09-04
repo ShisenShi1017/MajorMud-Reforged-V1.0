@@ -14,7 +14,7 @@ This changelog is intentionally compact. Detailed historical pass-by-pass notes 
 
 - Consolidated the active root documentation into `README.md`, `PROJECT_STATUS.md`, `CHANGELOG.md`, `VERSION.md`, and `AGENTS.md`.
 - Promoted the repository metadata baseline from CodeUpdate0140 to CodeUpdate0141.
-- Recorded the locally verified automated baseline: Reforged.App and Reforged.Server Release builds clean, current-health validator 26/26 PASS, and Reforged client regression smokes 14/14 PASS.
+- Recorded the locally verified automated baseline: RealmGate.App and RealmGate.Server Release builds clean, current-health validator 26/26 PASS, and Reforged client regression smokes 14/14 PASS.
 - Integrated the completed Reforged client capability expansion and Creator Studio provenance architecture into the current project documentation.
 - Corrected client smoke assertions that were colliding with unrelated valid automation and with the cleaned repository's intentionally absent local MegaMUD `.mp` evidence archive.
 - Added generated-client-smoke report ignore rules.
