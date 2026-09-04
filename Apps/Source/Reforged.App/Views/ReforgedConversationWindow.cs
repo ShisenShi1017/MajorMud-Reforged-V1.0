@@ -51,10 +51,10 @@ public sealed class ReforgedConversationWindow : Window
 
         var root = new DockPanel { Margin = new Thickness(12) };
         var header = new StackPanel { Margin = new Thickness(0, 0, 0, 8) };
-        header.Children.Add(new TextBlock { Text = "Reforged Communications Desk", FontSize = 18, FontWeight = FontWeights.SemiBold });
+        header.Children.Add(new TextBlock { Text = "RealmGate Communications Desk", FontSize = 18, FontWeight = FontWeights.SemiBold });
         header.Children.Add(new TextBlock
         {
-            Text = "Merged chat/tell/party/system history from the active terminal session. Search and channel filters are local-only; sending uses the normal Reforged command path so aliases and safety rules still apply.",
+            Text = "Merged chat/tell/party/system history from the active terminal session. Search and channel filters are local-only; sending uses the normal RealmGate command path so aliases and safety rules still apply.",
             TextWrapping = TextWrapping.Wrap,
             Foreground = Brushes.DimGray
         });
@@ -77,8 +77,8 @@ public sealed class ReforgedConversationWindow : Window
         };
         _incoming = new CheckBox { Content = "Incoming", IsChecked = true, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 8, 0) };
         _outgoing = new CheckBox { Content = "Outgoing", IsChecked = true, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 8, 0) };
-        _logging = new CheckBox { Content = "Live log", IsChecked = session.TerminalPreferences.LoggingEnabled, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 8, 0), ToolTip = "Persist terminal entries using Reforged's existing per-character daily log." };
-        _recorded = new CheckBox { Content = "Recorded", IsChecked = true, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 0, 0), ToolTip = "Include historical rows loaded from a saved Reforged terminal log." };
+        _logging = new CheckBox { Content = "Live log", IsChecked = session.TerminalPreferences.LoggingEnabled, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 8, 0), ToolTip = "Persist terminal entries using RealmGate's existing per-character daily log." };
+        _recorded = new CheckBox { Content = "Recorded", IsChecked = true, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(4, 0, 0, 0), ToolTip = "Include historical rows loaded from a saved RealmGate terminal log." };
         Grid.SetColumn(_channel, 1); Grid.SetColumn(_incoming, 2); Grid.SetColumn(_outgoing, 3); Grid.SetColumn(_logging, 4); Grid.SetColumn(_recorded, 5);
         filters.Children.Add(_search); filters.Children.Add(_channel); filters.Children.Add(_incoming); filters.Children.Add(_outgoing); filters.Children.Add(_logging); filters.Children.Add(_recorded);
         DockPanel.SetDock(filters, Dock.Top);
@@ -103,7 +103,7 @@ public sealed class ReforgedConversationWindow : Window
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        _input = new TextBox { ToolTip = "Send through the normal Reforged command path", Margin = new Thickness(0, 0, 6, 0) };
+        _input = new TextBox { ToolTip = "Send through the normal RealmGate command path", Margin = new Thickness(0, 0, 6, 0) };
         var send = Button("Send", 70);
         var copy = Button("Copy row", 80);
         var export = Button("Export visible...", 110);
@@ -181,8 +181,8 @@ public sealed class ReforgedConversationWindow : Window
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Open Reforged communications history",
-            Filter = "Reforged logs (*.log)|*.log|All files (*.*)|*.*",
+            Title = "Open RealmGate communications history",
+            Filter = "RealmGate logs (*.log)|*.log|All files (*.*)|*.*",
             InitialDirectory = Directory.Exists(ReforgedParityCompletionService.ConversationHistoryFolder)
                 ? ReforgedParityCompletionService.ConversationHistoryFolder
                 : null

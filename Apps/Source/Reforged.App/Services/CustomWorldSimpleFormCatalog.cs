@@ -88,7 +88,7 @@ public static class CustomWorldSimpleFormCatalog
             ["npcs"] = new("npcs", "NPC / Monster", "npc.custom", "Create a monster or NPC with normal fields. Attacks and abilities are edited visually in the dedicated Monster editor.",
             [
                 T("name", "Name", true, "New NPC"),
-                I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a Reforged-only NPC."),
+                I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a RealmGate-only NPC."),
                 I("combat.level", "Level", true, "1"),
                 I("combat.hp", "Hit points", true, "20"),
                 I("combat.energy", "Energy", false, "1000"),
@@ -132,7 +132,7 @@ public static class CustomWorldSimpleFormCatalog
             ["items"] = new("items", "Item", "item.custom", "Create weapons, armor, containers, consumables, or ordinary items. The dedicated Item editor separates equipment, combat, effects, restrictions, and economy.",
             [
                 T("name", "Item name", true, "New Item"),
-                I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a Reforged-only item."),
+                I("legacy_id", "Legacy number", false, "0", "Optional. Use 0 for a RealmGate-only item."),
                 C("classification.type", "Item type", [O("misc","Miscellaneous"),O("weapon","Weapon"),O("armor","Armor"),O("container","Container"),O("consumable","Consumable"),O("food","Food"),O("drink","Drink")], true, "misc"),
                 B("flags.gettable", "Player can pick it up", true),
                 I("economy.weight", "Weight", false, "0"),

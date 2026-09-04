@@ -45,7 +45,7 @@ public sealed class ServerClientDataHost
     public async Task RunAsync(CancellationToken cancellationToken)
     {
         if (_options.ClientDataPort == _options.TelnetPort)
-            throw new InvalidOperationException("The Reforged client-data port must be different from the Telnet port.");
+            throw new InvalidOperationException("The RealmGate client-data port must be different from the Telnet port.");
 
         var endpoint = new IPEndPoint(_options.ResolveBindAddress(), _options.ClientDataPort);
         var listener = new TcpListener(endpoint);

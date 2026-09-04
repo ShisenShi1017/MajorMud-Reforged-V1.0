@@ -38,7 +38,7 @@ public sealed class BorinCharacterTestHarness
         var started = DateTimeOffset.Now;
         var temporaryRoot = Path.Combine(
             Path.GetTempPath(),
-            "MajorMudReforged",
+            "RealmGate",
             "BorinCharacterTests",
             Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(temporaryRoot);
@@ -72,8 +72,8 @@ public sealed class BorinCharacterTestHarness
             await RunCaseAsync(cases, "Sensitive telnet commands are redacted from traffic traces", TestSensitiveTelnetTraceRedactionAsync, token);
             await RunCaseAsync(cases, "Visible room exits are parsed exactly", TestVisibleExitParsingAsync, token);
             await RunCaseAsync(cases, "Scalar HP prompts remain honest and safe", TestScalarHealthPromptAsync, token);
-            await RunCaseAsync(cases, "Game server identity distinguishes Omniverse and Reforged", TestGameServerIdentityAsync, token);
-            await RunCaseAsync(cases, "Login isolation blocks client leakage and Reforged protocol on Omniverse", TestClientLoginIsolationPolicyAsync, token);
+            await RunCaseAsync(cases, "Game server identity distinguishes Omniverse and RealmGate", TestGameServerIdentityAsync, token);
+            await RunCaseAsync(cases, "Login isolation blocks client leakage and RealmGate protocol on Omniverse", TestClientLoginIsolationPolicyAsync, token);
             await RunCaseAsync(cases, "Autonomous play requires fresh verified perception", TestAutonomousPerceptionGateAsync, token);
             await RunCaseAsync(cases, "Autonomous leveling guidance reads catalog-listed Librarium records", () => TestLibrariumPlayerGuidanceAsync(temporaryRoot, token), token);
             await RunCaseAsync(cases, "Verified gameplay memory retains character-specific leveling experience", () => TestGameplayLevelingExperienceAsync(temporaryRoot, token), token);
@@ -530,16 +530,16 @@ public sealed class BorinCharacterTestHarness
         Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.AutonomousAgent),
             "Borin gameplay remained blocked after the MajorMUD game prompt was verified.");
         Assert(!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session),
-            "Omniverse was incorrectly classified as a Reforged private-protocol server.");
+            "Omniverse was incorrectly classified as a RealmGate private-protocol server.");
         Assert(!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol),
             "ROOMDATA/CLIENTDATA would still leak into an Omniverse session after login.");
 
-        session.ServerProfileName = "Reforged Server";
+        session.ServerProfileName = "RealmGate Server";
         session.HostName = "127.0.0.1";
         Assert(ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session),
-            "The local Reforged server was not recognized as private-protocol capable.");
+            "The local RealmGate server was not recognized as private-protocol capable.");
         Assert(ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol),
-            "Private protocol remained blocked on a verified in-game Reforged session.");
+            "Private protocol remained blocked on a verified in-game RealmGate session.");
         return Task.CompletedTask;
     }
 
@@ -564,23 +564,23 @@ public sealed class BorinCharacterTestHarness
         Assert(omniverse.EnvironmentSummary.Contains("playing on Omniverse BBS", StringComparison.OrdinalIgnoreCase),
             "Omniverse environment summary does not separate the application from the server.");
 
-        session.ServerProfileName = "Reforged Server";
+        session.ServerProfileName = "RealmGate Server";
         session.HostName = "127.0.0.1";
         var reforged = BorinGameStateSnapshot.Capture(
-            settings with { ServerProfileName = "Reforged Server", HostName = "127.0.0.1" },
+            settings with { ServerProfileName = "RealmGate Server", HostName = "127.0.0.1" },
             login,
             session);
         Assert(reforged.HostKind == BorinGameHostKind.ReforgedServer,
-            $"Local Reforged session was classified as {reforged.HostKind}.");
-        Assert(reforged.EnvironmentSummary.Contains("playing on the Reforged server", StringComparison.OrdinalIgnoreCase),
-            "Reforged-server environment summary was not explicit.");
+            $"Local RealmGate session was classified as {reforged.HostKind}.");
+        Assert(reforged.EnvironmentSummary.Contains("playing on the RealmGate server", StringComparison.OrdinalIgnoreCase),
+            "RealmGate-server environment summary was not explicit.");
 
         var staleOmniverseLabelOnLocalEndpoint = BorinGameStateSnapshot.ResolveHostKind("Omniverse BBS", "127.0.0.1");
         Assert(staleOmniverseLabelOnLocalEndpoint == BorinGameHostKind.ReforgedServer,
             "The connected local endpoint did not override a stale Omniverse profile label.");
         var staleReforgedLabelOnOmniverseEndpoint = BorinGameStateSnapshot.ResolveHostKind("Reforged Server", "omniversebbs.com");
         Assert(staleReforgedLabelOnOmniverseEndpoint == BorinGameHostKind.OmniverseBbs,
-            "The connected Omniverse endpoint did not override a stale Reforged profile label.");
+            "The connected Omniverse endpoint did not override a stale legacy Reforged profile label.");
         return Task.CompletedTask;
     }
 
@@ -1890,7 +1890,7 @@ public sealed class BorinCharacterTestHarness
             "Academy did not bind the MajorMUD Commands curriculum question to its concrete authoritative command record.");
         Assert(questions.Where(q => q.Domain == BorinAcademyDomain.Reforged).All(q =>
                 !q.ExpectedEvidenceLocation.Replace('\\', '/').StartsWith("Data/Classic/", StringComparison.OrdinalIgnoreCase)),
-            "Academy paired a Reforged curriculum question with MajorMUD generated data.");
+            "Academy paired a RealmGate curriculum question with MajorMUD generated data.");
         var question = questions[0];
         var passed = await academy.EvaluateAsync(repository, question,
             $"{question.ExpectedEvidenceText}\nSource: {question.ExpectedEvidenceLocation}\nConfidence: {question.ExpectedConfidence.ToDisplayText()}", "Local test", token);
@@ -1910,7 +1910,7 @@ public sealed class BorinCharacterTestHarness
         await academy.SetIdleTrainingAsync(repository, true, 50, token);
         var snapshot = await academy.GetSnapshotAsync(repository, token);
         Assert(snapshot.TrainWhileIdle && snapshot.IdleRequestsPerMinute == 10 && snapshot.MajorMudMastery is not null && snapshot.ReforgedMastery is null,
-            "Academy idle cap, score persistence, or MajorMUD/Reforged Commands domain separation is incorrect.");
+            "Academy idle cap, score persistence, or MajorMUD/RealmGate Commands domain separation is incorrect.");
         var logs = Path.Combine(repository, "Release", "Logs"); Directory.CreateDirectory(logs);
         await File.WriteAllTextAsync(Path.Combine(logs, "verified.json"), "{\"build\":\"PASS\",\"tests\":\"PASS\",\"room\":\"room.map1.1847\"}", token);
         snapshot = await academy.ReplayHistoryAsync(repository, token);

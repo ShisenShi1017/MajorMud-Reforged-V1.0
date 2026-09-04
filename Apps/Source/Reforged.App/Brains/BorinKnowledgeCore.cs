@@ -362,7 +362,7 @@ public sealed class BorinKnowledgeCore : IBorinKnowledgeCore
                 ? $"{symbol.Kind} references: {string.Join(", ", symbol.References.Where(searchTerms.Contains).Take(8))}"
                 : $"Roslyn {symbol.Kind} declaration";
             var provenance = new BorinKnowledgeProvenance(
-                "Reforged source",
+                "RealmGate source",
                 symbol.RelativePath,
                 symbol.StartLine,
                 symbol.EndLine,

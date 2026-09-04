@@ -36,7 +36,7 @@ public sealed partial class MudPlayNavigationService
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+            "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "Navigation");
     }
 
@@ -177,7 +177,7 @@ public sealed partial class MudPlayNavigationService
                 Route = new MegaMudPathRecord
                 {
                     FileName = "client-safe-route.mp",
-                    Author = "Reforged Client",
+                    Author = "RealmGate Client",
                     StartLabel = snapshot.Rooms[start].Name,
                     EndLabel = snapshot.Rooms[destination].Name,
                     NativeStartKey = start,
@@ -457,7 +457,7 @@ public sealed partial class MudPlayNavigationService
             Route = new MegaMudPathRecord
             {
                 FileName = destination.Equals(start, StringComparison.OrdinalIgnoreCase) ? "client-safe-loop.mp" : "client-safe-route.mp",
-                Author = "Reforged Client Navigation",
+                Author = "RealmGate Client Navigation",
                 StartLabel = startName,
                 EndLabel = destinationName,
                 NativeStartKey = start,

@@ -151,7 +151,7 @@ public sealed partial class ClientParsingProfileService : IClientParsingProfileS
         ValidateRules(Profile);
         var package = new ClientParsingProfilePackage
         {
-            Format = "MajorMUD Reforged Client Parsing Profile",
+            Format = "RealmGate Client Parsing Profile",
             Version = 1,
             ExportedUtc = DateTimeOffset.UtcNow,
             Profile = Clone(Profile)
@@ -163,7 +163,10 @@ public sealed partial class ClientParsingProfileService : IClientParsingProfileS
     {
         var package = JsonSerializer.Deserialize<ClientParsingProfilePackage>(await File.ReadAllTextAsync(path), _json)
             ?? throw new InvalidDataException("The selected file is not a valid Client parsing profile.");
-        if (!string.Equals(package.Format, "MajorMUD Reforged Client Parsing Profile", StringComparison.Ordinal) || package.Version != 1)
+        var supportedFormat =
+            string.Equals(package.Format, "RealmGate Client Parsing Profile", StringComparison.Ordinal) ||
+            string.Equals(package.Format, "MajorMUD Reforged Client Parsing Profile", StringComparison.Ordinal);
+        if (!supportedFormat || package.Version != 1)
             throw new InvalidDataException("This Client profile format is not supported.");
         var imported = package.Profile ?? throw new InvalidDataException("The selected Client profile contains no profile data.");
         ValidateRules(imported);

@@ -172,7 +172,7 @@ public sealed class BorinMajorMudKnowledgeCatalog : IBorinMajorMudKnowledgeCatal
     {
         var path = GetIndexPath(repositoryRoot);
         if (!File.Exists(path))
-            return new("Not built", 0, 0, path, null, "Run Learn Reforged to index generated Classic knowledge.");
+            return new("Not built", 0, 0, path, null, "Run Learn RealmGate to index generated Classic knowledge.");
         var document = await LoadAsync(path, token);
         return Status(document, path, "Generated Classic reference catalog is ready.");
     }

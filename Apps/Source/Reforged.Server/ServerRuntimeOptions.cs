@@ -10,7 +10,7 @@ namespace Reforged.Server;
 /// </summary>
 public sealed class ServerRuntimeOptions
 {
-    public string HostName { get; init; } = "Reforged Realms Host";
+    public string HostName { get; init; } = "RealmGate Host";
     public string DefaultWorldId { get; init; } = "classic";
     public int WorldTickMilliseconds { get; init; } = 1000;
     public int CombatTickMilliseconds { get; init; } = 5000;
@@ -52,7 +52,7 @@ public sealed class ServerRuntimeOptions
                         AiMode = ReadString(world, "aiMode", "Off"),
                         BrandingLogo = ReadString(world, "brandingLogo", string.Empty),
                         LoginBanner = ReadString(world, "loginBanner", string.Empty),
-                        Motd = ReadString(world, "motd", "Welcome to MajorMUD Reforged Classic."),
+                        Motd = ReadString(world, "motd", "Welcome to RealmGate Classic."),
                         RuntimeEnabled = ReadBoolean(world, "runtimeEnabled", true),
                         TransfersAllowed = ReadBoolean(world, "transfersAllowed", false),
                         ClassicProtected = ReadBoolean(world, "classicProtected", true)
@@ -67,7 +67,7 @@ public sealed class ServerRuntimeOptions
 
             return new ServerRuntimeOptions
             {
-                HostName = ReadString(root, "hostName", "Reforged Realms Host"),
+                HostName = ReadString(root, "hostName", "RealmGate Host"),
                 DefaultWorldId = ReadString(root, "defaultWorldId", worlds[0].Id),
                 WorldTickMilliseconds = ReadInt(root, "worldTickMilliseconds", 1000),
                 CombatTickMilliseconds = ReadInt(root, "combatTickMilliseconds", 5000),
@@ -86,7 +86,7 @@ public sealed class ServerRuntimeOptions
     {
         return new ServerRuntimeOptions
         {
-            HostName = "Reforged Realms Host",
+            HostName = "RealmGate Host",
             DefaultWorldId = "classic",
             WorldTickMilliseconds = 1000,
             CombatTickMilliseconds = 5000,
@@ -112,7 +112,7 @@ public sealed class ServerRuntimeOptions
                     RuntimeEnabled = true,
                     TransfersAllowed = false,
                     ClassicProtected = true,
-                    Motd = "Welcome to MajorMUD Reforged Classic."
+                    Motd = "Welcome to RealmGate Classic."
                 }
             }
         };

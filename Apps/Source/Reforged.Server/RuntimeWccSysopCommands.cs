@@ -169,7 +169,7 @@ public sealed class RuntimeWccSysopService
             "goto" => ExecuteGoto(session, definition, arguments),
             "initialize" => ExecuteInitialize(arguments, living),
             "configure" => ExecuteConfigure(arguments),
-            "reload" => "SYSOP RELOAD has no literal file target in Reforged: native MajorMUD reloaded WCCMMUD.INI, while Reforged stores equivalent configuration in its own internal configuration system.",
+            "reload" => "SYSOP RELOAD has no literal file target in RealmGate: native MajorMUD reloaded WCCMMUD.INI, while RealmGate stores equivalent configuration in its own internal configuration system.",
             "reset" => ExecuteReset(session, arguments, living),
             "speak" => ExecuteSpeak(session, arguments),
             "arena" => ExecuteArena(character.WorldId, arguments),
@@ -405,7 +405,7 @@ public sealed class RuntimeWccSysopService
     private string ExecuteGangCommand(string command, IReadOnlyList<string> arguments)
     {
         if (command.Equals("unwrap", StringComparison.OrdinalIgnoreCase))
-            return "SYSOP UNWRAP is not required for the current standalone Reforged gang state; no state changed.";
+            return "SYSOP UNWRAP is not required for the current standalone RealmGate gang state; no state changed.";
         int? requestedSize = null;
         string name;
         if (command.Equals("gangsize", StringComparison.OrdinalIgnoreCase))
@@ -715,7 +715,7 @@ public sealed class RuntimeWccSysopService
             return $"Host={host.HostName}; bind={host.BindAddress}; port={host.Port}; maxUsers={host.MaxSessions}; worldTickMs={host.WorldTickMilliseconds}; combatTickMs={host.CombatTickMilliseconds}; gameplay={host.GameplayEnabled}; networking={host.NetworkingEnabled}; worldSimulation={host.WorldSimulationEnabled}; activeUsers={_sessions.ActiveSessionCount}.";
         }
         if (arguments.Count > 0 && arguments[0].Equals("maxusers", StringComparison.OrdinalIgnoreCase))
-            return "SYSOP CONFIGURE MAXUSERS is not applicable: realm capacity belongs to the standalone Reforged application configuration; no state changed.";
+            return "SYSOP CONFIGURE MAXUSERS is not applicable: realm capacity belongs to the standalone RealmGate application configuration; no state changed.";
         return "Usage: SYSOP CONFIGURE SHOW|MAXUSERS <n>";
     }
 

@@ -142,14 +142,14 @@ public static partial class ReforgedClientDiagnosticsService
         ArgumentNullException.ThrowIfNull(options);
         var folder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMudReforged", "Diagnostics");
+            "RealmGate", "Diagnostics");
         Directory.CreateDirectory(folder);
         var safeName = string.Concat((string.IsNullOrWhiteSpace(session.CharacterName) ? session.DisplayName : session.CharacterName)
             .Select(ch => Path.GetInvalidFileNameChars().Contains(ch) ? '_' : ch));
         destinationPath ??= Path.Combine(folder, $"reforged-client-support-{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.txt");
 
         var sb = new StringBuilder();
-        sb.AppendLine("MajorMUD Reforged Client Support Bundle");
+        sb.AppendLine("RealmGate Client Support Bundle");
         sb.AppendLine($"Generated: {DateTimeOffset.Now:O}");
         sb.AppendLine("Privacy: terminal conversation text and raw Telnet trace payloads are intentionally excluded.");
         sb.AppendLine();

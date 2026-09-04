@@ -30,7 +30,7 @@ public sealed class ReforgedBugReportWindow : Window
     {
         _host = host ?? throw new ArgumentNullException(nameof(host));
         Session = session ?? throw new ArgumentNullException(nameof(session));
-        Title = $"Report a Reforged Problem — {DisplayCharacter(session)}";
+        Title = $"Report a RealmGate Problem — {DisplayCharacter(session)}";
         Width = 780;
         Height = 740;
         MinWidth = 620;
@@ -43,10 +43,10 @@ public sealed class ReforgedBugReportWindow : Window
 
         var root = new DockPanel { Margin = new Thickness(14) };
         var header = new StackPanel { Margin = new Thickness(0, 0, 0, 10) };
-        header.Children.Add(new TextBlock { Text = "Capture a Reforged problem", FontSize = 18, FontWeight = FontWeights.SemiBold });
+        header.Children.Add(new TextBlock { Text = "Capture a RealmGate problem", FontSize = 18, FontWeight = FontWeights.SemiBold });
         header.Children.Add(new TextBlock
         {
-            Text = "Generate a Markdown report frozen at the time of the problem. It includes Reforged session/automation diagnostics and can optionally include recent terminal output. Saved BBS passwords are not collected by this report.",
+            Text = "Generate a Markdown report frozen at the time of the problem. It includes RealmGate session/automation diagnostics and can optionally include recent terminal output. Saved BBS passwords are not collected by this report.",
             TextWrapping = TextWrapping.Wrap,
             Foreground = Brushes.DimGray
         });
@@ -80,7 +80,7 @@ public sealed class ReforgedBugReportWindow : Window
         generate.Click += async (_, _) => await GenerateAsync(null);
         saveAs.Click += async (_, _) =>
         {
-            var dlg = new SaveFileDialog { Title = "Save Reforged problem report", Filter = "Markdown (*.md)|*.md|All files (*.*)|*.*", FileName = $"reforged-problem-{DateTime.Now:yyyyMMdd-HHmmss}.md" };
+            var dlg = new SaveFileDialog { Title = "Save RealmGate problem report", Filter = "Markdown (*.md)|*.md|All files (*.*)|*.*", FileName = $"realmgate-problem-{DateTime.Now:yyyyMMdd-HHmmss}.md" };
             if (dlg.ShowDialog(this) == true) await GenerateAsync(dlg.FileName);
         };
     }
@@ -94,7 +94,7 @@ public sealed class ReforgedBugReportWindow : Window
         }
         try
         {
-            _status.Text = "Capturing current Reforged state...";
+            _status.Text = "Capturing current RealmGate state...";
             var request = new ReforgedBugReportRequest
             {
                 Area = _area.SelectedItem?.ToString() ?? "Client",

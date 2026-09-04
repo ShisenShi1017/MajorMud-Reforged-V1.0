@@ -401,7 +401,7 @@
         <TextBox Text="{Binding PlayerMentorAiName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Known AI mentor subject to the three-reply loop guard" Style="{StaticResource ForgeTextBox}" MinHeight="28" Margin="3,0,3,4"/>
 
         <TextBlock Text="SECURE PASSWORD" Foreground="#9EAAA5" FontSize="10" FontWeight="Bold" Margin="3,2,3,2"/>
-        <PasswordBox x:Name="BorinPlayerPasswordBox" ToolTip="Saved only in Windows Credential Manager; never stored in Reforged files or sent to Qwen"
+        <PasswordBox x:Name="BorinPlayerPasswordBox" ToolTip="Saved only in Windows Credential Manager; never stored in RealmGate files or sent to Qwen"
                      Foreground="{StaticResource ForgeText}" Background="#111619" BorderBrush="#5A6870" BorderThickness="1" Padding="9"
                      MinHeight="30" Margin="3,0,3,3" PasswordChar="*"/>
         <TextBlock Text="{Binding PlayerPasswordStatus}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10" Margin="3,0,3,3"/>
@@ -501,7 +501,7 @@
         <TextBlock Text="{Binding PlayerJournalPath}" TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10" Margin="3,0,3,4"/>
         <TextBlock Text="Borin plays his own character through the exact active client session. Play by Himself uses only verified prompt, room, exit, command-ownership, and server evidence; it stops immediately when William types a terminal command or perception becomes stale."
                    TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,5,3,2"/>
-        <TextBlock Text="MajorMUD Reforged is the application. Omniverse BBS, the Reforged server, and other configured BBS hosts remain distinct. Borin reports the connected server exactly and never invents an exit destination."
+        <TextBlock Text="RealmGate is the application. Omniverse BBS, the RealmGate server, and other configured BBS hosts remain distinct. Borin reports the connected server exactly and never invents an exit destination."
                    TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>
        </StackPanel>
       </Expander>
@@ -611,7 +611,7 @@
        </StackPanel>
       </Expander>
 
-      <Expander Header="&#x1F50E;  Read-Only Reforged Access" IsExpanded="False" Margin="0,2">
+      <Expander Header="&#x1F50E;  Read-Only RealmGate Access" IsExpanded="False" Margin="0,2">
        <StackPanel Margin="5,4,0,8">
         <TextBlock Text="{Binding ReadOnlyAccessSummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
         <UniformGrid Columns="2">
@@ -625,13 +625,13 @@
        </StackPanel>
       </Expander>
 
-      <Expander Header="&#x1F4DA;  Reforged Knowledge Index" IsExpanded="False" Margin="0,2">
+      <Expander Header="&#x1F4DA;  RealmGate Knowledge Index" IsExpanded="False" Margin="0,2">
        <StackPanel Margin="5,4,0,8">
         <TextBlock Text="{Binding KnowledgeIndexSummary}" TextWrapping="Wrap" Margin="3,2,3,7" Foreground="#AFC7B7"/>
         <TextBlock Text="{Binding MajorMudKnowledgeSummary}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#79C99E"/>
         <TextBlock Text="{Binding VerifiedLearningSummary}" TextWrapping="Wrap" Margin="3,0,3,7" Foreground="#79C99E"/>
         <UniformGrid Columns="2">
-         <Button Content="Learn Reforged" Command="{Binding LearnReforgedCommand}" Style="{StaticResource ForgeButton}"/>
+         <Button Content="Learn RealmGate" Command="{Binding LearnReforgedCommand}" Style="{StaticResource ForgeButton}"/>
          <Button Content="Learn Changed" Command="{Binding LearnChangedCommand}" Style="{StaticResource ForgeButton}"/>
          <Button Content="Index Status" Command="{Binding LearnStatusCommand}" Style="{StaticResource ForgeButton}"/>
          <Button Content="Knowledge Help" Command="{Binding KnowledgeHelpCommand}" Style="{StaticResource ForgeButton}"/>
@@ -647,7 +647,7 @@
           <TextBlock Text="{Binding KnowledgeRecallSummary}" TextWrapping="Wrap" Foreground="#AFC7B7" FontSize="10.5" Margin="0,2,0,0"/>
          </StackPanel>
         </Border>
-        <TextBlock Text="Use /learn reforged for the first resumable scan, /learn changed after repository updates, and /knowledge &lt;question&gt; for a direct indexed search. The Cancel button saves a checkpoint."
+        <TextBlock Text="Use /learn realmgate for the first resumable scan, /learn changed after repository updates, and /knowledge &lt;question&gt; for a direct indexed search. The Cancel button saves a checkpoint."
                    TextWrapping="Wrap" Foreground="#C7B28E" FontSize="10.5" Margin="3,6,3,2"/>
         <TextBlock Text="The index is stored under AI\Memory\Knowledge. It is retrieval, not Qwen retraining, and it never treats imported databases as authoritative gameplay data."
                    TextWrapping="Wrap" Foreground="#9EAAA5" FontSize="10.5" Margin="3,2,3,2"/>

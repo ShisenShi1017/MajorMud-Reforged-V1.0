@@ -41,7 +41,7 @@ for (var i = 1; i < args.Length; i++)
 
 if (command is "help" or "--help" or "-h")
 {
-    Console.WriteLine("MajorMUD Reforged Librarium Compiler v1.2 / CodeUpdate 0279");
+    Console.WriteLine("RealmGate Librarium Compiler v1.2 / CodeUpdate 0279");
     Console.WriteLine("Commands:");
     Console.WriteLine("  build --world Classic|Custom1|CustomTemplate|AIFromClassic [--clean] [--root <repo>] [--output <folder>]");
     Console.WriteLine("  validate [--world Classic|Custom1] [--root <repo>]");

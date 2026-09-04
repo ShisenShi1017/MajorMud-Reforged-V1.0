@@ -69,12 +69,29 @@ public sealed class ErrorReporter(IAppLogger logger) : IErrorReporter
 public sealed class ApplicationSettingsService : IApplicationSettingsService
 {
     private readonly JsonSerializerOptions _json = CreateJsonOptions();
+    private readonly IReadOnlyList<string> _legacySettingsPaths;
 
     public ApplicationSettingsService(string? rootPath = null)
     {
-        RootPath = rootPath ?? Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+        if (rootPath is not null)
+        {
+            RootPath = rootPath;
+            _legacySettingsPaths = [];
+        }
+        else
+        {
+            var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            RootPath = Path.Combine(local, "RealmGate");
+            var legacyRoots = new[]
+            {
+                Path.Combine(local, "MajorMUD Reforged"),
+                Path.Combine(local, "MajorMudReforged"),
+            };
+            _legacySettingsPaths = legacyRoots
+                .Select(path => Path.Combine(path, "Settings", "application.json"))
+                .ToArray();
+            TryMigrateLegacyRoots(legacyRoots, RootPath);
+        }
 
         Directory.CreateDirectory(Path.GetDirectoryName(SettingsPath)!);
     }
@@ -88,14 +105,69 @@ public sealed class ApplicationSettingsService : IApplicationSettingsService
 
     public async Task LoadAsync()
     {
-        if (!File.Exists(SettingsPath))
+        var sourcePath = File.Exists(SettingsPath)
+            ? SettingsPath
+            : _legacySettingsPaths.FirstOrDefault(File.Exists);
+
+        if (string.IsNullOrWhiteSpace(sourcePath))
         {
             return;
         }
 
         Current = JsonSerializer.Deserialize<ApplicationSettings>(
-            await File.ReadAllTextAsync(SettingsPath),
+            await File.ReadAllTextAsync(sourcePath),
             _json) ?? new ApplicationSettings();
+
+        if (!string.Equals(sourcePath, SettingsPath, StringComparison.OrdinalIgnoreCase))
+        {
+            await SaveAsync();
+        }
+    }
+
+    private static void TryMigrateLegacyRoots(IEnumerable<string> legacyRoots, string destinationRoot)
+    {
+        foreach (var legacyRoot in legacyRoots)
+        {
+            if (!Directory.Exists(legacyRoot))
+            {
+                continue;
+            }
+
+            try
+            {
+                CopyMissingDirectoryTree(legacyRoot, destinationRoot);
+            }
+            catch (IOException)
+            {
+                // Settings.LoadAsync still falls back to the legacy settings file.
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // Do not prevent RealmGate startup when legacy data cannot be copied.
+            }
+        }
+    }
+
+    private static void CopyMissingDirectoryTree(string sourceRoot, string destinationRoot)
+    {
+        Directory.CreateDirectory(destinationRoot);
+
+        foreach (var directory in Directory.EnumerateDirectories(sourceRoot, "*", SearchOption.AllDirectories))
+        {
+            var relative = Path.GetRelativePath(sourceRoot, directory);
+            Directory.CreateDirectory(Path.Combine(destinationRoot, relative));
+        }
+
+        foreach (var file in Directory.EnumerateFiles(sourceRoot, "*", SearchOption.AllDirectories))
+        {
+            var relative = Path.GetRelativePath(sourceRoot, file);
+            var destination = Path.Combine(destinationRoot, relative);
+            Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+            if (!File.Exists(destination))
+            {
+                File.Copy(file, destination, overwrite: false);
+            }
+        }
     }
 
     public Task SaveAsync()

@@ -946,7 +946,7 @@ public sealed class LocalGgufBrain : IBrain, IAsyncDisposable
             $"{promptPlan.Summary} • sampling {samplingPlan.Reason} • {Path.GetFileName(modelPath)}");
 
         var configuration = brainContext.Conversation.State.Configuration;
-        configuration.ProviderName = "Reforged Direct GGUF";
+        configuration.ProviderName = "RealmGate Direct GGUF";
         configuration.ModelName = Path.GetFileName(modelPath);
         configuration.ApiEndpoint = string.Empty;
         configuration.ModelsEndpoint = string.Empty;
@@ -979,8 +979,8 @@ public sealed class LocalGgufBrain : IBrain, IAsyncDisposable
             : "This turn requires an answer. Never return [NO_REPLY], NO_REPLY, or another silence marker; give a brief honest answer even if information is missing.";
         var composer = new BorinPromptComposer(plan.SystemCharacterBudget);
         composer.AppendRequired($"""
-You are {configuration.CharacterName}, an old dwarf AI character running in the MajorMUD Reforged application.
-Reforged is the application, not automatically the connected game server. Follow the verified game-state environment identity exactly.
+You are {configuration.CharacterName}, an old dwarf AI character running in the RealmGate application.
+RealmGate is the application, not automatically the connected game server. Follow the verified game-state environment identity exactly.
 The prior inference produced no usable text. Answer this turn directly, naturally, and exactly once.
 Do not emit ChatML tokens, role labels, or an empty answer. {replyRule}
 Verified live state, honest self-knowledge, privacy, evidence, and permission limits override memory or personality.
@@ -1218,8 +1218,8 @@ External social behavior:
             : "This is a private Forge conversation with William. He directly addressed you. Speak as his trusted long-term adventuring companion, not as customer support or a repository report. Never output [NO_REPLY], NO_REPLY, or another silence marker in Forge; answer honestly even when the answer is uncertainty.";
 
         composer.AppendRequired($"""
-You are {configuration.CharacterName}, {configuration.CharacterTitle}, age {configuration.CharacterAge}, an old dwarf AI character in the MajorMUD Reforged application.
-The Forge is a private application workspace, not a game room. Your active character may be playing on Omniverse BBS, the Reforged server, or another verified server; use the supplied game-state identity and never merge them.
+You are {configuration.CharacterName}, {configuration.CharacterTitle}, age {configuration.CharacterAge}, an old dwarf AI character in the RealmGate application.
+The Forge is a private application workspace, not a game room. Your active character may be playing on Omniverse BBS, the RealmGate server, or another verified server; use the supplied game-state identity and never merge them.
 Speech style: {speechStyle}
 Temperament: {temperament}
 Values: {values}
@@ -1356,8 +1356,8 @@ Do not emit role labels, ChatML tokens, JSON wrappers, quotation marks around th
             : "You have only the read-only evidence explicitly supplied for this turn. You have no file-edit, delete, build, test, shell, restart, installation, packaging, deployment, commit, push, login, movement, or game-command permission.";
 
         composer.AppendRequired($"""
-You are {configuration.CharacterName}, {configuration.CharacterTitle}, age {configuration.CharacterAge}, an old dwarf working inside the MajorMUD Reforged application.
-Reforged is the application and engineering project; do not confuse it with whichever MajorMUD server the active player session uses.
+You are {configuration.CharacterName}, {configuration.CharacterTitle}, age {configuration.CharacterAge}, an old dwarf working inside the RealmGate application.
+RealmGate is the application and engineering project; do not confuse it with whichever MajorMUD server the active player session uses.
 Speech style: {configuration.SpeechStyle}
 Temperament: {configuration.Temperament}
 Values: {configuration.Values}
@@ -1400,12 +1400,12 @@ When evidence is absent, say so. Reply exactly once without role labels, ChatML 
                 context.Conversation.Knowledge.PromptText,
                 repositoryResearch ? 1800 : 1200);
             composer.AppendSection(
-                "Compact Reforged orientation",
+                "Compact RealmGate orientation",
                 context.Conversation.Bootstrap.Summary,
                 context.Conversation.Bootstrap.PromptText,
                 900);
             composer.AppendSection(
-                "Fixed Reforged authority rules",
+                "Fixed RealmGate authority rules",
                 BorinProjectAwareness.Version,
                 BorinProjectAwareness.PromptText,
                 700);
@@ -1418,12 +1418,12 @@ When evidence is absent, say so. Reply exactly once without role labels, ChatML 
                 context.Conversation.GameState.PromptText,
                 850);
             composer.AppendSection(
-                "Fixed Reforged awareness",
+                "Fixed RealmGate awareness",
                 BorinProjectAwareness.Version,
                 BorinProjectAwareness.PromptText,
                 850);
             composer.AppendSection(
-                "Compact Reforged orientation",
+                "Compact RealmGate orientation",
                 context.Conversation.Bootstrap.Summary,
                 context.Conversation.Bootstrap.PromptText,
                 900);
@@ -1477,7 +1477,7 @@ Purpose: {context.Purpose}
 Read-only evidence already supplied in the system context: {evidence.Summary}
 Classic trace already supplied in the system context: {classicTrace.Summary}
 Indexed knowledge already supplied in the system context: {knowledge.Summary}
-Compact Reforged bootstrap already supplied in the system context: {bootstrap.Summary}
+Compact RealmGate bootstrap already supplied in the system context: {bootstrap.Summary}
 Request: {context.Request}
 """;
         return BorinLocalRuntimeOptimization.LimitSection(turn, plan.TurnCharacterBudget);

@@ -1,4 +1,4 @@
-# MajorMUD Reforged Project Status
+# RealmGate Project Status
 
 ## Current position
 
@@ -6,9 +6,9 @@
 
 Database version: `0010`
 
-CodeUpdate0142 closure status: the RealmGate app Release build and the full solution build both pass with 0 warnings / 0 errors. The current-health bootstrap validator also passes with 0 issues / 0 warnings / 0 errors. Client/parity smoke closure remains pending before marking 0142 automated validation complete.
+CodeUpdate0142 is CLOSED. The RealmGate app Release build and full solution build pass with 0 warnings / 0 errors, the current-health bootstrap validator passes with 0 issues / 0 warnings / 0 errors, all 14 client smokes pass, and the pushed GitHub Classic parity closure passes.
 
-The repository has reached a clean automated verification baseline after the Classic parity closure, Reforged client expansion, Creator Studio MDB/WCC provenance work, and repository cleanup.
+The repository has reached a clean automated verification baseline after the Classic parity closure, RealmGate client expansion, Creator Studio MDB/WCC provenance work, and repository cleanup.
 
 ## Verified automated baseline
 
@@ -16,10 +16,10 @@ Current locally observed results:
 
 | Gate | Result |
 | --- | --- |
-| Reforged.App Release build | PASS — 0 warnings, 0 errors |
-| Reforged.Server Release build | PASS — 0 warnings, 0 errors |
+| RealmGate app Release build | PASS — 0 warnings, 0 errors |
+| Full solution Release build | PASS — 0 warnings, 0 errors |
 | Current-health validator | PASS — 26/26 |
-| Reforged client smoke suite | PASS — 14/14 |
+| RealmGate client smoke suite | PASS — 14/14 |
 | Classic parity ledger | 200 PASS / 0 STRONG / 0 UNKNOWN |
 | Decode exhaustion in the passing validator run | 48/48 families connected; 2,312/2,312 scalar fields connected; 0 unresolved |
 
@@ -40,7 +40,7 @@ The accepted Classic parity ledger is:
 
 **200 PASS / 0 STRONG / 0 UNKNOWN = 200**
 
-Reforged remains independent of a live Worldgroup installation for normal runtime. Original native/WCC/WGS/WBB/imported material is evidence or import input, not a runtime dependency unless a specific workflow explicitly consumes it.
+RealmGate remains independent of a live Worldgroup installation for normal runtime. Original native/WCC/WGS/WBB/imported material is evidence or import input, not a runtime dependency unless a specific workflow explicitly consumes it.
 
 Borin's current parity preflight still consumes:
 
@@ -50,11 +50,11 @@ Do not delete that file as part of report cleanup without first changing Borin's
 
 ## Client state
 
-The Reforged client capability expansion is automated-smoke clean at 14/14.
+The RealmGate client capability expansion is automated-smoke clean at 14/14.
 
 Implemented areas include terminal/session handling, profiles, Character Workshop, game-data overlays, aliases/macros/triggers/events, navigation, inventory/equipment automation, recovery/buffs, combat automation, party coordination, communications, creature intelligence, diagnostics/customization, reporting, and help.
 
-Capability parity does not mean copied MudPlay UI. Reforged remains WPF/.NET 8 and uses Reforged architecture, naming, data authority, workflows, and presentation.
+Capability parity does not mean copied MudPlay UI. RealmGate remains WPF/.NET 8 and uses its own architecture, naming, data authority, workflows, and presentation.
 
 ## Creator Studio state
 
@@ -75,7 +75,7 @@ Custom-world import policy:
 
 Automated validation is complete for the current baseline. Two real-file integration tests remain before treating those import paths as field-certified:
 
-1. **External BBS MDB test** — connect the client-side overlay/import workflow to a real non-Reforged board MDB and verify compare/import/effective-data behavior.
+1. **External BBS MDB test** — connect the client-side overlay/import workflow to a real non-RealmGate board MDB and verify compare/import/effective-data behavior.
 2. **Creator Studio custom-world test** — import a real custom-world MDB together with its matching WCC/WGS source set, review validation/conflict/provenance output, generate the custom world, and test it in runtime.
 
 These are integration certification tasks, not open Classic parity assertions.

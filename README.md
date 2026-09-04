@@ -1,6 +1,6 @@
-# MajorMUD Reforged
+# RealmGate
 
-MajorMUD Reforged is a standalone MajorMUD-compatible game platform built around an authoritative Reforged server, a modern Windows client, Creator Studio/editor tooling, the Librarium data/evidence system, and Borin.
+RealmGate is a standalone MajorMUD-compatible game platform built around an authoritative RealmGate server, a modern Windows client, Creator Studio/editor tooling, the Librarium data/evidence system, and Borin.
 
 ## Current baseline
 
@@ -9,9 +9,9 @@ MajorMUD Reforged is a standalone MajorMUD-compatible game platform built around
 - Milestone: **CodeUpdate0142 - RealmGate Client and Character Integration**
 - Classic parity ledger: **200 PASS / 0 STRONG / 0 UNKNOWN**
 - Core/current-health validator: **26/26 PASS**
-- Reforged client regression smokes: **14/14 PASS**
-- Release Reforged.App and Reforged.Server builds: **0 warnings / 0 errors** in the current local verification
-- GitHub/pushed CI is a separate post-push gate and is not implied by local PASS results.
+- RealmGate client regression smokes: **14/14 PASS**
+- RealmGate app Release build and full solution build: **0 warnings / 0 errors** in the verified CodeUpdate0142 closure
+- GitHub Classic parity closure: **PASS** on the pushed CodeUpdate0142 baseline.
 
 The detailed current state is maintained in `PROJECT_STATUS.md`.
 
@@ -19,11 +19,11 @@ The detailed current state is maintained in `PROJECT_STATUS.md`.
 
 `Librarium/` is the committed gameplay/data authority. Generated runtime worlds under `Data/` are build output and must not be hand-edited or committed.
 
-Imported databases, original WCC/WGS/WBB/native files, external BBS databases, and similar material are reference/import inputs unless they are explicitly promoted through a reviewed Reforged workflow.
+Imported databases, original WCC/WGS/WBB/native files, external BBS databases, and similar material are reference/import inputs unless they are explicitly promoted through a reviewed RealmGate workflow.
 
 Important boundaries:
 
-- Reforged server gameplay state is server-authoritative.
+- RealmGate server gameplay state is server-authoritative.
 - Classic remains immutable as a source world.
 - Custom worlds are overlays/derived worlds, not edits to Classic.
 - External BBS MDB data is treated as read-only import/reference input.
@@ -32,8 +32,8 @@ Important boundaries:
 
 ## Main components
 
-- `Apps/Source/Reforged.Server/` — authoritative game server/runtime.
-- `Apps/Source/Reforged.App/` — Windows/WPF client, Host, Editor, Librarium, Borin, settings, diagnostics, and client automation.
+- `Apps/Source/Reforged.Server/` — authoritative RealmGate game server/runtime (transitional internal path).
+- `Apps/Source/Reforged.App/` — RealmGate Windows/WPF client, Host, Editor, Librarium, Borin, settings, diagnostics, and client automation (transitional internal path).
 - `Core/` — shared contracts, models, validation, and runtime foundations.
 - `Librarium/` — canonical decoded data, assertions, provenance, and runtime definitions.
 - `Tools/ReforgedValidator/` — single current-health validator entrypoint.
@@ -42,9 +42,9 @@ Important boundaries:
 - `Tests/` — source-level regression/test harnesses.
 - `ThirdPartyLicenses/` — notices for incorporated third-party components.
 
-## Reforged client capability
+## RealmGate client capability
 
-The Reforged client provides the MajorMUD-oriented capability set developed through the MudPlay parity work while keeping Reforged's own WPF layout, terminology, architecture, and server-authoritative model.
+The RealmGate client provides the MajorMUD-oriented capability set developed through the legacy MudPlay parity work while keeping RealmGate's own WPF layout, terminology, architecture, and server-authoritative model.
 
 Current client areas include:
 
@@ -59,24 +59,24 @@ Current client areas include:
 - Communications Desk, Creature Intel, diagnostics, searchable scrollback, logs, session statistics, wire inspection, support bundles, customization, and help.
 - External-BBS game-data overlays and MDB comparison/import support.
 
-MudPlay is an implementation reference, not Reforged's UI or product identity. Required third-party notices are retained in `ThirdPartyLicenses/`.
+MudPlay is a legacy implementation reference, not RealmGate's UI or product identity. Required third-party notices are retained in `ThirdPartyLicenses/`.
 
 ## Creator Studio and custom worlds
 
 Creator Studio keeps Classic immutable.
 
-For a full custom-world import, Reforged requires:
+For a full custom-world import, RealmGate requires:
 
 1. an MDB; and
 2. the associated WCC/WGS native source files used to establish source provenance.
 
-MDB-only input is not considered a complete custom-world source package. Reforged fingerprints the selected source files, records provenance, validates gaps/conflicts, and builds the custom world from the approved source set.
+MDB-only input is not considered a complete custom-world source package. RealmGate fingerprints the selected source files, records provenance, validates gaps/conflicts, and builds the custom world from the approved source set.
 
 The current real-file validation boundary is documented in `PROJECT_STATUS.md`.
 
 ## External BBS game data
 
-For non-Reforged BBS connections, the client may use a local effective game-data overlay:
+For non-RealmGate BBS connections, the client may use a local effective game-data overlay:
 
 1. manual local override;
 2. imported MDB delta;
@@ -84,7 +84,7 @@ For non-Reforged BBS connections, the client may use a local effective game-data
 
 The external MDB remains read-only. Reimport refreshes the imported layer while preserving manual overrides.
 
-For a Reforged server, the client instead consumes the exact generated Reforged world and fails closed if that world is unavailable.
+For a RealmGate server, the client instead consumes the exact generated RealmGate world and fails closed if that world is unavailable.
 
 ## Build
 

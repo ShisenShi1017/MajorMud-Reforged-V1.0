@@ -55,7 +55,7 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
         _host = host ?? throw new ArgumentNullException(nameof(host));
         _session = session ?? throw new ArgumentNullException(nameof(session));
 
-        Title = $"Reforged Diagnostics & Customization — {DisplayName(session)}";
+        Title = $"RealmGate Diagnostics & Customization — {DisplayName(session)}";
         Width = 1180;
         Height = 790;
         MinWidth = 860;
@@ -78,7 +78,7 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
         var headerStack = new StackPanel();
         headerStack.Children.Add(new TextBlock
         {
-            Text = "Reforged Client Workbench",
+            Text = "RealmGate Client Workbench",
             Foreground = Brushes.White,
             FontSize = 20,
             FontWeight = FontWeights.SemiBold
@@ -231,7 +231,7 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
         presentationBox.Content = presentationGrid;
         customRoot.Children.Add(presentationBox);
 
-        var toolbarBox = new GroupBox { Header = "Editable Reforged quick toolbar — set Visible, Label, and Order", Padding = new Thickness(5), Margin = new Thickness(0, 0, 0, 7) };
+        var toolbarBox = new GroupBox { Header = "Editable RealmGate quick toolbar — set Visible, Label, and Order", Padding = new Thickness(5), Margin = new Thickness(0, 0, 0, 7) };
         var toolbarGrid = CreateEditableGrid(_host.AutomationOptions.Toolbar);
         toolbarGrid.Columns.Add(new DataGridCheckBoxColumn { Header = "Visible", Binding = new Binding(nameof(ClientToolbarOption.Visible)), Width = 65 });
         toolbarGrid.Columns.Add(new DataGridTextColumn { Header = "Label", Binding = new Binding(nameof(ClientToolbarOption.Label)), Width = new DataGridLength(1.2, DataGridLengthUnitType.Star) });
@@ -385,7 +385,7 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
             _session.TerminalPreferences.CaptureTelnetTraffic
                 ? "Customization saved. Telnet trace capture will start on the next connection/reconnect."
                 : "Customization saved and applied.",
-            "Reforged Client", MessageBoxButton.OK, MessageBoxImage.Information);
+            "RealmGate", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private async Task ExportSupportBundleAsync()
@@ -393,7 +393,7 @@ public sealed class ReforgedClientDiagnosticsWindow : Window
         try
         {
             var path = await ReforgedClientDiagnosticsService.ExportSupportBundleAsync(_session, _host.AutomationOptions);
-            MessageBox.Show(this, $"Support bundle written to:\n{path}", "Reforged Diagnostics", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(this, $"Support bundle written to:\n{path}", "RealmGate Diagnostics", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception exception)
         {

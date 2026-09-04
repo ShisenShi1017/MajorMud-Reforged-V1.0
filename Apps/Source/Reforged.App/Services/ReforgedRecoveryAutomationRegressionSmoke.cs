@@ -7,7 +7,7 @@ public static class ReforgedRecoveryAutomationRegressionSmoke
     public static Task<int> RunAsync(IApplicationSettingsService settings)
     {
         _ = settings;
-        var root = Path.Combine(Path.GetTempPath(), "MajorMud-Reforged-recovery-smoke-" + Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "RealmGate-recovery-smoke-" + Guid.NewGuid().ToString("N"));
         try
         {
             var service = new ReforgedRecoveryAutomationService(root);

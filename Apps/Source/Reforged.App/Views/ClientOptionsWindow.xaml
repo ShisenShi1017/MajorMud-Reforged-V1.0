@@ -66,7 +66,7 @@
                              Text="{Binding TerminalType, UpdateSourceTrigger=PropertyChanged}"/>
                     <CheckBox Grid.Row="2" Content="Use IBM CP437 character set" IsChecked="{Binding UseCodePage437}"/>
                     <CheckBox Grid.Row="3" Content="Capture raw Telnet traffic" IsChecked="{Binding CaptureTelnetTraffic}"
-                              ToolTip="Writes diagnostic traffic to LocalAppData\MajorMudReforged\TelnetLogs."/>
+                              ToolTip="Writes diagnostic traffic to LocalAppData\RealmGate\TelnetLogs."/>
                     <CheckBox Grid.Row="4" Content="Show ANSI output" IsChecked="{Binding ShowAnsi}"/>
                     <CheckBox Grid.Row="5" Content="Show timestamps" IsChecked="{Binding ShowTimestamps}"/>
                     <CheckBox Grid.Row="6" Content="Log terminal output" IsChecked="{Binding LoggingEnabled}"/>

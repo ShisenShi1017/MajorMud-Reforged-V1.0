@@ -96,7 +96,7 @@ public sealed class ClientDiagnosticsService : IClientDiagnosticsService
         destinationPath ??= Path.Combine(diagnosticsDirectory, $"client-diagnostics-{DateTimeOffset.Now:yyyyMMdd-HHmmss}.txt");
 
         var text = new StringBuilder()
-            .AppendLine("MajorMUD Reforged Client Diagnostics")
+            .AppendLine("RealmGate Client Diagnostics")
             .AppendLine($"Generated: {DateTimeOffset.Now:O}")
             .AppendLine($"Summary: {Snapshot.Summary}")
             .AppendLine();

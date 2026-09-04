@@ -71,13 +71,13 @@ public partial class PlayView : UserControl
     private async void ExportParsingProfileClicked(object sender, RoutedEventArgs e)
     {
         if (DataContext is not PlayViewModel vm) return;
-        var dialog = new SaveFileDialog { Title = "Export Client Parsing Profile", Filter = "Reforged Client Profile (*.mmrclientprofile)|*.mmrclientprofile", FileName = "client-parsing-profile.mmrclientprofile", AddExtension = true };
+        var dialog = new SaveFileDialog { Title = "Export Client Parsing Profile", Filter = "RealmGate Client Profile (*.mmrclientprofile)|*.mmrclientprofile", FileName = "client-parsing-profile.mmrclientprofile", AddExtension = true };
         if (dialog.ShowDialog() == true) await vm.ExportParsingProfileAsync(dialog.FileName);
     }
     private async void ImportParsingProfileClicked(object sender, RoutedEventArgs e)
     {
         if (DataContext is not PlayViewModel vm) return;
-        var dialog = new OpenFileDialog { Title = "Import Client Parsing Profile", Filter = "Reforged Client Profile (*.mmrclientprofile)|*.mmrclientprofile", Multiselect = false };
+        var dialog = new OpenFileDialog { Title = "Import Client Parsing Profile", Filter = "RealmGate Client Profile (*.mmrclientprofile)|*.mmrclientprofile", Multiselect = false };
         if (dialog.ShowDialog() == true) await vm.ImportParsingProfileAsync(dialog.FileName);
     }
 
@@ -92,7 +92,7 @@ public partial class PlayView : UserControl
         var dialog = new SaveFileDialog
         {
             Title = "Export Saved Client Build",
-            Filter = "Reforged Saved Build (*.mmrbuild)|*.mmrbuild",
+            Filter = "RealmGate Saved Build (*.mmrbuild)|*.mmrbuild",
             FileName = $"{safeName}.mmrbuild",
             AddExtension = true
         };
@@ -105,7 +105,7 @@ public partial class PlayView : UserControl
         var dialog = new OpenFileDialog
         {
             Title = "Import Saved Client Build",
-            Filter = "Reforged Saved Build (*.mmrbuild)|*.mmrbuild",
+            Filter = "RealmGate Saved Build (*.mmrbuild)|*.mmrbuild",
             Multiselect = false
         };
         if (dialog.ShowDialog() != true) return;

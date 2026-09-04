@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "mission": "Train Borin as an evidence-driven MajorMUD player and Reforged Classic parity researcher.",
+  "mission": "Train Borin as an evidence-driven MajorMUD player and RealmGate Classic parity researcher.",
   "masteryGates": [
     "explain",
     "predict",
@@ -36,6 +36,6 @@
     { "id": "failure-recovery", "category": "Expert play", "name": "Failure recovery", "order": 170 },
     { "id": "safety-compliance", "category": "Research discipline", "name": "Safety compliance", "order": 180 },
     { "id": "uncertainty", "category": "Research discipline", "name": "Uncertainty handling", "order": 190 },
-    { "id": "parity-research", "category": "Research discipline", "name": "Reforged parity research", "order": 200 }
+    { "id": "parity-research", "category": "Research discipline", "name": "RealmGate parity research", "order": 200 }
   ]
 }

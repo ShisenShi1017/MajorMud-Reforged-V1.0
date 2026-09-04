@@ -713,7 +713,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         var session = GetSession(sessionId);
         var safeCharacter = string.Concat((string.IsNullOrWhiteSpace(session.CharacterName) ? session.DisplayName : session.CharacterName).Select(c => Path.GetInvalidFileNameChars().Contains(c) ? '_' : c));
-        var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MajorMudReforged", "ClientLogs");
+        var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "ClientLogs");
         Directory.CreateDirectory(folder);
         var path = destinationPath ?? Path.Combine(folder, $"{safeCharacter}-{DateTime.Now:yyyyMMdd-HHmmss}.log");
         var lines = session.TerminalEntries.Select(e => $"[{e.Timestamp:O}] [{e.Channel}] {e.Text}");
@@ -1728,7 +1728,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         var folder = Path.Combine(
             Environment.GetFolderPath(
                 Environment.SpecialFolder.LocalApplicationData),
-            "MajorMudReforged",
+            "RealmGate",
             "TelnetLogs");
 
         Directory.CreateDirectory(folder);
@@ -1886,7 +1886,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         try
         {
-            var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MajorMudReforged", "ClientLogs");
+            var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "ClientLogs");
             Directory.CreateDirectory(folder);
             var safe = string.Concat((string.IsNullOrWhiteSpace(session.CharacterName) ? session.DisplayName : session.CharacterName).Select(c => Path.GetInvalidFileNameChars().Contains(c) ? '_' : c));
             var path = Path.Combine(folder, $"{safe}-{DateTime.Now:yyyyMMdd}.log");

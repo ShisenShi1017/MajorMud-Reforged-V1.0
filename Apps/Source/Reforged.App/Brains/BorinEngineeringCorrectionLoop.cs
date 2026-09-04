@@ -431,12 +431,12 @@ public sealed class BorinEngineeringCorrectionLoop : IBorinEngineeringCorrection
     private static string ValidateRepositoryRoot(string repositoryRoot)
     {
         if (string.IsNullOrWhiteSpace(repositoryRoot))
-            throw new InvalidOperationException("The Reforged repository path is empty.");
+            throw new InvalidOperationException("The RealmGate repository path is empty.");
         var full = Path.GetFullPath(repositoryRoot.Trim());
         var appProject = Path.Combine(full, "Apps", "Source", "Reforged.App", "Reforged.App.csproj");
         var coreProject = Path.Combine(full, "Core", "Source", "Reforged.Core", "Reforged.Core.csproj");
         if (!File.Exists(appProject) || !File.Exists(coreProject))
-            throw new DirectoryNotFoundException("The selected folder is not the MajorMUD Reforged repository: " + full);
+            throw new DirectoryNotFoundException("The selected folder is not the RealmGate repository: " + full);
         return full;
     }
 

@@ -29,17 +29,10 @@ public sealed class WindowsBorinSecureCredentialStore : IBorinSecureCredentialSt
         if (!OperatingSystem.IsWindows())
             return Task.FromResult(false);
 
-        var target = GetTargetName(sessionId);
-        if (CredRead(target, CredentialTypeGeneric, 0, out var credentialPointer))
-        {
-            CredFree(credentialPointer);
+        if (CredentialExists(GetTargetName(sessionId)))
             return Task.FromResult(true);
-        }
 
-        var error = Marshal.GetLastWin32Error();
-        if (error == ErrorNotFound)
-            return Task.FromResult(false);
-        throw new Win32Exception(error, "Windows Credential Manager could not check Borin's saved password.");
+        return Task.FromResult(CredentialExists(GetLegacyTargetName(sessionId)));
     }
 
     public Task SavePasswordAsync(string sessionId, string loginName, string password, CancellationToken token = default)
@@ -50,35 +43,7 @@ public sealed class WindowsBorinSecureCredentialStore : IBorinSecureCredentialSt
         if (string.IsNullOrWhiteSpace(password))
             throw new InvalidOperationException("Enter Borin's password before saving it securely.");
 
-        var passwordBytes = Encoding.Unicode.GetBytes(password);
-        if (passwordBytes.Length > MaximumCredentialBlobBytes)
-            throw new InvalidOperationException("The password is too long for Windows Credential Manager.");
-
-        var blob = Marshal.AllocCoTaskMem(passwordBytes.Length);
-        try
-        {
-            Marshal.Copy(passwordBytes, 0, blob, passwordBytes.Length);
-            var credential = new NativeCredential
-            {
-                Type = CredentialTypeGeneric,
-                TargetName = GetTargetName(sessionId),
-                CredentialBlobSize = (uint)passwordBytes.Length,
-                CredentialBlob = blob,
-                Persist = CredentialPersistLocalMachine,
-                UserName = string.IsNullOrWhiteSpace(loginName) ? "borin" : loginName.Trim(),
-                Comment = "MajorMUD Reforged Borin external player login",
-            };
-
-            if (!CredWrite(ref credential, 0))
-                throw new Win32Exception(Marshal.GetLastWin32Error(), "Windows Credential Manager could not save Borin's password.");
-        }
-        finally
-        {
-            if (passwordBytes.Length > 0)
-                Array.Clear(passwordBytes, 0, passwordBytes.Length);
-            Marshal.FreeCoTaskMem(blob);
-        }
-
+        WriteCredential(GetTargetName(sessionId), loginName, password);
         return Task.CompletedTask;
     }
 
@@ -88,12 +53,50 @@ public sealed class WindowsBorinSecureCredentialStore : IBorinSecureCredentialSt
         if (!OperatingSystem.IsWindows())
             return Task.FromResult<string?>(null);
 
-        var target = GetTargetName(sessionId);
+        var current = ReadCredential(GetTargetName(sessionId));
+        if (current is not null)
+            return Task.FromResult<string?>(current.Value.Password);
+
+        var legacy = ReadCredential(GetLegacyTargetName(sessionId));
+        if (legacy is null)
+            return Task.FromResult<string?>(null);
+
+        WriteCredential(GetTargetName(sessionId), legacy.Value.UserName, legacy.Value.Password);
+        return Task.FromResult<string?>(legacy.Value.Password);
+    }
+
+    public Task ClearPasswordAsync(string sessionId, CancellationToken token = default)
+    {
+        token.ThrowIfCancellationRequested();
+        if (!OperatingSystem.IsWindows())
+            return Task.CompletedTask;
+
+        DeleteCredentialIfPresent(GetTargetName(sessionId));
+        DeleteCredentialIfPresent(GetLegacyTargetName(sessionId));
+        return Task.CompletedTask;
+    }
+
+    private static bool CredentialExists(string target)
+    {
+        if (CredRead(target, CredentialTypeGeneric, 0, out var credentialPointer))
+        {
+            CredFree(credentialPointer);
+            return true;
+        }
+
+        var error = Marshal.GetLastWin32Error();
+        if (error == ErrorNotFound)
+            return false;
+        throw new Win32Exception(error, "Windows Credential Manager could not check Borin's saved password.");
+    }
+
+    private static (string Password, string UserName)? ReadCredential(string target)
+    {
         if (!CredRead(target, CredentialTypeGeneric, 0, out var credentialPointer))
         {
             var error = Marshal.GetLastWin32Error();
             if (error == ErrorNotFound)
-                return Task.FromResult<string?>(null);
+                return null;
             throw new Win32Exception(error, "Windows Credential Manager could not read Borin's saved password.");
         }
 
@@ -101,13 +104,15 @@ public sealed class WindowsBorinSecureCredentialStore : IBorinSecureCredentialSt
         {
             var credential = Marshal.PtrToStructure<NativeCredential>(credentialPointer);
             if (credential.CredentialBlob == IntPtr.Zero || credential.CredentialBlobSize == 0)
-                return Task.FromResult<string?>(null);
+                return null;
 
             var bytes = new byte[checked((int)credential.CredentialBlobSize)];
             Marshal.Copy(credential.CredentialBlob, bytes, 0, bytes.Length);
             try
             {
-                return Task.FromResult<string?>(Encoding.Unicode.GetString(bytes));
+                var password = Encoding.Unicode.GetString(bytes);
+                var userName = string.IsNullOrWhiteSpace(credential.UserName) ? "borin" : credential.UserName;
+                return (password, userName);
             }
             finally
             {
@@ -120,30 +125,61 @@ public sealed class WindowsBorinSecureCredentialStore : IBorinSecureCredentialSt
         }
     }
 
-    public Task ClearPasswordAsync(string sessionId, CancellationToken token = default)
+    private static void WriteCredential(string target, string loginName, string password)
     {
-        token.ThrowIfCancellationRequested();
-        if (!OperatingSystem.IsWindows())
-            return Task.CompletedTask;
+        var passwordBytes = Encoding.Unicode.GetBytes(password);
+        if (passwordBytes.Length > MaximumCredentialBlobBytes)
+            throw new InvalidOperationException("The password is too long for Windows Credential Manager.");
 
-        if (CredDelete(GetTargetName(sessionId), CredentialTypeGeneric, 0))
-            return Task.CompletedTask;
+        var blob = Marshal.AllocCoTaskMem(passwordBytes.Length);
+        try
+        {
+            Marshal.Copy(passwordBytes, 0, blob, passwordBytes.Length);
+            var credential = new NativeCredential
+            {
+                Type = CredentialTypeGeneric,
+                TargetName = target,
+                CredentialBlobSize = (uint)passwordBytes.Length,
+                CredentialBlob = blob,
+                Persist = CredentialPersistLocalMachine,
+                UserName = string.IsNullOrWhiteSpace(loginName) ? "borin" : loginName.Trim(),
+                Comment = "RealmGate Borin external player login",
+            };
+
+            if (!CredWrite(ref credential, 0))
+                throw new Win32Exception(Marshal.GetLastWin32Error(), "Windows Credential Manager could not save Borin's password.");
+        }
+        finally
+        {
+            if (passwordBytes.Length > 0)
+                Array.Clear(passwordBytes, 0, passwordBytes.Length);
+            Marshal.FreeCoTaskMem(blob);
+        }
+    }
+
+    private static void DeleteCredentialIfPresent(string target)
+    {
+        if (CredDelete(target, CredentialTypeGeneric, 0))
+            return;
 
         var error = Marshal.GetLastWin32Error();
         if (error != ErrorNotFound)
             throw new Win32Exception(error, "Windows Credential Manager could not clear Borin's saved password.");
-        return Task.CompletedTask;
     }
 
     private static string GetTargetName(string sessionId)
+        => $"RealmGate/BorinPlayer/{NormalizeSessionId(sessionId)}";
+
+    private static string GetLegacyTargetName(string sessionId)
+        => $"MajorMudReforged/BorinPlayer/{NormalizeSessionId(sessionId)}";
+
+    private static string NormalizeSessionId(string sessionId)
     {
         var safe = new string((sessionId ?? string.Empty)
             .Where(character => char.IsLetterOrDigit(character) || character is '.' or '_' or '-')
             .Take(96)
             .ToArray());
-        if (safe.Length == 0)
-            safe = "borin-training-01";
-        return $"MajorMudReforged/BorinPlayer/{safe}";
+        return safe.Length == 0 ? "borin-training-01" : safe;
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]

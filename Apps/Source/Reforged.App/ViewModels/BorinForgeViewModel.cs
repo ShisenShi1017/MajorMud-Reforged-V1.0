@@ -162,7 +162,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
             _aiRoutingSettings.Mode = value;
             Configuration.ProviderName = value switch
             {
-                BorinBrainMode.LocalOnly => "Reforged Direct GGUF",
+                BorinBrainMode.LocalOnly => "RealmGate Direct GGUF",
                 BorinBrainMode.NvidiaOnly => "NVIDIA NIM",
                 _ => "Borin Hybrid AI"
             };
@@ -216,7 +216,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
     public string VerifiedLearningSummary =>
         $"Runtime learning • {_verifiedLearningStatus.Observations:N0} observations • {_verifiedLearningStatus.Investigations:N0} investigations • {_verifiedLearningStatus.Conflicts:N0} conflicts • {_verifiedLearningStatus.Procedures:N0} verified procedures";
     public string AcademyMajorMudMastery => _academySnapshot?.MajorMudMastery is double value ? $"MajorMUD mastery: {value:F1}%" : "MajorMUD mastery: not yet measured";
-    public string AcademyReforgedMastery => _academySnapshot?.ReforgedMastery is double value ? $"Reforged mastery: {value:F1}%" : "Reforged mastery: not yet measured";
+    public string AcademyReforgedMastery => _academySnapshot?.ReforgedMastery is double value ? $"RealmGate mastery: {value:F1}%" : "RealmGate mastery: not yet measured";
     public string AcademyCounts => _academySnapshot is null ? "Academy is initializing..." : $"Verified facts: {_academySnapshot.VerifiedFacts:N0} • Open gaps: {_academySnapshot.OpenGaps:N0} • Conflicts: {_academySnapshot.Conflicts:N0} • Unverified claims: {_academySnapshot.UnverifiedClaims:N0}";
     public string AcademyActivity => _academySnapshot is null ? "No Academy activity." : $"Current training: {_academySnapshot.CurrentTraining} • Task: {_academySnapshot.CurrentTask} • Model: {_academySnapshot.CurrentModel} • Ultra escalations: {_academySnapshot.UltraEscalations}";
     public string AcademySubjectSummary => _academySnapshot is null ? string.Empty : string.Join(" • ", _academySnapshot.Subjects.Where(s => s.Attempted > 0).Select(s => $"{s.Domain}: {s.Subject} {s.MasteryPercent:F0}%"));
@@ -514,7 +514,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
         ChoosePortraitCommand = new AsyncRelayCommand(ChoosePortraitAsync, () => !IsBusy);
         CancelCommand = new RelayCommand(CancelActiveRequest, () => IsBusy);
         StudyHostCommand = new AsyncRelayCommand(() => QuickAsync("Audit the current local Host and Server runtime in the repository. Use fresh read-only source evidence, current reports, and exact paths/line ranges. The external player connection is unrelated to this local audit."), () => !IsBusy);
-        StudyRepositoryCommand = new AsyncRelayCommand(() => QuickAsync("/learn reforged"), () => !IsBusy);
+        StudyRepositoryCommand = new AsyncRelayCommand(() => QuickAsync("/learn realmgate"), () => !IsBusy);
         ImplementAttachedCommand = new AsyncRelayCommand(() => QuickAsync("/engineer-help"), () => !IsBusy);
         ShowMemoriesCommand = new AsyncRelayCommand(() => QuickAsync("/memories"), () => !IsBusy);
         MemoryHelpCommand = new AsyncRelayCommand(() => QuickAsync("/memory-help"), () => !IsBusy);
@@ -524,7 +524,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
         ReadOnlyAccessHelpCommand = new AsyncRelayCommand(() => QuickAsync("/access-help"), () => !IsBusy);
         ShowClassicTraceCommand = new AsyncRelayCommand(() => QuickAsync("/trace-last"), () => !IsBusy);
         ClassicTraceHelpCommand = new AsyncRelayCommand(() => QuickAsync("/trace-help"), () => !IsBusy);
-        LearnReforgedCommand = new AsyncRelayCommand(() => QuickAsync("/learn reforged"), () => !IsBusy);
+        LearnReforgedCommand = new AsyncRelayCommand(() => QuickAsync("/learn realmgate"), () => !IsBusy);
         LearnChangedCommand = new AsyncRelayCommand(() => QuickAsync("/learn changed"), () => !IsBusy);
         LearnStatusCommand = new AsyncRelayCommand(() => QuickAsync("/learn status"), () => !IsBusy);
         KnowledgeHelpCommand = new AsyncRelayCommand(() => QuickAsync("/knowledge-help"), () => !IsBusy);
@@ -583,7 +583,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
         if (string.IsNullOrWhiteSpace(_state.Configuration.PortraitPath))
             _state.Configuration.PortraitPath = "pack://application:,,,/Assets/Borin/BorinIronbeard.png";
 
-        Configuration.ProviderName = Configuration.BrainMode == BorinBrainMode.LocalOnly ? "Reforged Direct GGUF" : Configuration.BrainMode == BorinBrainMode.NvidiaOnly ? "NVIDIA NIM" : "Borin Hybrid AI";
+        Configuration.ProviderName = Configuration.BrainMode == BorinBrainMode.LocalOnly ? "RealmGate Direct GGUF" : Configuration.BrainMode == BorinBrainMode.NvidiaOnly ? "NVIDIA NIM" : "Borin Hybrid AI";
         Configuration.ApiEndpoint = "https://integrate.api.nvidia.com/v1";
         Configuration.ModelsEndpoint = string.Empty;
         Configuration.AutoReconnectMasterBrain = false;
@@ -661,7 +661,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
             _knowledgeBootstrapStatus = await _knowledgeBootstrap.InitializeAsync(Configuration.RepositoryPath);
             _lastKnowledgeBootstrap = await _knowledgeBootstrap.PrepareAsync(
                 Configuration.RepositoryPath,
-                "Reforged project architecture and authority orientation");
+                "RealmGate project architecture and authority orientation");
         }
         catch (Exception exception)
         {
@@ -879,7 +879,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
             }
             else
             {
-                TaskStage = "Loading compact Reforged orientation";
+                TaskStage = "Loading compact RealmGate orientation";
                 TaskProgress = 20;
                 Status = "Borin is selecting the smallest authoritative subsystem cards for this question...";
                 _lastKnowledgeBootstrap = await _knowledgeBootstrap.PrepareAsync(
@@ -890,7 +890,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
                 Raise(nameof(KnowledgeBootstrapSummary));
                 Raise(nameof(KnowledgeBootstrapRecallSummary));
 
-                TaskStage = "Retrieving indexed Reforged knowledge";
+                TaskStage = "Retrieving indexed RealmGate knowledge";
                 TaskProgress = 24;
                 Status = intent == BorinRequestIntent.RepositoryResearch
                     ? "Borin is retrieving current local project evidence and the most relevant indexed chunks..."
@@ -1313,7 +1313,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
         var parts = new List<string>();
 
         if (asksServer)
-            parts.Add($"I am using the Reforged application and my active character is {ServerActivityPhrase(state)}.");
+            parts.Add($"I am using the RealmGate application and my active character is {ServerActivityPhrase(state)}.");
 
         if (asksPrompt)
         {
@@ -1379,7 +1379,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
             return state.HostKind switch
             {
                 BorinGameHostKind.OmniverseBbs => $"configured for Omniverse BBS in world {state.World}, but currently disconnected",
-                BorinGameHostKind.ReforgedServer => $"configured for the Reforged server in world {state.World}, but currently disconnected",
+                BorinGameHostKind.ReforgedServer => $"configured for the RealmGate server in world {state.World}, but currently disconnected",
                 BorinGameHostKind.ExternalBbs => $"configured for {state.Server} in world {state.World}, but currently disconnected",
                 _ => "not connected to a verified game server",
             };
@@ -1391,7 +1391,7 @@ public sealed class BorinForgeViewModel : ViewModelBase
         return state.HostKind switch
         {
             BorinGameHostKind.OmniverseBbs => $"playing on Omniverse BBS in world {state.World}",
-            BorinGameHostKind.ReforgedServer => $"playing on the Reforged server in world {state.World}",
+            BorinGameHostKind.ReforgedServer => $"playing on the RealmGate server in world {state.World}",
             BorinGameHostKind.ExternalBbs => $"playing on {state.Server} in world {state.World}",
             _ => "inside MajorMUD on a server whose identity is not verified",
         };
@@ -1407,8 +1407,8 @@ public sealed class BorinForgeViewModel : ViewModelBase
         return origin switch
         {
             ClientCommandOrigin.Human => "William through the terminal",
-            ClientCommandOrigin.RouteAutomation => "the Reforged route automation",
-            ClientCommandOrigin.SystemLogin => "the Reforged login controller",
+            ClientCommandOrigin.RouteAutomation => "the RealmGate route automation",
+            ClientCommandOrigin.SystemLogin => "the RealmGate login controller",
             _ => originName,
         };
     }
@@ -1605,7 +1605,7 @@ TAIL OF PRIOR PAGE:
         builder.AppendLine();
         builder.AppendLine(_lastKnowledgeEvidence.PromptText);
         builder.AppendLine();
-        builder.AppendLine("## Compact Reforged bootstrap orientation");
+        builder.AppendLine("## Compact RealmGate bootstrap orientation");
         builder.AppendLine();
         builder.AppendLine(_lastKnowledgeBootstrap.Summary);
         builder.AppendLine();
@@ -1661,7 +1661,7 @@ TAIL OF PRIOR PAGE:
 
     private async Task SaveSettingsAsync()
     {
-        Configuration.ProviderName = Configuration.BrainMode == BorinBrainMode.LocalOnly ? "Reforged Direct GGUF" : Configuration.BrainMode == BorinBrainMode.NvidiaOnly ? "NVIDIA NIM" : "Borin Hybrid AI";
+        Configuration.ProviderName = Configuration.BrainMode == BorinBrainMode.LocalOnly ? "RealmGate Direct GGUF" : Configuration.BrainMode == BorinBrainMode.NvidiaOnly ? "NVIDIA NIM" : "Borin Hybrid AI";
         Configuration.ApiEndpoint = "https://integrate.api.nvidia.com/v1";
         Configuration.ModelsEndpoint = string.Empty;
         Configuration.AutoReconnectMasterBrain = false;
@@ -1801,7 +1801,7 @@ TAIL OF PRIOR PAGE:
 
         var inbox = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged",
+            "RealmGate",
             "ForgeGuardian",
             "Inbox");
         Directory.CreateDirectory(inbox);
@@ -1861,7 +1861,7 @@ TAIL OF PRIOR PAGE:
 
         var artFolder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged",
+            "RealmGate",
             "ForgeGuardian",
             "Art");
         Directory.CreateDirectory(artFolder);
@@ -2300,7 +2300,7 @@ Implement the attached commission in the safe workspace. First inspect the attac
             var questions = await _academy.GenerateQuestionsAsync(Configuration.RepositoryPath, cleanEvaluation ? "All Subjects" : "Weakest Subjects", count, token);
             if (questions.Count == 0)
             {
-                Add("Borin", "The Academy could not generate an evidence-backed question. Reindex Reforged and MajorMUD knowledge first; no mastery score was invented.");
+                Add("Borin", "The Academy could not generate an evidence-backed question. Reindex RealmGate and MajorMUD knowledge first; no mastery score was invented.");
                 return;
             }
             var attempts = new List<BorinAcademyAttempt>();
@@ -2328,7 +2328,7 @@ Implement the attached commission in the safe workspace. First inspect the attac
             RaiseAcademyProperties();
             var average = attempts.Average(a => a.Score.Total);
             Add("Borin", $"Academy {(cleanEvaluation ? "evaluation" : "training")} complete: {attempts.Count(a => a.Passed)}/{attempts.Count} passed; evidence-weighted score {average:F1}%. " +
-                $"Failures created or updated knowledge gaps. Current MajorMUD mastery: {FormatMastery(_academySnapshot.MajorMudMastery)}; Reforged mastery: {FormatMastery(_academySnapshot.ReforgedMastery)}.");
+                $"Failures created or updated knowledge gaps. Current MajorMUD mastery: {FormatMastery(_academySnapshot.MajorMudMastery)}; RealmGate mastery: {FormatMastery(_academySnapshot.ReforgedMastery)}.");
             TaskProgress = 100;
             TaskStage = "Academy session complete";
             Status = "Ready by the hearth.";
@@ -2453,7 +2453,7 @@ Implement the attached commission in the safe workspace. First inspect the attac
             result.Job.ProposedFiles,
             token);
         await _verifiedKnowledgeLearning.PromoteProcedureAsync(
-            "Investigate and repair Reforged defect",
+            "Investigate and repair RealmGate defect",
             [
                 "Capture the requested symptom and gather repository evidence.",
                 "Trace the relevant source and references before drafting a focused patch.",
@@ -2488,7 +2488,7 @@ Implement the attached commission in the safe workspace. First inspect the attac
         var preview = review.Output.Length <= 8000 ? review.Output : review.Output[..8000] + "\n\n[Preview truncated; use Show Changes for the complete Forge view.]";
         var confirmation = MessageBox.Show(
             Application.Current.MainWindow,
-            $"INCORPORATE VERIFIED BORIN PATCH\n\nJob: {_engineeringJob.Id}\nStage: {_engineeringJob.Stage}\n\nBuild: {_engineeringJob.BuildSummary}\nTests: {_engineeringJob.ValidationSummary}\n\nFiles:\n{string.Join("\n", _engineeringJob.ProposedFiles.Select(path => "- " + path))}\n\nDIFF PREVIEW\n{preview}\n\nApply this verified patch to the main Reforged working tree? No commit, push, publish, install, or deployment will occur.",
+            $"INCORPORATE VERIFIED BORIN PATCH\n\nJob: {_engineeringJob.Id}\nStage: {_engineeringJob.Stage}\n\nBuild: {_engineeringJob.BuildSummary}\nTests: {_engineeringJob.ValidationSummary}\n\nFiles:\n{string.Join("\n", _engineeringJob.ProposedFiles.Select(path => "- " + path))}\n\nDIFF PREVIEW\n{preview}\n\nApply this verified patch to the main RealmGate working tree? No commit, push, publish, install, or deployment will occur.",
             "William Approval Required",
             MessageBoxButton.YesNo,
             MessageBoxImage.Warning,
@@ -2691,7 +2691,7 @@ Implement the attached commission in the safe workspace. First inspect the attac
                 _lastRecallSnapshot = _memorySnapshot;
                 Raise(nameof(MemoryRecallSummary));
 
-                TaskStage = "Loading compact Reforged subsystem rules";
+                TaskStage = "Loading compact RealmGate subsystem rules";
                 TaskProgress = 18;
                 _lastKnowledgeBootstrap = await _knowledgeBootstrap.PrepareAsync(
                     Configuration.RepositoryPath,
@@ -3324,7 +3324,7 @@ Produce exactly one fenced ```diff unified patch that corrects only the reported
                 _lastRecallSnapshot = _memorySnapshot;
                 Raise(nameof(MemoryRecallSummary));
 
-                TaskStage = "Loading compact Reforged subsystem rules";
+                TaskStage = "Loading compact RealmGate subsystem rules";
                 TaskProgress = 20;
                 _lastKnowledgeBootstrap = await _knowledgeBootstrap.PrepareAsync(
                     Configuration.RepositoryPath,
@@ -3561,7 +3561,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
             {
                 case "help":
                     Add("Borin",
-                        "Compact Reforged bootstrap commands:\n\n" +
+                        "Compact RealmGate bootstrap commands:\n\n" +
                         "`/bootstrap status` — show card and stale-source status.\n" +
                         "`/bootstrap refresh` — accept the current repository fingerprint as the new baseline.\n" +
                         "`/learn changed` — refresh the larger file/chunk index after source changes.\n\n" +
@@ -3572,14 +3572,14 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
                     return true;
 
                 case "refresh":
-                    TaskStage = "Refreshing Reforged bootstrap baseline";
+                    TaskStage = "Refreshing RealmGate bootstrap baseline";
                     Status = "Refreshing compact knowledge fingerprints...";
                     _knowledgeBootstrapStatus = await _knowledgeBootstrap.RefreshAsync(
                         Configuration.RepositoryPath,
                         _activeRequest.Token);
                     _lastKnowledgeBootstrap = await _knowledgeBootstrap.PrepareAsync(
                         Configuration.RepositoryPath,
-                        "Reforged project architecture and authority orientation",
+                        "RealmGate project architecture and authority orientation",
                         _activeRequest.Token);
                     Add("Borin", _knowledgeBootstrapStatus.Summary +
                         "\n\nThe compact baseline is current. Run `/learn changed` if source files changed so the larger persistent index is refreshed too.");
@@ -3616,7 +3616,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
         }
         catch (Exception exception)
         {
-            Add("Borin", $"The compact Reforged bootstrap failed safely: {exception.Message}");
+            Add("Borin", $"The compact RealmGate bootstrap failed safely: {exception.Message}");
             TaskStage = "Bootstrap command failed safely";
             TaskProgress = 0;
             Status = "Bootstrap command failed safely.";
@@ -3635,11 +3635,12 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
     {
         var trimmed = request.Trim();
         if (trimmed.Equals("learn", StringComparison.OrdinalIgnoreCase) ||
+            trimmed.Equals("learn realmgate", StringComparison.OrdinalIgnoreCase) ||
             trimmed.Equals("learn reforged", StringComparison.OrdinalIgnoreCase) ||
             trimmed.Equals("learn the repository", StringComparison.OrdinalIgnoreCase) ||
             trimmed.Equals("study the repository", StringComparison.OrdinalIgnoreCase))
         {
-            trimmed = "/learn reforged";
+            trimmed = "/learn realmgate";
         }
         else if (trimmed.Equals("learn changed files", StringComparison.OrdinalIgnoreCase) ||
                  trimmed.Equals("refresh your knowledge", StringComparison.OrdinalIgnoreCase))
@@ -3666,7 +3667,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
                 trimmed.Equals("/learn", StringComparison.OrdinalIgnoreCase))
             {
                 Add("Borin", "Persistent knowledge commands:\n\n" +
-                    "- `/learn reforged` — scan approved Reforged text and create or resume the persistent chunk index.\n" +
+                    "- `/learn realmgate` — scan approved RealmGate text (`/learn reforged` remains a legacy alias) and create or resume the persistent chunk index.\n" +
                     "- `/learn changed` — refresh changed, new, and deleted files while reusing unchanged chunks.\n" +
                     "- `/learn status` — show file/chunk counts and the last learning state.\n" +
                     "- `/learn cancel` — use the visible Cancel button while a learning pass is running.\n" +
@@ -3776,7 +3777,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
                     return true;
                 }
 
-                TaskStage = "Searching persistent Reforged knowledge";
+                TaskStage = "Searching persistent RealmGate knowledge";
                 TaskProgress = 50;
                 Status = "Borin is retrieving ranked indexed chunks...";
                 _lastKnowledgeEvidence = await _knowledgeIndex.SearchAsync(
@@ -3793,7 +3794,9 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
             }
 
             var changedOnly = trimmed.Equals("/learn changed", StringComparison.OrdinalIgnoreCase);
-            if (!changedOnly && !trimmed.Equals("/learn reforged", StringComparison.OrdinalIgnoreCase))
+            if (!changedOnly &&
+                !trimmed.Equals("/learn realmgate", StringComparison.OrdinalIgnoreCase) &&
+                !trimmed.Equals("/learn reforged", StringComparison.OrdinalIgnoreCase))
             {
                 Add("Borin", "Unknown knowledge command. Type `/knowledge-help` for the available commands.");
                 TaskStage = "Unknown knowledge command";
@@ -3801,10 +3804,10 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
                 return true;
             }
 
-            TaskStage = changedOnly ? "Refreshing changed project knowledge" : "Indexing Reforged knowledge";
+            TaskStage = changedOnly ? "Refreshing changed project knowledge" : "Indexing RealmGate knowledge";
             Status = changedOnly
                 ? "Borin is refreshing changed files and reusing unchanged chunks..."
-                : "Borin is building or resuming the persistent Reforged knowledge index...";
+                : "Borin is building or resuming the persistent RealmGate knowledge index...";
             _knowledgeIndexStatus = await _knowledgeIndex.BuildAsync(
                 Configuration.RepositoryPath,
                 changedOnly,
@@ -3823,7 +3826,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
         {
             _knowledgeIndexStatus = await _knowledgeIndex.GetStatusAsync(Configuration.RepositoryPath, CancellationToken.None);
             Raise(nameof(KnowledgeIndexSummary));
-            Add("Borin", "Aye, the learning pass stopped. The checkpoint was saved, so `/learn reforged` can resume it.");
+            Add("Borin", "Aye, the learning pass stopped. The checkpoint was saved, so `/learn realmgate` can resume it.");
             TaskStage = "Knowledge indexing canceled";
             TaskProgress = 0;
             Status = "Knowledge checkpoint saved.";
@@ -3872,7 +3875,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
             Raise(nameof(KnowledgeIndexSummary));
             if (status.IsRunning)
             {
-                TaskStage = "Indexing Reforged knowledge";
+                TaskStage = "Indexing RealmGate knowledge";
                 TaskProgress = status.ProgressPercent;
                 Status = string.IsNullOrWhiteSpace(status.CurrentFile)
                     ? "Borin is indexing approved project text..."
@@ -4045,13 +4048,13 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
         {
             if (request.Equals("/memory-help", StringComparison.OrdinalIgnoreCase))
             {
-                Add("Borin", "Memory commands:\n/memories — show active durable memories\n/memories all — include archived memories\n/recall — show the exact memories used for the last answer\n/remember [instruction|decision|task|bug|result] <text> — save a permanent memory\n/edit <id> <text> — edit a saved memory\n/mark <id> [discussed|decided|installed|built|validated] — set its evidence\n/complete <id> [result] — archive a task and optionally save its result\n/archive <id> [result] — archive any memory\n/forget <id> — permanently delete one memory\n/project-rules — show Borin's fixed Reforged awareness\n/clear-memory confirm — erase the full local memory ledger\n\nRaw conversation turns are temporary and automatically compacted into persistent summaries. Memory is stored locally in AI\\Memory\\borin-memory.json.");
+                Add("Borin", "Memory commands:\n/memories — show active durable memories\n/memories all — include archived memories\n/recall — show the exact memories used for the last answer\n/remember [instruction|decision|task|bug|result] <text> — save a permanent memory\n/edit <id> <text> — edit a saved memory\n/mark <id> [discussed|decided|installed|built|validated] — set its evidence\n/complete <id> [result] — archive a task and optionally save its result\n/archive <id> [result] — archive any memory\n/forget <id> — permanently delete one memory\n/project-rules — show Borin's fixed RealmGate awareness\n/clear-memory confirm — erase the full local memory ledger\n\nRaw conversation turns are temporary and automatically compacted into persistent summaries. Memory is stored locally in AI\\Memory\\borin-memory.json.");
                 return true;
             }
 
             if (request.Equals("/project-rules", StringComparison.OrdinalIgnoreCase))
             {
-                Add("Borin", $"Fixed Reforged awareness ({BorinProjectAwareness.Version}):\n\n{string.Join("\n", BorinProjectAwareness.CoreRules.Select(rule => $"• {rule}"))}");
+                Add("Borin", $"Fixed RealmGate awareness ({BorinProjectAwareness.Version}):\n\n{string.Join("\n", BorinProjectAwareness.CoreRules.Select(rule => $"• {rule}"))}");
                 return true;
             }
 
@@ -4603,7 +4606,7 @@ Use only the supplied Reforged evidence. First give a concise diagnosis and assu
 
         var requestedHost = omniverse ? "omniversebbs.com" : "127.0.0.1";
         var requestedPort = omniverse ? 3237 : 4000;
-        var requestedProfile = omniverse ? "Omniverse BBS" : "Reforged Server";
+        var requestedProfile = omniverse ? "Omniverse BBS" : "RealmGate Server";
         var state = _playerResearch.CurrentGameState;
         var targetChanged = !PlayerHostName.Equals(requestedHost, StringComparison.OrdinalIgnoreCase) ||
                             PlayerPort != requestedPort;
@@ -4738,7 +4741,7 @@ USER REQUEST:
 {request}
 
 CURRENT BORIN ACTIVE-PLAYER STATE (observed from Reforged's exact client session):
-- Application: MajorMUD Reforged. The Forge is a private application workspace, not a game room or server.
+- Application: RealmGate. The Forge is a private application workspace, not a game room or server.
 - Session ID: {playerStatus.SessionId}
 - Environment identity: {gameState.EnvironmentSummary}
 - Connected game server: {gameState.GameServerIdentity}
@@ -5227,7 +5230,7 @@ Treat this block as authoritative current client-session state. Reforged is the 
 
     private Task PlayerHelpAsync()
     {
-        Add("Borin", "Use the Assignment window to give me a goal. Reforged is the application; the active terminal may be Omniverse BBS, the Reforged server, or another configured server. Play by Himself stays locked until I have a fresh HP prompt, room title, and exit list from that exact session. Human commands stop autonomous play immediately. Passwords remain outside files, logs, memory, journals, and model prompts.");
+        Add("Borin", "Use the Assignment window to give me a goal. RealmGate is the application; the active terminal may be Omniverse BBS, the RealmGate server, or another configured server. Play by Himself stays locked until I have a fresh HP prompt, room title, and exit list from that exact session. Human commands stop autonomous play immediately. Passwords remain outside files, logs, memory, journals, and model prompts.");
         return Task.CompletedTask;
     }
 

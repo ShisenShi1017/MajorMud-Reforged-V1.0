@@ -48,7 +48,7 @@ public sealed record BorinInitiativeSnapshot(
         false,
         [
             "Become a capable MajorMUD adventurer through direct experience.",
-            "Help William protect and improve MajorMUD Reforged.",
+            "Help William protect and improve RealmGate.",
             "Build genuine friendships without falling into repetitive chat loops.",
         ],
         [],
@@ -352,7 +352,7 @@ public sealed partial class BorinInitiativeStore : IBorinInitiativeStore
         new()
         {
             Id = "reforged-companion",
-            Text = "Help William protect and improve MajorMUD Reforged without pretending work occurred.",
+            Text = "Help William protect and improve RealmGate without pretending work occurred.",
             Priority = 20,
             Active = true,
             Public = false,

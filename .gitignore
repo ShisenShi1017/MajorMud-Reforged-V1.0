@@ -1,4 +1,4 @@
-# MajorMUD Reforged local/generated artifacts
+# RealmGate local/generated artifacts
 # Canonical source of truth is Librarium records, evidence, assertions, manifests, and tools.
 # Generated graphs/indexes/databases are rebuilt locally and should not be committed.
 
@@ -42,6 +42,9 @@ query_index.json
 runtime_index.json
 evidence_index.json
 formula_index.json
+
+# Runtime-required bundled navigation asset; this graph is source content, not a generated local artifact.
+!Apps/Source/Reforged.App/Assets/Paths/classic_route_graph.json
 *.sqlite
 *.sqlite3
 *.db

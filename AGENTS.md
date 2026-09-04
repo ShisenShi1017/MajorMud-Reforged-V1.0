@@ -1,6 +1,6 @@
-# Reforged Agent Instructions
+# RealmGate Agent Instructions
 
-This file is the current engineering/assistant handoff authority for MajorMUD Reforged. Historical handoff, AI-context, manifest prose, and duplicated release-note files are no longer part of the required startup context.
+This file is the current engineering/assistant handoff authority for RealmGate. Historical handoff, AI-context, manifest prose, and duplicated release-note files are no longer part of the required startup context.
 
 ## Required startup order
 
@@ -19,7 +19,7 @@ Use `CHANGELOG.md` only when update history materially matters.
 - GitHub/repository source is the code source of truth.
 - `Librarium/` is the committed gameplay/data authority.
 - `Data/` is generated runtime output and must not be hand-edited.
-- Reforged server state is authoritative during gameplay.
+- RealmGate server state is authoritative during gameplay.
 - Imported MDB/WCC/WGS/WBB/native/reference material is evidence or import input unless explicitly promoted through a reviewed workflow.
 - Classic is immutable.
 - Custom worlds are derived/overlay worlds with provenance.
@@ -36,7 +36,7 @@ Use `CHANGELOG.md` only when update history materially matters.
 7. Preserve server authority; do not move gameplay authority into client automation.
 8. Keep rules/data data-driven when they are content/world behavior rather than engine internals.
 9. Preserve third-party license notices for copied or substantially derived code.
-10. MudPlay is a capability/reference source, not Reforged branding, UI identity, or architecture.
+10. MudPlay is a legacy capability/reference source, not RealmGate branding, UI identity, or architecture.
 11. Never delete a file merely because it is in `Reports/` or looks historical; first verify that no active runtime/trainer/tool consumes it.
 12. In particular, Borin currently requires `Reports/RuntimeVerification/majormud_parity_scorecard.json` for parity preflight.
 
@@ -48,17 +48,17 @@ The current full validator entrypoint is:
 powershell -ExecutionPolicy Bypass -File .\Tools\ReforgedValidator\Validate.ps1 -Configuration Release
 ```
 
-The accepted 0141 local baseline is:
+The accepted CodeUpdate0142 closure baseline is:
 
-- Reforged.App Release build: 0 warnings / 0 errors.
-- Reforged.Server Release build: 0 warnings / 0 errors.
+- RealmGate app Release build: 0 warnings / 0 errors.
+- Full solution Release build: 0 warnings / 0 errors.
 - Current-health validator: 26/26 PASS.
-- Reforged client smoke suite: 14/14 PASS.
+- RealmGate client smoke suite: 14/14 PASS.
 - Classic parity: 200 PASS / 0 STRONG / 0 UNKNOWN.
 
 The decode-exhaustion phase is expensive. Do not rerun it simply to reconfirm documentation-only work. Rerun the full validator when runtime/data/validator authority changes or when a change could invalidate the accepted baseline.
 
-For client-only changes, build Reforged.App and run the affected client smoke(s). Run the complete client smoke suite before declaring a client release candidate clean.
+For client-only changes, build the transitional `Reforged.App` project and run the affected client smoke(s). Run the complete client smoke suite before declaring a client release candidate clean.
 
 ## Current client smoke flags
 
@@ -92,12 +92,12 @@ For client-only changes, build Reforged.App and run the affected client smoke(s)
 - Treat the external MDB as read-only input.
 - Preserve manual overlay edits across MDB reimport.
 - Effective external data precedence is manual override, imported MDB delta, then Classic client base.
-- Reforged-server sessions use the exact generated Reforged world instead of an external overlay.
+- RealmGate-server sessions use the exact generated RealmGate world instead of an external overlay.
 - Do not claim real external-BBS MDB certification until a real board MDB has been exercised end-to-end.
 
 ## Borin rules
 
-- Borin is part of Reforged, not a replacement for server authority.
+- Borin is part of RealmGate, not a replacement for server authority.
 - Do not train around parity/runtime regressions; record/escalate them.
 - Preserve persistent memory/state rules unless the user explicitly changes them.
 - Keep parity preflight synchronized with the accepted 200/0/0 baseline until the parity authority itself changes.

@@ -21,6 +21,7 @@ public interface INvidiaNimCredentialStore
 public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
 {
     private readonly string _targetName;
+    private readonly string _legacyTargetName;
     private const uint CredentialTypeGeneric = 1;
     private const uint CredentialPersistLocalMachine = 2;
     private const int ErrorNotFound = 1168;
@@ -30,8 +31,11 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
     {
         Slot = slot;
         _targetName = slot == NvidiaNimKeySlot.Ultra
+            ? "RealmGate/Borin/NvidiaNim/Ultra"
+            : "RealmGate/Borin/NvidiaNim";
+        _legacyTargetName = slot == NvidiaNimKeySlot.Ultra
             ? "MajorMudReforged/Borin/NvidiaNim/Ultra"
-            : "MajorMudReforged/Borin/NvidiaNim"; // Preserve the existing Lightning credential.
+            : "MajorMudReforged/Borin/NvidiaNim";
     }
 
     public NvidiaNimKeySlot Slot { get; }
@@ -41,16 +45,11 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
     {
         cancellationToken.ThrowIfCancellationRequested();
         EnsureWindows();
-        if (CredRead(_targetName, CredentialTypeGeneric, 0, out var pointer))
-        {
-            CredFree(pointer);
-            return Task.FromResult(true);
-        }
 
-        var error = Marshal.GetLastWin32Error();
-        if (error == ErrorNotFound)
-            return Task.FromResult(false);
-        throw new Win32Exception(error, "Windows Credential Manager could not check the NVIDIA NIM credential.");
+        if (CredentialExists(_targetName))
+            return Task.FromResult(true);
+
+        return Task.FromResult(CredentialExists(_legacyTargetName));
     }
 
     public Task SaveApiKeyAsync(string apiKey, CancellationToken cancellationToken = default)
@@ -76,7 +75,7 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
                 CredentialBlob = blob,
                 Persist = CredentialPersistLocalMachine,
                 UserName = "Borin",
-                Comment = "MajorMUD Reforged Borin NVIDIA NIM API key"
+                Comment = "RealmGate Borin NVIDIA NIM API key"
             };
             if (!CredWrite(ref credential, 0))
                 throw new Win32Exception(Marshal.GetLastWin32Error(), "Windows Credential Manager could not save the NVIDIA NIM credential.");
@@ -90,15 +89,53 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
         return Task.CompletedTask;
     }
 
-    public Task<string?> ReadApiKeyAsync(CancellationToken cancellationToken = default)
+    public async Task<string?> ReadApiKeyAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         EnsureWindows();
-        if (!CredRead(_targetName, CredentialTypeGeneric, 0, out var pointer))
+
+        var current = ReadCredentialValue(_targetName);
+        if (current is not null)
+            return current;
+
+        var legacy = ReadCredentialValue(_legacyTargetName);
+        if (legacy is null)
+            return null;
+
+        await SaveApiKeyAsync(legacy, cancellationToken);
+        return legacy;
+    }
+
+    public Task ClearApiKeyAsync(CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        EnsureWindows();
+        DeleteCredentialIfPresent(_targetName);
+        DeleteCredentialIfPresent(_legacyTargetName);
+        return Task.CompletedTask;
+    }
+
+    private static bool CredentialExists(string targetName)
+    {
+        if (CredRead(targetName, CredentialTypeGeneric, 0, out var pointer))
+        {
+            CredFree(pointer);
+            return true;
+        }
+
+        var error = Marshal.GetLastWin32Error();
+        if (error == ErrorNotFound)
+            return false;
+        throw new Win32Exception(error, "Windows Credential Manager could not check the NVIDIA NIM credential.");
+    }
+
+    private static string? ReadCredentialValue(string targetName)
+    {
+        if (!CredRead(targetName, CredentialTypeGeneric, 0, out var pointer))
         {
             var error = Marshal.GetLastWin32Error();
             if (error == ErrorNotFound)
-                return Task.FromResult<string?>(null);
+                return null;
             throw new Win32Exception(error, "Windows Credential Manager could not read the NVIDIA NIM credential.");
         }
 
@@ -106,12 +143,13 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
         {
             var credential = Marshal.PtrToStructure<NativeCredential>(pointer);
             if (credential.CredentialBlob == IntPtr.Zero || credential.CredentialBlobSize == 0)
-                return Task.FromResult<string?>(null);
+                return null;
+
             var bytes = new byte[checked((int)credential.CredentialBlobSize)];
             Marshal.Copy(credential.CredentialBlob, bytes, 0, bytes.Length);
             try
             {
-                return Task.FromResult<string?>(Encoding.Unicode.GetString(bytes));
+                return Encoding.Unicode.GetString(bytes);
             }
             finally
             {
@@ -124,16 +162,14 @@ public sealed class WindowsNvidiaNimCredentialStore : INvidiaNimCredentialStore
         }
     }
 
-    public Task ClearApiKeyAsync(CancellationToken cancellationToken = default)
+    private static void DeleteCredentialIfPresent(string targetName)
     {
-        cancellationToken.ThrowIfCancellationRequested();
-        EnsureWindows();
-        if (CredDelete(_targetName, CredentialTypeGeneric, 0))
-            return Task.CompletedTask;
+        if (CredDelete(targetName, CredentialTypeGeneric, 0))
+            return;
+
         var error = Marshal.GetLastWin32Error();
         if (error != ErrorNotFound)
             throw new Win32Exception(error, "Windows Credential Manager could not clear the NVIDIA NIM credential.");
-        return Task.CompletedTask;
     }
 
     private static void EnsureWindows()

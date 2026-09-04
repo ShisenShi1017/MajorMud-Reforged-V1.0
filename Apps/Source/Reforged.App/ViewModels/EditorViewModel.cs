@@ -484,7 +484,7 @@ public sealed class EditorViewModel : ViewModelBase
     private NightmareMdbAnalysis? _pendingNightmareMdbAnalysis;
     private NightmareMdbTableSummary? _selectedNightmareMdbTable;
     private string _wccEvidenceFolder = string.Empty;
-    private string _wccEvidenceStatus = "Required: choose a WCC/WGS DAT/BIN file from the same custom world as the MDB. Reforged fingerprints the complete source set and verifies native anchors before import.";
+    private string _wccEvidenceStatus = "Required: choose a WCC/WGS DAT/BIN file from the same custom world as the MDB. RealmGate fingerprints the complete source set and verifies native anchors before import.";
     private NightmareWccEvidenceFile? _selectedWccEvidenceFile;
     private NightmareMdbWccPairValidation? _pendingNightmareSourcePairValidation;
     private NightmareWccGapAnalysis? _pendingWccGapAnalysis;
@@ -1273,7 +1273,7 @@ public sealed class EditorViewModel : ViewModelBase
 
             CustomOverrides.Clear();
             foreach (var item in snapshot.Overrides) CustomOverrides.Add(new CustomWorldOverrideRow(item));
-            CustomStatus = $"Custom1 enabled as a separate ReforgedCustom world. {CustomOverrides.Count} authored override(s).";
+            CustomStatus = $"Custom1 enabled as a separate RealmGate custom world. {CustomOverrides.Count} authored override(s).";
             BrowseSimpleObjects();
         }
         catch (Exception exception)
@@ -1356,7 +1356,7 @@ public sealed class EditorViewModel : ViewModelBase
             SimpleIsNew = false;
             SimpleFormTitle = $"Edit {form.SingularName}: {(string.IsNullOrWhiteSpace(item.Name) ? item.Id : item.Name)}";
             SimpleFormHelp = IsDedicatedEditor
-                ? form.HelpText + " Use the dedicated tabs below. Reforged keeps runtime/provenance bookkeeping out of the normal creator view."
+                ? form.HelpText + " Use the dedicated tabs below. RealmGate keeps runtime/provenance bookkeeping out of the normal creator view."
                 : form.HelpText + " Required fields stay at the top. Open any More settings section below to edit the discovered Librarium fields, including nested settings and structured collections.";
             PopulateSimpleForm(form, loaded);
             CustomStatus = $"Loaded {item.Family}/{item.Id}. {SimpleControlSummary}";
@@ -1725,8 +1725,8 @@ public sealed class EditorViewModel : ViewModelBase
         {
             var dialog = new SaveFileDialog
             {
-                Title = "Export Reforged Custom1 Creator Package",
-                Filter = "Reforged Custom1 package (*.json)|*.json|All files (*.*)|*.*",
+                Title = "Export RealmGate Custom1 Creator Package",
+                Filter = "RealmGate Custom1 package (*.json)|*.json|All files (*.*)|*.*",
                 FileName = scope switch
                 {
                     "record" => $"Custom1-{SimpleFamily}-{SanitizeFileName(SimpleObjectId)}.json",
@@ -1752,8 +1752,8 @@ public sealed class EditorViewModel : ViewModelBase
         {
             var dialog = new OpenFileDialog
             {
-                Title = "Preview Reforged Custom1 Import Package",
-                Filter = "Reforged Custom1 package (*.json)|*.json|All files (*.*)|*.*"
+                Title = "Preview RealmGate Custom1 Import Package",
+                Filter = "RealmGate Custom1 package (*.json)|*.json|All files (*.*)|*.*"
             };
             if (dialog.ShowDialog() != true) return;
             PendingImportPath = dialog.FileName;
@@ -2657,7 +2657,7 @@ public sealed class EditorViewModel : ViewModelBase
         if (roomNumberField is not null) roomNumberField.TextValue = _customService.GetNextRoomNumber(map).ToString();
         LoadVisualMapEditor(map);
         SelectedDedicatedTab = DedicatedTabs.FirstOrDefault();
-        CustomStatus = $"New room prepared on map {map}. Give it a name/description and click Save & Build; Reforged assigned the next room number automatically.";
+        CustomStatus = $"New room prepared on map {map}. Give it a name/description and click Save & Build; RealmGate assigned the next room number automatically.";
     }
 
     private void LoadShopInventoryEditor()

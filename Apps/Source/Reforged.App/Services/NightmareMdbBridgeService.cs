@@ -263,7 +263,7 @@ public sealed class NightmareMdbBridgeService
         {
             ["schema"] = "reforged_custom1_export_v1",
             ["world_id"] = CustomWorldEditorService.CustomWorldId,
-            ["source"] = "Reforged Custom World MDB + WCC Import",
+            ["source"] = "RealmGate Custom World MDB + WCC Import",
             ["source_mdb"] = Path.GetFileName(path),
             ["source_mdb_sha256"] = pairValidation.MdbSha256,
             ["source_wcc_set_fingerprint"] = pairValidation.WccSetFingerprint,
@@ -326,7 +326,7 @@ public sealed class NightmareMdbBridgeService
     {
         path = RequireMdbOutput(path);
         var manifest = BuildNightmareExportManifest(changedOnly, out var exported, out var skipped, out var tableCount);
-        var work = Path.Combine(Path.GetTempPath(), "Reforged-NightmareMDB-" + Guid.NewGuid().ToString("N"));
+        var work = Path.Combine(Path.GetTempPath(), "RealmGate-NightmareMDB-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(work);
         try
         {
@@ -343,7 +343,7 @@ public sealed class NightmareMdbBridgeService
             exported,
             skipped,
             tableCount,
-            $"Exported {exported} Nightmare-compatible row(s) across {tableCount} table(s) to {path}. {skipped} Reforged-only record(s) without a usable numeric WCC/Nightmare key were skipped.");
+            $"Exported {exported} Nightmare-compatible row(s) across {tableCount} table(s) to {path}. {skipped} RealmGate-only record(s) without a usable numeric WCC/Nightmare key were skipped.");
     }
 
     public NightmareWccEvidenceAnalysis AnalyzeWccEvidenceFolder(string folder)
@@ -562,7 +562,7 @@ public sealed class NightmareMdbBridgeService
                 if (preserved.Length > 0) notes.Add("Preserved MDB columns: " + string.Join(", ", preserved.Take(12)) + (preserved.Length > 12 ? " ..." : string.Empty));
                 if (correlationNotes.Length > 0) notes.Add("Best WCC correlations: " + string.Join("; ", correlationNotes));
                 if (tableWccOnlyStrings > 0) notes.Add($"Captured {tableWccOnlyStrings} printable WCC-only string candidate(s) in record windows.");
-                if (notes.Count == 0) notes.Add("All known MDB columns for this table are promoted into Reforged fields.");
+                if (notes.Count == 0) notes.Add("All known MDB columns for this table are promoted into RealmGate fields.");
 
                 rows.Add(new NightmareWccGapRow(
                     table.Name,
@@ -665,9 +665,9 @@ public sealed class NightmareMdbBridgeService
             ["columns"] = new JsonArray(Column("NMR Version", "TEXT"), Column("Dat File Version", "TEXT"), Column("Source", "TEXT")),
             ["rows"] = new JsonArray(new JsonObject
             {
-                ["NMR Version"] = "Reforged MDB Bridge",
+                ["NMR Version"] = "RealmGate MDB Bridge",
                 ["Dat File Version"] = "1.11p",
-                ["Source"] = changedOnly ? "Reforged Custom1 changed records" : "Reforged Custom1 effective world"
+                ["Source"] = changedOnly ? "RealmGate Custom1 changed records" : "RealmGate Custom1 effective world"
             })
         });
         tableCount = tables.Count;

@@ -107,7 +107,7 @@ public sealed class ClientSavedBuildSnapshot
 
 public sealed class ClientPortableBuildPackage
 {
-    public string Format { get; init; } = "MajorMudReforged.ClientBuild";
+    public string Format { get; init; } = "RealmGate.ClientBuild";
     public int Version { get; init; } = 1;
     public DateTimeOffset ExportedAt { get; init; } = DateTimeOffset.Now;
     public ClientSavedBuildSnapshot Build { get; init; } = new();

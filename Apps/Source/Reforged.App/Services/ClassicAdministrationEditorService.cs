@@ -55,7 +55,7 @@ public sealed class ClassicAdministrationEditorService
         RuntimeClassicAdministrationPolicyStore.Save(
             _projectRoot,
             policy,
-            "MajorMUD Reforged Classic editor");
+            "RealmGate Classic editor");
 
         var path = RuntimeClassicAdministrationPolicyStore.PathFor(_projectRoot, "classic");
         if (!File.Exists(path))
@@ -270,7 +270,7 @@ public sealed class ClassicAdministrationEditorService
 
         var report = new ServerBootstrap().Run(candidate);
         return report.ProjectRoot
-            ?? throw new InvalidOperationException("The Classic editor could not locate the Reforged repository root.");
+            ?? throw new InvalidOperationException("The Classic editor could not locate the RealmGate repository root.");
     }
 
     private static string ReadString(JsonElement element, string name)

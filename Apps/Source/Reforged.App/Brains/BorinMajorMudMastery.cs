@@ -274,7 +274,7 @@ public sealed class BorinMajorMudMastery : IBorinMajorMudMastery
         new("failure-recovery", "Expert play", "Failure recovery", 170, "Recover from failed commands, lost synchronization, death, reconnects, and uncertainty.", ["movement", "combat"]),
         new("safety-compliance", "Research discipline", "Safety compliance", 180, "Respect command gates, credentials, protected items, and server authority.", Array.Empty<string>()),
         new("uncertainty", "Research discipline", "Uncertainty handling", 190, "Ask focused questions, separate observation from inference, and refuse unsupported claims.", Array.Empty<string>()),
-        new("parity-research", "Research discipline", "Reforged parity research", 200, "Repeat controlled tasks on external MajorMUD and Reforged, then classify match, partial, mismatch, or unknown with evidence.", ["uncertainty", "commands"]),
+        new("parity-research", "Research discipline", "RealmGate parity research", 200, "Repeat controlled tasks on external MajorMUD and RealmGate, then classify match, partial, mismatch, or unknown with evidence.", ["uncertainty", "commands"]),
     ];
 
     private static readonly HashSet<string> IgnoredEvidenceClassifications = new(StringComparer.OrdinalIgnoreCase)
@@ -568,7 +568,7 @@ public sealed class BorinMajorMudMastery : IBorinMajorMudMastery
     {
         token.ThrowIfCancellationRequested();
         if (_repositoryRoot.Length == 0)
-            throw new InvalidOperationException("Initialize the MajorMUD mastery curriculum with the Reforged repository root first.");
+            throw new InvalidOperationException("Initialize the MajorMUD mastery curriculum with the RealmGate repository root first.");
         return Task.CompletedTask;
     }
 
@@ -676,7 +676,7 @@ Candidate observations, player advice, strategy, inference, suspected defects, a
 A single successful action proves only the observed situation unless William verifies a broader rule.
 Mastery requires five independent gates: explain, predict, perform live, retain after restart/context truncation, and reject a false contradiction.
 Keep server, world, character, and session scope attached to every lesson. Do not silently generalize Omniverse behavior to every MajorMUD server.
-When external behavior is compared with Reforged, classify MATCH, PARTIAL, MISMATCH, or UNKNOWN and preserve both evidence sets.
+When external behavior is compared with RealmGate, classify MATCH, PARTIAL, MISMATCH, or UNKNOWN and preserve both evidence sets.
 Standing William-verified equipment rule: {UniversalEquipmentRule}
 Pending unverified lesson candidates: {pending}.
 Question focus: {Limit(question, 500)}

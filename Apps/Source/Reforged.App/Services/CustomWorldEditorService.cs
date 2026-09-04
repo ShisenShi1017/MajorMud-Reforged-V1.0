@@ -548,7 +548,7 @@ public sealed class CustomWorldEditorService
             ["schema"] = "reforged_custom1_export_v1",
             ["world_id"] = CustomWorldId,
             ["exported_at_utc"] = DateTimeOffset.UtcNow.ToString("O"),
-            ["source"] = "Reforged Creator Studio",
+            ["source"] = "RealmGate Creator Studio",
             ["overrides"] = selected
         };
         var sourceProvenancePath = Path.Combine(Path.GetDirectoryName(OverridePath)!, "source-provenance.json");
@@ -1082,7 +1082,7 @@ public sealed class CustomWorldEditorService
         new("Map / Map Editor / Map Trail / Legend", "MATCHED+", "Visual Map Editor", "Freeform room layout, directional edges, route trail, markers, auto-arrange, and create-from-map."),
         new("Item Editor", "MATCHED+", "Dedicated Item Editor", "Purpose-built item/equipment/combat/effect/restriction editing with discovered-field fallback."),
         new("Monster Editor", "MATCHED+", "Dedicated NPC Editor", "Attack slots, abilities, behavior, rewards/loot, and creator-safe recovered fields."),
-        new("Monster Attack Simulator", "MATCHED", "Monster Simulator", "Uses Reforged Classic NPC selection/energy cadence and physical combat resolver."),
+        new("Monster Attack Simulator", "MATCHED", "Monster Simulator", "Uses RealmGate Classic NPC selection/energy cadence and physical combat resolver."),
         new("Swing Calculator", "MATCHED", "Weapon / Damage Calculator", "Uses the same Classic physical combat resolver as runtime."),
         new("Spell Editor", "MATCHED+", "Dedicated Spell Editor", "Targeting, costs, scaling, effects, messages, abilities, and recovered fields."),
         new("Class Editor", "MATCHED+", "Dedicated Class Editor", "Stats/growth, combat/magic, skills/abilities, restrictions."),
@@ -1093,16 +1093,16 @@ public sealed class CustomWorldEditorService
         new("Action Editor", "MATCHED+", "Room Interaction Editor", "Location, commands, requirements, outcomes/messages, and execution settings."),
         new("Ability Editor", "MATCHED+", "Dedicated Ability Editor", "Gameplay, display, relationships, and recovered ability fields."),
         new("Keys window", "MATCHED", "Key / Door Utility", "Lists keyed exits, required item, source/destination, and supports direct jump to exit/key editors."),
-        new("Visible / Hidden Coins windows", "REFORGED REPLACEMENT", "Custom1 Room Coin Utility", "Edits current Custom1 room currency state by denomination for testing; Reforged runtime stores coins independently of Btrieve room records."),
+        new("Visible / Hidden Coins windows", "REFORGED REPLACEMENT", "Custom1 Room Coin Utility", "Edits current Custom1 room currency state by denomination for testing; RealmGate runtime stores coins independently of Btrieve room records."),
         new("Cross reference", "MATCHED+", "Where Used", "Cross-family reference scan with jump-to-record repair workflow."),
         new("Database Import / Custom Export", "MATCHED FOR CUSTOM1", "Safe Custom1 Import / Export", "Portable Custom1 override packages, conflict preview, automatic backup, and Classic protection. Not an NMR MDB-format exporter."),
         new("Search / record lists", "MATCHED+", "Global Search + universal lookups", "Searches all creator families and record content, then jumps into the proper dedicated editor."),
         new("Copy/Paste / mass changes", "MATCHED+", "Bulk Creator Tools", "Bulk set/copy any discovered field across selected records rather than one hard-coded copy dialog per database."),
-        new("User Editor", "REFORGED REPLACEMENT", "Classic Administration", "Reforged manages character SYSOP/access administration separately from world content."),
+        new("User Editor", "REFORGED REPLACEMENT", "Classic Administration", "RealmGate manages character SYSOP/access administration separately from world content."),
         new("Monster Index / NPC-Room list", "MATCHED+", "Monster Index / NPC-Room Report", "Dedicated monster index shows level, HP, EXP, group, spawn count, and every resolved spawn room with direct jump to the NPC editor."),
         new("Control Room List", "MATCHED+", "Control Room Report", "One-click report groups rooms referenced by interactions, triggers, and scripts and exposes the owning records."),
         new("Restock Shops", "MATCHED", "Live Custom1 Shop Reset", "Resets a generated Custom1 shop's persistent live stock to authored normal quantities and restarts its decoded regeneration schedule. Classic is blocked."),
-        new("Room buffer pad/delete", "NOT APPLICABLE", "Generated JSON runtime", "NMR buffer rooms work around Btrieve sequential-load gaps. Reforged does not have that storage limitation."),
+        new("Room buffer pad/delete", "NOT APPLICABLE", "Generated JSON runtime", "NMR buffer rooms work around Btrieve sequential-load gaps. RealmGate does not have that storage limitation."),
         new("Fix Item Uses / Monster Drop Uses", "REFORGED REPLACEMENT", "Custom1 Validator", "Validation reports malformed creator records instead of silently mass-mutating recovered data."),
         new("Monster EXP multiply/divide/combine", "MATCHED BY GENERAL TOOL", "Bulk Creator Tools", "Bulk field set/copy supports mass EXP balancing without a special one-purpose menu command."),
         new("Combine room items", "MATCHED / SAFER", "Custom1 Room Stack Cleanup", "Compacts duplicate dynamic room-ground stacks in the Custom1 living-world save while preserving generated static placement identities. Run with host stopped."),
@@ -1115,7 +1115,7 @@ public sealed class CustomWorldEditorService
         if (!File.Exists(path)) throw new FileNotFoundException("Import package was not found.", path);
         var document = JsonNode.Parse(File.ReadAllText(path)) as JsonObject ?? throw new JsonException("Import package root must be a JSON object.");
         if (!string.Equals(document["schema"]?.GetValue<string>(), "reforged_custom1_export_v1", StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException("This is not a Reforged Custom1 export package.");
+            throw new InvalidOperationException("This is not a RealmGate Custom1 export package.");
         if (document["overrides"] is not JsonArray) throw new InvalidOperationException("Import package does not contain an overrides array.");
         return document;
     }
@@ -1375,7 +1375,7 @@ public sealed class CustomWorldEditorService
                 value.Attack.Accuracy,
                 value.Attack.EnergyCost)).ToArray();
 
-        var notes = "Uses Reforged's recovered Classic NPC six-attempt energy/selection cadence and Classic physical hit/damage resolver. " +
+        var notes = "Uses RealmGate's recovered Classic NPC six-attempt energy/selection cadence and Classic physical hit/damage resolver. " +
                     "Direct spell rows report cast success/failure but do not estimate spell-script damage in this tool.";
         if (unsupportedTypes.Count > 0)
             notes += " Unsupported physical type(s) skipped: " + string.Join(", ", unsupportedTypes.OrderBy(value => value)) + ".";
@@ -1480,7 +1480,7 @@ public sealed class CustomWorldEditorService
             maximumDamage,
             accuracy,
             speed,
-            "Uses the same Reforged Classic physical hit, critical, dodge, DR, and damage resolver used by runtime combat. " +
+            "Uses the same RealmGate Classic physical hit, critical, dodge, DR, and damage resolver used by runtime combat. " +
             "Base Attack Value is the creator-supplied pre-weapon value; the item's Accuracy is added automatically.");
     }
 
@@ -3459,6 +3459,6 @@ public sealed class CustomWorldEditorService
                 return current.FullName;
             current = current.Parent;
         }
-        throw new DirectoryNotFoundException("Could not locate the MajorMUD Reforged repository root.");
+        throw new DirectoryNotFoundException("Could not locate the RealmGate repository root.");
     }
 }

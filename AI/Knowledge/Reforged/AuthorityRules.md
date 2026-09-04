@@ -1,6 +1,6 @@
 # Authority Rules
 
-1. Decoded WCC and Worldgroup evidence are authority only where they define MajorMUD player-visible/gameplay behavior. Reforged does not recreate Worldgroup host transport, mail/telegram storage, presentation queues, or host logging merely for implementation parity; only observable MajorMUD behavior is reproduced and validated.
+1. Decoded WCC and Worldgroup evidence are authority only where they define MajorMUD player-visible/gameplay behavior. RealmGate does not recreate Worldgroup host transport, mail/telegram storage, presentation queues, or host logging merely for implementation parity; only observable MajorMUD behavior is reproduced and validated.
 2. Imported databases are reference-only. They may help identify records but never override decoded/runtime evidence.
 3. Do not guess native or unresolved behavior. Mark it unknown, inferred, or suspected until evidence proves it.
 4. Classic has no factions or reputation. `Guarded` is a specific protection behavior, not generic NPC alliance or assist logic.

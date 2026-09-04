@@ -397,7 +397,7 @@ public sealed class PlayViewModel : ViewModelBase
         RefreshPaths();
         SelectedLocalPath = LocalPaths.FirstOrDefault();
         Raise(nameof(PathSourceDescription));
-        Status = $"{_data.SourceDescription} • Reforged client ready • Emergency Stop is active by default.";
+        Status = $"{_data.SourceDescription} • RealmGate client ready • Emergency Stop is active by default.";
     }
 
 
@@ -899,7 +899,7 @@ public sealed class PlayViewModel : ViewModelBase
     public async Task SaveAutomationOptionsAsync()
     {
         await _automation.SaveAsync();
-        Status = "Saved Reforged client options. Host and world data were not changed.";
+        Status = "Saved RealmGate client options. Host and world data were not changed.";
     }
 
     public async Task SetQuickAutomationOptionAsync(string option, bool enabled)
@@ -963,7 +963,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
 
         await Task.WhenAll(_coordination.SaveAsync(), _connectionProfiles.SaveAsync());
-        Status = $"Reforged client active for {session.DisplayName}.";
+        Status = $"RealmGate client active for {session.DisplayName}.";
     }
 
     public void AddSession()
@@ -1116,7 +1116,7 @@ public sealed class PlayViewModel : ViewModelBase
         if (SelectedPath is null) return;
         await _paths.ImportAsync(SelectedPath);
         Raise(nameof(SelectedPath));
-        Status = $"Imported {SelectedPath.FileName} into the Reforged client path profile. Source and Librarium data were not changed.";
+        Status = $"Imported {SelectedPath.FileName} into the RealmGate client path profile. Source and Librarium data were not changed.";
     }
 
     public async Task RemoveSelectedPathAsync()
@@ -1264,7 +1264,7 @@ public sealed class PlayViewModel : ViewModelBase
     {
         if (session is null) return;
         await SaveTerminalViewModeAsync(session);
-        Status = $"Reforged party configuration saved for {session.DisplayName}. Enabled party capabilities now apply independently.";
+        Status = $"RealmGate party configuration saved for {session.DisplayName}. Enabled party capabilities now apply independently.";
         Raise(nameof(SelectedLiveSession));
     }
 
@@ -1715,7 +1715,7 @@ public sealed class PlayViewModel : ViewModelBase
 
         var route = new MegaMudPathRecord
         {
-            FileName = "client-backtrack.mp", Author = "Reforged Client", StartLabel = nodes[^1].ActualRoomName,
+            FileName = "client-backtrack.mp", Author = "RealmGate Client", StartLabel = nodes[^1].ActualRoomName,
             EndLabel = nodes[0].ActualRoomName, NativeStartKey = nodes[^1].ActualRoomKey, NativeEndKey = nodes[0].ActualRoomKey,
             DeclaredStepCount = reverseSteps.Count, Steps = reverseSteps
         };
@@ -2462,7 +2462,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
         if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
         {
-            session.PartyAutomationStatus = "This external BBS has no Reforged private party protocol; only observed terminal state will be used.";
+            session.PartyAutomationStatus = "This external BBS has no RealmGate private party protocol; only observed terminal state will be used.";
             return;
         }
         await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata party");
@@ -2592,7 +2592,7 @@ public sealed class PlayViewModel : ViewModelBase
         }
 
         await _sessions.SendCommandAsAsync(session.SessionId, "look", ClientCommandOrigin.ClientAutomation);
-        session.CombatAutomationStatus = "External BBS combat refresh requested with native LOOK; no Reforged-private command was leaked into chat.";
+        session.CombatAutomationStatus = "External BBS combat refresh requested with native LOOK; no RealmGate-private command was leaked into chat.";
     }
 
     public async Task<ReforgedCombatAutomationPlan> RunAdvancedCombatAutomationNowAsync(ClientSessionConnection session)
@@ -2752,7 +2752,7 @@ public sealed class PlayViewModel : ViewModelBase
         if (session.ConnectionState != ClientConnectionState.Connected || !ClientCommandIsolationPolicy.HasVerifiedGameplay(session)) return;
         if (!ClientCommandIsolationPolicy.SupportsReforgedPrivateProtocol(session))
         {
-            session.SurvivalAutomationStatus = "External BBS state refresh is waiting for naturally parsed gameplay data; no private Reforged command was leaked into chat.";
+            session.SurvivalAutomationStatus = "External BBS state refresh is waiting for naturally parsed gameplay data; no private RealmGate command was leaked into chat.";
             return;
         }
         await _sessions.SendClientProtocolCommandAsync(session.SessionId, "clientdata stats");
@@ -2836,7 +2836,7 @@ public sealed class PlayViewModel : ViewModelBase
             }
             else
             {
-                session.SurvivalAutomationStatus = plan.Summary + " External BBS refresh will use naturally captured text; no Reforged-private command was sent.";
+                session.SurvivalAutomationStatus = plan.Summary + " External BBS refresh will use naturally captured text; no RealmGate-private command was sent.";
             }
             _nextRecoveryAutomationAt[session.SessionId] = timestamp.AddSeconds(2);
             return;

@@ -320,7 +320,7 @@ public sealed partial class BorinSocialMemoryStore : IBorinSocialMemoryStore
                 {
                     Name = "William",
                     LastSeenAt = now,
-                    CurrentTopic = "building MajorMUD Reforged together",
+                    CurrentTopic = "building RealmGate together",
                 },
             ],
         };

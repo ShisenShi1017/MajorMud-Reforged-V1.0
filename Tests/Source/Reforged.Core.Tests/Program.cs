@@ -299,7 +299,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException("Server bootstrap success did not expose expected host-tool readiness status.");
     }
 
-    if (report.ProjectName != "Reforged" ||
+    if (report.ProjectName != "RealmGate" ||
         string.IsNullOrWhiteSpace(report.CodeUpdate) ||
         string.IsNullOrWhiteSpace(report.DatabaseVersion) ||
         string.IsNullOrWhiteSpace(report.Milestone))
@@ -377,7 +377,7 @@ void ServerHostConfigurationAuditSmoke()
 
     if (report.Status != "runtime-enabled" ||
         report.RuntimeDisabled ||
-        report.HostName != "Reforged Local Host" ||
+        report.HostName != "RealmGate Local Host" ||
         report.BindAddress != "127.0.0.1" ||
         report.Port != 4000 ||
         report.MaxSessions != 64 ||

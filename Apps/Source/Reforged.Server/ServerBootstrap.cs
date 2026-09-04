@@ -133,9 +133,9 @@ public sealed class ServerBootstrap
             report.DatabaseVersion = databaseVersion;
             report.Milestone = milestone;
 
-            if (!string.Equals(project, "Reforged", StringComparison.Ordinal))
+            if (!string.Equals(project, "RealmGate", StringComparison.Ordinal))
             {
-                report.Validation.Add(ValidationSeverity.Error, "SERVER_BOOTSTRAP_PROJECT", "ProjectManifest.json does not identify project as Reforged.");
+                report.Validation.Add(ValidationSeverity.Error, "SERVER_BOOTSTRAP_PROJECT", "ProjectManifest.json does not identify project as RealmGate.");
             }
 
             if (string.IsNullOrWhiteSpace(codeUpdate))

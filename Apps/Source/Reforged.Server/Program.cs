@@ -21,7 +21,7 @@ if (args.Any(arg => string.Equals(arg, "--headless-json", StringComparison.Ordin
     return 0;
 }
 
-Console.WriteLine("Reforged Server Bootstrap");
+Console.WriteLine("RealmGate Server Bootstrap");
 Console.WriteLine($"ProjectRoot: {report.ProjectRoot ?? "<not found>"}");
 Console.WriteLine($"Project: {report.ProjectName ?? "<unknown>"}");
 Console.WriteLine($"CodeUpdate: {report.CodeUpdate ?? "<unknown>"}");

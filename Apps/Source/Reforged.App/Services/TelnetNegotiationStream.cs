@@ -375,7 +375,7 @@ internal sealed class TelnetNegotiationStream : Stream
                 parts[2].Length == 64 && parts[2].All(Uri.IsHexDigit))
             {
                 _clientDataAnnouncement?.Invoke(new ReforgedClientDataEndpointAnnouncement(port, parts[2]));
-                Trace($"Accepted private Reforged client-data channel on port {port}.", false);
+                Trace($"Accepted private RealmGate client-data channel on port {port}.", false);
             }
         }
 

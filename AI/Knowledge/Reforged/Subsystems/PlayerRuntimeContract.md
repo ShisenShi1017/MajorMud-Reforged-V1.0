@@ -5,15 +5,15 @@ Borin participates in MajorMUD as a normal player. These rules describe player-v
 ## Transport and prompts
 
 - The normal player terminal is the legacy MajorMUD Telnet stream and uses CP437-compatible bytes.
-- Reforged UI-only Librarium, map, boss, stats, inventory, equipment, spell, party, PvP, and room-panel refresh traffic travels on the private out-of-band client-data channel. Borin must not issue `clientdata`, `roomdata`, or other UI polling merely to obtain an advantage as a player.
+- RealmGate UI-only Librarium, map, boss, stats, inventory, equipment, spell, party, PvP, and room-panel refresh traffic travels on the private out-of-band client-data channel. Borin must not issue `clientdata`, `roomdata`, or other UI polling merely to obtain an advantage as a player.
 - The default/full command-completion prompt is ANSI-free and follows the MajorMUD HP form such as `[HP=328/MA=270]:` or `[HP=571/KAI=64]:`.
-- MegaMUD is a separate unchanged legacy client and connects only to the normal Telnet/game port. It does not use the Reforged private client-data port.
-- The recovered MegaMUD BBS auto-login launch reply `/go majormud` is accepted at the world-selection boundary. With no selector, Reforged enters the configured default world and resumes the most recently updated existing character for that account/world. Reforged also accepts `/go majormud <slot-or-exact-character-name>` as a compatibility extension for deterministic multi-character MegaMUD profiles. Borin is not to use this launch shortcut during headless play; it exists to preserve the external MegaMUD connection contract.
+- MegaMUD is a separate unchanged legacy client and connects only to the normal Telnet/game port. It does not use the RealmGate private client-data port.
+- The recovered MegaMUD BBS auto-login launch reply `/go majormud` is accepted at the world-selection boundary. With no selector, RealmGate enters the configured default world and resumes the most recently updated existing character for that account/world. RealmGate also accepts `/go majormud <slot-or-exact-character-name>` as a compatibility extension for deterministic multi-character MegaMUD profiles. Borin is not to use this launch shortcut during headless play; it exists to preserve the external MegaMUD connection contract.
 
 ## Player information commands
 
 - `EXITS` is an executable room-presentation command. It renders the same authoritative visible-exit set and exit qualifiers used by the normal room display.
-- `PROFILE` is executable. Native help message 37 proves it displays the current profile settings; Reforged renders the current live/persisted player settings while keeping exact native formatting/default bits evidence-gated.
+- `PROFILE` is executable. Native help message 37 proves it displays the current profile settings; RealmGate renders the current live/persisted player settings while keeping exact native formatting/default bits evidence-gated.
 - `SCAN` is now native-evidence backed: WCCMMUD.DLL parses it as command `0x3A` and calls `display_scan_of_users(0)`. It displays the current adventurer/user scan; it is not room SEARCH and has no scan-range/pathing semantics. Borin should treat it as a read-only player-state query.
 - `HEALTH` is an executable player command. It reports current/max Health plus current/max Mana, or Kai for a Kai/Mystic class. It is not an unrecovered-command placeholder.
 - Borin may use `HEALTH` as a normal survival/state check.
@@ -53,6 +53,6 @@ Borin participates in MajorMUD as a normal player. These rules describe player-v
 
 ## Pass 09 lifecycle promotion
 
-- `SET WARNING ON` uses the native safeguard meaning and is connected wherever Reforged can prove an action would add positive Evil Points. OFF removes that safeguard.
-- `SET INTERRUPT ON` native text: PvP combat interrupts typing/output; OFF displays PvP combat as normal messages. Reforged persists the option and uses native response text; terminal input-buffer interruption remains gated until the host owns an authoritative editable input buffer.
+- `SET WARNING ON` uses the native safeguard meaning and is connected wherever RealmGate can prove an action would add positive Evil Points. OFF removes that safeguard.
+- `SET INTERRUPT ON` native text: PvP combat interrupts typing/output; OFF displays PvP combat as normal messages. RealmGate persists the option and uses native response text; terminal input-buffer interruption remains gated until the host owns an authoritative editable input buffer.
 - `SET KEEP ON` now feeds the executable REROLL replacement lifecycle. The replacement receives the native retained-XP result; OFF gives the replacement 0 XP. Nothing else from the old character is copied.

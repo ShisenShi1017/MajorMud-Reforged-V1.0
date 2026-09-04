@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "MajorMUD Reforged Runtime Trace Event Schema 0080",
+  "title": "RealmGate Runtime Trace Event Schema 0080",
   "type": "object",
   "required": ["schema_version", "probe_id", "event", "timestamp_utc", "source", "sequence"],
   "properties": {

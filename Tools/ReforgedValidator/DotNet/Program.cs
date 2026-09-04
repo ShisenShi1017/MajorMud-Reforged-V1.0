@@ -23,7 +23,7 @@ if (headlessJsonRequested)
     return 0;
 }
 
-Console.WriteLine("Reforged Server Bootstrap");
+Console.WriteLine("RealmGate Server Bootstrap");
 Console.WriteLine($"ProjectRoot: {report.ProjectRoot ?? "<not found>"}");
 Console.WriteLine($"Project: {report.ProjectName ?? "<unknown>"}");
 Console.WriteLine($"CodeUpdate: {report.CodeUpdate ?? "<unknown>"}");

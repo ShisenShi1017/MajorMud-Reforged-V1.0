@@ -57,7 +57,7 @@ public static partial class ReforgedParityCompletionService
     }
 
     public static string ConversationHistoryFolder =>
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MajorMudReforged", "ClientLogs");
+        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "ClientLogs");
 
     public static string GetDailyConversationLogPath(ClientSessionConnection session, DateTime? localDate = null)
     {
@@ -214,7 +214,7 @@ public static partial class ReforgedParityCompletionService
         sb.AppendLine($"  Creature max decoded single hit: {(creature.MaximumSingleHit > 0 ? creature.MaximumSingleHit.ToString("N0", CultureInfo.InvariantCulture) : "not decoded")}");
         sb.AppendLine($"  Creature max decoded attack-profile total: {(creature.MaximumProfileDamage > 0 ? creature.MaximumProfileDamage.ToString("N0", CultureInfo.InvariantCulture) : "not decoded")}");
         sb.AppendLine();
-        sb.AppendLine("Reforged does not label this encounter safe/unsafe from incomplete formulas. These values are evidence-backed comparisons for your decision and for the combat engine's configured limits.");
+        sb.AppendLine("RealmGate does not label this encounter safe/unsafe from incomplete formulas. These values are evidence-backed comparisons for your decision and for the combat engine's configured limits.");
         if (!string.IsNullOrWhiteSpace(creature.Confidence)) sb.AppendLine($"Data confidence: {creature.Confidence}");
         return sb.ToString();
     }
@@ -231,13 +231,13 @@ public static partial class ReforgedParityCompletionService
         ArgumentNullException.ThrowIfNull(request);
         var folder = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         if (string.IsNullOrWhiteSpace(folder) || !Directory.Exists(folder))
-            folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MajorMudReforged", "Diagnostics");
+            folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "Diagnostics");
         Directory.CreateDirectory(folder);
         var realm = SafeFileName(string.IsNullOrWhiteSpace(session.ServerProfileName) ? "reforged" : session.ServerProfileName);
         destinationPath ??= Path.Combine(folder, $"reforged-{realm}-{DateTime.Now:yyyyMMdd-HHmmss}.md");
 
         var sb = new StringBuilder();
-        sb.AppendLine("# MajorMUD Reforged Problem Report");
+        sb.AppendLine("# RealmGate Problem Report");
         sb.AppendLine();
         sb.AppendLine($"Generated: {DateTimeOffset.Now:O}");
         sb.AppendLine($"Area: {Clean(request.Area)}");

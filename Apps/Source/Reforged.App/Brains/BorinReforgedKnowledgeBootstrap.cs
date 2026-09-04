@@ -16,13 +16,13 @@ public sealed record BorinReforgedBootstrapStatus(
     DateTimeOffset? UpdatedUtc)
 {
     public string Summary =>
-        $"{State}: {CardCount} compact Reforged cards • " +
+        $"{State}: {CardCount} compact RealmGate cards • " +
         $"{(RepositoryChanged ? "repository changed — fresh evidence required" : "repository baseline current")} • {Detail}";
 
     public static BorinReforgedBootstrapStatus Empty(string repositoryRoot = "") =>
         new(
             "Not initialized",
-            "The compact Reforged knowledge bootstrap has not been initialized.",
+            "The compact RealmGate knowledge bootstrap has not been initialized.",
             BorinReforgedKnowledgePaths.GetCardsRoot(repositoryRoot),
             BorinReforgedKnowledgePaths.GetStatePath(repositoryRoot),
             string.Empty,
@@ -44,7 +44,7 @@ public sealed record BorinReforgedBootstrapSnapshot(
     public static BorinReforgedBootstrapSnapshot Empty(string repositoryRoot = "") =>
         new(
             BorinKnowledgeSubsystem.General,
-            "No compact Reforged bootstrap cards were supplied for this turn.",
+            "No compact RealmGate bootstrap cards were supplied for this turn.",
             Array.Empty<string>(),
             BorinReforgedBootstrapStatus.Empty(repositoryRoot));
 }
@@ -293,13 +293,13 @@ public sealed class BorinReforgedKnowledgeBootstrap : IBorinReforgedKnowledgeBoo
     {
         var path = BorinReforgedKnowledgePaths.GetManifestPath(root);
         if (!File.Exists(path))
-            throw new FileNotFoundException("Reforged bootstrap manifest was not found.", path);
+            throw new FileNotFoundException("RealmGate bootstrap manifest was not found.", path);
 
         await using var stream = File.OpenRead(path);
         var manifest = await JsonSerializer.DeserializeAsync<BootstrapManifestDocument>(stream, JsonOptions, token)
-            ?? throw new InvalidDataException("Reforged bootstrap manifest was empty.");
+            ?? throw new InvalidDataException("RealmGate bootstrap manifest was empty.");
         if (manifest.Version != StateVersion || manifest.Cards.Count == 0)
-            throw new InvalidDataException("Reforged bootstrap manifest has an unsupported version or no cards.");
+            throw new InvalidDataException("RealmGate bootstrap manifest has an unsupported version or no cards.");
         return manifest;
     }
 

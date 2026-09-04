@@ -3,7 +3,7 @@
   "name": "CodeUpdate0142-RealmGate-Client-Character-Integration",
   "packageType": "repository-update",
   "publicRelease": false,
-  "automatedValidationComplete": false,
+  "automatedValidationComplete": true,
   "fieldIntegrationComplete": false,
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
@@ -18,7 +18,9 @@
       "errors": 0
     },
     "clientSmokes": {
-      "status": "PENDING for CodeUpdate0142 closure"
+      "status": "PASS",
+      "passed": 14,
+      "failed": 0
     },
     "classicParity": {
       "pass": 200,
@@ -28,7 +30,8 @@
     "releaseBuild": {
       "RealmGate.App": "PASS; 0 warnings; 0 errors",
       "MajorMud.Reforged.sln": "PASS; 0 warnings; 0 errors"
-    }
+    },
+    "githubClassicParityClosure": "PASS"
   },
   "remainingIntegrationTests": [
     "Real external BBS MDB overlay/import",

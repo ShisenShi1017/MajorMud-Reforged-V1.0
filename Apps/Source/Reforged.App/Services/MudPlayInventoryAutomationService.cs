@@ -30,7 +30,7 @@ public sealed partial class MudPlayInventoryAutomationService
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+            "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "InventoryAutomation");
         _navigation = new MudPlayNavigationService(root);
     }

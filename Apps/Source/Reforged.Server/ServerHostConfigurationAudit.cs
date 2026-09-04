@@ -13,7 +13,7 @@ public sealed class ServerHostConfigurationAudit
         var root = Path.GetFullPath(projectRoot);
         var configPath = Path.Combine(root, "Config", "server.host.json");
         var configuration = new RuntimeConfigurationProvider()
-            .AddDefault("server:host:name", "Reforged Local Host")
+            .AddDefault("server:host:name", "RealmGate Local Host")
             .AddDefault("server:host:bindAddress", "127.0.0.1")
             .AddDefault("server:host:port", "4000")
             .AddDefault("server:host:maxSessions", "64")
@@ -30,7 +30,7 @@ public sealed class ServerHostConfigurationAudit
             ProjectRoot = root,
             ConfigurationPath = configPath,
             ConfigurationFileExists = File.Exists(configPath),
-            HostName = configuration.GetString("server:host:name", "Reforged Local Host"),
+            HostName = configuration.GetString("server:host:name", "RealmGate Local Host"),
             BindAddress = configuration.GetString("server:host:bindAddress", "127.0.0.1"),
             Port = configuration.GetInt32("server:host:port", 4000),
             MaxSessions = configuration.GetInt32("server:host:maxSessions", 64),

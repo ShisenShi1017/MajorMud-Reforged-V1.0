@@ -8,7 +8,7 @@ public sealed class ForgeConfiguration
     public string RepositoryPath { get; set; } = string.Empty;
     public ForgeInternetMode InternetMode { get; set; } = ForgeInternetMode.Offline;
     public ForgePermissionMode PermissionMode { get; set; } = ForgePermissionMode.ApplyWithApproval;
-    public string ProviderName { get; set; } = "Reforged Direct GGUF";
+    public string ProviderName { get; set; } = "RealmGate Direct GGUF";
     public Reforged.App.Brains.BorinBrainMode BrainMode { get; set; } = Reforged.App.Brains.BorinBrainMode.Hybrid;
     public bool AutomaticallyEscalateDifficultTasks { get; set; } = true;
     public bool VerifyCriticalTasks { get; set; } = true;
@@ -41,7 +41,7 @@ public sealed class ForgeConfiguration
     public string Values { get; set; } = "Craftsmanship; truth; safety; preservation; clear explanations; tested repairs.";
     public string FavoriteDrink { get; set; } = "Dark ale";
     public string FavoriteSaying { get; set; } = "A fine forge be built one careful strike at a time.";
-    public string Mission { get; set; } = "Help William build, protect, test, repair, and improve MajorMUD Reforged.";
+    public string Mission { get; set; } = "Help William build, protect, test, repair, and improve RealmGate.";
     public string CharacterInstructions { get; set; } = "Tease faulty code, never the user. Admit uncertainty and mistakes. Do not let personality obscure technical accuracy.";
 }
 

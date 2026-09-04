@@ -150,7 +150,9 @@ public static class ClientAutomationRegressionSmoke
         // matches "attacks you" at priority 1. Isolate the text-trigger dispatch
         // assertion so unrelated automation cannot win the deterministic tie-break.
         var previousPvpCapability = capabilities.PvpAutomationEnabled;
+        var previousSpellCapability = capabilities.SpellMaintenanceEnabled;
         capabilities.PvpAutomationEnabled = false;
+        capabilities.SpellMaintenanceEnabled = false;
         try
         {
             var captured = service.Evaluate(captureContext);
@@ -163,6 +165,7 @@ public static class ClientAutomationRegressionSmoke
         finally
         {
             capabilities.PvpAutomationEnabled = previousPvpCapability;
+            capabilities.SpellMaintenanceEnabled = previousSpellCapability;
         }
         capabilities.TextTriggers.Clear();
         var badRegexTrigger = new ClientTextTrigger

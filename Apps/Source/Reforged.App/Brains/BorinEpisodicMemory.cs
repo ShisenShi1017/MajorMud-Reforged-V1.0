@@ -354,7 +354,7 @@ public sealed class BorinEpisodicMemoryStore : IBorinEpisodicMemoryStore
         return new EpisodicMemoryDocument
         {
             LastSpeaker = "William",
-            LastTopic = "building MajorMUD Reforged together",
+            LastTopic = "building RealmGate together",
             LastUpdatedAt = now,
             Profiles =
             [
@@ -362,7 +362,7 @@ public sealed class BorinEpisodicMemoryStore : IBorinEpisodicMemoryStore
                 {
                     Speaker = "William",
                     LastSeenAt = now,
-                    LastTopic = "building MajorMUD Reforged together",
+                    LastTopic = "building RealmGate together",
                 },
             ],
         };

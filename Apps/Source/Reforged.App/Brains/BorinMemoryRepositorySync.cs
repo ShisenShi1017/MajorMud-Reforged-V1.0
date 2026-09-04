@@ -376,7 +376,7 @@ internal sealed class BorinMemoryRepositorySync
             _settings.MemoryRepositoryBranch.EndsWith("/", StringComparison.Ordinal))
             return "The Borin memory repository branch name is invalid.";
         if (IsSameOrSubPath(_checkoutRoot, _repositoryRoot))
-            return "The private Borin memory Git checkout must live outside the Reforged source repository.";
+            return "The private Borin memory Git checkout must live outside the RealmGate source repository.";
         return null;
     }
 
@@ -512,7 +512,7 @@ internal sealed class BorinMemoryRepositorySync
         var manifest = new MemoryManifest(
             1,
             DateTimeOffset.UtcNow,
-            "Borin durable-memory snapshot. Raw terminal journals, backups, credentials, generated indexes, model files, and Reforged source are intentionally excluded.",
+            "Borin durable-memory snapshot. Raw terminal journals, backups, credentials, generated indexes, model files, and RealmGate source is intentionally excluded.",
             Normalize(metadata.Server, 120),
             Normalize(metadata.World, 120),
             Normalize(metadata.Character, 80),
@@ -736,7 +736,7 @@ internal sealed class BorinMemoryRepositorySync
             var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             if (string.IsNullOrWhiteSpace(local))
                 local = Path.GetTempPath();
-            root = Path.Combine(local, "MajorMudReforged", "BorinMemoryRepository");
+            root = Path.Combine(local, "RealmGate", "BorinMemoryRepository");
         }
         return Path.GetFullPath(root);
     }

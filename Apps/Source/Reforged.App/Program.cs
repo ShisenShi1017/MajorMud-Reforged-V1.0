@@ -31,7 +31,7 @@ internal static class Program
     {
         var smokeRoot = Path.Combine(
             Path.GetTempPath(),
-            "MajorMudReforged0139",
+            "RealmGate0142",
             $"SmokeData-{Environment.ProcessId}");
 
         try
@@ -134,7 +134,7 @@ internal static class Program
         {
             var root = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "MajorMUD Reforged",
+                "RealmGate",
                 "Logs");
             Directory.CreateDirectory(root);
             File.WriteAllText(Path.Combine(root, "startup-failure.log"), exception.ToString());

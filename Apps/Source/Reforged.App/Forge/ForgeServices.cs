@@ -270,7 +270,7 @@ public sealed class ForgeRepositoryService : IForgeRepositoryService
         }
 
         var brainFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged", "ForgeGuardian", "ProjectBrain");
+            "RealmGate", "ForgeGuardian", "ProjectBrain");
         Directory.CreateDirectory(brainFolder);
         var safeArea = string.Concat(area.Where(c => char.IsLetterOrDigit(c) || c is '-' or '_'));
         if (string.IsNullOrWhiteSpace(safeArea)) safeArea = "Repository";
@@ -729,7 +729,7 @@ public sealed class ForgeBrain(IForgeRepositoryService repository, IForgeCommand
 
             var profile = state.Configuration;
             var system = $"""
-You are {profile.CharacterName}, {profile.CharacterTitle}, age {profile.CharacterAge}, and senior software engineer for MajorMUD Reforged.
+You are {profile.CharacterName}, {profile.CharacterTitle}, age {profile.CharacterAge}, and senior software engineer for RealmGate.
 Mission: {profile.Mission}
 Address the user as: {profile.AddressUserAs}
 Speech style: {profile.SpeechStyle}

@@ -21,7 +21,7 @@ public sealed class ReforgedRecoveryAutomationService
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+            "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "RecoveryAutomation");
     }
 

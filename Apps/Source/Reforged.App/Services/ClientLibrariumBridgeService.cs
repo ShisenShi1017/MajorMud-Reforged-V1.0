@@ -30,7 +30,14 @@ public sealed class ClientLibrariumBridgeService : IClientLibrariumBridgeService
     public async Task<IReadOnlyList<ClientSavedBuildSnapshot>> LoadSavedBuildsAsync(CancellationToken token = default)
     {
         var path = GetSavedBuildPath();
-        if (!File.Exists(path)) return [];
+        TryMigrateLegacySavedBuilds(path);
+        if (!File.Exists(path))
+        {
+            var legacyPath = GetLegacySavedBuildPath();
+            if (!File.Exists(legacyPath))
+                return [];
+            path = legacyPath;
+        }
         await using var stream = File.OpenRead(path);
         return await JsonSerializer.DeserializeAsync<List<ClientSavedBuildSnapshot>>(stream, _savedBuildJsonOptions, token) ?? [];
     }
@@ -92,7 +99,10 @@ public sealed class ClientLibrariumBridgeService : IClientLibrariumBridgeService
         await using var stream = File.OpenRead(filePath);
         var package = await JsonSerializer.DeserializeAsync<ClientPortableBuildPackage>(stream, _savedBuildJsonOptions, token)
             ?? throw new InvalidDataException("The selected file does not contain a Client build package.");
-        if (!package.Format.Equals("MajorMudReforged.ClientBuild", StringComparison.Ordinal) || package.Version != 1)
+        var supportedFormat =
+            package.Format.Equals("RealmGate.ClientBuild", StringComparison.Ordinal) ||
+            package.Format.Equals("MajorMudReforged.ClientBuild", StringComparison.Ordinal);
+        if (!supportedFormat || package.Version != 1)
             throw new InvalidDataException("This Client build format or version is not supported.");
         if (string.IsNullOrWhiteSpace(package.Build.Name) || string.IsNullOrWhiteSpace(package.Build.CharacterName))
             throw new InvalidDataException("The imported build is missing its name or character identity.");
@@ -171,7 +181,34 @@ public sealed class ClientLibrariumBridgeService : IClientLibrariumBridgeService
     }
 
     private static string GetSavedBuildPath()
+        => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "RealmGate", "Client", "saved-builds.json");
+
+    private static string GetLegacySavedBuildPath()
         => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MajorMudReforged", "Client", "saved-builds.json");
+
+    private static void TryMigrateLegacySavedBuilds(string destinationPath)
+    {
+        if (File.Exists(destinationPath))
+            return;
+
+        var legacyPath = GetLegacySavedBuildPath();
+        if (!File.Exists(legacyPath))
+            return;
+
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(destinationPath)!);
+            File.Copy(legacyPath, destinationPath, overwrite: false);
+        }
+        catch (IOException)
+        {
+            // Keep the legacy file untouched; the caller can continue with an empty RealmGate catalog.
+        }
+        catch (UnauthorizedAccessException)
+        {
+            // Do not prevent client startup when legacy data cannot be copied.
+        }
+    }
 
     private static string CountDifference(int a, int b)
     {

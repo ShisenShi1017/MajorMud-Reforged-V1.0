@@ -5,7 +5,7 @@ Created: 2026-07-08T00:09:22.782731Z
 
 ## 1. Librarium is canonical
 
-The Librarium knowledge graph is the authoritative source of truth for MajorMUD Reforged.
+The Librarium knowledge graph is the authoritative source of truth for RealmGate.
 
 The previous `/Data` folder is no longer treated as the master canonical source. `/Data` becomes generated runtime output produced from Librarium records, evidence, world overlays, and compiler/export rules.
 

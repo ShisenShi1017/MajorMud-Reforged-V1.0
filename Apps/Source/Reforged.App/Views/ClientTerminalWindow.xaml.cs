@@ -1000,7 +1000,7 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null || BoundSession is not { } session) return;
         var dialog = new Window
         {
-            Title = $"Reforged Item Weights — {session.CharacterName}", Owner = this,
+            Title = $"RealmGate Item Weights — {session.CharacterName}", Owner = this,
             Width = 700, Height = 470, MinWidth = 520, MinHeight = 330,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -1464,7 +1464,7 @@ public partial class ClientTerminalWindow : Window
     {
         MessageBox.Show(
             this,
-            "Reforged client control coverage\n\n" +
+            "RealmGate client control coverage\n\n" +
             "Working now:\n" +
             "• Connect, disconnect, hangup, and exit\n" +
             "• Manual terminal input and clipboard paste/copy of command input\n" +
@@ -1476,7 +1476,7 @@ public partial class ClientTerminalWindow : Window
             "BBS-only upload, download, and hangup suppression controls are intentionally absent. " +
             "Who Is Home is reserved for the server-backed boss/home tracker. " +
             "Automation capabilities are controlled independently in Client Options. Emergency Stop blocks every automatic command without blocking manual play.",
-            "Reforged Client Status",
+            "RealmGate Client Status",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }
@@ -1487,7 +1487,7 @@ public partial class ClientTerminalWindow : Window
     {
         var dialog = new Window
         {
-            Title = "Reforged Help Center",
+            Title = "RealmGate Help Center",
             Owner = this,
             Width = 940,
             Height = 680,
@@ -1515,7 +1515,7 @@ public partial class ClientTerminalWindow : Window
             ToolTip = "Search topics, commands, and features",
             VerticalContentAlignment = VerticalAlignment.Center
         };
-        System.Windows.Automation.AutomationProperties.SetName(search, "Search Reforged help");
+        System.Windows.Automation.AutomationProperties.SetName(search, "Search RealmGate help");
         Grid.SetColumnSpan(search, 3);
         root.Children.Add(search);
 
@@ -1811,7 +1811,7 @@ public partial class ClientTerminalWindow : Window
 
         var dialog = new Window
         {
-            Title = $"Reforged Spell Book — {session.CharacterName}",
+            Title = $"RealmGate Spell Book — {session.CharacterName}",
             Owner = this,
             Width = 640,
             Height = 470,
@@ -1871,13 +1871,13 @@ public partial class ClientTerminalWindow : Window
     private void PlayerStatisticsClicked(object sender, RoutedEventArgs e)
     {
         if (BoundSession is not { } session) return;
-        ShowLiveStatisticsWindow($"Reforged Player Statistics — {session.CharacterName}", () => BuildPlayerStatistics(session));
+        ShowLiveStatisticsWindow($"RealmGate Player Statistics — {session.CharacterName}", () => BuildPlayerStatistics(session));
     }
 
     private void SessionStatisticsClicked(object sender, RoutedEventArgs e)
     {
         if (BoundSession is not { } session) return;
-        ShowLiveStatisticsWindow($"Reforged Session Statistics — {session.CharacterName}", () => BuildSessionStatistics(session));
+        ShowLiveStatisticsWindow($"RealmGate Session Statistics — {session.CharacterName}", () => BuildSessionStatistics(session));
     }
 
     private void ShowLiveStatisticsWindow(string title, Func<string> render)
@@ -2015,7 +2015,7 @@ public partial class ClientTerminalWindow : Window
     private void TimeAnalysisClicked(object sender, RoutedEventArgs e)
     {
         if (BoundSession is not { } session) return;
-        ShowLiveStatisticsWindow($"Reforged Time Analysis — {session.CharacterName}", () => BuildTimeAnalysis(session));
+        ShowLiveStatisticsWindow($"RealmGate Time Analysis — {session.CharacterName}", () => BuildTimeAnalysis(session));
     }
 
     private static string BuildTimeAnalysis(ClientSessionConnection session)
@@ -2046,7 +2046,7 @@ public partial class ClientTerminalWindow : Window
         if (BoundSession is not { } session) return;
         var dialog = new Window
         {
-            Title = $"Reforged Experience Rate — {session.CharacterName}", Owner = this,
+            Title = $"RealmGate Experience Rate — {session.CharacterName}", Owner = this,
             Width = 760, Height = 480, MinWidth = 520, MinHeight = 340,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -2212,7 +2212,7 @@ public partial class ClientTerminalWindow : Window
         if (BoundSession is not { } session || ViewModel is null) return;
         var dialog = new Window
         {
-            Title = $"Reforged Online Players — {session.WorldName}", Owner = this,
+            Title = $"RealmGate Online Players — {session.WorldName}", Owner = this,
             Width = 620, Height = 430, MinWidth = 440, MinHeight = 300,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -2259,7 +2259,7 @@ public partial class ClientTerminalWindow : Window
         if (BoundSession is not { } session || ViewModel is null) return;
         var dialog = new Window
         {
-            Title = $"Reforged Live Map — {session.CharacterName}", Owner = this,
+            Title = $"RealmGate Live Map — {session.CharacterName}", Owner = this,
             Width = 1180, Height = 760, MinWidth = 760, MinHeight = 500,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = new SolidColorBrush(Color.FromRgb(14, 17, 24)), Foreground = Brushes.Gainsboro,
@@ -3116,7 +3116,7 @@ public partial class ClientTerminalWindow : Window
         if (BoundSession is not { } session || ViewModel is null) return;
         var dialog = new Window
         {
-            Title = $"Reforged Quick Tools — {session.CharacterName}", Owner = this,
+            Title = $"RealmGate Quick Tools — {session.CharacterName}", Owner = this,
             Width = 500, Height = 330, MinWidth = 420, MinHeight = 280,
             ResizeMode = ResizeMode.CanResizeWithGrip,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
@@ -3191,7 +3191,7 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null) return;
         var dialog = new Window
         {
-            Title = $"Reforged Game Data — {ViewModel.Categories.Sum(category => category.Records.Count):N0} local records", Owner = this,
+            Title = $"RealmGate Game Data — {ViewModel.Categories.Sum(category => category.Records.Count):N0} local records", Owner = this,
             Width = 940, Height = 610, MinWidth = 680, MinHeight = 430,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -3299,7 +3299,7 @@ public partial class ClientTerminalWindow : Window
         var options = ViewModel.AutomationOptions.Events;
         var dialog = new Window
         {
-            Title = "Reforged Scheduled Events", Owner = this,
+            Title = "RealmGate Scheduled Events", Owner = this,
             Width = 820, Height = 480, MinWidth = 580, MinHeight = 340,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
@@ -3362,7 +3362,7 @@ public partial class ClientTerminalWindow : Window
         var presentation = ViewModel.AutomationOptions.Presentation;
         var dialog = new Window
         {
-            Title = "Reforged Terminal Font", Owner = this, Width = 460, Height = 310,
+            Title = "RealmGate Terminal Font", Owner = this, Width = 460, Height = 310,
             ResizeMode = ResizeMode.NoResize, WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
             FontFamily = new FontFamily("Tahoma"), FontSize = 12
@@ -3376,7 +3376,7 @@ public partial class ClientTerminalWindow : Window
         root.Children.Add(family);
         root.Children.Add(new TextBlock { Text = "Size", FontWeight = FontWeights.Bold });
         var size = new Slider { Minimum = 8, Maximum = 36, TickFrequency = 1, IsSnapToTickEnabled = true, Value = Math.Clamp(presentation.FontSize, 8, 36), Margin = new Thickness(0, 5, 0, 6) };
-        var preview = new TextBlock { Text = "MajorMUD Reforged  HP=100  ╔═ ANSI ═╗", Margin = new Thickness(0, 4, 0, 14) };
+        var preview = new TextBlock { Text = "RealmGate  HP=100  ╔═ ANSI ═╗", Margin = new Thickness(0, 4, 0, 14) };
         root.Children.Add(size);
         root.Children.Add(preview);
         var buttons = new StackPanel { Orientation = Orientation.Horizontal };
@@ -3588,7 +3588,7 @@ public partial class ClientTerminalWindow : Window
         var sounds = ViewModel.AutomationOptions.Sounds;
         var dialog = new Window
         {
-            Title = "Reforged Client Sounds", Owner = this, Width = 430, Height = 400,
+            Title = "RealmGate Client Sounds", Owner = this, Width = 430, Height = 400,
             ResizeMode = ResizeMode.NoResize, WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,
             FontFamily = new FontFamily("Tahoma"), FontSize = 12
@@ -3773,7 +3773,7 @@ public partial class ClientTerminalWindow : Window
         if (ViewModel is null) return;
         var dialog = new Window
         {
-            Title = "Fix Reforged Path Steps", Owner = this,
+            Title = "Fix RealmGate Path Steps", Owner = this,
             Width = 760, Height = 540, MinWidth = 560, MinHeight = 400,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Background = SystemColors.ControlBrush, Foreground = SystemColors.ControlTextBrush,

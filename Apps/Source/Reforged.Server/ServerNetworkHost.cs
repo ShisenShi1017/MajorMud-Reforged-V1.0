@@ -38,7 +38,7 @@ public sealed class ServerNetworkHost
         listener.Start();
         var clientDataTask = _clientData.RunAsync(linked.Token);
         Console.WriteLine($"Telnet listener started on {endpoint.Address}:{endpoint.Port}; maxSessions={_options.Network.MaxSessions}");
-        Console.WriteLine($"MegaMUD legacy connection uses Telnet/game port {endpoint.Port}; Reforged private client-data remains separate on port {_options.Network.ClientDataPort}.");
+        Console.WriteLine($"MegaMUD legacy connection uses Telnet/game port {endpoint.Port}; RealmGate private client-data remains separate on port {_options.Network.ClientDataPort}.");
 
         try
         {
@@ -461,7 +461,7 @@ public sealed class ServerNetworkHost
     private async Task WriteBannerAsync(TelnetConnection telnet, CancellationToken cancellationToken)
     {
         await telnet.WriteLineAsync(_options.HostName, cancellationToken).ConfigureAwait(false);
-        await telnet.WriteLineAsync("MajorMUD Reforged - password-protected Telnet login", cancellationToken).ConfigureAwait(false);
+        await telnet.WriteLineAsync("RealmGate - password-protected Telnet login", cancellationToken).ConfigureAwait(false);
         await telnet.WriteLineAsync("Host authoritative. Classic-first. No client-side state mutation.", cancellationToken).ConfigureAwait(false);
         await telnet.WriteLineAsync(cancellationToken).ConfigureAwait(false);
     }
@@ -531,7 +531,7 @@ public sealed class ServerNetworkHost
                 if (existing.Length == 0)
                 {
                     await telnet.WriteLineAsync(
-                        "MegaMUD direct login requires an existing character. Create the character once with the Reforged client or a normal Telnet session, then reconnect MegaMUD.",
+                        "MegaMUD direct login requires an existing character. Create the character once with the RealmGate client or a normal Telnet session, then reconnect MegaMUD.",
                         cancellationToken).ConfigureAwait(false);
                     return null;
                 }
@@ -1033,7 +1033,7 @@ public sealed class ServerNetworkHost
             new { Number = 1, Label = "Classic", Aliases = new[] { "classic" } },
             new { Number = 2, Label = "Custom 1", Aliases = new[] { "custom1", "custom-1", "custom_1" } },
             new { Number = 3, Label = "Custom 2", Aliases = new[] { "custom2", "custom-2", "custom_2" } },
-            new { Number = 4, Label = "Reforged", Aliases = new[] { "reforged", "aifromclassic", "ai" } }
+            new { Number = 4, Label = "RealmGate", Aliases = new[] { "realmgate", "reforged", "aifromclassic", "ai" } }
         };
 
         while (true)

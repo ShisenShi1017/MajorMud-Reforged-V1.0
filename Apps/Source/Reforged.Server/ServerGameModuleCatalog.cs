@@ -11,7 +11,7 @@ public sealed class ServerGameModuleCatalog
         catalog.Register(new GameModuleRegistration(
             "majormud-classic",
             "MajorMUD Classic",
-            "First game module and data baseline for Reforged server construction.",
+            "First game module and data baseline for RealmGate server construction.",
             "Data",
             GameplayEnabled: true,
             new[]

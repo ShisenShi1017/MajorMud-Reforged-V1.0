@@ -39,7 +39,7 @@ public sealed class MudPlayGameDataOverlayWindow : Window
     {
         Session = session ?? throw new ArgumentNullException(nameof(session));
 
-        Title = "Client Game Data — Reforged";
+        Title = "Client Game Data — RealmGate";
         Width = 1180;
         Height = 780;
         MinWidth = 880;
@@ -93,7 +93,7 @@ public sealed class MudPlayGameDataOverlayWindow : Window
 
         var footer = new TextBlock
         {
-            Text = "Reforged servers: active Reforged world data is read-only here. External BBSes: Classic remains the immutable base; importing an MDB stores only its differences and manual corrections. The MDB itself is never copied. This is a client data overlay, not the Reforged world Editor.",
+            Text = "RealmGate servers: active RealmGate world data is read-only here. External BBSes: Classic remains the immutable base; importing an MDB stores only its differences and manual corrections. The MDB itself is never copied. This is a client data overlay, not the RealmGate world Editor.",
             TextWrapping = TextWrapping.Wrap,
             Foreground = Brushes.DimGray,
             Margin = new Thickness(2, 8, 2, 0)
@@ -335,7 +335,7 @@ public sealed class MudPlayGameDataOverlayWindow : Window
 
         var answer = MessageBox.Show(
             this,
-            "This will compare the selected database with Reforged Classic and replace only the MDB-derived portion of this BBS overlay.\n\n" +
+            "This will compare the selected database with RealmGate Classic and replace only the MDB-derived portion of this BBS overlay.\n\n" +
             "Manual overrides are preserved. The MDB itself is not copied. Classic records that are absent from the MDB are NOT automatically deleted or hidden.\n\nContinue?",
             "Import MDB as BBS Overlay",
             MessageBoxButton.YesNo,

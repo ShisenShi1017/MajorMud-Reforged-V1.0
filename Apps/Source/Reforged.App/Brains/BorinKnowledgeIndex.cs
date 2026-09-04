@@ -51,7 +51,7 @@ public sealed record BorinKnowledgeIndexStatus(
     public static BorinKnowledgeIndexStatus NotBuilt(string repositoryRoot) =>
         new(
             "Not built",
-            "Run /learn reforged to create Borin's persistent project index.",
+            "Run /learn realmgate to create Borin's persistent project index.",
             BorinKnowledgeIndexPaths.GetIndexPath(repositoryRoot),
             0,
             0,
@@ -103,7 +103,7 @@ public sealed record BorinKnowledgeIndexSnapshot(
     public static BorinKnowledgeIndexSnapshot Empty(
         string repositoryRoot = "",
         string query = "",
-        string detail = "No indexed Reforged knowledge was supplied for this turn.") =>
+        string detail = "No indexed RealmGate knowledge was supplied for this turn.") =>
         new(repositoryRoot, query, Array.Empty<BorinKnowledgeEvidenceItem>(), detail);
 }
 
@@ -217,7 +217,7 @@ public sealed class BorinKnowledgeIndex : IBorinKnowledgeIndex
                         sidecar.IsComplete ? "Ready" : "Incomplete",
                         sidecar.IsComplete
                             ? "Persistent index is ready. Search metadata was read without loading the full knowledge corpus."
-                            : "The previous learning pass was interrupted. Run /learn reforged to resume.",
+                            : "The previous learning pass was interrupted. Run /learn realmgate to resume.",
                         indexPath,
                         sidecar.IndexedFiles,
                         sidecar.IndexedChunks,
@@ -265,7 +265,7 @@ public sealed class BorinKnowledgeIndex : IBorinKnowledgeIndex
                 document.IsComplete ? "Ready" : "Incomplete",
                 document.IsComplete
                     ? "Persistent index is ready. Use /learn changed after repository updates."
-                    : "The previous learning pass was interrupted. Run /learn reforged to resume.",
+                    : "The previous learning pass was interrupted. Run /learn realmgate to resume.",
                 indexPath,
                 document,
                 0,
@@ -330,7 +330,7 @@ public sealed class BorinKnowledgeIndex : IBorinKnowledgeIndex
             return BorinKnowledgeIndexSnapshot.Empty(
                 root,
                 query,
-                "Borin's persistent knowledge index has not been built. Run /learn reforged first.");
+                "Borin's persistent knowledge index has not been built. Run /learn realmgate first.");
         }
 
         var file = new FileInfo(indexPath);
@@ -645,7 +645,7 @@ public sealed class BorinKnowledgeIndex : IBorinKnowledgeIndex
         catch (OperationCanceledException)
         {
             document.IsComplete = false;
-            document.LastError = "Canceled; run /learn reforged to resume from saved checkpoints.";
+            document.LastError = "Canceled; run /learn realmgate to resume from saved checkpoints.";
             document.LastChangedFiles = changed;
             document.LastSkippedFiles = skipped;
             document.LastFailedFiles = failed;

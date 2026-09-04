@@ -335,7 +335,7 @@ public sealed class BorinEngineeringWorkspace : IBorinEngineeringWorkspace
 
         var packagesRoot = Path.Combine(repositoryRoot, "AI", "Workspaces", "Borin", "Packages");
         Directory.CreateDirectory(packagesRoot);
-        var name = $"MajorMud-Reforged-Borin-Draft-{DateTime.Now:yyyyMMdd-HHmmss}";
+        var name = $"RealmGate-Borin-Draft-{DateTime.Now:yyyyMMdd-HHmmss}";
         var stagingRoot = Path.Combine(Path.GetTempPath(), name + "-" + Guid.NewGuid().ToString("N"));
         var topFolder = Path.Combine(stagingRoot, name);
         Directory.CreateDirectory(topFolder);
@@ -473,12 +473,12 @@ public sealed class BorinEngineeringWorkspace : IBorinEngineeringWorkspace
     private static string ValidateRepositoryRoot(string repositoryRoot)
     {
         if (string.IsNullOrWhiteSpace(repositoryRoot))
-            throw new InvalidOperationException("The Reforged repository path is empty.");
+            throw new InvalidOperationException("The RealmGate repository path is empty.");
         var full = Path.GetFullPath(repositoryRoot.Trim());
         var appProject = Path.Combine(full, "Apps", "Source", "Reforged.App", "Reforged.App.csproj");
         var coreProject = Path.Combine(full, "Core", "Source", "Reforged.Core", "Reforged.Core.csproj");
         if (!File.Exists(appProject) || !File.Exists(coreProject))
-            throw new DirectoryNotFoundException("The selected folder is not the MajorMUD Reforged repository: " + full);
+            throw new DirectoryNotFoundException("The selected folder is not the RealmGate repository: " + full);
         return full;
     }
 
@@ -726,7 +726,7 @@ Payload files:
 {string.Join(Environment.NewLine, changed.Select(path => "- " + path))}
 
 Review every changed file before running Install-And-Validate.bat.
-The included installer uses no backup and no rollback, matching the current Reforged update policy.
+The included installer uses no backup and no rollback, matching the current RealmGate update policy.
 """;
 
     private static string BuildDraftInstallerBatch(string name) =>

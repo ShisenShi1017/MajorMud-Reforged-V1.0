@@ -32,7 +32,7 @@ public sealed class ReforgedPartyAutomationService
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+            "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "PartyAutomation");
     }
 

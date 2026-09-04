@@ -142,7 +142,7 @@ public sealed class BorinAcademy : IBorinAcademy
                 BorinAcademyQuestionType.Relationship => $"For the {subject.Subject} curriculum, what authoritative relationships are established for {focus}? Cite the local evidence.",
                 BorinAcademyQuestionType.MultiHop => $"For the {subject.Subject} curriculum, trace only the supported multi-hop dependencies for {focus}; cite every supported hop.",
                 BorinAcademyQuestionType.SourceTrace => $"For the {subject.Subject} curriculum, where is {focus} implemented or defined, and what calls or consumes it? Cite exact source locations.",
-                BorinAcademyQuestionType.Comparison => $"For the {subject.Subject} curriculum, compare the supplied imported/decoded authority, Reforged implementation, tests, and runtime evidence for {focus}. Identify unsupported stages.",
+                BorinAcademyQuestionType.Comparison => $"For the {subject.Subject} curriculum, compare the supplied imported/decoded authority, RealmGate implementation, tests, and runtime evidence for {focus}. Identify unsupported stages.",
                 BorinAcademyQuestionType.RuntimeVerification => $"For the {subject.Subject} curriculum, what does the supplied evidence establish about {focus}, and what still requires controlled runtime or Test Realm verification?",
                 BorinAcademyQuestionType.Diagnostic => $"For the {subject.Subject} curriculum, which supplied authoritative evidence diagnoses {focus}, and why?",
                 _ => $"For the {subject.Subject} curriculum, what does the supplied authoritative local knowledge establish about {focus}? Cite the exact source."
@@ -260,7 +260,7 @@ public sealed class BorinAcademy : IBorinAcademy
             if (conflict.Status != "Resolved")
                 await AddGapUnsafeAsync(state, conflict.Subject, $"Resolve knowledge conflict {conflict.Id}.",
                     $"Expected: {conflict.Expected}; observed: {conflict.Observed}", "Conflicting authoritative/runtime evidence",
-                    "Compare imported data, decoded/native behavior, Reforged source, tests, and controlled Test Realm observations.", "High", token);
+                    "Compare imported data, decoded/native behavior, RealmGate source, tests, and controlled Test Realm observations.", "High", token);
         await SaveAsync(root, state, token);
         return await SnapshotAsync(root, state, token);
     }
@@ -384,7 +384,7 @@ public sealed class BorinAcademy : IBorinAcademy
                     a.Subject.Equals("Commands", StringComparison.OrdinalIgnoreCase)
                         ? a with { BuildFingerprint = $"academy-v4-ambiguous-domain-obsolete|{a.BuildFingerprint}" }
                         : a).ToList();
-                state.CurrentTask = "Academy v5 separated MajorMUD Commands from Reforged Commands; ambiguous legacy command scores require an honest retest.";
+                state.CurrentTask = "Academy v5 separated MajorMUD Commands from RealmGate Commands; ambiguous legacy command scores require an honest retest.";
                 state.Version = 5;
             }
             if (state.Version < 6)
@@ -399,10 +399,10 @@ public sealed class BorinAcademy : IBorinAcademy
                         {
                             Status = BorinKnowledgeGapStatus.Resolved,
                             UpdatedUtc = now,
-                            ResolutionEvidence = "Academy v6 reclassified Reforged question-generation misses as index/retrieval health rather than permanent knowledge gaps."
+                            ResolutionEvidence = "Academy v6 reclassified RealmGate question-generation misses as index/retrieval health rather than permanent knowledge gaps."
                         }
                         : g).ToList();
-                state.CurrentTask = "Academy v6 removed false Reforged question-generation gaps; only failed answers and genuine authority gaps remain open.";
+                state.CurrentTask = "Academy v6 removed false RealmGate question-generation gaps; only failed answers and genuine authority gaps remain open.";
                 state.Version = Version;
             }
             return state;
@@ -422,7 +422,7 @@ public sealed class BorinAcademy : IBorinAcademy
     {
         var all = AllSubjects();
         if (scope.Contains("MajorMUD", StringComparison.OrdinalIgnoreCase)) all = all.Where(s => s.Domain == BorinAcademyDomain.MajorMud);
-        else if (scope.Contains("Reforged", StringComparison.OrdinalIgnoreCase)) all = all.Where(s => s.Domain == BorinAcademyDomain.Reforged);
+        else if (scope.Contains("RealmGate", StringComparison.OrdinalIgnoreCase) || scope.Contains("Reforged", StringComparison.OrdinalIgnoreCase)) all = all.Where(s => s.Domain == BorinAcademyDomain.Reforged);
         else if (scope.Contains("gap", StringComparison.OrdinalIgnoreCase)) all = all.Where(s => state.Gaps.Any(g => g.Subject.Equals(s.Subject, StringComparison.OrdinalIgnoreCase) && g.Status != BorinKnowledgeGapStatus.Resolved));
         return all.OrderBy(s => state.Attempts.Count(a => a.Subject.Equals(s.Subject, StringComparison.OrdinalIgnoreCase) &&
                                                        a.BuildFingerprint == state.BuildFingerprint &&

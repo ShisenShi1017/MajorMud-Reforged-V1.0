@@ -4,7 +4,7 @@ Date: 2026-07-09T18:49:01Z
 
 ## Official Architecture
 
-MajorMUD Reforged now uses this rule set as the active baseline:
+RealmGate uses this rule set as the active baseline:
 
 1. **Librarium is the authoritative source of truth.**
 2. **Host/server/editor modifies the Librarium.**

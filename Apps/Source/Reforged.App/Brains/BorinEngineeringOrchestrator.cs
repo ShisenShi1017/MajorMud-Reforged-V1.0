@@ -585,7 +585,7 @@ public sealed class BorinEngineeringOrchestrator : IBorinEngineeringOrchestrator
         var appProject = Path.Combine(full, "Apps", "Source", "Reforged.App", "Reforged.App.csproj");
         var coreProject = Path.Combine(full, "Core", "Source", "Reforged.Core", "Reforged.Core.csproj");
         if (!File.Exists(appProject) || !File.Exists(coreProject))
-            throw new DirectoryNotFoundException("The configured repository root does not contain the Reforged app and core projects.");
+            throw new DirectoryNotFoundException("The configured repository root does not contain the RealmGate app and core projects.");
         return full;
     }
 

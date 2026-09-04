@@ -39,7 +39,7 @@ public sealed class ReforgedCombatAutomationService
     {
         var root = rootPath ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "MajorMUD Reforged");
+            "RealmGate");
         _profileRoot = Path.Combine(root, "Client", "CombatAutomation");
     }
 
@@ -87,7 +87,7 @@ public sealed class ReforgedCombatAutomationService
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
         var p = profile.Preferences;
-        if (!p.Enabled) return None("Advanced Reforged combat automation is disabled.");
+        if (!p.Enabled) return None("Advanced RealmGate combat automation is disabled.");
 
         var state = State(session.SessionId);
         if (state.SessionHoldUntil is { } hold && now < hold)

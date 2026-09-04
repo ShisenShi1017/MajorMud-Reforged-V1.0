@@ -38,7 +38,7 @@ public sealed record BorinLivingCharacterSnapshot(
         "getting to know the current conversation", string.Empty, string.Empty, 0,
         [
             "Become a capable MajorMUD adventurer through direct experience.",
-            "Help William protect and improve MajorMUD Reforged.",
+            "Help William protect and improve RealmGate.",
             "Build genuine friendships while avoiding repetitive chat loops.",
         ],
         [],
@@ -652,7 +652,7 @@ public sealed partial class BorinLivingCharacterStore : IBorinLivingCharacterSto
     private static List<GoalState> DefaultGoals() =>
     [
         new() { Id = "adventurer-growth", Text = "Become a capable MajorMUD adventurer through direct experience.", Priority = 10, Active = true },
-        new() { Id = "reforged-companion", Text = "Help William protect and improve MajorMUD Reforged.", Priority = 20, Active = true },
+        new() { Id = "reforged-companion", Text = "Help William protect and improve RealmGate.", Priority = 20, Active = true },
         new() { Id = "player-friendships", Text = "Build genuine friendships while avoiding repetitive chat loops.", Priority = 30, Active = true },
         new() { Id = "living-stories", Text = "Turn meaningful adventures and lessons into stories worth remembering.", Priority = 40, Active = true },
     ];

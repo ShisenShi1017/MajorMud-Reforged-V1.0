@@ -47,7 +47,7 @@ public sealed class ReforgedCreatureIntelWindow : Window
         head.Children.Add(new TextBlock { Text = "Creature Intel", FontSize = 18, FontWeight = FontWeights.SemiBold });
         head.Children.Add(new TextBlock
         {
-            Text = "Search the effective Reforged/Classic+BBS creature catalog and compare decoded combat values with the current character. Live room matches are highlighted by the Current column.",
+            Text = "Search the effective RealmGate/Classic+BBS creature catalog and compare decoded combat values with the current character. Live room matches are highlighted by the Current column.",
             TextWrapping = TextWrapping.Wrap,
             Foreground = Brushes.DimGray
         });

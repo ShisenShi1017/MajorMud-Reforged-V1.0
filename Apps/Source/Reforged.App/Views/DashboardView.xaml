@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Margin="28">
-      <TextBlock Text="Welcome to MajorMUD Reforged" FontSize="32" FontWeight="Bold" Foreground="{StaticResource TextBrush}"/>
+      <TextBlock Text="Welcome to RealmGate" FontSize="32" FontWeight="Bold" Foreground="{StaticResource TextBrush}"/>
       <TextBlock Text="Choose an action to begin. The Host starts only when requested." Margin="0,8,0,22" Foreground="{StaticResource MutedTextBrush}" FontSize="15"/>
       <UniformGrid Columns="3">
         <Button Content="Continue Last Session" Command="{Binding OpenWorkspaceCommand}" CommandParameter="play" Style="{StaticResource PrimaryButtonStyle}"/>

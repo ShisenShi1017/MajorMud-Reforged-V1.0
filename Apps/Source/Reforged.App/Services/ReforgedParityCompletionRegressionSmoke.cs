@@ -51,7 +51,7 @@ public static class ReforgedParityCompletionRegressionSmoke
                 },
                 path);
             var text = await File.ReadAllTextAsync(path);
-            if (!text.Contains("MajorMUD Reforged Problem Report", StringComparison.Ordinal)) return 83;
+            if (!text.Contains("RealmGate Problem Report", StringComparison.Ordinal)) return 83;
             if (text.Contains("should-not-survive", StringComparison.Ordinal) || text.Contains("api_key=secret", StringComparison.Ordinal)) return 84;
             if (!text.Contains("[REDACTED]", StringComparison.Ordinal)) return 85;
         }

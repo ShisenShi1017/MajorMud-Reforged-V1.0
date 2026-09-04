@@ -25,7 +25,7 @@ public enum BorinGamePhase
 
 /// <summary>
 /// Identifies the server on which Borin's character is actually playing. The
-/// Reforged application, Forge workspace, and connected game server are separate.
+/// RealmGate application, Forge workspace, and connected game server are separate.
 /// </summary>
 public enum BorinGameHostKind
 {
@@ -139,7 +139,7 @@ public sealed record BorinGameStateSnapshot(
     public string GameServerIdentity => HostKind switch
     {
         BorinGameHostKind.OmniverseBbs => $"Omniverse BBS ({Display(HostName, Server)})",
-        BorinGameHostKind.ReforgedServer => $"the Reforged server ({Display(HostName, Server)})",
+        BorinGameHostKind.ReforgedServer => $"the RealmGate server ({Display(HostName, Server)})",
         BorinGameHostKind.ExternalBbs => $"{Server} ({Display(HostName, "external host")})",
         _ => Display(Server, "unknown game server"),
     };
@@ -151,16 +151,16 @@ public sealed record BorinGameStateSnapshot(
             var target = HostKind switch
             {
                 BorinGameHostKind.OmniverseBbs => $"Omniverse BBS • world {World}",
-                BorinGameHostKind.ReforgedServer => $"the Reforged server • world {World}",
+                BorinGameHostKind.ReforgedServer => $"the RealmGate server • world {World}",
                 BorinGameHostKind.ExternalBbs => $"external server {Server} • world {World}",
                 _ => "game server not verified",
             };
 
             if (!IsConnected)
-                return $"Reforged application • configured for {target} • disconnected";
+                return $"RealmGate application • configured for {target} • disconnected";
             if (!IsLoggedIntoMajorMud)
-                return $"Reforged application • connected to {target} • MajorMUD login not verified";
-            return $"Reforged application • playing on {target}";
+                return $"RealmGate application • connected to {target} • MajorMUD login not verified";
+            return $"RealmGate application • playing on {target}";
         }
     }
 
@@ -297,7 +297,7 @@ public sealed record BorinGameStateSnapshot(
         var host = hostName?.Trim() ?? string.Empty;
         // The connected endpoint outranks a stale display/profile label. This is
         // what lets Borin distinguish an Omniverse connection from the local
-        // Reforged server even when a previously saved Forge form still has the
+        // RealmGate server even when a previously saved Forge form still has the
         // other profile name selected.
         if (host.Contains("omniversebbs", StringComparison.OrdinalIgnoreCase))
             return BorinGameHostKind.OmniverseBbs;
@@ -307,7 +307,8 @@ public sealed record BorinGameStateSnapshot(
         if (profile.Contains("omniverse", StringComparison.OrdinalIgnoreCase))
             return BorinGameHostKind.OmniverseBbs;
 
-        if (profile.Contains("reforged", StringComparison.OrdinalIgnoreCase) ||
+        if (profile.Contains("realmgate", StringComparison.OrdinalIgnoreCase) ||
+            profile.Contains("reforged", StringComparison.OrdinalIgnoreCase) ||
             profile.Contains("local host", StringComparison.OrdinalIgnoreCase))
         {
             return BorinGameHostKind.ReforgedServer;
@@ -326,7 +327,7 @@ public sealed record BorinGameStateSnapshot(
                 BorinGameHostKind.OmniverseBbs =>
                     "- Omniverse BBS is the configured target, but the Client is disconnected. Do not say your character is playing there until a live connection and MajorMUD login are verified.",
                 BorinGameHostKind.ReforgedServer =>
-                    "- The Reforged server is the configured target, but the Client is disconnected. Do not say your character is playing there until a live connection and MajorMUD login are verified.",
+                    "- The RealmGate server is the configured target, but the Client is disconnected. Do not say your character is playing there until a live connection and MajorMUD login are verified.",
                 BorinGameHostKind.ExternalBbs =>
                     $"- {Server} is the configured target, but the Client is disconnected. Do not say your character is playing there until a live connection and MajorMUD login are verified.",
                 _ =>
@@ -337,11 +338,11 @@ public sealed record BorinGameStateSnapshot(
                 : HostKind switch
                 {
                     BorinGameHostKind.OmniverseBbs =>
-                        "- You are using the MajorMUD Reforged application, and your active character is verified playing on Omniverse BBS. Do not call Omniverse the Reforged server.",
+                        "- You are using the RealmGate application, and your active character is verified playing on Omniverse BBS. Do not call Omniverse the RealmGate server.",
                     BorinGameHostKind.ReforgedServer =>
-                        "- Your active character is verified playing on the Reforged server. The Forge workspace is still an application workspace, not a room inside the game.",
+                        "- Your active character is verified playing on the RealmGate server. The Forge workspace is still an application workspace, not a room inside the game.",
                     BorinGameHostKind.ExternalBbs =>
-                        $"- Your active character is verified playing on {Server}, an external game server. MajorMUD Reforged is the client application observing and controlling that session.",
+                        $"- Your active character is verified playing on {Server}, an external game server. RealmGate is the client application observing and controlling that session.",
                     _ =>
                         "- A MajorMUD realm login is verified, but the server identity is not. Do not guess the server name.",
                 };
@@ -368,7 +369,7 @@ public sealed record BorinGameStateSnapshot(
 
         return $"""
 CURRENT VERIFIED GAME-STATE AND ENVIRONMENT CONTRACT
-- Application: MajorMUD Reforged.
+- Application: RealmGate.
 - Character: {CharacterName}.
 - Game server target/identity: {GameServerIdentity}; configured profile/world: {Server}/{World}.
 - Client connection: {ConnectionState}; connected: {IsConnected}.
@@ -378,7 +379,7 @@ CURRENT VERIFIED GAME-STATE AND ENVIRONMENT CONTRACT
 {identityRule}
 {liveState}
 Authority and honesty rules:
-- Reforged is the application. Omniverse BBS, a Reforged server, and any other BBS are distinct game servers. Use the connection and login flags to distinguish a configured target from a live connection and verified play.
+- RealmGate is the application. Omniverse BBS, the RealmGate server, and any other BBS are distinct game servers. Use the connection and login flags to distinguish a configured target from a live connection and verified play.
 - This point-in-time Client snapshot is the only authority for current server identity, login, room, exits, combat, vitals, inventory, and equipment. It overrides old memories and prior dialogue.
 - Connected does not mean logged into MajorMUD. Only a connected session with login state Ready and a fresh HP prompt is verified in-game.
 - Report only the exact visible exits listed above. Never invent where an exit leads. An exit destination is known only from verified transition evidence or decoded authority explicitly supplied in the turn.

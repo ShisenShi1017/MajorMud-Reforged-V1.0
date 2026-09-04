@@ -8,7 +8,7 @@ This changelog is intentionally compact. Detailed historical pass-by-pass notes 
 - Added the bundled Classic route graph used by Goto/Auto-Roam and removed dangling route edges.
 - Consolidated the Character page around Summary, Equipment Planner, Statistics/source breakdowns, Spells & Effects, and Progression while preserving effective server/BBS overlay authority.
 - Hardened Borin persistent-character adoption and corrected parity-smoke/release target paths.
-- RealmGate app Release build and full solution build pass with 0 warnings / 0 errors; bootstrap validator passes with 0 issues. Client/parity smoke closure remains pending.
+- RealmGate app Release build and full solution build pass with 0 warnings / 0 errors; bootstrap validator passes with 0 issues; all 14 client smokes pass; pushed GitHub Classic parity closure passes. CodeUpdate0142 is closed.
 
 ## CodeUpdate0141 — Validated Client and Repository Consolidation
 

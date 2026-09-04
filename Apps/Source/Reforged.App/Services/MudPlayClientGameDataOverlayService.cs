@@ -459,7 +459,7 @@ public sealed class MudPlayClientGameDataOverlayService
     {
         var context = new MudPlayClientGameDataOverlayService().ResolveContext(session);
         if (!context.IsEditable)
-            throw new InvalidOperationException("Reforged world game data is server-authoritative and cannot be edited from Play.");
+            throw new InvalidOperationException("RealmGate world game data is server-authoritative and cannot be edited from Play.");
         return context;
     }
 

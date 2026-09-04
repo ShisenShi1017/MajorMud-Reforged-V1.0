@@ -1,11 +1,11 @@
 {
-  "project": "Reforged",
+  "project": "RealmGate",
   "projectVersion": "0.1.0",
   "codeUpdate": "0142",
   "databaseVersion": "0010",
   "milestone": "CodeUpdate0142 - RealmGate Client and Character Integration",
   "sourceOfTruth": "Librarium is committed gameplay/data authority; Data is generated runtime output.",
-  "runtimePolicy": "The Reforged server is gameplay-authoritative. Clients consume authoritative state and generated/effective game data.",
+  "runtimePolicy": "The RealmGate server is gameplay-authoritative. Clients consume authoritative state and generated/effective game data.",
   "updatePolicy": "Repository commits/pushes require explicit user direction. Local validation does not imply pushed CI success.",
   "neverGuessPolicy": "Verify before claiming success. State unverified integration boundaries explicitly.",
   "referenceDataPolicy": "MDB/WCC/WGS/WBB/native/imported material is reference/import input unless explicitly promoted through a reviewed workflow.",
@@ -25,10 +25,10 @@
       "unknown": 0
     },
     "validator": "PASS; 0 issues / 0 warnings / 0 errors (0142 bootstrap validation)",
-    "clientSmokes": "PENDING for CodeUpdate0142 closure",
-    "releaseBuild": "RealmGate app Release build and full solution build locally verified at 0 warnings / 0 errors",
+    "clientSmokes": "PASS; 14/14 (CodeUpdate0142 closure)",
+    "releaseBuild": "RealmGate app Release build and full solution build verified at 0 warnings / 0 errors",
     "remainingIntegrationTests": [
-      "External non-Reforged BBS MDB overlay/import end-to-end test",
+      "External non-RealmGate BBS MDB overlay/import end-to-end test",
       "Creator Studio custom-world MDB plus matching WCC/WGS import/runtime test"
     ]
   },

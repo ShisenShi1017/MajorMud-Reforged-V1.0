@@ -585,7 +585,7 @@
                                     </StackPanel>
                                     <TextBox Grid.Column="1" Text="{Binding SimpleObjectId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{StaticResource EditorTextBoxStyle}"
-                                             ToolTip="Leave blank when creating something new and Reforged will create the ID."/>
+                                             ToolTip="Leave blank when creating something new and RealmGate will create the ID."/>
                                 </Grid>
                             </Border>
 
@@ -760,7 +760,7 @@
                                 <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
                                 <StackPanel>
                                     <TextBlock Text="MONSTER ATTACK SIMULATOR" FontSize="22" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Test the selected monster against a target defense using Reforged's recovered Classic NPC attack-selection, energy, hit, dodge, DR, and damage rules."
+                                    <TextBlock Text="Test the selected monster against a target defense using RealmGate's recovered Classic NPC attack-selection, energy, hit, dodge, DR, and damage rules."
                                                TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,12"/>
                                 </StackPanel>
                                 <Grid Grid.Row="1" Margin="0,0,0,12">
@@ -897,13 +897,13 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel Margin="18" MaxWidth="1050" HorizontalAlignment="Left">
                                 <TextBlock Text="CUSTOM1 IMPORT / EXPORT" FontSize="22" FontWeight="SemiBold"/>
-                                <TextBlock Text="Move creator changes between Reforged installs without touching Classic. Packages contain only Custom1 overrides."
+                                <TextBlock Text="Move creator changes between RealmGate installs without touching Classic. Packages contain only Custom1 overrides."
                                            TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,16"/>
 
                                 <Border Background="{StaticResource ParchmentLightBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="20" Margin="0,0,0,18">
                                     <StackPanel>
                                         <TextBlock Text="CUSTOM WORLD MDB + WCC IMPORT" FontSize="20" FontWeight="Bold"/>
-                                        <TextBlock Text="Import a custom MajorMUD/Worldgroup world from its structured MDB only when the matching original WCC/WGS DAT/BIN source set is also present. Reforged reads the MDB with the same pure-managed reader used by Play, fingerprints both sources, verifies native family coverage and exact text anchors, then writes Custom1-only overlays. Neither source is modified."
+                                        <TextBlock Text="Import a custom MajorMUD/Worldgroup world from its structured MDB only when the matching original WCC/WGS DAT/BIN source set is also present. RealmGate reads the MDB with the same pure-managed reader used by Play, fingerprints both sources, verifies native family coverage and exact text anchors, then writes Custom1-only overlays. Neither source is modified."
                                                    TextWrapping="Wrap" Margin="0,5,0,14" Opacity="0.8"/>
 
                                         <TextBlock Text="1. Analyze the MDB" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
@@ -929,7 +929,7 @@
 
                                         <Separator Margin="0,0,0,16"/>
                                         <TextBlock Text="2. Required matching WCC/WGS source set" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                                        <TextBlock Text="Choose any DAT/BIN file from the same custom world as the MDB. Reforged scans the whole folder, requires native file coverage for every supported MDB family, checks exact unique text anchors, and records SHA-256 fingerprints. A different or incomplete WCC/WGS set keeps import locked."
+                                        <TextBlock Text="Choose any DAT/BIN file from the same custom world as the MDB. RealmGate scans the whole folder, requires native file coverage for every supported MDB family, checks exact unique text anchors, and records SHA-256 fingerprints. A different or incomplete WCC/WGS set keeps import locked."
                                                    TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,8"/>
                                         <Button Content="Choose Matching WCC / WGS DAT File" Command="{Binding ChooseWccEvidenceCommand}" Style="{StaticResource EditorActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
                                         <TextBlock Text="{Binding WccEvidenceFolder}" TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,4"/>
@@ -948,7 +948,7 @@
 
                                         <Separator Margin="0,0,0,16"/>
                                         <TextBlock Text="3. Compare MDB to the original WCC files" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                                        <TextBlock Text="Run this after choosing both sources. Reforged reports which MDB columns are already promoted, which legacy columns still need semantic decoding, how many WCC records can be uniquely anchored by name/text, and any repeatable byte correlations. The source MDB and WCC files remain read-only."
+                                        <TextBlock Text="Run this after choosing both sources. RealmGate reports which MDB columns are already promoted, which legacy columns still need semantic decoding, how many WCC records can be uniquely anchored by name/text, and any repeatable byte correlations. The source MDB and WCC files remain read-only."
                                                    TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,8"/>
                                         <Button Content="Analyze MDB + WCC Gaps" Command="{Binding AnalyzeWccGapsCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}" HorizontalAlignment="Left" Margin="0,0,0,8"/>
                                         <TextBlock Text="{Binding WccGapStatus}" TextWrapping="Wrap" FontWeight="SemiBold" Margin="0,0,0,10"/>
@@ -969,12 +969,12 @@
                                                 <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" Width="2.2*"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <TextBlock Text="Verified import promotes explicitly understood MDB fields into normal Reforged properties and preserves unknown columns under legacy_sources.nightmare_mdb.unmapped_fields. Every import archive stores the MDB hash, ordered WCC/WGS set fingerprint, combined source-pair fingerprint, and native anchor evidence; Custom1 also keeps a current source-provenance record."
+                                        <TextBlock Text="Verified import promotes explicitly understood MDB fields into normal RealmGate properties and preserves unknown columns under legacy_sources.nightmare_mdb.unmapped_fields. Every import archive stores the MDB hash, ordered WCC/WGS set fingerprint, combined source-pair fingerprint, and native anchor evidence; Custom1 also keeps a current source-provenance record."
                                                    TextWrapping="Wrap" FontSize="12" Opacity="0.72" Margin="0,0,0,18"/>
 
                                         <Separator Margin="0,0,0,16"/>
                                         <TextBlock Text="4. Export Custom1 to Nightmare MDB" FontSize="17" FontWeight="SemiBold" Margin="0,0,0,6"/>
-                                        <TextBlock Text="Changed-only exports the records you edited in Custom1. Full exports the effective Custom1 content for supported Nightmare tables. Reforged-only records without a numeric legacy/WCC key are skipped and reported instead of inventing IDs."
+                                        <TextBlock Text="Changed-only exports the records you edited in Custom1. Full exports the effective Custom1 content for supported Nightmare tables. RealmGate-only records without a numeric legacy/WCC key are skipped and reported instead of inventing IDs."
                                                    TextWrapping="Wrap" Opacity="0.78" Margin="0,0,0,10"/>
                                         <WrapPanel>
                                             <Button Content="Export Changed Records to MDB" Command="{Binding ExportNightmareMdbChangedCommand}" Style="{StaticResource EditorActionButtonStyle}" Margin="0,0,10,8"/>
@@ -1320,7 +1320,7 @@
                             <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
                             <StackPanel Margin="0,0,0,12">
                                 <TextBlock Text="NIGHTMARE REDUX PARITY AUDIT" FontSize="22" FontWeight="SemiBold"/>
-                                <TextBlock Text="Feature-by-feature audit against the installed Nightmare Redux copy used as the workflow reference. MATCHED+ means Reforged also exposes additional creator control."
+                                <TextBlock Text="Feature-by-feature audit against the installed Nightmare Redux copy used as the workflow reference. MATCHED+ means RealmGate also exposes additional creator control."
                                            TextWrapping="Wrap" Opacity="0.76" Margin="0,4,0,0"/>
                             </StackPanel>
                             <DataGrid Grid.Row="1" ItemsSource="{Binding NightmareParityRows}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
@@ -1328,7 +1328,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Nightmare Feature" Binding="{Binding NightmareFeature}" Width="1.25*"/>
                                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
-                                    <DataGridTextColumn Header="Reforged Equivalent" Binding="{Binding ReforgedEquivalent}" Width="1.35*"/>
+                                    <DataGridTextColumn Header="RealmGate Equivalent" Binding="{Binding ReforgedEquivalent}" Width="1.35*"/>
                                     <DataGridTextColumn Header="Audit Notes" Binding="{Binding Notes}" Width="2.5*"/>
                                 </DataGrid.Columns>
                             </DataGrid>

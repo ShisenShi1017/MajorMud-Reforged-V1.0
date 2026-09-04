@@ -9,7 +9,7 @@ namespace Reforged.Server;
 public sealed class ServerApplication : ReforgedApplicationBase
 {
     public ServerApplication()
-        : base(new ApplicationIdentity(ApplicationRole.Server, "Reforged Server", "Standalone game server shell for future Milestone 3 world/session work."))
+        : base(new ApplicationIdentity(ApplicationRole.Server, "RealmGate Server", "Standalone game server shell for future Milestone 3 world/session work."))
     {
     }
 }

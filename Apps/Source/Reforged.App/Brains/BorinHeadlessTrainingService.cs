@@ -57,7 +57,7 @@ public sealed class BorinHeadlessTrainingService
     {
         var root = NormalizeRepositoryRoot(repositoryPath);
         if (root.Length == 0 || !Directory.Exists(root))
-            return "I cannot start headless training because the Reforged repository path is not valid.";
+            return "I cannot start headless training because the RealmGate repository path is not valid.";
 
         var trainingRoot = Path.Combine(root, "AI", "Training");
         var script = Path.Combine(trainingRoot, "borin_headless_trainer.py");

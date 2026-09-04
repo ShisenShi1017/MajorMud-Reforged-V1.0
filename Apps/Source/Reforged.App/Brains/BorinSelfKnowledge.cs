@@ -207,7 +207,7 @@ public sealed class BorinSelfKnowledgeStore : IBorinSelfKnowledgeStore
         builder.AppendLine($"- Draft source text or a proposed diff only when the purpose explicitly authorizes a controlled engineering draft. Authorized for this turn: {engineeringDraft}.");
         builder.AppendLine("What this conversation brain cannot do by itself:");
         builder.AppendLine("- It cannot edit or delete files, run shell commands, build, test, install, deploy, restart, launch programs, commit, push, reveal credentials, or execute arbitrary game commands merely by saying it did.");
-        builder.AppendLine("Separate controlled Reforged services:");
+        builder.AppendLine("Separate controlled RealmGate services:");
         builder.AppendLine($"- Workspace edits with approval configured: {controlledEdits}; builds: {controlledBuilds}; tests: {controlledTests}; git: {controlledGit}; local program launch: {controlledLaunch}; internet research: {internetResearch}.");
         builder.AppendLine("- A configured service is not an action already performed. Claim completion only when the current turn contains the corresponding successful tool/orchestrator evidence.");
         builder.AppendLine("Knowledge authority ladder:");
@@ -256,7 +256,7 @@ public sealed class BorinSelfKnowledgeStore : IBorinSelfKnowledgeStore
             return "private Forge initiative";
         if (context.Purpose.Equals("Conversation", StringComparison.OrdinalIgnoreCase))
             return "private Forge conversation";
-        return Normalize(context.Purpose, "private Reforged operation", 80);
+        return Normalize(context.Purpose, "private RealmGate operation", 80);
     }
 
     private static string ResolveRepositoryPath(BrainContext context)

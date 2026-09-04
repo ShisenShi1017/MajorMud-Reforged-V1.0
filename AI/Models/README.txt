@@ -1,4 +1,4 @@
-MajorMUD Reforged - Local GGUF Models
+RealmGate - Local GGUF Models
 ======================================
 
 Place Borin's existing Qwen GGUF model in this folder.
@@ -7,11 +7,11 @@ Recommended local path:
   AI\Models\qwen-14b-instruct.gguf
 
 The model file is intentionally not included in update ZIPs and is ignored by Git.
-You may copy the GGUF currently used by LM Studio here; Reforged loads the GGUF
+You may copy the GGUF currently used by LM Studio here; RealmGate loads the GGUF
 directly and does not require LM Studio to be running.
 
 If the filename differs, either update AI\Config\borin-brain.json or leave
-autoDiscoverModel enabled. With auto-discovery enabled, Reforged selects the
+autoDiscoverModel enabled. With auto-discovery enabled, RealmGate selects the
 largest GGUF in this folder. Keeping only Borin's intended model here avoids
 selecting the wrong file.
 

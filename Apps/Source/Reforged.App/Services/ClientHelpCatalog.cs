@@ -36,7 +36,7 @@ public static class ClientHelpCatalog
             "pvp player versus player defend safe room sysop attacker trusted"),
         Topic("routes", "Navigation", "Routes, Goto, loops, and recovery",
             "Verified navigation using decoded and imported MegaMUD paths.",
-            "Goto selects a route to a destination. Loop runs a loop route; Auto-Roam repeats one. Every movement step waits for a recognized room and checks the expected native room when available. Combat pauses a route. A rejection, timeout, unexpected room, or disconnect stops safely and offers recovery from the last verified room. Back Track reverses confirmed standard-direction steps; special exits fail closed. Record Path creates a local route and Import copies a read-only MegaMUD .mp route into the Reforged profile.",
+            "Goto selects a route to a destination. Loop runs a loop route; Auto-Roam repeats one. Every movement step waits for a recognized room and checks the expected native room when available. Combat pauses a route. A rejection, timeout, unexpected room, or disconnect stops safely and offers recovery from the last verified room. Back Track reverses confirmed standard-direction steps; special exits fail closed. Record Path creates a local route and Import copies a read-only MegaMUD .mp route into the RealmGate profile.",
             "goto loop auto roam route path back track navigation disconnect desync recovery"),
         Topic("map", "Reference", "Live map and fog of war",
             "Explore any room and view current server state.",
@@ -56,7 +56,7 @@ public static class ClientHelpCatalog
             "events timed schedule interval overnight periodic commands"),
         Topic("privacy", "Safety", "Private client data",
             "How live map and Librarium data stay out of gameplay output.",
-            "The Reforged server sends client-only frames for maps, reference pages, party state, PvP state, spells, and statistics. The protocol filter removes those frames before terminal rendering and logs. Only the normal gameplay text intended for the player appears in the terminal. Private refreshes use the same session and do not block ordinary play.",
+            "The RealmGate server sends client-only frames for maps, reference pages, party state, PvP state, spells, and statistics. The protocol filter removes those frames before terminal rendering and logs. Only the normal gameplay text intended for the player appears in the terminal. Private refreshes use the same session and do not block ordinary play.",
             "private protocol terminal hidden data logs gameplay"),
         Topic("troubleshooting", "Troubleshooting", "Connections and stale information",
             "Recover from disconnects, stale panels, routes, or display problems.",
@@ -64,7 +64,7 @@ public static class ClientHelpCatalog
             "troubleshoot disconnect reconnect stale reset ansi route fault log stop"),
         Topic("limitations", "Safety", "Authority and fail-closed behavior",
             "What the client deliberately refuses to guess.",
-            "The client does not invent commands, hidden objects, exits, targets, spells, boss timers, or room state. Unsupported server commands remain unavailable. Chasing a fleeing PvP attacker is withheld until the server exposes an authoritative chase route. Currency exchange is withheld when the server has no exchange command. BBS upload, download, WCCMUD.INI reload, and legacy BBS controls are outside the standalone Reforged client.",
+            "The client does not invent commands, hidden objects, exits, targets, spells, boss timers, or room state. Unsupported server commands remain unavailable. Chasing a fleeing PvP attacker is withheld until the server exposes an authoritative chase route. Currency exchange is withheld when the server has no exchange command. BBS upload, download, WCCMUD.INI reload, and legacy BBS controls are outside the standalone RealmGate client.",
             "limitations unsupported fail closed authority bbs chase exchange"),
     ];
 

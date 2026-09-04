@@ -145,7 +145,7 @@ public sealed class BorinCapabilityStateStore : IBorinCapabilityStateStore
         profile.CurrentMission = ReadText(legacy, "CurrentMission", profile.CurrentMission);
         profile.LastActivity = ReadText(legacy, "LastActivity", profile.LastActivity);
 
-        var server = ReadText(legacy, "ServerProfile", "Local Reforged Host");
+        var server = ReadText(legacy, "ServerProfile", "Local RealmGate Host");
         var world = ReadText(legacy, "World", "Classic");
         var realm = ReadText(legacy, "RealmInstance", "Test Realm");
         var character = ReadText(legacy, "Character", "None");

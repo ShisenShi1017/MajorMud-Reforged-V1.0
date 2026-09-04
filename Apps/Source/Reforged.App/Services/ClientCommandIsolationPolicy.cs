@@ -37,8 +37,9 @@ public static partial class ClientCommandIsolationPolicy
         if (profile.Contains("Omniverse", StringComparison.OrdinalIgnoreCase))
             return false;
 
-        // Reforged profiles explicitly opt into the private client protocol.
-        if (profile.Contains("Reforged", StringComparison.OrdinalIgnoreCase))
+        // RealmGate profiles explicitly opt into the private client protocol; legacy Reforged profiles remain compatible.
+        if (profile.Contains("RealmGate", StringComparison.OrdinalIgnoreCase) ||
+            profile.Contains("Reforged", StringComparison.OrdinalIgnoreCase))
             return true;
 
         // The bundled server is normally reached through the Local Host profile
