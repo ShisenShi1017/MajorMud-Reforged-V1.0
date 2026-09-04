@@ -35,11 +35,9 @@
     <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
   </ItemGroup>
 
-  <!-- MDB reader migration: JackcessDotNet 1.2.2 is the last net8.0 release and is fully managed.
-       JetDatabaseReader remains temporarily until both import call sites are converted, then it is removed. -->
+  <!-- Fully managed MDB/ACCDB reader. Ships with RealmGate; no ACE/ODBC/Access install is required. -->
   <ItemGroup>
     <PackageReference Include="JackcessDotNet" Version="1.2.2" />
-    <PackageReference Include="JetDatabaseReader" Version="2.2.0" />
   </ItemGroup>
 
   <!-- Bundled Classic navigation graph used by Goto/Auto-Roam in clean builds. -->
