@@ -231,6 +231,11 @@ public sealed partial class ClientSessionService : IClientSessionService
 
             var readTask = ReadLoopAsync(session, runtime, reader, generation, readCts.Token);
             runtime.ReadTask = readTask;
+
+            // RealmGate world data is server-authoritative. Hydrate the active world's
+            // generated families through the private client-data channel; never require
+            // Data/<world> or an MDB on the Play client.
+            _ = HydrateRealmGateWorldDataAsync(sessionId, readCts.Token);
         }
         catch (Exception exception) when (exception is SocketException or IOException or OperationCanceledException)
         {
@@ -346,6 +351,65 @@ public sealed partial class ClientSessionService : IClientSessionService
         finally
         {
             runtime.ClientDataGate.Release();
+        }
+    }
+
+    private async Task HydrateRealmGateWorldDataAsync(string sessionId, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var session = GetSession(sessionId);
+            var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
+            if (runtime.ClientDataEndpoint is null || session.ConnectionState != ClientConnectionState.Connected)
+                return;
+
+            await SendClientProtocolCommandAsync(sessionId, "librarium", cancellationToken);
+            var families = session.ServerCatalogFamilies.ToArray();
+            if (families.Length == 0)
+                return;
+
+            foreach (var family in families)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var records = new List<string>(Math.Max(0, family.RecordCount));
+                var offset = 0;
+
+                while (offset < family.RecordCount)
+                {
+                    session.LibrariumPage = null;
+                    await SendClientProtocolCommandAsync(sessionId, $"librarium page {family.Name} {offset}", cancellationToken);
+                    var page = session.LibrariumPage;
+                    if (page is null || !page.Family.Equals(family.Name, StringComparison.OrdinalIgnoreCase))
+                        break;
+
+                    foreach (var record in page.Records)
+                    {
+                        // The server's Librarium Summary field is the canonical raw generated
+                        // record JSON. Validate before caching so malformed data never poisons
+                        // the client lookup layer.
+                        try
+                        {
+                            using var _ = JsonDocument.Parse(record.Summary);
+                            records.Add(record.Summary);
+                        }
+                        catch (JsonException) { }
+                    }
+
+                    if (page.Records.Count == 0)
+                        break;
+                    offset += page.Records.Count;
+                }
+
+                var rawArray = "[" + string.Join(",", records) + "]";
+                await OnUiAsync(() => session.ServerWorldFamilyJson[family.Name] = rawArray);
+            }
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception exception)
+        {
+            var session = Sessions.FirstOrDefault(candidate => candidate.SessionId.Equals(sessionId, StringComparison.OrdinalIgnoreCase));
+            if (session is not null)
+                await OnUiAsync(() => session.TelnetStatus = $"RealmGate server data hydration failed: {exception.Message}");
         }
     }
 
@@ -507,6 +571,8 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.OnlinePlayers.Clear();
             session.BossHomes.Clear();
             session.ServerCatalogFamilies.Clear();
+            session.ServerWorldFamilyJson.Clear();
+            session.HasRealmGateClientDataChannel = false;
             session.ServerCatalogWorld = session.ServerCatalogCompileHash = string.Empty;
             session.ServerCatalogUpdatedAt = null;
             session.LibrariumPage = null;
@@ -1315,6 +1381,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.ServerCatalogFamilies.Clear();
             foreach (var family in catalog.Families) session.ServerCatalogFamilies.Add(family);
             session.ServerCatalogWorld = catalog.World;
+            session.WorldName = catalog.World;
             session.ServerCatalogCompileHash = catalog.CompileHash;
             session.ServerCatalogUpdatedAt = catalog.CapturedAt;
         }
@@ -1755,7 +1822,10 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         runtime.ClientDataEndpoint = announcement;
         _ = OnUiAsync(() =>
-            session.TelnetStatus = $"Private client data ready on port {announcement.Port}; terminal polling disabled.");
+        {
+            session.HasRealmGateClientDataChannel = true;
+            session.TelnetStatus = $"Private RealmGate client data ready on port {announcement.Port}; server world data is authoritative.";
+        });
     }
 
     private static void HandleTelnetDiagnostic(

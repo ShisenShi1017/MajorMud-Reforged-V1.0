@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using RealmGate.App.Models;
 using RealmGate.App.Services;
@@ -48,12 +48,9 @@ public partial class MainWindow : Window
         Left = Clamp(requestedLeft, workArea.Left, Math.Max(workArea.Left, workArea.Right - Width));
         Top = Clamp(requestedTop, workArea.Top, Math.Max(workArea.Top, workArea.Bottom - Height));
 
-        // Preserve saved layouts from the retired multi-agent workspace by
-        // migrating their last active private workspace at startup.
-        var workspaceId = state.ActiveWorkspaceId.Equals("guardians", StringComparison.OrdinalIgnoreCase)
-            ? "forge"
-            : state.ActiveWorkspaceId;
-        await _workspaces.ActivateAsync(workspaceId);
+        // Always start RealmGate on the Dashboard.
+        // Window size and position are still restored from the saved layout.
+        await _workspaces.ActivateAsync("home");
     }
 
     private async void OnClosing(object? sender, CancelEventArgs e)
@@ -93,3 +90,4 @@ public partial class MainWindow : Window
     private static double Clamp(double value, double minimum, double maximum) =>
         Math.Min(Math.Max(value, minimum), maximum);
 }
+

@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Threading;
@@ -230,9 +230,55 @@ public partial class App : Application
                 borinPlayerResearch);
             forgeViewModel.AttachGuardianCapabilities(borinCapabilities);
 
+            var customWorldEditorService =
+                new CustomWorldEditorService(repositoryRoot);
+            _ = Task.Run(() =>
+            {
+                try
+                {
+                    RealmGatePerformanceTrace.Mark(
+                        "LIBRARIUM WARMUP",
+                        "START");
+
+                    _ = customWorldEditorService.GetEditableFamilies();
+
+                    RealmGatePerformanceTrace.Mark(
+                        "LIBRARIUM WARMUP",
+                        "DONE");
+                }
+                catch (Exception exception)
+                {
+                    RealmGatePerformanceTrace.Mark(
+                        "LIBRARIUM WARMUP",
+                        "FAILED | " + exception.Message);
+                }
+            });
+
+            _ = Task.Run(() =>
+            {
+                try
+                {
+                    RealmGatePerformanceTrace.Mark(
+                        "CUSTOM1 WARMUP",
+                        "START");
+
+                    customWorldEditorService.WarmOverrideCache();
+
+                    RealmGatePerformanceTrace.Mark(
+                        "CUSTOM1 WARMUP",
+                        "DONE");
+                }
+                catch (Exception exception)
+                {
+                    RealmGatePerformanceTrace.Mark(
+                        "CUSTOM1 WARMUP",
+                        "FAILED | " + exception.Message);
+                }
+            });
+
             var editorViewModel = new Lazy<EditorViewModel>(() => new EditorViewModel(
                 new ClassicAdministrationEditorService(repositoryRoot, host),
-                new CustomWorldEditorService(repositoryRoot)));
+                customWorldEditorService));
 
             manager.Register(new LazyWorkspace("home", "Dashboard", () => new DashboardView { DataContext = dashboardViewModel }));
             manager.Register(new LazyWorkspace("play", "Play", () => new PlayView { DataContext = playViewModel }, true));
@@ -539,3 +585,6 @@ public partial class App : Application
         }
     }
 }
+
+
+

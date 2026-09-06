@@ -1,9 +1,9 @@
-using System.Data;
+﻿using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Nodes;
-using JetDatabaseReader;
 using RealmGate.App.Models;
 
 namespace RealmGate.App.Services;
@@ -45,6 +45,20 @@ public sealed record RealmGateMdbImportResult(
 /// </summary>
 public sealed class RealmGateMdbOverlayImporter
 {
+    private static readonly object MdbAuditLock = new();
+    private static readonly string MdbAuditPath =
+        Path.Combine(AppContext.BaseDirectory, "mdb-overlay-audit.log");
+
+    private static void Audit(string message)
+    {
+        lock (MdbAuditLock)
+        {
+            File.AppendAllText(
+                MdbAuditPath,
+                $"{DateTimeOffset.Now:O} | {message}{Environment.NewLine}");
+        }
+    }
+
     private readonly RealmGateClientGameDataOverlayService _overlayService;
 
     private static readonly IReadOnlyDictionary<string, string> TableFamilies =
@@ -284,6 +298,9 @@ public sealed class RealmGateMdbOverlayImporter
         CancellationToken cancellationToken)
     {
         var fileName = Path.GetFileName(mdbPath);
+
+        Audit($"IMPORT CORE ENTER | File={mdbPath} | Exists={File.Exists(mdbPath)} | Extension={Path.GetExtension(mdbPath)}");
+
         if (!File.Exists(mdbPath))
             return RealmGateMdbImportResult.Failure($"Database file not found: {mdbPath}", fileName);
 
@@ -294,7 +311,12 @@ public sealed class RealmGateMdbOverlayImporter
             return RealmGateMdbImportResult.Failure("Only Microsoft Access .mdb and .accdb files are supported.", fileName);
         }
 
+        var contextStopwatch = Stopwatch.StartNew();
         var context = _overlayService.ResolveContext(session);
+        contextStopwatch.Stop();
+
+        Audit($"CONTEXT DONE | Editable={context.IsEditable} | Mode={context.Mode} | Time={contextStopwatch.Elapsed}");
+
         if (!context.IsEditable || context.Mode != RealmGateGameDataAuthorityMode.ExternalBbs)
         {
             return RealmGateMdbImportResult.Failure(
@@ -304,9 +326,21 @@ public sealed class RealmGateMdbOverlayImporter
 
         try
         {
+            var importStopwatch = Stopwatch.StartNew();
+
+            Audit($"IMPORT START | File={mdbPath}");
+
             progress?.Report(new RealmGateMdbImportProgress("Open", string.Empty, 0, 0, 0, 0, $"Opening {fileName}..."));
+
+            var shaStopwatch = Stopwatch.StartNew();
             var sha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(mdbPath))).ToLowerInvariant();
-            using AccessReader reader = AccessReader.Open(mdbPath);
+            shaStopwatch.Stop();
+            Audit($"SHA DONE | {shaStopwatch.Elapsed}");
+
+            var openStopwatch = Stopwatch.StartNew();
+            using ManagedAccessReader reader = ManagedAccessReader.Open(mdbPath);
+            openStopwatch.Stop();
+            Audit($"DATABASE OPEN DONE | {openStopwatch.Elapsed}");
 
             var userTables = reader.ListTables()
                 .Where(name => !string.IsNullOrWhiteSpace(name))
@@ -320,6 +354,10 @@ public sealed class RealmGateMdbOverlayImporter
                 .Where(item => item.Family is not null)
                 .Select(item => (item.Name, Family: item.Family!))
                 .ToArray();
+
+            Audit($"TABLE DISCOVERY | UserTables={userTables.Length} | MappedTables={mappedTables.Length}");
+            Audit($"USER TABLES | {string.Join(", ", userTables)}");
+            Audit($"MAPPED TABLES | {string.Join(", ", mappedTables.Select(x => $"{x.Name}->{x.Family}"))}");
 
             var deltas = new List<RealmGateMdbImportRecordDelta>();
             var rowsCompared = 0;
@@ -340,9 +378,40 @@ public sealed class RealmGateMdbOverlayImporter
                     "Read", tableName, tablesDone, mappedTables.Length, 0, 0,
                     $"Reading {tableName}..."));
 
+                var tableStopwatch = Stopwatch.StartNew();
+
+                var tableRowsWithoutIdentity = 0;
+                var tableClassicMatches = 0;
+                var tableMdbOnly = 0;
+                var tableChanged = 0;
+                var tableAdded = 0;
+
+                Audit($"TABLE START | Table={tableName} | Family={family}");
+
+                var readStopwatch = Stopwatch.StartNew();
                 DataTable table = reader.ReadTable(tableName);
+                readStopwatch.Stop();
+
+                Audit(
+                    $"READ DONE | Table={tableName} | Rows={table.Rows.Count} | Columns={table.Columns.Count} | Time={readStopwatch.Elapsed}");
+
+                Audit(
+                    $"COLUMNS | Table={tableName} | {string.Join(", ", table.Columns.Cast<DataColumn>().Select(c => c.ColumnName))}");
+
+                var baseLoadStopwatch = Stopwatch.StartNew();
                 var baseRecords = _overlayService.LoadBaseFamily(session, family);
+                baseLoadStopwatch.Stop();
+
+                Audit(
+                    $"BASE LOAD DONE | Table={tableName} | Family={family} | Records={baseRecords.Count} | Time={baseLoadStopwatch.Elapsed}");
+
+                var indexStopwatch = Stopwatch.StartNew();
                 var baseIndex = BuildBaseIndex(family, baseRecords);
+                indexStopwatch.Stop();
+
+                Audit(
+                    $"BASE INDEX DONE | Table={tableName} | Indexed={baseIndex.Count} | Time={indexStopwatch.Elapsed}");
+
                 var seenBaseIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 var normalizedColumns = BuildColumnMap(table.Columns);
                 var fieldMap = FieldMaps[family];
@@ -353,10 +422,20 @@ public sealed class RealmGateMdbOverlayImporter
                     .ToArray();
                 unmappedColumns += tableUnmapped.Length;
                 var missingMappedColumns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                var exitBaseIndex = family.Equals("Rooms", StringComparison.OrdinalIgnoreCase)
-                    ? BuildBaseIndex("Exits / Paths", _overlayService.LoadBaseFamily(session, "Exits / Paths"))
-                    : null;
+                Dictionary<string, RealmGateGameDataRecord>? exitBaseIndex = null;
 
+                if (family.Equals("Rooms", StringComparison.OrdinalIgnoreCase))
+                {
+                    var exitStopwatch = Stopwatch.StartNew();
+                    var exitBaseRecords = _overlayService.LoadBaseFamily(session, "Exits / Paths");
+                    exitBaseIndex = BuildBaseIndex("Exits / Paths", exitBaseRecords);
+                    exitStopwatch.Stop();
+
+                    Audit(
+                        $"EXIT BASE DONE | Records={exitBaseRecords.Count} | Indexed={exitBaseIndex.Count} | Time={exitStopwatch.Elapsed}");
+                }
+
+                var compareStopwatch = Stopwatch.StartNew();
                 var rowNumber = 0;
                 foreach (DataRow row in table.Rows)
                 {
@@ -374,19 +453,47 @@ public sealed class RealmGateMdbOverlayImporter
                     if (!TryResolveIncomingIdentity(family, row, normalizedColumns, out var identity))
                     {
                         rowsWithoutIdentity++;
+                        tableRowsWithoutIdentity++;
+
+                        var rowValues = string.Join(
+                            " | ",
+                            table.Columns.Cast<DataColumn>()
+                                .Select(c =>
+                                {
+                                    var value = row[c];
+                                    return $"{c.ColumnName}={(value is DBNull ? "<NULL>" : Convert.ToString(value, CultureInfo.InvariantCulture))}";
+                                }));
+
+                        Audit(
+                            $"NO IDENTITY | Table={tableName} | Family={family} | Row={rowNumber} | {rowValues}");
+
                         continue;
                     }
 
                     baseIndex.TryGetValue(identity, out var baseRecord);
                     if (baseRecord is not null)
+                    {
                         seenBaseIds.Add(baseRecord.Id);
+                        tableClassicMatches++;
+                    }
                     else
+                    {
                         rowsWithoutClassicMatch++;
+                        tableMdbOnly++;
+
+                        Audit(
+                            $"MDB ONLY | Table={tableName} | Family={family} | Row={rowNumber} | Identity={identity} | Name={ReadName(row, normalizedColumns)}");
+                    }
 
                     var recordId = baseRecord?.Id ?? BuildAddedRecordId(family, identity);
                     if (recordId.Length == 0)
                     {
                         rowsWithoutIdentity++;
+                        tableRowsWithoutIdentity++;
+
+                        Audit(
+                            $"EMPTY RECORD ID | Table={tableName} | Family={family} | Row={rowNumber} | Identity={identity}");
+
                         continue;
                     }
 
@@ -435,12 +542,18 @@ public sealed class RealmGateMdbOverlayImporter
                             addedRecord!["name"] = name.Trim();
                         deltas.Add(new RealmGateMdbImportRecordDelta(family, recordId, addedRecord, changedFields));
                         newRecordsAdded++;
+                        tableAdded++;
+
+                        Audit(
+                            $"ADD RECORD | Table={tableName} | Family={family} | Identity={identity} | RecordId={recordId} | Name={ReadName(row, normalizedColumns)}");
+
                         fieldOverrides += CountLeafValues(addedRecord!);
                     }
                     else if (changedFields.Count > 0)
                     {
                         deltas.Add(new RealmGateMdbImportRecordDelta(family, recordId, null, changedFields));
                         existingRecordsChanged++;
+                        tableChanged++;
                         fieldOverrides += changedFields.Count;
                     }
 
@@ -457,8 +570,33 @@ public sealed class RealmGateMdbOverlayImporter
                     }
                 }
 
+                compareStopwatch.Stop();
+
                 unmappedColumns += missingMappedColumns.Count;
-                classicRowsNotInMdb += baseRecords.Count(record => !seenBaseIds.Contains(record.Id));
+
+                var tableClassicMissing =
+                    baseRecords.Count(record => !seenBaseIds.Contains(record.Id));
+
+                classicRowsNotInMdb += tableClassicMissing;
+
+                tableStopwatch.Stop();
+
+                Audit(
+                    $"TABLE SUMMARY | Table={tableName} | Family={family}" +
+                    $" | MDBRows={table.Rows.Count}" +
+                    $" | ClassicRecords={baseRecords.Count}" +
+                    $" | IndexedClassic={baseIndex.Count}" +
+                    $" | Matched={tableClassicMatches}" +
+                    $" | MDBOnly={tableMdbOnly}" +
+                    $" | Added={tableAdded}" +
+                    $" | Changed={tableChanged}" +
+                    $" | NoIdentity={tableRowsWithoutIdentity}" +
+                    $" | ClassicMissingFromMDB={tableClassicMissing}" +
+                    $" | UnmappedColumns={tableUnmapped.Length}" +
+                    $" | MissingMappedFields={missingMappedColumns.Count}" +
+                    $" | CompareTime={compareStopwatch.Elapsed}" +
+                    $" | TotalTableTime={tableStopwatch.Elapsed}");
+
                 tablesDone++;
                 progress?.Report(new RealmGateMdbImportProgress(
                     "Compared", tableName, tablesDone, mappedTables.Length,
@@ -469,7 +607,16 @@ public sealed class RealmGateMdbOverlayImporter
             cancellationToken.ThrowIfCancellationRequested();
             var importedAt = DateTimeOffset.UtcNow;
             var delta = new RealmGateMdbImportDelta(fileName, sha256, importedAt, deltas);
+
+            Audit(
+                $"OVERLAY WRITE START | Deltas={deltas.Count}");
+
+            var overlayWriteStopwatch = Stopwatch.StartNew();
             _overlayService.ReplaceImportedMdbDelta(session, delta);
+            overlayWriteStopwatch.Stop();
+
+            Audit(
+                $"OVERLAY WRITE DONE | Deltas={deltas.Count} | Time={overlayWriteStopwatch.Elapsed}");
 
             var ignoredTableCount = userTables.Length - mappedTables.Length;
             var message =
@@ -490,6 +637,17 @@ public sealed class RealmGateMdbOverlayImporter
             progress?.Report(new RealmGateMdbImportProgress(
                 "Complete", string.Empty, mappedTables.Length, mappedTables.Length, 0, 0,
                 "MDB overlay updated."));
+
+            importStopwatch.Stop();
+
+            Audit(
+                $"IMPORT COMPLETE | Time={importStopwatch.Elapsed}" +
+                $" | Rows={rowsCompared}" +
+                $" | Changed={existingRecordsChanged}" +
+                $" | Added={newRecordsAdded}" +
+                $" | NoIdentity={rowsWithoutIdentity}" +
+                $" | MDBWithoutClassic={rowsWithoutClassicMatch}" +
+                $" | Deltas={deltas.Count}");
 
             return new RealmGateMdbImportResult(
                 true, fileName, userTables.Length, mappedTables.Length, rowsCompared,
@@ -1045,3 +1203,9 @@ public sealed class RealmGateMdbOverlayImporter
     private static IReadOnlyDictionary<string, string> Map(params (string Source, string Target)[] pairs) =>
         pairs.ToDictionary(pair => NormalizeToken(pair.Source), pair => pair.Target, StringComparer.OrdinalIgnoreCase);
 }
+
+
+
+
+
+

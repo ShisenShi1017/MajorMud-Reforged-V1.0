@@ -38,7 +38,7 @@
   <!-- Pure-managed MDB/ACCDB reader used only to compare an external BBS database
        against the immutable Classic base and generate a small local overlay. -->
   <ItemGroup>
-    <PackageReference Include="JetDatabaseReader" Version="2.2.0" />
+    <PackageReference Include="JackcessDotNet" Version="1.2.2" />
   </ItemGroup>
 
   <!-- Bundled Classic navigation graph used by Goto/Auto-Roam in clean builds. -->

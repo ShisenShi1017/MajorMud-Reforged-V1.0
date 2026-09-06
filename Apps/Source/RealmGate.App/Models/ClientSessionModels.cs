@@ -377,9 +377,13 @@ public sealed class ClientSessionConnection : INotifyPropertyChanged
     public ObservableCollection<ClientOnlinePlayerState> OnlinePlayers { get; } = [];
     public ObservableCollection<ClientBossHomeState> BossHomes { get; } = [];
     public ObservableCollection<ClientServerCatalogFamily> ServerCatalogFamilies { get; } = [];
+    public bool HasRealmGateClientDataChannel { get; set; }
     public string ServerCatalogWorld { get; set; } = string.Empty;
     public string ServerCatalogCompileHash { get; set; } = string.Empty;
     public DateTimeOffset? ServerCatalogUpdatedAt { get; set; }
+    // Full server-published world records cached from RealmGate's private Librarium channel.
+    // Key = generated family name (items, rooms, npcs, ...), value = raw JSON record array.
+    public Dictionary<string, string> ServerWorldFamilyJson { get; } = new(StringComparer.OrdinalIgnoreCase);
     public ClientLibrariumPage? LibrariumPage { get; set; }
     public ObservableCollection<ClientExperienceSample> SessionExperienceSamples { get; } = [];
     public bool InCombat { get => _inCombat; set => Set(ref _inCombat, value); }

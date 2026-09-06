@@ -1,3 +1,4 @@
+﻿using System.Runtime.CompilerServices;
 using System.Data;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -5,7 +6,6 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using JetDatabaseReader;
 
 namespace RealmGate.App.Services;
 
@@ -173,8 +173,16 @@ public sealed class NightmareMdbBridgeService
 
     public NightmareMdbImportResult ImportMdb(string path, string wccEvidenceFolder)
     {
+        var creatorImportTimer = Stopwatch.StartNew();
+        RealmGatePerformanceTrace.Mark("CREATOR MDB", $"IMPORT START | File={path}");
         path = RequireMdb(path);
+        var creatorStageTimer = Stopwatch.StartNew();
         var pairValidation = ValidateMdbWccPair(path, wccEvidenceFolder);
+        creatorStageTimer.Stop();
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"PAIR VALIDATION DONE | CanImport={pairValidation.CanImport} | Time={creatorStageTimer.Elapsed}");
         if (!pairValidation.CanImport)
             throw new InvalidOperationException("MDB import blocked because the required WCC/WGS source set could not be matched. " + pairValidation.Summary);
         wccEvidenceFolder = Path.GetFullPath(wccEvidenceFolder);
@@ -184,8 +192,15 @@ public sealed class NightmareMdbBridgeService
         var mappedRows = 0;
         var rawOnly = 0;
         var mappedRecords = new Dictionary<string, MappedRecord>(StringComparer.OrdinalIgnoreCase);
+        var mappingTimer = Stopwatch.StartNew();
+        var rowMapTicks = 0L;
+        var wccAnchorTicks = 0L;
+        var mergeTicks = 0L;
+        var roomExitTicks = 0L;
+
         var wccSourceCache = new Dictionary<TableKind, IReadOnlyList<WccFileData>>();
         var wccAnchoredRows = 0;
+
         foreach (var table in tables)
         {
             var profile = ResolveProfile(table.Name);
@@ -194,46 +209,100 @@ public sealed class NightmareMdbBridgeService
                 rawOnly += table.Rows.Count;
                 continue;
             }
+
             foreach (var row in table.Rows)
             {
-                if (!TryMapRow(profile, row, out var record))
+                var stageStart = Stopwatch.GetTimestamp();
+
+                var rowMapped = TryMapRow(profile, row, out var record);
+
+                rowMapTicks += Stopwatch.GetTimestamp() - stageStart;
+
+                if (!rowMapped)
                 {
                     rawOnly++;
                     continue;
                 }
 
-                if (AttachWccAnchorEvidence(profile, row, record.Fields, wccEvidenceFolder, wccSourceCache))
+                stageStart = Stopwatch.GetTimestamp();
+
+                if (AttachWccAnchorEvidence(
+                    profile,
+                    row,
+                    record.Fields,
+                    wccEvidenceFolder,
+                    wccSourceCache))
+                {
                     wccAnchoredRows++;
+                }
+
+                wccAnchorTicks += Stopwatch.GetTimestamp() - stageStart;
+
                 mappedRows++;
+
+                stageStart = Stopwatch.GetTimestamp();
+
                 var key = MakeKey(record.Family, record.TargetId);
+
                 if (mappedRecords.TryGetValue(key, out var existing))
                     mappedRecords[key] = MergeMappedRows(existing, record);
                 else
                     mappedRecords[key] = record;
 
+                mergeTicks += Stopwatch.GetTimestamp() - stageStart;
+
                 if (profile.Kind == TableKind.Rooms)
                 {
+                    stageStart = Stopwatch.GetTimestamp();
+
                     foreach (var exitRecord in ImportRoomExits(row))
                     {
-                        var exitKey = MakeKey(exitRecord.Family, exitRecord.TargetId);
+                        var exitKey = MakeKey(
+                            exitRecord.Family,
+                            exitRecord.TargetId);
+
                         mappedRecords[exitKey] = exitRecord;
                     }
+
+                    roomExitTicks += Stopwatch.GetTimestamp() - stageStart;
                 }
             }
         }
 
+        mappingTimer.Stop();
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"ROW MAP BREAKDOWN | " +
+            $"Map={TimeSpan.FromSeconds((double)rowMapTicks / Stopwatch.Frequency)} | " +
+            $"WCC={TimeSpan.FromSeconds((double)wccAnchorTicks / Stopwatch.Frequency)} | " +
+            $"Merge={TimeSpan.FromSeconds((double)mergeTicks / Stopwatch.Frequency)} | " +
+            $"RoomExits={TimeSpan.FromSeconds((double)roomExitTicks / Stopwatch.Frequency)}");
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"ROW MAP/WCC DONE | MappedRows={mappedRows} | Records={mappedRecords.Count} | WccAnchors={wccAnchoredRows} | Time={mappingTimer.Elapsed}");
+
+        var packageBuildTimer = Stopwatch.StartNew();
+
+        var baseIdsByFamily = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var family in mappedRecords.Values
+                     .Select(record => record.Family)
+                     .Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            baseIdsByFamily[family] = _custom
+                .GetBaseRecordIds(family)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        }
+
         foreach (var record in mappedRecords.Values)
         {
-            var operation = "upsert";
-            try
-            {
-                var state = _custom.LoadSimpleRecord(record.Family, record.TargetId);
-                operation = state.ExistsInBase ? "patch" : "upsert";
-            }
-            catch
-            {
-                operation = "upsert";
-            }
+            var operation =
+                baseIdsByFamily.TryGetValue(record.Family, out var baseIds) &&
+                baseIds.Contains(record.TargetId)
+                    ? "patch"
+                    : "upsert";
 
             entries.Add(new JsonObject
             {
@@ -249,6 +318,12 @@ public sealed class NightmareMdbBridgeService
             throw new InvalidOperationException("No Nightmare MDB rows could be mapped into Custom1. The MDB raw data was not applied.");
 
         var stamp = DateTimeOffset.Now.ToString("yyyyMMdd-HHmmss");
+        packageBuildTimer.Stop();
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"PACKAGE ENTRY BUILD DONE | Records={mapped} | Entries={entries.Count} | Time={packageBuildTimer.Elapsed}");
+
         var archiveFolder = Path.Combine(_projectRoot, "Librarium", "WorldOverrides", CustomWorldEditorService.CustomWorldId, "Imports", "NightmareMDB-" + stamp);
         Directory.CreateDirectory(archiveFolder);
         var rawArchive = Path.Combine(archiveFolder, "nightmare-mdb-raw.json");
@@ -273,7 +348,13 @@ public sealed class NightmareMdbBridgeService
         };
         File.WriteAllText(packagePath, package.ToJsonString(JsonOptions) + Environment.NewLine);
 
+        creatorStageTimer.Restart();
         var preview = _custom.ApplyImportPackage(packagePath);
+        creatorStageTimer.Stop();
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"APPLY PACKAGE DONE | Time={creatorStageTimer.Elapsed}");
         var manifest = new JsonObject
         {
             ["schema"] = "reforged_custom_world_source_manifest_v2",
@@ -313,13 +394,19 @@ public sealed class NightmareMdbBridgeService
         };
         File.WriteAllText(provenancePath, provenance.ToJsonString(JsonOptions) + Environment.NewLine);
 
+        creatorImportTimer.Stop();
+
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"IMPORT CORE DONE | MappedRows={mappedRows} | Records={mapped} | Time={creatorImportTimer.Elapsed}");
+
         return new NightmareMdbImportResult(
             path,
             mapped,
             preview.Conflicts,
             rawOnly,
             archiveFolder,
-            $"Imported {mapped} Custom1 overlay record(s) from {mappedRows} mapped MDB row(s) after required WCC/WGS source verification; {preview.Conflicts} existing Custom1 override(s) were replaced. {rawOnly} row(s) remain preserved raw-only. {wccAnchoredRows} mapped row(s) received exact unique native anchors. Provenance fingerprint: {pairValidation.SourcePairFingerprint[..Math.Min(16, pairValidation.SourcePairFingerprint.Length)]}…. Archive: {archiveFolder}");
+            $"Imported {mapped} Custom1 overlay record(s) from {mappedRows} mapped MDB row(s) after required WCC/WGS source verification; {preview.Conflicts} existing Custom1 override(s) were replaced. {rawOnly} row(s) remain preserved raw-only. {wccAnchoredRows} mapped row(s) received exact unique native anchors. Provenance fingerprint: {pairValidation.SourcePairFingerprint[..Math.Min(16, pairValidation.SourcePairFingerprint.Length)]}â€¦. Archive: {archiveFolder}");
     }
 
     public NightmareMdbExportResult ExportMdb(string path, bool changedOnly)
@@ -446,7 +533,7 @@ public sealed class NightmareMdbBridgeService
         // from being accepted as the source for the MDB.
         var canImport = missing.Count == 0 && uniqueAnchors > 0;
         var summary = canImport
-            ? $"Source pair verified: {covered}/{mappedKinds.Length} mapped MDB families have matching WCC/WGS files and {uniqueAnchors:N0} MDB row(s) have exact unique native-text anchors. Source fingerprint {pairFingerprint[..Math.Min(16, pairFingerprint.Length)]}…."
+            ? $"Source pair verified: {covered}/{mappedKinds.Length} mapped MDB families have matching WCC/WGS files and {uniqueAnchors:N0} MDB row(s) have exact unique native-text anchors. Source fingerprint {pairFingerprint[..Math.Min(16, pairFingerprint.Length)]}â€¦."
             : $"Source pair rejected: {covered}/{mappedKinds.Length} mapped MDB families have WCC/WGS coverage, {uniqueAnchors:N0} exact unique anchor(s), missing families: {(missing.Count == 0 ? "none" : string.Join(", ", missing))}. Import remains blocked.";
 
         return new NightmareMdbWccPairValidation(
@@ -1757,7 +1844,7 @@ public sealed class NightmareMdbBridgeService
     private MdbDump ReadMdbDump(string path)
     {
         path = RequireMdb(path);
-        using AccessReader reader = AccessReader.Open(path);
+        using ManagedAccessReader reader = ManagedAccessReader.Open(path);
         var tables = new JsonArray();
         foreach (var tableName in reader.ListTables()
                      .Where(name => !string.IsNullOrWhiteSpace(name))
@@ -1772,7 +1859,7 @@ public sealed class NightmareMdbBridgeService
             }
             catch (Exception exception)
             {
-                throw new InvalidOperationException($"JetDatabaseReader could not read MDB table '{tableName}': {exception.Message}", exception);
+                throw new InvalidOperationException($"RealmGate managed MDB reader could not read MDB table '{tableName}': {exception.Message}", exception);
             }
 
             var columns = new JsonArray();
@@ -1799,7 +1886,7 @@ public sealed class NightmareMdbBridgeService
         return new MdbDump(new JsonObject
         {
             ["schema"] = "nightmare_mdb_dump_v2",
-            ["provider"] = "JetDatabaseReader 2.2.0 (pure managed)",
+            ["provider"] = "JackcessDotNet 1.2.2 via RealmGate ManagedAccessReader",
             ["source"] = Path.GetFullPath(path),
             ["tables"] = tables
         });
@@ -1972,13 +2059,41 @@ public sealed class NightmareMdbBridgeService
     private static string MakeKey(string family, string targetId) => family.Trim().ToLowerInvariant() + "|" + targetId.Trim().ToLowerInvariant();
     private static string Normalize(string? value) => Regex.Replace(value?.Trim().ToLowerInvariant() ?? string.Empty, "[^a-z0-9]+", string.Empty);
     private static string Slug(string value) => Regex.Replace(value.Trim().ToLowerInvariant(), "[^a-z0-9]+", "_").Trim('_');
+    private static readonly ConditionalWeakTable<JsonObject, Dictionary<string, JsonNode?>> RowLookupCache = new();
 
     private static JsonNode? RowNode(JsonObject row, params string[] names)
     {
         if (row.Count == 0) return null;
-        var wanted = names.Select(Normalize).Where(value => value.Length > 0).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        foreach (var pair in row)
-            if (wanted.Contains(Normalize(pair.Key))) return pair.Value;
+
+        var lookup = RowLookupCache.GetValue(
+            row,
+            static source =>
+            {
+                var index = new Dictionary<string, JsonNode?>(
+                    StringComparer.OrdinalIgnoreCase);
+
+                foreach (var pair in source)
+                {
+                    var key = Normalize(pair.Key);
+
+                    if (key.Length > 0 && !index.ContainsKey(key))
+                        index[key] = pair.Value;
+                }
+
+                return index;
+            });
+
+        foreach (var name in names)
+        {
+            var key = Normalize(name);
+
+            if (key.Length > 0 &&
+                lookup.TryGetValue(key, out var value))
+            {
+                return value;
+            }
+        }
+
         return null;
     }
 
@@ -2243,3 +2358,9 @@ public sealed class NightmareMdbBridgeService
     private sealed record MappedRecord(string Family, string TargetId, JsonObject Fields);
     private enum TableKind { Rooms, Items, Monsters, Spells, Shops, Classes, Races, Messages, Textblocks, Actions, Abilities }
 }
+
+
+
+
+
+

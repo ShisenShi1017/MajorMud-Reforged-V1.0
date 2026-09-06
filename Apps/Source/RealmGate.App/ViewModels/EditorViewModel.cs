@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -228,7 +228,7 @@ public sealed class NpcAttackEditorRow : ViewModelBase
     public string DodgeMessageLegacyId { get => _dodgeMessageLegacyId; set => Set(ref _dodgeMessageLegacyId, value); }
     public string ExtraFields { get => _extraFields; set => Set(ref _extraFields, value); }
     public string DisplayName => $"Attack {Slot}";
-    public string Summary => $"Type {Type}  •  {MinimumDamage}-{MaximumDamage}  •  {SelectionPercent}%";
+    public string Summary => $"Type {Type}  â€¢  {MinimumDamage}-{MaximumDamage}  â€¢  {SelectionPercent}%";
 }
 
 public sealed class NpcAbilityEditorRow : ViewModelBase
@@ -1180,20 +1180,35 @@ public sealed class EditorViewModel : ViewModelBase
 
     public void Load()
     {
-        LoadClassic();
-        LoadCustom();
-        BrowseToolReferenceObjects();
-        BrowseNpcToolObjects();
-        BrowseWeaponToolObjects();
-        BrowseKeyDoors();
-        BrowseCoinRooms();
-        BrowseMonsterIndex();
-        BrowseControlRooms();
-        BrowseShopResetObjects();
-        BrowseRoomCleanupObjects();
-        NightmareParityRows.Clear();
-        foreach (var row in _customService.BuildNightmareParityAudit()) NightmareParityRows.Add(row);
-        StartNewSimpleObject();
+        RealmGatePerformanceTrace.Mark("EDITOR LOAD", "START");
+
+        using (RealmGatePerformanceTrace.Measure("EDITOR LOAD", "LoadClassic"))
+            LoadClassic();
+
+        using (RealmGatePerformanceTrace.Measure("EDITOR LOAD", "LoadCustom"))
+            LoadCustom();
+
+        // Specialized Creator Studio tools are intentionally lazy-loaded.
+        // Their existing Browse/New commands populate them only when needed.
+        //
+        // Do not preload:
+        // - reference browser
+        // - NPC tools
+        // - weapon tools
+        // - key/door report
+        // - coin-room tools
+        // - monster index
+        // - control-room report
+        // - shop reset tools
+        // - room cleanup tools
+        // - Nightmare parity
+        // - new-object form discovery
+
+        RealmGatePerformanceTrace.Mark(
+            "EDITOR LOAD",
+            $"READY | SimpleObjects={SimpleObjects.Count}");
+
+        RealmGatePerformanceTrace.Mark("EDITOR LOAD", "DONE");
     }
 
     private void LoadClassic()
@@ -1274,7 +1289,7 @@ public sealed class EditorViewModel : ViewModelBase
             CustomOverrides.Clear();
             foreach (var item in snapshot.Overrides) CustomOverrides.Add(new CustomWorldOverrideRow(item));
             CustomStatus = $"Custom1 enabled as a separate RealmGate custom world. {CustomOverrides.Count} authored override(s).";
-            BrowseSimpleObjects();
+            
         }
         catch (Exception exception)
         {
@@ -1594,9 +1609,9 @@ public sealed class EditorViewModel : ViewModelBase
                 ParseToolInt(NpcSimulationRounds, 1000, 1, 100000));
             foreach (var row in result.Attacks) NpcSimulationRows.Add(row);
             NpcSimulationSummary =
-                $"{result.NpcName}: {result.Rounds:N0} rounds • {result.TotalSelections:N0} selected attacks • " +
-                $"physical hit/miss/dodge {result.PhysicalHits:N0}/{result.PhysicalMisses:N0}/{result.PhysicalDodges:N0} • " +
-                $"spell casts/fails {result.SpellCasts:N0}/{result.SpellFailures:N0} • " +
+                $"{result.NpcName}: {result.Rounds:N0} rounds â€¢ {result.TotalSelections:N0} selected attacks â€¢ " +
+                $"physical hit/miss/dodge {result.PhysicalHits:N0}/{result.PhysicalMisses:N0}/{result.PhysicalDodges:N0} â€¢ " +
+                $"spell casts/fails {result.SpellCasts:N0}/{result.SpellFailures:N0} â€¢ " +
                 $"physical damage {result.TotalPhysicalDamage:N0} ({result.AveragePhysicalDamagePerRound:0.00}/round).  {result.Notes}";
         }
         catch (Exception exception)
@@ -1655,10 +1670,17 @@ public sealed class EditorViewModel : ViewModelBase
         try
         {
             foreach (var issue in _customService.ValidateCustomWorld(3000)) ValidationIssues.Add(issue);
+
+            var validationLog = Path.Combine(AppContext.BaseDirectory, "custom1-validation.log");
+            File.WriteAllLines(
+                validationLog,
+                ValidationIssues.Select(issue =>
+                    $"{issue.Severity} | {issue.Family} | {issue.Id} | {issue.Name} | {issue.Path} | {issue.Message}"));
+
             var errors = ValidationIssues.Count(issue => issue.Severity.Equals("ERROR", StringComparison.OrdinalIgnoreCase));
             var warnings = ValidationIssues.Count - errors;
             ValidationStatus = errors == 0 && warnings == 0
-                ? "PASS — no broken creator-facing references or structural content problems were found."
+                ? "PASS â€” no broken creator-facing references or structural content problems were found."
                 : $"Validation finished: {errors} error(s), {warnings} warning(s). Select an issue and click Open Record to fix it.";
         }
         catch (Exception exception)
@@ -2601,8 +2623,8 @@ public sealed class EditorViewModel : ViewModelBase
             edge.IsTrail = true;
             edge.To.IsTrail = true;
         }
-        var directions = string.Join(" → ", pathEdges.Select(edge => string.IsNullOrWhiteSpace(edge.Direction) ? "?" : edge.Direction));
-        VisualMapTrailText = $"Trail: {start.DisplayName} → {node.DisplayName}" + (directions.Length > 0 ? $"  ({directions})" : string.Empty);
+        var directions = string.Join(" â†’ ", pathEdges.Select(edge => string.IsNullOrWhiteSpace(edge.Direction) ? "?" : edge.Direction));
+        VisualMapTrailText = $"Trail: {start.DisplayName} â†’ {node.DisplayName}" + (directions.Length > 0 ? $"  ({directions})" : string.Empty);
     }
 
     public void OpenVisualMapRoom(RoomVisualMapNodeRow node)
@@ -3006,3 +3028,6 @@ public sealed class EditorViewModel : ViewModelBase
         }
     }
 }
+
+
+

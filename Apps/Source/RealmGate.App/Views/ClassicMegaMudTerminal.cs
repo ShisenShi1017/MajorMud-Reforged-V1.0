@@ -268,16 +268,11 @@ public sealed class ClassicMegaMudTerminal : Control
                 e.Handled = true;
                 break;
             case Key.Back:
-                if (IsHostRawInputMode())
-                {
-                    SubmitRaw("\b");
-                    e.Handled = true;
-                    break;
-                }
                 if (_caretIndex > 0)
                 {
                     _input = _input.Remove(_caretIndex - 1, 1);
                     _caretIndex--;
+                    _caretVisible = true;
                     InvalidateVisual();
                 }
                 e.Handled = true;

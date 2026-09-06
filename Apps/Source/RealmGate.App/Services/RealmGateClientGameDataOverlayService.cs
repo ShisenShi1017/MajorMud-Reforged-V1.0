@@ -103,16 +103,15 @@ public sealed class RealmGateClientGameDataOverlayService
 
         if (IsReforgedConnection(session))
         {
-            var activeWorld = FirstNonBlank(session.ServerCatalogWorld, session.WorldName, "Classic");
-            var dataRoot = FindWorldDataRoot(activeWorld, allowClassicFallback: false, out var resolvedWorld);
+            var activeWorld = FirstNonBlank(session.ServerCatalogWorld, session.WorldName, "Unknown");
             return new RealmGateGameDataContext(
                 RealmGateGameDataAuthorityMode.ReforgedWorld,
-                resolvedWorld,
-                dataRoot,
+                activeWorld,
+                string.Empty,
                 BuildServerKey(session),
                 string.Empty,
                 IsEditable: false,
-                $"RealmGate server authority: {resolvedWorld}. The client reads that RealmGate world projection directly; local BBS overrides are disabled.");
+                $"RealmGate server authority: {activeWorld}. World data is received from the server over the private client-data channel; no local MDB or Data/<world> folder is used.");
         }
 
         var classicRoot = FindWorldDataRoot("Classic", allowClassicFallback: false, out _);
@@ -134,13 +133,45 @@ public sealed class RealmGateClientGameDataOverlayService
         if (!FamilyFiles.TryGetValue(family, out var fileName))
             return [];
 
+        if (context.Mode == RealmGateGameDataAuthorityMode.ReforgedWorld)
+        {
+            var serverFamily = Path.GetFileNameWithoutExtension(fileName);
+            if (!session.ServerWorldFamilyJson.TryGetValue(serverFamily, out var rawRecords) || string.IsNullOrWhiteSpace(rawRecords))
+                return [];
+
+            try
+            {
+                using var serverDocument = JsonDocument.Parse(rawRecords);
+                if (serverDocument.RootElement.ValueKind != JsonValueKind.Array)
+                    return [];
+
+                var serverRecords = new List<RealmGateGameDataRecord>();
+                foreach (var element in serverDocument.RootElement.EnumerateArray())
+                {
+                    if (JsonNode.Parse(element.GetRawText()) is not JsonObject source)
+                        continue;
+                    var id = ResolveRecordId(family, source);
+                    if (id.Length == 0)
+                        continue;
+                    serverRecords.Add(new RealmGateGameDataRecord(family, id, ResolveRecordName(source), source, 0));
+                }
+
+                return serverRecords
+                    .OrderBy(record => record.DisplayName, StringComparer.OrdinalIgnoreCase)
+                    .ThenBy(record => record.Id, StringComparer.OrdinalIgnoreCase)
+                    .ToArray();
+            }
+            catch (JsonException)
+            {
+                return [];
+            }
+        }
+
         var basePath = Path.Combine(context.BaseDataRoot, fileName);
         if (!File.Exists(basePath))
             return [];
 
-        var overlay = context.Mode == RealmGateGameDataAuthorityMode.ExternalBbs
-            ? LoadOverlay(context)
-            : new RealmGateBbsOverlayDocument();
+        var overlay = LoadOverlay(context);
 
         var familyOverrides = overlay.Families.TryGetValue(family, out var records)
             ? records
@@ -441,7 +472,8 @@ public sealed class RealmGateClientGameDataOverlayService
 
     public static bool IsReforgedConnection(ClientSessionConnection session)
     {
-        if (!string.IsNullOrWhiteSpace(session.ServerCatalogWorld) ||
+        if (session.HasRealmGateClientDataChannel ||
+            !string.IsNullOrWhiteSpace(session.ServerCatalogWorld) ||
             !string.IsNullOrWhiteSpace(session.ServerCatalogCompileHash) ||
             session.ServerCatalogFamilies.Count > 0 ||
             session.ServerCatalogUpdatedAt is not null)
