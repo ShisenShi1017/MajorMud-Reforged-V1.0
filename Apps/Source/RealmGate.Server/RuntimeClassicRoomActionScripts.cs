@@ -17,7 +17,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         result = string.Empty;
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
-        var graph = RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot);
+        var graph = RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var plans = graph.ResolveRoomActionPlans(session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber, entered);
         if (plans.Count == 0) return false;
 
@@ -104,7 +104,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         // and the teleport, but no recovered field proves a persistent character mutation.
         // Preserve that fail-closed boundary instead of inventing a status effect or player cast.
         var output = new List<string>();
-        var beforeMessage = _nativePayloads.RequireMessage(287);
+        var beforeMessage = NativePayloads(session.World.Definition.Id).RequireMessage(287);
         if (!string.IsNullOrWhiteSpace(beforeMessage)) output.Add(beforeMessage);
         BroadcastRecoveredNativeSecondaryMessage(session, 287);
 
@@ -114,7 +114,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         _characters.SaveSession(session);
         AdmitClassicRoomEntryNpcRespawns(session);
 
-        var afterMessage = _nativePayloads.RequireMessage(288);
+        var afterMessage = NativePayloads(session.World.Definition.Id).RequireMessage(288);
         if (!string.IsNullOrWhiteSpace(afterMessage)) output.Add(afterMessage);
         BroadcastRecoveredNativeSecondaryMessage(session, 288);
         return string.Join(Environment.NewLine, output);
@@ -122,7 +122,7 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private void BroadcastRecoveredNativeSecondaryMessage(RuntimeSession session, int messageId)
     {
-        if (!_nativePayloads.TryResolveSecondaryMessage(messageId, out var observerTemplate)
+        if (!NativePayloads(session.World.Definition.Id).TryResolveSecondaryMessage(messageId, out var observerTemplate)
             || string.IsNullOrWhiteSpace(observerTemplate)) return;
         var observerMessage = observerTemplate.Replace("%s", session.Actor.DisplayName, StringComparison.Ordinal);
         _sessions.BroadcastRoom(session, observerMessage, includeSource: false);
@@ -283,7 +283,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         }, $"classic-room-textblock:{plan.RootTextblockId}:giveitem:1281");
 
         BroadcastRecoveredNativeSecondaryMessage(session, 2519);
-        return _nativePayloads.RequireMessage(2519);
+        return NativePayloads(session.World.Definition.Id).RequireMessage(2519);
     }
 
     private sealed class RuntimeRoomActionRandomSource : IRuntimeClassicDialogueRandomSource
@@ -303,7 +303,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var beforeState = before.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0,
             new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
         if (RuntimeBundleCInventoryAuthority.ReadCurrency(beforeState).CopperValue < route.FareCopper)
-            return _nativePayloads.RequireMessage(route.InsufficientFundsMessageId);
+            return NativePayloads(session.World.Definition.Id).RequireMessage(route.InsufficientFundsMessageId);
 
         var sourceRoom = session.CurrentRoom;
         var debitedState = RuntimeBundleCEconomyAuthority.DebitCopperValue(beforeState, route.FareCopper);
@@ -312,12 +312,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         try
         {
             var output = new List<string>();
-            var departure = _nativePayloads.RequireMessage(route.DepartureMessageId);
+            var departure = NativePayloads(session.World.Definition.Id).RequireMessage(route.DepartureMessageId);
             if (!string.IsNullOrWhiteSpace(departure)) output.Add(departure);
             BroadcastRecoveredNativeSecondaryMessage(session, route.DepartureMessageId);
 
             var randomOperation = plan.Operations.Single(operation => operation.Opcode.Equals("random", StringComparison.OrdinalIgnoreCase));
-            var randomTables = RuntimeClassicRandomTableAuthority.Load(_characters.ProjectRoot, new RuntimeRoomActionRandomSource());
+            var randomTables = RuntimeClassicRandomTableAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id, new RuntimeRoomActionRandomSource());
             var outcome = randomTables.Expand(new[] { randomOperation }, out var selectionCount);
             if (selectionCount != 1) throw new InvalidDataException($"Decoded carriage route {route.Id} selected {selectionCount} random tables instead of one.");
 
@@ -348,7 +348,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     var messageId = operation.TargetTextblockId ?? operation.NumericArguments.FirstOrDefault();
                     if (messageId > 0)
                     {
-                        var message = _nativePayloads.RequireMessage(messageId);
+                        var message = NativePayloads(session.World.Definition.Id).RequireMessage(messageId);
                         if (!string.IsNullOrWhiteSpace(message)) output.Add(message);
                     }
                 }
@@ -403,7 +403,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var messageId = operation.NumericArguments.FirstOrDefault();
                 if (messageId > 0)
                 {
-                    var payload = _nativePayloads.RequireMessage(messageId);
+                    var payload = NativePayloads(session.World.Definition.Id).RequireMessage(messageId);
                     if (!string.IsNullOrWhiteSpace(payload)) output.Add(payload);
                 }
                 continue;
@@ -413,7 +413,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var textblockId = operation.NumericArguments.FirstOrDefault();
                 if (textblockId > 0)
                 {
-                    var payload = _nativePayloads.RequireTextblock(textblockId);
+                    var payload = NativePayloads(session.World.Definition.Id).RequireTextblock(textblockId);
                     if (!string.IsNullOrWhiteSpace(payload)) output.Add(payload);
                 }
                 continue;

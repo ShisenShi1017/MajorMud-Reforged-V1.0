@@ -998,7 +998,7 @@ public sealed class RuntimeCharacterService
             (excludedCharacterId is null || !character.CharacterId.Equals(excludedCharacterId, StringComparison.OrdinalIgnoreCase)) &&
             RuntimeIdentity.ClassicGivenNameFromDisplayName(character.DisplayName).Equals(requested, StringComparison.OrdinalIgnoreCase));
         var monsterCollision = world.Npcs.Values.Any(npc => npc.Name.Trim().Equals(requested, StringComparison.OrdinalIgnoreCase));
-        var commandCollision = RuntimeClassicNativePlayerCommandRegistry.Load(_projectRoot).Records
+        var commandCollision = RuntimeClassicNativePlayerCommandRegistry.Load(_projectRoot, world.Definition.Id).Records
             .Select(record => RuntimeCommand.Parse(record.DocumentedInput).Name)
             .Any(command => command.Equals(requested, StringComparison.OrdinalIgnoreCase));
 

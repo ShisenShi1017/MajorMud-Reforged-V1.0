@@ -230,10 +230,12 @@ public sealed class RuntimeCharacterAlignmentNpcQuestCatalog
         .OrderBy(x => x.QuestAbilityId)
         .ToArray();
 
-    public static RuntimeCharacterAlignmentNpcQuestCatalog Load(string projectRoot)
+    public static RuntimeCharacterAlignmentNpcQuestCatalog Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeCharacterAlignmentNpcQuestCatalog Load(string projectRoot, string worldId)
     {
         var catalog = new RuntimeCharacterAlignmentNpcQuestCatalog();
-        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
+        var path = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "textblocks.json");
         if (!File.Exists(path)) return catalog;
 
         var records = RuntimeChunkedClassicCatalog.LoadRecords(path)
@@ -1202,10 +1204,12 @@ public sealed class RuntimeCharacterAlignmentFullRewardCatalog
         .OrderBy(x => x.QuestAbilityId).ThenBy(x => x.CommandKeyword, StringComparer.OrdinalIgnoreCase).ToArray();
     public IReadOnlyList<RuntimeCharacterAlignmentPromotedEffect> Effects => Graphs.SelectMany(x => x.Effects).ToArray();
 
-    public static RuntimeCharacterAlignmentFullRewardCatalog Load(string projectRoot)
+    public static RuntimeCharacterAlignmentFullRewardCatalog Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeCharacterAlignmentFullRewardCatalog Load(string projectRoot, string worldId)
     {
         var catalog = new RuntimeCharacterAlignmentFullRewardCatalog();
-        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
+        var path = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "textblocks.json");
         if (!File.Exists(path)) return catalog;
 
         var records = RuntimeChunkedClassicCatalog.LoadRecords(path)

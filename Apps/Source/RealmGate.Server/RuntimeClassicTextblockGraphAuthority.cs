@@ -14,10 +14,13 @@ public sealed class RuntimeClassicTextblockGraphAuthority
     private readonly IReadOnlyDictionary<int, RuntimeClassicTextblockNode> _nodes;
     private RuntimeClassicTextblockGraphAuthority(IReadOnlyDictionary<int, RuntimeClassicTextblockNode> nodes) => _nodes = nodes;
 
-    public static RuntimeClassicTextblockGraphAuthority Load(string projectRoot)
+    public static RuntimeClassicTextblockGraphAuthority Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeClassicTextblockGraphAuthority Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "textblocks.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic textblock graph is required.", path);
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var path = Path.Combine(resolved.DataRoot, "textblocks.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Generated world '{resolved.WorldId}' textblock graph is required.", path);
         var records = RuntimeChunkedClassicCatalog.LoadRecords(path);
         var nodes = new Dictionary<int, RuntimeClassicTextblockNode>();
         foreach (var row in records)

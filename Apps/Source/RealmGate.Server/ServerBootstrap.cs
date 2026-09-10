@@ -19,7 +19,7 @@ public sealed class ServerBootstrap
         "Bin"
     };
 
-    public ServerBootstrapReport Run(string? startDirectory = null)
+    public ServerBootstrapReport Run(string? startDirectory = null, string? requestedWorldId = null)
     {
         var report = new ServerBootstrapReport();
         var root = LocateProjectRoot(startDirectory ?? Directory.GetCurrentDirectory(), report);
@@ -37,11 +37,11 @@ public sealed class ServerBootstrap
         report.AttachHostConfiguration(hostConfiguration);
 
         report.AddCheck("server-data-catalog");
-        var serverDataCatalog = new ServerDataCatalogAudit().Run(root, report.Validation);
+        var serverDataCatalog = new ServerDataCatalogAudit().Run(root, report.Validation, requestedWorldId);
         report.AttachServerDataCatalog(serverDataCatalog);
 
         report.AddCheck("world-projection");
-        var worldProjection = new ServerWorldProjectionAudit().Run(root, report.Validation);
+        var worldProjection = new ServerWorldProjectionAudit().Run(root, report.Validation, requestedWorldId);
         report.AttachWorldProjection(worldProjection);
 
         report.AddCheck("game-module-catalog");
@@ -65,7 +65,7 @@ public sealed class ServerBootstrap
         report.AttachSchedulerStatusCommands(schedulerStatusCommands);
 
         report.AddCheck("startup-diagnostics");
-        var diagnostics = new ServerStartupDiagnostics().Run(root);
+        var diagnostics = new ServerStartupDiagnostics().Run(root, requestedWorldId);
         report.AttachStartupDiagnostics(diagnostics);
 
         report.AddCheck("classic-parity-audit");

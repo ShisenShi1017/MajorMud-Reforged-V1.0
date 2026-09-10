@@ -11,7 +11,7 @@ $markdownPath = Join-Path $reportDirectory "validator_latest.md"
 $validationProject = "Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj"
 
 if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
-    throw "The .NET 8 SDK is required to run the Reforged validator."
+    throw "The .NET 8 SDK is required to run the RealmGate validator."
 }
 
 $steps = [System.Collections.Generic.List[object]]::new()
@@ -82,7 +82,7 @@ Push-Location $repoRoot
 try {
     $results = [System.Collections.Generic.List[object]]::new()
     Write-Host "Repository: $repoRoot"
-    Write-Host "Running the Reforged current-health validator..."
+    Write-Host "Running the RealmGate current-health validator..."
 
     foreach ($step in $steps) {
         $started = Get-Date
@@ -121,7 +121,7 @@ try {
     $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $jsonPath -Encoding utf8
 
     $markdown = [System.Collections.Generic.List[string]]::new()
-    $markdown.Add("# Reforged Validator")
+    $markdown.Add("# RealmGate Validator")
     $markdown.Add("")
     $markdown.Add("- Status: **$($summary.status)**")
     $markdown.Add("- Passed: $passed/$($steps.Count)")

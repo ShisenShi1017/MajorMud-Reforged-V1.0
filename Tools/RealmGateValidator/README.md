@@ -1,6 +1,6 @@
-# Reforged Validator
+# RealmGate Validator
 
-This directory contains the single current-health validation package for Reforged.
+This directory contains RealmGate's single current-health validation package.
 
 Run the complete gate from the repository root:
 

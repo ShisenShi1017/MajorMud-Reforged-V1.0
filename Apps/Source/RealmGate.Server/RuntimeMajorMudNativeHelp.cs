@@ -16,7 +16,6 @@ namespace RealmGate.Server;
 /// </summary>
 public sealed class RuntimeMajorMudNativeHelpCatalog
 {
-    private const string GeneratedRelativePath = "Data/Classic/native_help.json";
     private const int NativeTopicsWrapColumn = 79;
     private const string NativeTopicsHeader = "The following help topics are currently available: \r";
     private const string NativeNoHelp = "Sorry, no help is available for that topic!\r";
@@ -36,9 +35,12 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
         _topics = topics;
     }
 
-    public static RuntimeMajorMudNativeHelpCatalog Load(string projectRoot)
+    public static RuntimeMajorMudNativeHelpCatalog Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeMajorMudNativeHelpCatalog Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, GeneratedRelativePath.Replace('/', Path.DirectorySeparatorChar));
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var path = Path.Combine(resolved.DataRoot, "native_help.json");
         if (!File.Exists(path)) throw new FileNotFoundException("Generated MajorMUD native help catalog is missing.", path);
 
         using var document = JsonDocument.Parse(File.ReadAllText(path));
@@ -63,8 +65,11 @@ public sealed class RuntimeMajorMudNativeHelpCatalog
             topics.Add(new RuntimeMajorMudHelpTopic(titleNumber, bodyNumber, keywords));
         }
 
-        if (topics.Count != 131 || !bodies.ContainsKey(3) ||
-            !topics.Any(topic => topic.NativeKeywords.Equals(NativeTopicsSentinel, StringComparison.Ordinal)))
+        if (topics.Count == 0)
+            throw new InvalidDataException("Generated MajorMUD help catalog contains no topics.");
+        if (resolved.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && (topics.Count != 131 || !bodies.ContainsKey(3) ||
+                !topics.Any(topic => topic.NativeKeywords.Equals(NativeTopicsSentinel, StringComparison.Ordinal))))
             throw new InvalidDataException($"Generated MajorMUD help catalog expected 131 topics including COMMANDS and Help ?; found {topics.Count}.");
 
         return new RuntimeMajorMudNativeHelpCatalog(ReadString(main, "body"), bodies, topics);
@@ -179,17 +184,19 @@ public sealed record RuntimeMajorMudHelpTopic(
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    private RuntimeMajorMudNativeHelpCatalog? _majorMudNativeHelp;
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeMajorMudNativeHelpCatalog> _majorMudNativeHelp =
+        new(StringComparer.OrdinalIgnoreCase);
 
-    public bool TryRenderMajorMudNativeHelp(string query, out string output)
+    public bool TryRenderMajorMudNativeHelp(RuntimeSession session, string query, out string output)
     {
-        _majorMudNativeHelp ??= RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot);
-        return _majorMudNativeHelp.TryResolve(query, out output);
+        var catalog = _majorMudNativeHelp.GetOrAdd(session.World.Definition.Id,
+            worldId => RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot, worldId));
+        return catalog.TryResolve(query, out output);
     }
 
-    public string RenderMajorMudNativeNoHelp()
+    public string RenderMajorMudNativeNoHelp(RuntimeSession session)
     {
-        _majorMudNativeHelp ??= RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot);
-        return _majorMudNativeHelp.NoHelpMessage();
+        return _majorMudNativeHelp.GetOrAdd(session.World.Definition.Id,
+            worldId => RuntimeMajorMudNativeHelpCatalog.Load(_characters.ProjectRoot, worldId)).NoHelpMessage();
     }
 }

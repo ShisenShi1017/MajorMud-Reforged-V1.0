@@ -14,10 +14,12 @@ public sealed class ServerWorldProjectionAudit
         CommentHandling = JsonCommentHandling.Skip
     };
 
-    public ServerWorldProjectionAuditReport Run(string projectRoot, ValidationResult validation)
+    public ServerWorldProjectionAuditReport Run(string projectRoot, ValidationResult validation, string? requestedWorldId = null)
     {
         var root = Path.GetFullPath(projectRoot);
-        var dataRoot = ResolveDataRoot(root);
+        var dataRoot = string.IsNullOrWhiteSpace(requestedWorldId)
+            ? ResolveDataRoot(root)
+            : ServerDataRootResolver.Resolve(root, requestedWorldId).DataRoot;
         var worldPath = Path.Combine(dataRoot, File.Exists(Path.Combine(dataRoot, "world.json")) ? "world.json" : "worlds.json");
         var roomsPath = Path.Combine(dataRoot, "rooms.json");
         var report = new ServerWorldProjectionAuditReport

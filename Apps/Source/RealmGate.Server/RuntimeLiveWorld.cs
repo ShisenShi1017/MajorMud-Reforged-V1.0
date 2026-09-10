@@ -836,7 +836,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 var shadowLook = RuntimeClassicCharacterAppearance.TryResolveEquippedShadowLookOverride(record, catalog, isSelf, out var shadowPayload);
                 var visibleIdentity = shadowLook ? "A shadowy figure" : character.DisplayName;
                 var lines = new List<string> { $"[ {visibleIdentity} ]", string.Empty };
-                var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+                var native = NativePayloads(session.World.Definition.Id);
                 if (shadowLook)
                     lines.Add(shadowPayload);
                 else if (RuntimeClassicCharacterAppearance.TryResolveShadowformOverride(record, native, out var shadowform))

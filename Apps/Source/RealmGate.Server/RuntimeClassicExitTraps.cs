@@ -30,13 +30,16 @@ public sealed class RuntimeClassicExitTrapCatalog
     public IReadOnlyCollection<RuntimeClassicExitTrapDefinition> Definitions => _byExitId.Values.ToArray();
     public bool TryGetByExitId(string exitId, out RuntimeClassicExitTrapDefinition definition) => _byExitId.TryGetValue(exitId, out definition!);
 
-    public static RuntimeClassicExitTrapCatalog Load(string projectRoot)
+    public static RuntimeClassicExitTrapCatalog Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeClassicExitTrapCatalog Load(string projectRoot, string worldId)
     {
         // Exit traps are generated as authoritative effects on the chunked exits catalog.
         // Do not require a second, independently generated exit_traps.json file.
-        var exitsPath = Path.Combine(projectRoot, "Data", "Classic", "exits.json");
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var exitsPath = Path.Combine(resolved.DataRoot, "exits.json");
         if (!File.Exists(exitsPath))
-            throw new FileNotFoundException("Generated Classic exits catalog was not found.", exitsPath);
+            throw new FileNotFoundException($"Generated world '{resolved.WorldId}' exits catalog was not found.", exitsPath);
 
         var definitions = new Dictionary<string, RuntimeClassicExitTrapDefinition>(StringComparer.OrdinalIgnoreCase);
         ForEachGeneratedRecord(exitsPath, value =>
@@ -156,22 +159,19 @@ public sealed class RuntimeClassicExitTrapCatalog
 
 public sealed partial class RuntimeLiveGameplayFacade
 {
-    private RuntimeClassicExitTrapCatalog? _classicExitTraps;
-    private readonly object _classicExitTrapGate = new();
+    private readonly ConcurrentDictionary<string, RuntimeClassicExitTrapCatalog> _classicExitTraps = new(StringComparer.OrdinalIgnoreCase);
     private readonly ConcurrentDictionary<string, byte> _classicTrapMovementPresentationSuppressions = new(StringComparer.OrdinalIgnoreCase);
 
-    private RuntimeClassicExitTrapCatalog ClassicExitTraps()
-    {
-        lock (_classicExitTrapGate)
-            return _classicExitTraps ??= RuntimeClassicExitTrapCatalog.Load(_characters.ProjectRoot);
-    }
+    private RuntimeClassicExitTrapCatalog ClassicExitTraps(RuntimeSession session) =>
+        _classicExitTraps.GetOrAdd(session.World.Definition.Id,
+            worldId => RuntimeClassicExitTrapCatalog.Load(_characters.ProjectRoot, worldId));
 
     public bool TryGetClassicExitTrap(RuntimeSession session, string direction, out RuntimeClassicExitTrapDefinition trap, out int state)
     {
         trap = null!;
         state = -1;
         var exit = session.World.FindExit(session.CurrentRoom, direction);
-        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out trap)) return false;
+        if (exit is null || !ClassicExitTraps(session).TryGetByExitId(exit.Id, out trap)) return false;
         if (!trap.NativeActivationStateProjected || trap.NativeActivationState is null)
             throw new InvalidOperationException($"Decoded exit trap has no native activation-state projection: {trap.ExitId}");
         state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
@@ -191,7 +191,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     public bool RevealClassicExitTrap(RuntimeSession session, string exitId)
     {
         var exit = session.CurrentRoom.Exits.FirstOrDefault(candidate => candidate.Id.Equals(exitId, StringComparison.OrdinalIgnoreCase));
-        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap) || trap.NativeActivationState is null) return false;
+        if (exit is null || !ClassicExitTraps(session).TryGetByExitId(exit.Id, out var trap) || trap.NativeActivationState is null) return false;
         var state = Living(session).ReadClassicTrapState(trap.ExitId, trap.NativeActivationState.Value);
         if (state != 2) return false;
         // Native directional SEARCH reports type-9 traps from the shared RoomRec but does not mutate
@@ -204,7 +204,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         if (session.Actor is not RuntimeCharacterActor actor) return "Only characters can disarm traps.";
         var exit = session.World.FindExit(session.CurrentRoom, direction);
-        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap))
+        if (exit is null || !ClassicExitTraps(session).TryGetByExitId(exit.Id, out var trap))
             return $"You failed to disarm any trap to the {ClassicDirectionWord(direction)}.";
         if (trap.NativeActivationState is null)
             throw new InvalidOperationException($"Decoded exit trap has no native activation-state projection: {trap.ExitId}");
@@ -216,7 +216,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var character = _characters.LoadCharacter(actor.Id) ?? throw new InvalidOperationException("Character save was not found for trap disarm.");
         var skill = ResolveClassicDisarmTrapsSkill(character);
         var roll = Random.Shared.Next(0, 100);
-        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot).Require(trap.ExitId);
+        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id).Require(trap.ExitId);
         if (roll < skill)
         {
             Living(session).WriteClassicTrapStateWithNativeReset(trap.ExitId, state == 0 ? 1 : 4, DateTimeOffset.UtcNow);
@@ -255,7 +255,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     public string ApplyExitTrap(RuntimeSession session, RuntimeRoom sourceRoom, string direction)
     {
         var exit = session.World.FindExit(sourceRoom, direction);
-        if (exit is null || !ClassicExitTraps().TryGetByExitId(exit.Id, out var trap)) return string.Empty;
+        if (exit is null || !ClassicExitTraps(session).TryGetByExitId(exit.Id, out var trap)) return string.Empty;
         if (!trap.FromRoomId.Equals(sourceRoom.Id, StringComparison.OrdinalIgnoreCase) ||
             !trap.ToRoomId.Equals(exit.TargetRoomId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidOperationException($"Decoded exit trap endpoint mismatch: {trap.ExitId}");
@@ -271,7 +271,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (state is not (0 or 3))
             throw new InvalidOperationException($"Unsupported native trap state {state} for {trap.ExitId}.");
 
-        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot).Require(trap.ExitId);
+        var native = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id).Require(trap.ExitId);
         var messageId = native.RoomType == 9 ? native.Para3 : native.RoomType == 24 ? native.Para4 : 0;
         var presentation = messageId > 0
             ? EmitClassicTrapMessage(session, trap, messageId, suppressOrdinaryMovement: true)
@@ -329,7 +329,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         int messageId,
         bool suppressOrdinaryMovement)
     {
-        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var player = payloads.RequireMessage(messageId);
         var actorName = session.Actor.DisplayName;
         if (payloads.TryResolveSecondaryMessage(messageId, out var sourceTemplate) && !string.IsNullOrWhiteSpace(sourceTemplate))

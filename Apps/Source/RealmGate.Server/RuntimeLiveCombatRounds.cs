@@ -118,12 +118,12 @@ public sealed partial class RuntimeLiveGameplayFacade
             return $"{encounter.NpcName} flees in fear.";
         }
         var roundStartCharacter = before;
-        var player = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(before);
+        var player = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, before.WorldId), _characters.ProjectRoot).Resolve(before);
         if (!player.Ready) return "Combat round blocked: " + string.Join(", ", player.Blockers);
 
         var npc = ResolveEncounterNpc(session, encounter);
         var npcDefense = RuntimeNpcDefensiveProfileResolver.Resolve(npc);
-        var resolver = new ClassicCombatResolver(authority: RuntimeClassicFormulaAuthority.Load(_characters.ProjectRoot));
+        var resolver = new ClassicCombatResolver(authority: RuntimeClassicFormulaAuthority.Load(_characters.ProjectRoot, before.WorldId));
 
         var isMartialAttack = encounter.PlayerAttackType is ClassicAttackType.Punch or ClassicAttackType.Kick or ClassicAttackType.JumpKick;
         var martialAccuracyBonus = RuntimeEquipmentCombatEffects.ResolveMartialAccuracy(before, encounter.PlayerAttackType);
@@ -196,7 +196,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             var messageId = RuntimeClassicStatusProjection.Numeric(before, "confusion_message_id");
             if (messageId > 0)
             {
-                var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+                var native = NativePayloads(session.World.Definition.Id);
                 var payload = native.RequireMessage(messageId);
                 if (!string.IsNullOrEmpty(payload)) messages.Add(RuntimeClassicCombatAnsi.Warning(payload));
             }
@@ -305,7 +305,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                 playerHp = Math.Max(0, playerHp - npcResult.FinalDamage);
                 if (!isDecodedSpellRow)
                 {
-                    var npcAttackMessage = RenderNpcAttack(encounter.NpcName, actor.DisplayName, attack, npcResult);
+                    var npcAttackMessage = RenderNpcAttack(session.World.Definition.Id, encounter.NpcName, actor.DisplayName, attack, npcResult);
                     if (!string.IsNullOrEmpty(npcAttackMessage))
                     {
                         messages.Add(npcAttackMessage);
@@ -326,7 +326,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         }
                         if (retaliation.MessageId > 0)
                         {
-                            var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+                            var native = NativePayloads(session.World.Definition.Id);
                             var sourceMessage = RuntimeEquipmentCombatEffects.FormatDamageShieldMessage(
                                 native.RequireMessage(retaliation.MessageId), encounter.NpcName, retaliationDamage);
                             var observerTemplate = native.TryResolveTertiaryMessage(retaliation.MessageId, out var tertiary)
@@ -342,12 +342,12 @@ public sealed partial class RuntimeLiveGameplayFacade
                         if (npcHp == 0) break;
                     }
                 }
-                var hitSpell = ResolveNpcHitSpell(attack, npcResult, _characters.ProjectRoot);
+                var hitSpell = ResolveNpcHitSpell(attack, npcResult, _characters.ProjectRoot, session.World.Definition.Id);
                 var nativeSpellDamage = 0;
                 var nativeSpellHealing = false;
                 if (hitSpell is { Triggered: true })
                 {
-                    var hitSpellScript = RuntimeNpcHitSpellScriptCatalog.Load(_characters.ProjectRoot, hitSpell.LegacySpellId);
+                    var hitSpellScript = RuntimeNpcHitSpellScriptCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id, hitSpell.LegacySpellId);
                     if (hitSpellScript is not null)
                     {
                         var plan = RuntimeNpcHitSpellScriptCatalog.ValidateAndPlan(
@@ -499,7 +499,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                         DamageAfterDr = nativeSpellDamage,
                         FinalDamage = nativeSpellDamage
                     };
-                    var npcSpellMessage = RenderNpcAttack(encounter.NpcName, actor.DisplayName, attack, spellMessageResult);
+                    var npcSpellMessage = RenderNpcAttack(session.World.Definition.Id, encounter.NpcName, actor.DisplayName, attack, spellMessageResult);
                     if (!string.IsNullOrEmpty(npcSpellMessage))
                     {
                         messages.Add(npcSpellMessage);
@@ -590,7 +590,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         RuntimeNpcHitSpellScriptPlan plan,
         List<string> messages)
     {
-        var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var native = NativePayloads(session.World.Definition.Id);
         foreach (var operation in plan.Branch.Operations)
         {
             if (operation.Kind == "message")
@@ -780,7 +780,11 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
 
     internal static RuntimeNpcHitSpellSelection? ResolveNpcHitSpell(
-        RuntimeNpcAttackDefinition attack, ClassicAttackResult result, string projectRoot)
+        RuntimeNpcAttackDefinition attack, ClassicAttackResult result, string projectRoot) =>
+        ResolveNpcHitSpell(attack, result, projectRoot, "Classic");
+
+    internal static RuntimeNpcHitSpellSelection? ResolveNpcHitSpell(
+        RuntimeNpcAttackDefinition attack, ClassicAttackResult result, string projectRoot, string worldId)
     {
         ArgumentNullException.ThrowIfNull(attack);
         ArgumentNullException.ThrowIfNull(result);
@@ -791,7 +795,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             spellLegacyId, string.Empty, string.Empty, false, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             ClassifyNpcHitSpell(0, 0, 0, 0), ResolveNpcHitSpellEffectRange(0, 0));
 
-        var catalogPath = Path.Combine(projectRoot, "Data", "Classic", "combat_spells.json");
+        var catalogPath = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "combat_spells.json");
         var catalog = RuntimeCanonicalCombatSpellCatalogLoader.Load(catalogPath);
         var canonicalId = $"spell.{spellLegacyId}";
         var spell = RuntimeCanonicalCombatSpellCatalogLoader.RequireSpell(catalog, canonicalId);
@@ -1085,15 +1089,18 @@ public sealed partial class RuntimeLiveGameplayFacade
             RenderAttackPlain(attacker, defender, result));
     }
 
-    private string RenderNpcAttack(string attacker, string defender, RuntimeNpcAttackDefinition attack, ClassicAttackResult result)
+    private string RenderNpcAttack(string worldId, string attacker, string defender, RuntimeNpcAttackDefinition attack, ClassicAttackResult result)
     {
-        attack = _npcAttackArguments.Complete(attacker, attack);
+        var attackArguments = NpcAttackArguments(worldId);
+        var nativePayloads = NativePayloads(worldId);
+        var npcSpellCatalog = NpcSpellCatalog(worldId);
+        attack = attackArguments.Complete(attacker, attack);
         var selection = ResolveNpcCombatMessage(attack, result, attacker, defender);
-        var rendered = TryRenderNativeNpcCombatMessage(_nativePayloads, selection, attacker, defender, result.FinalDamage, out var native)
+        var rendered = TryRenderNativeNpcCombatMessage(nativePayloads, selection, attacker, defender, result.FinalDamage, out var native)
             ? native
-            : TryRenderNativeNpcSpellMessage(_nativePayloads, _npcSpellCatalog, selection, attack, attacker, result.FinalDamage, out native)
+            : TryRenderNativeNpcSpellMessage(nativePayloads, npcSpellCatalog, selection, attack, attacker, result.FinalDamage, out native)
                 ? native
-            : TryRenderNativeNpcCombatMessageFromAttack(_nativePayloads, selection, attack, attacker, defender, out native)
+            : TryRenderNativeNpcCombatMessageFromAttack(nativePayloads, selection, attack, attacker, defender, out native)
                 ? native
             : selection.SafeFallback;
         return rendered.Length == 0 ? string.Empty : RuntimeClassicCombatAnsi.NpcAttack(rendered, result.Outcome);

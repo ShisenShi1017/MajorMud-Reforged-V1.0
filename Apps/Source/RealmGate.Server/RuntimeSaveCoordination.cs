@@ -9,10 +9,10 @@ public sealed record RuntimeSaveParticipantResult(string ParticipantId,bool Prep
 public sealed record RuntimeSaveResult(bool Success,string CorrelationId,IReadOnlyList<RuntimeSaveOperation> Operations,IReadOnlyList<string> Errors);
 public sealed record RuntimeSaveSnapshot(int SchemaVersion,long Generation,DateTimeOffset SavedUtc,IReadOnlyDictionary<string,long> ParticipantGenerations);
 /// <summary>
-/// Generic Reforged cross-system save coordination infrastructure.
+/// Generic RealmGate cross-system save coordination infrastructure.
 ///
 /// Its configured participant order, prepare/commit phases, reverse rollback, generation counters,
-/// and JSON snapshot replacement are Reforged safety policy. They are not evidence of Classic
+/// and JSON snapshot replacement are RealmGate safety policy. They are not evidence of Classic
 /// MajorMUD player/world save ordering, native "Buffer data" ownership, Worldgroup transaction
 /// grouping, or native rollback semantics. Classic parity is gated by RuntimeClassicSaveCoordinationAuthority.
 /// </summary>

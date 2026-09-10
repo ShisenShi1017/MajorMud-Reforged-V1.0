@@ -8,7 +8,7 @@ namespace RealmGate.Server;
 /// </summary>
 public sealed class ServerDataCatalogAudit
 {
-    public ServerDataCatalogAuditReport Run(string projectRoot, ValidationResult validation)
+    public ServerDataCatalogAuditReport Run(string projectRoot, ValidationResult validation, string? requestedWorldId = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(projectRoot);
         ArgumentNullException.ThrowIfNull(validation);
@@ -20,7 +20,9 @@ public sealed class ServerDataCatalogAudit
         string dataRoot;
         try
         {
-            (worldId, dataRoot) = ServerDataRootResolver.ResolveDefault(root);
+            (worldId, dataRoot) = string.IsNullOrWhiteSpace(requestedWorldId)
+                ? ServerDataRootResolver.ResolveDefault(root)
+                : ServerDataRootResolver.Resolve(root, requestedWorldId);
             report.DataRoot = dataRoot;
         }
         catch (Exception ex) when (ex is InvalidOperationException or IOException or JsonException)

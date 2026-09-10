@@ -296,7 +296,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var catalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, before.WorldId);
         var nowUtc = DateTimeOffset.UtcNow;
         _ = RuntimeDecodedDeathTextAuthority.Resolve(before, catalog,
-            RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot));
+            RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, before.WorldId));
 
         // Native _check_kill_user performs shared leave/death cleanup before status termination and
         // before either the arena exception or normal death inventory/life processing.

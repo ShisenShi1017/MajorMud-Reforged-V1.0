@@ -1,8 +1,9 @@
 using RealmGate.Server;
 
 var startDirectory = args.FirstOrDefault(arg => !arg.StartsWith("--", StringComparison.Ordinal));
+var requestedWorldId = TryReadArgumentValue(args, "--world", out var worldArgument) ? worldArgument : null;
 var bootstrap = new ServerBootstrap();
-var report = bootstrap.Run(startDirectory ?? Directory.GetCurrentDirectory());
+var report = bootstrap.Run(startDirectory ?? Directory.GetCurrentDirectory(), requestedWorldId);
 
 var headlessJsonRequested = args.Any(arg => string.Equals(arg, "--headless-json", StringComparison.OrdinalIgnoreCase));
 if (headlessJsonRequested)
@@ -466,8 +467,9 @@ if (TryReadArgumentValue(args, "--audit-room", out var auditRoom))
 
 if (args.Any(arg => string.Equals(arg, "--audit-spawns", StringComparison.OrdinalIgnoreCase)))
 {
-    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot audit Classic spawns because project root was not resolved."); return 2; }
-    var (host, world, living) = CreateAuditRuntime(report.ProjectRoot);
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot audit world spawns because project root was not resolved."); return 2; }
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : null;
+    var (host, world, living) = CreateAuditRuntime(report.ProjectRoot, worldId);
     Console.WriteLine(ClassicRuntimeAudit.RenderSpawnVerification(world, living));
     return 0;
 }
@@ -502,7 +504,8 @@ if (args.Any(arg => string.Equals(arg, "--smoke-world-systems-bundle", StringCom
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate world systems because project root was not resolved."); return 2; }
     var options = ServerRuntimeOptions.Load(report.ProjectRoot);
-    var worldSystemsReport = RuntimeWorldSystemsBundleSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : options.DefaultWorldId;
+    var worldSystemsReport = RuntimeWorldSystemsBundleSmokeReport.Run(report.ProjectRoot, worldId);
     Console.WriteLine("Runtime World Systems Bundle Smoke Report");
     Console.WriteLine(worldSystemsReport.ToJson());
     return worldSystemsReport.Passed ? 0 : 29;
@@ -512,7 +515,8 @@ if (args.Any(arg => string.Equals(arg, "--smoke-living-world", StringComparison.
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate living world because project root was not resolved."); return 2; }
     var options = ServerRuntimeOptions.Load(report.ProjectRoot);
-    var livingReport = RuntimeLivingWorldSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : options.DefaultWorldId;
+    var livingReport = RuntimeLivingWorldSmokeReport.Run(report.ProjectRoot, worldId);
     Console.WriteLine("Runtime Living World Smoke Report");
     Console.WriteLine(livingReport.ToJson());
     return livingReport.Passed ? 0 : 18;
@@ -522,7 +526,8 @@ if (args.Any(arg => string.Equals(arg, "--smoke-live-powers", StringComparison.O
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live powers because project root was not resolved."); return 2; }
     var options = ServerRuntimeOptions.Load(report.ProjectRoot);
-    var powersReport = RuntimeLivePowersSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : options.DefaultWorldId;
+    var powersReport = RuntimeLivePowersSmokeReport.Run(report.ProjectRoot, worldId);
     Console.WriteLine("Runtime Live Powers Smoke Report");
     Console.WriteLine(powersReport.ToJson());
     return powersReport.Passed ? 0 : 28;
@@ -1200,7 +1205,8 @@ if (args.Any(arg => string.Equals(arg, "--smoke-live-combat-admission", StringCo
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live combat admission because project root was not resolved."); return 2; }
     var options = ServerRuntimeOptions.Load(report.ProjectRoot);
-    var liveCombatReport = RuntimeLiveCombatSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : options.DefaultWorldId;
+    var liveCombatReport = RuntimeLiveCombatSmokeReport.Run(report.ProjectRoot, worldId);
     Console.WriteLine("Runtime Live Combat Admission Smoke Report");
     Console.WriteLine(liveCombatReport.ToJson());
     return liveCombatReport.Passed ? 0 : 22;
@@ -1272,7 +1278,8 @@ if (args.Any(arg => string.Equals(arg, "--smoke-services-economy", StringCompari
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate services and economy because project root was not resolved."); return 2; }
     var options = ServerRuntimeOptions.Load(report.ProjectRoot);
-    var economyReport = RuntimeServicesEconomySmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    var worldId = TryReadArgumentValue(args, "--world", out var requestedWorld) ? requestedWorld : options.DefaultWorldId;
+    var economyReport = RuntimeServicesEconomySmokeReport.Run(report.ProjectRoot, worldId);
     Console.WriteLine("Runtime Services and Economy Smoke Report");
     Console.WriteLine(economyReport.ToJson());
     return economyReport.Passed ? 0 : 14;
@@ -1587,7 +1594,7 @@ if (args.Any(arg => string.Equals(arg, "--smoke-megamud-connection", StringCompa
 {
     try
     {
-        var smoke = await RuntimeMegaMudConnectionSmokeReport.RunAsync().ConfigureAwait(false);
+        var smoke = await RuntimeMegaMudConnectionSmokeReport.RunAsync(projectRoot, requestedWorldId).ConfigureAwait(false);
         Console.WriteLine(smoke.ToJson());
         return smoke.Passed ? 0 : 1;
     }
@@ -1883,15 +1890,16 @@ if (args.Any(arg => string.Equals(arg, "--smoke-party-coordination", StringCompa
 Console.WriteLine("Server bootstrap completed successfully. Host runtime is enabled; pass --run-local for console or --run-network for telnet hosting.");
 return report.ExitCode;
 
-static (ServerRuntimeHost Host, RuntimeWorld World, RuntimeLivingWorldService Living) CreateAuditRuntime(string projectRoot)
+static (ServerRuntimeHost Host, RuntimeWorld World, RuntimeLivingWorldService Living) CreateAuditRuntime(string projectRoot, string? requestedWorldId = null)
 {
     var options = ServerRuntimeOptions.Load(projectRoot);
     var host = new ServerRuntimeHost(projectRoot, options);
     host.Bootstrap();
-    var world = host.Worlds.TryGetValue(options.DefaultWorldId, out var configured)
+    var worldId = string.IsNullOrWhiteSpace(requestedWorldId) ? options.DefaultWorldId : requestedWorldId;
+    var world = host.Worlds.TryGetValue(worldId, out var configured)
         ? configured
-        : host.Worlds.Values.First();
-    var auditRoot = Path.Combine(Path.GetTempPath(), "reforged-classic-runtime-audit-" + Guid.NewGuid().ToString("N"));
+        : throw new InvalidOperationException($"Configured runtime world '{worldId}' was not found.");
+    var auditRoot = Path.Combine(Path.GetTempPath(), "realmgate-runtime-audit-" + Guid.NewGuid().ToString("N"));
     var living = new RuntimeLivingWorldService(projectRoot, world, auditRoot);
     return (host, world, living);
 }

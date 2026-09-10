@@ -127,7 +127,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (session.Actor is not RuntimeCharacterActor actor) return "Player combat profile is unavailable for a non-character session.";
         var character = _characters.LoadCharacter(actor.Id);
         if (character is null) return "Player combat profile is unavailable because the character save could not be loaded.";
-        var profile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(character);
+        var profile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, character.WorldId), _characters.ProjectRoot).Resolve(character);
         if (!profile.Ready) return "Player combat profile blocked: " + string.Join(", ", profile.Blockers);
         var npcDefense = RuntimeNpcDefensiveProfileResolver.Resolve(ResolveEncounterNpc(session, encounter));
         return $"Player combat profile ready: AV {profile.AttackValue}, DV {profile.DefenseValue}, AC {profile.ArmorClass}, DR {profile.DamageResistance}, Dodge {profile.DodgeBonus}, Damage {profile.MinimumDamage}-{profile.MaximumDamage} (STR {profile.StrengthMaximumDamageBonus:+#;-#;0}), Speed {profile.WeaponSpeed}, Energy {profile.AttackEnergyCost}, Accuracy nativeBase={profile.ClassCombatAccuracy} plus={profile.AbilityAccuracyModifier} equippedWeapon={profile.WeaponAccuracyModifier} (folded into nativeBase). NPC defense ready: AC {npcDefense.ArmorClass}, DR {npcDefense.DamageResistance}, Backstab DV {npcDefense.BackstabDefense}; no separate NPC dodge input is defined by the authoritative schema.";
@@ -175,7 +175,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             if (session.Actor is not RuntimeCharacterActor backstabActor) return "A persistent character is required to Backstab.";
             var backstabCharacter = _characters.LoadCharacter(backstabActor.Id) ?? throw new InvalidOperationException("Character save was not found.");
-            var backstabProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(backstabCharacter);
+            var backstabProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, backstabCharacter.WorldId), _characters.ProjectRoot).Resolve(backstabCharacter);
             if (!backstabProfile.Ready) return "Backstab blocked: " + string.Join(", ", backstabProfile.Blockers);
             var prepared = ClassicAttackPreparationPolicy.PrepareBackstab(
                 IsCharacterHidden(backstabCharacter),
@@ -216,7 +216,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             var admissionCharacter = _characters.LoadCharacter(admissionActor.Id) ?? throw new InvalidOperationException("Character save was not found.");
             var admissionProfile = new RuntimePlayerCombatProfileResolver(
-                RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(admissionCharacter);
+                RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, admissionCharacter.WorldId), _characters.ProjectRoot).Resolve(admissionCharacter);
             if (!admissionProfile.Ready) return "Attack blocked: " + string.Join(", ", admissionProfile.Blockers);
             var usesWieldedWeapon = attackType is not (ClassicAttackType.Punch or ClassicAttackType.Kick or ClassicAttackType.JumpKick) && !admissionProfile.Barehanded;
             var admission = RuntimeMagicalCreatureWeaponAdmission.Evaluate(target.Definition, admissionProfile, usesWieldedWeapon);
@@ -393,7 +393,7 @@ public sealed class RuntimeLiveCombatSmokeReport
         var report = new RuntimeLiveCombatSmokeReport();
         try
         {
-            var resolver = ServerDataRootResolver.ResolveDefault(projectRoot);
+            var resolver = ServerDataRootResolver.Resolve(projectRoot, worldId);
             var npcPath = Path.Combine(resolver.DataRoot, "npcs.json");
             using var document = JsonDocument.Parse(File.ReadAllText(npcPath));
             var records = document.RootElement.GetProperty("records");

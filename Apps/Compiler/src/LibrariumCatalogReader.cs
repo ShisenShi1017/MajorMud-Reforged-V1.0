@@ -169,6 +169,18 @@ public sealed class LibrariumCatalogReader
             if (executable is not null) return [executable];
         }
 
+        // The complete 15-class/13-race base catalogs are the promoted MMExplorer
+        // SQL/MDB records. The similarly named *_records_0123 files contain only
+        // provisional access/trainer words and must never win by timestamp.
+        if (familyName.Equals("classes", StringComparison.OrdinalIgnoreCase) ||
+            familyName.Equals("races", StringComparison.OrdinalIgnoreCase))
+        {
+            var promoted = Directory.GetFiles(familyDirectory, "sql_mdb_records_*.json")
+                .OrderByDescending(Path.GetFileName)
+                .FirstOrDefault();
+            if (promoted is not null) return [promoted];
+        }
+
         if (familyName.Equals("loot_rules", StringComparison.OrdinalIgnoreCase))
         {
             // Preserve the broad evidence catalog and the later verified Classic

@@ -15,7 +15,7 @@ public sealed class RuntimeAbilityCatalog
 
     public static RuntimeAbilityCatalog Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", worldId.Equals("classic", StringComparison.OrdinalIgnoreCase) ? "Classic" : worldId, "abilities.json");
+        var path = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "abilities.json");
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var records = document.RootElement.GetProperty("records");
         return new RuntimeAbilityCatalog(records.EnumerateArray().Select(x => new RuntimeAbilityDefinition(

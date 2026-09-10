@@ -22,14 +22,19 @@ public sealed class RuntimeClassicRandomTableAuthority
         _random = random;
     }
 
-    public static RuntimeClassicRandomTableAuthority Load(string projectRoot, IRuntimeClassicDialogueRandomSource random)
+    public static RuntimeClassicRandomTableAuthority Load(string projectRoot, IRuntimeClassicDialogueRandomSource random) =>
+        Load(projectRoot, "Classic", random);
+
+    public static RuntimeClassicRandomTableAuthority Load(string projectRoot, string worldId, IRuntimeClassicDialogueRandomSource random)
     {
         ArgumentNullException.ThrowIfNull(random);
-        var path = Path.Combine(projectRoot, "Data", "Classic", "random_table_runtime_authority.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Authoritative Classic random-table catalog is required.", path);
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var path = Path.Combine(resolved.DataRoot, "random_table_runtime_authority.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Authoritative world '{resolved.WorldId}' random-table catalog is required.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         var root = doc.RootElement;
-        if (Int(root, "reference_count") != 595 || Int(root, "table_count") != 136 || Int(root, "branch_count") != 1222)
+        if (resolved.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            && (Int(root, "reference_count") != 595 || Int(root, "table_count") != 136 || Int(root, "branch_count") != 1222))
             throw new InvalidDataException("Classic random-table catalog counts do not match the exhausted decode.");
         var tables = new Dictionary<int, RuntimeClassicRandomTable>();
         foreach (var row in root.GetProperty("tables").EnumerateArray())

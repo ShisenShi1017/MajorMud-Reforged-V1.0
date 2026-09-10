@@ -1,5 +1,5 @@
 {
-  "hostName": "Reforged Realms Host",
+  "hostName": "RealmGate Host",
   "defaultWorldId": "classic",
   "worldTickMilliseconds": 1000,
   "combatTickMilliseconds": 5000,
@@ -48,14 +48,14 @@
     "PureAI"
   ],
   "notes": [
-    "0113 is Classic-first. Additional worlds are added by configuration and module/runtime services, not host rewrites.",
+    "Classic is the protected baseline. Additional worlds are added by configuration and module/runtime services, not host rewrites.",
     "Classic remains protected: no transfers, no AI mode, no formula invention.",
     "The Host remains authoritative for world state, character state, combat, items, NPCs, quests, economy, timers, resets, and permissions.",
-    "Runtime networking supports world selection. Pass 9 enables Classic plus one isolated ReforgedCustom world (Custom1).",
-    "0133 creates a runtime-only test character when no saved or generated Classic character start is available. This character never modifies Librarium or generated Data.",
+    "Runtime networking supports direct world selection for Classic and isolated generated worlds.",
+    "Development mode may create a runtime-only test character when no saved or generated character start is available. This character never modifies Librarium or generated Data.",
     "worlds[].diagnosticRoom is map-qualified as room.map1.1 for explicit developer smoke testing only.",
     "The runtime test avatar has no selected Classic class and bypasses character-creation validation only because IsRuntimeTestCharacter is true.",
-    "Pass 9 enables one ReforgedCustom world (Custom1) alongside protected Classic.",
+    "Custom1 is an isolated ReforgedCustom world alongside protected Classic.",
     "Custom1 inherits the current Classic runtime rules profile while storing authored differences in Librarium/WorldOverrides/Custom1; generated Data/Custom1 is disposable runtime output.",
     "Classic remains protected and does not consume Custom1 overrides. Character transfer into Classic remains prohibited."
   ],

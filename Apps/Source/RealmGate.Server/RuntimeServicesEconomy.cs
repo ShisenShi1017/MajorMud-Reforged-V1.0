@@ -26,9 +26,7 @@ public sealed class RuntimeServiceCatalog
 
     public static RuntimeServiceCatalog Load(string projectRoot, string worldId)
     {
-        var resolved = ServerDataRootResolver.ResolveDefault(projectRoot);
-        if (!resolved.WorldId.Equals(worldId, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidOperationException("requested-world-is-not-configured-default");
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
 
         var services = new List<RuntimeServiceDefinition>();
         services.AddRange(ReadFamily(Path.Combine(resolved.DataRoot, "shops.json"), "shop"));

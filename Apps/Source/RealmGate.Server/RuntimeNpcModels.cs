@@ -41,9 +41,13 @@ public sealed class RuntimeNpcAttackArgumentRecoveryCatalog
         _weapons = weapons;
     }
 
-    public static RuntimeNpcAttackArgumentRecoveryCatalog Load(string projectRoot)
+    public static RuntimeNpcAttackArgumentRecoveryCatalog Load(string projectRoot) =>
+        Load(projectRoot, ServerRuntimeOptions.Load(projectRoot).DefaultWorldId);
+
+    public static RuntimeNpcAttackArgumentRecoveryCatalog Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "npcs.json");
+        var dataRoot = ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot;
+        var path = Path.Combine(dataRoot, "npcs.json");
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var npcs = document.RootElement.GetProperty("records").EnumerateArray().Select(RuntimeNpcDefinition.FromJson).ToArray();
         var rows = npcs.SelectMany(npc => npc.Attacks.Select(attack => (npc.Name, Attack: attack))).ToArray();

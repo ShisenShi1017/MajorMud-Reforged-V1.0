@@ -134,7 +134,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         };
         var exit = session.World.FindExit(session.CurrentRoom, normalized);
         if (exit is null) return nothing;
-        var authority = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot);
+        var authority = RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
         if (!authority.TryGet(exit.Id, out var native)) return nothing;
         if (native.RoomType == 6)
         {

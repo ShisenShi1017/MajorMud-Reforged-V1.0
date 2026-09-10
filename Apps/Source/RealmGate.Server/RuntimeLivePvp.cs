@@ -12,7 +12,7 @@ public sealed record RuntimePvpZoneCatalog(
 {
     public static RuntimePvpZoneCatalog Load(string projectRoot, string worldId)
     {
-        var dataRoot = ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot;
+        var dataRoot = ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot;
         var path = Path.Combine(dataRoot, "pvp_zones.json");
         if (!File.Exists(path)) return new(1, []);
         var catalog = JsonSerializer.Deserialize<RuntimePvpZoneCatalog>(File.ReadAllText(path),
@@ -327,10 +327,10 @@ public sealed partial class RuntimeLiveGameplayFacade
         { EndLivePvpEncounter(encounter); return "PvP combat ended because a participant is no longer present."; }
         var attacker = _characters.LoadCharacter(attackerActor.Id) ?? throw new InvalidOperationException("PvP attacker save was not found.");
         var defender = _characters.LoadCharacter(defenderActor.Id) ?? throw new InvalidOperationException("PvP defender save was not found.");
-        var attackerProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(attacker);
-        var defenderProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot), _characters.ProjectRoot).Resolve(defender);
+        var attackerProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, attacker.WorldId), _characters.ProjectRoot).Resolve(attacker);
+        var defenderProfile = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, defender.WorldId), _characters.ProjectRoot).Resolve(defender);
         if (!attackerProfile.Ready || !defenderProfile.Ready) throw new InvalidOperationException("PVP_PLAYER_COMBAT_PROFILE_BLOCKED");
-        var resolver = new ClassicCombatResolver(authority: RuntimeClassicFormulaAuthority.Load(_characters.ProjectRoot));
+        var resolver = new ClassicCombatResolver(authority: RuntimeClassicFormulaAuthority.Load(_characters.ProjectRoot, encounter.WorldId));
         var attackerHp = attacker.HitPoints;
         var defenderHp = defender.HitPoints;
         var attackerOutput = new List<string>();

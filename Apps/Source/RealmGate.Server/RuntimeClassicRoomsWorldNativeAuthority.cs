@@ -47,16 +47,20 @@ public sealed class RuntimeClassicRoomsWorldNativeAuthority
     public RuntimeClassicNativeExitRecord Require(string exitId) =>
         TryGet(exitId, out var record) ? record : throw new KeyNotFoundException($"No native exit authority row exists for {exitId}.");
 
-    public static RuntimeClassicRoomsWorldNativeAuthority Load(string projectRoot)
+    public static RuntimeClassicRoomsWorldNativeAuthority Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeClassicRoomsWorldNativeAuthority Load(string projectRoot, string worldId)
     {
-        var root = Path.GetFullPath(projectRoot);
-        return Cache.GetOrAdd(root, static key => LoadUncached(key));
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var cacheKey = Path.GetFullPath(resolved.DataRoot);
+        var isClassic = resolved.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        return Cache.GetOrAdd(cacheKey, _ => LoadUncached(resolved.DataRoot, isClassic));
     }
 
-    private static RuntimeClassicRoomsWorldNativeAuthority LoadUncached(string projectRoot)
+    private static RuntimeClassicRoomsWorldNativeAuthority LoadUncached(string dataRoot, bool isClassic)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "native_room_exits.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic native exit authority is required.", path);
+        var path = Path.Combine(dataRoot, "native_room_exits.json");
+        if (!File.Exists(path)) throw new FileNotFoundException("Generated native exit authority is required.", path);
         var recordsElement = RuntimeChunkedClassicCatalog.LoadRecords(path);
 
         var records = new Dictionary<string, RuntimeClassicNativeExitRecord>(StringComparer.OrdinalIgnoreCase);
@@ -83,19 +87,24 @@ public sealed class RuntimeClassicRoomsWorldNativeAuthority
         }
 
         var authority = new RuntimeClassicRoomsWorldNativeAuthority(records);
-        authority.Validate();
+        authority.Validate(isClassic);
         return authority;
     }
 
-    private void Validate()
+    private void Validate(bool isClassic)
     {
-        if (_records.Count != ExpectedRecordCount)
+        if (_records.Count == 0)
+            throw new InvalidOperationException("Native exit authority contains no rows.");
+        if (isClassic && _records.Count != ExpectedRecordCount)
             throw new InvalidOperationException($"Native exit authority expected {ExpectedRecordCount} rows but found {_records.Count}.");
-        if (_records.Values.Count(record => record.RoomType is 9 or 24) != ExpectedTrapCount)
+        if (isClassic && _records.Values.Count(record => record.RoomType is 9 or 24) != ExpectedTrapCount)
             throw new InvalidOperationException("Native exit authority trap count mismatch.");
-        var rug = Require(RugExitId);
-        if (rug.RoomType != 6 || rug.Para1 != 16 || rug.Para2 != 0 || rug.Para3 != 2687 || rug.Para4 != 2688)
-            throw new InvalidOperationException("Native rug RoomRec does not match WGSERV evidence.");
+        if (isClassic)
+        {
+            var rug = Require(RugExitId);
+            if (rug.RoomType != 6 || rug.Para1 != 16 || rug.Para2 != 0 || rug.Para3 != 2687 || rug.Para4 != 2688)
+                throw new InvalidOperationException("Native rug RoomRec does not match WGSERV evidence.");
+        }
     }
 
     public static int TimerSeconds(int count) => checked(ExitTimerQuantumSeconds * Math.Max(1, count));

@@ -191,8 +191,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     }
     private string EmitClassicGangHouseMessage(RuntimeSession session, int messageId)
     {
-        var player = _nativePayloads.RequireMessage(messageId);
-        if (_nativePayloads.TryResolveSecondaryMessage(messageId, out var secondary)
+        var nativePayloads = NativePayloads(session.World.Definition.Id);
+        var player = nativePayloads.RequireMessage(messageId);
+        if (nativePayloads.TryResolveSecondaryMessage(messageId, out var secondary)
             && !string.IsNullOrWhiteSpace(secondary))
         {
             _sessions.BroadcastRoom(session,

@@ -78,7 +78,7 @@ public sealed class RuntimeBundleCDecodedServiceAuthority
 
     public static RuntimeBundleCDecodedServiceAuthority Load(string projectRoot, string worldId)
     {
-        var root = Path.Combine(projectRoot, "Data", worldId);
+        var root = ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot;
         return new(
             ReadShops(Path.Combine(root, "shops.json")),
             ReadBanks(Path.Combine(root, "banks.json")),

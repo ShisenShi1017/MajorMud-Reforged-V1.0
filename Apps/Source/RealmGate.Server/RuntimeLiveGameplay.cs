@@ -9,9 +9,9 @@ public sealed partial class RuntimeLiveGameplayFacade
     private readonly RuntimeWccInvasionService _wccInvasions;
     private readonly RuntimeClassicGangGameplayService _gangGameplay;
     private readonly RuntimePartyCoordinationService _partyGameplay;
-    private readonly RuntimeClassicNativeTextblockPayloadAuthority _nativePayloads;
-    private readonly RuntimeSpellCatalog _npcSpellCatalog;
-    private readonly RuntimeNpcAttackArgumentRecoveryCatalog _npcAttackArguments;
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicNativeTextblockPayloadAuthority> _nativePayloadsByWorld = new(StringComparer.OrdinalIgnoreCase);
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeSpellCatalog> _npcSpellCatalogByWorld = new(StringComparer.OrdinalIgnoreCase);
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeNpcAttackArgumentRecoveryCatalog> _npcAttackArgumentsByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeGameplayCompletionStateStore> _gameplayStores = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gameplayStoreGate = new();
 
@@ -25,10 +25,24 @@ public sealed partial class RuntimeLiveGameplayFacade
         _gangGameplay = new RuntimeClassicGangGameplayService(characters, sessions);
         _partyGameplay = new RuntimePartyCoordinationService();
         _sessions.SessionsChanged += (_, _) => { SynchronizeClassicPartyActiveLocations(); PruneLivePvpConnections(); };
-        _nativePayloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(characters.ProjectRoot);
-        _npcSpellCatalog = RuntimeSpellCatalog.Load(characters.ProjectRoot, "Classic");
-        _npcAttackArguments = RuntimeNpcAttackArgumentRecoveryCatalog.Load(characters.ProjectRoot);
+        // World-scoped gameplay catalogs are loaded lazily from the active session world.
+        // A Custom/AI world must never inherit a live Classic catalog instance.
     }
+
+    private RuntimeClassicNativeTextblockPayloadAuthority NativePayloads(string worldId) =>
+        _nativePayloadsByWorld.GetOrAdd(
+            worldId,
+            id => RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, id));
+
+    private RuntimeSpellCatalog NpcSpellCatalog(string worldId) =>
+        _npcSpellCatalogByWorld.GetOrAdd(
+            worldId,
+            id => RuntimeSpellCatalog.Load(_characters.ProjectRoot, id));
+
+    private RuntimeNpcAttackArgumentRecoveryCatalog NpcAttackArguments(string worldId) =>
+        _npcAttackArgumentsByWorld.GetOrAdd(
+            worldId,
+            id => RuntimeNpcAttackArgumentRecoveryCatalog.Load(_characters.ProjectRoot, id));
 
     public string ExecuteMajorMudPlusCommand(RuntimeSession session, RuntimeCommand command) =>
         _majorMudPlus.Execute(session, command, Living(session));

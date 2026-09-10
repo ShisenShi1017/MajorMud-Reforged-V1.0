@@ -32,9 +32,9 @@ public sealed record RuntimeCharacterBundleCatalog(
             RuntimeCharacterAlignmentRewardCatalog.Load(projectRoot, worldId),
             RuntimeCharacterAlignmentQuestGateCatalog.Load(projectRoot, worldId),
             RuntimeCharacterAlignmentQuestPayloadCatalog.Load(projectRoot, worldId),
-            RuntimeCharacterAlignmentNpcQuestCatalog.Load(projectRoot),
+            RuntimeCharacterAlignmentNpcQuestCatalog.Load(projectRoot, worldId),
             RuntimeCharacterAlignmentRewardMatrixCatalog.Load(projectRoot, worldId),
-            RuntimeCharacterAlignmentFullRewardCatalog.Load(projectRoot),
+            RuntimeCharacterAlignmentFullRewardCatalog.Load(projectRoot, worldId),
             new RuntimeCharacterAlignmentQuestCorroborationCatalog(),
             RuntimeCharacterWitchunterQuestCatalog.Load(projectRoot, worldId),
             RuntimeCharacterItemRequirementCatalog.Load(projectRoot, worldId));

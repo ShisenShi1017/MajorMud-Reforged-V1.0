@@ -20,9 +20,11 @@ public sealed class RuntimeClassicNativePlayerCommandRegistry
 
     public IReadOnlyList<RuntimeClassicNativePlayerCommandRecord> Records { get; }
 
-    public static RuntimeClassicNativePlayerCommandRegistry Load(string projectRoot)
+    public static RuntimeClassicNativePlayerCommandRegistry Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeClassicNativePlayerCommandRegistry Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "native_player_commands.json");
+        var path = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "native_player_commands.json");
         if (!File.Exists(path))
             throw new InvalidOperationException($"Generated native player-command catalog is missing: {path}");
 

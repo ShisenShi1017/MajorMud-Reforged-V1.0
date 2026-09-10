@@ -13,7 +13,7 @@ namespace RealmGate.Server;
 /// </summary>
 public sealed class ServerStartupDiagnostics
 {
-    public ServerStartupDiagnosticReport Run(string projectRoot)
+    public ServerStartupDiagnosticReport Run(string projectRoot, string? requestedWorldId = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(projectRoot);
 
@@ -22,9 +22,12 @@ public sealed class ServerStartupDiagnostics
         var logger = new InMemoryReforgedLogger();
         var events = new InMemoryEventBus();
         var services = new ServiceRegistry();
+        var dataRoot = string.IsNullOrWhiteSpace(requestedWorldId)
+            ? ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot
+            : ServerDataRootResolver.Resolve(projectRoot, requestedWorldId).DataRoot;
         var configuration = new RuntimeConfigurationProvider()
             .AddDefault("runtime:root", projectRoot)
-            .AddDefault("runtime:data", ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot)
+            .AddDefault("runtime:data", dataRoot)
             .AddDefault("server:role", ApplicationRole.Server.ToString())
             .AddDefault("server:diagnostics", "startup-only");
 
@@ -63,8 +66,7 @@ public sealed class ServerStartupDiagnostics
         }
 
         report.AddCheck("core-startup-diagnostics");
-        var configuredDataRoot = ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot;
-        var coreReport = new CoreStartupDiagnostics().Run(projectRoot, configuredDataRoot);
+        var coreReport = new CoreStartupDiagnostics().Run(projectRoot, dataRoot);
         report.AttachCoreReport(coreReport);
 
         logger.Write(

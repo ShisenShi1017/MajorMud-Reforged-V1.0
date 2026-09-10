@@ -11,12 +11,12 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
 {
     public string ToJson() => JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
 
-    public static async Task<RuntimeMegaMudConnectionSmokeReport> RunAsync()
+    public static async Task<RuntimeMegaMudConnectionSmokeReport> RunAsync(string projectRoot, string? requestedWorldId = null)
     {
         var checks = new List<string>();
 
-        // CodeUpdate0345: parser-visible communication lines are recovered from the retained
-        // original DLL and independently observed in imported MegaMUD runtime logs. Keep these
+        // Parser-visible communication lines are recovered from the retained original DLL and
+        // independently observed in imported MegaMUD runtime logs. Keep these
         // exact because MegaMUD/Borin both consume the terminal stream.
         if (RuntimeClassicCommunicationRenderingAuthority.TelepathReceived("Shisenshi", "@join") != "Shisenshi telepaths: @join" ||
             RuntimeClassicCommunicationRenderingAuthority.DirectToTarget("Azriel", "{ok}") != "Azriel says (to you) \"{ok}\"" ||
@@ -26,7 +26,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MegaMUD communication rendering/alias contract regressed.");
         checks.Add("Recovered MegaMUD-observed telepath, directed-message, gossip rendering and GOS/AUC aliases remain exact.");
 
-        // CodeUpdate0347: legacy clients must see the native TALK resolver/response surface.
+        // Legacy clients must see the native TALK resolver/response surface.
         // The live Classic dispatcher owns the FAST-vs-SLOW decision; this smoke locks the
         // defaults and parser-visible responses that MegaMUD consumes on the ordinary stream.
         if (!RuntimeClassicCommunicationPersistenceLimitsAuthority.DefaultTalkFast ||
@@ -38,7 +38,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD TALK/response compatibility contract regressed.");
         checks.Add("Native TALK defaults/persistence identities and SLOW/BRIEF parser-visible responses remain exact for legacy clients.");
 
-        // CodeUpdate0349: SET MESSAGES is recipient-side room-output filtering. Legacy clients
+        // SET MESSAGES is recipient-side room-output filtering. Legacy clients
         // do not negotiate a separate feature; they simply receive the MajorMUD-visible stream
         // after the native High/Medium/Low threshold has been applied for that character.
         if (RuntimeClassicCommunicationPersistenceLimitsAuthority.NativeMessagesThreshold("high") != 0 ||
@@ -53,7 +53,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD SET MESSAGES threshold contract regressed.");
         checks.Add("SET MESSAGES High/Medium/Low recipient filtering remains native-compatible on the ordinary MegaMUD stream.");
 
-        // CodeUpdate0350: MegaMUD's retained executable inventory independently contains the
+        // MegaMUD's retained executable inventory independently contains the
         // native REST/MEDITATE success, sickness and observer tokens. Keep the server-visible
         // strings exact so recovery automation consumes the same ordinary terminal stream.
         if (RuntimeClassicRegenerationCommandAuthority.RestTooSickMessage != "You are too sick to rest!" ||
@@ -66,7 +66,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD REST/MEDITATE terminal compatibility contract regressed.");
         checks.Add("Native REST/MEDITATE terminal strings remain exact for MegaMUD recovery automation.");
 
-        // CodeUpdate0351: MegaMUD issues stock BREAK on the ordinary terminal stream. The
+        // MegaMUD issues stock BREAK on the ordinary terminal stream. The
         // original DLL and MegaMUD executable both expose the exact player/off and observer
         // text, so keep that presentation stable without a private-client compatibility path.
         if (RuntimeClassicBreakAutocombatAuthority.PlayerMessage != "*Combat Off*" ||
@@ -76,7 +76,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD BREAK terminal compatibility contract regressed.");
         checks.Add("Native BREAK player/observer presentation remains exact for MegaMUD combat automation.");
 
-        // CodeUpdate0352: BREAK is character-only. Stopping one participant's native
+        // BREAK is character-only. Stopping one participant's native
         // autocombat must not clear the opponent's independent autocombat ownership.
         var pvpBreakProbe = new RuntimeLivePvpEncounter("probe", "Classic", "room.1",
             "attacker", "defender", ClassicAttackType.NormalWeapon, ClassicAttackType.NormalWeapon,
@@ -88,7 +88,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD character-only BREAK ownership contract regressed.");
         checks.Add("Native BREAK remains character-only while the opponent can continue attacking.");
 
-        // CodeUpdate0353: stock GIVE remains ordinary terminal traffic. The native DLL and
+        // Stock GIVE remains ordinary terminal traffic. The native DLL and
         // MegaMUD executable agree on the capacity and success tokens, so recipient admission
         // must not be hidden behind a Reforged-only client-data signal.
         if (RuntimeClassicGiveAuthority.NativeCommandRva != 0x67744 ||
@@ -103,7 +103,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD GIVE terminal compatibility contract regressed.");
         checks.Add("Native GIVE capacity/restriction/success presentation remains exact on the ordinary MegaMUD stream.");
 
-        // CodeUpdate0354: BUY/SELL price arithmetic is server-authoritative. MegaMUD sends the
+        // BUY/SELL price arithmetic is server-authoritative. MegaMUD sends the
         // ordinary stock commands and must observe the same transaction result; no private
         // client-side price formula or Reforged-only compatibility channel is required.
         if (RuntimeClassicEconomyPricing.QuoteBuyCopper(100, 0, 0) != 110 ||
@@ -115,7 +115,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered MajorMUD BUY/SELL Charm pricing contract regressed.");
         checks.Add("Native BUY/SELL Charm pricing remains server-authoritative on the ordinary MegaMUD command stream.");
 
-        // CodeUpdate0355: physical combat arithmetic remains entirely server-side.
+        // Physical combat arithmetic remains entirely server-side.
         // MegaMUD consumes the ordinary MajorMUD result text and does not need a private formula channel.
         if (RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabDamage(20, 120, 8, 3, true) != 85 ||
             RuntimeClassicPhysicalFormulaCalculator.CalculateBackstabDamage(20, 120, 8, 3, false) != 63 ||
@@ -123,7 +123,7 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered native Backstab/physical-combat contract regressed.");
         checks.Add("Native Backstab and physical-combat math remains server-authoritative on the ordinary MegaMUD stream.");
 
-        // CodeUpdate0356: raw player Dodge is also entirely server-side. The original DLL
+        // Raw player Dodge is also entirely server-side. The original DLL
         // constructs it before _calculate_attack; MegaMUD only consumes the resulting stock combat text.
         if (RuntimeClassicCharacterFormulaCalculator.CalculateRawDodge(20, 80, 60, 5, 32) != 28 ||
             RuntimeClassicCharacterFormulaCalculator.CalculateRawDodge(20, 80, 60, 5, 33) != 21 ||
@@ -131,14 +131,14 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered native raw-Dodge construction regressed.");
         checks.Add("Native raw Dodge remains server-authoritative on the ordinary MegaMUD combat stream.");
 
-        // CodeUpdate0357: exact stock player Accuracy construction stays server-side.
+        // Exact stock player Accuracy construction stays server-side.
         if (RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(6, 1, 50, 50, 0, 0) != 46 ||
             RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(6, 20, 80, 60, 3, 0) != 109 ||
             RuntimeClassicPhysicalFormulaCalculator.CalculateStockPlayerAccuracyBase(4, 20, 49, 49, 1, 32) != 68)
             throw new InvalidOperationException("Recovered native stock Accuracy construction regressed.");
         checks.Add("Native stock player Accuracy remains server-authoritative on the ordinary MegaMUD combat stream.");
 
-        // CodeUpdate0358: native LVLDIFF remains a server/realm rule on the ordinary game stream.
+        // Native LVLDIFF remains a server/realm rule on the ordinary game stream.
         // MegaMUD does not own or bypass realm PvP admission.
         if (RuntimeClassicConfigurationAuthority.MaximumPvpLevelDifference != 100 ||
             RuntimeClassicConfigurationAuthority.PvpDisabledLevelDifference != -1 ||
@@ -150,27 +150,51 @@ public sealed record RuntimeMegaMudConnectionSmokeReport(
             throw new InvalidOperationException("Recovered native LVLDIFF PvP admission contract regressed.");
         checks.Add("Native LVLDIFF PvP admission remains server-authoritative on the ordinary MegaMUD stream.");
 
-        if (!ServerNetworkHost.IsMegaMudLaunchCommand("/go majormud") ||
-            !ServerNetworkHost.IsMegaMudLaunchCommand("go majormud") ||
-            !ServerNetworkHost.IsMegaMudLaunchCommand("majormud") ||
-            ServerNetworkHost.IsMegaMudLaunchCommand("/go somethingelse"))
-            throw new InvalidOperationException("MegaMUD direct-login launch token recognition regressed.");
-        checks.Add("Recovered MegaMUD `/go majormud` auto-login launch token is recognized explicitly.");
+        var hostSource = File.ReadAllText(Path.Combine(
+            projectRoot, "Apps", "Source", "RealmGate.Server", "ServerNetworkHost.cs"));
+        var megaMudProfiles = new[]
+        {
+            Path.Combine(projectRoot, "Tools", "MegaMUD", "RealmGate Local", "BBS.INI"),
+            Path.Combine(projectRoot, "Tools", "MegaMUD", "RealmGate Multi-Character", "BBS.INI")
+        };
+        if (hostSource.Contains("TryParseMegaMudLaunchCommand", StringComparison.Ordinal) ||
+            hostSource.Contains("IsMegaMudLaunchCommand", StringComparison.Ordinal) ||
+            hostSource.Contains("/go majormud", StringComparison.OrdinalIgnoreCase) ||
+            !hostSource.Contains("TryGetWorldById", StringComparison.Ordinal) ||
+            megaMudProfiles.Any(path =>
+                !File.Exists(path) ||
+                File.ReadAllText(path).Contains("/go majormud", StringComparison.OrdinalIgnoreCase)))
+            throw new InvalidOperationException("Direct RealmGate world/character selection regressed for MegaMUD profiles.");
+        checks.Add("MegaMUD profiles use the normal RealmGate world and character selection flow without a legacy launch token.");
 
-        if (!ServerNetworkHost.TryParseMegaMudLaunchCommand("/go majormud 2", out var numericSelector) ||
-            !string.Equals(numericSelector, "2", StringComparison.Ordinal) ||
-            !ServerNetworkHost.TryParseMegaMudLaunchCommand("/go majormud Shisen Shi", out var namedSelector) ||
-            !string.Equals(namedSelector, "Shisen Shi", StringComparison.Ordinal))
-            throw new InvalidOperationException("MegaMUD character-selector launch parsing regressed.");
+        var options = ServerRuntimeOptions.Load(projectRoot);
+        var host = new ServerRuntimeHost(projectRoot, options);
+        host.Bootstrap();
+        var worldId = string.IsNullOrWhiteSpace(requestedWorldId) ? options.DefaultWorldId : requestedWorldId;
+        var world = host.Worlds.TryGetValue(worldId, out var selectedWorld)
+            ? selectedWorld
+            : host.Worlds.Values.FirstOrDefault(candidate =>
+                candidate.Definition.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase))
+              ?? throw new InvalidOperationException($"Requested SAY smoke world '{worldId}' was not loaded.");
+        var session = host.Sessions.CreateSession("unknown-say-smoke", world, "Speech Tester");
+        if (!host.Sessions.TryAdd(session, 4, out var addMessage))
+            throw new InvalidOperationException($"Unknown-text SAY smoke could not create a session: {addMessage}");
 
-        var characterNames = new[] { "Alpha", "Shisen Shi", "Gamma" };
-        if (ServerNetworkHost.ResolveMegaMudCharacterSelectorIndex(characterNames, "1") != 0 ||
-            ServerNetworkHost.ResolveMegaMudCharacterSelectorIndex(characterNames, "2") != 1 ||
-            ServerNetworkHost.ResolveMegaMudCharacterSelectorIndex(characterNames, "shisen shi") != 1 ||
-            ServerNetworkHost.ResolveMegaMudCharacterSelectorIndex(characterNames, "4") != -1 ||
-            ServerNetworkHost.ResolveMegaMudCharacterSelectorIndex(characterNames, "missing") != -1)
-            throw new InvalidOperationException("MegaMUD deterministic character selection regressed.");
-        checks.Add("MegaMUD direct login supports deterministic 1-based character slots or exact case-insensitive character names.");
+        try
+        {
+            var gameplay = new RuntimeLiveGameplayFacade(host.Characters, host.Sessions);
+            var dispatcher = new RuntimeCommandDispatcher(() => host.Worlds, host.Sessions, host.State, host.Events, gameplay);
+            var spoken = dispatcher.Dispatch(session, "hello everyone");
+            if (!string.Equals(spoken, "You say \"hello everyone\"", StringComparison.Ordinal) ||
+                !host.Events.Events.Any(item => item.Category == "communication" &&
+                    item.Name == "command-fallback-say" && item.SessionId == session.Id))
+                throw new InvalidOperationException("Unregistered plain text did not route directly to SAY.");
+            checks.Add($"Unregistered plain text routes directly to SAY in {world.Definition.Id} without entering decoded-action probes.");
+        }
+        finally
+        {
+            host.Sessions.Remove(session.Id, saveCharacter: false);
+        }
 
         using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(5));
         var listener = new TcpListener(IPAddress.Loopback, 0);

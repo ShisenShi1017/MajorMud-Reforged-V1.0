@@ -16,7 +16,8 @@ public sealed class RuntimeAbilityDomainBoundary
 
     public static RuntimeAbilityDomainBoundary Load(string projectRoot, string worldId)
     {
-        var dataRoot = Path.Combine(projectRoot, "Data", worldId.Equals("classic", StringComparison.OrdinalIgnoreCase) ? "Classic" : worldId);
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var dataRoot = resolved.DataRoot;
         using var abilities = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "abilities.json")));
         using var skills = JsonDocument.Parse(File.ReadAllText(Path.Combine(dataRoot, "skills.json")));
         var questIds = abilities.RootElement.GetProperty("records").EnumerateArray()
@@ -26,7 +27,9 @@ public sealed class RuntimeAbilityDomainBoundary
             .Select(x => x.GetProperty("id").GetString() ?? string.Empty)
             .Where(x => x.StartsWith("skill.", StringComparison.OrdinalIgnoreCase))
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        if (questIds.Count != 188 || skillIds.Count != 13) throw new InvalidOperationException("Ability domain catalogs are incomplete.");
+        if (questIds.Count == 0 || skillIds.Count == 0) throw new InvalidOperationException("Ability domain catalogs are empty.");
+        if (resolved.WorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase) && (questIds.Count != 188 || skillIds.Count != 13))
+            throw new InvalidOperationException("Classic ability domain catalogs are incomplete.");
         return new RuntimeAbilityDomainBoundary(questIds, skillIds);
     }
 

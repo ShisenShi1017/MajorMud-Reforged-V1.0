@@ -135,7 +135,7 @@ public sealed partial class RuntimeLivingWorldService
     private const string ClassicHiddenStateKeyPrefix = "classic.hidden-state.";
     private const string ClassicDoorStateKeyPrefix = "classic.door-state.";
 
-    private RuntimeClassicRoomsWorldNativeAuthority ClassicRoomsWorldAuthority() => RuntimeClassicRoomsWorldNativeAuthority.Load(_projectRoot);
+    private RuntimeClassicRoomsWorldNativeAuthority ClassicRoomsWorldAuthority() => RuntimeClassicRoomsWorldNativeAuthority.Load(_projectRoot, WorldId);
 
     private int ReadClassicNativeExitState(string prefix,string exitId,int initialState)
     {
@@ -296,8 +296,8 @@ public sealed partial class RuntimeLivingWorldService
                         throw new InvalidOperationException($"remote-action {intent.Signature} paired generated doors are unavailable");
                     var open=!sourceState.Open;
                     var now=DateTimeOffset.UtcNow;
-                    _objects[mutation.SourceExitId]=sourceState with{Open=open,UpdatedAtUtc=now};
-                    _objects[mutation.ReciprocalExitId]=reciprocalState with{Open=open,UpdatedAtUtc=now};
+                    _objects[mutation.SourceExitId]=sourceState with{Open=open,Locked=!open,UpdatedAtUtc=now};
+                    _objects[mutation.ReciprocalExitId]=reciprocalState with{Open=open,Locked=!open,UpdatedAtUtc=now};
                     _nativeActionStates[mutation.NativeStateKey]=open?0:2;
                     mutated=true;
                     resultingNativeState=open?"0":"2";
@@ -310,6 +310,9 @@ public sealed partial class RuntimeLivingWorldService
                     var next=current&~mask;
                     if((next&WorldgroupRemoteActionDispatchRegistry.ModeClearedMasks[0])==0)next=8;
                     _nativeActionStates[mutation.NativeStateKey]=next;
+                    if(next==8&&metadata?.TryGetValue("bound_exit_id",out var boundExitId)==true
+                       &&!string.IsNullOrWhiteSpace(boundExitId))
+                        WriteClassicActionHiddenExitState(boundExitId,8,DateTimeOffset.UtcNow);
                     mutated=true;
                     resultingNativeState=next.ToString(CultureInfo.InvariantCulture);
                 }

@@ -29,7 +29,7 @@ public sealed class RuntimeClassicAbilityAcquisitionAuthority
             throw new InvalidDataException("Classic ability acquisition catalog must contain exact decoded abilities 186 and 187.");
         if (definitions.Any(x => !x.HasVerifiedEmptySuccessOutput))
             throw new InvalidDataException("Classic ability acquisition success output must retain its decoded empty-inline-text proof.");
-        return new(definitions.ToDictionary(x => (x.NpcId, x.Keyword), x => x), RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot));
+        return new(definitions.ToDictionary(x => (x.NpcId, x.Keyword), x => x), RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot, worldId));
     }
 
     public bool HasRoute(int npcId, string keyword) => _definitions.ContainsKey((npcId, Normalize(keyword)));

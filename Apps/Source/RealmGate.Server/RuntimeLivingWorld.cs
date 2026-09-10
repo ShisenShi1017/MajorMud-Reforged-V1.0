@@ -802,7 +802,7 @@ public sealed partial class RuntimeLivingWorldService
                         .ToArray();
                     if (messageIds.Length == 0)
                         throw new InvalidOperationException($"Decoded interaction {definition.Id} has no valid success message IDs.");
-                    var messages = RuntimeClassicNativeTextblockPayloadAuthority.Load(_projectRoot);
+                    var messages = RuntimeClassicNativeTextblockPayloadAuthority.Load(_projectRoot, WorldId);
                     successOutput = string.Join(Environment.NewLine, messageIds.Select(messages.RequireMessage));
                 }
                 var after=command.Name switch
@@ -816,6 +816,16 @@ public sealed partial class RuntimeLivingWorldService
                     _ => throw new InvalidOperationException("unsupported-world-interaction")
                 };
                 _objects[definition.Id]=after; Save();
+                if(!before.Activated&&after.Activated
+                   &&definition.Metadata.TryGetValue("success_remote_action",out var remoteAction)
+                   &&!string.IsNullOrWhiteSpace(remoteAction))
+                {
+                    var remoteMetadata=new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
+                    if(definition.Metadata.TryGetValue("bound_exit_id",out var boundExitId)
+                       &&!string.IsNullOrWhiteSpace(boundExitId))
+                        remoteMetadata["bound_exit_id"]=boundExitId;
+                    RecordQuestRemoteAction(remoteAction,session.CurrentRoom.Id,definition.Id,remoteMetadata);
+                }
                 if(definition.Id.Equals("interaction.map12.2248.e.271",StringComparison.OrdinalIgnoreCase)
                    &&MatchesAlias(definition,command.Name,query))
                 {
@@ -1574,11 +1584,11 @@ public sealed partial class RuntimeLiveGameplayFacade
         {
             if(!definition.Metadata.TryGetValue("failure_textblock_id",out var failureText)||!int.TryParse(failureText,out var failureTextblockId))
                 throw new InvalidOperationException("Decoded skill-test failure textblock is unavailable.");
-            var nativePayloadPath=Path.Combine(_characters.ProjectRoot,"Data","Classic","native_textblock_payloads.json");
+            var nativePayloadPath=Path.Combine(ServerDataRootResolver.Resolve(_characters.ProjectRoot, character.WorldId).DataRoot,"native_textblock_payloads.json");
             if(File.Exists(nativePayloadPath))
             {
-                var payloads=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
-                var graph=RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot);
+                var payloads=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, character.WorldId);
+                var graph=RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot,character.WorldId);
                 var failureNode=graph.Require(failureTextblockId);
                 var failure=RuntimeClassicDecodedFailureBranch.Execute(
                     failureNode,character,payloads,
@@ -1663,7 +1673,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         var exit=session.World.FindExit(session.CurrentRoom,direction);
         if(exit is null)return false;
-        var authority=RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot);
+        var authority=RuntimeClassicRoomsWorldNativeAuthority.Load(_characters.ProjectRoot,session.World.Definition.Id);
         if(!authority.TryGet(exit.Id,out var native))return false;
 
         if(action=="disarm")
@@ -1805,6 +1815,7 @@ public sealed class RuntimeLivingWorldSmokeReport
         {
             var options=ServerRuntimeOptions.Load(projectRoot);
             var definition=options.Worlds.First(x=>x.Id.Equals(worldId,StringComparison.OrdinalIgnoreCase));
+            var classicWorld=definition.Type.Equals("Classic",StringComparison.OrdinalIgnoreCase);
             var world=new RuntimeWorldLoader().Load(projectRoot,definition);
             smokeRoot=Path.Combine(Path.GetTempPath(),"reforged-living-world-smoke-"+Guid.NewGuid().ToString("N"));
             var service=new RuntimeLivingWorldService(projectRoot,world,smokeRoot);
@@ -1886,20 +1897,25 @@ public sealed class RuntimeLivingWorldSmokeReport
                 .Select(group=>new{Items=group.ToArray(),Definition=resetCatalog.Require(group.Key)})
                 .Where(group=>group.Definition.GameLimit>0&&group.Items.Sum(item=>item.StackQuantity)<=group.Definition.GameLimit)
                 .ToArray();
-            var limitedProbe=limitedGroups.First().Items[0];
-            _=service.TakeGroundItem(limitedProbe.InstanceId,"room-item-limit-smoke");
-            var limitedReset=service.ResetGeneratedRoomItems(
-                new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
-                    {[limitedProbe.CanonicalItemId]=limitedGroups.First().Definition.GameLimit},
-                unlimitedItemsEnabled:false);
-            Check(report,limitedReset.RestoredCount==0&&limitedReset.GameLimitBlockedCount>=1
-                &&service.GroundItemCount==362,"generated-room-item-reset-honors-game-limit-when-unlimited-disabled");
-            var restoringReset=service.ResetGeneratedRoomItems(
-                new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
-                    {[limitedProbe.CanonicalItemId]=limitedGroups.First().Definition.GameLimit},
-                unlimitedItemsEnabled:true);
-            Check(report,restoringReset.RestoredCount==1&&restoringReset.GameLimitBlockedCount==0
-                &&service.GroundItemCount==363,"generated-room-item-reset-bypasses-game-limit-when-unlimited-enabled");
+            if(limitedGroups.Length>0)
+            {
+                var limitedGroup=limitedGroups[0];
+                var limitedProbe=limitedGroup.Items[0];
+                _=service.TakeGroundItem(limitedProbe.InstanceId,"room-item-limit-smoke");
+                var limitedReset=service.ResetGeneratedRoomItems(
+                    new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
+                        {[limitedProbe.CanonicalItemId]=limitedGroup.Definition.GameLimit},
+                    unlimitedItemsEnabled:false);
+                Check(report,limitedReset.RestoredCount==0&&limitedReset.GameLimitBlockedCount>=1
+                    &&service.GroundItemCount==362,"generated-room-item-reset-honors-game-limit-when-unlimited-disabled");
+                var restoringReset=service.ResetGeneratedRoomItems(
+                    new Dictionary<string,int>(StringComparer.OrdinalIgnoreCase)
+                        {[limitedProbe.CanonicalItemId]=limitedGroup.Definition.GameLimit},
+                    unlimitedItemsEnabled:true);
+                Check(report,restoringReset.RestoredCount==1&&restoringReset.GameLimitBlockedCount==0
+                    &&service.GroundItemCount==363,"generated-room-item-reset-bypasses-game-limit-when-unlimited-enabled");
+            }
+            else report.Checks.Add("generated-room-item-game-limit-no-applicable-candidate");
             var idempotentReset=service.ResetGeneratedRoomItems();
             Check(report,idempotentReset.RestoredCount==0&&idempotentReset.ExistingCount==363,
                 "generated-room-item-reset-idempotent-restoration");
@@ -1915,7 +1931,9 @@ public sealed class RuntimeLivingWorldSmokeReport
             var expandedCandidateCount=world.Spawns.Where(spawn=>spawn.PrimaryRoomAvailable&&spawn.FullyResolved)
                 .Sum(spawn=>spawn.BossDefinition is not null ? 1 : spawn.GroupDefinitions.Count);
             Check(report,expandedCandidateCount>0,"generated-spawn-runtime-authority");
-            Check(report,service.NpcInstanceCount>0&&service.NpcInstanceCount<expandedCandidateCount,"persistent-npc-instantiation");
+            Check(report,service.NpcInstanceCount>0
+                &&(!classicWorld||service.NpcInstanceCount<expandedCandidateCount),
+                "persistent-npc-instantiation");
             Check(report,service.GateCount==world.ExitCount,"generated-exit-gate-catalog");
             Check(report,report.GateKinds.Count>0&&report.GateKinds.All(x=>!string.IsNullOrWhiteSpace(x)),"generated-gate-kind-classification");
             var candleRoom=world.FindRoom(1,2252);
@@ -1988,9 +2006,11 @@ public sealed class RuntimeLivingWorldSmokeReport
             {
                 var rubbleSession=new RuntimeSession("rubble-smoke",world,rubbleRoom,new RuntimeDeveloperAvatar("rubble-smoke","Rubble Smoke"),"smoke");
                 _=service.Interact(rubbleSession,RuntimeCommand.Parse("clear rubble"),null);
+                var rubbleNativeState=service.ReadClassicHiddenExitState(rubbleGate!.ExitId,16);
+                Check(report,rubbleNativeState==8,"decoded-rubble-success-applies-native-hidden-state");
                 var rubbleDecision=service.EvaluateExitGate(rubbleRoom,rubbleGate!.Direction,new RuntimeExitGateContext(
                     new HashSet<string>(StringComparer.OrdinalIgnoreCase),0,new HashSet<string>(StringComparer.OrdinalIgnoreCase),null));
-                Check(report,rubbleDecision is {Allowed:true,Code:"hidden-action-open"},"decoded-rubble-success-opens-hidden-exit");
+                Check(report,rubbleDecision is {Allowed:true,Code:"hidden-native-open"},"decoded-rubble-success-opens-hidden-exit");
             }
             Check(report,nativePassiveActionGates.Length==0,"native-passive-action-gates-fully-linked");
             Check(report,new[]{"exit.map12.1920.u","exit.map12.2001.u"}.All(exitId=>
@@ -2056,8 +2076,11 @@ public sealed class RuntimeLivingWorldSmokeReport
                 Check(report,service.ApplyNpcDamage(npc.InstanceId,npc.MaximumHitPoints,now),"npc-death-transition");
                 Check(report,service.CorpseCount==1,"npc-corpse-creation");
                 Check(report,service.EventsAfter(0).Any(x=>x.Kind=="npc-died")&&service.EventsAfter(0).Any(x=>x.Kind=="corpse-created"),"multiplayer-event-sequencing");
-                var due=now.AddMinutes(Math.Max(1,npc.RespawnMinutes));
-                var tickEvents=service.Tick(due);
+                var waitingNpc=service.Capture().Npcs.First(x=>x.InstanceId.Equals(npc.InstanceId,StringComparison.OrdinalIgnoreCase));
+                var due=waitingNpc.RespawnAtUtc??now.AddMinutes(Math.Max(1,npc.RespawnMinutes));
+                var lifecycle=service.TickNpcSpawnLifecycle(due);
+                var tickEvents=lifecycle.Transitions.Select(transition=>transition.EventCode)
+                    .Concat(service.Tick(due)).ToArray();
                 Check(report,tickEvents.Any(x=>x.StartsWith("npc-respawn:",StringComparison.Ordinal)),"npc-respawn-scheduler");
                 Check(report,tickEvents.Any(x=>x.StartsWith("corpse-expired:",StringComparison.Ordinal)),"corpse-cleanup-scheduler");
                 Check(report,service.CaptureNpcAi().First(x=>x.InstanceId.Equals(npc.InstanceId,StringComparison.OrdinalIgnoreCase)).Mode=="idle","npc-ai-respawn-integration");

@@ -458,7 +458,7 @@ public sealed class RuntimeWccSysopService
         }
         else _characters.SaveCharacter(target with { HitPoints = target.HitPoints - damage, UpdatedAtUtc = now }, "sysop-lightning-native-fiend-contract");
 
-        var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var native = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, target.WorldId);
         if (!native.TryResolveMessage(2842, out var administratorTemplate)
             || !native.TryResolveSecondaryMessage(2842, out var targetTemplate)
             || !native.TryResolveTertiaryMessage(2842, out var observerTemplate))

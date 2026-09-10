@@ -31,7 +31,7 @@ internal static class Program
     {
         var smokeRoot = Path.Combine(
             Path.GetTempPath(),
-            "RealmGate0142",
+            "RealmGate",
             $"SmokeData-{Environment.ProcessId}");
 
         try

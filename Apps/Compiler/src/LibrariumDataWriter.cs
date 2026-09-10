@@ -336,7 +336,7 @@ public sealed class LibrariumDataWriter
 
         foreach (var family in families)
         {
-            var output = CreateRuntimeFamilyProjection(options, result, family);
+            var output = CreateRuntimeFamilyProjection(options, result, family, families);
 
             var fileName = family.Name.Replace('-', '_').ToLowerInvariant() + ".json";
             WriteJson(Path.Combine(options.OutputRoot, fileName), output);
@@ -373,12 +373,33 @@ public sealed class LibrariumDataWriter
         familyName.Equals("classic_bug_fixes", StringComparison.OrdinalIgnoreCase) ||
         UsesClassicRuntimeShape(worldId) && NonRuntimeClassicFamilies.Contains(familyName);
 
+    private static bool IsClassicWorld(string worldId) =>
+        worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+
+    private static bool IsDerivedWorld(string worldId) =>
+        !string.IsNullOrWhiteSpace(worldId) &&
+        !IsClassicWorld(worldId);
+
+    // RealmGate derived worlds (custom and AI-from-Classic) compile the same complete
+    // runtime data shape as Classic. The overlay changes data during generation only;
+    // live runtime must never fall back to Data\Classic.
     private static bool UsesClassicRuntimeShape(string worldId) =>
-        worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase) ||
-        worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase);
+        IsClassicWorld(worldId) || IsDerivedWorld(worldId);
 
     private static LibrariumFamily ProjectRuntimeRecords(LibrariumFamily family, string worldId)
     {
+        if (family.Name.Equals("races", StringComparison.OrdinalIgnoreCase) &&
+            IsDerivedWorld(worldId))
+        {
+            return ProjectCustomRaceRecords(family);
+        }
+
+        if (family.Name.Equals("classes", StringComparison.OrdinalIgnoreCase) &&
+            IsDerivedWorld(worldId))
+        {
+            return ProjectCustomClassRecords(family);
+        }
+
         if (family.Name.Equals("banks", StringComparison.OrdinalIgnoreCase))
         {
             var runtimeBanks = family.Records.Where(record =>
@@ -392,7 +413,7 @@ public sealed class LibrariumDataWriter
         {
             var runtimeTriggers = family.Records.Where(record =>
                 string.Equals(record["trigger_type"]?.GetValue<string>(), "npc_quest_entry", StringComparison.OrdinalIgnoreCase) ||
-                (worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase) && IsCustomAuthoredRecord(record))).ToArray();
+                (IsDerivedWorld(worldId) && IsCustomAuthoredRecord(record))).ToArray();
             return new LibrariumFamily(family.Name, family.SourceFile, runtimeTriggers, family.SourceFiles);
         }
 
@@ -401,7 +422,7 @@ public sealed class LibrariumDataWriter
             var runtimeScripts = family.Records.Where(record =>
                 string.Equals(record["script_type"]?.GetValue<string>(), "mmexplorer_textblock_stage", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(record["script_type"]?.GetValue<string>(), "npc_hit_spell_textblock_chain", StringComparison.OrdinalIgnoreCase) ||
-                (worldId.Equals("Custom1", StringComparison.OrdinalIgnoreCase) && IsCustomAuthoredRecord(record))).ToArray();
+                (IsDerivedWorld(worldId) && IsCustomAuthoredRecord(record))).ToArray();
             return new LibrariumFamily(family.Name, family.SourceFile, runtimeScripts, family.SourceFiles);
         }
 
@@ -413,6 +434,128 @@ public sealed class LibrariumDataWriter
             return !string.Equals(mapping["status"]?.GetValue<string>(),"pending",StringComparison.OrdinalIgnoreCase);
         }).ToArray();
         return new LibrariumFamily(family.Name,family.SourceFile,runtimeRecords,family.SourceFiles);
+    }
+
+    private static LibrariumFamily ProjectCustomRaceRecords(LibrariumFamily family)
+    {
+        // Custom worlds inherit the Classic race catalog but may replace those records
+        // with authoritatively imported Custom1 rows. The Classic Librarium still carries
+        // old MMExplorer SQL/MDB evidence identities (mmud_sql_race_*). When a Custom1
+        // override supplies the same semantic race as a canonical race.* record, prefer
+        // the canonical Custom1 identity instead of emitting both records at runtime.
+        var bySemanticName = new Dictionary<string, JsonObject>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var record in family.Records)
+        {
+            var name = record["name"]?.GetValue<string>()?.Trim() ?? string.Empty;
+            var key = NormalizeRaceSemanticKey(name);
+            if (key.Length == 0)
+            {
+                var id = record["id"]?.GetValue<string>()?.Trim() ?? Guid.NewGuid().ToString("N");
+                key = "id:" + id;
+            }
+
+            if (!bySemanticName.TryGetValue(key, out var current) ||
+                CustomRaceIdentityPriority(record) > CustomRaceIdentityPriority(current))
+            {
+                bySemanticName[key] = record;
+            }
+        }
+
+        var records = bySemanticName.Values
+            .OrderBy(ReadRaceLegacyNumber)
+            .ThenBy(record => record["name"]?.GetValue<string>(), StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        return new LibrariumFamily(family.Name, family.SourceFile, records, family.SourceFiles);
+    }
+
+    private static LibrariumFamily ProjectCustomClassRecords(LibrariumFamily family)
+    {
+        var byIdentity = new Dictionary<string, JsonObject>(StringComparer.OrdinalIgnoreCase);
+        foreach (var record in family.Records)
+        {
+            var legacyNumber = ReadClassLegacyNumber(record);
+            var name = record["name"]?.GetValue<string>()?.Trim() ?? string.Empty;
+            var key = legacyNumber == int.MaxValue
+                ? "name:" + NormalizeRaceSemanticKey(name)
+                : "legacy:" + legacyNumber;
+            if (!byIdentity.TryGetValue(key, out var current) ||
+                CustomClassIdentityPriority(record) > CustomClassIdentityPriority(current))
+                byIdentity[key] = record;
+        }
+
+        var records = byIdentity.Values
+            .OrderBy(ReadClassLegacyNumber)
+            .ThenBy(record => record["name"]?.GetValue<string>(), StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        return new LibrariumFamily(family.Name, family.SourceFile, records, family.SourceFiles);
+    }
+
+    private static int CustomClassIdentityPriority(JsonObject record)
+    {
+        var id = record["id"]?.GetValue<string>() ?? string.Empty;
+        if (id.StartsWith("class.", StringComparison.OrdinalIgnoreCase)) return 30;
+        if (!id.StartsWith("mmud_sql_class_", StringComparison.OrdinalIgnoreCase)) return 20;
+        return 10;
+    }
+
+    private static int ReadClassLegacyNumber(JsonObject record)
+    {
+        if (record["legacy_id"] is JsonValue legacyValue)
+        {
+            if (legacyValue.TryGetValue<int>(out var numericLegacy)) return numericLegacy;
+            if (legacyValue.TryGetValue<string>(out var legacyText) && int.TryParse(legacyText, out numericLegacy)) return numericLegacy;
+        }
+
+        if (record["sourceNumbers"] is JsonObject sourceNumbers)
+        {
+            var number = ReadInt(sourceNumbers, "number");
+            if (number > 0) return number;
+        }
+
+        var id = record["id"]?.GetValue<string>() ?? string.Empty;
+        const string sqlPrefix = "mmud_sql_class_";
+        return id.StartsWith(sqlPrefix, StringComparison.OrdinalIgnoreCase) &&
+               int.TryParse(id[sqlPrefix.Length..], out var parsed)
+            ? parsed
+            : int.MaxValue;
+    }
+
+    private static int CustomRaceIdentityPriority(JsonObject record)
+    {
+        var id = record["id"]?.GetValue<string>() ?? string.Empty;
+        if (id.StartsWith("race.", StringComparison.OrdinalIgnoreCase)) return 30;
+        if (!id.StartsWith("mmud_sql_race_", StringComparison.OrdinalIgnoreCase)) return 20;
+        return 10;
+    }
+
+    private static string NormalizeRaceSemanticKey(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return string.Empty;
+        return new string(value.Trim().ToLowerInvariant().Where(char.IsLetterOrDigit).ToArray());
+    }
+
+    private static int ReadRaceLegacyNumber(JsonObject record)
+    {
+        if (record["legacy_id"] is JsonValue legacyValue)
+        {
+            if (legacyValue.TryGetValue<int>(out var numericLegacy)) return numericLegacy;
+            if (legacyValue.TryGetValue<string>(out var legacyText) && int.TryParse(legacyText, out numericLegacy)) return numericLegacy;
+        }
+
+        if (record["sourceNumbers"] is JsonObject sourceNumbers)
+        {
+            var number = ReadInt(sourceNumbers, "number");
+            if (number > 0) return number;
+        }
+
+        var id = record["id"]?.GetValue<string>() ?? string.Empty;
+        const string sqlPrefix = "mmud_sql_race_";
+        if (id.StartsWith(sqlPrefix, StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(id[sqlPrefix.Length..], out var parsed)) return parsed;
+
+        return int.MaxValue;
     }
 
     private static bool IsCustomAuthoredRecord(JsonObject record)
@@ -475,7 +618,8 @@ public sealed class LibrariumDataWriter
     private static JsonObject CreateRuntimeFamilyProjection(
         LibrariumCompilerOptions options,
         CompileResult result,
-        LibrariumFamily family)
+        LibrariumFamily family,
+        IReadOnlyList<LibrariumFamily> families)
     {
         if (family.Name.Equals("rooms", StringComparison.OrdinalIgnoreCase))
         {
@@ -492,6 +636,12 @@ public sealed class LibrariumDataWriter
             var promoted = TryReadPromotedCharacterFoundation(family);
             if (promoted is not null)
             {
+                if (IsDerivedWorld(result.WorldId))
+                {
+                    ReconcileCustomCharacterFoundationRaces(promoted, families);
+                    ReconcileCustomCharacterFoundationClasses(promoted, families);
+                }
+
                 promoted["generated_by"] = "RealmGate.Compiler";
                 promoted["compiler_code_update"] = "0138";
                 promoted["world_id"] = result.WorldId;
@@ -549,6 +699,174 @@ public sealed class LibrariumDataWriter
             return;
         }
         if(node is JsonArray array)foreach(var child in array)StripNonRuntimeMetadata(child, familyName);
+    }
+
+    private static void ReconcileCustomCharacterFoundationRaces(
+        JsonObject foundation,
+        IReadOnlyList<LibrariumFamily> families)
+    {
+        var raceFamily = families.FirstOrDefault(value =>
+            value.Name.Equals("races", StringComparison.OrdinalIgnoreCase));
+        if (raceFamily is null || foundation["races"] is not JsonArray existingRaces) return;
+
+        var existingByName = existingRaces
+            .OfType<JsonObject>()
+            .Where(record => !string.IsNullOrWhiteSpace(record["name"]?.GetValue<string>()))
+            .ToDictionary(
+                record => NormalizeRaceSemanticKey(record["name"]!.GetValue<string>()),
+                record => record,
+                StringComparer.OrdinalIgnoreCase);
+
+        var reconciled = new JsonArray();
+
+        foreach (var race in raceFamily.Records
+                     .OrderBy(ReadRaceLegacyNumber)
+                     .ThenBy(record => record["name"]?.GetValue<string>(), StringComparer.OrdinalIgnoreCase))
+        {
+            var name = race["name"]?.GetValue<string>()?.Trim() ?? string.Empty;
+            if (name.Length == 0) continue;
+
+            var semanticKey = NormalizeRaceSemanticKey(name);
+            JsonObject runtimeRace;
+            if (existingByName.TryGetValue(semanticKey, out var existing))
+            {
+                runtimeRace = (JsonObject)existing.DeepClone();
+            }
+            else
+            {
+                runtimeRace = new JsonObject
+                {
+                    ["name"] = name,
+                    ["base_cp"] = 0,
+                    ["experience_add_percent"] = 0,
+                    ["ability_slots"] = new JsonArray(),
+                    ["source"] = new JsonObject
+                    {
+                        ["file"] = "Librarium/WorldOverrides/Custom1/overrides.json",
+                        ["classification"] = "custom_world_imported_race"
+                    }
+                };
+            }
+
+            var id = race["id"]?.GetValue<string>()?.Trim();
+            if (!string.IsNullOrWhiteSpace(id)) runtimeRace["id"] = id;
+            runtimeRace["name"] = name;
+
+            var legacyNumber = ReadRaceLegacyNumber(race);
+            if (legacyNumber != int.MaxValue) runtimeRace["number"] = legacyNumber;
+
+            if (race["stats"] is JsonObject stats)
+            {
+                runtimeRace["minimum_stats"] = new JsonObject
+                {
+                    ["int"] = ReadInt(stats, "min_int"),
+                    ["wil"] = ReadInt(stats, "min_wil"),
+                    ["str"] = ReadInt(stats, "min_str"),
+                    ["hea"] = ReadInt(stats, "min_hea"),
+                    ["agl"] = ReadInt(stats, "min_agl"),
+                    ["cha"] = ReadInt(stats, "min_chm")
+                };
+                runtimeRace["maximum_stats"] = new JsonObject
+                {
+                    ["int"] = ReadInt(stats, "max_int"),
+                    ["wil"] = ReadInt(stats, "max_wil"),
+                    ["str"] = ReadInt(stats, "max_str"),
+                    ["hea"] = ReadInt(stats, "max_hea"),
+                    ["agl"] = ReadInt(stats, "max_agl"),
+                    ["cha"] = ReadInt(stats, "max_chm")
+                };
+                runtimeRace["hp_per_level_adjustment"] = ReadInt(stats, "hp_bonus");
+            }
+
+            if (race["legacy_sources"]?["nightmare_mdb"]?["unmapped_fields"] is JsonObject unmapped)
+            {
+                var expTable = ReadInt(unmapped, "ExpTable");
+                runtimeRace["experience_add_percent"] = expTable;
+            }
+
+            reconciled.Add(runtimeRace);
+        }
+
+        foundation["races"] = reconciled;
+
+        // Custom worlds that retain the proven Classic creation rule that every
+        // race/class combination is legal must regenerate the matrix cardinality
+        // after custom races are added.  The promoted Classic value (13 * 15 = 195)
+        // is source-correct for Classic, but stale for an effective custom world.
+        if (foundation["character_creation_rules"] is JsonObject creationRules &&
+            creationRules["all_race_class_combinations_allowed"]?.GetValue<bool>() == true &&
+            foundation["classes"] is JsonArray classes)
+        {
+            creationRules["allowed_pair_count"] = reconciled.Count * classes.Count;
+        }
+    }
+
+    private static void ReconcileCustomCharacterFoundationClasses(
+        JsonObject foundation,
+        IReadOnlyList<LibrariumFamily> families)
+    {
+        var classFamily = families.FirstOrDefault(value =>
+            value.Name.Equals("classes", StringComparison.OrdinalIgnoreCase));
+        if (classFamily is null || foundation["classes"] is not JsonArray existingClasses) return;
+
+        var existingByNumber = existingClasses
+            .OfType<JsonObject>()
+            .Where(record => ReadInt(record, "number") > 0)
+            .ToDictionary(record => ReadInt(record, "number"));
+        var reconciled = new JsonArray();
+
+        foreach (var classRecord in classFamily.Records
+                     .OrderBy(ReadClassLegacyNumber)
+                     .ThenBy(record => record["name"]?.GetValue<string>(), StringComparer.OrdinalIgnoreCase))
+        {
+            var number = ReadClassLegacyNumber(classRecord);
+            var name = classRecord["name"]?.GetValue<string>()?.Trim() ?? string.Empty;
+            if (number == int.MaxValue || name.Length == 0) continue;
+
+            var runtimeClass = existingByNumber.TryGetValue(number, out var existing)
+                ? (JsonObject)existing.DeepClone()
+                : new JsonObject
+                {
+                    ["number"] = number,
+                    ["name"] = name,
+                    ["min_hits"] = 0,
+                    ["max_hits_bonus"] = 0,
+                    ["experience_stored"] = 0,
+                    ["experience_percent"] = 100,
+                    ["magery_type"] = 0,
+                    ["magery_level"] = 0,
+                    ["weapon_type"] = 0,
+                    ["armour_type"] = 0,
+                    ["combat_level"] = 0,
+                    ["ability_slots"] = new JsonArray(),
+                    ["source"] = new JsonObject
+                    {
+                        ["classification"] = "custom_world_imported_class"
+                    }
+                };
+
+            runtimeClass["id"] = classRecord["id"]?.GetValue<string>() ?? $"class.{number}";
+            runtimeClass["number"] = number;
+            runtimeClass["name"] = name;
+            if (classRecord.ContainsKey("min_hp")) runtimeClass["min_hits"] = ReadInt(classRecord, "min_hp");
+            if (classRecord.ContainsKey("max_hp")) runtimeClass["max_hits_bonus"] = ReadInt(classRecord, "max_hp");
+            if (classRecord.ContainsKey("exp_table"))
+            {
+                var experience = ReadInt(classRecord, "exp_table");
+                runtimeClass["experience_stored"] = experience;
+                runtimeClass["experience_percent"] = 100 + experience;
+            }
+            if (classRecord.ContainsKey("magic_type")) runtimeClass["magery_type"] = ReadInt(classRecord, "magic_type");
+            if (classRecord.ContainsKey("magic_level")) runtimeClass["magery_level"] = ReadInt(classRecord, "magic_level");
+            if (classRecord.ContainsKey("combat_level")) runtimeClass["combat_level"] = ReadInt(classRecord, "combat_level");
+            reconciled.Add(runtimeClass);
+        }
+
+        foundation["classes"] = reconciled;
+        if (foundation["character_creation_rules"] is JsonObject creationRules &&
+            creationRules["all_race_class_combinations_allowed"]?.GetValue<bool>() == true &&
+            foundation["races"] is JsonArray races)
+            creationRules["allowed_pair_count"] = races.Count * reconciled.Count;
     }
 
     private static JsonObject? TryReadPromotedCharacterFoundation(LibrariumFamily family)
@@ -730,6 +1048,10 @@ public sealed class LibrariumDataWriter
             ["objects_compiled"] = result.ObjectsCompiled,
             ["families"] = new JsonArray(families.Select(f => JsonValue.Create(f.Name)).ToArray()),
             ["runtime_loader_contract"] = "generated_world_manifest_v1",
+            ["standalone_runtime"] = true,
+            ["base_world_id"] = IsDerivedWorld(result.WorldId) ? "Classic" : null,
+            ["runtime_data_is_complete"] = true,
+            ["live_classic_fallback_allowed"] = false,
             ["source_of_truth"] = "Librarium",
             ["generated_output"] = true
         };

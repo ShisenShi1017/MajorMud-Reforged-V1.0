@@ -71,7 +71,7 @@ public sealed class RuntimeClassicLiveStatusCatalog
 
     public static RuntimeClassicLiveStatusCatalog Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", worldId, "spells.json");
+        var path = Path.Combine(ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot, "spells.json");
         if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic spell projection is missing.", path);
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         if (!document.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)

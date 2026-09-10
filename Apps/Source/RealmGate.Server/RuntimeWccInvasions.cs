@@ -91,7 +91,7 @@ public sealed class RuntimeWccInvasionService
         if(!living.TryConsumeGroundItem(session.CurrentRoom.Id,definition.GateItemId))return "That invasion has already been triggered during this cleanup cycle.";
         var source=$"wcc-invasion:{entered.Replace(' ','-')}:";
         for(var index=0;index<plans.Count;index++)living.SummonNpc(plans[index].NpcId,plans[index].RoomId,$"{source}{index:D3}");
-        var messages=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var messages=RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var output=messages.RequireMessage(definition.SuccessMessageId);
         return string.IsNullOrWhiteSpace(output)?$"{entered} triggered; summoned {plans.Count} NPCs.":output;
     }

@@ -51,19 +51,22 @@ public sealed class RuntimeClassicFormulaAuthority
         return record;
     }
 
-    public static RuntimeClassicFormulaAuthority Load(string repositoryRoot)
+    public static RuntimeClassicFormulaAuthority Load(string repositoryRoot) => Load(repositoryRoot, "Classic");
+
+    public static RuntimeClassicFormulaAuthority Load(string repositoryRoot, string worldId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
+        var resolved = ServerDataRootResolver.Resolve(repositoryRoot, worldId);
         var required = new[]
         {
-            "Data/Classic/formulas.json",
-            "Data/Classic/combat_spells.json",
-            "Data/Classic/abilities.json"
+            "formulas.json",
+            "combat_spells.json",
+            "abilities.json"
         };
         foreach (var relative in required)
         {
-            var full = Path.Combine(repositoryRoot, relative.Replace('/', Path.DirectorySeparatorChar));
-            if (!File.Exists(full)) throw new FileNotFoundException($"Required Classic formula evidence is missing: {relative}", full);
+            var full = Path.Combine(resolved.DataRoot, relative);
+            if (!File.Exists(full)) throw new FileNotFoundException($"Required formula evidence is missing for world '{resolved.WorldId}': {relative}", full);
             using var stream = File.OpenRead(full);
             _ = JsonDocument.Parse(stream);
         }

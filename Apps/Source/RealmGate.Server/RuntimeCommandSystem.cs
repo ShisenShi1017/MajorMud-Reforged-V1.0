@@ -113,10 +113,9 @@ public sealed class RuntimeCommandDispatcher
             return _gameplay?.RenderBlankCommand(session) ?? RoomRenderer.Render(session.World, session.CurrentRoom);
         }
 
-        // Classic MajorMUD first admits explicit speech shortcuts and resolved commands/actions.
-        // Unrecognized text falls through to SAY only while TALK FAST is active; TALK SLOW returns
-        // the native command-not-recognized response unless the line used the configured speech prefix.
-        // Custom/AI retain Reforged's permissive command-to-SAY fallback.
+        // RealmGate gameplay input keeps explicit speech shortcuts and data-driven actions first.
+        // Any remaining non-command text is normal room speech in every world, including Classic.
+        // Parser/audit semantics stay unchanged; this is a live-input fallback only.
         var registeredCommand = string.IsNullOrWhiteSpace(command.ResolutionError)
             && session.World.CommandCatalog.IsRegistered(command.Name);
         if (!registeredCommand
@@ -129,22 +128,14 @@ public sealed class RuntimeCommandDispatcher
 
         if (!registeredCommand)
         {
-            if (string.IsNullOrWhiteSpace(command.ResolutionError)
-                && _gameplay is not null
-                && TryExecuteUnregisteredAction(session, command, out var actionResult))
-            {
-                return actionResult;
-            }
+            // Unknown plain text must not enter decoded-world/action probes. The generated
+            // command catalog already registers authoritative contextual verbs; anything
+            // that remains unregistered is ordinary room speech.
+            if (command.RawInput.Trim().Equals("=a", StringComparison.OrdinalIgnoreCase))
+                return string.Empty;
 
-            var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
-            if (!classicWorld || (_gameplay?.IsMajorMudTalkFast(session) ?? true))
-            {
-                _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
-                return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
-            }
-
-            _events?.Publish("communication", "command-not-recognized-slow-talk", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
-            return RuntimeClassicCommunicationRenderingAuthority.CommandNotRecognized;
+            _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
+            return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
         }
 
         _gameplay?.NotifyCharacterAction(session, command.Name, command.IsMovement);
@@ -411,7 +402,7 @@ public sealed class RuntimeCommandDispatcher
     private string RenderHelp(RuntimeSession session, RuntimeCommand command)
     {
         var topic = command.Name.Equals("commands", StringComparison.OrdinalIgnoreCase) ? "commands" : command.ArgumentText.Trim();
-        if (_gameplay is not null && _gameplay.TryRenderMajorMudNativeHelp(topic, out var nativeHelp))
+        if (_gameplay is not null && _gameplay.TryRenderMajorMudNativeHelp(session, topic, out var nativeHelp))
             return nativeHelp;
 
         var classicWorld = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
@@ -419,7 +410,7 @@ public sealed class RuntimeCommandDispatcher
         // static WCCMMHLP lookup uses the retained native no-help sentence rather than
         // exposing Reforged's synthetic command documentation in Classic.
         if (classicWorld)
-            return _gameplay?.RenderMajorMudNativeNoHelp() ?? "Sorry, no help is available for that topic!\r";
+            return _gameplay?.RenderMajorMudNativeNoHelp(session) ?? "Sorry, no help is available for that topic!\r";
 
         if (topic.Length == 0)
         {

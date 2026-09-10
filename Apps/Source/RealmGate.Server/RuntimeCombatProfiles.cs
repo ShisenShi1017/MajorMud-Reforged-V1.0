@@ -31,9 +31,12 @@ public sealed class RuntimeItemCombatCatalog
     private readonly Dictionary<string, RuntimeItemCombatProfile> _profiles = new(StringComparer.OrdinalIgnoreCase);
     public IReadOnlyCollection<RuntimeItemCombatProfile> Profiles => _profiles.Values;
 
-    public static RuntimeItemCombatCatalog Load(string projectRoot)
+    public static RuntimeItemCombatCatalog Load(string projectRoot) =>
+        Load(projectRoot, ServerRuntimeOptions.Load(projectRoot).DefaultWorldId);
+
+    public static RuntimeItemCombatCatalog Load(string projectRoot, string worldId)
     {
-        var resolver = ServerDataRootResolver.ResolveDefault(projectRoot);
+        var resolver = ServerDataRootResolver.Resolve(projectRoot, worldId);
         var path = Path.Combine(resolver.DataRoot, "items.json");
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var catalog = new RuntimeItemCombatCatalog();

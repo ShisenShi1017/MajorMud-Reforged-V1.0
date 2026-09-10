@@ -436,14 +436,14 @@ public sealed partial class RuntimeLiveGameplayFacade
         var waterfallPresent = Living(session).GroundItems(session.CurrentRoom.Id)
             .Any(item => item.CanonicalItemId.Equals("item.993", StringComparison.OrdinalIgnoreCase));
         if (!waterfallPresent)
-            return new(true, null, 1834, 0, _nativePayloads.RequireMessage(1834));
+            return new(true, null, 1834, 0, NativePayloads(session.World.Definition.Id).RequireMessage(1834));
 
         var destination = session.World.FindRoom(9, 1009)
             ?? throw new InvalidOperationException("Decoded potion-of-levitation destination 9/1009 is unavailable.");
         var output = new[]
             {
-                _nativePayloads.RequireMessage(1835),
-                _nativePayloads.RequireMessage(1836)
+                NativePayloads(session.World.Definition.Id).RequireMessage(1835),
+                NativePayloads(session.World.Definition.Id).RequireMessage(1836)
             }
             .Where(message => !string.IsNullOrWhiteSpace(message));
         return new(true, destination, 1835, 1836, string.Join(Environment.NewLine, output));
@@ -487,7 +487,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             gangs.Save(assigned with { GangHouseId = null });
             throw;
         }
-        var message = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot).RequireMessage(house.ActivationMessageId);
+        var message = NativePayloads(character.WorldId).RequireMessage(house.ActivationMessageId);
         return $"{message}{Environment.NewLine}{gang.Name} now owns {house.Name}. Four decoded house items were granted. Uses remaining: {spent.RemainingUses}.";
     }
 
@@ -1426,6 +1426,14 @@ public sealed class RuntimeLivePowersSmokeReport
             repo.Save(empty); Check(repo.Load().Spells.ActiveEffects.Count == 0, "persistence", r); Check(repo.Load().Abilities.Count == 0, "reconnect", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Expire)) is not null, "duration-expiration", r); Check(typeof(RuntimeSpellExecutionEngine).GetMethod(nameof(RuntimeSpellExecutionEngine.Dispel)) is not null, "dispel", r);
             Check(typeof(RuntimeSpellEngine).GetMethod(nameof(RuntimeSpellEngine.Validate)) is not null, "validator", r); Check(typeof(RuntimeAbilityEngine).GetMethod(nameof(RuntimeAbilityEngine.Execute)) is not null, "rollback", r);
+            if(!worldId.Equals("Classic",StringComparison.OrdinalIgnoreCase))
+            {
+                var derivedStatusCatalog=RuntimeClassicLiveStatusCatalog.Load(root,worldId);
+                var derivedNativeMessages=RuntimeClassicNativeTextblockPayloadAuthority.Load(root,worldId);
+                Check(derivedStatusCatalog.Definitions.Count>0,"derived-status-catalog-loading",r);
+                Check(derivedNativeMessages.Count>0&&derivedNativeMessages.NativeMessageCount>0,"derived-native-message-loading",r);
+                return r;
+            }
             var nativeSpellTable = RuntimeLiveGameplayFacade.FormatMajorMudSpellTable(new[]
             {
                 new RuntimeSpellDefinition("spell.test", "9999", "major healing", "mahe", 8, "", "", "", 6, 0, 0, 0, 0, Array.Empty<string>(), Array.Empty<RuntimeClassicLiveStatusAbility>())
@@ -1473,7 +1481,7 @@ public sealed class RuntimeLivePowersSmokeReport
             Check(descriptionMessages.Count(message => !string.IsNullOrEmpty(message.StatusMessage)) == 435, "descmsg-status-message-count-435", r);
             Check(descriptionMessages.Count(message => !string.IsNullOrEmpty(message.WearOffMessage)) == 432, "descmsg-wearoff-message-count-432", r);
             var statusCatalog = RuntimeClassicLiveStatusCatalog.Load(root, worldId);
-            var nativeMessages = RuntimeClassicNativeTextblockPayloadAuthority.Load(root);
+            var nativeMessages = RuntimeClassicNativeTextblockPayloadAuthority.Load(root, worldId);
             var shieldSpells = statusCatalog.Definitions
                 .Where(definition => definition.Abilities.Any(ability => ability.AbilityId == 72))
                 .ToArray();

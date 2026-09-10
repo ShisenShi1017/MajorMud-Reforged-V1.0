@@ -12,9 +12,13 @@ public static class RuntimeNpcHitSpellScriptCatalog
 {
     private static readonly string[] ExpectedKinds = ["message", "teleport", "message", "message", "teleport", "message", "cast", "cast"];
 
-    public static RuntimeNpcHitSpellScript? Load(string projectRoot, int spellId)
+    public static RuntimeNpcHitSpellScript? Load(string projectRoot, int spellId) =>
+        Load(projectRoot, ServerRuntimeOptions.Load(projectRoot).DefaultWorldId, spellId);
+
+    public static RuntimeNpcHitSpellScript? Load(string projectRoot, string worldId, int spellId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "scripts.json");
+        var dataRoot = ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot;
+        var path = Path.Combine(dataRoot, "scripts.json");
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var matches = document.RootElement.GetProperty("records").EnumerateArray()
             .Where(row => ReadString(row, "script_type").Equals("npc_hit_spell_textblock_chain", StringComparison.OrdinalIgnoreCase))
@@ -56,7 +60,7 @@ public static class RuntimeNpcHitSpellScriptCatalog
         ArgumentNullException.ThrowIfNull(world);
         ArgumentNullException.ThrowIfNull(random);
         var branch = SelectBranch(script, roll);
-        var messages = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+        var messages = RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot, world.Definition.Id);
         var totalDamage = 0;
 
         foreach (var operation in branch.Operations)
@@ -73,7 +77,7 @@ public static class RuntimeNpcHitSpellScriptCatalog
                         throw new InvalidDataException($"NPC_HIT_SPELL_SCRIPT_ROOM_UNRESOLVED:{operation.SecondArgument}:{operation.FirstArgument}");
                     break;
                 case "cast":
-                    var range = LoadDamageSpellRange(projectRoot, operation.FirstArgument);
+                    var range = LoadDamageSpellRange(projectRoot, world.Definition.Id, operation.FirstArgument);
                     totalDamage = checked(totalDamage + random.Next(range.Minimum, checked(range.Maximum + 1)));
                     break;
                 default:
@@ -101,9 +105,10 @@ public static class RuntimeNpcHitSpellScriptCatalog
         return new(parts[0].ToLowerInvariant(), first, second);
     }
 
-    private static (int Minimum, int Maximum) LoadDamageSpellRange(string projectRoot, int spellId)
+    private static (int Minimum, int Maximum) LoadDamageSpellRange(string projectRoot, string worldId, int spellId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "spells.json");
+        var dataRoot = ServerDataRootResolver.Resolve(projectRoot, worldId).DataRoot;
+        var path = Path.Combine(dataRoot, "spells.json");
         using var document = JsonDocument.Parse(File.ReadAllText(path));
         var matches = document.RootElement.GetProperty("records").EnumerateArray()
             .Where(row => ReadInt(row, "legacy_id") == spellId).ToArray();

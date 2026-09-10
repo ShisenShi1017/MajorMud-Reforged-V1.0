@@ -87,12 +87,9 @@ public sealed class ServerNetworkHost
             var selectedWorld = worldSelection.World;
 
             // Character selection, creation, and its ANSI editor must not inherit the login timeout.
-            // Only Host shutdown or a real socket disconnect may cancel this phase. MegaMUD's
-            // classic BBS auto-login enters the game with `/go majormud`; when that launch token
-            // selected the default world, resume the most recently used existing character instead
-            // of exposing a second BBS-style `your selection` prompt to the automation client.
+            // Only Host shutdown or a real socket disconnect may cancel this phase.
             var character = await SelectOrCreateCharacterAsync(
-                account, selectedWorld, telnet, hostCancellationToken, worldSelection.MegaMudDirectLogin, worldSelection.MegaMudCharacterSelector).ConfigureAwait(false);
+                account, selectedWorld, telnet, hostCancellationToken).ConfigureAwait(false);
             if (character is null)
             {
                 await telnet.WriteLineAsync("Connection closed: no character selected.", linked.Token).ConfigureAwait(false);
@@ -516,50 +513,13 @@ public sealed class ServerNetworkHost
         RuntimeAccountRecord account,
         RuntimeWorld world,
         TelnetConnection telnet,
-        CancellationToken cancellationToken,
-        bool megaMudDirectLogin = false,
-        string? megaMudCharacterSelector = null)
+        CancellationToken cancellationToken)
     {
         while (true)
         {
             var existing = _characters.ListCharacters(account.AccountId)
                 .Where(character => string.Equals(character.WorldId, world.Definition.Id, StringComparison.OrdinalIgnoreCase))
                 .ToArray();
-
-            if (megaMudDirectLogin)
-            {
-                if (existing.Length == 0)
-                {
-                    await telnet.WriteLineAsync(
-                        "MegaMUD direct login requires an existing character. Create the character once with the RealmGate client or a normal Telnet session, then reconnect MegaMUD.",
-                        cancellationToken).ConfigureAwait(false);
-                    return null;
-                }
-
-                RuntimeCharacterRecord? selected = null;
-                if (!string.IsNullOrWhiteSpace(megaMudCharacterSelector))
-                {
-                    var selector = megaMudCharacterSelector.Trim();
-                    var selectedIndex = ResolveMegaMudCharacterSelectorIndex(
-                        existing.Select(character => character.DisplayName).ToArray(),
-                        selector);
-                    if (selectedIndex < 0)
-                    {
-                        await telnet.WriteLineAsync(
-                            $"MegaMUD character selector '{selector}' does not match an existing character slot or exact character name.",
-                            cancellationToken).ConfigureAwait(false);
-                        return null;
-                    }
-                    selected = existing[selectedIndex];
-                }
-
-                selected ??= existing
-                    .OrderByDescending(character => character.UpdatedAtUtc)
-                    .ThenBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase)
-                    .First();
-                await telnet.WriteLineAsync($"Entering MajorMUD as {selected.DisplayName}.", cancellationToken).ConfigureAwait(false);
-                return selected;
-            }
 
             if (existing.Length > 0)
             {
@@ -578,12 +538,6 @@ public sealed class ServerNetworkHost
                 await telnet.WriteAsync(canCreate ? $"Enter your selection (1-{existing.Length + 1}): " : $"Enter your selection (1-{existing.Length}): ", cancellationToken).ConfigureAwait(false);
                 var selection = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
                 if (selection is null) return null;
-                if (TryParseMegaMudLaunchCommand(selection.Trim(), out var requestedCharacter))
-                {
-                    megaMudDirectLogin = true;
-                    megaMudCharacterSelector = requestedCharacter;
-                    continue;
-                }
                 if (int.TryParse(selection.Trim(), out var selectedIndex))
                 {
                     if (selectedIndex >= 1 && selectedIndex <= existing.Length) return existing[selectedIndex - 1];
@@ -1007,7 +961,7 @@ public sealed class ServerNetworkHost
         }
     }
 
-    private sealed record RuntimeWorldSelection(RuntimeWorld World, bool MegaMudDirectLogin, string? MegaMudCharacterSelector = null);
+    private sealed record RuntimeWorldSelection(RuntimeWorld World);
 
     private async Task<RuntimeWorldSelection?> SelectWorldAsync(TelnetConnection telnet, CancellationToken cancellationToken)
     {
@@ -1025,15 +979,15 @@ public sealed class ServerNetworkHost
         if (!_options.Network.AllowWorldSelection)
         {
             var configured = DefaultWorld() ?? worlds.Values.First();
-            return new RuntimeWorldSelection(configured, false);
+            return new RuntimeWorldSelection(configured);
         }
 
         var menu = new[]
         {
-            new { Number = 1, Label = "Classic", Aliases = new[] { "classic" } },
-            new { Number = 2, Label = "Custom 1", Aliases = new[] { "custom1", "custom-1", "custom_1" } },
-            new { Number = 3, Label = "Custom 2", Aliases = new[] { "custom2", "custom-2", "custom_2" } },
-            new { Number = 4, Label = "RealmGate", Aliases = new[] { "realmgate", "reforged", "aifromclassic", "ai" } }
+            new { Number = 1, Label = "Classic", WorldId = "classic" },
+            new { Number = 2, Label = "Custom 1", WorldId = "Custom1" },
+            new { Number = 3, Label = "Custom 2", WorldId = "Custom2" },
+            new { Number = 4, Label = "RealmGate", WorldId = "AIFromClassic" }
         };
 
         while (true)
@@ -1041,81 +995,38 @@ public sealed class ServerNetworkHost
             await telnet.WriteLineAsync("Select a world:", cancellationToken).ConfigureAwait(false);
             foreach (var item in menu)
             {
-                var available = FindWorld(worlds, item.Aliases) is not null;
+                var available = TryGetWorldById(worlds, item.WorldId, out _);
                 await telnet.WriteLineAsync($"  {item.Number}) {item.Label}{(available ? string.Empty : " [not configured]")}", cancellationToken).ConfigureAwait(false);
             }
-            // Keep the classic phrase because recovered MegaMUD BBS profiles key on it and reply
-            // with `/go majormud`. That launch token is handled explicitly below.
+
             await telnet.WriteAsync("Enter your selection (1-4): ", cancellationToken).ConfigureAwait(false);
             var response = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
             if (response is null) return null;
-            var trimmed = response.Trim();
 
-            if (TryParseMegaMudLaunchCommand(trimmed, out var requestedCharacter))
-            {
-                var defaultWorld = DefaultWorld() ?? worlds.Values.First();
-                await telnet.WriteLineAsync($"MegaMUD direct login: {defaultWorld.Definition.Name}.", cancellationToken).ConfigureAwait(false);
-                return new RuntimeWorldSelection(defaultWorld, true, requestedCharacter);
-            }
-
-            if (!int.TryParse(trimmed, out var selected) || selected < 1 || selected > 4)
+            if (!int.TryParse(response.Trim(), out var selected) || selected < 1 || selected > menu.Length)
             {
                 await telnet.WriteLineAsync("Invalid world selection.", cancellationToken).ConfigureAwait(false);
                 continue;
             }
 
             var chosen = menu[selected - 1];
-            var world = FindWorld(worlds, chosen.Aliases);
-            if (world is not null) return new RuntimeWorldSelection(world, false);
+            if (TryGetWorldById(worlds, chosen.WorldId, out var world))
+                return new RuntimeWorldSelection(world!);
+
             await telnet.WriteLineAsync($"{chosen.Label} is not configured on this Host yet. Choose another world.", cancellationToken).ConfigureAwait(false);
         }
     }
 
-    internal static bool TryParseMegaMudLaunchCommand(string value, out string? characterSelector)
+    private static bool TryGetWorldById(
+        IReadOnlyDictionary<string, RuntimeWorld> worlds,
+        string worldId,
+        out RuntimeWorld? world)
     {
-        characterSelector = null;
-        var raw = (value ?? string.Empty).Trim();
-        foreach (var prefix in new[] { "/go majormud", "go majormud", "majormud" })
-        {
-            if (raw.Equals(prefix, StringComparison.OrdinalIgnoreCase)) return true;
-            if (!raw.StartsWith(prefix + " ", StringComparison.OrdinalIgnoreCase)) continue;
-            var selector = raw[(prefix.Length + 1)..].Trim();
-            if (selector.Length == 0) return true;
-            characterSelector = selector;
-            return true;
-        }
-        return false;
-    }
+        if (worlds.TryGetValue(worldId, out world)) return true;
 
-    internal static bool IsMegaMudLaunchCommand(string value) =>
-        TryParseMegaMudLaunchCommand(value, out _);
-
-    internal static int ResolveMegaMudCharacterSelectorIndex(IReadOnlyList<string> displayNames, string selector)
-    {
-        var requested = (selector ?? string.Empty).Trim();
-        if (requested.Length == 0) return -1;
-        if (int.TryParse(requested, out var slot))
-            return slot >= 1 && slot <= displayNames.Count ? slot - 1 : -1;
-        for (var index = 0; index < displayNames.Count; index++)
-        {
-            if (string.Equals(displayNames[index], requested, StringComparison.OrdinalIgnoreCase))
-                return index;
-        }
-        return -1;
-    }
-
-    private static RuntimeWorld? FindWorld(IReadOnlyDictionary<string, RuntimeWorld> worlds, IReadOnlyList<string> aliases)
-    {
-        foreach (var alias in aliases)
-        {
-            if (worlds.TryGetValue(alias, out var byId)) return byId;
-            var match = worlds.Values.FirstOrDefault(world =>
-                string.Equals(world.Definition.Id, alias, StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(world.Definition.Name, alias, StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(world.Definition.Type, alias, StringComparison.OrdinalIgnoreCase));
-            if (match is not null) return match;
-        }
-        return null;
+        world = worlds.Values.FirstOrDefault(candidate =>
+            string.Equals(candidate.Definition.Id, worldId, StringComparison.OrdinalIgnoreCase));
+        return world is not null;
     }
 
 }

@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using System.Data;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -355,6 +355,18 @@ public sealed class NightmareMdbBridgeService
         RealmGatePerformanceTrace.Mark(
             "CREATOR MDB",
             $"APPLY PACKAGE DONE | Time={creatorStageTimer.Elapsed}");
+
+        // Custom worlds are independent runtimes. The imported overlay is canonical,
+        // but Data/Custom1 is the disposable effective runtime projection consumed by
+        // the server. Rebuild it immediately so the next Custom1 login sees the new
+        // races/items/rooms/etc. without ever falling back to Classic runtime data.
+        creatorStageTimer.Restart();
+        var build = _custom.Build();
+        creatorStageTimer.Stop();
+        RealmGatePerformanceTrace.Mark(
+            "CREATOR MDB",
+            $"CUSTOM1 EFFECTIVE BUILD DONE | Families={build.Families} | Objects={build.Objects} | Files={build.Files} | Time={creatorStageTimer.Elapsed}");
+
         var manifest = new JsonObject
         {
             ["schema"] = "reforged_custom_world_source_manifest_v2",
@@ -1191,7 +1203,11 @@ public sealed class NightmareMdbBridgeService
                 SetIfText(fields, "name", RowText(row, "Name"));
                 SetPath(fields, "combat.hp", JsonValue.Create(RowInt(row, "Hit Points", "HP")));
                 SetPath(fields, "behavior.follow", JsonValue.Create(RowInt(row, "Follow", "Follow%")));
-                SetPath(fields, "behavior.group_id", JsonValue.Create(RowInt(row, "Index", "Group")));
+                // Nightmare MDB monster tables do not always expose the native WCC
+                // spawn-group index. An absent column must not erase the inherited
+                // native grouping with a fabricated zero.
+                if (RowNode(row, "Index", "Group") is not null)
+                    SetPath(fields, "behavior.group_id", JsonValue.Create(RowInt(row, "Index", "Group")));
                 SetPath(fields, "behavior.charm_level", JsonValue.Create(RowInt(row, "Charm LvL", "CharmLVL")));
                 SetPath(fields, "behavior.charm_resistance", JsonValue.Create(RowInt(row, "Charm RES")));
                 SetPath(fields, "behavior.undead", JsonValue.Create(RowBool(row, "Undead")));
@@ -1814,18 +1830,22 @@ public sealed class NightmareMdbBridgeService
     private static JsonArray ImportShopInventory(JsonObject row)
     {
         var inventory = new JsonArray();
-        for (var slot = 1; slot <= 200; slot++)
+        var zeroBasedSlots = RowNode(row, "Item-0") is not null;
+        var firstSlot = zeroBasedSlots ? 0 : 1;
+        var lastSlot = zeroBasedSlots ? 199 : 200;
+        for (var slot = firstSlot; slot <= lastSlot; slot++)
         {
             var item = RowInt(row, $"Item {slot}", $"Item-{slot}");
             if (item <= 0) continue;
+            var maximum = RowInt(row, $"Max {slot}", $"Max-{slot}");
             inventory.Add(new JsonObject
             {
                 ["item_ref"] = $"item.{item}",
-                ["max_qty"] = RowInt(row, $"Max {slot}", $"Max-{slot}"),
-                ["normal_qty"] = RowInt(row, $"Normal {slot}"),
+                ["max_qty"] = maximum,
+                ["normal_qty"] = RowInt(row, $"Normal {slot}", $"Normal-{slot}", $"Max {slot}", $"Max-{slot}"),
                 ["regen_time"] = RowInt(row, $"Regen Time {slot}", $"Time-{slot}"),
                 ["regen_qty"] = RowInt(row, $"Regen Number {slot}", $"Amount-{slot}"),
-                ["regen_percent"] = RowInt(row, $"Regen % {slot}")
+                ["regen_percent"] = RowInt(row, $"Regen % {slot}", $"%-{slot}")
             });
         }
         return inventory;
@@ -2358,8 +2378,6 @@ public sealed class NightmareMdbBridgeService
     private sealed record MappedRecord(string Family, string TargetId, JsonObject Fields);
     private enum TableKind { Rooms, Items, Monsters, Spells, Shops, Classes, Races, Messages, Textblocks, Actions, Abilities }
 }
-
-
 
 
 

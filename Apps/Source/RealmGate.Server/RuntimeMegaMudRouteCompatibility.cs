@@ -38,7 +38,8 @@ internal static class RuntimeMegaMudRouteCompatibility
 
         var currentSignature = RuntimeMajorMudCompatibility.ComputeMegaMudRoomSignature(currentRoom.Name, currentRoom.Exits);
         var key = Key(currentSignature, normalizedCommand);
-        var catalog = Catalogs.GetOrAdd(Path.GetFullPath(projectRoot), LoadCatalog);
+        var dataRoot = ServerDataRootResolver.Resolve(projectRoot, world.Definition.Id).DataRoot;
+        var catalog = Catalogs.GetOrAdd(Path.GetFullPath(dataRoot), LoadCatalog);
         if (!catalog.TryGetValue(key, out transition!)) return false;
         var resolvedTransition = transition;
 
@@ -61,9 +62,9 @@ internal static class RuntimeMegaMudRouteCompatibility
         return true;
     }
 
-    private static IReadOnlyDictionary<string, RuntimeMegaMudRouteTransition> LoadCatalog(string projectRoot)
+    private static IReadOnlyDictionary<string, RuntimeMegaMudRouteTransition> LoadCatalog(string dataRoot)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "megamud_routes.json");
+        var path = Path.Combine(dataRoot, "megamud_routes.json");
         if (!File.Exists(path))
             return new Dictionary<string, RuntimeMegaMudRouteTransition>(StringComparer.OrdinalIgnoreCase);
 

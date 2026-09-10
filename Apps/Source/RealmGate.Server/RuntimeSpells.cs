@@ -131,8 +131,8 @@ public sealed class RuntimeSpellCatalog
                 descriptionMessageId = Integer(messages, "description_message_id");
                 var castRequired = Boolean(messages, "cast_message_required");
                 var descriptionRequired = Boolean(messages, "description_message_required");
-                if ((castMessageId > 0 || descriptionMessageId > 0) && worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
-                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                if (castMessageId > 0 || descriptionMessageId > 0)
+                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot, worldId);
                 if (castMessageId > 0 && nativeMessages is not null) castMessage = nativeMessages.RequireMessage(castMessageId);
                 else if (castRequired) throw new InvalidOperationException($"Generated spell '{id}' requires a resolved cast message.");
                 if (descriptionMessageId <= 0 && descriptionRequired) throw new InvalidOperationException($"Generated spell '{id}' requires a resolved description message.");
@@ -162,8 +162,7 @@ public sealed class RuntimeSpellCatalog
                 : decodedAbilities.FirstOrDefault(ability => ability.AbilityId == 120 && ability.Value > 0)?.Value ?? 0;
             if (startSelector > 0)
             {
-                if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
-                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot, worldId);
                 if (nativeMessages is null) throw new InvalidOperationException($"Generated spell '{id}' has a StartMsg selector without a native message authority.");
                 var casterMessage = nativeMessages.RequireMessage(startSelector);
                 nativeMessages.TryResolveSecondaryMessage(startSelector, out var targetMessage);
@@ -178,8 +177,7 @@ public sealed class RuntimeSpellCatalog
                     .Select(ability => ability.Value).Distinct().ToArray();
             if (descriptionSelectors.Length > 0)
             {
-                if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
-                    nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot);
+                nativeMessages ??= RuntimeClassicNativeTextblockPayloadAuthority.Load(projectRoot, worldId);
                 if (nativeMessages is null) throw new InvalidOperationException($"Generated spell '{id}' has description selectors without a native message authority.");
                 descriptionMessages = descriptionSelectors.Select(selector =>
                 {

@@ -92,7 +92,7 @@ public sealed class TelnetConnection : IAsyncDisposable
     {
         foreach (var ch in text)
         {
-            if (ch == '\r' || ch == '\n' || ch == '\t' || ch >= ' ')
+            if (ch == '\r' || ch == '\n' || ch == '\t' || ch == '\b' || ch >= ' ')
                 output.Append(ch);
         }
     }

@@ -371,7 +371,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         AwardCommittedGangExperience(character, updatedCharacter);
         if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, result.ClauseId ?? result.ScriptId ?? "matched"))
             throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
-        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot);
+        var payloads = RuntimeClassicNativeTextblockPayloadAuthority.Load(_characters.ProjectRoot, character.WorldId);
         var renderedLines = result.Lines
             .Select(line => ResolveDecodedNarrativeLine(line, payloads))
             .Where(line => !string.IsNullOrWhiteSpace(line))

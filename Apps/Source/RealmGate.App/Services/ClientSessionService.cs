@@ -1815,17 +1815,24 @@ public sealed partial class ClientSessionService : IClientSessionService
             $"{safeName}-{DateTime.Now:yyyyMMdd-HHmmss}.telnet.log");
     }
 
-    private static void HandleClientDataAnnouncement(
+    private void HandleClientDataAnnouncement(
         ClientSessionConnection session,
         Runtime runtime,
         ReforgedClientDataEndpointAnnouncement announcement)
     {
         runtime.ClientDataEndpoint = announcement;
+
         _ = OnUiAsync(() =>
         {
             session.HasRealmGateClientDataChannel = true;
-            session.TelnetStatus = $"Private RealmGate client data ready on port {announcement.Port}; server world data is authoritative.";
+            session.TelnetStatus = $"Private RealmGate client data ready on port {announcement.Port}; hydrating server-selected world data.";
         });
+
+        var token = runtime.ReadCts?.Token ?? CancellationToken.None;
+
+        _ = HydrateRealmGateWorldDataAsync(
+            session.SessionId,
+            token);
     }
 
     private static void HandleTelnetDiagnostic(

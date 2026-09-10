@@ -33,10 +33,16 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
     public int NativeMessageCount => _messagePayloads.Count;
     public IReadOnlyCollection<int> TextblockIds => _records.Keys.ToArray();
 
-    public static RuntimeClassicNativeTextblockPayloadAuthority Load(string projectRoot)
+    public static RuntimeClassicNativeTextblockPayloadAuthority Load(string projectRoot) =>
+        Load(projectRoot, "Classic");
+
+    public static RuntimeClassicNativeTextblockPayloadAuthority Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "native_textblock_payloads.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic WCCTEXT2 payload catalog is missing.", path);
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var effectiveWorldId = resolved.WorldId;
+        var isClassic = effectiveWorldId.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+        var path = Path.Combine(resolved.DataRoot, "native_textblock_payloads.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Generated world '{effectiveWorldId}' WCCTEXT2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var records) || records.ValueKind != JsonValueKind.Array)
             throw new InvalidOperationException("WCCTEXT2 payload catalog has no records array.");
@@ -53,17 +59,18 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
             if (!map.TryAdd(id, new(id, payload, pageOffset, pageIndex, evidence)))
                 throw new InvalidOperationException($"Duplicate WCCTEXT2 payload record {id}.");
         }
-        if (map.Count != 3467) throw new InvalidOperationException($"Expected 3467 WCCTEXT2 payloads, found {map.Count}.");
+        if (isClassic && map.Count != 3467) throw new InvalidOperationException($"Expected 3467 WCCTEXT2 payloads, found {map.Count}.");
+        if (!isClassic && map.Count == 0) throw new InvalidOperationException($"Generated world '{effectiveWorldId}' WCCTEXT2 payload catalog is empty.");
 
-        var noOutput = LoadVerifiedNoOutputTextblocks(projectRoot);
-        var messages = LoadNativeDialogueMessages(projectRoot);
+        var noOutput = LoadVerifiedNoOutputTextblocks(resolved.DataRoot, effectiveWorldId, isClassic);
+        var messages = LoadNativeDialogueMessages(resolved.DataRoot, effectiveWorldId, isClassic);
         return new(map, noOutput, messages);
     }
 
-    private static IReadOnlySet<int> LoadVerifiedNoOutputTextblocks(string projectRoot)
+    private static IReadOnlySet<int> LoadVerifiedNoOutputTextblocks(string dataRoot, string worldId, bool isClassic)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "native_presentation.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic native presentation mapping is missing.", path);
+        var path = Path.Combine(dataRoot, "native_presentation.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Generated world '{worldId}' native presentation mapping is missing.", path);
         var rows = RuntimeChunkedClassicCatalog.LoadRecords(path);
         var ids = new HashSet<int>();
         foreach (var row in rows)
@@ -79,15 +86,15 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
             if (target <= 0) throw new InvalidDataException("Verified no-output target is non-positive.");
             ids.Add(target);
         }
-        if (ids.Count != 124) throw new InvalidDataException($"Expected 124 distinct verified no-output dialogue nodes, found {ids.Count}.");
+        if (isClassic && ids.Count != 124) throw new InvalidDataException($"Expected 124 distinct verified no-output dialogue nodes, found {ids.Count}.");
         return ids;
     }
 
 
-    private static IReadOnlyDictionary<int, RuntimeClassicNativeDialogueMessagePayload> LoadNativeDialogueMessages(string projectRoot)
+    private static IReadOnlyDictionary<int, RuntimeClassicNativeDialogueMessagePayload> LoadNativeDialogueMessages(string dataRoot, string worldId, bool isClassic)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "native_message_payloads.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic WCCMSG2 payload catalog is missing.", path);
+        var path = Path.Combine(dataRoot, "native_message_payloads.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Generated world '{worldId}' WCCMSG2 payload catalog is missing.", path);
         using var doc = JsonDocument.Parse(File.ReadAllText(path));
         if (!doc.RootElement.TryGetProperty("records", out var rows) || rows.ValueKind != JsonValueKind.Array)
             throw new InvalidDataException("WCCMSG2 payload catalog has no records array.");
@@ -108,8 +115,10 @@ public sealed class RuntimeClassicNativeTextblockPayloadAuthority
             if (!map.TryAdd(id, new(id, headerOffset, playerPayload, secondaryPayload, tertiaryPayload, occurrenceCount, evidence)))
                 throw new InvalidDataException($"Duplicate WCCMSG2 payload mapping {id}.");
         }
-        if (map.Count != 3869)
+        if (isClassic && map.Count != 3869)
             throw new InvalidDataException($"Expected 3869 logical WCCMSG2 payloads, found {map.Count}.");
+        if (!isClassic && map.Count == 0)
+            throw new InvalidDataException($"Generated world '{worldId}' WCCMSG2 payload catalog is empty.");
         return map;
     }
 

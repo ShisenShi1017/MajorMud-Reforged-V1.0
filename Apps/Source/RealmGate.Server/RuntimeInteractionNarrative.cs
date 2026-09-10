@@ -27,7 +27,7 @@ public sealed class RuntimeNarrativeCatalog
     }
     public static RuntimeNarrativeCatalog Load(string projectRoot,string worldId,string family)
     {
-        var configured=ServerDataRootResolver.ResolveDefault(projectRoot); if(!string.IsNullOrWhiteSpace(worldId)&&!string.Equals(configured.WorldId,worldId,StringComparison.OrdinalIgnoreCase)) throw new InvalidOperationException($"Configured world '{configured.WorldId}' does not match requested world '{worldId}'."); var path=Path.Combine(configured.DataRoot,$"{family}.json");
+        var configured=ServerDataRootResolver.Resolve(projectRoot, worldId); var path=Path.Combine(configured.DataRoot,$"{family}.json");
         using var doc=JsonDocument.Parse(File.ReadAllText(path));
         var records=doc.RootElement.GetProperty("records").EnumerateArray().Select(x=>new RuntimeNarrativeDefinition(
             x.GetProperty("id").GetString()!, x.TryGetProperty("name",out var n)?n.GetString()??x.GetProperty("id").GetString()!:x.GetProperty("id").GetString()!, family, x.Clone()));
