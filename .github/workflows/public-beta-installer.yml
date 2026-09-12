@@ -1,0 +1,49 @@
+name: RealmGate Public Beta Installer
+
+on:
+  pull_request:
+    paths:
+      - 'Apps/Source/RealmGate.App/**'
+      - 'Tools/Release/**'
+      - '.github/workflows/public-beta-installer.yml'
+      - 'global.json'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Beta version used in package names, for example 0.1.0-beta.2'
+        required: true
+        default: '0.1.0-beta.2'
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Install Inno Setup
+        shell: powershell
+        run: choco install innosetup --yes --no-progress
+
+      - name: Build self-contained public beta packages
+        shell: powershell
+        env:
+          BETA_VERSION: ${{ github.event_name == 'workflow_dispatch' && inputs.version || '0.1.0-ci' }}
+        run: >-
+          powershell -NoProfile -ExecutionPolicy Bypass
+          -File .\Tools\Release\Build-RealmGateInstaller.ps1
+          -Version "$env:BETA_VERSION"
+
+      - name: Upload installer, portable ZIP, and checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: RealmGate-Public-Beta-${{ github.event_name == 'workflow_dispatch' && inputs.version || '0.1.0-ci' }}
+          path: Release/Packages/*
+          if-no-files-found: error
+          retention-days: 14
