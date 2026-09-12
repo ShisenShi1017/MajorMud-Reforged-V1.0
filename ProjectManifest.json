@@ -24,12 +24,18 @@
       "strong": 0,
       "unknown": 0
     },
-    "validator": "PASS; 0 issues / 0 warnings / 0 errors (0142 bootstrap validation)",
-    "clientSmokes": "PASS; 14/14 (CodeUpdate0142 closure)",
+    "validator": "PASS; 26/26 current-health gates (latest local post-closure run)",
+    "clientSmokes": "PASS; 14/14 (latest local post-closure run)",
     "releaseBuild": "RealmGate app Release build and full solution build verified at 0 warnings / 0 errors",
+    "releaseIdentity": "RealmGate RG icon, explicit product metadata, and asInvoker manifest are embedded; trusted Authenticode signing remains pending a real certificate",
+    "generatedWorldContract": "Every runtime world is standalone and complete; live Classic fallback is forbidden. Derived worlds identify their generation-time base.",
+    "custom1Runtime": "Verified standalone with 962/962 resolved spawns and 1,015 live NPC instances while Data/Classic was unavailable.",
+    "decodeExhaustion": "48/48 families; 2316/2316 fields connected or structural; 0 unresolved",
+    "postClosureRuntimeHardening": "Per-world and per-session failure containment, Host Sessions/Logs tabs, realm-scoped character deletion, and generated LIGHT equipment readiness are locally verified.",
     "remainingIntegrationTests": [
       "External non-RealmGate BBS MDB overlay/import end-to-end test",
-      "Creator Studio custom-world MDB plus matching WCC/WGS import/runtime test"
+      "Creator Studio custom-world MDB plus matching WCC/WGS import/runtime test",
+      "Trusted-signed RealmGate beta artifact and Microsoft Defender SmartScreen test"
     ]
   },
   "handoffPolicy": {

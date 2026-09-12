@@ -13,12 +13,14 @@ public sealed partial class ServerRuntimeHost
     private readonly ServerTickScheduler _scheduler = new();
     private readonly RuntimeLiveGameplayFacade _gameplay;
     private readonly List<RuntimeClassicAutoCleanupScheduler> _classicAutoCleanup = new();
+    private readonly Action<string>? _diagnosticSink;
     private RuntimeCommandDispatcher _commands;
 
-    public ServerRuntimeHost(string projectRoot, ServerRuntimeOptions options)
+    public ServerRuntimeHost(string projectRoot, ServerRuntimeOptions options, Action<string>? diagnosticSink = null)
     {
         _projectRoot = projectRoot;
         _options = options;
+        _diagnosticSink = diagnosticSink;
         _characters = new RuntimeCharacterService(projectRoot);
         _sessions = new RuntimeSessionManager(_state, _events, _options.Development, _characters);
         _gameplay = new RuntimeLiveGameplayFacade(_characters, _sessions);
@@ -177,18 +179,31 @@ public sealed partial class ServerRuntimeHost
 
     public void Bootstrap()
     {
+        var failures = new List<string>();
         foreach (var worldDefinition in _options.Worlds.Where(world => world.RuntimeEnabled))
         {
-            EnforceClassicBoundaries(worldDefinition);
-            var world = _worldLoader.Load(_projectRoot, worldDefinition);
-            _worlds[worldDefinition.Id] = world;
-            _state.EnsureWorld(world);
-            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; npcs={world.NpcCount}; spawns={world.SpawnCount}; generatedFamilies={world.DataCatalog.Families.Count}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
+            try
+            {
+                EnforceClassicBoundaries(worldDefinition);
+                var world = _worldLoader.Load(_projectRoot, worldDefinition);
+                _worlds[worldDefinition.Id] = world;
+                _state.EnsureWorld(world);
+                _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; npcs={world.NpcCount}; spawns={world.SpawnCount}; generatedFamilies={world.DataCatalog.Families.Count}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
+            }
+            catch (Exception exception)
+            {
+                var failure = $"World '{worldDefinition.Id}' was disabled because it failed to load: {exception.Message}";
+                failures.Add(failure);
+                _diagnosticSink?.Invoke(failure);
+                Console.Error.WriteLine(failure);
+            }
         }
 
         if (_worlds.Count == 0)
         {
-            throw new InvalidOperationException("No runtime-enabled worlds are configured.");
+            throw new InvalidOperationException(failures.Count == 0
+                ? "No runtime-enabled worlds are configured."
+                : "No configured world could be loaded. " + string.Join(" | ", failures));
         }
 
         _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), token => _gameplay.TickLivingWorldsAsync(token));
@@ -294,7 +309,7 @@ public sealed partial class ServerRuntimeHost
         };
 
         var schedulerTask = _scheduler.RunAsync(linked.Token);
-        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions, _characters);
+        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions, _characters, _diagnosticSink);
         var networkTask = network.RunTelnetAsync(linked.Token);
 
         Console.WriteLine("Runtime network host is running. Press Ctrl+C to stop.");

@@ -12,6 +12,7 @@ RealmGate is a standalone MajorMUD-compatible game platform built around an auth
 - RealmGate client regression smokes: **14/14 PASS**
 - RealmGate app Release build and full solution build: **0 warnings / 0 errors** in the verified CodeUpdate0142 closure
 - GitHub Classic parity closure: **PASS** on the pushed CodeUpdate0142 baseline.
+- Post-closure local runtime hardening: **PASS** — per-world/session fault containment, Host Sessions/Logs tabs, world-scoped character deletion, and generated LIGHT equipment behavior.
 
 The detailed current state is maintained in `PROJECT_STATUS.md`.
 
@@ -25,9 +26,10 @@ Important boundaries:
 
 - RealmGate server gameplay state is server-authoritative.
 - Classic remains immutable as a source world.
-- Custom worlds are overlays/derived worlds, not edits to Classic.
+- Custom worlds are compiled from Classic plus reviewed overrides into complete standalone runtime datasets; live derived worlds never fall back to `Data/Classic`.
 - External BBS MDB data is treated as read-only import/reference input.
 - Runtime/local saves are not source code.
+- Character deletion is account- and world-scoped; active characters cannot be deleted.
 - `Reports/RuntimeVerification/majormud_parity_scorecard.json` remains required by Borin's parity preflight and must not be removed unless Borin is changed to consume another authority.
 
 ## Main components
@@ -61,6 +63,8 @@ Current client areas include:
 
 MudPlay is a legacy implementation reference, not RealmGate's UI or product identity. Required third-party notices are retained in `ThirdPartyLicenses/`.
 
+The Host workspace contains Host Control, live Sessions, and application/runtime Logs. A failed custom world or individual Telnet session is reported there without taking healthy worlds or the desktop application down.
+
 ## Creator Studio and custom worlds
 
 Creator Studio keeps Classic immutable.
@@ -73,6 +77,8 @@ For a full custom-world import, RealmGate requires:
 MDB-only input is not considered a complete custom-world source package. RealmGate fingerprints the selected source files, records provenance, validates gaps/conflicts, and builds the custom world from the approved source set.
 
 The current real-file validation boundary is documented in `PROJECT_STATUS.md`.
+
+Generated world manifests are enforced at runtime: every configured world must declare a standalone, complete dataset with live Classic fallback disabled. A derived world also records its generation-time base world.
 
 ## External BBS game data
 
@@ -102,6 +108,27 @@ powershell -ExecutionPolicy Bypass -File .\Tools\RealmGateValidator\Validate.ps1
 ```
 
 The validator is intentionally exhaustive and can take a long time when decode exhaustion is required.
+
+## Windows release
+
+The normal RealmGate desktop release is a framework-dependent, unpacked `win-x64` publish at:
+
+`Release\RealmGate\RealmGate.exe`
+
+Publish the complete app, including Borin, with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Tools\Release\Publish-RealmGate.ps1
+```
+
+The publisher preserves the antivirus-friendly unpacked layout and reports clearly when the result is unsigned. For a distributable beta, install a trusted code-signing certificate in the Windows certificate store and run:
+
+```powershell
+$env:REALMGATE_SIGNING_THUMBPRINT = "YOUR_CERTIFICATE_THUMBPRINT"
+powershell -ExecutionPolicy Bypass -File .\Tools\Release\Publish-RealmGate.ps1 -RequireTrustedSignature
+```
+
+The signing path uses SHA-256 with an RFC 3161 timestamp, signs the RealmGate executable and first-party RealmGate assemblies, and verifies every signature. No certificate or private-key password belongs in the repository. An unsigned or self-signed executable can still trigger Microsoft Defender SmartScreen; the trusted publisher certificate is the remaining distribution requirement.
 
 ## Documentation
 

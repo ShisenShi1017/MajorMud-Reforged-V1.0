@@ -22,6 +22,15 @@ public sealed record ClassicAdministrationEditorSaveResult(
     RuntimeClassicAdministrationPolicy Policy,
     string PolicyPath);
 
+public sealed record EditorCharacterRecord(
+    string CharacterId,
+    string DisplayName,
+    string AccountId,
+    string WorldId,
+    string RaceName,
+    string ClassName,
+    int Level);
+
 public sealed class ClassicAdministrationEditorService
 {
     private readonly string _projectRoot;
@@ -66,6 +75,53 @@ public sealed class ClassicAdministrationEditorService
         var verified = RuntimeClassicAdministrationPolicyStore.Load(_projectRoot, "classic");
         VerifyRoundTrip(policy, verified, path);
         return new ClassicAdministrationEditorSaveResult(verified, path);
+    }
+
+    public IReadOnlyList<EditorCharacterRecord> LoadAllCharacters() =>
+        new RuntimeCharacterService(_projectRoot).ListAllCharacters()
+            .Select(character => new EditorCharacterRecord(
+                character.CharacterId,
+                character.DisplayName,
+                character.AccountId,
+                character.WorldId,
+                character.RaceName,
+                character.ClassName,
+                character.Level))
+            .OrderBy(character => character.WorldId, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(character => character.DisplayName, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+    public EditorCharacterRecord DeleteCharacter(EditorCharacterRecord character)
+    {
+        if (_host?.ActiveSessions.Any(session =>
+                session.CharacterId.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)) == true)
+        {
+            throw new InvalidOperationException($"Character '{character.DisplayName}' is currently logged in and cannot be deleted.");
+        }
+
+        var service = new RuntimeCharacterService(_projectRoot);
+        var deleted = service.DeleteCharacter(character.AccountId, character.CharacterId, character.WorldId);
+        if (deleted.WorldId.Equals("classic", StringComparison.OrdinalIgnoreCase))
+        {
+            var policy = RuntimeClassicAdministrationPolicyStore.Load(_projectRoot, "classic");
+            if (policy.HasCharacterSysopAccess(deleted.CharacterId))
+            {
+                RuntimeClassicAdministrationPolicyStore.Save(_projectRoot, new RuntimeClassicAdministrationPolicy
+                {
+                    SchemaVersion = policy.SchemaVersion,
+                    WorldId = policy.WorldId,
+                    UnlimitedItemsEnabled = policy.UnlimitedItemsEnabled,
+                    EveryoneCanUseSysGoto = policy.EveryoneCanUseSysGoto,
+                    SysopCharacterIds = policy.SysopCharacterIds
+                        .Where(id => !id.Equals(deleted.CharacterId, StringComparison.OrdinalIgnoreCase))
+                        .ToList(),
+                    UpdatedAtUtc = policy.UpdatedAtUtc,
+                    UpdatedBy = policy.UpdatedBy
+                }, "RealmGate character deletion");
+            }
+        }
+
+        return character;
     }
 
     private IReadOnlyList<ClassicAdministrationCharacter> DiscoverCharacters(List<string> warnings)

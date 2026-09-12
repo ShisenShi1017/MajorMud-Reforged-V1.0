@@ -17,7 +17,15 @@ public sealed class AppLogger : IAppLogger
         _path = Path.Combine(logsDirectory, "application.log");
     }
 
-    public IReadOnlyList<string> Recent => _recent;
+    public event EventHandler? Changed;
+
+    public IReadOnlyList<string> Recent
+    {
+        get
+        {
+            lock (_recent) return _recent.ToArray();
+        }
+    }
 
     public void Info(string message) => Write("INF", message, null);
 
@@ -56,6 +64,15 @@ public sealed class AppLogger : IAppLogger
             {
                 // The app can still run even if the local log file is temporarily unavailable.
             }
+        }
+
+        try
+        {
+            Changed?.Invoke(this, EventArgs.Empty);
+        }
+        catch
+        {
+            // A diagnostic UI subscriber must never be able to stop the host.
         }
     }
 }

@@ -13,19 +13,22 @@ public sealed class ServerNetworkHost
     private readonly RuntimeCharacterService _characters;
     private readonly RuntimeAccountSecurityService _accountSecurity;
     private readonly ServerClientDataHost _clientData;
+    private readonly Action<string>? _diagnosticSink;
 
     public ServerNetworkHost(
         ServerRuntimeOptions options,
         Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider,
         RuntimeCommandDispatcher commands,
         RuntimeSessionManager sessions,
-        RuntimeCharacterService characters)
+        RuntimeCharacterService characters,
+        Action<string>? diagnosticSink = null)
     {
         _options = options;
         _worldProvider = worldProvider;
         _commands = commands;
         _sessions = sessions;
         _characters = characters;
+        _diagnosticSink = diagnosticSink;
         _accountSecurity = new RuntimeAccountSecurityService(characters.ProjectRoot);
         _clientData = new ServerClientDataHost(options.Network, commands, sessions);
     }
@@ -317,7 +320,19 @@ public sealed class ServerNetworkHost
         }
         catch (Exception exception)
         {
-            Console.Error.WriteLine($"Telnet session {sessionId} failed: {exception.Message}");
+            var message = $"Telnet session {sessionId} failed without stopping the Host: {exception.Message}";
+            _diagnosticSink?.Invoke(message);
+            Console.Error.WriteLine(message);
+            try
+            {
+                await telnet.WriteLineAsync(
+                    $"This session could not continue: {exception.Message} The Host remains available.",
+                    hostCancellationToken).ConfigureAwait(false);
+            }
+            catch
+            {
+                // The socket may already be gone; the Host diagnostic remains available.
+            }
         }
     }
 
@@ -533,15 +548,23 @@ public sealed class ServerNetworkHost
                     await telnet.WriteLineAsync($"  {index + 1}) {character.DisplayName} [{sexLabel}{character.RaceName} {character.ClassName}, level {character.Level}]", cancellationToken).ConfigureAwait(false);
                 }
                 var canCreate = existing.Length < _characters.MaximumCharactersPerAccountPerWorld;
+                var createOption = canCreate ? existing.Length + 1 : -1;
+                var deleteOption = existing.Length + (canCreate ? 2 : 1);
                 if (canCreate)
-                    await telnet.WriteLineAsync($"  {existing.Length + 1}) Create a new character", cancellationToken).ConfigureAwait(false);
-                await telnet.WriteAsync(canCreate ? $"Enter your selection (1-{existing.Length + 1}): " : $"Enter your selection (1-{existing.Length}): ", cancellationToken).ConfigureAwait(false);
+                    await telnet.WriteLineAsync($"  {createOption}) Create a new character", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteLineAsync($"  {deleteOption}) Delete a character", cancellationToken).ConfigureAwait(false);
+                await telnet.WriteAsync($"Enter your selection (1-{deleteOption}): ", cancellationToken).ConfigureAwait(false);
                 var selection = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
                 if (selection is null) return null;
                 if (int.TryParse(selection.Trim(), out var selectedIndex))
                 {
                     if (selectedIndex >= 1 && selectedIndex <= existing.Length) return existing[selectedIndex - 1];
-                    if (!canCreate || selectedIndex != existing.Length + 1)
+                    if (selectedIndex == deleteOption)
+                    {
+                        await DeleteCharacterFromSelectionAsync(account, world, existing, telnet, cancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+                    if (!canCreate || selectedIndex != createOption)
                     {
                         await telnet.WriteLineAsync("Invalid character selection.", cancellationToken).ConfigureAwait(false);
                         continue;
@@ -554,6 +577,7 @@ public sealed class ServerNetworkHost
                 }
             }
 
+            account = _characters.TryLoadAccount(account.AccountId) ?? account;
             var catalog = _characters.GetCatalog(world.Definition.Id);
             var races = catalog.Races.ToArray();
             IReadOnlyList<string>? raceHelp = null;
@@ -590,6 +614,51 @@ public sealed class ServerNetworkHost
                 await telnet.WriteLineAsync($"Character creation failed: {exception.Message}", cancellationToken).ConfigureAwait(false);
                 await telnet.WriteLineAsync("Please try again; the connection will remain open.", cancellationToken).ConfigureAwait(false);
             }
+        }
+    }
+
+    private async Task DeleteCharacterFromSelectionAsync(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        IReadOnlyList<RuntimeCharacterRecord> characters,
+        TelnetConnection telnet,
+        CancellationToken cancellationToken)
+    {
+        await telnet.WriteLineAsync("Choose a character to delete:", cancellationToken).ConfigureAwait(false);
+        for (var index = 0; index < characters.Count; index++)
+            await telnet.WriteLineAsync($"  {index + 1}) {characters[index].DisplayName}", cancellationToken).ConfigureAwait(false);
+        await telnet.WriteAsync($"Enter 1-{characters.Count}, or 0 to cancel: ", cancellationToken).ConfigureAwait(false);
+        var selection = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
+        if (!int.TryParse(selection?.Trim(), out var selectedIndex) || selectedIndex < 0 || selectedIndex > characters.Count)
+        {
+            await telnet.WriteLineAsync("Invalid deletion selection.", cancellationToken).ConfigureAwait(false);
+            return;
+        }
+        if (selectedIndex == 0) return;
+
+        var character = characters[selectedIndex - 1];
+        if (_sessions.ActiveSessions.Any(session => session.Actor.Id.Equals(character.CharacterId, StringComparison.OrdinalIgnoreCase)))
+        {
+            await telnet.WriteLineAsync("That character is currently logged in and cannot be deleted.", cancellationToken).ConfigureAwait(false);
+            return;
+        }
+
+        await telnet.WriteAsync($"Type DELETE to permanently delete {character.DisplayName} from {world.Definition.Name}: ", cancellationToken).ConfigureAwait(false);
+        var confirmation = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
+        if (!string.Equals(confirmation?.Trim(), "DELETE", StringComparison.Ordinal))
+        {
+            await telnet.WriteLineAsync("Character deletion cancelled.", cancellationToken).ConfigureAwait(false);
+            return;
+        }
+
+        try
+        {
+            _characters.DeleteCharacter(account.AccountId, character.CharacterId, world.Definition.Id);
+            await telnet.WriteLineAsync($"{character.DisplayName} was permanently deleted from {world.Definition.Name}.", cancellationToken).ConfigureAwait(false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException)
+        {
+            await telnet.WriteLineAsync($"Character deletion failed: {exception.Message}", cancellationToken).ConfigureAwait(false);
         }
     }
 

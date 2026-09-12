@@ -649,6 +649,50 @@ public sealed class RuntimeCharacterRepository
         }
     }
 
+    public RuntimeCharacterRecord DeleteCharacter(string accountId, string characterId, string worldId)
+    {
+        lock (_gate)
+        {
+            var normalizedAccountId = RuntimeIdentity.Normalize(accountId, "account");
+            var normalizedCharacterId = CanonicalCharacterId(characterId);
+            var account = TryLoadAccount(normalizedAccountId)
+                ?? throw new InvalidOperationException($"Account '{accountId}' was not found.");
+            var character = TryLoadCharacter(normalizedCharacterId)
+                ?? throw new InvalidOperationException($"Character '{characterId}' was not found.");
+
+            if (!character.AccountId.Equals(account.AccountId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Character/account ownership mismatch.");
+            if (!character.WorldId.Equals(worldId, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException($"Character '{character.DisplayName}' belongs to realm '{character.WorldId}', not '{worldId}'.");
+            if (!account.CharacterIds.Any(id => CanonicalCharacterId(id).Equals(normalizedCharacterId, StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidOperationException("Character is not present in the account slot list.");
+
+            var characterPath = CharacterPath(normalizedCharacterId);
+            var updatedAccount = account with
+            {
+                CharacterIds = account.CharacterIds
+                    .Where(id => !CanonicalCharacterId(id).Equals(normalizedCharacterId, StringComparison.OrdinalIgnoreCase))
+                    .ToArray(),
+                UpdatedAtUtc = DateTimeOffset.UtcNow
+            };
+
+            WriteAtomic(AccountPath(account.AccountId), updatedAccount);
+            try
+            {
+                File.Delete(characterPath);
+                File.Delete(characterPath + ".bak");
+            }
+            catch
+            {
+                WriteAtomic(characterPath, character, retainBackup: false);
+                WriteAtomic(AccountPath(account.AccountId), account);
+                throw;
+            }
+
+            return character;
+        }
+    }
+
     public void SaveCharacter(RuntimeCharacterRecord character, string reason = "runtime-mutation")
     {
         lock (_gate)
@@ -899,6 +943,8 @@ public sealed class RuntimeCharacterService
     public int MaximumCharactersPerAccountPerWorld => RuntimeCharacterRepository.MaximumCharactersPerAccountPerWorld;
     public IReadOnlyList<RuntimeCharacterRecord> ListAllCharacters() => _repository.ListAllCharacters();
     public RuntimeCharacterRecord? LoadCharacter(string id) => _repository.TryLoadCharacter(id);
+    public RuntimeCharacterRecord DeleteCharacter(string accountId, string characterId, string worldId) =>
+        _repository.DeleteCharacter(accountId, characterId, worldId);
     public RuntimeCharacterRecord LoginCharacter(string characterId, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool reconnect = false) =>
         _lifecycle.Login(characterId, sessionId, _repository.TryLoadCharacter, hooks, DateTimeOffset.UtcNow, reconnect);
     public RuntimeCharacterRecord LogoutCharacter(RuntimeCharacterRecord character, string sessionId, RuntimeCharacterLifecycleHooks hooks, bool graceful = true) =>

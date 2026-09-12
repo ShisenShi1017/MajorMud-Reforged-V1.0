@@ -110,7 +110,6 @@ internal static class Program
         manager.Register(new Workspace("editor", "Editor", new object(), true));
         manager.Register(new Workspace("librarium", "Librarium", new object(), true));
         manager.Register(new Workspace("characters", "Characters", new object(), true));
-        manager.Register(new Workspace("server", "Server", new object(), true));
         manager.Register(new Workspace("settings", "Settings", new object()));
         manager.Register(new Workspace("tools", "Tools", new object(), true));
         manager.Register(new Workspace("diagnostics", "Diagnostics", new object(), true));

@@ -1457,6 +1457,42 @@
                 </Grid>
             </TabItem>
 
+            <TabItem Header="CHARACTERS">
+                <Grid Margin="18">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="0,0,0,12">
+                        <TextBlock Text="Saved Characters" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock Text="Manage character saves across Classic and custom realms. Logged-in characters are protected from deletion."
+                                   TextWrapping="Wrap" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding ManagedCharacters}" SelectedItem="{Binding SelectedManagedCharacter}"
+                              AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                              HeadersVisibility="Column" GridLinesVisibility="Horizontal" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Character" Binding="{Binding CharacterName}" Width="1.4*"/>
+                            <DataGridTextColumn Header="World" Binding="{Binding WorldId}" Width="1*"/>
+                            <DataGridTextColumn Header="Race" Binding="{Binding RaceName}" Width="1*"/>
+                            <DataGridTextColumn Header="Class" Binding="{Binding ClassName}" Width="1*"/>
+                            <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="70"/>
+                            <DataGridTextColumn Header="Account" Binding="{Binding AccountId}" Width="1.2*"/>
+                            <DataGridTextColumn Header="Character ID" Binding="{Binding CharacterId}" Width="1.8*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="2" Margin="0,12,0,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding CharacterManagementStatus}" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        <WrapPanel Grid.Column="1">
+                            <Button Content="Reload" Command="{Binding ReloadCharactersCommand}" Style="{StaticResource EditorActionButtonStyle}"/>
+                            <Button Content="Delete Selected" Command="{Binding DeleteCharacterCommand}" Style="{StaticResource EditorPrimaryActionButtonStyle}"/>
+                        </WrapPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
             <TabItem Header="CLASSIC ADMIN">
                 <Grid Margin="18">
                     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>

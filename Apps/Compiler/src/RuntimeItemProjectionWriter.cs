@@ -54,6 +54,7 @@ internal static class RuntimeItemProjectionWriter
             var wornOn = ReadInt(equipmentData, "worn_on");
             var weaponType = ReadWeaponType(sourceRecord);
             if (wornOn == 0 && itemType.Equals("weapon", StringComparison.OrdinalIgnoreCase)) wornOn = 12;
+            if (wornOn == 0 && itemType.Equals("light_source", StringComparison.OrdinalIgnoreCase)) wornOn = 19;
             var slot = Slots.TryGetValue(wornOn, out var mappedSlot) ? mappedSlot : "UNKNOWN";
             if (slotOverrides.TryGetValue(id, out var overrideSlot))
             {

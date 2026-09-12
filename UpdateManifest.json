@@ -8,7 +8,7 @@
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
   "generatedClassicDataTrackedInGit": false,
-  "purpose": "Integrate RealmGate client/release naming, pathing/navigation assets, Borin runtime fixes, and the consolidated Character system while preserving effective server/BBS overlay authority.",
+  "purpose": "Integrate RealmGate client/release identity, consolidated Character systems, standalone generated-world enforcement, runtime fault containment, Host visibility, realm-scoped character deletion, and decoded LIGHT equipment behavior.",
   "currentValidation": {
     "entrypoint": "Tools/RealmGateValidator/Validate.ps1",
     "validator": {
@@ -31,11 +31,16 @@
       "RealmGate.App": "PASS; 0 warnings; 0 errors",
       "RealmGate.sln": "PASS; 0 warnings; 0 errors"
     },
+    "releaseIdentity": "RG icon and RealmGate metadata embedded; signing workflow verified fail-closed; trusted certificate not yet supplied",
+    "postClosureRuntimeHardening": "PASS; world/session containment, Host Sessions/Logs, character deletion, and LIGHT equipment readiness",
+    "decodeExhaustion": "PASS; 48/48 families; 2316/2316 fields; 0 unresolved",
+    "custom1StandaloneRuntime": "PASS; 962/962 spawns resolved; 1015 live NPCs; verified without Data/Classic present",
     "githubClassicParityClosure": "PASS"
   },
   "remainingIntegrationTests": [
     "Real external BBS MDB overlay/import",
-    "Real Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime"
+    "Real Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime",
+    "Trusted-signed RealmGate beta artifact and Microsoft Defender SmartScreen test"
   ],
   "documentation": {
     "authoritativeRoot": [

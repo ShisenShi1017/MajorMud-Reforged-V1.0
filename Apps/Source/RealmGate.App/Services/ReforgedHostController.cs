@@ -81,7 +81,7 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                 }
             };
 
-            _host = new ServerRuntimeHost(bootstrap.ProjectRoot, runtimeOptions);
+            _host = new ServerRuntimeHost(bootstrap.ProjectRoot, runtimeOptions, message => logger.Error(message));
             _host.Sessions.SessionsChanged += SessionsChanged;
             _host.Bootstrap();
             _runCts = CancellationTokenSource.CreateLinkedTokenSource(token);
@@ -99,6 +99,12 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
         }
         catch (Exception exception)
         {
+            if (_host is not null) _host.Sessions.SessionsChanged -= SessionsChanged;
+            _runCts?.Cancel();
+            _runCts?.Dispose();
+            _runCts = null;
+            _runTask = null;
+            _host = null;
             Set(HostControllerState.Failed, exception.Message);
             logger.Error("Embedded Host start failed.", exception);
             throw;
@@ -129,6 +135,10 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                 catch (TimeoutException)
                 {
                     logger.Error("Host did not stop within the graceful shutdown window.");
+                }
+                catch (Exception exception)
+                {
+                    logger.Error("The previous Host task ended with an error during shutdown; cleanup continued.", exception);
                 }
             }
 
@@ -190,23 +200,30 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
         return Path.GetFullPath(startDirectory ?? Directory.GetCurrentDirectory());
     }
 
-    private static void EnsureGeneratedCustomWorlds(string projectRoot, ServerRuntimeOptions options)
+    private void EnsureGeneratedCustomWorlds(string projectRoot, ServerRuntimeOptions options)
     {
         foreach (var world in options.Worlds.Where(world => world.RuntimeEnabled &&
                      world.Type.Equals("ReforgedCustom", StringComparison.OrdinalIgnoreCase)))
         {
-            var roomsPath = Path.Combine(projectRoot, world.DataRoot, world.RoomsFile);
-            var manifestPath = Path.Combine(projectRoot, world.DataRoot, "world_manifest.json");
-            if (File.Exists(roomsPath) && File.Exists(manifestPath)) continue;
-
-            var result = new LibrariumDataWriter().Compile(new LibrariumCompilerOptions(projectRoot, world.Id, Clean: true));
-            if (!result.Success)
+            try
             {
-                var errors = result.Diagnostics
-                    .Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error)
-                    .Select(diagnostic => $"{diagnostic.Code}: {diagnostic.Message}")
-                    .Take(5);
-                throw new InvalidOperationException($"Generated runtime data for custom world '{world.Id}' is missing and automatic compilation failed: {string.Join(" | ", errors)}");
+                var roomsPath = Path.Combine(projectRoot, world.DataRoot, world.RoomsFile);
+                var manifestPath = Path.Combine(projectRoot, world.DataRoot, "world_manifest.json");
+                if (File.Exists(roomsPath) && File.Exists(manifestPath)) continue;
+
+                var result = new LibrariumDataWriter().Compile(new LibrariumCompilerOptions(projectRoot, world.Id, Clean: true));
+                if (!result.Success)
+                {
+                    var errors = result.Diagnostics
+                        .Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error)
+                        .Select(diagnostic => $"{diagnostic.Code}: {diagnostic.Message}")
+                        .Take(5);
+                    logger.Error($"Custom world '{world.Id}' could not be generated and will remain unavailable while other worlds continue: {string.Join(" | ", errors)}");
+                }
+            }
+            catch (Exception exception)
+            {
+                logger.Error($"Custom world '{world.Id}' generation failed and the world will remain unavailable while other worlds continue.", exception);
             }
         }
     }

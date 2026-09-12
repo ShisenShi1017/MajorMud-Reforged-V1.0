@@ -31,7 +31,6 @@
             <Button Content="Creator Studio" Command="{Binding NavigateCommand}" CommandParameter="editor" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Librarium" Command="{Binding NavigateCommand}" CommandParameter="librarium" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Characters" Command="{Binding NavigateCommand}" CommandParameter="characters" Style="{StaticResource NavigationButtonStyle}"/>
-            <Button Content="Server" Command="{Binding NavigateCommand}" CommandParameter="server" Style="{StaticResource NavigationButtonStyle}"/>
             <Button Content="Tools" Command="{Binding NavigateCommand}" CommandParameter="tools" Style="{StaticResource NavigationButtonStyle}"/>
           </StackPanel>
         </DockPanel>

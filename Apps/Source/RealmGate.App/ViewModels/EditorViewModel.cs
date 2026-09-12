@@ -30,6 +30,18 @@ public sealed class ClassicCharacterAccessRow : ViewModelBase
     public bool HasSysopAccess { get => _hasSysopAccess; set => Set(ref _hasSysopAccess, value); }
 }
 
+public sealed class EditorCharacterRow(EditorCharacterRecord character) : ViewModelBase
+{
+    public EditorCharacterRecord Character { get; } = character;
+    public string CharacterId => Character.CharacterId;
+    public string CharacterName => Character.DisplayName;
+    public string AccountId => Character.AccountId;
+    public string WorldId => Character.WorldId;
+    public string RaceName => Character.RaceName;
+    public string ClassName => Character.ClassName;
+    public int Level => Character.Level;
+}
+
 public sealed class CustomWorldOverrideRow : ViewModelBase
 {
     public CustomWorldOverrideRow(CustomWorldOverrideSummary summary)
@@ -391,6 +403,8 @@ public sealed class EditorViewModel : ViewModelBase
     private bool _unlimitedItemsEnabled = true;
     private bool _everyoneCanUseSysGoto;
     private string _classicStatus = "Loading Classic settings...";
+    private string _characterManagementStatus = "Loading saved characters...";
+    private EditorCharacterRow? _selectedManagedCharacter;
     private string _projectRoot = string.Empty;
     private string _policyPath = string.Empty;
 
@@ -546,6 +560,8 @@ public sealed class EditorViewModel : ViewModelBase
         SimpleFamilies = _customService.GetEditableFamilies();
         SaveClassicCommand = new RelayCommand(SaveClassic);
         ReloadCommand = new RelayCommand(Load);
+        ReloadCharactersCommand = new RelayCommand(LoadManagedCharacters);
+        DeleteCharacterCommand = new RelayCommand(DeleteSelectedCharacter, () => SelectedManagedCharacter is not null);
         SaveCustomSettingsCommand = new RelayCommand(SaveCustomSettings);
         BuildCustomWorldCommand = new AsyncRelayCommand(BuildCustomWorldAsync);
         SaveOverrideCommand = new RelayCommand(SaveOverride);
@@ -624,6 +640,7 @@ public sealed class EditorViewModel : ViewModelBase
     }
 
     public ObservableCollection<ClassicCharacterAccessRow> Characters { get; } = [];
+    public ObservableCollection<EditorCharacterRow> ManagedCharacters { get; } = [];
     public ObservableCollection<CustomWorldOverrideRow> CustomOverrides { get; } = [];
     public ObservableCollection<CustomWorldObjectRow> BaseObjects { get; } = [];
     public ObservableCollection<CustomWorldObjectRow> SimpleObjects { get; } = [];
@@ -1106,6 +1123,8 @@ public sealed class EditorViewModel : ViewModelBase
 
     public ICommand SaveClassicCommand { get; }
     public ICommand ReloadCommand { get; }
+    public ICommand ReloadCharactersCommand { get; }
+    public ICommand DeleteCharacterCommand { get; }
     public ICommand SaveCustomSettingsCommand { get; }
     public ICommand BuildCustomWorldCommand { get; }
     public ICommand SaveOverrideCommand { get; }
@@ -1184,6 +1203,9 @@ public sealed class EditorViewModel : ViewModelBase
 
         using (RealmGatePerformanceTrace.Measure("EDITOR LOAD", "LoadClassic"))
             LoadClassic();
+
+        using (RealmGatePerformanceTrace.Measure("EDITOR LOAD", "LoadCharacters"))
+            LoadManagedCharacters();
 
         using (RealmGatePerformanceTrace.Measure("EDITOR LOAD", "LoadCustom"))
             LoadCustom();
@@ -1266,6 +1288,64 @@ public sealed class EditorViewModel : ViewModelBase
         catch (Exception exception)
         {
             ClassicStatus = "FAILED: " + exception.Message;
+        }
+    }
+
+    public EditorCharacterRow? SelectedManagedCharacter
+    {
+        get => _selectedManagedCharacter;
+        set
+        {
+            if (!Set(ref _selectedManagedCharacter, value)) return;
+            (DeleteCharacterCommand as RelayCommand)?.Raise();
+        }
+    }
+
+    public string CharacterManagementStatus
+    {
+        get => _characterManagementStatus;
+        private set => Set(ref _characterManagementStatus, value);
+    }
+
+    private void LoadManagedCharacters()
+    {
+        try
+        {
+            ManagedCharacters.Clear();
+            foreach (var character in _classicService.LoadAllCharacters())
+                ManagedCharacters.Add(new EditorCharacterRow(character));
+            SelectedManagedCharacter = null;
+            CharacterManagementStatus = $"{ManagedCharacters.Count} saved character(s) across all realms.";
+        }
+        catch (Exception exception)
+        {
+            CharacterManagementStatus = "FAILED: " + exception.Message;
+        }
+    }
+
+    private void DeleteSelectedCharacter()
+    {
+        var selected = SelectedManagedCharacter;
+        if (selected is null) return;
+
+        var result = System.Windows.MessageBox.Show(
+            $"Permanently delete {selected.CharacterName} from {selected.WorldId}? This cannot be undone.",
+            "Delete Character",
+            System.Windows.MessageBoxButton.YesNo,
+            System.Windows.MessageBoxImage.Warning,
+            System.Windows.MessageBoxResult.No);
+        if (result != System.Windows.MessageBoxResult.Yes) return;
+
+        try
+        {
+            _classicService.DeleteCharacter(selected.Character);
+            LoadClassic();
+            LoadManagedCharacters();
+            CharacterManagementStatus = $"Deleted {selected.CharacterName} from {selected.WorldId}.";
+        }
+        catch (Exception exception)
+        {
+            CharacterManagementStatus = "DELETE FAILED: " + exception.Message;
         }
     }
 

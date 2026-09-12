@@ -28,6 +28,9 @@ Generated/**/*.db3
 LocalGenerated/
 Dist/
 Release/
+!/Tools/Release/
+Tools/Release/*
+!/Tools/Release/Publish-RealmGate.ps1
 .local/
 .cache/
 

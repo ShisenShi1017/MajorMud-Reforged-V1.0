@@ -32,7 +32,7 @@
     },
     "decodeExhaustion": {
       "familiesConnected": "48/48",
-      "scalarFieldsConnected": "2312/2312",
+      "scalarFieldsConnected": "2316/2316",
       "unresolvedFamilies": 0,
       "unresolvedRecords": 0
     }
@@ -41,12 +41,16 @@
     "Reports/RuntimeVerification/majormud_parity_scorecard.json"
   ],
   "notYetFieldCertified": [
-    "External non-Reforged BBS MDB overlay/import with a real board database",
-    "Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime"
+    "External non-RealmGate BBS MDB overlay/import with a real board database",
+    "Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime",
+    "Trusted-signed RealmGate beta artifact and Microsoft Defender SmartScreen test"
   ],
   "notes": [
     "Documentation-only consolidation does not require rerunning decode exhaustion.",
     "Run build and affected client smokes after source changes.",
-    "Run the full current-health validator when runtime/data/validator authority changes."
+    "Run the full current-health validator when runtime/data/validator authority changes.",
+    "Generated world manifests must declare standalone_runtime and runtime_data_is_complete true, live_classic_fallback_allowed false, and a generation-time base_world_id for derived worlds.",
+    "RealmGate release branding is embedded, but the current local executable remains unsigned until a trusted certificate is supplied."
+    ,"Post-closure runtime hardening passed the 26/26 current-health validator and all 14 client smokes; character smoke covers LIGHT equip and permanent account-slot-safe deletion."
   ]
 }

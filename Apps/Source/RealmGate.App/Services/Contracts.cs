@@ -19,4 +19,4 @@ public interface IHostCleanupScheduler : IAsyncDisposable
     void UpdateLaunchOptions(HostLaunchOptions options);
 }
 public interface IErrorReporter { void Report(Exception exception, string context); }
-public interface IAppLogger { void Info(string message); void Error(string message, Exception? exception=null); IReadOnlyList<string> Recent { get; } }
+public interface IAppLogger { event EventHandler? Changed; void Info(string message); void Error(string message, Exception? exception=null); IReadOnlyList<string> Recent { get; } }

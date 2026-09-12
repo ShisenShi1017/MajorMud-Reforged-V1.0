@@ -8,8 +8,13 @@
 - Current-Health Validator: `26/26 PASS`
 - RealmGate Client Smokes: `14/14 PASS`
 - Release Build Baseline: `RealmGate app Release build and full solution — 0 warnings / 0 errors` in the current local verification
+- Release Identity: `RG icon and RealmGate metadata embedded; trusted Authenticode signing remains pending`
 - CodeUpdate0142 Validator: `PASS — 0 issues / 0 warnings / 0 errors`
 - CodeUpdate0142 Client Smokes: `14/14 PASS`
+- Generated World Contract: `standalone and runtime-complete; live Classic fallback forbidden`
+- Decode Exhaustion: `48/48 families; 2,316/2,316 fields; 0 unresolved`
+- Post-Closure Runtime Hardening: `world/session fault containment; Host sessions/logs; realm-scoped character deletion; LIGHT equipment readiness`
+- Latest Local Verification: `26/26 validator; 14/14 client smokes; direct App/Server/validator Release builds at 0 warnings / 0 errors`
 
 ## Numbering
 

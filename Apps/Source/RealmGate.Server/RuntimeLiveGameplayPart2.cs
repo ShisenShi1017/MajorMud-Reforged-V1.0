@@ -60,6 +60,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (relation?.TwoHanded == true) return "Two handed";
         return (item.EquippedSlot ?? relation?.Slot ?? "equipped").ToUpperInvariant() switch
         {
+            "LIGHT" => ClassicLightReadiness(catalog, item),
             "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "HAND" or "WIELD" => "One handed",
             "OFF_HAND" or "SECONDARY_HAND" => "Off hand",
             "ARMS" => "Arms",

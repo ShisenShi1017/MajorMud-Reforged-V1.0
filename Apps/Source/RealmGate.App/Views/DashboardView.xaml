@@ -8,7 +8,7 @@
       <UniformGrid Columns="3">
         <Button Content="Continue Last Session" Command="{Binding OpenWorkspaceCommand}" CommandParameter="play" Style="{StaticResource PrimaryButtonStyle}"/>
         <Button Content="Play Classic" Command="{Binding OpenWorkspaceCommand}" CommandParameter="play"/>
-        <Button Content="Connect to Host" Command="{Binding OpenWorkspaceCommand}" CommandParameter="server"/>
+        <Button Content="Open Host" Command="{Binding OpenWorkspaceCommand}" CommandParameter="host"/>
         <Button Content="Start Local Host" Command="{Binding StartLocalHostCommand}" Style="{StaticResource PrimaryButtonStyle}"/>
         <Button Content="Open Editor" Command="{Binding OpenWorkspaceCommand}" CommandParameter="editor"/>
         <Button Content="Open Librarium" Command="{Binding OpenWorkspaceCommand}" CommandParameter="librarium"/>

@@ -498,6 +498,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (relation?.TwoHanded == true) return "Weapon Hand";
         return (item.EquippedSlot ?? relation?.Slot ?? "equipped").ToUpperInvariant() switch
         {
+            "LIGHT" => ClassicLightReadiness(catalog, item),
             "MAIN_HAND" or "PRIMARY_HAND" or "WEAPON" or "WEAPON_HAND" or "HAND" or "WIELD" => "Weapon Hand",
             "OFF_HAND" or "SECONDARY_HAND" => "Off-Hand",
             "ARMS" => "Arms",
@@ -518,6 +519,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             "SHIELD" => "Off-Hand",
             var slot => System.Globalization.CultureInfo.InvariantCulture.TextInfo.ToTitleCase(slot.Replace('_', ' ').ToLowerInvariant())
         };
+    }
+
+    private static string ClassicLightReadiness(RuntimeItemCatalog catalog, RuntimeItemInstance item)
+    {
+        var definition = catalog.Require(item.CanonicalItemId);
+        var maximum = definition.MaximumUses > 0 ? definition.MaximumUses : Math.Max(item.Charges, 100);
+        var remaining = item.Charges < 0 ? maximum : Math.Clamp(item.Charges, 0, maximum);
+        return $"Readied {remaining}/{maximum}";
     }
 
     public string Save(RuntimeSession session)

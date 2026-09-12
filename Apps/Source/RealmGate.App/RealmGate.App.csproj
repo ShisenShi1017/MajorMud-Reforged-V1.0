@@ -9,6 +9,19 @@
     <Nullable>enable</Nullable>
     <AssemblyName>RealmGate</AssemblyName>
     <RootNamespace>RealmGate.App</RootNamespace>
+    <AssemblyTitle>RealmGate</AssemblyTitle>
+    <Product>RealmGate</Product>
+    <Company>RealmGate</Company>
+    <Authors>RealmGate contributors</Authors>
+    <Description>RealmGate game host, client, Creator Studio, Librarium, and Borin.</Description>
+    <Copyright>Copyright (c) 2026 RealmGate contributors</Copyright>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <InformationalVersion>0.1.0</InformationalVersion>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <ApplicationIcon>Assets\Branding\RealmGate.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>false</SelfContained>
     <PublishSingleFile>false</PublishSingleFile>
@@ -33,6 +46,11 @@
   <ItemGroup>
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
     <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
+  </ItemGroup>
+
+  <!-- Keep the high-resolution icon master beside the embedded multi-resolution ICO. -->
+  <ItemGroup>
+    <None Update="Assets\Branding\RealmGateIcon.png" />
   </ItemGroup>
 
   <!-- Pure-managed MDB/ACCDB reader used only to compare an external BBS database

@@ -2126,6 +2126,7 @@ Message: {message}
     private sealed class HarnessLogger : IAppLogger
     {
         private readonly List<string> _recent = [];
+        public event EventHandler? Changed { add { } remove { } }
         public IReadOnlyList<string> Recent => _recent;
         public void Info(string message) => _recent.Add(message);
         public void Error(string message, Exception? exception = null) =>

@@ -55,7 +55,7 @@ public partial class App : Application
             var cleanup = new HostCleanupScheduler(host, settings, logger);
             var layouts = new LayoutPersistenceService(settings);
             var manager = new WorkspaceManager(errors);
-            var hostViewModel = new HostViewModel(host, cleanup, settings);
+            var hostViewModel = new HostViewModel(host, cleanup, settings, logger);
             var dashboardViewModel = new DashboardViewModel(host, cleanup, manager, settings);
             var settingsViewModel = new SettingsViewModel(settings);
             var clientData = new ClientDataService(settings);
@@ -287,7 +287,6 @@ public partial class App : Application
             manager.Register(new LazyWorkspace("librarium", "Librarium", () => new LibrariumView(), true));
             manager.Register(new LazyWorkspace("forge", "Borin", () => new BorinForgeView { DataContext = forgeViewModel }));
             manager.Register(new LazyWorkspace("characters", "Characters", () => new CharacterView(clientSessions), true));
-            manager.Register(new LazyWorkspace("server", "Server", () => new PlaceholderView("Server", "Server profiles, connections, and dedicated-host controls will expand in later bundles."), true));
             manager.Register(new LazyWorkspace("settings", "Settings", () => new SettingsView { DataContext = settingsViewModel }));
             manager.Register(new LazyWorkspace("tools", "Tools", () => new PlaceholderView("Tools", "Compiler, validation, import, export, and diagnostics launch points."), true));
             manager.Register(new LazyWorkspace("diagnostics", "Diagnostics", () => new ClientDiagnosticsView { DataContext = clientDiagnosticsViewModel }, true));

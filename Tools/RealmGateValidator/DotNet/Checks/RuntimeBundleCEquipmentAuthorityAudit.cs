@@ -67,7 +67,14 @@ public static class RuntimeBundleCEquipmentAuthorityAudit
         var equipmentRecords = equipment.RootElement.GetProperty("records").EnumerateArray().ToArray();
         var slotRecords = slots.RootElement.GetProperty("records").EnumerateArray().ToArray();
         var ruleRecords = rules.RootElement.GetProperty("records").EnumerateArray().ToArray();
-        var itemIds = items.RootElement.GetProperty("records").EnumerateArray().Select(x => x.GetProperty("id").GetString()).Where(x => x is not null).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var itemRecords = items.RootElement.GetProperty("records").EnumerateArray().ToArray();
+        var itemIds = itemRecords.Select(x => x.GetProperty("id").GetString()).Where(x => x is not null).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var lightItemIds = itemRecords
+            .Where(x => x.TryGetProperty("item_type", out var type) && type.GetString()?.Equals("light_source", StringComparison.OrdinalIgnoreCase) == true)
+            .Select(x => x.GetProperty("id").GetString())
+            .Where(x => x is not null)
+            .Cast<string>()
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
         var slotIds = slotRecords.Select(x => x.GetProperty("id").GetString()).Where(x => x is not null).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         Check(equipmentRecords.Length > 0, "equipment records loaded");
@@ -76,6 +83,11 @@ public static class RuntimeBundleCEquipmentAuthorityAudit
         Check(equipmentRecords.All(x => x.TryGetProperty("item_id", out var id) && id.GetString() is { } value && itemIds.Contains(value)), "every equipment relationship resolves an item");
         Check(equipmentRecords.All(x => x.TryGetProperty("slot", out var slot) && slot.GetString() is { } value && slotIds.Contains(value)), "every equipment relationship resolves a legal slot");
         Check(equipmentRecords.Select(x => x.GetProperty("item_id").GetString()).Distinct(StringComparer.OrdinalIgnoreCase).Count() == equipmentRecords.Length, "equipment relationship identity is unique");
+        Check(lightItemIds.Count > 0, "generated light-source items loaded");
+        Check(lightItemIds.All(itemId => equipmentRecords.Any(x =>
+            x.GetProperty("item_id").GetString()?.Equals(itemId, StringComparison.OrdinalIgnoreCase) == true &&
+            x.GetProperty("slot").GetString()?.Equals("LIGHT", StringComparison.OrdinalIgnoreCase) == true)),
+            "every generated light source resolves to the LIGHT equipment channel");
         var multicolouredStaff = equipmentRecords.Single(x => x.GetProperty("item_id").GetString() == "item.1916");
         Check(multicolouredStaff.GetProperty("minimum_level").GetInt32() == 65 && multicolouredStaff.GetProperty("maximum_level").GetInt32() == 65, "item 1916 preserves decoded exact-level-65 equipment gate");
 

@@ -113,6 +113,7 @@ public static class ClassicDecodeExhaustionAudit
         "code_update", "compiler", "librarium_authority", "object_families_compiled", "objects_compiled",
         "files_written", "source_files", "field_inventory", "severity", "message", "path",
         "output_root", "runtime_loader_contract", "source_of_truth", "generated_output",
+        "base_world_id", "standalone_runtime", "runtime_data_is_complete", "live_classic_fallback_allowed",
         "record_parts", "chunked_records", "runtime_projection"
     };
 

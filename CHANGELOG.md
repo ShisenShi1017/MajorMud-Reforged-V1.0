@@ -9,6 +9,18 @@ This changelog is intentionally compact. Detailed historical pass-by-pass notes 
 - Consolidated the Character page around Summary, Equipment Planner, Statistics/source breakdowns, Spells & Effects, and Progression while preserving effective server/BBS overlay authority.
 - Hardened Borin persistent-character adoption and corrected parity-smoke/release target paths.
 - RealmGate app Release build and full solution build pass with 0 warnings / 0 errors; bootstrap validator passes with 0 issues; all 14 client smokes pass; pushed GitHub Classic parity closure passes. CodeUpdate0142 is closed.
+- Post-closure consolidation made every generated world manifest an enforced standalone-runtime contract and removed live derived-world permission to fall back to Classic.
+- Corrected Custom-world MDB NPC projection so an absent group field no longer overwrites inherited group identity with zero; regenerated Custom1 resolves all 962 spawn records and materializes 1,015 live NPCs.
+- Routed unregistered plain text directly to SAY, preserved direct world selection, and verified Custom1 living-world, economy, MegaMUD/SAY, save isolation, and no-Classic-runtime-fallback behavior.
+- Updated decode exhaustion for the four enforced world-manifest contract fields; the exact baseline is now 48/48 families and 2,316/2,316 fields with zero disconnected or unresolved fields.
+- Added the red-and-black beveled `RG` application icon, explicit RealmGate executable metadata, and an `asInvoker` Windows manifest.
+- Added a fail-closed RealmGate release publisher that supports trusted certificate-store signing, SHA-256/RFC 3161 timestamping, and post-sign verification without storing private credentials in Git.
+- Confirmed the current local executable is unsigned; trusted code-signing and exact-artifact SmartScreen testing remain required before claiming the antivirus/reputation warning resolved.
+- Added account-owner character deletion under each selected world's character menu and a world-aware Creator Studio Characters tab; deletion validates ownership, realm identity, active-session safety, account-slot cleanup, and save removal.
+- Moved the live server session list and runtime/application log view under Host, removed the obsolete separate Server navigation entry, and prevented Host UI command exceptions from closing RealmGate.
+- Isolated generated-world load failures and Telnet session failures so one invalid custom world or character session does not stop healthy hosted worlds.
+- Compiled decoded light sources into the existing `LIGHT` equipment channel and rendered their remaining charge readiness instead of a body slot.
+- Verified the hardening with the 26/26 full validator, 14/14 client smokes, clean direct App/Server/validator Release builds, and targeted create/restore/LIGHT-equip/delete/account-cleanup coverage.
 
 ## CodeUpdate0141 — Validated Client and Repository Consolidation
 

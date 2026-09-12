@@ -29,6 +29,10 @@ public sealed class GeneratedWorldDataCatalog
     public string CompileManifestPath { get; init; } = string.Empty;
     public string WorldManifestHash { get; init; } = string.Empty;
     public string CompileManifestHash { get; init; } = string.Empty;
+    public bool StandaloneRuntime { get; init; }
+    public string? BaseWorldId { get; init; }
+    public bool RuntimeDataIsComplete { get; init; }
+    public bool LiveClassicFallbackAllowed { get; init; }
     public IReadOnlyDictionary<string, GeneratedWorldFamilyStatus> Families { get; init; } = new Dictionary<string, GeneratedWorldFamilyStatus>(StringComparer.OrdinalIgnoreCase);
     public IReadOnlyList<string> Diagnostics { get; init; } = Array.Empty<string>();
     public bool Passed => Diagnostics.Count == 0 && Families.Values.All(family => family.Exists && family.RecordCount >= 0);
@@ -101,7 +105,7 @@ public sealed class GeneratedWorldDataCatalog
 
         var worldManifestPath = Path.Combine(dataRoot, "world_manifest.json");
         var compileManifestPath = Path.Combine(dataRoot, "compile_manifest.json");
-        ValidateManifestWorldId(worldManifestPath, definition, diagnostics);
+        var worldManifest = ValidateWorldManifest(worldManifestPath, definition, diagnostics);
         ValidateManifestWorldId(compileManifestPath, definition, diagnostics);
 
         return new GeneratedWorldDataCatalog
@@ -112,9 +116,69 @@ public sealed class GeneratedWorldDataCatalog
             CompileManifestPath = compileManifestPath,
             WorldManifestHash = File.Exists(worldManifestPath) ? ComputeSha256(worldManifestPath) : string.Empty,
             CompileManifestHash = File.Exists(compileManifestPath) ? ComputeSha256(compileManifestPath) : string.Empty,
+            StandaloneRuntime = worldManifest.StandaloneRuntime,
+            BaseWorldId = worldManifest.BaseWorldId,
+            RuntimeDataIsComplete = worldManifest.RuntimeDataIsComplete,
+            LiveClassicFallbackAllowed = worldManifest.LiveClassicFallbackAllowed,
             Families = families,
             Diagnostics = diagnostics
         };
+    }
+
+    private static GeneratedWorldManifestContract ValidateWorldManifest(
+        string path,
+        WorldRuntimeDefinition definition,
+        List<string> diagnostics)
+    {
+        if (!File.Exists(path)) return new(false, null, false, false);
+
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllText(path));
+            var root = document.RootElement;
+            ValidateManifestWorldId(root, path, definition, diagnostics);
+
+            var standalone = ReadRequiredBoolean(root, "standalone_runtime", path, diagnostics);
+            var complete = ReadRequiredBoolean(root, "runtime_data_is_complete", path, diagnostics);
+            var fallbackAllowed = ReadRequiredBoolean(root, "live_classic_fallback_allowed", path, diagnostics);
+            var baseWorldId = root.TryGetProperty("base_world_id", out var baseValue) &&
+                              baseValue.ValueKind == JsonValueKind.String
+                ? baseValue.GetString()
+                : null;
+
+            if (!standalone)
+                diagnostics.Add($"World '{definition.Id}' is not declared as a standalone runtime dataset: {path}");
+            if (!complete)
+                diagnostics.Add($"World '{definition.Id}' is not declared runtime-complete: {path}");
+            if (fallbackAllowed)
+                diagnostics.Add($"World '{definition.Id}' permits live Classic fallback, which RealmGate forbids: {path}");
+
+            var derivedWorld = !definition.ClassicProtected &&
+                               !definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+            if (derivedWorld && string.IsNullOrWhiteSpace(baseWorldId))
+                diagnostics.Add($"Derived world '{definition.Id}' does not declare its generation-time base_world_id: {path}");
+
+            return new(standalone, baseWorldId, complete, fallbackAllowed);
+        }
+        catch (JsonException ex)
+        {
+            diagnostics.Add($"Manifest could not be parsed: {path}: {ex.Message}");
+            return new(false, null, false, false);
+        }
+    }
+
+    private static bool ReadRequiredBoolean(
+        JsonElement root,
+        string propertyName,
+        string path,
+        List<string> diagnostics)
+    {
+        if (root.TryGetProperty(propertyName, out var value) &&
+            value.ValueKind is JsonValueKind.True or JsonValueKind.False)
+            return value.GetBoolean();
+
+        diagnostics.Add($"Manifest missing required Boolean '{propertyName}': {path}");
+        return false;
     }
 
     private static int CountRecords(string path, List<string> diagnostics)
@@ -175,21 +239,28 @@ public sealed class GeneratedWorldDataCatalog
         try
         {
             using var document = JsonDocument.Parse(File.ReadAllText(path));
-            if (!document.RootElement.TryGetProperty("world_id", out var worldId) || worldId.ValueKind != JsonValueKind.String)
-            {
-                diagnostics.Add($"Manifest missing world_id: {path}");
-                return;
-            }
-
-            if (!string.Equals(worldId.GetString(), definition.Id, StringComparison.OrdinalIgnoreCase))
-            {
-                diagnostics.Add($"Manifest world_id '{worldId.GetString()}' does not match configured world '{definition.Id}': {path}");
-            }
+            ValidateManifestWorldId(document.RootElement, path, definition, diagnostics);
         }
         catch (JsonException ex)
         {
             diagnostics.Add($"Manifest could not be parsed: {path}: {ex.Message}");
         }
+    }
+
+    private static void ValidateManifestWorldId(
+        JsonElement root,
+        string path,
+        WorldRuntimeDefinition definition,
+        List<string> diagnostics)
+    {
+        if (!root.TryGetProperty("world_id", out var worldId) || worldId.ValueKind != JsonValueKind.String)
+        {
+            diagnostics.Add($"Manifest missing world_id: {path}");
+            return;
+        }
+
+        if (!string.Equals(worldId.GetString(), definition.Id, StringComparison.OrdinalIgnoreCase))
+            diagnostics.Add($"Manifest world_id '{worldId.GetString()}' does not match configured world '{definition.Id}': {path}");
     }
 
     private static string ComputeSha256(string path)
@@ -199,6 +270,12 @@ public sealed class GeneratedWorldDataCatalog
         return Convert.ToHexString(hash).ToLowerInvariant();
     }
 }
+
+internal sealed record GeneratedWorldManifestContract(
+    bool StandaloneRuntime,
+    string? BaseWorldId,
+    bool RuntimeDataIsComplete,
+    bool LiveClassicFallbackAllowed);
 
 public sealed class GeneratedWorldFamilyStatus
 {
