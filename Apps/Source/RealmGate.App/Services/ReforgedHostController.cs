@@ -41,6 +41,11 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
 
             Set(HostControllerState.Starting, "Starting");
             var resolvedProjectRoot = ResolveProjectRoot(options.ProjectRoot);
+            var configured = RuntimeDataBootstrapper.Prepare(
+                resolvedProjectRoot,
+                logger,
+                message => Set(HostControllerState.Starting, message));
+
             var bootstrap = new ServerBootstrap().Run(resolvedProjectRoot);
             if (!bootstrap.Passed || bootstrap.ProjectRoot is null)
             {
@@ -60,8 +65,6 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                     $"Requested root: '{options.ProjectRoot}'. Resolved root: '{resolvedProjectRoot}'.{suffix}");
             }
 
-            var configured = ServerRuntimeOptions.Load(bootstrap.ProjectRoot);
-            EnsureGeneratedCustomWorlds(bootstrap.ProjectRoot, configured);
             var runtimeOptions = new ServerRuntimeOptions
             {
                 HostName = configured.HostName,
@@ -186,46 +189,18 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
             while (directory is not null)
             {
                 var root = directory.FullName;
-                if (File.Exists(Path.Combine(root, "ProjectManifest.json")) &&
-                    Directory.Exists(Path.Combine(root, "Apps")) &&
-                    Directory.Exists(Path.Combine(root, "Core")))
-                {
+                var hasManifest = File.Exists(Path.Combine(root, "ProjectManifest.json"));
+                var hasLibrarium = Directory.Exists(Path.Combine(root, "Librarium"));
+                var hasRepositoryLayout = Directory.Exists(Path.Combine(root, "Apps")) &&
+                                          Directory.Exists(Path.Combine(root, "Core"));
+                if (hasManifest && (hasLibrarium || hasRepositoryLayout))
                     return root;
-                }
 
                 directory = directory.Parent;
             }
         }
 
-        return Path.GetFullPath(startDirectory ?? Directory.GetCurrentDirectory());
-    }
-
-    private void EnsureGeneratedCustomWorlds(string projectRoot, ServerRuntimeOptions options)
-    {
-        foreach (var world in options.Worlds.Where(world => world.RuntimeEnabled &&
-                     world.Type.Equals("ReforgedCustom", StringComparison.OrdinalIgnoreCase)))
-        {
-            try
-            {
-                var roomsPath = Path.Combine(projectRoot, world.DataRoot, world.RoomsFile);
-                var manifestPath = Path.Combine(projectRoot, world.DataRoot, "world_manifest.json");
-                if (File.Exists(roomsPath) && File.Exists(manifestPath)) continue;
-
-                var result = new LibrariumDataWriter().Compile(new LibrariumCompilerOptions(projectRoot, world.Id, Clean: true));
-                if (!result.Success)
-                {
-                    var errors = result.Diagnostics
-                        .Where(diagnostic => diagnostic.Severity == DiagnosticSeverity.Error)
-                        .Select(diagnostic => $"{diagnostic.Code}: {diagnostic.Message}")
-                        .Take(5);
-                    logger.Error($"Custom world '{world.Id}' could not be generated and will remain unavailable while other worlds continue: {string.Join(" | ", errors)}");
-                }
-            }
-            catch (Exception exception)
-            {
-                logger.Error($"Custom world '{world.Id}' generation failed and the world will remain unavailable while other worlds continue.", exception);
-            }
-        }
+        return Path.GetFullPath(startDirectory ?? AppContext.BaseDirectory);
     }
 
     private void SessionsChanged(object? sender, EventArgs eventArgs) =>
