@@ -6,6 +6,7 @@ param(
     [string]$SigningThumbprint = $env:REALMGATE_SIGNING_THUMBPRINT,
     [string]$TimestampUrl = "http://timestamp.digicert.com",
     [switch]$PublicRelease,
+    [switch]$FrameworkDependent,
     [switch]$RequireTrustedSignature
 )
 
@@ -14,6 +15,8 @@ $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 $project = Join-Path $repoRoot "Apps\Source\RealmGate.App\RealmGate.App.csproj"
 $publishDirectory = Join-Path $repoRoot $(if ($PublicRelease) { "Release\RealmGate-Public" } else { "Release\RealmGate" })
 $publicReleaseValue = $PublicRelease.IsPresent.ToString().ToLowerInvariant()
+$selfContained = $PublicRelease.IsPresent -and -not $FrameworkDependent.IsPresent
+$selfContainedValue = $selfContained.ToString().ToLowerInvariant()
 
 if ($RequireTrustedSignature -and [string]::IsNullOrWhiteSpace($SigningThumbprint)) {
     throw "A trusted signature is required. Set REALMGATE_SIGNING_THUMBPRINT or pass -SigningThumbprint."
@@ -60,13 +63,14 @@ if (Test-Path -LiteralPath $publishDirectory) {
     Remove-Item -LiteralPath $publishDirectory -Recurse -Force
 }
 
-Write-Host "Publishing RealmGate ($Configuration, $RuntimeIdentifier, framework-dependent, public=$publicReleaseValue)..."
+$deploymentMode = if ($selfContained) { "self-contained" } else { "framework-dependent" }
+Write-Host "Publishing RealmGate ($Configuration, $RuntimeIdentifier, $deploymentMode, public=$publicReleaseValue)..."
 $publishArguments = @(
     "publish",
     $project,
     "--configuration", $Configuration,
     "--runtime", $RuntimeIdentifier,
-    "--self-contained", "false",
+    "--self-contained", $selfContainedValue,
     "-p:NuGetAudit=false",
     "-p:PublishSingleFile=false",
     "-p:PublicRelease=$publicReleaseValue",
