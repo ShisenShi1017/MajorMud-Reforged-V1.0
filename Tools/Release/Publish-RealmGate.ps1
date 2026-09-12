@@ -5,13 +5,15 @@ param(
     [string]$RuntimeIdentifier = "win-x64",
     [string]$SigningThumbprint = $env:REALMGATE_SIGNING_THUMBPRINT,
     [string]$TimestampUrl = "http://timestamp.digicert.com",
+    [switch]$PublicRelease,
     [switch]$RequireTrustedSignature
 )
 
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 $project = Join-Path $repoRoot "Apps\Source\RealmGate.App\RealmGate.App.csproj"
-$publishDirectory = Join-Path $repoRoot "Release\RealmGate"
+$publishDirectory = Join-Path $repoRoot $(if ($PublicRelease) { "Release\RealmGate-Public" } else { "Release\RealmGate" })
+$publicReleaseValue = $PublicRelease.IsPresent.ToString().ToLowerInvariant()
 
 if ($RequireTrustedSignature -and [string]::IsNullOrWhiteSpace($SigningThumbprint)) {
     throw "A trusted signature is required. Set REALMGATE_SIGNING_THUMBPRINT or pass -SigningThumbprint."
@@ -54,7 +56,11 @@ function Resolve-SigningCertificate {
     throw "The signing certificate '$normalized' was not found in CurrentUser\\My or LocalMachine\\My."
 }
 
-Write-Host "Publishing RealmGate ($Configuration, $RuntimeIdentifier, framework-dependent)..."
+if (Test-Path -LiteralPath $publishDirectory) {
+    Remove-Item -LiteralPath $publishDirectory -Recurse -Force
+}
+
+Write-Host "Publishing RealmGate ($Configuration, $RuntimeIdentifier, framework-dependent, public=$publicReleaseValue)..."
 $publishArguments = @(
     "publish",
     $project,
@@ -63,7 +69,7 @@ $publishArguments = @(
     "--self-contained", "false",
     "-p:NuGetAudit=false",
     "-p:PublishSingleFile=false",
-    "-p:PublicRelease=false",
+    "-p:PublicRelease=$publicReleaseValue",
     "-p:PublishDir=$publishDirectory\"
 )
 & dotnet @publishArguments
@@ -75,6 +81,14 @@ $executable = Join-Path $publishDirectory "RealmGate.exe"
 if (-not (Test-Path -LiteralPath $executable)) {
     throw "Published RealmGate.exe was not found at '$executable'."
 }
+
+$noticeSource = Join-Path $repoRoot "ThirdPartyLicenses"
+$noticeDestination = Join-Path $publishDirectory "ThirdPartyLicenses"
+if (-not (Test-Path -LiteralPath $noticeSource)) {
+    throw "Third-party notices were not found at '$noticeSource'."
+}
+New-Item -ItemType Directory -Path $noticeDestination -Force | Out-Null
+Copy-Item -Path (Join-Path $noticeSource "*") -Destination $noticeDestination -Force
 
 if ([string]::IsNullOrWhiteSpace($SigningThumbprint)) {
     Write-Warning "RealmGate was published unsigned. Windows SmartScreen may warn until a trusted publisher signature is applied."

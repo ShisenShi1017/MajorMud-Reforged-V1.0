@@ -1,5 +1,7 @@
 # Changelog
 
+- Added a repeatable Borin-free `-PublicRelease` publishing mode with isolated `Release\RealmGate-Public` output and public-safe executable metadata for Beta 0.1 distribution.
+
 This changelog is intentionally compact. Detailed historical pass-by-pass notes were retired during CodeUpdate0141; Git history remains the historical record.
 
 ## CodeUpdate0142 — RealmGate Client and Character Integration

@@ -121,6 +121,14 @@ Publish the complete app, including Borin, with:
 powershell -ExecutionPolicy Bypass -File .\Tools\Release\Publish-RealmGate.ps1
 ```
 
+Publish the public beta without Borin or private AI dependencies with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Tools\Release\Publish-RealmGate.ps1 -PublicRelease
+```
+
+The Borin-free output is written separately to `Release\RealmGate-Public\`. Distribute the complete folder because this framework-dependent build requires its accompanying DLLs.
+
 The publisher preserves the antivirus-friendly unpacked layout and reports clearly when the result is unsigned. For a distributable beta, install a trusted code-signing certificate in the Windows certificate store and run:
 
 ```powershell

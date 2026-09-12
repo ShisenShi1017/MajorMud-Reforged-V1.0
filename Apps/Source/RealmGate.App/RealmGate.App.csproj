@@ -13,7 +13,8 @@
     <Product>RealmGate</Product>
     <Company>RealmGate</Company>
     <Authors>RealmGate contributors</Authors>
-    <Description>RealmGate game host, client, Creator Studio, Librarium, and Borin.</Description>
+    <Description Condition="'$(PublicRelease)' != 'true'">RealmGate game host, client, Creator Studio, Librarium, and Borin.</Description>
+    <Description Condition="'$(PublicRelease)' == 'true'">RealmGate game host, client, Creator Studio, and Librarium.</Description>
     <Copyright>Copyright (c) 2026 RealmGate contributors</Copyright>
     <Version>0.1.0</Version>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
