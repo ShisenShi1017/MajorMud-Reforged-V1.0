@@ -58,7 +58,7 @@ function Get-LibrariumSnapshot {
         Get-ChildItem -LiteralPath $Root -Recurse -File |
             Sort-Object FullName |
             ForEach-Object {
-                $relative = [IO.Path]::GetRelativePath($Root, $_.FullName).Replace('\', '/')
+                $relative = (($_.FullName.Substring($Root.Length)) -replace '^[\\/]+', '') -replace '\\', '/'
                 $hash = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
                 "$relative|$hash"
             }
