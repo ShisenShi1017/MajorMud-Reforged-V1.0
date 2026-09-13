@@ -31,6 +31,16 @@ jobs:
         shell: powershell
         run: choco install innosetup --yes --no-progress
 
+      - name: Remove private Custom1 content from public staging source
+        shell: powershell
+        run: |
+          $custom1 = Join-Path $env:GITHUB_WORKSPACE 'Librarium\WorldOverrides\Custom1'
+          if (Test-Path -LiteralPath $custom1) {
+            Remove-Item -LiteralPath $custom1 -Recurse -Force
+          }
+          New-Item -ItemType Directory -Path $custom1 -Force | Out-Null
+          Write-Host 'Public beta Custom1 starts clean. Testers can import their own MDB locally.'
+
       - name: Build self-contained public beta packages
         shell: powershell
         env:
