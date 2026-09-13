@@ -51,6 +51,20 @@ function Copy-RuntimeLibrariumFile {
     Copy-Item -LiteralPath $source -Destination $destination -Force
 }
 
+function Get-LibrariumSnapshot {
+    param([Parameter(Mandatory = $true)][string]$Root)
+
+    return @(
+        Get-ChildItem -LiteralPath $Root -Recurse -File |
+            Sort-Object FullName |
+            ForEach-Object {
+                $relative = [IO.Path]::GetRelativePath($Root, $_.FullName).Replace('\', '/')
+                $hash = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+                "$relative|$hash"
+            }
+    )
+}
+
 if (Test-Path -LiteralPath $packageDirectory) {
     Remove-Item -LiteralPath $packageDirectory -Recurse -Force
 }
@@ -155,6 +169,7 @@ Copy-Item -LiteralPath $worldOverridesSource -Destination $worldOverridesDestina
 $requiredRuntimePaths = @(
     "RealmGate.exe",
     "RealmGate.Compiler.dll",
+    "RealmGate.Server.Runtime.dll",
     "ProjectManifest.json",
     "Config\server.worlds.json",
     "Librarium\RealmGate.librarium",
@@ -187,6 +202,7 @@ foreach ($directoryName in $forbiddenLibrariumDirectories) {
 
 $librariumFiles = @(Get-ChildItem -LiteralPath $librariumRoot -Recurse -File)
 Write-Host "Compact public Librarium staged with $($librariumFiles.Count) loose/bundle file(s)."
+$librariumSnapshotBeforeGeneration = Get-LibrariumSnapshot -Root $librariumRoot
 
 if (Test-Path -LiteralPath (Join-Path $runtimeRoot "Data\Classic")) {
     throw "Generated Data/Classic must not be shipped as authoritative public content. It must be rebuilt from Librarium locally."
@@ -195,6 +211,7 @@ if (Test-Path -LiteralPath (Join-Path $runtimeRoot "Data\Classic")) {
 Write-Host "Verifying compact packaged Librarium can regenerate all enabled runtime worlds..."
 $dataRoot = Join-Path $runtimeRoot "Data"
 New-Item -ItemType Directory -Path $dataRoot -Force | Out-Null
+$fullDataRoot = [IO.Path]::GetFullPath($dataRoot)
 $worldConfig = Get-Content -LiteralPath (Join-Path $runtimeRoot "Config\server.worlds.json") -Raw | ConvertFrom-Json
 $enabledWorlds = @($worldConfig.worlds | Where-Object { $_.runtimeEnabled -eq $true })
 if ($enabledWorlds.Count -eq 0) {
@@ -202,21 +219,39 @@ if ($enabledWorlds.Count -eq 0) {
 }
 
 foreach ($world in $enabledWorlds) {
-    Write-Host "  Generating $($world.id) from compact staged Librarium..."
-    & dotnet $compilerDll build --root $runtimeRoot --world $world.id --clean
+    $configuredOutputRoot = [IO.Path]::GetFullPath((Join-Path $runtimeRoot ([string]$world.dataRoot)))
+    $dataPrefix = $fullDataRoot.TrimEnd('\', '/') + [IO.Path]::DirectorySeparatorChar
+    if (-not ($configuredOutputRoot -ieq $fullDataRoot) -and -not $configuredOutputRoot.StartsWith($dataPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "World '$($world.id)' has invalid dataRoot '$($world.dataRoot)'. Generated runtime worlds must remain under Data/."
+    }
+
+    Write-Host "  Generating $($world.id) into $configuredOutputRoot from compact staged Librarium..."
+    & dotnet $compilerDll build --root $runtimeRoot --world $world.id --clean --output $configuredOutputRoot
     if ($LASTEXITCODE -ne 0) {
         throw "Compact packaged Librarium failed to generate world '$($world.id)' (exit $LASTEXITCODE)."
     }
 
-    $normalizedWorld = if ($world.id -ieq "classic") { "Classic" } else { [string]$world.id }
-    $generatedRooms = Join-Path $runtimeRoot "Data\$normalizedWorld\rooms.json"
-    $generatedManifest = Join-Path $runtimeRoot "Data\$normalizedWorld\world_manifest.json"
+    $generatedRooms = Join-Path $configuredOutputRoot ([string]$world.roomsFile)
+    $generatedManifest = Join-Path $configuredOutputRoot "world_manifest.json"
     if (-not (Test-Path -LiteralPath $generatedRooms) -or -not (Test-Path -LiteralPath $generatedManifest)) {
-        throw "World '$($world.id)' generation did not produce required runtime files."
+        throw "World '$($world.id)' generation did not produce required runtime files in '$configuredOutputRoot'."
     }
 }
 
-Write-Host "Compact Librarium regeneration test passed. Removing disposable generated Data before packaging..."
+$librariumSnapshotAfterGeneration = Get-LibrariumSnapshot -Root $librariumRoot
+$librariumChanges = @(Compare-Object -ReferenceObject $librariumSnapshotBeforeGeneration -DifferenceObject $librariumSnapshotAfterGeneration)
+if ($librariumChanges.Count -ne 0) {
+    $changeText = ($librariumChanges | Out-String).Trim()
+    throw "Runtime Data generation modified the staged Librarium. Librarium must remain authoritative/read-only during generation.$([Environment]::NewLine)$changeText"
+}
+
+foreach ($forbiddenGeneratedDirectory in @("Data", "Classic", "Custom1")) {
+    if (Test-Path -LiteralPath (Join-Path $librariumRoot $forbiddenGeneratedDirectory)) {
+        throw "Runtime Data generation created '$forbiddenGeneratedDirectory' inside Librarium. Generated worlds must exist only under Data/."
+    }
+}
+
+Write-Host "Compact Librarium regeneration test passed without mutating Librarium. Removing disposable generated Data before packaging..."
 Remove-Item -LiteralPath $dataRoot -Recurse -Force
 
 Write-Host "Creating portable ZIP..."
