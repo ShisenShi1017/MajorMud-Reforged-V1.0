@@ -17,7 +17,7 @@ public sealed record LibrariumRuntimeBundleResult(
 /// <summary>
 /// Compact public-release representation of the authoritative Librarium object projection.
 /// The private repository keeps the full audit/evidence tree. Public installs carry this bundle
-/// plus writable WorldOverrides and the promoted room-description records required by generation.
+/// plus writable WorldOverrides and the promoted runtime bridge records required by generation.
 /// </summary>
 public static class LibrariumRuntimeBundle
 {
@@ -109,6 +109,8 @@ public static class LibrariumRuntimeBundle
 
         try
         {
+            var projectRoot = Directory.GetParent(Path.GetFullPath(librariumRoot))?.FullName
+                ?? throw new InvalidDataException("Runtime Librarium root has no project parent directory.");
             using var archive = ZipFile.OpenRead(bundlePath);
             var manifestEntry = archive.GetEntry(ManifestEntryName)
                 ?? throw new InvalidDataException("Runtime Librarium bundle manifest was not found.");
@@ -143,8 +145,17 @@ public static class LibrariumRuntimeBundle
                     .OfType<JsonObject>()
                     .Select(record => (JsonObject)record.DeepClone())
                     .ToArray();
-                var source = $"{bundlePath}!/{entry.FullName}";
-                families.Add(new LibrariumFamily(familyName, source, records, new[] { source }));
+
+                // Keep the original authoritative source locations as the family provenance even
+                // when the records themselves are read from RealmGate.librarium. A small number of
+                // promoted runtime authorities (currently the character foundation) intentionally
+                // resolve a sibling source_file at compile time. Public packaging may stage that
+                // one promoted source beside its original path without restoring the audit tree.
+                var originalSources = ResolveOriginalSourceFiles(root, projectRoot);
+                var virtualSource = $"{bundlePath}!/{entry.FullName}";
+                var sourceFiles = originalSources.Count > 0 ? originalSources : new[] { virtualSource };
+                var source = sourceFiles[0];
+                families.Add(new LibrariumFamily(familyName, source, records, sourceFiles));
             }
 
             if (families.Count == 0)
@@ -166,6 +177,30 @@ public static class LibrariumRuntimeBundle
                 bundlePath));
             return Array.Empty<LibrariumFamily>();
         }
+    }
+
+    private static IReadOnlyList<string> ResolveOriginalSourceFiles(JsonObject root, string projectRoot)
+    {
+        if (root["source_files"] is not JsonArray sourceArray) return Array.Empty<string>();
+
+        var sources = new List<string>();
+        foreach (var sourceNode in sourceArray)
+        {
+            var relative = sourceNode?.GetValue<string>()?.Trim();
+            if (string.IsNullOrWhiteSpace(relative)) continue;
+
+            var fullPath = Path.GetFullPath(Path.Combine(
+                projectRoot,
+                relative.Replace('/', Path.DirectorySeparatorChar)));
+            var relativeToProject = Path.GetRelativePath(projectRoot, fullPath);
+            if (relativeToProject == ".." ||
+                relativeToProject.StartsWith($"..{Path.DirectorySeparatorChar}", StringComparison.Ordinal))
+                throw new InvalidDataException($"Runtime Librarium source path escapes the project root: '{relative}'.");
+
+            sources.Add(fullPath);
+        }
+
+        return sources;
     }
 
     private static void WriteJsonEntry(ZipArchive archive, string entryName, JsonNode node)
