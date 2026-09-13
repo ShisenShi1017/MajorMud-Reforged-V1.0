@@ -36,6 +36,10 @@
     <PublicRelease Condition="'$(PublicRelease)' == ''">false</PublicRelease>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(PublicRelease)' == 'true'">
+    <DefineConstants>$(DefineConstants);PUBLIC_RELEASE</DefineConstants>
+  </PropertyGroup>
+
   <!-- Release builds and publishes always land in the repo-level release application folder. -->
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <OutputPath>$(MSBuildThisFileDirectory)..\..\..\Release\RealmGate\</OutputPath>
