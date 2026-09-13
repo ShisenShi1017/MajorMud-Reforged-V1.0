@@ -46,7 +46,11 @@ public sealed class RuntimeClassicNarrativeCatalog
 
     public static RuntimeClassicNarrativeCatalog Load(string projectRoot, string worldId)
     {
-        var dataRoot = Path.Combine(projectRoot, "Data", worldId);
+        var configuredWorld = ServerRuntimeOptions.Load(projectRoot).Worlds
+            .FirstOrDefault(world => world.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase));
+        var relativeDataRoot = configuredWorld?.DataRoot
+            ?? Path.Combine("Data", worldId.Equals("classic", StringComparison.OrdinalIgnoreCase) ? "Classic" : worldId);
+        var dataRoot = Path.GetFullPath(Path.Combine(projectRoot, relativeDataRoot));
         var contracts = ReadRecords(Path.Combine(dataRoot, "textblock_command_ability_contracts.json"));
         var scriptsAll = ReadRecords(Path.Combine(dataRoot, "scripts.json"));
         var questsAll = ReadRecords(Path.Combine(dataRoot, "quests.json"));
