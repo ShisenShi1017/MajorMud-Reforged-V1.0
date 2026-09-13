@@ -39,6 +39,18 @@ function Find-InnoCompiler {
     throw "Inno Setup 6 was not found. Install Inno Setup 6, then run this script again."
 }
 
+function Copy-RuntimeLibrariumFile {
+    param([Parameter(Mandatory = $true)][string]$RelativePath)
+
+    $source = Join-Path $repoRoot $RelativePath
+    $destination = Join-Path $runtimeRoot $RelativePath
+    if (-not (Test-Path -LiteralPath $source)) {
+        throw "Required runtime Librarium source was not found: '$RelativePath'."
+    }
+    New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
+    Copy-Item -LiteralPath $source -Destination $destination -Force
+}
+
 if (Test-Path -LiteralPath $packageDirectory) {
     Remove-Item -LiteralPath $packageDirectory -Recurse -Force
 }
@@ -82,18 +94,75 @@ if (Test-Path -LiteralPath $depsFile) {
     }
 }
 
-Write-Host "Staging Librarium-first public runtime..."
+Write-Host "Staging compact Librarium-first public runtime..."
 Copy-Item -Path (Join-Path $publishDirectory "*") -Destination $runtimeRoot -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $repoRoot "ProjectManifest.json") -Destination $runtimeRoot -Force
 Copy-Item -LiteralPath (Join-Path $repoRoot "Config") -Destination (Join-Path $runtimeRoot "Config") -Recurse -Force
-Copy-Item -LiteralPath (Join-Path $repoRoot "Librarium") -Destination (Join-Path $runtimeRoot "Librarium") -Recurse -Force
+
+$librariumRoot = Join-Path $runtimeRoot "Librarium"
+New-Item -ItemType Directory -Path $librariumRoot -Force | Out-Null
+$compilerDll = Join-Path $runtimeRoot "RealmGate.Compiler.dll"
+if (-not (Test-Path -LiteralPath $compilerDll)) {
+    throw "RealmGate.Compiler.dll was not staged before Librarium bundling."
+}
+
+$bundlePath = Join-Path $librariumRoot "RealmGate.librarium"
+Write-Host "Creating compact authoritative Librarium bundle..."
+& dotnet $compilerDll bundle --root $repoRoot --output $bundlePath
+if ($LASTEXITCODE -ne 0) {
+    throw "Compact Librarium bundle creation failed with exit code $LASTEXITCODE."
+}
+if (-not (Test-Path -LiteralPath $bundlePath)) {
+    throw "Compact Librarium bundle was not produced at '$bundlePath'."
+}
+
+# The room compiler resolves promoted descriptions independently from object-family loading.
+# Keep only these promoted runtime description records loose; do not ship the rest of the
+# development/audit Librarium tree.
+$roomDescriptionsSource = Join-Path $repoRoot "Librarium\Objects\room_descriptions"
+$roomDescriptionsDestination = Join-Path $librariumRoot "Objects\room_descriptions"
+if (-not (Test-Path -LiteralPath $roomDescriptionsSource)) {
+    throw "Promoted Librarium room descriptions were not found at '$roomDescriptionsSource'."
+}
+New-Item -ItemType Directory -Path $roomDescriptionsDestination -Force | Out-Null
+Get-ChildItem -LiteralPath $roomDescriptionsSource -File -Filter "*.json" |
+    Where-Object { $_.Name -match '(?i)(_records\.json$|_records_)' } |
+    ForEach-Object {
+        Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $roomDescriptionsDestination $_.Name) -Force
+    }
+
+# A few legacy projection writers still consume these canonical sources by exact path.
+# Keep only these bridge files loose until those writers are fully bundle-native. This is
+# intentionally a tiny allow-list, not a recursive Objects copy.
+$runtimeBridgeFiles = @(
+    "Librarium\Objects\textblocks\textblock_records.json",
+    "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
+    "Librarium\Objects\items\item_records.json",
+    "Librarium\Objects\quests\quest_walkthrough_guides.txt"
+)
+foreach ($relativePath in $runtimeBridgeFiles) {
+    Copy-RuntimeLibrariumFile -RelativePath $relativePath
+}
+
+# World overrides stay loose and writable because Creator Studio edits them.
+$worldOverridesSource = Join-Path $repoRoot "Librarium\WorldOverrides"
+$worldOverridesDestination = Join-Path $librariumRoot "WorldOverrides"
+if (-not (Test-Path -LiteralPath $worldOverridesSource)) {
+    throw "Librarium world overrides were not found at '$worldOverridesSource'."
+}
+Copy-Item -LiteralPath $worldOverridesSource -Destination $worldOverridesDestination -Recurse -Force
 
 $requiredRuntimePaths = @(
     "RealmGate.exe",
     "RealmGate.Compiler.dll",
     "ProjectManifest.json",
     "Config\server.worlds.json",
-    "Librarium\Objects",
+    "Librarium\RealmGate.librarium",
+    "Librarium\Objects\room_descriptions",
+    "Librarium\Objects\textblocks\textblock_records.json",
+    "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
+    "Librarium\Objects\items\item_records.json",
+    "Librarium\Objects\quests\quest_walkthrough_guides.txt",
     "Librarium\WorldOverrides"
 )
 foreach ($relativePath in $requiredRuntimePaths) {
@@ -103,14 +172,29 @@ foreach ($relativePath in $requiredRuntimePaths) {
     }
 }
 
+$forbiddenLibrariumDirectories = @(
+    "Assertions",
+    "BehaviorGraph",
+    "Parity",
+    "SourceImports",
+    "Reports"
+)
+foreach ($directoryName in $forbiddenLibrariumDirectories) {
+    if (Test-Path -LiteralPath (Join-Path $librariumRoot $directoryName)) {
+        throw "Public package unexpectedly contains development Librarium directory '$directoryName'."
+    }
+}
+
+$librariumFiles = @(Get-ChildItem -LiteralPath $librariumRoot -Recurse -File)
+Write-Host "Compact public Librarium staged with $($librariumFiles.Count) loose/bundle file(s)."
+
 if (Test-Path -LiteralPath (Join-Path $runtimeRoot "Data\Classic")) {
     throw "Generated Data/Classic must not be shipped as authoritative public content. It must be rebuilt from Librarium locally."
 }
 
-Write-Host "Verifying packaged Librarium can regenerate all enabled runtime worlds..."
+Write-Host "Verifying compact packaged Librarium can regenerate all enabled runtime worlds..."
 $dataRoot = Join-Path $runtimeRoot "Data"
 New-Item -ItemType Directory -Path $dataRoot -Force | Out-Null
-$compilerDll = Join-Path $runtimeRoot "RealmGate.Compiler.dll"
 $worldConfig = Get-Content -LiteralPath (Join-Path $runtimeRoot "Config\server.worlds.json") -Raw | ConvertFrom-Json
 $enabledWorlds = @($worldConfig.worlds | Where-Object { $_.runtimeEnabled -eq $true })
 if ($enabledWorlds.Count -eq 0) {
@@ -118,10 +202,10 @@ if ($enabledWorlds.Count -eq 0) {
 }
 
 foreach ($world in $enabledWorlds) {
-    Write-Host "  Generating $($world.id) from staged Librarium..."
+    Write-Host "  Generating $($world.id) from compact staged Librarium..."
     & dotnet $compilerDll build --root $runtimeRoot --world $world.id --clean
     if ($LASTEXITCODE -ne 0) {
-        throw "Packaged Librarium failed to generate world '$($world.id)' (exit $LASTEXITCODE)."
+        throw "Compact packaged Librarium failed to generate world '$($world.id)' (exit $LASTEXITCODE)."
     }
 
     $normalizedWorld = if ($world.id -ieq "classic") { "Classic" } else { [string]$world.id }
@@ -132,7 +216,7 @@ foreach ($world in $enabledWorlds) {
     }
 }
 
-Write-Host "Packaged Librarium regeneration test passed. Removing disposable generated Data before packaging..."
+Write-Host "Compact Librarium regeneration test passed. Removing disposable generated Data before packaging..."
 Remove-Item -LiteralPath $dataRoot -Recurse -Force
 
 Write-Host "Creating portable ZIP..."
@@ -170,5 +254,6 @@ Write-Host "RealmGate public beta packages are ready:"
 Write-Host "  Installer: $installerPath"
 Write-Host "  Portable:  $portablePath"
 Write-Host "  Checksums: $checksumPath"
+Write-Host "  Librarium: $bundlePath"
 Write-Host ""
-Write-Host "The package is self-contained and Librarium-first. Data/ is generated locally from Librarium on first host start."
+Write-Host "The package is self-contained and Librarium-first. The public build carries a compact authoritative RealmGate.librarium bundle, and Data/ is generated locally from it on first host start."

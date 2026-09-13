@@ -41,9 +41,10 @@ for (var i = 1; i < args.Length; i++)
 
 if (command is "help" or "--help" or "-h")
 {
-    Console.WriteLine("RealmGate Librarium Compiler v1.2");
+    Console.WriteLine("RealmGate Librarium Compiler v1.3");
     Console.WriteLine("Commands:");
     Console.WriteLine("  build --world Classic|Custom1|CustomTemplate|AIFromClassic [--clean] [--root <repo>] [--output <folder>]");
+    Console.WriteLine("  bundle [--root <repo>] [--output <RealmGate.librarium>]");
     Console.WriteLine("  validate [--world Classic|Custom1] [--root <repo>]");
     Console.WriteLine("  audit-room-text [--root <repo>]");
     Console.WriteLine("  export-room-text [--root <repo>] [--output <file>]");
@@ -53,6 +54,21 @@ if (command is "help" or "--help" or "-h")
 try
 {
     var root = FindRepositoryRoot(rootArg);
+
+    if (command == "bundle")
+    {
+        var outputPath = outputArg is null
+            ? Path.Combine(root, "Librarium", LibrariumRuntimeBundle.FileName)
+            : Path.GetFullPath(Path.Combine(root, outputArg));
+        var bundle = LibrariumRuntimeBundle.Create(root, outputPath);
+        Console.WriteLine($"Output: {bundle.OutputPath}");
+        Console.WriteLine($"Families: {bundle.FamilyCount}");
+        Console.WriteLine($"Objects: {bundle.ObjectCount}");
+        Console.WriteLine($"Compressed bytes: {bundle.CompressedBytes}");
+        foreach (var diagnostic in bundle.Diagnostics)
+            Console.WriteLine($"{diagnostic.Severity} {diagnostic.Code}: {diagnostic.Message}");
+        return bundle.Success ? 0 : 1;
+    }
 
     if (command == "validate")
     {

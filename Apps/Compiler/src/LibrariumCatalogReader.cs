@@ -15,6 +15,9 @@ public sealed class LibrariumCatalogReader
 
     public IReadOnlyList<LibrariumFamily> ReadFamilies(string librariumRoot, List<CompilerDiagnostic> diagnostics)
     {
+        var bundledFamilies = LibrariumRuntimeBundle.TryRead(librariumRoot, diagnostics);
+        if (bundledFamilies is not null) return bundledFamilies;
+
         var objectsRoot = Path.Combine(librariumRoot, "Objects");
         if (!Directory.Exists(objectsRoot))
         {
