@@ -39,6 +39,18 @@ function Find-InnoCompiler {
     throw "Inno Setup 6 was not found. Install Inno Setup 6, then run this script again."
 }
 
+function Copy-RuntimeLibrariumFile {
+    param([Parameter(Mandatory = $true)][string]$RelativePath)
+
+    $source = Join-Path $repoRoot $RelativePath
+    $destination = Join-Path $runtimeRoot $RelativePath
+    if (-not (Test-Path -LiteralPath $source)) {
+        throw "Required runtime Librarium source was not found: '$RelativePath'."
+    }
+    New-Item -ItemType Directory -Path (Split-Path -Parent $destination) -Force | Out-Null
+    Copy-Item -LiteralPath $source -Destination $destination -Force
+}
+
 if (Test-Path -LiteralPath $packageDirectory) {
     Remove-Item -LiteralPath $packageDirectory -Recurse -Force
 }
@@ -119,6 +131,19 @@ Get-ChildItem -LiteralPath $roomDescriptionsSource -File -Filter "*.json" |
         Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $roomDescriptionsDestination $_.Name) -Force
     }
 
+# A few legacy projection writers still consume these canonical sources by exact path.
+# Keep only these bridge files loose until those writers are fully bundle-native. This is
+# intentionally a tiny allow-list, not a recursive Objects copy.
+$runtimeBridgeFiles = @(
+    "Librarium\Objects\textblocks\textblock_records.json",
+    "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
+    "Librarium\Objects\items\item_records.json",
+    "Librarium\Objects\quests\quest_walkthrough_guides.txt"
+)
+foreach ($relativePath in $runtimeBridgeFiles) {
+    Copy-RuntimeLibrariumFile -RelativePath $relativePath
+}
+
 # World overrides stay loose and writable because Creator Studio edits them.
 $worldOverridesSource = Join-Path $repoRoot "Librarium\WorldOverrides"
 $worldOverridesDestination = Join-Path $librariumRoot "WorldOverrides"
@@ -134,6 +159,10 @@ $requiredRuntimePaths = @(
     "Config\server.worlds.json",
     "Librarium\RealmGate.librarium",
     "Librarium\Objects\room_descriptions",
+    "Librarium\Objects\textblocks\textblock_records.json",
+    "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
+    "Librarium\Objects\items\item_records.json",
+    "Librarium\Objects\quests\quest_walkthrough_guides.txt",
     "Librarium\WorldOverrides"
 )
 foreach ($relativePath in $requiredRuntimePaths) {
