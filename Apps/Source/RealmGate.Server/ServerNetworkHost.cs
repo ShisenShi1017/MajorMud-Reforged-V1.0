@@ -36,11 +36,17 @@ public sealed class ServerNetworkHost
     public async Task RunTelnetAsync(CancellationToken cancellationToken)
     {
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-        var endpoint = new IPEndPoint(_options.Network.ResolveBindAddress(), _options.Network.TelnetPort);
-        var listener = new TcpListener(endpoint);
-        listener.Start();
+        var listener = RealmGateNetworkBinding.StartListener(_options.Network.BindAddress, _options.Network.TelnetPort);
+        var endpoint = (IPEndPoint)listener.LocalEndpoint;
         var clientDataTask = _clientData.RunAsync(linked.Token);
-        Console.WriteLine($"Telnet listener started on {endpoint.Address}:{endpoint.Port}; maxSessions={_options.Network.MaxSessions}");
+        if (clientDataTask.IsCompleted)
+            await clientDataTask.ConfigureAwait(false);
+
+        Console.WriteLine("RealmGate server started.");
+        Console.WriteLine($"Listening on {endpoint.Address}:{endpoint.Port}");
+        foreach (var lanEndpoint in RealmGateNetworkBinding.DiscoverLanEndpoints(endpoint.Port))
+            Console.WriteLine($"LAN: {lanEndpoint}");
+        Console.WriteLine($"maxSessions={_options.Network.MaxSessions}");
         Console.WriteLine($"MegaMUD legacy connection uses Telnet/game port {endpoint.Port}; RealmGate private client-data remains separate on port {_options.Network.ClientDataPort}.");
 
         try
@@ -119,8 +125,18 @@ public sealed class ServerNetworkHost
                 Task<string?>? pendingInput = null;
                 while (!hostCancellationToken.IsCancellationRequested && connection.Connected)
                 {
-                    foreach (var pending in session.DrainMessages())
-                        await telnet.WriteLineAsync(pending, hostCancellationToken).ConfigureAwait(false);
+                    var liveMessages = session.DrainMessages();
+                    if (liveMessages.Count > 0)
+                    {
+                        var promptAlreadyVisible = pendingInput is not null;
+                        var refreshPrompt = promptAlreadyVisible && !session.HasClassicModalInput
+                            ? _commands.RenderClassicPrompt(session)
+                            : null;
+                        var liveOutput = RuntimeTerminalOutputFormatter.ComposeAsynchronousOutput(
+                            liveMessages, refreshPrompt, promptAlreadyVisible);
+                        if (!string.IsNullOrEmpty(liveOutput))
+                            await telnet.WriteAsync(liveOutput, hostCancellationToken).ConfigureAwait(false);
+                    }
 
                     // MegaMUD path execution waits for the native MajorMUD-style status prompt.
                     // Do not append a generic "> " prompt after room output; it prevents the client
@@ -136,18 +152,7 @@ public sealed class ServerNetworkHost
 
                     var completed = await Task.WhenAny(pendingInput, Task.Delay(100, hostCancellationToken)).ConfigureAwait(false);
                     if (!ReferenceEquals(completed, pendingInput))
-                    {
-                        var liveMessages = session.DrainMessages();
-                        if (liveMessages.Count > 0)
-                        {
-                            await telnet.WriteLineAsync(hostCancellationToken).ConfigureAwait(false);
-                            foreach (var pending in liveMessages)
-                                await telnet.WriteLineAsync(pending, hostCancellationToken).ConfigureAwait(false);
-                            if (!session.HasClassicModalInput)
-                                await telnet.WriteAsync(_commands.RenderClassicPrompt(session), hostCancellationToken).ConfigureAwait(false);
-                        }
                         continue;
-                    }
 
                     var input = await pendingInput.ConfigureAwait(false);
                     pendingInput = null;

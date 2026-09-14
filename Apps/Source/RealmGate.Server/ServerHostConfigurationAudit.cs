@@ -13,9 +13,9 @@ public sealed class ServerHostConfigurationAudit
         var root = Path.GetFullPath(projectRoot);
         var configPath = Path.Combine(root, "Config", "server.host.json");
         var configuration = new RuntimeConfigurationProvider()
-            .AddDefault("server:host:name", "RealmGate Local Host")
-            .AddDefault("server:host:bindAddress", "127.0.0.1")
-            .AddDefault("server:host:port", "4000")
+            .AddDefault("server:host:name", "RealmGate Host")
+            .AddDefault("server:host:bindAddress", "0.0.0.0")
+            .AddDefault("server:host:port", "2323")
             .AddDefault("server:host:maxSessions", "64")
             .AddDefault("server:host:worldTickMilliseconds", "1000")
             .AddDefault("server:host:combatTickMilliseconds", "5000")
