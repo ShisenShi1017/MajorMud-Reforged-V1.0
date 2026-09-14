@@ -24,6 +24,9 @@ public static class RealmGateInventoryAutomationRegressionSmoke
         Require(
             RealmGateInventoryAutomationService.ApplyTemplate("deposit {amount}", string.Empty, 1, 1250) == "deposit 1250",
             "deposit-template-amount");
+        Require(
+            RealmGateInventoryAutomationService.ApplyTemplate(string.Empty, "ignored", 1, 0) == string.Empty,
+            "empty-template-stays-inert");
 
         var sessionA = new ClientSessionConnection
         {
