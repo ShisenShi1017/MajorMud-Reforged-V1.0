@@ -42,8 +42,17 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         }
 
         var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+#if PUBLIC_RELEASE
+        // Public builds must never inherit the developer/private client's saved sessions.
+        // In particular, do not migrate a Borin player profile from the old MajorMUD Reforged
+        // store or reuse the private RealmGate client catalog. Public testers get an independent
+        // profile catalog that persists normally between public-beta upgrades.
+        ProfilePath = Path.Combine(local, "RealmGate", "Public", "Client", "ConnectionProfiles", "connection-profiles.json");
+        _legacyProfilePath = null;
+#else
         ProfilePath = Path.Combine(local, "RealmGate", "Client", "ConnectionProfiles", "connection-profiles.json");
         _legacyProfilePath = Path.Combine(local, "MajorMUD Reforged", "Client", "ConnectionProfiles", "connection-profiles.json");
+#endif
     }
 
     public ObservableCollection<ClientConnectionProfile> Profiles => _catalog.Profiles;

@@ -145,14 +145,15 @@ Get-ChildItem -LiteralPath $roomDescriptionsSource -File -Filter "*.json" |
         Copy-Item -LiteralPath $_.FullName -Destination (Join-Path $roomDescriptionsDestination $_.Name) -Force
     }
 
-# A few legacy projection writers still consume these canonical sources by exact path.
+# A few legacy projection writers still consume canonical/promoted sources by exact or sibling path.
 # Keep only these bridge files loose until those writers are fully bundle-native. This is
 # intentionally a tiny allow-list, not a recursive Objects copy.
 $runtimeBridgeFiles = @(
     "Librarium\Objects\textblocks\textblock_records.json",
     "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
     "Librarium\Objects\items\item_records.json",
-    "Librarium\Objects\quests\quest_walkthrough_guides.txt"
+    "Librarium\Objects\quests\quest_walkthrough_guides.txt",
+    "Librarium\Objects\character_foundation\native_runtime_promoted_0137.json"
 )
 foreach ($relativePath in $runtimeBridgeFiles) {
     Copy-RuntimeLibrariumFile -RelativePath $relativePath
@@ -178,6 +179,7 @@ $requiredRuntimePaths = @(
     "Librarium\Objects\native_textblock_payloads\native_textblock_payload_records.json",
     "Librarium\Objects\items\item_records.json",
     "Librarium\Objects\quests\quest_walkthrough_guides.txt",
+    "Librarium\Objects\character_foundation\native_runtime_promoted_0137.json",
     "Librarium\WorldOverrides"
 )
 foreach ($relativePath in $requiredRuntimePaths) {
@@ -233,9 +235,30 @@ foreach ($world in $enabledWorlds) {
 
     $generatedRooms = Join-Path $configuredOutputRoot ([string]$world.roomsFile)
     $generatedManifest = Join-Path $configuredOutputRoot "world_manifest.json"
+    $generatedFoundation = Join-Path $configuredOutputRoot "character_foundation.json"
     if (-not (Test-Path -LiteralPath $generatedRooms) -or -not (Test-Path -LiteralPath $generatedManifest)) {
         throw "World '$($world.id)' generation did not produce required runtime files in '$configuredOutputRoot'."
     }
+    if (-not (Test-Path -LiteralPath $generatedFoundation)) {
+        throw "World '$($world.id)' generation did not produce character_foundation.json. Character creation would disconnect at runtime."
+    }
+
+    try {
+        $foundation = Get-Content -LiteralPath $generatedFoundation -Raw | ConvertFrom-Json
+    }
+    catch {
+        throw "World '$($world.id)' produced an unreadable character_foundation.json: $($_.Exception.Message)"
+    }
+
+    $raceCount = @($foundation.races).Count
+    $classCount = @($foundation.classes).Count
+    if ([string]$foundation.authority -ne "Librarium" -or
+        $raceCount -lt 1 -or
+        $classCount -lt 1 -or
+        $null -eq $foundation.character_creation_rules) {
+        throw "World '$($world.id)' produced an incomplete character foundation (authority='$($foundation.authority)', races=$raceCount, classes=$classCount, creationRules=$($null -ne $foundation.character_creation_rules))."
+    }
+    Write-Host "  Character creation authority validated for $($world.id): races=$raceCount classes=$classCount."
 }
 
 $librariumSnapshotAfterGeneration = Get-LibrariumSnapshot -Root $librariumRoot
