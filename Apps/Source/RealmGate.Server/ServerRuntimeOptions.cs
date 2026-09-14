@@ -140,12 +140,12 @@ public sealed class ServerRuntimeOptions
             return new NetworkRuntimeOptions();
         }
 
-        var telnetPort = ReadInt(network, "telnetPort", 4000);
-        var defaultClientDataPort = telnetPort >= 65535 ? 65534 : telnetPort + 1;
+        var telnetPort = ReadInt(network, "telnetPort", RealmGateNetworkBinding.DefaultTelnetPort);
+        var defaultClientDataPort = RealmGateNetworkBinding.PairedClientDataPort(telnetPort);
         return new NetworkRuntimeOptions
         {
-            Enabled = ReadBoolean(network, "enabled", false),
-            BindAddress = ReadString(network, "bindAddress", "127.0.0.1"),
+            Enabled = ReadBoolean(network, "enabled", true),
+            BindAddress = ReadString(network, "bindAddress", RealmGateNetworkBinding.AllIpv4InterfacesAddress),
             TelnetPort = telnetPort,
             ClientDataPort = ReadInt(network, "clientDataPort", defaultClientDataPort),
             MaxSessions = ReadInt(network, "maxSessions", 32),
@@ -178,23 +178,15 @@ public sealed class ServerRuntimeOptions
 
 public sealed class NetworkRuntimeOptions
 {
-    public bool Enabled { get; init; }
-    public string BindAddress { get; init; } = "127.0.0.1";
-    public int TelnetPort { get; init; } = 4000;
-    public int ClientDataPort { get; init; } = 4001;
+    public bool Enabled { get; init; } = true;
+    public string BindAddress { get; init; } = RealmGateNetworkBinding.AllIpv4InterfacesAddress;
+    public int TelnetPort { get; init; } = RealmGateNetworkBinding.DefaultTelnetPort;
+    public int ClientDataPort { get; init; } = RealmGateNetworkBinding.DefaultClientDataPort;
     public int MaxSessions { get; init; } = 32;
     public int LoginTimeoutSeconds { get; init; } = 120;
     public bool AllowWorldSelection { get; init; } = true;
 
-    public IPAddress ResolveBindAddress()
-    {
-        if (IPAddress.TryParse(BindAddress, out var address))
-        {
-            return address;
-        }
-
-        return IPAddress.Loopback;
-    }
+    public IPAddress ResolveBindAddress() => RealmGateNetworkBinding.ResolveIpv4Address(BindAddress);
 }
 
 public sealed class WorldRuntimeDefinition
@@ -219,7 +211,6 @@ public sealed class WorldRuntimeDefinition
     public bool TransfersAllowed { get; init; }
     public bool ClassicProtected { get; init; } = true;
 }
-
 
 public sealed class RuntimeDevelopmentOptions
 {
