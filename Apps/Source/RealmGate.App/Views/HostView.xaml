@@ -12,10 +12,20 @@
                         <Button Content="Restart Host" Command="{Binding RestartCommand}"/>
                     </WrapPanel>
                     <UniformGrid Columns="2">
-                        <GroupBox Header="Host Configuration">
+                        <GroupBox Header="Server Access">
                             <StackPanel>
-                                <TextBlock Text="Bind address"/><TextBox Text="{Binding BindAddress}"/>
-                                <TextBlock Text="Port"/><TextBox Text="{Binding Port}"/>
+                                <TextBlock Text="Choose how RealmGate accepts connections." TextWrapping="Wrap"/>
+                                <WrapPanel Margin="0,6,0,6">
+                                    <Button Content="Local Only" Command="{Binding UseLocalOnlyCommand}"/>
+                                    <Button Content="LAN / Remote Hosting" Command="{Binding UseRemoteHostingCommand}"/>
+                                </WrapPanel>
+                                <TextBlock Text="Bind address"/>
+                                <TextBox Text="{Binding BindAddress, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text="127.0.0.1 = local only   |   0.0.0.0 = all IPv4 interfaces" TextWrapping="Wrap" FontSize="11"/>
+                                <TextBlock Text="Port"/>
+                                <TextBox Text="{Binding Port, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text="{Binding LanAddresses}" TextWrapping="Wrap" Margin="0,6,0,0"/>
+                                <TextBlock Text="Router port forwarding, UPnP, and firewall rules are not changed automatically." TextWrapping="Wrap" FontSize="11" Margin="0,6,0,0"/>
                                 <TextBlock Text="Maximum sessions"/><TextBox Text="{Binding MaximumSessions}"/>
                                 <TextBlock Text="Default world"/><TextBox Text="{Binding SelectedWorld}"/>
                             </StackPanel>
