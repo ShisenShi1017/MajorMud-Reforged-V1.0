@@ -74,6 +74,8 @@ public sealed class ServerNetworkHost
     {
         var sessionId = $"telnet-{Guid.NewGuid():N}"[..20];
         using var connection = client;
+        var remoteEndpoint = connection.Client.RemoteEndPoint as IPEndPoint;
+        var isLocalConnection = remoteEndpoint is not null && IPAddress.IsLoopback(remoteEndpoint.Address);
         using var stream = connection.GetStream();
         await using var telnet = new TelnetConnection(stream);
 
@@ -84,7 +86,7 @@ public sealed class ServerNetworkHost
         {
             await telnet.NegotiateAsync(linked.Token).ConfigureAwait(false);
             await WriteBannerAsync(telnet, linked.Token).ConfigureAwait(false);
-            var account = await AuthenticateAccountAsync(telnet, linked.Token).ConfigureAwait(false);
+            var account = await AuthenticateAccountAsync(telnet, linked.Token, isLocalConnection).ConfigureAwait(false);
             if (account is null) return;
 
             var worldSelection = await SelectWorldAsync(telnet, linked.Token).ConfigureAwait(false);
@@ -341,7 +343,7 @@ public sealed class ServerNetworkHost
         }
     }
 
-    private async Task<RuntimeAccountRecord?> AuthenticateAccountAsync(TelnetConnection telnet, CancellationToken cancellationToken)
+    private async Task<RuntimeAccountRecord?> AuthenticateAccountAsync(TelnetConnection telnet, CancellationToken cancellationToken, bool isLocalConnection)
     {
         await telnet.WriteAsync("Enter your user-id (Account): ", cancellationToken).ConfigureAwait(false);
         var accountName = await telnet.ReadLineAsync(hideInput: false, cancellationToken).ConfigureAwait(false);
@@ -352,7 +354,7 @@ public sealed class ServerNetworkHost
         }
 
         accountName = accountName.Trim();
-        var isLocalHost = IPAddress.IsLoopback(_options.Network.ResolveBindAddress());
+        var isLocalHost = isLocalConnection;
         var isSysopTest = isLocalHost && string.Equals(accountName, "SysopTest", StringComparison.OrdinalIgnoreCase);
         var accountExists = _characters.AccountExists(accountName);
 
