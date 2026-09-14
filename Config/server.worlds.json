@@ -57,13 +57,14 @@
     "The runtime test avatar has no selected Classic class and bypasses character-creation validation only because IsRuntimeTestCharacter is true.",
     "Custom1 is an isolated ReforgedCustom world alongside protected Classic.",
     "Custom1 inherits the current Classic runtime rules profile while storing authored differences in Librarium/WorldOverrides/Custom1; generated Data/Custom1 is disposable runtime output.",
-    "Classic remains protected and does not consume Custom1 overrides. Character transfer into Classic remains prohibited."
+    "Classic remains protected and does not consume Custom1 overrides. Character transfer into Classic remains prohibited.",
+    "0.0.0.0 listens on all IPv4 interfaces; use 127.0.0.1 for local-only hosting or a specific LAN IPv4 address to bind one interface."
   ],
   "network": {
     "enabled": true,
-    "bindAddress": "127.0.0.1",
-    "telnetPort": 4000,
-    "clientDataPort": 4001,
+    "bindAddress": "0.0.0.0",
+    "telnetPort": 2323,
+    "clientDataPort": 2324,
     "maxSessions": 32,
     "loginTimeoutSeconds": 120,
     "allowWorldSelection": true
