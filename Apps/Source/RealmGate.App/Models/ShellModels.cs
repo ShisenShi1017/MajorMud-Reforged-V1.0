@@ -26,8 +26,8 @@ public enum HostCleanupSchedulerState
 
 public sealed record HostLaunchOptions(
     string ProjectRoot,
-    string BindAddress = "127.0.0.1",
-    int Port = 4000,
+    string BindAddress = "0.0.0.0",
+    int Port = 2323,
     int MaximumSessions = 64,
     string? WorldId = null);
 
@@ -74,6 +74,12 @@ public sealed class ApplicationSettings
     public string DataDirectory { get; set; } = "Data";
 
     public string SavesDirectory { get; set; } = "Saves";
+
+    public string HostBindAddress { get; set; } = "0.0.0.0";
+
+    public int HostPort { get; set; } = 2323;
+
+    public int HostMaximumSessions { get; set; } = 64;
 
     public HostCleanupSchedule HostCleanup { get; set; } = new();
 }
