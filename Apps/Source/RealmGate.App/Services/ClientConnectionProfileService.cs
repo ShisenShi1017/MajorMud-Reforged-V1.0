@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
 using RealmGate.App.Models;
+using RealmGate.Server;
 
 namespace RealmGate.App.Services;
 
@@ -120,7 +121,7 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
             ServerProfileName = session?.ServerProfileName ?? "Local Host",
             WorldName = session?.WorldName ?? "Classic",
             HostName = session?.HostName ?? "127.0.0.1",
-            Port = session?.Port ?? 4000,
+            Port = session?.Port ?? RealmGateNetworkBinding.DefaultTelnetPort,
             AutoReconnect = session?.AutoReconnect ?? true,
             ReconnectDelaySeconds = session?.ReconnectDelaySeconds ?? 5,
             TerminalViewMode = ClientTerminalViewMode.Reforged,
@@ -311,7 +312,15 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
             profile.ServerProfileName = profile.ServerProfileName;
             profile.WorldName = profile.WorldName;
             profile.HostName = profile.HostName;
-            profile.Port = profile.Port;
+            if (string.Equals(profile.ProfileName, "Local Host Classic", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(profile.ServerProfileName, "Local Host", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(profile.HostName, RealmGateNetworkBinding.LocalOnlyAddress, StringComparison.OrdinalIgnoreCase)
+                && profile.Port == 4000)
+            {
+                // One-time migration of the historical built-in local profile only.
+                // User-created BBS profiles and explicitly customized endpoints are preserved.
+                profile.Port = RealmGateNetworkBinding.DefaultTelnetPort;
+            }
             profile.TerminalColumns = profile.TerminalColumns;
             profile.TerminalRows = profile.TerminalRows;
             profile.TerminalType = profile.TerminalType;
@@ -352,8 +361,8 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         SessionDisplayName = "Session 1",
         ServerProfileName = "Local Host",
         WorldName = "Classic",
-        HostName = "127.0.0.1",
-        Port = 4000,
+        HostName = RealmGateNetworkBinding.LocalOnlyAddress,
+        Port = RealmGateNetworkBinding.DefaultTelnetPort,
         TerminalViewMode = ClientTerminalViewMode.Reforged,
         TerminalType = "ANSI",
         UseCodePage437 = true,
