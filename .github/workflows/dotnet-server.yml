@@ -48,6 +48,15 @@ jobs:
       - name: Verify MegaMUD Telnet connection contract
         run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-megamud-connection
 
+      - name: Verify portable network binding contract
+        run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-network-binding
+
+      - name: Verify combat completion terminal contract
+        run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-combat-terminal
+
+      - name: Verify combat completion gameplay contract
+        run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-combat-completion
+
       - name: Verify Classic parity closure
         run: dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj --configuration Release --no-build -- --smoke-classic-parity-closure
 
