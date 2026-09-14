@@ -47,9 +47,8 @@ public sealed class ServerClientDataHost
         if (_options.ClientDataPort == _options.TelnetPort)
             throw new InvalidOperationException("The RealmGate client-data port must be different from the Telnet port.");
 
-        var endpoint = new IPEndPoint(_options.ResolveBindAddress(), _options.ClientDataPort);
-        var listener = new TcpListener(endpoint);
-        listener.Start();
+        var listener = RealmGateNetworkBinding.StartListener(_options.BindAddress, _options.ClientDataPort);
+        var endpoint = (IPEndPoint)listener.LocalEndpoint;
         Console.WriteLine($"Private client-data listener started on {endpoint.Address}:{endpoint.Port}; terminal output is not used for client panels.");
 
         try
