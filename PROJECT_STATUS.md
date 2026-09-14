@@ -66,7 +66,7 @@ The RealmGate client capability expansion is automated-smoke clean at 14/14.
 
 Implemented areas include terminal/session handling, profiles, Character Workshop, game-data overlays, aliases/macros/triggers/events, navigation, inventory/equipment automation, recovery/buffs, combat automation, party coordination, communications, creature intelligence, diagnostics/customization, reporting, and help.
 
-Capability parity does not mean copied MudPlay UI. RealmGate remains WPF/.NET 8 and uses its own architecture, naming, data authority, workflows, and presentation.
+RealmGate client behavior is implemented through its own WPF/.NET 8 architecture, naming, session state, Librarium/data authority, workflows, and presentation. Client automation must remain independently implemented from RealmGate requirements and observed MajorMUD protocol behavior.
 
 ## Release identity and trust
 

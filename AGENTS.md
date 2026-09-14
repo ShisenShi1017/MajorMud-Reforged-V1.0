@@ -36,7 +36,7 @@ Use `CHANGELOG.md` only when update history materially matters.
 7. Preserve server authority; do not move gameplay authority into client automation.
 8. Keep rules/data data-driven when they are content/world behavior rather than engine internals.
 9. Preserve third-party license notices for copied or substantially derived code.
-10. MudPlay is a legacy capability/reference source, not RealmGate branding, UI identity, or architecture.
+10. RealmGate client functionality must be implemented from RealmGate requirements, protocol behavior, session state, and Librarium authority; do not copy third-party client implementations.
 11. Never delete a file merely because it is in `Reports/` or looks historical; first verify that no active runtime/trainer/tool consumes it.
 12. In particular, Borin currently requires `Reports/RuntimeVerification/majormud_parity_scorecard.json` for parity preflight.
 

@@ -55,7 +55,7 @@ public sealed class PlayViewModel : ViewModelBase
     private readonly HashSet<string> _pvpActionInFlight = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _authoritativeStateBootstrapped = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _scriptAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Dictionary<string, RealmGateInventoryAutomationProfile> _mudPlayInventoryProfiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, RealmGateInventoryAutomationProfile> _inventoryAutomationProfiles = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<string> _inventoryAutomationInFlight = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, DateTimeOffset> _nextInventoryAutomationAt = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, string> _lastInventoryAutomationFingerprint = new(StringComparer.OrdinalIgnoreCase);
@@ -2887,10 +2887,10 @@ public sealed class PlayViewModel : ViewModelBase
     public RealmGateInventoryAutomationProfile GetInventoryAutomationProfile(ClientSessionConnection session, bool reload = false)
     {
         ArgumentNullException.ThrowIfNull(session);
-        if (reload || !_mudPlayInventoryProfiles.TryGetValue(session.SessionId, out var profile))
+        if (reload || !_inventoryAutomationProfiles.TryGetValue(session.SessionId, out var profile))
         {
             profile = _realmGateInventoryAutomation.LoadProfile(session);
-            _mudPlayInventoryProfiles[session.SessionId] = profile;
+            _inventoryAutomationProfiles[session.SessionId] = profile;
         }
         return profile;
     }
@@ -2900,7 +2900,7 @@ public sealed class PlayViewModel : ViewModelBase
         ArgumentNullException.ThrowIfNull(session);
         ArgumentNullException.ThrowIfNull(profile);
         _realmGateInventoryAutomation.SaveProfile(session, profile);
-        _mudPlayInventoryProfiles[session.SessionId] = profile;
+        _inventoryAutomationProfiles[session.SessionId] = profile;
         _lastInventoryAutomationFingerprint.Remove(session.SessionId);
         Status = $"Saved inventory/equipment automation for {session.CharacterName}.";
     }

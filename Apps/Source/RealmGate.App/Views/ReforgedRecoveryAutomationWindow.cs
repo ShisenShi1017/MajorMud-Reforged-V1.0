@@ -8,8 +8,8 @@ using RealmGate.App.ViewModels;
 namespace RealmGate.App.Views;
 
 /// <summary>
-/// Reforged recovery/buff configuration window. The UI deliberately uses RealmGate's
-/// own session model and terminology; it does not reproduce MudPlay's layout.
+/// RealmGate recovery/buff configuration window. The UI uses RealmGate session state,
+/// RealmGate terminology, and the RealmGate automation command-isolation path.
 /// </summary>
 internal sealed class RealmGateRecoveryAutomationPane : UserControl
 {

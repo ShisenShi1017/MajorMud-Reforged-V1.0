@@ -46,7 +46,7 @@ Important boundaries:
 
 ## RealmGate client capability
 
-The RealmGate client provides the MajorMUD-oriented capability set developed through the legacy MudPlay parity work while keeping RealmGate's own WPF layout, terminology, architecture, and server-authoritative model.
+The RealmGate client provides its MajorMUD-oriented capability set through RealmGate-owned WPF presentation, RealmGate session models, Librarium-backed data projections, and server-authoritative workflows.
 
 Current client areas include:
 
@@ -60,8 +60,6 @@ Current client areas include:
 - Party coordination, assist/follow, support, regroup, reconnect/resync, and permission-gated remote actions.
 - Communications Desk, Creature Intel, diagnostics, searchable scrollback, logs, session statistics, wire inspection, support bundles, customization, and help.
 - External-BBS game-data overlays and MDB comparison/import support.
-
-MudPlay is a legacy implementation reference, not RealmGate's UI or product identity. Required third-party notices are retained in `ThirdPartyLicenses/`.
 
 The Host workspace contains Host Control, live Sessions, and application/runtime Logs. A failed custom world or individual Telnet session is reported there without taking healthy worlds or the desktop application down.
 

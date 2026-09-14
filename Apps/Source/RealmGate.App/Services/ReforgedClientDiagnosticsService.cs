@@ -5,9 +5,9 @@ using RealmGate.App.Models;
 namespace RealmGate.App.Services;
 
 /// <summary>
-/// Reforged-native client diagnostics helpers used by the terminal workbench.
-/// This intentionally consumes Reforged's own typed session state and local trace files;
-/// it does not import MudPlay's diagnostic storage or UI model.
+/// RealmGate-native client diagnostics helpers used by the terminal workbench.
+/// Diagnostics consume RealmGate's typed session state and local trace files and remain
+/// independent from gameplay authority.
 /// </summary>
 public static partial class ReforgedClientDiagnosticsService
 {

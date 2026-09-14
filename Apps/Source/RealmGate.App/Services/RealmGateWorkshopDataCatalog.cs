@@ -6,7 +6,7 @@ using RealmGate.App.Models;
 namespace RealmGate.App.Services;
 
 /// <summary>
-/// Effective game-data projection used by the MudPlay-inspired Character Workshop.
+/// Effective RealmGate game-data projection used by Character Workshop and client planning tools.
 /// Reforged sessions read their server-selected world projection. External BBS sessions
 /// read Classic with their local field overlay applied.
 /// </summary>
@@ -372,7 +372,6 @@ public sealed record RealmGateWorkshopItem(
         }
     }
 }
-
 
 public sealed record RealmGateWorkshopAbility(string Name, string Value, int AbilityId)
 {

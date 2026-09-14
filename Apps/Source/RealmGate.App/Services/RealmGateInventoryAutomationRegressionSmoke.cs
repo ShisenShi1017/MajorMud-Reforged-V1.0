@@ -4,7 +4,7 @@ using RealmGate.App.Models;
 namespace RealmGate.App.Services;
 
 /// <summary>
-/// Focused regression checks for the MudPlay-inspired inventory/equipment slice.
+/// Focused regression checks for RealmGate inventory/equipment policy behavior.
 /// This smoke intentionally avoids requiring generated game data so it can verify
 /// persistence and command-template safety in an isolated application-settings root.
 /// </summary>
@@ -24,6 +24,9 @@ public static class RealmGateInventoryAutomationRegressionSmoke
         Require(
             RealmGateInventoryAutomationService.ApplyTemplate("deposit {amount}", string.Empty, 1, 1250) == "deposit 1250",
             "deposit-template-amount");
+        Require(
+            RealmGateInventoryAutomationService.ApplyTemplate(string.Empty, "ignored", 1, 0) == string.Empty,
+            "empty-template-stays-inert");
 
         var sessionA = new ClientSessionConnection
         {
@@ -86,7 +89,7 @@ public static class RealmGateInventoryAutomationRegressionSmoke
         }
 
         if (failures.Count == 0) return Task.FromResult(0);
-        Console.Error.WriteLine("MudPlay inventory automation regression failures: " + string.Join(", ", failures));
+        Console.Error.WriteLine("RealmGate inventory automation regression failures: " + string.Join(", ", failures));
         return Task.FromResult(45);
     }
 }

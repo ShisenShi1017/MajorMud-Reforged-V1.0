@@ -8,9 +8,9 @@ using RealmGate.App.ViewModels;
 namespace RealmGate.App.Views;
 
 /// <summary>
-/// RealmGate party status and coordination surface. It intentionally reuses the existing
-/// ClientCoordinationService for permission-gated remote @ commands rather than
-/// duplicating MudPlay's UI or remote-command model.
+/// RealmGate party status and coordination surface. It reuses RealmGate's existing
+/// ClientCoordinationService for permission-gated remote @ commands so party control
+/// continues to have one RealmGate-owned authority path.
 /// </summary>
 public sealed class RealmGatePartyWindow : Window
 {
