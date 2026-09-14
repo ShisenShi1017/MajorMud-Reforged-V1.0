@@ -30,8 +30,6 @@ public sealed class TelnetConnection : IAsyncDisposable
 
     public async Task NegotiateAsync(CancellationToken cancellationToken)
     {
-        // The server performs echo itself. This is reliable with MegaMUD profiles
-        // that do not enable local echo, while still allowing password input to stay hidden.
         await WriteBytesAsync(new byte[]
         {
             Iac, Will, SuppressGoAhead,
@@ -42,7 +40,7 @@ public sealed class TelnetConnection : IAsyncDisposable
 
     public Task WriteAsync(string text, CancellationToken cancellationToken)
     {
-        var normalized = NormalizeAnsi(NormalizeNetworkNewLines(text));
+        var normalized = NormalizeAnsi(RuntimeTerminalOutputFormatter.NormalizeNetworkNewLines(text));
         return WriteApplicationBytesAsync(LegacyEncoding.GetBytes(normalized), cancellationToken);
     }
 
@@ -97,23 +95,14 @@ public sealed class TelnetConnection : IAsyncDisposable
         }
     }
 
-    private static string NormalizeNetworkNewLines(string text)
-    {
-        if (string.IsNullOrEmpty(text)) return text;
-        return text.Replace("\r\n", "\n", StringComparison.Ordinal)
-            .Replace('\r', '\n')
-            .Replace("\n", "\r\n", StringComparison.Ordinal);
-    }
-
     public Task WriteLineAsync(string text, CancellationToken cancellationToken) =>
-        WriteAsync(text + "\r\n", cancellationToken);
+        WriteAsync(text + RuntimeTerminalOutputFormatter.NetworkNewLine, cancellationToken);
 
-    public Task WriteLineAsync(CancellationToken cancellationToken) => WriteAsync("\r\n", cancellationToken);
+    public Task WriteLineAsync(CancellationToken cancellationToken) =>
+        WriteAsync(RuntimeTerminalOutputFormatter.NetworkNewLine, cancellationToken);
 
     public async Task<string?> ReadLineAsync(bool hideInput, CancellationToken cancellationToken)
     {
-        // Reassert server echo mode before every prompt because some clients change
-        // their local echo state during automatic login handling.
         await WriteBytesAsync(new byte[] { Iac, Will, Echo }, cancellationToken).ConfigureAwait(false);
 
         var buffer = new List<byte>(128);
@@ -128,7 +117,7 @@ public sealed class TelnetConnection : IAsyncDisposable
             if (value is 10 or 13)
             {
                 if (value == 13) _skipNextLineFeed = true;
-                await WriteAsync("\r\n", cancellationToken).ConfigureAwait(false);
+                await WriteAsync(RuntimeTerminalOutputFormatter.NetworkNewLine, cancellationToken).ConfigureAwait(false);
                 return LegacyEncoding.GetString(buffer.ToArray());
             }
 
@@ -152,7 +141,6 @@ public sealed class TelnetConnection : IAsyncDisposable
             }
         }
     }
-
 
     public async Task<string?> ReadKeyAsync(CancellationToken cancellationToken)
     {
@@ -213,12 +201,10 @@ public sealed class TelnetConnection : IAsyncDisposable
                 }
                 else if (option == Echo)
                 {
-                    // We are the echoing endpoint. Accept DO ECHO and reject client WILL ECHO.
                     response = command is Do ? Will : command is Dont ? Wont : Dont;
                 }
                 else if (option == Gmcp)
                 {
-                    // Only a client that explicitly answers DO receives a side-channel token.
                     if (command is Do) ReforgedClientDataEnabled = true;
                     if (command is Dont) ReforgedClientDataEnabled = false;
                     response = command is Do ? Will : command is Dont ? Wont : Dont;
@@ -231,8 +217,6 @@ public sealed class TelnetConnection : IAsyncDisposable
                 await WriteBytesAsync(new[] { Iac, response, (byte)option }, cancellationToken).ConfigureAwait(false);
                 continue;
             }
-
-            // Ignore simple Telnet commands such as NOP and GA.
         }
     }
 
