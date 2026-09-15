@@ -23,6 +23,10 @@ on:
       - '.github/workflows/avalonia-desktop.yml'
   workflow_dispatch:
 
+concurrency:
+  group: avalonia-desktop-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-desktop:
     strategy:
