@@ -48,6 +48,11 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     public ICommand StartServerCommand { get; }
     public ICommand StopServerCommand { get; }
 
+    public string TerminalPreviewText =>
+        "\x1b[92mRealmGate ANSI terminal\x1b[0m\r\n"
+        + "\x1b[96mWindows + Linux\x1b[0m share the same parser.\r\n"
+        + "\x1b[1;93mHP: 45/50 >\x1b[0m";
+
     public string BindAddress
     {
         get => _bindAddress;
