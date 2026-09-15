@@ -40,6 +40,9 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                 throw new InvalidOperationException("A Host instance is already active.");
 
             Set(HostControllerState.Starting, "Starting");
+            _ = RealmGateNetworkBinding.ResolveIpv4Address(options.BindAddress);
+            RealmGateNetworkBinding.ValidatePort(options.Port);
+
             var resolvedProjectRoot = ResolveProjectRoot(options.ProjectRoot);
             var configured = RuntimeDataBootstrapper.Prepare(
                 resolvedProjectRoot,
@@ -78,6 +81,7 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
                     Enabled = true,
                     BindAddress = options.BindAddress,
                     TelnetPort = options.Port,
+                    ClientDataPort = RealmGateNetworkBinding.PairedClientDataPort(options.Port),
                     MaxSessions = options.MaximumSessions,
                     LoginTimeoutSeconds = configured.Network.LoginTimeoutSeconds,
                     AllowWorldSelection = configured.Network.AllowWorldSelection
@@ -89,6 +93,12 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
             _host.Bootstrap();
             _runCts = CancellationTokenSource.CreateLinkedTokenSource(token);
             _runTask = _host.RunNetworkAsync(_runCts.Token);
+
+            // Listener binding happens before the network loop's first wait. Surface bind failures
+            // before the desktop reports a false Running state.
+            if (_runTask.IsCompleted)
+                await _runTask.ConfigureAwait(false);
+
             _ = _runTask.ContinueWith(task =>
             {
                 if (task.IsFaulted)
@@ -98,7 +108,10 @@ public sealed class ReforgedHostController(IAppLogger logger) : IReforgedHostCon
             }, TaskScheduler.Default);
 
             Set(HostControllerState.Running, $"Running on {options.BindAddress}:{options.Port}");
-            logger.Info("Embedded Host started.");
+            logger.Info($"RealmGate server started. Listening on {options.BindAddress}:{options.Port}");
+            var lan = RealmGateNetworkBinding.DiscoverLanEndpoints(options.Port);
+            if (lan.Count > 0)
+                logger.Info("LAN: " + string.Join(", ", lan));
         }
         catch (Exception exception)
         {

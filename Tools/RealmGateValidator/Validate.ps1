@@ -58,6 +58,8 @@ $validationCommands = @(
     @("world_multiplayer", "--smoke-world-multiplayer"),
     @("live_gameplay", "--smoke-live-gameplay"),
     @("megamud_connection", "--smoke-megamud-connection"),
+    @("network_binding", "--smoke-network-binding"),
+    @("combat_terminal", "--smoke-combat-terminal"),
     @("classic_parity_closure", "--smoke-classic-parity-closure")
 )
 

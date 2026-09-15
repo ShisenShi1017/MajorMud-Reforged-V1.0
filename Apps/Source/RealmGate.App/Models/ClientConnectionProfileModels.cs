@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using RealmGate.Server;
 
 namespace RealmGate.App.Models;
 
@@ -12,7 +13,7 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     private string _serverProfileName = "Local Host";
     private string _worldName = "Classic";
     private string _hostName = "127.0.0.1";
-    private int _port = 4000;
+    private int _port = RealmGateNetworkBinding.DefaultTelnetPort;
     private bool _autoReconnect = true;
     private int _reconnectDelaySeconds = 5;
     private ClientTerminalViewMode _terminalViewMode = ClientTerminalViewMode.Reforged;

@@ -162,7 +162,7 @@ public sealed partial class RuntimeItemCatalog
             _projectRoot = Path.GetFullPath(root),
             _worldId = RuntimeIdentity.Normalize(worldId, "world")
         };
-        var folder = Path.Combine(root, "Data", worldId);
+        var folder = ServerDataRootResolver.Resolve(root, worldId).DataRoot;
         catalog.LoadItems(Path.Combine(folder, "items.json"));
         catalog.LoadEquipment(Path.Combine(folder, "equipment.json"));
         catalog.LoadSlots(Path.Combine(folder, "equipment_slots.json"));

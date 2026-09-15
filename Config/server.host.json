@@ -1,9 +1,9 @@
 {
   "server": {
     "host": {
-      "name": "RealmGate Local Host",
-      "bindAddress": "127.0.0.1",
-      "port": 4000,
+      "name": "RealmGate Host",
+      "bindAddress": "0.0.0.0",
+      "port": 2323,
       "maxSessions": 64,
       "worldTickMilliseconds": 1000,
       "combatTickMilliseconds": 5000,

@@ -532,6 +532,22 @@ if (args.Any(arg => string.Equals(arg, "--smoke-live-powers", StringComparison.O
     Console.WriteLine(powersReport.ToJson());
     return powersReport.Passed ? 0 : 28;
 }
+if (args.Any(arg => string.Equals(arg, "--smoke-network-binding", StringComparison.OrdinalIgnoreCase)))
+{
+    var networkReport = RuntimeNetworkBindingSmokeReport.Run();
+    Console.WriteLine("Runtime Network Binding Smoke Report");
+    Console.WriteLine(networkReport.ToJson());
+    return networkReport.Passed ? 0 : 98;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-combat-terminal", StringComparison.OrdinalIgnoreCase)))
+{
+    var terminalReport = RuntimeCombatTerminalSmokeReport.Run();
+    Console.WriteLine("Runtime Combat Terminal Smoke Report");
+    Console.WriteLine(terminalReport.ToJson());
+    return terminalReport.Passed ? 0 : 99;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-combat-completion", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate combat completion because project root was not resolved."); return 2; }
