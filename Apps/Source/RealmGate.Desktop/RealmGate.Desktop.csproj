@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../../Core/Source/RealmGate.Client.Core/RealmGate.Client.Core.csproj" />
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
     <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
   </ItemGroup>
