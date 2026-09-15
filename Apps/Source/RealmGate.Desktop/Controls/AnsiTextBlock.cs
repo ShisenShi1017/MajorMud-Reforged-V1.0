@@ -33,7 +33,10 @@ public sealed class AnsiTextBlock : TextBlock
 
     private void RenderAnsi()
     {
-        Inlines.Clear();
+        var inlines = Inlines;
+        if (inlines is null) return;
+        inlines.Clear();
+
         foreach (var span in AnsiTextParser.Parse(AnsiText))
         {
             var foreground = ResolveForeground(span.Style.Foreground, span.Style.Bold);
@@ -46,12 +49,12 @@ public sealed class AnsiTextBlock : TextBlock
                 FontWeight = FontWeight.Normal,
                 Foreground = foreground,
                 Background = background,
-                TextDecorations = span.Style.Underline ? TextDecorations.Underline : null
+                TextDecorations = span.Style.Underline ? Avalonia.Media.TextDecorations.Underline : null
             };
 
             // WCC/DOS SGR 1 is color intensity. Do not substitute typographic bold for it.
             // Blink state remains in Client.Core; timed blink belongs to the cell renderer.
-            Inlines.Add(run);
+            inlines.Add(run);
         }
     }
 
