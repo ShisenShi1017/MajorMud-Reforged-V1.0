@@ -31,6 +31,37 @@ var resetForeground = AnsiTextParser.Parse("\x1b[34mblue\x1b[39mdefault");
 Require(resetForeground.Count == 2 && resetForeground[1].Style.Foreground == AnsiForegroundColor.Default, "foreground-reset");
 checks.Add("foreground-reset");
 
+var background = AnsiTextParser.Parse("\x1b[44mblue-bg\x1b[49mdefault-bg");
+Require(background.Count == 2, "background-span-count");
+Require(background[0].Style.Background == AnsiBackgroundColor.Blue, "background-blue");
+Require(background[1].Style.Background == AnsiBackgroundColor.Default, "background-reset");
+checks.Add("background-color");
+
+var brightBackground = AnsiTextParser.Parse("\x1b[103mbright-yellow-bg");
+Require(brightBackground.Single().Style.Background == AnsiBackgroundColor.Yellow, "bright-background");
+checks.Add("bright-background");
+
+var underline = AnsiTextParser.Parse("\x1b[4munder\x1b[24mnormal");
+Require(underline.Count == 2 && underline[0].Style.Underline && !underline[1].Style.Underline, "underline-toggle");
+checks.Add("underline-toggle");
+
+var blink = AnsiTextParser.Parse("\x1b[5mblink\x1b[25mnormal");
+Require(blink.Count == 2 && blink[0].Style.Blink && !blink[1].Style.Blink, "blink-toggle");
+checks.Add("blink-toggle");
+
+var reverse = AnsiTextParser.Parse("\x1b[7mreverse\x1b[27mnormal");
+Require(reverse.Count == 2 && reverse[0].Style.Reverse && !reverse[1].Style.Reverse, "reverse-toggle");
+checks.Add("reverse-toggle");
+
+var combined = AnsiTextParser.Parse("\x1b[1;31;40;4mmajor\x1b[0mmud");
+Require(combined.Count == 2, "combined-span-count");
+Require(combined[0].Style.Foreground == AnsiForegroundColor.Red &&
+        combined[0].Style.Background == AnsiBackgroundColor.Black &&
+        combined[0].Style.Bold && combined[0].Style.Underline,
+        "combined-style");
+Require(combined[1].Style == AnsiTextStyle.Default, "combined-reset");
+checks.Add("combined-style");
+
 Console.WriteLine("RealmGate Client Core ANSI Regression");
 foreach (var check in checks) Console.WriteLine("PASS " + check);
 Console.WriteLine($"Passed {checks.Count} checks.");
