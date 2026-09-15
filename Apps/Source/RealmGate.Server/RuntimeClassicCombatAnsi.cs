@@ -3,6 +3,10 @@ namespace RealmGate.Server;
 internal static class RuntimeClassicCombatAnsi
 {
     internal const string Reset = "\u001b[0m";
+    internal const string Red = "\u001b[0;31m";
+    internal const string Green = "\u001b[0;32m";
+    internal const string Yellow = "\u001b[0;33m";
+    internal const string Cyan = "\u001b[0;36m";
     internal const string BrightRed = "\u001b[1;31m";
     internal const string BrightGreen = "\u001b[1;32m";
     internal const string BrightYellow = "\u001b[1;33m";
@@ -11,8 +15,9 @@ internal static class RuntimeClassicCombatAnsi
     internal const string BrightCyan = "\u001b[1;36m";
     internal const string White = "\u001b[0;37m";
 
+    // Original WCC emits ESC[0;33m immediately before *Combat Engaged*.
     internal static string Engagement(string npcName) =>
-        $"{BrightYellow}*Combat Engaged*{Reset}";
+        $"{Yellow}*Combat Engaged*{Reset}";
 
     // Observed MajorMUD/MegaMUD presentation keeps the player's successful attack
     // family red and uses cyan for misses/dodges. Damage severity changes wording,
