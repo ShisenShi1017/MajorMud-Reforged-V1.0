@@ -78,6 +78,12 @@ Require(mapRun.Text.StartsWith("X", StringComparison.Ordinal) &&
         "wcc-foreground-background-sgr");
 checks.Add("wcc-foreground-background-sgr");
 
+Require(ClassicTerminalPalette.ResolveForeground(mapRun.Foreground, mapRun.Bold) == ClassicTerminalColor.Yellow,
+        "wcc-sgr1-bright-foreground");
+Require(ClassicTerminalPalette.ResolveForeground(ClassicTerminalColor.DarkRed, false) == ClassicTerminalColor.DarkRed,
+        "wcc-normal-red-stays-dark");
+checks.Add("wcc-dos-intensity-palette");
+
 terminal.Reset();
 terminal.Process("ABC");
 var cleared = terminal.Process("\x1b[2J");
