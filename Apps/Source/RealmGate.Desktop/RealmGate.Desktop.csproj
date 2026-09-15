@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RealmGate.Desktop</AssemblyName>
+    <RootNamespace>RealmGate.Desktop</RootNamespace>
+    <AssemblyTitle>RealmGate</AssemblyTitle>
+    <Product>RealmGate</Product>
+    <Company>RealmGate</Company>
+    <Authors>RealmGate contributors</Authors>
+    <Description>Cross-platform RealmGate desktop client, host, Creator Studio, and Librarium shell.</Description>
+    <Version>0.2.0</Version>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
+    <InformationalVersion>0.2.0-avalonia</InformationalVersion>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.1" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
+    <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
+  </ItemGroup>
+</Project>

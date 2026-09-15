@@ -1,0 +1,100 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="RealmGate.Desktop.Views.MainWindow"
+        Title="RealmGate"
+        Width="1180"
+        Height="760"
+        MinWidth="900"
+        MinHeight="620">
+  <Grid RowDefinitions="Auto,*">
+    <Border Grid.Row="0" Padding="18,14" Background="#141922">
+      <StackPanel Orientation="Horizontal" Spacing="16">
+        <TextBlock Text="RealmGate" FontSize="24" FontWeight="Bold" />
+        <TextBlock Text="Avalonia Cross-Platform Preview" VerticalAlignment="Center" Opacity="0.65" />
+      </StackPanel>
+    </Border>
+
+    <TabControl Grid.Row="1" Margin="14">
+      <TabItem Header="PLAY">
+        <StackPanel Margin="20" Spacing="8">
+          <TextBlock Text="Play / ANSI terminal migration" FontSize="22" FontWeight="SemiBold" />
+          <TextBlock Text="The existing WPF client remains active while the Telnet and ANSI presentation layer is moved here." TextWrapping="Wrap" />
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="CHARACTER">
+        <StackPanel Margin="20" Spacing="8">
+          <TextBlock Text="Character migration" FontSize="22" FontWeight="SemiBold" />
+          <TextBlock Text="Character summary, equipment planner, statistics, spells/effects, and progress will reuse the shared RealmGate services." TextWrapping="Wrap" />
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="CREATOR STUDIO">
+        <StackPanel Margin="20" Spacing="8">
+          <TextBlock Text="Creator Studio migration" FontSize="22" FontWeight="SemiBold" />
+          <TextBlock Text="MDB importing and Custom1 editing will be moved behind cross-platform services before this view replaces the WPF editor." TextWrapping="Wrap" />
+        </StackPanel>
+      </TabItem>
+
+      <TabItem Header="SERVER">
+        <ScrollViewer>
+          <StackPanel Margin="20" MaxWidth="760" HorizontalAlignment="Left" Spacing="12">
+            <TextBlock Text="Server Access" FontSize="24" FontWeight="SemiBold" />
+            <TextBlock Text="The UI only edits settings and controls the portable server host. TCP/Telnet binding remains in RealmGate.Server.Runtime." TextWrapping="Wrap" Opacity="0.75" />
+
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Content="Local Only" Command="{Binding UseLocalOnlyCommand}" />
+              <Button Content="LAN / Remote Hosting" Command="{Binding UseRemoteHostingCommand}" />
+              <Button Content="Refresh LAN" Command="{Binding RefreshLanCommand}" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="150,240" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Bind Address" VerticalAlignment="Center" />
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BindAddress}" Watermark="0.0.0.0" />
+
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Port" VerticalAlignment="Center" />
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PortText}" Watermark="2323" />
+
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Max Sessions" VerticalAlignment="Center" />
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MaximumSessionsText}" Watermark="64" />
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Content="Start Server" Command="{Binding StartServerCommand}" />
+              <Button Content="Stop Server" Command="{Binding StopServerCommand}" />
+            </StackPanel>
+
+            <Border Padding="12" CornerRadius="6" BorderThickness="1" BorderBrush="#3A4353">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Status" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding ListenerText}" TextWrapping="Wrap" />
+              </StackPanel>
+            </Border>
+
+            <Border Padding="12" CornerRadius="6" BorderThickness="1" BorderBrush="#3A4353">
+              <StackPanel Spacing="5">
+                <TextBlock Text="LAN" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding LanEndpointsText}" TextWrapping="Wrap" />
+              </StackPanel>
+            </Border>
+
+            <Border Padding="12" CornerRadius="6" BorderThickness="1" BorderBrush="#3A4353">
+              <StackPanel Spacing="5">
+                <TextBlock Text="Host Log" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding LogText}" TextWrapping="Wrap" FontFamily="Monospace" />
+              </StackPanel>
+            </Border>
+          </StackPanel>
+        </ScrollViewer>
+      </TabItem>
+
+      <TabItem Header="LIBRARIUM">
+        <StackPanel Margin="20" Spacing="8">
+          <TextBlock Text="Librarium migration" FontSize="22" FontWeight="SemiBold" />
+          <TextBlock Text="Librarium remains authoritative; generated Data stays disposable on Windows and Linux." TextWrapping="Wrap" />
+        </StackPanel>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>
