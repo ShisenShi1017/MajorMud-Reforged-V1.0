@@ -30,6 +30,9 @@ jobs:
       - name: Restore Librarium compiler
         run: dotnet restore Apps/Compiler/RealmGate.Compiler.csproj
 
+      - name: Restore WCC ANSI parity tests
+        run: dotnet restore Tests/Source/RealmGate.Server.AnsiParity.Tests/RealmGate.Server.AnsiParity.Tests.csproj
+
       - name: Build RealmGate.Server
         run: dotnet build Apps/Source/RealmGate.Server/RealmGate.Server.csproj --configuration Release --no-restore
 
@@ -38,6 +41,12 @@ jobs:
 
       - name: Build Librarium compiler
         run: dotnet build Apps/Compiler/RealmGate.Compiler.csproj --configuration Release --no-restore
+
+      - name: Build WCC ANSI parity tests
+        run: dotnet build Tests/Source/RealmGate.Server.AnsiParity.Tests/RealmGate.Server.AnsiParity.Tests.csproj --configuration Release --no-restore
+
+      - name: Verify native WCC ANSI presentation contract
+        run: dotnet run --project Tests/Source/RealmGate.Server.AnsiParity.Tests/RealmGate.Server.AnsiParity.Tests.csproj --configuration Release --no-build
 
       - name: Generate Classic runtime data
         run: dotnet run --project Apps/Compiler/RealmGate.Compiler.csproj --configuration Release --no-build -- build --world Classic --clean
