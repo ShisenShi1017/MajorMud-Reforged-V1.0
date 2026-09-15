@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:RealmGate.Desktop.ViewModels"
+        xmlns:controls="clr-namespace:RealmGate.Desktop.Controls"
         x:Class="RealmGate.Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="RealmGate"
@@ -18,9 +19,15 @@
 
     <TabControl Grid.Row="1" Margin="14">
       <TabItem Header="PLAY">
-        <StackPanel Margin="20" Spacing="8">
+        <StackPanel Margin="20" Spacing="10">
           <TextBlock Text="Play / ANSI terminal migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Text="The existing WPF client remains active while the Telnet and ANSI presentation layer is moved here." TextWrapping="Wrap" />
+          <TextBlock Text="The terminal renderer below is already using the shared Windows/Linux ANSI parser. Live Telnet session migration is next." TextWrapping="Wrap" />
+          <Border Padding="14" Background="#080B10" BorderBrush="#3A4353" BorderThickness="1" CornerRadius="6" MinHeight="160">
+            <controls:AnsiTextBlock AnsiText="{Binding TerminalPreviewText}"
+                                    FontFamily="Monospace"
+                                    FontSize="16"
+                                    TextWrapping="Wrap" />
+          </Border>
         </StackPanel>
       </TabItem>
 
