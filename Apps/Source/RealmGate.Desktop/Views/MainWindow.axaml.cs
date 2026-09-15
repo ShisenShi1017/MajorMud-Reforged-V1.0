@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using RealmGate.Desktop.ViewModels;
 
 namespace RealmGate.Desktop.Views;
@@ -7,7 +8,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        InitializeComponent();
+        AvaloniaXamlLoader.Load(this);
         DataContext = new MainWindowViewModel();
         Closed += async (_, _) =>
         {
