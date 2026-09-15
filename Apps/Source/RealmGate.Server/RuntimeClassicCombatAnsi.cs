@@ -14,19 +14,18 @@ internal static class RuntimeClassicCombatAnsi
     internal static string Engagement(string npcName) =>
         $"{BrightYellow}*Combat Engaged*{Reset}";
 
+    // Observed MajorMUD/MegaMUD presentation keeps the player's successful attack
+    // family red and uses cyan for misses/dodges. Damage severity changes wording,
+    // not the semantic foreground color.
     internal static string PlayerAttack(string text, ClassicHitOutcome outcome) =>
-        Color(text, outcome switch
-        {
-            ClassicHitOutcome.Critical => BrightYellow,
-            ClassicHitOutcome.Hit => BrightGreen,
-            ClassicHitOutcome.Glance => White,
-            ClassicHitOutcome.Dodged => BrightCyan,
-            _ => White
-        });
+        Color(text, outcome is ClassicHitOutcome.Miss or ClassicHitOutcome.Dodged
+            ? BrightCyan
+            : BrightRed);
 
+    // Incoming NPC attack prose is cyan in the captured native presentation,
+    // including hit/miss variants. Do not reuse player-damage red here.
     internal static string NpcAttack(string text, ClassicHitOutcome outcome) =>
-        Color(text, outcome == ClassicHitOutcome.Critical ? BrightMagenta :
-            outcome == ClassicHitOutcome.Hit ? BrightRed : White);
+        Color(text, BrightCyan);
 
     internal static string Warning(string text) => Color(text, BrightYellow);
     internal static string Defeat(string text) => Color(text, BrightRed);
