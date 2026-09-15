@@ -1,6 +1,8 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:RealmGate.Desktop.ViewModels"
         x:Class="RealmGate.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
         Title="RealmGate"
         Width="1180"
         Height="760"
@@ -50,13 +52,13 @@
 
             <Grid ColumnDefinitions="150,240" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="10">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="Bind Address" VerticalAlignment="Center" />
-              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BindAddress}" Watermark="0.0.0.0" />
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding BindAddress}" PlaceholderText="0.0.0.0" />
 
               <TextBlock Grid.Row="1" Grid.Column="0" Text="Port" VerticalAlignment="Center" />
-              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PortText}" Watermark="2323" />
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding PortText}" PlaceholderText="2323" />
 
               <TextBlock Grid.Row="2" Grid.Column="0" Text="Max Sessions" VerticalAlignment="Center" />
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MaximumSessionsText}" Watermark="64" />
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding MaximumSessionsText}" PlaceholderText="64" />
             </Grid>
 
             <StackPanel Orientation="Horizontal" Spacing="8">
