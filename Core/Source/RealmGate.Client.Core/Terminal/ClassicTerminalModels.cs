@@ -22,6 +22,41 @@ public enum ClassicTerminalColor : byte
 
 public readonly record struct ClassicTerminalRgb(byte Red, byte Green, byte Blue);
 
+public static class ClassicTerminalPalette
+{
+    private static readonly ClassicTerminalRgb[] Colors =
+    [
+        new(0x00, 0x00, 0x00),
+        new(0x80, 0x00, 0x00),
+        new(0x00, 0x80, 0x00),
+        new(0x80, 0x80, 0x00),
+        new(0x00, 0x00, 0x80),
+        new(0x80, 0x00, 0x80),
+        new(0x00, 0x80, 0x80),
+        new(0xC0, 0xC0, 0xC0),
+        new(0x80, 0x80, 0x80),
+        new(0xFF, 0x00, 0x00),
+        new(0x00, 0xFF, 0x00),
+        new(0xFF, 0xFF, 0x00),
+        new(0x00, 0x00, 0xFF),
+        new(0xFF, 0x00, 0xFF),
+        new(0x00, 0xFF, 0xFF),
+        new(0xFF, 0xFF, 0xFF)
+    ];
+
+    /// <summary>
+    /// Original WCC/DOS ANSI treats SGR 1 as foreground intensity. For base
+    /// colors 0-7 this selects the bright 8-15 palette entry; backgrounds are
+    /// unaffected. Explicit bright SGR colors (90-97) already arrive as 8-15.
+    /// </summary>
+    public static ClassicTerminalColor ResolveForeground(ClassicTerminalColor color, bool intense) =>
+        intense && (byte)color < 8
+            ? (ClassicTerminalColor)((byte)color + 8)
+            : color;
+
+    public static ClassicTerminalRgb ResolveRgb(ClassicTerminalColor color) => Colors[(byte)color];
+}
+
 public sealed record ClassicTerminalRun(
     string Text,
     ClassicTerminalColor Foreground,
