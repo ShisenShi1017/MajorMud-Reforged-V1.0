@@ -62,10 +62,77 @@ Require(combined[0].Style.Foreground == AnsiForegroundColor.Red &&
 Require(combined[1].Style == AnsiTextStyle.Default, "combined-reset");
 checks.Add("combined-style");
 
+// Original WCC evidence contract: stateful DOS/ANSI terminal behavior.
+var terminal = new ClassicTerminalEmulator();
+var initial = terminal.CreateSnapshot();
+Require(initial.Columns == 80 && initial.Rows == 25, "wcc-default-80x25");
+checks.Add("wcc-default-80x25");
+
+var mapStyle = terminal.Reset();
+mapStyle = terminal.Process("\x1b[1;33;41mX");
+var mapRun = mapStyle.Lines[0].Runs[0];
+Require(mapRun.Text.StartsWith("X", StringComparison.Ordinal) &&
+        mapRun.Foreground == ClassicTerminalColor.DarkYellow &&
+        mapRun.Background == ClassicTerminalColor.DarkRed &&
+        mapRun.Bold,
+        "wcc-foreground-background-sgr");
+checks.Add("wcc-foreground-background-sgr");
+
+terminal.Reset();
+terminal.Process("ABC");
+var cleared = terminal.Process("\x1b[2J");
+Require(PlainLine(cleared, 0).Trim().Length == 0, "wcc-full-screen-clear");
+checks.Add("wcc-full-screen-clear");
+
+terminal.Reset();
+var erasedLine = terminal.Process("ABCDE\x1b[3D\x1b[K");
+Require(PlainLine(erasedLine, 0).StartsWith("AB   ", StringComparison.Ordinal), "wcc-erase-to-end-line");
+checks.Add("wcc-erase-to-end-line");
+
+terminal.Reset();
+var rewind79 = terminal.Process("\x1b[80GZ\x1b[79DA");
+Require(PlainLine(rewind79, 0)[0] == 'A' && PlainLine(rewind79, 0)[79] == 'Z', "wcc-79-column-rewind");
+checks.Add("wcc-79-column-rewind");
+
+terminal.Reset();
+var positioned = terminal.Process("\x1b[6;1HX");
+Require(PlainLine(positioned, 5)[0] == 'X' && positioned.CursorRow == 5 && positioned.CursorColumn == 1,
+        "wcc-absolute-cursor-position");
+checks.Add("wcc-absolute-cursor-position");
+
+terminal.Reset();
+var restored = terminal.Process("\x1b[5;10H\x1b[s\x1b[1;1H!\x1b[uX");
+Require(PlainLine(restored, 0)[0] == '!' && PlainLine(restored, 4)[9] == 'X', "wcc-save-restore-cursor");
+checks.Add("wcc-save-restore-cursor");
+
+terminal.Reset();
+var scrolled = terminal.Process("\x1b[22;24r\x1b[22;1HA\x1b[23;1HB\x1b[24;1HC\n");
+Require(PlainLine(scrolled, 21)[0] == 'B' && PlainLine(scrolled, 22)[0] == 'C' && PlainLine(scrolled, 23)[0] == ' ',
+        "wcc-scroll-region");
+checks.Add("wcc-scroll-region");
+
+terminal.Reset();
+var carriageReturn = terminal.Process("ABC\rZ");
+Require(PlainLine(carriageReturn, 0).StartsWith("ZBC", StringComparison.Ordinal), "wcc-carriage-return-rewrite");
+checks.Add("wcc-carriage-return-rewrite");
+
+terminal.Reset();
+var wrapped = terminal.Process(new string('A', 80) + "B");
+Require(PlainLine(wrapped, 0) == new string('A', 80) && PlainLine(wrapped, 1)[0] == 'B', "wcc-column-80-autowrap");
+checks.Add("wcc-column-80-autowrap");
+
+terminal.Reset();
+var cp437Glyphs = terminal.Process("╔═╗║█║╚═╝");
+Require(PlainLine(cp437Glyphs, 0).StartsWith("╔═╗║█║╚═╝", StringComparison.Ordinal), "wcc-cp437-glyph-preservation");
+checks.Add("wcc-cp437-glyph-preservation");
+
 Console.WriteLine("RealmGate Client Core ANSI Regression");
 foreach (var check in checks) Console.WriteLine("PASS " + check);
 Console.WriteLine($"Passed {checks.Count} checks.");
 return 0;
+
+static string PlainLine(ClassicTerminalSnapshot snapshot, int row) =>
+    string.Concat(snapshot.Lines[row].Runs.Select(run => run.Text));
 
 static void Require(bool condition, string code)
 {
