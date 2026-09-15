@@ -121,8 +121,13 @@ var wrapped = terminal.Process(new string('A', 80) + "B");
 Require(PlainLine(wrapped, 0) == new string('A', 80) && PlainLine(wrapped, 1)[0] == 'B', "wcc-column-80-autowrap");
 checks.Add("wcc-column-80-autowrap");
 
+var cp437 = new CodePage437Encoding();
+var decodedMapGlyphs = cp437.GetString(new byte[] { 0xC9, 0xCD, 0xBB, 0xBA, 0xDB, 0xBA, 0xC8, 0xCD, 0xBC });
+Require(decodedMapGlyphs == "╔═╗║█║╚═╝", "wcc-cp437-byte-decoding");
+checks.Add("wcc-cp437-byte-decoding");
+
 terminal.Reset();
-var cp437Glyphs = terminal.Process("╔═╗║█║╚═╝");
+var cp437Glyphs = terminal.Process(decodedMapGlyphs);
 Require(PlainLine(cp437Glyphs, 0).StartsWith("╔═╗║█║╚═╝", StringComparison.Ordinal), "wcc-cp437-glyph-preservation");
 checks.Add("wcc-cp437-glyph-preservation");
 
