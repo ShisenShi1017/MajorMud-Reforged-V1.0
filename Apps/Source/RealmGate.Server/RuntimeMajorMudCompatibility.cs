@@ -8,6 +8,14 @@ namespace RealmGate.Server;
 /// </summary>
 public static class RuntimeMajorMudCompatibility
 {
+    private const string AnsiReset = "\u001b[0m";
+    private const string AnsiGreen = "\u001b[0;32m";
+    private const string AnsiCyan = "\u001b[36m";
+    private const string AnsiRed = "\u001b[31m";
+    private const string AnsiYellow = "\u001b[33m";
+    private const string AnsiBandGreen = "\u001b[32m";
+    private const string AnsiWhite = "\u001b[37m";
+
     public static bool IsObviousExit(RuntimeExit exit)
     {
         if (string.IsNullOrWhiteSpace(exit.Direction) || exit.TargetMapId <= 0 || exit.TargetRoomNumber <= 0)
@@ -114,8 +122,12 @@ public static class RuntimeMajorMudCompatibility
     {
         if (carriedWeight <= 0) return "None";
         var percent = CalculateEncumberancePercent(carriedWeight, capacity);
-        if (percent < 34) return "Light";
-        if (percent < 67) return "Medium";
+
+        // Original WCC inventory code compares the computed percentage against
+        // 0x10, 0x21 and 0x42: None <=16, Light 17-33, Medium 34-66, Heavy >=67.
+        if (percent <= 16) return "None";
+        if (percent <= 33) return "Light";
+        if (percent <= 66) return "Medium";
         return "Heavy";
     }
 
@@ -127,6 +139,29 @@ public static class RuntimeMajorMudCompatibility
             ? $"Encumbrance: {carriedWeight}/{capacity} - {band} [{percent}%]"
             : $"Encumbrance: {carriedWeight}/{capacity} - {band}";
     }
+
+    /// <summary>
+    /// Native WCC inventory presentation: green label, cyan values, then a
+    /// band-specific normal-intensity color (red/yellow/green/white) and reset.
+    /// </summary>
+    public static string FormatEncumberanceLineAnsi(long carriedWeight, long capacity, bool includePercent = true)
+    {
+        var percent = CalculateEncumberancePercent(carriedWeight, capacity);
+        var band = ClassifyEncumberance(carriedWeight, capacity);
+        var bandColor = band switch
+        {
+            "Heavy" => AnsiRed,
+            "Medium" => AnsiYellow,
+            "Light" => AnsiBandGreen,
+            _ => AnsiWhite
+        };
+
+        var suffix = includePercent ? $" [{percent}%]" : string.Empty;
+        return $"{AnsiGreen}Encumbrance: {AnsiCyan}{carriedWeight}/{capacity} - {bandColor}{band}{suffix}{AnsiReset}";
+    }
+
+    public static string FormatWealthLineAnsi(string value) =>
+        $"{AnsiGreen}Wealth: {AnsiCyan}{value}{AnsiReset}";
 
     public static string FormatInventoryCurrency(RuntimeClassicInventoryCurrency currency)
     {
