@@ -24,9 +24,47 @@ public enum AnsiForegroundColor
     White
 }
 
-public readonly record struct AnsiTextStyle(AnsiForegroundColor Foreground, bool Bold)
+public enum AnsiBackgroundColor
 {
-    public static AnsiTextStyle Default => new(AnsiForegroundColor.Default, false);
+    Default,
+    Black,
+    Red,
+    Green,
+    Olive,
+    Blue,
+    Magenta,
+    Cyan,
+    LightGray,
+    Gray,
+    OrangeRed,
+    LimeGreen,
+    Yellow,
+    DodgerBlue,
+    HotPink,
+    Aqua,
+    White
+}
+
+public readonly record struct AnsiTextStyle(
+    AnsiForegroundColor Foreground,
+    AnsiBackgroundColor Background,
+    bool Bold,
+    bool Underline,
+    bool Blink,
+    bool Reverse)
+{
+    public AnsiTextStyle(AnsiForegroundColor foreground, bool bold)
+        : this(foreground, AnsiBackgroundColor.Default, bold, false, false, false)
+    {
+    }
+
+    public static AnsiTextStyle Default => new(
+        AnsiForegroundColor.Default,
+        AnsiBackgroundColor.Default,
+        false,
+        false,
+        false,
+        false);
 }
 
 public sealed record AnsiTextSpan(string Text, AnsiTextStyle Style);
@@ -34,6 +72,9 @@ public sealed record AnsiTextSpan(string Text, AnsiTextStyle Style);
 /// <summary>
 /// UI-neutral ANSI SGR interpreter shared by Windows and Linux RealmGate clients.
 /// Rendering remains the responsibility of the desktop presentation layer.
+/// MajorMUD's native palette is 16-color ANSI; background, underline, blink and
+/// reverse-video state are preserved here even when a presentation layer cannot
+/// visually animate every attribute.
 /// </summary>
 public static class AnsiTextParser
 {
@@ -105,12 +146,35 @@ public static class AnsiTextParser
                 case 22:
                     state = state with { Bold = false };
                     break;
+                case 4:
+                    state = state with { Underline = true };
+                    break;
+                case 24:
+                    state = state with { Underline = false };
+                    break;
+                case 5:
+                    state = state with { Blink = true };
+                    break;
+                case 25:
+                    state = state with { Blink = false };
+                    break;
+                case 7:
+                    state = state with { Reverse = true };
+                    break;
+                case 27:
+                    state = state with { Reverse = false };
+                    break;
                 case 39:
                     state = state with { Foreground = AnsiForegroundColor.Default };
+                    break;
+                case 49:
+                    state = state with { Background = AnsiBackgroundColor.Default };
                     break;
                 default:
                     if (TryGetForeground(code, out var foreground))
                         state = state with { Foreground = foreground };
+                    else if (TryGetBackground(code, out var background))
+                        state = state with { Background = background };
                     break;
             }
         }
@@ -154,5 +218,31 @@ public static class AnsiTextParser
         };
 
         return code is >= 30 and <= 37 or >= 90 and <= 97;
+    }
+
+    private static bool TryGetBackground(int code, out AnsiBackgroundColor background)
+    {
+        background = code switch
+        {
+            40 => AnsiBackgroundColor.Black,
+            41 => AnsiBackgroundColor.Red,
+            42 => AnsiBackgroundColor.Green,
+            43 => AnsiBackgroundColor.Olive,
+            44 => AnsiBackgroundColor.Blue,
+            45 => AnsiBackgroundColor.Magenta,
+            46 => AnsiBackgroundColor.Cyan,
+            47 => AnsiBackgroundColor.LightGray,
+            100 => AnsiBackgroundColor.Gray,
+            101 => AnsiBackgroundColor.OrangeRed,
+            102 => AnsiBackgroundColor.LimeGreen,
+            103 => AnsiBackgroundColor.Yellow,
+            104 => AnsiBackgroundColor.DodgerBlue,
+            105 => AnsiBackgroundColor.HotPink,
+            106 => AnsiBackgroundColor.Aqua,
+            107 => AnsiBackgroundColor.White,
+            _ => AnsiBackgroundColor.Default
+        };
+
+        return code is >= 40 and <= 47 or >= 100 and <= 107;
     }
 }
