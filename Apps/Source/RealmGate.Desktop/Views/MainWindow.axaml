@@ -19,16 +19,23 @@
 
     <TabControl Grid.Row="1" Margin="14">
       <TabItem Header="PLAY">
-        <StackPanel Margin="20" Spacing="10">
-          <TextBlock Text="Play / ANSI terminal migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Text="The terminal renderer below is already using the shared Windows/Linux ANSI parser. Live Telnet session migration is next." TextWrapping="Wrap" />
-          <Border Padding="14" Background="#080B10" BorderBrush="#3A4353" BorderThickness="1" CornerRadius="6" MinHeight="160">
-            <controls:AnsiTextBlock AnsiText="{Binding TerminalPreviewText}"
-                                    FontFamily="Monospace"
-                                    FontSize="16"
-                                    TextWrapping="Wrap" />
+        <Grid Margin="20" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+          <TextBlock Grid.Row="0" Text="Play / WCC ANSI terminal migration" FontSize="22" FontWeight="SemiBold" />
+          <TextBlock Grid.Row="1"
+                     Text="This preview is rendered from the shared stateful 80x25 terminal cell buffer. ANSI/VT interpretation, CP437 decoding, cursor state, and DOS color intensity now live outside Avalonia."
+                     TextWrapping="Wrap" />
+          <Border Grid.Row="2"
+                  Padding="10"
+                  Background="#000000"
+                  BorderBrush="#3A4353"
+                  BorderThickness="1"
+                  CornerRadius="6">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+              <controls:ClassicTerminalView Snapshot="{Binding TerminalPreviewSnapshot}" />
+            </ScrollViewer>
           </Border>
-        </StackPanel>
+        </Grid>
       </TabItem>
 
       <TabItem Header="CHARACTER">
