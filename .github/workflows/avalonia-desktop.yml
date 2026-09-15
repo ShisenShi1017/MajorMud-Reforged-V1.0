@@ -9,6 +9,8 @@ on:
       - 'Apps/Source/RealmGate.Server/**'
       - 'Apps/Source/RealmGate.Server.Runtime/**'
       - 'Apps/Compiler/**'
+      - 'Core/Source/RealmGate.Client.Core/**'
+      - 'Tests/Source/RealmGate.Client.Core.Tests/**'
       - '.github/workflows/avalonia-desktop.yml'
   pull_request:
     paths:
@@ -16,6 +18,8 @@ on:
       - 'Apps/Source/RealmGate.Server/**'
       - 'Apps/Source/RealmGate.Server.Runtime/**'
       - 'Apps/Compiler/**'
+      - 'Core/Source/RealmGate.Client.Core/**'
+      - 'Tests/Source/RealmGate.Client.Core.Tests/**'
       - '.github/workflows/avalonia-desktop.yml'
   workflow_dispatch:
 
@@ -39,6 +43,9 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           global-json-file: global.json
+
+      - name: Run cross-platform client core ANSI regression
+        run: dotnet run --project Tests/Source/RealmGate.Client.Core.Tests/RealmGate.Client.Core.Tests.csproj --configuration Release
 
       - name: Restore Avalonia desktop
         run: dotnet restore Apps/Source/RealmGate.Desktop/RealmGate.Desktop.csproj -r ${{ matrix.rid }}
