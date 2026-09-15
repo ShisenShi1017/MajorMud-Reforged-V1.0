@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Avalonia.Threading;
+using RealmGate.Client.Terminal;
 using RealmGate.Desktop.Services;
 using RealmGate.Server;
 
@@ -21,6 +22,8 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
 
     public MainWindowViewModel()
     {
+        TerminalPreviewSnapshot = BuildTerminalPreview();
+
         _hostLogHandler = message => Dispatcher.UIThread.Post(() => AppendLog(message));
         _host.Log += _hostLogHandler;
 
@@ -48,10 +51,7 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     public ICommand StartServerCommand { get; }
     public ICommand StopServerCommand { get; }
 
-    public string TerminalPreviewText =>
-        "\x1b[92mRealmGate ANSI terminal\x1b[0m\r\n"
-        + "\x1b[96mWindows + Linux\x1b[0m share the same parser.\r\n"
-        + "\x1b[1;93mHP: 45/50 >\x1b[0m";
+    public ClassicTerminalSnapshot TerminalPreviewSnapshot { get; }
 
     public string BindAddress
     {
@@ -154,6 +154,25 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         if (string.IsNullOrWhiteSpace(message)) return;
         var line = $"[{DateTimeOffset.Now:HH:mm:ss}] {message}";
         LogText = string.IsNullOrWhiteSpace(LogText) ? line : LogText + Environment.NewLine + line;
+    }
+
+    private static ClassicTerminalSnapshot BuildTerminalPreview()
+    {
+        var terminal = new ClassicTerminalEmulator();
+        var cp437 = new CodePage437Encoding();
+        var box = cp437.GetString(new byte[] { 0xC9, 0xCD, 0xCD, 0xCD, 0xBB });
+
+        terminal.Process("\x1b[2J\x1b[1;1H");
+        terminal.Process("\x1b[1;36mRealmGate - WCC ANSI parity\x1b[0m\r\n");
+        terminal.Process("\x1b[0;37mShared 80x25 terminal: Windows + Linux\x1b[0m\r\n\r\n");
+        terminal.Process("\x1b[1;33;41m" + box + "\x1b[0m  original DOS foreground/background semantics\r\n");
+        terminal.Process("\x1b[0;33m*Combat Engaged*\x1b[0m\r\n");
+        terminal.Process("\x1b[1;31mYou hit the goblin for 8 damage.\x1b[0m\r\n");
+        terminal.Process("\x1b[1;36mThe goblin misses you.\x1b[0m\r\n");
+        terminal.Process("\x1b[0;32mWealth:\x1b[0m \x1b[0;36m124 gold\x1b[0m\r\n");
+        terminal.Process("\x1b[0;32mEncumbrance:\x1b[0m \x1b[0;33mMedium\x1b[0m\r\n");
+        terminal.Process("\r\n\x1b[1;36m[HP=45/MA=30]:\x1b[0m");
+        return terminal.CreateSnapshot();
     }
 
     private bool Set<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
