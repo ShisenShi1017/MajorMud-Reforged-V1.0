@@ -68,6 +68,22 @@ var initial = terminal.CreateSnapshot();
 Require(initial.Columns == 80 && initial.Rows == 25, "wcc-default-80x25");
 checks.Add("wcc-default-80x25");
 
+Require(initial.Lines.Count == 25 &&
+        initial.Lines.All(line => line.Runs.Sum(run => run.Text.Length) == 80),
+        "wcc-snapshot-preserves-blank-cells");
+checks.Add("wcc-snapshot-preserves-blank-cells");
+
+terminal.Reset();
+var styledCells = terminal.Process("\x1b[7;4;5;8mX");
+var styledRun = styledCells.Lines[0].Runs[0];
+Require(styledRun.Text.StartsWith("X", StringComparison.Ordinal) &&
+        styledRun.Inverse &&
+        styledRun.Underline &&
+        styledRun.Blink &&
+        styledRun.Concealed,
+        "wcc-snapshot-preserves-cell-effects");
+checks.Add("wcc-snapshot-preserves-cell-effects");
+
 var mapStyle = terminal.Reset();
 mapStyle = terminal.Process("\x1b[1;33;41mX");
 var mapRun = mapStyle.Lines[0].Runs[0];
@@ -136,6 +152,43 @@ terminal.Reset();
 var cp437Glyphs = terminal.Process(decodedMapGlyphs);
 Require(PlainLine(cp437Glyphs, 0).StartsWith("╔═╗║█║╚═╝", StringComparison.Ordinal), "wcc-cp437-glyph-preservation");
 checks.Add("wcc-cp437-glyph-preservation");
+
+var input = new ClassicTerminalInputBuffer();
+Require(input.InsertText("look") && input.Text == "look" && input.CaretIndex == 4,
+        "terminal-input-insert");
+input.MoveCaret(-2);
+input.InsertText("X");
+Require(input.Text == "loXok" && input.CaretIndex == 3, "terminal-input-caret-insert");
+Require(input.Backspace() && input.Delete() && input.Text == "lok", "terminal-input-delete");
+checks.Add("terminal-input-editing");
+
+input.Clear();
+input.PasteText("say hello\r\n");
+var firstSubmission = input.Submit();
+Require(firstSubmission == new ClassicTerminalSubmission("say hello", false) && input.Text.Length == 0,
+        "terminal-input-submit");
+input.InsertText("north");
+input.Submit();
+Require(input.RecallHistory(-1) && input.Text == "north" &&
+        input.RecallHistory(-1) && input.Text == "say hello" &&
+        input.RecallHistory(1) && input.Text == "north" &&
+        input.RecallHistory(1) && input.Text.Length == 0,
+        "terminal-input-history");
+checks.Add("terminal-input-submit-history");
+
+input.SetPasswordMode(true);
+input.InsertText("secret");
+Require(input.DisplayText == "••••••" && input.CopyableText is null,
+        "terminal-input-password-display");
+var sensitiveSubmission = input.Submit();
+Require(sensitiveSubmission == new ClassicTerminalSubmission("secret", true) &&
+        !input.RecallHistory(-1),
+        "terminal-input-password-submit");
+input.InsertText("discarded");
+input.SetPasswordMode(false);
+Require(input.Text.Length == 0 && input.CopyableText is null,
+        "terminal-input-password-mode-clear");
+checks.Add("terminal-input-password");
 
 Console.WriteLine("RealmGate Client Core ANSI Regression");
 foreach (var check in checks) Console.WriteLine("PASS " + check);
