@@ -29,4 +29,12 @@
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
     <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="../RealmGate.App/Assets/Paths/classic_route_graph.json"
+             Link="Assets/Paths/classic_route_graph.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

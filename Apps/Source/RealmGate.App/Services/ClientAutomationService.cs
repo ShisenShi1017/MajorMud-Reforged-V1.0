@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
 
 namespace RealmGate.App.Services;
 
@@ -26,6 +27,7 @@ public sealed class ClientAutomationService : IClientAutomationService
     private readonly Dictionary<string, DateTimeOffset> _lastCommandAtBySession = new(StringComparer.OrdinalIgnoreCase);
     private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly Dictionary<string, DateTimeOffset> _ruleLastRun = new(StringComparer.OrdinalIgnoreCase);
+    private readonly ClientTimedEventScheduler _timedEvents = new();
 
     public ClientAutomationProfile Profile { get; private set; } = CreateDefaultProfile();
     public ClientAutomationPolicy Policy { get; } = new();
@@ -58,6 +60,7 @@ public sealed class ClientAutomationService : IClientAutomationService
 
         _ruleLastRun.Clear();
         _lastCommandAtBySession.Clear();
+        _timedEvents.Reset();
     }
 
     public async Task SaveAsync()
@@ -130,71 +133,34 @@ public sealed class ClientAutomationService : IClientAutomationService
 
     public IReadOnlyList<ClientAutomationCommandRequest> EvaluateTimedEvents(ClientAutomationContext context, bool connected)
     {
-        if (!CanContinueInputAutomation || !Profile.Capabilities.TimedEventsEnabled || !connected) return [];
-        if (Profile.Options.Events.PauseEventsInCombat && context.InCombat) return [];
         var delay = Math.Max(Profile.MinimumCommandDelayMs, Policy.MinimumCommandDelayMs);
-        if (_lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt)
-            && (context.Timestamp - lastCommandAt).TotalMilliseconds < delay) return [];
-
-        foreach (var scheduledEvent in Profile.Options.Events.ScheduledEvents
-                     .Where(item => item.Enabled && !string.IsNullOrWhiteSpace(item.Command))
-                     .OrderBy(item => item.Priority)
-                     .ThenBy(item => item.Id, StringComparer.OrdinalIgnoreCase))
-        {
-            if (scheduledEvent.OnlyOutOfCombat && context.InCombat) continue;
-            if (scheduledEvent.OnlyInCombat && !context.InCombat) continue;
-            var commands = ClientAutomationExpansionEngine.SplitCommandSteps(scheduledEvent.Command);
-            if (commands.Count == 0) continue;
-
-            var runKey = RunKey(context.SessionId, scheduledEvent.Id);
-            var intervalSeconds = scheduledEvent.IntervalSeconds > 0
-                ? Math.Max(1, scheduledEvent.IntervalSeconds)
-                : Math.Max(1, scheduledEvent.IntervalMinutes) * 60;
-            if (!_ruleLastRun.TryGetValue(runKey, out var lastRun))
-            {
-                _ruleLastRun[runKey] = context.Timestamp;
-                if (!scheduledEvent.RunImmediately) continue;
-            }
-            else if ((context.Timestamp - lastRun).TotalSeconds < intervalSeconds) continue;
-
-            var request = new ClientAutomationCommandRequest(
-                scheduledEvent.Id, scheduledEvent.Name, commands[0], AutomationArea.Events,
-                context.Timestamp, context.SessionId, commands);
-            _lastCommandAtBySession[context.SessionId] = context.Timestamp;
-            _ruleLastRun[runKey] = context.Timestamp;
-            CommandRequested?.Invoke(this, request);
-            return [request];
-        }
-        return [];
+        var match = _timedEvents.Evaluate(Profile.Options.Events, new(
+            context.SessionId, context.Timestamp, connected, connected, context.InCombat,
+            CanContinueInputAutomation && Profile.Capabilities.TimedEventsEnabled, delay,
+            _lastCommandAtBySession.TryGetValue(context.SessionId, out var lastCommandAt) ? lastCommandAt : null));
+        if (match is null) return [];
+        var request = new ClientAutomationCommandRequest(
+            match.RuleId, match.RuleName, match.Commands[0], AutomationArea.Events,
+            context.Timestamp, context.SessionId, match.Commands);
+        _lastCommandAtBySession[context.SessionId] = context.Timestamp;
+        CommandRequested?.Invoke(this, request);
+        return [request];
     }
 
     public bool TryResolveHumanInput(string input, out IReadOnlyList<string> commands)
     {
-        commands = [];
-        var text = input.Trim();
-        if (!CanContinueInputAutomation || text.Length == 0) return false;
-
-        const string macroPrefix = "/macro ";
-        if (Profile.Capabilities.MacrosEnabled && text.StartsWith(macroPrefix, StringComparison.OrdinalIgnoreCase))
+        var capabilities = Profile.Capabilities;
+        var runtime = new ClientInputAutomationRuntime(new ClientInputAutomationProfile
         {
-            var invocation = text[macroPrefix.Length..].Trim();
-            var separator = invocation.IndexOf(' ');
-            var name = separator < 0 ? invocation : invocation[..separator];
-            var arguments = separator < 0 ? string.Empty : invocation[(separator + 1)..].Trim();
-            var macro = Profile.Capabilities.Macros.FirstOrDefault(candidate => candidate.Enabled && candidate.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            if (macro is null) return false;
-            commands = ClientAutomationExpansionEngine.ExpandMacro(macro.Commands, arguments);
-            return commands.Count > 0;
-        }
-
-        if (!Profile.Capabilities.AliasesEnabled) return false;
-        var aliasSeparator = text.IndexOf(' ');
-        var namePart = aliasSeparator < 0 ? text : text[..aliasSeparator];
-        var argumentsPart = aliasSeparator < 0 ? string.Empty : text[(aliasSeparator + 1)..].Trim();
-        var alias = Profile.Capabilities.Aliases.FirstOrDefault(candidate => candidate.Enabled && candidate.Name.Equals(namePart, StringComparison.OrdinalIgnoreCase));
-        if (alias is null || string.IsNullOrWhiteSpace(alias.Command)) return false;
-        commands = ClientAutomationExpansionEngine.ExpandAlias(alias.Command, argumentsPart);
-        return commands.Count > 0;
+            AliasesEnabled = capabilities.AliasesEnabled,
+            MacrosEnabled = capabilities.MacrosEnabled,
+            TextTriggersEnabled = capabilities.TextTriggersEnabled,
+            EmergencyStop = !CanContinueInputAutomation,
+            Aliases = capabilities.Aliases,
+            Macros = capabilities.Macros,
+            TextTriggers = capabilities.TextTriggers
+        });
+        return runtime.TryResolveHumanInput(input, out commands);
     }
 
     public void SetMasterEnabled(bool enabled)
@@ -212,6 +178,7 @@ public sealed class ClientAutomationService : IClientAutomationService
         Profile.PauseAll = true;
         _ruleLastRun.Clear();
         _lastCommandAtBySession.Clear();
+        _timedEvents.Reset();
     }
 
     private bool IsPermitted(ClientAutomationRule rule) => rule.Area switch

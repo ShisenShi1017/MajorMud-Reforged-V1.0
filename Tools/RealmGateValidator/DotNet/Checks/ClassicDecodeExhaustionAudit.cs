@@ -124,6 +124,8 @@ public static class ClassicDecodeExhaustionAudit
         var librariumObjectsRoot = Path.Combine(projectRoot, "Librarium", "Objects");
         var serverSourceRoot = Path.Combine(projectRoot, "Apps", "Source", "RealmGate.Server");
         var runtimeSourceRoot = Path.Combine(projectRoot, "Apps", "Source", "RealmGate.Server.Runtime");
+        var clientCoreSourceRoot = Path.Combine(projectRoot, "Core", "Source", "RealmGate.Client.Core");
+        var desktopSourceRoot = Path.Combine(projectRoot, "Apps", "Source", "RealmGate.Desktop");
         var validationSourceRoot = Path.Combine(projectRoot, "Tools", "RealmGateValidator", "DotNet", "Checks");
 
         if (!Directory.Exists(dataRoot)) diagnostics.Add($"Missing Classic data directory: {dataRoot}");
@@ -136,7 +138,14 @@ public static class ClassicDecodeExhaustionAudit
                 Array.Empty<ClassicDecodeFamilyCoverage>(), Array.Empty<ClassicDecodeFieldCoverage>(), diagnostics);
         }
 
-        var sourceRoots = new[] { serverSourceRoot, runtimeSourceRoot, validationSourceRoot }.Where(Directory.Exists).ToArray();
+        var sourceRoots = new[]
+        {
+            serverSourceRoot,
+            runtimeSourceRoot,
+            clientCoreSourceRoot,
+            desktopSourceRoot,
+            validationSourceRoot
+        }.Where(Directory.Exists).ToArray();
         var sourceFiles = sourceRoots
             .SelectMany(root => Directory.EnumerateFiles(root, "*.cs", SearchOption.AllDirectories))
             .Where(path => !AuditOnlyFiles.Contains(Path.GetFileName(path)))
@@ -508,9 +517,16 @@ public static class ClassicDecodeExhaustionAudit
 
     private static IReadOnlyList<string> FindFieldConsumers(string projectRoot, IEnumerable<SourceText> sources, string fieldName)
     {
-        if (fieldName.Length < 3) return Array.Empty<string>();
-        var pascal = ToPascalCase(fieldName);
         var quoted = "\"" + fieldName + "\"";
+        if (fieldName.Length < 3)
+        {
+            return sources.Where(source => source.Text.Contains(quoted, StringComparison.OrdinalIgnoreCase))
+                .Select(source => Path.GetRelativePath(projectRoot, source.Path).Replace('\\', '/'))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(value => value)
+                .ToArray();
+        }
+        var pascal = ToPascalCase(fieldName);
         return sources.Where(source =>
                 source.Text.Contains(quoted, StringComparison.OrdinalIgnoreCase) ||
                 (pascal.Length >= 3 && source.Text.Contains(pascal, StringComparison.Ordinal)))
@@ -596,6 +612,18 @@ public static class ClassicDecodeExhaustionAudit
         if (family.Equals("world_manifest", StringComparison.OrdinalIgnoreCase) &&
             jsonPath.Equals("$.character_spawning.start_room", StringComparison.OrdinalIgnoreCase))
             return ["new_character_start", "room_id"];
+        if (family.Equals("navigation_graph", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.edges[*].gateKind", StringComparison.OrdinalIgnoreCase))
+            return ["gate_kind"];
+        if (family.Equals("navigation_graph", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.edges[*].hasRestrictions", StringComparison.OrdinalIgnoreCase))
+            return ["prerequisites"];
+        if (family.Equals("navigation_graph", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.rooms[*].maximumNpcLevel", StringComparison.OrdinalIgnoreCase))
+            return ["level", "room_number"];
+        if (family.Equals("navigation_graph", StringComparison.OrdinalIgnoreCase) &&
+            jsonPath.Equals("$.rooms[*].roomSpellId", StringComparison.OrdinalIgnoreCase))
+            return ["room_spell_id"];
         return Array.Empty<string>();
     }
 
@@ -693,6 +721,13 @@ public static class ClassicDecodeExhaustionAudit
     private static string[] BuildAliases(string family)
     {
         var aliases = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { family, family.Replace("_", string.Empty), family.Replace("_", "-") };
+        if (family.Equals("navigation_graph", StringComparison.OrdinalIgnoreCase))
+        {
+            aliases.Add("rooms");
+            aliases.Add("exits");
+            aliases.Add("spawns");
+            aliases.Add("npcs");
+        }
         foreach (var part in family.Split('_', StringSplitOptions.RemoveEmptyEntries)) if (part.Length >= 4) aliases.Add(part);
         return aliases.ToArray();
     }

@@ -2,6 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:RealmGate.Desktop.ViewModels"
         xmlns:controls="clr-namespace:RealmGate.Desktop.Controls"
+        xmlns:profiles="clr-namespace:RealmGate.Client.Profiles;assembly=RealmGate.Client.Core"
+        xmlns:automation="clr-namespace:RealmGate.Client.Automation;assembly=RealmGate.Client.Core"
+        xmlns:navigation="clr-namespace:RealmGate.Client.Navigation;assembly=RealmGate.Client.Core"
         x:Class="RealmGate.Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="RealmGate"
@@ -19,22 +22,330 @@
 
     <TabControl Grid.Row="1" Margin="14">
       <TabItem Header="PLAY">
-        <Grid Margin="20" RowDefinitions="Auto,Auto,*" RowSpacing="10">
-          <TextBlock Grid.Row="0" Text="Play / WCC ANSI terminal migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Grid.Row="1"
-                     Text="This preview is rendered from the shared stateful 80x25 terminal cell buffer. ANSI/VT interpretation, CP437 decoding, cursor state, and DOS color intensity now live outside Avalonia."
-                     TextWrapping="Wrap" />
-          <Border Grid.Row="2"
-                  Padding="10"
-                  Background="#000000"
-                  BorderBrush="#3A4353"
-                  BorderThickness="1"
-                  CornerRadius="6">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
-              <controls:ClassicTerminalView Snapshot="{Binding TerminalPreviewSnapshot}" />
-            </ScrollViewer>
-          </Border>
+        <Grid Margin="12" RowDefinitions="Auto,Auto,*" RowSpacing="8">
+          <Grid Grid.Row="0" ColumnDefinitions="Auto,210,Auto,*" ColumnSpacing="8">
+            <TextBlock Grid.Column="0" Text="Profile" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding ConnectionProfiles}"
+                      SelectedItem="{Binding SelectedConnectionProfile}">
+              <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="profiles:ClientConnectionProfile">
+                  <TextBlock Text="{Binding ProfileName}" />
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Grid.Column="2" Content="Save" Command="{Binding SaveClientProfileCommand}" />
+            <TextBlock Grid.Column="3"
+                       Text="{Binding ClientStatus}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+          </Grid>
+          <Grid Grid.Row="1" ColumnDefinitions="Auto,220,Auto,76,Auto,Auto,*" ColumnSpacing="8">
+            <TextBlock Grid.Column="0" Text="Host" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Text="{Binding ClientHostName}" />
+            <TextBlock Grid.Column="2" Text="Port" VerticalAlignment="Center" />
+            <TextBox Grid.Column="3" Text="{Binding ClientPortText}" />
+            <Button Grid.Column="4" Content="Connect" Command="{Binding ConnectClientCommand}" />
+            <Button Grid.Column="5" Content="Disconnect" Command="{Binding DisconnectClientCommand}" />
+          </Grid>
+          <TabControl Grid.Row="2">
+            <TabItem Header="TERMINAL">
+              <Border Padding="10"
+                      Background="#000000"
+                      BorderBrush="#3A4353"
+                      BorderThickness="1"
+                      CornerRadius="6">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto">
+                  <controls:ClassicTerminalView x:Name="PlayTerminal"
+                                                Snapshot="{Binding TerminalSnapshot}"
+                                                IsPasswordMode="{Binding IsTerminalPasswordMode}" />
+                </ScrollViewer>
+              </Border>
+            </TabItem>
+
+            <TabItem Header="AUTOMATION">
+              <Grid Margin="8" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="14">
+                  <CheckBox Content="Aliases"
+                            IsChecked="{Binding AutomationProfile.AliasesEnabled}" />
+                  <CheckBox Content="Macros"
+                            IsChecked="{Binding AutomationProfile.MacrosEnabled}" />
+                  <CheckBox Content="Text triggers"
+                            IsChecked="{Binding AutomationProfile.TextTriggersEnabled}" />
+                  <CheckBox Content="Timed events"
+                            IsChecked="{Binding AutomationProfile.TimedEventsEnabled}" />
+                  <CheckBox Content="Navigation"
+                            IsChecked="{Binding AutomationProfile.NavigationEnabled}" />
+                  <CheckBox Content="Emergency stop"
+                            IsChecked="{Binding AutomationProfile.EmergencyStop}" />
+                  <Button Content="Save automation"
+                          Command="{Binding SaveAutomationCommand}" />
+                </StackPanel>
+                <TextBlock Grid.Row="1"
+                           Text="{Binding AutomationStatus}"
+                           TextWrapping="Wrap"
+                           Opacity="0.75" />
+
+                <TabControl Grid.Row="2">
+                  <TabItem Header="ALIASES">
+                    <Grid Margin="8" ColumnDefinitions="220,*" ColumnSpacing="14">
+                      <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <Button Content="Add" Command="{Binding AddAliasCommand}" />
+                          <Button Content="Delete" Command="{Binding DeleteAliasCommand}" />
+                        </StackPanel>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding Aliases}"
+                                 SelectedItem="{Binding SelectedAlias}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="automation:ClientCommandAlias">
+                              <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </Grid>
+                      <StackPanel Grid.Column="1" Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Alias details" FontSize="18" FontWeight="SemiBold" />
+                        <CheckBox Content="Enabled" IsChecked="{Binding SelectedAlias.Enabled}" />
+                        <TextBlock Text="Name" />
+                        <TextBox Text="{Binding SelectedAlias.Name}" />
+                        <TextBlock Text="Command expansion" />
+                        <TextBox Text="{Binding SelectedAlias.Command}" />
+                        <TextBlock Text="Use {0} for all arguments, {1}, {2}, and so on for individual words. Separate steps with semicolons." TextWrapping="Wrap" Opacity="0.72" />
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="MACROS">
+                    <Grid Margin="8" ColumnDefinitions="220,*" ColumnSpacing="14">
+                      <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <Button Content="Add" Command="{Binding AddMacroCommand}" />
+                          <Button Content="Delete" Command="{Binding DeleteMacroCommand}" />
+                        </StackPanel>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding Macros}"
+                                 SelectedItem="{Binding SelectedMacro}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="automation:ClientCommandMacro">
+                              <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </Grid>
+                      <StackPanel Grid.Column="1" Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Macro details" FontSize="18" FontWeight="SemiBold" />
+                        <CheckBox Content="Enabled" IsChecked="{Binding SelectedMacro.Enabled}" />
+                        <TextBlock Text="Name" />
+                        <TextBox Text="{Binding SelectedMacro.Name}" />
+                        <TextBlock Text="Commands" />
+                        <TextBox Text="{Binding MacroCommandsText}"
+                                 AcceptsReturn="True"
+                                 MinHeight="130"
+                                 TextWrapping="Wrap" />
+                        <TextBlock Text="Run with /macro name. Put one command per line or separate commands with semicolons." TextWrapping="Wrap" Opacity="0.72" />
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+
+                  <TabItem Header="TRIGGERS">
+                    <Grid Margin="8" ColumnDefinitions="220,*" ColumnSpacing="14">
+                      <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <Button Content="Add" Command="{Binding AddTriggerCommand}" />
+                          <Button Content="Delete" Command="{Binding DeleteTriggerCommand}" />
+                        </StackPanel>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding TextTriggers}"
+                                 SelectedItem="{Binding SelectedTrigger}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="automation:ClientTextTrigger">
+                              <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </Grid>
+                      <ScrollViewer Grid.Column="1">
+                        <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
+                          <TextBlock Text="Trigger details" FontSize="18" FontWeight="SemiBold" />
+                          <CheckBox Content="Enabled" IsChecked="{Binding SelectedTrigger.Enabled}" />
+                          <TextBlock Text="Name" />
+                          <TextBox Text="{Binding SelectedTrigger.Name}" />
+                          <TextBlock Text="Match mode" />
+                          <ComboBox ItemsSource="{Binding TriggerMatchModes}"
+                                    SelectedItem="{Binding SelectedTrigger.MatchMode}" />
+                          <CheckBox Content="Case sensitive" IsChecked="{Binding SelectedTrigger.CaseSensitive}" />
+                          <TextBlock Text="Incoming text or pattern" />
+                          <TextBox Text="{Binding SelectedTrigger.MatchText}" />
+                          <TextBlock Text="Response command" />
+                          <TextBox Text="{Binding SelectedTrigger.Command}" />
+                          <Grid ColumnDefinitions="Auto,90,Auto,90" ColumnSpacing="8">
+                            <TextBlock Grid.Column="0" Text="Cooldown seconds" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding SelectedTrigger.CooldownSeconds}" />
+                            <TextBlock Grid.Column="2" Text="Priority" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="3" Text="{Binding SelectedTrigger.Priority}" />
+                          </Grid>
+                          <StackPanel Orientation="Horizontal" Spacing="14">
+                            <CheckBox Content="Only out of combat" IsChecked="{Binding SelectedTrigger.OnlyOutOfCombat}" />
+                            <CheckBox Content="Only in combat" IsChecked="{Binding SelectedTrigger.OnlyInCombat}" />
+                          </StackPanel>
+                        </StackPanel>
+                      </ScrollViewer>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="EVENTS">
+                    <Grid Margin="8" ColumnDefinitions="220,*" ColumnSpacing="14">
+                      <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <Button Content="Add" Command="{Binding AddScheduledEventCommand}" />
+                          <Button Content="Delete" Command="{Binding DeleteScheduledEventCommand}" />
+                        </StackPanel>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding ScheduledEvents}"
+                                 SelectedItem="{Binding SelectedScheduledEvent}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="automation:ClientScheduledEvent">
+                              <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </Grid>
+                      <ScrollViewer Grid.Column="1">
+                        <StackPanel Spacing="8" MaxWidth="640" HorizontalAlignment="Stretch">
+                          <TextBlock Text="Event details" FontSize="18" FontWeight="SemiBold" />
+                          <CheckBox Content="Enabled" IsChecked="{Binding SelectedScheduledEvent.Enabled}" />
+                          <TextBlock Text="Name" />
+                          <TextBox Text="{Binding SelectedScheduledEvent.Name}" />
+                          <TextBlock Text="Command" />
+                          <TextBox Text="{Binding SelectedScheduledEvent.Command}" />
+                          <Grid ColumnDefinitions="Auto,90,Auto,90" ColumnSpacing="8">
+                            <TextBlock Grid.Column="0" Text="Every minutes" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding SelectedScheduledEvent.IntervalMinutes}" />
+                            <TextBlock Grid.Column="2" Text="Priority" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="3" Text="{Binding SelectedScheduledEvent.Priority}" />
+                          </Grid>
+                          <CheckBox Content="Run once when gameplay becomes ready"
+                                    IsChecked="{Binding SelectedScheduledEvent.RunImmediately}" />
+                          <StackPanel Orientation="Horizontal" Spacing="14">
+                            <CheckBox Content="Only out of combat"
+                                      IsChecked="{Binding SelectedScheduledEvent.OnlyOutOfCombat}" />
+                            <CheckBox Content="Only in combat"
+                                      IsChecked="{Binding SelectedScheduledEvent.OnlyInCombat}" />
+                          </StackPanel>
+                          <CheckBox Content="Pause all events in combat"
+                                    IsChecked="{Binding AutomationProfile.Events.PauseEventsInCombat}" />
+                          <Grid ColumnDefinitions="Auto,90" ColumnSpacing="8">
+                            <TextBlock Grid.Column="0" Text="Minimum command delay (ms)" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding AutomationProfile.MinimumCommandDelayMs}" />
+                          </Grid>
+                          <TextBlock Text="Events never run while disconnected or before a gameplay prompt is verified. Combat-specific events wait until combat state is known."
+                                     TextWrapping="Wrap" Opacity="0.72" />
+                        </StackPanel>
+                      </ScrollViewer>
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
+            <TabItem Header="NAVIGATION">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto,260,Auto,Auto,Auto,*" ColumnSpacing="8">
+                  <TextBlock Grid.Column="0" Text="Find destination" VerticalAlignment="Center" />
+                  <TextBox Grid.Column="1"
+                           Text="{Binding NavigationSearchText}"
+                           PlaceholderText="Room name or map/room key" />
+                  <Button Grid.Column="2" Content="Go" Command="{Binding StartNavigationCommand}" />
+                  <Button Grid.Column="3" Content="Auto-Roam" Command="{Binding StartAutoRoamCommand}" />
+                  <Button Grid.Column="4" Content="Stop" Command="{Binding StopNavigationCommand}" />
+                  <TextBlock Grid.Column="5"
+                             Text="{Binding CurrentRoomKey, StringFormat='Current room: {0}'}"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Center" />
+                </Grid>
+                <TextBlock Grid.Row="1"
+                           Text="{Binding NavigationStatus}"
+                           TextWrapping="Wrap"
+                           Opacity="0.78" />
+                <Grid Grid.Row="2" ColumnDefinitions="*,320" ColumnSpacing="14">
+                  <ListBox Grid.Column="0"
+                           ItemsSource="{Binding VisibleNavigationRooms}"
+                           SelectedItem="{Binding SelectedNavigationRoom}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="navigation:ClientRouteRoom">
+                        <TextBlock Text="{Binding DisplayName}" />
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <ScrollViewer Grid.Column="1">
+                    <StackPanel Spacing="8">
+                      <TextBlock Text="Route Safety" FontSize="18" FontWeight="SemiBold" />
+                      <CheckBox Content="Avoid damage traps"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidDamageTraps}" />
+                      <CheckBox Content="Avoid spell traps"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidSpellTraps}" />
+                      <CheckBox Content="Avoid restricted exits"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidRestrictedExits}" />
+                      <CheckBox Content="Avoid hidden exits"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidHiddenExits}" />
+                      <CheckBox Content="Allow ordinary doors"
+                                IsChecked="{Binding NavigationOptions.Preferences.AllowOrdinaryDoors}" />
+                      <CheckBox Content="Avoid high-level NPC rooms"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidHighLevelNpcRooms}" />
+                      <CheckBox Content="Avoid rooms with spell effects"
+                                IsChecked="{Binding NavigationOptions.Preferences.AvoidRoomSpellEffects}" />
+                      <CheckBox Content="Allow warned risky fallback"
+                                IsChecked="{Binding NavigationOptions.Preferences.AllowRiskyFallback}" />
+                      <CheckBox Content="Recover from confirmed route changes"
+                                IsChecked="{Binding NavigationOptions.AutoRecoverDesynchronizedRoute}" />
+                      <Grid ColumnDefinitions="*,90" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                        <TextBlock Grid.Row="0" Text="Character level" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NavigationOptions.CharacterLevel}" />
+                        <TextBlock Grid.Row="1" Text="NPC level buffer" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NavigationOptions.Preferences.NpcLevelBuffer}" />
+                        <TextBlock Grid.Row="2" Text="Recovery attempts" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NavigationOptions.MaximumRecoveryAttempts}" />
+                        <TextBlock Grid.Row="3" Text="Auto-Roam delay (ms)" VerticalAlignment="Center" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NavigationOptions.AutoRoamDelayMs}" />
+                      </Grid>
+                      <TextBlock Text="Every movement waits for an exact map-qualified room confirmation. Auto-Roam uses only transitions allowed by these safety rules."
+                                 TextWrapping="Wrap"
+                                 Opacity="0.72" />
+                      <Separator Margin="0,6" />
+                      <TextBlock Text="Recorded Routes" FontSize="18" FontWeight="SemiBold" />
+                      <TextBox Text="{Binding RecordedRouteName}"
+                               PlaceholderText="Route name" />
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Button Content="Record" Command="{Binding StartRouteRecordingCommand}" />
+                        <Button Content="Finish" Command="{Binding FinishRouteRecordingCommand}" />
+                        <Button Content="Cancel" Command="{Binding CancelRouteRecordingCommand}" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding IsRecordingRoute, StringFormat='Recording active: {0}'}"
+                                 Opacity="0.72" />
+                      <ListBox ItemsSource="{Binding RecordedRoutes}"
+                               SelectedItem="{Binding SelectedRecordedRoute}"
+                               MinHeight="120"
+                               MaxHeight="220">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="navigation:ClientRecordedRoute">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Button Content="Run" Command="{Binding RunRecordedRouteCommand}" />
+                        <Button Content="Delete" Command="{Binding DeleteRecordedRouteCommand}" />
+                      </StackPanel>
+                      <TextBlock Text="Recorded routes are world-specific and replay only from their exact confirmed starting room."
+                                 TextWrapping="Wrap"
+                                 Opacity="0.72" />
+                    </StackPanel>
+                  </ScrollViewer>
+                </Grid>
+              </Grid>
+            </TabItem>
+          </TabControl>
         </Grid>
       </TabItem>
 

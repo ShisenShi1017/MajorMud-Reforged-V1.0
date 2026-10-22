@@ -31,6 +31,9 @@
     <IncludeNativeLibrariesForSelfExtract>false</IncludeNativeLibrariesForSelfExtract>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
+    <!-- The transitional WPF app fans into shared server/compiler/client projects.
+         Serialize those project-reference builds to prevent orphaned MSBuild workers. -->
+    <BuildInParallel>false</BuildInParallel>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <PublishDir>$(MSBuildThisFileDirectory)..\..\..\Release\RealmGate\</PublishDir>
     <PublicRelease Condition="'$(PublicRelease)' == ''">false</PublicRelease>
@@ -51,6 +54,7 @@
   <ItemGroup>
     <ProjectReference Include="../RealmGate.Server.Runtime/RealmGate.Server.Runtime.csproj" />
     <ProjectReference Include="../../Compiler/RealmGate.Compiler.csproj" />
+    <ProjectReference Include="../../../Core/Source/RealmGate.Client.Core/RealmGate.Client.Core.csproj" />
   </ItemGroup>
 
   <!-- Keep the high-resolution icon master beside the embedded multi-resolution ICO. -->

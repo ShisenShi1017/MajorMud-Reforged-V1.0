@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using RealmGate.App.Forge;
 using RealmGate.App.Models;
 using RealmGate.App.Services;
+using RealmGate.Client.Profiles;
 
 namespace RealmGate.App.Brains;
 

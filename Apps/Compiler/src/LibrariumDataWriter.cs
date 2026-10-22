@@ -354,6 +354,12 @@ public sealed class LibrariumDataWriter
         // in Librarium but must not become standalone runtime files.
         result.FilesWritten += RuntimeItemProjectionWriter.Write(options, effectiveSourceFamilies, WriteJson);
 
+        result.FilesWritten += NavigationGraphProjectionWriter.Write(
+            result.WorldId,
+            options.OutputRoot,
+            families,
+            WriteJson);
+
         if (options.ClientProjection)
         {
             WriteJson(Path.Combine(options.OutputRoot, "client_projection.json"), CreateClientProjection(result, families));

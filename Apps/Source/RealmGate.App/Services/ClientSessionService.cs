@@ -3,10 +3,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
+using RealmGate.Client.Protocol;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
 using RealmGate.App.Models;
+using RealmGate.Client.Transport;
 
 namespace RealmGate.App.Services;
 
@@ -71,10 +73,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     private const string UnverifiedTopologyStatus = "Confirmed (unverified)";
     private sealed class Runtime
     {
-        public TcpClient? Client;
-        public TelnetNegotiationStream? TelnetStream;
-        public StreamReader? Reader;
-        public StreamWriter? Writer;
+        public ClientTransportConnection? Transport;
         public CancellationTokenSource? ReadCts;
         public CancellationTokenSource? RouteCts;
         public Task? ReadTask;
@@ -94,8 +93,8 @@ public sealed partial class ClientSessionService : IClientSessionService
         public readonly ClassicBossHomeParser BossHomeParser = new();
         public readonly ClassicLibrariumCatalogParser LibrariumParser = new();
         public readonly ClassicLibrariumPageParser LibrariumPageParser = new();
-        public readonly ReforgedClientProtocolFilter ProtocolFilter = new();
-        public ReforgedClientDataEndpointAnnouncement? ClientDataEndpoint;
+        public readonly RealmGateClientProtocolFilter ProtocolFilter = new();
+        public RealmGateClientDataEndpointAnnouncement? ClientDataEndpoint;
         public readonly SemaphoreSlim ClientDataGate = new(1, 1);
         public Task? RouteTask;
         public bool SuppressReconnect;
@@ -151,26 +150,23 @@ public sealed partial class ClientSessionService : IClientSessionService
 
         try
         {
-            var client = new TcpClient { NoDelay = true };
-            await client.ConnectAsync(session.HostName, session.Port, cancellationToken);
-
-            var stream = client.GetStream();
             var screen = runtime.ClassicTerminal.CreateSnapshot();
-            var encoding = CreateTerminalEncoding(
-                session.TerminalPreferences.UseCodePage437);
 
             runtime.TelnetTracePath = session.TerminalPreferences.CaptureTelnetTraffic
                 ? CreateTelnetTracePath(session)
                 : string.Empty;
             session.TelnetTracePath = runtime.TelnetTracePath;
 
-            var telnetStream = new TelnetNegotiationStream(
-                stream,
-                session.TerminalPreferences.EnableTelnetNegotiation,
-                session.TerminalPreferences.TerminalType,
-                screen.Columns,
-                screen.Rows,
-                session.TerminalPreferences.CaptureTelnetTraffic,
+            var transport = await ClientTransportConnection.ConnectAsync(
+                session.HostName,
+                session.Port,
+                new ClientTransportOptions(
+                    session.TerminalPreferences.EnableTelnetNegotiation,
+                    session.TerminalPreferences.TerminalType,
+                    screen.Columns,
+                    screen.Rows,
+                    session.TerminalPreferences.CaptureTelnetTraffic,
+                    session.TerminalPreferences.UseCodePage437),
                 (message, traffic) =>
                     HandleTelnetDiagnostic(
                         session,
@@ -181,33 +177,14 @@ public sealed partial class ClientSessionService : IClientSessionService
                     HandleClientDataAnnouncement(
                         session,
                         runtime,
-                        announcement));
-
-            var reader = new StreamReader(
-                telnetStream,
-                encoding,
-                detectEncodingFromByteOrderMarks: false,
-                bufferSize: 4096,
-                leaveOpen: true);
-
-            var writer = new StreamWriter(
-                telnetStream,
-                encoding,
-                bufferSize: 4096,
-                leaveOpen: true)
-            {
-                AutoFlush = true,
-                NewLine = "\r\n"
-            };
+                        announcement),
+                cancellationToken);
 
             var readCts = new CancellationTokenSource();
             var generation = Interlocked.Increment(
                 ref runtime.ConnectionGeneration);
 
-            runtime.Client = client;
-            runtime.TelnetStream = telnetStream;
-            runtime.Reader = reader;
-            runtime.Writer = writer;
+            runtime.Transport = transport;
             runtime.ReadCts = readCts;
 
             await OnUiAsync(() =>
@@ -219,8 +196,6 @@ public sealed partial class ClientSessionService : IClientSessionService
                     + $"{screen.Columns}x{screen.Rows}";
             });
 
-            await telnetStream.InitializeAsync(cancellationToken);
-
             session.ConnectedAt = DateTimeOffset.Now;
             session.SessionExperienceGained = 0;
             session.SessionCombatEventCount = 0;
@@ -229,7 +204,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.SessionExperienceSamples.Add(new ClientExperienceSample(session.ConnectedAt.Value, 0));
             await SetStateAsync(session, ClientConnectionState.Connected, $"Connected to {session.HostName}:{session.Port}");
 
-            var readTask = ReadLoopAsync(session, runtime, reader, generation, readCts.Token);
+            var readTask = ReadLoopAsync(session, runtime, transport, generation, readCts.Token);
             runtime.ReadTask = readTask;
 
             // RealmGate world data is server-authoritative. Hydrate the active world's
@@ -295,7 +270,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         var session = GetSession(sessionId);
         var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
-        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
+        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Transport is null)
             throw new InvalidOperationException($"{session.DisplayName} is not connected.");
         if (!ClientCommandIsolationPolicy.CanTransmit(session, ClientCommandOrigin.ClientProtocol))
             return;
@@ -336,7 +311,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             if (!response.Ok)
                 throw new InvalidOperationException(response.Error.Length == 0 ? "Private client-data request was rejected." : response.Error);
 
-            var protocol = new ReforgedClientProtocolFilter();
+            var protocol = new RealmGateClientProtocolFilter();
             var protocolResult = protocol.Process(response.Data + "\n");
             if (protocolResult.Messages.Count == 0)
                 return;
@@ -429,7 +404,7 @@ public sealed partial class ClientSessionService : IClientSessionService
             session.TerminalRows = snapshot.Rows;
         });
 
-        if (runtime.TelnetStream is not null)
+        if (runtime.Transport is not null)
             _ = UpdateTelnetWindowSizeAsync(
                 session,
                 runtime,
@@ -457,7 +432,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         var session = GetSession(sessionId);
         var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
-        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
+        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Transport is null)
             throw new InvalidOperationException($"{session.DisplayName} is not connected.");
 
         // A live TCP socket is not the same thing as a logged-in MajorMUD
@@ -488,12 +463,10 @@ public sealed partial class ClientSessionService : IClientSessionService
                 runtime.PartyParser.NoteOutboundCommand(text);
                 runtime.WhoParser.NoteOutboundCommand(text);
             }
-            using var traceRedaction = echoToTerminal
-                ? null
-                : runtime.TelnetStream?.RedactApplicationDataTrace();
-
-            await runtime.Writer.WriteLineAsync(text.AsMemory(), cancellationToken);
-            await runtime.Writer.FlushAsync(cancellationToken);
+            await runtime.Transport.WriteLineAsync(
+                text,
+                redactApplicationData: !echoToTerminal,
+                cancellationToken);
 
             await OnUiAsync(() =>
             {
@@ -525,7 +498,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         var session = GetSession(sessionId);
         var runtime = _runtime.GetOrAdd(sessionId, _ => new Runtime());
-        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Writer is null)
+        if (session.ConnectionState != ClientConnectionState.Connected || runtime.Transport is null)
             throw new InvalidOperationException($"{session.DisplayName} is not connected.");
 
         if (string.IsNullOrEmpty(sequence))
@@ -534,8 +507,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         await runtime.SendGate.WaitAsync(cancellationToken);
         try
         {
-            await runtime.Writer.WriteAsync(sequence.AsMemory(), cancellationToken);
-            await runtime.Writer.FlushAsync(cancellationToken);
+            await runtime.Transport.WriteAsync(sequence, cancellationToken);
         }
         finally { runtime.SendGate.Release(); }
     }
@@ -898,14 +870,19 @@ public sealed partial class ClientSessionService : IClientSessionService
         }
     }
 
-    private async Task ReadLoopAsync(ClientSessionConnection session, Runtime runtime, StreamReader reader, long generation, CancellationToken token)
+    private async Task ReadLoopAsync(
+        ClientSessionConnection session,
+        Runtime runtime,
+        ClientTransportConnection transport,
+        long generation,
+        CancellationToken token)
     {
         var chars = new char[4096];
         try
         {
             while (!token.IsCancellationRequested && generation == Volatile.Read(ref runtime.ConnectionGeneration))
             {
-                var read = await reader.ReadAsync(chars.AsMemory(), token);
+                var read = await transport.ReadAsync(chars.AsMemory(), token);
                 if (read == 0) break;
 
                 var protocolResult = runtime.ProtocolFilter.Process(new string(chars, 0, read));
@@ -982,7 +959,7 @@ public sealed partial class ClientSessionService : IClientSessionService
                 });
             }
         }
-        catch (Exception exception) when (exception is IOException or SocketException or OperationCanceledException) { }
+        catch (Exception exception) when (exception is IOException or SocketException or OperationCanceledException or ObjectDisposedException) { }
         finally
         {
             // A retired loop must never clear prompts or change state for a newer socket.
@@ -1210,7 +1187,7 @@ public sealed partial class ClientSessionService : IClientSessionService
         }
     }
 
-    private void ParseClientProtocol(ClientSessionConnection session, ReforgedClientProtocolMessage message)
+    private void ParseClientProtocol(ClientSessionConnection session, RealmGateClientProtocolMessage message)
     {
         if (!_runtime.TryGetValue(session.SessionId, out var runtime)) return;
         if (message.Channel == "ROOMDATA")
@@ -1752,41 +1729,24 @@ public sealed partial class ClientSessionService : IClientSessionService
 
         var readCts = runtime.ReadCts;
         var readTask = runtime.ReadTask;
-        var telnetStream = runtime.TelnetStream;
-        var reader = runtime.Reader;
-        var writer = runtime.Writer;
-        var client = runtime.Client;
+        var transport = runtime.Transport;
 
-        runtime.TelnetStream = null;
-        runtime.Reader = null;
-        runtime.Writer = null;
-        runtime.Client = null;
+        runtime.Transport = null;
         runtime.ReadCts = null;
         runtime.ReadTask = null;
         runtime.ClientDataEndpoint = null;
 
         try { readCts?.Cancel(); } catch { }
-        try { client?.Close(); } catch { }
+        if (transport is not null)
+        {
+            try { await transport.DisposeAsync(); } catch { }
+        }
         if (readTask is not null)
         {
             try { await readTask.WaitAsync(TimeSpan.FromSeconds(2)); } catch { }
         }
 
-        try { reader?.Dispose(); } catch { }
-        try { writer?.Dispose(); } catch { }
-        try { telnetStream?.Dispose(); } catch { }
-        try { client?.Dispose(); } catch { }
         try { readCts?.Dispose(); } catch { }
-    }
-
-    private static Encoding CreateTerminalEncoding(bool useCodePage437)
-    {
-        if (!useCodePage437)
-            return new UTF8Encoding(
-                encoderShouldEmitUTF8Identifier: false,
-                throwOnInvalidBytes: false);
-
-        return new CodePage437Encoding();
     }
 
     private static string CreateTelnetTracePath(
@@ -1818,7 +1778,7 @@ public sealed partial class ClientSessionService : IClientSessionService
     private void HandleClientDataAnnouncement(
         ClientSessionConnection session,
         Runtime runtime,
-        ReforgedClientDataEndpointAnnouncement announcement)
+        RealmGateClientDataEndpointAnnouncement announcement)
     {
         runtime.ClientDataEndpoint = announcement;
 
@@ -1877,11 +1837,11 @@ public sealed partial class ClientSessionService : IClientSessionService
     {
         try
         {
-            var telnetStream = runtime.TelnetStream;
-            if (telnetStream is null)
+            var transport = runtime.Transport;
+            if (transport is null)
                 return;
 
-            await telnetStream.SetWindowSizeAsync(columns, rows);
+            await transport.SetWindowSizeAsync(columns, rows);
         }
         catch (Exception exception)
             when (exception is IOException

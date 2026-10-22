@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using RealmGate.App.Models;
+using RealmGate.Client.Profiles;
 
 namespace RealmGate.App.ViewModels;
 

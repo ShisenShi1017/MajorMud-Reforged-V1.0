@@ -1,6 +1,7 @@
 using System.IO;
 using System.Text.Json;
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
 
 namespace RealmGate.App.Services;
 
@@ -200,6 +201,19 @@ public static class ClientAutomationRegressionSmoke
         Require(service.EvaluateTimedEvents(timedContext, true).Count == 0, "timed-event-primes-without-send");
         var timedRequest = service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(2) }, true);
         Require(timedRequest.Count == 1 && timedRequest[0].Commands.Count == 2, "timed-event-sends-multistep-once");
+        capabilities.TextTriggers.Clear();
+        capabilities.TextTriggers.Add(new ClientTextTrigger { MatchText = "timer throttle", Command = "look", Priority = int.MinValue });
+        Require(service.Evaluate(timedContext with { LastLine = "timer throttle", Timestamp = now.AddMinutes(2) }).Count == 0,
+            "timed-event-throttles-text-triggers");
+        var triggerTime = now.AddMinutes(3);
+        Require(service.Evaluate(timedContext with { LastLine = "timer throttle", Timestamp = triggerTime }).Count == 1,
+            "text-trigger-after-timer-delay");
+        Require(service.EvaluateTimedEvents(timedContext with { Timestamp = triggerTime }, true).Count == 0,
+            "text-trigger-throttles-timed-events");
+        Require(service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(4) }, false).Count == 0,
+            "timed-disconnect-clears-clock");
+        Require(service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(5) }, true).Count == 0,
+            "timed-reconnect-reprimes-clock");
         capabilities.EmergencyStop = true;
         Require(service.EvaluateTimedEvents(timedContext with { Timestamp = now.AddMinutes(4) }, true).Count == 0, "emergency-stop-blocks-timed-event");
 

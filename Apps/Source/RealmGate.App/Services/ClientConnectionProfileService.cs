@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text.Json;
 using RealmGate.App.Models;
+using RealmGate.Client.Profiles;
 using RealmGate.Server;
 
 namespace RealmGate.App.Services;
@@ -26,91 +26,42 @@ public interface IClientConnectionProfileService
 
 public sealed class ClientConnectionProfileService : IClientConnectionProfileService
 {
-    private readonly SemaphoreSlim _saveGate = new(1, 1);
-    private readonly JsonSerializerOptions _json = new(JsonSerializerDefaults.Web)
-    {
-        WriteIndented = true
-    };
+    private readonly ClientConnectionProfileCatalogStore _store;
     private ClientConnectionProfileCatalog _catalog = new();
-    private readonly string? _legacyProfilePath;
 
     public ClientConnectionProfileService(string? rootPath = null)
     {
         if (rootPath is not null)
         {
-            ProfilePath = Path.Combine(rootPath, "Client", "ConnectionProfiles", "connection-profiles.json");
+            _store = new ClientConnectionProfileCatalogStore(
+                Path.Combine(
+                    rootPath,
+                    "Client",
+                    "ConnectionProfiles",
+                    "connection-profiles.json"));
             return;
         }
 
-        var local = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
 #if PUBLIC_RELEASE
         // Public builds must never inherit the developer/private client's saved sessions.
         // In particular, do not migrate a Borin player profile from the old MajorMUD Reforged
         // store or reuse the private RealmGate client catalog. Public testers get an independent
         // profile catalog that persists normally between public-beta upgrades.
-        ProfilePath = Path.Combine(local, "RealmGate", "Public", "Client", "ConnectionProfiles", "connection-profiles.json");
-        _legacyProfilePath = null;
+        _store = ClientConnectionProfileCatalogStore.CreateForCurrentUser(
+            publicRelease: true,
+            migrateLegacyBranding: false);
 #else
-        ProfilePath = Path.Combine(local, "RealmGate", "Client", "ConnectionProfiles", "connection-profiles.json");
-        _legacyProfilePath = Path.Combine(local, "MajorMUD Reforged", "Client", "ConnectionProfiles", "connection-profiles.json");
+        _store = ClientConnectionProfileCatalogStore.CreateForCurrentUser();
 #endif
     }
 
     public ObservableCollection<ClientConnectionProfile> Profiles => _catalog.Profiles;
-    public string ProfilePath { get; }
+    public string ProfilePath => _store.ProfilePath;
 
-    public async Task LoadAsync()
-    {
-        TryMigrateLegacyProfile();
-        if (!File.Exists(ProfilePath))
-        {
-            _catalog = CreateDefaultCatalog();
-            await TrySaveStartupCatalogAsync();
-            return;
-        }
+    public async Task LoadAsync() =>
+        _catalog = await _store.LoadAsync();
 
-        try
-        {
-            var text = await File.ReadAllTextAsync(ProfilePath);
-            _catalog = JsonSerializer.Deserialize<ClientConnectionProfileCatalog>(text, _json)
-                ?? CreateDefaultCatalog();
-            NormalizeCatalog();
-        }
-        catch (JsonException)
-        {
-            BackupCorruptProfile();
-            _catalog = CreateDefaultCatalog();
-            await TrySaveStartupCatalogAsync();
-        }
-        catch (IOException)
-        {
-            _catalog = CreateDefaultCatalog();
-        }
-        catch (UnauthorizedAccessException)
-        {
-            _catalog = CreateDefaultCatalog();
-        }
-    }
-
-    public async Task SaveAsync()
-    {
-        NormalizeCatalog();
-        Directory.CreateDirectory(Path.GetDirectoryName(ProfilePath)!);
-
-        await _saveGate.WaitAsync();
-        try
-        {
-            var temporaryPath = ProfilePath + ".tmp";
-            await File.WriteAllTextAsync(
-                temporaryPath,
-                JsonSerializer.Serialize(_catalog, _json));
-            File.Move(temporaryPath, ProfilePath, true);
-        }
-        finally
-        {
-            _saveGate.Release();
-        }
-    }
+    public Task SaveAsync() => _store.SaveAsync(_catalog);
 
     public ClientConnectionProfile CreateNew(ClientSessionConnection? session = null)
     {
@@ -287,135 +238,4 @@ public sealed class ClientConnectionProfileService : IClientConnectionProfileSer
         return candidate;
     }
 
-    private void NormalizeCatalog()
-    {
-        _catalog.Profiles ??= [];
-        _catalog.SessionAssignments ??= [];
-        _catalog.Version = 1;
-
-        var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var profile in _catalog.Profiles.ToArray())
-        {
-            if (string.IsNullOrWhiteSpace(profile.ProfileId) || !ids.Add(profile.ProfileId))
-            {
-                do
-                {
-                    profile.ProfileId = Guid.NewGuid().ToString("N");
-                }
-                while (!ids.Add(profile.ProfileId));
-            }
-
-            profile.ProfileName = string.IsNullOrWhiteSpace(profile.ProfileName)
-                ? MakeUniqueName("BBS Profile")
-                : profile.ProfileName;
-            profile.SessionDisplayName = profile.SessionDisplayName;
-            profile.ServerProfileName = profile.ServerProfileName;
-            profile.WorldName = profile.WorldName;
-            profile.HostName = profile.HostName;
-            if (string.Equals(profile.ProfileName, "Local Host Classic", StringComparison.OrdinalIgnoreCase)
-                && string.Equals(profile.ServerProfileName, "Local Host", StringComparison.OrdinalIgnoreCase)
-                && string.Equals(profile.HostName, RealmGateNetworkBinding.LocalOnlyAddress, StringComparison.OrdinalIgnoreCase)
-                && profile.Port == 4000)
-            {
-                // One-time migration of the historical built-in local profile only.
-                // User-created BBS profiles and explicitly customized endpoints are preserved.
-                profile.Port = RealmGateNetworkBinding.DefaultTelnetPort;
-            }
-            profile.TerminalColumns = profile.TerminalColumns;
-            profile.TerminalRows = profile.TerminalRows;
-            profile.TerminalType = profile.TerminalType;
-            profile.MaximumScrollbackLines = profile.MaximumScrollbackLines;
-        }
-
-        if (_catalog.Profiles.Count == 0)
-            _catalog.Profiles.Add(CreateLocalClassicProfile());
-
-        var validProfileIds = _catalog.Profiles
-            .Select(profile => profile.ProfileId)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
-        foreach (var assignment in _catalog.SessionAssignments
-                     .Where(item => string.IsNullOrWhiteSpace(item.SessionId) || !validProfileIds.Contains(item.ProfileId))
-                     .ToArray())
-        {
-            _catalog.SessionAssignments.Remove(assignment);
-        }
-
-        var duplicateAssignments = _catalog.SessionAssignments
-            .GroupBy(item => item.SessionId, StringComparer.OrdinalIgnoreCase)
-            .SelectMany(group => group.OrderByDescending(item => item.UpdatedAt).Skip(1))
-            .ToArray();
-        foreach (var duplicate in duplicateAssignments)
-            _catalog.SessionAssignments.Remove(duplicate);
-    }
-
-    private ClientConnectionProfileCatalog CreateDefaultCatalog()
-    {
-        var catalog = new ClientConnectionProfileCatalog();
-        catalog.Profiles.Add(CreateLocalClassicProfile());
-        return catalog;
-    }
-
-    private static ClientConnectionProfile CreateLocalClassicProfile() => new()
-    {
-        ProfileName = "Local Host Classic",
-        SessionDisplayName = "Session 1",
-        ServerProfileName = "Local Host",
-        WorldName = "Classic",
-        HostName = RealmGateNetworkBinding.LocalOnlyAddress,
-        Port = RealmGateNetworkBinding.DefaultTelnetPort,
-        TerminalViewMode = ClientTerminalViewMode.Reforged,
-        TerminalType = "ANSI",
-        UseCodePage437 = true,
-        EnableTelnetNegotiation = true
-    };
-
-    private async Task TrySaveStartupCatalogAsync()
-    {
-        try
-        {
-            await SaveAsync();
-        }
-        catch (IOException)
-        {
-        }
-        catch (UnauthorizedAccessException)
-        {
-        }
-    }
-
-    private void TryMigrateLegacyProfile()
-    {
-        if (string.IsNullOrWhiteSpace(_legacyProfilePath) || File.Exists(ProfilePath) || !File.Exists(_legacyProfilePath))
-            return;
-
-        try
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(ProfilePath)!);
-            File.Copy(_legacyProfilePath, ProfilePath, overwrite: false);
-        }
-        catch (IOException)
-        {
-        }
-        catch (UnauthorizedAccessException)
-        {
-        }
-    }
-
-    private void BackupCorruptProfile()
-    {
-        try
-        {
-            if (!File.Exists(ProfilePath))
-                return;
-
-            var backup = ProfilePath + $".corrupt-{DateTimeOffset.Now:yyyyMMdd-HHmmss}";
-            File.Move(ProfilePath, backup, true);
-        }
-        catch (IOException)
-        {
-        }
-        catch (UnauthorizedAccessException)
-        {
-        }
-    }
 }

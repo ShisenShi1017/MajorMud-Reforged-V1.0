@@ -9,7 +9,8 @@ public sealed class GeneratedProjectionValidator
     [
         "world_manifest.json",
         "compile_manifest.json",
-        "exits.json"
+        "exits.json",
+        NavigationGraphProjectionWriter.FileName
     ];
 
     public ProjectionValidationResult Validate(string repositoryRoot, string worldId)

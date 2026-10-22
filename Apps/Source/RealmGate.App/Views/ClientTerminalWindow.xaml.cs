@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
 using RealmGate.App.Services;
 using RealmGate.App.ViewModels;
 

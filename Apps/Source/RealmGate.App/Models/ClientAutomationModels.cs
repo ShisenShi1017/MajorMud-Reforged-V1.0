@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using RealmGate.Client.Automation;
 
 namespace RealmGate.App.Models;
 
@@ -41,45 +42,6 @@ public sealed class ClientAutomationCapabilities
     public ObservableCollection<ClientCommandAlias> Aliases { get; set; } = [];
     public ObservableCollection<ClientCommandMacro> Macros { get; set; } = [];
     public ObservableCollection<ClientTextTrigger> TextTriggers { get; set; } = [];
-}
-
-public sealed class ClientCommandAlias
-{
-    public string Id { get; set; } = Guid.NewGuid().ToString("N");
-    public bool Enabled { get; set; } = true;
-    public string Name { get; set; } = string.Empty;
-    public string Command { get; set; } = string.Empty;
-}
-
-public sealed class ClientCommandMacro
-{
-    public string Id { get; set; } = Guid.NewGuid().ToString("N");
-    public bool Enabled { get; set; } = true;
-    public string Name { get; set; } = string.Empty;
-    public ObservableCollection<string> Commands { get; set; } = [];
-}
-
-public enum ClientTextTriggerMatchMode
-{
-    Contains,
-    Exact,
-    Wildcard,
-    Regex
-}
-
-public sealed class ClientTextTrigger
-{
-    public string Id { get; set; } = Guid.NewGuid().ToString("N");
-    public string Name { get; set; } = string.Empty;
-    public bool Enabled { get; set; } = true;
-    public ClientTextTriggerMatchMode MatchMode { get; set; } = ClientTextTriggerMatchMode.Contains;
-    public bool CaseSensitive { get; set; }
-    public string MatchText { get; set; } = string.Empty;
-    public string Command { get; set; } = string.Empty;
-    public int CooldownSeconds { get; set; } = 5;
-    public int Priority { get; set; } = 100;
-    public bool OnlyOutOfCombat { get; set; }
-    public bool OnlyInCombat { get; set; }
 }
 
 public sealed class ClientAutomationOptions
@@ -312,27 +274,6 @@ public sealed class UtilityAutomationOptions
     public string RecoverCommand { get; set; } = "recover";
     public bool AutoLook { get; set; }
     public string LookCommand { get; set; } = "look";
-}
-
-public sealed class EventAutomationOptions
-{
-    public ObservableCollection<ClientScheduledEvent> ScheduledEvents { get; set; } = [];
-    public bool PauseEventsInCombat { get; set; } = true;
-    public bool PauseEventsWhileDisconnected { get; set; } = true;
-}
-
-public sealed class ClientScheduledEvent
-{
-    public string Id { get; set; } = Guid.NewGuid().ToString("N");
-    public string Name { get; set; } = "New Event";
-    public bool Enabled { get; set; }
-    public int IntervalMinutes { get; set; } = 10;
-    public int IntervalSeconds { get; set; }
-    public string Command { get; set; } = string.Empty;
-    public bool RunImmediately { get; set; }
-    public bool OnlyOutOfCombat { get; set; } = true;
-    public bool OnlyInCombat { get; set; }
-    public int Priority { get; set; } = 100;
 }
 
 public sealed class ClientPresentationOptions

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RealmGate.App.Services;
+namespace RealmGate.Client.Transport;
 
-internal sealed class TelnetNegotiationStream : Stream
+public sealed class TelnetNegotiationStream : Stream
 {
     private const byte Iac = 255;
     private const byte Dont = 254;
@@ -44,7 +44,7 @@ internal sealed class TelnetNegotiationStream : Stream
     private readonly bool _negotiate;
     private readonly bool _captureTraffic;
     private readonly Action<string, bool>? _diagnostic;
-    private readonly Action<ReforgedClientDataEndpointAnnouncement>? _clientDataAnnouncement;
+    private readonly Action<RealmGateClientDataEndpointAnnouncement>? _clientDataAnnouncement;
     private readonly Queue<byte> _decoded = new();
     private readonly byte[] _rawBuffer = new byte[8192];
     private readonly SemaphoreSlim _writeGate = new(1, 1);
@@ -79,7 +79,7 @@ internal sealed class TelnetNegotiationStream : Stream
         int rows,
         bool captureTraffic,
         Action<string, bool>? diagnostic = null,
-        Action<ReforgedClientDataEndpointAnnouncement>? clientDataAnnouncement = null)
+        Action<RealmGateClientDataEndpointAnnouncement>? clientDataAnnouncement = null)
     {
         _inner = inner ?? throw new ArgumentNullException(nameof(inner));
         _negotiate = negotiate;
@@ -374,7 +374,7 @@ internal sealed class TelnetNegotiationStream : Stream
                 port is >= 1 and <= 65535 &&
                 parts[2].Length == 64 && parts[2].All(Uri.IsHexDigit))
             {
-                _clientDataAnnouncement?.Invoke(new ReforgedClientDataEndpointAnnouncement(port, parts[2]));
+                _clientDataAnnouncement?.Invoke(new RealmGateClientDataEndpointAnnouncement(port, parts[2]));
                 Trace($"Accepted private RealmGate client-data channel on port {port}.", false);
             }
         }
@@ -460,7 +460,7 @@ internal sealed class TelnetNegotiationStream : Stream
         }
     }
 
-    internal IDisposable RedactApplicationDataTrace()
+    public IDisposable RedactApplicationDataTrace()
     {
         ThrowIfDisposed();
         Interlocked.Increment(ref _applicationTraceRedactionDepth);
@@ -686,4 +686,4 @@ internal sealed class TelnetNegotiationStream : Stream
         throw new NotSupportedException();
 }
 
-internal sealed record ReforgedClientDataEndpointAnnouncement(int Port, string Token);
+public sealed record RealmGateClientDataEndpointAnnouncement(int Port, string Token);

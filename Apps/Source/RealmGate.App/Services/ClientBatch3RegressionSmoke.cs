@@ -1,4 +1,6 @@
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
+using RealmGate.Client.Protocol;
 
 namespace RealmGate.App.Services;
 
@@ -60,7 +62,7 @@ public static class ClientBatch3RegressionSmoke
         coordination.ResyncAll();
         Require(coordination.Profile.Sessions.All(item => item.PendingCommands == 0 && !item.NeedsResync), "party-reconnect-resync");
 
-        var protocol = new ReforgedClientProtocolFilter();
+        var protocol = new RealmGateClientProtocolFilter();
         var privatePayload = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("{\"hp\":10}"));
         var privateFrame = $"@@REFORGED-PROTOCOL|STATS|{privatePayload}\r\n";
         var split = privateFrame.Length / 2;

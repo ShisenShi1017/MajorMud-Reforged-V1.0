@@ -1,9 +1,20 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using RealmGate.Server;
 
-namespace RealmGate.App.Models;
+namespace RealmGate.Client.Profiles;
+
+public enum ClientTerminalViewMode
+{
+    Reforged = 0,
+    // Legacy serialized name. Both values intentionally select the one RealmGate client.
+    ClassicMegaMud = Reforged
+}
+
+public static class ClientConnectionProfileDefaults
+{
+    public const int TelnetPort = 2323;
+}
 
 public sealed class ClientConnectionProfile : INotifyPropertyChanged
 {
@@ -13,7 +24,7 @@ public sealed class ClientConnectionProfile : INotifyPropertyChanged
     private string _serverProfileName = "Local Host";
     private string _worldName = "Classic";
     private string _hostName = "127.0.0.1";
-    private int _port = RealmGateNetworkBinding.DefaultTelnetPort;
+    private int _port = ClientConnectionProfileDefaults.TelnetPort;
     private bool _autoReconnect = true;
     private int _reconnectDelaySeconds = 5;
     private ClientTerminalViewMode _terminalViewMode = ClientTerminalViewMode.Reforged;

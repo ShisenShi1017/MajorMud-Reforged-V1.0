@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using RealmGate.Client.Profiles;
 
 namespace RealmGate.App.Models;
 

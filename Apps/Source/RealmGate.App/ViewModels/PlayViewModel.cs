@@ -1,6 +1,8 @@
 using System.Collections.ObjectModel;
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
 using RealmGate.App.Services;
+using RealmGate.Client.Profiles;
 
 namespace RealmGate.App.ViewModels;
 

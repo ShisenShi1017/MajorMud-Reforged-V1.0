@@ -1,16 +1,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using RealmGate.Client.Profiles;
 
 namespace RealmGate.App.Models;
 
 public enum ClientConnectionState { Disconnected, Connecting, Connected, Reconnecting, Faulted }
-public enum ClientTerminalViewMode
-{
-    Reforged = 0,
-    // Legacy serialized name. Both values intentionally select the one Reforged client.
-    ClassicMegaMud = Reforged
-}
 public enum RouteExecutionState { Idle, Running, Paused, WaitingForRoom, Completed, Stopped, Faulted }
 public enum ClientCommandOrigin { Human, AutonomousAgent, RouteAutomation, ClientAutomation, SystemLogin, ClientProtocol }
 

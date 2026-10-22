@@ -171,7 +171,7 @@ void ServerBootstrapSmoke()
     if (report.HostConfiguration is null ||
         report.HostConfiguration.Status != "runtime-enabled" ||
         report.HostConfiguration.RuntimeDisabled ||
-        report.HostConfiguration.Port != 4000 ||
+        report.HostConfiguration.Port != RealmGateNetworkBinding.DefaultTelnetPort ||
         report.HostConfiguration.MaxSessions != 64 ||
         report.HostConfiguration.WorldTickMilliseconds != 1000 ||
         report.HostConfiguration.CombatTickMilliseconds != 5000)
@@ -377,9 +377,9 @@ void ServerHostConfigurationAuditSmoke()
 
     if (report.Status != "runtime-enabled" ||
         report.RuntimeDisabled ||
-        report.HostName != "RealmGate Local Host" ||
-        report.BindAddress != "127.0.0.1" ||
-        report.Port != 4000 ||
+        report.HostName != "RealmGate Host" ||
+        report.BindAddress != RealmGateNetworkBinding.AllIpv4InterfacesAddress ||
+        report.Port != RealmGateNetworkBinding.DefaultTelnetPort ||
         report.MaxSessions != 64 ||
         report.WorldTickMilliseconds != 1000 ||
         report.CombatTickMilliseconds != 5000 ||

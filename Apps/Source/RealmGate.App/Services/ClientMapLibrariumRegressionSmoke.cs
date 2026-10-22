@@ -1,5 +1,6 @@
 using System.Text;
 using RealmGate.App.Models;
+using RealmGate.Client.Protocol;
 
 namespace RealmGate.App.Services;
 
@@ -27,7 +28,7 @@ public static class ClientMapLibrariumRegressionSmoke
 
         var payload = Convert.ToBase64String(Encoding.UTF8.GetBytes("private room data"));
         var frame = $"@@REFORGED-PROTOCOL|ROOMINSPECTION|{payload}\r\n";
-        var filter = new ReforgedClientProtocolFilter();
+        var filter = new RealmGateClientProtocolFilter();
         var first = filter.Process("Visible game text\r\n" + frame[..17]);
         var second = filter.Process(frame[17..] + "More game text\r\n");
         Require((first.VisibleText + second.VisibleText).Contains("Visible game text", StringComparison.Ordinal), "visible-game-text-preserved");

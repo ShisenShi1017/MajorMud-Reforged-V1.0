@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using RealmGate.App.Models;
+using RealmGate.Client.Automation;
 using RealmGate.App.Services;
 using RealmGate.App.ViewModels;
 
