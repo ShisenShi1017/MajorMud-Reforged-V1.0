@@ -33,6 +33,9 @@ public sealed class RuntimeClassicAbilityAcquisitionAuthority
     }
 
     public bool HasRoute(int npcId, string keyword) => _definitions.ContainsKey((npcId, Normalize(keyword)));
+    public IReadOnlyList<string> GetKeywords(int npcId) => _definitions.Keys
+        .Where(key => key.NpcId == npcId).Select(key => key.Keyword)
+        .OrderBy(keyword => keyword, StringComparer.OrdinalIgnoreCase).ToArray();
 
     public RuntimeClassicAbilityAcquisitionResult Execute(int npcId, string keyword, RuntimeQuestDialogueContext context)
     {

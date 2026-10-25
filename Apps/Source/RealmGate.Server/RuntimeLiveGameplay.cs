@@ -9,16 +9,20 @@ public sealed partial class RuntimeLiveGameplayFacade
     private readonly RuntimeWccInvasionService _wccInvasions;
     private readonly RuntimeClassicGangGameplayService _gangGameplay;
     private readonly RuntimePartyCoordinationService _partyGameplay;
+    private readonly string? _livingWorldPersistenceRoot;
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicNativeTextblockPayloadAuthority> _nativePayloadsByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeSpellCatalog> _npcSpellCatalogByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeNpcAttackArgumentRecoveryCatalog> _npcAttackArgumentsByWorld = new(StringComparer.OrdinalIgnoreCase);
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicTextblockGraphAuthority> _textblockGraphsByWorld = new(StringComparer.OrdinalIgnoreCase);
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicAbilityAcquisitionAuthority> _abilityAcquisitionsByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeGameplayCompletionStateStore> _gameplayStores = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gameplayStoreGate = new();
 
-    public RuntimeLiveGameplayFacade(RuntimeCharacterService characters, RuntimeSessionManager sessions)
+    public RuntimeLiveGameplayFacade(RuntimeCharacterService characters, RuntimeSessionManager sessions, string? livingWorldPersistenceRoot = null)
     {
         _characters = characters;
         _sessions = sessions;
+        _livingWorldPersistenceRoot = livingWorldPersistenceRoot;
         _majorMudPlus = new RuntimeMajorMudPlusService(characters, sessions);
         _wccSysop = new RuntimeWccSysopService(characters, sessions);
         _wccInvasions = new RuntimeWccInvasionService(characters);
@@ -43,6 +47,12 @@ public sealed partial class RuntimeLiveGameplayFacade
         _npcAttackArgumentsByWorld.GetOrAdd(
             worldId,
             id => RuntimeNpcAttackArgumentRecoveryCatalog.Load(_characters.ProjectRoot, id));
+
+    private RuntimeClassicTextblockGraphAuthority TextblockGraph(string worldId) =>
+        _textblockGraphsByWorld.GetOrAdd(worldId, id => RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot, id));
+
+    private RuntimeClassicAbilityAcquisitionAuthority AbilityAcquisitions(string worldId) =>
+        _abilityAcquisitionsByWorld.GetOrAdd(worldId, id => RuntimeClassicAbilityAcquisitionAuthority.Load(_characters.ProjectRoot, id));
 
     public string ExecuteMajorMudPlusCommand(RuntimeSession session, RuntimeCommand command) =>
         _majorMudPlus.Execute(session, command, Living(session));

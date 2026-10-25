@@ -280,7 +280,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
         try
         {
-            var authority = RuntimeClassicAbilityAcquisitionAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
+            var authority = AbilityAcquisitions(session.World.Definition.Id);
             if (!authority.HasRoute(ParseLegacyId(npc.NpcId), keyword))
             {
                 CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "ask-keyword-unresolved");

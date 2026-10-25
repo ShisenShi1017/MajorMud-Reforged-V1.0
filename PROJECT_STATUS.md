@@ -14,17 +14,21 @@ Post-closure runtime hardening now keeps world/session failures contained: a gen
 
 Character deletion is available to account owners inside each selected world's character menu and to editors in Creator Studio's world-aware Characters tab. Both paths enforce account/world ownership and refuse deletion of logged-in characters. The character smoke now verifies create, restore, decoded LIGHT equip, permanent delete, and account-slot cleanup.
 
+Classic contextual-command recovery now routes exact room-local gate, object, and supported script phrases before the ordinary unknown-text-to-SAY fallback. `ROOMCOMMANDS` exposes only commands executable in the current room and obeys hidden-exit visibility. The WPF room-command panel can send its selected command through the ordinary server path.
+
+The focused regression audits every recovered runtime alias: 249 text-command exits with 675 aliases, 831 materialized object aliases, and 437 executable room-script aliases across 493 decoded action rooms. Ferryman travel from Newhaven through the pier to Silvermere and back is verified, including disposable character autosave/reconnect. The source audit covers 26,668 rooms, 61,976 exits, 771 NPC-dialogue links, 2,279 textblocks, and 284 committed room interactions with no source records missing from generated Classic data.
+
 Avalonia Phase 2 now supports local and remote generated-world navigation graphs plus inventory/equipment automation. Remote RealmGate hosts deliver only the selected world's graph through bounded compressed private frames with SHA-256 verification; derived worlds never receive a Classic fallback. The Navigation tab persists world-qualified Favorite and Stash destinations, while the Inventory tab consumes a world/character-qualified server snapshot, persists isolated rules and equipment sets, previews every plan, and routes approved actions through Emergency Stop and the ordinary host command path.
 
 ## Verified automated baseline
 
-Latest observed results (the full validator predates the Character slice):
+Latest observed results:
 
 | Gate | Result |
 | --- | --- |
 | RealmGate app Release build | PASS — 0 warnings, 0 errors |
 | Full solution Release build | PASS — 0 warnings, 0 errors |
-| Current-health validator | PASS — 28/28 |
+| Current-health validator | PASS — 28/28, including Classic room-command recovery |
 | RealmGate client smoke suite | PASS — 14/14 |
 | Cross-platform client-core regression | PASS — 72/72 (latest local Character slice) |
 | Classic parity ledger | 200 PASS / 0 STRONG / 0 UNKNOWN |
@@ -32,7 +36,7 @@ Latest observed results (the full validator predates the Character slice):
 
 The client smoke suite covers shell/layout, cleanup scheduling, embedded host, automation, map/Librarium, Batch 3 client behavior, inventory automation, recovery automation, combat automation, party automation, diagnostics, parity completion, and help.
 
-The latest full local validator passed 28/28 on 2026-10-24 Pacific / UTC. Its full solution build passed with 0 warnings / 0 errors, including the core/server smoke project. Direct Avalonia Windows and Linux framework-dependent publishes also completed; local standalone Avalonia builds report the known SDK 8/Avalonia 12 analyzer-version warnings and, when the restricted feed is unavailable, `NU1900` vulnerability-index warnings. The Linux launcher is an ELF executable; native Linux GUI interaction has not been tested.
+The latest full local validator passed 28/28 on 2026-10-24 Pacific / 2026-10-25 UTC. Its full solution build passed with 0 warnings / 0 errors and its new room-command gate passed 3,864/3,864 checks. Direct Avalonia Windows and Linux framework-dependent publishes preceded this room-command slice; local standalone Avalonia builds report the known SDK 8/Avalonia 12 analyzer-version warnings and, when the restricted feed is unavailable, `NU1900` vulnerability-index warnings. The Linux launcher is an ELF executable; native Linux GUI interaction has not been tested.
 
 The smoke fixes immediately before 0141 corrected test/cleanup assumptions rather than introducing alternate gameplay behavior:
 
@@ -71,7 +75,7 @@ The Avalonia Play surface now includes live Telnet/ANSI operation, automation, t
 
 The combined Phase 2 assistant batch adds Recovery, Combat, Party, Communication, and Diagnostics views. A selected-world/character `AUTOMATIONSTATE` snapshot supplies vitals, learned spell identities, effects, visible current-room NPCs/players, party state, and meditation eligibility. Recovery and combat plans use ordinary server commands; preview/run-once and opt-in continuous execution enforce fresh state, exact room identity, command pacing, Emergency Stop, and bounded repeated attempts. Settings are isolated by world and character. That batch passed 70/70 client-core checks and the 28/28 full validator, including a server snapshot smoke using disposable saves.
 
-The subsequent local Phase 3 Character slice adds a read-only selected-world `CHARACTERSTATE` snapshot and a usable Avalonia Character tab for summary, attributes/skills, spells/effects, experience, and equipment sets. The client combines only matching world/character/room snapshots and clears them on profile or connection changes. The equipment planner now searches the Host's exact selected-world item catalog with a 75-result cap, shows decoded item details, and compares a hypothetical loadout against current equipped definitions by ID. It does not assert class/race/hand eligibility or execute preview equip commands. Its latest focused verification passed 72/72 client-core checks and the core/server smoke suite; the Avalonia Release build succeeded with two known analyzer-version warnings. The full 28/28 validator, native Linux GUI, pushed CI, and end-to-end Character-tab interaction have not been verified against this new slice.
+The subsequent local Phase 3 Character slice adds a read-only selected-world `CHARACTERSTATE` snapshot and a usable Avalonia Character tab for summary, attributes/skills, spells/effects, experience, and equipment sets. The client combines only matching world/character/room snapshots and clears them on profile or connection changes. The equipment planner now searches the Host's exact selected-world item catalog with a 75-result cap, shows decoded item details, and compares a hypothetical loadout against current equipped definitions by ID. It does not assert class/race/hand eligibility or execute preview equip commands. Its focused verification passed 72/72 client-core checks and the core/server smoke suite; the Avalonia Release build succeeded with two known analyzer-version warnings. The later full 28/28 validator passed after the room-command recovery. Native Linux GUI, pushed CI, and end-to-end Character-tab interaction remain unverified.
 
 This is a usable RealmGate-host assistant slice, not full WPF feature parity. Advanced action/equipment rotation, party invitation/regroup/rescue policies, external-BBS automation state parsing, diagnostic exports/session statistics, and richer spell/buff management remain migration work. Native Linux GUI interaction still needs verification on Linux; a Windows cross-publish alone does not establish that result.
 
@@ -109,6 +113,8 @@ Automated validation is complete for the current baseline. Two real-file integra
 3. **Signed beta artifact test** — publish with a trusted Windows code-signing certificate, verify the Authenticode chain/timestamp, and test the exact distributed artifact with Microsoft Defender SmartScreen.
 
 These are integration certification tasks, not open Classic parity assertions.
+
+Room-command source gaps remain explicitly separated from working behavior: 1,302 decoded action-script bindings are not exposed because their complete effects are not executable yet; 1,223 NPC dialogue keyword routes remain unbound because version-matched presentation/effects are not proven; 16 `textblock.0` routes are verified no-target sentinels; and `exit.map11.40.w` has a genuinely empty source command. See `Reports/RuntimeVerification/classic_room_command_audit.md`.
 
 ## Cleanup state
 

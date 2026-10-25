@@ -2337,7 +2337,17 @@ public partial class ClientTerminalWindow : Window
         roomCommands.Columns.Add(new DataGridTextColumn { Header = "Command", Binding = new Binding(nameof(ClientRoomCommandState.Command)), Width = new DataGridLength(1.2, DataGridLengthUnitType.Star) });
         roomCommands.Columns.Add(new DataGridTextColumn { Header = "Type", Binding = new Binding(nameof(ClientRoomCommandState.InteractionType)), Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
         roomCommands.Columns.Add(new DataGridTextColumn { Header = "Requirements", Binding = new Binding(nameof(ClientRoomCommandState.Requirements)), Width = new DataGridLength(1.5, DataGridLengthUnitType.Star) });
-        sideTabs.Items.Add(new TabItem { Header = "Room commands", Content = roomCommands });
+        var runRoomCommand = NewDialogButton("Run selected", 110);
+        runRoomCommand.Click += async (_, _) =>
+        {
+            if (roomCommands.SelectedItem is ClientRoomCommandState selected)
+                await ViewModel.SendTerminalCommandAsync(session, selected.Command);
+        };
+        var roomCommandPanel = new DockPanel();
+        DockPanel.SetDock(runRoomCommand, Dock.Bottom);
+        roomCommandPanel.Children.Add(runRoomCommand);
+        roomCommandPanel.Children.Add(roomCommands);
+        sideTabs.Items.Add(new TabItem { Header = "Room commands", Content = roomCommandPanel });
         var pvpStatus = new TextBlock { TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 10), FontWeight = FontWeights.Bold };
         var pvpPlayers = new ComboBox { ItemsSource = session.CurrentRoomPlayers, Margin = new Thickness(0, 0, 0, 8), ToolTip = "Verified players currently in this room" };
         var pvpAttack = NewDialogButton("Attack selected", 110);

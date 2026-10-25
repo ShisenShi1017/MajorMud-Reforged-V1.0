@@ -134,6 +134,13 @@ public sealed class RuntimeCommandDispatcher
             if (command.RawInput.Trim().Equals("=a", StringComparison.OrdinalIgnoreCase))
                 return string.Empty;
 
+            if (_gameplay is not null && _gameplay.TryExecuteExactContextualCommand(session, command, out var contextualResult))
+            {
+                _state?.UpdateSessionLocation(session);
+                _events?.Publish("command", "decoded-world-command-completed", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
+                return contextualResult;
+            }
+
             _events?.Publish("communication", "command-fallback-say", session.World.Definition.Id, session.Id, session.Actor.Id, input ?? string.Empty);
             return _gameplay?.Say(session, input ?? string.Empty) ?? "Live gameplay facade is not attached.";
         }

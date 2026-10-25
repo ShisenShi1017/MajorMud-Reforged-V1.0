@@ -38,6 +38,10 @@ $steps.Add([pscustomobject]@{
     Name = "core_smoke"
     Arguments = @("run", "--project", "Tests/Source/RealmGate.Core.Tests/RealmGate.Core.Tests.csproj", "--configuration", $Configuration, "--no-build")
 })
+$steps.Add([pscustomobject]@{
+    Name = "classic_room_commands"
+    Arguments = @("run", "--project", "Tests/Source/RealmGate.Server.RoomCommands.Tests/RealmGate.Server.RoomCommands.Tests.csproj", "--configuration", $Configuration, "--no-build")
+})
 
 $validationCommands = @(
     @("classic_data_audit", "--audit-classic-data"),

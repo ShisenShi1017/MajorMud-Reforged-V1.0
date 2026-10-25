@@ -7,6 +7,7 @@ public sealed record RuntimeClassicTextblockTrigger(int Line, string Raw, string
 public sealed record RuntimeClassicTextblockOperation(int Line, int Sequence, string Raw, string Opcode, string OperationKind, string Status, IReadOnlyList<string> Arguments, IReadOnlyList<int> NumericArguments, int? TargetTextblockId, int? ItemId, int? SpellId, int? AbilityId, int? NpcId, int? RoomNumber, int? MapNumber);
 public sealed record RuntimeClassicTextblockNode(int TextblockId, int NextTextblockId, string OwnerKind, string OwnerRaw, string ContentKind, string Script, IReadOnlyList<RuntimeClassicTextblockCommand> Commands, IReadOnlyList<RuntimeClassicTextblockTrigger> Triggers, IReadOnlyList<RuntimeClassicTextblockOperation> Operations, string EvidenceState);
 public sealed record RuntimeClassicTextblockExecutionPlan(int RootTextblockId, int MatchedTextblockId, int MatchedLine, string MatchedInput, IReadOnlyList<RuntimeClassicTextblockOperation> Operations, IReadOnlyList<int> MessageTextblockIds, int? ContinuationTextblockId);
+public sealed record RuntimeClassicRoomActionCommand(int TextblockId, string Command);
 
 /// <summary>Single decoded Classic textblock graph projection and execution-plan authority. It preserves decoded ordering and delegates mutations to Bundle A-E consumers.</summary>
 public sealed class RuntimeClassicTextblockGraphAuthority
@@ -56,6 +57,18 @@ public sealed class RuntimeClassicTextblockGraphAuthority
     public RuntimeClassicTextblockNode Require(int textblockId) => _nodes.TryGetValue(textblockId, out var node) ? node : throw new KeyNotFoundException($"Decoded textblock {textblockId} was not found.");
     public bool TryGet(int textblockId, out RuntimeClassicTextblockNode node) => _nodes.TryGetValue(textblockId, out node!);
 
+    public IReadOnlyList<(int MapNumber, int RoomNumber)> AllRoomActionRooms() => _nodes.Values
+        .Where(node => node.OwnerKind.Equals("room", StringComparison.OrdinalIgnoreCase)
+            && node.ContentKind.Equals("action_script", StringComparison.OrdinalIgnoreCase))
+        .SelectMany(node => node.OwnerRaw.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        .Where(owner => owner.StartsWith("Room ", StringComparison.OrdinalIgnoreCase))
+        .Select(owner => owner[5..].Split('/'))
+        .Where(parts => parts.Length == 2 && int.TryParse(parts[0], out _) && int.TryParse(parts[1], out _))
+        .Select(parts => (MapNumber: int.Parse(parts[0]), RoomNumber: int.Parse(parts[1])))
+        .Distinct()
+        .OrderBy(room => room.MapNumber).ThenBy(room => room.RoomNumber)
+        .ToArray();
+
     public bool TryResolveCommand(int rootTextblockId, string input, out RuntimeClassicTextblockCommand command)
     {
         command = null!;
@@ -70,6 +83,24 @@ public sealed class RuntimeClassicTextblockGraphAuthority
         var plans = ResolveRoomActionPlans(mapNumber, roomNumber, input);
         plan = plans.FirstOrDefault()!;
         return plan is not null;
+    }
+
+    public IReadOnlyList<RuntimeClassicRoomActionCommand> GetRoomActionCommands(int mapNumber, int roomNumber)
+    {
+        var ownerToken = $"Room {mapNumber}/{roomNumber}";
+        return _nodes.Values
+            .Where(node => node.OwnerKind.Equals("room", StringComparison.OrdinalIgnoreCase)
+                && node.ContentKind.Equals("action_script", StringComparison.OrdinalIgnoreCase)
+                && RoomOwnerContains(node.OwnerRaw, ownerToken))
+            .SelectMany(node => node.Triggers.Select(trigger => new RuntimeClassicRoomActionCommand(node.TextblockId, trigger.Raw))
+                .Concat(node.Operations.Where(operation => operation.Sequence == 1
+                        && operation.Opcode.Equals("summon", StringComparison.OrdinalIgnoreCase)
+                        && operation.NumericArguments.Count == 0)
+                    .Select(operation => new RuntimeClassicRoomActionCommand(node.TextblockId, operation.Raw))))
+            .Where(command => !string.IsNullOrWhiteSpace(command.Command))
+            .DistinctBy(command => (command.TextblockId, NormalizeCommand(command.Command)))
+            .OrderBy(command => command.Command, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
 
     /// <summary>

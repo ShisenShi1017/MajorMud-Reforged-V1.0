@@ -17,7 +17,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     {
         result = string.Empty;
         var entered = string.Join(' ', new[] { command.Name }.Concat(command.Arguments)).Trim();
-        var graph = RuntimeClassicTextblockGraphAuthority.Load(_characters.ProjectRoot, session.World.Definition.Id);
+        var graph = TextblockGraph(session.World.Definition.Id);
         var plans = graph.ResolveRoomActionPlans(session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber, entered);
         if (plans.Count == 0) return false;
 
@@ -70,6 +70,35 @@ public sealed partial class RuntimeLiveGameplayFacade
 
         return false;
     }
+
+    private bool CanExecuteClassicRoomAction(string worldId, int mapNumber, int roomNumber, string entered)
+    {
+        IReadOnlyList<RuntimeClassicTextblockExecutionPlan> plans;
+        try
+        {
+            plans = TextblockGraph(worldId).ResolveRoomActionPlans(mapNumber, roomNumber, entered);
+        }
+        catch (InvalidOperationException)
+        {
+            return false;
+        }
+        if (plans.Count == 0) return false;
+        if (plans.All(IsRecoveredGangHouseServicePlan)) return true;
+        if (plans.Count != 1) return false;
+        var plan = plans[0];
+        return IsRecoveredSimpleHealerPlan(plan)
+            || (RuntimeClassicPaidCarriageAuthority.TryResolve(mapNumber, roomNumber, entered, out var carriage)
+                && RuntimeClassicPaidCarriageAuthority.MatchesPlan(carriage, plan))
+            || IsRecoveredImmediateRelocationPlan(plan)
+            || IsRecoveredDarkDruidFieldPlan(plan)
+            || IsRecoveredMap8StatueSummonPlan(plan)
+            || IsRecoveredMap16LatchRewardPlan(plan);
+    }
+
+    public IReadOnlyList<RuntimeClassicRoomActionCommand> GetExecutableRoomActionCommands(string worldId, int mapNumber, int roomNumber) =>
+        TextblockGraph(worldId).GetRoomActionCommands(mapNumber, roomNumber)
+            .Where(action => CanExecuteClassicRoomAction(worldId, mapNumber, roomNumber, action.Command))
+            .ToArray();
 
     private static bool IsRecoveredDarkDruidFieldPlan(RuntimeClassicTextblockExecutionPlan plan)
     {

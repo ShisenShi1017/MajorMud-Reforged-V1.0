@@ -1328,7 +1328,9 @@ public sealed partial class RuntimeLiveGameplayFacade
 {
     private readonly ConcurrentDictionary<string,RuntimeLivingWorldService> _livingWorlds=new(StringComparer.OrdinalIgnoreCase);
     private RuntimeLivingWorldService Living(RuntimeSession session)=>Living(session.World);
-    private RuntimeLivingWorldService Living(RuntimeWorld world)=>_livingWorlds.GetOrAdd(world.Definition.Id,_=>new RuntimeLivingWorldService(_characters.ProjectRoot,world));
+    private RuntimeLivingWorldService Living(RuntimeWorld world)=>_livingWorlds.GetOrAdd(world.Definition.Id,
+        id=>new RuntimeLivingWorldService(_characters.ProjectRoot,world,
+            _livingWorldPersistenceRoot is null ? null : Path.Combine(_livingWorldPersistenceRoot,id)));
     public IReadOnlyList<RuntimeLivingNpcState> LivingNpcsInRoom(RuntimeSession session)=>Living(session).NpcsInRoom(session.CurrentRoom.Id);
     public RuntimeLivingNpcState SummonLivingNpc(RuntimeSession session,string npcId,string source)=>Living(session).SummonNpc(npcId,session.CurrentRoom.Id,source);
     public bool CanTraverseLivingWorld(RuntimeSession session,string direction,out string failure)
@@ -1539,6 +1541,32 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         result = living.Interact(session, command, LoadItemState(session));
         return true;
+    }
+
+    public bool IsExactContextualCommand(RuntimeSession session, RuntimeCommand command)
+    {
+        var entered = command.RawInput.Trim();
+        if (entered.Length == 0) return false;
+        var living = Living(session);
+        var gateMatch = living.CaptureGates().Any(gate => gate.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase)
+            && gate.Commands.Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase))
+            && session.CurrentRoom.Exits.Any(exit => exit.Id.Equals(gate.ExitId, StringComparison.OrdinalIgnoreCase)
+                && CanCharacterSeeExit(session, exit)));
+        var objectMatch = !gateMatch && living.CaptureWorldObjectDefinitions().Any(definition =>
+            definition.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase)
+            && definition.Metadata.TryGetValue("commands", out var encoded)
+            && encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .Any(alias => alias.Equals(entered, StringComparison.OrdinalIgnoreCase)));
+        var scriptMatch = !gateMatch && !objectMatch &&
+            GetExecutableRoomActionCommands(session.World.Definition.Id, session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber)
+                .Any(action => action.Command.Equals(entered, StringComparison.OrdinalIgnoreCase));
+        return gateMatch || objectMatch || scriptMatch;
+    }
+
+    public bool TryExecuteExactContextualCommand(RuntimeSession session, RuntimeCommand command, out string result)
+    {
+        result = string.Empty;
+        return IsExactContextualCommand(session, command) && TryExecuteDecodedWorldCommand(session, command, out result);
     }
 
     private string ExecuteDecodedItemInteraction(

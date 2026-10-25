@@ -15,11 +15,11 @@
 - Generated World Contract: `standalone and runtime-complete; live Classic fallback forbidden`
 - Decode Exhaustion: `49/49 families; 2,332/2,332 fields; 0 unresolved`
 - Post-Closure Runtime Hardening: `world/session fault containment; Host sessions/logs; realm-scoped character deletion; LIGHT equipment readiness`
-- Latest Local Verification: `72/72 client-core regression; core/server smokes passed; Avalonia Character/item-planning slice Release build succeeded with 2 known analyzer-version warnings. The previous 28/28 full-validator and Windows/Linux preview publishes predate this slice; native Linux GUI untested.`
+- Latest Local Verification: `28/28 current-health validator; solution build 0 warnings / 0 errors; Classic room-command regression 3,864/3,864; 72/72 client-core Character/item-planning regression retained. Windows/Linux preview publishes predate the room-command slice; native Linux GUI untested.`
 
 ## Numbering
 
-Local Avalonia Phase 2 assistant verification passed on 2026-10-24. The accepted CodeUpdate0142 closure baseline above still describes the pushed repository; this subsequent local work has not been pushed or checked by GitHub Actions.
+Local Classic room-command recovery verification passed on 2026-10-24 Pacific / 2026-10-25 UTC. The accepted CodeUpdate0142 identity remains unchanged; this subsequent local work has not been pushed or checked by GitHub Actions.
 
 `CodeUpdate0142` is the repository update number.
 

@@ -460,14 +460,16 @@ public sealed class RuntimeCharacterRepository
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
     private readonly string _hostRoot;
     private readonly string _projectRoot;
+    private readonly string _persistenceRoot;
     private readonly object _gate = new();
 
-    public RuntimeCharacterRepository(string projectRoot)
+    public RuntimeCharacterRepository(string projectRoot, string? persistenceRoot = null)
     {
         _projectRoot = projectRoot;
-        _hostRoot = RuntimeSavePaths.HostRoot(projectRoot);
+        _persistenceRoot = string.IsNullOrWhiteSpace(persistenceRoot) ? projectRoot : Path.GetFullPath(persistenceRoot);
+        _hostRoot = RuntimeSavePaths.HostRoot(_persistenceRoot);
         Directory.CreateDirectory(Path.Combine(_hostRoot, "accounts"));
-        Directory.CreateDirectory(Path.Combine(RuntimeSavePaths.RealmRoot(projectRoot, RuntimeSavePaths.ClassicWorldId), "characters"));
+        Directory.CreateDirectory(Path.Combine(RuntimeSavePaths.RealmRoot(_persistenceRoot, RuntimeSavePaths.ClassicWorldId), "characters"));
         StartupRecoverySweep();
     }
 
@@ -778,15 +780,15 @@ public sealed class RuntimeCharacterRepository
     private string CharacterPath(string id)
     {
         id = CanonicalCharacterId(id);
-        return Path.Combine(RuntimeSavePaths.RealmRoot(_projectRoot, RuntimeSavePaths.WorldIdFromCharacterId(id)), "characters", PersistenceFileKey(id) + ".json");
+        return Path.Combine(RuntimeSavePaths.RealmRoot(_persistenceRoot, RuntimeSavePaths.WorldIdFromCharacterId(id)), "characters", PersistenceFileKey(id) + ".json");
     }
 
     private IEnumerable<string> CharacterDirectories()
     {
-        var classic = Path.Combine(RuntimeSavePaths.RealmRoot(_projectRoot, RuntimeSavePaths.ClassicWorldId), "characters");
+        var classic = Path.Combine(RuntimeSavePaths.RealmRoot(_persistenceRoot, RuntimeSavePaths.ClassicWorldId), "characters");
         if (Directory.Exists(classic)) yield return classic;
 
-        var customRoot = Path.Combine(_projectRoot, "Saves", "Custom");
+        var customRoot = Path.Combine(_persistenceRoot, "Saves", "Custom");
         if (!Directory.Exists(customRoot)) yield break;
         foreach (var directory in Directory.EnumerateDirectories(customRoot, "characters", SearchOption.AllDirectories))
             yield return directory;
@@ -924,10 +926,10 @@ public sealed class RuntimeCharacterService
     private readonly string _projectRoot;
     private readonly RuntimeCharacterLifecycleCoordinator _lifecycle = new();
 
-    public RuntimeCharacterService(string projectRoot)
+    public RuntimeCharacterService(string projectRoot, string? persistenceRoot = null)
     {
         _projectRoot = projectRoot;
-        _repository = new RuntimeCharacterRepository(projectRoot);
+        _repository = new RuntimeCharacterRepository(projectRoot, persistenceRoot);
     }
 
     public string ProjectRoot => _projectRoot;

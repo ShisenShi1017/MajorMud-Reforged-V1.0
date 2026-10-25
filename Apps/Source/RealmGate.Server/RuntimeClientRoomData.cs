@@ -1,5 +1,11 @@
 namespace RealmGate.Server;
 
+public sealed record RuntimeClientRoomCommandProjection(
+    string Command,
+    string Source,
+    string InteractionType,
+    string Requirements);
+
 public sealed partial class RuntimeLiveGameplayFacade
 {
     public string RenderClientRoomData(RuntimeSession session, RuntimeCommand command)
@@ -73,32 +79,7 @@ public sealed partial class RuntimeLiveGameplayFacade
                     RoomName = target?.Name ?? "Unknown destination"
                 };
             }).ToArray();
-        var roomObjectCommands = Living(session).CaptureWorldObjectDefinitions()
-            .Where(definition => definition.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
-            .SelectMany(definition => (definition.Metadata.TryGetValue("commands", out var encoded)
-                    ? encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                    : Array.Empty<string>())
-                .Select(command => new
-                {
-                    Command = command,
-                    Source = definition.Id,
-                    InteractionType = definition.Kind,
-                    Requirements = DescribeRoomCommandRequirements(definition.Metadata)
-                }));
-        var roomGateCommands = Living(session).CaptureGates()
-                .Where(gate => gate.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
-                .SelectMany(gate => gate.Commands.Select(command => new
-                {
-                    Command = command,
-                    Source = gate.ExitId,
-                    InteractionType = gate.GateKind,
-                    Requirements = DescribeRoomGateRequirements(gate)
-                }));
-        var roomCommands = roomObjectCommands.Concat(roomGateCommands)
-            .GroupBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
-            .Select(group => group.First())
-            .OrderBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var roomCommands = GetClientRoomCommands(session);
         var topology = BuildClientRoomTopology(session, session.CurrentRoom, 64);
         var mapCatalog = session.World.AllRooms().GroupBy(room => room.MapId).OrderBy(group => group.Key)
             .Select(group => new { MapId = group.Key, RoomCount = group.Count() }).ToArray();
@@ -119,6 +100,40 @@ public sealed partial class RuntimeLiveGameplayFacade
                ReforgedClientProtocol.Encode("ROOMCOMMANDS", System.Text.Json.JsonSerializer.Serialize(roomCommands)) + Environment.NewLine +
                ReforgedClientProtocol.Encode("ROOMTOPOLOGY", System.Text.Json.JsonSerializer.Serialize(topology)) + Environment.NewLine +
                ReforgedClientProtocol.Encode("MAPCATALOG", System.Text.Json.JsonSerializer.Serialize(mapCatalog));
+    }
+
+    public IReadOnlyList<RuntimeClientRoomCommandProjection> GetClientRoomCommands(RuntimeSession session)
+    {
+        var living = LivingNpcsInRoom(session).Where(npc => npc.Alive).ToArray();
+        var roomObjectCommands = Living(session).CaptureWorldObjectDefinitions()
+            .Where(definition => definition.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
+            .SelectMany(definition => (definition.Metadata.TryGetValue("commands", out var encoded)
+                    ? encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    : Array.Empty<string>())
+                .Select(command => new RuntimeClientRoomCommandProjection(
+                    command, definition.Id, definition.Kind, DescribeRoomCommandRequirements(definition.Metadata))));
+        var visibleExitIds = session.CurrentRoom.Exits
+            .Where(exit => CanCharacterSeeExit(session, exit))
+            .Select(exit => exit.Id)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var roomGateCommands = Living(session).CaptureGates()
+            .Where(gate => gate.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
+            .Where(gate => visibleExitIds.Contains(gate.ExitId))
+            .SelectMany(gate => gate.Commands.Select(command => new RuntimeClientRoomCommandProjection(
+                command, gate.ExitId, gate.GateKind, DescribeRoomGateRequirements(gate))));
+        var roomScriptCommands = GetExecutableRoomActionCommands(
+                session.World.Definition.Id, session.CurrentRoom.MapId, session.CurrentRoom.RoomNumber)
+            .Select(action => new RuntimeClientRoomCommandProjection(
+                action.Command, $"textblock.{action.TextblockId}", "room_action", "Decoded room script"));
+        var roomNpcCommands = living.SelectMany(npc =>
+            AbilityAcquisitions(session.World.Definition.Id).GetKeywords(ParseLegacyId(npc.NpcId))
+                .Select(keyword => new RuntimeClientRoomCommandProjection(
+                    $"ask {npc.NpcId} {keyword}", npc.NpcId, "npc_dialogue", "Decoded ability route")));
+        return roomObjectCommands.Concat(roomGateCommands).Concat(roomScriptCommands).Concat(roomNpcCommands)
+            .GroupBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
+            .Select(group => group.First())
+            .OrderBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
 
     private string RenderClientRoomInspection(RuntimeSession session, RuntimeRoom room, bool includeHidden)
@@ -149,6 +164,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             .SelectMany(definition => definition.Metadata.TryGetValue("commands", out var encoded)
                 ? encoded.Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : Array.Empty<string>())
             .Concat(living.CaptureGates().Where(gate => gate.RoomId.Equals(room.Id, StringComparison.OrdinalIgnoreCase)).SelectMany(gate => gate.Commands))
+            .Concat(GetExecutableRoomActionCommands(session.World.Definition.Id, room.MapId, room.RoomNumber).Select(action => action.Command))
             .Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(value => value, StringComparer.OrdinalIgnoreCase).ToArray();
         var snapshot = new
         {
@@ -210,7 +226,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                 .Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
             var bossAlive = bossNames.Any(name => liveNpcs.Contains(name, StringComparer.OrdinalIgnoreCase));
             var hasCommands = objectDefinitions.Any(definition => definition.RoomId.Equals(room.Id, StringComparison.OrdinalIgnoreCase) && definition.Metadata.ContainsKey("commands")) ||
-                              gates.Any(gate => gate.RoomId.Equals(room.Id, StringComparison.OrdinalIgnoreCase) && gate.Commands.Count > 0);
+                              gates.Any(gate => gate.RoomId.Equals(room.Id, StringComparison.OrdinalIgnoreCase) && gate.Commands.Count > 0) ||
+                              GetExecutableRoomActionCommands(session.World.Definition.Id, room.MapId, room.RoomNumber).Count > 0;
             nodes[room.Id] = new
             {
                 RoomKey = $"{room.MapId}:{room.RoomNumber}", RoomName = room.Name, Depth = depth, Current = room.Id.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase),
