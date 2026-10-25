@@ -662,7 +662,28 @@ public sealed partial class RuntimeLivingWorldService
     private static int? ReadNullableInt(JsonElement element,string name){if(element.ValueKind!=JsonValueKind.Object||!element.TryGetProperty(name,out var value)||value.ValueKind==JsonValueKind.Null)return null;return value.ValueKind switch{JsonValueKind.Number when value.TryGetInt32(out var n)=>n,JsonValueKind.String when int.TryParse(value.GetString(),out var n)=>n,_=>null};}
     private static long? ReadNullableLong(JsonElement element,string name){if(element.ValueKind!=JsonValueKind.Object||!element.TryGetProperty(name,out var value)||value.ValueKind==JsonValueKind.Null)return null;return value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var n)=>n,JsonValueKind.String when long.TryParse(value.GetString(),out var n)=>n,_=>null};}
     private static double ReadDouble(JsonElement element,string name,double fallback)=>element.ValueKind==JsonValueKind.Object&&element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetDouble(out var n)=>n,JsonValueKind.String when double.TryParse(value.GetString(),out var n)=>n,_=>fallback}:fallback;
-    private static int CompareAlignment(string actual,string required){static int Rank(string value)=>value.Trim().ToLowerInvariant() switch{"evil" or "fiend" or "villain"=>-1,"neutral"=>0,"good" or "saint"=>1,_=>0};return Rank(actual).CompareTo(Rank(required));}
+    private static int CompareAlignment(string actual,string required)
+    {
+        // Native MajorMUD reputation bands are ordered, not interchangeable.
+        // In particular Villain is eligible for a gate ending at Villain;
+        // only Fiend falls below that minimum. Do not quietly treat unknown
+        // reputation labels as Neutral.
+        static int Rank(string value) => value.Trim().ToLowerInvariant() switch
+        {
+            "fiend" => 0,
+            "villain" => 1,
+            "criminal" => 2,
+            "outlaw" => 3,
+            "seedy" => 4,
+            "evil" => 4,
+            "neutral" => 5,
+            "good" => 6,
+            "saint" => 7,
+            "lawful" => 8,
+            _ => throw new InvalidDataException($"Unknown Classic alignment name '{value}'.")
+        };
+        return Rank(actual).CompareTo(Rank(required));
+    }
     private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
     private static int ParseClassicLegacyId(string? value)
