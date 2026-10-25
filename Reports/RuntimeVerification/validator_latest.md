@@ -1,37 +1,39 @@
 ﻿# RealmGate Validator
 
-- Status: **FAIL**
-- Passed: 25/28
-- Timestamp: 2026-09-27T03:22:29.4966461Z
+- Status: **PASS**
+- Passed: 28/28
+- Timestamp: 2026-10-24T18:57:13.2762523Z
 
 | Status | Step | Seconds |
 |---|---|---:|
-| PASS | `solution_restore` | 3.429 |
-| PASS | `solution_build` | 4.477 |
-| PASS | `classic_generation` | 71.511 |
-| PASS | `compiler_tests` | 0.857 |
-| PASS | `core_smoke` | 63.311 |
-| PASS | `classic_data_audit` | 9.133 |
-| PASS | `decode_exhaustion` | 344.024 |
-| PASS | `generated_data` | 41.775 |
-| PASS | `room_exits` | 31.391 |
-| PASS | `npcs` | 29.892 |
-| PASS | `character_foundation` | 32.622 |
-| PASS | `items` | 10.911 |
-| PASS | `spells` | 6.165 |
-| PASS | `spell_execution` | 6.126 |
-| PASS | `combat` | 6.474 |
-| PASS | `combat_runtime` | 4.974 |
-| PASS | `combat_runtime_part2` | 4.838 |
-| PASS | `actors_abilities` | 5.397 |
-| PASS | `interaction_narrative` | 196.849 |
-| PASS | `services_economy` | 5.772 |
-| PASS | `world_multiplayer` | 5.809 |
-| PASS | `live_gameplay` | 5.642 |
-| PASS | `megamud_connection` | 41.37 |
-| PASS | `network_binding` | 10.114 |
-| PASS | `combat_terminal` | 5.859 |
-| FAIL | `classic_parity_closure` | 653.137 |
+| PASS | `solution_restore` | 4.23 |
+| PASS | `solution_build` | 47.355 |
+| PASS | `classic_generation` | 99.543 |
+| PASS | `compiler_tests` | 0.842 |
+| PASS | `core_smoke` | 177.035 |
+| PASS | `classic_data_audit` | 21.887 |
+| PASS | `decode_exhaustion` | 303.653 |
+| PASS | `generated_data` | 54.078 |
+| PASS | `room_exits` | 35.416 |
+| PASS | `npcs` | 34.29 |
+| PASS | `character_foundation` | 33.831 |
+| PASS | `items` | 14.121 |
+| PASS | `spells` | 5.029 |
+| PASS | `spell_execution` | 5.249 |
+| PASS | `combat` | 4.649 |
+| PASS | `combat_runtime` | 4.499 |
+| PASS | `combat_runtime_part2` | 4.31 |
+| PASS | `actors_abilities` | 4.424 |
+| PASS | `interaction_narrative` | 154.552 |
+| PASS | `services_economy` | 4.46 |
+| PASS | `world_multiplayer` | 4.362 |
+| PASS | `live_gameplay` | 4.548 |
+| PASS | `megamud_connection` | 48.453 |
+| PASS | `network_binding` | 13.733 |
+| PASS | `combat_terminal` | 4.392 |
+| PASS | `classic_parity_closure` | 458.323 |
+| PASS | `borin_character` | 4.08 |
+| PASS | `borin_ai_provider` | 32.253 |
 
 Raw details: `Reports/RuntimeVerification/validator_latest.json`
 

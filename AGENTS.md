@@ -52,9 +52,13 @@ The accepted CodeUpdate0142 closure baseline is:
 
 - RealmGate app Release build: 0 warnings / 0 errors.
 - Full solution Release build: 0 warnings / 0 errors.
-- Current-health validator: 26/26 PASS.
+- Current-health validator: 28/28 PASS.
 - RealmGate client smoke suite: 14/14 PASS.
 - Classic parity: 200 PASS / 0 STRONG / 0 UNKNOWN.
+- Decode exhaustion: 49/49 families and 2332/2332 scalar fields connected or structural.
+- Cross-platform client-core regression: 62/62 PASS.
+
+The subsequent local Avalonia Phase 2 assistant batch passed 70/70 client-core checks and the 28/28 full validator on 2026-10-24. Both framework-dependent preview publishes completed. A later local Phase 3 Character/item-planning slice passed 72/72 client-core checks and core/server smokes; its Avalonia Release build succeeded with two known analyzer-version warnings. The full validator has not been rerun for that slice. Native Linux GUI operation and pushed CI for these local changes remain unverified.
 
 The decode-exhaustion phase is expensive. Do not rerun it simply to reconfirm documentation-only work. Rerun the full validator when runtime/data/validator authority changes or when a change could invalidate the accepted baseline.
 

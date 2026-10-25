@@ -5,6 +5,9 @@ using RealmGate.Core.Health;
 using RealmGate.Core.Logging;
 using RealmGate.Core.Services;
 using RealmGate.Server;
+using System.IO.Compression;
+using System.Security.Cryptography;
+using System.Text.Json;
 
 var root = LocateProjectRoot(AppContext.BaseDirectory);
 var tests = new List<(string Name, Action Body)>
@@ -24,6 +27,9 @@ var tests = new List<(string Name, Action Body)>
     ("server scheduler bootstrap enables channels", ServerSchedulerBootstrapAuditSmoke),
     ("server scheduler status commands are runtime-enabled read-only", ServerSchedulerStatusCommandAuditSmoke),
     ("server runtime state and event dispatcher track host-owned changes", ServerRuntimeStateAndEventsSmoke),
+    ("server delivers the selected-world navigation graph with verified framing", ServerNavigationGraphTransferSmoke),
+    ("server delivers world-qualified structured inventory state", ServerInventoryStateSmoke),
+    ("server delivers isolated character automation state", ServerAutomationStateSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke),
     ("classic bug-fix policies enforce corrected behavior", ClassicBugFixPolicySmoke)
 };
@@ -630,6 +636,171 @@ void ServerRuntimeStateAndEventsSmoke()
     {
         throw new InvalidOperationException("Runtime session removal did not publish session-ended event.");
     }
+}
+
+void ServerNavigationGraphTransferSmoke()
+{
+    var host = new ServerRuntimeHost(root, ServerRuntimeOptions.Load(root));
+    host.Bootstrap();
+    var world = host.Worlds["classic"];
+    var session = host.Sessions.CreateSession("navigation-transfer-smoke", world, "Navigation Tester");
+    var gameplay = new RuntimeLiveGameplayFacade(host.Characters, host.Sessions);
+    var response = gameplay.RenderClientPanelData(
+        session,
+        RuntimeCommand.Parse("clientdata navigation", world.CommandCatalog));
+
+    var frames = response.Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries);
+    var begin = frames.Single(frame => frame.Contains("|NAVGRAPHBEGIN|", StringComparison.Ordinal));
+    var end = frames.Single(frame => frame.Contains("|NAVGRAPHEND|", StringComparison.Ordinal));
+    var chunks = frames.Where(frame => frame.Contains("|NAVGRAPHCHUNK|", StringComparison.Ordinal)).ToArray();
+    using var beginDocument = JsonDocument.Parse(DecodePrivateFrame(begin));
+    using var endDocument = JsonDocument.Parse(DecodePrivateFrame(end));
+    var beginRoot = beginDocument.RootElement;
+    var transferId = beginRoot.GetProperty("transferId").GetString() ?? string.Empty;
+    var expectedWorld = beginRoot.GetProperty("worldId").GetString() ?? string.Empty;
+    var expectedLength = beginRoot.GetProperty("uncompressedLength").GetInt32();
+    var expectedCompressedLength = beginRoot.GetProperty("compressedLength").GetInt32();
+    var expectedChunkCount = beginRoot.GetProperty("chunkCount").GetInt32();
+    var expectedHash = beginRoot.GetProperty("sha256").GetString() ?? string.Empty;
+    if (!expectedWorld.Equals("classic", StringComparison.OrdinalIgnoreCase) ||
+        chunks.Length != expectedChunkCount ||
+        endDocument.RootElement.GetProperty("transferId").GetString() != transferId)
+        throw new InvalidOperationException("Navigation graph transfer framing does not match the selected Classic world.");
+
+    var decodedChunks = chunks.Select(frame =>
+    {
+        using var document = JsonDocument.Parse(DecodePrivateFrame(frame));
+        return (
+            Index: document.RootElement.GetProperty("index").GetInt32(),
+            Data: Convert.FromBase64String(document.RootElement.GetProperty("data").GetString() ?? string.Empty));
+    }).OrderBy(chunk => chunk.Index).ToArray();
+    var compressed = decodedChunks.SelectMany(chunk => chunk.Data).ToArray();
+    if (compressed.Length != expectedCompressedLength)
+        throw new InvalidOperationException("Navigation graph transfer compressed length is incorrect.");
+
+    using var compressedStream = new MemoryStream(compressed, writable: false);
+    using var gzip = new GZipStream(compressedStream, CompressionMode.Decompress);
+    using var output = new MemoryStream();
+    gzip.CopyTo(output);
+    var graph = output.ToArray();
+    var actualHash = Convert.ToHexString(SHA256.HashData(graph)).ToLowerInvariant();
+    if (graph.Length != expectedLength || !actualHash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase))
+        throw new InvalidOperationException("Navigation graph transfer did not preserve the generated graph bytes.");
+    using var graphDocument = JsonDocument.Parse(graph);
+    if (!graphDocument.RootElement.GetProperty("worldId").GetString()!.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+        throw new InvalidOperationException("Navigation graph payload does not identify the selected world.");
+}
+
+void ServerInventoryStateSmoke()
+{
+    var host = new ServerRuntimeHost(root, ServerRuntimeOptions.Load(root));
+    host.Bootstrap();
+    var world = host.Worlds["classic"];
+    var session = host.Sessions.CreateSession("inventory-state-smoke", world, "Inventory Tester");
+    var gameplay = new RuntimeLiveGameplayFacade(host.Characters, host.Sessions);
+    var response = gameplay.RenderClientPanelData(
+        session,
+        RuntimeCommand.Parse("clientdata inventory", world.CommandCatalog));
+    var frames = response.Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries);
+    var stateFrame = frames.Single(frame => frame.Contains("|INVENTORYSTATE|", StringComparison.Ordinal));
+    if (!frames.Any(frame => frame.Contains("|PANELDATA|", StringComparison.Ordinal)))
+        throw new InvalidOperationException("Inventory client data no longer includes the compatible visible panel frame.");
+
+    using var document = JsonDocument.Parse(DecodePrivateFrame(stateFrame));
+    var payload = document.RootElement;
+    if (!payload.GetProperty("WorldId").GetString()!.Equals("classic", StringComparison.OrdinalIgnoreCase) ||
+        payload.GetProperty("CharacterId").GetString() != session.Actor.Id ||
+        payload.GetProperty("RoomId").GetString() != session.CurrentRoom.Id ||
+        payload.GetProperty("Inventory").ValueKind != JsonValueKind.Array ||
+        payload.GetProperty("Equipment").ValueKind != JsonValueKind.Array)
+    {
+        throw new InvalidOperationException("Inventory state payload is not qualified to the selected world, character, and room.");
+    }
+}
+
+void ServerAutomationStateSmoke()
+{
+    var temporary = Path.Combine(Path.GetTempPath(), "realmgate-assistant-smoke-" + Guid.NewGuid().ToString("N"));
+    Directory.CreateDirectory(temporary);
+    try
+    {
+        // Runtime input is copied; all character and living-world writes stay in this disposable root.
+        foreach (var relative in new[] { "Config", Path.Combine("Data", "Classic") })
+        {
+            var source = Path.Combine(root, relative);
+            foreach (var file in Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories))
+            {
+                var target = Path.Combine(temporary, relative, Path.GetRelativePath(source, file));
+                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+                File.Copy(file, target);
+            }
+        }
+        var host = new ServerRuntimeHost(root, ServerRuntimeOptions.Load(root));
+        host.Bootstrap();
+        var world = host.Worlds["classic"];
+        var characters = new RuntimeCharacterService(temporary);
+        var account = characters.GetOrCreateAccount("AssistantSmoke");
+        var catalog = characters.GetCatalog("Classic");
+        var character = characters.CreateCharacter(account, world, "Assist", "Male",
+            catalog.Races.First().Id, catalog.Classes.First().Id);
+        var sessions = new RuntimeSessionManager();
+        var session = sessions.CreateCharacterSession("assistant-smoke", world, character);
+        if (!sessions.TryAdd(session, 4, out var error)) throw new InvalidOperationException(error);
+        var gameplay = new RuntimeLiveGameplayFacade(characters, sessions);
+        var frame = gameplay.RenderClientPanelData(session, RuntimeCommand.Parse("clientdata automation", world.CommandCatalog));
+        using var document = JsonDocument.Parse(DecodePrivateFrame(frame));
+        var state = document.RootElement;
+        if (!state.GetProperty("WorldId").GetString()!.Equals(world.Definition.Id, StringComparison.OrdinalIgnoreCase) ||
+            state.GetProperty("CharacterId").GetString() != character.CharacterId ||
+            state.GetProperty("RoomId").GetString() != session.CurrentRoom.Id ||
+            state.GetProperty("HealthCurrent").GetInt32() != character.HitPoints ||
+            state.GetProperty("InCombat").GetBoolean() || state.GetProperty("PartyMembers").GetArrayLength() != 0)
+            throw new InvalidOperationException("Automation snapshot lost selected world/character/room state.");
+        foreach (var family in new[] { "LearnedSpells", "Conditions", "ActiveEffects", "Npcs", "Players" })
+            if (state.GetProperty(family).ValueKind != JsonValueKind.Array)
+                throw new InvalidOperationException("Automation snapshot is missing " + family);
+        if (state.GetProperty("Conditions").EnumerateArray().Any(value => value.GetString()!.Contains("ui.")))
+            throw new InvalidOperationException("Internal character preferences leaked into visible conditions.");
+        using var characterFrame = JsonDocument.Parse(DecodePrivateFrame(
+            gameplay.RenderClientPanelData(session, RuntimeCommand.Parse("clientdata character", world.CommandCatalog))));
+        var characterState = characterFrame.RootElement;
+        if (characterState.GetProperty("WorldId").GetString() != character.WorldId ||
+            characterState.GetProperty("CharacterId").GetString() != character.CharacterId ||
+            characterState.GetProperty("RoomId").GetString() != session.CurrentRoom.Id ||
+            characterState.GetProperty("RaceName").GetString() != character.RaceName ||
+            characterState.GetProperty("ClassName").GetString() != character.ClassName ||
+            characterState.GetProperty("Experience").GetInt64() != character.Experience ||
+            characterState.GetProperty("BaseStats").ValueKind != JsonValueKind.Object ||
+            characterState.GetProperty("Skills").ValueKind != JsonValueKind.Object)
+            throw new InvalidOperationException("Character snapshot lost saved selected-world identity or statistics.");
+        var itemId = RuntimeItemCatalog.Load(temporary, world.Definition.Id).Items
+            .First(item => !string.IsNullOrWhiteSpace(item.Name)).Id;
+        using var searchFrame = JsonDocument.Parse(DecodePrivateFrame(
+            gameplay.RenderClientPanelData(session, RuntimeCommand.Parse(
+                $"clientdata itemsearch {itemId}", world.CommandCatalog))));
+        var search = searchFrame.RootElement;
+        if (search.GetProperty("WorldId").GetString() != world.Definition.Id ||
+            search.GetProperty("CharacterId").GetString() != character.CharacterId ||
+            search.GetProperty("RoomId").GetString() != session.CurrentRoom.Id ||
+            !search.GetProperty("Matches").EnumerateArray().Any(item =>
+                item.GetProperty("Id").GetString() == itemId) ||
+            search.GetProperty("Equipped").ValueKind != JsonValueKind.Array)
+            throw new InvalidOperationException("Item search did not use the selected world's item catalog.");
+        gameplay.ExecuteRegenerationStateCommand(session, RuntimeCommand.Parse("rest", world.CommandCatalog));
+        using var resting = JsonDocument.Parse(DecodePrivateFrame(gameplay.RenderClientAutomationStateData(session)));
+        if (!resting.RootElement.GetProperty("IsResting").GetBoolean())
+            throw new InvalidOperationException("Focused recovery did not appear in automation state.");
+    }
+    finally { Directory.Delete(temporary, recursive: true); }
+}
+
+static string DecodePrivateFrame(string frame)
+{
+    const string prefix = "@@REFORGED-PROTOCOL|";
+    var separator = frame.IndexOf('|', prefix.Length);
+    if (!frame.StartsWith(prefix, StringComparison.Ordinal) || separator < 0)
+        throw new InvalidOperationException("Private client frame is malformed.");
+    return System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(frame[(separator + 1)..]));
 }
 
 void ClassicParityAuditSmoke()

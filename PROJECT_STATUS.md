@@ -6,7 +6,7 @@
 
 Database version: `0010`
 
-CodeUpdate0142 is CLOSED. The RealmGate app Release build and full solution build pass with 0 warnings / 0 errors, the current-health bootstrap validator passes with 0 issues / 0 warnings / 0 errors, all 14 client smokes pass, and the pushed GitHub Classic parity closure passes.
+CodeUpdate0142 is CLOSED. The RealmGate app Release build and full solution build pass with 0 warnings / 0 errors, the current-health validator passes 28/28, the accepted WPF client smoke baseline is 14/14, the cross-platform client-core suite passes 62/62, and the pushed GitHub Classic parity closure passes.
 
 The repository has reached a clean automated verification baseline after the Classic parity closure, RealmGate client expansion, Creator Studio MDB/WCC provenance work, and repository cleanup.
 
@@ -14,22 +14,25 @@ Post-closure runtime hardening now keeps world/session failures contained: a gen
 
 Character deletion is available to account owners inside each selected world's character menu and to editors in Creator Studio's world-aware Characters tab. Both paths enforce account/world ownership and refuse deletion of logged-in characters. The character smoke now verifies create, restore, decoded LIGHT equip, permanent delete, and account-slot cleanup.
 
+Avalonia Phase 2 now supports local and remote generated-world navigation graphs plus inventory/equipment automation. Remote RealmGate hosts deliver only the selected world's graph through bounded compressed private frames with SHA-256 verification; derived worlds never receive a Classic fallback. The Navigation tab persists world-qualified Favorite and Stash destinations, while the Inventory tab consumes a world/character-qualified server snapshot, persists isolated rules and equipment sets, previews every plan, and routes approved actions through Emergency Stop and the ordinary host command path.
+
 ## Verified automated baseline
 
-Current locally observed results:
+Latest observed results (the full validator predates the Character slice):
 
 | Gate | Result |
 | --- | --- |
 | RealmGate app Release build | PASS — 0 warnings, 0 errors |
 | Full solution Release build | PASS — 0 warnings, 0 errors |
-| Current-health validator | PASS — 26/26 |
+| Current-health validator | PASS — 28/28 |
 | RealmGate client smoke suite | PASS — 14/14 |
+| Cross-platform client-core regression | PASS — 72/72 (latest local Character slice) |
 | Classic parity ledger | 200 PASS / 0 STRONG / 0 UNKNOWN |
-| Decode exhaustion in the passing validator run | 48/48 families connected; 2,316/2,316 scalar fields connected; 0 unresolved |
+| Decode exhaustion in the passing validator run | 49/49 families connected; 2,332/2,332 scalar fields connected; 0 unresolved |
 
 The client smoke suite covers shell/layout, cleanup scheduling, embedded host, automation, map/Librarium, Batch 3 client behavior, inventory automation, recovery automation, combat automation, party automation, diagnostics, parity completion, and help.
 
-The latest full local validator passed 26/26 on 2026-09-11 Pacific / 2026-09-12 UTC. Its solution build had 0 errors; four `NU1900` warnings were emitted only because NuGet's vulnerability index was unreachable in the restricted local environment. Direct RealmGate App, Server, and validator Release builds each passed with 0 warnings / 0 errors.
+The latest full local validator passed 28/28 on 2026-10-24 Pacific / UTC. Its full solution build passed with 0 warnings / 0 errors, including the core/server smoke project. Direct Avalonia Windows and Linux framework-dependent publishes also completed; local standalone Avalonia builds report the known SDK 8/Avalonia 12 analyzer-version warnings and, when the restricted feed is unavailable, `NU1900` vulnerability-index warnings. The Linux launcher is an ELF executable; native Linux GUI interaction has not been tested.
 
 The smoke fixes immediately before 0141 corrected test/cleanup assumptions rather than introducing alternate gameplay behavior:
 
@@ -62,7 +65,15 @@ Do not delete that file as part of report cleanup without first changing Borin's
 
 ## Client state
 
-The RealmGate client capability expansion is automated-smoke clean at 14/14.
+The complete transitional WPF client capability expansion retains its accepted 14/14 smoke baseline. Shared terminal, transport, protocol, automation, event, navigation, inventory, assistant planning, and Character snapshot/item-search behavior now has a 72/72 cross-platform client-core regression suite.
+
+The Avalonia Play surface now includes live Telnet/ANSI operation, automation, timed events, verified Goto/Auto-Roam, route recording, remote selected-world graph delivery, Favorite/Stash destinations, structured inventory/equipment state, isolated equipment sets, and fail-closed inventory rule planning.
+
+The combined Phase 2 assistant batch adds Recovery, Combat, Party, Communication, and Diagnostics views. A selected-world/character `AUTOMATIONSTATE` snapshot supplies vitals, learned spell identities, effects, visible current-room NPCs/players, party state, and meditation eligibility. Recovery and combat plans use ordinary server commands; preview/run-once and opt-in continuous execution enforce fresh state, exact room identity, command pacing, Emergency Stop, and bounded repeated attempts. Settings are isolated by world and character. That batch passed 70/70 client-core checks and the 28/28 full validator, including a server snapshot smoke using disposable saves.
+
+The subsequent local Phase 3 Character slice adds a read-only selected-world `CHARACTERSTATE` snapshot and a usable Avalonia Character tab for summary, attributes/skills, spells/effects, experience, and equipment sets. The client combines only matching world/character/room snapshots and clears them on profile or connection changes. The equipment planner now searches the Host's exact selected-world item catalog with a 75-result cap, shows decoded item details, and compares a hypothetical loadout against current equipped definitions by ID. It does not assert class/race/hand eligibility or execute preview equip commands. Its latest focused verification passed 72/72 client-core checks and the core/server smoke suite; the Avalonia Release build succeeded with two known analyzer-version warnings. The full 28/28 validator, native Linux GUI, pushed CI, and end-to-end Character-tab interaction have not been verified against this new slice.
+
+This is a usable RealmGate-host assistant slice, not full WPF feature parity. Advanced action/equipment rotation, party invitation/regroup/rescue policies, external-BBS automation state parsing, diagnostic exports/session statistics, and richer spell/buff management remain migration work. Native Linux GUI interaction still needs verification on Linux; a Windows cross-publish alone does not establish that result.
 
 Implemented areas include terminal/session handling, profiles, Character Workshop, game-data overlays, aliases/macros/triggers/events, navigation, inventory/equipment automation, recovery/buffs, combat automation, party coordination, communications, creature intelligence, diagnostics/customization, reporting, and help.
 
@@ -107,6 +118,6 @@ Keep active source, Librarium authority, current validators/tests, required Bori
 
 ## Next gate
 
-Complete the real external-board MDB integration test first. Then complete the Creator Studio MDB + matching WCC/WGS import/runtime test.
+Finish external-BBS effective item planning, richer Character progression, and the remaining Phase 2 assistant gaps, then move into Creator Studio services. Librarium, full Host management, secure Linux credentials, public packaging, and native Linux UI testing remain later migration gates. The real external-board MDB integration test and Creator Studio MDB + matching WCC/WGS import/runtime test remain separate field-certification gates.
 
-The 26/26 validator does not need to be rerun merely because documentation is consolidated. Rerun build/smokes after source changes, and rerun the full validator when runtime/data/validator authority changes. Local success does not establish a GitHub Actions result until the corresponding commit is pushed and the workflow is observed.
+The 28/28 validator does not need to be rerun merely because documentation is consolidated. Rerun build/smokes after source changes, and rerun the full validator when runtime/data/validator authority changes. Local success does not establish a GitHub Actions result until the corresponding commit is pushed and the workflow is observed.

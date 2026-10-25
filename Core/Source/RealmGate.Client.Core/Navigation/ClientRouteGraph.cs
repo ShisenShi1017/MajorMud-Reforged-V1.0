@@ -85,6 +85,9 @@ public sealed class ClientRouteGraph
     public bool ContainsRoom(string roomKey) =>
         _rooms.ContainsKey(NormalizeRoomKey(roomKey));
 
+    public ClientRouteRoom? FindRoom(string roomKey) =>
+        _rooms.TryGetValue(NormalizeRoomKey(roomKey), out var room) ? room : null;
+
     public static ClientRouteGraph Load(string path)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);

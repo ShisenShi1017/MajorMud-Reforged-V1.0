@@ -6,6 +6,10 @@ This changelog is intentionally compact. Detailed historical pass-by-pass notes 
 
 ## CodeUpdate0142 — RealmGate Client and Character Integration
 
+- Extended the local Avalonia Character planner with bounded selected-world Host item search, decoded details, and exact-ID read-only loadout comparisons. This does not add gameplay authority or external-BBS item data. Focused verification passed 72/72 client-core checks and core/server smokes; Avalonia Release build succeeded with two known analyzer-version warnings. Full validator and pushed CI have not been run for this slice.
+- Local post-closure Avalonia Phase 3 Character slice: added a read-only selected-world character snapshot, Character summary/statistics/spells/effects/progress views, and reused inventory equipment-set planning. Focused verification passed 71/71 client-core checks and core/server smokes; Avalonia Release build succeeded with two known analyzer-version warnings. The full validator and pushed CI have not been run for this slice.
+- Added the combined Avalonia assistant batch: shared recovery/combat/party planners and profiles, authoritative `AUTOMATIONSTATE` server messages, Assist views, supported communication commands, and live diagnostics. Included freshness, exact-room, character/world, learned-spell, repeat, disconnect, and Emergency Stop guards. Local verification passed 70/70 client-core checks and 28/28 full validator gates; Windows/Linux preview publishes completed. Native Linux GUI operation and pushed CI for this batch remain unverified.
+- Included the core/server smoke project in the solution build so the validator cannot run stale server tests, and verified the automation snapshot with disposable character saves.
 - Continued visible client/release rebranding to RealmGate without destructive namespace/project-folder renames.
 - Added the bundled Classic route graph used by Goto/Auto-Roam and removed dangling route edges.
 - Consolidated the Character page around Summary, Equipment Planner, Statistics/source breakdowns, Spells & Effects, and Progression while preserving effective server/BBS overlay authority.
@@ -23,6 +27,13 @@ This changelog is intentionally compact. Detailed historical pass-by-pass notes 
 - Isolated generated-world load failures and Telnet session failures so one invalid custom world or character session does not stop healthy hosted worlds.
 - Compiled decoded light sources into the existing `LIGHT` equipment channel and rendered their remaining charge readiness instead of a body slot.
 - Verified the hardening with the 26/26 full validator, 14/14 client smokes, clean direct App/Server/validator Release builds, and targeted create/restore/LIGHT-equip/delete/account-cleanup coverage.
+- Completed the next Avalonia Phase 2 navigation slice: remote hosts now deliver the selected world's generated graph in bounded compressed private frames with SHA-256 verification and no derived-world Classic fallback.
+- Added world-qualified Favorite and Stash destinations to the Avalonia Navigation tab with exact-room admission and atomic local persistence.
+- Expanded cross-platform client-core regression to 58/58, added a server end-to-end navigation-frame reconstruction smoke, and verified the full current-health gate at 28/28 with decode exhaustion at 49/49 families and 2,332/2,332 fields.
+- Published and verified framework-dependent Avalonia artifacts for `win-x64` and `linux-x64`; both include the bundled Classic graph while remote derived-world graphs remain host-selected.
+- Completed the Avalonia Phase 2 inventory slice with a structured selected-world/character server snapshot, per-character/world profile isolation, equipment-set capture/apply, preview-first rule execution, and fail-closed shop/bank/stash checks.
+- Kept sell, stash, discard, buy, and currency deposit disabled by default and routed every approved action through the existing Emergency Stop, pacing, and ordinary server-command path.
+- Expanded cross-platform client-core regression to 62/62 and added an end-to-end server smoke for the structured inventory frame; the full current-health validator remains 28/28 with Classic parity at 200/0/0.
 
 ## CodeUpdate0141 — Validated Client and Repository Consolidation
 

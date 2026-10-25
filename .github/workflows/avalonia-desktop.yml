@@ -3,6 +3,7 @@ name: RealmGate Avalonia Desktop
 on:
   push:
     branches:
+      - main
       - port/avalonia-crossplatform-desktop
     paths:
       - 'Apps/Source/RealmGate.Desktop/**'

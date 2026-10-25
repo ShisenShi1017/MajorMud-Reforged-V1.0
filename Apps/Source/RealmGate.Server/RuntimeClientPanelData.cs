@@ -5,6 +5,20 @@ public sealed partial class RuntimeLiveGameplayFacade
     public string RenderClientPanelData(RuntimeSession session, RuntimeCommand command)
     {
         var panel = command.Arguments.FirstOrDefault()?.Trim().ToLowerInvariant() ?? string.Empty;
+        if (panel == "navigation")
+            return RenderClientNavigationGraphData(session);
+        if (panel == "character")
+            return RenderClientCharacterStateData(session);
+        if (panel == "itemsearch")
+            return RenderClientItemSearchData(session, command);
+        if (panel is "automation" or "assistant")
+            return RenderClientAutomationStateData(session);
+        if (panel is "inventory" or "equipment")
+        {
+            var visible = panel == "inventory" ? RenderInventory(session) : RenderEquipment(session);
+            return RenderClientInventoryStateData(session) + Environment.NewLine +
+                   ReforgedClientProtocol.Encode("PANELDATA", visible);
+        }
         if (panel == "pvp")
         {
             var worldConfiguration = new RuntimePvpWorldConfigurationStore(_characters.ProjectRoot, session.World.Definition.Id).Capture();
@@ -24,8 +38,6 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         var payload = panel switch
         {
-            "inventory" => RenderInventory(session),
-            "equipment" => RenderEquipment(session),
             "party" or "par" => RenderClassicParty(session),
             "who" => RenderWho(),
             "stats" or "score" => RenderScore(session),

@@ -17,8 +17,8 @@
     },
     "validator": {
       "status": "PASS",
-      "passed": 26,
-      "total": 26
+      "passed": 28,
+      "total": 28
     },
     "clientSmokes": {
       "status": "PASS",
@@ -31,15 +31,29 @@
       "unknown": 0
     },
     "decodeExhaustion": {
-      "familiesConnected": "48/48",
-      "scalarFieldsConnected": "2316/2316",
+      "familiesConnected": "49/49",
+      "scalarFieldsConnected": "2332/2332",
       "unresolvedFamilies": 0,
       "unresolvedRecords": 0
+    },
+    "crossPlatformClientCore": {
+      "status": "PASS",
+      "passed": 62,
+      "total": 62
     }
   },
   "requiredRetainedRuntimeValidationArtifact": [
     "Reports/RuntimeVerification/majormud_parity_scorecard.json"
   ],
+  "latestLocalVerification": {
+    "date": "2026-10-24",
+    "currentHealthValidator": "PASS 28/28; full solution build 0 warnings and 0 errors",
+    "crossPlatformClientCore": "PASS 72/72 after local Character/item-planning slice",
+    "avaloniaPublishes": ["win-x64", "linux-x64"],
+    "nativeLinuxGui": "not tested",
+    "githubActionsForLocalBatch": "not run",
+    "characterSlice": "Avalonia Release build succeeded with 2 known analyzer-version warnings; core/server smokes passed; 72/72 client-core checks passed. Full validator and preview publishes have not been rerun for this slice."
+  },
   "notYetFieldCertified": [
     "External non-RealmGate BBS MDB overlay/import with a real board database",
     "Creator Studio custom-world MDB plus matching WCC/WGS source import/runtime",
@@ -51,6 +65,6 @@
     "Run the full current-health validator when runtime/data/validator authority changes.",
     "Generated world manifests must declare standalone_runtime and runtime_data_is_complete true, live_classic_fallback_allowed false, and a generation-time base_world_id for derived worlds.",
     "RealmGate release branding is embedded, but the current local executable remains unsigned until a trusted certificate is supplied."
-    ,"Post-closure runtime hardening passed the 26/26 current-health validator and all 14 client smokes; character smoke covers LIGHT equip and permanent account-slot-safe deletion."
+    ,"Post-closure runtime hardening and selected-world inventory/assistant protocols passed the latest local 28/28 health validator. The subsequent Character/item-planning slice passed 72/72 client-core checks and core/server smokes, but the full validator was not rerun. The accepted WPF client smoke baseline remains 14/14; character smoke covers LIGHT equip and permanent account-slot-safe deletion."
   ]
 }

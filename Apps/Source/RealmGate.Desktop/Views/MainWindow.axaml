@@ -4,6 +4,8 @@
         xmlns:controls="clr-namespace:RealmGate.Desktop.Controls"
         xmlns:profiles="clr-namespace:RealmGate.Client.Profiles;assembly=RealmGate.Client.Core"
         xmlns:automation="clr-namespace:RealmGate.Client.Automation;assembly=RealmGate.Client.Core"
+        xmlns:gameplay="clr-namespace:RealmGate.Client.Gameplay;assembly=RealmGate.Client.Core"
+        xmlns:inventory="clr-namespace:RealmGate.Client.Inventory;assembly=RealmGate.Client.Core"
         xmlns:navigation="clr-namespace:RealmGate.Client.Navigation;assembly=RealmGate.Client.Core"
         x:Class="RealmGate.Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -313,6 +315,31 @@
                                  TextWrapping="Wrap"
                                  Opacity="0.72" />
                       <Separator Margin="0,6" />
+                      <TextBlock Text="Saved Destinations" FontSize="18" FontWeight="SemiBold" />
+                      <TextBox Text="{Binding SavedDestinationName}"
+                               PlaceholderText="Optional name for current room" />
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Button Content="Favorite" Command="{Binding SaveFavoriteDestinationCommand}" />
+                        <Button Content="Stash" Command="{Binding SaveStashDestinationCommand}" />
+                      </StackPanel>
+                      <ListBox ItemsSource="{Binding SavedDestinations}"
+                               SelectedItem="{Binding SelectedSavedDestination}"
+                               MinHeight="100"
+                               MaxHeight="180">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="navigation:ClientSavedDestination">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Button Content="Go" Command="{Binding NavigateSavedDestinationCommand}" />
+                        <Button Content="Delete" Command="{Binding DeleteSavedDestinationCommand}" />
+                      </StackPanel>
+                      <TextBlock Text="Favorites and stash rooms are saved only for this world."
+                                 TextWrapping="Wrap"
+                                 Opacity="0.72" />
+                      <Separator Margin="0,6" />
                       <TextBlock Text="Recorded Routes" FontSize="18" FontWeight="SemiBold" />
                       <TextBox Text="{Binding RecordedRouteName}"
                                PlaceholderText="Route name" />
@@ -345,15 +372,523 @@
                 </Grid>
               </Grid>
             </TabItem>
+            <TabItem Header="INVENTORY">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+                  <Button Content="Refresh" Command="{Binding RefreshInventoryCommand}" />
+                  <Button Content="Save settings" Command="{Binding SaveInventoryProfileCommand}" />
+                  <TextBlock Text="{Binding InventoryStatus}"
+                             VerticalAlignment="Center"
+                             TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <TextBlock Grid.Row="1"
+                           Text="Inventory actions use ordinary host commands. Preview first; Emergency Stop blocks execution."
+                           TextWrapping="Wrap"
+                           Opacity="0.72" />
+                <Grid Grid.Row="2" ColumnDefinitions="300,*" ColumnSpacing="14">
+                  <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto,*" RowSpacing="6">
+                    <TextBlock Grid.Row="0" Text="Carried" FontSize="17" FontWeight="SemiBold" />
+                    <ListBox Grid.Row="1"
+                             ItemsSource="{Binding InventoryItems}"
+                             SelectedItem="{Binding SelectedInventoryItem}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="inventory:ClientInventoryItemState">
+                          <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Grid.Row="2" Text="Equipped" FontSize="17" FontWeight="SemiBold" />
+                    <ListBox Grid.Row="3" ItemsSource="{Binding EquippedItems}">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="inventory:ClientInventoryItemState">
+                          <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                  </Grid>
+                  <TabControl Grid.Column="1">
+                    <TabItem Header="RULES">
+                      <Grid Margin="8" ColumnDefinitions="240,*" ColumnSpacing="12">
+                        <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="8">
+                          <StackPanel Orientation="Horizontal" Spacing="6">
+                            <Button Content="Add" Command="{Binding AddInventoryRuleCommand}" />
+                            <Button Content="Delete" Command="{Binding DeleteInventoryRuleCommand}" />
+                          </StackPanel>
+                          <ListBox Grid.Row="1"
+                                   ItemsSource="{Binding InventoryRules}"
+                                   SelectedItem="{Binding SelectedInventoryRule}">
+                            <ListBox.ItemTemplate>
+                              <DataTemplate x:DataType="inventory:ClientInventoryRule">
+                                <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                              </DataTemplate>
+                            </ListBox.ItemTemplate>
+                          </ListBox>
+                        </Grid>
+                        <ScrollViewer Grid.Column="1">
+                          <StackPanel Spacing="7" MaxWidth="620" HorizontalAlignment="Stretch">
+                            <TextBlock Text="Rule details" FontSize="18" FontWeight="SemiBold" />
+                            <CheckBox Content="Enabled" IsChecked="{Binding SelectedInventoryRule.Enabled}" />
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                              <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Text="Action" />
+                                <ComboBox ItemsSource="{Binding InventoryDispositions}"
+                                          SelectedItem="{Binding SelectedInventoryRule.Disposition}" />
+                              </StackPanel>
+                              <StackPanel Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Match by" />
+                                <ComboBox ItemsSource="{Binding InventoryRuleMatchModes}"
+                                          SelectedItem="{Binding SelectedInventoryRule.MatchMode}" />
+                              </StackPanel>
+                            </Grid>
+                            <TextBlock Text="Match value" />
+                            <TextBox Text="{Binding SelectedInventoryRule.MatchValue}" />
+                            <Grid ColumnDefinitions="Auto,90,Auto,90" ColumnSpacing="8">
+                              <TextBlock Text="Priority" VerticalAlignment="Center" />
+                              <TextBox Grid.Column="1" Text="{Binding SelectedInventoryRule.Priority}" />
+                              <TextBlock Grid.Column="2" Text="Target quantity" VerticalAlignment="Center" />
+                              <TextBox Grid.Column="3" Text="{Binding SelectedInventoryRule.TargetQuantity}" />
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                              <Button Content="Preview rules" Command="{Binding PreviewInventoryRulesCommand}" />
+                              <Button Content="Run rules" Command="{Binding RunInventoryRulesCommand}" />
+                            </StackPanel>
+                            <TextBlock Text="{Binding InventoryPlanText}"
+                                       FontFamily="Monospace"
+                                       TextWrapping="Wrap" />
+                          </StackPanel>
+                        </ScrollViewer>
+                      </Grid>
+                    </TabItem>
+                    <TabItem Header="EQUIPMENT SETS">
+                      <Grid Margin="8" ColumnDefinitions="240,*" ColumnSpacing="12">
+                        <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                          <TextBox Text="{Binding EquipmentSetName}" PlaceholderText="Set name" />
+                          <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
+                            <Button Content="Capture current" Command="{Binding CaptureEquipmentSetCommand}" />
+                            <Button Content="Delete" Command="{Binding DeleteEquipmentSetCommand}" />
+                          </StackPanel>
+                          <ListBox Grid.Row="2"
+                                   ItemsSource="{Binding EquipmentSets}"
+                                   SelectedItem="{Binding SelectedEquipmentSet}">
+                            <ListBox.ItemTemplate>
+                              <DataTemplate x:DataType="inventory:ClientEquipmentSet">
+                                <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                              </DataTemplate>
+                            </ListBox.ItemTemplate>
+                          </ListBox>
+                        </Grid>
+                        <StackPanel Grid.Column="1" Spacing="8" MaxWidth="620" HorizontalAlignment="Stretch">
+                          <TextBlock Text="Selected equipment set" FontSize="18" FontWeight="SemiBold" />
+                          <ListBox ItemsSource="{Binding SelectedEquipmentSet.Items}" MinHeight="180">
+                            <ListBox.ItemTemplate>
+                              <DataTemplate x:DataType="inventory:ClientEquipmentSetEntry">
+                                <TextBlock Text="{Binding DisplayName}" />
+                              </DataTemplate>
+                            </ListBox.ItemTemplate>
+                          </ListBox>
+                          <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="Preview set" Command="{Binding PreviewEquipmentSetCommand}" />
+                            <Button Content="Apply set" Command="{Binding ApplyEquipmentSetCommand}" />
+                          </StackPanel>
+                          <TextBlock Text="{Binding InventoryPlanText}"
+                                     FontFamily="Monospace"
+                                     TextWrapping="Wrap" />
+                        </StackPanel>
+                      </Grid>
+                    </TabItem>
+                    <TabItem Header="SAFETY">
+                      <ScrollViewer>
+                        <StackPanel Margin="12" Spacing="8" MaxWidth="620" HorizontalAlignment="Left">
+                          <TextBlock Text="Opt-in actions" FontSize="18" FontWeight="SemiBold" />
+                          <CheckBox Content="Allow selling at a host-confirmed shop"
+                                    IsChecked="{Binding InventoryProfile.Preferences.AllowAutomaticSell}" />
+                          <CheckBox Content="Allow stashing only at a saved stash room"
+                                    IsChecked="{Binding InventoryProfile.Preferences.AllowAutomaticStash}" />
+                          <CheckBox Content="Allow discarding items"
+                                    IsChecked="{Binding InventoryProfile.Preferences.AllowAutomaticDiscard}" />
+                          <CheckBox Content="Allow buying at a host-confirmed shop"
+                                    IsChecked="{Binding InventoryProfile.Preferences.AllowAutomaticBuy}" />
+                          <CheckBox Content="Deposit currency above the retained amount at a host-confirmed bank"
+                                    IsChecked="{Binding InventoryProfile.Preferences.AutoDepositExcessCurrency}" />
+                          <Grid ColumnDefinitions="Auto,120" ColumnSpacing="8">
+                            <TextBlock Text="Currency to retain" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding InventoryProfile.Preferences.KeepCurrency}" />
+                          </Grid>
+                          <TextBlock Text="All options are off by default. The client refuses location-sensitive actions unless the server or a world-scoped saved destination proves the current location."
+                                     TextWrapping="Wrap"
+                                     Opacity="0.72" />
+                        </StackPanel>
+                      </ScrollViewer>
+                    </TabItem>
+                  </TabControl>
+                </Grid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="ASSIST">
+              <Grid Margin="10" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8">
+                  <Button Content="Refresh" Command="{Binding RefreshGameplayStateCommand}" />
+                  <Button Content="Save settings" Command="{Binding SaveGameplayProfileCommand}" />
+                  <Button Content="Start" Command="{Binding StartGameplayAssistantCommand}" />
+                  <Button Content="Stop" Command="{Binding StopGameplayAssistantCommand}" />
+                  <CheckBox Content="Emergency Stop" IsChecked="{Binding AutomationProfile.EmergencyStop}" />
+                  <TextBlock Text="{Binding IsGameplayAssistantRunning, StringFormat='Running: {0}'}"
+                             VerticalAlignment="Center" />
+                </StackPanel>
+                <TextBlock Grid.Row="1"
+                           Text="{Binding GameplayAssistantStatus}"
+                           TextWrapping="Wrap"
+                           Opacity="0.78" />
+                <TabControl Grid.Row="2">
+                  <TabItem Header="RECOVERY">
+                    <Grid Margin="8" ColumnDefinitions="*,280" ColumnSpacing="14">
+                      <ScrollViewer Grid.Column="0">
+                        <StackPanel Spacing="8" MaxWidth="650" HorizontalAlignment="Left">
+                          <CheckBox Content="Enable recovery automation"
+                                    IsChecked="{Binding GameplayProfile.Recovery.Enabled}" />
+                          <Grid ColumnDefinitions="*,100" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                            <TextBlock Text="Emergency below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Recovery.EmergencyHealthPercent}" />
+                            <TextBlock Grid.Row="1" Text="Heal below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GameplayProfile.Recovery.HealBelowPercent}" />
+                            <TextBlock Grid.Row="2" Text="Rest below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding GameplayProfile.Recovery.RestBelowHealthPercent}" />
+                            <TextBlock Grid.Row="3" Text="Meditate below resource percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding GameplayProfile.Recovery.MeditateBelowManaPercent}" />
+                          </Grid>
+                          <TextBlock Text="Emergency command" />
+                          <TextBox Text="{Binding GameplayProfile.Recovery.EmergencyCommand}" />
+                          <TextBlock Text="Heal command" />
+                          <TextBox Text="{Binding GameplayProfile.Recovery.HealCommand}" />
+                          <StackPanel Orientation="Horizontal" Spacing="12">
+                            <CheckBox Content="Cure poison" IsChecked="{Binding GameplayProfile.Recovery.CurePoison}" />
+                            <CheckBox Content="Maintain buffs" IsChecked="{Binding GameplayProfile.Recovery.MaintainBuffs}" />
+                            <CheckBox Content="Require learned spells"
+                                      IsChecked="{Binding GameplayProfile.Recovery.RequireLearnedSpellForCastCommands}" />
+                          </StackPanel>
+                          <TextBlock Text="Cure poison command" />
+                          <TextBox Text="{Binding GameplayProfile.Recovery.CurePoisonCommand}" />
+                          <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                            <StackPanel Spacing="4">
+                              <TextBlock Text="Rest command" />
+                              <TextBox Text="{Binding GameplayProfile.Recovery.RestCommand}" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="4">
+                              <TextBlock Text="Meditate command" />
+                              <TextBox Text="{Binding GameplayProfile.Recovery.MeditateCommand}" />
+                            </StackPanel>
+                          </Grid>
+                          <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="Preview" Command="{Binding PreviewRecoveryCommand}" />
+                            <Button Content="Run once" Command="{Binding RunRecoveryCommand}" />
+                          </StackPanel>
+                          <TextBlock Text="{Binding GameplayPlanText}" FontFamily="Monospace" TextWrapping="Wrap" />
+                        </StackPanel>
+                      </ScrollViewer>
+                      <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto,Auto,Auto,Auto" RowSpacing="6">
+                        <TextBlock Text="Buff rules" FontSize="18" FontWeight="SemiBold" />
+                        <ListBox Grid.Row="1" ItemsSource="{Binding BuffRules}" SelectedItem="{Binding SelectedBuffRule}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="gameplay:ClientBuffRule">
+                              <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="6">
+                          <Button Content="Add" Command="{Binding AddBuffRuleCommand}" />
+                          <Button Content="Delete" Command="{Binding DeleteBuffRuleCommand}" />
+                        </StackPanel>
+                        <TextBox Grid.Row="3" Text="{Binding SelectedBuffRule.Name}" PlaceholderText="Rule name" />
+                        <TextBox Grid.Row="4" Text="{Binding SelectedBuffRule.EffectName}" PlaceholderText="Observed effect name" />
+                        <TextBox Grid.Row="5" Text="{Binding SelectedBuffRule.Command}" PlaceholderText="Command" />
+                      </Grid>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="COMBAT">
+                    <Grid Margin="10" ColumnDefinitions="*,300" ColumnSpacing="14">
+                      <ScrollViewer>
+                        <StackPanel Spacing="8" MaxWidth="650" HorizontalAlignment="Left">
+                          <CheckBox Content="Enable combat automation"
+                                    IsChecked="{Binding GameplayProfile.Combat.Enabled}" />
+                          <TextBlock Text="Target selection" />
+                          <ComboBox ItemsSource="{Binding CombatTargetModes}"
+                                    SelectedItem="{Binding GameplayProfile.Combat.TargetMode}" />
+                          <TextBlock Text="Engage command ({target})" />
+                          <TextBox Text="{Binding GameplayProfile.Combat.EngageCommand}" />
+                          <TextBlock Text="Optional combat-round command" />
+                          <TextBox Text="{Binding GameplayProfile.Combat.RoundCommand}" />
+                          <TextBlock Text="Escape command" />
+                          <TextBox Text="{Binding GameplayProfile.Combat.EscapeCommand}" />
+                          <Grid ColumnDefinitions="*,100" RowDefinitions="Auto,Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                            <TextBlock Text="Escape below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Combat.EscapeBelowHealthPercent}" />
+                            <TextBlock Grid.Row="1" Text="Minimum resource percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding GameplayProfile.Combat.MinimumManaPercent}" />
+                            <TextBlock Grid.Row="2" Text="Maximum hostiles" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding GameplayProfile.Combat.MaximumHostiles}" />
+                            <TextBlock Grid.Row="3" Text="Maximum levels above character" VerticalAlignment="Center" />
+                            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding GameplayProfile.Combat.MaximumTargetLevelAboveCharacter}" />
+                          </Grid>
+                          <TextBlock Text="Avoid names, separated by commas" />
+                          <TextBox Text="{Binding GameplayProfile.Combat.AvoidNames}" />
+                          <StackPanel Orientation="Horizontal" Spacing="12">
+                            <CheckBox Content="Stop when other players are present"
+                                      IsChecked="{Binding GameplayProfile.Combat.StopWhenOtherPlayersPresent}" />
+                            <CheckBox Content="Require learned spells"
+                                      IsChecked="{Binding GameplayProfile.Combat.RequireLearnedSpellForCastCommands}" />
+                          </StackPanel>
+                          <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="Preview" Command="{Binding PreviewCombatCommand}" />
+                            <Button Content="Run once" Command="{Binding RunCombatCommand}" />
+                          </StackPanel>
+                          <TextBlock Text="{Binding GameplayPlanText}" FontFamily="Monospace" TextWrapping="Wrap" />
+                        </StackPanel>
+                      </ScrollViewer>
+                      <StackPanel Grid.Column="1" Spacing="6">
+                        <TextBlock Text="Observed room NPCs" FontSize="18" FontWeight="SemiBold" />
+                        <ListBox ItemsSource="{Binding GameplayNpcs}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="gameplay:ClientGameplayNpcState">
+                              <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="PARTY">
+                    <Grid Margin="10" ColumnDefinitions="*,320" ColumnSpacing="14">
+                      <ScrollViewer>
+                        <StackPanel Spacing="8" MaxWidth="650" HorizontalAlignment="Left">
+                          <CheckBox Content="Enable party automation"
+                                    IsChecked="{Binding GameplayProfile.Party.Enabled}" />
+                          <TextBlock Text="Leader name" />
+                          <TextBox Text="{Binding GameplayProfile.Party.LeaderName}" />
+                          <StackPanel Orientation="Horizontal" Spacing="12">
+                            <CheckBox Content="Follow leader" IsChecked="{Binding GameplayProfile.Party.AutoFollowLeader}" />
+                            <CheckBox Content="Assist leader" IsChecked="{Binding GameplayProfile.Party.AutoAssistLeader}" />
+                            <CheckBox Content="Heal members" IsChecked="{Binding GameplayProfile.Party.AutoHealMembers}" />
+                          </StackPanel>
+                          <Grid ColumnDefinitions="*,100" ColumnSpacing="8">
+                            <TextBlock Text="Heal below HP percent" VerticalAlignment="Center" />
+                            <TextBox Grid.Column="1" Text="{Binding GameplayProfile.Party.HealBelowPercent}" />
+                          </Grid>
+                          <TextBlock Text="Follow command" />
+                          <TextBox Text="{Binding GameplayProfile.Party.FollowCommand}" />
+                          <TextBlock Text="Assist command" />
+                          <TextBox Text="{Binding GameplayProfile.Party.AssistCommand}" />
+                          <TextBlock Text="Heal command" />
+                          <TextBox Text="{Binding GameplayProfile.Party.HealCommand}" />
+                          <CheckBox Content="Require learned spells"
+                                    IsChecked="{Binding GameplayProfile.Party.RequireLearnedSpellForCastCommands}" />
+                          <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="Preview" Command="{Binding PreviewPartyCommand}" />
+                            <Button Content="Run once" Command="{Binding RunPartyCommand}" />
+                          </StackPanel>
+                          <TextBlock Text="{Binding GameplayPlanText}" FontFamily="Monospace" TextWrapping="Wrap" />
+                        </StackPanel>
+                      </ScrollViewer>
+                      <StackPanel Grid.Column="1" Spacing="6">
+                        <TextBlock Text="Observed party" FontSize="18" FontWeight="SemiBold" />
+                        <ListBox ItemsSource="{Binding GameplayPartyMembers}">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="gameplay:ClientGameplayPartyMemberState">
+                              <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                      </StackPanel>
+                    </Grid>
+                  </TabItem>
+                  <TabItem Header="COMMUNICATION">
+                    <StackPanel Margin="16" Spacing="8" MaxWidth="720" HorizontalAlignment="Left">
+                      <TextBlock Text="Target" />
+                      <TextBox Text="{Binding CommunicationTarget}" PlaceholderText="Telepath recipient" />
+                      <TextBlock Text="Message" />
+                      <TextBox Text="{Binding CommunicationText}" AcceptsReturn="True" MinHeight="100" TextWrapping="Wrap" />
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Say" Command="{Binding SendSayCommand}" />
+                        <Button Content="Telepath" Command="{Binding SendTellCommand}" />
+                        <Button Content="Gossip" Command="{Binding SendGossipCommand}" />
+                        <Button Content="Yell" Command="{Binding SendYellCommand}" />
+                      </StackPanel>
+                    </StackPanel>
+                  </TabItem>
+                  <TabItem Header="DIAGNOSTICS">
+                    <Grid Margin="10" RowDefinitions="Auto,*" RowSpacing="8">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button Content="Run checks" Command="{Binding RunDiagnosticsCommand}" />
+                      </StackPanel>
+                      <ListBox Grid.Row="1" ItemsSource="{Binding GameplayDiagnosticChecks}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="gameplay:ClientDiagnosticCheck">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                  </TabItem>
+                </TabControl>
+              </Grid>
+            </TabItem>
           </TabControl>
         </Grid>
       </TabItem>
 
       <TabItem Header="CHARACTER">
-        <StackPanel Margin="20" Spacing="8">
-          <TextBlock Text="Character migration" FontSize="22" FontWeight="SemiBold" />
-          <TextBlock Text="Character summary, equipment planner, statistics, spells/effects, and progress will reuse the shared RealmGate services." TextWrapping="Wrap" />
-        </StackPanel>
+        <Grid Margin="14" RowDefinitions="Auto,Auto,*" RowSpacing="10">
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="Character" FontSize="22" FontWeight="SemiBold" VerticalAlignment="Center" />
+            <Button Content="Refresh" Command="{Binding RefreshCharacterCommand}" />
+          </StackPanel>
+          <TextBlock Grid.Row="1" Text="{Binding CharacterStatus}" TextWrapping="Wrap" Opacity="0.78" />
+          <TabControl Grid.Row="2">
+            <TabItem Header="SUMMARY">
+              <ScrollViewer>
+                <Grid Margin="12" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="22" RowSpacing="18">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Identity" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterIdentityText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Vitals" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterVitalsText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Spacing="8">
+                    <TextBlock Text="Progress" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterProgressText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Equipment" FontSize="18" FontWeight="SemiBold" />
+                    <ListBox ItemsSource="{Binding CharacterEquipment}" MinHeight="100">
+                      <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="inventory:ClientInventoryItemState">
+                          <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                        </DataTemplate>
+                      </ListBox.ItemTemplate>
+                    </ListBox>
+                  </StackPanel>
+                </Grid>
+              </ScrollViewer>
+            </TabItem>
+            <TabItem Header="STATISTICS">
+              <Grid Margin="12" ColumnDefinitions="*,*" ColumnSpacing="18">
+                <ScrollViewer>
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Attributes" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterAttributesText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </ScrollViewer>
+                <ScrollViewer Grid.Column="1">
+                  <StackPanel Spacing="8">
+                    <TextBlock Text="Skills" FontSize="18" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding CharacterSkillsText}" TextWrapping="Wrap" />
+                  </StackPanel>
+                </ScrollViewer>
+              </Grid>
+            </TabItem>
+            <TabItem Header="SPELLS &amp; EFFECTS">
+              <Grid Margin="12" ColumnDefinitions="*,*" ColumnSpacing="18">
+                <Grid RowDefinitions="Auto,*" RowSpacing="8">
+                  <TextBlock Text="Learned spells" FontSize="18" FontWeight="SemiBold" />
+                  <ListBox Grid.Row="1" ItemsSource="{Binding CharacterSpells}" />
+                </Grid>
+                <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="8">
+                  <TextBlock Text="Active effects" FontSize="18" FontWeight="SemiBold" />
+                  <ListBox Grid.Row="1" ItemsSource="{Binding CharacterEffects}">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate x:DataType="gameplay:ClientGameplayEffectState">
+                        <StackPanel Spacing="2">
+                          <TextBlock Text="{Binding Name}" />
+                          <TextBlock Text="{Binding ExpiresAtUtc, StringFormat='Expires: {0:g}'}" Opacity="0.68" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                </Grid>
+              </Grid>
+            </TabItem>
+            <TabItem Header="EQUIPMENT PLANNER">
+              <TabControl Margin="8">
+                <TabItem Header="ITEM FINDER">
+                  <Grid Margin="8" ColumnDefinitions="280,*" ColumnSpacing="16">
+                    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                      <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                        <TextBox Text="{Binding WorkshopSearchText}" PlaceholderText="Item name or ID" />
+                        <Button Grid.Column="1" Content="Search" Command="{Binding SearchWorkshopItemsCommand}" />
+                      </Grid>
+                      <TextBlock Grid.Row="1" Text="{Binding WorkshopSearchStatus}" TextWrapping="Wrap" Opacity="0.75" />
+                      <ListBox Grid.Row="2" ItemsSource="{Binding WorkshopSearchResults}"
+                               SelectedItem="{Binding SelectedWorkshopItem}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="gameplay:ClientWorkshopItem">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                    <ScrollViewer Grid.Column="1">
+                      <StackPanel Spacing="8" MaxWidth="680" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Item details" FontSize="18" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding WorkshopItemDetails}" TextWrapping="Wrap" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                          <Button Content="Add to plan" Command="{Binding AddPlannedWorkshopItemCommand}" />
+                          <Button Content="Reset to equipped" Command="{Binding ResetPlannedWorkshopItemsCommand}" />
+                        </StackPanel>
+                        <TextBlock Text="Planned loadout" FontSize="18" FontWeight="SemiBold" />
+                        <ListBox ItemsSource="{Binding PlannedWorkshopItems}"
+                                 SelectedItem="{Binding SelectedPlannedWorkshopItem}" MaxHeight="135">
+                          <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="gameplay:ClientWorkshopItem">
+                              <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Button Content="Remove selected" Command="{Binding RemovePlannedWorkshopItemCommand}"
+                                HorizontalAlignment="Left" />
+                        <TextBlock Text="{Binding WorkshopComparisonText}" FontFamily="Monospace" TextWrapping="Wrap" />
+                      </StackPanel>
+                    </ScrollViewer>
+                  </Grid>
+                </TabItem>
+                <TabItem Header="EQUIPMENT SETS">
+                  <Grid Margin="12" ColumnDefinitions="260,*" ColumnSpacing="16">
+                    <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
+                      <TextBox Text="{Binding EquipmentSetName}" PlaceholderText="Equipment set name" />
+                      <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8">
+                        <Button Content="Capture" Command="{Binding CaptureEquipmentSetCommand}" />
+                        <Button Content="Delete" Command="{Binding DeleteEquipmentSetCommand}" />
+                      </StackPanel>
+                      <ListBox Grid.Row="2" ItemsSource="{Binding EquipmentSets}" SelectedItem="{Binding SelectedEquipmentSet}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="inventory:ClientEquipmentSet">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                    </Grid>
+                    <Grid Grid.Column="1" RowDefinitions="Auto,*,Auto,Auto" RowSpacing="8">
+                      <TextBlock Text="Planned equipment" FontSize="18" FontWeight="SemiBold" />
+                      <ListBox Grid.Row="1" ItemsSource="{Binding SelectedEquipmentSet.Items}">
+                        <ListBox.ItemTemplate>
+                          <DataTemplate x:DataType="inventory:ClientEquipmentSetEntry">
+                            <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
+                          </DataTemplate>
+                        </ListBox.ItemTemplate>
+                      </ListBox>
+                      <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+                        <Button Content="Preview" Command="{Binding PreviewEquipmentSetCommand}" />
+                        <Button Content="Apply" Command="{Binding ApplyEquipmentSetCommand}" />
+                        <Button Content="Save sets" Command="{Binding SaveInventoryProfileCommand}" />
+                      </StackPanel>
+                      <TextBlock Grid.Row="3" Text="{Binding InventoryPlanText}" TextWrapping="Wrap" />
+                    </Grid>
+                  </Grid>
+                </TabItem>
+              </TabControl>
+            </TabItem>
+          </TabControl>
+        </Grid>
       </TabItem>
 
       <TabItem Header="CREATOR STUDIO">

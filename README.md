@@ -1,6 +1,6 @@
 # RealmGate
 
-RealmGate is a standalone MajorMUD-compatible game platform built around an authoritative RealmGate server, a modern Windows client, Creator Studio/editor tooling, the Librarium data/evidence system, and Borin.
+RealmGate is a standalone MajorMUD-compatible game platform built around an authoritative RealmGate server, a cross-platform desktop client in active migration, Creator Studio/editor tooling, the Librarium data/evidence system, and Borin.
 
 ## Current baseline
 
@@ -8,8 +8,10 @@ RealmGate is a standalone MajorMUD-compatible game platform built around an auth
 - Database Version: `0010`
 - Milestone: **CodeUpdate0142 - RealmGate Client and Character Integration**
 - Classic parity ledger: **200 PASS / 0 STRONG / 0 UNKNOWN**
-- Core/current-health validator: **26/26 PASS**
+- Core/current-health validator: **28/28 PASS**
 - RealmGate client regression smokes: **14/14 PASS**
+- Cross-platform client-core regression: **62/62 PASS**
+- Latest local Avalonia Character/item-planning slice: **72/72 client-core checks and core/server smokes**; Avalonia Release build succeeded with two known analyzer-version warnings. The earlier assistant batch passed 28/28 full-validator gates; that full gate has not been rerun for the Character slice. Windows/Linux preview publishes preceded this slice. Native Linux GUI use and pushed CI remain unverified.
 - RealmGate app Release build and full solution build: **0 warnings / 0 errors** in the verified CodeUpdate0142 closure
 - GitHub Classic parity closure: **PASS** on the pushed CodeUpdate0142 baseline.
 - Post-closure local runtime hardening: **PASS** — per-world/session fault containment, Host Sessions/Logs tabs, world-scoped character deletion, and generated LIGHT equipment behavior.
@@ -35,6 +37,7 @@ Important boundaries:
 ## Main components
 
 - `Apps/Source/RealmGate.Server/` — authoritative RealmGate game server/runtime (transitional internal path).
+- `Apps/Source/RealmGate.Desktop/` — Avalonia Windows/Linux client and Host migration target.
 - `Apps/Source/RealmGate.App/` — RealmGate Windows/WPF client, Host, Editor, Librarium, Borin, settings, diagnostics, and client automation (transitional internal path).
 - `Core/` — shared contracts, models, validation, and runtime foundations.
 - `Librarium/` — canonical decoded data, assertions, provenance, and runtime definitions.
@@ -46,7 +49,7 @@ Important boundaries:
 
 ## RealmGate client capability
 
-The RealmGate client provides its MajorMUD-oriented capability set through RealmGate-owned WPF presentation, RealmGate session models, Librarium-backed data projections, and server-authoritative workflows.
+The RealmGate client provides its MajorMUD-oriented capability set through RealmGate-owned presentation, shared cross-platform session/transport models, Librarium-backed data projections, and server-authoritative workflows. The Avalonia client is replacing WPF in verified phases; WPF remains the complete transitional application until parity is reached.
 
 Current client areas include:
 
@@ -54,6 +57,10 @@ Current client areas include:
 - Character Workshop, equipment management, item finding, planning, timers, and loadout sandboxing.
 - Aliases, macros, text triggers, wildcard/regex captures, events, batches, cooldowns, and Emergency Stop.
 - Map/Librarium browsing and hazard-aware navigation.
+- Selected-world navigation graph delivery from remote RealmGate hosts plus world-qualified Favorite and Stash destinations.
+- Avalonia inventory/equipment snapshots, per-world/per-character rules and equipment sets, preview-first plans, and fail-closed shop/bank/stash checks.
+- Avalonia Assist views for recovery/buffs, hostile-NPC combat, party support, communication, and live diagnostics using a fresh selected-world character snapshot; opt-in continuous execution stops on disconnect, Emergency Stop, identity mismatch, or repeated ineffective attempts.
+- Avalonia Character views for identity, vitals, attributes/skills, spells/effects, experience, equipment sets, and bounded selected-world item finding/loadout comparison, using matching selected-world/character/room snapshots.
 - Inventory, equipment-set, shop, stash, bank, sell/buy/discard, and currency automation.
 - Recovery, healing, cure, rest/meditate, buff upkeep, and Buff Watchdog.
 - Combat decision automation with target, resource, safety, cooldown, retreat, and equipment rules.

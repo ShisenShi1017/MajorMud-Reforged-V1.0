@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Windows.Input;
 using Avalonia.Threading;
 using RealmGate.Client.Automation;
+using RealmGate.Client.Gameplay;
+using RealmGate.Client.Inventory;
 using RealmGate.Client.Navigation;
 using RealmGate.Client.Profiles;
 using RealmGate.Client.Terminal;
@@ -25,6 +27,14 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         ClientInputAutomationProfileStore.CreateForCurrentUser();
     private readonly ClientRecordedRouteStore _recordedRouteStore =
         ClientRecordedRouteStore.CreateForCurrentUser();
+    private readonly ClientSavedDestinationStore _savedDestinationStore =
+        ClientSavedDestinationStore.CreateForCurrentUser();
+    private readonly ClientInventoryAutomationProfileStore _inventoryStore =
+        ClientInventoryAutomationProfileStore.CreateForCurrentUser();
+    private readonly ClientGameplayAutomationProfileStore _gameplayStore =
+        ClientGameplayAutomationProfileStore.CreateForCurrentUser();
+    private readonly ClientNavigationGraphTransferAssembler _navigationTransfer = new();
+    private readonly object _navigationTransferSync = new();
     private readonly ClientInputAutomationRuntime _inputAutomation = new();
     private readonly ClientTimedEventScheduler _timedEventScheduler = new();
     private readonly ClientGameplayStateTracker _gameplayState = new();
@@ -36,6 +46,17 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     private ClientConnectionProfileCatalog _profileCatalog = new();
     private ClientInputAutomationProfile _automationProfile = new();
     private ClientRecordedRouteCatalog _recordedRouteCatalog = new();
+    private ClientSavedDestinationCatalog _savedDestinationCatalog = new();
+    private ClientInventoryAutomationCatalog _inventoryCatalog = new();
+    private ClientInventoryAutomationProfile _inventoryProfile = new();
+    private ClientInventoryStateSnapshot? _inventoryState;
+    private ClientGameplayAutomationCatalog _gameplayCatalog = new();
+    private ClientGameplayAutomationProfile _gameplayProfile = new();
+    private ClientGameplayAutomationSnapshot? _gameplayAutomationState;
+    private ClientCharacterState? _characterState;
+    private ClientWorkshopItemSearch? _workshopItemSearch;
+    private ClientWorkshopItem? _selectedWorkshopItem;
+    private ClientWorkshopItem? _selectedPlannedWorkshopItem;
     private ClientConnectionProfile? _selectedConnectionProfile;
     private ClientCommandAlias? _selectedAlias;
     private ClientCommandMacro? _selectedMacro;
@@ -44,6 +65,11 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     private ClientRouteGraph? _routeGraph;
     private ClientRouteRoom? _selectedNavigationRoom;
     private ClientRecordedRoute? _selectedRecordedRoute;
+    private ClientSavedDestination? _selectedSavedDestination;
+    private ClientInventoryItemState? _selectedInventoryItem;
+    private ClientInventoryRule? _selectedInventoryRule;
+    private ClientEquipmentSet? _selectedEquipmentSet;
+    private ClientBuffRule? _selectedBuffRule;
     private readonly List<ClientRecordedRouteStep> _recordingRouteSteps = [];
     private CancellationTokenSource? _routeCancellation;
     private TaskCompletionSource<string>? _routeRoomConfirmation;
@@ -53,6 +79,30 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     private bool _isAutoRoaming;
     private bool _isRecordingRoute;
     private string _recordedRouteName = "Recorded Route";
+    private string _savedDestinationName = string.Empty;
+    private string _equipmentSetName = "Equipment Set";
+    private string _inventoryStatus = "Inventory state not loaded.";
+    private string _inventoryPlanText = "Refresh inventory to begin.";
+    private string _gameplayAssistantStatus = "Gameplay assistant state not loaded.";
+    private string _characterStatus = "Connect a RealmGate character to view live details.";
+    private string _characterIdentityText = string.Empty;
+    private string _characterVitalsText = string.Empty;
+    private string _characterProgressText = string.Empty;
+    private string _characterAttributesText = string.Empty;
+    private string _characterSkillsText = string.Empty;
+    private string _workshopSearchText = string.Empty;
+    private string _workshopSearchStatus = "Search the selected world's items after connecting a character.";
+    private string _workshopItemDetails = string.Empty;
+    private string _workshopComparisonText = "Search items and add a candidate to compare loadouts.";
+    private bool _workshopPlanInitialized;
+    private string _gameplayPlanText = "Refresh live state to begin.";
+    private string _communicationTarget = string.Empty;
+    private string _communicationText = string.Empty;
+    private bool _isGameplayAssistantRunning;
+    private DateTimeOffset? _lastGameplayActionAt;
+    private DateTimeOffset? _lastGameplayStateRequestAt;
+    private string _lastGameplayCommand = string.Empty;
+    private int _repeatedGameplayCommands;
     private string _recordingStartRoomKey = string.Empty;
     private string _macroCommandsText = string.Empty;
     private string _automationStatus = "Automation profile not loaded.";
@@ -70,7 +120,11 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     private DateTimeOffset? _lastAutomationCommandAt;
     private long _clientConnectionGeneration;
     private long _navigationLoadGeneration;
+    private int _navigationGraphRequested;
     private readonly Task _automationClockTask;
+    private readonly Task _inventoryLoadTask;
+    private readonly Task _gameplayLoadTask;
+    private readonly Task _gameplayAssistantClockTask;
     private ClassicTerminalSnapshot _terminalSnapshot;
 
     public MainWindowViewModel()
@@ -88,14 +142,49 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             var generation = Volatile.Read(ref _clientConnectionGeneration);
             _ = ProcessTriggerTextAsync(text, generation);
             if (!wasReady && _gameplayState.GameplayReady && SupportsPrivateRoomState())
+            {
                 _ = RequestRoomStateAsync(generation, CancellationToken.None);
+                _ = RequestNavigationGraphAsync(generation, CancellationToken.None);
+            }
         };
         _terminalSession.ProtocolMessageReceived += message =>
         {
             if (message.Channel.Equals("ROOMDATA", StringComparison.OrdinalIgnoreCase))
+            {
                 _gameplayState.MarkGameplayReady();
+                _ = RequestNavigationGraphAsync(
+                    Volatile.Read(ref _clientConnectionGeneration),
+                    CancellationToken.None);
+                _ = RequestInventoryStateAsync(
+                    Volatile.Read(ref _clientConnectionGeneration),
+                    CancellationToken.None);
+                _ = RequestGameplayAutomationStateAsync(
+                    Volatile.Read(ref _clientConnectionGeneration),
+                    CancellationToken.None);
+                _ = RequestCharacterStateAsync(
+                    Volatile.Read(ref _clientConnectionGeneration),
+                    CancellationToken.None);
+            }
             if (message.Channel.Equals("ROOMSTATE", StringComparison.OrdinalIgnoreCase))
                 ObserveRoomState(message.Payload);
+            if (message.Channel.StartsWith("NAVGRAPH", StringComparison.OrdinalIgnoreCase))
+                HandleNavigationGraphMessage(message);
+            if (message.Channel.Equals("INVENTORYSTATE", StringComparison.OrdinalIgnoreCase))
+                _ = HandleInventoryStateAsync(message.Payload);
+            if (message.Channel.Equals("AUTOMATIONSTATE", StringComparison.OrdinalIgnoreCase))
+                _ = HandleGameplayAutomationStateAsync(message.Payload,
+                    Volatile.Read(ref _clientConnectionGeneration));
+            if (message.Channel.Equals("CHARACTERSTATE", StringComparison.OrdinalIgnoreCase))
+                _ = HandleCharacterStateAsync(message.Payload,
+                    Volatile.Read(ref _clientConnectionGeneration));
+            if (message.Channel.Equals("CHARACTERSTATEERROR", StringComparison.OrdinalIgnoreCase))
+                Dispatcher.UIThread.Post(() =>
+                    ClearCharacterState($"Character details unavailable: {message.Payload}"));
+            if (message.Channel.Equals("ITEMSEARCH", StringComparison.OrdinalIgnoreCase))
+                _ = HandleWorkshopItemSearchAsync(message.Payload,
+                    Volatile.Read(ref _clientConnectionGeneration));
+            if (message.Channel.Equals("ITEMSEARCHERROR", StringComparison.OrdinalIgnoreCase))
+                Dispatcher.UIThread.Post(() => ClearWorkshopSearch($"Item search unavailable: {message.Payload}"));
         };
 
         _hostLogHandler = message => Dispatcher.UIThread.Post(() => AppendLog(message));
@@ -134,12 +223,52 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         CancelRouteRecordingCommand = new RelayCommand(CancelRouteRecording);
         RunRecordedRouteCommand = new AsyncCommand(RunRecordedRouteAsync);
         DeleteRecordedRouteCommand = new AsyncCommand(DeleteRecordedRouteAsync);
+        SaveFavoriteDestinationCommand = new AsyncCommand(() => SaveCurrentDestinationAsync(ClientSavedDestinationKind.Favorite));
+        SaveStashDestinationCommand = new AsyncCommand(() => SaveCurrentDestinationAsync(ClientSavedDestinationKind.Stash));
+        NavigateSavedDestinationCommand = new AsyncCommand(NavigateSavedDestinationAsync);
+        DeleteSavedDestinationCommand = new AsyncCommand(DeleteSavedDestinationAsync);
+        RefreshInventoryCommand = new AsyncCommand(RefreshInventoryAsync);
+        SaveInventoryProfileCommand = new AsyncCommand(SaveInventoryProfileAsync);
+        AddInventoryRuleCommand = new RelayCommand(AddInventoryRule);
+        DeleteInventoryRuleCommand = new RelayCommand(DeleteInventoryRule);
+        CaptureEquipmentSetCommand = new RelayCommand(CaptureEquipmentSet);
+        DeleteEquipmentSetCommand = new RelayCommand(DeleteEquipmentSet);
+        PreviewInventoryRulesCommand = new RelayCommand(PreviewInventoryRules);
+        RunInventoryRulesCommand = new AsyncCommand(RunInventoryRulesAsync);
+        PreviewEquipmentSetCommand = new RelayCommand(PreviewEquipmentSet);
+        ApplyEquipmentSetCommand = new AsyncCommand(ApplyEquipmentSetAsync);
+        RefreshGameplayStateCommand = new AsyncCommand(RefreshGameplayStateAsync);
+        RefreshCharacterCommand = new AsyncCommand(RefreshCharacterAsync);
+        SearchWorkshopItemsCommand = new AsyncCommand(SearchWorkshopItemsAsync);
+        AddPlannedWorkshopItemCommand = new RelayCommand(AddPlannedWorkshopItem);
+        RemovePlannedWorkshopItemCommand = new RelayCommand(RemovePlannedWorkshopItem);
+        ResetPlannedWorkshopItemsCommand = new RelayCommand(ResetPlannedWorkshopItems);
+        SaveGameplayProfileCommand = new AsyncCommand(SaveGameplayProfileAsync);
+        AddBuffRuleCommand = new RelayCommand(AddBuffRule);
+        DeleteBuffRuleCommand = new RelayCommand(DeleteBuffRule);
+        PreviewRecoveryCommand = new RelayCommand(() => PreviewGameplayPlan(GameplayPlanArea.Recovery));
+        RunRecoveryCommand = new AsyncCommand(() => RunGameplayPlanAsync(GameplayPlanArea.Recovery));
+        PreviewCombatCommand = new RelayCommand(() => PreviewGameplayPlan(GameplayPlanArea.Combat));
+        RunCombatCommand = new AsyncCommand(() => RunGameplayPlanAsync(GameplayPlanArea.Combat));
+        PreviewPartyCommand = new RelayCommand(() => PreviewGameplayPlan(GameplayPlanArea.Party));
+        RunPartyCommand = new AsyncCommand(() => RunGameplayPlanAsync(GameplayPlanArea.Party));
+        StartGameplayAssistantCommand = new RelayCommand(StartGameplayAssistant);
+        StopGameplayAssistantCommand = new RelayCommand(() => StopGameplayAssistant("Gameplay assistant stopped."));
+        SendSayCommand = new AsyncCommand(() => SendCommunicationAsync("say", includeTarget: false));
+        SendTellCommand = new AsyncCommand(() => SendCommunicationAsync("/", includeTarget: true));
+        SendGossipCommand = new AsyncCommand(() => SendCommunicationAsync("gossip", includeTarget: false));
+        SendYellCommand = new AsyncCommand(() => SendCommunicationAsync("\"", includeTarget: false));
+        RunDiagnosticsCommand = new RelayCommand(RunGameplayDiagnostics);
         RefreshLanEndpoints();
         _ = LoadConnectionProfilesAsync();
         _ = LoadAutomationAsync();
         _ = LoadNavigationAsync("Classic");
         _ = LoadRecordedRoutesAsync();
+        _ = LoadSavedDestinationsAsync();
+        _inventoryLoadTask = LoadInventoryAutomationAsync();
+        _gameplayLoadTask = LoadGameplayAutomationAsync();
         _automationClockTask = RunAutomationClockAsync(_automationClockCancellation.Token);
+        _gameplayAssistantClockTask = RunGameplayAssistantClockAsync(_automationClockCancellation.Token);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -169,6 +298,42 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     public ICommand CancelRouteRecordingCommand { get; }
     public ICommand RunRecordedRouteCommand { get; }
     public ICommand DeleteRecordedRouteCommand { get; }
+    public ICommand SaveFavoriteDestinationCommand { get; }
+    public ICommand SaveStashDestinationCommand { get; }
+    public ICommand NavigateSavedDestinationCommand { get; }
+    public ICommand DeleteSavedDestinationCommand { get; }
+    public ICommand RefreshInventoryCommand { get; }
+    public ICommand SaveInventoryProfileCommand { get; }
+    public ICommand AddInventoryRuleCommand { get; }
+    public ICommand DeleteInventoryRuleCommand { get; }
+    public ICommand CaptureEquipmentSetCommand { get; }
+    public ICommand DeleteEquipmentSetCommand { get; }
+    public ICommand PreviewInventoryRulesCommand { get; }
+    public ICommand RunInventoryRulesCommand { get; }
+    public ICommand PreviewEquipmentSetCommand { get; }
+    public ICommand ApplyEquipmentSetCommand { get; }
+    public ICommand RefreshGameplayStateCommand { get; }
+    public ICommand RefreshCharacterCommand { get; }
+    public ICommand SearchWorkshopItemsCommand { get; }
+    public ICommand AddPlannedWorkshopItemCommand { get; }
+    public ICommand RemovePlannedWorkshopItemCommand { get; }
+    public ICommand ResetPlannedWorkshopItemsCommand { get; }
+    public ICommand SaveGameplayProfileCommand { get; }
+    public ICommand AddBuffRuleCommand { get; }
+    public ICommand DeleteBuffRuleCommand { get; }
+    public ICommand PreviewRecoveryCommand { get; }
+    public ICommand RunRecoveryCommand { get; }
+    public ICommand PreviewCombatCommand { get; }
+    public ICommand RunCombatCommand { get; }
+    public ICommand PreviewPartyCommand { get; }
+    public ICommand RunPartyCommand { get; }
+    public ICommand StartGameplayAssistantCommand { get; }
+    public ICommand StopGameplayAssistantCommand { get; }
+    public ICommand SendSayCommand { get; }
+    public ICommand SendTellCommand { get; }
+    public ICommand SendGossipCommand { get; }
+    public ICommand SendYellCommand { get; }
+    public ICommand RunDiagnosticsCommand { get; }
 
     public ClientInputAutomationProfile AutomationProfile => _automationProfile;
     public ObservableCollection<ClientCommandAlias> Aliases => _automationProfile.Aliases;
@@ -180,6 +345,28 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         _automationProfile.Navigation;
     public ObservableCollection<ClientRouteRoom> VisibleNavigationRooms { get; } = [];
     public ObservableCollection<ClientRecordedRoute> RecordedRoutes { get; } = [];
+    public ObservableCollection<ClientSavedDestination> SavedDestinations { get; } = [];
+    public ObservableCollection<ClientInventoryItemState> InventoryItems { get; } = [];
+    public ObservableCollection<ClientInventoryItemState> EquippedItems { get; } = [];
+    public ClientInventoryAutomationProfile InventoryProfile => _inventoryProfile;
+    public ObservableCollection<ClientInventoryRule> InventoryRules => _inventoryProfile.Rules;
+    public ObservableCollection<ClientEquipmentSet> EquipmentSets => _inventoryProfile.EquipmentSets;
+    public ClientGameplayAutomationProfile GameplayProfile => _gameplayProfile;
+    public ObservableCollection<ClientBuffRule> BuffRules => _gameplayProfile.Buffs;
+    public ObservableCollection<ClientGameplayNpcState> GameplayNpcs { get; } = [];
+    public ObservableCollection<ClientGameplayPartyMemberState> GameplayPartyMembers { get; } = [];
+    public ObservableCollection<ClientDiagnosticCheck> GameplayDiagnosticChecks { get; } = [];
+    public ObservableCollection<ClientInventoryItemState> CharacterEquipment { get; } = [];
+    public ObservableCollection<string> CharacterSpells { get; } = [];
+    public ObservableCollection<ClientGameplayEffectState> CharacterEffects { get; } = [];
+    public ObservableCollection<ClientWorkshopItem> WorkshopSearchResults { get; } = [];
+    public ObservableCollection<ClientWorkshopItem> PlannedWorkshopItems { get; } = [];
+    public IReadOnlyList<ClientCombatTargetMode> CombatTargetModes { get; } =
+        Enum.GetValues<ClientCombatTargetMode>();
+    public IReadOnlyList<ClientInventoryDisposition> InventoryDispositions { get; } =
+        Enum.GetValues<ClientInventoryDisposition>();
+    public IReadOnlyList<ClientInventoryRuleMatchMode> InventoryRuleMatchModes { get; } =
+        Enum.GetValues<ClientInventoryRuleMatchMode>();
     public IReadOnlyList<ClientTextTriggerMatchMode> TriggerMatchModes { get; } =
         Enum.GetValues<ClientTextTriggerMatchMode>();
 
@@ -226,6 +413,166 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     {
         get => _selectedRecordedRoute;
         set => Set(ref _selectedRecordedRoute, value);
+    }
+
+    public ClientSavedDestination? SelectedSavedDestination
+    {
+        get => _selectedSavedDestination;
+        set => Set(ref _selectedSavedDestination, value);
+    }
+
+    public ClientInventoryItemState? SelectedInventoryItem
+    {
+        get => _selectedInventoryItem;
+        set => Set(ref _selectedInventoryItem, value);
+    }
+
+    public ClientInventoryRule? SelectedInventoryRule
+    {
+        get => _selectedInventoryRule;
+        set => Set(ref _selectedInventoryRule, value);
+    }
+
+    public ClientEquipmentSet? SelectedEquipmentSet
+    {
+        get => _selectedEquipmentSet;
+        set => Set(ref _selectedEquipmentSet, value);
+    }
+
+    public ClientBuffRule? SelectedBuffRule
+    {
+        get => _selectedBuffRule;
+        set => Set(ref _selectedBuffRule, value);
+    }
+
+    public string EquipmentSetName
+    {
+        get => _equipmentSetName;
+        set => Set(ref _equipmentSetName, value);
+    }
+
+    public string InventoryStatus
+    {
+        get => _inventoryStatus;
+        private set => Set(ref _inventoryStatus, value);
+    }
+
+    public string InventoryPlanText
+    {
+        get => _inventoryPlanText;
+        private set => Set(ref _inventoryPlanText, value);
+    }
+
+    public string GameplayAssistantStatus
+    {
+        get => _gameplayAssistantStatus;
+        private set => Set(ref _gameplayAssistantStatus, value);
+    }
+
+    public string CharacterStatus
+    {
+        get => _characterStatus;
+        private set => Set(ref _characterStatus, value);
+    }
+
+    public string CharacterIdentityText
+    {
+        get => _characterIdentityText;
+        private set => Set(ref _characterIdentityText, value);
+    }
+
+    public string CharacterVitalsText
+    {
+        get => _characterVitalsText;
+        private set => Set(ref _characterVitalsText, value);
+    }
+
+    public string CharacterProgressText
+    {
+        get => _characterProgressText;
+        private set => Set(ref _characterProgressText, value);
+    }
+
+    public string CharacterAttributesText
+    {
+        get => _characterAttributesText;
+        private set => Set(ref _characterAttributesText, value);
+    }
+
+    public string CharacterSkillsText
+    {
+        get => _characterSkillsText;
+        private set => Set(ref _characterSkillsText, value);
+    }
+
+    public string WorkshopSearchText
+    {
+        get => _workshopSearchText;
+        set => Set(ref _workshopSearchText, value);
+    }
+
+    public string WorkshopSearchStatus
+    {
+        get => _workshopSearchStatus;
+        private set => Set(ref _workshopSearchStatus, value);
+    }
+
+    public string WorkshopItemDetails
+    {
+        get => _workshopItemDetails;
+        private set => Set(ref _workshopItemDetails, value);
+    }
+
+    public string WorkshopComparisonText
+    {
+        get => _workshopComparisonText;
+        private set => Set(ref _workshopComparisonText, value);
+    }
+
+    public ClientWorkshopItem? SelectedWorkshopItem
+    {
+        get => _selectedWorkshopItem;
+        set
+        {
+            if (Set(ref _selectedWorkshopItem, value))
+                WorkshopItemDetails = value is null ? string.Empty : DescribeWorkshopItem(value);
+        }
+    }
+
+    public ClientWorkshopItem? SelectedPlannedWorkshopItem
+    {
+        get => _selectedPlannedWorkshopItem;
+        set => Set(ref _selectedPlannedWorkshopItem, value);
+    }
+
+    public string GameplayPlanText
+    {
+        get => _gameplayPlanText;
+        private set => Set(ref _gameplayPlanText, value);
+    }
+
+    public bool IsGameplayAssistantRunning
+    {
+        get => _isGameplayAssistantRunning;
+        private set => Set(ref _isGameplayAssistantRunning, value);
+    }
+
+    public string CommunicationTarget
+    {
+        get => _communicationTarget;
+        set => Set(ref _communicationTarget, value);
+    }
+
+    public string CommunicationText
+    {
+        get => _communicationText;
+        set => Set(ref _communicationText, value);
+    }
+
+    public string SavedDestinationName
+    {
+        get => _savedDestinationName;
+        set => Set(ref _savedDestinationName, value);
     }
 
     public string NavigationSearchText
@@ -293,9 +640,14 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             ClientHostName = value.HostName;
             ClientPortText = value.Port.ToString();
             StopNavigation("Route stopped because the selected profile changed.");
+            StopGameplayAssistant("Gameplay assistant stopped because the selected profile changed.");
             CurrentRoomKey = string.Empty;
+            ClearInventoryState("Inventory state cleared because the selected profile changed.");
+            ClearGameplayAutomationState("Gameplay state cleared because the selected profile changed.");
+            ClearCharacterState("Character details cleared because the selected profile changed.");
             _ = LoadNavigationAsync(value.WorldName);
             RefreshRecordedRoutes();
+            RefreshSavedDestinations();
         }
     }
 
@@ -882,6 +1234,7 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     private async Task ResetConnectionAutomationAsync()
     {
         StopNavigation("Route stopped because the connection changed.");
+        StopGameplayAssistant("Gameplay assistant stopped because the connection changed.");
         await _triggerGate.WaitAsync();
         try
         {
@@ -890,7 +1243,13 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             _timedEventScheduler.Reset();
             _triggerReceiveBuffer.Clear();
             _lastAutomationCommandAt = null;
-            await Dispatcher.UIThread.InvokeAsync(() => CurrentRoomKey = string.Empty);
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                CurrentRoomKey = string.Empty;
+                ClearInventoryState("Inventory state cleared because the connection changed.");
+                ClearGameplayAutomationState("Gameplay state cleared because the connection changed.");
+                ClearCharacterState("Character details cleared because the connection changed.");
+            });
         }
         finally
         {
@@ -903,11 +1262,21 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         if (status.StartsWith("Disconnected", StringComparison.OrdinalIgnoreCase))
         {
             StopNavigation("Route stopped because the connection was lost.");
+            StopGameplayAssistant("Gameplay assistant stopped because the connection was lost.");
             Interlocked.Increment(ref _clientConnectionGeneration);
+            lock (_navigationTransferSync)
+                _navigationTransfer.Reset();
+            Interlocked.Exchange(ref _navigationGraphRequested, 0);
             _gameplayState.Reset();
             _timedEventScheduler.Reset();
             _lastAutomationCommandAt = null;
-            Dispatcher.UIThread.Post(() => CurrentRoomKey = string.Empty);
+            Dispatcher.UIThread.Post(() =>
+            {
+                CurrentRoomKey = string.Empty;
+                ClearInventoryState("Inventory state cleared because the connection was lost.");
+                ClearGameplayAutomationState("Gameplay state cleared because the connection was lost.");
+                ClearCharacterState("Character details cleared because the connection was lost.");
+            });
         }
         Dispatcher.UIThread.Post(() => ClientStatus = status);
     }
@@ -916,6 +1285,9 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
     {
         var generation = Interlocked.Increment(ref _navigationLoadGeneration);
         var worldId = NormalizeWorldId(worldName);
+        lock (_navigationTransferSync)
+            _navigationTransfer.Reset();
+        Interlocked.Exchange(ref _navigationGraphRequested, 0);
         await Dispatcher.UIThread.InvokeAsync(() =>
         {
             _routeGraph = null;
@@ -927,8 +1299,17 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         {
             var path = ResolveNavigationGraphPath(worldId);
             if (path is null)
-                throw new FileNotFoundException(
-                    $"No generated navigation graph was found for world '{worldId}'. Generate that world before using navigation.");
+            {
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                    NavigationStatus = _terminalSession.IsConnected && SupportsPrivateRoomState()
+                        ? $"Waiting for the {worldId} navigation graph from the connected RealmGate host."
+                        : $"No local {worldId} navigation graph is available. Connect to its RealmGate host to download it.");
+                if (_terminalSession.IsConnected && _gameplayState.GameplayReady && SupportsPrivateRoomState())
+                    await RequestNavigationGraphAsync(
+                        Volatile.Read(ref _clientConnectionGeneration),
+                        CancellationToken.None);
+                return;
+            }
 
             var graph = await Task.Run(() => ClientRouteGraph.Load(path));
             if (graph.WorldId.Length > 0 &&
@@ -941,6 +1322,7 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             await Dispatcher.UIThread.InvokeAsync(() =>
             {
                 _routeGraph = graph;
+                Interlocked.Exchange(ref _navigationGraphRequested, 0);
                 RefreshNavigationRooms();
                 var evidence = graph.HasHazardMetadata ? "decoded hazard metadata" : "legacy topology only";
                 NavigationStatus = $"Loaded {graph.RoomCount:N0} {worldId} rooms with {evidence}.";
@@ -951,6 +1333,107 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             if (generation != Volatile.Read(ref _navigationLoadGeneration)) return;
             await Dispatcher.UIThread.InvokeAsync(() =>
                 NavigationStatus = $"Navigation unavailable: {exception.Message}");
+        }
+    }
+
+    private void HandleNavigationGraphMessage(RealmGate.Client.Protocol.RealmGateClientProtocolMessage message)
+    {
+        try
+        {
+            ClientNavigationGraphTransferPayload? payload;
+            lock (_navigationTransferSync)
+                payload = _navigationTransfer.Process(message);
+
+            if (message.Channel.Equals("NAVGRAPHBEGIN", StringComparison.OrdinalIgnoreCase))
+            {
+                Dispatcher.UIThread.Post(() =>
+                    NavigationStatus = $"Downloading {NormalizeWorldId(SelectedConnectionProfile?.WorldName)} navigation graph...");
+            }
+            if (payload is not null)
+            {
+                var loadGeneration = Volatile.Read(ref _navigationLoadGeneration);
+                _ = ApplyRemoteNavigationGraphAsync(payload, loadGeneration);
+            }
+        }
+        catch (Exception exception) when (exception is InvalidDataException or InvalidOperationException)
+        {
+            lock (_navigationTransferSync)
+                _navigationTransfer.Reset();
+            Interlocked.Exchange(ref _navigationGraphRequested, 0);
+            Dispatcher.UIThread.Post(() =>
+                NavigationStatus = $"Navigation download failed: {exception.Message}");
+        }
+    }
+
+    private async Task ApplyRemoteNavigationGraphAsync(
+        ClientNavigationGraphTransferPayload payload,
+        long loadGeneration)
+    {
+        try
+        {
+            var graph = await Task.Run(() =>
+            {
+                var json = payload.DecompressAndVerify();
+                using var stream = new MemoryStream(json, writable: false);
+                return ClientRouteGraph.Load(stream);
+            });
+            if (loadGeneration != Volatile.Read(ref _navigationLoadGeneration)) return;
+
+            var selectedWorldId = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+            if (!NormalizeWorldId(payload.WorldId).Equals(selectedWorldId, StringComparison.OrdinalIgnoreCase) ||
+                !NormalizeWorldId(graph.WorldId).Equals(selectedWorldId, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new InvalidDataException(
+                    $"Downloaded navigation graph world '{graph.WorldId}' does not match selected world '{selectedWorldId}'.");
+            }
+
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                _routeGraph = graph;
+                Interlocked.Exchange(ref _navigationGraphRequested, 0);
+                RefreshNavigationRooms();
+                var evidence = graph.HasHazardMetadata ? "decoded hazard metadata" : "legacy topology only";
+                NavigationStatus = $"Downloaded {graph.RoomCount:N0} {selectedWorldId} rooms with {evidence}.";
+            });
+        }
+        catch (Exception exception) when (exception is InvalidDataException or IOException)
+        {
+            if (loadGeneration != Volatile.Read(ref _navigationLoadGeneration)) return;
+            Interlocked.Exchange(ref _navigationGraphRequested, 0);
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                NavigationStatus = $"Navigation download failed: {exception.Message}");
+        }
+    }
+
+    private async Task RequestNavigationGraphAsync(long generation, CancellationToken cancellationToken)
+    {
+        if (_routeGraph is not null || !SupportsPrivateRoomState() ||
+            generation != Volatile.Read(ref _clientConnectionGeneration) ||
+            !_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+            return;
+
+        if (Interlocked.CompareExchange(ref _navigationGraphRequested, 1, 0) != 0)
+            return;
+        await _triggerGate.WaitAsync(cancellationToken);
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) ||
+                !_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+            {
+                Interlocked.Exchange(ref _navigationGraphRequested, 0);
+                return;
+            }
+            _terminalSession.NotePrivateCommand("clientdata navigation");
+            await _terminalSession.SendLineAsync("clientdata navigation", false, cancellationToken);
+        }
+        catch
+        {
+            Interlocked.Exchange(ref _navigationGraphRequested, 0);
+            throw;
+        }
+        finally
+        {
+            _triggerGate.Release();
         }
     }
 
@@ -997,6 +1480,979 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
             .Where(char.IsLetterOrDigit)
             .ToArray());
         return normalized.Length == 0 ? "Classic" : normalized;
+    }
+
+    private async Task LoadInventoryAutomationAsync()
+    {
+        try
+        {
+            var catalog = await _inventoryStore.LoadAsync();
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                _inventoryCatalog = catalog;
+                InventoryStatus = "Inventory profiles loaded. Connect and refresh inventory.";
+            });
+        }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                InventoryStatus = $"Inventory profile load failed: {exception.Message}");
+        }
+    }
+
+    private async Task HandleInventoryStateAsync(string payload)
+    {
+        try
+        {
+            await _inventoryLoadTask;
+            var state = ClientInventoryStateDecoder.Decode(payload);
+            var expectedWorld = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+            if (!NormalizeWorldId(state.WorldId).Equals(expectedWorld, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException(
+                    $"Inventory world '{state.WorldId}' does not match selected world '{expectedWorld}'.");
+
+            Dispatcher.UIThread.Post(() => ApplyInventoryState(state));
+        }
+        catch (Exception exception) when (exception is InvalidDataException or InvalidOperationException)
+        {
+            Dispatcher.UIThread.Post(() =>
+                InventoryStatus = $"Inventory state rejected: {exception.Message}");
+        }
+    }
+
+    private void ApplyInventoryState(ClientInventoryStateSnapshot state)
+    {
+        _inventoryState = state;
+        InventoryItems.Clear();
+        foreach (var item in state.Inventory) InventoryItems.Add(item);
+        EquippedItems.Clear();
+        foreach (var item in state.Equipment) EquippedItems.Add(item);
+
+        _inventoryProfile = ClientInventoryAutomationProfileStore.GetOrCreate(
+            _inventoryCatalog, state.WorldId, state.CharacterId, state.CharacterName);
+        Raise(nameof(InventoryProfile));
+        Raise(nameof(InventoryRules));
+        Raise(nameof(EquipmentSets));
+        SelectedInventoryItem = InventoryItems.FirstOrDefault();
+        SelectedInventoryRule = InventoryRules.FirstOrDefault();
+        SelectedEquipmentSet = EquipmentSets.FirstOrDefault();
+        InventoryStatus =
+            $"{state.CharacterName} in {state.WorldId}: {state.Inventory.Count} carried, " +
+            $"{state.Equipment.Count} equipped, {state.CurrencyCopper} copper.";
+        InventoryPlanText = "Inventory state refreshed. Preview a rule pass or equipment set before running it.";
+        RefreshCharacterPresentation();
+    }
+
+    private void ClearInventoryState(string status)
+    {
+        _inventoryState = null;
+        _inventoryProfile = new ClientInventoryAutomationProfile();
+        InventoryItems.Clear();
+        EquippedItems.Clear();
+        SelectedInventoryItem = null;
+        SelectedInventoryRule = null;
+        SelectedEquipmentSet = null;
+        Raise(nameof(InventoryProfile));
+        Raise(nameof(InventoryRules));
+        Raise(nameof(EquipmentSets));
+        InventoryStatus = status;
+        InventoryPlanText = "Refresh inventory to begin.";
+        RefreshCharacterPresentation();
+    }
+
+    private async Task RefreshInventoryAsync() =>
+        await RequestInventoryStateAsync(
+            Volatile.Read(ref _clientConnectionGeneration), CancellationToken.None);
+
+    private async Task RequestInventoryStateAsync(long generation, CancellationToken cancellationToken)
+    {
+        if (!SupportsPrivateRoomState() ||
+            generation != Volatile.Read(ref _clientConnectionGeneration) ||
+            !_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                InventoryStatus = "Inventory refresh requires a connected RealmGate character session.");
+            return;
+        }
+
+        await _triggerGate.WaitAsync(cancellationToken);
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected)
+                return;
+            _terminalSession.NotePrivateCommand("clientdata inventory");
+            await _terminalSession.SendLineAsync("clientdata inventory", false, cancellationToken);
+            await Dispatcher.UIThread.InvokeAsync(() => InventoryStatus = "Refreshing inventory from the host...");
+        }
+        finally { _triggerGate.Release(); }
+    }
+
+    private async Task SaveInventoryProfileAsync()
+    {
+        try
+        {
+            ClientInventoryAutomationProfileStore.Normalize(_inventoryCatalog);
+            _inventoryProfile.UpdatedAtUtc = DateTimeOffset.UtcNow;
+            await _inventoryStore.SaveAsync(_inventoryCatalog);
+            InventoryStatus = "Inventory rules and equipment sets saved for this world and character.";
+        }
+        catch (Exception exception)
+        {
+            InventoryStatus = $"Inventory profile save failed: {exception.Message}";
+        }
+    }
+
+    private void AddInventoryRule()
+    {
+        var rule = new ClientInventoryRule
+        {
+            MatchValue = SelectedInventoryItem?.Name ?? "item name"
+        };
+        InventoryRules.Add(rule);
+        SelectedInventoryRule = rule;
+    }
+
+    private void DeleteInventoryRule()
+    {
+        if (SelectedInventoryRule is null) return;
+        var index = InventoryRules.IndexOf(SelectedInventoryRule);
+        InventoryRules.Remove(SelectedInventoryRule);
+        SelectedInventoryRule = InventoryRules.ElementAtOrDefault(Math.Max(0, index - 1));
+    }
+
+    private void CaptureEquipmentSet()
+    {
+        if (_inventoryState is null)
+        {
+            InventoryStatus = "Refresh inventory before capturing equipment.";
+            return;
+        }
+        var set = ClientInventoryAutomationPlanner.CaptureEquipmentSet(_inventoryState, EquipmentSetName);
+        EquipmentSets.Add(set);
+        SelectedEquipmentSet = set;
+        EquipmentSetName = "Equipment Set";
+        InventoryPlanText = $"Captured '{set.Name}' with {set.Items.Count} equipped item(s).";
+    }
+
+    private void DeleteEquipmentSet()
+    {
+        if (SelectedEquipmentSet is null) return;
+        var index = EquipmentSets.IndexOf(SelectedEquipmentSet);
+        EquipmentSets.Remove(SelectedEquipmentSet);
+        SelectedEquipmentSet = EquipmentSets.ElementAtOrDefault(Math.Max(0, index - 1));
+    }
+
+    private void PreviewInventoryRules()
+    {
+        var plan = BuildInventoryRulePlan();
+        InventoryPlanText = FormatInventoryPlan(plan);
+    }
+
+    private async Task RunInventoryRulesAsync()
+    {
+        var plan = BuildInventoryRulePlan();
+        InventoryPlanText = FormatInventoryPlan(plan);
+        await ExecuteInventoryPlanAsync(plan);
+    }
+
+    private void PreviewEquipmentSet()
+    {
+        var plan = BuildEquipmentSetPlan();
+        InventoryPlanText = FormatInventoryPlan(plan);
+    }
+
+    private async Task ApplyEquipmentSetAsync()
+    {
+        var plan = BuildEquipmentSetPlan();
+        InventoryPlanText = FormatInventoryPlan(plan);
+        await ExecuteInventoryPlanAsync(plan);
+    }
+
+    private ClientInventoryAutomationPlan BuildInventoryRulePlan()
+    {
+        if (_inventoryState is null)
+            return new ClientInventoryAutomationPlan
+            {
+                Action = "Process inventory rules",
+                Warnings = ["Refresh inventory before evaluating rules."]
+            };
+        var atStash = _savedDestinationCatalog.Destinations.Any(destination =>
+            destination.Kind == ClientSavedDestinationKind.Stash &&
+            NormalizeWorldId(destination.WorldId).Equals(
+                NormalizeWorldId(_inventoryState.WorldId), StringComparison.OrdinalIgnoreCase) &&
+            ClientRouteGraph.NormalizeRoomKey(destination.RoomKey).Equals(
+                ClientRouteGraph.NormalizeRoomKey(CurrentRoomKey), StringComparison.OrdinalIgnoreCase));
+        return ClientInventoryAutomationPlanner.PlanRules(
+            _inventoryState, _inventoryProfile, new ClientInventoryAutomationContext(atStash));
+    }
+
+    private ClientInventoryAutomationPlan BuildEquipmentSetPlan()
+    {
+        if (_inventoryState is null || SelectedEquipmentSet is null)
+            return new ClientInventoryAutomationPlan
+            {
+                Action = "Apply equipment set",
+                Warnings = ["Refresh inventory and select an equipment set first."]
+            };
+        return ClientInventoryAutomationPlanner.PlanEquipmentSet(
+            _inventoryState, _inventoryProfile, SelectedEquipmentSet);
+    }
+
+    private async Task ExecuteInventoryPlanAsync(ClientInventoryAutomationPlan plan)
+    {
+        if (!plan.HasCommands)
+        {
+            InventoryStatus = plan.Warnings.Count > 0
+                ? "Inventory plan was blocked by its safety checks."
+                : "Inventory already matches the selected plan.";
+            return;
+        }
+        if (_automationProfile.EmergencyStop)
+        {
+            InventoryStatus = "Emergency Stop is on. Preview is available, but commands were not sent.";
+            return;
+        }
+        if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            InventoryStatus = "Inventory commands require a connected, ready character session.";
+            return;
+        }
+
+        var generation = Volatile.Read(ref _clientConnectionGeneration);
+        await _triggerGate.WaitAsync();
+        try
+        {
+            await SendAutomationCommandsAsync(plan.Commands, generation, CancellationToken.None);
+            InventoryStatus = $"Sent {plan.Commands.Count} inventory command(s).";
+        }
+        catch (Exception exception)
+        {
+            InventoryStatus = $"Inventory command failed: {exception.Message}";
+            return;
+        }
+        finally { _triggerGate.Release(); }
+
+        await Task.Delay(Math.Max(500, _automationProfile.MinimumCommandDelayMs));
+        await RequestInventoryStateAsync(generation, CancellationToken.None);
+    }
+
+    private static string FormatInventoryPlan(ClientInventoryAutomationPlan plan)
+    {
+        var lines = new List<string> { plan.Summary };
+        if (plan.Commands.Count > 0)
+        {
+            lines.Add("Commands:");
+            lines.AddRange(plan.Commands.Select(command => "  " + command));
+        }
+        if (plan.MissingItems.Count > 0)
+            lines.Add("Missing: " + string.Join(", ", plan.MissingItems));
+        if (plan.Warnings.Count > 0)
+        {
+            lines.Add("Safety notes:");
+            lines.AddRange(plan.Warnings.Select(warning => "  " + warning));
+        }
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    private enum GameplayPlanArea { Recovery, Combat, Party }
+
+    private async Task LoadGameplayAutomationAsync()
+    {
+        try
+        {
+            var catalog = await _gameplayStore.LoadAsync();
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                _gameplayCatalog = catalog;
+                GameplayAssistantStatus = "Gameplay assistant profiles loaded. Connect and refresh live state.";
+            });
+        }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                GameplayAssistantStatus = $"Gameplay assistant profile load failed: {exception.Message}");
+        }
+    }
+
+    private async Task HandleGameplayAutomationStateAsync(string payload, long generation)
+    {
+        try
+        {
+            await _gameplayLoadTask;
+            var state = ClientGameplayAutomationStateDecoder.Decode(payload);
+            var expectedWorld = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+            if (!NormalizeWorldId(state.WorldId).Equals(expectedWorld, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException(
+                    $"Gameplay world '{state.WorldId}' does not match selected world '{expectedWorld}'.");
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected) return;
+                ApplyGameplayAutomationState(state);
+            });
+        }
+        catch (Exception exception) when (exception is InvalidDataException or InvalidOperationException)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                GameplayAssistantStatus = $"Gameplay state rejected: {exception.Message}");
+        }
+    }
+
+    private void ApplyGameplayAutomationState(ClientGameplayAutomationSnapshot state)
+    {
+        if (_gameplayAutomationState is { } previous &&
+            (!previous.CharacterId.Equals(state.CharacterId, StringComparison.OrdinalIgnoreCase) ||
+             !previous.WorldId.Equals(state.WorldId, StringComparison.OrdinalIgnoreCase)))
+            StopGameplayAssistant("Character changed. Review settings before restarting the assistant.");
+        _gameplayAutomationState = state;
+        _gameplayProfile = ClientGameplayAutomationProfileStore.GetOrCreate(
+            _gameplayCatalog, state.WorldId, state.CharacterId, state.CharacterName);
+        Raise(nameof(GameplayProfile));
+        Raise(nameof(BuffRules));
+        GameplayNpcs.Clear();
+        foreach (var npc in state.Npcs) GameplayNpcs.Add(npc);
+        GameplayPartyMembers.Clear();
+        foreach (var member in state.PartyMembers) GameplayPartyMembers.Add(member);
+        if (SelectedBuffRule is null || !BuffRules.Contains(SelectedBuffRule))
+            SelectedBuffRule = BuffRules.FirstOrDefault();
+        GameplayAssistantStatus =
+            $"{state.CharacterName} in {state.WorldId}: HP {state.HealthCurrent}/{state.HealthMaximum}, " +
+            $"resource {state.ManaCurrent}/{state.ManaMaximum}, {state.Npcs.Count} NPC(s), " +
+            $"{state.PartyMembers.Count} party member(s).";
+        RefreshCharacterPresentation();
+        RunGameplayDiagnostics();
+    }
+
+    private void ClearGameplayAutomationState(string status)
+    {
+        _gameplayAutomationState = null;
+        _gameplayProfile = new ClientGameplayAutomationProfile();
+        GameplayNpcs.Clear();
+        GameplayPartyMembers.Clear();
+        GameplayDiagnosticChecks.Clear();
+        SelectedBuffRule = null;
+        Raise(nameof(GameplayProfile));
+        Raise(nameof(BuffRules));
+        GameplayAssistantStatus = status;
+        GameplayPlanText = "Refresh live state to begin.";
+        _lastGameplayActionAt = null;
+        _lastGameplayStateRequestAt = null;
+        _lastGameplayCommand = string.Empty;
+        _repeatedGameplayCommands = 0;
+        RefreshCharacterPresentation();
+    }
+
+    private async Task RefreshCharacterAsync()
+    {
+        var generation = Volatile.Read(ref _clientConnectionGeneration);
+        await RequestCharacterStateAsync(generation, CancellationToken.None);
+        if (generation != Volatile.Read(ref _clientConnectionGeneration)) return;
+        await RequestInventoryStateAsync(generation, CancellationToken.None);
+        if (generation != Volatile.Read(ref _clientConnectionGeneration)) return;
+        await RequestGameplayAutomationStateAsync(generation, CancellationToken.None);
+    }
+
+    private async Task RequestCharacterStateAsync(long generation, CancellationToken cancellationToken)
+    {
+        if (!SupportsPrivateRoomState() ||
+            generation != Volatile.Read(ref _clientConnectionGeneration) ||
+            !_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                CharacterStatus = "Character refresh requires a connected RealmGate character session.");
+            return;
+        }
+
+        await _triggerGate.WaitAsync(cancellationToken);
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected)
+                return;
+            _terminalSession.NotePrivateCommand("clientdata character");
+            await _terminalSession.SendLineAsync("clientdata character", false, cancellationToken);
+            await Dispatcher.UIThread.InvokeAsync(() => CharacterStatus = "Refreshing character from the host...");
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() => CharacterStatus = $"Character refresh failed: {exception.Message}");
+        }
+        finally { _triggerGate.Release(); }
+    }
+
+    private async Task HandleCharacterStateAsync(string payload, long generation)
+    {
+        try
+        {
+            var state = ClientCharacterStateDecoder.Decode(payload);
+            var expectedWorld = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+            if (!NormalizeWorldId(state.WorldId).Equals(expectedWorld, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException(
+                    $"Character world '{state.WorldId}' does not match selected world '{expectedWorld}'.");
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected) return;
+                if (_characterState is { } previous && !MatchesCharacter(previous,
+                        state.WorldId, state.CharacterId, state.RoomId))
+                    ClearWorkshopSearch("Character or room changed. Search items again.");
+                _characterState = state;
+                RefreshCharacterPresentation();
+            });
+        }
+        catch (Exception exception) when (exception is InvalidDataException or InvalidOperationException)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                ClearCharacterState($"Character state rejected: {exception.Message}"));
+        }
+    }
+
+    private void ClearCharacterState(string status)
+    {
+        _characterState = null;
+        ClearWorkshopSearch("Connect a character before searching items.");
+        RefreshCharacterPresentation();
+        CharacterStatus = status;
+    }
+
+    private void RefreshCharacterPresentation()
+    {
+        CharacterEquipment.Clear();
+        CharacterSpells.Clear();
+        CharacterEffects.Clear();
+        if (_characterState is not { } state)
+        {
+            CharacterIdentityText = string.Empty;
+            CharacterVitalsText = string.Empty;
+            CharacterProgressText = string.Empty;
+            CharacterAttributesText = string.Empty;
+            CharacterSkillsText = string.Empty;
+            return;
+        }
+
+        var gameplay = _gameplayAutomationState is { } live && MatchesCharacter(state,
+            live.WorldId, live.CharacterId, live.RoomId) ? live : null;
+        var inventory = _inventoryState is { } items && MatchesCharacter(state,
+            items.WorldId, items.CharacterId, items.RoomId) ? items : null;
+        CharacterStatus = $"{state.CharacterName} - {state.WorldId} - captured {state.CapturedAtUtc.ToLocalTime():g}";
+        CharacterIdentityText =
+            $"{state.RaceName} {state.ClassName}  |  {state.Sex}  |  Level {state.Level}\n" +
+            $"Alignment: {(state.Alignment.Length == 0 ? "Unreported" : state.Alignment)}\n" +
+            $"Room: {state.RoomId}";
+        CharacterVitalsText = gameplay is null
+            ? "Refresh live state for HP, resource, and condition details."
+            : $"HP {gameplay.HealthCurrent:N0}/{gameplay.HealthMaximum:N0}  |  " +
+              $"Resource {gameplay.ManaCurrent:N0}/{gameplay.ManaMaximum:N0}\n" +
+              $"{(gameplay.InCombat ? "In combat" : gameplay.IsResting ? "Resting" : "Ready")}" +
+              (gameplay.Conditions.Count == 0 ? string.Empty : $"  |  {string.Join(", ", gameplay.Conditions)}");
+        CharacterProgressText = state.NextLevelExperience is long threshold
+            ? $"Experience: {state.Experience:N0}\nNext level: {threshold:N0}\nRemaining: {Math.Max(0, threshold - state.Experience):N0}"
+            : $"Experience: {state.Experience:N0}\nNext-level threshold unavailable from this world.";
+        CharacterAttributesText = state.BaseStats.Count == 0 ? "No attributes reported."
+            : string.Join("\n", state.BaseStats.OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+                .Select(pair => $"{pair.Key}: {pair.Value:N0}"));
+        CharacterSkillsText = state.Skills.Count == 0 ? "No skills reported."
+            : string.Join("\n", state.Skills.OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase)
+                .Select(pair => $"{pair.Key}: {pair.Value:N0}"));
+        if (inventory is not null)
+            foreach (var item in inventory.Equipment) CharacterEquipment.Add(item);
+        if (gameplay is not null)
+        {
+            foreach (var spell in gameplay.LearnedSpells.Where(spell =>
+                         !spell.StartsWith("spell.", StringComparison.OrdinalIgnoreCase)))
+                CharacterSpells.Add(spell);
+            foreach (var effect in gameplay.ActiveEffects) CharacterEffects.Add(effect);
+        }
+    }
+
+    private static bool MatchesCharacter(ClientCharacterState state, string worldId, string characterId, string roomId) =>
+        state.WorldId.Equals(NormalizeWorldId(worldId), StringComparison.OrdinalIgnoreCase) &&
+        state.CharacterId.Equals(characterId, StringComparison.OrdinalIgnoreCase) &&
+        state.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase);
+
+    private async Task SearchWorkshopItemsAsync()
+    {
+        var state = _characterState;
+        if (state is null || !_terminalSession.IsConnected || !_gameplayState.GameplayReady ||
+            !SupportsPrivateRoomState())
+        {
+            WorkshopSearchStatus = "Connect and refresh a RealmGate character before searching items.";
+            return;
+        }
+        var query = WorkshopSearchText.Trim();
+        if (query.Length is < 2 or > 80)
+        {
+            WorkshopSearchStatus = "Enter 2 to 80 characters to search items.";
+            return;
+        }
+
+        var generation = Volatile.Read(ref _clientConnectionGeneration);
+        await _triggerGate.WaitAsync();
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected)
+                return;
+            var command = "clientdata itemsearch " + query;
+            _terminalSession.NotePrivateCommand(command);
+            await _terminalSession.SendLineAsync(command, false, CancellationToken.None);
+            WorkshopSearchStatus = $"Searching {state.WorldId} items...";
+        }
+        catch (Exception exception)
+        {
+            ClearWorkshopSearch($"Item search failed: {exception.Message}");
+        }
+        finally { _triggerGate.Release(); }
+    }
+
+    private async Task HandleWorkshopItemSearchAsync(string payload, long generation)
+    {
+        try
+        {
+            var result = ClientWorkshopItemSearchDecoder.Decode(payload);
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected)
+                    return;
+                if (_characterState is not { } character ||
+                    !MatchesCharacter(character, result.WorldId, result.CharacterId, result.RoomId) ||
+                    !result.Query.Equals(WorkshopSearchText.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    ClearWorkshopSearch("Item search no longer matches this character or query. Search again.");
+                    return;
+                }
+                _workshopItemSearch = result;
+                WorkshopSearchResults.Clear();
+                foreach (var item in result.Matches) WorkshopSearchResults.Add(item);
+                SelectedWorkshopItem = WorkshopSearchResults.FirstOrDefault();
+                WorkshopSearchStatus = $"{result.Matches.Count:N0} of {result.TotalMatches:N0} {result.WorldId} item(s) shown.";
+                RefreshWorkshopComparison();
+            });
+        }
+        catch (Exception exception) when (exception is InvalidDataException or InvalidOperationException)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() => ClearWorkshopSearch($"Item search rejected: {exception.Message}"));
+        }
+    }
+
+    private void ClearWorkshopSearch(string status)
+    {
+        _workshopItemSearch = null;
+        _workshopPlanInitialized = false;
+        WorkshopSearchResults.Clear();
+        PlannedWorkshopItems.Clear();
+        SelectedWorkshopItem = null;
+        SelectedPlannedWorkshopItem = null;
+        WorkshopSearchStatus = status;
+        WorkshopComparisonText = "Search items and add a candidate to compare loadouts.";
+    }
+
+    private void ResetPlannedWorkshopItems()
+    {
+        if (_workshopItemSearch is null)
+        {
+            WorkshopSearchStatus = "Search items before planning a loadout.";
+            return;
+        }
+        PlannedWorkshopItems.Clear();
+        foreach (var entry in _workshopItemSearch.Equipped)
+            PlannedWorkshopItems.Add(entry.Item);
+        _workshopPlanInitialized = true;
+        SelectedPlannedWorkshopItem = PlannedWorkshopItems.FirstOrDefault();
+        RefreshWorkshopComparison();
+    }
+
+    private void AddPlannedWorkshopItem()
+    {
+        if (_workshopItemSearch is null || SelectedWorkshopItem is not { } item) return;
+        if (string.IsNullOrWhiteSpace(item.Slot) || item.Slot.Equals("NONE", StringComparison.OrdinalIgnoreCase))
+        {
+            WorkshopSearchStatus = $"{item.Name} has no decoded equipment slot; it cannot join a loadout.";
+            return;
+        }
+        if (!_workshopPlanInitialized) ResetPlannedWorkshopItems();
+        var replaced = PlannedWorkshopItems.FirstOrDefault(existing =>
+            existing.Slot.Equals(item.Slot, StringComparison.OrdinalIgnoreCase));
+        if (replaced is not null) PlannedWorkshopItems.Remove(replaced);
+        PlannedWorkshopItems.Add(item);
+        SelectedPlannedWorkshopItem = item;
+        RefreshWorkshopComparison();
+    }
+
+    private void RemovePlannedWorkshopItem()
+    {
+        if (SelectedPlannedWorkshopItem is not { } item) return;
+        PlannedWorkshopItems.Remove(item);
+        SelectedPlannedWorkshopItem = PlannedWorkshopItems.FirstOrDefault();
+        RefreshWorkshopComparison();
+    }
+
+    private void RefreshWorkshopComparison()
+    {
+        if (_workshopItemSearch is not { } search || !_workshopPlanInitialized)
+        {
+            WorkshopComparisonText = "Add an item to compare it with current equipment, or reset the plan to current.";
+            return;
+        }
+
+        var current = ClientWorkshopLoadoutTotals.From(search.Equipped.Select(entry => entry.Item));
+        var planned = ClientWorkshopLoadoutTotals.From(PlannedWorkshopItems);
+        static string Row(string label, long before, long after) =>
+            $"{label,-15} {before,9:N0} {after,9:N0} {after - before,9:+#;-#;0}";
+        var warnings = new List<string>();
+        if (_characterState is { } character)
+        {
+            foreach (var item in PlannedWorkshopItems)
+            {
+                if (item.MinimumLevel > character.Level)
+                    warnings.Add($"{item.Name}: requires level {item.MinimumLevel}.");
+                if (item.MinimumStrength > 0 &&
+                    character.BaseStats.TryGetValue("Strength", out var strength) && strength < item.MinimumStrength)
+                    warnings.Add($"{item.Name}: requires strength {item.MinimumStrength}.");
+                if (item.ClassRestricted || item.RaceRestricted || item.TwoHanded)
+                    warnings.Add($"{item.Name}: class/race or hand restrictions require Host verification.");
+            }
+        }
+        WorkshopComparisonText =
+            $"{search.WorldId} - {search.CapturedAtUtc.ToLocalTime():g}\n" +
+            $"{"Metric",-15} {"Current",9} {"Planned",9} {"Change",9}\n" +
+            Row("Weight", current.Weight, planned.Weight) + "\n" +
+            Row("AC bonus", current.ArmorClassBonus, planned.ArmorClassBonus) + "\n" +
+            Row("DR bonus", current.DamageResistanceBonus, planned.DamageResistanceBonus) + "\n" +
+            Row("Accuracy", current.AccuracyBonus, planned.AccuracyBonus) + "\n" +
+            Row("Min damage", current.MinimumDamage, planned.MinimumDamage) + "\n" +
+            Row("Max damage", current.MaximumDamage, planned.MaximumDamage) +
+            (warnings.Count == 0 ? string.Empty : "\n" + string.Join("\n", warnings.Distinct())) +
+            "\nPlanning only. The Host decides equip legality and gameplay effects.";
+    }
+
+    private static string DescribeWorkshopItem(ClientWorkshopItem item)
+    {
+        var restrictions = new List<string>();
+        if (item.MinimumLevel > 0) restrictions.Add($"Level {item.MinimumLevel}+");
+        if (item.MaximumLevel > 0) restrictions.Add($"Maximum level {item.MaximumLevel}");
+        if (item.MinimumStrength > 0) restrictions.Add($"Strength {item.MinimumStrength}+");
+        if (item.ClassRestricted) restrictions.Add("Class restricted");
+        if (item.RaceRestricted) restrictions.Add("Race restricted");
+        if (item.TwoHanded) restrictions.Add("Two-handed");
+        return $"{item.Name} ({item.Id})\n" +
+               $"{item.ItemType}  |  Slot: {(item.Slot.Length == 0 ? "None" : item.Slot)}\n" +
+               $"Damage {item.MinimumDamage}-{item.MaximumDamage}  |  AC {item.ArmorClassBonus:+#;-#;0}  |  DR {item.DamageResistanceBonus:+#;-#;0}\n" +
+               $"Accuracy {item.AccuracyBonus:+#;-#;0}  |  Speed {item.SpeedBonus:+#;-#;0}\n" +
+               $"Weight {item.Weight:N0}  |  Cost {item.Cost:N0}\n" +
+               $"Restrictions: {(restrictions.Count == 0 ? "None listed" : string.Join(", ", restrictions))}" +
+               (item.Abilities.Count == 0 ? string.Empty :
+                   "\nAbilities: " + string.Join(", ", item.Abilities.Select(ability =>
+                       $"{ability.Name} {ability.Value:+#;-#;0}")));
+    }
+
+    private async Task RefreshGameplayStateAsync() =>
+        await RequestGameplayAutomationStateAsync(
+            Volatile.Read(ref _clientConnectionGeneration), CancellationToken.None);
+
+    private async Task RequestGameplayAutomationStateAsync(long generation, CancellationToken cancellationToken)
+    {
+        if (!SupportsPrivateRoomState() ||
+            generation != Volatile.Read(ref _clientConnectionGeneration) ||
+            !_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                GameplayAssistantStatus = "Live-state refresh requires a connected RealmGate character session.");
+            return;
+        }
+
+        await _triggerGate.WaitAsync(cancellationToken);
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) || !_terminalSession.IsConnected)
+                return;
+            _lastGameplayStateRequestAt = DateTimeOffset.UtcNow;
+            _terminalSession.NotePrivateCommand("clientdata automation");
+            await _terminalSession.SendLineAsync("clientdata automation", false, cancellationToken);
+            await Dispatcher.UIThread.InvokeAsync(() => GameplayAssistantStatus = "Refreshing live state from the host...");
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                StopGameplayAssistant($"Live-state refresh failed: {exception.Message}"));
+        }
+        finally { _triggerGate.Release(); }
+    }
+
+    private async Task SaveGameplayProfileAsync()
+    {
+        try
+        {
+            ClientGameplayAutomationProfileStore.Normalize(_gameplayCatalog);
+            _gameplayProfile.UpdatedAtUtc = DateTimeOffset.UtcNow;
+            await _gameplayStore.SaveAsync(_gameplayCatalog);
+            GameplayAssistantStatus = "Recovery, combat, and party settings saved for this world and character.";
+        }
+        catch (Exception exception)
+        {
+            GameplayAssistantStatus = $"Gameplay assistant profile save failed: {exception.Message}";
+        }
+    }
+
+    private void AddBuffRule()
+    {
+        var rule = new ClientBuffRule { Name = "Buff", Priority = BuffRules.Count * 10 + 100 };
+        BuffRules.Add(rule);
+        SelectedBuffRule = rule;
+    }
+
+    private void DeleteBuffRule()
+    {
+        if (SelectedBuffRule is null) return;
+        var index = BuffRules.IndexOf(SelectedBuffRule);
+        BuffRules.Remove(SelectedBuffRule);
+        SelectedBuffRule = BuffRules.ElementAtOrDefault(Math.Max(0, index - 1));
+    }
+
+    private void PreviewGameplayPlan(GameplayPlanArea area)
+    {
+        var plan = BuildGameplayPlan(area, DateTimeOffset.UtcNow);
+        GameplayPlanText = FormatGameplayPlan(area, plan);
+    }
+
+    private async Task RunGameplayPlanAsync(GameplayPlanArea area)
+    {
+        var plan = BuildGameplayPlan(area, DateTimeOffset.UtcNow);
+        GameplayPlanText = FormatGameplayPlan(area, plan);
+        await ExecuteGameplayPlanAsync(plan, area.ToString());
+    }
+
+    private ClientGameplayActionPlan BuildGameplayPlan(GameplayPlanArea area, DateTimeOffset now)
+    {
+        if (_gameplayAutomationState is null)
+            return ClientGameplayActionPlan.Refresh("Refresh live state before evaluating this plan.");
+        return area switch
+        {
+            GameplayPlanArea.Recovery => ClientGameplayAutomationPlanner.PlanRecovery(
+                _gameplayAutomationState, _gameplayProfile, now),
+            GameplayPlanArea.Combat => ClientGameplayAutomationPlanner.PlanCombat(
+                _gameplayAutomationState, _gameplayProfile, now),
+            GameplayPlanArea.Party => ClientGameplayAutomationPlanner.PlanParty(
+                _gameplayAutomationState, _gameplayProfile, now),
+            _ => ClientGameplayActionPlan.None("No gameplay area was selected.")
+        };
+    }
+
+    private static string FormatGameplayPlan(GameplayPlanArea area, ClientGameplayActionPlan plan)
+    {
+        var command = plan.HasAction ? Environment.NewLine + "Command: " + plan.Command : string.Empty;
+        return $"{area}: {plan.Reason}{command}";
+    }
+
+    private async Task ExecuteGameplayPlanAsync(ClientGameplayActionPlan plan, string source)
+    {
+        if (plan.Kind == ClientGameplayActionKind.RefreshState)
+        {
+            await RefreshGameplayStateAsync();
+            return;
+        }
+        if (!plan.HasAction)
+        {
+            GameplayAssistantStatus = plan.Reason;
+            return;
+        }
+        if (_automationProfile.EmergencyStop)
+        {
+            StopGameplayAssistant("Emergency Stop is on. The gameplay command was not sent.");
+            return;
+        }
+        if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            GameplayAssistantStatus = "Gameplay commands require a connected, ready character session.";
+            return;
+        }
+        var snapshot = _gameplayAutomationState;
+        var generation = Volatile.Read(ref _clientConnectionGeneration);
+        var wasAutomatic = IsGameplayAssistantRunning;
+        if (snapshot is null || !ClientGameplayAutomationPlanner.IsSingleCommand(plan.Command)) return;
+        await _triggerGate.WaitAsync();
+        try
+        {
+            if (generation != Volatile.Read(ref _clientConnectionGeneration) ||
+                !_terminalSession.IsConnected || !_gameplayState.GameplayReady ||
+                _automationProfile.EmergencyStop || (wasAutomatic && !IsGameplayAssistantRunning) ||
+                !ReferenceEquals(snapshot, _gameplayAutomationState) ||
+                !NormalizeWorldId(snapshot.WorldId).Equals(NormalizeWorldId(SelectedConnectionProfile?.WorldName), StringComparison.OrdinalIgnoreCase) ||
+                !ClientRouteGraph.NormalizeRoomKey(snapshot.RoomId).Equals(ClientRouteGraph.NormalizeRoomKey(CurrentRoomKey), StringComparison.OrdinalIgnoreCase) ||
+                DateTimeOffset.UtcNow - snapshot.CapturedAtUtc > TimeSpan.FromSeconds(_gameplayProfile.StateMaximumAgeSeconds))
+            {
+                GameplayAssistantStatus = "Session or room state changed. Refresh before sending another action.";
+                return;
+            }
+            var delay = Math.Max(_automationProfile.MinimumCommandDelayMs, _gameplayProfile.MinimumActionDelayMilliseconds);
+            if ((_lastAutomationCommandAt is { } last && DateTimeOffset.UtcNow - last < TimeSpan.FromMilliseconds(delay)) ||
+                (_lastGameplayActionAt is { } sent && snapshot.CapturedAtUtc <= sent))
+                return;
+            if (wasAutomatic && _lastGameplayCommand.Equals(plan.Command, StringComparison.Ordinal) && _repeatedGameplayCommands >= 3)
+            {
+                StopGameplayAssistant("The same action was requested three times. Review the terminal before restarting.");
+                return;
+            }
+            // Planned commands bypass user aliases; the server receives exactly the reviewed action.
+            await _terminalSession.SendLineAsync(plan.Command, sensitive: false);
+            _lastGameplayActionAt = DateTimeOffset.UtcNow;
+            _lastAutomationCommandAt = _lastGameplayActionAt;
+            _repeatedGameplayCommands = _lastGameplayCommand == plan.Command ? _repeatedGameplayCommands + 1 : 1;
+            _lastGameplayCommand = plan.Command;
+            GameplayAssistantStatus = $"{source}: sent '{plan.Command}'.";
+        }
+        catch (Exception exception)
+        {
+            StopGameplayAssistant($"Gameplay assistant stopped: {exception.Message}");
+        }
+        finally { _triggerGate.Release(); }
+        await RequestGameplayAutomationStateAsync(generation, CancellationToken.None);
+    }
+
+    private void StartGameplayAssistant()
+    {
+        if (_automationProfile.EmergencyStop)
+        {
+            GameplayAssistantStatus = "Clear Emergency Stop before starting the gameplay assistant.";
+            return;
+        }
+        if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady || _gameplayAutomationState is null)
+        {
+            GameplayAssistantStatus = "Connect, enter gameplay, and refresh live state before starting.";
+            return;
+        }
+        if (!_gameplayProfile.Recovery.Enabled && !_gameplayProfile.Combat.Enabled && !_gameplayProfile.Party.Enabled)
+        {
+            GameplayAssistantStatus = "Enable at least one recovery, combat, or party section first.";
+            return;
+        }
+        IsGameplayAssistantRunning = true;
+        _repeatedGameplayCommands = 0;
+        _lastGameplayCommand = string.Empty;
+        GameplayAssistantStatus = "Gameplay assistant running with server-authoritative state.";
+    }
+
+    private void StopGameplayAssistant(string status)
+    {
+        IsGameplayAssistantRunning = false;
+        GameplayAssistantStatus = status;
+    }
+
+    private async Task RunGameplayAssistantClockAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+            while (await timer.WaitForNextTickAsync(cancellationToken))
+            {
+                Task tick = Task.CompletedTask;
+                await Dispatcher.UIThread.InvokeAsync(() => { tick = TickGameplayAssistantAsync(cancellationToken); });
+                await tick;
+            }
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                StopGameplayAssistant($"Gameplay assistant stopped: {exception.Message}"));
+        }
+    }
+
+    private async Task TickGameplayAssistantAsync(CancellationToken cancellationToken)
+    {
+                if (!IsGameplayAssistantRunning) return;
+                if (_automationProfile.EmergencyStop)
+                {
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                        StopGameplayAssistant("Emergency Stop activated. Gameplay assistant stopped."));
+                    return;
+                }
+                if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+                {
+                    await Dispatcher.UIThread.InvokeAsync(() =>
+                        StopGameplayAssistant("Connection or gameplay readiness was lost."));
+                    return;
+                }
+
+                var now = DateTimeOffset.UtcNow;
+                if (_lastGameplayActionAt is { } last &&
+                    now - last < TimeSpan.FromMilliseconds(_gameplayProfile.MinimumActionDelayMilliseconds))
+                    return;
+                if (_gameplayAutomationState is null || now - _gameplayAutomationState.CapturedAtUtc > TimeSpan.FromSeconds(2))
+                {
+                    if (_lastGameplayStateRequestAt is null || now - _lastGameplayStateRequestAt > TimeSpan.FromSeconds(2))
+                        await RequestGameplayAutomationStateAsync(
+                            Volatile.Read(ref _clientConnectionGeneration), cancellationToken);
+                    return;
+                }
+
+                var plan = ClientGameplayAutomationPlanner.PlanRecovery(_gameplayAutomationState, _gameplayProfile, now);
+                var source = "Recovery";
+                if (!plan.HasAction && plan.Kind != ClientGameplayActionKind.RefreshState)
+                {
+                    plan = ClientGameplayAutomationPlanner.PlanParty(_gameplayAutomationState, _gameplayProfile, now);
+                    source = "Party";
+                }
+                if (!plan.HasAction && plan.Kind != ClientGameplayActionKind.RefreshState)
+                {
+                    plan = ClientGameplayAutomationPlanner.PlanCombat(_gameplayAutomationState, _gameplayProfile, now);
+                    source = "Combat";
+                }
+                if (plan.Kind == ClientGameplayActionKind.RefreshState)
+                {
+                    await RequestGameplayAutomationStateAsync(
+                        Volatile.Read(ref _clientConnectionGeneration), cancellationToken);
+                    return;
+                }
+                if (plan.HasAction) await ExecuteGameplayPlanAsync(plan, source);
+    }
+
+    private async Task SendCommunicationAsync(string command, bool includeTarget)
+    {
+        if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady)
+        {
+            GameplayAssistantStatus = "Enter gameplay before sending a message.";
+            return;
+        }
+        var message = (CommunicationText ?? string.Empty).Replace('\r', ' ').Replace('\n', ' ').Trim();
+        var target = (CommunicationTarget ?? string.Empty).Replace('\r', ' ').Replace('\n', ' ').Trim();
+        if (message.Length == 0)
+        {
+            GameplayAssistantStatus = "Enter a message first.";
+            return;
+        }
+        if (message.Length > 400) message = message[..400];
+        if (includeTarget && target.Length == 0)
+        {
+            GameplayAssistantStatus = "Select or enter a message target first.";
+            return;
+        }
+        var line = includeTarget ? $"{command}{target} {message}" :
+            command == "\"" ? command + message : $"{command} {message}";
+        if (line.Any(char.IsControl)) return;
+        await _triggerGate.WaitAsync();
+        try
+        {
+            if (!_terminalSession.IsConnected || !_gameplayState.GameplayReady) return;
+            await _terminalSession.SendLineAsync(line, sensitive: false);
+            _lastAutomationCommandAt = DateTimeOffset.UtcNow;
+            CommunicationText = string.Empty;
+            GameplayAssistantStatus = $"Sent {command} message.";
+        }
+        catch (Exception exception) { GameplayAssistantStatus = $"Message was not sent: {exception.Message}"; }
+        finally { _triggerGate.Release(); }
+    }
+
+    private void RunGameplayDiagnostics()
+    {
+        GameplayDiagnosticChecks.Clear();
+        foreach (var check in ClientGameplayDiagnostics.Evaluate(
+                     _gameplayAutomationState,
+                     SelectedConnectionProfile?.WorldName ?? "Classic",
+                     _terminalSession.IsConnected,
+                     _gameplayState.GameplayReady,
+                     _automationProfile.EmergencyStop,
+                     IsGameplayAssistantRunning,
+                     DateTimeOffset.UtcNow))
+            GameplayDiagnosticChecks.Add(check);
     }
 
     private void RefreshNavigationRooms()
@@ -1050,6 +2506,139 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
                   selectedId,
                   StringComparison.OrdinalIgnoreCase))
               ?? RecordedRoutes.FirstOrDefault();
+    }
+
+    private async Task LoadSavedDestinationsAsync()
+    {
+        try
+        {
+            var catalog = await _savedDestinationStore.LoadAsync();
+            await Dispatcher.UIThread.InvokeAsync(() =>
+            {
+                _savedDestinationCatalog = catalog;
+                RefreshSavedDestinations();
+            });
+        }
+        catch (Exception exception)
+        {
+            await Dispatcher.UIThread.InvokeAsync(() =>
+                NavigationStatus = $"Saved destinations unavailable: {exception.Message}");
+        }
+    }
+
+    private void RefreshSavedDestinations()
+    {
+        var worldId = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+        var selectedId = SelectedSavedDestination?.Id;
+        SavedDestinations.Clear();
+        foreach (var destination in _savedDestinationCatalog.Destinations
+                     .Where(destination => NormalizeWorldId(destination.WorldId)
+                         .Equals(worldId, StringComparison.OrdinalIgnoreCase))
+                     .OrderBy(destination => destination.Kind)
+                     .ThenBy(destination => destination.Name, StringComparer.OrdinalIgnoreCase))
+        {
+            SavedDestinations.Add(destination);
+        }
+        SelectedSavedDestination = selectedId is null
+            ? SavedDestinations.FirstOrDefault()
+            : SavedDestinations.FirstOrDefault(destination => destination.Id.Equals(
+                  selectedId,
+                  StringComparison.OrdinalIgnoreCase))
+              ?? SavedDestinations.FirstOrDefault();
+    }
+
+    private async Task SaveCurrentDestinationAsync(ClientSavedDestinationKind kind)
+    {
+        if (_routeGraph is null || CurrentRoomKey.Length == 0)
+        {
+            NavigationStatus = "Enter gameplay and obtain an exact map-qualified room before saving a destination.";
+            return;
+        }
+        var room = _routeGraph.FindRoom(CurrentRoomKey);
+        if (room is null)
+        {
+            NavigationStatus = "The current room is not present in the selected world's navigation graph.";
+            return;
+        }
+
+        var worldId = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+        var existing = _savedDestinationCatalog.Destinations.FirstOrDefault(destination =>
+            NormalizeWorldId(destination.WorldId).Equals(worldId, StringComparison.OrdinalIgnoreCase) &&
+            destination.RoomKey.Equals(room.Key, StringComparison.OrdinalIgnoreCase) &&
+            destination.Kind == kind);
+        var name = string.IsNullOrWhiteSpace(SavedDestinationName)
+            ? room.Name
+            : SavedDestinationName.Trim();
+        var created = existing is null;
+        var destination = existing ?? new ClientSavedDestination
+        {
+            WorldId = worldId,
+            RoomKey = room.Key,
+            Kind = kind
+        };
+        destination.Name = name;
+        destination.SavedAtUtc = DateTimeOffset.UtcNow;
+        if (created) _savedDestinationCatalog.Destinations.Add(destination);
+
+        try
+        {
+            await _savedDestinationStore.SaveAsync(_savedDestinationCatalog);
+            RefreshSavedDestinations();
+            SelectedSavedDestination = destination;
+            SavedDestinationName = string.Empty;
+            NavigationStatus = $"Saved {room.Name} as a {kind.ToString().ToLowerInvariant()} for {worldId}.";
+        }
+        catch (Exception exception)
+        {
+            if (created) _savedDestinationCatalog.Destinations.Remove(destination);
+            NavigationStatus = $"Destination was not saved: {exception.Message}";
+        }
+    }
+
+    private async Task NavigateSavedDestinationAsync()
+    {
+        var destination = SelectedSavedDestination;
+        if (destination is null)
+        {
+            NavigationStatus = "Select a saved destination first.";
+            return;
+        }
+        var worldId = NormalizeWorldId(SelectedConnectionProfile?.WorldName);
+        if (!NormalizeWorldId(destination.WorldId).Equals(worldId, StringComparison.OrdinalIgnoreCase))
+        {
+            NavigationStatus = $"Saved destination world '{destination.WorldId}' does not match selected world '{worldId}'.";
+            return;
+        }
+        if (_routeGraph?.FindRoom(destination.RoomKey) is not { } room)
+        {
+            NavigationStatus = "The saved destination is not present in the selected world's navigation graph.";
+            return;
+        }
+
+        NavigationSearchText = room.Key;
+        SelectedNavigationRoom = VisibleNavigationRooms.FirstOrDefault(candidate =>
+            candidate.Key.Equals(room.Key, StringComparison.OrdinalIgnoreCase));
+        await StartNavigationAsync();
+    }
+
+    private async Task DeleteSavedDestinationAsync()
+    {
+        var destination = SelectedSavedDestination;
+        if (destination is null) return;
+        _savedDestinationCatalog.Destinations.Remove(destination);
+        try
+        {
+            await _savedDestinationStore.SaveAsync(_savedDestinationCatalog);
+            RefreshSavedDestinations();
+            NavigationStatus = $"Deleted saved destination '{destination.Name}'.";
+        }
+        catch (Exception exception)
+        {
+            _savedDestinationCatalog.Destinations.Add(destination);
+            RefreshSavedDestinations();
+            SelectedSavedDestination = destination;
+            NavigationStatus = $"Destination was not deleted: {exception.Message}";
+        }
     }
 
     private void StartRouteRecording()
@@ -1891,6 +3480,8 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged, IAsyncDisposab
         if (IsRecordingRoute) CancelRouteRecording();
         _automationClockCancellation.Cancel();
         try { await _automationClockTask; }
+        catch (OperationCanceledException) { }
+        try { await _gameplayAssistantClockTask; }
         catch (OperationCanceledException) { }
         _automationClockCancellation.Dispose();
         await _terminalSession.DisposeAsync();
