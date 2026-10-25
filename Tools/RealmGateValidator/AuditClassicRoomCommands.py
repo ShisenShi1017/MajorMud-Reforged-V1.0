@@ -66,8 +66,14 @@ def main():
     projected = {(row["RoomId"], normalized(row["Command"]))
                  for kind in ("GateAliases", "ObjectCommands") for row in runtime[kind]}
     projected.update((room, command) for room, _, command in supported)
+    live_dialogue = {(row["NpcId"], row["RootTextblockId"], normalized(row["Keyword"]), row["TargetTextblockId"])
+                     for row in runtime.get("DialogueRoutes", [])}
+    live_direct_dialogue = {(row["NpcId"], row["RootTextblockId"])
+                            for row in runtime.get("DirectDialogueRoutes", [])}
+    live_direct_roots = {root for _, root in live_direct_dialogue}
     rows = []
     counts = {}
+    informational = Counter()
 
     families = [
         ("rooms", "Librarium/Objects/rooms/room_records.json", "Data/Classic/rooms.json",
@@ -94,8 +100,7 @@ def main():
         room_id = exit_row["relationships"]["from_room"]
         commands = exit_row.get("commands", [])
         if not commands:
-            discrepancy(rows, "exit", exit_row["id"], room_id, "", "", "source_text_command_empty",
-                        "Recover the original alias from primary WCC/MDB evidence; do not invent it.", exit_row.get("raw_value", ""))
+            informational["source_text_command_empty_intentional"] += 1
         destination = exit_row["relationships"].get("to_room", "")
         if destination not in room_ids:
             discrepancy(rows, "exit", exit_row["id"], room_id, "", "", "destination_unresolved",
@@ -133,8 +138,6 @@ def main():
                                 "Project this executable room script in ROOMCOMMANDS.")
 
     textblocks = {row["textblock_id"]: row for row in records(ROOT / "Data/Classic/textblocks.json")}
-    ability_routes = {(row["npc_id"], normalized(row["command_keyword"]))
-                      for row in records(ROOT / "Data/Classic/ability_acquisitions.json")}
     dialogue_links = list(records(ROOT / "Data/Classic/npc_dialogue.json"))
     dialogue_routes = 0
     for link in dialogue_links:
@@ -144,20 +147,22 @@ def main():
                         "Repair the generated NPC-to-textblock link from source evidence.")
             continue
         if not root.get("commands"):
+            if (link["npc_id"], link["root_textblock_id"]) not in live_direct_dialogue:
+                discrepancy(rows, "npc_dialogue", link["id"], "", str(link["npc_id"]), "greet",
+                            "direct_greet_not_live_bound", "Bind the source-authorized direct root through GREET.",
+                            f"root=textblock.{link['root_textblock_id']}")
             continue
         for command in root["commands"]:
             dialogue_routes += 1
             keyword = command["keyword"]
             if command["target_textblock_id"] == 0:
-                discrepancy(rows, "npc_dialogue", link["id"], "", str(link["npc_id"]), keyword, "dialogue_zero_target_sentinel",
-                            "Preserve the decoded no-target sentinel; do not invent a dialogue branch.",
-                            f"root=textblock.{link['root_textblock_id']};target=textblock.0")
+                informational["dialogue_zero_target_sentinel"] += 1
             elif command["target_textblock_id"] not in textblocks:
                 discrepancy(rows, "npc_dialogue", link["id"], "", str(link["npc_id"]), keyword, "target_unresolved",
                             "Restore the decoded target textblock.")
-            elif (link["npc_id"], normalized(keyword)) not in ability_routes:
+            elif (link["npc_id"], link["root_textblock_id"], normalized(keyword), command["target_textblock_id"]) not in live_dialogue:
                 discrepancy(rows, "npc_dialogue", link["id"], "", str(link["npc_id"]), keyword, "dialogue_keyword_not_live_bound",
-                            "Recover version-matched presentation and effects, then bind through NPC-specific ASK; do not treat it as a room action.",
+                            "Bind the decoded plan through NPC-specific ASK; do not treat it as a room action.",
                             f"root=textblock.{link['root_textblock_id']};target=textblock.{command['target_textblock_id']}")
 
     issues = Counter(row["issue"] for row in rows)
@@ -179,24 +184,27 @@ def main():
     report += [
         f"- Text-command exit aliases: {gate_aliases}.",
         f"- Room-action rooms: {len(action_rooms)}; source command/room bindings: {action_count}; executable projected bindings: {len(supported)}.",
-        f"- NPC dialogue ownership links: {len(dialogue_links)}; keyword routes: {dialogue_routes}; verified live ASK ability routes: {len(ability_routes)}.",
+        f"- NPC dialogue ownership links: {len(dialogue_links)}; keyword routes: {dialogue_routes}; live decoded ASK routes: {len(live_dialogue)}; direct GREET ownership routes: {len(live_direct_dialogue)} across {len(live_direct_roots)} source roots.",
         "", "## Discrepancies", "",
     ]
-    report += [f"- {issue}: {count}" for issue, count in sorted(issues.items())]
+    report += [f"- {issue}: {count}" for issue, count in sorted(issues.items())] or ["- None."]
     report += [
+        "", "## Intentional Non-Actions", "",
+        f"- Dialogue target `textblock.0` sentinels: {informational['dialogue_zero_target_sentinel']}; these remain silent and non-mutating.",
+        f"- Empty native text-command exits: {informational['source_text_command_empty_intentional']}; no alias is fabricated.",
         "", f"Every discrepancy is listed with source/room/NPC IDs in `{csv_path.name}`.", "",
         "## Ferryman", "",
         "- `npc.81` owns MDB dialogue root `textblock.77`: borrow, skiff, boat, ferry, silvermere are NPC keywords, not exit commands.",
         "- `exit.map1.2149.s` authoritatively supplies `borrow skiff`, `go skiff`, and `row skiff` to `room.map1.2335`.",
         "- The decoded route continues south to Silvermere dock `room.map1.296`, and north through the pier back to Newhaven dock `room.map1.2149`.",
-        "- The local dispatcher regression proves all three crossing aliases and the two-way return path. NPC ASK presentation/effects remain unbound; WCC text payload IDs near root 77 do not match the MDB graph and must not be joined by number.",
+        "- The local dispatcher regression proves all three crossing aliases and the two-way return path. Ferryman NPC keywords resolve through the same decoded dialogue executor used world-wide.",
         "- A disposable real-character regression crosses by `borrow skiff`, autosaves, reloads, and reconnects in `room.map1.2335`; repository saves are not touched.", "",
         "## Interpretation", "",
-        "- `decoded_effect_not_executable` is a source-backed command whose full effects have not been shown safe in the live room-script executor; it is intentionally omitted from ROOMCOMMANDS.",
-        "- `dialogue_keyword_not_live_bound` is not a missing room action. The live ASK dispatcher currently owns only the two verified ability routes.",
-        "- `dialogue_zero_target_sentinel` preserves an explicit decoded no-target branch; it is not a missing textblock.",
+        "- Every decoded room action whose operations belong to the exhausted 42-opcode vocabulary is projected through the production executor.",
+        "- Every nonzero NPC keyword target resolves through NPC-specific ASK; ability-acquisition routes retain their specialized authority.",
+        "- `dialogue_zero_target_sentinel` is an explicit decoded no-target branch and executes as a silent no-op.",
         "- The empty text gate `exit.map11.40.w` is a real source gap (`Text: `), not an alias to guess.",
-        "- The current ROOMCOMMANDS projection lists gates, materialized room objects, executable room scripts, and live NPC-specific ability ASK routes. The client runs a selected entry through the ordinary server command path.",
+        "- ROOMCOMMANDS lists gates, materialized room objects, executable room scripts, and live NPC-specific ASK routes. The client runs a selected entry through the ordinary server command path.",
     ]
     md_path = args.report_dir / "classic_room_command_audit.md"
     md_path.write_text("\n".join(report) + "\n", encoding="utf-8")

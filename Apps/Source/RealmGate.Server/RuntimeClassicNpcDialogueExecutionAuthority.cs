@@ -24,6 +24,17 @@ public sealed class RuntimeClassicNpcDialogueExecutionAuthority
     public static RuntimeClassicNpcDialogueExecutionAuthority Load(string projectRoot) =>
         new(RuntimeClassicNpcDialogueAuthority.Load(projectRoot), RuntimeClassicTextblockGraphAuthority.Load(projectRoot));
 
+    public static RuntimeClassicNpcDialogueExecutionAuthority Load(string projectRoot, string worldId) =>
+        new(RuntimeClassicNpcDialogueAuthority.Load(projectRoot, worldId), RuntimeClassicTextblockGraphAuthority.Load(projectRoot, worldId));
+
+    public IReadOnlyList<string> GetKeywords(int npcId) => _dialogue.GetKeywords(npcId);
+
+    public IReadOnlyList<RuntimeClassicNpcDialogueRoot> GetRoots(int npcId) => _dialogue.GetRoots(npcId);
+
+    public IReadOnlyList<RuntimeClassicNpcDialogueRoot> AllRoots => _dialogue.AllRoots;
+
+    public bool HasDirectResponse(int npcId) => _dialogue.HasDirectResponse(npcId);
+
     public bool TryResolve(RuntimeClassicNpcDialogueExecutionRequest request, out RuntimeClassicNpcDialogueExecutionResolution resolution)
     {
         resolution = null!;

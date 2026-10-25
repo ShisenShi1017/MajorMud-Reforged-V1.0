@@ -21,11 +21,14 @@ public sealed class RuntimeClassicNpcDialogueAuthority
         _rootsByNpc = rootsByNpc;
     }
 
-    public static RuntimeClassicNpcDialogueAuthority Load(string projectRoot)
+    public static RuntimeClassicNpcDialogueAuthority Load(string projectRoot) => Load(projectRoot, "Classic");
+
+    public static RuntimeClassicNpcDialogueAuthority Load(string projectRoot, string worldId)
     {
-        var path = Path.Combine(projectRoot, "Data", "Classic", "npc_dialogue.json");
-        if (!File.Exists(path)) throw new FileNotFoundException("Generated Classic NPC dialogue ownership catalog is required.", path);
-        var graph = RuntimeClassicTextblockGraphAuthority.Load(projectRoot);
+        var resolved = ServerDataRootResolver.Resolve(projectRoot, worldId);
+        var path = Path.Combine(resolved.DataRoot, "npc_dialogue.json");
+        if (!File.Exists(path)) throw new FileNotFoundException($"Generated world '{resolved.WorldId}' NPC dialogue ownership catalog is required.", path);
+        var graph = RuntimeClassicTextblockGraphAuthority.Load(projectRoot, resolved.WorldId);
         var records = RuntimeChunkedClassicCatalog.LoadRecords(path);
 
         var exactPairs = new HashSet<(int NpcId, int RootId)>();
@@ -50,6 +53,17 @@ public sealed class RuntimeClassicNpcDialogueAuthority
     public int LinkCount => _rootsByNpc.Values.Sum(x => x.Count);
     public IReadOnlyList<RuntimeClassicNpcDialogueRoot> AllRoots => _rootsByNpc.Values.SelectMany(x => x).OrderBy(x => x.NpcId).ThenBy(x => x.RootTextblockId).ToArray();
     public IReadOnlyList<RuntimeClassicNpcDialogueRoot> GetRoots(int npcId) => _rootsByNpc.TryGetValue(npcId, out var roots) ? roots : Array.Empty<RuntimeClassicNpcDialogueRoot>();
+
+    public IReadOnlyList<string> GetKeywords(int npcId) => GetRoots(npcId)
+        .SelectMany(root => _graph.Require(root.RootTextblockId).Commands)
+        .Select(command => command.Keyword)
+        .Where(keyword => !string.IsNullOrWhiteSpace(keyword))
+        .Distinct(StringComparer.OrdinalIgnoreCase)
+        .OrderBy(keyword => keyword, StringComparer.OrdinalIgnoreCase)
+        .ToArray();
+
+    public bool HasDirectResponse(int npcId) => GetRoots(npcId)
+        .Any(root => _graph.Require(root.RootTextblockId).Commands.Count == 0);
 
     public bool TryResolve(int npcId, string input, out RuntimeClassicNpcDialogueMatch match)
     {

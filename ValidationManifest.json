@@ -17,8 +17,8 @@
     },
     "validator": {
       "status": "PASS",
-      "passed": 28,
-      "total": 28
+      "passed": 29,
+      "total": 29
     },
     "clientSmokes": {
       "status": "PASS",
@@ -47,13 +47,13 @@
   ],
   "latestLocalVerification": {
     "date": "2026-10-24",
-    "currentHealthValidator": "PASS 28/28; full solution build 0 warnings and 0 errors",
+    "currentHealthValidator": "PASS 29/29; full solution build 0 warnings and 0 errors",
     "crossPlatformClientCore": "PASS 72/72 after local Character/item-planning slice",
     "avaloniaPublishes": ["win-x64", "linux-x64"],
     "nativeLinuxGui": "not tested",
     "githubActionsForLocalBatch": "not run",
     "characterSlice": "Avalonia Release build succeeded with 2 known analyzer-version warnings; core/server smokes passed; 72/72 client-core checks passed. The later full validator passed after Classic room-command recovery; preview publishes were not rerun.",
-    "classicRoomCommands": "PASS 3864/3864; 249 text-command exits; 675 gate aliases; 831 object aliases; 437 executable room-script aliases; Ferryman travel and persistence verified"
+    "classicRoomCommands": "PASS 7679/7679; 249 text-command exits; 675 gate aliases; 831 object aliases; 1739 executable room-action aliases; 1225 NPC keyword routes; 37 direct GREET ownership routes across 19 source roots; PRICE debit, native CAST, Ferryman return travel, and persistence verified"
   },
   "notYetFieldCertified": [
     "External non-RealmGate BBS MDB overlay/import with a real board database",
@@ -66,6 +66,6 @@
     "Run the full current-health validator when runtime/data/validator authority changes.",
     "Generated world manifests must declare standalone_runtime and runtime_data_is_complete true, live_classic_fallback_allowed false, and a generation-time base_world_id for derived worlds.",
     "RealmGate release branding is embedded, but the current local executable remains unsigned until a trusted certificate is supplied."
-    ,"Post-closure runtime hardening, selected-world inventory/assistant protocols, the Character/item-planning slice, and Classic room-command recovery passed the latest local 28/28 health validator. The accepted WPF client smoke baseline remains 14/14; character smoke covers LIGHT equip and permanent account-slot-safe deletion."
+    ,"Post-closure runtime hardening, selected-world inventory/assistant protocols, the Character/item-planning slice, and complete Classic room/dialogue recovery passed the latest local 29/29 health validator. The accepted WPF client smoke baseline remains 14/14; character smoke covers LIGHT equip and permanent account-slot-safe deletion."
   ]
 }

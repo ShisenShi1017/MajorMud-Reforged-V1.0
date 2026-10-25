@@ -40,7 +40,8 @@ try
     {
         var shown = commands.RootElement.EnumerateArray().Select(command => command.GetProperty("Command").GetString()).ToHashSet(StringComparer.OrdinalIgnoreCase);
         Require(crossingGate.Commands.All(shown.Contains), "ferryman-aliases-visible-in-client-roomcommands");
-        Require(!shown.Contains("borrow") && !shown.Contains("silvermere"), "dialogue-keywords-not-promoted-to-room-actions");
+        Require(shown.Contains("ask npc.81 borrow") && shown.Contains("ask npc.81 silvermere"),
+            "ferryman-dialogue-visible-as-npc-specific-ask-actions");
     }
 
     foreach (var alias in crossingGate.Commands)
@@ -59,6 +60,15 @@ try
     var account = characters.GetOrCreateAccount("RoomCommandAudit");
     var catalog = characters.GetCatalog(classic.Id);
     var character = characters.CreateCharacter(account, world, "FerryAudit", "Male", catalog.Races.First().Id, catalog.Classes.First().Id);
+    var pricedState = RuntimeBundleCInventoryAuthority.WriteCurrency(
+        character.ItemState ?? new RuntimeItemState([], 0, new Dictionary<string, string>(), []),
+        new RuntimeClassicInventoryCurrency(0, 0, 0, 0, 1000));
+    var priceContext = new RuntimeQuestDialogueContext(
+        character with { ItemState = pricedState },
+        RuntimeItemCatalog.Load(root, classic.Id));
+    priceContext.DebitCopper(375);
+    Require(RuntimeBundleCInventoryAuthority.ReadCurrency(priceContext.ToCharacterRecord().ItemState!).CopperValue == 625,
+        "decoded-price-debit-persists-physical-denominations");
     var persistentSession = new RuntimeSessionManager().CreateCharacterSession("ferryman-persistence", world, character);
     persistentSession.MoveToWorld(world, newhaven, "ferryman-persistence-setup");
     _ = dispatcher.Dispatch(persistentSession, "borrow skiff");
@@ -135,12 +145,35 @@ try
     }
     session.MoveToWorld(world, newhaven, "wrong-room-admission-audit");
     Require(!facade.IsExactContextualCommand(session, RuntimeCommand.Parse("hurl egg")), "room-action-unavailable-outside-source-room");
+
+    var dialogueExecution = RuntimeClassicNpcDialogueExecutionAuthority.Load(root, classic.Id);
+    var dispatcherContracts = new RuntimeClassicNarrativeOperationDispatcher().All;
+    Require(dispatcherContracts.All(contract => RuntimeLiveGameplayFacade.IsDecodedNarrativeOpcodeLiveBound(contract.Opcode)),
+        "all-decoded-opcode-contracts-have-production-live-bindings");
+    var dialogueRoutes = dialogueExecution.AllRoots.SelectMany(link => graph.Require(link.RootTextblockId).Commands
+            .Where(command => command.TargetTextblockId > 0)
+            .Select(command => new { link.NpcId, link.RootTextblockId, command.Keyword, command.TargetTextblockId }))
+        .ToArray();
+    foreach (var route in dialogueRoutes)
+        Require(dialogueExecution.TryResolve(new(route.NpcId, route.Keyword), out var resolved)
+                && resolved.Match.RootTextblockId == route.RootTextblockId
+                && resolved.Match.TargetTextblockId == route.TargetTextblockId,
+            $"npc-dialogue-live-plan:{route.NpcId}:{route.RootTextblockId}:{route.Keyword}");
+    var directDialogueRoutes = dialogueExecution.AllRoots
+        .Where(link => graph.Require(link.RootTextblockId).Commands.Count == 0)
+        .ToArray();
+    Require(directDialogueRoutes.Select(route => route.RootTextblockId).Distinct().Count() == 19,
+        "all-19-source-authorized-direct-dialogue-roots-covered");
+    foreach (var route in directDialogueRoutes)
+        Require(dialogueExecution.TryResolve(new(route.NpcId, string.Empty), out var resolved)
+                && resolved.Match.RootTextblockId == route.RootTextblockId,
+            $"npc-dialogue-direct-greet-plan:{route.NpcId}:{route.RootTextblockId}");
     var runtimeIndex = args.Length > 1
         ? Path.GetFullPath(args[1])
         : Path.Combine(Path.GetTempPath(), "realmgate-room-command-runtime-index.json");
     var gateAliases = gates.SelectMany(gate => gate.Commands.Select(command => new { RoomId = gate.RoomId, SourceId = gate.ExitId, Command = command })).ToArray();
-    File.WriteAllText(runtimeIndex, JsonSerializer.Serialize(new { SupportedRoomActions = supportedActions, GateAliases = gateAliases, ObjectCommands = objectCommands }));
-    Console.WriteLine($"PASS {checks} checks; text gates={textGates.Length}; gate aliases={textGates.Sum(gate => gate.Commands.Count)}; object aliases={objectCommands.Length}; action rooms={actionRooms.Count}; executable action aliases={supportedActions.Length}");
+    File.WriteAllText(runtimeIndex, JsonSerializer.Serialize(new { SupportedRoomActions = supportedActions, GateAliases = gateAliases, ObjectCommands = objectCommands, DialogueRoutes = dialogueRoutes, DirectDialogueRoutes = directDialogueRoutes }));
+    Console.WriteLine($"PASS {checks} checks; text gates={textGates.Length}; gate aliases={textGates.Sum(gate => gate.Commands.Count)}; object aliases={objectCommands.Length}; action rooms={actionRooms.Count}; executable action aliases={supportedActions.Length}; dialogue routes={dialogueRoutes.Length}; direct dialogue routes={directDialogueRoutes.Length}");
     return 0;
 }
 finally

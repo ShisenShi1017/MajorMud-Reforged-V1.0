@@ -68,7 +68,11 @@ public sealed partial class RuntimeLiveGameplayFacade
             return true;
         }
 
-        return false;
+        result = ExecuteDecodedNarrativePlans(
+            session,
+            plans,
+            $"classic-room-textblock:{plans[0].RootTextblockId}:{plans[0].MatchedLine}");
+        return true;
     }
 
     private bool CanExecuteClassicRoomAction(string worldId, int mapNumber, int roomNumber, string entered)
@@ -84,6 +88,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         }
         if (plans.Count == 0) return false;
         if (plans.All(IsRecoveredGangHouseServicePlan)) return true;
+        if (plans.All(IsFullyDecodedNarrativePlan)) return true;
         if (plans.Count != 1) return false;
         var plan = plans[0];
         return IsRecoveredSimpleHealerPlan(plan)
@@ -93,6 +98,19 @@ public sealed partial class RuntimeLiveGameplayFacade
             || IsRecoveredDarkDruidFieldPlan(plan)
             || IsRecoveredMap8StatueSummonPlan(plan)
             || IsRecoveredMap16LatchRewardPlan(plan);
+    }
+
+    private static bool IsFullyDecodedNarrativePlan(RuntimeClassicTextblockExecutionPlan plan)
+    {
+        var dispatcher = new RuntimeClassicNarrativeOperationDispatcher();
+        foreach (var operation in plan.Operations)
+        {
+            if (!operation.Status.Equals("decoded", StringComparison.OrdinalIgnoreCase)) return false;
+            if (!IsDecodedNarrativeOpcodeLiveBound(operation.Opcode)) return false;
+            try { _ = dispatcher.Classify(operation); }
+            catch (InvalidOperationException) { return false; }
+        }
+        return true;
     }
 
     public IReadOnlyList<RuntimeClassicRoomActionCommand> GetExecutableRoomActionCommands(string worldId, int mapNumber, int roomNumber) =>

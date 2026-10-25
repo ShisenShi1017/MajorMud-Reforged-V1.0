@@ -15,6 +15,7 @@ public sealed partial class RuntimeLiveGameplayFacade
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeNpcAttackArgumentRecoveryCatalog> _npcAttackArgumentsByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicTextblockGraphAuthority> _textblockGraphsByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicAbilityAcquisitionAuthority> _abilityAcquisitionsByWorld = new(StringComparer.OrdinalIgnoreCase);
+    private readonly System.Collections.Concurrent.ConcurrentDictionary<string, RuntimeClassicNpcDialogueExecutionAuthority> _npcDialogueByWorld = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, RuntimeGameplayCompletionStateStore> _gameplayStores = new(StringComparer.OrdinalIgnoreCase);
     private readonly object _gameplayStoreGate = new();
 
@@ -53,6 +54,9 @@ public sealed partial class RuntimeLiveGameplayFacade
 
     private RuntimeClassicAbilityAcquisitionAuthority AbilityAcquisitions(string worldId) =>
         _abilityAcquisitionsByWorld.GetOrAdd(worldId, id => RuntimeClassicAbilityAcquisitionAuthority.Load(_characters.ProjectRoot, id));
+
+    private RuntimeClassicNpcDialogueExecutionAuthority NpcDialogue(string worldId) =>
+        _npcDialogueByWorld.GetOrAdd(worldId, id => RuntimeClassicNpcDialogueExecutionAuthority.Load(_characters.ProjectRoot, id));
 
     public string ExecuteMajorMudPlusCommand(RuntimeSession session, RuntimeCommand command) =>
         _majorMudPlus.Execute(session, command, Living(session));

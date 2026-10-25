@@ -218,6 +218,7 @@ public sealed class RuntimeQuestDialogueContext
     private readonly RuntimeItemCatalog _items;
     private readonly RuntimeItemEngine _itemEngine;
     private readonly RuntimeItemState _initialItemState;
+    private readonly Dictionary<string, string> _activeItemState;
     private readonly Dictionary<string, string> _conditions;
     private readonly Dictionary<int, int> _abilities;
     private readonly RuntimeQuestWorldIntentValidator? _worldIntents;
@@ -232,6 +233,7 @@ public sealed class RuntimeQuestDialogueContext
             .Where(pair => pair.Key.StartsWith("quest.ability.", StringComparison.OrdinalIgnoreCase) && int.TryParse(pair.Key["quest.ability.".Length..], out _) && int.TryParse(pair.Value, out _))
             .ToDictionary(pair => int.Parse(pair.Key["quest.ability.".Length..], CultureInfo.InvariantCulture), pair => int.Parse(pair.Value, CultureInfo.InvariantCulture));
         _initialItemState = character.ItemState ?? new RuntimeItemState(Array.Empty<RuntimeItemInstance>(), 0, new Dictionary<string, string>(), Array.Empty<RuntimeCorpseState>());
+        _activeItemState = new Dictionary<string, string>(_initialItemState.ActiveItemState ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
         _itemEngine = new RuntimeItemEngine(items, _initialItemState.Items, _initialItemState.Corpses);
         Gold = _initialItemState.Gold;
         Experience = character.Experience;
@@ -269,6 +271,44 @@ public sealed class RuntimeQuestDialogueContext
     public bool FailAbility(int abilityId) => RuntimeCharacterAbilityValues.Fail(_abilities, abilityId);
     public void GiveAbility(int abilityId, int value) => RuntimeCharacterAbilityValues.Give(_abilities, abilityId, value);
     public int AddAbility(int abilityId, int delta) => RuntimeCharacterAbilityValues.Add(_abilities, abilityId, delta);
+    public void RemoveAbility(int abilityId) => _abilities.Remove(abilityId);
+    public void AddExperience(long amount) => Experience = checked(Experience + amount);
+    public void AddAlignment(int amount) => Alignment = checked(Alignment + amount);
+    public void DebitCopper(long amount)
+    {
+        if (amount < 0) throw new ArgumentOutOfRangeException(nameof(amount));
+        var state = _itemEngine.Snapshot(Gold, _activeItemState);
+        var debited = RuntimeBundleCEconomyAuthority.DebitCopperValue(state, amount);
+        _itemEngine.RestoreSnapshot(debited);
+        ReplaceActiveItemState(debited.ActiveItemState);
+        Gold = debited.Gold;
+    }
+    public void CreditCoins(long quantity, string denomination)
+    {
+        if (quantity < 0) throw new ArgumentOutOfRangeException(nameof(quantity));
+        var amount = (denomination ?? string.Empty).Trim().ToUpperInvariant() switch
+        {
+            "R" => new RuntimeClassicRoomCurrencyBalance(quantity, 0, 0, 0, 0),
+            "P" => new RuntimeClassicRoomCurrencyBalance(0, quantity, 0, 0, 0),
+            "G" => new RuntimeClassicRoomCurrencyBalance(0, 0, quantity, 0, 0),
+            "S" => new RuntimeClassicRoomCurrencyBalance(0, 0, 0, quantity, 0),
+            "C" or "" => new RuntimeClassicRoomCurrencyBalance(0, 0, 0, 0, quantity),
+            _ => throw new InvalidOperationException($"Unknown Classic coin denomination '{denomination}'.")
+        };
+        var state = _itemEngine.Snapshot(Gold, _activeItemState);
+        var credited = RuntimeBundleCInventoryAuthority.Credit(state, amount);
+        _itemEngine.RestoreSnapshot(credited);
+        ReplaceActiveItemState(credited.ActiveItemState);
+        Gold = credited.Gold;
+    }
+    public void ClearItem(int itemId)
+    {
+        if (itemId <= 0) return;
+        foreach (var item in _itemEngine.Inventory(Character.CharacterId)
+                     .Where(item => item.CanonicalItemId.Equals($"item.{itemId}", StringComparison.OrdinalIgnoreCase))
+                     .ToArray())
+            _itemEngine.Remove(item.InstanceId);
+    }
     public void GiveItem(int itemId) => _itemEngine.Create($"item.{itemId}", RuntimeItemLocations.Character, Character.CharacterId, ownerId: Character.CharacterId);
     public void TakeItem(int itemId)
     {
@@ -278,7 +318,7 @@ public sealed class RuntimeQuestDialogueContext
     }
 
     public RuntimeQuestDialogueContextSnapshot Capture() =>
-        new(new Dictionary<int, int>(_abilities), new Dictionary<string, string>(_conditions), _itemEngine.Snapshot(Gold, _initialItemState.ActiveItemState), Experience, Alignment);
+        new(new Dictionary<int, int>(_abilities), new Dictionary<string, string>(_conditions), _itemEngine.Snapshot(Gold, _activeItemState), Experience, Alignment);
 
     public void Restore(RuntimeQuestDialogueContextSnapshot snapshot)
     {
@@ -287,6 +327,8 @@ public sealed class RuntimeQuestDialogueContext
         _conditions.Clear();
         foreach (var pair in snapshot.Conditions) _conditions[pair.Key] = pair.Value;
         _itemEngine.RestoreSnapshot(snapshot.ItemState);
+        ReplaceActiveItemState(snapshot.ItemState.ActiveItemState);
+        Gold = snapshot.ItemState.Gold;
         Experience = snapshot.Experience;
         Alignment = snapshot.Alignment;
     }
@@ -295,8 +337,14 @@ public sealed class RuntimeQuestDialogueContext
     {
         RuntimeCharacterAbilityValues.Persist(_abilities, _conditions);
         _conditions["alignment"] = Alignment.ToString(CultureInfo.InvariantCulture);
-        var itemState = _itemEngine.Snapshot(Gold, _initialItemState.ActiveItemState);
+        var itemState = _itemEngine.Snapshot(Gold, _activeItemState);
         return Character with { Experience = Experience, Conditions = _conditions, ItemState = itemState, UpdatedAtUtc = DateTimeOffset.UtcNow };
+    }
+
+    private void ReplaceActiveItemState(IReadOnlyDictionary<string, string>? values)
+    {
+        _activeItemState.Clear();
+        foreach (var pair in values ?? new Dictionary<string, string>()) _activeItemState[pair.Key] = pair.Value;
     }
 
     private static int ReadConditionInt(IReadOnlyDictionary<string, string> values, string key, int fallback) =>

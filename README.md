@@ -8,14 +8,14 @@ RealmGate is a standalone MajorMUD-compatible game platform built around an auth
 - Database Version: `0010`
 - Milestone: **CodeUpdate0142 - RealmGate Client and Character Integration**
 - Classic parity ledger: **200 PASS / 0 STRONG / 0 UNKNOWN**
-- Core/current-health validator: **28/28 PASS**
+- Core/current-health validator: **29/29 PASS**
 - RealmGate client regression smokes: **14/14 PASS**
 - Cross-platform client-core regression: **62/62 PASS**
-- Latest local Avalonia Character/item-planning slice: **72/72 client-core checks and core/server smokes**; Avalonia Release build succeeded with two known analyzer-version warnings. The subsequent Classic room-command recovery passed the complete **28/28** local validator with a clean solution build. Windows/Linux preview publishes preceded these slices. Native Linux GUI use and pushed CI remain unverified.
+- Latest local Avalonia Character/item-planning slice: **72/72 client-core checks and core/server smokes**; Avalonia Release build succeeded with two known analyzer-version warnings. The subsequent complete Classic room/dialogue recovery passed the **29/29** local validator with a clean solution build. Windows/Linux preview publishes preceded these slices. Native Linux GUI use and pushed CI remain unverified.
 - RealmGate app Release build and full solution build: **0 warnings / 0 errors** in the verified CodeUpdate0142 closure
 - GitHub Classic parity closure: **PASS** on the pushed CodeUpdate0142 baseline.
 - Post-closure local runtime hardening: **PASS** — per-world/session fault containment, Host Sessions/Logs tabs, world-scoped character deletion, and generated LIGHT equipment behavior.
-- Classic room-command recovery: **PASS** — 3,864 focused assertions cover 675 text-gate aliases, 831 object aliases, 437 executable room-script aliases, Ferryman two-way travel, client visibility, and save/reconnect behavior.
+- Classic room/dialogue recovery: **PASS** — 7,679 focused assertions cover 675 text-gate aliases, 831 object aliases, all 1,739 decoded room-action aliases, 1,225 NPC keyword routes, and 37 direct GREET ownership routes across 19 no-keyword roots. PRICE debit, native CAST execution, Ferryman two-way travel, client visibility, and save/reconnect behavior are verified.
 
 The detailed current state is maintained in `PROJECT_STATUS.md`.
 

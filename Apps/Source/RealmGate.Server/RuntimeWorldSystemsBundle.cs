@@ -280,26 +280,48 @@ public sealed partial class RuntimeLiveGameplayFacade
             throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
         try
         {
+            var npcId = ParseLegacyId(npc.NpcId);
             var authority = AbilityAcquisitions(session.World.Definition.Id);
-            if (!authority.HasRoute(ParseLegacyId(npc.NpcId), keyword))
+            if (authority.HasRoute(npcId, keyword))
+            {
+                var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
+                var context = new RuntimeQuestDialogueContext(character, items);
+                var result = authority.Execute(npcId, keyword, context);
+                if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, result.Character, out var evilActionBlock))
+                {
+                    CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "blocked-evil-action");
+                    return evilActionBlock;
+                }
+                _characters.SaveCharacter(result.Character);
+                AwardCommittedGangExperience(character, result.Character);
+                if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"ability.{result.AbilityId}"))
+                    throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
+                var lines = result.Lines.Count == 0 ? string.Empty : Environment.NewLine + string.Join(Environment.NewLine, result.Lines);
+                return $"{npc.Name}:{lines}";
+            }
+
+            var dialogue = NpcDialogue(session.World.Definition.Id);
+            if (!dialogue.TryResolve(new(npcId, keyword), out var resolution))
             {
                 CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "ask-keyword-unresolved");
                 return $"{npc.Name} does not respond to that question.";
             }
-            var items = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
-            var context = new RuntimeQuestDialogueContext(character, items);
-            var result = authority.Execute(ParseLegacyId(npc.NpcId), keyword, context);
-            if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, result.Character, out var evilActionBlock))
+
+            var output = ExecuteDecodedNarrativePlans(
+                session,
+                [resolution.Plan],
+                $"classic-npc-dialogue:npc.{npcId}:textblock.{resolution.Plan.MatchedTextblockId}");
+            var after = _characters.LoadCharacter(character.CharacterId) ?? character;
+            if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, after, out var blocked))
             {
+                _characters.SaveCharacter(character, "classic-npc-dialogue:evil-action-rollback");
                 CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "blocked-evil-action");
-                return evilActionBlock;
+                return blocked;
             }
-            _characters.SaveCharacter(result.Character);
-            AwardCommittedGangExperience(character, result.Character);
-            if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"ability.{result.AbilityId}"))
+            AwardCommittedGangExperience(character, after);
+            if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"textblock.{resolution.Plan.MatchedTextblockId}"))
                 throw new InvalidOperationException("NPC dialogue completion did not match the admitted request.");
-            var lines = result.Lines.Count == 0 ? string.Empty : Environment.NewLine + string.Join(Environment.NewLine, result.Lines);
-            return $"{npc.Name}:{lines}";
+            return string.IsNullOrWhiteSpace(output) ? string.Empty : $"{npc.Name}:{Environment.NewLine}{output}";
         }
         catch
         {
@@ -339,6 +361,34 @@ public sealed partial class RuntimeLiveGameplayFacade
         var admission = AdmitLivingNpcDialogue(session, npc, character.CharacterId);
         if (!admission.Admitted || string.IsNullOrWhiteSpace(admission.RequestId))
             throw new InvalidOperationException($"NPC dialogue admission failed: {admission.Reason}.");
+        var nativeDialogue = NpcDialogue(session.World.Definition.Id);
+        var nativeNpcId = ParseLegacyId(npc.NpcId);
+        if (nativeDialogue.TryResolve(new(nativeNpcId, string.Empty), out var directResolution))
+        {
+            try
+            {
+                var output = ExecuteDecodedNarrativePlans(
+                    session,
+                    [directResolution.Plan],
+                    $"classic-npc-greeting:npc.{nativeNpcId}:textblock.{directResolution.Plan.MatchedTextblockId}");
+                var after = _characters.LoadCharacter(character.CharacterId) ?? character;
+                if (RuntimeClassicWarningAuthority.TryResolvePositiveEvilPointActionBlock(character, after, out var blocked))
+                {
+                    _characters.SaveCharacter(character, "classic-npc-greeting:evil-action-rollback");
+                    CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "blocked-evil-action");
+                    return blocked;
+                }
+                AwardCommittedGangExperience(character, after);
+                if (!CompleteLivingNpcDialogue(session, npc, admission.RequestId, true, $"textblock.{directResolution.Plan.MatchedTextblockId}"))
+                    throw new InvalidOperationException("NPC greeting completion did not match the admitted request.");
+                return string.IsNullOrWhiteSpace(output) ? string.Empty : $"{npc.Name}:{Environment.NewLine}{output}";
+            }
+            catch
+            {
+                CompleteLivingNpcDialogue(session, npc, admission.RequestId, false, "native-greeting-execution-failed");
+                throw;
+            }
+        }
         var catalog = session.World.NarrativeCatalog.DialogueCatalog;
         var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, session.World.Definition.Id);
         var worldIntents = RuntimeQuestWorldIntentValidator.Load(_characters.ProjectRoot, session.World.Definition.Id);

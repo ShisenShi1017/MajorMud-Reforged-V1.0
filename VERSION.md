@@ -5,7 +5,7 @@
 - Current Database Version: `0010`
 - Milestone: `CodeUpdate0142 - RealmGate Client and Character Integration`
 - Classic Parity: `200 PASS / 0 STRONG / 0 UNKNOWN`
-- Current-Health Validator: `28/28 PASS`
+- Current-Health Validator: `29/29 PASS`
 - RealmGate Client Smokes: `14/14 PASS`
 - Cross-Platform Client Core: `62/62 PASS`
 - Release Build Baseline: `RealmGate app Release build and full solution — 0 warnings / 0 errors` in the current local verification
@@ -15,11 +15,11 @@
 - Generated World Contract: `standalone and runtime-complete; live Classic fallback forbidden`
 - Decode Exhaustion: `49/49 families; 2,332/2,332 fields; 0 unresolved`
 - Post-Closure Runtime Hardening: `world/session fault containment; Host sessions/logs; realm-scoped character deletion; LIGHT equipment readiness`
-- Latest Local Verification: `28/28 current-health validator; solution build 0 warnings / 0 errors; Classic room-command regression 3,864/3,864; 72/72 client-core Character/item-planning regression retained. Windows/Linux preview publishes predate the room-command slice; native Linux GUI untested.`
+- Latest Local Verification: `29/29 current-health validator; solution build 0 warnings / 0 errors; Classic room/dialogue regression 7,679/7,679 with all 1,739 room aliases and 1,225 NPC keyword routes; 72/72 client-core Character/item-planning regression retained. Windows/Linux preview publishes predate the room/dialogue slice; native Linux GUI untested.`
 
 ## Numbering
 
-Local Classic room-command recovery verification passed on 2026-10-24 Pacific / 2026-10-25 UTC. The accepted CodeUpdate0142 identity remains unchanged; this subsequent local work has not been pushed or checked by GitHub Actions.
+Local complete Classic room/dialogue recovery verification passed on 2026-10-25. The accepted CodeUpdate0142 identity remains unchanged; this subsequent local work has not been pushed or checked by GitHub Actions.
 
 `CodeUpdate0142` is the repository update number.
 

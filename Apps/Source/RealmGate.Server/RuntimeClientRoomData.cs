@@ -126,10 +126,14 @@ public sealed partial class RuntimeLiveGameplayFacade
             .Select(action => new RuntimeClientRoomCommandProjection(
                 action.Command, $"textblock.{action.TextblockId}", "room_action", "Decoded room script"));
         var roomNpcCommands = living.SelectMany(npc =>
-            AbilityAcquisitions(session.World.Definition.Id).GetKeywords(ParseLegacyId(npc.NpcId))
+            NpcDialogue(session.World.Definition.Id).GetKeywords(ParseLegacyId(npc.NpcId))
                 .Select(keyword => new RuntimeClientRoomCommandProjection(
-                    $"ask {npc.NpcId} {keyword}", npc.NpcId, "npc_dialogue", "Decoded ability route")));
-        return roomObjectCommands.Concat(roomGateCommands).Concat(roomScriptCommands).Concat(roomNpcCommands)
+                    $"ask {npc.NpcId} {keyword}", npc.NpcId, "npc_dialogue", "Decoded native dialogue route")));
+        var roomNpcGreetings = living
+            .Where(npc => NpcDialogue(session.World.Definition.Id).HasDirectResponse(ParseLegacyId(npc.NpcId)))
+            .Select(npc => new RuntimeClientRoomCommandProjection(
+                $"greet {npc.NpcId}", npc.NpcId, "npc_dialogue", "Decoded direct greeting route"));
+        return roomObjectCommands.Concat(roomGateCommands).Concat(roomScriptCommands).Concat(roomNpcCommands).Concat(roomNpcGreetings)
             .GroupBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
             .OrderBy(entry => entry.Command, StringComparer.OrdinalIgnoreCase)
