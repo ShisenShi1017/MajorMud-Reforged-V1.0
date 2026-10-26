@@ -169,7 +169,7 @@ public sealed class RuntimeWccSysopService
             "status" => ExecuteStatus(session, arguments),
             "map" => ExecuteMap(session),
             "god" => ExecuteGod(arguments),
-            "list" => ExecuteList(arguments, living, character.WorldId),
+            "list" => ExecuteList(arguments, living, character.WorldId, session.CurrentRoom.Id),
             "report" => ExecuteReport(arguments),
             "lightning" => ExecuteLightning(session, definition, arguments),
             "disband" => ExecuteGangCommand("disband", arguments),
@@ -274,9 +274,9 @@ public sealed class RuntimeWccSysopService
     private static string ExecuteMap(RuntimeSession session) =>
         $"Map={session.CurrentRoom.MapId}; Room={session.CurrentRoom.RoomNumber}; Id={session.CurrentRoom.Id}; Name={session.CurrentRoom.Name}";
 
-    private string ExecuteList(IReadOnlyList<string> arguments, RuntimeLivingWorldService living, string worldId)
+    private string ExecuteList(IReadOnlyList<string> arguments, RuntimeLivingWorldService living, string worldId, string currentRoomId)
     {
-        if (arguments.Count == 0) return "Usage: SYSOP LIST USERS|EVIL|GANG <gangname>|LIMITED";
+        if (arguments.Count == 0) return "Usage: SYSOP LIST USERS|EVIL|GANG <gangname>|LIMITED|NPCS";
         if (!arguments[0].Equals("users", StringComparison.OrdinalIgnoreCase))
         {
             if (arguments[0].Equals("evil", StringComparison.OrdinalIgnoreCase))
@@ -297,7 +297,8 @@ public sealed class RuntimeWccSysopService
             {
                 "gang" => RenderGangRoster(arguments.Skip(1).ToArray()),
                 "limited" => RenderLimitedItems(living, worldId),
-                _ => "Usage: SYSOP LIST USERS|EVIL|GANG <gangname>|LIMITED"
+                "npcs" => RenderNpcOrigins(living, currentRoomId),
+                _ => "Usage: SYSOP LIST USERS|EVIL|GANG <gangname>|LIMITED|NPCS"
             };
         }
 
@@ -313,6 +314,22 @@ public sealed class RuntimeWccSysopService
             return $"{target.Actor.DisplayName}; account={accountId}; character={target.Actor.Id}; map={target.CurrentRoom.MapId}; room={target.CurrentRoom.RoomNumber}; roomId={target.CurrentRoom.Id}";
         }).ToList();
         lines.Add($"Users in game: {active.Length}.");
+        return string.Join(Environment.NewLine, lines);
+    }
+
+    // Read-only diagnostic for map-qualified NPC placement versus native roaming.
+    // No spawn, movement, reset, or persistence state is modified.
+    private static string RenderNpcOrigins(RuntimeLivingWorldService living, string roomId)
+    {
+        var npcs = living.InspectNpcs(new RuntimeNpcInspectionQuery(RoomId: roomId, IncludeDead: false));
+        if (npcs.Count == 0) return $"No living NPCs in {roomId}.";
+        var lines = npcs.Take(30).Select(npc =>
+        {
+            npc.Metadata.TryGetValue("source_room_reference", out var source);
+            npc.Metadata.TryGetValue("classic_last_medium_move_at_utc", out var lastRoam);
+            return $"{npc.Name}; npc={npc.NpcId}; instance={npc.InstanceId}; current={npc.RoomId}; home={npc.HomeRoomId}; source={source ?? "unknown"}; spawn={npc.SpawnId}; lastRoam={lastRoam ?? "none"}";
+        }).ToList();
+        lines.Add($"NPCs in {roomId}: {npcs.Count} (showing first {Math.Min(30, npcs.Count)}).");
         return string.Join(Environment.NewLine, lines);
     }
 
