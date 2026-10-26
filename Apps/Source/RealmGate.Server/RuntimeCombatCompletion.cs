@@ -192,7 +192,7 @@ public sealed partial class RuntimeLiveGameplayFacade
         var awardedXp = distribution.Awards.GetValueOrDefault(before.CharacterId);
         var moneyStatus = string.IsNullOrWhiteSpace(currencyText) ? string.Empty : $" {currencyText} fall to the ground.";
         var lootStatus = dropped.Count == 0 ? string.Empty : " It also drops " + string.Join(", ", dropped) + ".";
-        return $"You gain {awardedXp} experience.\n*Combat Off*{moneyStatus}{lootStatus}";
+        return $"You gain {awardedXp} experience.{moneyStatus}{lootStatus}\n*Combat Off*";
     }
 
     internal static (long Share, long Remainder) SplitClassicNpcExperience(long totalExperience, int activeCombatants)
