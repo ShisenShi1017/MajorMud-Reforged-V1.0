@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmGate.Compiler.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmGate.Core", "Core\Source\RealmGate.Core\RealmGate.Core.csproj", "{A1260000-0000-0000-0000-000000000128}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmGate.Client.Core", "Core\Source\RealmGate.Client.Core\RealmGate.Client.Core.csproj", "{A1260000-0000-0000-0000-000000000140}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmGate.Server.Runtime", "Apps\Source\RealmGate.Server.Runtime\RealmGate.Server.Runtime.csproj", "{A1260000-0000-0000-0000-000000000138}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealmGate.Server", "Apps\Source\RealmGate.Server\RealmGate.Server.csproj", "{A1260000-0000-0000-0000-000000000129}"
@@ -82,6 +84,18 @@ Global
 		{A1260000-0000-0000-0000-000000000128}.Release|x64.Build.0 = Release|Any CPU
 		{A1260000-0000-0000-0000-000000000128}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1260000-0000-0000-0000-000000000128}.Release|x86.Build.0 = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|x64.Build.0 = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Debug|x86.Build.0 = Debug|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|x64.Build.0 = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|x86.ActiveCfg = Release|Any CPU
+		{A1260000-0000-0000-0000-000000000140}.Release|x86.Build.0 = Release|Any CPU
 		{A1260000-0000-0000-0000-000000000138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1260000-0000-0000-0000-000000000138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1260000-0000-0000-0000-000000000138}.Debug|x64.ActiveCfg = Debug|Any CPU
