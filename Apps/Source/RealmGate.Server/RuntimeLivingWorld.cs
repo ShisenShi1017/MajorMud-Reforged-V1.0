@@ -1350,10 +1350,24 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (!decision.Allowed)
         {
             failure = DescribeExitGateFailure(decision.Code);
+            // Temporary test-branch diagnostic: report the exact decoded gate and
+            // authoritative reputation used, rather than guessing about map data.
+            var blockedGate = Living(session).CaptureGates()
+                .FirstOrDefault(gate => gate.ExitId.Equals(exit.Id, StringComparison.OrdinalIgnoreCase));
+            if (blockedGate is not null && blockedGate.GateKind.Equals("alignment_range", StringComparison.OrdinalIgnoreCase))
+                failure += $" [Temple gate diagnostic: exit={exit.Id}, reason={decision.Code}, reputation={context.AlignmentName}, min={blockedGate.MinimumAlignmentName}, max={blockedGate.MaximumAlignmentName}]";
             return false;
         }
 
-        return Living(session).CanTraverse(session.CurrentRoom,direction,out failure);
+        var traversable = Living(session).CanTraverse(session.CurrentRoom,direction,out failure);
+        if (!traversable)
+        {
+            var blockedGate = Living(session).CaptureGates()
+                .FirstOrDefault(gate => gate.ExitId.Equals(exit.Id, StringComparison.OrdinalIgnoreCase));
+            if (blockedGate is not null && blockedGate.GateKind.Equals("alignment_range", StringComparison.OrdinalIgnoreCase))
+                failure += $" [Temple gate diagnostic: exit={exit.Id}, stage=post-eligibility, reputation={context.AlignmentName}, min={blockedGate.MinimumAlignmentName}, max={blockedGate.MaximumAlignmentName}]";
+        }
+        return traversable;
     }
 
     private RuntimeExitGateContext BuildExitGateContext(RuntimeSession session, string? commandText)
