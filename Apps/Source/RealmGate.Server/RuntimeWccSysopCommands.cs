@@ -92,6 +92,17 @@ public sealed class RuntimeWccSysopCatalog
             : fallback;
 
     public static string NormalizeDestination(string value) => string.Concat(value.Where(char.IsLetterOrDigit)).ToLowerInvariant();
+
+    // User-facing shortcuts only; preserve the authoritative decoded destination keys.
+    public static string NormalizeGotoDestination(string value) => NormalizeDestination(value) switch
+    {
+        "sil" => "silvermere",
+        "kha" => "khazarad",
+        "rhu" => "rhudaur",
+        "lost" => "lostcity",
+        "new" => "newhaven",
+        var destination => destination
+    };
 }
 
 public sealed class RuntimeWccSysopService
@@ -649,7 +660,7 @@ public sealed class RuntimeWccSysopService
     private string ExecuteGoto(RuntimeSession session, RuntimeWccSysopCommand definition, IReadOnlyList<string> arguments)
     {
         if (arguments.Count == 0) return $"Usage: {definition.Forms.FirstOrDefault() ?? "SYSOP GOTO <destination>"}";
-        var destination = RuntimeWccSysopCatalog.NormalizeDestination(string.Join(' ', arguments));
+        var destination = RuntimeWccSysopCatalog.NormalizeGotoDestination(string.Join(' ', arguments));
         if (!definition.Targets.TryGetValue(destination, out var roomId) || string.IsNullOrWhiteSpace(roomId))
             return $"Unknown WCCMMUD GOTO destination '{string.Join(' ', arguments)}'; no state changed.";
         var room = session.World.FindRoomById(roomId);
