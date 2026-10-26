@@ -102,7 +102,8 @@ public sealed partial class RuntimeLiveGameplayFacade
         if (liveNpc is null || !liveNpc.Alive || !liveNpc.RoomId.Equals(session.CurrentRoom.Id, StringComparison.OrdinalIgnoreCase))
         {
             _liveCombats.TryRemove(session.Id, out _);
-            return $"{encounter.NpcName} is no longer here.";
+            ReleaseCombatEngagement(session, encounter, "npc-no-longer-present");
+            return $"{encounter.NpcName} is no longer here.\n*Combat Off*";
         }
         encounter = encounter with { NpcCurrentHitPoints = liveNpc.CurrentHitPoints, RoomId = liveNpc.RoomId };
 
@@ -115,7 +116,7 @@ public sealed partial class RuntimeLiveGameplayFacade
             _liveCombats.TryRemove(session.Id, out _);
             ReleaseCombatEngagement(session, encounter, "npc-fear-flee");
             _sessions.BroadcastRoom(session, $"{encounter.NpcName} flees from {actor.DisplayName}.");
-            return $"{encounter.NpcName} flees in fear.";
+            return $"{encounter.NpcName} flees in fear.\n*Combat Off*";
         }
         var roundStartCharacter = before;
         var player = new RuntimePlayerCombatProfileResolver(RuntimeItemCombatCatalog.Load(_characters.ProjectRoot, before.WorldId), _characters.ProjectRoot).Resolve(before);
