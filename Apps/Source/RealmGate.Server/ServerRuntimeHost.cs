@@ -21,6 +21,7 @@ public sealed partial class ServerRuntimeHost
         _projectRoot = projectRoot;
         _options = options;
         _diagnosticSink = diagnosticSink;
+        _scheduler.TimingDiagnostic = diagnosticSink;
         _characters = new RuntimeCharacterService(projectRoot);
         _sessions = new RuntimeSessionManager(_state, _events, _options.Development, _characters);
         _gameplay = new RuntimeLiveGameplayFacade(_characters, _sessions);
