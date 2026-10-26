@@ -1,8 +1,11 @@
+using System.Diagnostics;
+
 namespace RealmGate.Server;
 
 public sealed class ServerTickScheduler
 {
     private readonly List<ScheduledRuntimeChannel> _channels = new();
+    public Action<string>? TimingDiagnostic { get; set; }
 
     public IReadOnlyList<ScheduledRuntimeChannel> Channels => _channels;
 
@@ -24,7 +27,21 @@ public sealed class ServerTickScheduler
             {
                 if (channel.IsDue)
                 {
-                    await channel.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+                    var lateBy = channel.DelayPastDue;
+                    var started = Stopwatch.GetTimestamp();
+                    try
+                    {
+                        await channel.ExecuteAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    finally
+                    {
+                        var elapsed = Stopwatch.GetElapsedTime(started);
+                        // Ignore ordinary 100ms scheduler polling jitter. Log only
+                        // significant lateness or long-running callbacks.
+                        if (TimingDiagnostic is not null &&
+                            (lateBy >= TimeSpan.FromMilliseconds(250) || elapsed >= TimeSpan.FromMilliseconds(250)))
+                            TimingDiagnostic($"scheduler channel={channel.Name} lateMs={lateBy.TotalMilliseconds:F0} durationMs={elapsed.TotalMilliseconds:F0} intervalMs={channel.Interval.TotalMilliseconds:F0}");
+                    }
                 }
             }
 
@@ -49,6 +66,9 @@ public sealed class ScheduledRuntimeChannel
     public TimeSpan Interval { get; }
     public DateTimeOffset LastRun { get; private set; }
     public bool IsDue => DateTimeOffset.UtcNow >= _nextRun;
+    public TimeSpan DelayPastDue => _nextRun == DateTimeOffset.MaxValue
+        ? TimeSpan.Zero
+        : TimeSpan.FromTicks(Math.Max(0, (DateTimeOffset.UtcNow - _nextRun).Ticks));
 
     public void MarkDueNow()
     {
