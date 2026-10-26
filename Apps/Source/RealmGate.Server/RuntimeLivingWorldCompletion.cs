@@ -665,27 +665,24 @@ public sealed partial class RuntimeLivingWorldService
     private static double ReadDouble(JsonElement element,string name,double fallback)=>element.ValueKind==JsonValueKind.Object&&element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetDouble(out var n)=>n,JsonValueKind.String when double.TryParse(value.GetString(),out var n)=>n,_=>fallback}:fallback;
     private static int CompareAlignment(string actual,string required)
     {
-        // Native MajorMUD reputation bands are ordered, not interchangeable.
-        // In particular Villain is eligible for a gate ending at Villain;
-        // only Fiend falls below that minimum. Do not quietly treat unknown
-        // reputation labels as Neutral.
+        // Decoded Classic gates specify reputation bands from Saint (best) toward
+        // Fiend (worst), e.g. "Saint to Seedy". Use that source order for every
+        // alignment-range exit; do not change or invert the decoded endpoints.
         static int Rank(string value) => value.Trim().ToLowerInvariant() switch
         {
-            "fiend" => 0,
-            "villain" => 1,
-            "criminal" => 2,
-            "outlaw" => 3,
-            "seedy" => 4,
-            "evil" => 4,
-            "neutral" => 5,
-            "good" => 6,
-            "saint" => 7,
-            "lawful" => 8,
+            "lawful" or "saint" => 0,
+            "good" => 1,
+            "neutral" => 2,
+            "seedy" or "evil" => 3,
+            "outlaw" => 4,
+            "criminal" => 5,
+            "villain" => 6,
+            "fiend" => 7,
             _ => throw new InvalidDataException($"Unknown Classic alignment name '{value}'.")
         };
         return Rank(actual).CompareTo(Rank(required));
     }
-    private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
+        private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
     private static int ParseClassicLegacyId(string? value)
     {
