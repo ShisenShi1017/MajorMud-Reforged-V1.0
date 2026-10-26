@@ -1402,7 +1402,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             Level = character?.Level ?? (session.Actor is RuntimeCharacterActor characterActor ? characterActor.Level : 1),
             ClassId = ParseDecodedLegacyId(character?.ClassId),
             RaceId = ParseDecodedLegacyId(character?.RaceId),
-            AlignmentName = ReadCharacterCondition(character, "alignment", "alignment_name"),
+            AlignmentName = !string.IsNullOrWhiteSpace(character?.SemanticState?.Alignment?.Reputation)
+                ? character.SemanticState.Alignment.Reputation
+                : ReadCharacterCondition(character, "alignment", "alignment_name"),
             AbilityValues = abilityValues,
             PicklocksValue = ReadCharacterValue(character, "picklocks", "picklock", "locks"),
             StrengthValue = ReadCharacterValue(character, "strength", "str"),

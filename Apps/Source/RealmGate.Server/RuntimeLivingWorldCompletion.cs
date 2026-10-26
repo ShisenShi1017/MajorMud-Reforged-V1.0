@@ -95,7 +95,7 @@ public sealed partial class RuntimeLivingWorldService
     private readonly Dictionary<string,DateTimeOffset> _nativeActionResetDeadlines = new(StringComparer.OrdinalIgnoreCase);
     private readonly Queue<RuntimeLivingWorldEvent> _recentEvents = new();
     private long _eventSequence;
-    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
+    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","alignment_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
 
     public int CorpseCount { get { lock(_gate) return _corpses.Count; } }
     public int GateCount { get { lock(_gate) return _gates.Count; } }
@@ -475,6 +475,7 @@ public sealed partial class RuntimeLivingWorldService
                 case "text_command": return gate.Commands.Any(x=>x.Equals(context.EnteredCommand,StringComparison.OrdinalIgnoreCase))?new(true,false,"text-command-matched",0,0,0,0,0):new(false,false,"text-command-required",0,0,0,0,0);
                 case "toll": return context.AvailableGold>=gate.TollAmount?new(true,false,"toll-paid",gate.TollAmount,0,0,0,0):new(false,false,"toll-insufficient",0,0,0,0,0);
                 case "level_range": return new(true,false,"level-range-allowed",0,0,0,0,0);
+                case "alignment_range": return new(true,false,"alignment-range-allowed",0,0,0,0,0);
                 case "damage_trap": return new(true,false,"damage-trap",0,gate.Damage,0,0,0);
                 case "spell_trap": return gate.SpellId>0?new(true,false,"spell-trap",0,0,gate.SpellId,0,0):new(false,true,"spell-trap-evidence-only",0,0,0,0,0);
                 case "cast_transition": return gate.PreSpellId>0||gate.PostSpellId>0?new(true,false,"cast-transition",0,0,0,gate.PreSpellId,gate.PostSpellId):new(false,true,"cast-transition-evidence-only",0,0,0,0,0);
@@ -662,8 +663,26 @@ public sealed partial class RuntimeLivingWorldService
     private static int? ReadNullableInt(JsonElement element,string name){if(element.ValueKind!=JsonValueKind.Object||!element.TryGetProperty(name,out var value)||value.ValueKind==JsonValueKind.Null)return null;return value.ValueKind switch{JsonValueKind.Number when value.TryGetInt32(out var n)=>n,JsonValueKind.String when int.TryParse(value.GetString(),out var n)=>n,_=>null};}
     private static long? ReadNullableLong(JsonElement element,string name){if(element.ValueKind!=JsonValueKind.Object||!element.TryGetProperty(name,out var value)||value.ValueKind==JsonValueKind.Null)return null;return value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var n)=>n,JsonValueKind.String when long.TryParse(value.GetString(),out var n)=>n,_=>null};}
     private static double ReadDouble(JsonElement element,string name,double fallback)=>element.ValueKind==JsonValueKind.Object&&element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetDouble(out var n)=>n,JsonValueKind.String when double.TryParse(value.GetString(),out var n)=>n,_=>fallback}:fallback;
-    private static int CompareAlignment(string actual,string required){static int Rank(string value)=>value.Trim().ToLowerInvariant() switch{"evil" or "fiend" or "villain"=>-1,"neutral"=>0,"good" or "saint"=>1,_=>0};return Rank(actual).CompareTo(Rank(required));}
-    private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
+    private static int CompareAlignment(string actual,string required)
+    {
+        // Decoded Classic gates specify reputation bands from Saint (best) toward
+        // Fiend (worst), e.g. "Saint to Seedy". Use that source order for every
+        // alignment-range exit; do not change or invert the decoded endpoints.
+        static int Rank(string value) => value.Trim().ToLowerInvariant() switch
+        {
+            "lawful" or "saint" => 0,
+            "good" => 1,
+            "neutral" => 2,
+            "seedy" or "evil" => 3,
+            "outlaw" => 4,
+            "criminal" => 5,
+            "villain" => 6,
+            "fiend" => 7,
+            _ => throw new InvalidDataException($"Unknown Classic alignment name '{value}'.")
+        };
+        return Rank(actual).CompareTo(Rank(required));
+    }
+        private static string? ReadScalarString(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.String=>value.GetString(),JsonValueKind.Number=>value.GetRawText(),_=>null}:null;
     private static long ReadLong(JsonElement element,string name)=>element.TryGetProperty(name,out var value)?value.ValueKind switch{JsonValueKind.Number when value.TryGetInt64(out var number)=>number,JsonValueKind.String when long.TryParse(value.GetString(),out var textNumber)=>textNumber,_=>0}:0;
     private static int ParseClassicLegacyId(string? value)
     {
