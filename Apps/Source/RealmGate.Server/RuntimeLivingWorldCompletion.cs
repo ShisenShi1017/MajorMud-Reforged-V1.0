@@ -95,7 +95,7 @@ public sealed partial class RuntimeLivingWorldService
     private readonly Dictionary<string,DateTimeOffset> _nativeActionResetDeadlines = new(StringComparer.OrdinalIgnoreCase);
     private readonly Queue<RuntimeLivingWorldEvent> _recentEvents = new();
     private long _eventSequence;
-    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
+    private static readonly HashSet<string> SupportedGateKinds = new(new[]{"door","key","hidden","required_item","ticket_item","cast_transition","spell_trap","damage_trap","text_command","toll","level_range","alignment_range","qualified_unknown","open"},StringComparer.OrdinalIgnoreCase);
 
     public int CorpseCount { get { lock(_gate) return _corpses.Count; } }
     public int GateCount { get { lock(_gate) return _gates.Count; } }
@@ -475,6 +475,7 @@ public sealed partial class RuntimeLivingWorldService
                 case "text_command": return gate.Commands.Any(x=>x.Equals(context.EnteredCommand,StringComparison.OrdinalIgnoreCase))?new(true,false,"text-command-matched",0,0,0,0,0):new(false,false,"text-command-required",0,0,0,0,0);
                 case "toll": return context.AvailableGold>=gate.TollAmount?new(true,false,"toll-paid",gate.TollAmount,0,0,0,0):new(false,false,"toll-insufficient",0,0,0,0,0);
                 case "level_range": return new(true,false,"level-range-allowed",0,0,0,0,0);
+                case "alignment_range": return new(true,false,"alignment-range-allowed",0,0,0,0,0);
                 case "damage_trap": return new(true,false,"damage-trap",0,gate.Damage,0,0,0);
                 case "spell_trap": return gate.SpellId>0?new(true,false,"spell-trap",0,0,gate.SpellId,0,0):new(false,true,"spell-trap-evidence-only",0,0,0,0,0);
                 case "cast_transition": return gate.PreSpellId>0||gate.PostSpellId>0?new(true,false,"cast-transition",0,0,0,gate.PreSpellId,gate.PostSpellId):new(false,true,"cast-transition-evidence-only",0,0,0,0,0);
