@@ -135,6 +135,22 @@ public static class RuntimeWccSysopSmokeReport
                 expectedGotoTargets.All(pair=>targets.TryGetProperty(pair.Key,out var value)&&value.GetString()==pair.Value) &&
                 expectedGotoTargets.All(pair=>catalog.Commands["goto"].Targets.TryGetValue(RuntimeWccSysopCatalog.NormalizeDestination(pair.Key),out var value)&&value==pair.Value),
                 string.Join(',',expectedGotoTargets.Select(pair=>$"{pair.Key}={pair.Value}")));
+            var gotoShortcuts = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["sil"] = "silvermere",
+                ["kha"] = "khazarad",
+                ["rhu"] = "rhudaur",
+                ["lost"] = "lostcity",
+                ["new"] = "newhaven"
+            };
+            Check("sys-goto-shortcuts-resolve-native-targets",
+                gotoShortcuts.All(pair =>
+                    RuntimeWccSysopCatalog.NormalizeGotoDestination(pair.Key) ==
+                    RuntimeWccSysopCatalog.NormalizeDestination(pair.Value) &&
+                    catalog.Commands["goto"].Targets.TryGetValue(RuntimeWccSysopCatalog.NormalizeGotoDestination(pair.Key), out var shortcutRoom) &&
+                    catalog.Commands["goto"].Targets.TryGetValue(RuntimeWccSysopCatalog.NormalizeDestination(pair.Value), out var fullRoom) &&
+                    shortcutRoom == fullRoom),
+                string.Join(',', gotoShortcuts.Select(pair => $"{pair.Key}={pair.Value}")));
             Check("invasion-native-scripts-recovered",
                 catalog.Commands["invasion"].RuntimeDisposition ==
                 "active_room_scoped_decoded_trigger" &&
