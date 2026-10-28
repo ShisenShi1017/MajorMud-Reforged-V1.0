@@ -564,14 +564,27 @@ public sealed partial class RuntimeLiveGameplayFacade
                                 : $"{definition.Name} harms you for {magnitude} damage.");
                             if (nextHp == 0)
                             {
-                                var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
-                                var defeated = RuntimeCharacterDeathResolver.Defeat(
-                                    RuntimeClassicStatusProjection.Clear(character, nextTick, "runtime.live_status.periodic_death"),
-                                    itemCatalog,
-                                    character.RoomId,
-                                    nextTick);
-                                _characters.SaveCharacter(defeated.Character);
-                                targetSession?.EnqueueMessage($"Your corpse ({defeated.Corpse.CorpseId}) remains in this room. Use 'respawn', then return and use 'recover'.");
+                                if (targetSession is not null)
+                                {
+                                    // Online players use the same native death path as combat:
+                                    // resolve death consequences and immediately revive at the
+                                    // authoritative respawn destination. Do not leave them in a
+                                    // manual respawn/recover state after periodic damage.
+                                    var deathMessage = CompletePlayerDefeat(targetSession, character);
+                                    targetSession.EnqueueMessage(deathMessage);
+                                }
+                                else
+                                {
+                                    // Offline characters cannot be moved to a live session.
+                                    // Persist the corpse/dead state for their next login.
+                                    var itemCatalog = RuntimeItemCatalog.Load(_characters.ProjectRoot, character.WorldId);
+                                    var defeated = RuntimeCharacterDeathResolver.Defeat(
+                                        RuntimeClassicStatusProjection.Clear(character, nextTick, "runtime.live_status.periodic_death"),
+                                        itemCatalog,
+                                        character.RoomId,
+                                        nextTick);
+                                    _characters.SaveCharacter(defeated.Character);
+                                }
                                 deadTargets.Add(character.CharacterId);
                                 break;
                             }
