@@ -8,6 +8,9 @@ The user's original `ImportedDatabasesAndEvidence.LocalOnly.rar` was inspected r
 The supplied `wccmmud.dll` has SHA256
 `5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077`.
 `Tools/MDBExtractor/extract_native_room_spawn_index.py` reconstructs the room snapshot from the original.
+`Tools/MDBExtractor/extract_original_monster_group_index.py` reproduces the monster snapshot
+from the retained original codex (`codex-monster-wcc.json`, SHA256
+`83d8fb4098107324b454db4299668624a20c838a094204917d75ca4861e12024`).
 The compiler verifies both snapshot hashes and record counts before incorporating the rules.
 
 Two machine-readable source snapshots are checked into Librarium:
@@ -70,7 +73,14 @@ are the eligible native entries among the 1,100 identities.
    `WCCMMUD.DLL` CRT/thread RNG. Ordering and native RNG stream integration still need confirmation.
 4. There are three original room/group/index ranges with no matching monster record in the
    1,100-identity snapshot. These are flagged as unresolved source cases, not fabricated monsters.
-5. A .NET SDK and actual live-game runtime were unavailable in this tool environment.
+   The three native map-qualified rooms are 1/1324, 1/2214 and 6/386.
+5. Among 11,108 native room rows with a positive linked-controller number, 3,590
+   controller identities do not resolve in this single 13,360-room snapshot, and
+   116 rows have a positive local cap that differs from the referenced controller's
+   positive cap. A complete dynamic population system must resolve these meanings
+   against the original native structures; do not invent controllers or override
+   the game's source counts by assumption.
+6. A .NET SDK and actual live-game runtime were unavailable in this tool environment.
    Static source review is NOT a successful build or smoke-test result.
 
 ## Local rebuild and validation
