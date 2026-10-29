@@ -489,6 +489,15 @@ if (args.Any(arg => string.Equals(arg, "--audit-combat", StringComparison.Ordina
     return 0;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-spawn-eligibility", StringComparison.OrdinalIgnoreCase)))
+{
+    var failures = RuntimeClassicSpawnEligibilitySmokeReport.Run();
+    Console.WriteLine("Classic Spawn Eligibility Smoke Report");
+    foreach (var failure in failures) Console.WriteLine($"FAIL {failure}");
+    if (failures.Count == 0) Console.WriteLine("PASS qualified monster-index candidate selection");
+    return failures.Count == 0 ? 0 : 78;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-major-mud-spawn-timing", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate MajorMUD spawn timing because project root was not resolved."); return 2; }
