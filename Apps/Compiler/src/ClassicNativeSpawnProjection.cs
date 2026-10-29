@@ -122,8 +122,8 @@ internal static class ClassicNativeSpawnProjection
                     model["max_area_cap"] = native.AreaCap;
                     // The original area gate reads the designated controller's
                     // cap, not the minimum across all rooms in that area.
-                    var controllerResolved = native.LinkedAreaRoom > 0
-                        && roomRules.TryGetValue((map, native.LinkedAreaRoom), out var controller);
+                    roomRules.TryGetValue((map, native.LinkedAreaRoom), out var controller);
+                    var controllerResolved = native.LinkedAreaRoom > 0 && controller is not null;
                     model["native_area_controller_resolved"] = controllerResolved;
                     model["native_area_controller_cap"] = controllerResolved ? controller!.AreaCap : 0;
                     model["linked_spawn_room"] = native.LinkedAreaRoom;
