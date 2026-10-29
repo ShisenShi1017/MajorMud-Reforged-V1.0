@@ -120,6 +120,11 @@ internal static class ClassicNativeSpawnProjection
                     // and linked controller references. Preserve them without
                     // introducing any artificial NPC home-room assignment.
                     model["max_area_cap"] = native.AreaCap;
+                    // The original area gate reads the designated controller's
+                    // cap, not the minimum across all rooms in that area.
+                    model["native_area_controller_cap"] = native.LinkedAreaRoom > 0
+                        && roomRules.TryGetValue((map, native.LinkedAreaRoom), out var controller)
+                            ? controller.AreaCap : 0;
                     model["linked_spawn_room"] = native.LinkedAreaRoom;
                     model["linked_spawn_map_id"] = native.LinkedAreaRoom > 0 ? map : 0;
                     model["linked_population_key"] = native.LinkedAreaRoom > 0
