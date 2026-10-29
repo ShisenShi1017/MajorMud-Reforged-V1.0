@@ -61,8 +61,8 @@ public static class RuntimeClassicNativeGenerationSmokeReport
             for (var i = 0; i < 25; i++)
                 living.AdmitDueNpcRespawnsForRoom(room.Id, now.AddSeconds(i + 1));
             current = living.Capture();
-            if (current.NativeRoomGeneratedCounts?.GetValueOrDefault(room.Id) is not int roomPopulation
-                || roomPopulation > 10 || roomPopulation < 1)
+            var roomPopulation = current.NativeRoomGeneratedCounts?.GetValueOrDefault(room.Id) ?? -1;
+            if (roomPopulation > 10 || roomPopulation < 1)
                 failures.Add("native-per-room-generated-count-10");
             if (current.NativeAreaPopulationCounts?.GetValueOrDefault(native.PopulationAreaKey) is not int areaPopulation
                 || areaPopulation > 15 || areaPopulation < 1)
