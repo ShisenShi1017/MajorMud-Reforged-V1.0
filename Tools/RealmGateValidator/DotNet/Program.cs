@@ -489,6 +489,21 @@ if (args.Any(arg => string.Equals(arg, "--audit-combat", StringComparison.Ordina
     return 0;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-classic-native-generation", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot test native generation: repository root not resolved.");
+        return 2;
+    }
+    var failures = RuntimeClassicNativeGenerationSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Classic Native Generation Integration Smoke Report");
+    foreach (var failure in failures) Console.WriteLine($"FAIL {failure}");
+    if (failures.Count == 0)
+        Console.WriteLine("PASS source-qualified native generation, counters, death, restart and reset");
+    return failures.Count == 0 ? 0 : 79;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-classic-spawn-eligibility", StringComparison.OrdinalIgnoreCase)))
 {
     var failures = RuntimeClassicSpawnEligibilitySmokeReport.Run();
