@@ -96,6 +96,17 @@ public static class RuntimeClassicSpawnEligibilitySmokeReport
         if (changed?.LegacyId != 266)
             failures.Add("native-group-roll-repeated-replacement");
 
+        if (!RuntimeLivingWorldService.NativeRoomHasCapacity(9, 10, 14)
+            || RuntimeLivingWorldService.NativeRoomHasCapacity(10, 10, 2)
+            || RuntimeLivingWorldService.NativeRoomHasCapacity(0, 10, 15)
+            || RuntimeLivingWorldService.NativeRoomHasCapacity(0, 0, 0))
+            failures.Add("native-room-count-and-15-entry-slot-gates");
+
+        if (!RuntimeLivingWorldService.NativeMonsterWithinGameLimit(1, 0)
+            || RuntimeLivingWorldService.NativeMonsterWithinGameLimit(1, 1)
+            || !RuntimeLivingWorldService.NativeMonsterWithinGameLimit(0, 200))
+            failures.Add("native-individual-monster-global-game-limit-gate");
+
         return failures;
     }
 }
