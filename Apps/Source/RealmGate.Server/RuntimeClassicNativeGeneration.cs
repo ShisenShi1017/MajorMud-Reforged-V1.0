@@ -30,6 +30,12 @@ public sealed partial class RuntimeLivingWorldService
         npc.Metadata.TryGetValue("native_classic_generated_monster", out var raw)
         && raw.Equals("true", StringComparison.OrdinalIgnoreCase);
 
+    internal static bool NativeRoomHasCapacity(int generatedCount, int nativeCap, int occupiedMonsterSlots) =>
+        nativeCap > 0 && generatedCount < nativeCap && occupiedMonsterSlots < 15;
+
+    internal static bool NativeMonsterWithinGameLimit(int gameLimit, int existingAlive) =>
+        gameLimit <= 0 || existingAlive < gameLimit;
+
     private int ReadNativeRoomGenerationCount(string roomId) =>
         _nativeRoomGeneratedCounts.TryGetValue(roomId, out var count) ? count : 0;
 
@@ -46,14 +52,12 @@ public sealed partial class RuntimeLivingWorldService
 
         // Native room +0x606 generated count is limited by byte +0x55C.
         // A zero cap means no ordinary generated monster is admitted.
-        if (spawn.NativeRoomGenerationCap <= 0
-            || ReadNativeRoomGenerationCount(roomId) >= spawn.NativeRoomGenerationCap)
-            return null;
-
-        // WCCMMUD room +0x400 holds 15 monster-entry slots. An occupied room
-        // stays full even after SYSOP RESET ROOM zeros its generated counter.
-        if (_npcs.Values.Count(npc => npc.Alive
-            && npc.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase)) >= 15)
+        // WCCMMUD room +0x400 holds 15 active monster slots as a
+        // second independent admission check.
+        var occupiedMonsterSlots = _npcs.Values.Count(npc => npc.Alive
+            && npc.RoomId.Equals(roomId, StringComparison.OrdinalIgnoreCase));
+        if (!NativeRoomHasCapacity(ReadNativeRoomGenerationCount(roomId),
+                spawn.NativeRoomGenerationCap, occupiedMonsterSlots))
             return null;
 
         // Use the designated native area controller, never a guessed minimum
@@ -75,10 +79,9 @@ public sealed partial class RuntimeLivingWorldService
             spawn.GroupDefinitions, () => _nativeSpawnPrng.Genrdn(1, 100));
         if (selected is null)
             return null;
-        if (selected.GameLimit > 0
-            && _npcs.Values.Count(npc => npc.Alive
-                && npc.NpcId.Equals(selected.Id, StringComparison.OrdinalIgnoreCase))
-                >= selected.GameLimit)
+        var livingSameType = _npcs.Values.Count(npc => npc.Alive
+            && npc.NpcId.Equals(selected.Id, StringComparison.OrdinalIgnoreCase));
+        if (!NativeMonsterWithinGameLimit(selected.GameLimit, livingSameType))
             return null;
 
         var ai = _world.NpcAiCatalog.FindBySpawnId(spawn.Id);
