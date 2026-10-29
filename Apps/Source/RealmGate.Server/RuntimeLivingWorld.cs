@@ -1322,7 +1322,8 @@ public sealed partial class RuntimeLivingWorldService
                 // Migration from legacy fixed slots and recovery of new
                 // dynamically generated Classic monsters. A dead old slot
                 // must never turn into a permanent native respawn identity.
-                if (!npc.Alive || !_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                if ((!npc.Alive && !IsNativeClassicGeneratedNpc(npc))
+                    || !_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase)
                     || _world.FindRoomById(npc.RoomId) is null)
                     continue;
                 var spawn = _world.FindSpawnById(npc.SpawnId);
@@ -1336,13 +1337,17 @@ public sealed partial class RuntimeLivingWorldService
                     ["native_classic_area_key"] = spawn.PopulationAreaKey,
                     ["npc_lifecycle_owner"] = "classic-native-room-generation"
                 };
-                nativeMetadata.Remove("npc_respawn_block_reason");
-                nativeMetadata.Remove("npc_respawn_scheduled_at_utc");
+                if (npc.Alive)
+                {
+                    nativeMetadata.Remove("npc_respawn_block_reason");
+                    nativeMetadata.Remove("npc_respawn_scheduled_at_utc");
+                }
                 var migrated = npc with { HomeRoomId = spawn.ResolvedRuntimeRoomId,
                     RespawnAtUtc = null, Metadata = nativeMetadata };
                 _npcs[migrated.InstanceId] = migrated;
                 _npcAi[migrated.InstanceId] = new RuntimeNpcAiState(migrated.InstanceId,
-                    "idle", null, migrated.HomeRoomId, migrated.RoomId, 0, DateTimeOffset.UtcNow);
+                    migrated.Alive ? "idle" : "dead", null, migrated.HomeRoomId,
+                    migrated.RoomId, 0, DateTimeOffset.UtcNow);
             }
 
             if (snapshot.NativeRoomGeneratedCounts is not null
