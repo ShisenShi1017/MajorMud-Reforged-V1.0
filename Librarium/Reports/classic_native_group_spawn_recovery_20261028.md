@@ -1,34 +1,85 @@
-# Classic monster generation recovery — 2026-10-28
+# Classic native monster generation source recovery — 2026-10-28
 
-## Source and scope
-Read-only disassembly of the supplied original `WCCMMUD.DLL` (SHA256 `5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077`), cross-checked against original-derived room/monster data. Original RAR/database untouched.
+## Source evidence and trust
 
-## Recovered native generation inputs
-At `0x417417..0x417441`, the native room-generation caller passes:
-- room/map identity;
-- the room group ID from room structure +`0x560`;
-- the direct candidate ID from +`0x468`;
-- the minimum monster index from +`0x462`;
-- the maximum monster index from +`0x464`.
+The user's original `ImportedDatabasesAndEvidence.LocalOnly.rar` was inspected read-only. The native source file
+`ImportedDatabases/WCCDefaultInstall/wcc default/wccmp002.dat` has SHA256
+`06eec04e1020ded5f63d6a9e67a794b871696ca90f6afc0fcdfcccdd4ac657be`.
+The supplied `wccmmud.dll` has SHA256
+`5a99e7c34cf9cf58dc6e97fc3ef28f1bd83f9bcec15ca59ad08826d2f21d2077`.
+`Tools/MDBExtractor/extract_native_room_spawn_index.py` reconstructs the room snapshot from the original.
+The compiler verifies both snapshot hashes and record counts before incorporating the rules.
 
-At `_generate_monster`, `0x424535..0x4245B6`, the native selection scan walks records in the group table (12-byte entries: monster identifier, group ID, index number). Each candidate must match group and optional minimum/maximum index bounds. The first match becomes provisional selection. For each subsequent eligible entry, native 1..100 rolls below 30 replace the provisional candidate; rolls of 99/100 end the scan.
+Two machine-readable source snapshots are checked into Librarium:
+- `Librarium/NativeEvidence/classic_native_room_spawn_index.br64`, **13,360** native room records,
+  decompressed SHA256 `d51f51d17c36cdc6bb8212dfab6a6217b831f7401d0d4e473352888d3798dea1`.
+- `Librarium/NativeEvidence/classic_native_monster_group_index.br64`, **1,100** native monster
+  group/index identities, decompressed SHA256 `48ac6a8ac5b4df0edd2bf2288b0c20175c06a960ceb6b7f8c4cb40a5e7856cc5`.
 
-At `0x424482..0x4244BA`, generation resolves the linked population controller and checks its area-wide population counter (+`0x5C0`) against its cap (+`0x5BE`). Room-local generated count (+`0x606`) is separate.
+The snapshots store only source-derived identities, not synthetic monster home rooms. They are
+Brotli-compressed ASCII rows encoded as Base64, so the compiler can read them without extracting the RAR.
 
-## Current Reforged changes
-- `RuntimeNpcDefinition.IndexNumber` now retains the original index where it is available in `public_reference_0139.fields.index_number`.
-- `RuntimeNpcSpawn.FromJson` accepts source-qualified `spawn_model.group_index` values such as `21-4-4`, or `monster_index_min` plus `monster_index_max`. Wrong-group/invalid bounds are rejected.
-- Qualified lairs use the recovered native 30% replacement / 99% early-stop selection thresholds.
-- Linked spawning respects an area-wide capacity on initial materialization and fixed-slot respawn admission.
-- The compiler validates malformed source qualifications and smoke tests check indexed admission.
-- The server smoke diagnostics explicitly report group spawns still lacking an authoritative native index range.
+## Native room and selector semantics
 
-## Remaining parity blockers — do not invent data
-1. Current original-derived room JSON does not expose the native offsets +`0x462`/+ `0x464`. For example Map 1 Room 2342 only has `monster_type=21`, not its native index range. **These values must be extracted from original authoritative room data**, and promoted to the Librarium spawn source. Do not substitute a hardcoded silverfish or fungus lizard home room.
-2. Ordinary group NPCs still use cached materialized instance slots, with `HomeRoomId` restoration in `RuntimeNpcSpawnLifecycle.cs`; that does **not** implement native dynamic generation. Correct this only with the original regeneration admission, membership/counter and persistence lifecycle contract in place. Bosses, direct NPCs, summons and scripted entities have distinct owners.
-3. The current roll uses `Random.Shared` rather than the native process/thread RNG stream. Native-host RNG integration and global group-table enumeration ordering need exact evidence.
+The native `_generate_monster` caller `0x417417..0x417441` passes group at room struct
+`+0x560`, minimum and maximum monster index at `+0x462` and `+0x464`,
+and direct monster identity at `+0x468`. The native routine uses area-controller
+population count at `+0x5C0`, controller link `+0x5C4`, and area cap `+0x5BE`.
+Room-local generated count `+0x606` is distinct. Native zero-valued index bounds
+are unbounded; the selector considers group/index-eligible monsters only.
 
-## Regression command
-`dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj -- --smoke-classic-spawn-eligibility`
+Native group table entries are 12-byte entries (monster ID, group ID, index).
+The first matching record is the provisional candidate, and each later candidate
+uses the recovered 1..99 roll thresholds: below 30 replaces, 99 ends the scan.
+Runtime currently uses `Random.Shared` for this native decision, not the original thread-specific CRT random stream.
 
-Run locally after pulling main. Do not infer success merely from static review. Verify River Room 2342 and connected area, Map 3 original fungus lizard regen locations, native area caps, and NPC movement across rooms without forced home-room respawns.
+## River regression evidence
+
+Original Map 1 Room 2342 has group **21**, minimum index **4**, maximum index **7**,
+area controller **2342**, cap **15**, direct-monster ID **0**.
+Rooms 2343–2347 and 2363–2367 all use group **21**, index **4..7**, controller **2342**.
+Group 21 monster 264 fungus lizard has index **1** and cannot be generated by these river
+lair rules. Monsters 266 silverfish (4), 267 dragonfish (5) and 268 water elemental (6)
+are the eligible native entries among the 1,100 identities.
+
+## Implemented source/runtime integration
+
+- `Apps/Compiler/src/ClassicNativeSpawnProjection.cs` projects original room group, both index
+  bounds, direct NPC ID when present, area population cap and linked controller into
+  generated Classic spawn records. It projects original monster group and index into NPC
+  definitions in memory before writing output. Custom worlds are untouched.
+- `LibrariumDataWriter.Compile` applies the projection before validation.
+- `RuntimeNpcSpawn.FromJson` enforces a qualified source range, with native zero-bound semantics;
+  old unqualified records are diagnosed, not given fabricated limits.
+- `RuntimeLivingWorld.ResolveMaterializedDefinitions` selects only eligible native group members,
+  using native replacement/stop thresholds, and accepts native group-zero rooms without fake errors.
+- Shared linked-area caps are checked both during first materialization and while admitting
+  old fixed slots; bosses and explicitly spawned NPCs remain distinct.
+- `RuntimeClassicSpawnEligibilitySmokeReport` covers river roster, zero-bound semantics,
+  invalid qualifications and native selection thresholds.
+
+## Remaining parity and verification limitations
+
+1. Generated Classic spawn record coverage comes from the existing Librarium spawn family,
+   which is **not** the complete set of 13,360 native rooms. Native snapshot coverage is complete
+   for the decoded room records; runtime *spawn generation coverage* is not yet complete.
+2. Ordinary NPC death and respawn still uses fixed saved instance slots with `HomeRoomId`.
+   This must be replaced by native **room-triggered generation with room/area counts**
+   to match original MajorMUD. Original data has no artificial per-monster home assignments.
+3. Runtime uses .NET `Random.Shared` for qualified group selection, not the original
+   `WCCMMUD.DLL` CRT/thread RNG. Ordering and native RNG stream integration still need confirmation.
+4. There are three original room/group/index ranges with no matching monster record in the
+   1,100-identity snapshot. These are flagged as unresolved source cases, not fabricated monsters.
+5. A .NET SDK and actual live-game runtime were unavailable in this tool environment.
+   Static source review is NOT a successful build or smoke-test result.
+
+## Local rebuild and validation
+
+```powershell
+dotnet run --project Apps/Compiler/RealmGate.Compiler.csproj -- build --world Classic
+dotnet run --project Tools/RealmGateValidator/DotNet/RealmGate.Validation.csproj -- --smoke-classic-spawn-eligibility
+```
+
+Do not change the original native files or manually patch `Data/Classic`: its files are
+compiler outputs. The smoke tests must pass before deployment, and live spawn counts and
+native movement/regeneration behavior must still be tested.
