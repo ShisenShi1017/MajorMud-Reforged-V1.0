@@ -80,6 +80,7 @@ public sealed class RuntimeNpcDefinition
     public string Id { get; init; } = string.Empty;
     public int LegacyId { get; init; }
     public int GroupId { get; init; }
+    public int IndexNumber { get; init; }
     public string Name { get; init; } = string.Empty;
     public int Level { get; init; }
     public int HitPoints { get; init; }
@@ -145,6 +146,7 @@ public sealed class RuntimeNpcDefinition
             Id = JsonValueReader.ReadString(element, "id", string.Empty),
             LegacyId = JsonValueReader.ReadInt(element, "legacy_id", 0),
             GroupId = behavior.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(behavior, "group_id", 0) : 0,
+            IndexNumber = publicFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(publicFields, "index_number", 0) : 0,
             Name = JsonValueReader.ReadString(element, "name", "Unknown NPC"),
             Level = combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "level", 0) : 0,
             HitPoints = combat.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(combat, "hp", 0) : 0,
@@ -318,6 +320,9 @@ public sealed class RuntimeNpcSpawn
     public string ResolvedRuntimeRoomId { get; set; } = string.Empty;
     public bool PrimaryRoomAvailable => !string.IsNullOrWhiteSpace(ResolvedRuntimeRoomId);
     public int MonsterGroupId { get; init; }
+    public int MinimumMonsterIndex { get; init; }
+    public int MaximumMonsterIndex { get; init; }
+    public bool HasQualifiedMonsterIndexRange => MinimumMonsterIndex > 0 && MaximumMonsterIndex >= MinimumMonsterIndex;
     public int BossLegacyId { get; init; }
     public int LinkedSpawnRoomNumber { get; init; }
     public bool HasLinkedPopulationArea => LinkedSpawnRoomNumber > 0;
@@ -360,6 +365,33 @@ public sealed class RuntimeNpcSpawn
         npcsByLegacyId.TryGetValue(bossLegacyId, out var bossDefinition);
         npcsByGroupId.TryGetValue(monsterGroupId, out var groupDefinitions);
 
+        // Native lair eligibility is qualified by monster index within its group.
+        var minimumIndex = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "monster_index_min", 0) : 0;
+        var maximumIndex = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "monster_index_max", 0) : 0;
+        if (model.ValueKind == JsonValueKind.Object
+            && model.TryGetProperty("group_index", out var groupIndexField)
+            && groupIndexField.ValueKind == JsonValueKind.String)
+        {
+            var parts = (groupIndexField.GetString() ?? string.Empty).Split('-', StringSplitOptions.TrimEntries);
+            if (parts.Length != 3
+                || !int.TryParse(parts[0], out var qualifiedGroup)
+                || !int.TryParse(parts[1], out minimumIndex)
+                || !int.TryParse(parts[2], out maximumIndex)
+                || qualifiedGroup != monsterGroupId)
+                throw new InvalidOperationException($"Spawn '{JsonValueReader.ReadString(element, "id", string.Empty)}' has an invalid group_index qualification.");
+        }
+        if ((minimumIndex == 0) != (maximumIndex == 0)
+            || minimumIndex < 0 || maximumIndex < minimumIndex)
+            throw new InvalidOperationException($"Spawn '{JsonValueReader.ReadString(element, "id", string.Empty)}' has an invalid monster index range.");
+
+        var qualifiedGroupDefinitions = minimumIndex > 0
+            ? (groupDefinitions ?? Array.Empty<RuntimeNpcDefinition>())
+                .Where(npc => npc.IndexNumber >= minimumIndex && npc.IndexNumber <= maximumIndex)
+                .OrderBy(npc => npc.IndexNumber)
+                .ThenBy(npc => npc.LegacyId)
+                .ToArray()
+            : groupDefinitions ?? Array.Empty<RuntimeNpcDefinition>();
+
         return new RuntimeNpcSpawn
         {
             Id = JsonValueReader.ReadString(element, "id", string.Empty),
@@ -368,12 +400,14 @@ public sealed class RuntimeNpcSpawn
             SourceRoomNumber = sourceRoomNumber,
             SourceMapId = sourceMapId,
             MonsterGroupId = monsterGroupId,
+            MinimumMonsterIndex = minimumIndex,
+            MaximumMonsterIndex = maximumIndex,
             BossLegacyId = bossLegacyId,
             LinkedSpawnRoomNumber = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "linked_spawn_room", 0) : 0,
             RespawnMinutes = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "respawn_minutes", 0) : 0,
             MaximumAreaPopulation = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "max_area_cap", 0) : 0,
             InteractionModel = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(model, "interaction_model", string.Empty) : string.Empty,
-            GroupDefinitions = groupDefinitions ?? Array.Empty<RuntimeNpcDefinition>(),
+            GroupDefinitions = qualifiedGroupDefinitions,
             BossDefinition = bossDefinition
         };
     }
