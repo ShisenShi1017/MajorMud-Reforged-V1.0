@@ -96,9 +96,16 @@ public sealed partial class ServerRuntimeHost
                 var unavailablePrimaryRooms = world.SpawnCount - availablePrimaryRooms;
                 var missingMapIdentity = world.Spawns.Count(spawn => spawn.SourceMapId <= 0 || spawn.SourceRoomNumber <= 0);
                 var linkedPopulationRecords = world.Spawns.Count(spawn => spawn.HasLinkedPopulationArea);
+                var unqualifiedGroupRecords = world.Spawns.Count(spawn => spawn.MonsterGroupId > 0
+                    && spawn.BossDefinition is null
+                    && !spawn.HasQualifiedMonsterIndexRange);
                 var mapQualifiedLinkedPopulationRecords = world.Spawns.Count(spawn => spawn.HasMapQualifiedPopulationArea);
                 var missingLinkedMapContext = linkedPopulationRecords - mapQualifiedLinkedPopulationRecords;
                 var diagnostics = new List<string>();
+                if (unqualifiedGroupRecords > 0)
+                {
+                    diagnostics.Add($"{unqualifiedGroupRecords} group spawn records lack original monster-index qualification; those records still use legacy fallback and require source-data reconstruction.");
+                }
                 if (world.UnresolvedGroupCount > 0)
                 {
                     diagnostics.Add($"{world.UnresolvedGroupCount} spawn records reference monster group IDs without generated NPC group members.");
