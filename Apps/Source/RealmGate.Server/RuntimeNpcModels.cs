@@ -322,7 +322,7 @@ public sealed class RuntimeNpcSpawn
     public int MonsterGroupId { get; init; }
     public int MinimumMonsterIndex { get; init; }
     public int MaximumMonsterIndex { get; init; }
-    public bool HasQualifiedMonsterIndexRange => MinimumMonsterIndex > 0 && MaximumMonsterIndex >= MinimumMonsterIndex;
+    public bool HasQualifiedMonsterIndexRange { get; init; }
     public int BossLegacyId { get; init; }
     public int LinkedSpawnRoomNumber { get; init; }
     public bool HasLinkedPopulationArea => LinkedSpawnRoomNumber > 0;
@@ -365,28 +365,43 @@ public sealed class RuntimeNpcSpawn
         npcsByLegacyId.TryGetValue(bossLegacyId, out var bossDefinition);
         npcsByGroupId.TryGetValue(monsterGroupId, out var groupDefinitions);
 
-        // Native lair eligibility is qualified by monster index within its group.
-        var minimumIndex = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "monster_index_min", 0) : 0;
-        var maximumIndex = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "monster_index_max", 0) : 0;
-        if (model.ValueKind == JsonValueKind.Object
-            && model.TryGetProperty("group_index", out var groupIndexField)
-            && groupIndexField.ValueKind == JsonValueKind.String)
+        // WCCMMUD uses zero to mean an omitted lower or upper restriction,
+        // NOT a range of 0..0 that disallows all monsters. A sourced 0..0
+        // qualification remains authoritative and still uses native group rolls.
+        var hasModel = model.ValueKind == JsonValueKind.Object;
+        var hasMinimum = hasModel && model.TryGetProperty("monster_index_min", out _);
+        var hasMaximum = hasModel && model.TryGetProperty("monster_index_max", out _);
+        var hasGroupIndex = hasModel && model.TryGetProperty("group_index", out _);
+        var isQualified = hasMinimum || hasMaximum || hasGroupIndex;
+        if (hasMinimum != hasMaximum)
+            throw new InvalidOperationException($"Spawn '{JsonValueReader.ReadString(element, "id", string.Empty)}' has only one monster index bound.");
+
+        var minimumIndex = hasModel ? JsonValueReader.ReadInt(model, "monster_index_min", 0) : 0;
+        var maximumIndex = hasModel ? JsonValueReader.ReadInt(model, "monster_index_max", 0) : 0;
+        var numericMin = minimumIndex;
+        var numericMax = maximumIndex;
+        if (hasGroupIndex)
         {
-            var parts = (groupIndexField.GetString() ?? string.Empty).Split('-', StringSplitOptions.TrimEntries);
+            var raw = model.GetProperty("group_index");
+            var parts = raw.ValueKind == JsonValueKind.String
+                ? (raw.GetString() ?? string.Empty).Split('-', StringSplitOptions.TrimEntries)
+                : Array.Empty<string>();
             if (parts.Length != 3
                 || !int.TryParse(parts[0], out var qualifiedGroup)
                 || !int.TryParse(parts[1], out minimumIndex)
                 || !int.TryParse(parts[2], out maximumIndex)
-                || qualifiedGroup != monsterGroupId)
+                || qualifiedGroup != monsterGroupId
+                || (hasMinimum && (minimumIndex != numericMin || maximumIndex != numericMax)))
                 throw new InvalidOperationException($"Spawn '{JsonValueReader.ReadString(element, "id", string.Empty)}' has an invalid group_index qualification.");
         }
-        if ((minimumIndex == 0) != (maximumIndex == 0)
-            || minimumIndex < 0 || maximumIndex < minimumIndex)
+        if (minimumIndex < 0 || maximumIndex < 0
+            || (maximumIndex != 0 && minimumIndex > maximumIndex))
             throw new InvalidOperationException($"Spawn '{JsonValueReader.ReadString(element, "id", string.Empty)}' has an invalid monster index range.");
 
-        var qualifiedGroupDefinitions = minimumIndex > 0
+        var qualifiedGroupDefinitions = isQualified
             ? (groupDefinitions ?? Array.Empty<RuntimeNpcDefinition>())
-                .Where(npc => npc.IndexNumber >= minimumIndex && npc.IndexNumber <= maximumIndex)
+                .Where(npc => (minimumIndex == 0 || npc.IndexNumber >= minimumIndex)
+                    && (maximumIndex == 0 || npc.IndexNumber <= maximumIndex))
                 .OrderBy(npc => npc.IndexNumber)
                 .ThenBy(npc => npc.LegacyId)
                 .ToArray()
@@ -402,6 +417,7 @@ public sealed class RuntimeNpcSpawn
             MonsterGroupId = monsterGroupId,
             MinimumMonsterIndex = minimumIndex,
             MaximumMonsterIndex = maximumIndex,
+            HasQualifiedMonsterIndexRange = isQualified,
             BossLegacyId = bossLegacyId,
             LinkedSpawnRoomNumber = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "linked_spawn_room", 0) : 0,
             RespawnMinutes = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "respawn_minutes", 0) : 0,
