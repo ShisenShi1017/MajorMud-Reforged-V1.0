@@ -65,10 +65,13 @@ public sealed class LibrariumValidator
         // A qualified native monster group must preserve its index range.
         // Do not accept malformed qualifiers that could silently expand a lair
         // into every member of its monster group.
+        var hasMin = model.ContainsKey("monster_index_min");
+        var hasMax = model.ContainsKey("monster_index_max");
         var minIndex = GetInt(model, "monster_index_min");
         var maxIndex = GetInt(model, "monster_index_max");
-        if ((minIndex == 0) != (maxIndex == 0)
-            || minIndex < 0 || maxIndex < minIndex)
+        // Native zero disables that bound. An original 0..0 group rule is valid.
+        if (hasMin != hasMax || minIndex < 0 || maxIndex < 0
+            || (maxIndex != 0 && minIndex > maxIndex))
             diagnostics.Add(new(DiagnosticSeverity.Error, "SPN003", $"Spawn record {index} has an invalid monster index range.", sourceFile));
 
         var groupIndex = GetString(model, "group_index");
@@ -80,8 +83,9 @@ public sealed class LibrariumValidator
                 || !int.TryParse(parts[1], out var qualifiedMin)
                 || !int.TryParse(parts[2], out var qualifiedMax)
                 || qualifiedGroup != GetInt(model, "monster_type")
-                || qualifiedMin <= 0 || qualifiedMax < qualifiedMin
-                || (minIndex > 0 && (minIndex != qualifiedMin || maxIndex != qualifiedMax)))
+                || qualifiedMin < 0 || qualifiedMax < 0
+                || (qualifiedMax != 0 && qualifiedMax < qualifiedMin)
+                || (hasMin && (minIndex != qualifiedMin || maxIndex != qualifiedMax)))
                 diagnostics.Add(new(DiagnosticSeverity.Error, "SPN004", $"Spawn record {index} has an inconsistent or invalid native group_index.", sourceFile));
         }
 
