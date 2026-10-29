@@ -12,7 +12,12 @@ public sealed record RuntimeClassicSpellEffectCoverageRecord(
     IReadOnlyList<int> AbilityIds,
     IReadOnlyList<string> Families,
     string RuntimeDisposition,
-    IReadOnlyList<string> RuntimeConsumers);
+    IReadOnlyList<string> RuntimeConsumers)
+{
+    // Classification is a set; retain the populated native vector separately
+    // so repeated ability IDs and their original sequence remain auditable.
+    public IReadOnlyList<int> OrderedPopulatedAbilityIds { get; init; } = Array.Empty<int>();
+}
 
 public sealed record RuntimeClassicSpellEffectCoverageReport(
     bool Passed,
@@ -63,7 +68,8 @@ public static class RuntimeClassicSpellEffectCoverageAudit
             var target=JsonValueReader.ReadInt(classification,"target_type",-1);
             var spellType=JsonValueReader.ReadInt(classification,"spell_type",-1);
             var attackType=JsonValueReader.ReadInt(classification,"attack_type",-1);
-            var abilityIds=ReadAbilityIds(record);
+            var orderedAbilityIds=ReadOrderedAbilityIds(record);
+            var abilityIds=orderedAbilityIds.Distinct().OrderBy(value=>value).ToArray();
             var unknown=abilityIds.Where(id=>!AllKnown.Contains(id)).ToArray();
             if(unknown.Length>0)failures.Add($"{id}:unknown-ability-ids:{string.Join(',',unknown)}");
             if(!KnownTargetTypes.Contains(target))failures.Add($"{id}:unknown-target-type:{target}");
@@ -85,10 +91,19 @@ public static class RuntimeClassicSpellEffectCoverageAudit
                 :unknown.Length==0&&KnownTargetTypes.Contains(target)
                     ?"decoded_family_classified"
                     :"unclassified";
-            results.Add(new(id,name,target,spellType,attackType,abilityIds,families,disposition,consumers.Distinct().ToArray()));
+            results.Add(new(id,name,target,spellType,attackType,abilityIds,families,disposition,consumers.Distinct().ToArray())
+            {
+                OrderedPopulatedAbilityIds = orderedAbilityIds
+            });
         }
         if(records.Length==1350)checks.Add("complete-generated-classic-spell-corpus");
         else failures.Add($"spell-count:{records.Length}:expected:1350");
+        if(results.Sum(x=>x.OrderedPopulatedAbilityIds.Count)==3889)
+            checks.Add("all-3889-ordered-populated-native-ability-positions");
+        else failures.Add($"ordered-ability-positions:{results.Sum(x=>x.OrderedPopulatedAbilityIds.Count)}:expected:3889");
+        if(results.All(x=>x.OrderedPopulatedAbilityIds.Count<=10))
+            checks.Add("no-spell-exceeds-ten-native-ability-positions");
+        else failures.Add("spell-has-more-than-ten-native-ability-positions");
         var classified=results.Count(x=>x.RuntimeDisposition!="unclassified");
         if(classified==records.Length)checks.Add("zero-unclassified-spells");
         if(results.All(x=>x.AbilityIds.Count>0||x.RuntimeDisposition=="decoded_structural_control_no_direct_effect"))
@@ -108,14 +123,14 @@ public static class RuntimeClassicSpellEffectCoverageAudit
             results.SelectMany(x=>x.AbilityIds).Distinct().Count(),familyCounts,results,checks,failures);
     }
 
-    private static IReadOnlyList<int> ReadAbilityIds(JsonElement record)
+    private static IReadOnlyList<int> ReadOrderedAbilityIds(JsonElement record)
     {
         if(!record.TryGetProperty("public_reference_0139",out var reference)
            ||!reference.TryGetProperty("fields",out var fields)
            ||!fields.TryGetProperty("abilities_named",out var abilities)
            ||abilities.ValueKind!=JsonValueKind.Array)return Array.Empty<int>();
         return abilities.EnumerateArray().Select(value=>JsonValueReader.ReadInt(value,"ability_id",0))
-            .Where(value=>value>0).Distinct().OrderBy(value=>value).ToArray();
+            .Where(value=>value>0).ToArray();
     }
 
     private static void AddFamily(IReadOnlyList<int> ids,HashSet<int> family,string name,List<string> output)

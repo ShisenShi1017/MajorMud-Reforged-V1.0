@@ -68,6 +68,8 @@ public static class RuntimeClassicGlobalRngContractAuthority
         var p = new RuntimeClassicWorldgroupPrng(1234u);
         if (p.Genrdn(0, 100) != 56 || p.Sequence != 1) failures.Add("genrdn-basic-vector-mismatch");
         p.Srand(1234u);
+        if (p.Genrdn(0, 1) != 0 || p.Sequence != 1) failures.Add("genrdn-fixed-magnitude-consumption-mismatch");
+        p.Srand(1234u);
         if (p.Genrdn(99, 100) != 99 || p.Sequence != 6) failures.Add("genrdn-accumulation-vector-mismatch");
         p.Srand(1234u);
         if (p.Lngrnd(10, 11) != 10 || p.Sequence != 3) failures.Add("lngrnd-accumulation-vector-mismatch");

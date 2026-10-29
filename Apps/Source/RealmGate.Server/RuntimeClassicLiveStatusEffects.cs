@@ -364,6 +364,10 @@ public sealed partial class RuntimeLiveGameplayFacade
 {
     private RuntimeClassicLiveStatusCatalog? _classicLiveStatusCatalog;
     private string? _classicLiveStatusWorldId;
+    // Worldgroup's bounded RNG contract is verified, but its native callback-to-CRT-thread
+    // ownership is not. Isolate Classic room draws without claiming a shared process stream.
+    private readonly RuntimeClassicWorldgroupPrng _classicRoomSpellRandom =
+        RuntimeClassicGlobalRngContractAuthority.CreateGameplayThreadStream(DateTimeOffset.Now);
 
     private RuntimeClassicLiveStatusCatalog ClassicLiveStatusCatalog(RuntimeSession session)
     {
@@ -536,6 +540,22 @@ public sealed partial class RuntimeLiveGameplayFacade
         && destination.EnvironmentRoomSpellId > 0
         && previous.EnvironmentRoomSpellId != destination.EnvironmentRoomSpellId;
 
+    internal static int ClassicNativeRoomResistanceThreshold(int targetMagicResistance)
+        => Math.Clamp(Math.Max(0, targetMagicResistance) / 2, 0, 97);
+
+    // Native _genrdn(0, max-min+1) consumes a CRT draw even for fixed magnitude.
+    private int RollClassicNativeRoomMagnitude(int minimum, int maximum)
+    {
+        var low = Math.Min(minimum, maximum);
+        var high = Math.Max(minimum, maximum);
+        return checked(low + _classicRoomSpellRandom.Genrdn(0, checked(high - low + 1)));
+    }
+
+    // Native medium upkeep executes on the final duration tick, before termination.
+    internal static bool ShouldApplyClassicPeriodicTick(
+        DateTimeOffset nextTickUtc, DateTimeOffset nowUtc, DateTimeOffset? expiresUtc)
+        => nextTickUtc <= nowUtc && (expiresUtc is null || nextTickUtc <= expiresUtc);
+
     private void TickClassicNativeRoomSpell(RuntimeSession session, DateTimeOffset nowUtc)
     {
         if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
@@ -631,24 +651,24 @@ public sealed partial class RuntimeLiveGameplayFacade
         lock (_livePowerGate)
         {
             EnsureLivePowers(session);
+            // WCCMMUD _room_cast_on_user: roll against the target's +0xC2 magic
+            // resistance before checking for an already active spell. Keeping
+            // this order matters even if the duplicate is rejected: it consumes RNG.
+            // WGSERVER _genrdn has an exclusive upper bound (1..99 here).
+            if (int.TryParse(spell.TargetType, out var targetType)
+                && (targetType == 2 || targetType == 1 && ReadAbilityValue(character, 51) > 0))
+            {
+                var threshold = ClassicNativeRoomResistanceThreshold(ReadMagicResistance(character));
+                if (_classicRoomSpellRandom.Genrdn(1, 100) <= threshold)
+                    return string.Empty;
+            }
+
             if (_liveSpellEngine!.EffectsFor(actor.Id).Any(effect =>
                 effect.SpellId.Equals(spell.Id, StringComparison.OrdinalIgnoreCase)))
                 return string.Empty;
 
-            // Native room_cast_on_user uses genrdn(1,100) and the maximum
-            // magnitude / 2 (capped at 97) for target type 2, or type 1 when
-            // user ability 51 is active. The host RNG scheduling remains a
-            // separate parity boundary; this uses the existing live random source.
-            if (int.TryParse(spell.TargetType, out var targetType)
-                && (targetType == 2 || targetType == 1 && ReadAbilityValue(character, 51) > 0))
-            {
-                var threshold = Math.Clamp(spell.MaximumEffect / 2, 0, 97);
-                if (Random.Shared.Next(1, 101) <= threshold)
-                    return string.Empty;
-            }
-
             var resistance = ResolveClassicNativeRoomResistance(character, spell);
-            var magnitude = RollInclusive(spell.MinimumEffect, spell.MaximumEffect);
+            var magnitude = RollClassicNativeRoomMagnitude(spell.MinimumEffect, spell.MaximumEffect);
             var applied = checked((100 - resistance) * magnitude) / 100;
             if (applied == 0) return string.Empty;
             // Native damage can become healing above 100% elemental resistance.
@@ -718,7 +738,11 @@ public sealed partial class RuntimeLiveGameplayFacade
 
             foreach (var effect in snapshot.ActiveEffects.OrderBy(x => x.AppliedAtUtc).ThenBy(x => x.EffectId, StringComparer.OrdinalIgnoreCase))
             {
-                if (effect.ExpiresAtUtc is not null && effect.ExpiresAtUtc <= nowUtc) { affectedTargets.Add(effect.Target.Id); continue; }
+                var hasExpired = effect.ExpiresAtUtc is not null && effect.ExpiresAtUtc <= nowUtc;
+                // Preserve the existing Custom/AI expiry behavior. The recovered
+                // final-tick ordering belongs only to the original Classic server.
+                var isClassic = session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase);
+                if (hasExpired && !isClassic) { affectedTargets.Add(effect.Target.Id); continue; }
                 var current = effect;
                 if (effect.Target.Kind.Equals("character", StringComparison.OrdinalIgnoreCase)
                     && catalog.TryGet(effect.SpellId, out var definition)
@@ -729,7 +753,10 @@ public sealed partial class RuntimeLiveGameplayFacade
                 {
                     var metadata = new Dictionary<string, string>(effect.Metadata, StringComparer.OrdinalIgnoreCase);
                     var tickCount = 0;
-                    while (nextTick <= nowUtc && (effect.ExpiresAtUtc is null || nextTick < effect.ExpiresAtUtc) && tickCount < 1024)
+                    while ((isClassic
+                        ? ShouldApplyClassicPeriodicTick(nextTick, nowUtc, effect.ExpiresAtUtc)
+                        : nextTick <= nowUtc && (effect.ExpiresAtUtc is null || nextTick < effect.ExpiresAtUtc))
+                        && tickCount < 1024)
                     {
                         var character = _characters.LoadCharacter(effect.Target.Id);
                         if (character is null || character.HitPoints <= 0) { deadTargets.Add(effect.Target.Id); break; }
@@ -778,7 +805,8 @@ public sealed partial class RuntimeLiveGameplayFacade
                     current = effect with { Metadata = metadata };
                     affectedTargets.Add(effect.Target.Id);
                 }
-                if (!deadTargets.Contains(effect.Target.Id)) updatedEffects.Add(current);
+                if (hasExpired) affectedTargets.Add(effect.Target.Id);
+                if (!hasExpired && !deadTargets.Contains(effect.Target.Id)) updatedEffects.Add(current);
             }
 
             if (deadTargets.Count > 0)
@@ -872,6 +900,26 @@ public sealed class RuntimeClassicLiveStatusEffectsSmokeReport
             if (worldId.Equals("Classic", StringComparison.OrdinalIgnoreCase))
             {
                 var nativeSpells = RuntimeSpellCatalog.Load(projectRoot, worldId);
+                Require(nativeSpells.Spells.Count == 1350, "classic-1350-spell-inventory");
+                report.Checks.Add("classic-1350-spell-inventory");
+                Require(nativeSpells.Spells.Sum(spell => spell.DecodedAbilities.Count) == 3889,
+                    "classic-3889-populated-ability-positions");
+                report.Checks.Add("classic-3889-populated-ability-positions");
+                Require(nativeSpells.Require("spell.4").DecodedAbilities.Select(ability => ability.AbilityId)
+                    .SequenceEqual(new[] { 10, 115, 122, 7, 122, 122, 122 }),
+                    "classic-ordered-repeated-ability-vector");
+                report.Checks.Add("classic-ordered-repeated-ability-vector");
+                Require(RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(100) == 50
+                    && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(250) == 97
+                    && RuntimeLiveGameplayFacade.ClassicNativeRoomResistanceThreshold(0) == 0,
+                    "classic-room-resistance-target-value-not-spell-maximum");
+                report.Checks.Add("classic-room-resistance-target-value-not-spell-maximum");
+                var expiry = DateTimeOffset.UnixEpoch.AddSeconds(3);
+                Require(RuntimeLiveGameplayFacade.ShouldApplyClassicPeriodicTick(expiry, expiry, expiry)
+                    && !RuntimeLiveGameplayFacade.ShouldApplyClassicPeriodicTick(
+                        expiry.AddSeconds(3), expiry.AddSeconds(3), expiry),
+                    "classic-upkeep-final-tick-inclusive");
+                report.Checks.Add("classic-upkeep-final-tick-inclusive");
                 Require(RuntimeLiveGameplayFacade.IsVerifiedNativeRoomDirectDamage(
                     nativeSpells.Require("spell.526")), "native-room-magma-heat-direct-ability");
                 report.Checks.Add("native-room-magma-heat-direct-ability");
