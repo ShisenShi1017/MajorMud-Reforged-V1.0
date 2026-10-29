@@ -26,6 +26,34 @@ INDEX_MAX = 0x464
 DIRECT_NPC = 0x468
 AREA_CAP = 0x5BE
 LINKED_AREA_ROOM = 0x5C4
+ROOM_LOCAL_CAP = 0x55C
+CAP_ROWS_SHA256 = 'e45013fcca7350d9ff1561e17f780a1a116b53d58c345cb055b7fda1e760fe2b'
+
+
+def extract_caps(path: Path) -> tuple[str, dict[str, int]]:
+    blob = path.read_bytes()
+    if hashlib.sha256(blob).hexdigest() != SOURCE_SHA256:
+        raise ValueError('Original WCCMP002 hash mismatch')
+    seen: dict[tuple[int, int], int] = {}
+    for offset in range(0, len(blob), PAGE_SIZE):
+        page = memoryview(blob)[offset:offset + PAGE_SIZE]
+        if page[:2] != ROOM_HEADER:
+            continue
+        map_id, room_number = struct.unpack_from('<II', page, ROOM_OFFSET)
+        if not (0 < map_id <= 64 and 0 < room_number <= 65535):
+            continue
+        cap = int(page[ROOM_OFFSET + ROOM_LOCAL_CAP])
+        key = (map_id, room_number)
+        if key in seen and seen[key] != cap:
+            raise ValueError(f'Conflicting native room cap at {key}')
+        seen[key] = cap
+    raw = ''.join(f'{m}:{r}:{seen[(m, r)]}\\n' for m, r in sorted(seen)).encode('ascii')
+    actual = hashlib.sha256(raw).hexdigest()
+    if actual != CAP_ROWS_SHA256 or len(seen) != 13360:
+        raise ValueError('Native room cap source or checksum mismatch')
+    return base64.b64encode(brotli.compress(raw, quality=11)).decode('ascii'), {
+        'native_room_caps': len(seen), 'raw_sha256': actual
+    }
 
 
 def extract(path: Path) -> tuple[str, dict[str, int]]:
@@ -81,12 +109,20 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument('native_database', type=Path)
     p.add_argument('output', type=Path)
+    p.add_argument('--caps-output', type=Path,
+                   help='also export original +0x55C per-room generation caps')
     args = p.parse_args()
     payload, metrics = extract(args.native_database)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(payload + '\n', encoding='ascii')
     for key, value in metrics.items():
         print(f'{key}={value}')
+    if args.caps_output is not None:
+        caps_payload, caps_metrics = extract_caps(args.native_database)
+        args.caps_output.parent.mkdir(parents=True, exist_ok=True)
+        args.caps_output.write_text(caps_payload + '\\n', encoding='ascii')
+        for key, value in caps_metrics.items():
+            print(f'{key}={value}')
 
 
 if __name__ == '__main__':
