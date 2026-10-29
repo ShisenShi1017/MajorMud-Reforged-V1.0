@@ -18,12 +18,14 @@ internal static class ClassicNativeSpawnProjection
     private const string RoomCapRelativePath = "Librarium/NativeEvidence/classic_native_room_local_caps.br64";
     private const string RoomCapRowsSha256 = "e45013fcca7350d9ff1561e17f780a1a116b53d58c345cb055b7fda1e760fe2b";
     private const string RoomRowsSha256 = "d51f51d17c36cdc6bb8212dfab6a6217b831f7401d0d4e473352888d3798dea1";
+    private const string RoomSpellRowsSha256 = "797237c16c294e082197adecd132696c675d1fbc9409cf3bd3ca7901d0bf4fca";
     private const string MonsterRowsSha256 = "48ac6a8ac5b4df0edd2bf2288b0c20175c06a960ceb6b7f8c4cb40a5e7856cc5";
 
     internal sealed record ProjectionReport(
         int NativeRooms, int NativeMonsters, int QualifiedSpawns,
         int QualifiedNpcs, int SpawnRoomsNotInSource,
-        int SpawnGroupDisagreements, int NpcGroupDisagreements);
+        int SpawnGroupDisagreements, int NpcGroupDisagreements,
+        int NativeRoomSpellReferences, int RoomSpellRecordsProjected);
 
     private sealed record RoomRule(int GroupId, int MinimumIndex, int MaximumIndex,
         int DirectMonsterId, int AreaCap, int LinkedAreaRoom);
@@ -33,6 +35,7 @@ internal static class ClassicNativeSpawnProjection
     {
         var roomRules = ReadRooms(repositoryRoot);
         var roomCaps = ReadRoomCaps(repositoryRoot);
+        var roomSpells = ReadRoomSpells(repositoryRoot, roomRules);
         var monsterRules = ReadMonsters(repositoryRoot);
         if (roomCaps.Count != roomRules.Count || roomRules.Keys.Any(key => !roomCaps.ContainsKey(key)))
             throw new InvalidDataException("Native room capacity keys do not match original room source.");
@@ -49,6 +52,15 @@ internal static class ClassicNativeSpawnProjection
             || !monsterRules.TryGetValue(268, out var waterElemental) || waterElemental.GroupId != 21 || waterElemental.IndexNumber != 6)
             throw new InvalidDataException("Classic native Silver River population evidence failed reconciliation.");
 
+        var spellLegacyIds = families
+            .Where(f => f.Name.Equals("spells", StringComparison.OrdinalIgnoreCase))
+            .SelectMany(f => f.Records)
+            .Select(r => Number(r, "legacy_id")).Where(id => id > 0).ToHashSet();
+        var missingSpellIds = roomSpells.Values.Distinct().Where(id => !spellLegacyIds.Contains(id)).ToArray();
+        if (missingSpellIds.Length > 0)
+            throw new InvalidDataException("Original rooms reference missing spell definitions: "
+                + string.Join(", ", missingSpellIds.OrderBy(id => id)));
+        var roomSpellRecordsProjected = 0;
         var qualifiedSpawns = 0;
         var qualifiedNpcs = 0;
         var missingRooms = 0;
@@ -87,6 +99,26 @@ internal static class ClassicNativeSpawnProjection
                     }
                     fields["index_number"] = native.IndexNumber;
                     qualifiedNpcs++;
+                }
+            }
+            else if (family.Name.Equals("rooms", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var record in family.Records)
+                {
+                    var map = Number(record, "map_number");
+                    if (map <= 0) map = Number(record, "map_id");
+                    var room = Number(record, "room_number");
+                    if (map <= 0 || room <= 0 || !roomRules.ContainsKey((map, room))) continue;
+                    var spellId = roomSpells.TryGetValue((map, room), out var original) ? original : 0;
+                    if (record["environment"] is not JsonObject environment)
+                    {
+                        environment = new JsonObject();
+                        record["environment"] = environment;
+                    }
+                    environment["room_spell_id"] = spellId;
+                    // A native zero must survive every later environment overlay.
+                    environment["native_room_spell_verified"] = true;
+                    roomSpellRecordsProjected++;
                 }
             }
             else if (family.Name.Equals("spawns", StringComparison.OrdinalIgnoreCase))
@@ -147,7 +179,8 @@ internal static class ClassicNativeSpawnProjection
             throw new InvalidDataException("Native Classic spawn projection is unexpectedly incomplete.");
 
         return new ProjectionReport(roomRules.Count, monsterRules.Count, qualifiedSpawns,
-            qualifiedNpcs, missingRooms, spawnGroupDisagreements, npcGroupDisagreements);
+            qualifiedNpcs, missingRooms, spawnGroupDisagreements, npcGroupDisagreements,
+            roomSpells.Count, roomSpellRecordsProjected);
     }
 
     private static Dictionary<(int Map, int Room), RoomRule> ReadRooms(string root)
@@ -165,6 +198,24 @@ internal static class ClassicNativeSpawnProjection
         if (result.Count != 13360)
             throw new InvalidDataException($"Expected 13,360 native rooms; recovered {result.Count}.");
         return result;
+    }
+
+    private static Dictionary<(int Map, int Room), int> ReadRoomSpells(
+        string root, IReadOnlyDictionary<(int Map, int Room), RoomRule> rooms)
+    {
+        var rows = LoadVerifiedLines(root, RoomRelativePath, RoomSpellRowsSha256, 1);
+        var spells = new Dictionary<(int Map, int Room), int>();
+        foreach (var line in rows)
+        {
+            var n = ParseNumbers(line, 3);
+            if (n[0] <= 0 || n[1] <= 0 || n[2] <= 0 || n[2] > ushort.MaxValue
+                || !rooms.ContainsKey((n[0], n[1])) || !spells.TryAdd((n[0], n[1]), n[2]))
+                throw new InvalidDataException("Invalid or duplicate original room spell identity.");
+        }
+        if (spells.Count != 1865 || spells.GetValueOrDefault((1, 288)) != 753
+            || spells.GetValueOrDefault((1, 2342)) != 753)
+            throw new InvalidDataException("Original room spell evidence failed reconciliation.");
+        return spells;
     }
 
     private static Dictionary<(int Map, int Room), int> ReadRoomCaps(string root)
@@ -198,12 +249,15 @@ internal static class ClassicNativeSpawnProjection
         return result;
     }
 
-    private static string[] LoadVerifiedLines(string repositoryRoot, string relativePath, string expectedSha256)
+    private static string[] LoadVerifiedLines(string repositoryRoot, string relativePath, string expectedSha256, int sectionIndex = 0)
     {
         var path = Path.Combine(repositoryRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
         if (!File.Exists(path))
             throw new FileNotFoundException("Classic source-derived spawn index is missing.", path);
-        var compressed = Convert.FromBase64String(File.ReadAllText(path).Trim());
+        var sections = File.ReadAllLines(path).Where(line => !string.IsNullOrWhiteSpace(line)).ToArray();
+        if (sectionIndex >= sections.Length)
+            throw new InvalidDataException($"Classic source index section {sectionIndex} is missing: {relativePath}");
+        var compressed = Convert.FromBase64String(sections[sectionIndex].Trim());
         using var source = new MemoryStream(compressed);
         using var brotli = new BrotliStream(source, CompressionMode.Decompress);
         using var destination = new MemoryStream();

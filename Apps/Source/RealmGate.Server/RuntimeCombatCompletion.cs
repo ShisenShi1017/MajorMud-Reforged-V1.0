@@ -18,6 +18,9 @@ public sealed partial class RuntimeLiveGameplayFacade
             cancellationToken.ThrowIfCancellationRequested();
             if (statusWorlds.Add(activeSession.World.Definition.Id))
                 TickClassicLiveStatuses(activeSession, nowUtc);
+            // The native medium owner checks the current room for EACH player.
+            // Status expiration remains one pass per world, avoiding duplicated ticks.
+            TickClassicNativeRoomSpell(activeSession, nowUtc);
         }
         await Task.CompletedTask;
     }

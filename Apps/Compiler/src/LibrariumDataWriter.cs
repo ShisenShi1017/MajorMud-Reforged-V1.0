@@ -334,7 +334,7 @@ public sealed class LibrariumDataWriter
             result.Diagnostics.Add(new(
                 DiagnosticSeverity.Info,
                 "SPN_NATIVE001",
-                $"Original Classic source indexed {native.NativeRooms:N0} rooms and {native.NativeMonsters:N0} monsters; projected {native.QualifiedSpawns:N0} spawn rules and {native.QualifiedNpcs:N0} monster identities; missing source rooms {native.SpawnRoomsNotInSource:N0}; corrected spawn group disagreements {native.SpawnGroupDisagreements:N0}; NPC group disagreements {native.NpcGroupDisagreements:N0}.",
+                $"Original Classic source indexed {native.NativeRooms:N0} rooms and {native.NativeMonsters:N0} monsters; projected {native.QualifiedSpawns:N0} spawn rules, {native.QualifiedNpcs:N0} monster identities, and {native.RoomSpellRecordsProjected:N0} verified room spell fields ({native.NativeRoomSpellReferences:N0} native nonzero references); missing source rooms {native.SpawnRoomsNotInSource:N0}; corrected spawn group disagreements {native.SpawnGroupDisagreements:N0}; NPC group disagreements {native.NpcGroupDisagreements:N0}.",
                 "Librarium/NativeEvidence/classic_native_room_spawn_index.br64"));
         }
 

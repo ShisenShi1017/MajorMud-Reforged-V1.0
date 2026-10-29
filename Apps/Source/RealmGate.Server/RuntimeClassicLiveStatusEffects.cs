@@ -524,6 +524,51 @@ public sealed partial class RuntimeLiveGameplayFacade
         return changed ? state with { ActiveEffects = active } : state;
     }
 
+    private readonly HashSet<int> _unresolvedClassicRoomSpellEffects = new();
+
+    private void TickClassicNativeRoomSpell(RuntimeSession session, DateTimeOffset nowUtc)
+    {
+        if (!session.World.Definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+            || session.Actor is not RuntimeCharacterActor actor
+            || !session.CurrentRoom.EnvironmentRoomSpellNativeVerified
+            || session.CurrentRoom.EnvironmentRoomSpellId <= 0)
+            return;
+
+        var legacyId = session.CurrentRoom.EnvironmentRoomSpellId;
+        var spell = NpcSpellCatalog(session.World.Definition.Id).Spells.FirstOrDefault(candidate =>
+            int.TryParse(candidate.LegacyId, out var parsed) && parsed == legacyId);
+        if (spell is null)
+            throw new InvalidDataException(
+                $"Original room spell {legacyId} in {session.CurrentRoom.Id} is absent from compiled spells.");
+
+        // Native _room_cast_on_user has separate chance/resistance/effect gates.
+        // Only already-supported idempotent removal effects can be applied
+        // without inventing damage, teleport, item scatter, or textblock scripts.
+        var abilities = spell.DecodedAbilities;
+        var safeRemoval = abilities.Any(ability => ability.AbilityId is 122 or 153)
+            && abilities.All(ability => ability.AbilityId is 122 or 153 or 144 or 148 or 115);
+        if (!safeRemoval)
+        {
+            lock (_livePowerGate)
+            {
+                if (_unresolvedClassicRoomSpellEffects.Add(legacyId))
+                    System.Diagnostics.Trace.TraceWarning(
+                        $"Native room spell {legacyId} ({spell.Name}) requires unverified execution gates; skipped unsafe ambient effects.");
+            }
+            return;
+        }
+
+        lock (_livePowerGate)
+        {
+            EnsureLivePowers(session);
+            var target = new RuntimeSpellTarget("character", actor.Id);
+            var removed = ApplyDecodedCureAndDispel(session, spell, target);
+            if (removed <= 0) return;
+            SynchronizeCharacterSpellStatuses(target, nowUtc, "runtime.classic.native_room_spell");
+            PersistLivePowers(session.World.Definition.Id);
+        }
+    }
+
     private void TickClassicLiveStatuses(RuntimeSession session, DateTimeOffset nowUtc)
     {
         lock (_livePowerGate)

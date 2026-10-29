@@ -50,6 +50,20 @@ public static class RuntimeBundleDEnvironmentAudit
         Check(roomsWithDecodedEnvironment.All(r => !string.IsNullOrWhiteSpace(r.EnvironmentEvidence)), "decoded-environment-provenance-consumed-by-runtime-room");
         Check(rooms.Any(r => r.EnvironmentLightLevel != 0), "light-level-consumer-active");
         Check(rooms.Any(r => r.EnvironmentRoomSpellId != 0), "room-spell-consumer-active");
+        if (definition.Type.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+        {
+            var checkedRooms = rooms.Where(room => room.EnvironmentRoomSpellNativeVerified).ToArray();
+            Check(checkedRooms.Length > 0, "classic-native-room-spell-evidence-loaded");
+            Check(world.FindRoom(1, 288) is { EnvironmentRoomSpellNativeVerified: true, EnvironmentRoomSpellId: 753 },
+                "classic-silver-river-288-spell-753");
+            Check(world.FindRoom(1, 2342) is { EnvironmentRoomSpellNativeVerified: true, EnvironmentRoomSpellId: 753 },
+                "classic-silver-river-2342-spell-753");
+            var knownIds = RuntimeSpellCatalog.Load(projectRoot, worldId).Spells
+                .Select(spell => int.TryParse(spell.LegacyId, out var id) ? id : 0).ToHashSet();
+            Check(checkedRooms.Where(room => room.EnvironmentRoomSpellId > 0)
+                .All(room => knownIds.Contains(room.EnvironmentRoomSpellId)),
+                "classic-native-room-spell-references-resolve");
+        }
         Check(rooms.Any(r => r.EnvironmentLairId != 0), "lair-consumer-active");
         Check(rooms.Any(r => r.EnvironmentAttributes != 0), "room-attributes-consumer-active");
         Check(rooms.Any(r => r.EnvironmentDeathRoomId != 0), "death-room-consumer-active");

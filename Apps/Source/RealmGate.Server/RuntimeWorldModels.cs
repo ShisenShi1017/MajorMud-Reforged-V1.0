@@ -64,6 +64,7 @@ public sealed class RuntimeRoom
     public int? ImportedLightLevel { get; init; }
     public int EnvironmentLightLevel { get; init; }
     public int EnvironmentRoomSpellId { get; init; }
+    public bool EnvironmentRoomSpellNativeVerified { get; init; }
     public int EnvironmentLairId { get; init; }
     public int EnvironmentDelay { get; init; }
     public int EnvironmentRoomType { get; init; }
@@ -90,7 +91,7 @@ public sealed class RuntimeRoom
             ObjectType = ObjectType, WorldScopes = WorldScopes, DeclaredExitIds = DeclaredExitIds,
             NpcDefinition = NpcDefinition, CommandDefinition = CommandDefinition, PlacedDefinition = PlacedDefinition,
             ImportedRoomType = ImportedRoomType, ImportedShopNumber = ImportedShopNumber, ImportedLightLevel = ImportedLightLevel,
-            EnvironmentLightLevel = EnvironmentLightLevel, EnvironmentRoomSpellId = EnvironmentRoomSpellId, EnvironmentLairId = EnvironmentLairId,
+            EnvironmentLightLevel = EnvironmentLightLevel, EnvironmentRoomSpellId = EnvironmentRoomSpellId, EnvironmentRoomSpellNativeVerified = EnvironmentRoomSpellNativeVerified, EnvironmentLairId = EnvironmentLairId,
             EnvironmentDelay = EnvironmentDelay, EnvironmentRoomType = EnvironmentRoomType, EnvironmentAttributes = EnvironmentAttributes,
             EnvironmentDeathRoomId = EnvironmentDeathRoomId, EnvironmentGangHouseId = EnvironmentGangHouseId, EnvironmentRespawnMinutes = EnvironmentRespawnMinutes,
             EnvironmentMaxAreaCap = EnvironmentMaxAreaCap, EnvironmentLinkedSpawnRoom = EnvironmentLinkedSpawnRoom, EnvironmentEvidence = EnvironmentEvidence,
@@ -110,7 +111,10 @@ public sealed class RuntimeRoom
             PlacedDefinition = PlacedDefinition, ImportedRoomType = ImportedRoomType, ImportedShopNumber = ImportedShopNumber, ImportedLightLevel = ImportedLightLevel,
             Confidence = Confidence, ClassicLocked = ClassicLocked, RuntimeMappingStatus = RuntimeMappingStatus, GeneratorMappingStatus = GeneratorMappingStatus,
             ValidationStatus = ValidationStatus, EvidenceReferenceCount = EvidenceReferenceCount, Exits = Exits,
-            EnvironmentLightLevel = environment.LightLevel, EnvironmentRoomSpellId = environment.RoomSpellId, EnvironmentLairId = environment.LairId,
+            EnvironmentLightLevel = environment.LightLevel,
+            EnvironmentRoomSpellId = EnvironmentRoomSpellNativeVerified ? EnvironmentRoomSpellId : environment.RoomSpellId,
+            EnvironmentRoomSpellNativeVerified = EnvironmentRoomSpellNativeVerified,
+            EnvironmentLairId = environment.LairId,
             EnvironmentDelay = environment.Delay, EnvironmentRoomType = environment.RoomType, EnvironmentAttributes = environment.Attributes,
             EnvironmentDeathRoomId = environment.DeathRoomId, EnvironmentGangHouseId = environment.GangHouseId, EnvironmentRespawnMinutes = environment.RespawnMinutes,
             EnvironmentMaxAreaCap = environment.MaxAreaCap, EnvironmentLinkedSpawnRoom = environment.LinkedSpawnRoom, EnvironmentEvidence = environment.SourceClassification
@@ -158,6 +162,8 @@ public sealed class RuntimeRoom
             ImportedLightLevel = sourceFields.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadNullableInt(sourceFields, "imported_light_level") : null,
             EnvironmentLightLevel = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "light_level", 0) : 0,
             EnvironmentRoomSpellId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_spell_id", 0) : 0,
+            EnvironmentRoomSpellNativeVerified = environment.ValueKind == JsonValueKind.Object
+                && JsonValueReader.ReadBool(environment, "native_room_spell_verified", false),
             EnvironmentLairId = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_lair_id", 0) : 0,
             EnvironmentDelay = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_delay", 0) : 0,
             EnvironmentRoomType = environment.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(environment, "room_type", 0) : 0,
