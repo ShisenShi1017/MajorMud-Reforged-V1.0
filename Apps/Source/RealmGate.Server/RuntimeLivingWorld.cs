@@ -922,6 +922,14 @@ public sealed partial class RuntimeLivingWorldService
                 continue;
             }
 
+            // The native source explicitly marks some rooms as group 0.
+            // Those are not failed monster placements; they simply have no
+            // ordinary group-generated NPC. Direct/scripted NPCs remain eligible.
+            if (spawn.HasQualifiedMonsterIndexRange && spawn.MonsterGroupId == 0
+                && spawn.BossDefinition is null
+                && string.IsNullOrWhiteSpace(room.NpcDefinition))
+                continue;
+
             var definitions = ResolveMaterializedDefinitions(spawn, room);
             if (definitions.Count == 0)
             {
