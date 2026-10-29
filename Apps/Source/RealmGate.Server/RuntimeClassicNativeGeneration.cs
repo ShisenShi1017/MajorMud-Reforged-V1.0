@@ -237,6 +237,20 @@ public sealed partial class RuntimeLivingWorldService
         }
     }
 
+    private void PruneOrphanedNativeDeadMonstersAfterRestore()
+    {
+        // If a crash left a dead dynamic NPC without a persisted corpse,
+        // never retain an immortal dead slot. The original native game
+        // regenerates from room admission instead.
+        foreach (var npc in _npcs.Values
+            .Where(npc => !npc.Alive && IsNativeClassicGeneratedNpc(npc)
+                && !_corpses.ContainsKey("corpse:" + npc.InstanceId)).ToArray())
+        {
+            _npcs.Remove(npc.InstanceId);
+            _npcAi.Remove(npc.InstanceId);
+        }
+    }
+
     private void RebuildNativeCountersFromSurvivorsLocked()
     {
         _nativeRoomGeneratedCounts.Clear();
