@@ -205,10 +205,19 @@ public sealed partial class RuntimeLivingWorldService
     {
         lock (_gate)
         {
-            if (!_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase)
-                || !_world.SpawnsByRoom.TryGetValue(roomId, out var spawns))
+            if (!_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase))
                 return false;
-            var spawn = spawns.FirstOrDefault(x => x.HasLinkedPopulationArea
+            var room = _world.FindRoomById(roomId);
+            if (room is null) return false;
+
+            // A SYSOP can stand in a non-generating room within an area.
+            // Resolve its native controller by map/linked-area identity even
+            // when this particular room has no generated spawn record.
+            var anchor = room.EnvironmentLinkedSpawnRoom;
+            if (anchor <= 0) return false;
+            var spawn = _world.Spawns.FirstOrDefault(x =>
+                x.SourceMapId == room.MapId
+                && x.LinkedSpawnRoomNumber == anchor
                 && x.NativeAreaControllerResolved);
             if (spawn is null) return false;
             _nativeAreaPopulationCounts[spawn.PopulationAreaKey] = 0;
