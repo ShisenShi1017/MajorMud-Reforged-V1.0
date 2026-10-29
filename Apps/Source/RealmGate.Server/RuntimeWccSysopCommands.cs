@@ -700,8 +700,8 @@ public sealed class RuntimeWccSysopService
             {
                 // Native RESET AREA clears only the designated controller's
                 // population word. It never reinitializes linked room slots.
-                var reset = living.ResetNativeClassicAreaPopulation(source.Id, now);
-                return reset
+                var nativeAreaReset = living.ResetNativeClassicAreaPopulation(source.Id, now);
+                return nativeAreaReset
                     ? "Area Reset - native linked-area population counter cleared; existing monsters retained."
                     : "The original linked-area controller is unresolved; no state changed.";
             }
