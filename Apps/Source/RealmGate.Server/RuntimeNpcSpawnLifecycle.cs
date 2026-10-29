@@ -283,6 +283,33 @@ public sealed partial class RuntimeLivingWorldService
     private RuntimeNpcLifecycleTransition? EnterNpcRespawnWaitLocked(string instanceId, DateTimeOffset nowUtc, string reason, long? worldTick)
     {
         if (!_npcs.TryGetValue(instanceId, out var current) || !current.Alive) return null;
+
+        if (IsNativeClassicGeneratedNpc(current))
+        {
+            // Death releases the native room/area counts. The next generation
+            // attempt chooses a fresh eligible identity; no NPC respawn slot.
+            var nativeMetadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase);
+            ClearTransientNpcExecutionMetadata(nativeMetadata);
+            ClearRespawnBlockMetadata(nativeMetadata);
+            ClearNpcTimedStatuses(nativeMetadata);
+            nativeMetadata["npc_lifecycle_state"] = "native-generated-dead";
+            nativeMetadata["npc_respawn_block_reason"] = "native-room-generation-replaces-fixed-slot";
+            nativeMetadata["npc_last_death_at_utc"] = nowUtc.ToString("O");
+            nativeMetadata["npc_last_despawn_reason"] = NormalizeReason(reason, "native-monster-removed");
+            var dead = current with { Alive = false, CurrentHitPoints = 0,
+                RespawnAtUtc = null, Metadata = nativeMetadata };
+            _npcs[instanceId] = dead;
+            RecordNativeClassicMonsterRemovalLocked(current, nowUtc);
+            // Retain the dead identity only until its corpse expires. A later
+            // native generation produces an independent monster instance.
+            RecordNpcDeathLocked(current, nowUtc, nowUtc.AddMinutes(5));
+            PublishLivingWorldEventLocked("npc-native-monster-removed", instanceId, current.RoomId, nowUtc);
+            return CreateTransition(RuntimeNpcLifecycleTransitionKind.EnterRespawnWait,
+                dead, dead.RoomId, nowUtc, worldTick,
+                "native-monster-removed",
+                $"npc-native-monster-removed:{dead.InstanceId}:{dead.SpawnId}");
+        }
+
         var metadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase);
         ClearTransientNpcExecutionMetadata(metadata);
         ClearRespawnBlockMetadata(metadata);
@@ -433,6 +460,10 @@ public sealed partial class RuntimeLivingWorldService
             transitions.Add(transition);
             PublishLivingWorldEventLocked("npc-respawned", current.InstanceId, current.HomeRoomId, nowUtc);
         }
+        // Native _generate_monster is invoked on room entry and on the
+        // background active-user-room scan. Never resurrect a fixed NPC slot.
+        if (admissionRoomId is not null)
+            transitions.AddRange(AdmitNativeClassicRoomGenerationLocked(admissionRoomId, nowUtc, worldTick));
         return new(nowUtc, worldTick, transitions, CaptureNpcSpawnSlotsLocked());
     }
 
