@@ -204,6 +204,22 @@ public sealed partial class RuntimeLivingWorldService
         if (string.IsNullOrWhiteSpace(roomId)) throw new ArgumentException("Room id is required.", nameof(roomId));
         lock (_gate)
         {
+            if (_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            {
+                // Native SYSOP RESET ROOM changes only the generated-count
+                // word; existing monsters remain alive and no generation is
+                // invoked as a side effect of the reset command.
+                if (_world.FindRoomById(roomId.Trim()) is not null)
+                {
+                    _nativeRoomGeneratedCounts[roomId.Trim()] = 0;
+                    PublishLivingWorldEventLocked("native-sysop-reset-room-counter",
+                        roomId.Trim(), roomId.Trim(), nowUtc);
+                    Save();
+                }
+                return new RuntimeNpcLifecycleTickResult(nowUtc, worldTick,
+                    Array.Empty<RuntimeNpcLifecycleTransition>(), CaptureNpcSpawnSlotsLocked());
+            }
+
             // Native SYSOP RESET ROOM clears the room's generated-monster count; it does not
             // kill active monsters. Reforged therefore leaves living instances untouched and
             // makes only absent/dead materialized slots immediately generation-eligible.
