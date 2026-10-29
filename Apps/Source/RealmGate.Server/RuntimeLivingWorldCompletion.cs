@@ -541,6 +541,14 @@ public sealed partial class RuntimeLivingWorldService
         foreach(var corpse in _corpses.Values.Where(x=>x.ExpiresAtUtc<=nowUtc).ToArray())
         {
             _corpses.Remove(corpse.CorpseId); results.Add("corpse-expired:"+corpse.CorpseId); PublishLivingWorldEventLocked("corpse-expired",corpse.CorpseId,corpse.RoomId,nowUtc);
+            // A native-generated monster has no fixed respawn identity.
+            // Remove its dead instance only after its corpse expires.
+            if (_npcs.TryGetValue(corpse.NpcInstanceId, out var expired)
+                && !expired.Alive && IsNativeClassicGeneratedNpc(expired))
+            {
+                _npcs.Remove(expired.InstanceId);
+                _npcAi.Remove(expired.InstanceId);
+            }
         }
         foreach(var npc in _npcs.Values.Where(x=>x.Alive).ToArray())
         {
