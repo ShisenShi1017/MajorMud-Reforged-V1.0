@@ -47,7 +47,7 @@ def extract_caps(path: Path) -> tuple[str, dict[str, int]]:
         if key in seen and seen[key] != cap:
             raise ValueError(f'Conflicting native room cap at {key}')
         seen[key] = cap
-    raw = ''.join(f'{m}:{r}:{seen[(m, r)]}\\n' for m, r in sorted(seen)).encode('ascii')
+    raw = ''.join(f'{m}:{r}:{seen[(m, r)]}\n' for m, r in sorted(seen)).encode('ascii')
     actual = hashlib.sha256(raw).hexdigest()
     if actual != CAP_ROWS_SHA256 or len(seen) != 13360:
         raise ValueError('Native room cap source or checksum mismatch')
@@ -120,7 +120,7 @@ def main() -> None:
     if args.caps_output is not None:
         caps_payload, caps_metrics = extract_caps(args.native_database)
         args.caps_output.parent.mkdir(parents=True, exist_ok=True)
-        args.caps_output.write_text(caps_payload + '\\n', encoding='ascii')
+        args.caps_output.write_text(caps_payload + '\n', encoding='ascii')
         for key, value in caps_metrics.items():
             print(f'{key}={value}')
 
