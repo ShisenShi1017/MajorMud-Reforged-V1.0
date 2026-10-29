@@ -1057,7 +1057,7 @@ public sealed partial class RuntimeLivingWorldService
 
         if (spawn.HasQualifiedMonsterIndexRange)
         {
-            var nativeCandidate = SelectNativeIndexedLairCandidate(spawn.GroupDefinitions, () => Random.Shared.Next(1, 101));
+            var nativeCandidate = SelectNativeIndexedLairCandidate(spawn.GroupDefinitions, () => Random.Shared.Next(1, 100));
             return nativeCandidate is null ? Array.Empty<RuntimeNpcDefinition>() : new[] { nativeCandidate };
         }
 
@@ -1071,7 +1071,7 @@ public sealed partial class RuntimeLivingWorldService
 
     // WCCMMUD.DLL!_generate_monster (0x42457d..0x4245b6): the first matching
     // group-table entry is the initial choice. For each later eligible entry,
-    // a native 1..100 draw replaces the choice below 30; 99 or 100 stops the scan.
+    // a native 1..99 draw replaces the choice below 30; 99 stops the scan.
     // The roll delegate allows deterministic native-threshold regression tests.
     internal static RuntimeNpcDefinition? SelectNativeIndexedLairCandidate(
         IReadOnlyList<RuntimeNpcDefinition> candidates, Func<int> rollPercent)
