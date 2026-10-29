@@ -88,7 +88,8 @@ public static class RuntimeClassicNativeGenerationSmokeReport
                     failures.Add("native-dead-instance-must-remain-dead");
                 if (afterDeath.NativeRoomGeneratedCounts?.GetValueOrDefault(room.Id) != roomPopulation - 1)
                     failures.Add("native-death-decrements-room-generation-count");
-                if (!afterDeath.NativeRoomLastKilledUtc?.ContainsKey(room.Id) ?? true)
+                if (afterDeath.NativeRoomLastKilledUtc is null
+                    || !afterDeath.NativeRoomLastKilledUtc.ContainsKey(room.Id))
                     failures.Add("native-death-updates-last-killed");
                 resumed.AdmitDueNpcRespawnsForRoom(room.Id, now.AddMinutes(1));
                 if (resumed.Capture().Npcs.Any(npc => npc.InstanceId.Equals(first.InstanceId,
