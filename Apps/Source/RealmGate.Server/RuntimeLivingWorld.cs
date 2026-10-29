@@ -48,7 +48,10 @@ public sealed record RuntimeLivingWorldSnapshot(
     IReadOnlyList<RuntimeLivingNpcState> Npcs,
     IReadOnlyList<RuntimeLivingWorldObjectState> Objects,
     DateTimeOffset SavedAtUtc,
-    IReadOnlyList<RuntimeItemInstance>? Items = null);
+    IReadOnlyList<RuntimeItemInstance>? Items = null,
+    IReadOnlyDictionary<string, int>? NativeRoomGeneratedCounts = null,
+    IReadOnlyDictionary<string, int>? NativeAreaPopulationCounts = null,
+    IReadOnlyDictionary<string, DateTimeOffset>? NativeRoomLastKilledUtc = null);
 
 public sealed record RuntimeSpawnPlacementIssue(
     string SpawnId,
@@ -889,7 +892,10 @@ public sealed partial class RuntimeLivingWorldService
 
     public RuntimeLivingWorldSnapshot Capture()
     {
-        lock(_gate)return new(WorldId,_npcs.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),_objects.Values.OrderBy(x=>x.Id,StringComparer.OrdinalIgnoreCase).ToArray(),DateTimeOffset.UtcNow,_items.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray());
+        lock(_gate)return new(WorldId,_npcs.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),_objects.Values.OrderBy(x=>x.Id,StringComparer.OrdinalIgnoreCase).ToArray(),DateTimeOffset.UtcNow,_items.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),
+            new Dictionary<string, int>(_nativeRoomGeneratedCounts, StringComparer.OrdinalIgnoreCase),
+            new Dictionary<string, int>(_nativeAreaPopulationCounts, StringComparer.OrdinalIgnoreCase),
+            new Dictionary<string, DateTimeOffset>(_nativeRoomLastKilledUtc, StringComparer.OrdinalIgnoreCase));
     }
 
     public IReadOnlyList<string> Validate()
@@ -921,6 +927,11 @@ public sealed partial class RuntimeLivingWorldService
                 _spawnPlacementIssues.Add(new(spawn.Id, FormatSourceRoomReference(spawn), spawn.ResolvedRuntimeRoomId, reason));
                 continue;
             }
+
+            // Native ordinary group monsters are generated only on room-entry or
+            // background admission, not prebuilt at server startup.
+            if (UsesNativeClassicGeneration(spawn))
+                continue;
 
             // The native source explicitly marks some rooms as group 0.
             // Those are not failed monster placements; they simply have no
