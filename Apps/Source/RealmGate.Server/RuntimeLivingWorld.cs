@@ -1047,10 +1047,36 @@ public sealed partial class RuntimeLivingWorldService
                 .ToArray();
         }
 
+        if (spawn.HasQualifiedMonsterIndexRange)
+        {
+            var nativeCandidate = SelectNativeIndexedLairCandidate(spawn.GroupDefinitions, () => Random.Shared.Next(1, 101));
+            return nativeCandidate is null ? Array.Empty<RuntimeNpcDefinition>() : new[] { nativeCandidate };
+        }
+
+        // Unqualified legacy source records retain their existing behavior until
+        // their authoritative native group/index limits are decoded.
         return spawn.GroupDefinitions
             .OrderBy(npc => npc.LegacyId)
             .Take(ResolveSpawnMaterializationLimit(spawn, Math.Max(1, ReadMaximumNpcCount(room.NpcDefinition))))
             .ToArray();
+    }
+
+    // WCCMMUD.DLL!_generate_monster (0x42457d..0x4245b6): the first matching
+    // group-table entry is the initial choice. For each later eligible entry,
+    // a native 1..100 draw replaces the choice below 30; 99 or 100 stops the scan.
+    // The roll delegate allows deterministic native-threshold regression tests.
+    internal static RuntimeNpcDefinition? SelectNativeIndexedLairCandidate(
+        IReadOnlyList<RuntimeNpcDefinition> candidates, Func<int> rollPercent)
+    {
+        if (candidates.Count == 0) return null;
+        var selected = candidates[0];
+        foreach (var candidate in candidates.Skip(1))
+        {
+            var roll = rollPercent();
+            if (roll < 30) selected = candidate;
+            else if (roll >= 99) break;
+        }
+        return selected;
     }
 
     // Native room +0x5C4 links an area controller; +0x5C0 counts its shared monster population.
