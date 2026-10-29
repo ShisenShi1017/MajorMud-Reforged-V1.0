@@ -96,6 +96,23 @@ internal static class ClassicNativeSpawnProjection
                     model["monster_index_max"] = native.MaximumIndex;
                     model["group_index"] = string.Format(CultureInfo.InvariantCulture,
                         "{0}-{1}-{2}", native.GroupId, native.MinimumIndex, native.MaximumIndex);
+
+                    // Native +0x5BE and +0x5C4 are separate area population limits
+                    // and linked controller references. Preserve them without
+                    // introducing any artificial NPC home-room assignment.
+                    model["max_area_cap"] = native.AreaCap;
+                    model["linked_spawn_room"] = native.LinkedAreaRoom;
+                    model["linked_spawn_map_id"] = native.LinkedAreaRoom > 0 ? map : 0;
+                    model["linked_population_key"] = native.LinkedAreaRoom > 0
+                        ? $"map{map}-room{native.LinkedAreaRoom}" : string.Empty;
+
+                    // Native +0x468 is the direct monster argument to _generate_monster.
+                    // Restore an exact direct identity only when the original
+                    // 1,100-monster catalog contains that identity.
+                    if (native.DirectMonsterId > 0 &&
+                        monsterRules.ContainsKey(native.DirectMonsterId))
+                        record["npc_legacy_id"] = native.DirectMonsterId;
+
                     qualifiedSpawns++;
                 }
             }
