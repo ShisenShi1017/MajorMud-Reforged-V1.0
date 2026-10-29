@@ -98,6 +98,9 @@ public sealed partial class RuntimeLivingWorldService
         if (string.IsNullOrWhiteSpace(spawnId)) return false;
         lock (_gate)
         {
+            var sourceSpawn = _world.FindSpawnById(spawnId);
+            if (sourceSpawn is not null && UsesNativeClassicGeneration(sourceSpawn))
+                return false; // Dynamic native spawns are not fixed slots.
             var members = _npcs.Values
                 .Where(x => x.SpawnId.Equals(spawnId, StringComparison.OrdinalIgnoreCase))
                 .OrderBy(x => x.InstanceId, StringComparer.OrdinalIgnoreCase)
@@ -283,6 +286,7 @@ public sealed partial class RuntimeLivingWorldService
         lock (_gate)
         {
             if (!_npcs.TryGetValue(instanceId, out var current) || current.Alive
+                || IsNativeClassicGeneratedNpc(current)
                 || !current.Metadata.ContainsKey("npc_respawn_block_reason")) return false;
             if (_world.FindRoomById(current.HomeRoomId) is null) return false;
 
