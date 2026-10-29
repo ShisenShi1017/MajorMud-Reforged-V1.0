@@ -1,0 +1,175 @@
+using System.Globalization;
+using System.IO.Compression;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json.Nodes;
+
+namespace RealmGate.Compiler;
+
+/// <summary>
+/// Read-only projection of verified Classic source records retained in Librarium.
+/// The snapshots come from original WCCMP002 room pages and the original 1,100-monster
+/// catalog. No native installations or generated Data folders are modified.
+/// </summary>
+internal static class ClassicNativeSpawnProjection
+{
+    private const string RoomRelativePath = "Librarium/NativeEvidence/classic_native_room_spawn_index.br64";
+    private const string MonsterRelativePath = "Librarium/NativeEvidence/classic_native_monster_group_index.br64";
+    private const string RoomRowsSha256 = "d51f51d17c36cdc6bb8212dfab6a6217b831f7401d0d4e473352888d3798dea1";
+    private const string MonsterRowsSha256 = "48ac6a8ac5b4df0edd2bf2288b0c20175c06a960ceb6b7f8c4cb40a5e7856cc5";
+
+    internal sealed record ProjectionReport(
+        int NativeRooms, int NativeMonsters, int QualifiedSpawns,
+        int QualifiedNpcs, int SpawnRoomsNotInSource,
+        int SpawnGroupDisagreements, int NpcGroupDisagreements);
+
+    private sealed record RoomRule(int GroupId, int MinimumIndex, int MaximumIndex,
+        int DirectMonsterId, int AreaCap, int LinkedAreaRoom);
+    private sealed record MonsterRule(int GroupId, int IndexNumber);
+
+    internal static ProjectionReport Apply(string repositoryRoot, IReadOnlyList<LibrariumFamily> families)
+    {
+        var roomRules = ReadRooms(repositoryRoot);
+        var monsterRules = ReadMonsters(repositoryRoot);
+        var qualifiedSpawns = 0;
+        var qualifiedNpcs = 0;
+        var missingRooms = 0;
+        var spawnGroupDisagreements = 0;
+        var npcGroupDisagreements = 0;
+
+        foreach (var family in families)
+        {
+            if (family.Name.Equals("npcs", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var record in family.Records)
+                {
+                    var legacyId = Number(record, "legacy_id");
+                    if (!monsterRules.TryGetValue(legacyId, out var native))
+                        continue;
+
+                    if (record["behavior"] is not JsonObject behavior)
+                    {
+                        behavior = new JsonObject();
+                        record["behavior"] = behavior;
+                    }
+                    if (Number(behavior, "group_id") != native.GroupId)
+                        npcGroupDisagreements++;
+
+                    behavior["group_id"] = native.GroupId;
+
+                    if (record["public_reference_0139"] is not JsonObject reference)
+                    {
+                        reference = new JsonObject();
+                        record["public_reference_0139"] = reference;
+                    }
+                    if (reference["fields"] is not JsonObject fields)
+                    {
+                        fields = new JsonObject();
+                        reference["fields"] = fields;
+                    }
+                    fields["index_number"] = native.IndexNumber;
+                    qualifiedNpcs++;
+                }
+            }
+            else if (family.Name.Equals("spawns", StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var record in family.Records)
+                {
+                    if (record["spawn_model"] is not JsonObject model)
+                        continue;
+
+                    var map = Number(record, "map_id");
+                    var room = Number(record, "room_number");
+                    if (map <= 0) map = Number(model, "map_id");
+                    if (map <= 0 || room <= 0 || !roomRules.TryGetValue((map, room), out var native))
+                    {
+                        missingRooms++;
+                        continue;
+                    }
+
+                    // Never invent a direct/boss NPC identity or a permanent home room.
+                    // Group 0 means this native room has no ordinary group regeneration.
+                    if (Number(model, "monster_type") != native.GroupId)
+                        spawnGroupDisagreements++;
+                    model["monster_type"] = native.GroupId;
+                    model["monster_index_min"] = native.MinimumIndex;
+                    model["monster_index_max"] = native.MaximumIndex;
+                    model["group_index"] = string.Format(CultureInfo.InvariantCulture,
+                        "{0}-{1}-{2}", native.GroupId, native.MinimumIndex, native.MaximumIndex);
+                    qualifiedSpawns++;
+                }
+            }
+        }
+
+        if (qualifiedNpcs < 1000 || qualifiedSpawns == 0)
+            throw new InvalidDataException("Native Classic spawn projection is unexpectedly incomplete.");
+
+        return new ProjectionReport(roomRules.Count, monsterRules.Count, qualifiedSpawns,
+            qualifiedNpcs, missingRooms, spawnGroupDisagreements, npcGroupDisagreements);
+    }
+
+    private static Dictionary<(int Map, int Room), RoomRule> ReadRooms(string root)
+    {
+        var rows = LoadVerifiedLines(root, RoomRelativePath, RoomRowsSha256);
+        var result = new Dictionary<(int, int), RoomRule>();
+        foreach (var line in rows)
+        {
+            var n = ParseNumbers(line, 8);
+            if (n[0] <= 0 || n[1] <= 0 || n[3] > n[4])
+                throw new InvalidDataException("Native room spawn index has invalid map/room/index values.");
+            if (!result.TryAdd((n[0], n[1]), new RoomRule(n[2], n[3], n[4], n[5], n[6], n[7])))
+                throw new InvalidDataException("Duplicate native room spawn index key.");
+        }
+        if (result.Count != 13360)
+            throw new InvalidDataException($"Expected 13,360 native rooms; recovered {result.Count}.");
+        return result;
+    }
+
+    private static Dictionary<int, MonsterRule> ReadMonsters(string root)
+    {
+        var rows = LoadVerifiedLines(root, MonsterRelativePath, MonsterRowsSha256);
+        var result = new Dictionary<int, MonsterRule>();
+        foreach (var line in rows)
+        {
+            var n = ParseNumbers(line, 3);
+            if (n[0] <= 0 || !result.TryAdd(n[0], new MonsterRule(n[1], n[2])))
+                throw new InvalidDataException("Invalid or duplicate native monster index key.");
+        }
+        if (result.Count != 1100)
+            throw new InvalidDataException($"Expected 1,100 native monsters; recovered {result.Count}.");
+        return result;
+    }
+
+    private static string[] LoadVerifiedLines(string repositoryRoot, string relativePath, string expectedSha256)
+    {
+        var path = Path.Combine(repositoryRoot, relativePath.Replace('/', Path.DirectorySeparatorChar));
+        if (!File.Exists(path))
+            throw new FileNotFoundException("Classic source-derived spawn index is missing.", path);
+        var compressed = Convert.FromBase64String(File.ReadAllText(path).Trim());
+        using var source = new MemoryStream(compressed);
+        using var brotli = new BrotliStream(source, CompressionMode.Decompress);
+        using var destination = new MemoryStream();
+        brotli.CopyTo(destination);
+        var raw = destination.ToArray();
+        var actualSha = Convert.ToHexString(SHA256.HashData(raw)).ToLowerInvariant();
+        if (!actualSha.Equals(expectedSha256, StringComparison.Ordinal))
+            throw new InvalidDataException($"Classic source index checksum mismatch: {relativePath}");
+        return Encoding.ASCII.GetString(raw).Split('\n', StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    private static int[] ParseNumbers(string line, int length)
+    {
+        var parts = line.Split(':');
+        if (parts.Length != length)
+            throw new InvalidDataException("Malformed native index record.");
+        var values = new int[length];
+        for (var i = 0; i < length; i++)
+            if (!int.TryParse(parts[i], NumberStyles.Integer, CultureInfo.InvariantCulture, out values[i]))
+                throw new InvalidDataException("Invalid native index integer.");
+        return values;
+    }
+
+    private static int Number(JsonObject obj, string key) =>
+        int.TryParse(obj[key]?.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var value)
+            ? value : 0;
+}
