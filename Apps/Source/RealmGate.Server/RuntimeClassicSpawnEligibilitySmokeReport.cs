@@ -4,7 +4,7 @@ namespace RealmGate.Server;
 
 /// <summary>
 /// Deterministic admission checks for source-qualified Classic lair candidates.
-/// This is deliberately separate from the unresolved native group-roll algorithm.
+/// Uses exact native group/index fixtures and the recovered group-roll thresholds.
 /// </summary>
 public static class RuntimeClassicSpawnEligibilitySmokeReport
 {
@@ -37,6 +37,33 @@ public static class RuntimeClassicSpawnEligibilitySmokeReport
         if (range.GroupDefinitions.Count != 2 || range.GroupDefinitions.Any(member => member.LegacyId == 264))
             failures.Add("qualified-index-range-must-exclude-outside-monsters");
 
+        // Native WCCMP002 Map 1 Room 2342: Group 21, index 4..7.
+        var riverMembers = members.Concat(new[]
+        {
+            new RuntimeNpcDefinition { Id = "npc.269", LegacyId = 269, GroupId = 21, IndexNumber = 3, Name = "night hag" },
+            new RuntimeNpcDefinition { Id = "npc.267", LegacyId = 267, GroupId = 21, IndexNumber = 5, Name = "dragonfish" },
+            new RuntimeNpcDefinition { Id = "npc.268", LegacyId = 268, GroupId = 21, IndexNumber = 6, Name = "water elemental" }
+        }).ToArray();
+        using (var riverDocument = JsonDocument.Parse(
+            "{\"id\":\"spawn.river\",\"room_ref\":\"room.map1.2342\",\"map_id\":1,\"room_number\":2342,\"spawn_model\":{\"monster_type\":21,\"group_index\":\"21-4-7\"}}"))
+        {
+            var originalRiver = RuntimeNpcSpawn.FromJson(riverDocument.RootElement,
+                riverMembers.ToDictionary(npc => npc.LegacyId),
+                new Dictionary<int, IReadOnlyList<RuntimeNpcDefinition>> { [21] = riverMembers });
+            var accepted = originalRiver.GroupDefinitions.Select(npc => npc.LegacyId).OrderBy(id => id).ToArray();
+            if (!originalRiver.HasQualifiedMonsterIndexRange ||
+                !accepted.SequenceEqual(new[] { 266, 267, 268 }))
+                failures.Add("native-river-index-4-through-7-must-include-only-silverfish-dragonfish-water-elemental");
+        }
+
+        var zeroLower = Decode("{\"monster_type\":21,\"group_index\":\"21-0-4\"}");
+        if (!zeroLower.HasQualifiedMonsterIndexRange || zeroLower.GroupDefinitions.Count != 3)
+            failures.Add("native-index-zero-lower-means-no-lower-bound");
+
+        var zeroBoth = Decode("{\"monster_type\":21,\"group_index\":\"21-0-0\"}");
+        if (!zeroBoth.HasQualifiedMonsterIndexRange || zeroBoth.GroupDefinitions.Count != 3)
+            failures.Add("native-index-zero-zero-remains-qualified-unbounded");
+
         var unqualified = Decode("{\"monster_type\":21}");
         if (unqualified.HasQualifiedMonsterIndexRange || unqualified.GroupDefinitions.Count != 3)
             failures.Add("missing-evidence-must-not-invent-index-qualification");
@@ -61,9 +88,9 @@ public static class RuntimeClassicSpawnEligibilitySmokeReport
 
         var stopCount = 0;
         var stopped = RuntimeLivingWorldService.SelectNativeIndexedLairCandidate(
-            members, () => { stopCount++; return 100; });
+            members, () => { stopCount++; return 99; });
         if (stopped?.LegacyId != 264 || stopCount != 1)
-            failures.Add("native-group-roll-100-stops-without-replacing");
+            failures.Add("native-group-roll-99-stops-without-replacing");
 
         var changed = RuntimeLivingWorldService.SelectNativeIndexedLairCandidate(members, () => 1);
         if (changed?.LegacyId != 266)
