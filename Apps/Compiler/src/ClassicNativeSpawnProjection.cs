@@ -31,6 +31,19 @@ internal static class ClassicNativeSpawnProjection
     {
         var roomRules = ReadRooms(repositoryRoot);
         var monsterRules = ReadMonsters(repositoryRoot);
+
+        // The original Silver River record is a cross-source regression anchor:
+        // native room Group 21 indexes 4..7 must admit silverfish, dragonfish
+        // and water elemental, but never fungus lizard (native index 1).
+        if (!roomRules.TryGetValue((1, 2342), out var river)
+            || river.GroupId != 21 || river.MinimumIndex != 4 || river.MaximumIndex != 7
+            || river.AreaCap != 15 || river.LinkedAreaRoom != 2342
+            || !monsterRules.TryGetValue(264, out var fungus) || fungus.GroupId != 21 || fungus.IndexNumber != 1
+            || !monsterRules.TryGetValue(266, out var silverfish) || silverfish.GroupId != 21 || silverfish.IndexNumber != 4
+            || !monsterRules.TryGetValue(267, out var dragonfish) || dragonfish.GroupId != 21 || dragonfish.IndexNumber != 5
+            || !monsterRules.TryGetValue(268, out var waterElemental) || waterElemental.GroupId != 21 || waterElemental.IndexNumber != 6)
+            throw new InvalidDataException("Classic native Silver River population evidence failed reconciliation.");
+
         var qualifiedSpawns = 0;
         var qualifiedNpcs = 0;
         var missingRooms = 0;
