@@ -15,6 +15,8 @@ internal static class ClassicNativeSpawnProjection
 {
     private const string RoomRelativePath = "Librarium/NativeEvidence/classic_native_room_spawn_index.br64";
     private const string MonsterRelativePath = "Librarium/NativeEvidence/classic_native_monster_group_index.br64";
+    private const string RoomCapRelativePath = "Librarium/NativeEvidence/classic_native_room_local_caps.br64";
+    private const string RoomCapRowsSha256 = "e45013fcca7350d9ff1561e17f780a1a116b53d58c345cb055b7fda1e760fe2b";
     private const string RoomRowsSha256 = "d51f51d17c36cdc6bb8212dfab6a6217b831f7401d0d4e473352888d3798dea1";
     private const string MonsterRowsSha256 = "48ac6a8ac5b4df0edd2bf2288b0c20175c06a960ceb6b7f8c4cb40a5e7856cc5";
 
@@ -30,7 +32,10 @@ internal static class ClassicNativeSpawnProjection
     internal static ProjectionReport Apply(string repositoryRoot, IReadOnlyList<LibrariumFamily> families)
     {
         var roomRules = ReadRooms(repositoryRoot);
+        var roomCaps = ReadRoomCaps(repositoryRoot);
         var monsterRules = ReadMonsters(repositoryRoot);
+        if (roomCaps.Count != roomRules.Count || roomRules.Keys.Any(key => !roomCaps.ContainsKey(key)))
+            throw new InvalidDataException("Native room capacity keys do not match original room source.");
 
         // The original Silver River record is a cross-source regression anchor:
         // native room Group 21 indexes 4..7 must admit silverfish, dragonfish
@@ -105,6 +110,7 @@ internal static class ClassicNativeSpawnProjection
                     if (Number(model, "monster_type") != native.GroupId)
                         spawnGroupDisagreements++;
                     model["monster_type"] = native.GroupId;
+                    model["native_room_generation_cap"] = roomCaps[(map, room)];
                     model["monster_index_min"] = native.MinimumIndex;
                     model["monster_index_max"] = native.MaximumIndex;
                     model["group_index"] = string.Format(CultureInfo.InvariantCulture,
@@ -152,6 +158,22 @@ internal static class ClassicNativeSpawnProjection
         }
         if (result.Count != 13360)
             throw new InvalidDataException($"Expected 13,360 native rooms; recovered {result.Count}.");
+        return result;
+    }
+
+    private static Dictionary<(int Map, int Room), int> ReadRoomCaps(string root)
+    {
+        var rows = LoadVerifiedLines(root, RoomCapRelativePath, RoomCapRowsSha256);
+        var result = new Dictionary<(int, int), int>();
+        foreach (var line in rows)
+        {
+            var n = ParseNumbers(line, 3);
+            if (n[0] <= 0 || n[1] <= 0 || n[2] < 0 || n[2] > 15
+                || !result.TryAdd((n[0], n[1]), n[2]))
+                throw new InvalidDataException("Invalid or duplicated native room capacity.");
+        }
+        if (result.Count != 13360)
+            throw new InvalidDataException("Native room caps must cover exactly 13,360 original rooms.");
         return result;
     }
 
