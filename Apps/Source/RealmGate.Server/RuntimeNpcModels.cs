@@ -335,6 +335,7 @@ public sealed class RuntimeNpcSpawn
     public int RespawnMinutes { get; init; }
     public int MaximumAreaPopulation { get; init; }
     public int NativeRoomGenerationCap { get; init; }
+    public int NativeAreaControllerCap { get; init; }
     public string InteractionModel { get; init; } = string.Empty;
     public IReadOnlyList<RuntimeNpcDefinition> GroupDefinitions { get; init; } = Array.Empty<RuntimeNpcDefinition>();
     public RuntimeNpcDefinition? BossDefinition { get; init; }
@@ -424,6 +425,7 @@ public sealed class RuntimeNpcSpawn
             RespawnMinutes = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "respawn_minutes", 0) : 0,
             MaximumAreaPopulation = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "max_area_cap", 0) : 0,
             NativeRoomGenerationCap = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "native_room_generation_cap", 0) : 0,
+            NativeAreaControllerCap = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadInt(model, "native_area_controller_cap", 0) : 0,
             InteractionModel = model.ValueKind == JsonValueKind.Object ? JsonValueReader.ReadString(model, "interaction_model", string.Empty) : string.Empty,
             GroupDefinitions = qualifiedGroupDefinitions,
             BossDefinition = bossDefinition
