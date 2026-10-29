@@ -134,6 +134,7 @@ public sealed partial class RuntimeLivingWorldService
         InitializeLivingWorldCompletion();
         Restore();
         RestoreLivingWorldCompletion();
+        PruneOrphanedNativeDeadMonstersAfterRestore();
     }
 
     /// <summary>
