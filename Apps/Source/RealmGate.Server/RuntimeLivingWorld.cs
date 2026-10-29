@@ -932,6 +932,8 @@ public sealed partial class RuntimeLivingWorldService
             var ordinal=0;
             foreach(var npc in definitions)
             {
+                // Native linked areas share a population count across their generating rooms.
+                if (IsLinkedAreaPopulationAtCapacity(spawn)) break;
                 ordinal++;
                 var id=$"{spawn.Id}:{npc.Id}:{ordinal}";
                 var aiRelationship = _world.NpcAiCatalog.FindBySpawnId(spawn.Id)
@@ -982,6 +984,7 @@ public sealed partial class RuntimeLivingWorldService
                     ["monster_type"] = npc.MonsterType.ToString(),
                     ["experience_multiplier"] = npc.ExperienceMultiplier.ToString(System.Globalization.CultureInfo.InvariantCulture),
                     ["maximum_area_population"] = spawn.MaximumAreaPopulation.ToString(),
+                    ["population_area_key"] = spawn.PopulationAreaKey,
                     ["classic_active_slot"] = classicActiveSlot.ToString()
                 };
                 _npcs[id]=new(id,spawn.Id,npc.Id,npc.Name,room.Id,room.Id,
@@ -1048,6 +1051,38 @@ public sealed partial class RuntimeLivingWorldService
             .OrderBy(npc => npc.LegacyId)
             .Take(ResolveSpawnMaterializationLimit(spawn, Math.Max(1, ReadMaximumNpcCount(room.NpcDefinition))))
             .ToArray();
+    }
+
+    // Native room +0x5C4 links an area controller; +0x5C0 counts its shared monster population.
+    // This limit is separate from the per-room generation count and from named/boss NPCs.
+    private bool IsLinkedAreaPopulationAtCapacity(RuntimeNpcSpawn spawn)
+    {
+        if (spawn.BossDefinition is not null || !spawn.HasLinkedPopulationArea)
+            return false;
+
+        var areaKey = spawn.PopulationAreaKey;
+        var areaLimit = _world.Spawns
+            .Where(candidate => candidate.HasLinkedPopulationArea
+                && candidate.PopulationAreaKey.Equals(areaKey, StringComparison.OrdinalIgnoreCase)
+                && candidate.MaximumAreaPopulation > 0)
+            .Select(candidate => candidate.MaximumAreaPopulation)
+            .DefaultIfEmpty(0)
+            .Min();
+
+        if (areaLimit <= 0)
+            return false;
+
+        var livingAreaPopulation = _npcs.Values.Count(npc =>
+        {
+            if (!npc.Alive) return false;
+            var origin = _world.FindSpawnById(npc.SpawnId);
+            return origin is not null
+                && origin.BossDefinition is null
+                && origin.HasLinkedPopulationArea
+                && origin.PopulationAreaKey.Equals(areaKey, StringComparison.OrdinalIgnoreCase);
+        });
+
+        return livingAreaPopulation >= areaLimit;
     }
 
     private static int ResolveSpawnMaterializationLimit(RuntimeNpcSpawn spawn, int roomLimit)
