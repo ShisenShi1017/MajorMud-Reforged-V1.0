@@ -51,7 +51,8 @@ public sealed record RuntimeLivingWorldSnapshot(
     IReadOnlyList<RuntimeItemInstance>? Items = null,
     IReadOnlyDictionary<string, int>? NativeRoomGeneratedCounts = null,
     IReadOnlyDictionary<string, int>? NativeAreaPopulationCounts = null,
-    IReadOnlyDictionary<string, DateTimeOffset>? NativeRoomLastKilledUtc = null);
+    IReadOnlyDictionary<string, DateTimeOffset>? NativeRoomLastKilledUtc = null,
+    uint? NativeSpawnPrngSeed = null);
 
 public sealed record RuntimeSpawnPlacementIssue(
     string SpawnId,
@@ -895,7 +896,8 @@ public sealed partial class RuntimeLivingWorldService
         lock(_gate)return new(WorldId,_npcs.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),_objects.Values.OrderBy(x=>x.Id,StringComparer.OrdinalIgnoreCase).ToArray(),DateTimeOffset.UtcNow,_items.Values.OrderBy(x=>x.InstanceId,StringComparer.OrdinalIgnoreCase).ToArray(),
             new Dictionary<string, int>(_nativeRoomGeneratedCounts, StringComparer.OrdinalIgnoreCase),
             new Dictionary<string, int>(_nativeAreaPopulationCounts, StringComparer.OrdinalIgnoreCase),
-            new Dictionary<string, DateTimeOffset>(_nativeRoomLastKilledUtc, StringComparer.OrdinalIgnoreCase));
+            new Dictionary<string, DateTimeOffset>(_nativeRoomLastKilledUtc, StringComparer.OrdinalIgnoreCase),
+            _nativeSpawnPrng.Seed);
     }
 
     public IReadOnlyList<string> Validate()
@@ -1369,6 +1371,8 @@ public sealed partial class RuntimeLivingWorldService
             if (snapshot.NativeRoomLastKilledUtc is not null)
                 foreach (var pair in snapshot.NativeRoomLastKilledUtc)
                     _nativeRoomLastKilledUtc[pair.Key] = pair.Value;
+            if (snapshot.NativeSpawnPrngSeed is uint restoredNativeSeed)
+                _nativeSpawnPrng.Srand(restoredNativeSeed);
 
             foreach(var state in snapshot.Objects)if(_objects.ContainsKey(state.Id))_objects[state.Id]=state;
             if(snapshot.Items is not null)
