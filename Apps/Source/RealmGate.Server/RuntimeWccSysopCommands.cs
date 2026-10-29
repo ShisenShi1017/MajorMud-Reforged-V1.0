@@ -696,6 +696,15 @@ public sealed class RuntimeWccSysopService
         if (arguments.Count > 0 && arguments[0].Equals("area", StringComparison.OrdinalIgnoreCase))
         {
             var source = session.CurrentRoom;
+            if (session.World.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase))
+            {
+                // Native RESET AREA clears only the designated controller's
+                // population word. It never reinitializes linked room slots.
+                var reset = living.ResetNativeClassicAreaPopulation(source.Id, now);
+                return reset
+                    ? "Area Reset - native linked-area population counter cleared; existing monsters retained."
+                    : "The original linked-area controller is unresolved; no state changed.";
+            }
             if (source.EnvironmentLinkedSpawnRoom <= 0)
                 return "No linked native monster area is defined for this room; no state changed.";
             var anchorRoomNumber = source.EnvironmentLinkedSpawnRoom;
