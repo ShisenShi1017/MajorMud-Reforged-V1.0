@@ -397,6 +397,12 @@ public sealed partial class RuntimeLivingWorldService
                 continue;
             }
 
+            // Do not replenish a linked-area monster slot while its native area cap is full.
+            // Evaluate the origin spawn, not the monster's current room after wandering.
+            var originSpawn = _world.FindSpawnById(current.SpawnId);
+            if (originSpawn is not null && IsLinkedAreaPopulationAtCapacity(originSpawn))
+                continue;
+
             var metadata = new Dictionary<string,string>(current.Metadata, StringComparer.OrdinalIgnoreCase);
             ClearTransientNpcExecutionMetadata(metadata);
             var generation = metadata.TryGetValue("npc_spawn_generation", out var generationText)
