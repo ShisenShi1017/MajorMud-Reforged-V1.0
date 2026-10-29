@@ -1301,14 +1301,70 @@ public sealed partial class RuntimeLivingWorldService
             if(snapshot is null||!snapshot.WorldId.Equals(WorldId,StringComparison.OrdinalIgnoreCase))return;
             foreach(var npc in snapshot.Npcs)
             {
-                if(!_npcs.TryGetValue(npc.InstanceId,out var generated))continue;
-                _npcs[npc.InstanceId]=npc with
+                if(_npcs.TryGetValue(npc.InstanceId,out var generated))
                 {
-                    RoomId = generated.RoomId,
-                    HomeRoomId = generated.HomeRoomId,
-                    Metadata = generated.Metadata
+                    // Preserve surviving NPC movement across restart. Defaults
+                    // from current definitions are overlaid with saved state
+                    // instead of discarding its current room and metadata.
+                    var storedRoom = _world.FindRoomById(npc.RoomId) is not null
+                        ? npc.RoomId : generated.RoomId;
+                    var metadata = new Dictionary<string,string>(generated.Metadata, StringComparer.OrdinalIgnoreCase);
+                    foreach(var pair in npc.Metadata) metadata[pair.Key] = pair.Value;
+                    _npcs[npc.InstanceId] = npc with
+                    {
+                        RoomId = storedRoom,
+                        HomeRoomId = generated.HomeRoomId,
+                        Metadata = metadata
+                    };
+                    continue;
+                }
+
+                // Migration from legacy fixed slots and recovery of new
+                // dynamically generated Classic monsters. A dead old slot
+                // must never turn into a permanent native respawn identity.
+                if (!npc.Alive || !_world.Definition.Id.Equals("Classic", StringComparison.OrdinalIgnoreCase)
+                    || _world.FindRoomById(npc.RoomId) is null)
+                    continue;
+                var spawn = _world.FindSpawnById(npc.SpawnId);
+                if (spawn is null || !UsesNativeClassicGeneration(spawn)
+                    || !spawn.GroupDefinitions.Any(def => def.Id.Equals(npc.NpcId, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+                var nativeMetadata = new Dictionary<string,string>(npc.Metadata, StringComparer.OrdinalIgnoreCase)
+                {
+                    ["native_classic_generated_monster"] = "true",
+                    ["native_classic_origin_room"] = spawn.ResolvedRuntimeRoomId,
+                    ["native_classic_area_key"] = spawn.PopulationAreaKey,
+                    ["npc_lifecycle_owner"] = "classic-native-room-generation"
                 };
+                nativeMetadata.Remove("npc_respawn_block_reason");
+                nativeMetadata.Remove("npc_respawn_scheduled_at_utc");
+                var migrated = npc with { HomeRoomId = spawn.ResolvedRuntimeRoomId,
+                    RespawnAtUtc = null, Metadata = nativeMetadata };
+                _npcs[migrated.InstanceId] = migrated;
+                _npcAi[migrated.InstanceId] = new RuntimeNpcAiState(migrated.InstanceId,
+                    "idle", null, migrated.HomeRoomId, migrated.RoomId, 0, DateTimeOffset.UtcNow);
             }
+
+            if (snapshot.NativeRoomGeneratedCounts is not null
+                && snapshot.NativeAreaPopulationCounts is not null)
+            {
+                _nativeRoomGeneratedCounts.Clear();
+                foreach (var pair in snapshot.NativeRoomGeneratedCounts)
+                    if (pair.Value >= 0) _nativeRoomGeneratedCounts[pair.Key] = pair.Value;
+                _nativeAreaPopulationCounts.Clear();
+                foreach (var pair in snapshot.NativeAreaPopulationCounts)
+                    if (pair.Value >= 0) _nativeAreaPopulationCounts[pair.Key] = pair.Value;
+            }
+            else
+            {
+                // Existing fixed-slot saves carry no native ledger. Rebuild
+                // counts only from surviving valid native monsters.
+                RebuildNativeCountersFromSurvivorsLocked();
+            }
+            if (snapshot.NativeRoomLastKilledUtc is not null)
+                foreach (var pair in snapshot.NativeRoomLastKilledUtc)
+                    _nativeRoomLastKilledUtc[pair.Key] = pair.Value;
+
             foreach(var state in snapshot.Objects)if(_objects.ContainsKey(state.Id))_objects[state.Id]=state;
             if(snapshot.Items is not null)
             {
